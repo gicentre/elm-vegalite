@@ -1,0 +1,3 @@
+examples/js/*.js linguist-generated=true
+tests/js/*.js linguist-generated=true
+test-gallery/js/*.js linguist-generated=true
