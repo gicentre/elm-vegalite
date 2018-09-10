@@ -1875,7 +1875,7 @@ Used to specify how the encoding of a data field should be applied. See the
 ### Color Scaling
 
 For color interpolation types, see the
-[Vega-Lite continouus scale documentation](https://vega.github.io/vega-lite/docs/scale.html#continuous).
+[Vega-Lite continuous scale documentation](https://vega.github.io/vega-lite/docs/scale.html#continuous).
 
 @docs cubeHelix
 @docs cubeHelixLong
@@ -2086,10 +2086,10 @@ otherwise make them grey":
                     [ mStr "grey" ]
                 ]
 
-In a similar way, `mDataCondition` will encocode a mark depending on whether any
-predicate tests are satisfied. Unlike slections, multiple conditions and associated
+In a similar way, `mDataCondition` will encode a mark depending on whether any
+predicate tests are satisfied. Unlike selections, multiple conditions and associated
 encodings can be specified. Each test condition is evaluated in order and only on
-failure of the test does encoding procede to the next test. If no tests are true,
+failure of the test does encoding proceed to the next test. If no tests are true,
 the encoding in the final parameter is applied in a similar way to 'case of'
 expressions:
 
@@ -2127,7 +2127,7 @@ See the
 
 Configuration options that affect the entire visualization. These are in addition
 to the data and transform options described above. See the
-[Vega-Lite top level spec documentation](https://vega.github.io/vega-lite/docs/spec.html#top-level-specifications)
+[Vega-Lite top-level spec documentation](https://vega.github.io/vega-lite/docs/spec.html#top-level-specifications)
 
 @docs name
 @docs title
@@ -4172,7 +4172,7 @@ The second is a list of 'group by' fields.
     trans =
         transform
             << aggregate
-                [ opAs Min "people" "lowerBound", opAs Max "people" "upperBound" ]
+                [ opAs opMin "people" "lowerBound", opAs opMax "people" "upperBound" ]
                 [ "age" ]
 
 -}
@@ -4242,7 +4242,7 @@ anStart =
     AnStart
 
 
-{-| Column arrangment in a repeated/faceted view.
+{-| Column arrangement in a repeated/faceted view.
 -}
 arColumn : Arrangement
 arColumn =
@@ -4257,7 +4257,7 @@ area =
     mark Area
 
 
-{-| Row arrangment in a repeated/faceted view.
+{-| Row arrangement in a repeated/faceted view.
 -}
 arRow : Arrangement
 arRow =
@@ -4287,7 +4287,7 @@ asNone =
     ANone
 
 
-{-| Automatically expand size of visulization from the given dimensions in order
+{-| Automatically expand size of visualization from the given dimensions in order
 to fit in all supplemtary decorations (legends etc.).
 -}
 asPad : Autosize
@@ -4329,7 +4329,7 @@ asSpec specs =
     toVegaLite
         [ width 250
         , height 300
-        , autosize [ AFit, APadding, AResize ]
+        , autosize [ asFit, asPadding, asResize ]
         , dataFromUrl "data/population.json" []
         , bar []
         , enc []
@@ -5157,7 +5157,7 @@ list to use the default binning.
 
     trans =
         transform
-            << binAs [ MaxBins 3 ] "IMDB_Rating" "ratingGroup"
+            << binAs [ biMaxBins 3 ] "IMDB_Rating" "ratingGroup"
 
 Note that usually, direct binning within an encoding is preferred over this form
 of bin transformation.
@@ -5203,14 +5203,14 @@ boFull =
     Full
 
 
-{-| A boolean data value.
+{-| A Boolean data value.
 -}
 boo : Bool -> DataValue
 boo =
     Boolean
 
 
-{-| A list of boolean data values.
+{-| A list of Boolean data values.
 -}
 boos : List Bool -> DataValues
 boos =
@@ -5228,7 +5228,7 @@ bounds bnds =
 
 
 {-| [Boxplot composite mark](https://vega.github.io/vega-lite/docs/boxplot.html)
-for showing summaries of statistical distibutions.
+for showing summaries of statistical distributions.
 -}
 boxplot : List MarkProperty -> ( VLProperty, Spec )
 boxplot =
@@ -5296,7 +5296,7 @@ caSquare =
 {-| Create a set of discrete domain to color mappings suitable for customising categorical
 scales. The first item in each tuple should be a domain value and the second the
 color value with which it should be associated. It is a convenience function equivalent
-to specifying separate `SDomain` and `SRange` lists and is safer as it guarantees
+to specifying separate `scDomain` and `scRange` lists and is safer as it guarantees
 a one-to-one correspondence between domain and range values.
 
     color
@@ -5567,7 +5567,7 @@ columnBy =
 
 {-| Create a list of fields to use in set of repeated small multiples arranged in
 columns. The list of fields named here can be referenced in an encoding with
-`pRepeat Column`, `mRepeat Column` etc.
+`pRepeat column`, `mRepeat column` etc.
 -}
 columnFields : List String -> RepeatFields
 columnFields =
@@ -5583,7 +5583,7 @@ coMark =
 
 {-| Combines a list of labelled specifications that may be passed to JavaScript
 for rendering. Useful when you wish to create a single page with multiple
-visulizualizations.
+visualizations.
 
     combineSpecs
         [ ( "vis1", myFirstVis )
@@ -5618,7 +5618,7 @@ See the [Vega-Lite documentation](https://vega.github.io/vega-lite/docs/config.h
         configure
             << configuration (coAxis [ axcoDomainWidth 1 ])
             << configuration (coView [ vicoStroke Nothing ])
-            << configuration (coSelection [ ( Single, [ seOn "dblclick" ] ) ])
+            << configuration (coSelection [ ( seSingle, [ seOn "dblclick" ] ) ])
 
 -}
 configure : List LabelledSpec -> ( VLProperty, Spec )
@@ -6061,7 +6061,7 @@ cuZoomOut =
     CZoomOut
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with a
+{-| Compute some aggregate summary statistics for a field to be encoded with a
 level of detail (grouping) channel. The type of aggregation is determined by the
 given operation parameter.
 -}
@@ -6101,7 +6101,7 @@ The columns are most easily generated with [dataColumn](#dataColumn):
             << dataColumn "Age" (nums [ 28, 12, 6 ])
             << dataColumn "Year" (strs [ "2010", "2014", "2015" ])
 
-For more complex inline data tables, such as mixures of arrays and objects, consider
+For more complex inline data tables, such as mixtures of arrays and objects, consider
 using [dataFromJson](#dataFromJson).
 
 -}
@@ -6138,7 +6138,7 @@ objects, consider
         [ width 200
         , height 200
         , dataFromJson geojson []
-        , projection [ prType Orthographic ]
+        , projection [ prType orthographic ]
         , geoshape []
         ]
 
@@ -6171,7 +6171,7 @@ easily generated with [dataRow](#dataRow).
             << dataRow [ ( "Animal", str "Cat" ), ( "Age", num 6 ), ( "Year", str "2015" ) ]
 
 Generally, adding data by column is more efficient and less error-prone. For more
-complex inline data tables, such as mixures of arrays and objects, consider using
+complex inline data tables, such as mixtures of arrays and objects, consider using
 [dataFromJson](#dataFromJson).
 
 -}
@@ -6387,8 +6387,8 @@ ordered scales. The first parameter is a tuple representing the mapping of the l
 numeric value in the domain to its equivalent color; the second tuple the mapping
 of the highest numeric value to color. If the domain contains any values between
 these lower and upper bounds they are interpolated according to the scale's interpolation
-function. Convenience function equivalent to specifying separate `SDomain` and
-`SRange` lists and is safer as it guarantees a one-to-one correspondence between
+function. Convenience function equivalent to specifying separate `scDomain` and
+`scRange` lists and is safer as it guarantees a one-to-one correspondence between
 domain and range values.
 
     color
@@ -6629,7 +6629,7 @@ facet fMaps =
     ( VLFacet, JE.object (List.map facetMappingProperty fMaps) )
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with a
+{-| Compute some aggregate summary statistics for a field to be encoded with a
 facet channel. The type of aggregation is determined by the given operation
 parameter.
 -}
@@ -7054,7 +7054,7 @@ geoPolygons =
 
 
 {-| [Geoshape](https://vega.github.io/vega-lite/docs/geoshape.html)
-determined by georaphically referenced coordinates.
+determined by geographically referenced coordinates.
 -}
 geoshape : List MarkProperty -> ( VLProperty, Spec )
 geoshape =
@@ -7075,7 +7075,7 @@ haCenter =
     AlignCenter
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with a
+{-| Compute some aggregate summary statistics for a field to be encoded with a
 hyperlink channel. The type of aggregation is determined by the given operation
 parameter.
 -}
@@ -7630,7 +7630,7 @@ joBevel =
     JBevel
 
 
-{-| Mitered stroke join.
+{-| Mitred stroke join.
 -}
 joMiter : StrokeJoin
 joMiter =
@@ -8601,14 +8601,14 @@ maFontStyle =
     MFontStyle
 
 
-{-| Font wight used by a text mark.
+{-| Font weight used by a text mark.
 -}
 maFontWeight : FontWeight -> MarkProperty
 maFontWeight =
     MFontWeight
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with a
+{-| Compute some aggregate summary statistics for a field to be encoded with a
 mark property channel. The type of aggregation is determined by the given operation
 parameter.
 -}
@@ -8687,7 +8687,7 @@ maShortTimeLabels =
     MShortTimeLabels
 
 
-{-| Ssize of a mark in square units.
+{-| Size of a mark in square units.
 -}
 maSize : Float -> MarkProperty
 maSize =
@@ -8730,7 +8730,7 @@ maStrokeJoin =
     MStrokeJoin
 
 
-{-| Miter limit at which to bevel a join between line segments of a mark's stroke.
+{-| Mitre limit at which to bevel a join between line segments of a mark's stroke.
 -}
 maStrokeMiterLimit : Float -> MarkProperty
 maStrokeMiterLimit =
@@ -8970,21 +8970,21 @@ minutesSeconds =
 
 
 {-| Piecewise (stepped) constant interpolation function centred on each point in
-a squence.
+a sequence.
 -}
 miStepwise : MarkInterpolation
 miStepwise =
     Stepwise
 
 
-{-| Piecewise (stepped) constant interpolation function after each point in a squence.
+{-| Piecewise (stepped) constant interpolation function after each point in a sequence.
 -}
 miStepAfter : MarkInterpolation
 miStepAfter =
     StepAfter
 
 
-{-| Piecewise (stepped) constant interpolation function before each point in a squence.
+{-| Piecewise (stepped) constant interpolation function before each point in a sequence.
 -}
 miStepBefore : MarkInterpolation
 miStepBefore =
@@ -9239,7 +9239,7 @@ nums =
     Numbers
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with an
+{-| Compute some aggregate summary statistics for a field to be encoded with an
 order channel. The type of aggregation is determined by the given operation
 parameter.
 -}
@@ -9292,15 +9292,15 @@ opArgMin =
     ArgMin
 
 
-{-| Aaggregation operation. The first parameter is the operation to use; the second
+{-| Aggregation operation. The first parameter is the operation to use; the second
 the name of the field in which to apply it and the third the name to be given to
 this transformation.
 
     trans =
         transform
             << aggregate
-                [ opAs Min "people" "lowerBound"
-                , opAs Max "people" "upperBound"
+                [ opAs opMin "people" "lowerBound"
+                , opAs opMax "people" "upperBound"
                 ]
                 [ "age" ]
 
@@ -9415,7 +9415,7 @@ opStdevP =
     StdevP
 
 
-{-| Sum of field values to be used in an ggregation operation.
+{-| Sum of field values to be used in an aggregation operation.
 -}
 opSum : Operation
 opSum =
@@ -9526,7 +9526,7 @@ paEdges =
     PEdges
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with a
+{-| Compute some aggregate summary statistics for a field to be encoded with a
 position channel. The type of aggregation is determined by the given operation
 parameter.
 -}
@@ -9889,7 +9889,7 @@ racoOrdinal =
     ROrdinal
 
 
-{-| Default ramp (contnuous) color scheme.
+{-| Default ramp (continuous) color scheme.
 -}
 racoRamp : String -> RangeConfig
 racoRamp =
@@ -9994,7 +9994,7 @@ resolution rule should be in a tuple pairing the channel to which it applies and
 the rule type. The first parameter identifies the type of resolution.
 
     resolve
-        << resolution (reScale [ ( ChY, Independent ) ])
+        << resolution (reScale [ ( chY, reIndependent ) ])
 
 -}
 resolution : Resolve -> List LabelledSpec -> List LabelledSpec
@@ -10036,7 +10036,7 @@ rowBy =
 
 {-| Create a list of fields to use in set of repeated small multiples arranged in
 rows. The list of fields named here can be referenced in an encoding with
-`pRepeat Row`, `mRepeat Row` etc.
+`pRepeat row`, `mRepeat row` etc.
 -}
 rowFields : List String -> RepeatFields
 rowFields =
@@ -10339,7 +10339,7 @@ scRound =
 
 
 {-| Color scheme used by a color scaling. The first parameter is the name of the
-scheme (e.g. "viridis") and the second an optional specifiction of the number of
+scheme (e.g. "viridis") and the second an optional specification of the number of
 colors to use (list of one number), or the extent of the color range to use (list
 of two numbers between 0 and 1).
 -}
@@ -10462,7 +10462,7 @@ seIntersection =
 
 
 {-| Indicate a draggable bounding rectangle can be made for selecting all items
-that intersecti with it.
+that intersect with it.
 -}
 seInterval : Selection
 seInterval =
@@ -10501,9 +10501,9 @@ selected =
 
     sel =
         selection
-            << select "view" Interval [ BindScales ] []
-            << select "myBrush" Interval []
-            << select "myPaintbrush" Multi [ On "mouseover", Nearest True ]
+            << select "view" seInterval [ seBindScales ] []
+            << select "myBrush" seInterval []
+            << select "myPaintbrush" seMulti [ seOn "mouseover", seNearest True ]
 
 -}
 selection : List LabelledSpec -> ( VLProperty, Spec )
@@ -10658,35 +10658,35 @@ smFillOpacity =
     SMFillOpacity
 
 
-{-| Sroke color of the interval selection mark.
+{-| Stroke color of an interval selection mark.
 -}
 smStroke : String -> SelectionMarkProperty
 smStroke =
     SMStroke
 
 
-{-| Stroke opacity of the interval selection mark in the range 0 to 1.
+{-| Stroke opacity of an interval selection mark in the range 0 to 1.
 -}
 smStrokeOpacity : Float -> SelectionMarkProperty
 smStrokeOpacity =
     SMStrokeOpacity
 
 
-{-| Stroke width of the interval selection mark.
+{-| Stroke width of an interval selection mark.
 -}
 smStrokeWidth : Float -> SelectionMarkProperty
 smStrokeWidth =
     SMStrokeWidth
 
 
-{-| Stroke dash style of the interval selection mark.
+{-| Stroke dash style of an interval selection mark.
 -}
 smStrokeDash : List Float -> SelectionMarkProperty
 smStrokeDash =
     SMStrokeDash
 
 
-{-| Stroke dash offset of the interval selection mark.
+{-| Stroke dash offset of an interval selection mark.
 -}
 smStrokeDashOffset : Float -> SelectionMarkProperty
 smStrokeDashOffset =
@@ -10707,7 +10707,7 @@ the data in each variety category:
     position Y
         [ pName "variety"
         , pMType Ordinal
-        , pSort [ soByField "age" Mean, Descending ]
+        , pSort [ soByField "age" opMean, soDescending ]
         ]
 
 -}
@@ -10731,7 +10731,7 @@ soCustom =
     CustomSort
 
 
-{-| Indicate sorting is to be applied from hight to low.
+{-| Indicate sorting is to be applied from high to low.
 -}
 soDescending : SortProperty
 soDescending =
@@ -10917,21 +10917,21 @@ symSquare =
     SymSquare
 
 
-{-| Specify an upward trianglular symbol for a shape mark.
+{-| Specify an upward triangular symbol for a shape mark.
 -}
 symTriangleUp : Symbol
 symTriangleUp =
     SymTriangleUp
 
 
-{-| Specify a downward trianglular symbol for a shape mark.
+{-| Specify a downward triangular symbol for a shape mark.
 -}
 symTriangleDown : Symbol
 symTriangleDown =
     SymTriangleDown
 
 
-{-| Compute some aggregate summaray statistics for a field to be encoded with a
+{-| Compute some aggregate summary statistics for a field to be encoded with a
 text channel. The type of aggregation is determined by the given operation
 parameter.
 -}
@@ -11044,7 +11044,7 @@ ticoFontWeight =
     TFontWeight
 
 
-{-| Default maximim length in pixel units when showing titles.
+{-| Default maximum length in pixel units when showing titles.
 -}
 ticoLimit : Float -> TitleConfig
 ticoLimit =
@@ -11159,7 +11159,7 @@ compactly.
         enc =
             encoding
                 << position X [ pName "a", pMType Nominal ]
-                << position Y [ pName "b", pMType Quantitative, pAggregate Mean ]
+                << position Y [ pName "b", pMType Quantitative, pAggregate opMean ]
     in
     toVegaLite [ data [], bar [], enc [] ]
 
@@ -11592,7 +11592,7 @@ wiDescending =
 
 
 {-| Field for which to compute a window operation. Not needed for
-operations that do not apply to fields such as `Count`, `Rank` and `DenseRank`.
+operations that do not apply to fields such as `opCount`, `woRank` and `woDenseRank`.
 -}
 wiField : String -> Window
 wiField =
@@ -11608,7 +11608,7 @@ wiFrame =
     WFrame
 
 
-{-| Fields for partioning data objects in a window transform into separate windows.
+{-| Fields for partitioning data objects in a window transform into separate windows.
 If unspecified, all points will be in a single group.
 -}
 wiGroupBy : List String -> WindowProperty
@@ -11632,7 +11632,7 @@ definition and an output name. The second is the window transform definition.
 
        trans =
            transform
-               << window [ ( [ wiAggregateOp Sum, wiField "Time" ], "TotalTime" ) ]
+               << window [ ( [ wiAggregateOp opSum, wiField "Time" ], "TotalTime" ) ]
                    [ wiFrame Nothing Nothing ]
 
 -}
@@ -11662,7 +11662,7 @@ wiOp =
 
 
 {-| Numeric parameter for window-only operations that can be parameterised
-(`Ntile`, `Lag`, `Lead` and `NthValue`).
+(`woPercentile`, `woLag`, `woLead` and `woNthValue`).
 -}
 wiParam : Int -> Window
 wiParam =
