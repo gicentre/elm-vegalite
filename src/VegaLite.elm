@@ -245,6 +245,7 @@ module VegaLite exposing
     , miBasisClosed
     , miBundle
     , miCardinal
+    , miCardinalOpen
     , miCardinalClosed
     , miLinear
     , miMonotone
@@ -288,6 +289,7 @@ module VegaLite exposing
     , cuMove
     , cuNoDrop
     , cuNotAllowed
+    , cuAllScroll
     , cuColResize
     , cuRowResize
     , cuNResize
@@ -1412,7 +1414,7 @@ property documentation.
 @docs miBasisClosed
 @docs miBundle
 @docs miCardinal
-@docs miCardinaOpen
+@docs miCardinalOpen
 @docs miCardinalClosed
 @docs miLinear
 @docs miMonotone
@@ -1483,7 +1485,6 @@ See the
 @docs cuZoomOut
 @docs cuGrab
 @docs cuGrabbing
-@docs cursorValue
 
 
 # Creating the Encoding Specification
@@ -5780,6 +5781,13 @@ type).
 csv : Format
 csv =
     CSV
+
+
+{-| Scrolling cursor.
+-}
+cuAllScroll : Cursor
+cuAllScroll =
+    CAllScroll
 
 
 {-| Automatically determine a cursor type depending on interaction context.
