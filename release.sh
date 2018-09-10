@@ -13,7 +13,7 @@ version=$(grep -m1 version elm.json | awk -F: '{ print $2 }' | sed 's/[", ]//g')
 git commit -a -m "Bump to $version"
 git push
 
-cleanup="docs examples test-gallery tests release.sh"
+cleanup="docs images examples test-gallery tests release.sh"
 last_commit=$(git rev-parse HEAD)
 
 git clone --reference . git@github.com:gicentre/elm-vegalite.git release
