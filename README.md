@@ -104,10 +104,13 @@ Elm and elm-vegaLite provide an ideal environment for educators wishing to teach
 ## Further Reading
 
 -   To get started have a go [creating your first Vega-Lite visualization](https://github.com/gicentre/elm-vega/tree/master/docs/helloWorld/README.md).
--   For a more thorough set of examples/tutorial, see the [Vega-Lite walkthrough](https://github.com/gicentre/elm-vega/tree/master/docs/walkthrough/README.md).
--   To get coding, see the [elm-vegaLite API documentation.](http://package.elm-lang.org/packages/gicentre/elm-vega/latest).
--   Browse the [elm-vegaLite examples](https://github.com/gicentre/elm-vega/tree/master/vlExamples) folder.
+-   For a more thorough set of examples/tutorial, see the [Vega-Lite walkthrough](https://github.com/gicentre/elm-vegaLite/tree/master/docs/walkthrough).
+-   To get coding, see the [elm-vegaLite API documentation.](http://package.elm-lang.org/packages/gicentre/elm-vegaLite/latest).
+-   Browse the [elm-vegaLite examples](https://github.com/gicentre/elm-vegaLite/tree/master/examples) folder.
 -   For an example of fully embedding an elm-vegaLite visualization in an elm SPA, see [elm-embed-vegaLite](https://github.com/yardsale8/elm-embed-vega).
 -   You can also work with elm-vega in [litvis](https://github.com/gicentre/litvis) – a _literate visualization_ environment for embedding visualization specifications in a formatted text environment.
 
-_Note: This repository is for elm-VegaLite only and is compatible with [Elm 0.19](https://github.com/elm/compiler/blob/master/upgrade-docs/0.19.md). If you are using [Elm 0.18](https://gist.github.com/evancz/9031e37902dfaec250a08a7aa6e17b10), you can continue to use the older [elm-vega 3.0](XXXXX), which combines Vega and Vega-Lite._
+## Looking for an older version?
+
+If you are using Elm 0.18, you will need to use [elm-vega 3.0](https://github.com/gicentre/elm-vega/tree/v3.0) and its [API documentation](https://package.elm-lang.org/packages/gicentre/elm-vega/3.0.1).
+This older version combines modules for working with both Vega and Vega-Lite.
