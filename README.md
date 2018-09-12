@@ -1,6 +1,8 @@
 # elm-vegaLite
 
-<img alt="elm-vegaLite banner" src="https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg" style="max-width: 100%;" />
+[![elm version](https://img.shields.io/badge/elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
+
+![elm-vegaLite banner]("https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg)
 
 _Declarative visualization for Elm_
 
