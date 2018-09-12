@@ -1,8 +1,8 @@
 # elm-vegaLite
 
-[![elm version](https://img.shields.io/badge/elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
+![elm-vegaLite banner](https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg)
 
-![elm-vegaLite banner]("https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg)
+[![elm version](https://img.shields.io/badge/elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
 
 _Declarative visualization for Elm_
 
