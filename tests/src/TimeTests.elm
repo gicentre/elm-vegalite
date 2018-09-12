@@ -11,7 +11,7 @@ timeByUnit : TimeUnit -> Spec
 timeByUnit tu =
     let
         data =
-            dataFromUrl "data/timeTest.tsv" []
+            dataFromUrl "https://gicentre.github.io/data/tests/timeTest.tsv" []
 
         enc =
             encoding

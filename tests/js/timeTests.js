@@ -7893,7 +7893,7 @@ var author$project$TimeTests$timeByUnit = function (tu) {
 							author$project$VegaLite$scZero(false)
 						]))
 				])));
-	var data = A2(author$project$VegaLite$dataFromUrl, 'data/timeTest.tsv', _List_Nil);
+	var data = A2(author$project$VegaLite$dataFromUrl, 'https://gicentre.github.io/data/tests/timeTest.tsv', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
