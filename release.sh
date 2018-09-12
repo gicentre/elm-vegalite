@@ -22,7 +22,7 @@ git clone --reference . git@github.com:gicentre/elm-vegalite.git release
   git checkout $last_commit
   git rm -rf --ignore-unmatch $cleanup
   git commit -m "Cleanup and release $version"
-  git tag -a $version -m "Release $version"
   git push origin $version
+  git tag -a $version -m "Release $version"
   elm publish
 )
