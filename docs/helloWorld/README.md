@@ -91,7 +91,7 @@ myVis =
 
 main : Program () Spec msg
 main =
-    Platform.program
+    Platform.worker
         { init = always ( myVis, elmToJS myVis )
         , update = \_ model -> ( model, Cmd.none )
         , subscriptions = always Sub.none

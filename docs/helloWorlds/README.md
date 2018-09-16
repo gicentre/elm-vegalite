@@ -130,7 +130,7 @@ mySpecs =
 
 main : Program () Spec msg
 main =
-    Platform.program
+    Platform.worker
         { init = always ( mySpecs, elmToJS mySpecs )
         , update = \_ model -> ( model, Cmd.none )
         , subscriptions = always Sub.none
