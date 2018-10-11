@@ -1,25 +1,25 @@
-# An elm-vega Walkthrough
+# An elm-vegaLite Walkthrough
 
-This walkthrough will introduce you to the principles and coding style for using elm-vega to create interactive visualizations in the [Elm](http://elm-lang.org) language.
+This walkthrough will introduce you to the principles and coding style for using elm-vegaLite to create interactive visualizations in the [Elm](http://elm-lang.org) language.
 It is based on the talk given by [Wongsuphasawat et al at the 2017 Open Vis Conf](https://youtu.be/9uaHRWj04D4).
 If you wish to follow along with their talk, timings are given by each section.
 
 ## A Grammar of Graphics (0:30)
 
-_elm-vega_ is a wrapper for the [Vega-Lite visualization grammar](https://vega.github.io) which itself is based on Leland Wilkinson's [Grammar of Graphics](http://www.springer.com/gb/book/9780387245447).
+_elm-vegaLite_ is a wrapper for the [Vega-Lite visualization grammar](https://vega.github.io) which itself is based on Leland Wilkinson's [Grammar of Graphics](http://www.springer.com/gb/book/9780387245447).
 The grammar provides an expressive way to define how data are represented graphically.
-The seven key elements of the grammar as represented in elm-vega and Vega-Lite are:
+The seven key elements of the grammar as represented in elm-vegaLite and Vega-Lite are:
 
--   **Data**: The input to visualize. _Example elm-vega functions:_ `dataFromUrl`, `dataFromColumns` and `dataFromRows`.
--   **Transform**: Functions to change the data before they are visualized. _Example elm-vega functions:_ `filter`, `calculateAs` and `binAs`.
--   **Projection**: The mapping of 3d global geospatial locations onto a 2d plane . _Example elm-vega function:_ `projection`.
--   **Mark**: The visual symbol(s) that represent the data. _Example elm-vega functions:_ `line`, `circle`, `bar`, `textMark` and `geoshape`.
--   **Encoding**: The specification of which data elements are mapped to which mark characteristics (commonly known as _channels_). _Example elm-vega functions:_ `position`, `shape`, `size` and `color`.
--   **Scale**: Descriptions of the way encoded marks represent the data. _Example elm-vega functions:_ `scDomain`, `scPadding` and `scInterpolate`.
--   **Guides**: Supplementary visual elements that support interpreting the visualization. _Example elm-vega functions:_ `axDomain` (for position encodings) and `leTitle` (for legend color, size and shape encodings).
+-   **Data**: The input to visualize. _Example elm-vegaLite functions:_ `dataFromUrl`, `dataFromColumns` and `dataFromRows`.
+-   **Transform**: Functions to change the data before they are visualized. _Example elm-vegaLite functions:_ `filter`, `calculateAs` and `binAs`.
+-   **Projection**: The mapping of 3d global geospatial locations onto a 2d plane . _Example elm-vegaLite function:_ `projection`.
+-   **Mark**: The visual symbol(s) that represent the data. _Example elm-vegaLite functions:_ `line`, `circle`, `bar`, `textMark` and `geoshape`.
+-   **Encoding**: The specification of which data elements are mapped to which mark characteristics (commonly known as _channels_). _Example elm-vegaLite functions:_ `position`, `shape`, `size` and `color`.
+-   **Scale**: Descriptions of the way encoded marks represent the data. _Example elm-vegaLite functions:_ `scDomain`, `scPadding` and `scInterpolate`.
+-   **Guides**: Supplementary visual elements that support interpreting the visualization. _Example elm-vegaLite functions:_ `axDomain` (for position encodings) and `leTitle` (for legend color, size and shape encodings).
 
 In common with other languages that build upon a grammar of graphics such as D3 and Vega, this grammar allows fine grain control of visualization design.
-But unlike those languages, Vega-Lite and elm-vega provide practical default specifications for most of the grammar, allowing for a much more compact high-level form of expression.
+But unlike those languages, Vega-Lite and elm-vegaLite provide practical default specifications for most of the grammar, allowing for a much more compact high-level form of expression.
 
 ## A Single View specification (3:03)
 
@@ -38,7 +38,7 @@ We could encode one of the numeric data fields as a _strip plot_ where the horiz
 
 ![Strip plot of Seattle daily maximum temperature](images/stripPlot.png)
 
-With elm-vega, we do the following to create this visualization expression:
+With elm-vegaLite, we do the following to create this visualization expression:
 
 ```elm
 toVegaLite
@@ -63,7 +63,7 @@ We can provide a hint by delcaring the _measurement type_ of the data field, her
 The final parameter of `position` is a list of any additional encodings in our specification.
 Here, with only one encoding, we provide an empty list.
 
-As we build up more complex visualizations we will use many more encodings. To keep the coding clear, the idiomatic way to do this with elm-vega is to chain encoding functions using point-free style.
+As we build up more complex visualizations we will use many more encodings. To keep the coding clear, the idiomatic way to do this with elm-vegaLite is to chain encoding functions using point-free style.
 The example above coded in this way would be
 
 ```elm
@@ -164,7 +164,7 @@ let
         ]
 ```
 
-The mapping between the values in the domain (weather types `sun`, `fog` etc.) and the colors used to represent them (hex values `#e7ba52`, `#c7c7c7` etc.) is handled by an elm-vega function `categoricalDomainMap` which accepts a list of tuples defining those mappings.
+The mapping between the values in the domain (weather types `sun`, `fog` etc.) and the colors used to represent them (hex values `#e7ba52`, `#c7c7c7` etc.) is handled by an elm-vegaLite function `categoricalDomainMap` which accepts a list of tuples defining those mappings.
 
 Notice how we never needed to state explicitly that we wished our bars to be stacked.
 This was reasoned directly by Vega-Lite based on the combination of bar marks and color channel encoding.
@@ -223,17 +223,17 @@ The second, minor change, is to include an `mLegend` specification in the color 
 There are four ways in which multiple views may be combined:
 
 -   The **facet operator** takes subsets of a dataset (facets) and separately applies the same view specification to each of those facets (as seen with the `column` function above).
-    elm-vega functions to create faceted views: `column`, `row`, `facet` and `specification`.
+    elm-vegaLite functions to create faceted views: `column`, `row`, `facet` and `specification`.
 
 -   The **layer operator** creates different views of the data but each is layered (superposed) on the same same space, for example a trend line layered on top of a scatterplot.
-    elm-vega functions to create a layered view: `layer` and `asSpec`.
+    elm-vegaLite functions to create a layered view: `layer` and `asSpec`.
 
 -   The **concatenation operator** allows arbitrary views (potentially with different datasets) to be assembled in rows or columns.
     This allows 'dashboards' to be built.
-    elm-vega functions to create concatenated views: `vConcat`, `hConcat` and `asSpec`.
+    elm-vegaLite functions to create concatenated views: `vConcat`, `hConcat` and `asSpec`.
 
 -   The **repeat operator** is a concise way of combining multiple views with only small data-driven differences in each view.
-    elm-vega functions for repeated views: `repeat` and `specification`.
+    elm-vegaLite functions for repeated views: `repeat` and `specification`.
 
 ## Composition Example: Precipitation in Seattle (9:40)
 
