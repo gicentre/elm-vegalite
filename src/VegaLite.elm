@@ -10750,7 +10750,7 @@ parameter) and columns (second parameter).
 -}
 spacingRC : Float -> Float -> ( VLProperty, Spec )
 spacingRC spRow spCol =
-    ( VLSpacing, JE.object [ ( "row", JE.float spRow ), ( "col", JE.float spCol ) ] )
+    ( VLSpacing, JE.object [ ( "row", JE.float spRow ), ( "column", JE.float spCol ) ] )
 
 
 {-| Define a specification object for use with faceted and repeated small multiples.

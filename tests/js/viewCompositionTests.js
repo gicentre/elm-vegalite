@@ -8118,13 +8118,419 @@ var author$project$ViewCompositionTests$columns4 = A2(
 			author$project$VegaLite$hdLabelPadding(40)
 		]),
 	_List_Nil);
+var author$project$VegaLite$asSpec = function (specs) {
+	return elm$json$Json$Encode$object(
+		A2(
+			elm$core$List$map,
+			function (_n0) {
+				var s = _n0.a;
+				var v = _n0.b;
+				return _Utils_Tuple2(
+					author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var author$project$VegaLite$ColumnBy = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$columnBy = author$project$VegaLite$ColumnBy;
+var author$project$VegaLite$VLFacet = 18;
+var author$project$VegaLite$facetMappingProperty = function (fMap) {
+	if (fMap.$ === 1) {
+		var fFields = fMap.a;
+		return _Utils_Tuple2(
+			'row',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$map, author$project$VegaLite$facetChannelProperty, fFields)));
+	} else {
+		var fFields = fMap.a;
+		return _Utils_Tuple2(
+			'column',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$map, author$project$VegaLite$facetChannelProperty, fFields)));
+	}
+};
+var author$project$VegaLite$facet = function (fMaps) {
+	return _Utils_Tuple2(
+		18,
+		elm$json$Json$Encode$object(
+			A2(elm$core$List$map, author$project$VegaLite$facetMappingProperty, fMaps)));
+};
+var author$project$VegaLite$HTitle = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$hdTitle = author$project$VegaLite$HTitle;
+var author$project$VegaLite$VLHeight = 4;
+var author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		elm$json$Json$Encode$float(h));
+};
+var author$project$VegaLite$MLegend = function (a) {
+	return {$: 10, a: a};
+};
+var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
+var author$project$VegaLite$RowBy = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$rowBy = author$project$VegaLite$RowBy;
+var author$project$VegaLite$VLSpacing = 21;
+var author$project$VegaLite$spacingRC = F2(
+	function (spRow, spCol) {
+		return _Utils_Tuple2(
+			21,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'row',
+						elm$json$Json$Encode$float(spRow)),
+						_Utils_Tuple2(
+						'column',
+						elm$json$Json$Encode$float(spCol))
+					])));
+	});
+var author$project$VegaLite$VLSpec = 19;
+var author$project$VegaLite$specification = function (spec) {
+	return _Utils_Tuple2(19, spec);
+};
+var author$project$VegaLite$VLWidth = 3;
+var author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		elm$json$Json$Encode$float(w));
+};
+var author$project$VegaLite$View = function (a) {
+	return {$: 38, a: a};
+};
+var author$project$VegaLite$coView = author$project$VegaLite$View;
+var author$project$VegaLite$ViewHeight = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$vicoHeight = author$project$VegaLite$ViewHeight;
+var author$project$VegaLite$Stroke = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$vicoStroke = author$project$VegaLite$Stroke;
+var author$project$ViewCompositionTests$cfg = A2(
+	elm$core$Basics$composeL,
+	A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$configure,
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coHeader(
+				_List_fromArray(
+					[
+						author$project$VegaLite$hdLabelFontSize(0.1)
+					])))),
+	author$project$VegaLite$configuration(
+		author$project$VegaLite$coView(
+			_List_fromArray(
+				[
+					author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing),
+					author$project$VegaLite$vicoHeight(120)
+				]))));
+var author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$object(
+									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var elm$core$List$maybeCons = F3(
+	function (f, mx, xs) {
+		var _n0 = f(mx);
+		if (!_n0.$) {
+			var x = _n0.a;
+			return A2(elm$core$List$cons, x, xs);
+		} else {
+			return xs;
+		}
+	});
+var elm$core$List$filterMap = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			elm$core$List$maybeCons(f),
+			_List_Nil,
+			xs);
+	});
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$List$tail = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(xs);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var author$project$VegaLite$transpose = function (ll) {
+	transpose:
+	while (true) {
+		if (!ll.b) {
+			return _List_Nil;
+		} else {
+			if (!ll.a.b) {
+				var xss = ll.b;
+				var $temp$ll = xss;
+				ll = $temp$ll;
+				continue transpose;
+			} else {
+				var _n1 = ll.a;
+				var x = _n1.a;
+				var xs = _n1.b;
+				var xss = ll.b;
+				var tails = A2(elm$core$List$filterMap, elm$core$List$tail, xss);
+				var heads = A2(elm$core$List$filterMap, elm$core$List$head, xss);
+				return A2(
+					elm$core$List$cons,
+					A2(elm$core$List$cons, x, heads),
+					author$project$VegaLite$transpose(
+						A2(elm$core$List$cons, xs, tails)));
+			}
+		}
+	}
+};
+var author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			elm$json$Json$Encode$list,
+			elm$json$Json$Encode$object,
+			author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						elm$json$Json$Encode$object(
+							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
+var elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2(elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3(elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var author$project$ViewCompositionTests$data = function () {
+	var vals = author$project$VegaLite$nums(
+		_Utils_ap(
+			_List_fromArray(
+				[30, 15, 12, 25, 30, 25, 10, 28, 11, 18, 24, 16, 10, 10, 10]),
+			_Utils_ap(
+				_List_fromArray(
+					[8, 8, 29, 11, 24, 12, 26, 32, 9, 8, 18, 28, 8, 20, 24]),
+				_Utils_ap(
+					_List_fromArray(
+						[21, 15, 20, 4, 13, 12, 27, 21, 14, 5, 1, 2, 11, 2, 5]),
+					_List_fromArray(
+						[14, 20, 24, 20, 2, 9, 15, 14, 13, 22, 30, 30, 10, 8, 12])))));
+	var rows = author$project$VegaLite$nums(
+		A2(
+			elm$core$List$concatMap,
+			function (x) {
+				return A2(elm$core$List$repeat, 3 * 5, x);
+			},
+			_List_fromArray(
+				[1, 2, 3, 4])));
+	var cols = author$project$VegaLite$nums(
+		elm$core$List$concat(
+			A2(
+				elm$core$List$repeat,
+				4,
+				A2(
+					elm$core$List$concatMap,
+					function (x) {
+						return A2(elm$core$List$repeat, 3, x);
+					},
+					_List_fromArray(
+						[1, 2, 3, 4, 5])))));
+	var cats = author$project$VegaLite$nums(
+		elm$core$List$concat(
+			A2(
+				elm$core$List$repeat,
+				4 * 5,
+				_List_fromArray(
+					[1, 2, 3]))));
+	return A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(author$project$VegaLite$dataColumn, 'row', rows)),
+				A2(author$project$VegaLite$dataColumn, 'col', cols)),
+			A2(author$project$VegaLite$dataColumn, 'cat', cats)),
+		A2(author$project$VegaLite$dataColumn, 'val', vals));
+}();
+var author$project$ViewCompositionTests$grid1 = function () {
+	var encByCatVal = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('cat'),
+							author$project$VegaLite$pMType(1),
+							author$project$VegaLite$pAxis(_List_Nil)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('val'),
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('cat'),
+					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var specByCatVal = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(120),
+				author$project$VegaLite$height(120),
+				author$project$VegaLite$bar(_List_Nil),
+				encByCatVal(_List_Nil)
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$ViewCompositionTests$cfg(_List_Nil),
+				author$project$ViewCompositionTests$data(_List_Nil),
+				A2(author$project$VegaLite$spacingRC, 20, 80),
+				author$project$VegaLite$specification(specByCatVal),
+				author$project$VegaLite$facet(
+				_List_fromArray(
+					[
+						author$project$VegaLite$rowBy(
+						_List_fromArray(
+							[
+								author$project$VegaLite$fName('row'),
+								author$project$VegaLite$fMType(1),
+								author$project$VegaLite$fHeader(
+								_List_fromArray(
+									[
+										author$project$VegaLite$hdTitle('')
+									]))
+							])),
+						author$project$VegaLite$columnBy(
+						_List_fromArray(
+							[
+								author$project$VegaLite$fName('col'),
+								author$project$VegaLite$fMType(1),
+								author$project$VegaLite$fHeader(
+								_List_fromArray(
+									[
+										author$project$VegaLite$hdTitle('')
+									]))
+							]))
+					]))
+			]));
+}();
 var author$project$ViewCompositionTests$mySpecs = author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
 			_Utils_Tuple2('columns1', author$project$ViewCompositionTests$columns1),
 			_Utils_Tuple2('columns2', author$project$ViewCompositionTests$columns2),
 			_Utils_Tuple2('columns3', author$project$ViewCompositionTests$columns3),
-			_Utils_Tuple2('columns4', author$project$ViewCompositionTests$columns4)
+			_Utils_Tuple2('columns4', author$project$ViewCompositionTests$columns4),
+			_Utils_Tuple2('grid1', author$project$ViewCompositionTests$grid1)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
