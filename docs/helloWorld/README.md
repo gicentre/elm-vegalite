@@ -18,7 +18,7 @@ To get started, copy this example to a file `helloWorld.html` somewhere on your 
 <!DOCTYPE html>
 
 <head>
-  <title>Hello World from Elm-Vega</title>
+  <title>Hello World from Elm-Vegalite</title>
   <meta charset="utf-8">
 
   <!-- These scripts link to the Vega-Lite runtime -->

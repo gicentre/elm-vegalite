@@ -14,7 +14,7 @@ You can copy this example to a file `helloWorlds.html` somewhere on your machine
 <!DOCTYPE html>
 
 <head>
-  <title>Hello Worlds from Elm-Vega</title>
+  <title>Hello Worlds from Elm-Vegalite</title>
   <meta charset="utf-8">
 
   <!-- These scripts link to the Vega-Lite runtime -->
