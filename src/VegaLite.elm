@@ -402,7 +402,10 @@ module VegaLite exposing
     , color
     , fill
     , stroke
+    , strokeWidth
     , opacity
+    , fillOpacity
+    , strokeOpacity
     , shape
     , mName
     , mRepeat
@@ -931,6 +934,7 @@ module VegaLite exposing
     , minutesSeconds
     , month
     , monthDate
+    , monthDateHours
     , quarter
     , quarterMonth
     , seconds
@@ -1639,7 +1643,10 @@ color or size.
 @docs color
 @docs fill
 @docs stroke
+@docs strokeWidth
 @docs opacity
+@docs fillOpacity
+@docs strokeOpacity
 @docs shape
 
 
@@ -2432,6 +2439,7 @@ and the [Vega-Lite time unit documentation](https://vega.github.io/vega-lite/doc
 @docs minutesSeconds
 @docs month
 @docs monthDate
+@docs monthDateHours
 @docs quarter
 @docs quarterMonth
 @docs seconds
@@ -3990,6 +3998,7 @@ type TimeUnit
     | QuarterMonth
     | Month
     | MonthDate
+    | MonthDateHours
     | Date
     | Day
     | Hours
@@ -6725,6 +6734,15 @@ fill markProps =
     (::) ( "fill", List.concatMap markChannelProperty markProps |> JE.object )
 
 
+{-| Encode a fill opacity channel. This acts in a similar way to encoding by `opacity`
+but only affects the interior of closed shapes. If both `fillOpacity` and `opacity`
+encodings are specified, `fillOpacity` takes precedence.
+-}
+fillOpacity : List MarkChannel -> List LabelledSpec -> List LabelledSpec
+fillOpacity markProps =
+    (::) ( "fillOpacity", List.concatMap markChannelProperty markProps |> JE.object )
+
+
 {-| Apply a filter to a channel or field.
 -}
 filter : Filter -> List LabelledSpec -> List LabelledSpec
@@ -9041,6 +9059,13 @@ monthDate =
     MonthDate
 
 
+{-| Month, day of month and hour of day time unit used for discretizing temporal data.
+-}
+monthDateHours : TimeUnit
+monthDateHours =
+    MonthDateHours
+
+
 {-| Indicate vertical mark orientation.
 -}
 moVertical : MarkOrientation
@@ -10865,6 +10890,22 @@ only affects the exterior boundary of marks.
 stroke : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 stroke markProps =
     (::) ( "stroke", List.concatMap markChannelProperty markProps |> JE.object )
+
+
+{-| Encode a stroke opacity channel. This acts in a similar way to encoding by
+`opacity` but only affects the exterior boundary of marks. If both `opacity` and
+`strokeOpacity` are specified, `strokeOpacity` takes precedence for stroke encoding.
+-}
+strokeOpacity : List MarkChannel -> List LabelledSpec -> List LabelledSpec
+strokeOpacity markProps =
+    (::) ( "strokeOpacity", List.concatMap markChannelProperty markProps |> JE.object )
+
+
+{-| Encode a stroke width channel.
+-}
+strokeWidth : List MarkChannel -> List LabelledSpec -> List LabelledSpec
+strokeWidth markProps =
+    (::) ( "strokeWidth", List.concatMap markChannelProperty markProps |> JE.object )
 
 
 {-| A list of string data values.
@@ -14932,6 +14973,9 @@ timeUnitLabel tu =
 
         MonthDate ->
             "monthdate"
+
+        MonthDateHours ->
+            "monthdatehours"
 
         Date ->
             "date"

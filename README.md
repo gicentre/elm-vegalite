@@ -2,7 +2,8 @@
 
 ![elm-vegaLite banner](https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg)
 
-[![elm version](https://img.shields.io/badge/elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
+[![elm version](https://img.shields.io/badge/Elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
+[![vega-lite version](https://img.shields.io/badge/VegaLite-v3.0-purple.svg?style=flat-square)](https://vega.github.io/vega/)
 
 _Declarative visualization for Elm_
 
@@ -76,15 +77,15 @@ elm-vegaLite is designed to fill that gap.
 
 **Characteristics of elm-vegaLite**
 
--   Built upon the widely used [Vega-Lite](https://vega.github.io/vega-lite/) specification that has an academic robustness and momentum behind their development. Vega-Lite is itself built upon the hugely influential [Grammar of Graphics](http://www.springer.com/gb/book/9780387245447).
+- Built upon the widely used [Vega-Lite](https://vega.github.io/vega-lite/) specification that has an academic robustness and momentum behind their development. Vega-Lite is itself built upon the hugely influential [Grammar of Graphics](http://www.springer.com/gb/book/9780387245447).
 
--   High-level declarative specification (a chart can be fully specified in as few as five lines of code)
+- High-level declarative specification (a chart can be fully specified in as few as five lines of code)
 
--   Strict typing and friendly error messages means "the compiler is your friend" when building and debugging complex visualizations.
+- Strict typing and friendly error messages means "the compiler is your friend" when building and debugging complex visualizations.
 
--   Flexible interaction for selecting, filtering and zooming built-in to the specification.
+- Flexible interaction for selecting, filtering and zooming built-in to the specification.
 
--   Hierarchical view composition allows complex visualization dashboards to be built from trees of simpler views.
+- Hierarchical view composition allows complex visualization dashboards to be built from trees of simpler views.
 
 ### A rationale for data visualisers
 
@@ -99,18 +100,18 @@ Elm and elm-vegaLite provide an ideal environment for educators wishing to teach
 
 ## Limitations
 
--   elm-vegaLite does not render graphics directly, but instead generates data visualization specifications that may be passed to JavaScript for rendering.
+- elm-vegaLite does not render graphics directly, but instead generates data visualization specifications that may be passed to JavaScript for rendering.
 
--   While limited animation is possible through interaction and dynamic data generation, there is no direct support for animated transitions (unlike D3 for example).
+- While limited animation is possible through interaction and dynamic data generation, there is no direct support for animated transitions (unlike D3 for example).
 
 ## Further Reading
 
--   To get started have a go [creating your first elm-VegaLite visualization](https://github.com/gicentre/elm-vegalite/tree/master/docs/helloWorld).
--   For a more thorough set of examples/tutorial, see the [Vega-Lite walkthrough](https://github.com/gicentre/elm-vegalite/tree/master/docs/walkthrough).
--   To get coding, see the [elm-vegaLite API documentation.](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest).
--   Browse the [elm-vegaLite examples](https://github.com/gicentre/elm-vegalite/tree/master/examples) folder.
--   For an example of fully embedding an elm-vegaLite visualization in an elm SPA, see [elm-embed-vegalite](https://github.com/yardsale8/elm-embed-vega).
--   You can also work with elm-vegaLite in [litvis](https://github.com/gicentre/litvis) – a _literate visualization_ environment for embedding visualization specifications in a formatted text environment.
+- To get started have a go [creating your first elm-VegaLite visualization](https://github.com/gicentre/elm-vegalite/tree/master/docs/helloWorld).
+- For a more thorough set of examples/tutorial, see the [Vega-Lite walkthrough](https://github.com/gicentre/elm-vegalite/tree/master/docs/walkthrough).
+- To get coding, see the [elm-vegaLite API documentation.](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest).
+- Browse the [elm-vegaLite examples](https://github.com/gicentre/elm-vegalite/tree/master/examples) folder.
+- For an example of fully embedding an elm-vegaLite visualization in an elm SPA, see [elm-embed-vegalite](https://github.com/yardsale8/elm-embed-vega).
+- You can also work with elm-vegaLite in [litvis](https://github.com/gicentre/litvis) – a _literate visualization_ environment for embedding visualization specifications in a formatted text environment.
 
 ## Looking for an older version?
 
