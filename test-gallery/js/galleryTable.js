@@ -3832,24 +3832,26 @@ var author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 11:
 			return 'monthdate';
 		case 12:
-			return 'date';
+			return 'monthdatehours';
 		case 13:
-			return 'day';
+			return 'date';
 		case 14:
-			return 'hours';
+			return 'day';
 		case 15:
-			return 'hoursminutes';
+			return 'hours';
 		case 16:
-			return 'hoursminutesseconds';
+			return 'hoursminutes';
 		case 17:
-			return 'minutes';
+			return 'hoursminutesseconds';
 		case 18:
-			return 'minutesseconds';
+			return 'minutes';
 		case 19:
-			return 'seconds';
+			return 'minutesseconds';
 		case 20:
-			return 'secondsmilliseconds';
+			return 'seconds';
 		case 21:
+			return 'secondsmilliseconds';
+		case 22:
 			return 'milliseconds';
 		default:
 			var timeUnit = tu.a;
@@ -7371,7 +7373,7 @@ var author$project$VegaLite$configure = function (configs) {
 		25,
 		elm$json$Json$Encode$object(configs));
 };
-var author$project$VegaLite$Date = {$: 12};
+var author$project$VegaLite$Date = {$: 13};
 var author$project$VegaLite$date = author$project$VegaLite$Date;
 var author$project$VegaLite$LTitle = function (a) {
 	return {$: 32, a: a};
@@ -7594,9 +7596,9 @@ var author$project$GalleryTable$table3 = function () {
 }();
 var author$project$VegaLite$Circle = 5;
 var author$project$VegaLite$circle = author$project$VegaLite$mark(5);
-var author$project$VegaLite$Day = {$: 13};
+var author$project$VegaLite$Day = {$: 14};
 var author$project$VegaLite$day = author$project$VegaLite$Day;
-var author$project$VegaLite$Hours = {$: 14};
+var author$project$VegaLite$Hours = {$: 15};
 var author$project$VegaLite$hours = author$project$VegaLite$Hours;
 var author$project$VegaLite$Sum = 16;
 var author$project$VegaLite$opSum = 16;

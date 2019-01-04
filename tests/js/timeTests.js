@@ -6617,24 +6617,26 @@ var author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 11:
 			return 'monthdate';
 		case 12:
-			return 'date';
+			return 'monthdatehours';
 		case 13:
-			return 'day';
+			return 'date';
 		case 14:
-			return 'hours';
+			return 'day';
 		case 15:
-			return 'hoursminutes';
+			return 'hours';
 		case 16:
-			return 'hoursminutesseconds';
+			return 'hoursminutes';
 		case 17:
-			return 'minutes';
+			return 'hoursminutesseconds';
 		case 18:
-			return 'minutesseconds';
+			return 'minutes';
 		case 19:
-			return 'seconds';
+			return 'minutesseconds';
 		case 20:
-			return 'secondsmilliseconds';
+			return 'seconds';
 		case 21:
+			return 'secondsmilliseconds';
+		case 22:
 			return 'milliseconds';
 		default:
 			var timeUnit = tu.a;
@@ -7705,7 +7707,7 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 				spec)));
 };
 var author$project$VegaLite$Utc = function (a) {
-	return {$: 22, a: a};
+	return {$: 23, a: a};
 };
 var author$project$VegaLite$utc = function (tu) {
 	return author$project$VegaLite$Utc(tu);
@@ -7907,25 +7909,25 @@ var author$project$TimeTests$timeByUnit = function (tu) {
 					]))
 			]));
 };
-var author$project$VegaLite$Date = {$: 12};
+var author$project$VegaLite$Date = {$: 13};
 var author$project$VegaLite$date = author$project$VegaLite$Date;
 var author$project$TimeTests$timeDate = author$project$TimeTests$timeByUnit(author$project$VegaLite$date);
-var author$project$VegaLite$Day = {$: 13};
+var author$project$VegaLite$Day = {$: 14};
 var author$project$VegaLite$day = author$project$VegaLite$Day;
 var author$project$TimeTests$timeDay = author$project$TimeTests$timeByUnit(author$project$VegaLite$day);
-var author$project$VegaLite$Hours = {$: 14};
+var author$project$VegaLite$Hours = {$: 15};
 var author$project$VegaLite$hours = author$project$VegaLite$Hours;
 var author$project$TimeTests$timeHours = author$project$TimeTests$timeByUnit(author$project$VegaLite$hours);
-var author$project$VegaLite$HoursMinutes = {$: 15};
+var author$project$VegaLite$HoursMinutes = {$: 16};
 var author$project$VegaLite$hoursMinutes = author$project$VegaLite$HoursMinutes;
 var author$project$TimeTests$timeHoursMinutes = author$project$TimeTests$timeByUnit(author$project$VegaLite$hoursMinutes);
-var author$project$VegaLite$HoursMinutesSeconds = {$: 16};
+var author$project$VegaLite$HoursMinutesSeconds = {$: 17};
 var author$project$VegaLite$hoursMinutesSeconds = author$project$VegaLite$HoursMinutesSeconds;
 var author$project$TimeTests$timeHoursMinutesSeconds = author$project$TimeTests$timeByUnit(author$project$VegaLite$hoursMinutesSeconds);
-var author$project$VegaLite$Minutes = {$: 17};
+var author$project$VegaLite$Minutes = {$: 18};
 var author$project$VegaLite$minutes = author$project$VegaLite$Minutes;
 var author$project$TimeTests$timeMinutes = author$project$TimeTests$timeByUnit(author$project$VegaLite$minutes);
-var author$project$VegaLite$MinutesSeconds = {$: 18};
+var author$project$VegaLite$MinutesSeconds = {$: 19};
 var author$project$VegaLite$minutesSeconds = author$project$VegaLite$MinutesSeconds;
 var author$project$TimeTests$timeMinutesSeconds = author$project$TimeTests$timeByUnit(author$project$VegaLite$minutesSeconds);
 var author$project$VegaLite$Month = {$: 10};

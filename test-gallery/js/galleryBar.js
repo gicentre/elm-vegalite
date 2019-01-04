@@ -4600,24 +4600,26 @@ var author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 11:
 			return 'monthdate';
 		case 12:
-			return 'date';
+			return 'monthdatehours';
 		case 13:
-			return 'day';
+			return 'date';
 		case 14:
-			return 'hours';
+			return 'day';
 		case 15:
-			return 'hoursminutes';
+			return 'hours';
 		case 16:
-			return 'hoursminutesseconds';
+			return 'hoursminutes';
 		case 17:
-			return 'minutes';
+			return 'hoursminutesseconds';
 		case 18:
-			return 'minutesseconds';
+			return 'minutes';
 		case 19:
-			return 'seconds';
+			return 'minutesseconds';
 		case 20:
-			return 'secondsmilliseconds';
+			return 'seconds';
 		case 21:
+			return 'secondsmilliseconds';
+		case 22:
 			return 'milliseconds';
 		default:
 			var timeUnit = tu.a;

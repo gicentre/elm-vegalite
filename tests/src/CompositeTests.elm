@@ -119,6 +119,36 @@ errorbar2 =
     eBar exStdev
 
 
+errorbar3 : Spec
+errorbar3 =
+    let
+        des =
+            description "Error bars with color encoding"
+
+        specErrorBars =
+            asSpec [ errorbar [ maTicks [] ], encErrorBars [] ]
+
+        encErrorBars =
+            encoding
+                << position X [ pName "yield", pMType Quantitative, pScale [ scZero False ] ]
+                << position Y [ pName "variety", pMType Ordinal ]
+                << color [ mStr "#4682b4" ]
+
+        specPoints =
+            asSpec [ point [ maFilled True, maColor "black" ], encPoints [] ]
+
+        encPoints =
+            encoding
+                << position X [ pName "yield", pMType Quantitative, pAggregate opMean ]
+                << position Y [ pName "variety", pMType Ordinal ]
+    in
+    toVegaLite
+        [ des
+        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
+        , layer [ specErrorBars, specPoints ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -132,6 +162,7 @@ mySpecs =
         , ( "errorband2", errorband2 )
         , ( "errorbar1", errorbar1 )
         , ( "errorbar2", errorbar2 )
+        , ( "errorbar3", errorbar3 )
         ]
 
 
