@@ -14,6 +14,49 @@ interaction1 : Spec
 interaction1 =
     let
         des =
+            description "A bar chart with highlighting on hover and selecting on click. Inspired by Tableau's interaction style."
+
+        config =
+            configure
+                << configuration (coScale [ sacoBandPaddingInner 0.2 ])
+
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        sel =
+            selection
+                << select "highlight" seSingle [ seOn "mouseover", seEmpty ]
+                << select "select" seMulti []
+
+        enc =
+            encoding
+                << position X [ pName "a", pMType Ordinal ]
+                << position Y [ pName "b", pMType Quantitative ]
+                << fillOpacity [ mSelectionCondition (selectionName "select") [ mNum 1 ] [ mNum 0.3 ] ]
+                << strokeWidth
+                    [ mDataCondition
+                        [ ( and (selected "select") (expr "length(data(\"select_store\"))"), [ mNum 2 ] )
+                        , ( selected "highlight", [ mNum 1 ] )
+                        ]
+                        [ mNum 0 ]
+                    ]
+    in
+    toVegaLite
+        [ des
+        , config []
+        , data []
+        , sel []
+        , bar [ maFill "#4C78A8", maStroke "black", maCursor cuPointer ]
+        , enc []
+        ]
+
+
+interaction2 : Spec
+interaction2 =
+    let
+        des =
             description "Scatterplot with external links and tooltips"
 
         trans =
@@ -37,8 +80,8 @@ interaction1 =
         ]
 
 
-interaction2 : Spec
-interaction2 =
+interaction3 : Spec
+interaction3 =
     let
         des =
             description "Drag out a rectangular brush to highlight points"
@@ -65,8 +108,8 @@ interaction2 =
         ]
 
 
-interaction3 : Spec
-interaction3 =
+interaction4 : Spec
+interaction4 =
     let
         des =
             description "Area chart with rectangular brush"
@@ -97,8 +140,8 @@ interaction3 =
         ]
 
 
-interaction4 : Spec
-interaction4 =
+interaction5 : Spec
+interaction5 =
     let
         des =
             description "Mouse over individual points or select multiple points with the shift key"
@@ -125,8 +168,8 @@ interaction4 =
         ]
 
 
-interaction5 : Spec
-interaction5 =
+interaction6 : Spec
+interaction6 =
     let
         des =
             description "Drag to pan. Zoom in or out with mousewheel/zoom gesture."
@@ -149,8 +192,8 @@ interaction5 =
         ]
 
 
-interaction6 : Spec
-interaction6 =
+interaction7 : Spec
+interaction7 =
     let
         des =
             description "Drag the sliders to highlight points"
@@ -207,8 +250,8 @@ interaction6 =
         ]
 
 
-interaction7 : Spec
-interaction7 =
+interaction8 : Spec
+interaction8 =
     let
         des =
             description "Drag over bars to update selection average"
@@ -250,8 +293,8 @@ interaction7 =
         ]
 
 
-interaction8 : Spec
-interaction8 =
+interaction9 : Spec
+interaction9 =
     let
         desc =
             description "Displays tooltips for all stock prices of the hovered time"
@@ -315,6 +358,62 @@ interaction8 =
         ]
 
 
+interaction10 : Spec
+interaction10 =
+    let
+        desc =
+            description "Multi Series Line Chart with Tooltip"
+
+        config =
+            configure
+                << configuration (coAxisY [ axcoMinExtent 30 ])
+
+        enc =
+            encoding
+                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonthDate ]
+                << tooltips
+                    [ [ tName "date", tMType Temporal, tTimeUnit yearMonthDate ]
+                    , [ tName "temp_max", tMType Quantitative ]
+                    , [ tName "temp_min", tMType Quantitative ]
+                    ]
+
+        enc1 =
+            encoding
+                << position Y [ pName "temp_max", pMType Quantitative ]
+
+        spec1 =
+            asSpec [ line [ maColor "orange" ], enc1 [] ]
+
+        enc2 =
+            encoding
+                << position Y [ pName "temp_min", pMType Quantitative ]
+
+        spec2 =
+            asSpec [ line [ maColor "red" ], enc2 [] ]
+
+        sel =
+            selection
+                << select "hover" seSingle [ seOn "mouseover", seEmpty ]
+
+        enc3 =
+            encoding
+                << color
+                    [ mSelectionCondition (VegaLite.not (selectionName "hover"))
+                        [ mStr "transparent" ]
+                        []
+                    ]
+
+        spec3 =
+            asSpec [ sel [], rule [], enc3 [] ]
+    in
+    toVegaLite
+        [ config []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        , enc []
+        , layer [ spec1, spec2, spec3 ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -330,6 +429,8 @@ mySpecs =
         , ( "interaction6", interaction6 )
         , ( "interaction7", interaction7 )
         , ( "interaction8", interaction8 )
+        , ( "interaction9", interaction9 )
+        , ( "interaction10", interaction10 )
         ]
 
 
