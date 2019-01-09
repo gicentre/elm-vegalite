@@ -34,7 +34,7 @@ worldMapTemplate tText projProps =
         , background "#c1e7f5"
         , projection projProps
 
-        --, dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ TopojsonFeature "countries" ]
+        --, dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
         , dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
         , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.5 ]
         , enc []
