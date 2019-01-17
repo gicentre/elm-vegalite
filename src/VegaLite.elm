@@ -855,6 +855,10 @@ module VegaLite exposing
     , lecoTitlePadding
     , sacoBandPaddingInner
     , sacoBandPaddingOuter
+    , sacoBarBandPaddingInner
+    , sacoBarBandPaddingOuter
+    , sacoRectBandPaddingInner
+    , sacoRectBandPaddingOuter
     , sacoClamp
     , sacoMaxBandSize
     , sacoMinBandSize
@@ -2321,6 +2325,10 @@ See the
 
 @docs sacoBandPaddingInner
 @docs sacoBandPaddingOuter
+@docs sacoBarBandPaddingInner
+@docs sacoBarBandPaddingOuter
+@docs sacoRectBandPaddingInner
+@docs sacoRectBandPaddingOuter
 @docs sacoClamp
 @docs sacoMaxBandSize
 @docs sacoMinBandSize
@@ -3738,6 +3746,10 @@ type Scale
 type ScaleConfig
     = SCBandPaddingInner Float
     | SCBandPaddingOuter Float
+    | SCBarBandPaddingInner Float
+    | SCBarBandPaddingOuter Float
+    | SCRectBandPaddingInner Float
+    | SCRectBandPaddingOuter Float
     | SCClamp Bool
     | SCMaxBandSize Float
     | SCMinBandSize Float
@@ -10090,6 +10102,34 @@ sacoBandPaddingOuter =
     SCBandPaddingOuter
 
 
+{-| Default inner padding for x and y band-ordinal scales of `bar` marks.
+-}
+sacoBarBandPaddingInner : Float -> ScaleConfig
+sacoBarBandPaddingInner =
+    SCBarBandPaddingInner
+
+
+{-| Default outer padding for x and y band-ordinal scales of `bar` marks.
+-}
+sacoBarBandPaddingOuter : Float -> ScaleConfig
+sacoBarBandPaddingOuter =
+    SCBarBandPaddingOuter
+
+
+{-| Default inner padding for x and y band-ordinal scales of `rect` marks.
+-}
+sacoRectBandPaddingInner : Float -> ScaleConfig
+sacoRectBandPaddingInner =
+    SCRectBandPaddingInner
+
+
+{-| Default outer padding for x and y band-ordinal scales of `rect` marks.
+-}
+sacoRectBandPaddingOuter : Float -> ScaleConfig
+sacoRectBandPaddingOuter =
+    SCRectBandPaddingOuter
+
+
 {-| Whether or not by default values that exceed the data domain are clamped to
 the min/max range value.
 -}
@@ -14381,6 +14421,18 @@ scaleConfigProperty scaleCfg =
 
         SCBandPaddingOuter x ->
             ( "bandPaddingOuter", JE.float x )
+
+        SCBarBandPaddingInner x ->
+            ( "barBandPaddingInner", JE.float x )
+
+        SCBarBandPaddingOuter x ->
+            ( "barBandPaddingOuter", JE.float x )
+
+        SCRectBandPaddingInner x ->
+            ( "rectBandPaddingInner", JE.float x )
+
+        SCRectBandPaddingOuter x ->
+            ( "rectBandPaddingOuter", JE.float x )
 
         SCClamp b ->
             ( "clamp", JE.bool b )

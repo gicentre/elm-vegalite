@@ -7672,66 +7672,86 @@ var author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 				'bandPaddingOuter',
 				elm$json$Json$Encode$float(x));
 		case 2:
-			var b = scaleCfg.a;
+			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'clamp',
-				elm$json$Json$Encode$bool(b));
+				'barBandPaddingInner',
+				elm$json$Json$Encode$float(x));
 		case 3:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'maxBandSize',
+				'barBandPaddingOuter',
 				elm$json$Json$Encode$float(x));
 		case 4:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'minBandSize',
+				'rectBandPaddingInner',
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'maxFontSize',
+				'rectBandPaddingOuter',
 				elm$json$Json$Encode$float(x));
 		case 6:
-			var x = scaleCfg.a;
+			var b = scaleCfg.a;
 			return _Utils_Tuple2(
-				'minFontSize',
-				elm$json$Json$Encode$float(x));
+				'clamp',
+				elm$json$Json$Encode$bool(b));
 		case 7:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'maxOpacity',
+				'maxBandSize',
 				elm$json$Json$Encode$float(x));
 		case 8:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'minOpacity',
+				'minBandSize',
 				elm$json$Json$Encode$float(x));
 		case 9:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'maxSize',
+				'maxFontSize',
 				elm$json$Json$Encode$float(x));
 		case 10:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'minSize',
+				'minFontSize',
 				elm$json$Json$Encode$float(x));
 		case 11:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'maxStrokeWidth',
+				'maxOpacity',
 				elm$json$Json$Encode$float(x));
 		case 12:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'minStrokeWidth',
+				'minOpacity',
 				elm$json$Json$Encode$float(x));
 		case 13:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
-				'pointPadding',
+				'maxSize',
 				elm$json$Json$Encode$float(x));
 		case 14:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minSize',
+				elm$json$Json$Encode$float(x));
+		case 15:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'maxStrokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 16:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minStrokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 17:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'pointPadding',
+				elm$json$Json$Encode$float(x));
+		case 18:
 			var numOrNull = scaleCfg.a;
 			if (!numOrNull.$) {
 				var x = numOrNull.a;
@@ -7741,12 +7761,12 @@ var author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 			} else {
 				return _Utils_Tuple2('rangeStep', elm$json$Json$Encode$null);
 			}
-		case 15:
+		case 19:
 			var b = scaleCfg.a;
 			return _Utils_Tuple2(
 				'round',
 				elm$json$Json$Encode$bool(b));
-		case 16:
+		case 20:
 			var x = scaleCfg.a;
 			return _Utils_Tuple2(
 				'textXRangeStep',
