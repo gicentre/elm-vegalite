@@ -141,9 +141,85 @@ scale5 =
     toVegaLite [ data [], enc [], circle [] ]
 
 
+scale6 : Spec
+scale6 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "r" (nums [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ])
+
+        enc =
+            encoding
+                << size
+                    [ mName "r"
+                    , mMType Quantitative
+                    , mScale [ scRange (raNums [ 0, 80000 ]) ]
+                    , mLegend []
+                    ]
+    in
+    toVegaLite [ data [], point [], enc [] ]
+
+
+scale7 : Spec
+scale7 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "r" (nums [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ])
+
+        enc =
+            encoding
+                << size
+                    [ mName "r"
+                    , mMType Quantitative
+                    , mScale [ scRange (raNums [ 0, 80000 ]), scType scPow, scExponent 2 ]
+                    , mLegend []
+                    ]
+    in
+    toVegaLite [ data [], point [], enc [] ]
+
+
+scale8 : Spec
+scale8 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "r" (nums [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ])
+
+        enc =
+            encoding
+                << size
+                    [ mName "r"
+                    , mMType Quantitative
+                    , mScale [ scRange (raNums [ 0, 80000 ]), scType scPow, scExponent 1.2 ]
+                    , mLegend []
+                    ]
+    in
+    toVegaLite [ data [], point [], enc [] ]
+
+
+scale9 : Spec
+scale9 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "r" (nums [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ])
+
+        enc =
+            encoding
+                << size
+                    [ mName "r"
+                    , mMType Quantitative
+                    , mScale [ scRange (raNums [ 0, 80000 ]), scType scLog, scBase e ]
+                    , mLegend []
+                    ]
+    in
+    toVegaLite [ data [], point [], enc [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    scale5
+    scale9
 
 
 
@@ -158,6 +234,10 @@ mySpecs =
         , ( "scale3", scale3 )
         , ( "scale4", scale4 )
         , ( "scale5", scale5 )
+        , ( "scale6", scale6 )
+        , ( "scale7", scale7 )
+        , ( "scale8", scale8 )
+        , ( "scale9", scale9 )
         ]
 
 

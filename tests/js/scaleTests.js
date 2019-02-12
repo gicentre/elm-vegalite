@@ -5978,6 +5978,16 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'base',
+				elm$json$Json$Encode$float(x));
+		case 13:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'exponent',
+				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
@@ -9881,6 +9891,169 @@ var author$project$ScaleTests$scale5 = function () {
 				author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
+var author$project$ScaleTests$scale6 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$encoding,
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('r'),
+					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$scRange(
+							author$project$VegaLite$raNums(
+								_List_fromArray(
+									[0, 80000])))
+						])),
+					author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'r',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$point(_List_Nil),
+				enc(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$SExponent = function (a) {
+	return {$: 13, a: a};
+};
+var author$project$VegaLite$scExponent = author$project$VegaLite$SExponent;
+var author$project$VegaLite$ScPow = 1;
+var author$project$VegaLite$scPow = 1;
+var author$project$ScaleTests$scale7 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$encoding,
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('r'),
+					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$scRange(
+							author$project$VegaLite$raNums(
+								_List_fromArray(
+									[0, 80000]))),
+							author$project$VegaLite$scType(author$project$VegaLite$scPow),
+							author$project$VegaLite$scExponent(2)
+						])),
+					author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'r',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$point(_List_Nil),
+				enc(_List_Nil)
+			]));
+}();
+var author$project$ScaleTests$scale8 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$encoding,
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('r'),
+					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$scRange(
+							author$project$VegaLite$raNums(
+								_List_fromArray(
+									[0, 80000]))),
+							author$project$VegaLite$scType(author$project$VegaLite$scPow),
+							author$project$VegaLite$scExponent(1.2)
+						])),
+					author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'r',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$point(_List_Nil),
+				enc(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$SBase = function (a) {
+	return {$: 14, a: a};
+};
+var author$project$VegaLite$scBase = author$project$VegaLite$SBase;
+var author$project$VegaLite$ScLog = 3;
+var author$project$VegaLite$scLog = 3;
+var elm$core$Basics$e = _Basics_e;
+var author$project$ScaleTests$scale9 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$encoding,
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('r'),
+					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$scRange(
+							author$project$VegaLite$raNums(
+								_List_fromArray(
+									[0, 80000]))),
+							author$project$VegaLite$scType(author$project$VegaLite$scLog),
+							author$project$VegaLite$scBase(elm$core$Basics$e)
+						])),
+					author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'r',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$point(_List_Nil),
+				enc(_List_Nil)
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -9891,9 +10064,13 @@ var author$project$ScaleTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('scale2', author$project$ScaleTests$scale2),
 			_Utils_Tuple2('scale3', author$project$ScaleTests$scale3),
 			_Utils_Tuple2('scale4', author$project$ScaleTests$scale4),
-			_Utils_Tuple2('scale5', author$project$ScaleTests$scale5)
+			_Utils_Tuple2('scale5', author$project$ScaleTests$scale5),
+			_Utils_Tuple2('scale6', author$project$ScaleTests$scale6),
+			_Utils_Tuple2('scale7', author$project$ScaleTests$scale7),
+			_Utils_Tuple2('scale8', author$project$ScaleTests$scale8),
+			_Utils_Tuple2('scale9', author$project$ScaleTests$scale9)
 		]));
-var author$project$ScaleTests$sourceExample = author$project$ScaleTests$scale5;
+var author$project$ScaleTests$sourceExample = author$project$ScaleTests$scale9;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

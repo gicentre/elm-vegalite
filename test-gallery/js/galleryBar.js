@@ -4756,6 +4756,16 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'base',
+				elm$json$Json$Encode$float(x));
+		case 13:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'exponent',
+				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
