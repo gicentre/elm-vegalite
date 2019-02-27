@@ -90,7 +90,7 @@ layer2 =
 
         encPoints =
             encoding
-                << position X [ pName "life_expect", pMType Quantitative, pAxis [ axTitle "Life Expectanct (years)" ] ]
+                << position X [ pName "life_expect", pMType Quantitative, pAxis [ axTitle "Life Expectancy (years)" ] ]
                 << color [ mName "year", mMType Ordinal, mScale (domainRangeMap ( 1955, "#e6959c" ) ( 2000, "#911a24" )), mLegend [ leTitle "Year" ] ]
                 << size [ mNum 100 ]
                 << opacity [ mNum 1 ]
