@@ -125,7 +125,7 @@ facet6 =
                 << position X [ pName "yield", pMType Quantitative, pAggregate opMedian, pScale [ scZero False ] ]
                 << position Y [ pName "variety", pMType Ordinal, pSort [ soByField "Horsepower" opMean, soDescending ], pScale [ scRangeStep (Just 12) ] ]
                 << color [ mName "year", mMType Nominal ]
-                << row [ fName "site", fMType Ordinal ]
+                << row [ fName "site", fMType Ordinal, fSort [ soByField "x" opMedian, soDescending ] ]
     in
     toVegaLite
         [ des

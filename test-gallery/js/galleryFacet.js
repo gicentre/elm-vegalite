@@ -5893,6 +5893,43 @@ var author$project$VegaLite$facetChannelProperty = function (fMap) {
 		case 2:
 			var bps = fMap.a;
 			return author$project$VegaLite$bin(bps);
+		case 5:
+			var sps = fMap.a;
+			_n1$4:
+			while (true) {
+				if (!sps.b) {
+					return _Utils_Tuple2('sort', elm$json$Json$Encode$null);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 0:
+								var _n2 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									elm$json$Json$Encode$string('ascending'));
+							case 1:
+								var _n3 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									elm$json$Json$Encode$string('descending'));
+							case 2:
+								var dvs = sps.a.a;
+								return _Utils_Tuple2(
+									'sort',
+									author$project$VegaLite$toList(
+										author$project$VegaLite$dataValuesSpecs(dvs)));
+							default:
+								break _n1$4;
+						}
+					} else {
+						break _n1$4;
+					}
+				}
+			}
+			return _Utils_Tuple2(
+				'sort',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$concatMap, author$project$VegaLite$sortProperty, sps)));
 		case 3:
 			var op = fMap.a;
 			return _Utils_Tuple2(
@@ -6676,6 +6713,10 @@ var author$project$GalleryFacet$facet5 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var author$project$VegaLite$FSort = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$fSort = author$project$VegaLite$FSort;
 var author$project$VegaLite$Mean = 7;
 var author$project$VegaLite$opMean = 7;
 var author$project$VegaLite$Median = 8;
@@ -6745,7 +6786,13 @@ var author$project$GalleryFacet$facet6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('site'),
-					author$project$VegaLite$fMType(1)
+					author$project$VegaLite$fMType(1),
+					author$project$VegaLite$fSort(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$soByField, 'x', author$project$VegaLite$opMedian),
+							author$project$VegaLite$soDescending
+						]))
 				])));
 	var des = author$project$VegaLite$description('The Trellis display by Becker et al. helped establish small multiples as a \'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables\'');
 	return author$project$VegaLite$toVegaLite(
@@ -6769,7 +6816,7 @@ var author$project$VegaLite$AxGrid = function (a) {
 };
 var author$project$VegaLite$axGrid = author$project$VegaLite$AxGrid;
 var author$project$VegaLite$FHeader = function (a) {
-	return {$: 5, a: a};
+	return {$: 6, a: a};
 };
 var author$project$VegaLite$fHeader = author$project$VegaLite$FHeader;
 var author$project$VegaLite$HTitle = function (a) {

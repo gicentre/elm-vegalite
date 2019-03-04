@@ -21,9 +21,12 @@ To get started, copy this example to a file `helloWorld.html` somewhere on your 
   <title>Hello World from Elm-Vegalite</title>
   <meta charset="utf-8">
 
-  <!-- These scripts link to the Vega-Lite runtime -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc12"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <!-- TODO: Replace the github link to vega.min.js with npm/vega@5 once released:
+       <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  -->
+  <script src="https://vega.github.io/vega/vega.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc13"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
 
   <!-- This is the script generated from Elm -->

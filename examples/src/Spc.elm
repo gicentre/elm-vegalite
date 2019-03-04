@@ -24,7 +24,7 @@ spc1 =
 spc2 : Spec
 spc2 =
     toVegaLite
-        [ config, spcData, line [], encLine ]
+        [ config, spcData, line [ maColor "#777" ], encLine ]
 
 
 spc3 : Spec
@@ -34,7 +34,7 @@ spc3 =
         , spcData
         , layer
             (List.map sdLine [ 0, 1.5, -1.5, 2, -2, 3, -3 ]
-                ++ [ asSpec [ line [], encLine ] ]
+                ++ [ asSpec [ line [ maColor "#777" ], encLine ] ]
             )
         ]
 
@@ -43,7 +43,7 @@ spc4 : Spec
 spc4 =
     let
         specLine =
-            asSpec [ line [], encLine ]
+            asSpec [ line [ maColor "#777" ], encLine ]
 
         encPoint =
             encoding
@@ -51,10 +51,9 @@ spc4 =
                 << position Y [ pName "crimes", pMType Quantitative, pAxis [] ]
                 << color [ mName "shiftDirection", mMType Nominal, mScale shiftColours, mLegend [] ]
                 << shape [ mName "shifts", mMType Nominal, mScale shiftShapes, mLegend [] ]
-                << size [ mNum 60 ]
 
         specPoint =
-            asSpec [ point [ maFilled True ], encPoint [] ]
+            asSpec [ point [ maFilled True, maSize 60 ], encPoint [] ]
     in
     toVegaLite
         [ config
@@ -81,7 +80,7 @@ spc5 =
                 << detail [ dName "groups", dMType Ordinal ]
 
         specLine =
-            asSpec [ line [ maStrokeWidth 1.4 ], encLine ]
+            asSpec [ line [ maStrokeWidth 1.4, maColor "#777" ], encLine ]
 
         specShifts =
             asSpec [ trans [], line [], encShifts [] ]
@@ -97,15 +96,14 @@ cusum1 : Spec
 cusum1 =
     let
         specCusum =
-            asSpec [ line [], encCusum ]
+            asSpec [ line [ maColor "#777" ], encCusum ]
 
         encZeroLine =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
-                << color [ mStr "rgb(62,156,167)" ]
 
         specZeroLine =
-            asSpec [ rule [], encZeroLine [] ]
+            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
     in
     toVegaLite
         [ config, cusumData -1, layer [ specZeroLine, specCusum ] ]
@@ -115,15 +113,14 @@ cusum2 : Spec
 cusum2 =
     let
         specCusum =
-            asSpec [ line [], encCusum ]
+            asSpec [ line [ maColor "#777" ], encCusum ]
 
         encZeroLine =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
-                << color [ mStr "rgb(62,156,167)" ]
 
         specZeroLine =
-            asSpec [ rule [], encZeroLine [] ]
+            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
     in
     toVegaLite
         [ config, cusumData 21, layer [ specZeroLine, specCusum ] ]
@@ -133,15 +130,14 @@ cusum3 : Spec
 cusum3 =
     let
         specCusum =
-            asSpec [ line [], encCusum ]
+            asSpec [ line [ maColor "#777" ], encCusum ]
 
         encZeroLine =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
-                << color [ mStr "rgb(62,156,167)" ]
 
         specZeroLine =
-            asSpec [ rule [], encZeroLine [] ]
+            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
     in
     toVegaLite
         [ config, cusumData 24, layer [ specZeroLine, specCusum ] ]
@@ -151,18 +147,22 @@ cusumInteractive : Float -> Spec
 cusumInteractive baseline =
     let
         specCusum =
-            asSpec [ line [], encCusum ]
+            asSpec [ line [ maColor "#777" ], encCusum ]
 
         encZeroLine =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
-                << color [ mStr "rgb(62,156,167)" ]
 
         specZeroLine =
-            asSpec [ rule [], encZeroLine [] ]
+            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
     in
     toVegaLite
-        [ config, width 550, autosize [ asFit, asContent ], cusumData baseline, layer [ specZeroLine, specCusum ] ]
+        [ config
+        , width 550
+        , autosize [ asFit, asContent ]
+        , cusumData baseline
+        , layer [ specZeroLine, specCusum ]
+        ]
 
 
 specs : Spec
@@ -210,7 +210,7 @@ spcData =
         shiftDir =
             shiftDirection shift
     in
-    (dataFromColumns []
+    (dataFromColumns [ parse [ ( "month", foDate "%Y-%m" ) ] ]
         << dataColumn "month" (strs month)
         << dataColumn "crimes" (nums numCrimes)
         << dataColumn "shifts" (strs shift)
@@ -236,11 +236,11 @@ cusumData x =
         numCrimes =
             List.map Tuple.second rawData
     in
-    (dataFromColumns []
+    (dataFromColumns [ parse [ ( "month", foDate "%Y-%m" ) ] ]
         << dataColumn "month" (strs month)
         << dataColumn "crimes" (nums numCrimes)
         << dataColumn "cusum" (nums (cusum baseline numCrimes))
-        << dataColumn "zeroLine" (nums [ 0 ])
+        << dataColumn "zeroLine" (nums (List.repeat (List.length month) 0))
     )
         []
 
@@ -260,7 +260,6 @@ encLine =
     (encoding
         << position X [ pName "month", pMType Temporal, pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ], pScale [ scNice niYear ] ]
         << position Y [ pName "crimes", pMType Quantitative, pAxis [ axGrid False ] ]
-        << color [ mStr "#777" ]
     )
         []
 
@@ -270,7 +269,6 @@ encCusum =
     (encoding
         << position X [ pName "month", pMType Temporal, pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ], pScale [ scNice niYear ] ]
         << position Y [ pName "cusum", pMType Quantitative, pAxis [ axTitle "Crimes above/below target (thousands)" ] ]
-        << color [ mStr "#777" ]
     )
         []
 
@@ -291,17 +289,16 @@ sdLine n =
                     , pScale [ scDomain (doNums [ 12, 32 ]) ]
                     , pAxis [ axGrid False, axTitle "Crimes (thousands)" ]
                     ]
-                << color [ mStr "rgb(62,156,167)" ]
 
         dash =
             if abs n == 1.5 then
-                [ maStrokeDash [ 12, 12 ] ]
+                [ maStrokeDash [ 12, 12 ], maColor "rgb(62,156,167)" ]
 
             else if abs n == 2 then
-                [ maStrokeDash [ 6, 6 ] ]
+                [ maStrokeDash [ 6, 6 ], maColor "rgb(62,156,167)" ]
 
             else if abs n == 3 then
-                [ maStrokeDash [ 3, 4 ] ]
+                [ maStrokeDash [ 3, 4 ], maColor "rgb(62,156,167)" ]
 
             else
                 []
@@ -664,9 +661,9 @@ dropWhile predicate list =
         [] ->
             []
 
-        hd :: tl ->
-            if predicate hd then
-                dropWhile predicate tl
+        x :: xs ->
+            if predicate x then
+                dropWhile predicate xs
 
             else
                 list
@@ -679,35 +676,32 @@ predicate.
 
 -}
 takeWhile : (a -> Bool) -> List a -> List a
-takeWhile predicate list =
-    case list of
-        [] ->
-            []
+takeWhile predicate =
+    let
+        takeWhileHelper accum list =
+            case list of
+                [] ->
+                    List.reverse accum
 
-        hd :: tl ->
-            if predicate hd then
-                hd :: takeWhile predicate tl
+                x :: xs ->
+                    if predicate x then
+                        takeWhileHelper (x :: accum) xs
 
-            else
-                []
+                    else
+                        List.reverse accum
+    in
+    takeWhileHelper []
 
 
 {-| Transposes a list of lists, swappings rows for columns.
 -}
 transpose : List (List a) -> List (List a)
-transpose ll =
+transpose xss =
     let
-        heads =
-            List.filterMap List.head ll
-
-        tails =
-            List.filterMap List.tail ll
+        numCols =
+            List.head >> Maybe.withDefault [] >> List.length
     in
-    if List.length heads == List.length ll then
-        heads :: transpose tails
-
-    else
-        []
+    List.foldr (List.map2 (::)) (List.repeat (numCols xss) []) xss
 
 
 {-| Functional scanning (replaces built-in scanl available in elm 0.18)
