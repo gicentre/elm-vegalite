@@ -1802,7 +1802,7 @@ or order of data points in a connected scatterplot. See the
 
 Channels for faceting single plots into small multiples. Can be used to create
 trellis plots or other arrangements in rows and columns. See the
-[Vega-Lite facet documentation](https://vega.github.io/vega-lite/docs/encoding.html#facet).
+[Vega-Lite facet documentation](https://vega.github.io/vega-lite/docs/facet.html).
 See also, 'faceted view composition' for a more flexible (but more verbose) way
 of defining faceted views.
 
@@ -5580,7 +5580,8 @@ color markProps =
 
 {-| Encodes a new facet to be arranged in columns. The first parameter is a list
 of properties that define the faceting channel. This should include at least the
-name of the data field and its measurement type.
+name of the data field and its measurement type. See the
+[Vega-Lite column documentation](https://vega.github.io/vega-lite/docs/facet.html#row--column-encoding-channels)
 -}
 column : List FacetChannel -> List LabelledSpec -> List LabelledSpec
 column fFields =
@@ -10074,7 +10075,8 @@ rgb =
 
 
 {-| Encode a new facet to be arranged in rows. The first parameter is a list of
-facet properties that define the faceting channel.
+facet properties that define the faceting channel. See the
+[Vega-Lite row documentation](https://vega.github.io/vega-lite/docs/facet.html#row--column-encoding-channels)
 -}
 row : List FacetChannel -> List LabelledSpec -> List LabelledSpec
 row fFields =
