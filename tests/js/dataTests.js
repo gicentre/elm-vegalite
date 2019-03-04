@@ -4293,10 +4293,10 @@ var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$X2 = 2;
 var author$project$VegaLite$Y = 1;
-var author$project$VegaLite$AxTickStep = function (a) {
+var author$project$VegaLite$AxTickMinStep = function (a) {
 	return {$: 35, a: a};
 };
-var author$project$VegaLite$axTickStep = author$project$VegaLite$AxTickStep;
+var author$project$VegaLite$axTickStep = author$project$VegaLite$AxTickMinStep;
 var author$project$VegaLite$Bar = 1;
 var author$project$VegaLite$VLMark = 10;
 var author$project$VegaLite$markLabel = function (m) {
@@ -6066,7 +6066,7 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 		case 35:
 			var n = axisProp.a;
 			return _Utils_Tuple2(
-				'tickStep',
+				'tickMinStep',
 				elm$json$Json$Encode$float(n));
 		case 34:
 			var sz = axisProp.a;
@@ -9201,7 +9201,7 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 		case 35:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
-				'tickStep',
+				'tickMinStep',
 				elm$json$Json$Encode$float(n));
 		case 33:
 			var b = axisCfg.a;

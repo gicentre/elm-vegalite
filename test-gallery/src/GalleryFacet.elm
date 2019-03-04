@@ -16,6 +16,9 @@ facet1 =
         des =
             description "A trellis bar chart showing the US population distribution of age groups and gender in 2000"
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population.json"
+
         trans =
             transform
                 << filter (fiExpr "datum.year == 2000")
@@ -28,13 +31,7 @@ facet1 =
                 << color [ mName "gender", mMType Nominal, mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ] ]
                 << row [ fName "gender", fMType Nominal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
-        , trans []
-        , bar []
-        , enc []
-        ]
+    toVegaLite [ des, data [], trans [], bar [], enc [] ]
 
 
 facet2 : Spec

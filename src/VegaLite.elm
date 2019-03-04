@@ -369,6 +369,7 @@ module VegaLite exposing
     , axTickRound
     , axTicks
     , axTickSize
+    , axTickMinStep
     , axTickStep
     , axTickWidth
     , axTitle
@@ -795,6 +796,7 @@ module VegaLite exposing
     , axcoTickOpacity
     , axcoTickRound
     , axcoTickSize
+    , axcoTickMinStep
     , axcoTickStep
     , axcoTickWidth
     , axcoTitleAlign
@@ -1597,6 +1599,7 @@ See the
 @docs axTickRound
 @docs axTicks
 @docs axTickSize
+@docs axTickMinStep
 @docs axTickStep
 @docs axTickWidth
 @docs axTitle
@@ -2257,6 +2260,7 @@ See the
 @docs axcoTickOpacity
 @docs axcoTickRound
 @docs axcoTickSize
+@docs axcoTickMinStep
 @docs axcoTickStep
 @docs axcoTickWidth
 @docs axcoTitleAlign
@@ -2636,7 +2640,7 @@ type AxisConfig
     | TickOpacity Float
     | TickRound Bool
     | TickSize Float
-    | TickStep Float
+    | TickMinStep Float
     | TickWidth Float
     | TitleAlign HAlign
     | TitleAngle Float
@@ -2690,7 +2694,7 @@ type AxisProperty
     | AxTickRound Bool
     | AxTicks Bool
     | AxTickSize Float
-    | AxTickStep Float
+    | AxTickMinStep Float
     | AxTickWidth Float
     | AxTitle String
     | AxTitleAlign HAlign
@@ -4601,6 +4605,16 @@ axcoTickExtra =
     TickExtra
 
 
+{-| The minimum desired step between axis ticks, in terms of scale domain values.
+For example, a value of `1` indicates that ticks should not be less than 1 unit
+apart. If specified, the tick count\` value will be adjusted, if necessary, to
+enforce the minimum step value.
+-}
+axcoTickMinStep : Float -> AxisConfig
+axcoTickMinStep =
+    TickMinStep
+
+
 {-| Default offset in pixels of axis ticks, labels and gridlines.
 -}
 axcoTickOffset : Float -> AxisConfig
@@ -4636,11 +4650,11 @@ axcoTickSize =
     TickSize
 
 
-{-| Default step size for axis ticks.
+{-| Deprecated in favour of axcoTickMinStep.
 -}
 axcoTickStep : Float -> AxisConfig
 axcoTickStep =
-    TickStep
+    TickMinStep
 
 
 {-| Default opacity of axis titles.
@@ -4880,6 +4894,16 @@ axTickExtra =
     AxTickExtra
 
 
+{-| The minimum desired step between axis ticks, in terms of scale domain values.
+For example, a value of `1` indicates that ticks should not be less than 1 unit
+apart. If specified, the tick count\` value will be adjusted, if necessary, to
+enforce the minimum step value.
+-}
+axTickMinStep : Float -> AxisProperty
+axTickMinStep =
+    AxTickMinStep
+
+
 {-| Offset in pixels of an axis's ticks, labels and gridlines.
 -}
 axTickOffset : Float -> AxisProperty
@@ -4901,11 +4925,11 @@ axTickRound =
     AxTickRound
 
 
-{-| Desired step size for ticks. Will generate corresponding tick count and values.
+{-| Deprecated in favour of [axTickMinStep](#axTickMinStep).
 -}
 axTickStep : Float -> AxisProperty
 axTickStep =
-    AxTickStep
+    AxTickMinStep
 
 
 {-| Width of axis ticks.
@@ -12143,8 +12167,8 @@ axisConfigProperty axisCfg =
         TickOpacity n ->
             ( "tickOpacity", JE.float n )
 
-        TickStep n ->
-            ( "tickStep", JE.float n )
+        TickMinStep n ->
+            ( "tickMinStep", JE.float n )
 
         TickRound b ->
             ( "tickRound", JE.bool b )
@@ -12318,8 +12342,8 @@ axisProperty axisProp =
         AxTickRound b ->
             ( "tickRound", JE.bool b )
 
-        AxTickStep n ->
-            ( "tickStep", JE.float n )
+        AxTickMinStep n ->
+            ( "tickMinStep", JE.float n )
 
         AxTickSize sz ->
             ( "tickSize", JE.float sz )

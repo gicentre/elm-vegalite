@@ -6549,7 +6549,7 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 		case 35:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
-				'tickStep',
+				'tickMinStep',
 				elm$json$Json$Encode$float(n));
 		case 33:
 			var b = axisCfg.a;

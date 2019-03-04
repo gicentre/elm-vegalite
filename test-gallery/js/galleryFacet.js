@@ -5406,7 +5406,7 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 		case 35:
 			var n = axisProp.a;
 			return _Utils_Tuple2(
-				'tickStep',
+				'tickMinStep',
 				elm$json$Json$Encode$float(n));
 		case 34:
 			var sz = axisProp.a;
@@ -6505,11 +6505,12 @@ var author$project$GalleryFacet$facet1 = function () {
 					author$project$VegaLite$fMType(0)
 				])));
 	var des = author$project$VegaLite$description('A trellis bar chart showing the US population distribution of age groups and gender in 2000');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/population.json');
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil),
+				data(_List_Nil),
 				trans(_List_Nil),
 				author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
