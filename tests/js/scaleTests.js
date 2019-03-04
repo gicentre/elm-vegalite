@@ -7243,6 +7243,26 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 				elm$json$Json$Encode$float(n));
 	}
 };
+var author$project$VegaLite$channelLabel = function (ch) {
+	switch (ch) {
+		case 0:
+			return 'x';
+		case 1:
+			return 'y';
+		case 2:
+			return 'x2';
+		case 3:
+			return 'y2';
+		case 4:
+			return 'color';
+		case 5:
+			return 'opacity';
+		case 6:
+			return 'shape';
+		default:
+			return 'size';
+	}
+};
 var author$project$VegaLite$sortProperty = function (sp) {
 	switch (sp.$) {
 		case 0:
@@ -7258,6 +7278,15 @@ var author$project$VegaLite$sortProperty = function (sp) {
 					_Utils_Tuple2(
 					'order',
 					elm$json$Json$Encode$string('descending'))
+				]);
+		case 5:
+			var ch = sp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'encoding',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$channelLabel(ch)))
 				]);
 		case 4:
 			var field = sp.a;
@@ -8888,26 +8917,6 @@ var author$project$VegaLite$bindingSpec = function (bnd) {
 							'input',
 							elm$json$Json$Encode$string('color')),
 						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
-	}
-};
-var author$project$VegaLite$channelLabel = function (ch) {
-	switch (ch) {
-		case 0:
-			return 'x';
-		case 1:
-			return 'y';
-		case 2:
-			return 'x2';
-		case 3:
-			return 'y2';
-		case 4:
-			return 'color';
-		case 5:
-			return 'opacity';
-		case 6:
-			return 'shape';
-		default:
-			return 'size';
 	}
 };
 var author$project$VegaLite$selectionMarkProperty = function (markProp) {

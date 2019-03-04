@@ -7166,6 +7166,15 @@ var author$project$VegaLite$sortProperty = function (sp) {
 					'order',
 					elm$json$Json$Encode$string('descending'))
 				]);
+		case 5:
+			var ch = sp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'encoding',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$channelLabel(ch)))
+				]);
 		case 4:
 			var field = sp.a;
 			var op = sp.b;

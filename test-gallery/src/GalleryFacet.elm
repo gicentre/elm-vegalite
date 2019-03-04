@@ -123,9 +123,9 @@ facet6 =
         enc =
             encoding
                 << position X [ pName "yield", pMType Quantitative, pAggregate opMedian, pScale [ scZero False ] ]
-                << position Y [ pName "variety", pMType Ordinal, pSort [ soByField "Horsepower" opMean, soDescending ], pScale [ scRangeStep (Just 12) ] ]
+                << position Y [ pName "variety", pMType Ordinal, pSort [ soByChannel chX, soDescending ], pScale [ scRangeStep (Just 12) ] ]
                 << color [ mName "year", mMType Nominal ]
-                << row [ fName "site", fMType Ordinal, fSort [ soByField "x" opMedian, soDescending ] ]
+                << row [ fName "site", fMType Ordinal, fSort [ soByField "yield" opMedian ] ]
     in
     toVegaLite
         [ des
