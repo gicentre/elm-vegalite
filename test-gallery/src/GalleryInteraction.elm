@@ -207,6 +207,7 @@ interaction7 =
                 << select "CylYr"
                     seSingle
                     [ seFields [ "Cylinders", "Year" ]
+                    , seInit [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ]
                     , seBind
                         [ iRange "Cylinders" [ inName "Cylinders ", inMin 3, inMax 8, inStep 1 ]
                         , iRange "Year" [ inName "Year ", inMin 1969, inMax 1981, inStep 1 ]

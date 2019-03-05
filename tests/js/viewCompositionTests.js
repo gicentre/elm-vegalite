@@ -6220,6 +6220,14 @@ var elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
+var elm$core$Tuple$mapSecond = F2(
+	function (func, _n0) {
+		var x = _n0.a;
+		var y = _n0.b;
+		return _Utils_Tuple2(
+			x,
+			func(y));
+	});
 var author$project$VegaLite$selectionProperty = function (selProp) {
 	switch (selProp.$) {
 		case 5:
@@ -6227,6 +6235,15 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'fields',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fNames));
+		case 7:
+			var iVals = selProp.a;
+			return _Utils_Tuple2(
+				'init',
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$map,
+						elm$core$Tuple$mapSecond(author$project$VegaLite$dataValueSpec),
+						iVals)));
 		case 6:
 			var channels = selProp.a;
 			return _Utils_Tuple2(
@@ -6244,13 +6261,13 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'empty',
 				elm$json$Json$Encode$string('none'));
-		case 7:
+		case 8:
 			var res = selProp.a;
 			return _Utils_Tuple2(
 				'resolve',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$selectionResolutionLabel(res)));
-		case 8:
+		case 9:
 			var markProps = selProp.a;
 			return _Utils_Tuple2(
 				'mark',
@@ -6260,18 +6277,18 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$string('scales'));
-		case 9:
+		case 10:
 			var binds = selProp.a;
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$bindingSpec, binds)));
-		case 10:
+		case 11:
 			var b = selProp.a;
 			return _Utils_Tuple2(
 				'nearest',
 				elm$json$Json$Encode$bool(b));
-		case 11:
+		case 12:
 			var ex = selProp.a;
 			return _Utils_Tuple2(
 				'toggle',

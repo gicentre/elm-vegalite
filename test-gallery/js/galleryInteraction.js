@@ -4799,6 +4799,120 @@ var author$project$VegaLite$channelLabel = function (ch) {
 			return 'size';
 	}
 };
+var author$project$VegaLite$dayLabel = function (dayName) {
+	switch (dayName) {
+		case 0:
+			return 'Mon';
+		case 1:
+			return 'Tue';
+		case 2:
+			return 'Wed';
+		case 3:
+			return 'Thu';
+		case 4:
+			return 'Fri';
+		case 5:
+			return 'Sat';
+		default:
+			return 'Sun';
+	}
+};
+var author$project$VegaLite$monthNameLabel = function (mon) {
+	switch (mon) {
+		case 0:
+			return 'Jan';
+		case 1:
+			return 'Feb';
+		case 2:
+			return 'Mar';
+		case 3:
+			return 'Apr';
+		case 4:
+			return 'May';
+		case 5:
+			return 'Jun';
+		case 6:
+			return 'Jul';
+		case 7:
+			return 'Aug';
+		case 8:
+			return 'Sep';
+		case 9:
+			return 'Oct';
+		case 10:
+			return 'Nov';
+		default:
+			return 'Dec';
+	}
+};
+var author$project$VegaLite$dateTimeProperty = function (dtp) {
+	switch (dtp.$) {
+		case 0:
+			var y = dtp.a;
+			return _Utils_Tuple2(
+				'year',
+				elm$json$Json$Encode$int(y));
+		case 1:
+			var q = dtp.a;
+			return _Utils_Tuple2(
+				'quarter',
+				elm$json$Json$Encode$int(q));
+		case 2:
+			var mon = dtp.a;
+			return _Utils_Tuple2(
+				'month',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$monthNameLabel(mon)));
+		case 3:
+			var d = dtp.a;
+			return _Utils_Tuple2(
+				'date',
+				elm$json$Json$Encode$int(d));
+		case 4:
+			var d = dtp.a;
+			return _Utils_Tuple2(
+				'day',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$dayLabel(d)));
+		case 5:
+			var h = dtp.a;
+			return _Utils_Tuple2(
+				'hours',
+				elm$json$Json$Encode$int(h));
+		case 6:
+			var m = dtp.a;
+			return _Utils_Tuple2(
+				'minutes',
+				elm$json$Json$Encode$int(m));
+		case 7:
+			var s = dtp.a;
+			return _Utils_Tuple2(
+				'seconds',
+				elm$json$Json$Encode$int(s));
+		default:
+			var ms = dtp.a;
+			return _Utils_Tuple2(
+				'milliseconds',
+				elm$json$Json$Encode$int(ms));
+	}
+};
+var author$project$VegaLite$dataValueSpec = function (val) {
+	switch (val.$) {
+		case 2:
+			var x = val.a;
+			return elm$json$Json$Encode$float(x);
+		case 3:
+			var s = val.a;
+			return elm$json$Json$Encode$string(s);
+		case 0:
+			var b = val.a;
+			return elm$json$Json$Encode$bool(b);
+		default:
+			var d = val.a;
+			return elm$json$Json$Encode$object(
+				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+	}
+};
 var author$project$VegaLite$selectionMarkProperty = function (markProp) {
 	switch (markProp.$) {
 		case 0:
@@ -4853,6 +4967,14 @@ var elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
+var elm$core$Tuple$mapSecond = F2(
+	function (func, _n0) {
+		var x = _n0.a;
+		var y = _n0.b;
+		return _Utils_Tuple2(
+			x,
+			func(y));
+	});
 var author$project$VegaLite$selectionProperty = function (selProp) {
 	switch (selProp.$) {
 		case 5:
@@ -4860,6 +4982,15 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'fields',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fNames));
+		case 7:
+			var iVals = selProp.a;
+			return _Utils_Tuple2(
+				'init',
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$map,
+						elm$core$Tuple$mapSecond(author$project$VegaLite$dataValueSpec),
+						iVals)));
 		case 6:
 			var channels = selProp.a;
 			return _Utils_Tuple2(
@@ -4877,13 +5008,13 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'empty',
 				elm$json$Json$Encode$string('none'));
-		case 7:
+		case 8:
 			var res = selProp.a;
 			return _Utils_Tuple2(
 				'resolve',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$selectionResolutionLabel(res)));
-		case 8:
+		case 9:
 			var markProps = selProp.a;
 			return _Utils_Tuple2(
 				'mark',
@@ -4893,18 +5024,18 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$string('scales'));
-		case 9:
+		case 10:
 			var binds = selProp.a;
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$bindingSpec, binds)));
-		case 10:
+		case 11:
 			var b = selProp.a;
 			return _Utils_Tuple2(
 				'nearest',
 				elm$json$Json$Encode$bool(b));
-		case 11:
+		case 12:
 			var ex = selProp.a;
 			return _Utils_Tuple2(
 				'toggle',
@@ -5378,103 +5509,6 @@ var author$project$VegaLite$configure = function (configs) {
 };
 var author$project$VegaLite$CPointer = 5;
 var author$project$VegaLite$cuPointer = 5;
-var author$project$VegaLite$dayLabel = function (dayName) {
-	switch (dayName) {
-		case 0:
-			return 'Mon';
-		case 1:
-			return 'Tue';
-		case 2:
-			return 'Wed';
-		case 3:
-			return 'Thu';
-		case 4:
-			return 'Fri';
-		case 5:
-			return 'Sat';
-		default:
-			return 'Sun';
-	}
-};
-var author$project$VegaLite$monthNameLabel = function (mon) {
-	switch (mon) {
-		case 0:
-			return 'Jan';
-		case 1:
-			return 'Feb';
-		case 2:
-			return 'Mar';
-		case 3:
-			return 'Apr';
-		case 4:
-			return 'May';
-		case 5:
-			return 'Jun';
-		case 6:
-			return 'Jul';
-		case 7:
-			return 'Aug';
-		case 8:
-			return 'Sep';
-		case 9:
-			return 'Oct';
-		case 10:
-			return 'Nov';
-		default:
-			return 'Dec';
-	}
-};
-var author$project$VegaLite$dateTimeProperty = function (dtp) {
-	switch (dtp.$) {
-		case 0:
-			var y = dtp.a;
-			return _Utils_Tuple2(
-				'year',
-				elm$json$Json$Encode$int(y));
-		case 1:
-			var q = dtp.a;
-			return _Utils_Tuple2(
-				'quarter',
-				elm$json$Json$Encode$int(q));
-		case 2:
-			var mon = dtp.a;
-			return _Utils_Tuple2(
-				'month',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$monthNameLabel(mon)));
-		case 3:
-			var d = dtp.a;
-			return _Utils_Tuple2(
-				'date',
-				elm$json$Json$Encode$int(d));
-		case 4:
-			var d = dtp.a;
-			return _Utils_Tuple2(
-				'day',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$dayLabel(d)));
-		case 5:
-			var h = dtp.a;
-			return _Utils_Tuple2(
-				'hours',
-				elm$json$Json$Encode$int(h));
-		case 6:
-			var m = dtp.a;
-			return _Utils_Tuple2(
-				'minutes',
-				elm$json$Json$Encode$int(m));
-		case 7:
-			var s = dtp.a;
-			return _Utils_Tuple2(
-				'seconds',
-				elm$json$Json$Encode$int(s));
-		default:
-			var ms = dtp.a;
-			return _Utils_Tuple2(
-				'milliseconds',
-				elm$json$Json$Encode$int(ms));
-	}
-};
 var author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -5869,23 +5903,6 @@ var author$project$VegaLite$booleanOpSpec = function (bo) {
 						'not',
 						author$project$VegaLite$booleanOpSpec(operand))
 					]));
-	}
-};
-var author$project$VegaLite$dataValueSpec = function (val) {
-	switch (val.$) {
-		case 2:
-			var x = val.a;
-			return elm$json$Json$Encode$float(x);
-		case 3:
-			var s = val.a;
-			return elm$json$Json$Encode$string(s);
-		case 0:
-			var b = val.a;
-			return elm$json$Json$Encode$bool(b);
-		default:
-			var d = val.a;
-			return elm$json$Json$Encode$object(
-				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
 	}
 };
 var author$project$VegaLite$dataValuesSpecs = function (dvs) {
@@ -9017,7 +9034,7 @@ var author$project$GalleryInteraction$interaction4 = function () {
 			]));
 }();
 var author$project$VegaLite$Nearest = function (a) {
-	return {$: 10, a: a};
+	return {$: 11, a: a};
 };
 var author$project$VegaLite$seNearest = author$project$VegaLite$Nearest;
 var author$project$VegaLite$size = function (markProps) {
@@ -9194,14 +9211,22 @@ var author$project$VegaLite$InStep = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$inStep = author$project$VegaLite$InStep;
+var author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$num = author$project$VegaLite$Number;
 var author$project$VegaLite$Bind = function (a) {
-	return {$: 9, a: a};
+	return {$: 10, a: a};
 };
 var author$project$VegaLite$seBind = author$project$VegaLite$Bind;
 var author$project$VegaLite$Fields = function (a) {
 	return {$: 5, a: a};
 };
 var author$project$VegaLite$seFields = author$project$VegaLite$Fields;
+var author$project$VegaLite$SInit = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$seInit = author$project$VegaLite$SInit;
 var author$project$GalleryInteraction$interaction7 = function () {
 	var trans2 = A2(
 		elm$core$Basics$composeL,
@@ -9224,6 +9249,16 @@ var author$project$GalleryInteraction$interaction7 = function () {
 					author$project$VegaLite$seFields(
 					_List_fromArray(
 						['Cylinders', 'Year'])),
+					author$project$VegaLite$seInit(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'Cylinders',
+							author$project$VegaLite$num(4)),
+							_Utils_Tuple2(
+							'Year',
+							author$project$VegaLite$num(1977))
+						])),
 					author$project$VegaLite$seBind(
 					_List_fromArray(
 						[
