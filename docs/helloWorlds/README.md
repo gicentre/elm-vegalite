@@ -18,10 +18,7 @@ You can copy this example to a file `helloWorlds.html` somewhere on your machine
   <meta charset="utf-8">
 
   <!-- These scripts link to the Vega/Vega-Lite runtime -->
-  <!-- TODO: Replace the github link to vega.min.js with npm/vega@5 once released:
-       <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  -->
-  <script src="https://vega.github.io/vega/vega.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc13"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
 
