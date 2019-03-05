@@ -74,6 +74,17 @@
     </figure>
     <div style="clear:left"></div>
 
+    <h2>View Backgrounds</h2>
+
+    <figure class="cell">
+      <div id="vbTest"></div>
+      <figcaption>
+        Default background should be yellow, with two of the three charts having
+        their own custom backgrounds.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
     <script>
       Elm.ConfigTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {

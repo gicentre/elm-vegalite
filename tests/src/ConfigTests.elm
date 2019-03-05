@@ -16,9 +16,8 @@ singleVis config =
                 << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
                 << color [ mName "Cylinders", mMType Ordinal ]
                 << shape [ mName "Origin", mMType Nominal ]
-                << size [ mNum 100 ]
     in
-    toVegaLite [ title "Car Scatter", config [], cars, width 200, height 200, point [], scatterEnc [] ]
+    toVegaLite [ title "Car Scatter", config [], cars, width 200, height 200, point [ maSize 100 ], scatterEnc [] ]
 
 
 compositeVis : (List a -> ( VLProperty, Spec )) -> Spec
@@ -33,10 +32,9 @@ compositeVis config =
                 << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
                 << color [ mName "Cylinders", mMType Ordinal ]
                 << shape [ mName "Origin", mMType Nominal ]
-                << size [ mNum 100 ]
 
         scatterSpec =
-            asSpec [ title "Car Scatter", width 200, height 200, padding (paSize 20), point [], scatterEnc [] ]
+            asSpec [ title "Car Scatter", width 200, height 200, padding (paSize 20), point [ maSize 100 ], scatterEnc [] ]
 
         barEnc =
             encoding
@@ -61,6 +59,92 @@ compositeVis config =
                 << resolution (reScale [ ( chColor, reIndependent ), ( chShape, reIndependent ) ])
     in
     toVegaLite [ config [], cars, hConcat [ scatterSpec, barSpec, streamSpec ], res [] ]
+
+
+vbTest : Spec
+vbTest =
+    let
+        cars =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        scatterEnc =
+            encoding
+                << position X [ pName "Horsepower", pMType Quantitative ]
+                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << color [ mName "Cylinders", mMType Ordinal ]
+                << shape [ mName "Origin", mMType Nominal ]
+
+        barEnc =
+            encoding
+                << position X [ pName "Horsepower", pMType Quantitative ]
+                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << color [ mName "Origin", mMType Nominal ]
+
+        streamEnc =
+            encoding
+                << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
+                << position Y [ pAggregate opCount, pMType Quantitative, pStack stCenter, pAxis [] ]
+                << color [ mName "Origin", mMType Nominal ]
+
+        scatterSpec =
+            asSpec
+                [ title "Car Scatter"
+                , width 200
+                , height 200
+                , point [ maSize 100 ]
+                , scatterEnc []
+                ]
+
+        barSpec =
+            asSpec
+                [ title "Car Histogram"
+                , width 200
+                , height 200
+                , viewBackground
+                    [ viewFill (Just "white")
+                    , viewCornerRadius 18
+                    , viewStroke (Just "red")
+                    , viewStrokeWidth 4
+                    , viewStrokeCap caRound
+                    , viewStrokeDash [ 10, 10 ]
+                    , viewStrokeJoin joBevel
+                    ]
+                , bar []
+                , barEnc []
+                ]
+
+        cfg =
+            configure
+                << configuration
+                    (coNamedStyle "myStyle"
+                        [ maFill "red", maFillOpacity 0.1, maStrokeOpacity 1 ]
+                    )
+                << configuration
+                    (coNamedStyle "mySecondStyle"
+                        [ maFill "black", maStroke "blue" ]
+                    )
+
+        streamSpec =
+            asSpec
+                [ title "Car Streamgraph"
+                , width 200
+                , height 200
+                , viewBackground [ viewStyle [ "myStyle", "mySecondStyle" ] ]
+                , area []
+                , streamEnc []
+                ]
+
+        res =
+            resolve
+                << resolution (reScale [ ( chColor, reIndependent ), ( chShape, reIndependent ) ])
+    in
+    toVegaLite
+        [ cfg []
+        , background "yellow"
+        , cars
+        , hConcat [ scatterSpec, barSpec, streamSpec ]
+        , res []
+        ]
 
 
 defaultCfg : Spec
@@ -116,6 +200,7 @@ mySpecs =
         , ( "mark1", markCfg1 )
         , ( "mark2", markCfg2 )
         , ( "padding", paddingCfg )
+        , ( "vbTest", vbTest )
         ]
 
 

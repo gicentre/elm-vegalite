@@ -8150,31 +8150,26 @@ var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 	switch (viewCfg.$) {
 		case 0:
-			var styles = viewCfg.a;
-			return _Utils_Tuple2(
-				'style',
-				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
-		case 1:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'width',
 				elm$json$Json$Encode$float(x));
-		case 2:
+		case 1:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'height',
 				elm$json$Json$Encode$float(x));
-		case 3:
+		case 2:
 			var b = viewCfg.a;
 			return _Utils_Tuple2(
 				'clip',
 				elm$json$Json$Encode$bool(b));
-		case 4:
+		case 3:
 			var r = viewCfg.a;
 			return _Utils_Tuple2(
 				'cornerRadius',
 				elm$json$Json$Encode$float(r));
-		case 5:
+		case 4:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -8186,17 +8181,17 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'fill',
 					elm$json$Json$Encode$string(''));
 			}
-		case 6:
+		case 5:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'fillOpacity',
 				elm$json$Json$Encode$float(x));
-		case 7:
+		case 6:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'opacity',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 7:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -8208,34 +8203,34 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					elm$json$Json$Encode$string(''));
 			}
-		case 9:
+		case 8:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 10:
 			var cap = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeCapLabel(cap)));
-		case 14:
+		case 13:
 			var jn = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeJoinLabel(jn)));
-		case 10:
+		case 9:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 12:
+		case 11:
 			var xs = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 13:
+		case 12:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
@@ -9346,8 +9341,10 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'center';
 		case 19:
 			return 'spec';
-		default:
+		case 20:
 			return 'resolve';
+		default:
+			return 'view';
 	}
 };
 var author$project$VegaLite$toVegaLite = function (spec) {

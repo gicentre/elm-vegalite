@@ -3509,8 +3509,10 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'center';
 		case 19:
 			return 'spec';
-		default:
+		case 20:
 			return 'resolve';
+		default:
+			return 'view';
 	}
 };
 var author$project$VegaLite$asSpec = function (specs) {
@@ -4993,10 +4995,10 @@ var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
-var author$project$VegaLite$MNumber = function (a) {
-	return {$: 14, a: a};
+var author$project$VegaLite$MSize = function (a) {
+	return {$: 31, a: a};
 };
-var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
+var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
 var author$project$VegaLite$Count = 4;
 var author$project$VegaLite$opCount = 4;
 var author$project$VegaLite$PAggregate = function (a) {
@@ -5759,13 +5761,6 @@ var author$project$VegaLite$shape = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
-var author$project$VegaLite$size = function (markProps) {
-	return elm$core$List$cons(
-		_Utils_Tuple2(
-			'size',
-			elm$json$Json$Encode$object(
-				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
-};
 var author$project$VegaLite$OfCenter = 2;
 var author$project$VegaLite$stCenter = 2;
 var author$project$VegaLite$VLTitle = 2;
@@ -5857,41 +5852,34 @@ var author$project$ConfigTests$compositeVis = function (config) {
 				elm$core$Basics$composeL,
 				A2(
 					elm$core$Basics$composeL,
-					A2(
-						elm$core$Basics$composeL,
-						author$project$VegaLite$encoding,
-						A2(
-							author$project$VegaLite$position,
-							0,
-							_List_fromArray(
-								[
-									author$project$VegaLite$pName('Horsepower'),
-									author$project$VegaLite$pMType(2)
-								]))),
+					author$project$VegaLite$encoding,
 					A2(
 						author$project$VegaLite$position,
-						1,
+						0,
 						_List_fromArray(
 							[
-								author$project$VegaLite$pName('Miles_per_Gallon'),
+								author$project$VegaLite$pName('Horsepower'),
 								author$project$VegaLite$pMType(2)
 							]))),
-				author$project$VegaLite$color(
+				A2(
+					author$project$VegaLite$position,
+					1,
 					_List_fromArray(
 						[
-							author$project$VegaLite$mName('Cylinders'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$pName('Miles_per_Gallon'),
+							author$project$VegaLite$pMType(2)
 						]))),
-			author$project$VegaLite$shape(
+			author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						author$project$VegaLite$mName('Origin'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mName('Cylinders'),
+						author$project$VegaLite$mMType(1)
 					]))),
-		author$project$VegaLite$size(
+		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					author$project$VegaLite$mNum(100)
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
 				])));
 	var scatterSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -5901,7 +5889,11 @@ var author$project$ConfigTests$compositeVis = function (config) {
 				author$project$VegaLite$height(200),
 				author$project$VegaLite$padding(
 				author$project$VegaLite$paSize(20)),
-				author$project$VegaLite$point(_List_Nil),
+				author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maSize(100)
+					])),
 				scatterEnc(_List_Nil)
 			]));
 	var res = A2(
@@ -7392,31 +7384,26 @@ var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 	switch (viewCfg.$) {
 		case 0:
-			var styles = viewCfg.a;
-			return _Utils_Tuple2(
-				'style',
-				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
-		case 1:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'width',
 				elm$json$Json$Encode$float(x));
-		case 2:
+		case 1:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'height',
 				elm$json$Json$Encode$float(x));
-		case 3:
+		case 2:
 			var b = viewCfg.a;
 			return _Utils_Tuple2(
 				'clip',
 				elm$json$Json$Encode$bool(b));
-		case 4:
+		case 3:
 			var r = viewCfg.a;
 			return _Utils_Tuple2(
 				'cornerRadius',
 				elm$json$Json$Encode$float(r));
-		case 5:
+		case 4:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -7428,17 +7415,17 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'fill',
 					elm$json$Json$Encode$string(''));
 			}
-		case 6:
+		case 5:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'fillOpacity',
 				elm$json$Json$Encode$float(x));
-		case 7:
+		case 6:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'opacity',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 7:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -7450,34 +7437,34 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					elm$json$Json$Encode$string(''));
 			}
-		case 9:
+		case 8:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 10:
 			var cap = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeCapLabel(cap)));
-		case 14:
+		case 13:
 			var jn = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeJoinLabel(jn)));
-		case 10:
+		case 9:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 12:
+		case 11:
 			var xs = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 13:
+		case 12:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
@@ -7922,41 +7909,34 @@ var author$project$ConfigTests$singleVis = function (config) {
 				elm$core$Basics$composeL,
 				A2(
 					elm$core$Basics$composeL,
-					A2(
-						elm$core$Basics$composeL,
-						author$project$VegaLite$encoding,
-						A2(
-							author$project$VegaLite$position,
-							0,
-							_List_fromArray(
-								[
-									author$project$VegaLite$pName('Horsepower'),
-									author$project$VegaLite$pMType(2)
-								]))),
+					author$project$VegaLite$encoding,
 					A2(
 						author$project$VegaLite$position,
-						1,
+						0,
 						_List_fromArray(
 							[
-								author$project$VegaLite$pName('Miles_per_Gallon'),
+								author$project$VegaLite$pName('Horsepower'),
 								author$project$VegaLite$pMType(2)
 							]))),
-				author$project$VegaLite$color(
+				A2(
+					author$project$VegaLite$position,
+					1,
 					_List_fromArray(
 						[
-							author$project$VegaLite$mName('Cylinders'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$pName('Miles_per_Gallon'),
+							author$project$VegaLite$pMType(2)
 						]))),
-			author$project$VegaLite$shape(
+			author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						author$project$VegaLite$mName('Origin'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mName('Cylinders'),
+						author$project$VegaLite$mMType(1)
 					]))),
-		author$project$VegaLite$size(
+		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					author$project$VegaLite$mNum(100)
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
 				])));
 	var cars = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -7967,7 +7947,11 @@ var author$project$ConfigTests$singleVis = function (config) {
 				cars,
 				author$project$VegaLite$width(200),
 				author$project$VegaLite$height(200),
-				author$project$VegaLite$point(_List_Nil),
+				author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maSize(100)
+					])),
 				scatterEnc(_List_Nil)
 			]));
 };
@@ -7999,6 +7983,348 @@ var author$project$ConfigTests$paddingCfg = author$project$ConfigTests$singleVis
 		author$project$VegaLite$configuration(
 			author$project$VegaLite$coPadding(
 				A4(author$project$VegaLite$paEdges, 90, 60, 30, 0)))));
+var author$project$VegaLite$VLBackground = 7;
+var author$project$VegaLite$background = function (colour) {
+	return _Utils_Tuple2(
+		7,
+		elm$json$Json$Encode$string(colour));
+};
+var author$project$VegaLite$CRound = 1;
+var author$project$VegaLite$caRound = 1;
+var author$project$VegaLite$NamedStyle = F2(
+	function (a, b) {
+		return {$: 20, a: a, b: b};
+	});
+var author$project$VegaLite$coNamedStyle = author$project$VegaLite$NamedStyle;
+var author$project$VegaLite$JBevel = 2;
+var author$project$VegaLite$joBevel = 2;
+var author$project$VegaLite$MFillOpacity = function (a) {
+	return {$: 17, a: a};
+};
+var author$project$VegaLite$maFillOpacity = author$project$VegaLite$MFillOpacity;
+var author$project$VegaLite$VLViewBackground = 27;
+var author$project$VegaLite$viewBackgroundSpec = function (vb) {
+	switch (vb.$) {
+		case 0:
+			var styles = vb.a;
+			return _Utils_Tuple2(
+				'style',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
+		case 1:
+			var r = vb.a;
+			return _Utils_Tuple2(
+				'cornerRadius',
+				elm$json$Json$Encode$float(r));
+		case 2:
+			var ms = vb.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _Utils_Tuple2(
+					'fill',
+					elm$json$Json$Encode$string(s));
+			} else {
+				return _Utils_Tuple2(
+					'fill',
+					elm$json$Json$Encode$string(''));
+			}
+		case 3:
+			var x = vb.a;
+			return _Utils_Tuple2(
+				'fillOpacity',
+				elm$json$Json$Encode$float(x));
+		case 4:
+			var x = vb.a;
+			return _Utils_Tuple2(
+				'opacity',
+				elm$json$Json$Encode$float(x));
+		case 5:
+			var ms = vb.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _Utils_Tuple2(
+					'stroke',
+					elm$json$Json$Encode$string(s));
+			} else {
+				return _Utils_Tuple2(
+					'stroke',
+					elm$json$Json$Encode$string(''));
+			}
+		case 6:
+			var x = vb.a;
+			return _Utils_Tuple2(
+				'strokeOpacity',
+				elm$json$Json$Encode$float(x));
+		case 8:
+			var cap = vb.a;
+			return _Utils_Tuple2(
+				'strokeCap',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$strokeCapLabel(cap)));
+		case 11:
+			var jn = vb.a;
+			return _Utils_Tuple2(
+				'strokeJoin',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$strokeJoinLabel(jn)));
+		case 7:
+			var x = vb.a;
+			return _Utils_Tuple2(
+				'strokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 9:
+			var xs = vb.a;
+			return _Utils_Tuple2(
+				'strokeDash',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
+		case 10:
+			var x = vb.a;
+			return _Utils_Tuple2(
+				'strokeDashOffset',
+				elm$json$Json$Encode$float(x));
+		default:
+			var x = vb.a;
+			return _Utils_Tuple2(
+				'strokeMiterLimit',
+				elm$json$Json$Encode$float(x));
+	}
+};
+var author$project$VegaLite$viewBackground = function (vbs) {
+	return _Utils_Tuple2(
+		27,
+		elm$json$Json$Encode$object(
+			A2(elm$core$List$map, author$project$VegaLite$viewBackgroundSpec, vbs)));
+};
+var author$project$VegaLite$VBCornerRadius = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$viewCornerRadius = author$project$VegaLite$VBCornerRadius;
+var author$project$VegaLite$VBFill = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$viewFill = author$project$VegaLite$VBFill;
+var author$project$VegaLite$VBStroke = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$viewStroke = author$project$VegaLite$VBStroke;
+var author$project$VegaLite$VBStrokeCap = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$viewStrokeCap = author$project$VegaLite$VBStrokeCap;
+var author$project$VegaLite$VBStrokeDash = function (a) {
+	return {$: 9, a: a};
+};
+var author$project$VegaLite$viewStrokeDash = author$project$VegaLite$VBStrokeDash;
+var author$project$VegaLite$VBStrokeJoin = function (a) {
+	return {$: 11, a: a};
+};
+var author$project$VegaLite$viewStrokeJoin = author$project$VegaLite$VBStrokeJoin;
+var author$project$VegaLite$VBStrokeWidth = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$viewStrokeWidth = author$project$VegaLite$VBStrokeWidth;
+var author$project$VegaLite$VBStyle = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$viewStyle = author$project$VegaLite$VBStyle;
+var author$project$ConfigTests$vbTest = function () {
+	var streamEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('Year'),
+							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pStack(author$project$VegaLite$stCenter),
+						author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
+				])));
+	var streamSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$title('Car Streamgraph'),
+				author$project$VegaLite$width(200),
+				author$project$VegaLite$height(200),
+				author$project$VegaLite$viewBackground(
+				_List_fromArray(
+					[
+						author$project$VegaLite$viewStyle(
+						_List_fromArray(
+							['myStyle', 'mySecondStyle']))
+					])),
+				author$project$VegaLite$area(_List_Nil),
+				streamEnc(_List_Nil)
+			]));
+	var scatterEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$encoding,
+					A2(
+						author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								author$project$VegaLite$pName('Horsepower'),
+								author$project$VegaLite$pMType(2)
+							]))),
+				A2(
+					author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('Miles_per_Gallon'),
+							author$project$VegaLite$pMType(2)
+						]))),
+			author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						author$project$VegaLite$mName('Cylinders'),
+						author$project$VegaLite$mMType(1)
+					]))),
+		author$project$VegaLite$shape(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
+				])));
+	var scatterSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$title('Car Scatter'),
+				author$project$VegaLite$width(200),
+				author$project$VegaLite$height(200),
+				author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maSize(100)
+					])),
+				scatterEnc(_List_Nil)
+			]));
+	var res = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$resolve,
+		author$project$VegaLite$resolution(
+			author$project$VegaLite$reScale(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(author$project$VegaLite$chColor, author$project$VegaLite$reIndependent),
+						_Utils_Tuple2(author$project$VegaLite$chShape, author$project$VegaLite$reIndependent)
+					]))));
+	var cfg = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$configure,
+			author$project$VegaLite$configuration(
+				A2(
+					author$project$VegaLite$coNamedStyle,
+					'myStyle',
+					_List_fromArray(
+						[
+							author$project$VegaLite$maFill('red'),
+							author$project$VegaLite$maFillOpacity(0.1),
+							author$project$VegaLite$maStrokeOpacity(1)
+						])))),
+		author$project$VegaLite$configuration(
+			A2(
+				author$project$VegaLite$coNamedStyle,
+				'mySecondStyle',
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('black'),
+						author$project$VegaLite$maStroke('blue')
+					]))));
+	var cars = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var barEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('Horsepower'),
+							author$project$VegaLite$pMType(2)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
+						author$project$VegaLite$pMType(2)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
+				])));
+	var barSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$title('Car Histogram'),
+				author$project$VegaLite$width(200),
+				author$project$VegaLite$height(200),
+				author$project$VegaLite$viewBackground(
+				_List_fromArray(
+					[
+						author$project$VegaLite$viewFill(
+						elm$core$Maybe$Just('white')),
+						author$project$VegaLite$viewCornerRadius(18),
+						author$project$VegaLite$viewStroke(
+						elm$core$Maybe$Just('red')),
+						author$project$VegaLite$viewStrokeWidth(4),
+						author$project$VegaLite$viewStrokeCap(author$project$VegaLite$caRound),
+						author$project$VegaLite$viewStrokeDash(
+						_List_fromArray(
+							[10, 10])),
+						author$project$VegaLite$viewStrokeJoin(author$project$VegaLite$joBevel)
+					])),
+				author$project$VegaLite$bar(_List_Nil),
+				barEnc(_List_Nil)
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				author$project$VegaLite$background('yellow'),
+				cars,
+				author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[scatterSpec, barSpec, streamSpec])),
+				res(_List_Nil)
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -8009,7 +8335,8 @@ var author$project$ConfigTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('dark', author$project$ConfigTests$darkCfg),
 			_Utils_Tuple2('mark1', author$project$ConfigTests$markCfg1),
 			_Utils_Tuple2('mark2', author$project$ConfigTests$markCfg2),
-			_Utils_Tuple2('padding', author$project$ConfigTests$paddingCfg)
+			_Utils_Tuple2('padding', author$project$ConfigTests$paddingCfg),
+			_Utils_Tuple2('vbTest', author$project$ConfigTests$vbTest)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {

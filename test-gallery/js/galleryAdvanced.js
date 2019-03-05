@@ -5204,8 +5204,10 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'center';
 		case 19:
 			return 'spec';
-		default:
+		case 20:
 			return 'resolve';
+		default:
+			return 'view';
 	}
 };
 var author$project$VegaLite$toVegaLite = function (spec) {
