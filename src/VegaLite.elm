@@ -757,6 +757,7 @@ module VegaLite exposing
     , coHeader
     , coMark
     , coNamedStyle
+    , coNamedStyles
     , coNumberFormat
     , coPadding
     , coPoint
@@ -2243,6 +2244,7 @@ Allows default properties for most marks and guides to be set. See the
 @docs coHeader
 @docs coMark
 @docs coNamedStyle
+@docs coNamedStyles
 @docs coNumberFormat
 @docs coPadding
 @docs coPoint
@@ -2868,12 +2870,13 @@ type CompositionAlignment
 [coAxisBottom](#coAxisBottom), [coAxisBand](#coAxisBand), [coBackground](#coBackground),
 [coBar](#coBar), [coCircle](#coCircle), [coCountTitle](#coCountTitle), [coFieldTitle](#coFieldTitle),
 [coGeoshape](#coGeoshape), [coHeader](#coHeader), [coLegend](#coLegend), [coLine](#coLine),
-[coMark](#coMark), [coNamedStyle](#coNamedStyle), [coNumberFormat](#coNumberFormat),
-[coPadding](#coPadding), [coPoint](#coPoint), [coProjection](#coProjection),
-[coRange](#coRange), [coRect](#coRect), [coRemoveInvalid](#coRemoveInvalid),
-[coRule](#coRule), [coScale](#coScale), [coSelection](#coSelection),
-[coSquare](#coSquare), [coStack](#coStack), [coText](#coText), [coTick](#coTick),
-[coTitle](#coTitle), [coTimeFormat](#coTimeFormat), [coTrail](#coTrail) and [coView](#coView).
+[coMark](#coMark), [coNamedStyle](#coNamedStyle), [coNamedStyles](#coNamedStyles),
+[coNumberFormat](#coNumberFormat), [coPadding](#coPadding), [coPoint](#coPoint),
+[coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
+[coRemoveInvalid](#coRemoveInvalid), [coRule](#coRule), [coScale](#coScale),
+[coSelection](#coSelection), [coSquare](#coSquare), [coStack](#coStack),
+[coText](#coText), [coTick](#coTick), [coTitle](#coTitle), [coTimeFormat](#coTimeFormat),
+[coTrail](#coTrail) and [coView](#coView).
 -}
 type ConfigurationProperty
     = AreaStyle (List MarkProperty)
@@ -2897,6 +2900,7 @@ type ConfigurationProperty
     | HeaderStyle (List HeaderProperty)
     | MarkStyle (List MarkProperty)
     | NamedStyle String (List MarkProperty)
+    | NamedStyles (List ( String, List MarkProperty ))
     | NumberFormat String
     | Padding Padding
     | PointStyle (List MarkProperty)
@@ -5738,11 +5742,18 @@ combineSpecs specs =
     JE.object specs
 
 
-{-| Configure the default appearance of a named style.
+{-| Configure the default appearance of a single named style.
 -}
 coNamedStyle : String -> List MarkProperty -> ConfigurationProperty
 coNamedStyle =
     NamedStyle
+
+
+{-| Configure the default appearance of a list of named styles.
+-}
+coNamedStyles : List ( String, List MarkProperty ) -> ConfigurationProperty
+coNamedStyles =
+    NamedStyles
 
 
 {-| A configuration option to be applied globally across the visualization.
@@ -11943,9 +11954,10 @@ viewStrokeWidth =
     VBStrokeWidth
 
 
-{-| A list of named styles to apply to a single view background. Each named style
-can be specified via [coNamedStyle](#coNamedStyle). Later styles in the list will
-override earlier styles if there is a conflict.
+{-| A list of named styles to apply to a single view background. A named style
+can be specified via [coNamedStyle](#coNamedStyle) or [coNamedStyles](#coNamedStyles)
+if more than one style is required. Later styles in the list will override earlier
+styles if there is a conflict in any of the mark properties specified.
 -}
 viewStyle : List String -> ViewBackground
 viewStyle =
@@ -12899,6 +12911,15 @@ configProperty configProp =
 
         NamedStyle styleName mps ->
             ( "style", JE.object [ ( styleName, JE.object (List.map markProperty mps) ) ] )
+
+        NamedStyles styles ->
+            ( "style"
+            , JE.object
+                (List.map
+                    (\( sName, mps ) -> ( sName, JE.object (List.map markProperty mps) ))
+                    styles
+                )
+            )
 
         Scale scs ->
             ( "scale", JE.object (List.map scaleConfigProperty scs) )

@@ -116,12 +116,10 @@ vbTest =
         cfg =
             configure
                 << configuration
-                    (coNamedStyle "myStyle"
-                        [ maFill "red", maFillOpacity 0.1, maStrokeOpacity 1 ]
-                    )
-                << configuration
-                    (coNamedStyle "mySecondStyle"
-                        [ maFill "black", maStroke "blue" ]
+                    (coNamedStyles
+                        [ ( "myStyle", [ maFill "red", maFillOpacity 0.1, maStrokeOpacity 1 ] )
+                        , ( "mySecondStyle", [ maFill "black", maStroke "blue" ] )
+                        ]
                     )
 
         streamSpec =
