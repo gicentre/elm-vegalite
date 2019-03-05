@@ -6381,42 +6381,57 @@ var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 	switch (viewCfg.$) {
 		case 0:
+			var styles = viewCfg.a;
+			return _Utils_Tuple2(
+				'style',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
+		case 1:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'width',
 				elm$json$Json$Encode$float(x));
-		case 1:
+		case 2:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'height',
 				elm$json$Json$Encode$float(x));
-		case 2:
+		case 3:
 			var b = viewCfg.a;
 			return _Utils_Tuple2(
 				'clip',
 				elm$json$Json$Encode$bool(b));
-		case 3:
-			var ms = viewCfg.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _Utils_Tuple2(
-					'fill',
-					elm$json$Json$Encode$string(s));
-			} else {
-				return _Utils_Tuple2(
-					'fill',
-					elm$json$Json$Encode$string(''));
-			}
 		case 4:
-			var x = viewCfg.a;
+			var r = viewCfg.a;
 			return _Utils_Tuple2(
-				'fillOpacity',
-				elm$json$Json$Encode$float(x));
+				'cornerRadius',
+				elm$json$Json$Encode$float(r));
 		case 5:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
 				return _Utils_Tuple2(
+					'fill',
+					elm$json$Json$Encode$string(s));
+			} else {
+				return _Utils_Tuple2(
+					'fill',
+					elm$json$Json$Encode$string(''));
+			}
+		case 6:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'fillOpacity',
+				elm$json$Json$Encode$float(x));
+		case 7:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'opacity',
+				elm$json$Json$Encode$float(x));
+		case 8:
+			var ms = viewCfg.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _Utils_Tuple2(
 					'stroke',
 					elm$json$Json$Encode$string(s));
 			} else {
@@ -6424,25 +6439,42 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					elm$json$Json$Encode$string(''));
 			}
-		case 6:
+		case 9:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 7:
+		case 11:
+			var cap = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeCap',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$strokeCapLabel(cap)));
+		case 14:
+			var jn = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeJoin',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$strokeJoinLabel(jn)));
+		case 10:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 12:
 			var xs = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		default:
+		case 13:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
+				elm$json$Json$Encode$float(x));
+		default:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeMiterLimit',
 				elm$json$Json$Encode$float(x));
 	}
 };
@@ -8283,14 +8315,14 @@ var author$project$VegaLite$View = function (a) {
 	return {$: 38, a: a};
 };
 var author$project$VegaLite$coView = author$project$VegaLite$View;
-var author$project$VegaLite$ViewHeight = function (a) {
-	return {$: 1, a: a};
+var author$project$VegaLite$VHeight = function (a) {
+	return {$: 2, a: a};
 };
-var author$project$VegaLite$vicoHeight = author$project$VegaLite$ViewHeight;
-var author$project$VegaLite$Stroke = function (a) {
-	return {$: 5, a: a};
+var author$project$VegaLite$vicoHeight = author$project$VegaLite$VHeight;
+var author$project$VegaLite$VStroke = function (a) {
+	return {$: 8, a: a};
 };
-var author$project$VegaLite$vicoStroke = author$project$VegaLite$Stroke;
+var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
 var author$project$ViewCompositionTests$cfg = A2(
 	elm$core$Basics$composeL,
 	A2(
