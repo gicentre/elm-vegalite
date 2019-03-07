@@ -4454,20 +4454,18 @@ var author$project$VegaLite$scaleLabel = function (sc) {
 		case 5:
 			return 'utc';
 		case 6:
-			return 'sequential';
-		case 7:
 			return 'ordinal';
-		case 8:
+		case 7:
 			return 'band';
-		case 9:
+		case 8:
 			return 'point';
-		case 10:
+		case 9:
 			return 'bin-linear';
-		case 11:
+		case 10:
 			return 'bin-ordinal';
-		case 12:
+		case 11:
 			return 'quantile';
-		case 13:
+		case 12:
 			return 'quantize';
 		default:
 			return 'threshold';
@@ -6095,29 +6093,9 @@ var author$project$ColorTests$namedContinuous4 = A2(
 						author$project$VegaLite$scReverse(true)
 					]))
 			])));
-var author$project$VegaLite$ScSequential = 6;
-var author$project$VegaLite$scSequential = 6;
 var author$project$ColorTests$scale1 = A2(
 	author$project$ColorTests$chart,
-	'Sequential (default) colour scale.',
-	author$project$VegaLite$color(
-		_List_fromArray(
-			[
-				author$project$VegaLite$mName('Acceleration'),
-				author$project$VegaLite$mMType(2),
-				author$project$VegaLite$mScale(
-				_List_fromArray(
-					[
-						author$project$VegaLite$scType(author$project$VegaLite$scSequential),
-						author$project$VegaLite$scRange(
-						author$project$VegaLite$raStrs(
-							_List_fromArray(
-								['yellow', 'red'])))
-					]))
-			])));
-var author$project$ColorTests$scale2 = A2(
-	author$project$ColorTests$chart,
-	'Linear colour scale.',
+	'Linear (default) colour scale.',
 	author$project$VegaLite$color(
 		_List_fromArray(
 			[
@@ -6127,6 +6105,25 @@ var author$project$ColorTests$scale2 = A2(
 				_List_fromArray(
 					[
 						author$project$VegaLite$scType(author$project$VegaLite$scLinear),
+						author$project$VegaLite$scRange(
+						author$project$VegaLite$raStrs(
+							_List_fromArray(
+								['yellow', 'red'])))
+					]))
+			])));
+var author$project$VegaLite$scSequential = 0;
+var author$project$ColorTests$scale2 = A2(
+	author$project$ColorTests$chart,
+	'Sequential (deprecated) colour scale.',
+	author$project$VegaLite$color(
+		_List_fromArray(
+			[
+				author$project$VegaLite$mName('Acceleration'),
+				author$project$VegaLite$mMType(2),
+				author$project$VegaLite$mScale(
+				_List_fromArray(
+					[
+						author$project$VegaLite$scType(author$project$VegaLite$scSequential),
 						author$project$VegaLite$scRange(
 						author$project$VegaLite$raStrs(
 							_List_fromArray(

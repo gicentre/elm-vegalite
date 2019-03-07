@@ -77,14 +77,14 @@ customDiscrete =
 
 scale1 : Spec
 scale1 =
-    chart "Sequential (default) colour scale."
-        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scSequential, scRange (raStrs [ "yellow", "red" ]) ] ])
+    chart "Linear (default) colour scale."
+        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scLinear, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
 scale2 : Spec
 scale2 =
-    chart "Linear colour scale."
-        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scLinear, scRange (raStrs [ "yellow", "red" ]) ] ])
+    chart "Sequential (deprecated) colour scale."
+        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scSequential, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
 scale3 : Spec

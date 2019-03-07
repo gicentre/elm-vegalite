@@ -4314,20 +4314,18 @@ var author$project$VegaLite$scaleLabel = function (sc) {
 		case 5:
 			return 'utc';
 		case 6:
-			return 'sequential';
-		case 7:
 			return 'ordinal';
-		case 8:
+		case 7:
 			return 'band';
-		case 9:
+		case 8:
 			return 'point';
-		case 10:
+		case 9:
 			return 'bin-linear';
-		case 11:
+		case 10:
 			return 'bin-ordinal';
-		case 12:
+		case 11:
 			return 'quantile';
-		case 13:
+		case 12:
 			return 'quantize';
 		default:
 			return 'threshold';
