@@ -5765,27 +5765,29 @@ var author$project$VegaLite$scaleLabel = function (sc) {
 			return 'linear';
 		case 1:
 			return 'pow';
+		case 4:
+			return 'symlog';
 		case 2:
 			return 'sqrt';
 		case 3:
 			return 'log';
-		case 4:
-			return 'time';
 		case 5:
-			return 'utc';
+			return 'time';
 		case 6:
-			return 'ordinal';
+			return 'utc';
 		case 7:
-			return 'band';
+			return 'ordinal';
 		case 8:
-			return 'point';
+			return 'band';
 		case 9:
-			return 'bin-linear';
+			return 'point';
 		case 10:
-			return 'bin-ordinal';
+			return 'bin-linear';
 		case 11:
-			return 'quantile';
+			return 'bin-ordinal';
 		case 12:
+			return 'quantile';
+		case 13:
 			return 'quantize';
 		default:
 			return 'threshold';
@@ -5976,7 +5978,7 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				elm$json$Json$Encode$float(x));
-		case 14:
+		case 15:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'base',
@@ -5985,6 +5987,11 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'exponent',
+				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'constant',
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleProp.a;
@@ -9707,8 +9714,8 @@ var author$project$VegaLite$PSort = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
-var author$project$VegaLite$ScQuantile = 11;
-var author$project$VegaLite$scQuantile = 11;
+var author$project$VegaLite$ScQuantile = 12;
+var author$project$VegaLite$scQuantile = 12;
 var author$project$VegaLite$SType = function (a) {
 	return {$: 0, a: a};
 };
@@ -9781,8 +9788,8 @@ var author$project$ScaleTests$scale3 = function () {
 				author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$ScQuantize = 12;
-var author$project$VegaLite$scQuantize = 12;
+var author$project$VegaLite$ScQuantize = 13;
+var author$project$VegaLite$scQuantize = 13;
 var author$project$VegaLite$SZero = function (a) {
 	return {$: 12, a: a};
 };
@@ -9877,8 +9884,8 @@ var author$project$VegaLite$SScheme = F2(
 		return {$: 3, a: a, b: b};
 	});
 var author$project$VegaLite$scScheme = author$project$VegaLite$SScheme;
-var author$project$VegaLite$ScThreshold = 13;
-var author$project$VegaLite$scThreshold = 13;
+var author$project$VegaLite$ScThreshold = 14;
+var author$project$VegaLite$scThreshold = 14;
 var author$project$ScaleTests$scale5 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -10079,7 +10086,7 @@ var author$project$ScaleTests$scale8 = function () {
 			]));
 }();
 var author$project$VegaLite$SBase = function (a) {
-	return {$: 14, a: a};
+	return {$: 15, a: a};
 };
 var author$project$VegaLite$scBase = author$project$VegaLite$SBase;
 var author$project$VegaLite$ScLog = 3;

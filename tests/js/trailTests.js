@@ -5771,27 +5771,29 @@ var author$project$VegaLite$scaleLabel = function (sc) {
 			return 'linear';
 		case 1:
 			return 'pow';
+		case 4:
+			return 'symlog';
 		case 2:
 			return 'sqrt';
 		case 3:
 			return 'log';
-		case 4:
-			return 'time';
 		case 5:
-			return 'utc';
+			return 'time';
 		case 6:
-			return 'ordinal';
+			return 'utc';
 		case 7:
-			return 'band';
+			return 'ordinal';
 		case 8:
-			return 'point';
+			return 'band';
 		case 9:
-			return 'bin-linear';
+			return 'point';
 		case 10:
-			return 'bin-ordinal';
+			return 'bin-linear';
 		case 11:
-			return 'quantile';
+			return 'bin-ordinal';
 		case 12:
+			return 'quantile';
+		case 13:
 			return 'quantize';
 		default:
 			return 'threshold';
@@ -5982,7 +5984,7 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				elm$json$Json$Encode$float(x));
-		case 14:
+		case 15:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'base',
@@ -5991,6 +5993,11 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'exponent',
+				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'constant',
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleProp.a;

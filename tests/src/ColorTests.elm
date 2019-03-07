@@ -5,20 +5,27 @@ import VegaLite exposing (..)
 
 
 chart : String -> (List a -> List ( String, Spec )) -> Spec
-chart des enc =
-    toVegaLite
-        [ description des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , circle []
-        , (encoding
-            << position X [ pName "Horsepower", pMType Quantitative ]
-            << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
-            << size [ mNum 60 ]
-            << opacity [ mNum 1 ]
-            << enc
-          )
-            []
-        ]
+chart desText enc =
+    let
+        des =
+            description desText
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        trans =
+            transform
+                << calculateAs "(datum.Acceleration - 15.52)/2.80" "accelerationZScore"
+
+        fullEnc =
+            encoding
+                << position X [ pName "Horsepower", pMType Quantitative ]
+                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << size [ mNum 60 ]
+                << opacity [ mNum 1 ]
+                << enc
+    in
+    toVegaLite [ des, data [], trans [], circle [], fullEnc [] ]
 
 
 defContinuous : Spec
@@ -89,20 +96,38 @@ scale2 =
 
 scale3 : Spec
 scale3 =
-    chart "Power colour scale."
+    chart "Power colour scale with default (1) exponent."
         (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scPow, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
 scale4 : Spec
 scale4 =
-    chart "Square root colour scale."
-        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scSqrt, scRange (raStrs [ "yellow", "red" ]) ] ])
+    chart "Cubic Power colour scale."
+        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scPow, scExponent 3, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
 scale5 : Spec
 scale5 =
+    chart "Square root colour scale."
+        (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scSqrt, scRange (raStrs [ "yellow", "red" ]) ] ])
+
+
+scale6 : Spec
+scale6 =
     chart "Log colour scale."
         (color [ mName "Acceleration", mMType Quantitative, mScale [ scType scLog, scRange (raStrs [ "yellow", "red" ]) ] ])
+
+
+scale7 : Spec
+scale7 =
+    chart "SymLog colour scale with default slope constant (1)."
+        (color [ mName "accelerationZScore", mMType Quantitative, mScale [ scType scSymLog, scRange (raStrs [ "yellow", "red" ]) ] ])
+
+
+scale8 : Spec
+scale8 =
+    chart "SymLog colour scale with slope constant of 0.01."
+        (color [ mName "accelerationZScore", mMType Quantitative, mScale [ scType scSymLog, scConstant 0.01, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
 interp1 : Spec
@@ -198,6 +223,9 @@ mySpecs =
         , ( "scale3", scale3 )
         , ( "scale4", scale4 )
         , ( "scale5", scale5 )
+        , ( "scale6", scale6 )
+        , ( "scale7", scale7 )
+        , ( "scale8", scale8 )
         , ( "interp1", interp1 )
         , ( "interp2", interp2 )
         , ( "interp3", interp3 )
