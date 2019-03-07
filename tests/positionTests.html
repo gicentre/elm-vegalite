@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Elm-Vegalite Configuration Tests</title>
+    <title>Elm-Vegalite Position Tests</title>
     <meta charset="utf-8" />
 
     <!-- These scripts link to the Vega/Vega-Lite runtime -->
@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc14"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0-rc1"></script>
 
-    <script src="js/configTests.js"></script>
+    <script src="js/positionTests.js"></script>
 
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300"
@@ -33,57 +33,45 @@
   </head>
 
   <body>
-    <h1>Elm-Vega Configuration Tests</h1>
+    <h1>Position Tests</h1>
 
     <figure class="cell">
-      <div id="default"></div>
-      <figcaption>Default configuration</figcaption>
+      <div id="position1"></div>
+      <figcaption>Positioning circle with (x,y)</figcaption>
     </figure>
     <div style="clear:left"></div>
 
-    <h2>Colour and Font Configuration</h2>
-
     <figure class="cell">
-      <div id="dark"></div>
-      <figcaption>Dark background, light axis and text</figcaption>
+      <div id="position2"></div>
+      <figcaption>Positioning bar with (x,y)</figcaption>
     </figure>
     <div style="clear:left"></div>
 
-    <h2>Mark Configuration</h2>
-
     <figure class="cell">
-      <div id="mark1"></div>
-      <figcaption>Outline marks</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="mark2"></div>
-      <figcaption>Solid scatter and bar, outline stream</figcaption>
+      <div id="position3"></div>
+      <figcaption>Positioning bar with with (x,y,x2)</figcaption>
     </figure>
     <div style="clear:left"></div>
 
-    <h2>Autosize</h2>
-
     <figure class="cell">
-      <div id="padding"></div>
-      <figcaption>
-        Autosize to fit with different padding on each side
-      </figcaption>
+      <div id="position4"></div>
+      <figcaption>Positioning bar with (x,y,y2)</figcaption>
     </figure>
     <div style="clear:left"></div>
 
-    <h2>View Backgrounds</h2>
-
     <figure class="cell">
-      <div id="vbTest"></div>
-      <figcaption>
-        Default background should be yellow, with two of the three charts having
-        their own custom backgrounds.
-      </figcaption>
+      <div id="position5"></div>
+      <figcaption>Positioning mark with (x,y,x2,y2)</figcaption>
     </figure>
     <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
 
     <script>
-      Elm.ConfigTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.PositionTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,

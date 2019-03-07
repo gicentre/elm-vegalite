@@ -235,8 +235,12 @@ module VegaLite exposing
     , maThickness
     , maTicks
     , maTooltip
+    , maX
+    , maY
     , maXOffset
     , maYOffset
+    , maX2
+    , maY2
     , maX2Offset
     , maY2Offset
     , moHorizontal
@@ -1443,8 +1447,12 @@ property documentation.
 @docs maThickness
 @docs maTicks
 @docs maTooltip
+@docs maX
+@docs maY
 @docs maXOffset
 @docs maYOffset
+@docs maX2
+@docs maY2
 @docs maX2Offset
 @docs maY2Offset
 
@@ -3525,14 +3533,14 @@ type MarkOrientation
 [maStrokeMiterLimit](#maStrokeMiterLimit), [maStrokeOpacity](#maStrokeOpacity),
 [maStrokeWidth](#maStrokeWidth), [maStyle](#maStyle), [maTension](#maTension),
 [maText](#maText), [maTheta](#maTheta), [maThickness](#maThickness), [maTicks](#maTicks),
-[maTooltip](#maTooltip), [maXOffset](#maXOffset), [maYOffset](#maYOffset),
-[maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
+[maTooltip](#maTooltip), [maX](#maX), [maY](#maY), [maXOffset](#maXOffset), [maYOffset](#maYOffset),
+[maX2](#maX2), [maY2](#maY2), [maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
 -}
 type
     MarkProperty
     -- Note some of the following properties are specific options for particular
     -- types of mark (e.g. `bar`, `textMark` and `tick`) but for simplicity of the API,
-    --  carry over for the general case: MBandSize, MBinSpacing, MClip, MContinuousBandSize,
+    -- carry over for the general case: MBandSize, MBinSpacing, MClip, MContinuousBandSize,
     -- MDiscreteBandSize, MShortTimeLabels and  MThickness.
     = MAlign HAlign
     | MAngle Float
@@ -3581,6 +3589,10 @@ type
     | MThickness Float
     | MTicks (List MarkProperty)
     | MTooltip TooltipContent
+    | MX Float
+    | MY Float
+    | MX2 Float
+    | MY2 Float
     | MXOffset Float
     | MYOffset Float
     | MX2Offset Float
@@ -9036,6 +9048,20 @@ maTooltip =
     MTooltip
 
 
+{-| X position of a mark.
+-}
+maX : Float -> MarkProperty
+maX =
+    MX
+
+
+{-| X2 position (secondary x value for lines and areal marks).
+-}
+maX2 : Float -> MarkProperty
+maX2 =
+    MX2
+
+
 {-| X position offset for a mark.
 -}
 maXOffset : Float -> MarkProperty
@@ -9048,6 +9074,20 @@ maXOffset =
 maX2Offset : Float -> MarkProperty
 maX2Offset =
     MX2Offset
+
+
+{-| Y position of a mark.
+-}
+maY : Float -> MarkProperty
+maY =
+    MY
+
+
+{-| Y2 position (secondary y value for lines and areal marks).
+-}
+maY2 : Float -> MarkProperty
+maY2 =
+    MY2
 
 
 {-| Y position offset for a mark.
@@ -14424,6 +14464,18 @@ markProperty mProp =
 
         MLine lm ->
             ( "line", lineMarkerSpec lm )
+
+        MX x ->
+            ( "x", JE.float x )
+
+        MY y ->
+            ( "y", JE.float y )
+
+        MX2 x ->
+            ( "x2", JE.float x )
+
+        MY2 y ->
+            ( "y2", JE.float y )
 
         MXOffset o ->
             ( "xOffset", JE.float o )
