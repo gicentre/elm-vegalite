@@ -5960,9 +5960,9 @@ var elm$json$Json$Decode$decodeString = _Json_runOnString;
 var elm$json$Json$Decode$list = _Json_decodeList;
 var elm$json$Json$Decode$value = _Json_decodeValue;
 var author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_n54) {
-		var trName = _n54.a;
-		var val = _n54.b;
+	var assemble = function (_n60) {
+		var trName = _n60.a;
+		var val = _n60.b;
 		switch (trName) {
 			case 'aggregate':
 				var _n1 = A2(
@@ -6276,6 +6276,50 @@ var author$project$VegaLite$transform = function (transforms) {
 							_List_fromArray(
 								[
 									_Utils_Tuple2('window', winObj)
+								]),
+							_Utils_ap(
+								_Utils_eq(frameObj, elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+									[
+										_Utils_Tuple2('frame', frameObj)
+									]),
+								_Utils_ap(
+									_Utils_eq(peersObj, elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+										[
+											_Utils_Tuple2('ignorePeers', peersObj)
+										]),
+									_Utils_ap(
+										_Utils_eq(groupbyObj, elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+											[
+												_Utils_Tuple2('groupby', groupbyObj)
+											]),
+										_Utils_eq(sortObj, elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+											[
+												_Utils_Tuple2('sort', sortObj)
+											]))))));
+				} else {
+					return elm$json$Json$Encode$null;
+				}
+			case 'joinaggregate':
+				var _n54 = A2(
+					elm$json$Json$Decode$decodeString,
+					elm$json$Json$Decode$list(elm$json$Json$Decode$value),
+					A2(elm$json$Json$Encode$encode, 0, val));
+				if (((((((!_n54.$) && _n54.a.b) && _n54.a.b.b) && _n54.a.b.b.b) && _n54.a.b.b.b.b) && _n54.a.b.b.b.b.b) && (!_n54.a.b.b.b.b.b.b)) {
+					var _n55 = _n54.a;
+					var joinObjs = _n55.a;
+					var _n56 = _n55.b;
+					var frameObj = _n56.a;
+					var _n57 = _n56.b;
+					var peersObj = _n57.a;
+					var _n58 = _n57.b;
+					var groupbyObj = _n58.a;
+					var _n59 = _n58.b;
+					var sortObj = _n59.a;
+					return elm$json$Json$Encode$object(
+						_Utils_ap(
+							_List_fromArray(
+								[
+									_Utils_Tuple2('joinaggregate', joinObjs)
 								]),
 							_Utils_ap(
 								_Utils_eq(frameObj, elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(

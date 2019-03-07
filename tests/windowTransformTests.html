@@ -37,9 +37,6 @@
   <body>
     <h1>Elm-Vega Window Transform Tests</h1>
 
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
     <figure class="cell">
       <div id="window1"></div>
       <figcaption>Percent of Total</figcaption>
@@ -86,6 +83,36 @@
       <figcaption>Running average over time</figcaption>
     </figure>
     <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="joinAggregate1"></div>
+      <figcaption>
+        Percent of total (joinAggregate used to derive global sum in order to
+        calculate percentage)
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="joinAggregate2"></div>
+      <figcaption>
+        Difference from mean (joinAggregate used to find mean movie score to
+        allow filtering of those > 2.5 units above mean)
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="joinAggregate3"></div>
+      <figcaption>
+        Difference from mean in release year (as previous, but grouping by year
+        of release to calculate average score)
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
 
     <script>
       Elm.WindowTransformTests.init({

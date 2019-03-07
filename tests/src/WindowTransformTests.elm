@@ -38,7 +38,7 @@ window2 : Spec
 window2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
 
         trans =
             transform
@@ -62,11 +62,7 @@ window2 =
         ruleSpec =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]
     in
-    toVegaLite
-        [ data
-        , trans []
-        , layer [ barSpec, ruleSpec ]
-        ]
+    toVegaLite [ data [], trans [], layer [ barSpec, ruleSpec ] ]
 
 
 window3 : Spec
@@ -216,9 +212,82 @@ window7 =
     toVegaLite [ data, trans [], layer [ circleSpec, lineSpec ] ]
 
 
+joinAggregate1 : Spec
+joinAggregate1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "Activity" (strs [ "Sleeping", "Eating", "TV", "Work", "Exercise" ])
+                << dataColumn "Time" (nums [ 8, 2, 4, 8, 2 ])
+
+        trans =
+            transform
+                << joinAggregate [ opAs opSum "Time" "TotalTime" ] []
+                << calculateAs "datum.Time/datum.TotalTime * 100" "PercentOfTotal"
+
+        enc =
+            encoding
+                << position X [ pName "PercentOfTotal", pMType Quantitative, pAxis [ axTitle "% of total Time" ] ]
+                << position Y [ pName "Activity", pMType Nominal, pScale [ scRangeStep (Just 12) ] ]
+    in
+    toVegaLite [ data [], trans [], enc [], bar [] ]
+
+
+joinAggregate2 : Spec
+joinAggregate2 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+
+        trans =
+            transform
+                << filter (fiExpr "datum.IMDB_Rating != null")
+                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageRating" ] []
+                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageRating) > 2.5")
+
+        enc =
+            encoding
+                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
+                << position Y
+                    [ pName "Title"
+                    , pMType Nominal
+                    , pAxis [ axTitle "" ]
+                    , pSort [ soByChannel chX, soDescending ]
+                    ]
+    in
+    toVegaLite [ data [], trans [], enc [], bar [] ]
+
+
+joinAggregate3 : Spec
+joinAggregate3 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+
+        trans =
+            transform
+                << filter (fiExpr "datum.IMDB_Rating != null")
+                << timeUnitAs year "Release_Date" "year"
+                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageYearRating" ]
+                    [ wiGroupBy [ "year" ] ]
+                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageYearRating) > 2.5")
+
+        enc =
+            encoding
+                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
+                << position Y
+                    [ pName "Title"
+                    , pMType Nominal
+                    , pAxis [ axTitle "" ]
+                    , pSort [ soByChannel chX, soDescending ]
+                    ]
+    in
+    toVegaLite [ data [], trans [], enc [], bar [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    window7
+    joinAggregate3
 
 
 
@@ -235,6 +304,9 @@ mySpecs =
         , ( "window5", window5 )
         , ( "window6", window6 )
         , ( "window7", window7 )
+        , ( "joinAggregate1", joinAggregate1 )
+        , ( "joinAggregate2", joinAggregate2 )
+        , ( "joinAggregate3", joinAggregate3 )
         ]
 
 

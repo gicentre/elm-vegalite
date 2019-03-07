@@ -70,6 +70,7 @@ module VegaLite exposing
     , noClip
     , clipRect
     , aggregate
+    , joinAggregate
     , opAs
     , timeUnitAs
     , opArgMax
@@ -1192,6 +1193,7 @@ See the
 [Vega-Lite aggregate documentation](https://vega.github.io/vega-lite/docs/aggregate.html).
 
 @docs aggregate
+@docs joinAggregate
 @docs opAs
 @docs timeUnitAs
 @docs opArgMax
@@ -7824,6 +7826,38 @@ joBevel =
     JBevel
 
 
+{-| Aggregation transformations to be used when encoding channels. Unlike
+[aggregate](#aggregate), this transformation joins the results to the input data.
+Can be helpful for creating derived values that combine raw data with some aggregate
+measure, such as percentages of group totals. The first parameter is a list
+of the named aggregation operations to apply. The second is a list of possible
+window aggregate field properties, such as a field to group by when aggregating.
+The third parameter is a list of transofmrations to which this is added.
+
+    transform
+        << joinAggregate [ opAs opMean "rating" "avYearRating" ]
+            [ wiGroupBy [ "year" ] ]
+        << filter (fiExpr "(datum.rating - datum.avYearRating) > 3")
+
+For details, see the
+[Vega-Lite joinaggregate documentation](https://vega.github.io/vega-lite/docs/joinaggregate.html)
+
+-}
+joinAggregate : List Spec -> List WindowProperty -> List LabelledSpec -> List LabelledSpec
+joinAggregate ops wProps =
+    (::)
+        ( "joinaggregate"
+        , toList
+            ([ toList ops ]
+                ++ [ windowPropertySpec "frame" wProps
+                   , windowPropertySpec "ignorePeers" wProps
+                   , windowPropertySpec "groupby" wProps
+                   , windowPropertySpec "sort" wProps
+                   ]
+            )
+        )
+
+
 {-| Mitred stroke join.
 -}
 joMiter : StrokeJoin
@@ -11663,6 +11697,40 @@ transform transforms =
                     case JD.decodeString (JD.list JD.value) (JE.encode 0 val) of
                         Ok [ winObj, frameObj, peersObj, groupbyObj, sortObj ] ->
                             ([ ( "window", winObj ) ]
+                                ++ (if frameObj == JE.null then
+                                        []
+
+                                    else
+                                        [ ( "frame", frameObj ) ]
+                                   )
+                                ++ (if peersObj == JE.null then
+                                        []
+
+                                    else
+                                        [ ( "ignorePeers", peersObj ) ]
+                                   )
+                                ++ (if groupbyObj == JE.null then
+                                        []
+
+                                    else
+                                        [ ( "groupby", groupbyObj ) ]
+                                   )
+                                ++ (if sortObj == JE.null then
+                                        []
+
+                                    else
+                                        [ ( "sort", sortObj ) ]
+                                   )
+                            )
+                                |> JE.object
+
+                        _ ->
+                            JE.null
+
+                "joinaggregate" ->
+                    case JD.decodeString (JD.list JD.value) (JE.encode 0 val) of
+                        Ok [ joinObjs, frameObj, peersObj, groupbyObj, sortObj ] ->
+                            ([ ( "joinaggregate", joinObjs ) ]
                                 ++ (if frameObj == JE.null then
                                         []
 
