@@ -2830,6 +2830,7 @@ var author$project$VegaLite$markLabel = function (m) {
 			return 'trail';
 	}
 };
+var author$project$VegaLite$TTNone = 2;
 var author$project$VegaLite$cursorLabel = function (cur) {
 	switch (cur) {
 		case 0:
@@ -3042,10 +3043,13 @@ var author$project$VegaLite$symbolLabel = function (sym) {
 	}
 };
 var author$project$VegaLite$ttContentLabel = function (ttContent) {
-	if (!ttContent) {
-		return 'encoding';
-	} else {
-		return 'data';
+	switch (ttContent) {
+		case 0:
+			return 'encoding';
+		case 1:
+			return 'data';
+		default:
+			return 'null';
 	}
 };
 var author$project$VegaLite$vAlignLabel = function (al) {
@@ -3137,6 +3141,7 @@ var elm$json$Json$Encode$list = F2(
 				_Json_emptyArray(0),
 				entries));
 	});
+var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$lineMarkerSpec = function (pm) {
 	if (!pm.$) {
 		return elm$json$Json$Encode$bool(false);
@@ -3381,7 +3386,7 @@ var author$project$VegaLite$markProperty = function (mProp) {
 					A2(elm$core$List$map, author$project$VegaLite$markProperty, props)));
 		case 46:
 			var ttContent = mProp.a;
-			return _Utils_Tuple2(
+			return (ttContent === 2) ? _Utils_Tuple2('tooltip', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'tooltip',
 				elm$json$Json$Encode$object(
 					_List_fromArray(
@@ -3476,7 +3481,6 @@ var elm$core$String$fromChar = function (_char) {
 	return A2(elm$core$String$cons, _char, '');
 };
 var elm$core$String$trim = _String_trim;
-var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$formatProperty = function (fmt) {
 	switch (fmt.$) {
 		case 0:
@@ -3617,11 +3621,11 @@ var author$project$VegaLite$month = author$project$VegaLite$Month;
 var author$project$VegaLite$Mean = 7;
 var author$project$VegaLite$opMean = 7;
 var author$project$VegaLite$PAggregate = function (a) {
-	return {$: 9, a: a};
+	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
 var author$project$VegaLite$PmType = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
@@ -3629,7 +3633,7 @@ var author$project$VegaLite$PName = function (a) {
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
 var author$project$VegaLite$PTimeUnit = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$pTimeUnit = author$project$VegaLite$PTimeUnit;
 var author$project$VegaLite$Latitude = 5;
@@ -4824,37 +4828,37 @@ var author$project$VegaLite$positionChannelProperty = function (pDef) {
 			return _Utils_Tuple2(
 				'field',
 				elm$json$Json$Encode$string(s));
-		case 4:
+		case 5:
 			var measure = pDef.a;
 			return _Utils_Tuple2(
 				'type',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$measurementLabel(measure)));
-		case 5:
+		case 6:
 			var bps = pDef.a;
 			return author$project$VegaLite$bin(bps);
-		case 6:
+		case 7:
 			return _Utils_Tuple2(
 				'bin',
 				elm$json$Json$Encode$string('binned'));
-		case 9:
+		case 10:
 			var op = pDef.a;
 			return _Utils_Tuple2(
 				'aggregate',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$operationLabel(op)));
-		case 7:
+		case 8:
 			var tu = pDef.a;
 			return _Utils_Tuple2(
 				'timeUnit',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$timeUnitLabel(tu)));
-		case 8:
+		case 9:
 			var t = pDef.a;
 			return _Utils_Tuple2(
 				'title',
 				elm$json$Json$Encode$string(t));
-		case 12:
+		case 13:
 			var sps = pDef.a;
 			_n1$4:
 			while (true) {
@@ -4891,22 +4895,22 @@ var author$project$VegaLite$positionChannelProperty = function (pDef) {
 				'sort',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$concatMap, author$project$VegaLite$sortProperty, sps)));
-		case 10:
+		case 11:
 			var sps = pDef.a;
 			return _Utils_eq(sps, _List_Nil) ? _Utils_Tuple2('scale', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'scale',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$scaleProperty, sps)));
-		case 11:
+		case 12:
 			var aps = pDef.a;
 			return _Utils_eq(aps, _List_Nil) ? _Utils_Tuple2('axis', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'axis',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$axisProperty, aps)));
-		case 13:
+		case 14:
 			var so = pDef.a;
 			return author$project$VegaLite$stackOffset(so);
-		case 3:
+		case 4:
 			var arr = pDef.a;
 			return _Utils_Tuple2(
 				'field',
@@ -4926,6 +4930,11 @@ var author$project$VegaLite$positionChannelProperty = function (pDef) {
 			return _Utils_Tuple2(
 				'value',
 				elm$json$Json$Encode$string('height'));
+		case 3:
+			var x = pDef.a;
+			return _Utils_Tuple2(
+				'value',
+				elm$json$Json$Encode$float(x));
 		default:
 			var ips = pDef.a;
 			return _Utils_Tuple2(
@@ -4957,7 +4966,7 @@ var author$project$VegaLite$positionLabel = function (pChannel) {
 var author$project$VegaLite$position = F2(
 	function (pos, pDefs) {
 		var isNotPmType = function (pp) {
-			if (pp.$ === 4) {
+			if (pp.$ === 5) {
 				var t = pp.a;
 				return false;
 			} else {
@@ -5221,7 +5230,7 @@ var author$project$Walkthrough$barChartPair = function () {
 var author$project$VegaLite$Row = 1;
 var author$project$VegaLite$arRow = 1;
 var author$project$VegaLite$PRepeat = function (a) {
-	return {$: 3, a: a};
+	return {$: 4, a: a};
 };
 var author$project$VegaLite$pRepeat = author$project$VegaLite$PRepeat;
 var author$project$VegaLite$VLRepeat = 17;
@@ -5383,11 +5392,11 @@ var author$project$VegaLite$height = function (h) {
 		elm$json$Json$Encode$float(h));
 };
 var author$project$VegaLite$PAxis = function (a) {
-	return {$: 11, a: a};
+	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
 var author$project$VegaLite$PScale = function (a) {
-	return {$: 10, a: a};
+	return {$: 11, a: a};
 };
 var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
 var author$project$VegaLite$SDomain = function (a) {
@@ -7363,7 +7372,7 @@ var author$project$VegaLite$hConcat = function (specs) {
 		author$project$VegaLite$toList(specs));
 };
 var author$project$VegaLite$PBin = function (a) {
-	return {$: 5, a: a};
+	return {$: 6, a: a};
 };
 var author$project$VegaLite$pBin = author$project$VegaLite$PBin;
 var author$project$VegaLite$Point = 8;

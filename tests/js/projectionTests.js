@@ -7002,6 +7002,7 @@ var author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				elm$json$Json$Encode$float(x));
 	}
 };
+var author$project$VegaLite$TTNone = 2;
 var author$project$VegaLite$cursorLabel = function (cur) {
 	switch (cur) {
 		case 0:
@@ -7146,10 +7147,13 @@ var author$project$VegaLite$strokeJoinLabel = function (jn) {
 	}
 };
 var author$project$VegaLite$ttContentLabel = function (ttContent) {
-	if (!ttContent) {
-		return 'encoding';
-	} else {
-		return 'data';
+	switch (ttContent) {
+		case 0:
+			return 'encoding';
+		case 1:
+			return 'data';
+		default:
+			return 'null';
 	}
 };
 var author$project$VegaLite$lineMarkerSpec = function (pm) {
@@ -7396,7 +7400,7 @@ var author$project$VegaLite$markProperty = function (mProp) {
 					A2(elm$core$List$map, author$project$VegaLite$markProperty, props)));
 		case 46:
 			var ttContent = mProp.a;
-			return _Utils_Tuple2(
+			return (ttContent === 2) ? _Utils_Tuple2('tooltip', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'tooltip',
 				elm$json$Json$Encode$object(
 					_List_fromArray(

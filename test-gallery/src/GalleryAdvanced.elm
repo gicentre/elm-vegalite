@@ -44,7 +44,7 @@ advanced2 =
             description "Calculation of difference from average"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
 
         trans =
             transform
@@ -69,7 +69,7 @@ advanced2 =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]
     in
     toVegaLite
-        [ desc, data, trans [], layer [ barSpec, ruleSpec ] ]
+        [ desc, data [], trans [], layer [ barSpec, ruleSpec ] ]
 
 
 advanced3 : Spec
@@ -294,6 +294,9 @@ advanced7 =
         des =
             description "Using the lookup transform to combine data"
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/lookup_groups.csv"
+
         trans =
             transform
                 << lookup "person"
@@ -306,12 +309,96 @@ advanced7 =
                 << position X [ pName "group", pMType Ordinal ]
                 << position Y [ pName "age", pMType Quantitative, pAggregate opMean ]
     in
+    toVegaLite [ des, data [], trans [], enc [], bar [] ]
+
+
+advanced8 : Spec
+advanced8 =
+    let
+        des =
+            description "Parallel coordinates plot with manual generation of parallel axes"
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+                << configuration (coAxisX [ axcoDomain False, axcoLabelAngle 0, axcoTickColor "#ccc" ])
+                << configuration
+                    (coNamedStyles
+                        [ ( "label", [ maBaseline vaMiddle, maAlign haRight, maDx -5, maTooltip ttNone ] )
+                        , ( "tick", [ maOrient moHorizontal, maTooltip ttNone ] )
+                        ]
+                    )
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json"
+
+        trans =
+            transform
+                << window [ ( [ wiAggregateOp opCount ], "index" ) ] []
+                << fold [ "petalLength", "petalWidth", "sepalLength", "sepalWidth" ]
+                << joinAggregate [ opAs opMin "value" "min", opAs opMax "value" "max" ] [ wiGroupBy [ "key" ] ]
+                << calculateAs "(datum.value - datum.min) / (datum.max-datum.min)" "normVal"
+                << calculateAs "(datum.min + datum.max) / 2" "mid"
+
+        encLine =
+            encoding
+                << position X [ pName "key", pMType Nominal ]
+                << position Y [ pName "normVal", pMType Quantitative, pAxis [] ]
+                << color [ mName "species", mMType Nominal ]
+                << detail [ dName "index", dMType Nominal ]
+                << tooltips
+                    [ [ tName "petalLength" ]
+                    , [ tName "petalWidth" ]
+                    , [ tName "sepalLength" ]
+                    , [ tName "sepalWidth" ]
+                    ]
+
+        specLine =
+            asSpec [ encLine [], line [ maOpacity 0.3 ] ]
+
+        encAxis =
+            encoding
+                << position X [ pName "key", pMType Nominal, pAxis [ axTitle "" ] ]
+                << detail [ dAggregate opCount, dMType Quantitative ]
+
+        specAxis =
+            asSpec [ encAxis [], rule [ maColor "#ccc" ] ]
+
+        encAxisLabelsTop =
+            encoding
+                << position X [ pName "key", pMType Nominal ]
+                << position Y [ pNum 0 ]
+                << text [ tName "max", tMType Quantitative, tAggregate opMax ]
+
+        specAxisLabelsTop =
+            asSpec [ encAxisLabelsTop [], textMark [ maStyle [ "label" ] ] ]
+
+        encAxisLabelsMid =
+            encoding
+                << position X [ pName "key", pMType Nominal ]
+                << position Y [ pNum 150 ]
+                << text [ tName "mid", tMType Quantitative, tAggregate opMin ]
+
+        specAxisLabelsMid =
+            asSpec [ encAxisLabelsMid [], textMark [ maStyle [ "label" ] ] ]
+
+        encAxisLabelsBot =
+            encoding
+                << position X [ pName "key", pMType Nominal ]
+                << position Y [ pHeight ]
+                << text [ tName "min", tMType Quantitative, tAggregate opMin ]
+
+        specAxisLabelsBot =
+            asSpec [ encAxisLabelsBot [], textMark [ maStyle [ "label" ] ] ]
+    in
     toVegaLite
         [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/lookup_groups.csv" []
+        , cfg []
+        , width 600
+        , height 300
+        , data []
         , trans []
-        , enc []
-        , bar []
+        , layer [ specLine, specAxis, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot ]
         ]
 
 
@@ -329,6 +416,7 @@ mySpecs =
         , ( "advanced5", advanced5 )
         , ( "advanced6", advanced6 )
         , ( "advanced7", advanced7 )
+        , ( "advanced8", advanced8 )
         ]
 
 
