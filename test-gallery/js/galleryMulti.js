@@ -3508,31 +3508,35 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'transform';
 		case 13:
 			return 'encoding';
-		case 25:
+		case 27:
 			return 'config';
-		case 26:
+		case 28:
 			return 'selection';
 		case 15:
-			return 'hconcat';
+			return 'concat';
+		case 18:
+			return 'columns';
 		case 16:
+			return 'hconcat';
+		case 17:
 			return 'vconcat';
 		case 14:
 			return 'layer';
-		case 17:
-			return 'repeat';
-		case 18:
-			return 'facet';
-		case 21:
-			return 'spacing';
-		case 22:
-			return 'align';
-		case 23:
-			return 'bounds';
-		case 24:
-			return 'center';
 		case 19:
-			return 'spec';
+			return 'repeat';
 		case 20:
+			return 'facet';
+		case 23:
+			return 'spacing';
+		case 24:
+			return 'align';
+		case 25:
+			return 'bounds';
+		case 26:
+			return 'center';
+		case 21:
+			return 'spec';
+		case 22:
 			return 'resolve';
 		default:
 			return 'view';
@@ -5525,10 +5529,10 @@ var author$project$VegaLite$select = F3(
 				selName,
 				elm$json$Json$Encode$object(selProps)));
 	});
-var author$project$VegaLite$VLSelection = 26;
+var author$project$VegaLite$VLSelection = 28;
 var author$project$VegaLite$selection = function (sels) {
 	return _Utils_Tuple2(
-		26,
+		28,
 		elm$json$Json$Encode$object(sels));
 };
 var author$project$VegaLite$toVegaLite = function (spec) {
@@ -5549,10 +5553,10 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
-var author$project$VegaLite$VLVConcat = 16;
+var author$project$VegaLite$VLVConcat = 17;
 var author$project$VegaLite$vConcat = function (specs) {
 	return _Utils_Tuple2(
-		16,
+		17,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$VegaLite$VLWidth = 3;
@@ -6471,7 +6475,7 @@ var author$project$VegaLite$Parse = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$parse = author$project$VegaLite$Parse;
-var author$project$VegaLite$VLRepeat = 17;
+var author$project$VegaLite$VLRepeat = 19;
 var author$project$VegaLite$repeatFieldsProperty = function (fields) {
 	if (!fields.$) {
 		var fs = fields.a;
@@ -6487,13 +6491,13 @@ var author$project$VegaLite$repeatFieldsProperty = function (fields) {
 };
 var author$project$VegaLite$repeat = function (fields) {
 	return _Utils_Tuple2(
-		17,
+		19,
 		elm$json$Json$Encode$object(
 			A2(elm$core$List$map, author$project$VegaLite$repeatFieldsProperty, fields)));
 };
-var author$project$VegaLite$VLSpec = 19;
+var author$project$VegaLite$VLSpec = 21;
 var author$project$VegaLite$specification = function (spec) {
-	return _Utils_Tuple2(19, spec);
+	return _Utils_Tuple2(21, spec);
 };
 var author$project$VegaLite$VLTransform = 11;
 var elm$core$List$isEmpty = function (xs) {
@@ -8587,10 +8591,10 @@ var author$project$VegaLite$configuration = function (cfg) {
 	return elm$core$List$cons(
 		author$project$VegaLite$configProperty(cfg));
 };
-var author$project$VegaLite$VLConfig = 25;
+var author$project$VegaLite$VLConfig = 27;
 var author$project$VegaLite$configure = function (configs) {
 	return _Utils_Tuple2(
-		25,
+		27,
 		elm$json$Json$Encode$object(configs));
 };
 var author$project$VegaLite$LTitle = function (a) {
@@ -8680,10 +8684,10 @@ var author$project$VegaLite$resolution = function (res) {
 	return elm$core$List$cons(
 		author$project$VegaLite$resolveProperty(res));
 };
-var author$project$VegaLite$VLResolve = 20;
+var author$project$VegaLite$VLResolve = 22;
 var author$project$VegaLite$resolve = function (res) {
 	return _Utils_Tuple2(
-		20,
+		22,
 		elm$json$Json$Encode$object(res));
 };
 var author$project$VegaLite$SeSingle = 0;

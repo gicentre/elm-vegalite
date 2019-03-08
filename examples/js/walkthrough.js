@@ -5074,31 +5074,35 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'transform';
 		case 13:
 			return 'encoding';
-		case 25:
+		case 27:
 			return 'config';
-		case 26:
+		case 28:
 			return 'selection';
 		case 15:
-			return 'hconcat';
+			return 'concat';
+		case 18:
+			return 'columns';
 		case 16:
+			return 'hconcat';
+		case 17:
 			return 'vconcat';
 		case 14:
 			return 'layer';
-		case 17:
-			return 'repeat';
-		case 18:
-			return 'facet';
-		case 21:
-			return 'spacing';
-		case 22:
-			return 'align';
-		case 23:
-			return 'bounds';
-		case 24:
-			return 'center';
 		case 19:
-			return 'spec';
+			return 'repeat';
 		case 20:
+			return 'facet';
+		case 23:
+			return 'spacing';
+		case 24:
+			return 'align';
+		case 25:
+			return 'bounds';
+		case 26:
+			return 'center';
+		case 21:
+			return 'spec';
+		case 22:
 			return 'resolve';
 		default:
 			return 'view';
@@ -5172,10 +5176,10 @@ var author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var author$project$VegaLite$VLVConcat = 16;
+var author$project$VegaLite$VLVConcat = 17;
 var author$project$VegaLite$vConcat = function (specs) {
 	return _Utils_Tuple2(
-		16,
+		17,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$Walkthrough$barChartPair = function () {
@@ -5253,7 +5257,7 @@ var author$project$VegaLite$PRepeat = function (a) {
 	return {$: 4, a: a};
 };
 var author$project$VegaLite$pRepeat = author$project$VegaLite$PRepeat;
-var author$project$VegaLite$VLRepeat = 17;
+var author$project$VegaLite$VLRepeat = 19;
 var author$project$VegaLite$repeatFieldsProperty = function (fields) {
 	if (!fields.$) {
 		var fs = fields.a;
@@ -5269,7 +5273,7 @@ var author$project$VegaLite$repeatFieldsProperty = function (fields) {
 };
 var author$project$VegaLite$repeat = function (fields) {
 	return _Utils_Tuple2(
-		17,
+		19,
 		elm$json$Json$Encode$object(
 			A2(elm$core$List$map, author$project$VegaLite$repeatFieldsProperty, fields)));
 };
@@ -5277,9 +5281,9 @@ var author$project$VegaLite$RowFields = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$rowFields = author$project$VegaLite$RowFields;
-var author$project$VegaLite$VLSpec = 19;
+var author$project$VegaLite$VLSpec = 21;
 var author$project$VegaLite$specification = function (spec) {
-	return _Utils_Tuple2(19, spec);
+	return _Utils_Tuple2(21, spec);
 };
 var author$project$Walkthrough$barChartTriplet = function () {
 	var enc = A2(
@@ -5795,10 +5799,10 @@ var author$project$VegaLite$select = F3(
 				selName,
 				elm$json$Json$Encode$object(selProps)));
 	});
-var author$project$VegaLite$VLSelection = 26;
+var author$project$VegaLite$VLSelection = 28;
 var author$project$VegaLite$selection = function (sels) {
 	return _Utils_Tuple2(
-		26,
+		28,
 		elm$json$Json$Encode$object(sels));
 };
 var author$project$VegaLite$VLWidth = 3;
@@ -7385,10 +7389,10 @@ var author$project$VegaLite$DNumbers = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$doNums = author$project$VegaLite$DNumbers;
-var author$project$VegaLite$VLHConcat = 15;
+var author$project$VegaLite$VLHConcat = 16;
 var author$project$VegaLite$hConcat = function (specs) {
 	return _Utils_Tuple2(
-		15,
+		16,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$VegaLite$PBin = function (a) {

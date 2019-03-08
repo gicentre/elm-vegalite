@@ -8550,10 +8550,10 @@ var author$project$VegaLite$configuration = function (cfg) {
 	return elm$core$List$cons(
 		author$project$VegaLite$configProperty(cfg));
 };
-var author$project$VegaLite$VLConfig = 25;
+var author$project$VegaLite$VLConfig = 27;
 var author$project$VegaLite$configure = function (configs) {
 	return _Utils_Tuple2(
-		25,
+		27,
 		elm$json$Json$Encode$object(configs));
 };
 var author$project$VegaLite$VLData = 8;
@@ -8800,31 +8800,35 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'transform';
 		case 13:
 			return 'encoding';
-		case 25:
+		case 27:
 			return 'config';
-		case 26:
+		case 28:
 			return 'selection';
 		case 15:
-			return 'hconcat';
+			return 'concat';
+		case 18:
+			return 'columns';
 		case 16:
+			return 'hconcat';
+		case 17:
 			return 'vconcat';
 		case 14:
 			return 'layer';
-		case 17:
-			return 'repeat';
-		case 18:
-			return 'facet';
-		case 21:
-			return 'spacing';
-		case 22:
-			return 'align';
-		case 23:
-			return 'bounds';
-		case 24:
-			return 'center';
 		case 19:
-			return 'spec';
+			return 'repeat';
 		case 20:
+			return 'facet';
+		case 23:
+			return 'spacing';
+		case 24:
+			return 'align';
+		case 25:
+			return 'bounds';
+		case 26:
+			return 'center';
+		case 21:
+			return 'spec';
+		case 22:
 			return 'resolve';
 		default:
 			return 'view';
@@ -10413,10 +10417,10 @@ var author$project$GeoTests$dotMap1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$VLHConcat = 15;
+var author$project$VegaLite$VLHConcat = 16;
 var author$project$VegaLite$hConcat = function (specs) {
 	return _Utils_Tuple2(
-		15,
+		16,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$VegaLite$MFilled = function (a) {

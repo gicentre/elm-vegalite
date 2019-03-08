@@ -70,16 +70,40 @@
     <figure class="cell">
       <div id="grid1"></div>
       <figcaption>
-        Facet by grid position. Should have wide column spacing and moderate row
-        spacing. Faceted charts should have no axes or other decoration.
+        Facet by 2d grid position. This version explicitly encodes row and
+        column position of each small multiple. Should have wide column spacing
+        and moderate row spacing. Faceted charts should have no axes or other
+        decoration.
       </figcaption>
     </figure>
     <div style="clear:left"></div>
 
+    <figure class="cell">
+      <div id="grid2"></div>
+      <figcaption>
+        Flow layout with a maximum column setting. Should look identical to
+        example above, but unlike that specification no explict row or column
+        value is specified.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="grid3"></div>
+      <figcaption>
+        Flow layout wtih no maximum column setting. Should appear as one long
+        row of small multuples
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
     <script>
-      Elm.ViewCompositionTests.init().ports.elmToJS.subscribe(function(
-        namedSpecs
-      ) {
+      Elm.ViewCompositionTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,

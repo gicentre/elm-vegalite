@@ -1,6 +1,9 @@
 port module ViewCompositionTests exposing (elmToJS)
 
-import Platform
+import Browser
+import Html exposing (Html, div, pre)
+import Html.Attributes exposing (id)
+import Json.Encode
 import VegaLite exposing (..)
 
 
@@ -99,6 +102,7 @@ data =
         << dataColumn "cat" cats
         << dataColumn "val" vals
 
+
 cfg =
     -- Styling to remove axis gridlines and labels
     configure
@@ -129,6 +133,66 @@ grid1 =
             ]
         ]
 
+
+grid2 : Spec
+grid2 =
+    let
+        encByCatVal =
+            encoding
+                << position X [ pName "cat", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "val", pMType Quantitative, pAxis [] ]
+                << color [ mName "cat", mMType Nominal, mLegend [] ]
+
+        specByCatVal =
+            asSpec [ width 120, height 120, bar [], encByCatVal [] ]
+
+        trans =
+            transform
+                << calculateAs "datum.row * 1000 + datum.col" "index"
+    in
+    toVegaLite
+        [ cfg []
+        , data []
+        , trans []
+        , columns 5
+        , spacingRC 20 80
+        , specification specByCatVal
+        , facetFlow [ fName "index", fMType Ordinal, fHeader [ hdTitle "" ] ]
+        ]
+
+
+grid3 : Spec
+grid3 =
+    let
+        encByCatVal =
+            encoding
+                << position X [ pName "cat", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "val", pMType Quantitative, pAxis [] ]
+                << color [ mName "cat", mMType Nominal, mLegend [] ]
+
+        specByCatVal =
+            asSpec [ width 120, height 120, bar [], encByCatVal [] ]
+
+        trans =
+            transform
+                << calculateAs "datum.row * 1000 + datum.col" "index"
+    in
+    toVegaLite
+        [ cfg []
+        , data []
+        , trans []
+        , spacingRC 20 80
+        , specification specByCatVal
+        , facetFlow [ fName "index", fMType Ordinal, fHeader [ hdTitle "" ] ]
+        ]
+
+
+sourceExample : Spec
+sourceExample =
+    grid3
+
+
+
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
 
@@ -139,23 +203,41 @@ mySpecs =
         , ( "columns2", columns2 )
         , ( "columns3", columns3 )
         , ( "columns4", columns4 )
-        , ("grid1", grid1)
+        , ( "grid1", grid1 )
+        , ( "grid2", grid2 )
+        , ( "grid3", grid3 )
         ]
 
 
 
-{- The code below is boilerplate for creating a headless Elm module that opens
-   an outgoing port to Javascript and sends the specs to it.
+{- ---------------------------------------------------------------------------
+   The code below creates an Elm module that opens an outgoing port to Javascript
+   and sends both the specs and DOM node to it.
+   This is used to display the generated Vega specs for testing purposes.
 -}
 
 
 main : Program () Spec msg
 main =
-    Platform.worker
+    Browser.element
         { init = always ( mySpecs, elmToJS mySpecs )
+        , view = view
         , update = \_ model -> ( model, Cmd.none )
         , subscriptions = always Sub.none
         }
+
+
+
+-- View
+
+
+view : Spec -> Html msg
+view spec =
+    div []
+        [ div [ id "specSource" ] []
+        , pre []
+            [ Html.text (Json.Encode.encode 2 sourceExample) ]
+        ]
 
 
 port elmToJS : Spec -> Cmd msg
