@@ -108,6 +108,7 @@ cfg =
     configure
         << configuration (coHeader [ hdLabelFontSize 0.1 ])
         << configuration (coView [ vicoStroke Nothing, vicoHeight 120 ])
+        << configuration (coFacet [ facoSpacing 80, facoColumns 5 ])
 
 
 grid1 : Spec
@@ -154,8 +155,7 @@ grid2 =
         [ cfg []
         , data []
         , trans []
-        , columns 5
-        , spacingRC 20 80
+        , columns (Just 5)
         , specification specByCatVal
         , facetFlow [ fName "index", fMType Ordinal, fHeader [ hdTitle "" ] ]
         ]
@@ -181,7 +181,7 @@ grid3 =
         [ cfg []
         , data []
         , trans []
-        , spacingRC 20 80
+        , columns Nothing
         , specification specByCatVal
         , facetFlow [ fName "index", fMType Ordinal, fHeader [ hdTitle "" ] ]
         ]
