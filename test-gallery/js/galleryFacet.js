@@ -6827,12 +6827,51 @@ var author$project$GalleryFacet$facet5 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var author$project$VegaLite$asSpec = function (specs) {
+	return elm$json$Json$Encode$object(
+		A2(
+			elm$core$List$map,
+			function (_n0) {
+				var s = _n0.a;
+				var v = _n0.b;
+				return _Utils_Tuple2(
+					author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
 var author$project$VegaLite$ChX = 0;
 var author$project$VegaLite$chX = 0;
+var author$project$VegaLite$VLColumns = 18;
+var author$project$VegaLite$columns = function (maybeCols) {
+	if (!maybeCols.$) {
+		var cols = maybeCols.a;
+		return _Utils_Tuple2(
+			18,
+			elm$json$Json$Encode$int(cols));
+	} else {
+		return _Utils_Tuple2(18, elm$json$Json$Encode$null);
+	}
+};
+var author$project$VegaLite$FHeader = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$fHeader = author$project$VegaLite$FHeader;
 var author$project$VegaLite$FSort = function (a) {
 	return {$: 5, a: a};
 };
 var author$project$VegaLite$fSort = author$project$VegaLite$FSort;
+var author$project$VegaLite$VLFacet = 20;
+var author$project$VegaLite$facetFlow = function (fFields) {
+	return _Utils_Tuple2(
+		20,
+		elm$json$Json$Encode$object(
+			A2(elm$core$List$map, author$project$VegaLite$facetChannelProperty, fFields)));
+};
+var author$project$VegaLite$HTitle = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$hdTitle = author$project$VegaLite$HTitle;
 var author$project$VegaLite$Median = 8;
 var author$project$VegaLite$opMedian = 8;
 var author$project$VegaLite$PSort = function (a) {
@@ -6850,6 +6889,10 @@ var author$project$VegaLite$ByFieldOp = F2(
 var author$project$VegaLite$soByField = author$project$VegaLite$ByFieldOp;
 var author$project$VegaLite$Descending = {$: 1};
 var author$project$VegaLite$soDescending = author$project$VegaLite$Descending;
+var author$project$VegaLite$VLSpec = 21;
+var author$project$VegaLite$specification = function (spec) {
+	return _Utils_Tuple2(21, spec);
+};
 var author$project$GalleryFacet$facet6 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -6857,68 +6900,78 @@ var author$project$GalleryFacet$facet6 = function () {
 			elm$core$Basics$composeL,
 			A2(
 				elm$core$Basics$composeL,
-				A2(
-					elm$core$Basics$composeL,
-					author$project$VegaLite$encoding,
-					A2(
-						author$project$VegaLite$position,
-						0,
-						_List_fromArray(
-							[
-								author$project$VegaLite$pName('yield'),
-								author$project$VegaLite$pMType(2),
-								author$project$VegaLite$pAggregate(author$project$VegaLite$opMedian),
-								author$project$VegaLite$pScale(
-								_List_fromArray(
-									[
-										author$project$VegaLite$scZero(false)
-									]))
-							]))),
+				author$project$VegaLite$encoding,
 				A2(
 					author$project$VegaLite$position,
-					1,
+					0,
 					_List_fromArray(
 						[
-							author$project$VegaLite$pName('variety'),
-							author$project$VegaLite$pMType(1),
-							author$project$VegaLite$pSort(
-							_List_fromArray(
-								[
-									author$project$VegaLite$soByChannel(author$project$VegaLite$chX),
-									author$project$VegaLite$soDescending
-								])),
+							author$project$VegaLite$pName('yield'),
+							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pAggregate(author$project$VegaLite$opMedian),
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
-									author$project$VegaLite$scRangeStep(
-									elm$core$Maybe$Just(12))
+									author$project$VegaLite$scZero(false)
 								]))
 						]))),
-			author$project$VegaLite$color(
+			A2(
+				author$project$VegaLite$position,
+				1,
 				_List_fromArray(
 					[
-						author$project$VegaLite$mName('year'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$pName('variety'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$scRangeStep(
+								elm$core$Maybe$Just(12))
+							])),
+						author$project$VegaLite$pSort(
+						_List_fromArray(
+							[
+								author$project$VegaLite$soByChannel(author$project$VegaLite$chX),
+								author$project$VegaLite$soDescending
+							]))
 					]))),
-		author$project$VegaLite$row(
+		author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					author$project$VegaLite$fName('site'),
-					author$project$VegaLite$fMType(1),
-					author$project$VegaLite$fSort(
-					_List_fromArray(
-						[
-							A2(author$project$VegaLite$soByField, 'yield', author$project$VegaLite$opMedian)
-						]))
+					author$project$VegaLite$mName('year'),
+					author$project$VegaLite$mMType(0)
 				])));
 	var des = author$project$VegaLite$description('The Trellis display by Becker et al. helped establish small multiples as a \'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables\'');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/barley.json');
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil),
-				author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				data(_List_Nil),
+				author$project$VegaLite$columns(
+				elm$core$Maybe$Just(2)),
+				author$project$VegaLite$facetFlow(
+				_List_fromArray(
+					[
+						author$project$VegaLite$fName('site'),
+						author$project$VegaLite$fMType(1),
+						author$project$VegaLite$fSort(
+						_List_fromArray(
+							[
+								A2(author$project$VegaLite$soByField, 'yield', author$project$VegaLite$opMedian)
+							])),
+						author$project$VegaLite$fHeader(
+						_List_fromArray(
+							[
+								author$project$VegaLite$hdTitle('')
+							]))
+					])),
+				author$project$VegaLite$specification(
+				author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							enc(_List_Nil),
+							author$project$VegaLite$point(_List_Nil)
+						])))
 			]));
 }();
 var author$project$VegaLite$Temporal = 3;
@@ -6932,14 +6985,6 @@ var author$project$VegaLite$AxGrid = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$axGrid = author$project$VegaLite$AxGrid;
-var author$project$VegaLite$FHeader = function (a) {
-	return {$: 6, a: a};
-};
-var author$project$VegaLite$fHeader = author$project$VegaLite$FHeader;
-var author$project$VegaLite$HTitle = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$hdTitle = author$project$VegaLite$HTitle;
 var author$project$VegaLite$VLHeight = 4;
 var author$project$VegaLite$height = function (h) {
 	return _Utils_Tuple2(

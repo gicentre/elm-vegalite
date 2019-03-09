@@ -117,18 +117,35 @@ facet6 =
         des =
             description "The Trellis display by Becker et al. helped establish small multiples as a 'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables'"
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/barley.json"
+
         enc =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pAggregate opMedian, pScale [ scZero False ] ]
-                << position Y [ pName "variety", pMType Ordinal, pSort [ soByChannel chX, soDescending ], pScale [ scRangeStep (Just 12) ] ]
+                << position X
+                    [ pName "yield"
+                    , pMType Quantitative
+                    , pAggregate opMedian
+                    , pScale [ scZero False ]
+                    ]
+                << position Y
+                    [ pName "variety"
+                    , pMType Ordinal
+                    , pScale [ scRangeStep (Just 12) ]
+                    , pSort [ soByChannel chX, soDescending ]
+                    ]
                 << color [ mName "year", mMType Nominal ]
-                << row [ fName "site", fMType Ordinal, fSort [ soByField "yield" opMedian ] ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
-        , point []
-        , enc []
+        [ data []
+        , columns (Just 2)
+        , facetFlow
+            [ fName "site"
+            , fMType Ordinal
+            , fSort [ soByField "yield" opMedian ]
+            , fHeader [ hdTitle "" ]
+            ]
+        , specification (asSpec [ enc [], point [] ])
         ]
 
 
