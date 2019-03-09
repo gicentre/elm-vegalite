@@ -153,27 +153,43 @@ facet7 : Spec
 facet7 =
     let
         des =
-            description "Stock prices of four large companies as a small multiples of area charts"
+            description "Stock prices of five large companies as a small multiples of area charts"
 
-        trans =
-            transform << filter (fiExpr "datum.symbol !== 'GOOG'")
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y", axTitle "Time", axGrid False ] ]
-                << position Y [ pName "price", pMType Quantitative, pAxis [ axTitle "Time", axGrid False ] ]
-                << color [ mName "symbol", mMType Nominal, mLegend [] ]
-                << row [ fName "symbol", fMType Nominal, fHeader [ hdTitle "Company" ] ]
+                << position X
+                    [ pName "date"
+                    , pMType Temporal
+                    , pAxis [ axFormat "%Y", axTitle "", axGrid False ]
+                    ]
+                << position Y
+                    [ pName "price"
+                    , pMType Quantitative
+                    , pAxis [ axTitle "", axGrid False ]
+                    ]
+                << color
+                    [ mName "symbol"
+                    , mMType Nominal
+                    , mLegend []
+                    ]
+                << row
+                    [ fName "symbol"
+                    , fMType Nominal
+                    , fHeader [ hdTitle "Stock price", hdLabelAngle 0 ]
+                    ]
+
+        res =
+            resolve
+                << resolution (reScale [ ( chY, reIndependent ) ])
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite
-        [ des
-        , width 300
-        , height 40
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trans []
-        , area []
-        , enc []
-        ]
+    toVegaLite [ des, width 300, height 50, cfg [], res [], data [], area [], enc [] ]
 
 
 
