@@ -3656,10 +3656,13 @@ var author$project$VegaLite$MNumber = function (a) {
 };
 var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
-	if (arrng === 1) {
-		return 'row';
-	} else {
-		return 'column';
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
 	}
 };
 var elm$json$Json$Encode$int = _Json_wrap;

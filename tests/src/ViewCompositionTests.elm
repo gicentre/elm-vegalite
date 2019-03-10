@@ -187,9 +187,54 @@ grid3 =
         ]
 
 
+grid4 : Spec
+grid4 =
+    let
+        carData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        enc =
+            encoding
+                << position X [ pRepeat arFlow, pMType Quantitative, pBin [] ]
+                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << color [ mName "Origin", mMType Nominal ]
+
+        spec =
+            asSpec [ carData [], bar [], enc [] ]
+    in
+    toVegaLite
+        [ columns (Just 3)
+        , repeatFlow [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ]
+        , specification spec
+        ]
+
+
+grid5 : Spec
+grid5 =
+    let
+        carData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        enc =
+            encoding
+                << position X [ pRepeat arRow, pMType Quantitative, pBin [] ]
+                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << color [ mName "Origin", mMType Nominal ]
+
+        spec =
+            asSpec [ carData [], bar [], enc [] ]
+    in
+    toVegaLite
+        [ repeat
+            [ rowFields [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ]
+            ]
+        , specification spec
+        ]
+
+
 sourceExample : Spec
 sourceExample =
-    grid3
+    grid4
 
 
 
@@ -206,6 +251,8 @@ mySpecs =
         , ( "grid1", grid1 )
         , ( "grid2", grid2 )
         , ( "grid3", grid3 )
+        , ( "grid4", grid4 )
+        , ( "grid5", grid5 )
         ]
 
 

@@ -2305,10 +2305,13 @@ var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
-	if (arrng === 1) {
-		return 'row';
-	} else {
-		return 'column';
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
 	}
 };
 var elm$core$Array$branchFactor = 32;

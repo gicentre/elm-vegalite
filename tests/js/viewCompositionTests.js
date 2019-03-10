@@ -5494,10 +5494,13 @@ var author$project$VegaLite$HeaderStyle = function (a) {
 };
 var author$project$VegaLite$coHeader = author$project$VegaLite$HeaderStyle;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
-	if (arrng === 1) {
-		return 'row';
-	} else {
-		return 'column';
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
 	}
 };
 var elm$json$Json$Encode$int = _Json_wrap;
@@ -10902,6 +10905,151 @@ var author$project$ViewCompositionTests$grid3 = function () {
 					]))
 			]));
 }();
+var author$project$VegaLite$Flow = 2;
+var author$project$VegaLite$arFlow = 2;
+var author$project$VegaLite$Count = 4;
+var author$project$VegaLite$opCount = 4;
+var author$project$VegaLite$PBin = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$pBin = author$project$VegaLite$PBin;
+var author$project$VegaLite$PRepeat = function (a) {
+	return {$: 4, a: a};
+};
+var author$project$VegaLite$pRepeat = author$project$VegaLite$PRepeat;
+var author$project$VegaLite$VLRepeat = 19;
+var author$project$VegaLite$repeatFlow = function (fields) {
+	return _Utils_Tuple2(
+		19,
+		A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fields));
+};
+var author$project$ViewCompositionTests$grid4 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pRepeat(author$project$VegaLite$arFlow),
+							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pBin(_List_Nil)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
+				])));
+	var carData = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var spec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				carData(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil),
+				enc(_List_Nil)
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$columns(
+				elm$core$Maybe$Just(3)),
+				author$project$VegaLite$repeatFlow(
+				_List_fromArray(
+					['Horsepower', 'Miles_per_Gallon', 'Acceleration', 'Displacement', 'Weight_in_lbs'])),
+				author$project$VegaLite$specification(spec)
+			]));
+}();
+var author$project$VegaLite$Row = 1;
+var author$project$VegaLite$arRow = 1;
+var author$project$VegaLite$repeatFieldsProperty = function (fields) {
+	if (!fields.$) {
+		var fs = fields.a;
+		return _Utils_Tuple2(
+			'row',
+			A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fs));
+	} else {
+		var fs = fields.a;
+		return _Utils_Tuple2(
+			'column',
+			A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fs));
+	}
+};
+var author$project$VegaLite$repeat = function (fields) {
+	return _Utils_Tuple2(
+		19,
+		elm$json$Json$Encode$object(
+			A2(elm$core$List$map, author$project$VegaLite$repeatFieldsProperty, fields)));
+};
+var author$project$VegaLite$RowFields = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$rowFields = author$project$VegaLite$RowFields;
+var author$project$ViewCompositionTests$grid5 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
+							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pBin(_List_Nil)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('Origin'),
+					author$project$VegaLite$mMType(0)
+				])));
+	var carData = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var spec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				carData(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil),
+				enc(_List_Nil)
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$repeat(
+				_List_fromArray(
+					[
+						author$project$VegaLite$rowFields(
+						_List_fromArray(
+							['Horsepower', 'Miles_per_Gallon', 'Acceleration', 'Displacement', 'Weight_in_lbs']))
+					])),
+				author$project$VegaLite$specification(spec)
+			]));
+}();
 var author$project$ViewCompositionTests$mySpecs = author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -10911,9 +11059,11 @@ var author$project$ViewCompositionTests$mySpecs = author$project$VegaLite$combin
 			_Utils_Tuple2('columns4', author$project$ViewCompositionTests$columns4),
 			_Utils_Tuple2('grid1', author$project$ViewCompositionTests$grid1),
 			_Utils_Tuple2('grid2', author$project$ViewCompositionTests$grid2),
-			_Utils_Tuple2('grid3', author$project$ViewCompositionTests$grid3)
+			_Utils_Tuple2('grid3', author$project$ViewCompositionTests$grid3),
+			_Utils_Tuple2('grid4', author$project$ViewCompositionTests$grid4),
+			_Utils_Tuple2('grid5', author$project$ViewCompositionTests$grid5)
 		]));
-var author$project$ViewCompositionTests$sourceExample = author$project$ViewCompositionTests$grid3;
+var author$project$ViewCompositionTests$sourceExample = author$project$ViewCompositionTests$grid4;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

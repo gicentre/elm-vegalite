@@ -3453,10 +3453,13 @@ var author$project$VegaLite$MFilled = function (a) {
 };
 var author$project$VegaLite$maFilled = author$project$VegaLite$MFilled;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
-	if (arrng === 1) {
-		return 'row';
-	} else {
-		return 'column';
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
 	}
 };
 var author$project$VegaLite$binProperty = function (binProp) {

@@ -4297,10 +4297,13 @@ var author$project$VegaLite$RemoveInvalid = function (a) {
 };
 var author$project$VegaLite$coRemoveInvalid = author$project$VegaLite$RemoveInvalid;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
-	if (arrng === 1) {
-		return 'row';
-	} else {
-		return 'column';
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
 	}
 };
 var elm$core$Array$branchFactor = 32;

@@ -3231,10 +3231,13 @@ var author$project$VegaLite$View = function (a) {
 };
 var author$project$VegaLite$coView = author$project$VegaLite$View;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
-	if (arrng === 1) {
-		return 'row';
-	} else {
-		return 'column';
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
 	}
 };
 var elm$json$Json$Encode$list = F2(
