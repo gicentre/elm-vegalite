@@ -7186,9 +7186,11 @@ foDate =
     FoDate
 
 
-{-| Collapse one or more data fields into two properties: a _key_ (containing
-the original data field name) and a _value_ (containing the data value). Useful
-for mapping matrix or cross-tabulation data into a standardized format.
+{-| Perform a _gather_ operation to _tidy_ a table. Collapse multiple data fields
+into two new data fields: `key` containing the original data field names and `value`
+containing the corresponding data values. This performs the same function as the
+[gather operation in R](https://tidyr.tidyverse.org/reference/gather.html) and in the
+[Tidy Elm package](https://package.elm-lang.org/packages/gicentre/tidy/latest/Tidy#gather).
 -}
 fold : List String -> List LabelledSpec -> List LabelledSpec
 fold fields =
@@ -7196,7 +7198,7 @@ fold fields =
 
 
 {-| Similar to [fold](#fold) but allows the new output `key` and `value` fields
-to be given alternative names
+to be given alternative names.
 -}
 foldAs : List String -> String -> String -> List LabelledSpec -> List LabelledSpec
 foldAs fields keyName valName =
