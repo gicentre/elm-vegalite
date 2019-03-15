@@ -5798,8 +5798,9 @@ columns maybeCols =
             ( VLColumns, JE.null )
 
 
-{-| The mapping between a column and its field definitions in a set of
-faceted small multiples.
+{-| The mapping between a column and its field definitions in a set of faceted
+small multiples. This is used when specifying a more flexible [facet](#facet)
+rather than the compact, but simplified, [column](#column).
 -}
 columnBy : List FacetChannel -> FacetMapping
 columnBy =
@@ -10467,8 +10468,9 @@ row fFields =
     (::) ( "row", JE.object (List.map facetChannelProperty fFields) )
 
 
-{-| Tthe mapping between a row and its field definitions in a set of faceted
-small multiples.
+{-| The mapping between a row and its field definitions in a set of faceted
+small multiples. This is used when specifying a more flexible [facet](#facet)
+rather than the compact, but simplified, [row](#row).
 -}
 rowBy : List FacetChannel -> FacetMapping
 rowBy =
