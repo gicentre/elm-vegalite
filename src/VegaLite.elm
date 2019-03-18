@@ -4369,7 +4369,7 @@ aggregate ops groups =
     (::) ( "aggregate", toList [ toList ops, JE.list JE.string groups ] )
 
 
-{-| An Albers map projection.
+{-| An Albers equal-area conic map projection.
 -}
 albers : Projection
 albers =
@@ -4377,6 +4377,7 @@ albers =
 
 
 {-| An Albers USA map projection that combines continental USA with Alaska and Hawaii.
+Unlike other projection types, this remains unaffected by [prRotate](#prRotate).
 -}
 albersUsa : Projection
 albersUsa =
@@ -6807,8 +6808,9 @@ encoding channels =
     ( VLEncoding, JE.object channels )
 
 
-{-| An equirectangular (default) map projection that maps longitude to x and
-latitude to y.
+{-| An equirectangular map projection that maps longitude to x and latitude to y.
+While showing less area distortion towards the poles than the default [mercator](#mercator)
+projection, it is neither equal-area nor conformal.
 -}
 equirectangular : Projection
 equirectangular =
@@ -9253,7 +9255,10 @@ mDataCondition =
     MDataCondition
 
 
-{-| A Mercator map projection.
+{-| A Mercator map projection. This is the default projection of longitude,latitude
+values if no projection is set explicitly. It preserves shape (local angle) and lines
+of equal angular bearing remain parallel straight lines. But area is significantly
+enlarged towards the poles.
 -}
 mercator : Projection
 mercator =
