@@ -8781,7 +8781,7 @@ lookup key1 ( vlProp, spec ) key2 fields =
 
 
 {-| Similar to [lookup](#lookup) but returns the entire set of field values from
-the secondary data source when keys match. Accessed with via name provided in the
+the secondary data source when keys match. Accessed via the name provided in the
 fourth parameter.
 -}
 lookupAs : String -> Data -> String -> String -> List LabelledSpec -> List LabelledSpec
