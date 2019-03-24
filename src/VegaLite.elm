@@ -206,6 +206,7 @@ module VegaLite exposing
     , maFontWeight
     , maInterpolate
     , maOpacity
+    , maOrder
     , maOrient
     , maPoint
     , maLine
@@ -1426,6 +1427,7 @@ property documentation.
 @docs maFontWeight
 @docs maInterpolate
 @docs maOpacity
+@docs maOrder
 @docs maOrient
 @docs maPoint
 @docs maLine
@@ -3600,6 +3602,7 @@ type
     | MInterpolate MarkInterpolation
     | MLine LineMarker
     | MOpacity Float
+    | MOrder Bool
     | MOrient MarkOrientation
     | MPoint PointMarker
     | MRadius Float
@@ -9005,6 +9008,15 @@ maLine =
 maOpacity : Float -> MarkProperty
 maOpacity =
     MOpacity
+
+
+{-| Ordering of vertices in a line or area mark. If true (default), order is
+determined by measurement type or order channel. If false, the original data order
+is used.
+-}
+maOrder : Bool -> MarkProperty
+maOrder =
+    MOrder
 
 
 {-| Orientation of a non-stacked bar, tick, area or line mark.
@@ -14652,6 +14664,9 @@ markProperty mProp =
 
         MY2 y ->
             ( "y2", JE.float y )
+
+        MOrder b ->
+            ( "order", JE.bool b )
 
         MXOffset o ->
             ( "xOffset", JE.float o )

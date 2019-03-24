@@ -26,9 +26,24 @@ trail1 =
         ]
 
 
+trail2 : Spec
+trail2 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/driving.json"
+
+        enc =
+            encoding
+                << position X [ pName "miles", pMType Quantitative, pScale [ scZero False ] ]
+                << position Y [ pName "gas", pMType Quantitative, pScale [ scZero False ] ]
+                << size [ mName "year", mMType Temporal, mLegend [] ]
+    in
+    toVegaLite [ data [], trail [ maOrder False ], enc [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    trail1
+    trail2
 
 
 
@@ -39,6 +54,7 @@ mySpecs : Spec
 mySpecs =
     combineSpecs
         [ ( "trail1", trail1 )
+        , ( "trail2", trail2 )
         ]
 
 

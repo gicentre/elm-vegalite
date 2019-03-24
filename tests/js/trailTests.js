@@ -7364,24 +7364,24 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'fill',
 				elm$json$Json$Encode$string(col));
-		case 32:
+		case 33:
 			var col = mProp.a;
 			return _Utils_Tuple2(
 				'stroke',
 				elm$json$Json$Encode$string(col));
-		case 33:
+		case 34:
 			var sc = mProp.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeCapLabel(sc)));
-		case 36:
+		case 37:
 			var sj = mProp.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeJoinLabel(sj)));
-		case 37:
+		case 38:
 			var ml = mProp.a;
 			return _Utils_Tuple2(
 				'strokeMiterLimit',
@@ -7396,27 +7396,27 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'fillOpacity',
 				elm$json$Json$Encode$float(x));
-		case 38:
+		case 39:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 39:
+		case 40:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 34:
+		case 35:
 			var xs = mProp.a;
 			return _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 35:
+		case 36:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
 				elm$json$Json$Encode$float(x));
-		case 40:
+		case 41:
 			var styles = mProp.a;
 			return _Utils_Tuple2(
 				'style',
@@ -7427,24 +7427,24 @@ var author$project$VegaLite$markProperty = function (mProp) {
 				'interpolate',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$markInterpolationLabel(interp)));
-		case 41:
+		case 42:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'tension',
 				elm$json$Json$Encode$float(x));
-		case 25:
+		case 26:
 			var orient = mProp.a;
 			return _Utils_Tuple2(
 				'orient',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$markOrientationLabel(orient)));
-		case 29:
+		case 30:
 			var sym = mProp.a;
 			return _Utils_Tuple2(
 				'shape',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$symbolLabel(sym)));
-		case 31:
+		case 32:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'size',
@@ -7496,17 +7496,17 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'fontWeight',
 				author$project$VegaLite$fontWeightSpec(w));
-		case 27:
+		case 28:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'radius',
 				elm$json$Json$Encode$float(x));
-		case 42:
+		case 43:
 			var txt = mProp.a;
 			return _Utils_Tuple2(
 				'text',
 				elm$json$Json$Encode$string(txt));
-		case 43:
+		case 44:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'theta',
@@ -7526,7 +7526,7 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'discreteBandSize',
 				elm$json$Json$Encode$float(x));
-		case 30:
+		case 31:
 			var b = mProp.a;
 			return _Utils_Tuple2(
 				'shortTimeLabels',
@@ -7536,12 +7536,12 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'bandSize',
 				elm$json$Json$Encode$float(x));
-		case 44:
+		case 45:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'thickness',
 				elm$json$Json$Encode$float(x));
-		case 28:
+		case 29:
 			var props = mProp.a;
 			return _Utils_Tuple2(
 				'rule',
@@ -7553,13 +7553,13 @@ var author$project$VegaLite$markProperty = function (mProp) {
 				'borders',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$markProperty, props)));
-		case 45:
+		case 46:
 			var props = mProp.a;
 			return _Utils_Tuple2(
 				'ticks',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$markProperty, props)));
-		case 46:
+		case 47:
 			var ttContent = mProp.a;
 			return (ttContent === 2) ? _Utils_Tuple2('tooltip', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'tooltip',
@@ -7571,7 +7571,7 @@ var author$project$VegaLite$markProperty = function (mProp) {
 							elm$json$Json$Encode$string(
 								author$project$VegaLite$ttContentLabel(ttContent)))
 						])));
-		case 26:
+		case 27:
 			var pm = mProp.a;
 			return _Utils_Tuple2(
 				'point',
@@ -7581,37 +7581,42 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'line',
 				author$project$VegaLite$lineMarkerSpec(lm));
-		case 47:
+		case 48:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'x',
 				elm$json$Json$Encode$float(x));
-		case 48:
+		case 49:
 			var y = mProp.a;
 			return _Utils_Tuple2(
 				'y',
 				elm$json$Json$Encode$float(y));
-		case 49:
+		case 50:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'x2',
 				elm$json$Json$Encode$float(x));
-		case 50:
+		case 51:
 			var y = mProp.a;
 			return _Utils_Tuple2(
 				'y2',
 				elm$json$Json$Encode$float(y));
-		case 51:
+		case 25:
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'order',
+				elm$json$Json$Encode$bool(b));
+		case 52:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'xOffset',
 				elm$json$Json$Encode$float(o));
-		case 53:
+		case 54:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'x2Offset',
 				elm$json$Json$Encode$float(o));
-		case 52:
+		case 53:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'yOffset',
@@ -7720,15 +7725,86 @@ var author$project$TrailTests$trail1 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var author$project$VegaLite$MLegend = function (a) {
+	return {$: 10, a: a};
+};
+var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
+var author$project$VegaLite$MOrder = function (a) {
+	return {$: 25, a: a};
+};
+var author$project$VegaLite$maOrder = author$project$VegaLite$MOrder;
+var author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$SZero = function (a) {
+	return {$: 12, a: a};
+};
+var author$project$VegaLite$scZero = author$project$VegaLite$SZero;
+var author$project$TrailTests$trail2 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('miles'),
+							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									author$project$VegaLite$scZero(false)
+								]))
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('gas'),
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$scZero(false)
+							]))
+					]))),
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('year'),
+					author$project$VegaLite$mMType(3),
+					author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/driving.json');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$trail(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maOrder(false)
+					])),
+				enc(_List_Nil)
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
 var author$project$TrailTests$mySpecs = author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
-			_Utils_Tuple2('trail1', author$project$TrailTests$trail1)
+			_Utils_Tuple2('trail1', author$project$TrailTests$trail1),
+			_Utils_Tuple2('trail2', author$project$TrailTests$trail2)
 		]));
-var author$project$TrailTests$sourceExample = author$project$TrailTests$trail1;
+var author$project$TrailTests$sourceExample = author$project$TrailTests$trail2;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
