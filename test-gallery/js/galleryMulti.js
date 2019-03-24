@@ -7082,7 +7082,7 @@ var author$project$GalleryMulti$multi3 = function () {
 					]))),
 		A3(
 			author$project$VegaLite$select,
-			'',
+			'grid',
 			author$project$VegaLite$seInterval,
 			_List_fromArray(
 				[

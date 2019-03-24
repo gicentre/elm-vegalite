@@ -113,7 +113,7 @@ multi3 =
                     , seZoom "wheel![event.shiftKey]"
                     , seResolve seUnion
                     ]
-                << select ""
+                << select "grid"
                     seInterval
                     [ seBindScales
                     , seTranslate "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!"
