@@ -80,271 +80,6 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
 
 
 
-var _List_Nil = { $: 0 };
-var _List_Nil_UNUSED = { $: '[]' };
-
-function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
-function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
-
-
-var _List_cons = F2(_List_Cons);
-
-function _List_fromArray(arr)
-{
-	var out = _List_Nil;
-	for (var i = arr.length; i--; )
-	{
-		out = _List_Cons(arr[i], out);
-	}
-	return out;
-}
-
-function _List_toArray(xs)
-{
-	for (var out = []; xs.b; xs = xs.b) // WHILE_CONS
-	{
-		out.push(xs.a);
-	}
-	return out;
-}
-
-var _List_map2 = F3(function(f, xs, ys)
-{
-	for (var arr = []; xs.b && ys.b; xs = xs.b, ys = ys.b) // WHILE_CONSES
-	{
-		arr.push(A2(f, xs.a, ys.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_map3 = F4(function(f, xs, ys, zs)
-{
-	for (var arr = []; xs.b && ys.b && zs.b; xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
-	{
-		arr.push(A3(f, xs.a, ys.a, zs.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_map4 = F5(function(f, ws, xs, ys, zs)
-{
-	for (var arr = []; ws.b && xs.b && ys.b && zs.b; ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
-	{
-		arr.push(A4(f, ws.a, xs.a, ys.a, zs.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_map5 = F6(function(f, vs, ws, xs, ys, zs)
-{
-	for (var arr = []; vs.b && ws.b && xs.b && ys.b && zs.b; vs = vs.b, ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
-	{
-		arr.push(A5(f, vs.a, ws.a, xs.a, ys.a, zs.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_sortBy = F2(function(f, xs)
-{
-	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
-		return _Utils_cmp(f(a), f(b));
-	}));
-});
-
-var _List_sortWith = F2(function(f, xs)
-{
-	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
-		var ord = A2(f, a, b);
-		return ord === elm$core$Basics$EQ ? 0 : ord === elm$core$Basics$LT ? -1 : 1;
-	}));
-});
-
-
-
-// EQUALITY
-
-function _Utils_eq(x, y)
-{
-	for (
-		var pair, stack = [], isEqual = _Utils_eqHelp(x, y, 0, stack);
-		isEqual && (pair = stack.pop());
-		isEqual = _Utils_eqHelp(pair.a, pair.b, 0, stack)
-		)
-	{}
-
-	return isEqual;
-}
-
-function _Utils_eqHelp(x, y, depth, stack)
-{
-	if (depth > 100)
-	{
-		stack.push(_Utils_Tuple2(x,y));
-		return true;
-	}
-
-	if (x === y)
-	{
-		return true;
-	}
-
-	if (typeof x !== 'object' || x === null || y === null)
-	{
-		typeof x === 'function' && _Debug_crash(5);
-		return false;
-	}
-
-	/**_UNUSED/
-	if (x.$ === 'Set_elm_builtin')
-	{
-		x = elm$core$Set$toList(x);
-		y = elm$core$Set$toList(y);
-	}
-	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
-	{
-		x = elm$core$Dict$toList(x);
-		y = elm$core$Dict$toList(y);
-	}
-	//*/
-
-	/**/
-	if (x.$ < 0)
-	{
-		x = elm$core$Dict$toList(x);
-		y = elm$core$Dict$toList(y);
-	}
-	//*/
-
-	for (var key in x)
-	{
-		if (!_Utils_eqHelp(x[key], y[key], depth + 1, stack))
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
-var _Utils_equal = F2(_Utils_eq);
-var _Utils_notEqual = F2(function(a, b) { return !_Utils_eq(a,b); });
-
-
-
-// COMPARISONS
-
-// Code in Generate/JavaScript.hs, Basics.js, and List.js depends on
-// the particular integer values assigned to LT, EQ, and GT.
-
-function _Utils_cmp(x, y, ord)
-{
-	if (typeof x !== 'object')
-	{
-		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
-	}
-
-	/**_UNUSED/
-	if (x instanceof String)
-	{
-		var a = x.valueOf();
-		var b = y.valueOf();
-		return a === b ? 0 : a < b ? -1 : 1;
-	}
-	//*/
-
-	/**/
-	if (!x.$)
-	//*/
-	/**_UNUSED/
-	if (x.$[0] === '#')
-	//*/
-	{
-		return (ord = _Utils_cmp(x.a, y.a))
-			? ord
-			: (ord = _Utils_cmp(x.b, y.b))
-				? ord
-				: _Utils_cmp(x.c, y.c);
-	}
-
-	// traverse conses until end of a list or a mismatch
-	for (; x.b && y.b && !(ord = _Utils_cmp(x.a, y.a)); x = x.b, y = y.b) {} // WHILE_CONSES
-	return ord || (x.b ? /*GT*/ 1 : y.b ? /*LT*/ -1 : /*EQ*/ 0);
-}
-
-var _Utils_lt = F2(function(a, b) { return _Utils_cmp(a, b) < 0; });
-var _Utils_le = F2(function(a, b) { return _Utils_cmp(a, b) < 1; });
-var _Utils_gt = F2(function(a, b) { return _Utils_cmp(a, b) > 0; });
-var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
-
-var _Utils_compare = F2(function(x, y)
-{
-	var n = _Utils_cmp(x, y);
-	return n < 0 ? elm$core$Basics$LT : n ? elm$core$Basics$GT : elm$core$Basics$EQ;
-});
-
-
-// COMMON VALUES
-
-var _Utils_Tuple0 = 0;
-var _Utils_Tuple0_UNUSED = { $: '#0' };
-
-function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
-function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
-
-function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
-function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
-
-function _Utils_chr(c) { return c; }
-function _Utils_chr_UNUSED(c) { return new String(c); }
-
-
-// RECORDS
-
-function _Utils_update(oldRecord, updatedFields)
-{
-	var newRecord = {};
-
-	for (var key in oldRecord)
-	{
-		newRecord[key] = oldRecord[key];
-	}
-
-	for (var key in updatedFields)
-	{
-		newRecord[key] = updatedFields[key];
-	}
-
-	return newRecord;
-}
-
-
-// APPEND
-
-var _Utils_append = F2(_Utils_ap);
-
-function _Utils_ap(xs, ys)
-{
-	// append Strings
-	if (typeof xs === 'string')
-	{
-		return xs + ys;
-	}
-
-	// append Lists
-	if (!xs.b)
-	{
-		return ys;
-	}
-	var root = _List_Cons(xs.a, ys);
-	xs = xs.b
-	for (var curr = root; xs.b; xs = xs.b) // WHILE_CONS
-	{
-		curr = curr.b = _List_Cons(xs.a, ys);
-	}
-	return root;
-}
-
-
-
 var _JsArray_empty = [];
 
 function _JsArray_singleton(value)
@@ -493,6 +228,87 @@ var _JsArray_appendN = F3(function(n, dest, source)
     }
 
     return result;
+});
+
+
+
+var _List_Nil = { $: 0 };
+var _List_Nil_UNUSED = { $: '[]' };
+
+function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
+
+
+var _List_cons = F2(_List_Cons);
+
+function _List_fromArray(arr)
+{
+	var out = _List_Nil;
+	for (var i = arr.length; i--; )
+	{
+		out = _List_Cons(arr[i], out);
+	}
+	return out;
+}
+
+function _List_toArray(xs)
+{
+	for (var out = []; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		out.push(xs.a);
+	}
+	return out;
+}
+
+var _List_map2 = F3(function(f, xs, ys)
+{
+	for (var arr = []; xs.b && ys.b; xs = xs.b, ys = ys.b) // WHILE_CONSES
+	{
+		arr.push(A2(f, xs.a, ys.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map3 = F4(function(f, xs, ys, zs)
+{
+	for (var arr = []; xs.b && ys.b && zs.b; xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A3(f, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map4 = F5(function(f, ws, xs, ys, zs)
+{
+	for (var arr = []; ws.b && xs.b && ys.b && zs.b; ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A4(f, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map5 = F6(function(f, vs, ws, xs, ys, zs)
+{
+	for (var arr = []; vs.b && ws.b && xs.b && ys.b && zs.b; vs = vs.b, ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A5(f, vs.a, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_sortBy = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		return _Utils_cmp(f(a), f(b));
+	}));
+});
+
+var _List_sortWith = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		var ord = A2(f, a, b);
+		return ord === elm$core$Basics$EQ ? 0 : ord === elm$core$Basics$LT ? -1 : 1;
+	}));
 });
 
 
@@ -775,6 +591,190 @@ function _Debug_regionToString(region)
 		return 'on line ' + region.L.A;
 	}
 	return 'on lines ' + region.L.A + ' through ' + region.Q.A;
+}
+
+
+
+// EQUALITY
+
+function _Utils_eq(x, y)
+{
+	for (
+		var pair, stack = [], isEqual = _Utils_eqHelp(x, y, 0, stack);
+		isEqual && (pair = stack.pop());
+		isEqual = _Utils_eqHelp(pair.a, pair.b, 0, stack)
+		)
+	{}
+
+	return isEqual;
+}
+
+function _Utils_eqHelp(x, y, depth, stack)
+{
+	if (depth > 100)
+	{
+		stack.push(_Utils_Tuple2(x,y));
+		return true;
+	}
+
+	if (x === y)
+	{
+		return true;
+	}
+
+	if (typeof x !== 'object' || x === null || y === null)
+	{
+		typeof x === 'function' && _Debug_crash(5);
+		return false;
+	}
+
+	/**_UNUSED/
+	if (x.$ === 'Set_elm_builtin')
+	{
+		x = elm$core$Set$toList(x);
+		y = elm$core$Set$toList(y);
+	}
+	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
+	{
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
+	}
+	//*/
+
+	/**/
+	if (x.$ < 0)
+	{
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
+	}
+	//*/
+
+	for (var key in x)
+	{
+		if (!_Utils_eqHelp(x[key], y[key], depth + 1, stack))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+var _Utils_equal = F2(_Utils_eq);
+var _Utils_notEqual = F2(function(a, b) { return !_Utils_eq(a,b); });
+
+
+
+// COMPARISONS
+
+// Code in Generate/JavaScript.hs, Basics.js, and List.js depends on
+// the particular integer values assigned to LT, EQ, and GT.
+
+function _Utils_cmp(x, y, ord)
+{
+	if (typeof x !== 'object')
+	{
+		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
+	}
+
+	/**_UNUSED/
+	if (x instanceof String)
+	{
+		var a = x.valueOf();
+		var b = y.valueOf();
+		return a === b ? 0 : a < b ? -1 : 1;
+	}
+	//*/
+
+	/**/
+	if (!x.$)
+	//*/
+	/**_UNUSED/
+	if (x.$[0] === '#')
+	//*/
+	{
+		return (ord = _Utils_cmp(x.a, y.a))
+			? ord
+			: (ord = _Utils_cmp(x.b, y.b))
+				? ord
+				: _Utils_cmp(x.c, y.c);
+	}
+
+	// traverse conses until end of a list or a mismatch
+	for (; x.b && y.b && !(ord = _Utils_cmp(x.a, y.a)); x = x.b, y = y.b) {} // WHILE_CONSES
+	return ord || (x.b ? /*GT*/ 1 : y.b ? /*LT*/ -1 : /*EQ*/ 0);
+}
+
+var _Utils_lt = F2(function(a, b) { return _Utils_cmp(a, b) < 0; });
+var _Utils_le = F2(function(a, b) { return _Utils_cmp(a, b) < 1; });
+var _Utils_gt = F2(function(a, b) { return _Utils_cmp(a, b) > 0; });
+var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
+
+var _Utils_compare = F2(function(x, y)
+{
+	var n = _Utils_cmp(x, y);
+	return n < 0 ? elm$core$Basics$LT : n ? elm$core$Basics$GT : elm$core$Basics$EQ;
+});
+
+
+// COMMON VALUES
+
+var _Utils_Tuple0 = 0;
+var _Utils_Tuple0_UNUSED = { $: '#0' };
+
+function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
+
+function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+
+function _Utils_chr(c) { return c; }
+function _Utils_chr_UNUSED(c) { return new String(c); }
+
+
+// RECORDS
+
+function _Utils_update(oldRecord, updatedFields)
+{
+	var newRecord = {};
+
+	for (var key in oldRecord)
+	{
+		newRecord[key] = oldRecord[key];
+	}
+
+	for (var key in updatedFields)
+	{
+		newRecord[key] = updatedFields[key];
+	}
+
+	return newRecord;
+}
+
+
+// APPEND
+
+var _Utils_append = F2(_Utils_ap);
+
+function _Utils_ap(xs, ys)
+{
+	// append Strings
+	if (typeof xs === 'string')
+	{
+		return xs + ys;
+	}
+
+	// append Lists
+	if (!xs.b)
+	{
+		return ys;
+	}
+	var root = _List_Cons(xs.a, ys);
+	xs = xs.b
+	for (var curr = root; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		curr = curr.b = _List_Cons(xs.a, ys);
+	}
+	return root;
 }
 
 
@@ -1841,9 +1841,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
 	return _Platform_initialize(
 		flagDecoder,
 		args,
-		impl.at,
-		impl.aB,
-		impl.az,
+		impl.as,
+		impl.aA,
+		impl.ay,
 		function() { return function() {} }
 	);
 });
@@ -2295,40 +2295,2035 @@ function _Platform_mergeExportsDebug(moduleName, obj, exports)
 			: (obj[name] = exports[name]);
 	}
 }
+
+
+
+
+// HELPERS
+
+
+var _VirtualDom_divertHrefToApp;
+
+var _VirtualDom_doc = typeof document !== 'undefined' ? document : {};
+
+
+function _VirtualDom_appendChild(parent, child)
+{
+	parent.appendChild(child);
+}
+
+var _VirtualDom_init = F4(function(virtualNode, flagDecoder, debugMetadata, args)
+{
+	// NOTE: this function needs _Platform_export available to work
+
+	/**/
+	var node = args['node'];
+	//*/
+	/**_UNUSED/
+	var node = args && args['node'] ? args['node'] : _Debug_crash(0);
+	//*/
+
+	node.parentNode.replaceChild(
+		_VirtualDom_render(virtualNode, function() {}),
+		node
+	);
+
+	return {};
+});
+
+
+
+// TEXT
+
+
+function _VirtualDom_text(string)
+{
+	return {
+		$: 0,
+		a: string
+	};
+}
+
+
+
+// NODE
+
+
+var _VirtualDom_nodeNS = F2(function(namespace, tag)
+{
+	return F2(function(factList, kidList)
+	{
+		for (var kids = [], descendantsCount = 0; kidList.b; kidList = kidList.b) // WHILE_CONS
+		{
+			var kid = kidList.a;
+			descendantsCount += (kid.b || 0);
+			kids.push(kid);
+		}
+		descendantsCount += kids.length;
+
+		return {
+			$: 1,
+			c: tag,
+			d: _VirtualDom_organizeFacts(factList),
+			e: kids,
+			f: namespace,
+			b: descendantsCount
+		};
+	});
+});
+
+
+var _VirtualDom_node = _VirtualDom_nodeNS(undefined);
+
+
+
+// KEYED NODE
+
+
+var _VirtualDom_keyedNodeNS = F2(function(namespace, tag)
+{
+	return F2(function(factList, kidList)
+	{
+		for (var kids = [], descendantsCount = 0; kidList.b; kidList = kidList.b) // WHILE_CONS
+		{
+			var kid = kidList.a;
+			descendantsCount += (kid.b.b || 0);
+			kids.push(kid);
+		}
+		descendantsCount += kids.length;
+
+		return {
+			$: 2,
+			c: tag,
+			d: _VirtualDom_organizeFacts(factList),
+			e: kids,
+			f: namespace,
+			b: descendantsCount
+		};
+	});
+});
+
+
+var _VirtualDom_keyedNode = _VirtualDom_keyedNodeNS(undefined);
+
+
+
+// CUSTOM
+
+
+function _VirtualDom_custom(factList, model, render, diff)
+{
+	return {
+		$: 3,
+		d: _VirtualDom_organizeFacts(factList),
+		g: model,
+		h: render,
+		i: diff
+	};
+}
+
+
+
+// MAP
+
+
+var _VirtualDom_map = F2(function(tagger, node)
+{
+	return {
+		$: 4,
+		j: tagger,
+		k: node,
+		b: 1 + (node.b || 0)
+	};
+});
+
+
+
+// LAZY
+
+
+function _VirtualDom_thunk(refs, thunk)
+{
+	return {
+		$: 5,
+		l: refs,
+		m: thunk,
+		k: undefined
+	};
+}
+
+var _VirtualDom_lazy = F2(function(func, a)
+{
+	return _VirtualDom_thunk([func, a], function() {
+		return func(a);
+	});
+});
+
+var _VirtualDom_lazy2 = F3(function(func, a, b)
+{
+	return _VirtualDom_thunk([func, a, b], function() {
+		return A2(func, a, b);
+	});
+});
+
+var _VirtualDom_lazy3 = F4(function(func, a, b, c)
+{
+	return _VirtualDom_thunk([func, a, b, c], function() {
+		return A3(func, a, b, c);
+	});
+});
+
+var _VirtualDom_lazy4 = F5(function(func, a, b, c, d)
+{
+	return _VirtualDom_thunk([func, a, b, c, d], function() {
+		return A4(func, a, b, c, d);
+	});
+});
+
+var _VirtualDom_lazy5 = F6(function(func, a, b, c, d, e)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e], function() {
+		return A5(func, a, b, c, d, e);
+	});
+});
+
+var _VirtualDom_lazy6 = F7(function(func, a, b, c, d, e, f)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f], function() {
+		return A6(func, a, b, c, d, e, f);
+	});
+});
+
+var _VirtualDom_lazy7 = F8(function(func, a, b, c, d, e, f, g)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f, g], function() {
+		return A7(func, a, b, c, d, e, f, g);
+	});
+});
+
+var _VirtualDom_lazy8 = F9(function(func, a, b, c, d, e, f, g, h)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f, g, h], function() {
+		return A8(func, a, b, c, d, e, f, g, h);
+	});
+});
+
+
+
+// FACTS
+
+
+var _VirtualDom_on = F2(function(key, handler)
+{
+	return {
+		$: 'a0',
+		n: key,
+		o: handler
+	};
+});
+var _VirtualDom_style = F2(function(key, value)
+{
+	return {
+		$: 'a1',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_property = F2(function(key, value)
+{
+	return {
+		$: 'a2',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_attribute = F2(function(key, value)
+{
+	return {
+		$: 'a3',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_attributeNS = F3(function(namespace, key, value)
+{
+	return {
+		$: 'a4',
+		n: key,
+		o: { f: namespace, o: value }
+	};
+});
+
+
+
+// XSS ATTACK VECTOR CHECKS
+
+
+function _VirtualDom_noScript(tag)
+{
+	return tag == 'script' ? 'p' : tag;
+}
+
+function _VirtualDom_noOnOrFormAction(key)
+{
+	return /^(on|formAction$)/i.test(key) ? 'data-' + key : key;
+}
+
+function _VirtualDom_noInnerHtmlOrFormAction(key)
+{
+	return key == 'innerHTML' || key == 'formAction' ? 'data-' + key : key;
+}
+
+function _VirtualDom_noJavaScriptUri(value)
+{
+	return /^javascript:/i.test(value.replace(/\s/g,'')) ? '' : value;
+}
+
+function _VirtualDom_noJavaScriptUri_UNUSED(value)
+{
+	return /^javascript:/i.test(value.replace(/\s/g,''))
+		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
+		: value;
+}
+
+function _VirtualDom_noJavaScriptOrHtmlUri(value)
+{
+	return /^\s*(javascript:|data:text\/html)/i.test(value) ? '' : value;
+}
+
+function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
+{
+	return /^\s*(javascript:|data:text\/html)/i.test(value)
+		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
+		: value;
+}
+
+
+
+// MAP FACTS
+
+
+var _VirtualDom_mapAttribute = F2(function(func, attr)
+{
+	return (attr.$ === 'a0')
+		? A2(_VirtualDom_on, attr.n, _VirtualDom_mapHandler(func, attr.o))
+		: attr;
+});
+
+function _VirtualDom_mapHandler(func, handler)
+{
+	var tag = elm$virtual_dom$VirtualDom$toHandlerInt(handler);
+
+	// 0 = Normal
+	// 1 = MayStopPropagation
+	// 2 = MayPreventDefault
+	// 3 = Custom
+
+	return {
+		$: handler.$,
+		a:
+			!tag
+				? A2(elm$json$Json$Decode$map, func, handler.a)
+				:
+			A3(elm$json$Json$Decode$map2,
+				tag < 3
+					? _VirtualDom_mapEventTuple
+					: _VirtualDom_mapEventRecord,
+				elm$json$Json$Decode$succeed(func),
+				handler.a
+			)
+	};
+}
+
+var _VirtualDom_mapEventTuple = F2(function(func, tuple)
+{
+	return _Utils_Tuple2(func(tuple.a), tuple.b);
+});
+
+var _VirtualDom_mapEventRecord = F2(function(func, record)
+{
+	return {
+		k: func(record.k),
+		M: record.M,
+		K: record.K
+	}
+});
+
+
+
+// ORGANIZE FACTS
+
+
+function _VirtualDom_organizeFacts(factList)
+{
+	for (var facts = {}; factList.b; factList = factList.b) // WHILE_CONS
+	{
+		var entry = factList.a;
+
+		var tag = entry.$;
+		var key = entry.n;
+		var value = entry.o;
+
+		if (tag === 'a2')
+		{
+			(key === 'className')
+				? _VirtualDom_addClass(facts, key, _Json_unwrap(value))
+				: facts[key] = _Json_unwrap(value);
+
+			continue;
+		}
+
+		var subFacts = facts[tag] || (facts[tag] = {});
+		(tag === 'a3' && key === 'class')
+			? _VirtualDom_addClass(subFacts, key, value)
+			: subFacts[key] = value;
+	}
+
+	return facts;
+}
+
+function _VirtualDom_addClass(object, key, newClass)
+{
+	var classes = object[key];
+	object[key] = classes ? classes + ' ' + newClass : newClass;
+}
+
+
+
+// RENDER
+
+
+function _VirtualDom_render(vNode, eventNode)
+{
+	var tag = vNode.$;
+
+	if (tag === 5)
+	{
+		return _VirtualDom_render(vNode.k || (vNode.k = vNode.m()), eventNode);
+	}
+
+	if (tag === 0)
+	{
+		return _VirtualDom_doc.createTextNode(vNode.a);
+	}
+
+	if (tag === 4)
+	{
+		var subNode = vNode.k;
+		var tagger = vNode.j;
+
+		while (subNode.$ === 4)
+		{
+			typeof tagger !== 'object'
+				? tagger = [tagger, subNode.j]
+				: tagger.push(subNode.j);
+
+			subNode = subNode.k;
+		}
+
+		var subEventRoot = { j: tagger, p: eventNode };
+		var domNode = _VirtualDom_render(subNode, subEventRoot);
+		domNode.elm_event_node_ref = subEventRoot;
+		return domNode;
+	}
+
+	if (tag === 3)
+	{
+		var domNode = vNode.h(vNode.g);
+		_VirtualDom_applyFacts(domNode, eventNode, vNode.d);
+		return domNode;
+	}
+
+	// at this point `tag` must be 1 or 2
+
+	var domNode = vNode.f
+		? _VirtualDom_doc.createElementNS(vNode.f, vNode.c)
+		: _VirtualDom_doc.createElement(vNode.c);
+
+	if (_VirtualDom_divertHrefToApp && vNode.c == 'a')
+	{
+		domNode.addEventListener('click', _VirtualDom_divertHrefToApp(domNode));
+	}
+
+	_VirtualDom_applyFacts(domNode, eventNode, vNode.d);
+
+	for (var kids = vNode.e, i = 0; i < kids.length; i++)
+	{
+		_VirtualDom_appendChild(domNode, _VirtualDom_render(tag === 1 ? kids[i] : kids[i].b, eventNode));
+	}
+
+	return domNode;
+}
+
+
+
+// APPLY FACTS
+
+
+function _VirtualDom_applyFacts(domNode, eventNode, facts)
+{
+	for (var key in facts)
+	{
+		var value = facts[key];
+
+		key === 'a1'
+			? _VirtualDom_applyStyles(domNode, value)
+			:
+		key === 'a0'
+			? _VirtualDom_applyEvents(domNode, eventNode, value)
+			:
+		key === 'a3'
+			? _VirtualDom_applyAttrs(domNode, value)
+			:
+		key === 'a4'
+			? _VirtualDom_applyAttrsNS(domNode, value)
+			:
+		(key !== 'value' || key !== 'checked' || domNode[key] !== value) && (domNode[key] = value);
+	}
+}
+
+
+
+// APPLY STYLES
+
+
+function _VirtualDom_applyStyles(domNode, styles)
+{
+	var domNodeStyle = domNode.style;
+
+	for (var key in styles)
+	{
+		domNodeStyle[key] = styles[key];
+	}
+}
+
+
+
+// APPLY ATTRS
+
+
+function _VirtualDom_applyAttrs(domNode, attrs)
+{
+	for (var key in attrs)
+	{
+		var value = attrs[key];
+		value
+			? domNode.setAttribute(key, value)
+			: domNode.removeAttribute(key);
+	}
+}
+
+
+
+// APPLY NAMESPACED ATTRS
+
+
+function _VirtualDom_applyAttrsNS(domNode, nsAttrs)
+{
+	for (var key in nsAttrs)
+	{
+		var pair = nsAttrs[key];
+		var namespace = pair.f;
+		var value = pair.o;
+
+		value
+			? domNode.setAttributeNS(namespace, key, value)
+			: domNode.removeAttributeNS(namespace, key);
+	}
+}
+
+
+
+// APPLY EVENTS
+
+
+function _VirtualDom_applyEvents(domNode, eventNode, events)
+{
+	var allCallbacks = domNode.elmFs || (domNode.elmFs = {});
+
+	for (var key in events)
+	{
+		var newHandler = events[key];
+		var oldCallback = allCallbacks[key];
+
+		if (!newHandler)
+		{
+			domNode.removeEventListener(key, oldCallback);
+			allCallbacks[key] = undefined;
+			continue;
+		}
+
+		if (oldCallback)
+		{
+			var oldHandler = oldCallback.q;
+			if (oldHandler.$ === newHandler.$)
+			{
+				oldCallback.q = newHandler;
+				continue;
+			}
+			domNode.removeEventListener(key, oldCallback);
+		}
+
+		oldCallback = _VirtualDom_makeCallback(eventNode, newHandler);
+		domNode.addEventListener(key, oldCallback,
+			_VirtualDom_passiveSupported
+			&& { passive: elm$virtual_dom$VirtualDom$toHandlerInt(newHandler) < 2 }
+		);
+		allCallbacks[key] = oldCallback;
+	}
+}
+
+
+
+// PASSIVE EVENTS
+
+
+var _VirtualDom_passiveSupported;
+
+try
+{
+	window.addEventListener('t', null, Object.defineProperty({}, 'passive', {
+		get: function() { _VirtualDom_passiveSupported = true; }
+	}));
+}
+catch(e) {}
+
+
+
+// EVENT HANDLERS
+
+
+function _VirtualDom_makeCallback(eventNode, initialHandler)
+{
+	function callback(event)
+	{
+		var handler = callback.q;
+		var result = _Json_runHelp(handler.a, event);
+
+		if (!elm$core$Result$isOk(result))
+		{
+			return;
+		}
+
+		var tag = elm$virtual_dom$VirtualDom$toHandlerInt(handler);
+
+		// 0 = Normal
+		// 1 = MayStopPropagation
+		// 2 = MayPreventDefault
+		// 3 = Custom
+
+		var value = result.a;
+		var message = !tag ? value : tag < 3 ? value.a : value.k;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.M;
+		var currentEventNode = (
+			stopPropagation && event.stopPropagation(),
+			(tag == 2 ? value.b : tag == 3 && value.K) && event.preventDefault(),
+			eventNode
+		);
+		var tagger;
+		var i;
+		while (tagger = currentEventNode.j)
+		{
+			if (typeof tagger == 'function')
+			{
+				message = tagger(message);
+			}
+			else
+			{
+				for (var i = tagger.length; i--; )
+				{
+					message = tagger[i](message);
+				}
+			}
+			currentEventNode = currentEventNode.p;
+		}
+		currentEventNode(message, stopPropagation); // stopPropagation implies isSync
+	}
+
+	callback.q = initialHandler;
+
+	return callback;
+}
+
+function _VirtualDom_equalEvents(x, y)
+{
+	return x.$ == y.$ && _Json_equality(x.a, y.a);
+}
+
+
+
+// DIFF
+
+
+// TODO: Should we do patches like in iOS?
+//
+// type Patch
+//   = At Int Patch
+//   | Batch (List Patch)
+//   | Change ...
+//
+// How could it not be better?
+//
+function _VirtualDom_diff(x, y)
+{
+	var patches = [];
+	_VirtualDom_diffHelp(x, y, patches, 0);
+	return patches;
+}
+
+
+function _VirtualDom_pushPatch(patches, type, index, data)
+{
+	var patch = {
+		$: type,
+		r: index,
+		s: data,
+		t: undefined,
+		u: undefined
+	};
+	patches.push(patch);
+	return patch;
+}
+
+
+function _VirtualDom_diffHelp(x, y, patches, index)
+{
+	if (x === y)
+	{
+		return;
+	}
+
+	var xType = x.$;
+	var yType = y.$;
+
+	// Bail if you run into different types of nodes. Implies that the
+	// structure has changed significantly and it's not worth a diff.
+	if (xType !== yType)
+	{
+		if (xType === 1 && yType === 2)
+		{
+			y = _VirtualDom_dekey(y);
+			yType = 1;
+		}
+		else
+		{
+			_VirtualDom_pushPatch(patches, 0, index, y);
+			return;
+		}
+	}
+
+	// Now we know that both nodes are the same $.
+	switch (yType)
+	{
+		case 5:
+			var xRefs = x.l;
+			var yRefs = y.l;
+			var i = xRefs.length;
+			var same = i === yRefs.length;
+			while (same && i--)
+			{
+				same = xRefs[i] === yRefs[i];
+			}
+			if (same)
+			{
+				y.k = x.k;
+				return;
+			}
+			y.k = y.m();
+			var subPatches = [];
+			_VirtualDom_diffHelp(x.k, y.k, subPatches, 0);
+			subPatches.length > 0 && _VirtualDom_pushPatch(patches, 1, index, subPatches);
+			return;
+
+		case 4:
+			// gather nested taggers
+			var xTaggers = x.j;
+			var yTaggers = y.j;
+			var nesting = false;
+
+			var xSubNode = x.k;
+			while (xSubNode.$ === 4)
+			{
+				nesting = true;
+
+				typeof xTaggers !== 'object'
+					? xTaggers = [xTaggers, xSubNode.j]
+					: xTaggers.push(xSubNode.j);
+
+				xSubNode = xSubNode.k;
+			}
+
+			var ySubNode = y.k;
+			while (ySubNode.$ === 4)
+			{
+				nesting = true;
+
+				typeof yTaggers !== 'object'
+					? yTaggers = [yTaggers, ySubNode.j]
+					: yTaggers.push(ySubNode.j);
+
+				ySubNode = ySubNode.k;
+			}
+
+			// Just bail if different numbers of taggers. This implies the
+			// structure of the virtual DOM has changed.
+			if (nesting && xTaggers.length !== yTaggers.length)
+			{
+				_VirtualDom_pushPatch(patches, 0, index, y);
+				return;
+			}
+
+			// check if taggers are "the same"
+			if (nesting ? !_VirtualDom_pairwiseRefEqual(xTaggers, yTaggers) : xTaggers !== yTaggers)
+			{
+				_VirtualDom_pushPatch(patches, 2, index, yTaggers);
+			}
+
+			// diff everything below the taggers
+			_VirtualDom_diffHelp(xSubNode, ySubNode, patches, index + 1);
+			return;
+
+		case 0:
+			if (x.a !== y.a)
+			{
+				_VirtualDom_pushPatch(patches, 3, index, y.a);
+			}
+			return;
+
+		case 1:
+			_VirtualDom_diffNodes(x, y, patches, index, _VirtualDom_diffKids);
+			return;
+
+		case 2:
+			_VirtualDom_diffNodes(x, y, patches, index, _VirtualDom_diffKeyedKids);
+			return;
+
+		case 3:
+			if (x.h !== y.h)
+			{
+				_VirtualDom_pushPatch(patches, 0, index, y);
+				return;
+			}
+
+			var factsDiff = _VirtualDom_diffFacts(x.d, y.d);
+			factsDiff && _VirtualDom_pushPatch(patches, 4, index, factsDiff);
+
+			var patch = y.i(x.g, y.g);
+			patch && _VirtualDom_pushPatch(patches, 5, index, patch);
+
+			return;
+	}
+}
+
+// assumes the incoming arrays are the same length
+function _VirtualDom_pairwiseRefEqual(as, bs)
+{
+	for (var i = 0; i < as.length; i++)
+	{
+		if (as[i] !== bs[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function _VirtualDom_diffNodes(x, y, patches, index, diffKids)
+{
+	// Bail if obvious indicators have changed. Implies more serious
+	// structural changes such that it's not worth it to diff.
+	if (x.c !== y.c || x.f !== y.f)
+	{
+		_VirtualDom_pushPatch(patches, 0, index, y);
+		return;
+	}
+
+	var factsDiff = _VirtualDom_diffFacts(x.d, y.d);
+	factsDiff && _VirtualDom_pushPatch(patches, 4, index, factsDiff);
+
+	diffKids(x, y, patches, index);
+}
+
+
+
+// DIFF FACTS
+
+
+// TODO Instead of creating a new diff object, it's possible to just test if
+// there *is* a diff. During the actual patch, do the diff again and make the
+// modifications directly. This way, there's no new allocations. Worth it?
+function _VirtualDom_diffFacts(x, y, category)
+{
+	var diff;
+
+	// look for changes and removals
+	for (var xKey in x)
+	{
+		if (xKey === 'a1' || xKey === 'a0' || xKey === 'a3' || xKey === 'a4')
+		{
+			var subDiff = _VirtualDom_diffFacts(x[xKey], y[xKey] || {}, xKey);
+			if (subDiff)
+			{
+				diff = diff || {};
+				diff[xKey] = subDiff;
+			}
+			continue;
+		}
+
+		// remove if not in the new facts
+		if (!(xKey in y))
+		{
+			diff = diff || {};
+			diff[xKey] =
+				!category
+					? (typeof x[xKey] === 'string' ? '' : null)
+					:
+				(category === 'a1')
+					? ''
+					:
+				(category === 'a0' || category === 'a3')
+					? undefined
+					:
+				{ f: x[xKey].f, o: undefined };
+
+			continue;
+		}
+
+		var xValue = x[xKey];
+		var yValue = y[xKey];
+
+		// reference equal, so don't worry about it
+		if (xValue === yValue && xKey !== 'value' && xKey !== 'checked'
+			|| category === 'a0' && _VirtualDom_equalEvents(xValue, yValue))
+		{
+			continue;
+		}
+
+		diff = diff || {};
+		diff[xKey] = yValue;
+	}
+
+	// add new stuff
+	for (var yKey in y)
+	{
+		if (!(yKey in x))
+		{
+			diff = diff || {};
+			diff[yKey] = y[yKey];
+		}
+	}
+
+	return diff;
+}
+
+
+
+// DIFF KIDS
+
+
+function _VirtualDom_diffKids(xParent, yParent, patches, index)
+{
+	var xKids = xParent.e;
+	var yKids = yParent.e;
+
+	var xLen = xKids.length;
+	var yLen = yKids.length;
+
+	// FIGURE OUT IF THERE ARE INSERTS OR REMOVALS
+
+	if (xLen > yLen)
+	{
+		_VirtualDom_pushPatch(patches, 6, index, {
+			v: yLen,
+			i: xLen - yLen
+		});
+	}
+	else if (xLen < yLen)
+	{
+		_VirtualDom_pushPatch(patches, 7, index, {
+			v: xLen,
+			e: yKids
+		});
+	}
+
+	// PAIRWISE DIFF EVERYTHING ELSE
+
+	for (var minLen = xLen < yLen ? xLen : yLen, i = 0; i < minLen; i++)
+	{
+		var xKid = xKids[i];
+		_VirtualDom_diffHelp(xKid, yKids[i], patches, ++index);
+		index += xKid.b || 0;
+	}
+}
+
+
+
+// KEYED DIFF
+
+
+function _VirtualDom_diffKeyedKids(xParent, yParent, patches, rootIndex)
+{
+	var localPatches = [];
+
+	var changes = {}; // Dict String Entry
+	var inserts = []; // Array { index : Int, entry : Entry }
+	// type Entry = { tag : String, vnode : VNode, index : Int, data : _ }
+
+	var xKids = xParent.e;
+	var yKids = yParent.e;
+	var xLen = xKids.length;
+	var yLen = yKids.length;
+	var xIndex = 0;
+	var yIndex = 0;
+
+	var index = rootIndex;
+
+	while (xIndex < xLen && yIndex < yLen)
+	{
+		var x = xKids[xIndex];
+		var y = yKids[yIndex];
+
+		var xKey = x.a;
+		var yKey = y.a;
+		var xNode = x.b;
+		var yNode = y.b;
+
+		// check if keys match
+
+		if (xKey === yKey)
+		{
+			index++;
+			_VirtualDom_diffHelp(xNode, yNode, localPatches, index);
+			index += xNode.b || 0;
+
+			xIndex++;
+			yIndex++;
+			continue;
+		}
+
+		// look ahead 1 to detect insertions and removals.
+
+		var xNext = xKids[xIndex + 1];
+		var yNext = yKids[yIndex + 1];
+
+		if (xNext)
+		{
+			var xNextKey = xNext.a;
+			var xNextNode = xNext.b;
+			var oldMatch = yKey === xNextKey;
+		}
+
+		if (yNext)
+		{
+			var yNextKey = yNext.a;
+			var yNextNode = yNext.b;
+			var newMatch = xKey === yNextKey;
+		}
+
+
+		// swap x and y
+		if (newMatch && oldMatch)
+		{
+			index++;
+			_VirtualDom_diffHelp(xNode, yNextNode, localPatches, index);
+			_VirtualDom_insertNode(changes, localPatches, xKey, yNode, yIndex, inserts);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNextNode, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 2;
+			continue;
+		}
+
+		// insert y
+		if (newMatch)
+		{
+			index++;
+			_VirtualDom_insertNode(changes, localPatches, yKey, yNode, yIndex, inserts);
+			_VirtualDom_diffHelp(xNode, yNextNode, localPatches, index);
+			index += xNode.b || 0;
+
+			xIndex += 1;
+			yIndex += 2;
+			continue;
+		}
+
+		// remove x
+		if (oldMatch)
+		{
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNode, index);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_diffHelp(xNextNode, yNode, localPatches, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 1;
+			continue;
+		}
+
+		// remove x, insert y
+		if (xNext && xNextKey === yNextKey)
+		{
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNode, index);
+			_VirtualDom_insertNode(changes, localPatches, yKey, yNode, yIndex, inserts);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_diffHelp(xNextNode, yNextNode, localPatches, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 2;
+			continue;
+		}
+
+		break;
+	}
+
+	// eat up any remaining nodes with removeNode and insertNode
+
+	while (xIndex < xLen)
+	{
+		index++;
+		var x = xKids[xIndex];
+		var xNode = x.b;
+		_VirtualDom_removeNode(changes, localPatches, x.a, xNode, index);
+		index += xNode.b || 0;
+		xIndex++;
+	}
+
+	while (yIndex < yLen)
+	{
+		var endInserts = endInserts || [];
+		var y = yKids[yIndex];
+		_VirtualDom_insertNode(changes, localPatches, y.a, y.b, undefined, endInserts);
+		yIndex++;
+	}
+
+	if (localPatches.length > 0 || inserts.length > 0 || endInserts)
+	{
+		_VirtualDom_pushPatch(patches, 8, rootIndex, {
+			w: localPatches,
+			x: inserts,
+			y: endInserts
+		});
+	}
+}
+
+
+
+// CHANGES FROM KEYED DIFF
+
+
+var _VirtualDom_POSTFIX = '_elmW6BL';
+
+
+function _VirtualDom_insertNode(changes, localPatches, key, vnode, yIndex, inserts)
+{
+	var entry = changes[key];
+
+	// never seen this key before
+	if (!entry)
+	{
+		entry = {
+			c: 0,
+			z: vnode,
+			r: yIndex,
+			s: undefined
+		};
+
+		inserts.push({ r: yIndex, A: entry });
+		changes[key] = entry;
+
+		return;
+	}
+
+	// this key was removed earlier, a match!
+	if (entry.c === 1)
+	{
+		inserts.push({ r: yIndex, A: entry });
+
+		entry.c = 2;
+		var subPatches = [];
+		_VirtualDom_diffHelp(entry.z, vnode, subPatches, entry.r);
+		entry.r = yIndex;
+		entry.s.s = {
+			w: subPatches,
+			A: entry
+		};
+
+		return;
+	}
+
+	// this key has already been inserted or moved, a duplicate!
+	_VirtualDom_insertNode(changes, localPatches, key + _VirtualDom_POSTFIX, vnode, yIndex, inserts);
+}
+
+
+function _VirtualDom_removeNode(changes, localPatches, key, vnode, index)
+{
+	var entry = changes[key];
+
+	// never seen this key before
+	if (!entry)
+	{
+		var patch = _VirtualDom_pushPatch(localPatches, 9, index, undefined);
+
+		changes[key] = {
+			c: 1,
+			z: vnode,
+			r: index,
+			s: patch
+		};
+
+		return;
+	}
+
+	// this key was inserted earlier, a match!
+	if (entry.c === 0)
+	{
+		entry.c = 2;
+		var subPatches = [];
+		_VirtualDom_diffHelp(vnode, entry.z, subPatches, index);
+
+		_VirtualDom_pushPatch(localPatches, 9, index, {
+			w: subPatches,
+			A: entry
+		});
+
+		return;
+	}
+
+	// this key has already been removed or moved, a duplicate!
+	_VirtualDom_removeNode(changes, localPatches, key + _VirtualDom_POSTFIX, vnode, index);
+}
+
+
+
+// ADD DOM NODES
+//
+// Each DOM node has an "index" assigned in order of traversal. It is important
+// to minimize our crawl over the actual DOM, so these indexes (along with the
+// descendantsCount of virtual nodes) let us skip touching entire subtrees of
+// the DOM if we know there are no patches there.
+
+
+function _VirtualDom_addDomNodes(domNode, vNode, patches, eventNode)
+{
+	_VirtualDom_addDomNodesHelp(domNode, vNode, patches, 0, 0, vNode.b, eventNode);
+}
+
+
+// assumes `patches` is non-empty and indexes increase monotonically.
+function _VirtualDom_addDomNodesHelp(domNode, vNode, patches, i, low, high, eventNode)
+{
+	var patch = patches[i];
+	var index = patch.r;
+
+	while (index === low)
+	{
+		var patchType = patch.$;
+
+		if (patchType === 1)
+		{
+			_VirtualDom_addDomNodes(domNode, vNode.k, patch.s, eventNode);
+		}
+		else if (patchType === 8)
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+
+			var subPatches = patch.s.w;
+			if (subPatches.length > 0)
+			{
+				_VirtualDom_addDomNodesHelp(domNode, vNode, subPatches, 0, low, high, eventNode);
+			}
+		}
+		else if (patchType === 9)
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+
+			var data = patch.s;
+			if (data)
+			{
+				data.A.s = domNode;
+				var subPatches = data.w;
+				if (subPatches.length > 0)
+				{
+					_VirtualDom_addDomNodesHelp(domNode, vNode, subPatches, 0, low, high, eventNode);
+				}
+			}
+		}
+		else
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+		}
+
+		i++;
+
+		if (!(patch = patches[i]) || (index = patch.r) > high)
+		{
+			return i;
+		}
+	}
+
+	var tag = vNode.$;
+
+	if (tag === 4)
+	{
+		var subNode = vNode.k;
+
+		while (subNode.$ === 4)
+		{
+			subNode = subNode.k;
+		}
+
+		return _VirtualDom_addDomNodesHelp(domNode, subNode, patches, i, low + 1, high, domNode.elm_event_node_ref);
+	}
+
+	// tag must be 1 or 2 at this point
+
+	var vKids = vNode.e;
+	var childNodes = domNode.childNodes;
+	for (var j = 0; j < vKids.length; j++)
+	{
+		low++;
+		var vKid = tag === 1 ? vKids[j] : vKids[j].b;
+		var nextLow = low + (vKid.b || 0);
+		if (low <= index && index <= nextLow)
+		{
+			i = _VirtualDom_addDomNodesHelp(childNodes[j], vKid, patches, i, low, nextLow, eventNode);
+			if (!(patch = patches[i]) || (index = patch.r) > high)
+			{
+				return i;
+			}
+		}
+		low = nextLow;
+	}
+	return i;
+}
+
+
+
+// APPLY PATCHES
+
+
+function _VirtualDom_applyPatches(rootDomNode, oldVirtualNode, patches, eventNode)
+{
+	if (patches.length === 0)
+	{
+		return rootDomNode;
+	}
+
+	_VirtualDom_addDomNodes(rootDomNode, oldVirtualNode, patches, eventNode);
+	return _VirtualDom_applyPatchesHelp(rootDomNode, patches);
+}
+
+function _VirtualDom_applyPatchesHelp(rootDomNode, patches)
+{
+	for (var i = 0; i < patches.length; i++)
+	{
+		var patch = patches[i];
+		var localDomNode = patch.t
+		var newNode = _VirtualDom_applyPatch(localDomNode, patch);
+		if (localDomNode === rootDomNode)
+		{
+			rootDomNode = newNode;
+		}
+	}
+	return rootDomNode;
+}
+
+function _VirtualDom_applyPatch(domNode, patch)
+{
+	switch (patch.$)
+	{
+		case 0:
+			return _VirtualDom_applyPatchRedraw(domNode, patch.s, patch.u);
+
+		case 4:
+			_VirtualDom_applyFacts(domNode, patch.u, patch.s);
+			return domNode;
+
+		case 3:
+			domNode.replaceData(0, domNode.length, patch.s);
+			return domNode;
+
+		case 1:
+			return _VirtualDom_applyPatchesHelp(domNode, patch.s);
+
+		case 2:
+			if (domNode.elm_event_node_ref)
+			{
+				domNode.elm_event_node_ref.j = patch.s;
+			}
+			else
+			{
+				domNode.elm_event_node_ref = { j: patch.s, p: patch.u };
+			}
+			return domNode;
+
+		case 6:
+			var data = patch.s;
+			for (var i = 0; i < data.i; i++)
+			{
+				domNode.removeChild(domNode.childNodes[data.v]);
+			}
+			return domNode;
+
+		case 7:
+			var data = patch.s;
+			var kids = data.e;
+			var i = data.v;
+			var theEnd = domNode.childNodes[i];
+			for (; i < kids.length; i++)
+			{
+				domNode.insertBefore(_VirtualDom_render(kids[i], patch.u), theEnd);
+			}
+			return domNode;
+
+		case 9:
+			var data = patch.s;
+			if (!data)
+			{
+				domNode.parentNode.removeChild(domNode);
+				return domNode;
+			}
+			var entry = data.A;
+			if (typeof entry.r !== 'undefined')
+			{
+				domNode.parentNode.removeChild(domNode);
+			}
+			entry.s = _VirtualDom_applyPatchesHelp(domNode, data.w);
+			return domNode;
+
+		case 8:
+			return _VirtualDom_applyPatchReorder(domNode, patch);
+
+		case 5:
+			return patch.s(domNode);
+
+		default:
+			_Debug_crash(10); // 'Ran into an unknown patch!'
+	}
+}
+
+
+function _VirtualDom_applyPatchRedraw(domNode, vNode, eventNode)
+{
+	var parentNode = domNode.parentNode;
+	var newNode = _VirtualDom_render(vNode, eventNode);
+
+	if (!newNode.elm_event_node_ref)
+	{
+		newNode.elm_event_node_ref = domNode.elm_event_node_ref;
+	}
+
+	if (parentNode && newNode !== domNode)
+	{
+		parentNode.replaceChild(newNode, domNode);
+	}
+	return newNode;
+}
+
+
+function _VirtualDom_applyPatchReorder(domNode, patch)
+{
+	var data = patch.s;
+
+	// remove end inserts
+	var frag = _VirtualDom_applyPatchReorderEndInsertsHelp(data.y, patch);
+
+	// removals
+	domNode = _VirtualDom_applyPatchesHelp(domNode, data.w);
+
+	// inserts
+	var inserts = data.x;
+	for (var i = 0; i < inserts.length; i++)
+	{
+		var insert = inserts[i];
+		var entry = insert.A;
+		var node = entry.c === 2
+			? entry.s
+			: _VirtualDom_render(entry.z, patch.u);
+		domNode.insertBefore(node, domNode.childNodes[insert.r]);
+	}
+
+	// add end inserts
+	if (frag)
+	{
+		_VirtualDom_appendChild(domNode, frag);
+	}
+
+	return domNode;
+}
+
+
+function _VirtualDom_applyPatchReorderEndInsertsHelp(endInserts, patch)
+{
+	if (!endInserts)
+	{
+		return;
+	}
+
+	var frag = _VirtualDom_doc.createDocumentFragment();
+	for (var i = 0; i < endInserts.length; i++)
+	{
+		var insert = endInserts[i];
+		var entry = insert.A;
+		_VirtualDom_appendChild(frag, entry.c === 2
+			? entry.s
+			: _VirtualDom_render(entry.z, patch.u)
+		);
+	}
+	return frag;
+}
+
+
+function _VirtualDom_virtualize(node)
+{
+	// TEXT NODES
+
+	if (node.nodeType === 3)
+	{
+		return _VirtualDom_text(node.textContent);
+	}
+
+
+	// WEIRD NODES
+
+	if (node.nodeType !== 1)
+	{
+		return _VirtualDom_text('');
+	}
+
+
+	// ELEMENT NODES
+
+	var attrList = _List_Nil;
+	var attrs = node.attributes;
+	for (var i = attrs.length; i--; )
+	{
+		var attr = attrs[i];
+		var name = attr.name;
+		var value = attr.value;
+		attrList = _List_Cons( A2(_VirtualDom_attribute, name, value), attrList );
+	}
+
+	var tag = node.tagName.toLowerCase();
+	var kidList = _List_Nil;
+	var kids = node.childNodes;
+
+	for (var i = kids.length; i--; )
+	{
+		kidList = _List_Cons(_VirtualDom_virtualize(kids[i]), kidList);
+	}
+	return A3(_VirtualDom_node, tag, attrList, kidList);
+}
+
+function _VirtualDom_dekey(keyedNode)
+{
+	var keyedKids = keyedNode.e;
+	var len = keyedKids.length;
+	var kids = new Array(len);
+	for (var i = 0; i < len; i++)
+	{
+		kids[i] = keyedKids[i].b;
+	}
+
+	return {
+		$: 1,
+		c: keyedNode.c,
+		d: keyedNode.d,
+		e: kids,
+		f: keyedNode.f,
+		b: keyedNode.b
+	};
+}
+
+
+
+// ELEMENT
+
+
+var _Debugger_element;
+
+var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.as,
+		impl.aA,
+		impl.ay,
+		function(sendToApp, initialModel) {
+			var view = impl.aC;
+			/**/
+			var domNode = args['node'];
+			//*/
+			/**_UNUSED/
+			var domNode = args && args['node'] ? args['node'] : _Debug_crash(0);
+			//*/
+			var currNode = _VirtualDom_virtualize(domNode);
+
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				var nextNode = view(model);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				domNode = _VirtualDom_applyPatches(domNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+			});
+		}
+	);
+});
+
+
+
+// DOCUMENT
+
+
+var _Debugger_document;
+
+var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.as,
+		impl.aA,
+		impl.ay,
+		function(sendToApp, initialModel) {
+			var divertHrefToApp = impl.B && impl.B(sendToApp)
+			var view = impl.aC;
+			var title = _VirtualDom_doc.title;
+			var bodyNode = _VirtualDom_doc.body;
+			var currNode = _VirtualDom_virtualize(bodyNode);
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				_VirtualDom_divertHrefToApp = divertHrefToApp;
+				var doc = view(model);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.al);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+				_VirtualDom_divertHrefToApp = 0;
+				(title !== doc.az) && (_VirtualDom_doc.title = title = doc.az);
+			});
+		}
+	);
+});
+
+
+
+// ANIMATION
+
+
+var _Browser_requestAnimationFrame =
+	typeof requestAnimationFrame !== 'undefined'
+		? requestAnimationFrame
+		: function(callback) { setTimeout(callback, 1000 / 60); };
+
+
+function _Browser_makeAnimator(model, draw)
+{
+	draw(model);
+
+	var state = 0;
+
+	function updateIfNeeded()
+	{
+		state = state === 1
+			? 0
+			: ( _Browser_requestAnimationFrame(updateIfNeeded), draw(model), 1 );
+	}
+
+	return function(nextModel, isSync)
+	{
+		model = nextModel;
+
+		isSync
+			? ( draw(model),
+				state === 2 && (state = 1)
+				)
+			: ( state === 0 && _Browser_requestAnimationFrame(updateIfNeeded),
+				state = 2
+				);
+	};
+}
+
+
+
+// APPLICATION
+
+
+function _Browser_application(impl)
+{
+	var onUrlChange = impl.au;
+	var onUrlRequest = impl.av;
+	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
+
+	return _Browser_document({
+		B: function(sendToApp)
+		{
+			key.a = sendToApp;
+			_Browser_window.addEventListener('popstate', key);
+			_Browser_window.navigator.userAgent.indexOf('Trident') < 0 || _Browser_window.addEventListener('hashchange', key);
+
+			return F2(function(domNode, event)
+			{
+				if (!event.ctrlKey && !event.metaKey && !event.shiftKey && event.button < 1 && !domNode.target && !domNode.download)
+				{
+					event.preventDefault();
+					var href = domNode.href;
+					var curr = _Browser_getUrl();
+					var next = elm$url$Url$fromString(href).a;
+					sendToApp(onUrlRequest(
+						(next
+							&& curr.ab === next.ab
+							&& curr.T === next.T
+							&& curr.Z.a === next.Z.a
+						)
+							? elm$browser$Browser$Internal(next)
+							: elm$browser$Browser$External(href)
+					));
+				}
+			});
+		},
+		as: function(flags)
+		{
+			return A3(impl.as, flags, _Browser_getUrl(), key);
+		},
+		aC: impl.aC,
+		aA: impl.aA,
+		ay: impl.ay
+	});
+}
+
+function _Browser_getUrl()
+{
+	return elm$url$Url$fromString(_VirtualDom_doc.location.href).a || _Debug_crash(1);
+}
+
+var _Browser_go = F2(function(key, n)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		n && history.go(n);
+		key();
+	}));
+});
+
+var _Browser_pushUrl = F2(function(key, url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		history.pushState({}, '', url);
+		key();
+	}));
+});
+
+var _Browser_replaceUrl = F2(function(key, url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		history.replaceState({}, '', url);
+		key();
+	}));
+});
+
+
+
+// GLOBAL EVENTS
+
+
+var _Browser_fakeNode = { addEventListener: function() {}, removeEventListener: function() {} };
+var _Browser_doc = typeof document !== 'undefined' ? document : _Browser_fakeNode;
+var _Browser_window = typeof window !== 'undefined' ? window : _Browser_fakeNode;
+
+var _Browser_on = F3(function(node, eventName, sendToSelf)
+{
+	return _Scheduler_spawn(_Scheduler_binding(function(callback)
+	{
+		function handler(event)	{ _Scheduler_rawSpawn(sendToSelf(event)); }
+		node.addEventListener(eventName, handler, _VirtualDom_passiveSupported && { passive: true });
+		return function() { node.removeEventListener(eventName, handler); };
+	}));
+});
+
+var _Browser_decodeEvent = F2(function(decoder, event)
+{
+	var result = _Json_runHelp(decoder, event);
+	return elm$core$Result$isOk(result) ? elm$core$Maybe$Just(result.a) : elm$core$Maybe$Nothing;
+});
+
+
+
+// PAGE VISIBILITY
+
+
+function _Browser_visibilityInfo()
+{
+	return (typeof _VirtualDom_doc.hidden !== 'undefined')
+		? { aq: 'hidden', z: 'visibilitychange' }
+		:
+	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
+		? { aq: 'mozHidden', z: 'mozvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.msHidden !== 'undefined')
+		? { aq: 'msHidden', z: 'msvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
+		? { aq: 'webkitHidden', z: 'webkitvisibilitychange' }
+		: { aq: 'hidden', z: 'visibilitychange' };
+}
+
+
+
+// ANIMATION FRAMES
+
+
+function _Browser_rAF()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var id = requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(Date.now()));
+		});
+
+		return function() {
+			cancelAnimationFrame(id);
+		};
+	});
+}
+
+
+function _Browser_now()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(Date.now()));
+	});
+}
+
+
+
+// DOM STUFF
+
+
+function _Browser_withNode(id, doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			var node = document.getElementById(id);
+			callback(node
+				? _Scheduler_succeed(doStuff(node))
+				: _Scheduler_fail(elm$browser$Browser$Dom$NotFound(id))
+			);
+		});
+	});
+}
+
+
+function _Browser_withWindow(doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(doStuff()));
+		});
+	});
+}
+
+
+// FOCUS and BLUR
+
+
+var _Browser_call = F2(function(functionName, id)
+{
+	return _Browser_withNode(id, function(node) {
+		node[functionName]();
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// WINDOW VIEWPORT
+
+
+function _Browser_getViewport()
+{
+	return {
+		af: _Browser_getScene(),
+		ai: {
+			G: _Browser_window.pageXOffset,
+			H: _Browser_window.pageYOffset,
+			x: _Browser_doc.documentElement.clientWidth,
+			s: _Browser_doc.documentElement.clientHeight
+		}
+	};
+}
+
+function _Browser_getScene()
+{
+	var body = _Browser_doc.body;
+	var elem = _Browser_doc.documentElement;
+	return {
+		x: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		s: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+	};
+}
+
+var _Browser_setViewport = F2(function(x, y)
+{
+	return _Browser_withWindow(function()
+	{
+		_Browser_window.scroll(x, y);
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT VIEWPORT
+
+
+function _Browser_getViewportOf(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		return {
+			af: {
+				x: node.scrollWidth,
+				s: node.scrollHeight
+			},
+			ai: {
+				G: node.scrollLeft,
+				H: node.scrollTop,
+				x: node.clientWidth,
+				s: node.clientHeight
+			}
+		};
+	});
+}
+
+
+var _Browser_setViewportOf = F3(function(id, x, y)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		node.scrollLeft = x;
+		node.scrollTop = y;
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT
+
+
+function _Browser_getElement(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		var rect = node.getBoundingClientRect();
+		var x = _Browser_window.pageXOffset;
+		var y = _Browser_window.pageYOffset;
+		return {
+			af: _Browser_getScene(),
+			ai: {
+				G: x,
+				H: y,
+				x: _Browser_doc.documentElement.clientWidth,
+				s: _Browser_doc.documentElement.clientHeight
+			},
+			an: {
+				G: x + rect.left,
+				H: y + rect.top,
+				x: rect.width,
+				s: rect.height
+			}
+		};
+	});
+}
+
+
+
+// LOAD and RELOAD
+
+
+function _Browser_reload(skipCache)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		_VirtualDom_doc.location.reload(skipCache);
+	}));
+}
+
+function _Browser_load(url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		try
+		{
+			_Browser_window.location = url;
+		}
+		catch(err)
+		{
+			// Only Firefox can throw a NS_ERROR_MALFORMED_URI exception here.
+			// Other browsers reload the page, so let's be consistent about that.
+			_VirtualDom_doc.location.reload(false);
+		}
+	}));
+}
 var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$ShapeTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
-var author$project$VegaLite$X = 0;
-var author$project$VegaLite$Y = 1;
-var elm$core$List$foldl = F3(
-	function (func, acc, list) {
-		foldl:
-		while (true) {
-			if (!list.b) {
-				return acc;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				var $temp$func = func,
-					$temp$acc = A2(func, x, acc),
-					$temp$list = xs;
-				func = $temp$func;
-				acc = $temp$acc;
-				list = $temp$list;
-				continue foldl;
-			}
-		}
+var elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
+var elm$core$Dict$empty = elm$core$Dict$RBEmpty_elm_builtin;
+var elm$core$Dict$Black = 1;
+var elm$core$Dict$RBNode_elm_builtin = F5(
+	function (a, b, c, d, e) {
+		return {$: -1, a: a, b: b, c: c, d: d, e: e};
 	});
-var elm$core$Array$branchFactor = 32;
-var elm$core$Array$Array_elm_builtin = F4(
-	function (a, b, c, d) {
-		return {$: 0, a: a, b: b, c: c, d: d};
+var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
+var elm$core$Array$foldr = F3(
+	function (func, baseCase, _n0) {
+		var tree = _n0.c;
+		var tail = _n0.d;
+		var helper = F2(
+			function (node, acc) {
+				if (!node.$) {
+					var subTree = node.a;
+					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
+				} else {
+					var values = node.a;
+					return A3(elm$core$Elm$JsArray$foldr, func, acc, values);
+				}
+			});
+		return A3(
+			elm$core$Elm$JsArray$foldr,
+			helper,
+			A3(elm$core$Elm$JsArray$foldr, func, baseCase, tail),
+			tree);
 	});
 var elm$core$Basics$EQ = 1;
-var elm$core$Basics$GT = 2;
 var elm$core$Basics$LT = 0;
+var elm$core$List$cons = _List_cons;
+var elm$core$Array$toList = function (array) {
+	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
+};
+var elm$core$Basics$GT = 2;
 var elm$core$Dict$foldr = F3(
 	function (func, acc, t) {
 		foldr:
@@ -2354,7 +4349,6 @@ var elm$core$Dict$foldr = F3(
 			}
 		}
 	});
-var elm$core$List$cons = _List_cons;
 var elm$core$Dict$toList = function (dict) {
 	return A3(
 		elm$core$Dict$foldr,
@@ -2382,30 +4376,163 @@ var elm$core$Set$toList = function (_n0) {
 	var dict = _n0;
 	return elm$core$Dict$keys(dict);
 };
-var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
-var elm$core$Array$foldr = F3(
-	function (func, baseCase, _n0) {
-		var tree = _n0.c;
-		var tail = _n0.d;
-		var helper = F2(
-			function (node, acc) {
-				if (!node.$) {
-					var subTree = node.a;
-					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
-				} else {
-					var values = node.a;
-					return A3(elm$core$Elm$JsArray$foldr, func, acc, values);
-				}
-			});
-		return A3(
-			elm$core$Elm$JsArray$foldr,
-			helper,
-			A3(elm$core$Elm$JsArray$foldr, func, baseCase, tail),
-			tree);
+var elm$core$Basics$compare = _Utils_compare;
+var elm$core$Dict$Red = 0;
+var elm$core$Dict$balance = F5(
+	function (color, key, value, left, right) {
+		if ((right.$ === -1) && (!right.a)) {
+			var _n1 = right.a;
+			var rK = right.b;
+			var rV = right.c;
+			var rLeft = right.d;
+			var rRight = right.e;
+			if ((left.$ === -1) && (!left.a)) {
+				var _n3 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var lLeft = left.d;
+				var lRight = left.e;
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					0,
+					key,
+					value,
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					color,
+					rK,
+					rV,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, left, rLeft),
+					rRight);
+			}
+		} else {
+			if ((((left.$ === -1) && (!left.a)) && (left.d.$ === -1)) && (!left.d.a)) {
+				var _n5 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var _n6 = left.d;
+				var _n7 = _n6.a;
+				var llK = _n6.b;
+				var llV = _n6.c;
+				var llLeft = _n6.d;
+				var llRight = _n6.e;
+				var lRight = left.e;
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					0,
+					lK,
+					lV,
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, key, value, lRight, right));
+			} else {
+				return A5(elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
+			}
+		}
 	});
-var elm$core$Array$toList = function (array) {
-	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
+var elm$core$Dict$insertHelp = F3(
+	function (key, value, dict) {
+		if (dict.$ === -2) {
+			return A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, elm$core$Dict$RBEmpty_elm_builtin, elm$core$Dict$RBEmpty_elm_builtin);
+		} else {
+			var nColor = dict.a;
+			var nKey = dict.b;
+			var nValue = dict.c;
+			var nLeft = dict.d;
+			var nRight = dict.e;
+			var _n1 = A2(elm$core$Basics$compare, key, nKey);
+			switch (_n1) {
+				case 0:
+					return A5(
+						elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						A3(elm$core$Dict$insertHelp, key, value, nLeft),
+						nRight);
+				case 1:
+					return A5(elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
+				default:
+					return A5(
+						elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						nLeft,
+						A3(elm$core$Dict$insertHelp, key, value, nRight));
+			}
+		}
+	});
+var elm$core$Dict$insert = F3(
+	function (key, value, dict) {
+		var _n0 = A3(elm$core$Dict$insertHelp, key, value, dict);
+		if ((_n0.$ === -1) && (!_n0.a)) {
+			var _n1 = _n0.a;
+			var k = _n0.b;
+			var v = _n0.c;
+			var l = _n0.d;
+			var r = _n0.e;
+			return A5(elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
+		} else {
+			var x = _n0;
+			return x;
+		}
+	});
+var elm$core$List$foldl = F3(
+	function (func, acc, list) {
+		foldl:
+		while (true) {
+			if (!list.b) {
+				return acc;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				var $temp$func = func,
+					$temp$acc = A2(func, x, acc),
+					$temp$list = xs;
+				func = $temp$func;
+				acc = $temp$acc;
+				list = $temp$list;
+				continue foldl;
+			}
+		}
+	});
+var elm$core$Dict$fromList = function (assocs) {
+	return A3(
+		elm$core$List$foldl,
+		F2(
+			function (_n0, dict) {
+				var key = _n0.a;
+				var value = _n0.b;
+				return A3(elm$core$Dict$insert, key, value, dict);
+			}),
+		elm$core$Dict$empty,
+		assocs);
 };
+var author$project$ShapeTests$isotypes = function () {
+	var sheep = 'M-4.1 -0.5c0.2 0 0.2 0.2 0.5 0.2c0.3 0 0.3 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.4 -0.2c0.1 0 0.2 0.2 0.4 0.1c0.2 0 0.2 -0.2 0.4 -0.3c0.1 0 0.1 -0.1 0.4 0c0.3 0 0.3 -0.4 0.6 -0.4c0.3 0 0.6 -0.3 0.7 -0.2c0.1 0.1 1.4 1 1.3 1.4c-0.1 0.4 -0.3 0.3 -0.4 0.3c-0.1 0 -0.5 -0.4 -0.7 -0.2c-0.3 0.2 -0.1 0.4 -0.2 0.6c-0.1 0.1 -0.2 0.2 -0.3 0.4c0 0.2 0.1 0.3 0 0.5c-0.1 0.2 -0.3 0.2 -0.3 0.5c0 0.3 -0.2 0.3 -0.3 0.6c-0.1 0.2 0 0.3 -0.1 0.5c-0.1 0.2 -0.1 0.2 -0.2 0.3c-0.1 0.1 0.3 1.1 0.3 1.1l-0.3 0c0 0 -0.3 -0.9 -0.3 -1c0 -0.1 -0.1 -0.2 -0.3 -0.2c-0.2 0 -0.3 0.1 -0.4 0.4c0 0.3 -0.2 0.8 -0.2 0.8l-0.3 0l0.3 -1c0 0 0.1 -0.6 -0.2 -0.5c-0.3 0.1 -0.2 -0.1 -0.4 -0.1c-0.2 -0.1 -0.3 0.1 -0.4 0c-0.2 -0.1 -0.3 0.1 -0.5 0c-0.2 -0.1 -0.1 0 -0.3 0.3c-0.2 0.3 -0.4 0.3 -0.4 0.3l0.2 1.1l-0.3 0l-0.2 -1.1c0 0 -0.4 -0.6 -0.5 -0.4c-0.1 0.3 -0.1 0.4 -0.3 0.4c-0.1 -0.1 -0.2 1.1 -0.2 1.1l-0.3 0l0.2 -1.1c0 0 -0.3 -0.1 -0.3 -0.5c0 -0.3 0.1 -0.5 0.1 -0.7c0.1 -0.2 -0.1 -1 -0.2 -1.1c-0.1 -0.2 -0.2 -0.8 -0.2 -0.8c0 0 -0.1 -0.5 0.4 -0.8z';
+	var pig = 'M1.2 -2c0 0 0.7 0 1.2 0.5c0.5 0.5 0.4 0.6 0.5 0.6c0.1 0 0.7 0 0.8 0.1c0.1 0 0.2 0.2 0.2 0.2c0 0 -0.6 0.2 -0.6 0.3c0 0.1 0.4 0.9 0.6 0.9c0.1 0 0.6 0 0.6 0.1c0 0.1 0 0.7 -0.1 0.7c-0.1 0 -1.2 0.4 -1.5 0.5c-0.3 0.1 -1.1 0.5 -1.1 0.7c-0.1 0.2 0.4 1.2 0.4 1.2l-0.4 0c0 0 -0.4 -0.8 -0.4 -0.9c0 -0.1 -0.1 -0.3 -0.1 -0.3l-0.2 0l-0.5 1.3l-0.4 0c0 0 -0.1 -0.4 0 -0.6c0.1 -0.1 0.3 -0.6 0.3 -0.7c0 0 -0.8 0 -1.5 -0.1c-0.7 -0.1 -1.2 -0.3 -1.2 -0.2c0 0.1 -0.4 0.6 -0.5 0.6c0 0 0.3 0.9 0.3 0.9l-0.4 0c0 0 -0.4 -0.5 -0.4 -0.6c0 -0.1 -0.2 -0.6 -0.2 -0.5c0 0 -0.4 0.4 -0.6 0.4c-0.2 0.1 -0.4 0.1 -0.4 0.1c0 0 -0.1 0.6 -0.1 0.6l-0.5 0l0 -1c0 0 0.5 -0.4 0.5 -0.5c0 -0.1 -0.7 -1.2 -0.6 -1.4c0.1 -0.1 0.1 -1.1 0.1 -1.1c0 0 -0.2 0.1 -0.2 0.1c0 0 0 0.9 0 1c0 0.1 -0.2 0.3 -0.3 0.3c-0.1 0 0 -0.5 0 -0.9c0 -0.4 0 -0.4 0.2 -0.6c0.2 -0.2 0.6 -0.3 0.8 -0.8c0.3 -0.5 1 -0.6 1 -0.6z';
+	var person = 'M1.7 -1.7h-0.8c0.3 -0.2 0.6 -0.5 0.6 -0.9c0 -0.6 -0.4 -1 -1 -1c-0.6 0 -1 0.4 -1 1c0 0.4 0.2 0.7 0.6 0.9h-0.8c-0.4 0 -0.7 0.3 -0.7 0.6v1.9c0 0.3 0.3 0.6 0.6 0.6h0.2c0 0 0 0.1 0 0.1v1.9c0 0.3 0.2 0.6 0.3 0.6h1.3c0.2 0 0.3 -0.3 0.3 -0.6v-1.8c0 0 0 -0.1 0 -0.1h0.2c0.3 0 0.6 -0.3 0.6 -0.6v-2c0.2 -0.3 -0.1 -0.6 -0.4 -0.6z';
+	var cow = 'M4 -2c0 0 0.9 -0.7 1.1 -0.8c0.1 -0.1 -0.1 0.5 -0.3 0.7c-0.2 0.2 1.1 1.1 1.1 1.2c0 0.2 -0.2 0.8 -0.4 0.7c-0.1 0 -0.8 -0.3 -1.3 -0.2c-0.5 0.1 -1.3 1.6 -1.5 2c-0.3 0.4 -0.6 0.4 -0.6 0.4c0 0.1 0.3 1.7 0.4 1.8c0.1 0.1 -0.4 0.1 -0.5 0c0 0 -0.6 -1.9 -0.6 -1.9c-0.1 0 -0.3 -0.1 -0.3 -0.1c0 0.1 -0.5 1.4 -0.4 1.6c0.1 0.2 0.1 0.3 0.1 0.3c0 0 -0.4 0 -0.4 0c0 0 -0.2 -0.1 -0.1 -0.3c0 -0.2 0.3 -1.7 0.3 -1.7c0 0 -2.8 -0.9 -2.9 -0.8c-0.2 0.1 -0.4 0.6 -0.4 1c0 0.4 0.5 1.9 0.5 1.9l-0.5 0l-0.6 -2l0 -0.6c0 0 -1 0.8 -1 1c0 0.2 -0.2 1.3 -0.2 1.3c0 0 0.3 0.3 0.2 0.3c0 0 -0.5 0 -0.5 0c0 0 -0.2 -0.2 -0.1 -0.4c0 -0.1 0.2 -1.6 0.2 -1.6c0 0 0.5 -0.4 0.5 -0.5c0 -0.1 0 -2.7 -0.2 -2.7c-0.1 0 -0.4 2 -0.4 2c0 0 0 0.2 -0.2 0.5c-0.1 0.4 -0.2 1.1 -0.2 1.1c0 0 -0.2 -0.1 -0.2 -0.2c0 -0.1 -0.1 -0.7 0 -0.7c0.1 -0.1 0.3 -0.8 0.4 -1.4c0 -0.6 0.2 -1.3 0.4 -1.5c0.1 -0.2 0.6 -0.4 0.6 -0.4z';
+	return elm$core$Dict$fromList(
+		_List_fromArray(
+			[
+				_Utils_Tuple2('cow', cow),
+				_Utils_Tuple2('pig', pig),
+				_Utils_Tuple2('sheep', sheep),
+				_Utils_Tuple2('person', person)
+			]));
+}();
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$X = 0;
+var author$project$VegaLite$Y = 1;
+var elm$core$Array$branchFactor = 32;
+var elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 0, a: a, b: b, c: c, d: d};
+	});
 var elm$core$Basics$ceiling = _Basics_ceiling;
 var elm$core$Basics$fdiv = _Basics_fdiv;
 var elm$core$Basics$logBase = F2(
@@ -2800,19 +4927,70 @@ var author$project$VegaLite$calculateAs = F2(
 							elm$json$Json$Encode$string(label)
 						]))));
 	});
-var author$project$VegaLite$VLData = 8;
-var author$project$VegaLite$dataTypeSpec = function (dType) {
-	switch (dType.$) {
-		case 0:
-			return elm$json$Json$Encode$string('number');
+var author$project$VegaLite$View = function (a) {
+	return {$: 40, a: a};
+};
+var author$project$VegaLite$coView = author$project$VegaLite$View;
+var author$project$VegaLite$arrangementLabel = function (arrng) {
+	switch (arrng) {
 		case 1:
-			return elm$json$Json$Encode$string('boolean');
-		case 2:
-			var dateFmt = dType.a;
-			return (dateFmt === '') ? elm$json$Json$Encode$string('date') : elm$json$Json$Encode$string('date:\'' + (dateFmt + '\''));
+			return 'row';
+		case 0:
+			return 'column';
 		default:
-			var dateFmt = dType.a;
-			return (dateFmt === '') ? elm$json$Json$Encode$string('utc') : elm$json$Json$Encode$string('utc:\'' + (dateFmt + '\''));
+			return 'repeat';
+	}
+};
+var elm$json$Json$Encode$bool = _Json_wrap;
+var elm$json$Json$Encode$float = _Json_wrap;
+var elm$json$Json$Encode$int = _Json_wrap;
+var author$project$VegaLite$binProperty = function (binProp) {
+	switch (binProp.$) {
+		case 3:
+			var n = binProp.a;
+			return _Utils_Tuple2(
+				'maxbins',
+				elm$json$Json$Encode$int(n));
+		case 0:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'base',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'step',
+				elm$json$Json$Encode$float(x));
+		case 7:
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'steps',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
+		case 4:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'minstep',
+				elm$json$Json$Encode$float(x));
+		case 1:
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'divide',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
+		case 2:
+			var mn = binProp.a;
+			var mx = binProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[mn, mx])));
+		default:
+			var b = binProp.a;
+			return _Utils_Tuple2(
+				'nice',
+				elm$json$Json$Encode$bool(b));
 	}
 };
 var elm$core$List$foldrHelper = F4(
@@ -2884,12 +5062,6 @@ var elm$core$List$map = F2(
 			_List_Nil,
 			xs);
 	});
-var elm$core$String$cons = _String_cons;
-var elm$core$String$fromChar = function (_char) {
-	return A2(elm$core$String$cons, _char, '');
-};
-var elm$core$String$trim = _String_trim;
-var elm$json$Json$Encode$null = _Json_encodeNull;
 var elm$json$Json$Encode$object = function (pairs) {
 	return _Json_wrap(
 		A3(
@@ -2903,151 +5075,14 @@ var elm$json$Json$Encode$object = function (pairs) {
 			_Json_emptyObject(0),
 			pairs));
 };
-var author$project$VegaLite$formatProperty = function (fmt) {
-	switch (fmt.$) {
-		case 0:
-			var propertyName = fmt.a;
-			return (elm$core$String$trim(propertyName) === '') ? _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('json'))
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('json')),
-					_Utils_Tuple2(
-					'property',
-					elm$json$Json$Encode$string(propertyName))
-				]);
-		case 1:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('csv'))
-				]);
-		case 2:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('tsv'))
-				]);
-		case 3:
-			var delim = fmt.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('dsv')),
-					_Utils_Tuple2(
-					'delimiter',
-					elm$json$Json$Encode$string(
-						elm$core$String$fromChar(delim)))
-				]);
-		case 4:
-			var objectSet = fmt.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('topojson')),
-					_Utils_Tuple2(
-					'feature',
-					elm$json$Json$Encode$string(objectSet))
-				]);
-		case 5:
-			var objectSet = fmt.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string('topojson')),
-					_Utils_Tuple2(
-					'mesh',
-					elm$json$Json$Encode$string(objectSet))
-				]);
-		default:
-			var fmts = fmt.a;
-			return _Utils_eq(fmts, _List_Nil) ? _List_fromArray(
-				[
-					_Utils_Tuple2('parse', elm$json$Json$Encode$null)
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'parse',
-					elm$json$Json$Encode$object(
-						A2(
-							elm$core$List$map,
-							function (_n1) {
-								var field = _n1.a;
-								var fFormat = _n1.b;
-								return _Utils_Tuple2(
-									field,
-									author$project$VegaLite$dataTypeSpec(fFormat));
-							},
-							fmts)))
-				]);
-	}
+var author$project$VegaLite$bin = function (bProps) {
+	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
+		'bin',
+		elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+		'bin',
+		elm$json$Json$Encode$object(
+			A2(elm$core$List$map, author$project$VegaLite$binProperty, bProps)));
 };
-var elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3(elm$core$List$foldr, elm$core$List$cons, ys, xs);
-		}
-	});
-var elm$core$List$concat = function (lists) {
-	return A3(elm$core$List$foldr, elm$core$List$append, _List_Nil, lists);
-};
-var elm$core$List$concatMap = F2(
-	function (f, list) {
-		return elm$core$List$concat(
-			A2(elm$core$List$map, f, list));
-	});
-var author$project$VegaLite$dataFromUrl = F2(
-	function (url, fmts) {
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			8,
-			elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						elm$json$Json$Encode$string(url))
-					]))) : _Utils_Tuple2(
-			8,
-			elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						elm$json$Json$Encode$string(url)),
-						_Utils_Tuple2(
-						'format',
-						elm$json$Json$Encode$object(
-							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
-					])));
-	});
-var author$project$VegaLite$VLDescription = 1;
-var author$project$VegaLite$description = function (s) {
-	return _Utils_Tuple2(
-		1,
-		elm$json$Json$Encode$string(s));
-};
-var author$project$VegaLite$VLEncoding = 13;
-var author$project$VegaLite$encoding = function (channels) {
-	return _Utils_Tuple2(
-		13,
-		elm$json$Json$Encode$object(channels));
-};
-var author$project$VegaLite$FExpr = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$fiExpr = author$project$VegaLite$FExpr;
 var author$project$VegaLite$booleanOpSpec = function (bo) {
 	switch (bo.$) {
 		case 0:
@@ -3150,7 +5185,6 @@ var author$project$VegaLite$monthNameLabel = function (mon) {
 			return 'Dec';
 	}
 };
-var elm$json$Json$Encode$int = _Json_wrap;
 var author$project$VegaLite$dateTimeProperty = function (dtp) {
 	switch (dtp.$) {
 		case 0:
@@ -3202,8 +5236,6 @@ var author$project$VegaLite$dateTimeProperty = function (dtp) {
 				elm$json$Json$Encode$int(ms));
 	}
 };
-var elm$json$Json$Encode$bool = _Json_wrap;
-var elm$json$Json$Encode$float = _Json_wrap;
 var author$project$VegaLite$dataValueSpec = function (val) {
 	switch (val.$) {
 		case 2:
@@ -3220,304 +5252,6 @@ var author$project$VegaLite$dataValueSpec = function (val) {
 			return elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
 	}
-};
-var author$project$VegaLite$filter = function (f) {
-	switch (f.$) {
-		case 5:
-			var ex = f.a;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$string(ex)));
-		case 6:
-			var boolExpr = f.a;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					author$project$VegaLite$booleanOpSpec(boolExpr)));
-		case 0:
-			var field = f.a;
-			var val = f.b;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'equal',
-								author$project$VegaLite$dataValueSpec(val))
-							]))));
-		case 1:
-			var field = f.a;
-			var val = f.b;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'lt',
-								author$project$VegaLite$dataValueSpec(val))
-							]))));
-		case 2:
-			var field = f.a;
-			var val = f.b;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'lte',
-								author$project$VegaLite$dataValueSpec(val))
-							]))));
-		case 3:
-			var field = f.a;
-			var val = f.b;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'gt',
-								author$project$VegaLite$dataValueSpec(val))
-							]))));
-		case 4:
-			var field = f.a;
-			var val = f.b;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'gte',
-								author$project$VegaLite$dataValueSpec(val))
-							]))));
-		case 7:
-			var selName = f.a;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'selection',
-								elm$json$Json$Encode$string(selName))
-							]))));
-		case 9:
-			var field = f.a;
-			var vals = f.b;
-			var values = function () {
-				if (!vals.$) {
-					var mn = vals.a;
-					var mx = vals.b;
-					return A2(
-						elm$json$Json$Encode$list,
-						elm$json$Json$Encode$float,
-						_List_fromArray(
-							[mn, mx]));
-				} else {
-					if (!vals.a.b) {
-						if (!vals.b.b) {
-							return author$project$VegaLite$toList(
-								_List_fromArray(
-									[elm$json$Json$Encode$null, elm$json$Json$Encode$null]));
-						} else {
-							var dMax = vals.b;
-							return author$project$VegaLite$toList(
-								_List_fromArray(
-									[
-										elm$json$Json$Encode$null,
-										elm$json$Json$Encode$object(
-										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMax))
-									]));
-						}
-					} else {
-						if (!vals.b.b) {
-							var dMin = vals.a;
-							return author$project$VegaLite$toList(
-								_List_fromArray(
-									[
-										elm$json$Json$Encode$object(
-										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMin)),
-										elm$json$Json$Encode$null
-									]));
-						} else {
-							var dMin = vals.a;
-							var dMax = vals.b;
-							return A2(
-								elm$json$Json$Encode$list,
-								elm$json$Json$Encode$object,
-								_List_fromArray(
-									[
-										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMin),
-										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMax)
-									]));
-						}
-					}
-				}
-			}();
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2('range', values)
-							]))));
-		case 8:
-			var field = f.a;
-			var vals = f.b;
-			var values = function () {
-				switch (vals.$) {
-					case 2:
-						var xs = vals.a;
-						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs);
-					case 1:
-						var ds = vals.a;
-						return A2(
-							elm$json$Json$Encode$list,
-							function (d) {
-								return elm$json$Json$Encode$object(
-									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
-							},
-							ds);
-					case 3:
-						var ss = vals.a;
-						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, ss);
-					default:
-						var bs = vals.a;
-						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$bool, bs);
-				}
-			}();
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2('oneOf', values)
-							]))));
-		default:
-			var field = f.a;
-			return elm$core$List$cons(
-				_Utils_Tuple2(
-					'filter',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'field',
-								elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'valid',
-								elm$json$Json$Encode$bool(true))
-							]))));
-	}
-};
-var author$project$VegaLite$MNumber = function (a) {
-	return {$: 14, a: a};
-};
-var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
-var author$project$VegaLite$MFilled = function (a) {
-	return {$: 16, a: a};
-};
-var author$project$VegaLite$maFilled = author$project$VegaLite$MFilled;
-var author$project$VegaLite$arrangementLabel = function (arrng) {
-	switch (arrng) {
-		case 1:
-			return 'row';
-		case 0:
-			return 'column';
-		default:
-			return 'repeat';
-	}
-};
-var author$project$VegaLite$binProperty = function (binProp) {
-	switch (binProp.$) {
-		case 3:
-			var n = binProp.a;
-			return _Utils_Tuple2(
-				'maxbins',
-				elm$json$Json$Encode$int(n));
-		case 0:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'base',
-				elm$json$Json$Encode$float(x));
-		case 6:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'step',
-				elm$json$Json$Encode$float(x));
-		case 7:
-			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'steps',
-				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 4:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'minstep',
-				elm$json$Json$Encode$float(x));
-		case 1:
-			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'divide',
-				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 2:
-			var mn = binProp.a;
-			var mx = binProp.b;
-			return _Utils_Tuple2(
-				'extent',
-				A2(
-					elm$json$Json$Encode$list,
-					elm$json$Json$Encode$float,
-					_List_fromArray(
-						[mn, mx])));
-		default:
-			var b = binProp.a;
-			return _Utils_Tuple2(
-				'nice',
-				elm$json$Json$Encode$bool(b));
-	}
-};
-var author$project$VegaLite$bin = function (bProps) {
-	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
-		'bin',
-		elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
-		'bin',
-		elm$json$Json$Encode$object(
-			A2(elm$core$List$map, author$project$VegaLite$binProperty, bProps)));
 };
 var author$project$VegaLite$dataValuesSpecs = function (dvs) {
 	switch (dvs.$) {
@@ -3555,6 +5289,7 @@ var author$project$VegaLite$imMethodLabel = function (method) {
 			return 'min';
 	}
 };
+var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$imputeProperty = function (ip) {
 	switch (ip.$) {
 		case 0:
@@ -4466,6 +6201,22 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 				elm$json$Json$Encode$bool(b));
 	}
 };
+var elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3(elm$core$List$foldr, elm$core$List$cons, ys, xs);
+		}
+	});
+var elm$core$List$concat = function (lists) {
+	return A3(elm$core$List$foldr, elm$core$List$append, _List_Nil, lists);
+};
+var elm$core$List$concatMap = F2(
+	function (f, list) {
+		return elm$core$List$concat(
+			A2(elm$core$List$map, f, list));
+	});
 var author$project$VegaLite$markChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -4642,55 +6393,689 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 				]);
 	}
 };
-var author$project$VegaLite$opacity = function (markProps) {
+var author$project$VegaLite$color = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
-			'opacity',
+			'color',
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
-var author$project$VegaLite$PName = function (a) {
-	return {$: 0, a: a};
-};
-var author$project$VegaLite$pName = author$project$VegaLite$PName;
-var author$project$VegaLite$Point = 8;
-var author$project$VegaLite$VLMark = 10;
-var author$project$VegaLite$markLabel = function (m) {
-	switch (m) {
-		case 0:
-			return 'area';
-		case 1:
-			return 'bar';
-		case 2:
-			return 'boxplot';
-		case 5:
-			return 'circle';
+var author$project$VegaLite$autosizeProperty = function (asCfg) {
+	switch (asCfg) {
 		case 3:
-			return 'errorband';
-		case 4:
-			return 'errorbar';
-		case 7:
-			return 'line';
-		case 6:
-			return 'geoshape';
-		case 8:
-			return 'point';
-		case 9:
-			return 'rect';
-		case 10:
-			return 'rule';
-		case 11:
-			return 'square';
-		case 12:
-			return 'text';
-		case 13:
-			return 'tick';
+			return _Utils_Tuple2(
+				'type',
+				elm$json$Json$Encode$string('pad'));
+		case 1:
+			return _Utils_Tuple2(
+				'type',
+				elm$json$Json$Encode$string('fit'));
+		case 2:
+			return _Utils_Tuple2(
+				'type',
+				elm$json$Json$Encode$string('none'));
+		case 5:
+			return _Utils_Tuple2(
+				'resize',
+				elm$json$Json$Encode$bool(true));
+		case 0:
+			return _Utils_Tuple2(
+				'contains',
+				elm$json$Json$Encode$string('content'));
 		default:
-			return 'trail';
+			return _Utils_Tuple2(
+				'contains',
+				elm$json$Json$Encode$string('padding'));
+	}
+};
+var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
+	switch (axisCfg.$) {
+		case 0:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'bandPosition',
+				elm$json$Json$Encode$float(x));
+		case 1:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'domain',
+				elm$json$Json$Encode$bool(b));
+		case 2:
+			var c = axisCfg.a;
+			return _Utils_Tuple2(
+				'domainColor',
+				elm$json$Json$Encode$string(c));
+		case 3:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'domainOpacity',
+				elm$json$Json$Encode$float(n));
+		case 4:
+			var w = axisCfg.a;
+			return _Utils_Tuple2(
+				'domainWidth',
+				elm$json$Json$Encode$float(w));
+		case 25:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'maxExtent',
+				elm$json$Json$Encode$float(n));
+		case 26:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'minExtent',
+				elm$json$Json$Encode$float(n));
+		case 5:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'grid',
+				elm$json$Json$Encode$bool(b));
+		case 6:
+			var c = axisCfg.a;
+			return _Utils_Tuple2(
+				'gridColor',
+				elm$json$Json$Encode$string(c));
+		case 7:
+			var ds = axisCfg.a;
+			return _Utils_Tuple2(
+				'gridDash',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, ds));
+		case 8:
+			var o = axisCfg.a;
+			return _Utils_Tuple2(
+				'gridOpacity',
+				elm$json$Json$Encode$float(o));
+		case 9:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'gridWidth',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'labels',
+				elm$json$Json$Encode$bool(b));
+		case 11:
+			var ha = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelAlign',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$hAlignLabel(ha)));
+		case 12:
+			var angle = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelAngle',
+				elm$json$Json$Encode$float(angle));
+		case 13:
+			var va = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelBaseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 14:
+			var mn = axisCfg.a;
+			if (!mn.$) {
+				var n = mn.a;
+				return (n === 1) ? _Utils_Tuple2(
+					'labelBound',
+					elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+					'labelBound',
+					elm$json$Json$Encode$float(n));
+			} else {
+				return _Utils_Tuple2(
+					'labelBound',
+					elm$json$Json$Encode$bool(false));
+			}
+		case 17:
+			var c = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelColor',
+				elm$json$Json$Encode$string(c));
+		case 15:
+			var mn = axisCfg.a;
+			if (!mn.$) {
+				var n = mn.a;
+				return (!n) ? _Utils_Tuple2(
+					'labelFlush',
+					elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+					'labelFlush',
+					elm$json$Json$Encode$float(n));
+			} else {
+				return _Utils_Tuple2(
+					'labelFlush',
+					elm$json$Json$Encode$bool(false));
+			}
+		case 16:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelFlushOffset',
+				elm$json$Json$Encode$float(n));
+		case 18:
+			var f = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelFont',
+				elm$json$Json$Encode$string(f));
+		case 19:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelFontSize',
+				elm$json$Json$Encode$float(x));
+		case 20:
+			var fw = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelFontWeight',
+				author$project$VegaLite$fontWeightSpec(fw));
+		case 21:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelLimit',
+				elm$json$Json$Encode$float(x));
+		case 22:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelOpacity',
+				elm$json$Json$Encode$float(n));
+		case 23:
+			var strat = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelOverlap',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$overlapStrategyLabel(strat)));
+		case 24:
+			var pad = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelPadding',
+				elm$json$Json$Encode$float(pad));
+		case 27:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'shortTimeLabels',
+				elm$json$Json$Encode$bool(b));
+		case 28:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'ticks',
+				elm$json$Json$Encode$bool(b));
+		case 29:
+			var c = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickColor',
+				elm$json$Json$Encode$string(c));
+		case 30:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickExtra',
+				elm$json$Json$Encode$bool(b));
+		case 31:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickOffset',
+				elm$json$Json$Encode$float(n));
+		case 32:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickOpacity',
+				elm$json$Json$Encode$float(n));
+		case 35:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickMinStep',
+				elm$json$Json$Encode$float(n));
+		case 33:
+			var b = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickRound',
+				elm$json$Json$Encode$bool(b));
+		case 34:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickSize',
+				elm$json$Json$Encode$float(x));
+		case 36:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickWidth',
+				elm$json$Json$Encode$float(x));
+		case 37:
+			var al = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleAlign',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$hAlignLabel(al)));
+		case 38:
+			var angle = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleAngle',
+				elm$json$Json$Encode$float(angle));
+		case 39:
+			var va = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleBaseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 40:
+			var c = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleColor',
+				elm$json$Json$Encode$string(c));
+		case 41:
+			var f = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleFont',
+				elm$json$Json$Encode$string(f));
+		case 43:
+			var w = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleFontWeight',
+				author$project$VegaLite$fontWeightSpec(w));
+		case 42:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleFontSize',
+				elm$json$Json$Encode$float(x));
+		case 44:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleLimit',
+				elm$json$Json$Encode$float(x));
+		case 45:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleOpacity',
+				elm$json$Json$Encode$float(n));
+		case 46:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'titlePadding',
+				elm$json$Json$Encode$float(x));
+		case 47:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleX',
+				elm$json$Json$Encode$float(x));
+		default:
+			var y = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleY',
+				elm$json$Json$Encode$float(y));
+	}
+};
+var author$project$VegaLite$facetConfigProperty = function (fcp) {
+	if (!fcp.$) {
+		var n = fcp.a;
+		return _Utils_Tuple2(
+			'columns',
+			elm$json$Json$Encode$int(n));
+	} else {
+		var x = fcp.a;
+		return _Utils_Tuple2(
+			'spacing',
+			elm$json$Json$Encode$float(x));
+	}
+};
+var author$project$VegaLite$fieldTitleLabel = function (ftp) {
+	switch (ftp) {
+		case 0:
+			return 'verbal';
+		case 1:
+			return 'function';
+		default:
+			return 'plain';
+	}
+};
+var author$project$VegaLite$anchorLabel = function (an) {
+	switch (an) {
+		case 0:
+			return 'start';
+		case 1:
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var author$project$VegaLite$headerProperty = function (hProp) {
+	switch (hProp.$) {
+		case 0:
+			var fmt = hProp.a;
+			return _Utils_Tuple2(
+				'format',
+				elm$json$Json$Encode$string(fmt));
+		case 2:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'labelAngle',
+				elm$json$Json$Encode$float(x));
+		case 3:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'labelColor',
+				elm$json$Json$Encode$string(s));
+		case 4:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'labelFont',
+				elm$json$Json$Encode$string(s));
+		case 5:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'labelFontSize',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'labelLimit',
+				elm$json$Json$Encode$float(x));
+		case 7:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'labelPadding',
+				elm$json$Json$Encode$float(x));
+		case 1:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'title',
+				elm$json$Json$Encode$string(s));
+		case 8:
+			var a = hProp.a;
+			return _Utils_Tuple2(
+				'titleAnchor',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$anchorLabel(a)));
+		case 9:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'titleAngle',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var va = hProp.a;
+			return _Utils_Tuple2(
+				'titleBaseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 11:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'titleColor',
+				elm$json$Json$Encode$string(s));
+		case 12:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'titleFont',
+				elm$json$Json$Encode$string(s));
+		case 13:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'titleFontWeight',
+				elm$json$Json$Encode$string(s));
+		case 14:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'titleFontSize',
+				elm$json$Json$Encode$float(x));
+		case 15:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'titleLimit',
+				elm$json$Json$Encode$float(x));
+		default:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'titlePadding',
+				elm$json$Json$Encode$float(x));
+	}
+};
+var author$project$VegaLite$legendConfigProperty = function (legendConfig) {
+	switch (legendConfig.$) {
+		case 0:
+			var h = legendConfig.a;
+			return _Utils_Tuple2(
+				'clipHeight',
+				elm$json$Json$Encode$float(h));
+		case 1:
+			var n = legendConfig.a;
+			return _Utils_Tuple2(
+				'columnPadding',
+				elm$json$Json$Encode$float(n));
+		case 26:
+			var n = legendConfig.a;
+			return _Utils_Tuple2(
+				'rowPadding',
+				elm$json$Json$Encode$float(n));
+		case 2:
+			var n = legendConfig.a;
+			return _Utils_Tuple2(
+				'columns',
+				elm$json$Json$Encode$float(n));
+		case 3:
+			var r = legendConfig.a;
+			return _Utils_Tuple2(
+				'cornerRadius',
+				elm$json$Json$Encode$float(r));
+		case 5:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'fillColor',
+				elm$json$Json$Encode$string(s));
+		case 24:
+			var orient = legendConfig.a;
+			return _Utils_Tuple2(
+				'orient',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$legendOrientLabel(orient)));
+		case 23:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'offset',
+				elm$json$Json$Encode$float(x));
+		case 28:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'strokeColor',
+				elm$json$Json$Encode$string(s));
+		case 29:
+			var xs = legendConfig.a;
+			return _Utils_Tuple2(
+				'strokeDash',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
+		case 30:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'strokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 25:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'padding',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var d = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientDirection',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$markOrientationLabel(d)));
+		case 8:
+			var va = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientLabelBaseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 9:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientLabelLimit',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientLabelOffset',
+				elm$json$Json$Encode$float(x));
+		case 11:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientStrokeColor',
+				elm$json$Json$Encode$string(s));
+		case 12:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientStrokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 7:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientHeight',
+				elm$json$Json$Encode$float(x));
+		case 13:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'gradientWidth',
+				elm$json$Json$Encode$float(x));
+		case 14:
+			var ga = legendConfig.a;
+			return _Utils_Tuple2(
+				'gridAlign',
+				author$project$VegaLite$compositionAlignmentSpec(ga));
+		case 15:
+			var ha = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelAlign',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$hAlignLabel(ha)));
+		case 16:
+			var va = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelBaseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 17:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelColor',
+				elm$json$Json$Encode$string(s));
+		case 18:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelFont',
+				elm$json$Json$Encode$string(s));
+		case 19:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelFontSize',
+				elm$json$Json$Encode$float(x));
+		case 20:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelLimit',
+				elm$json$Json$Encode$float(x));
+		case 21:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelOffset',
+				elm$json$Json$Encode$float(x));
+		case 22:
+			var lo = legendConfig.a;
+			return _Utils_Tuple2(
+				'labelOverlap',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$overlapStrategyLabel(lo)));
+		case 27:
+			var b = legendConfig.a;
+			return _Utils_Tuple2(
+				'shortTimeLabels',
+				elm$json$Json$Encode$bool(b));
+		case 4:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'entryPadding',
+				elm$json$Json$Encode$float(x));
+		case 33:
+			var d = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolDirection',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$markOrientationLabel(d)));
+		case 34:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolFillColor',
+				elm$json$Json$Encode$string(s));
+		case 31:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolBaseFillColor',
+				elm$json$Json$Encode$string(s));
+		case 39:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolStrokeColor',
+				elm$json$Json$Encode$string(s));
+		case 32:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolBaseStrokeColor',
+				elm$json$Json$Encode$string(s));
+		case 35:
+			var o = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolOffset',
+				elm$json$Json$Encode$float(o));
+		case 36:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolType',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$symbolLabel(s)));
+		case 37:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolSize',
+				elm$json$Json$Encode$float(x));
+		case 38:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'symbolStrokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 40:
+			var ha = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleAlign',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$hAlignLabel(ha)));
+		case 41:
+			var va = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleBaseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 42:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleColor',
+				elm$json$Json$Encode$string(s));
+		case 43:
+			var s = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleFont',
+				elm$json$Json$Encode$string(s));
+		case 44:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleFontSize',
+				elm$json$Json$Encode$float(x));
+		case 45:
+			var fw = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleFontWeight',
+				author$project$VegaLite$fontWeightSpec(fw));
+		case 46:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleLimit',
+				elm$json$Json$Encode$float(x));
+		default:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'titlePadding',
+				elm$json$Json$Encode$float(x));
 	}
 };
 var author$project$VegaLite$TTNone = 2;
@@ -5165,6 +7550,1514 @@ var author$project$VegaLite$pointMarkerSpec = function (pm) {
 				A2(elm$core$List$map, author$project$VegaLite$markProperty, mps));
 	}
 };
+var author$project$VegaLite$paddingSpec = function (pad) {
+	if (!pad.$) {
+		var p = pad.a;
+		return elm$json$Json$Encode$float(p);
+	} else {
+		var l = pad.a;
+		var t = pad.b;
+		var r = pad.c;
+		var b = pad.d;
+		return elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'left',
+					elm$json$Json$Encode$float(l)),
+					_Utils_Tuple2(
+					'top',
+					elm$json$Json$Encode$float(t)),
+					_Utils_Tuple2(
+					'right',
+					elm$json$Json$Encode$float(r)),
+					_Utils_Tuple2(
+					'bottom',
+					elm$json$Json$Encode$float(b))
+				]));
+	}
+};
+var author$project$VegaLite$projectionLabel = function (proj) {
+	switch (proj.$) {
+		case 0:
+			return 'albers';
+		case 1:
+			return 'albersUsa';
+		case 2:
+			return 'azimuthalEqualArea';
+		case 3:
+			return 'azimuthalEquidistant';
+		case 4:
+			return 'conicConformal';
+		case 5:
+			return 'conicEqualarea';
+		case 6:
+			return 'conicEquidistant';
+		case 7:
+			var projName = proj.a;
+			return projName;
+		case 8:
+			return 'equirectangular';
+		case 9:
+			return 'gnomonic';
+		case 10:
+			return 'mercator';
+		case 11:
+			return 'orthographic';
+		case 12:
+			return 'stereographic';
+		default:
+			return 'transverseMercator';
+	}
+};
+var author$project$VegaLite$projectionProperty = function (pp) {
+	switch (pp.$) {
+		case 0:
+			var proj = pp.a;
+			return _Utils_Tuple2(
+				'type',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$projectionLabel(proj)));
+		case 1:
+			var numOrNull = pp.a;
+			if (!numOrNull.$) {
+				var x = numOrNull.a;
+				return _Utils_Tuple2(
+					'clipAngle',
+					elm$json$Json$Encode$float(x));
+			} else {
+				return _Utils_Tuple2('clipAngle', elm$json$Json$Encode$null);
+			}
+		case 2:
+			var rClip = pp.a;
+			if (!rClip.$) {
+				return _Utils_Tuple2('clipExtent', elm$json$Json$Encode$null);
+			} else {
+				var l = rClip.a;
+				var t = rClip.b;
+				var r = rClip.c;
+				var b = rClip.d;
+				return _Utils_Tuple2(
+					'clipExtent',
+					A2(
+						elm$json$Json$Encode$list,
+						elm$json$Json$Encode$float,
+						_List_fromArray(
+							[l, t, r, b])));
+			}
+		case 3:
+			var lon = pp.a;
+			var lat = pp.b;
+			return _Utils_Tuple2(
+				'center',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lon, lat])));
+		case 4:
+			var lambda = pp.a;
+			var phi = pp.b;
+			var gamma = pp.c;
+			return _Utils_Tuple2(
+				'rotate',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lambda, phi, gamma])));
+		case 5:
+			var pr = pp.a;
+			return _Utils_Tuple2(
+				'precision',
+				elm$json$Json$Encode$float(pr));
+		case 6:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'coefficient',
+				elm$json$Json$Encode$float(x));
+		case 7:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'distance',
+				elm$json$Json$Encode$float(x));
+		case 8:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'fraction',
+				elm$json$Json$Encode$float(x));
+		case 9:
+			var n = pp.a;
+			return _Utils_Tuple2(
+				'lobes',
+				elm$json$Json$Encode$int(n));
+		case 10:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'parallel',
+				elm$json$Json$Encode$float(x));
+		case 11:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'radius',
+				elm$json$Json$Encode$float(x));
+		case 12:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'ratio',
+				elm$json$Json$Encode$float(x));
+		case 13:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'spacing',
+				elm$json$Json$Encode$float(x));
+		default:
+			var x = pp.a;
+			return _Utils_Tuple2(
+				'tilt',
+				elm$json$Json$Encode$float(x));
+	}
+};
+var author$project$VegaLite$rangeConfigProperty = function (rangeCfg) {
+	switch (rangeCfg.$) {
+		case 0:
+			var schemeName = rangeCfg.a;
+			return _Utils_Tuple2(
+				'category',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$schemeProperty, schemeName, _List_Nil)
+						])));
+		case 1:
+			var schemeName = rangeCfg.a;
+			return _Utils_Tuple2(
+				'diverging',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$schemeProperty, schemeName, _List_Nil)
+						])));
+		case 2:
+			var schemeName = rangeCfg.a;
+			return _Utils_Tuple2(
+				'heatmap',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$schemeProperty, schemeName, _List_Nil)
+						])));
+		case 3:
+			var schemeName = rangeCfg.a;
+			return _Utils_Tuple2(
+				'ordinal',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$schemeProperty, schemeName, _List_Nil)
+						])));
+		case 4:
+			var schemeName = rangeCfg.a;
+			return _Utils_Tuple2(
+				'ramp',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$schemeProperty, schemeName, _List_Nil)
+						])));
+		default:
+			var schemeName = rangeCfg.a;
+			return _Utils_Tuple2(
+				'symbol',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							A2(author$project$VegaLite$schemeProperty, schemeName, _List_Nil)
+						])));
+	}
+};
+var author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
+	switch (scaleCfg.$) {
+		case 0:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'bandPaddingInner',
+				elm$json$Json$Encode$float(x));
+		case 1:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'bandPaddingOuter',
+				elm$json$Json$Encode$float(x));
+		case 2:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'barBandPaddingInner',
+				elm$json$Json$Encode$float(x));
+		case 3:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'barBandPaddingOuter',
+				elm$json$Json$Encode$float(x));
+		case 4:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'rectBandPaddingInner',
+				elm$json$Json$Encode$float(x));
+		case 5:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'rectBandPaddingOuter',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var b = scaleCfg.a;
+			return _Utils_Tuple2(
+				'clamp',
+				elm$json$Json$Encode$bool(b));
+		case 7:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'maxBandSize',
+				elm$json$Json$Encode$float(x));
+		case 8:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minBandSize',
+				elm$json$Json$Encode$float(x));
+		case 9:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'maxFontSize',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minFontSize',
+				elm$json$Json$Encode$float(x));
+		case 11:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'maxOpacity',
+				elm$json$Json$Encode$float(x));
+		case 12:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minOpacity',
+				elm$json$Json$Encode$float(x));
+		case 13:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'maxSize',
+				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minSize',
+				elm$json$Json$Encode$float(x));
+		case 15:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'maxStrokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 16:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'minStrokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 17:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'pointPadding',
+				elm$json$Json$Encode$float(x));
+		case 18:
+			var numOrNull = scaleCfg.a;
+			if (!numOrNull.$) {
+				var x = numOrNull.a;
+				return _Utils_Tuple2(
+					'rangeStep',
+					elm$json$Json$Encode$float(x));
+			} else {
+				return _Utils_Tuple2('rangeStep', elm$json$Json$Encode$null);
+			}
+		case 19:
+			var b = scaleCfg.a;
+			return _Utils_Tuple2(
+				'round',
+				elm$json$Json$Encode$bool(b));
+		case 20:
+			var x = scaleCfg.a;
+			return _Utils_Tuple2(
+				'textXRangeStep',
+				elm$json$Json$Encode$float(x));
+		default:
+			var b = scaleCfg.a;
+			return _Utils_Tuple2(
+				'useUnaggregatedDomain',
+				elm$json$Json$Encode$bool(b));
+	}
+};
+var author$project$VegaLite$selectionLabel = function (seType) {
+	switch (seType) {
+		case 0:
+			return 'single';
+		case 1:
+			return 'multi';
+		default:
+			return 'interval';
+	}
+};
+var author$project$VegaLite$inputProperty = function (prop) {
+	switch (prop.$) {
+		case 3:
+			var x = prop.a;
+			return _Utils_Tuple2(
+				'min',
+				elm$json$Json$Encode$float(x));
+		case 4:
+			var x = prop.a;
+			return _Utils_Tuple2(
+				'max',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var x = prop.a;
+			return _Utils_Tuple2(
+				'step',
+				elm$json$Json$Encode$float(x));
+		case 0:
+			var x = prop.a;
+			return _Utils_Tuple2(
+				'debounce',
+				elm$json$Json$Encode$float(x));
+		case 5:
+			var s = prop.a;
+			return _Utils_Tuple2(
+				'name',
+				elm$json$Json$Encode$string(s));
+		case 2:
+			var opts = prop.a;
+			return _Utils_Tuple2(
+				'options',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, opts));
+		case 7:
+			var el = prop.a;
+			return _Utils_Tuple2(
+				'placeholder',
+				elm$json$Json$Encode$string(el));
+		default:
+			var el = prop.a;
+			return _Utils_Tuple2(
+				'element',
+				elm$json$Json$Encode$string(el));
+	}
+};
+var author$project$VegaLite$bindingSpec = function (bnd) {
+	switch (bnd.$) {
+		case 0:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('range')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 1:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('checkbox')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 2:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('radio')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 3:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('select')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 4:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('text')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 5:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('number')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 6:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('date')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 7:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('time')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 8:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('month')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 9:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('week')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 10:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('datetimelocal')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		case 11:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('tel')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+		default:
+			var label = bnd.a;
+			var props = bnd.b;
+			return _Utils_Tuple2(
+				label,
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'input',
+							elm$json$Json$Encode$string('color')),
+						A2(elm$core$List$map, author$project$VegaLite$inputProperty, props))));
+	}
+};
+var author$project$VegaLite$channelLabel = function (ch) {
+	switch (ch) {
+		case 0:
+			return 'x';
+		case 1:
+			return 'y';
+		case 2:
+			return 'x2';
+		case 3:
+			return 'y2';
+		case 4:
+			return 'color';
+		case 5:
+			return 'opacity';
+		case 6:
+			return 'shape';
+		default:
+			return 'size';
+	}
+};
+var author$project$VegaLite$selectionMarkProperty = function (markProp) {
+	switch (markProp.$) {
+		case 0:
+			var colour = markProp.a;
+			return _Utils_Tuple2(
+				'fill',
+				elm$json$Json$Encode$string(colour));
+		case 1:
+			var x = markProp.a;
+			return _Utils_Tuple2(
+				'fillOpacity',
+				elm$json$Json$Encode$float(x));
+		case 2:
+			var colour = markProp.a;
+			return _Utils_Tuple2(
+				'stroke',
+				elm$json$Json$Encode$string(colour));
+		case 3:
+			var x = markProp.a;
+			return _Utils_Tuple2(
+				'strokeOpacity',
+				elm$json$Json$Encode$float(x));
+		case 4:
+			var x = markProp.a;
+			return _Utils_Tuple2(
+				'strokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 5:
+			var xs = markProp.a;
+			return _Utils_Tuple2(
+				'strokeDash',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
+		default:
+			var x = markProp.a;
+			return _Utils_Tuple2(
+				'strokeDashOffset',
+				elm$json$Json$Encode$float(x));
+	}
+};
+var author$project$VegaLite$selectionResolutionLabel = function (res) {
+	switch (res) {
+		case 0:
+			return 'global';
+		case 1:
+			return 'union';
+		default:
+			return 'intersect';
+	}
+};
+var elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var elm$core$Tuple$mapSecond = F2(
+	function (func, _n0) {
+		var x = _n0.a;
+		var y = _n0.b;
+		return _Utils_Tuple2(
+			x,
+			func(y));
+	});
+var author$project$VegaLite$selectionProperty = function (selProp) {
+	switch (selProp.$) {
+		case 5:
+			var fNames = selProp.a;
+			return _Utils_Tuple2(
+				'fields',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fNames));
+		case 7:
+			var iVals = selProp.a;
+			return _Utils_Tuple2(
+				'init',
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$map,
+						elm$core$Tuple$mapSecond(author$project$VegaLite$dataValueSpec),
+						iVals)));
+		case 6:
+			var channels = selProp.a;
+			return _Utils_Tuple2(
+				'encodings',
+				A2(
+					elm$json$Json$Encode$list,
+					A2(elm$core$Basics$composeL, elm$json$Json$Encode$string, author$project$VegaLite$channelLabel),
+					channels));
+		case 2:
+			var e = selProp.a;
+			return _Utils_Tuple2(
+				'on',
+				elm$json$Json$Encode$string(e));
+		case 0:
+			return _Utils_Tuple2(
+				'empty',
+				elm$json$Json$Encode$string('none'));
+		case 8:
+			var res = selProp.a;
+			return _Utils_Tuple2(
+				'resolve',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$selectionResolutionLabel(res)));
+		case 9:
+			var markProps = selProp.a;
+			return _Utils_Tuple2(
+				'mark',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$selectionMarkProperty, markProps)));
+		case 1:
+			return _Utils_Tuple2(
+				'bind',
+				elm$json$Json$Encode$string('scales'));
+		case 10:
+			var binds = selProp.a;
+			return _Utils_Tuple2(
+				'bind',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$bindingSpec, binds)));
+		case 11:
+			var b = selProp.a;
+			return _Utils_Tuple2(
+				'nearest',
+				elm$json$Json$Encode$bool(b));
+		case 12:
+			var ex = selProp.a;
+			return _Utils_Tuple2(
+				'toggle',
+				elm$json$Json$Encode$string(ex));
+		case 3:
+			var e = selProp.a;
+			return (e === '') ? _Utils_Tuple2(
+				'translate',
+				elm$json$Json$Encode$bool(false)) : _Utils_Tuple2(
+				'translate',
+				elm$json$Json$Encode$string(e));
+		default:
+			var e = selProp.a;
+			return (e === '') ? _Utils_Tuple2(
+				'zoom',
+				elm$json$Json$Encode$bool(false)) : _Utils_Tuple2(
+				'zoom',
+				elm$json$Json$Encode$string(e));
+	}
+};
+var author$project$VegaLite$stackOffsetSpec = function (sp) {
+	switch (sp) {
+		case 0:
+			return elm$json$Json$Encode$string('zero');
+		case 1:
+			return elm$json$Json$Encode$string('normalize');
+		case 2:
+			return elm$json$Json$Encode$string('center');
+		default:
+			return elm$json$Json$Encode$null;
+	}
+};
+var author$project$VegaLite$stackOffset = function (offset) {
+	return _Utils_Tuple2(
+		'stack',
+		author$project$VegaLite$stackOffsetSpec(offset));
+};
+var author$project$VegaLite$sideLabel = function (side) {
+	switch (side) {
+		case 0:
+			return 'top';
+		case 1:
+			return 'bottom';
+		case 2:
+			return 'left';
+		default:
+			return 'right';
+	}
+};
+var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
+	switch (titleCfg.$) {
+		case 0:
+			var an = titleCfg.a;
+			return _Utils_Tuple2(
+				'anchor',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$anchorLabel(an)));
+		case 1:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'angle',
+				elm$json$Json$Encode$float(x));
+		case 2:
+			var va = titleCfg.a;
+			return _Utils_Tuple2(
+				'baseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 3:
+			var clr = titleCfg.a;
+			return _Utils_Tuple2(
+				'color',
+				elm$json$Json$Encode$string(clr));
+		case 4:
+			var fnt = titleCfg.a;
+			return _Utils_Tuple2(
+				'font',
+				elm$json$Json$Encode$string(fnt));
+		case 5:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontSize',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var w = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontWeight',
+				author$project$VegaLite$fontWeightSpec(w));
+		case 7:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'limit',
+				elm$json$Json$Encode$float(x));
+		case 8:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'offset',
+				elm$json$Json$Encode$float(x));
+		default:
+			var sd = titleCfg.a;
+			return _Utils_Tuple2(
+				'orient',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$sideLabel(sd)));
+	}
+};
+var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
+	switch (viewCfg.$) {
+		case 0:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'width',
+				elm$json$Json$Encode$float(x));
+		case 1:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'height',
+				elm$json$Json$Encode$float(x));
+		case 2:
+			var b = viewCfg.a;
+			return _Utils_Tuple2(
+				'clip',
+				elm$json$Json$Encode$bool(b));
+		case 3:
+			var r = viewCfg.a;
+			return _Utils_Tuple2(
+				'cornerRadius',
+				elm$json$Json$Encode$float(r));
+		case 4:
+			var ms = viewCfg.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _Utils_Tuple2(
+					'fill',
+					elm$json$Json$Encode$string(s));
+			} else {
+				return _Utils_Tuple2(
+					'fill',
+					elm$json$Json$Encode$string(''));
+			}
+		case 5:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'fillOpacity',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'opacity',
+				elm$json$Json$Encode$float(x));
+		case 7:
+			var ms = viewCfg.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _Utils_Tuple2(
+					'stroke',
+					elm$json$Json$Encode$string(s));
+			} else {
+				return _Utils_Tuple2(
+					'stroke',
+					elm$json$Json$Encode$string(''));
+			}
+		case 8:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeOpacity',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var cap = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeCap',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$strokeCapLabel(cap)));
+		case 13:
+			var jn = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeJoin',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$strokeJoinLabel(jn)));
+		case 9:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeWidth',
+				elm$json$Json$Encode$float(x));
+		case 11:
+			var xs = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeDash',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
+		case 12:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeDashOffset',
+				elm$json$Json$Encode$float(x));
+		default:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'strokeMiterLimit',
+				elm$json$Json$Encode$float(x));
+	}
+};
+var author$project$VegaLite$configProperty = function (configProp) {
+	switch (configProp.$) {
+		case 1:
+			var aus = configProp.a;
+			return _Utils_Tuple2(
+				'autosize',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$autosizeProperty, aus)));
+		case 10:
+			var bg = configProp.a;
+			return _Utils_Tuple2(
+				'background',
+				elm$json$Json$Encode$string(bg));
+		case 13:
+			var s = configProp.a;
+			return _Utils_Tuple2(
+				'countTitle',
+				elm$json$Json$Encode$string(s));
+		case 14:
+			var ftp = configProp.a;
+			return _Utils_Tuple2(
+				'fieldTitle',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$fieldTitleLabel(ftp)));
+		case 29:
+			var b = configProp.a;
+			return b ? _Utils_Tuple2(
+				'invalidValues',
+				elm$json$Json$Encode$string('filter')) : _Utils_Tuple2('invalidValues', elm$json$Json$Encode$null);
+		case 23:
+			var fmt = configProp.a;
+			return _Utils_Tuple2(
+				'numberFormat',
+				elm$json$Json$Encode$string(fmt));
+		case 24:
+			var pad = configProp.a;
+			return _Utils_Tuple2(
+				'padding',
+				author$project$VegaLite$paddingSpec(pad));
+		case 38:
+			var fmt = configProp.a;
+			return _Utils_Tuple2(
+				'timeFormat',
+				elm$json$Json$Encode$string(fmt));
+		case 2:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axis',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 3:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisX',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 4:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisY',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 5:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisLeft',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 6:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisRight',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 7:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisTop',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 8:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisBottom',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 9:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisBand',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$axisConfigProperty, acs)));
+		case 16:
+			var lcs = configProp.a;
+			return _Utils_Tuple2(
+				'legend',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$legendConfigProperty, lcs)));
+		case 20:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'mark',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 26:
+			var pps = configProp.a;
+			return _Utils_Tuple2(
+				'projection',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$projectionProperty, pps)));
+		case 0:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'area',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 11:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'bar',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 12:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'circle',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 18:
+			var fps = configProp.a;
+			return _Utils_Tuple2(
+				'facet',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$facetConfigProperty, fps)));
+		case 15:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'geoshape',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 19:
+			var hps = configProp.a;
+			return _Utils_Tuple2(
+				'header',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$headerProperty, hps)));
+		case 17:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'line',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 25:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'point',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 28:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'rect',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 30:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'rule',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 33:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'square',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 35:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'text',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 36:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'tick',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+		case 37:
+			var tcs = configProp.a;
+			return _Utils_Tuple2(
+				'title',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$titleConfigSpec, tcs)));
+		case 21:
+			var styleName = configProp.a;
+			var mps = configProp.b;
+			return _Utils_Tuple2(
+				'style',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							styleName,
+							elm$json$Json$Encode$object(
+								A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)))
+						])));
+		case 22:
+			var styles = configProp.a;
+			return _Utils_Tuple2(
+				'style',
+				elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$map,
+						function (_n1) {
+							var sName = _n1.a;
+							var mps = _n1.b;
+							return _Utils_Tuple2(
+								sName,
+								elm$json$Json$Encode$object(
+									A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+						},
+						styles)));
+		case 31:
+			var scs = configProp.a;
+			return _Utils_Tuple2(
+				'scale',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$scaleConfigProperty, scs)));
+		case 34:
+			var so = configProp.a;
+			return author$project$VegaLite$stackOffset(so);
+		case 27:
+			var rcs = configProp.a;
+			return _Utils_Tuple2(
+				'range',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$rangeConfigProperty, rcs)));
+		case 32:
+			var selConfig = configProp.a;
+			var selProp = function (_n2) {
+				var sel = _n2.a;
+				var sps = _n2.b;
+				return _Utils_Tuple2(
+					author$project$VegaLite$selectionLabel(sel),
+					elm$json$Json$Encode$object(
+						A2(elm$core$List$map, author$project$VegaLite$selectionProperty, sps)));
+			};
+			return _Utils_Tuple2(
+				'selection',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, selProp, selConfig)));
+		case 40:
+			var vcs = configProp.a;
+			return _Utils_Tuple2(
+				'view',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$viewConfigProperty, vcs)));
+		default:
+			var mps = configProp.a;
+			return _Utils_Tuple2(
+				'trail',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$map, author$project$VegaLite$markProperty, mps)));
+	}
+};
+var author$project$VegaLite$configuration = function (cfg) {
+	return elm$core$List$cons(
+		author$project$VegaLite$configProperty(cfg));
+};
+var author$project$VegaLite$VLConfig = 27;
+var author$project$VegaLite$configure = function (configs) {
+	return _Utils_Tuple2(
+		27,
+		elm$json$Json$Encode$object(configs));
+};
+var author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$object(
+									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var author$project$VegaLite$VLData = 8;
+var author$project$VegaLite$dataTypeSpec = function (dType) {
+	switch (dType.$) {
+		case 0:
+			return elm$json$Json$Encode$string('number');
+		case 1:
+			return elm$json$Json$Encode$string('boolean');
+		case 2:
+			var dateFmt = dType.a;
+			return (dateFmt === '') ? elm$json$Json$Encode$string('date') : elm$json$Json$Encode$string('date:\'' + (dateFmt + '\''));
+		default:
+			var dateFmt = dType.a;
+			return (dateFmt === '') ? elm$json$Json$Encode$string('utc') : elm$json$Json$Encode$string('utc:\'' + (dateFmt + '\''));
+	}
+};
+var elm$core$String$cons = _String_cons;
+var elm$core$String$fromChar = function (_char) {
+	return A2(elm$core$String$cons, _char, '');
+};
+var elm$core$String$trim = _String_trim;
+var author$project$VegaLite$formatProperty = function (fmt) {
+	switch (fmt.$) {
+		case 0:
+			var propertyName = fmt.a;
+			return (elm$core$String$trim(propertyName) === '') ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('json'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('json')),
+					_Utils_Tuple2(
+					'property',
+					elm$json$Json$Encode$string(propertyName))
+				]);
+		case 1:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('csv'))
+				]);
+		case 2:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('tsv'))
+				]);
+		case 3:
+			var delim = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('dsv')),
+					_Utils_Tuple2(
+					'delimiter',
+					elm$json$Json$Encode$string(
+						elm$core$String$fromChar(delim)))
+				]);
+		case 4:
+			var objectSet = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('topojson')),
+					_Utils_Tuple2(
+					'feature',
+					elm$json$Json$Encode$string(objectSet))
+				]);
+		case 5:
+			var objectSet = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('topojson')),
+					_Utils_Tuple2(
+					'mesh',
+					elm$json$Json$Encode$string(objectSet))
+				]);
+		default:
+			var fmts = fmt.a;
+			return _Utils_eq(fmts, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('parse', elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'parse',
+					elm$json$Json$Encode$object(
+						A2(
+							elm$core$List$map,
+							function (_n1) {
+								var field = _n1.a;
+								var fFormat = _n1.b;
+								return _Utils_Tuple2(
+									field,
+									author$project$VegaLite$dataTypeSpec(fFormat));
+							},
+							fmts)))
+				]);
+	}
+};
+var elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2(elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3(elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var author$project$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		elm$core$Basics$composeR,
+		elm$core$List$head,
+		A2(
+			elm$core$Basics$composeR,
+			elm$core$Maybe$withDefault(_List_Nil),
+			elm$core$List$length));
+	return A3(
+		elm$core$List$foldr,
+		elm$core$List$map2(elm$core$List$cons),
+		A2(
+			elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			elm$json$Json$Encode$list,
+			elm$json$Json$Encode$object,
+			author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						elm$json$Json$Encode$object(
+							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var author$project$VegaLite$VLEncoding = 13;
+var author$project$VegaLite$encoding = function (channels) {
+	return _Utils_Tuple2(
+		13,
+		elm$json$Json$Encode$object(channels));
+};
+var author$project$VegaLite$VLHeight = 4;
+var author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		elm$json$Json$Encode$float(h));
+};
+var author$project$VegaLite$MNumber = function (a) {
+	return {$: 14, a: a};
+};
+var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
+var author$project$VegaLite$MPath = function (a) {
+	return {$: 13, a: a};
+};
+var author$project$VegaLite$mPath = author$project$VegaLite$MPath;
+var author$project$VegaLite$MSelectionCondition = F3(
+	function (a, b, c) {
+		return {$: 11, a: a, b: b, c: c};
+	});
+var author$project$VegaLite$mSelectionCondition = author$project$VegaLite$MSelectionCondition;
+var author$project$VegaLite$MString = function (a) {
+	return {$: 15, a: a};
+};
+var author$project$VegaLite$mStr = author$project$VegaLite$MString;
+var author$project$VegaLite$MFilled = function (a) {
+	return {$: 16, a: a};
+};
+var author$project$VegaLite$maFilled = author$project$VegaLite$MFilled;
+var author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
+var author$project$VegaLite$PAxis = function (a) {
+	return {$: 12, a: a};
+};
+var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
+var author$project$VegaLite$PName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Point = 8;
+var author$project$VegaLite$VLMark = 10;
+var author$project$VegaLite$markLabel = function (m) {
+	switch (m) {
+		case 0:
+			return 'area';
+		case 1:
+			return 'bar';
+		case 2:
+			return 'boxplot';
+		case 5:
+			return 'circle';
+		case 3:
+			return 'errorband';
+		case 4:
+			return 'errorbar';
+		case 7:
+			return 'line';
+		case 6:
+			return 'geoshape';
+		case 8:
+			return 'point';
+		case 9:
+			return 'rect';
+		case 10:
+			return 'rule';
+		case 11:
+			return 'square';
+		case 12:
+			return 'text';
+		case 13:
+			return 'tick';
+		default:
+			return 'trail';
+	}
+};
 var author$project$VegaLite$mark = F2(
 	function (m, mProps) {
 		if (!mProps.b) {
@@ -5192,18 +9085,6 @@ var author$project$VegaLite$Longitude = 4;
 var author$project$VegaLite$Longitude2 = 6;
 var author$project$VegaLite$X2 = 2;
 var author$project$VegaLite$Y2 = 3;
-var author$project$VegaLite$sideLabel = function (side) {
-	switch (side) {
-		case 0:
-			return 'top';
-		case 1:
-			return 'bottom';
-		case 2:
-			return 'left';
-		default:
-			return 'right';
-	}
-};
 var author$project$VegaLite$axisProperty = function (axisProp) {
 	switch (axisProp.$) {
 		case 0:
@@ -5503,26 +9384,6 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 				elm$json$Json$Encode$float(n));
 	}
 };
-var author$project$VegaLite$channelLabel = function (ch) {
-	switch (ch) {
-		case 0:
-			return 'x';
-		case 1:
-			return 'y';
-		case 2:
-			return 'x2';
-		case 3:
-			return 'y2';
-		case 4:
-			return 'color';
-		case 5:
-			return 'opacity';
-		case 6:
-			return 'shape';
-		default:
-			return 'size';
-	}
-};
 var author$project$VegaLite$sortProperty = function (sp) {
 	switch (sp.$) {
 		case 0:
@@ -5585,23 +9446,6 @@ var author$project$VegaLite$sortProperty = function (sp) {
 			var dvs = sp.a;
 			return _List_Nil;
 	}
-};
-var author$project$VegaLite$stackOffsetSpec = function (sp) {
-	switch (sp) {
-		case 0:
-			return elm$json$Json$Encode$string('zero');
-		case 1:
-			return elm$json$Json$Encode$string('normalize');
-		case 2:
-			return elm$json$Json$Encode$string('center');
-		default:
-			return elm$json$Json$Encode$null;
-	}
-};
-var author$project$VegaLite$stackOffset = function (offset) {
-	return _Utils_Tuple2(
-		'stack',
-		author$project$VegaLite$stackOffsetSpec(offset));
 };
 var author$project$VegaLite$positionChannelProperty = function (pDef) {
 	switch (pDef.$) {
@@ -5806,6 +9650,46 @@ var author$project$VegaLite$position = F2(
 							A2(elm$core$List$map, author$project$VegaLite$positionChannelProperty, pDefs))));
 		}
 	});
+var author$project$VegaLite$SeInterval = 2;
+var author$project$VegaLite$seInterval = 2;
+var author$project$VegaLite$select = F3(
+	function (selName, sType, options) {
+		var selProps = A2(
+			elm$core$List$cons,
+			_Utils_Tuple2(
+				'type',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$selectionLabel(sType))),
+			A2(elm$core$List$map, author$project$VegaLite$selectionProperty, options));
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				selName,
+				elm$json$Json$Encode$object(selProps)));
+	});
+var author$project$VegaLite$VLSelection = 28;
+var author$project$VegaLite$selection = function (sels) {
+	return _Utils_Tuple2(
+		28,
+		elm$json$Json$Encode$object(sels));
+};
+var author$project$VegaLite$SelectionName = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$selectionName = author$project$VegaLite$SelectionName;
+var author$project$VegaLite$shape = function (markProps) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'shape',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
+};
+var author$project$VegaLite$size = function (markProps) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
+};
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -6295,11 +10179,419 @@ var author$project$VegaLite$transform = function (transforms) {
 		11,
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
-var elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
+var author$project$VegaLite$VStroke = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
+var author$project$VegaLite$VLWidth = 3;
+var author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		elm$json$Json$Encode$float(w));
+};
+var elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === -2) {
+				return elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _n1 = A2(elm$core$Basics$compare, targetKey, key);
+				switch (_n1) {
+					case 0:
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 1:
+						return elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
 	});
+var author$project$ShapeTests$personGrid = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$transform,
+			A2(author$project$VegaLite$calculateAs, 'ceil (datum.id/10)', 'col')),
+		A2(author$project$VegaLite$calculateAs, 'datum.id - datum.col*10', 'row'));
+	var sel = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$selection,
+		A3(author$project$VegaLite$select, 'highlight', author$project$VegaLite$seInterval, _List_Nil));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						author$project$VegaLite$encoding,
+						A2(
+							author$project$VegaLite$position,
+							0,
+							_List_fromArray(
+								[
+									author$project$VegaLite$pName('col'),
+									author$project$VegaLite$pMType(1),
+									author$project$VegaLite$pAxis(_List_Nil)
+								]))),
+					A2(
+						author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								author$project$VegaLite$pName('row'),
+								author$project$VegaLite$pMType(1),
+								author$project$VegaLite$pAxis(_List_Nil)
+							]))),
+				author$project$VegaLite$shape(
+					_List_fromArray(
+						[
+							author$project$VegaLite$mPath(
+							A2(
+								elm$core$Maybe$withDefault,
+								'circle',
+								A2(elm$core$Dict$get, 'person', author$project$ShapeTests$isotypes)))
+						]))),
+			author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						A3(
+						author$project$VegaLite$mSelectionCondition,
+						author$project$VegaLite$selectionName('highlight'),
+						_List_fromArray(
+							[
+								author$project$VegaLite$mStr('rgb(194,81,64)')
+							]),
+						_List_fromArray(
+							[
+								author$project$VegaLite$mStr('rgb(167,165,156)')
+							]))
+					]))),
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mNum(90)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'id',
+			author$project$VegaLite$nums(
+				A2(
+					elm$core$List$map,
+					elm$core$Basics$toFloat,
+					A2(elm$core$List$range, 1, 100)))));
+	var config = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$configure,
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing)
+					]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				config(_List_Nil),
+				author$project$VegaLite$width(400),
+				author$project$VegaLite$height(400),
+				data(_List_Nil),
+				trans(_List_Nil),
+				author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(true)
+					])),
+				enc(_List_Nil),
+				sel(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$dataFromUrl = F2(
+	function (url, fmts) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						elm$json$Json$Encode$string(url))
+					]))) : _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						elm$json$Json$Encode$string(url)),
+						_Utils_Tuple2(
+						'format',
+						elm$json$Json$Encode$object(
+							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var author$project$VegaLite$VLDescription = 1;
+var author$project$VegaLite$description = function (s) {
+	return _Utils_Tuple2(
+		1,
+		elm$json$Json$Encode$string(s));
+};
+var author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$fiExpr = author$project$VegaLite$FExpr;
+var author$project$VegaLite$filter = function (f) {
+	switch (f.$) {
+		case 5:
+			var ex = f.a;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$string(ex)));
+		case 6:
+			var boolExpr = f.a;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					author$project$VegaLite$booleanOpSpec(boolExpr)));
+		case 0:
+			var field = f.a;
+			var val = f.b;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'equal',
+								author$project$VegaLite$dataValueSpec(val))
+							]))));
+		case 1:
+			var field = f.a;
+			var val = f.b;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'lt',
+								author$project$VegaLite$dataValueSpec(val))
+							]))));
+		case 2:
+			var field = f.a;
+			var val = f.b;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'lte',
+								author$project$VegaLite$dataValueSpec(val))
+							]))));
+		case 3:
+			var field = f.a;
+			var val = f.b;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'gt',
+								author$project$VegaLite$dataValueSpec(val))
+							]))));
+		case 4:
+			var field = f.a;
+			var val = f.b;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'gte',
+								author$project$VegaLite$dataValueSpec(val))
+							]))));
+		case 7:
+			var selName = f.a;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'selection',
+								elm$json$Json$Encode$string(selName))
+							]))));
+		case 9:
+			var field = f.a;
+			var vals = f.b;
+			var values = function () {
+				if (!vals.$) {
+					var mn = vals.a;
+					var mx = vals.b;
+					return A2(
+						elm$json$Json$Encode$list,
+						elm$json$Json$Encode$float,
+						_List_fromArray(
+							[mn, mx]));
+				} else {
+					if (!vals.a.b) {
+						if (!vals.b.b) {
+							return author$project$VegaLite$toList(
+								_List_fromArray(
+									[elm$json$Json$Encode$null, elm$json$Json$Encode$null]));
+						} else {
+							var dMax = vals.b;
+							return author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										elm$json$Json$Encode$null,
+										elm$json$Json$Encode$object(
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMax))
+									]));
+						}
+					} else {
+						if (!vals.b.b) {
+							var dMin = vals.a;
+							return author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										elm$json$Json$Encode$object(
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMin)),
+										elm$json$Json$Encode$null
+									]));
+						} else {
+							var dMin = vals.a;
+							var dMax = vals.b;
+							return A2(
+								elm$json$Json$Encode$list,
+								elm$json$Json$Encode$object,
+								_List_fromArray(
+									[
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMin),
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMax)
+									]));
+						}
+					}
+				}
+			}();
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2('range', values)
+							]))));
+		case 8:
+			var field = f.a;
+			var vals = f.b;
+			var values = function () {
+				switch (vals.$) {
+					case 2:
+						var xs = vals.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs);
+					case 1:
+						var ds = vals.a;
+						return A2(
+							elm$json$Json$Encode$list,
+							function (d) {
+								return elm$json$Json$Encode$object(
+									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+							},
+							ds);
+					case 3:
+						var ss = vals.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, ss);
+					default:
+						var bs = vals.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$bool, bs);
+				}
+			}();
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2('oneOf', values)
+							]))));
+		default:
+			var field = f.a;
+			return elm$core$List$cons(
+				_Utils_Tuple2(
+					'filter',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'field',
+								elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'valid',
+								elm$json$Json$Encode$bool(true))
+							]))));
+	}
+};
+var author$project$VegaLite$opacity = function (markProps) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'opacity',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
+};
 var author$project$ShapeTests$chart = F2(
 	function (des, enc) {
 		return author$project$VegaLite$toVegaLite(
@@ -6362,13 +10654,6 @@ var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
-var author$project$VegaLite$shape = function (markProps) {
-	return elm$core$List$cons(
-		_Utils_Tuple2(
-			'shape',
-			elm$json$Json$Encode$object(
-				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
-};
 var author$project$ShapeTests$scatter1 = A2(
 	author$project$ShapeTests$chart,
 	'Default nominal shapes.',
@@ -6422,13 +10707,6 @@ var author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) {
 			author$project$VegaLite$RStrings(range))
 		]);
 };
-var author$project$VegaLite$color = function (markProps) {
-	return elm$core$List$cons(
-		_Utils_Tuple2(
-			'color',
-			elm$json$Json$Encode$object(
-				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
-};
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -6458,14 +10736,6 @@ var author$project$ShapeTests$scatter10 = A2(
 					author$project$VegaLite$mName('Origin'),
 					author$project$VegaLite$mMType(0)
 				]))));
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$size = function (markProps) {
-	return elm$core$List$cons(
-		_Utils_Tuple2(
-			'size',
-			elm$json$Json$Encode$object(
-				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
-};
 var author$project$ShapeTests$scatter11 = A2(
 	author$project$ShapeTests$chart,
 	'Sized, shaped and coloured by number of cylinders (should have two sets of legend items)',
@@ -6492,10 +10762,6 @@ var author$project$ShapeTests$scatter11 = A2(
 					author$project$VegaLite$mMType(0)
 				]))));
 var author$project$ShapeTests$unitSquare = 'M -0.5 -0.5 h 1 v 1 h -1z';
-var author$project$VegaLite$MPath = function (a) {
-	return {$: 13, a: a};
-};
-var author$project$VegaLite$mPath = author$project$VegaLite$MPath;
 var author$project$ShapeTests$scatter12 = A2(
 	author$project$ShapeTests$chart,
 	'Custom nominal shape with unit area.',
@@ -6700,29 +10966,301 @@ var author$project$ShapeTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('custom1', author$project$ShapeTests$scatter12),
 			_Utils_Tuple2('custom2', author$project$ShapeTests$scatter13),
 			_Utils_Tuple2('custom3', author$project$ShapeTests$scatter14),
-			_Utils_Tuple2('custom4', author$project$ShapeTests$scatter15)
+			_Utils_Tuple2('custom4', author$project$ShapeTests$scatter15),
+			_Utils_Tuple2('isotype1', author$project$ShapeTests$personGrid)
 		]));
+var author$project$ShapeTests$sourceExample = author$project$ShapeTests$personGrid;
+var elm$json$Json$Decode$map = _Json_map1;
+var elm$json$Json$Decode$map2 = _Json_map2;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
+	switch (handler.$) {
+		case 0:
+			return 0;
+		case 1:
+			return 1;
+		case 2:
+			return 2;
+		default:
+			return 3;
+	}
+};
+var elm$html$Html$div = _VirtualDom_node('div');
+var elm$html$Html$pre = _VirtualDom_node('pre');
+var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$id = elm$html$Html$Attributes$stringProperty('id');
+var author$project$ShapeTests$view = function (spec) {
+	return A2(
+		elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$id('specSource')
+					]),
+				_List_Nil),
+				A2(
+				elm$html$Html$pre,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(
+						A2(elm$json$Json$Encode$encode, 2, author$project$ShapeTests$sourceExample))
+					]))
+			]));
+};
+var elm$browser$Browser$External = function (a) {
+	return {$: 1, a: a};
+};
+var elm$browser$Browser$Internal = function (a) {
+	return {$: 0, a: a};
+};
+var elm$browser$Browser$Dom$NotFound = elm$core$Basics$identity;
+var elm$core$Basics$never = function (_n0) {
+	never:
+	while (true) {
+		var nvr = _n0;
+		var $temp$_n0 = nvr;
+		_n0 = $temp$_n0;
+		continue never;
+	}
+};
+var elm$core$Task$Perform = elm$core$Basics$identity;
+var elm$core$Task$succeed = _Scheduler_succeed;
+var elm$core$Task$init = elm$core$Task$succeed(0);
+var elm$core$Task$andThen = _Scheduler_andThen;
+var elm$core$Task$map = F2(
+	function (func, taskA) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return elm$core$Task$succeed(
+					func(a));
+			},
+			taskA);
+	});
+var elm$core$Task$map2 = F3(
+	function (func, taskA, taskB) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return A2(
+					elm$core$Task$andThen,
+					function (b) {
+						return elm$core$Task$succeed(
+							A2(func, a, b));
+					},
+					taskB);
+			},
+			taskA);
+	});
+var elm$core$Task$sequence = function (tasks) {
+	return A3(
+		elm$core$List$foldr,
+		elm$core$Task$map2(elm$core$List$cons),
+		elm$core$Task$succeed(_List_Nil),
+		tasks);
+};
+var elm$core$Platform$sendToApp = _Platform_sendToApp;
+var elm$core$Task$spawnCmd = F2(
+	function (router, _n0) {
+		var task = _n0;
+		return _Scheduler_spawn(
+			A2(
+				elm$core$Task$andThen,
+				elm$core$Platform$sendToApp(router),
+				task));
+	});
+var elm$core$Task$onEffects = F3(
+	function (router, commands, state) {
+		return A2(
+			elm$core$Task$map,
+			function (_n0) {
+				return 0;
+			},
+			elm$core$Task$sequence(
+				A2(
+					elm$core$List$map,
+					elm$core$Task$spawnCmd(router),
+					commands)));
+	});
+var elm$core$Task$onSelfMsg = F3(
+	function (_n0, _n1, _n2) {
+		return elm$core$Task$succeed(0);
+	});
+var elm$core$Task$cmdMap = F2(
+	function (tagger, _n0) {
+		var task = _n0;
+		return A2(elm$core$Task$map, tagger, task);
+	});
+_Platform_effectManagers['Task'] = _Platform_createManager(elm$core$Task$init, elm$core$Task$onEffects, elm$core$Task$onSelfMsg, elm$core$Task$cmdMap);
+var elm$core$Task$command = _Platform_leaf('Task');
+var elm$core$Task$perform = F2(
+	function (toMessage, task) {
+		return elm$core$Task$command(
+			A2(elm$core$Task$map, toMessage, task));
+	});
+var elm$core$String$length = _String_length;
+var elm$core$String$slice = _String_slice;
+var elm$core$String$dropLeft = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3(
+			elm$core$String$slice,
+			n,
+			elm$core$String$length(string),
+			string);
+	});
+var elm$core$String$startsWith = _String_startsWith;
+var elm$url$Url$Http = 0;
+var elm$url$Url$Https = 1;
+var elm$core$String$indexes = _String_indexes;
+var elm$core$String$isEmpty = function (string) {
+	return string === '';
+};
+var elm$core$String$left = F2(
+	function (n, string) {
+		return (n < 1) ? '' : A3(elm$core$String$slice, 0, n, string);
+	});
+var elm$core$String$contains = _String_contains;
+var elm$core$String$toInt = _String_toInt;
+var elm$url$Url$Url = F6(
+	function (protocol, host, port_, path, query, fragment) {
+		return {S: fragment, T: host, X: path, Z: port_, ab: protocol, ac: query};
+	});
+var elm$url$Url$chompBeforePath = F5(
+	function (protocol, path, params, frag, str) {
+		if (elm$core$String$isEmpty(str) || A2(elm$core$String$contains, '@', str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, ':', str);
+			if (!_n0.b) {
+				return elm$core$Maybe$Just(
+					A6(elm$url$Url$Url, protocol, str, elm$core$Maybe$Nothing, path, params, frag));
+			} else {
+				if (!_n0.b.b) {
+					var i = _n0.a;
+					var _n1 = elm$core$String$toInt(
+						A2(elm$core$String$dropLeft, i + 1, str));
+					if (_n1.$ === 1) {
+						return elm$core$Maybe$Nothing;
+					} else {
+						var port_ = _n1;
+						return elm$core$Maybe$Just(
+							A6(
+								elm$url$Url$Url,
+								protocol,
+								A2(elm$core$String$left, i, str),
+								port_,
+								path,
+								params,
+								frag));
+					}
+				} else {
+					return elm$core$Maybe$Nothing;
+				}
+			}
+		}
+	});
+var elm$url$Url$chompBeforeQuery = F4(
+	function (protocol, params, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '/', str);
+			if (!_n0.b) {
+				return A5(elm$url$Url$chompBeforePath, protocol, '/', params, frag, str);
+			} else {
+				var i = _n0.a;
+				return A5(
+					elm$url$Url$chompBeforePath,
+					protocol,
+					A2(elm$core$String$dropLeft, i, str),
+					params,
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompBeforeFragment = F3(
+	function (protocol, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '?', str);
+			if (!_n0.b) {
+				return A4(elm$url$Url$chompBeforeQuery, protocol, elm$core$Maybe$Nothing, frag, str);
+			} else {
+				var i = _n0.a;
+				return A4(
+					elm$url$Url$chompBeforeQuery,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompAfterProtocol = F2(
+	function (protocol, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '#', str);
+			if (!_n0.b) {
+				return A3(elm$url$Url$chompBeforeFragment, protocol, elm$core$Maybe$Nothing, str);
+			} else {
+				var i = _n0.a;
+				return A3(
+					elm$url$Url$chompBeforeFragment,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$fromString = function (str) {
+	return A2(elm$core$String$startsWith, 'http://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		0,
+		A2(elm$core$String$dropLeft, 7, str)) : (A2(elm$core$String$startsWith, 'https://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		1,
+		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
+};
+var elm$browser$Browser$element = _Browser_element;
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
 		return a;
 	});
-var elm$core$Platform$worker = _Platform_worker;
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var elm$core$Platform$Sub$batch = _Platform_batch;
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
-var elm$json$Json$Decode$succeed = _Json_succeed;
-var author$project$ShapeTests$main = elm$core$Platform$worker(
+var author$project$ShapeTests$main = elm$browser$Browser$element(
 	{
-		at: elm$core$Basics$always(
+		as: elm$core$Basics$always(
 			_Utils_Tuple2(
 				author$project$ShapeTests$mySpecs,
 				author$project$ShapeTests$elmToJS(author$project$ShapeTests$mySpecs))),
-		az: elm$core$Basics$always(elm$core$Platform$Sub$none),
-		aB: F2(
+		ay: elm$core$Basics$always(elm$core$Platform$Sub$none),
+		aA: F2(
 			function (_n0, model) {
 				return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
-			})
+			}),
+		aC: author$project$ShapeTests$view
 	});
 _Platform_export({'ShapeTests':{'init':author$project$ShapeTests$main(
 	elm$json$Json$Decode$succeed(0))(0)}});}(this));
