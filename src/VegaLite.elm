@@ -7192,8 +7192,10 @@ foDate =
 {-| Perform a _gather_ operation to _tidy_ a table. Collapse multiple data fields
 into two new data fields: `key` containing the original data field names and `value`
 containing the corresponding data values. This performs the same function as the
-[gather operation in R](https://tidyr.tidyverse.org/reference/gather.html) and in the
-[Tidy Elm package](https://package.elm-lang.org/packages/gicentre/tidy/latest/Tidy#gather).
+['gather' function in the Tidy Elm package](https://package.elm-lang.org/packages/gicentre/tidy/latest/Tidy#gather)
+and the [pivot_longer](https://tidyr.tidyverse.org/dev/articles/pivot.html) /
+[gather](https://tidyr.tidyverse.org/reference/gather.html) operation in the R
+tidyverse.
 -}
 fold : List String -> List LabelledSpec -> List LabelledSpec
 fold fields =
