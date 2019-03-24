@@ -9173,6 +9173,589 @@ var author$project$GalleryMulti$multi5 = function () {
 					[spec1, spec2]))
 			]));
 }();
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$View = function (a) {
+	return {$: 40, a: a};
+};
+var author$project$VegaLite$coView = author$project$VegaLite$View;
+var author$project$VegaLite$FLessThan = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
+var author$project$VegaLite$fiLessThan = author$project$VegaLite$FLessThan;
+var author$project$VegaLite$VLHConcat = 16;
+var author$project$VegaLite$hConcat = function (specs) {
+	return _Utils_Tuple2(
+		16,
+		author$project$VegaLite$toList(specs));
+};
+var author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$num = author$project$VegaLite$Number;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
+var author$project$VegaLite$TName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$textChannelProperty = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								elm$json$Json$Encode$string(
+									author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$operationLabel(op)))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$timeUnitLabel(tu)))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					elm$json$Json$Encode$string(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					elm$json$Json$Encode$string(fmt))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					elm$json$Json$Encode$object(
+						A2(
+							elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								author$project$VegaLite$booleanOpSpec(selName)),
+							A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)))),
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
+		default:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_n1) {
+				var predicate = _n1.a;
+				var ifClause = _n1.b;
+				return elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							author$project$VegaLite$booleanOpSpec(predicate)),
+						A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)));
+			};
+			return A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2(elm$json$Json$Encode$list, testClause, tests)),
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
+	}
+};
+var author$project$VegaLite$text = function (tDefs) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, tDefs))));
+};
+var author$project$VegaLite$Text = 12;
+var author$project$VegaLite$textMark = author$project$VegaLite$mark(12);
+var author$project$VegaLite$VStroke = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
+var author$project$VegaLite$WOp = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$wiOp = author$project$VegaLite$WOp;
+var author$project$VegaLite$wOperationLabel = function (op) {
+	switch (op) {
+		case 0:
+			return 'row_number';
+		case 1:
+			return 'rank';
+		case 2:
+			return 'dense_rank';
+		case 3:
+			return 'percent_rank';
+		case 4:
+			return 'cume_dist';
+		case 5:
+			return 'ntile';
+		case 6:
+			return 'lag';
+		case 7:
+			return 'lead';
+		case 8:
+			return 'first_value';
+		case 9:
+			return 'last_value';
+		default:
+			return 'nth_value';
+	}
+};
+var author$project$VegaLite$windowFieldProperty = function (w) {
+	switch (w.$) {
+		case 0:
+			var op = w.a;
+			return _Utils_Tuple2(
+				'op',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$operationLabel(op)));
+		case 1:
+			var op = w.a;
+			return _Utils_Tuple2(
+				'op',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$wOperationLabel(op)));
+		case 2:
+			var n = w.a;
+			return _Utils_Tuple2(
+				'param',
+				elm$json$Json$Encode$int(n));
+		default:
+			var f = w.a;
+			return _Utils_Tuple2(
+				'field',
+				elm$json$Json$Encode$string(f));
+	}
+};
+var author$project$VegaLite$sortFieldSpec = function (wsf) {
+	if (!wsf.$) {
+		var f = wsf.a;
+		return elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$string(f)),
+					_Utils_Tuple2(
+					'order',
+					elm$json$Json$Encode$string('ascending'))
+				]));
+	} else {
+		var f = wsf.a;
+		return elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$string(f)),
+					_Utils_Tuple2(
+					'order',
+					elm$json$Json$Encode$string('descending'))
+				]));
+	}
+};
+var elm$core$Basics$neq = _Utils_notEqual;
+var elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var author$project$VegaLite$windowPropertySpec = F2(
+	function (wpName, wps) {
+		var wpSpec = function (wp) {
+			switch (wpName) {
+				case 'frame':
+					if (!wp.$) {
+						if (!wp.a.$) {
+							if (!wp.b.$) {
+								var n1 = wp.a.a;
+								var n2 = wp.b.a;
+								return A2(
+									elm$json$Json$Encode$list,
+									elm$json$Json$Encode$int,
+									_List_fromArray(
+										[n1, n2]));
+							} else {
+								var n1 = wp.a.a;
+								var _n4 = wp.b;
+								return author$project$VegaLite$toList(
+									_List_fromArray(
+										[
+											elm$json$Json$Encode$int(n1),
+											elm$json$Json$Encode$null
+										]));
+							}
+						} else {
+							if (!wp.b.$) {
+								var _n3 = wp.a;
+								var n2 = wp.b.a;
+								return author$project$VegaLite$toList(
+									_List_fromArray(
+										[
+											elm$json$Json$Encode$null,
+											elm$json$Json$Encode$int(n2)
+										]));
+							} else {
+								var _n5 = wp.a;
+								var _n6 = wp.b;
+								return author$project$VegaLite$toList(
+									_List_fromArray(
+										[elm$json$Json$Encode$null, elm$json$Json$Encode$null]));
+							}
+						}
+					} else {
+						return elm$json$Json$Encode$null;
+					}
+				case 'ignorePeers':
+					if (wp.$ === 1) {
+						var b = wp.a;
+						return elm$json$Json$Encode$bool(b);
+					} else {
+						return elm$json$Json$Encode$null;
+					}
+				case 'groupby':
+					if (wp.$ === 2) {
+						var fs = wp.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fs);
+					} else {
+						return elm$json$Json$Encode$null;
+					}
+				case 'sort':
+					if (wp.$ === 3) {
+						var sfs = wp.a;
+						return A2(elm$json$Json$Encode$list, author$project$VegaLite$sortFieldSpec, sfs);
+					} else {
+						return elm$json$Json$Encode$null;
+					}
+				default:
+					return elm$json$Json$Encode$null;
+			}
+		};
+		var specList = A2(
+			elm$core$List$filter,
+			function (x) {
+				return !_Utils_eq(x, elm$json$Json$Encode$null);
+			},
+			A2(elm$core$List$map, wpSpec, wps));
+		if (specList.b && (!specList.b.b)) {
+			var spec = specList.a;
+			return spec;
+		} else {
+			return elm$json$Json$Encode$null;
+		}
+	});
+var author$project$VegaLite$window = F2(
+	function (wss, wProps) {
+		var winFieldDef = F2(
+			function (ws, outName) {
+				return elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'as',
+							elm$json$Json$Encode$string(outName)),
+						A2(elm$core$List$map, author$project$VegaLite$windowFieldProperty, ws)));
+			});
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'window',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							elm$json$Json$Encode$list,
+							function (_n0) {
+								var ws = _n0.a;
+								var out = _n0.b;
+								return A2(winFieldDef, ws, out);
+							},
+							wss),
+							A2(author$project$VegaLite$windowPropertySpec, 'frame', wProps),
+							A2(author$project$VegaLite$windowPropertySpec, 'ignorePeers', wProps),
+							A2(author$project$VegaLite$windowPropertySpec, 'groupby', wProps),
+							A2(author$project$VegaLite$windowPropertySpec, 'sort', wProps)
+						]))));
+	});
+var author$project$VegaLite$Rank = 1;
+var author$project$VegaLite$woRank = 1;
+var author$project$VegaLite$RowNumber = 0;
+var author$project$VegaLite$woRowNumber = 0;
+var author$project$GalleryMulti$multi6 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		A2(
+			author$project$VegaLite$window,
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					_List_fromArray(
+						[
+							author$project$VegaLite$wiOp(author$project$VegaLite$woRowNumber)
+						]),
+					'rowNumber')
+				]),
+			_List_Nil));
+	var tableTrans = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$transform,
+				author$project$VegaLite$filter(
+					author$project$VegaLite$fiSelection('brush'))),
+			A2(
+				author$project$VegaLite$window,
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						_List_fromArray(
+							[
+								author$project$VegaLite$wiOp(author$project$VegaLite$woRank)
+							]),
+						'rank')
+					]),
+				_List_Nil)),
+		author$project$VegaLite$filter(
+			A2(
+				author$project$VegaLite$fiLessThan,
+				'rank',
+				author$project$VegaLite$num(20))));
+	var sel = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$selection,
+		A3(author$project$VegaLite$select, 'brush', author$project$VegaLite$seInterval, _List_Nil));
+	var res = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$resolve,
+		author$project$VegaLite$resolution(
+			author$project$VegaLite$reLegend(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(author$project$VegaLite$chColor, author$project$VegaLite$reIndependent)
+					]))));
+	var encPoint = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('Horsepower'),
+							author$project$VegaLite$pMType(2)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('Miles_per_Gallon'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					A3(
+					author$project$VegaLite$mSelectionCondition,
+					author$project$VegaLite$selectionName('brush'),
+					_List_fromArray(
+						[
+							author$project$VegaLite$mName('Cylinders'),
+							author$project$VegaLite$mMType(1)
+						]),
+					_List_fromArray(
+						[
+							author$project$VegaLite$mStr('grey')
+						]))
+				])));
+	var specPoint = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				sel(_List_Nil),
+				author$project$VegaLite$point(_List_Nil),
+				encPoint(_List_Nil)
+			]));
+	var encOriginText = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('rowNumber'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('Origin'),
+					author$project$VegaLite$tMType(0)
+				])));
+	var specOriginText = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$title('Country of origin'),
+				tableTrans(_List_Nil),
+				author$project$VegaLite$textMark(_List_Nil),
+				encOriginText(_List_Nil)
+			]));
+	var encMPGText = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('rowNumber'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('Miles_per_Gallon'),
+					author$project$VegaLite$tMType(0)
+				])));
+	var specMPGText = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$title('Efficiency (mpg)'),
+				tableTrans(_List_Nil),
+				author$project$VegaLite$textMark(_List_Nil),
+				encMPGText(_List_Nil)
+			]));
+	var encHPText = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('rowNumber'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('Horsepower'),
+					author$project$VegaLite$tMType(0)
+				])));
+	var specHPText = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$title('Engine power'),
+				tableTrans(_List_Nil),
+				author$project$VegaLite$textMark(_List_Nil),
+				encHPText(_List_Nil)
+			]));
+	var desc = author$project$VegaLite$description('Drag a rectangular brush to show (first 20) selected points in a table.');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var cfg = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$configure,
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing)
+					]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data(_List_Nil),
+				trans(_List_Nil),
+				res(_List_Nil),
+				author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[specPoint, specHPText, specMPGText, specOriginText]))
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -9183,7 +9766,8 @@ var author$project$GalleryMulti$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('multi2', author$project$GalleryMulti$multi2),
 			_Utils_Tuple2('multi3', author$project$GalleryMulti$multi3),
 			_Utils_Tuple2('multi4', author$project$GalleryMulti$multi4),
-			_Utils_Tuple2('multi5', author$project$GalleryMulti$multi5)
+			_Utils_Tuple2('multi5', author$project$GalleryMulti$multi5),
+			_Utils_Tuple2('multi6', author$project$GalleryMulti$multi6)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {

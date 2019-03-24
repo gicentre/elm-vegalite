@@ -70,6 +70,12 @@
     </p>
     <div id="multi5" class="view"></div>
 
+    <p>
+      Selections made in the scatterplot determine the top 20 ranked values from
+      the selection that are displayed in the linked table.
+    </p>
+    <div id="multi6" class="view"></div>
+
     <script>
       Elm.GalleryMulti.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
