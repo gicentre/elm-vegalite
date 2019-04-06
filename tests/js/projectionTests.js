@@ -7592,10 +7592,12 @@ var author$project$VegaLite$projectionLabel = function (proj) {
 		case 9:
 			return 'gnomonic';
 		case 10:
-			return 'mercator';
+			return 'identity';
 		case 11:
-			return 'orthographic';
+			return 'mercator';
 		case 12:
+			return 'orthographic';
+		case 13:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';
@@ -7636,6 +7638,16 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 						_List_fromArray(
 							[l, t, r, b])));
 			}
+		case 6:
+			var b = pp.a;
+			return _Utils_Tuple2(
+				'reflectX',
+				elm$json$Json$Encode$bool(b));
+		case 7:
+			var b = pp.a;
+			return _Utils_Tuple2(
+				'reflectY',
+				elm$json$Json$Encode$bool(b));
 		case 3:
 			var lon = pp.a;
 			var lat = pp.b;
@@ -7662,42 +7674,42 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 			return _Utils_Tuple2(
 				'precision',
 				elm$json$Json$Encode$float(pr));
-		case 6:
+		case 8:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'coefficient',
 				elm$json$Json$Encode$float(x));
-		case 7:
+		case 9:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'distance',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 10:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'fraction',
 				elm$json$Json$Encode$float(x));
-		case 9:
+		case 11:
 			var n = pp.a;
 			return _Utils_Tuple2(
 				'lobes',
 				elm$json$Json$Encode$int(n));
-		case 10:
+		case 12:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'parallel',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'radius',
 				elm$json$Json$Encode$float(x));
-		case 12:
+		case 14:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'ratio',
 				elm$json$Json$Encode$float(x));
-		case 13:
+		case 15:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'spacing',
@@ -8932,7 +8944,7 @@ var author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 40, a: a};
 };
 var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
-var author$project$VegaLite$Orthographic = {$: 11};
+var author$project$VegaLite$Orthographic = {$: 12};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
 var author$project$VegaLite$PRotate = F3(
 	function (a, b, c) {
@@ -9226,6 +9238,119 @@ var author$project$ProjectionTests$d3Projections = function () {
 		_List_fromArray(
 			['airy', 'aitoff', 'armadillo', 'august', 'baker', 'berghaus', 'bertin1953', 'boggs', 'bonne', 'bottomley', 'collignon', 'craig', 'craster', 'cylindricalequalarea', 'cylindricalstereographic', 'eckert1', 'eckert2', 'eckert3', 'eckert4', 'eckert5', 'eckert6', 'eisenlohr', 'fahey', 'foucaut', 'gingery', 'winkel3']));
 }();
+var author$project$VegaLite$Identity = {$: 10};
+var author$project$VegaLite$identityProjection = author$project$VegaLite$Identity;
+var author$project$VegaLite$PReflectX = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$prReflectX = author$project$VegaLite$PReflectX;
+var author$project$VegaLite$PReflectY = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$prReflectY = author$project$VegaLite$PReflectY;
+var elm$core$Basics$not = _Basics_not;
+var author$project$ProjectionTests$reflectExample = F2(
+	function (rx, ry) {
+		var name = ((!rx) && (!ry)) ? 'identityExample' : ('reflect' + ((rx ? 'X' : '') + ((ry ? 'Y' : '') + 'Example')));
+		var graticuleSpec = author$project$VegaLite$asSpec(
+			_List_fromArray(
+				[
+					A2(
+					author$project$VegaLite$dataFromUrl,
+					'https://vega.github.io/vega-lite/data/graticule.json',
+					_List_fromArray(
+						[
+							author$project$VegaLite$topojsonFeature('graticule')
+						])),
+					author$project$VegaLite$geoshape(
+					_List_fromArray(
+						[
+							author$project$VegaLite$maFillOpacity(1.0e-2),
+							author$project$VegaLite$maStroke('#411'),
+							author$project$VegaLite$maStrokeWidth(0.1)
+						])),
+					author$project$VegaLite$encoding(
+					A2(
+						author$project$VegaLite$color,
+						_List_fromArray(
+							[
+								author$project$VegaLite$mStr('#black')
+							]),
+						_List_Nil)),
+					author$project$VegaLite$projection(
+					_List_fromArray(
+						[
+							author$project$VegaLite$prType(author$project$VegaLite$identityProjection),
+							author$project$VegaLite$prReflectX(rx),
+							author$project$VegaLite$prReflectY(ry)
+						]))
+				]));
+		var globeSpec = author$project$VegaLite$asSpec(
+			_List_fromArray(
+				[
+					A2(
+					author$project$VegaLite$dataFromUrl,
+					'data/globe.json',
+					_List_fromArray(
+						[
+							author$project$VegaLite$topojsonFeature('globe')
+						])),
+					author$project$VegaLite$geoshape(_List_Nil),
+					author$project$VegaLite$encoding(
+					A2(
+						author$project$VegaLite$color,
+						_List_fromArray(
+							[
+								author$project$VegaLite$mStr('#c1e7f5')
+							]),
+						_List_Nil)),
+					author$project$VegaLite$projection(
+					_List_fromArray(
+						[
+							author$project$VegaLite$prType(author$project$VegaLite$identityProjection),
+							author$project$VegaLite$prReflectX(rx),
+							author$project$VegaLite$prReflectY(ry)
+						]))
+				]));
+		var countrySpec = author$project$VegaLite$asSpec(
+			_List_fromArray(
+				[
+					A2(
+					author$project$VegaLite$dataFromUrl,
+					'https://vega.github.io/vega-lite/data/world-110m.json',
+					_List_fromArray(
+						[
+							author$project$VegaLite$topojsonFeature('countries')
+						])),
+					author$project$VegaLite$geoshape(_List_Nil),
+					author$project$VegaLite$encoding(
+					A2(
+						author$project$VegaLite$color,
+						_List_fromArray(
+							[
+								author$project$VegaLite$mStr('#708E71')
+							]),
+						_List_Nil)),
+					author$project$VegaLite$projection(
+					_List_fromArray(
+						[
+							author$project$VegaLite$prType(author$project$VegaLite$identityProjection),
+							author$project$VegaLite$prReflectX(rx),
+							author$project$VegaLite$prReflectY(ry)
+						]))
+				]));
+		return _Utils_Tuple2(
+			name,
+			author$project$VegaLite$toVegaLite(
+				_List_fromArray(
+					[
+						author$project$VegaLite$width(400),
+						author$project$VegaLite$height(400),
+						author$project$VegaLite$layer(
+						_List_fromArray(
+							[globeSpec, graticuleSpec, countrySpec]))
+					])));
+	});
 var author$project$VegaLite$Albers = {$: 0};
 var author$project$VegaLite$albers = author$project$VegaLite$Albers;
 var author$project$VegaLite$AzimuthalEqualArea = {$: 2};
@@ -9242,11 +9367,11 @@ var author$project$VegaLite$Equirectangular = {$: 8};
 var author$project$VegaLite$equirectangular = author$project$VegaLite$Equirectangular;
 var author$project$VegaLite$Gnomonic = {$: 9};
 var author$project$VegaLite$gnomonic = author$project$VegaLite$Gnomonic;
-var author$project$VegaLite$Mercator = {$: 10};
+var author$project$VegaLite$Mercator = {$: 11};
 var author$project$VegaLite$mercator = author$project$VegaLite$Mercator;
-var author$project$VegaLite$Stereographic = {$: 12};
+var author$project$VegaLite$Stereographic = {$: 13};
 var author$project$VegaLite$stereographic = author$project$VegaLite$Stereographic;
-var author$project$VegaLite$TransverseMercator = {$: 13};
+var author$project$VegaLite$TransverseMercator = {$: 14};
 var author$project$VegaLite$transverseMercator = author$project$VegaLite$TransverseMercator;
 var author$project$ProjectionTests$standardProjs = _List_fromArray(
 	[
@@ -9310,6 +9435,13 @@ var author$project$ProjectionTests$standardProjs = _List_fromArray(
 			])),
 		A2(
 		author$project$ProjectionTests$worldMapTemplate,
+		'Identity',
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$identityProjection)
+			])),
+		A2(
+		author$project$ProjectionTests$worldMapTemplate,
 		'Mercator',
 		_List_fromArray(
 			[
@@ -9345,13 +9477,19 @@ var author$project$ProjectionTests$mySpecs = author$project$VegaLite$combineSpec
 		author$project$ProjectionTests$standardProjs,
 		_Utils_ap(
 			_List_fromArray(
-				[author$project$ProjectionTests$configExample]),
+				[
+					author$project$ProjectionTests$configExample,
+					A2(author$project$ProjectionTests$reflectExample, false, false),
+					A2(author$project$ProjectionTests$reflectExample, true, false),
+					A2(author$project$ProjectionTests$reflectExample, false, true),
+					A2(author$project$ProjectionTests$reflectExample, true, true)
+				]),
 			author$project$ProjectionTests$d3Projections)));
 var elm$core$Tuple$second = function (_n0) {
 	var y = _n0.b;
 	return y;
 };
-var author$project$ProjectionTests$sourceExample = author$project$ProjectionTests$configExample.b;
+var author$project$ProjectionTests$sourceExample = A2(author$project$ProjectionTests$reflectExample, true, true).b;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

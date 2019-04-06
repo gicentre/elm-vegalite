@@ -52,6 +52,7 @@ standardProjs =
     , worldMapTemplate "ConicEquidistant" [ prType conicEquidistant ]
     , worldMapTemplate "Equirectangular" [ prType equirectangular ]
     , worldMapTemplate "Gnomonic" [ prType gnomonic ]
+    , worldMapTemplate "Identity" [ prType identityProjection ]
     , worldMapTemplate "Mercator" [ prType mercator ]
     , worldMapTemplate "Orthographic" [ prType orthographic ]
     , worldMapTemplate "Stereographic" [ prType stereographic ]
@@ -120,9 +121,59 @@ configExample =
     )
 
 
+reflectExample : Bool -> Bool -> ( String, Spec )
+reflectExample rx ry =
+    let
+        name =
+            if Basics.not rx && Basics.not ry then
+                "identityExample"
+
+            else
+                "reflect"
+                    ++ (if rx then
+                            "X"
+
+                        else
+                            ""
+                       )
+                    ++ (if ry then
+                            "Y"
+
+                        else
+                            ""
+                       )
+                    ++ "Example"
+
+        globeSpec =
+            asSpec
+                [ dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
+                , geoshape []
+                , encoding <| color [ mStr "#c1e7f5" ] <| []
+                , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
+                ]
+
+        graticuleSpec =
+            asSpec
+                [ dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
+                , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
+                , encoding <| color [ mStr "#black" ] <| []
+                , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
+                ]
+
+        countrySpec =
+            asSpec
+                [ dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
+                , geoshape []
+                , encoding <| color [ mStr "#708E71" ] <| []
+                , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
+                ]
+    in
+    ( name, toVegaLite [ width 400, height 400, layer [ globeSpec, graticuleSpec, countrySpec ] ] )
+
+
 sourceExample : Spec
 sourceExample =
-    Tuple.second configExample
+    Tuple.second (reflectExample True True)
 
 
 
@@ -131,7 +182,16 @@ sourceExample =
 
 mySpecs : Spec
 mySpecs =
-    combineSpecs (standardProjs ++ [ configExample ] ++ d3Projections)
+    combineSpecs
+        (standardProjs
+            ++ [ configExample
+               , reflectExample False False
+               , reflectExample True False
+               , reflectExample False True
+               , reflectExample True True
+               ]
+            ++ d3Projections
+        )
 
 
 

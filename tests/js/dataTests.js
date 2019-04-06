@@ -9732,10 +9732,12 @@ var author$project$VegaLite$projectionLabel = function (proj) {
 		case 9:
 			return 'gnomonic';
 		case 10:
-			return 'mercator';
+			return 'identity';
 		case 11:
-			return 'orthographic';
+			return 'mercator';
 		case 12:
+			return 'orthographic';
+		case 13:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';
@@ -9776,6 +9778,16 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 						_List_fromArray(
 							[l, t, r, b])));
 			}
+		case 6:
+			var b = pp.a;
+			return _Utils_Tuple2(
+				'reflectX',
+				elm$json$Json$Encode$bool(b));
+		case 7:
+			var b = pp.a;
+			return _Utils_Tuple2(
+				'reflectY',
+				elm$json$Json$Encode$bool(b));
 		case 3:
 			var lon = pp.a;
 			var lat = pp.b;
@@ -9802,42 +9814,42 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 			return _Utils_Tuple2(
 				'precision',
 				elm$json$Json$Encode$float(pr));
-		case 6:
+		case 8:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'coefficient',
 				elm$json$Json$Encode$float(x));
-		case 7:
+		case 9:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'distance',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 10:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'fraction',
 				elm$json$Json$Encode$float(x));
-		case 9:
+		case 11:
 			var n = pp.a;
 			return _Utils_Tuple2(
 				'lobes',
 				elm$json$Json$Encode$int(n));
-		case 10:
+		case 12:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'parallel',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'radius',
 				elm$json$Json$Encode$float(x));
-		case 12:
+		case 14:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'ratio',
 				elm$json$Json$Encode$float(x));
-		case 13:
+		case 15:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'spacing',
@@ -11024,7 +11036,7 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$Orthographic = {$: 11};
+var author$project$VegaLite$Orthographic = {$: 12};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
 var author$project$VegaLite$PType = function (a) {
 	return {$: 0, a: a};
