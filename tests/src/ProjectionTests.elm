@@ -20,12 +20,6 @@ import VegaLite exposing (..)
 
 worldMapTemplate : String -> List ProjectionProperty -> ( String, Spec )
 worldMapTemplate tText projProps =
-    let
-        enc =
-            encoding
-                << color [ mStr "#010" ]
-                << opacity [ mNum 0.7 ]
-    in
     ( tText
     , toVegaLite
         [ width 500
@@ -37,7 +31,6 @@ worldMapTemplate tText projProps =
         --, dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
         , dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
         , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.5 ]
-        , enc []
         ]
     )
 
@@ -73,7 +66,7 @@ d3Projections =
 configExample : ( String, Spec )
 configExample =
     let
-        config =
+        cfg =
             configure
                 << configuration (coBackground "rgb(251,247,238)")
                 << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight W600, ticoFontSize 18 ])
@@ -84,40 +77,23 @@ configExample =
         globeSpec =
             asSpec
                 [ dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
-                , geoshape []
-                , encoding <| color [ mStr "#c1e7f5" ] <| []
-
-                --, projection [ prType Orthographic, PRotate 0 0 0 ]
+                , geoshape [ maColor "#c1e7f5" ]
                 ]
 
         graticuleSpec =
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
                 , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
-                , encoding <| color [ mStr "#black" ] <| []
-
-                --, projection [ prType Orthographic, PRotate 0 0 0 ]
                 ]
 
         countrySpec =
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
-                , geoshape []
-                , encoding <| color [ mStr "#708E71" ] <| []
-
-                --, projection [ prType Orthographic, PRotate 0 0 0 ]
+                , geoshape [ maColor "#708E71" ]
                 ]
     in
     ( "configExample"
-    , toVegaLite
-        [ title "Hello, World!"
-        , config []
-
-        -- NOTE: Currently config view width / height does not respond to geoshapes
-        , width 400
-        , height 400
-        , layer [ globeSpec, graticuleSpec, countrySpec ]
-        ]
+    , toVegaLite [ title "Hello, World!", cfg [], layer [ globeSpec, graticuleSpec, countrySpec ] ]
     )
 
 
@@ -147,8 +123,7 @@ reflectExample rx ry =
         globeSpec =
             asSpec
                 [ dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
-                , geoshape []
-                , encoding <| color [ mStr "#c1e7f5" ] <| []
+                , geoshape [ maColor "#c1e7f5" ]
                 , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
                 ]
 
@@ -156,19 +131,17 @@ reflectExample rx ry =
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
                 , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
-                , encoding <| color [ mStr "#black" ] <| []
                 , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
                 ]
 
         countrySpec =
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
-                , geoshape []
-                , encoding <| color [ mStr "#708E71" ] <| []
+                , geoshape [ maColor "#708E71" ]
                 , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
                 ]
     in
-    ( name, toVegaLite [ width 400, height 400, layer [ globeSpec, graticuleSpec, countrySpec ] ] )
+    ( name, toVegaLite [ width 500, height 250, layer [ globeSpec, graticuleSpec, countrySpec ] ] )
 
 
 sourceExample : Spec
