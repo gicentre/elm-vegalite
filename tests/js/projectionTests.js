@@ -5371,108 +5371,116 @@ var author$project$VegaLite$headerProperty = function (hProp) {
 			return _Utils_Tuple2(
 				'format',
 				elm$json$Json$Encode$string(fmt));
+		case 1:
+			return _Utils_Tuple2(
+				'formatType',
+				elm$json$Json$Encode$string('number'));
 		case 2:
+			return _Utils_Tuple2(
+				'formatType',
+				elm$json$Json$Encode$string('time'));
+		case 4:
 			var ha = hProp.a;
 			return _Utils_Tuple2(
 				'labelAlign',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$hAlignLabel(ha)));
-		case 3:
+		case 5:
 			var a = hProp.a;
 			return _Utils_Tuple2(
 				'labelAnchor',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$anchorLabel(a)));
-		case 4:
+		case 6:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelAngle',
 				elm$json$Json$Encode$float(x));
-		case 5:
+		case 7:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'labelColor',
 				elm$json$Json$Encode$string(s));
-		case 6:
+		case 8:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'labelFont',
 				elm$json$Json$Encode$string(s));
-		case 7:
+		case 9:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelFontSize',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 10:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelLimit',
 				elm$json$Json$Encode$float(x));
-		case 9:
+		case 11:
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'labelOrient',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$sideLabel(orient)));
-		case 10:
+		case 12:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelPadding',
 				elm$json$Json$Encode$float(x));
-		case 1:
+		case 3:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'title',
 				elm$json$Json$Encode$string(s));
-		case 12:
+		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(
 				'titleAnchor',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$anchorLabel(a)));
-		case 11:
+		case 13:
 			var ha = hProp.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$hAlignLabel(ha)));
-		case 13:
+		case 15:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleAngle',
 				elm$json$Json$Encode$float(x));
-		case 14:
+		case 16:
 			var va = hProp.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$vAlignLabel(va)));
-		case 15:
+		case 17:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				elm$json$Json$Encode$string(s));
-		case 16:
+		case 18:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				elm$json$Json$Encode$string(s));
-		case 17:
+		case 19:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
 				elm$json$Json$Encode$string(s));
-		case 18:
+		case 20:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				elm$json$Json$Encode$float(x));
-		case 19:
+		case 21:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				elm$json$Json$Encode$float(x));
-		case 20:
+		case 22:
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'titleOrient',
