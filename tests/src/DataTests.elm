@@ -411,9 +411,45 @@ bin1 =
     toVegaLite [ data [], enc [], bar [] ]
 
 
+sequence1 : Spec
+sequence1 =
+    let
+        data =
+            dataSequence 0 12.7 0.1
+
+        trans =
+            transform
+                << calculateAs "sin(datum.data)" "v"
+
+        enc =
+            encoding
+                << position X [ pName "data", pMType Quantitative ]
+                << position Y [ pName "v", pMType Quantitative ]
+    in
+    toVegaLite [ data, trans [], enc [], line [] ]
+
+
+sequence2 : Spec
+sequence2 =
+    let
+        data =
+            dataSequenceAs 0 12.7 0.1 "u"
+
+        trans =
+            transform
+                << calculateAs "sin(datum.u)" "v"
+
+        enc =
+            encoding
+                << position X [ pName "u", pMType Quantitative ]
+                << position Y [ pName "v", pMType Quantitative ]
+    in
+    toVegaLite [ data, trans [], enc [], line [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    bin1
+    sequence1
 
 
 
@@ -450,6 +486,8 @@ mySpecs =
         , ( "impute8", impute8 )
         , ( "sample1", sample1 )
         , ( "bin1", bin1 )
+        , ( "sequence1", sequence1 )
+        , ( "sequence2", sequence2 )
         ]
 
 

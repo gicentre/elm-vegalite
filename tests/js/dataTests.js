@@ -12059,6 +12059,141 @@ var author$project$DataTests$sample1 = function () {
 					[spec1, spec2]))
 			]));
 }();
+var author$project$VegaLite$calculateAs = F2(
+	function (ex, label) {
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'calculate',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							elm$json$Json$Encode$string(ex),
+							elm$json$Json$Encode$string(label)
+						]))));
+	});
+var author$project$VegaLite$dataSequence = F3(
+	function (start, stop, step) {
+		return _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'sequence',
+						elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'start',
+									elm$json$Json$Encode$float(start)),
+									_Utils_Tuple2(
+									'stop',
+									elm$json$Json$Encode$float(stop)),
+									_Utils_Tuple2(
+									'step',
+									elm$json$Json$Encode$float(step))
+								])))
+					])));
+	});
+var author$project$DataTests$sequence1 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		A2(author$project$VegaLite$calculateAs, 'sin(datum.data)', 'v'));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('data'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('v'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A3(author$project$VegaLite$dataSequence, 0, 12.7, 0.1);
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$line(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$dataSequenceAs = F4(
+	function (start, stop, step, outName) {
+		return _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'sequence',
+						elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'start',
+									elm$json$Json$Encode$float(start)),
+									_Utils_Tuple2(
+									'stop',
+									elm$json$Json$Encode$float(stop)),
+									_Utils_Tuple2(
+									'step',
+									elm$json$Json$Encode$float(step)),
+									_Utils_Tuple2(
+									'as',
+									elm$json$Json$Encode$string(outName))
+								])))
+					])));
+	});
+var author$project$DataTests$sequence2 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		A2(author$project$VegaLite$calculateAs, 'sin(datum.u)', 'v'));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('u'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('v'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A4(author$project$VegaLite$dataSequenceAs, 0, 12.7, 0.1, 'u');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$line(_List_Nil)
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -12091,9 +12226,11 @@ var author$project$DataTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('impute7', author$project$DataTests$impute7),
 			_Utils_Tuple2('impute8', author$project$DataTests$impute8),
 			_Utils_Tuple2('sample1', author$project$DataTests$sample1),
-			_Utils_Tuple2('bin1', author$project$DataTests$bin1)
+			_Utils_Tuple2('bin1', author$project$DataTests$bin1),
+			_Utils_Tuple2('sequence1', author$project$DataTests$sequence1),
+			_Utils_Tuple2('sequence2', author$project$DataTests$sequence2)
 		]));
-var author$project$DataTests$sourceExample = author$project$DataTests$bin1;
+var author$project$DataTests$sourceExample = author$project$DataTests$sequence1;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

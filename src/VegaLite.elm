@@ -26,6 +26,7 @@ module VegaLite exposing
     , geoPolygon
     , geoPolygons
     , dataSequence
+    , dataSequenceAs
     , sphere
     , graticule
     , grStep
@@ -1166,6 +1167,7 @@ Functions and types for declaring the data to the visualized. See the
 Functions that create new data sources.
 
 @docs dataSequence
+@docs dataSequenceAs
 @docs sphere
 @docs graticule
 
@@ -6692,11 +6694,44 @@ dataName s data =
     ( VLData, JE.object [ ( "name", JE.string s ), spec ] )
 
 
-{-| XXX TODO
+{-| Generate a sequence of numbers as a data source between the value of the first
+parameter (inclusive) and the second (exclusive) in steps of the value of the third.
+The resulting sequence will have the name `data`. To give it an alternative name
+use [dataSequenceAs](#dataSequenceAs)
 -}
-dataSequence : Data
-dataSequence =
-    ( VLData, JE.object [ ( "sequence", JE.string "TODO" ) ] )
+dataSequence : Float -> Float -> Float -> Data
+dataSequence start stop step =
+    ( VLData
+    , JE.object
+        [ ( "sequence"
+          , JE.object
+                [ ( "start", JE.float start )
+                , ( "stop", JE.float stop )
+                , ( "step", JE.float step )
+                ]
+          )
+        ]
+    )
+
+
+{-| Generate a sequence of numbers as a data source between the value of the first
+parameter (inclusive) and the second (exclusive) in steps of the value of the third.
+The resulting sequence will have the name provided as the fourth parameter.
+-}
+dataSequenceAs : Float -> Float -> Float -> String -> Data
+dataSequenceAs start stop step outName =
+    ( VLData
+    , JE.object
+        [ ( "sequence"
+          , JE.object
+                [ ( "start", JE.float start )
+                , ( "stop", JE.float stop )
+                , ( "step", JE.float step )
+                , ( "as", JE.string outName )
+                ]
+          )
+        ]
+    )
 
 
 {-| Day of the month (1-31) time unit used for discretizing temporal data.
