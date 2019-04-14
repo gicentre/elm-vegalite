@@ -36,9 +36,6 @@
   <body>
     <h1>Elm-Vega Geo Tests</h1>
 
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
     <h2>Choropleths</h2>
     <figure class="cell">
       <div id="choropleth1"></div>
@@ -76,6 +73,55 @@
     </figure>
     <div style="clear:left"></div>
 
+    <h2>Geo Data Generators</h2>
+
+    <figure class="cell">
+      <div id="sphere1"></div>
+      <figcaption>
+        Global map data without sphere.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="sphere2"></div>
+      <figcaption>
+        Global map data with sphere.
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="graticule1"></div>
+      <figcaption>
+        Default graticule and sphere.
+      </figcaption>
+    </figure>
+    <figure class="cell">
+      <div id="graticule2"></div>
+      <figcaption>
+        Graticule for one quarter of globe with 10 degree step size.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="graticule3"></div>
+      <figcaption>
+        Major extent quarter of sphere, minor extent stopping at 75 degrees
+        north.
+      </figcaption>
+    </figure>
+    <figure class="cell">
+      <div id="graticule4"></div>
+      <figcaption>
+        Minor step sizes 15 degrees EW and 30 degrees NS. Major step 45 degrees
+        longitude only.
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
     <h2>Map Composition</h2>
     <figure class="cell">
       <div id="mapComp1"></div>
@@ -84,6 +130,8 @@
         projection
       </figcaption>
     </figure>
+    <div style="clear:left"></div>
+
     <figure class="cell">
       <div id="mapComp2"></div>
       <figcaption>
@@ -91,6 +139,8 @@
         between layers
       </figcaption>
     </figure>
+    <div style="clear:left"></div>
+
     <figure class="cell">
       <div id="mapComp3"></div>
       <figcaption>
@@ -98,6 +148,8 @@
         different rotation parameters
       </figcaption>
     </figure>
+    <div style="clear:left"></div>
+
     <figure class="cell">
       <div id="mapComp4"></div>
       <figcaption>
@@ -112,15 +164,22 @@
       <div id="dotMap1"></div>
       <figcaption>Zipcodedot map</figcaption>
     </figure>
+    <div style="clear:left"></div>
+
     <figure class="cell">
       <div id="scribbleMap1"></div>
       <figcaption>Zipcodes connected in numeric order</figcaption>
     </figure>
+    <div style="clear:left"></div>
+
     <figure class="cell">
       <div id="scribbleMap2"></div>
       <figcaption>Connected zipcodes coloured by first three digits</figcaption>
     </figure>
     <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
 
     <script>
       Elm.GeoTests.init({

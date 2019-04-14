@@ -10537,18 +10537,381 @@ var author$project$GeoTests$dotMap1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$VLHConcat = 16;
-var author$project$VegaLite$hConcat = function (specs) {
-	return _Utils_Tuple2(
-		16,
-		author$project$VegaLite$toList(specs));
+var author$project$VegaLite$graticuleProperty = function (prop) {
+	switch (prop.$) {
+		case 0:
+			var _n1 = prop.a;
+			var lng1 = _n1.a;
+			var lat1 = _n1.b;
+			var _n2 = prop.b;
+			var lng2 = _n2.a;
+			var lat2 = _n2.b;
+			return _Utils_Tuple2(
+				'extent',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng1, lat1])),
+							A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng2, lat2]))
+						])));
+		case 1:
+			var _n3 = prop.a;
+			var lng1 = _n3.a;
+			var lat1 = _n3.b;
+			var _n4 = prop.b;
+			var lng2 = _n4.a;
+			var lat2 = _n4.b;
+			return _Utils_Tuple2(
+				'extentMajor',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng1, lat1])),
+							A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng2, lat2]))
+						])));
+		case 2:
+			var _n5 = prop.a;
+			var lng1 = _n5.a;
+			var lat1 = _n5.b;
+			var _n6 = prop.b;
+			var lng2 = _n6.a;
+			var lat2 = _n6.b;
+			return _Utils_Tuple2(
+				'extentMinor',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng1, lat1])),
+							A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng2, lat2]))
+						])));
+		case 3:
+			var _n7 = prop.a;
+			var lng = _n7.a;
+			var lat = _n7.b;
+			return _Utils_Tuple2(
+				'step',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lng, lat])));
+		case 4:
+			var _n8 = prop.a;
+			var lng = _n8.a;
+			var lat = _n8.b;
+			return _Utils_Tuple2(
+				'stepMajor',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lng, lat])));
+		case 5:
+			var _n9 = prop.a;
+			var lng = _n9.a;
+			var lat = _n9.b;
+			return _Utils_Tuple2(
+				'stepMinor',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lng, lat])));
+		default:
+			var x = prop.a;
+			return _Utils_Tuple2(
+				'precision',
+				elm$json$Json$Encode$float(x));
+	}
 };
+var author$project$VegaLite$graticule = function (grProps) {
+	return _Utils_eq(grProps, _List_Nil) ? _Utils_Tuple2(
+		8,
+		elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'graticule',
+					elm$json$Json$Encode$bool(true))
+				]))) : _Utils_Tuple2(
+		8,
+		elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'graticule',
+					elm$json$Json$Encode$object(
+						A2(elm$core$List$map, author$project$VegaLite$graticuleProperty, grProps)))
+				])));
+};
+var author$project$VegaLite$MFill = function (a) {
+	return {$: 15, a: a};
+};
+var author$project$VegaLite$maFill = author$project$VegaLite$MFill;
 var author$project$VegaLite$MFilled = function (a) {
 	return {$: 16, a: a};
 };
 var author$project$VegaLite$maFilled = author$project$VegaLite$MFilled;
 var author$project$VegaLite$Orthographic = {$: 12};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
+var author$project$VegaLite$PRotate = F3(
+	function (a, b, c) {
+		return {$: 4, a: a, b: b, c: c};
+	});
+var author$project$VegaLite$prRotate = author$project$VegaLite$PRotate;
+var author$project$VegaLite$sphere = _Utils_Tuple2(
+	8,
+	elm$json$Json$Encode$object(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				'sphere',
+				elm$json$Json$Encode$bool(true))
+			])));
+var elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var author$project$GeoTests$graticule1 = function () {
+	var sphereSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$sphere,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('aliceblue')
+					]))
+			]));
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic),
+				A3(author$project$VegaLite$prRotate, -42, -30, 0)
+			]));
+	var gratSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$graticule(_List_Nil),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(false),
+						author$project$VegaLite$maStrokeWidth(0.3)
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[sphereSpec, gratSpec]))
+			]));
+}();
+var author$project$VegaLite$GrExtent = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var author$project$VegaLite$grExtent = author$project$VegaLite$GrExtent;
+var author$project$VegaLite$GrPrecision = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$grPrecision = author$project$VegaLite$GrPrecision;
+var author$project$VegaLite$GrStep = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$grStep = author$project$VegaLite$GrStep;
+var author$project$GeoTests$graticule2 = function () {
+	var sphereSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$sphere,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('aliceblue')
+					]))
+			]));
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic),
+				A3(author$project$VegaLite$prRotate, -42, -30, 0)
+			]));
+	var gratSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$graticule(
+				_List_fromArray(
+					[
+						A2(
+						author$project$VegaLite$grExtent,
+						_Utils_Tuple2(0, 0),
+						_Utils_Tuple2(90, 90)),
+						author$project$VegaLite$grStep(
+						_Utils_Tuple2(2, 2)),
+						author$project$VegaLite$grPrecision(2)
+					])),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(false),
+						author$project$VegaLite$maStrokeWidth(0.3)
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[sphereSpec, gratSpec]))
+			]));
+}();
+var author$project$VegaLite$GrExtentMajor = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
+var author$project$VegaLite$grExtentMajor = author$project$VegaLite$GrExtentMajor;
+var author$project$VegaLite$GrExtentMinor = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var author$project$VegaLite$grExtentMinor = author$project$VegaLite$GrExtentMinor;
+var author$project$VegaLite$GrStepMinor = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$grStepMinor = author$project$VegaLite$GrStepMinor;
+var author$project$GeoTests$graticule3 = function () {
+	var sphereSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$sphere,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('aliceblue')
+					]))
+			]));
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic),
+				A3(author$project$VegaLite$prRotate, -42, -30, 0)
+			]));
+	var gratSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$graticule(
+				_List_fromArray(
+					[
+						A2(
+						author$project$VegaLite$grExtentMajor,
+						_Utils_Tuple2(0, 0),
+						_Utils_Tuple2(90, 90)),
+						A2(
+						author$project$VegaLite$grExtentMinor,
+						_Utils_Tuple2(0, 0),
+						_Utils_Tuple2(90, 75.01)),
+						author$project$VegaLite$grStepMinor(
+						_Utils_Tuple2(2, 2))
+					])),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(false),
+						author$project$VegaLite$maStrokeWidth(0.3)
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[sphereSpec, gratSpec]))
+			]));
+}();
+var author$project$GeoTests$graticule4 = function () {
+	var sphereSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$sphere,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('aliceblue')
+					]))
+			]));
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic),
+				A3(author$project$VegaLite$prRotate, -42, -30, 0)
+			]));
+	var gratSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$graticule(
+				_List_fromArray(
+					[
+						author$project$VegaLite$grStepMinor(
+						_Utils_Tuple2(15, 30))
+					])),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(false),
+						author$project$VegaLite$maStrokeWidth(0.3)
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[sphereSpec, gratSpec]))
+			]));
+}();
+var author$project$VegaLite$VLHConcat = 16;
+var author$project$VegaLite$hConcat = function (specs) {
+	return _Utils_Tuple2(
+		16,
+		author$project$VegaLite$toList(specs));
+};
 var author$project$GeoTests$mapComp1 = function () {
 	var globe = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10581,10 +10944,6 @@ var author$project$GeoTests$mapComp1 = function () {
 					[globe, globe, globe]))
 			]));
 }();
-var author$project$VegaLite$MFill = function (a) {
-	return {$: 15, a: a};
-};
-var author$project$VegaLite$maFill = author$project$VegaLite$MFill;
 var author$project$VegaLite$MFillOpacity = function (a) {
 	return {$: 17, a: a};
 };
@@ -10658,14 +11017,6 @@ var author$project$GeoTests$mapComp2 = function () {
 					[globe, globe, globe]))
 			]));
 }();
-var author$project$VegaLite$PRotate = F3(
-	function (a, b, c) {
-		return {$: 4, a: a, b: b, c: c};
-	});
-var author$project$VegaLite$prRotate = author$project$VegaLite$PRotate;
-var elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var author$project$GeoTests$mapComp3 = function () {
 	var rotatedSpec = function (rot) {
 		var graticuleSpec = author$project$VegaLite$asSpec(
@@ -11473,6 +11824,77 @@ var author$project$GeoTests$scribbleMap2 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var author$project$GeoTests$sphere1 = function () {
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic)
+			]));
+	var data = A2(
+		author$project$VegaLite$dataFromUrl,
+		'https://gicentre.github.io/data/geoTutorials/world-110m.json',
+		_List_fromArray(
+			[
+				author$project$VegaLite$topojsonFeature('countries1')
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				data,
+				proj,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('rgb(149,181,146)')
+					]))
+			]));
+}();
+var author$project$GeoTests$sphere2 = function () {
+	var sphereSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$sphere,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('aliceblue')
+					]))
+			]));
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic)
+			]));
+	var countryData = A2(
+		author$project$VegaLite$dataFromUrl,
+		'https://gicentre.github.io/data/geoTutorials/world-110m.json',
+		_List_fromArray(
+			[
+				author$project$VegaLite$topojsonFeature('countries1')
+			]));
+	var countrySpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				countryData,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('rgb(149,181,146)')
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[sphereSpec, countrySpec]))
+			]));
+}();
 var author$project$GeoTests$tubeLines1 = author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[
@@ -11725,6 +12147,12 @@ var author$project$GeoTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('linear1', author$project$GeoTests$tubeLines1),
 			_Utils_Tuple2('linear2', author$project$GeoTests$tubeLines2),
 			_Utils_Tuple2('linear3', author$project$GeoTests$tubeLines3),
+			_Utils_Tuple2('sphere1', author$project$GeoTests$sphere1),
+			_Utils_Tuple2('sphere2', author$project$GeoTests$sphere2),
+			_Utils_Tuple2('graticule1', author$project$GeoTests$graticule1),
+			_Utils_Tuple2('graticule2', author$project$GeoTests$graticule2),
+			_Utils_Tuple2('graticule3', author$project$GeoTests$graticule3),
+			_Utils_Tuple2('graticule4', author$project$GeoTests$graticule4),
 			_Utils_Tuple2('mapComp1', author$project$GeoTests$mapComp1),
 			_Utils_Tuple2('mapComp2', author$project$GeoTests$mapComp2),
 			_Utils_Tuple2('mapComp3', author$project$GeoTests$mapComp3),
@@ -11733,7 +12161,7 @@ var author$project$GeoTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('scribbleMap1', author$project$GeoTests$scribbleMap1),
 			_Utils_Tuple2('scribbleMap2', author$project$GeoTests$scribbleMap2)
 		]));
-var author$project$GeoTests$sourceExample = author$project$GeoTests$mapComp1;
+var author$project$GeoTests$sourceExample = author$project$GeoTests$graticule4;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

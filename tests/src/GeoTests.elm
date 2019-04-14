@@ -225,6 +225,111 @@ tubeLineColors =
         ]
 
 
+sphere1 : Spec
+sphere1 =
+    let
+        data =
+            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                [ topojsonFeature "countries1" ]
+
+        proj =
+            projection [ prType orthographic ]
+    in
+    toVegaLite [ width 300, height 300, data, proj, geoshape [ maFill "rgb(149,181,146)" ] ]
+
+
+sphere2 : Spec
+sphere2 =
+    let
+        countryData =
+            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                [ topojsonFeature "countries1" ]
+
+        proj =
+            projection [ prType orthographic ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        countrySpec =
+            asSpec [ countryData, geoshape [ maFill "rgb(149,181,146)" ] ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ sphereSpec, countrySpec ] ]
+
+
+graticule1 : Spec
+graticule1 =
+    let
+        proj =
+            projection [ prType orthographic, prRotate -42 -30 0 ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec [ graticule [], geoshape [ maFilled False, maStrokeWidth 0.3 ] ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ sphereSpec, gratSpec ] ]
+
+
+graticule2 : Spec
+graticule2 =
+    let
+        proj =
+            projection [ prType orthographic, prRotate -42 -30 0 ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grExtent ( 0, 0 ) ( 90, 90 ), grStep ( 2, 2 ), grPrecision 2 ]
+                , geoshape [ maFilled False, maStrokeWidth 0.3 ]
+                ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ sphereSpec, gratSpec ] ]
+
+
+graticule3 : Spec
+graticule3 =
+    let
+        proj =
+            projection [ prType orthographic, prRotate -42 -30 0 ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule
+                    [ grExtentMajor ( 0, 0 ) ( 90, 90 )
+                    , grExtentMinor ( 0, 0 ) ( 90, 75.01 )
+                    , grStepMinor ( 2, 2 )
+                    ]
+                , geoshape [ maFilled False, maStrokeWidth 0.3 ]
+                ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ sphereSpec, gratSpec ] ]
+
+
+graticule4 : Spec
+graticule4 =
+    let
+        proj =
+            projection [ prType orthographic, prRotate -42 -30 0 ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grStepMinor ( 15, 30 ) ]
+                , geoshape [ maFilled False, maStrokeWidth 0.3 ]
+                ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ sphereSpec, gratSpec ] ]
+
+
 mapComp1 : Spec
 mapComp1 =
     let
@@ -433,7 +538,7 @@ scribbleMap2 =
 
 sourceExample : Spec
 sourceExample =
-    mapComp1
+    graticule4
 
 
 
@@ -450,6 +555,12 @@ mySpecs =
         , ( "linear1", tubeLines1 )
         , ( "linear2", tubeLines2 )
         , ( "linear3", tubeLines3 )
+        , ( "sphere1", sphere1 )
+        , ( "sphere2", sphere2 )
+        , ( "graticule1", graticule1 )
+        , ( "graticule2", graticule2 )
+        , ( "graticule3", graticule3 )
+        , ( "graticule4", graticule4 )
         , ( "mapComp1", mapComp1 )
         , ( "mapComp2", mapComp2 )
         , ( "mapComp3", mapComp3 )
