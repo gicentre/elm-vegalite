@@ -536,9 +536,50 @@ scribbleMap2 =
         ]
 
 
+map1d : Spec
+map1d =
+    let
+        geoData =
+            dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonBoroughs.json"
+                [ topojsonFeature "boroughs" ]
+
+        centroidData =
+            dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonCentroids.csv"
+
+        backgroundSpec =
+            asSpec [ geoData, geoshape [ maFill "lightgrey", maStroke "white" ] ]
+
+        cEnc =
+            encoding
+                << position Longitude [ pName "cx", pMType Quantitative ]
+                << position Latitude [ pName "cy", pMType Quantitative ]
+
+        hEnc =
+            encoding
+                << position Longitude [ pName "cx", pMType Quantitative ]
+                << position Latitude [ pNum 51.28 ]
+
+        vEnc =
+            encoding
+                << position Longitude [ pNum -0.52 ]
+                << position Latitude [ pName "cy", pMType Quantitative ]
+
+        cSpec =
+            asSpec [ centroidData [], circle [], cEnc [] ]
+
+        hSpec =
+            asSpec [ centroidData [], circle [], hEnc [] ]
+
+        vSpec =
+            asSpec [ centroidData [], circle [], vEnc [] ]
+    in
+    toVegaLite
+        [ width 500, height 400, layer [ backgroundSpec, cSpec, hSpec, vSpec ] ]
+
+
 sourceExample : Spec
 sourceExample =
-    graticule4
+    map1d
 
 
 
@@ -568,6 +609,7 @@ mySpecs =
         , ( "dotMap1", dotMap1 )
         , ( "scribbleMap1", scribbleMap1 )
         , ( "scribbleMap2", scribbleMap2 )
+        , ( "map1d", map1d )
         ]
 
 

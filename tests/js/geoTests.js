@@ -10906,6 +10906,122 @@ var author$project$GeoTests$graticule4 = function () {
 					[sphereSpec, gratSpec]))
 			]));
 }();
+var author$project$VegaLite$PNumber = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$pNum = author$project$VegaLite$PNumber;
+var author$project$GeoTests$map1d = function () {
+	var vEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				4,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pNum(-0.52)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			5,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('cy'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var hEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				4,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('cx'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			5,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pNum(51.28)
+				])));
+	var geoData = A2(
+		author$project$VegaLite$dataFromUrl,
+		'https://gicentre.github.io/data/geoTutorials/londonBoroughs.json',
+		_List_fromArray(
+			[
+				author$project$VegaLite$topojsonFeature('boroughs')
+			]));
+	var centroidData = author$project$VegaLite$dataFromUrl('https://gicentre.github.io/data/geoTutorials/londonCentroids.csv');
+	var hSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				centroidData(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil),
+				hEnc(_List_Nil)
+			]));
+	var vSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				centroidData(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil),
+				vEnc(_List_Nil)
+			]));
+	var cEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				4,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('cx'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			5,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('cy'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var cSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				centroidData(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil),
+				cEnc(_List_Nil)
+			]));
+	var backgroundSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				geoData,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('lightgrey'),
+						author$project$VegaLite$maStroke('white')
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(500),
+				author$project$VegaLite$height(400),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[backgroundSpec, cSpec, hSpec, vSpec]))
+			]));
+}();
 var author$project$VegaLite$VLHConcat = 16;
 var author$project$VegaLite$hConcat = function (specs) {
 	return _Utils_Tuple2(
@@ -12159,9 +12275,10 @@ var author$project$GeoTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('mapComp4', author$project$GeoTests$mapComp4),
 			_Utils_Tuple2('dotMap1', author$project$GeoTests$dotMap1),
 			_Utils_Tuple2('scribbleMap1', author$project$GeoTests$scribbleMap1),
-			_Utils_Tuple2('scribbleMap2', author$project$GeoTests$scribbleMap2)
+			_Utils_Tuple2('scribbleMap2', author$project$GeoTests$scribbleMap2),
+			_Utils_Tuple2('map1d', author$project$GeoTests$map1d)
 		]));
-var author$project$GeoTests$sourceExample = author$project$GeoTests$graticule4;
+var author$project$GeoTests$sourceExample = author$project$GeoTests$map1d;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
