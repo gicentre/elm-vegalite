@@ -5071,6 +5071,7 @@ var elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
+var elm$core$String$trim = _String_trim;
 var elm$core$Tuple$mapSecond = F2(
 	function (func, _n0) {
 		var x = _n0.a;
@@ -5081,12 +5082,12 @@ var elm$core$Tuple$mapSecond = F2(
 	});
 var author$project$VegaLite$selectionProperty = function (selProp) {
 	switch (selProp.$) {
-		case 5:
+		case 6:
 			var fNames = selProp.a;
 			return _Utils_Tuple2(
 				'fields',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fNames));
-		case 7:
+		case 8:
 			var iVals = selProp.a;
 			return _Utils_Tuple2(
 				'init',
@@ -5095,7 +5096,7 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 						elm$core$List$map,
 						elm$core$Tuple$mapSecond(author$project$VegaLite$dataValueSpec),
 						iVals)));
-		case 6:
+		case 7:
 			var channels = selProp.a;
 			return _Utils_Tuple2(
 				'encodings',
@@ -5104,21 +5105,34 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 					A2(elm$core$Basics$composeL, elm$json$Json$Encode$string, author$project$VegaLite$channelLabel),
 					channels));
 		case 2:
-			var e = selProp.a;
+			var evStr = selProp.a;
 			return _Utils_Tuple2(
 				'on',
-				elm$json$Json$Encode$string(e));
+				elm$json$Json$Encode$string(evStr));
+		case 3:
+			var evStr = selProp.a;
+			var _n1 = elm$core$String$trim(evStr);
+			if (_n1 === '') {
+				return _Utils_Tuple2(
+					'clear',
+					elm$json$Json$Encode$bool(false));
+			} else {
+				var evStrTrimmed = _n1;
+				return _Utils_Tuple2(
+					'clear',
+					elm$json$Json$Encode$string(evStrTrimmed));
+			}
 		case 0:
 			return _Utils_Tuple2(
 				'empty',
 				elm$json$Json$Encode$string('none'));
-		case 8:
+		case 9:
 			var res = selProp.a;
 			return _Utils_Tuple2(
 				'resolve',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$selectionResolutionLabel(res)));
-		case 9:
+		case 10:
 			var markProps = selProp.a;
 			return _Utils_Tuple2(
 				'mark',
@@ -5128,23 +5142,23 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$string('scales'));
-		case 10:
+		case 11:
 			var binds = selProp.a;
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$bindingSpec, binds)));
-		case 11:
+		case 12:
 			var b = selProp.a;
 			return _Utils_Tuple2(
 				'nearest',
 				elm$json$Json$Encode$bool(b));
-		case 12:
+		case 13:
 			var ex = selProp.a;
 			return _Utils_Tuple2(
 				'toggle',
 				elm$json$Json$Encode$string(ex));
-		case 3:
+		case 4:
 			var e = selProp.a;
 			return (e === '') ? _Utils_Tuple2(
 				'translate',
@@ -5676,7 +5690,6 @@ var elm$core$String$cons = _String_cons;
 var elm$core$String$fromChar = function (_char) {
 	return A2(elm$core$String$cons, _char, '');
 };
-var elm$core$String$trim = _String_trim;
 var author$project$VegaLite$formatProperty = function (fmt) {
 	switch (fmt.$) {
 		case 0:
@@ -9147,7 +9160,7 @@ var author$project$VegaLite$PAggregate = function (a) {
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
 var author$project$VegaLite$Encodings = function (a) {
-	return {$: 6, a: a};
+	return {$: 7, a: a};
 };
 var author$project$VegaLite$seEncodings = author$project$VegaLite$Encodings;
 var author$project$VegaLite$YearMonth = {$: 3};
@@ -9223,7 +9236,7 @@ var author$project$GalleryInteraction$interaction4 = function () {
 			]));
 }();
 var author$project$VegaLite$Nearest = function (a) {
-	return {$: 11, a: a};
+	return {$: 12, a: a};
 };
 var author$project$VegaLite$seNearest = author$project$VegaLite$Nearest;
 var author$project$VegaLite$size = function (markProps) {
@@ -9405,15 +9418,15 @@ var author$project$VegaLite$Number = function (a) {
 };
 var author$project$VegaLite$num = author$project$VegaLite$Number;
 var author$project$VegaLite$Bind = function (a) {
-	return {$: 10, a: a};
+	return {$: 11, a: a};
 };
 var author$project$VegaLite$seBind = author$project$VegaLite$Bind;
 var author$project$VegaLite$Fields = function (a) {
-	return {$: 5, a: a};
+	return {$: 6, a: a};
 };
 var author$project$VegaLite$seFields = author$project$VegaLite$Fields;
 var author$project$VegaLite$SInit = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$seInit = author$project$VegaLite$SInit;
 var author$project$GalleryInteraction$interaction7 = function () {

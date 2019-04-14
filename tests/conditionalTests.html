@@ -35,9 +35,6 @@
   <body>
     <h1>Elm-Vega Conditional Tests</h1>
 
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
     <h2>Conditional Mark Properties</h2>
     <figure class="cell">
       <div id="markCondition1"></div>
@@ -67,11 +64,45 @@
         Two selection styles (drag and shift-drag; only intersections select).
       </figcaption>
     </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="selectionCondition4"></div>
+      <figcaption>
+        Selection with default clear disabled (double clicking on selection
+        should have no effect).
+      </figcaption>
+    </figure>
+    <figure class="cell">
+      <div id="selectionCondition5"></div>
+      <figcaption>
+        Initially no selection. Selection clears once mouse released.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
     <figure class="cell">
       <div id="selectionCondition3"></div>
       <figcaption>Combined data and selection condition.</figcaption>
     </figure>
     <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="bindScales1"></div>
+      <figcaption>
+        Zooming selection that resets on double click (default)
+      </figcaption>
+    </figure>
+    <figure class="cell">
+      <div id="bindScales2"></div>
+      <figcaption>
+        Zooming selection that resets on any shift-mouse click
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
 
     <script>
       Elm.ConditionalTests.init({

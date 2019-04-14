@@ -155,6 +155,107 @@ selectionCondition3 =
         [ data, vConcat [ spec1, spec2 ] ]
 
 
+selectionCondition4 : Spec
+selectionCondition4 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seClear ""
+                    , seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                    , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                    ]
+
+        enc =
+            encoding
+                << position Y [ pName "Origin", pMType Ordinal ]
+                << position X [ pName "Cylinders", pMType Ordinal ]
+                << color
+                    [ mSelectionCondition
+                        (selectionName "mySelection")
+                        [ mAggregate opCount, mName "*", mMType Quantitative ]
+                        [ mStr "gray" ]
+                    ]
+    in
+    toVegaLite
+        [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
+
+
+selectionCondition5 : Spec
+selectionCondition5 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seClear "mouseup"
+                    , seEmpty
+                    , seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                    , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                    ]
+
+        enc =
+            encoding
+                << position Y [ pName "Origin", pMType Ordinal ]
+                << position X [ pName "Cylinders", pMType Ordinal ]
+                << color
+                    [ mSelectionCondition
+                        (selectionName "mySelection")
+                        [ mAggregate opCount, mName "*", mMType Quantitative ]
+                        [ mStr "gray" ]
+                    ]
+    in
+    toVegaLite
+        [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
+
+
+bindScales1 : Spec
+bindScales1 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        sel =
+            selection
+                << select "myZoomPan" seInterval [ seBindScales ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pMType Quantitative ]
+                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+    in
+    toVegaLite
+        [ width 300, height 300, data [], sel [], circle [], enc [] ]
+
+
+bindScales2 : Spec
+bindScales2 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        sel =
+            selection
+                << select "myZoomPan"
+                    seInterval
+                    [ seBindScales, seClear "click[event.shiftKey]" ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pMType Quantitative ]
+                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+    in
+    toVegaLite
+        [ width 300, height 300, data [], sel [], circle [], enc [] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -167,12 +268,16 @@ mySpecs =
         , ( "selectionCondition1", selectionCondition1 )
         , ( "selectionCondition2", selectionCondition2 )
         , ( "selectionCondition3", selectionCondition3 )
+        , ( "selectionCondition4", selectionCondition4 )
+        , ( "selectionCondition5", selectionCondition5 )
+        , ( "bindScales1", bindScales1 )
+        , ( "bindScales2", bindScales2 )
         ]
 
 
 sourceExample : Spec
 sourceExample =
-    markCondition2
+    bindScales2
 
 
 
