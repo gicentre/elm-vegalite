@@ -330,6 +330,50 @@ graticule4 =
     toVegaLite [ width 300, height 300, proj, layer [ sphereSpec, gratSpec ] ]
 
 
+scale1 : Spec
+scale1 =
+    let
+        data =
+            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                [ topojsonFeature "countries1" ]
+
+        proj =
+            projection [ prType orthographic, prScale 470 ]
+
+        countrySpec =
+            asSpec [ data, geoshape [ maFill "rgb(149,181,146)" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grStepMinor ( 5, 5 ) ]
+                , geoshape [ maFilled False, maStrokeWidth 0.3 ]
+                ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ countrySpec, gratSpec ] ]
+
+
+translate1 : Spec
+translate1 =
+    let
+        data =
+            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                [ topojsonFeature "countries1" ]
+
+        proj =
+            projection [ prType orthographic, prTranslate 0 100 ]
+
+        countrySpec =
+            asSpec [ data, geoshape [ maFill "rgb(149,181,146)" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grStepMinor ( 5, 5 ) ]
+                , geoshape [ maFilled False, maStrokeWidth 0.3 ]
+                ]
+    in
+    toVegaLite [ width 300, height 300, proj, layer [ countrySpec, gratSpec ] ]
+
+
 mapComp1 : Spec
 mapComp1 =
     let
@@ -602,6 +646,8 @@ mySpecs =
         , ( "graticule2", graticule2 )
         , ( "graticule3", graticule3 )
         , ( "graticule4", graticule4 )
+        , ( "scale1", scale1 )
+        , ( "translate1", translate1 )
         , ( "mapComp1", mapComp1 )
         , ( "mapComp2", mapComp2 )
         , ( "mapComp3", mapComp3 )

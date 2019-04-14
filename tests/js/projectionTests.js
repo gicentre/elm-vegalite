@@ -6376,12 +6376,12 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 						_List_fromArray(
 							[l, t, r, b])));
 			}
-		case 6:
+		case 8:
 			var b = pp.a;
 			return _Utils_Tuple2(
 				'reflectX',
 				elm$json$Json$Encode$bool(b));
-		case 7:
+		case 9:
 			var b = pp.a;
 			return _Utils_Tuple2(
 				'reflectY',
@@ -6397,6 +6397,21 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 					_List_fromArray(
 						[lon, lat])));
 		case 4:
+			var sc = pp.a;
+			return _Utils_Tuple2(
+				'scale',
+				elm$json$Json$Encode$float(sc));
+		case 5:
+			var tx = pp.a;
+			var ty = pp.b;
+			return _Utils_Tuple2(
+				'translate',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[tx, ty])));
+		case 6:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
@@ -6407,47 +6422,47 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 					elm$json$Json$Encode$float,
 					_List_fromArray(
 						[lambda, phi, gamma])));
-		case 5:
+		case 7:
 			var pr = pp.a;
 			return _Utils_Tuple2(
 				'precision',
 				elm$json$Json$Encode$float(pr));
-		case 8:
+		case 10:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'coefficient',
 				elm$json$Json$Encode$float(x));
-		case 9:
+		case 11:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'distance',
 				elm$json$Json$Encode$float(x));
-		case 10:
+		case 12:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'fraction',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
 			var n = pp.a;
 			return _Utils_Tuple2(
 				'lobes',
 				elm$json$Json$Encode$int(n));
-		case 12:
+		case 14:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'parallel',
 				elm$json$Json$Encode$float(x));
-		case 13:
+		case 15:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'radius',
 				elm$json$Json$Encode$float(x));
-		case 14:
+		case 16:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'ratio',
 				elm$json$Json$Encode$float(x));
-		case 15:
+		case 17:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'spacing',
@@ -7866,11 +7881,11 @@ var author$project$VegaLite$MStrokeWidth = function (a) {
 var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
 var author$project$VegaLite$Orthographic = {$: 12};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
-var author$project$VegaLite$PRotate = F3(
+var author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
-		return {$: 4, a: a, b: b, c: c};
+		return {$: 6, a: a, b: b, c: c};
 	});
-var author$project$VegaLite$prRotate = author$project$VegaLite$PRotate;
+var author$project$VegaLite$prRotate = author$project$VegaLite$PrRotate;
 var author$project$VegaLite$PType = function (a) {
 	return {$: 0, a: a};
 };
@@ -8092,7 +8107,7 @@ var author$project$VegaLite$PClipAngle = function (a) {
 };
 var author$project$VegaLite$prClipAngle = author$project$VegaLite$PClipAngle;
 var author$project$VegaLite$PPrecision = function (a) {
-	return {$: 5, a: a};
+	return {$: 7, a: a};
 };
 var author$project$VegaLite$prPrecision = author$project$VegaLite$PPrecision;
 var elm$core$Basics$negate = function (n) {
@@ -8122,11 +8137,11 @@ var author$project$ProjectionTests$d3Projections = function () {
 var author$project$VegaLite$Identity = {$: 10};
 var author$project$VegaLite$identityProjection = author$project$VegaLite$Identity;
 var author$project$VegaLite$PReflectX = function (a) {
-	return {$: 6, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$prReflectX = author$project$VegaLite$PReflectX;
 var author$project$VegaLite$PReflectY = function (a) {
-	return {$: 7, a: a};
+	return {$: 9, a: a};
 };
 var author$project$VegaLite$prReflectY = author$project$VegaLite$PReflectY;
 var elm$core$Basics$not = _Basics_not;

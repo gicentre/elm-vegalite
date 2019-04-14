@@ -7559,12 +7559,12 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 						_List_fromArray(
 							[l, t, r, b])));
 			}
-		case 6:
+		case 8:
 			var b = pp.a;
 			return _Utils_Tuple2(
 				'reflectX',
 				elm$json$Json$Encode$bool(b));
-		case 7:
+		case 9:
 			var b = pp.a;
 			return _Utils_Tuple2(
 				'reflectY',
@@ -7580,6 +7580,21 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 					_List_fromArray(
 						[lon, lat])));
 		case 4:
+			var sc = pp.a;
+			return _Utils_Tuple2(
+				'scale',
+				elm$json$Json$Encode$float(sc));
+		case 5:
+			var tx = pp.a;
+			var ty = pp.b;
+			return _Utils_Tuple2(
+				'translate',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[tx, ty])));
+		case 6:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
@@ -7590,47 +7605,47 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 					elm$json$Json$Encode$float,
 					_List_fromArray(
 						[lambda, phi, gamma])));
-		case 5:
+		case 7:
 			var pr = pp.a;
 			return _Utils_Tuple2(
 				'precision',
 				elm$json$Json$Encode$float(pr));
-		case 8:
+		case 10:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'coefficient',
 				elm$json$Json$Encode$float(x));
-		case 9:
+		case 11:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'distance',
 				elm$json$Json$Encode$float(x));
-		case 10:
+		case 12:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'fraction',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
 			var n = pp.a;
 			return _Utils_Tuple2(
 				'lobes',
 				elm$json$Json$Encode$int(n));
-		case 12:
+		case 14:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'parallel',
 				elm$json$Json$Encode$float(x));
-		case 13:
+		case 15:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'radius',
 				elm$json$Json$Encode$float(x));
-		case 14:
+		case 16:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'ratio',
 				elm$json$Json$Encode$float(x));
-		case 15:
+		case 17:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'spacing',
@@ -10678,11 +10693,11 @@ var author$project$VegaLite$MFilled = function (a) {
 var author$project$VegaLite$maFilled = author$project$VegaLite$MFilled;
 var author$project$VegaLite$Orthographic = {$: 12};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
-var author$project$VegaLite$PRotate = F3(
+var author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
-		return {$: 4, a: a, b: b, c: c};
+		return {$: 6, a: a, b: b, c: c};
 	});
-var author$project$VegaLite$prRotate = author$project$VegaLite$PRotate;
+var author$project$VegaLite$prRotate = author$project$VegaLite$PrRotate;
 var author$project$VegaLite$sphere = _Utils_Tuple2(
 	8,
 	elm$json$Json$Encode$object(
@@ -11321,6 +11336,61 @@ var author$project$GeoTests$mapComp4 = function () {
 						rotatedSpec(0),
 						rotatedSpec(-40)
 					]))
+			]));
+}();
+var author$project$VegaLite$PrScale = function (a) {
+	return {$: 4, a: a};
+};
+var author$project$VegaLite$prScale = author$project$VegaLite$PrScale;
+var author$project$GeoTests$scale1 = function () {
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic),
+				author$project$VegaLite$prScale(470)
+			]));
+	var gratSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$graticule(
+				_List_fromArray(
+					[
+						author$project$VegaLite$grStepMinor(
+						_Utils_Tuple2(5, 5))
+					])),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(false),
+						author$project$VegaLite$maStrokeWidth(0.3)
+					]))
+			]));
+	var data = A2(
+		author$project$VegaLite$dataFromUrl,
+		'https://gicentre.github.io/data/geoTutorials/world-110m.json',
+		_List_fromArray(
+			[
+				author$project$VegaLite$topojsonFeature('countries1')
+			]));
+	var countrySpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				data,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('rgb(149,181,146)')
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[countrySpec, gratSpec]))
 			]));
 }();
 var author$project$VegaLite$W300 = 6;
@@ -12011,6 +12081,62 @@ var author$project$GeoTests$sphere2 = function () {
 					[sphereSpec, countrySpec]))
 			]));
 }();
+var author$project$VegaLite$PrTranslate = F2(
+	function (a, b) {
+		return {$: 5, a: a, b: b};
+	});
+var author$project$VegaLite$prTranslate = author$project$VegaLite$PrTranslate;
+var author$project$GeoTests$translate1 = function () {
+	var proj = author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$orthographic),
+				A2(author$project$VegaLite$prTranslate, 0, 100)
+			]));
+	var gratSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$graticule(
+				_List_fromArray(
+					[
+						author$project$VegaLite$grStepMinor(
+						_Utils_Tuple2(5, 5))
+					])),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFilled(false),
+						author$project$VegaLite$maStrokeWidth(0.3)
+					]))
+			]));
+	var data = A2(
+		author$project$VegaLite$dataFromUrl,
+		'https://gicentre.github.io/data/geoTutorials/world-110m.json',
+		_List_fromArray(
+			[
+				author$project$VegaLite$topojsonFeature('countries1')
+			]));
+	var countrySpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				data,
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('rgb(149,181,146)')
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(300),
+				proj,
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[countrySpec, gratSpec]))
+			]));
+}();
 var author$project$GeoTests$tubeLines1 = author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[
@@ -12269,6 +12395,8 @@ var author$project$GeoTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('graticule2', author$project$GeoTests$graticule2),
 			_Utils_Tuple2('graticule3', author$project$GeoTests$graticule3),
 			_Utils_Tuple2('graticule4', author$project$GeoTests$graticule4),
+			_Utils_Tuple2('scale1', author$project$GeoTests$scale1),
+			_Utils_Tuple2('translate1', author$project$GeoTests$translate1),
 			_Utils_Tuple2('mapComp1', author$project$GeoTests$mapComp1),
 			_Utils_Tuple2('mapComp2', author$project$GeoTests$mapComp2),
 			_Utils_Tuple2('mapComp3', author$project$GeoTests$mapComp3),

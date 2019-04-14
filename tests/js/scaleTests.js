@@ -8572,12 +8572,12 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 						_List_fromArray(
 							[l, t, r, b])));
 			}
-		case 6:
+		case 8:
 			var b = pp.a;
 			return _Utils_Tuple2(
 				'reflectX',
 				elm$json$Json$Encode$bool(b));
-		case 7:
+		case 9:
 			var b = pp.a;
 			return _Utils_Tuple2(
 				'reflectY',
@@ -8593,6 +8593,21 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 					_List_fromArray(
 						[lon, lat])));
 		case 4:
+			var sc = pp.a;
+			return _Utils_Tuple2(
+				'scale',
+				elm$json$Json$Encode$float(sc));
+		case 5:
+			var tx = pp.a;
+			var ty = pp.b;
+			return _Utils_Tuple2(
+				'translate',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$float,
+					_List_fromArray(
+						[tx, ty])));
+		case 6:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
@@ -8603,47 +8618,47 @@ var author$project$VegaLite$projectionProperty = function (pp) {
 					elm$json$Json$Encode$float,
 					_List_fromArray(
 						[lambda, phi, gamma])));
-		case 5:
+		case 7:
 			var pr = pp.a;
 			return _Utils_Tuple2(
 				'precision',
 				elm$json$Json$Encode$float(pr));
-		case 8:
+		case 10:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'coefficient',
 				elm$json$Json$Encode$float(x));
-		case 9:
+		case 11:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'distance',
 				elm$json$Json$Encode$float(x));
-		case 10:
+		case 12:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'fraction',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
 			var n = pp.a;
 			return _Utils_Tuple2(
 				'lobes',
 				elm$json$Json$Encode$int(n));
-		case 12:
+		case 14:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'parallel',
 				elm$json$Json$Encode$float(x));
-		case 13:
+		case 15:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'radius',
 				elm$json$Json$Encode$float(x));
-		case 14:
+		case 16:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'ratio',
 				elm$json$Json$Encode$float(x));
-		case 15:
+		case 17:
 			var x = pp.a;
 			return _Utils_Tuple2(
 				'spacing',
