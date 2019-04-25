@@ -3,7 +3,7 @@
 ![elm-vegaLite banner](https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg)
 
 [![elm version](https://img.shields.io/badge/Elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
-[![vega-lite version](https://img.shields.io/badge/VegaLite-v3.2.0-purple.svg?style=flat-square)](https://vega.github.io/vega/)
+[![vega-lite version](https://img.shields.io/badge/VegaLite-v3.2-purple.svg?style=flat-square)](https://vega.github.io/vega/)
 
 _Declarative visualization for Elm_
 
