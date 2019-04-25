@@ -13,8 +13,7 @@ bPlot ext =
         enc =
             encoding
                 << position X [ pName "age", pMType Ordinal ]
-                << position Y
-                    [ pName "people", pMType Quantitative, pAxis [ axTitle "Population" ] ]
+                << position Y [ pName "people", pMType Quantitative, pAxis [ axTitle "Population" ] ]
     in
     toVegaLite [ pop, boxplot [ maExtent ext ], enc [] ]
 
@@ -27,6 +26,31 @@ boxplot1 =
 boxplot2 : Spec
 boxplot2 =
     bPlot (exIqrScale 2)
+
+
+boxplot3 : Spec
+boxplot3 =
+    let
+        pop =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+
+        enc =
+            encoding
+                << position X [ pName "age", pMType Ordinal ]
+                << position Y [ pName "people", pMType Quantitative, pAxis [ axTitle "Population" ] ]
+    in
+    toVegaLite
+        [ pop
+        , boxplot
+            [ maExtent (exIqrScale 0.5)
+            , maBox [ maColor "firebrick" ]
+            , maOutliers [ maColor "black", maStrokeWidth 0.3, maSize 10 ]
+            , maMedian [ maSize 18, maFill "black", maStrokeWidth 0 ]
+            , maRule [ maStrokeWidth 0.4 ]
+            , maTicks [ maSize 8 ]
+            ]
+        , enc []
+        ]
 
 
 eBand : String -> Spec
@@ -158,6 +182,7 @@ mySpecs =
     combineSpecs
         [ ( "boxplot1", boxplot1 )
         , ( "boxplot2", boxplot2 )
+        , ( "boxplot3", boxplot3 )
         , ( "errorband1", errorband1 )
         , ( "errorband2", errorband2 )
         , ( "errorbar1", errorbar1 )
