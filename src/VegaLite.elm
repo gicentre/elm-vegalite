@@ -1051,6 +1051,7 @@ module VegaLite exposing
     , DateTime
     , DetailChannel
     , FacetChannel
+    , FacetConfig
     , FacetMapping
     , FieldTitleProperty
     , Filter
@@ -2680,6 +2681,7 @@ to the functions that generate them.
 @docs DateTime
 @docs DetailChannel
 @docs FacetChannel
+@docs FacetConfig
 @docs FacetMapping
 @docs FieldTitleProperty
 @docs Filter
