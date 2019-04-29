@@ -7048,7 +7048,7 @@ expr =
     Expr
 
 
-{-| Band extent between the minumum and maximum values in a distribution.
+{-| Band extent between the minimum and maximum values in a distribution.
 -}
 exRange : SummaryExtent
 exRange =
@@ -7077,7 +7077,7 @@ except that the fields for faceting by rows and by columns are set explicitly.
         [ facet [ rowBy [ fName "month", fMType Ordinal ]
                 , columnBy [ fName "week", fMType Ordinal ]
                 ]
-        , specifcation spec
+        , specification spec
         ]
 
 -}
@@ -7098,7 +7098,7 @@ if the number of plots exceeds an optional column limit (specified via
     spec = ...
     toVegaLite
         [ facetflow [ fName "Origin", fMType Nominal ]
-        , specifcation spec
+        , specification spec
         ]
 
 -}
@@ -8903,7 +8903,7 @@ leNums =
 
 {-| Offset in pixels of a legend from the encoded marks it describes. If the legend
 orientation is one of `loTop`, `loBottom`, `loLeft` or `loRight`, a positive offset
-moves the legend outwards away from the encoded marks. If it is one onf `loTopLeft`,
+moves the legend outwards away from the encoded marks. If it is one of `loTopLeft`,
 `loTopRight`, `loBottomLeft` or `loBottomRight` a positive offset will move it
 inwards away from the corner. If `loNone`, the offset has no effect.
 -}
@@ -9406,7 +9406,7 @@ maMedian =
     MMedian
 
 
-{-| Overal opacity of a mark in the range 0 to 1.
+{-| Overall opacity of a mark in the range 0 to 1.
 -}
 maOpacity : Float -> MarkProperty
 maOpacity =
@@ -10865,7 +10865,7 @@ if the number of plots exceeds an optional column limit (specified via
     spec = asSpec [...]
     toVegaLite
         [ repeatFlow [ "Cat", "Dog", "Fish" ]
-        , specifcation spec
+        , specification spec
         ]
 
 -}
@@ -11387,7 +11387,7 @@ on shift-click:
             seInterval
             [ seBindScales, seClear "click[event.shiftKey]" ]
 
-To remove the default clearing behavour of a selection, provide an empty string
+To remove the default clearing behaviour of a selection, provide an empty string
 rather than an event stream selector.
 
 -}
@@ -11780,7 +11780,7 @@ spacingRC spRow spCol =
     spec = ...
     toVegaLite
         [ facet [ rowBy [ fName "Origin", fMType Nominal ] ]
-        , specifcation spec
+        , specification spec
         ]
 
 -}
@@ -11860,7 +11860,7 @@ stereographic =
     Stereographic
 
 
-{-| Do not stack marks (produces a layed plot).
+{-| Do not stack marks (produces a layered plot).
 -}
 stNone : StackOffset
 stNone =
@@ -12553,7 +12553,7 @@ tTitle =
     TTitle
 
 
-{-| Indicate that tootips should be disabled.
+{-| Indicate that tooltips should be disabled.
 -}
 ttNone : TooltipContent
 ttNone =
