@@ -3287,18 +3287,22 @@ var author$project$VegaLite$hAlignLabel = function (al) {
 };
 var author$project$VegaLite$legendOrientLabel = function (orient) {
 	switch (orient) {
-		case 2:
+		case 3:
 			return 'left';
-		case 0:
-			return 'bottom-left';
-		case 1:
-			return 'bottom-right';
-		case 4:
-			return 'right';
-		case 5:
+		case 7:
 			return 'top-left';
 		case 6:
+			return 'top';
+		case 8:
 			return 'top-right';
+		case 5:
+			return 'right';
+		case 2:
+			return 'bottom-right';
+		case 0:
+			return 'bottom';
+		case 1:
+			return 'bottom-left';
 		default:
 			return 'none';
 	}
@@ -9660,8 +9664,8 @@ var author$project$VegaLite$LTitle = function (a) {
 	return {$: 34, a: a};
 };
 var author$project$VegaLite$leTitle = author$project$VegaLite$LTitle;
-var author$project$VegaLite$BottomRight = 1;
-var author$project$VegaLite$loBottomRight = 1;
+var author$project$VegaLite$BottomRight = 2;
+var author$project$VegaLite$loBottomRight = 2;
 var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
