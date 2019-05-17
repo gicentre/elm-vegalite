@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apache Arrow Example</title>
+    <meta charset="utf-8" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      figcaption {
+        padding-top: 0.5em;
+      }
+      .cell {
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apache-arrow"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-loader-arrow"></script>
+
+    <!-- This is the script generated from Elm -->
+    <script src="js/apacheArrow.js"></script>
+  </head>
+
+  <body>
+    <h1>Apache Arrow Data</h1>
+
+    <p>
+      <a
+        href="https://observablehq.com/@theneuralbit/introduction-to-apache-arrow"
+        target="_blank"
+        >Apache arrow</a
+      >
+      is a cross-platform binary format for in-memory data storage. Being much
+      more compact than JSON it is suitable for larger datasets as well as for
+      interoperability with other software that generates apache-arrow format
+      files:
+    </p>
+
+    <p>
+      To use Apache Arrow data with Vega-Lite (or Vega) you need to link to the
+      <a href="https://github.com/vega/vega-loader-arrow" target="_blank"
+        >vega-loader-arrow</a
+      >
+      and apache-arrow javascript packages in the head of your HTML along with
+      the normal links to the vega and vega-lite runtimes:
+    </p>
+
+    <pre>
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/apache-arrow&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vega-loader-arrow&quot;&gt;&lt;/script&gt;
+    </pre>
+
+    <h2>Flight Data Example</h2>
+
+    <p>
+      Data source contains 10,000 flight records as a binary arrow file.
+    </p>
+
+    <pre>
+arrow1 : Spec
+arrow1 =
+    let
+        data =
+            dataFromUrl &quot;https://gist.githubusercontent.com/domoritz/0f53a5abde95564c36dfaac623a7a922/raw/cce3719b853e25d5dfff97a270283ba83af3c0e6/flights-10k.arrow&quot;
+                [ arrow ]
+        enc =
+            encoding
+                << position X [ pName "DEP_TIME", pMType Quantitative ]
+                << position Y [ pName "ARR_DELAY", pMType Quantitative ]
+                << color [ mName "DISTANCE", mMType Quantitative ]
+    in
+    toVegaLite [ width 500, height 300, data, enc [], circle [ maSize 4 ] ]
+</pre
+    >
+
+    <div id="arrow1"></div>
+
+    <h2>Scrabble Data Example</h2>
+
+    <p>
+      10,000 random samples from a 1.5 million record
+      <a
+        href="https://github.com/fivethirtyeight/data/tree/master/scrabble-games"
+        target="_blank"
+        >scrabble dataset</a
+      >
+      that is 157Mb in CSV format and 1Mb in
+      <a
+        href="https://gist.github.com/TheNeuralBit/64d8cc13050c9b5743281dcf66059de5"
+        target="_blank"
+        >arrow format</a
+      >.
+    </p>
+
+    <div id="arrow2"></div>
+
+    <script>
+      Elm.ApacheArrow.init().ports.elmToJS.subscribe(function(namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: false,
+            logLevel: vega.Warn
+          }).catch(console.warn);
+        }
+      });
+    </script>
+  </body>
+</html>

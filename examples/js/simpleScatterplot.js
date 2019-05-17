@@ -4887,6 +4887,13 @@ var author$project$VegaLite$formatProperty = function (fmt) {
 						elm$core$String$fromChar(delim)))
 				]);
 		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string('arrow'))
+				]);
+		case 5:
 			var objectSet = fmt.a;
 			return _List_fromArray(
 				[
@@ -4897,7 +4904,7 @@ var author$project$VegaLite$formatProperty = function (fmt) {
 					'feature',
 					elm$json$Json$Encode$string(objectSet))
 				]);
-		case 5:
+		case 6:
 			var objectSet = fmt.a;
 			return _List_fromArray(
 				[
