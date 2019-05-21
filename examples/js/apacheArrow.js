@@ -6238,7 +6238,7 @@ var author$project$ApacheArrow$arrow2 = function () {
 				])));
 	var data = A2(
 		author$project$VegaLite$dataFromUrl,
-		'https://gist.githubusercontent.com/TheNeuralBit/64d8cc13050c9b5743281dcf66059de5/raw/c146baf28a8e78cfe982c6ab5015207c4cbd84e3/scrabble.arrow',
+		'https://gicentre.github.io/data/scrabble.arrow',
 		_List_fromArray(
 			[author$project$VegaLite$arrow]));
 	return author$project$VegaLite$toVegaLite(

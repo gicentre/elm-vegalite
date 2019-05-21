@@ -4588,7 +4588,12 @@ arFlow =
     Flow
 
 
-{-| [Apache arrow](https://observablehq.com/@theneuralbit/introduction-to-apache-arrow) data file format.
+{-| [Apache arrow](https://observablehq.com/@theneuralbit/introduction-to-apache-arrow)
+data file format. For example:
+
+    data =
+        dataFromUrl "https://gicentre.github.io/data/scrabble.arrow" [ arrow ]
+
 -}
 arrow : Format
 arrow =
@@ -10369,8 +10374,13 @@ pAggregate =
 
 
 {-| Parsing rules when processing some data text, specified as a list of tuples
-in the form (_fieldname_, _datatype_). If an empty list is provided, type inference
-is based on the data.
+in the form (_fieldname_, _datatype_). Useful when automatic type inference needs
+to be overridden, for example when converting strings to numbers:
+
+    data =
+        dataFromUrl "myDataFile.csv"
+            [ parse [ ( "x", foNum ), ( "y", foNum ) ] ]
+
 -}
 parse : List ( String, DataType ) -> Format
 parse =
@@ -12205,7 +12215,12 @@ tooltips tDefss =
     (::) ( "tooltip", JE.list (\tDefs -> JE.object (List.concatMap textChannelProperty tDefs)) tDefss )
 
 
-{-| A topoJSON feature format containing an object with the given name.
+{-| A topoJSON feature format containing an object with the given name. For example,
+
+    geodata =
+        dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonBoroughs.json"
+            [ topojsonFeature "boroughs" ]
+
 -}
 topojsonFeature : String -> Format
 topojsonFeature =
