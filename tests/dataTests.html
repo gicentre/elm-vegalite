@@ -9,6 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
 
+    <!-- Only necessary for Apache arrow file reading -->
+    <script src="https://cdn.jsdelivr.net/npm/apache-arrow"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-loader-arrow"></script>
+
     <script src="js/dataTests.js"></script>
 
     <!-- Page formatting -->
@@ -85,6 +89,11 @@
       <figcaption>Data named inline json source</figcaption>
     </figure>
     <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="data11"></div>
+      <figcaption>Data from arrow file</figcaption>
+    </figure>
 
     <h2>Named datasets</h2>
     <figure class="cell">

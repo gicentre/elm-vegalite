@@ -127,6 +127,22 @@ data10 =
     dataSource "myData3"
 
 
+data11 : Spec
+data11 =
+    let
+        pollData =
+            dataFromUrl "https://gicentre.github.io/data/euPolls.arrow" [ arrow ]
+
+        enc =
+            encoding
+                << position X [ pName "Answer", pMType Nominal ]
+                << position Y [ pName "Percent", pMType Quantitative, pAggregate opMean ]
+                << color [ mName "Pollster", mMType Nominal ]
+                << column [ fName "Pollster", fMType Nominal ]
+    in
+    toVegaLite [ pollData, enc [], bar [] ]
+
+
 namedData1 : Spec
 namedData1 =
     let
@@ -469,6 +485,7 @@ mySpecs =
         , ( "data8", data8 )
         , ( "data9", data9 )
         , ( "data10", data10 )
+        , ( "data11", data11 )
         , ( "namedData1", namedData1 )
         , ( "namedData2", namedData2 )
         , ( "namedData3", namedData3 )
