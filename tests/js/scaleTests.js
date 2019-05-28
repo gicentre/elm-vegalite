@@ -5599,6 +5599,16 @@ var author$project$VegaLite$legendProperty = function (legendProp) {
 				}
 			}();
 			return _Utils_Tuple2('values', list);
+		case 45:
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'legendX',
+				elm$json$Json$Encode$float(n));
+		case 46:
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'legendY',
+				elm$json$Json$Encode$float(n));
 		default:
 			var n = legendProp.a;
 			return _Utils_Tuple2(

@@ -103,7 +103,7 @@ legend10 =
             encoding
                 << position X [ pName "Horsepower", pMType Quantitative ]
                 << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
-                << color [ mName "Origin", mMType Nominal, mLegend [ leOrient loNone ] ]
+                << color [ mName "Origin", mMType Nominal, mLegend [ leOrient loNone, leX 232, leY 5 ] ]
     in
     toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
 

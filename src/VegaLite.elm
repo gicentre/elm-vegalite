@@ -501,6 +501,8 @@ module VegaLite exposing
     , leTitlePadding
     , leType
     , leValues
+    , leX
+    , leY
     , leZIndex
     , loLeft
     , loRight
@@ -1855,6 +1857,8 @@ See the
 @docs leTitlePadding
 @docs leType
 @docs leValues
+@docs leX
+@docs leY
 @docs leZIndex
 
 @docs loLeft
@@ -3574,6 +3578,8 @@ type LegendProperty
     | LTitlePadding Float
     | LType Legend
     | LValues LegendValues
+    | LeX Float
+    | LeY Float
     | LZIndex Int
 
 
@@ -9093,6 +9099,22 @@ leType =
 leValues : LegendValues -> LegendProperty
 leValues =
     LValues
+
+
+{-| x-position of legend group in pixel units for absolute positioning when
+[leOrient](#leOrient) is set to `loNone`.
+-}
+leX : Float -> LegendProperty
+leX =
+    LeX
+
+
+{-| y-position of legend group in pixel units for absolute positioning when
+[leOrient](#leOrient) is set to `loNone`.
+-}
+leY : Float -> LegendProperty
+leY =
+    LeY
 
 
 {-| Drawing order of a legend relative to other chart elements. To
@@ -14885,6 +14907,12 @@ legendProperty legendProp =
                             JE.list JE.string ss
             in
             ( "values", list )
+
+        LeX n ->
+            ( "legendX", JE.float n )
+
+        LeY n ->
+            ( "legendY", JE.float n )
 
         LZIndex n ->
             ( "zindex", JE.int n )

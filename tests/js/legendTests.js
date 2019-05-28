@@ -6156,6 +6156,16 @@ var author$project$VegaLite$legendProperty = function (legendProp) {
 				}
 			}();
 			return _Utils_Tuple2('values', list);
+		case 45:
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'legendX',
+				elm$json$Json$Encode$float(n));
+		case 46:
+			var n = legendProp.a;
+			return _Utils_Tuple2(
+				'legendY',
+				elm$json$Json$Encode$float(n));
 		default:
 			var n = legendProp.a;
 			return _Utils_Tuple2(
@@ -9667,6 +9677,14 @@ var author$project$VegaLite$LOrient = function (a) {
 	return {$: 23, a: a};
 };
 var author$project$VegaLite$leOrient = author$project$VegaLite$LOrient;
+var author$project$VegaLite$LeX = function (a) {
+	return {$: 45, a: a};
+};
+var author$project$VegaLite$leX = author$project$VegaLite$LeX;
+var author$project$VegaLite$LeY = function (a) {
+	return {$: 46, a: a};
+};
+var author$project$VegaLite$leY = author$project$VegaLite$LeY;
 var author$project$VegaLite$None = 4;
 var author$project$VegaLite$loNone = 4;
 var author$project$VegaLite$MLegend = function (a) {
@@ -9705,7 +9723,9 @@ var author$project$LegendTests$legend10 = function () {
 					author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
-							author$project$VegaLite$leOrient(author$project$VegaLite$loNone)
+							author$project$VegaLite$leOrient(author$project$VegaLite$loNone),
+							author$project$VegaLite$leX(232),
+							author$project$VegaLite$leY(5)
 						]))
 				])));
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
