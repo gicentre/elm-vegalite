@@ -317,6 +317,39 @@ line11 =
     toVegaLite [ des, data [], trans [], enc [], line [ maOrient moVertical ] ]
 
 
+line12 : Spec
+line12 =
+    let
+        des =
+            description "Plots a function using a generated sequence"
+
+        data =
+            dataSequenceAs 0 12.7 0.1 "u"
+
+        trans =
+            transform
+                << calculateAs "sin(datum.u)" "v"
+                << calculateAs "cos(datum.u)" "w"
+
+        encSin =
+            encoding
+                << position X [ pName "u", pMType Quantitative, pTitle "x" ]
+                << position Y [ pName "v", pMType Quantitative, pTitle "sin(x)" ]
+
+        specSin =
+            asSpec [ encSin [], line [] ]
+
+        encCos =
+            encoding
+                << position X [ pName "u", pMType Quantitative, pTitle "x" ]
+                << position Y [ pName "w", pMType Quantitative, pTitle "cos(x)" ]
+
+        specCos =
+            asSpec [ encCos [], line [ maStroke "firebrick" ] ]
+    in
+    toVegaLite [ des, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -335,6 +368,7 @@ mySpecs =
         , ( "line9", line9 )
         , ( "line10", line10 )
         , ( "line11", line11 )
+        , ( "line12", line12 )
         ]
 
 

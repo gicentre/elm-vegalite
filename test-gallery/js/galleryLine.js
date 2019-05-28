@@ -9297,6 +9297,126 @@ var author$project$GalleryLine$line11 = function () {
 					]))
 			]));
 }();
+var author$project$VegaLite$dataSequenceAs = F4(
+	function (start, stop, step, outName) {
+		return _Utils_Tuple2(
+			8,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'sequence',
+						elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'start',
+									elm$json$Json$Encode$float(start)),
+									_Utils_Tuple2(
+									'stop',
+									elm$json$Json$Encode$float(stop)),
+									_Utils_Tuple2(
+									'step',
+									elm$json$Json$Encode$float(step)),
+									_Utils_Tuple2(
+									'as',
+									elm$json$Json$Encode$string(outName))
+								])))
+					])));
+	});
+var author$project$VegaLite$MStroke = function (a) {
+	return {$: 36, a: a};
+};
+var author$project$VegaLite$maStroke = author$project$VegaLite$MStroke;
+var author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var author$project$VegaLite$pTitle = author$project$VegaLite$PTitle;
+var author$project$GalleryLine$line12 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$transform,
+			A2(author$project$VegaLite$calculateAs, 'sin(datum.u)', 'v')),
+		A2(author$project$VegaLite$calculateAs, 'cos(datum.u)', 'w'));
+	var encSin = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('u'),
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pTitle('x')
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('v'),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pTitle('sin(x)')
+				])));
+	var specSin = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encSin(_List_Nil),
+				author$project$VegaLite$line(_List_Nil)
+			]));
+	var encCos = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('u'),
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pTitle('x')
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('w'),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pTitle('cos(x)')
+				])));
+	var specCos = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encCos(_List_Nil),
+				author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maStroke('firebrick')
+					]))
+			]));
+	var des = author$project$VegaLite$description('Plots a function using a generated sequence');
+	var data = A4(author$project$VegaLite$dataSequenceAs, 0, 12.7, 0.1, 'u');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				author$project$VegaLite$width(300),
+				author$project$VegaLite$height(150),
+				data,
+				trans(_List_Nil),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[specSin, specCos]))
+			]));
+}();
 var author$project$VegaLite$MColor = function (a) {
 	return {$: 8, a: a};
 };
@@ -9852,7 +9972,8 @@ var author$project$GalleryLine$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('line8', author$project$GalleryLine$line8),
 			_Utils_Tuple2('line9', author$project$GalleryLine$line9),
 			_Utils_Tuple2('line10', author$project$GalleryLine$line10),
-			_Utils_Tuple2('line11', author$project$GalleryLine$line11)
+			_Utils_Tuple2('line11', author$project$GalleryLine$line11),
+			_Utils_Tuple2('line12', author$project$GalleryLine$line12)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
