@@ -9908,6 +9908,439 @@ var author$project$GalleryMulti$multi6 = function () {
 					[specPoint, specHPText, specMPGText, specOriginText]))
 			]));
 }();
+var author$project$VegaLite$aggregate = F2(
+	function (ops, groups) {
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'aggregate',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							author$project$VegaLite$toList(ops),
+							A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, groups)
+						]))));
+	});
+var author$project$VegaLite$AlbersUsa = {$: 1};
+var author$project$VegaLite$albersUsa = author$project$VegaLite$AlbersUsa;
+var author$project$VegaLite$Circle = 5;
+var author$project$VegaLite$circle = author$project$VegaLite$mark(5);
+var author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$fiExpr = author$project$VegaLite$FExpr;
+var author$project$VegaLite$Geoshape = 6;
+var author$project$VegaLite$geoshape = author$project$VegaLite$mark(6);
+var author$project$VegaLite$lookup = F4(
+	function (key1, _n0, key2, fields) {
+		var vlProp = _n0.a;
+		var spec = _n0.b;
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'lookup',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							elm$json$Json$Encode$string(key1),
+							spec,
+							elm$json$Json$Encode$string(key2),
+							A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fields)
+						]))));
+	});
+var author$project$VegaLite$MColor = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
+var author$project$VegaLite$MFill = function (a) {
+	return {$: 16, a: a};
+};
+var author$project$VegaLite$maFill = author$project$VegaLite$MFill;
+var author$project$VegaLite$MOpacity = function (a) {
+	return {$: 26, a: a};
+};
+var author$project$VegaLite$maOpacity = author$project$VegaLite$MOpacity;
+var author$project$VegaLite$MStroke = function (a) {
+	return {$: 36, a: a};
+};
+var author$project$VegaLite$maStroke = author$project$VegaLite$MStroke;
+var author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$oMType = author$project$VegaLite$OmType;
+var author$project$VegaLite$OName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$oName = author$project$VegaLite$OName;
+var author$project$VegaLite$OSort = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$oSort = author$project$VegaLite$OSort;
+var author$project$VegaLite$opAs = F3(
+	function (op, field, label) {
+		return elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'op',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$operationLabel(op))),
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$string(field)),
+					_Utils_Tuple2(
+					'as',
+					elm$json$Json$Encode$string(label))
+				]));
+	});
+var author$project$VegaLite$orderChannelProperty = function (oDef) {
+	switch (oDef.$) {
+		case 0:
+			var s = oDef.a;
+			return _Utils_Tuple2(
+				'field',
+				elm$json$Json$Encode$string(s));
+		case 1:
+			var arr = oDef.a;
+			return _Utils_Tuple2(
+				'field',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'repeat',
+							elm$json$Json$Encode$string(
+								author$project$VegaLite$arrangementLabel(arr)))
+						])));
+		case 2:
+			var measure = oDef.a;
+			return _Utils_Tuple2(
+				'type',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$measurementLabel(measure)));
+		case 3:
+			var bps = oDef.a;
+			return author$project$VegaLite$bin(bps);
+		case 4:
+			var op = oDef.a;
+			return _Utils_Tuple2(
+				'aggregate',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$operationLabel(op)));
+		case 5:
+			var tu = oDef.a;
+			return _Utils_Tuple2(
+				'timeUnit',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$timeUnitLabel(tu)));
+		default:
+			var sps = oDef.a;
+			_n1$4:
+			while (true) {
+				if (!sps.b) {
+					return _Utils_Tuple2('sort', elm$json$Json$Encode$null);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 0:
+								var _n2 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									elm$json$Json$Encode$string('ascending'));
+							case 1:
+								var _n3 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									elm$json$Json$Encode$string('descending'));
+							case 2:
+								var dvs = sps.a.a;
+								return _Utils_Tuple2(
+									'sort',
+									author$project$VegaLite$toList(
+										author$project$VegaLite$dataValuesSpecs(dvs)));
+							default:
+								break _n1$4;
+						}
+					} else {
+						break _n1$4;
+					}
+				}
+			}
+			return _Utils_Tuple2(
+				'sort',
+				elm$json$Json$Encode$object(
+					A2(elm$core$List$concatMap, author$project$VegaLite$sortProperty, sps)));
+	}
+};
+var author$project$VegaLite$order = function (oDefs) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'order',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$map, author$project$VegaLite$orderChannelProperty, oDefs))));
+};
+var author$project$VegaLite$PType = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$prType = author$project$VegaLite$PType;
+var author$project$VegaLite$VLProjection = 12;
+var author$project$VegaLite$projection = function (pProps) {
+	return _Utils_Tuple2(
+		12,
+		elm$json$Json$Encode$object(
+			A2(elm$core$List$map, author$project$VegaLite$projectionProperty, pProps)));
+};
+var author$project$VegaLite$RNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$raNums = author$project$VegaLite$RNumbers;
+var author$project$VegaLite$Rule = 10;
+var author$project$VegaLite$rule = author$project$VegaLite$mark(10);
+var author$project$VegaLite$scRange = author$project$VegaLite$SRange;
+var author$project$VegaLite$Empty = {$: 0};
+var author$project$VegaLite$seEmpty = author$project$VegaLite$Empty;
+var author$project$VegaLite$Fields = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$seFields = author$project$VegaLite$Fields;
+var author$project$VegaLite$Nearest = function (a) {
+	return {$: 12, a: a};
+};
+var author$project$VegaLite$seNearest = author$project$VegaLite$Nearest;
+var author$project$VegaLite$Descending = {$: 1};
+var author$project$VegaLite$soDescending = author$project$VegaLite$Descending;
+var author$project$VegaLite$TopojsonFeature = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$topojsonFeature = author$project$VegaLite$TopojsonFeature;
+var author$project$GalleryMulti$multi7 = function () {
+	var sel = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$selection,
+		A3(
+			author$project$VegaLite$select,
+			'mySelection',
+			author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					author$project$VegaLite$seOn('mouseover'),
+					author$project$VegaLite$seNearest(true),
+					author$project$VegaLite$seEmpty,
+					author$project$VegaLite$seFields(
+					_List_fromArray(
+						['origin']))
+				])));
+	var lineTrans = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						A2(
+							elm$core$Basics$composeL,
+							A2(
+								elm$core$Basics$composeL,
+								author$project$VegaLite$transform,
+								author$project$VegaLite$filter(
+									author$project$VegaLite$fiSelection('mySelection'))),
+							A4(
+								author$project$VegaLite$lookup,
+								'origin',
+								A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+								'iata',
+								_List_fromArray(
+									['latitude', 'longitude']))),
+						A2(author$project$VegaLite$calculateAs, 'datum.latitude', 'oLat')),
+					A2(author$project$VegaLite$calculateAs, 'datum.longitude', 'oLon')),
+				A4(
+					author$project$VegaLite$lookup,
+					'destination',
+					A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+					'iata',
+					_List_fromArray(
+						['latitude', 'longitude']))),
+			A2(author$project$VegaLite$calculateAs, 'datum.latitude', 'dLat')),
+		A2(author$project$VegaLite$calculateAs, 'datum.longitude', 'dLon'));
+	var lineEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$encoding,
+					A2(
+						author$project$VegaLite$position,
+						4,
+						_List_fromArray(
+							[
+								author$project$VegaLite$pName('oLon'),
+								author$project$VegaLite$pMType(2)
+							]))),
+				A2(
+					author$project$VegaLite$position,
+					5,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('oLat'),
+							author$project$VegaLite$pMType(2)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				6,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('dLon')
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			7,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('dLat')
+				])));
+	var lineSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
+				lineTrans(_List_Nil),
+				lineEnc(_List_Nil),
+				author$project$VegaLite$rule(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor('black'),
+						author$project$VegaLite$maOpacity(0.35)
+					]))
+			]));
+	var des = author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
+	var cfg = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$configure,
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing)
+					]))));
+	var backdropSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2(
+				author$project$VegaLite$dataFromUrl,
+				'https://vega.github.io/vega-lite/data/us-10m.json',
+				_List_fromArray(
+					[
+						author$project$VegaLite$topojsonFeature('states')
+					])),
+				author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maFill('#ddd'),
+						author$project$VegaLite$maStroke('#fff')
+					]))
+			]));
+	var airportTrans = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$transform,
+				A2(
+					author$project$VegaLite$aggregate,
+					_List_fromArray(
+						[
+							A3(author$project$VegaLite$opAs, author$project$VegaLite$opCount, '', 'routes')
+						]),
+					_List_fromArray(
+						['origin']))),
+			A4(
+				author$project$VegaLite$lookup,
+				'origin',
+				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+				'iata',
+				_List_fromArray(
+					['state', 'latitude', 'longitude']))),
+		author$project$VegaLite$filter(
+			author$project$VegaLite$fiExpr('datum.state !== \'PR\' && datum.state !== \'VI\'')));
+	var airportEnc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$encoding,
+					A2(
+						author$project$VegaLite$position,
+						4,
+						_List_fromArray(
+							[
+								author$project$VegaLite$pName('longitude'),
+								author$project$VegaLite$pMType(2)
+							]))),
+				A2(
+					author$project$VegaLite$position,
+					5,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('latitude'),
+							author$project$VegaLite$pMType(2)
+						]))),
+			author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						author$project$VegaLite$mName('routes'),
+						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$scRange(
+								author$project$VegaLite$raNums(
+									_List_fromArray(
+										[0, 1000])))
+							])),
+						author$project$VegaLite$mLegend(_List_Nil)
+					]))),
+		author$project$VegaLite$order(
+			_List_fromArray(
+				[
+					author$project$VegaLite$oName('routes'),
+					author$project$VegaLite$oMType(2),
+					author$project$VegaLite$oSort(
+					_List_fromArray(
+						[author$project$VegaLite$soDescending]))
+				])));
+	var airportSpec = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
+				airportTrans(_List_Nil),
+				sel(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil),
+				airportEnc(_List_Nil)
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				cfg(_List_Nil),
+				author$project$VegaLite$width(900),
+				author$project$VegaLite$height(500),
+				author$project$VegaLite$projection(
+				_List_fromArray(
+					[
+						author$project$VegaLite$prType(author$project$VegaLite$albersUsa)
+					])),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[backdropSpec, lineSpec, airportSpec]))
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -9919,7 +10352,8 @@ var author$project$GalleryMulti$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('multi3', author$project$GalleryMulti$multi3),
 			_Utils_Tuple2('multi4', author$project$GalleryMulti$multi4),
 			_Utils_Tuple2('multi5', author$project$GalleryMulti$multi5),
-			_Utils_Tuple2('multi6', author$project$GalleryMulti$multi6)
+			_Utils_Tuple2('multi6', author$project$GalleryMulti$multi6),
+			_Utils_Tuple2('multi7', author$project$GalleryMulti$multi7)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {

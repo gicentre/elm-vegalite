@@ -370,6 +370,92 @@ multi6 =
         [ cfg [], data [], trans [], res [], hConcat [ specPoint, specHPText, specMPGText, specOriginText ] ]
 
 
+multi7 : Spec
+multi7 =
+    let
+        des =
+            description "One dot per airport in the US overlayed on geoshape"
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        backdropSpec =
+            asSpec
+                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
+                , geoshape [ maFill "#ddd", maStroke "#fff" ]
+                ]
+
+        lineTrans =
+            transform
+                << filter (fiSelection "mySelection")
+                << lookup "origin"
+                    (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
+                    "iata"
+                    [ "latitude", "longitude" ]
+                << calculateAs "datum.latitude" "oLat"
+                << calculateAs "datum.longitude" "oLon"
+                << lookup "destination"
+                    (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
+                    "iata"
+                    [ "latitude", "longitude" ]
+                << calculateAs "datum.latitude" "dLat"
+                << calculateAs "datum.longitude" "dLon"
+
+        lineEnc =
+            encoding
+                << position Longitude [ pName "oLon", pMType Quantitative ]
+                << position Latitude [ pName "oLat", pMType Quantitative ]
+                << position Longitude2 [ pName "dLon" ]
+                << position Latitude2 [ pName "dLat" ]
+
+        lineSpec =
+            asSpec
+                [ dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
+                , lineTrans []
+                , lineEnc []
+                , rule [ maColor "black", maOpacity 0.35 ]
+                ]
+
+        airportTrans =
+            transform
+                << aggregate [ opAs opCount "" "routes" ] [ "origin" ]
+                << lookup "origin"
+                    (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
+                    "iata"
+                    [ "state", "latitude", "longitude" ]
+                << filter (fiExpr "datum.state !== 'PR' && datum.state !== 'VI'")
+
+        airportEnc =
+            encoding
+                << position Longitude [ pName "longitude", pMType Quantitative ]
+                << position Latitude [ pName "latitude", pMType Quantitative ]
+                << size [ mName "routes", mMType Quantitative, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
+                << order [ oName "routes", oMType Quantitative, oSort [ soDescending ] ]
+
+        sel =
+            selection
+                << select "mySelection" seSingle [ seOn "mouseover", seNearest True, seEmpty, seFields [ "origin" ] ]
+
+        airportSpec =
+            asSpec
+                [ dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
+                , airportTrans []
+                , sel []
+                , circle []
+                , airportEnc []
+                ]
+    in
+    toVegaLite
+        [ des
+        , cfg []
+        , width 900
+        , height 500
+        , projection [ prType albersUsa ]
+        , layer [ backdropSpec, lineSpec, airportSpec ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -383,6 +469,7 @@ mySpecs =
         , ( "multi4", multi4 )
         , ( "multi5", multi5 )
         , ( "multi6", multi6 )
+        , ( "multi7", multi7 )
         ]
 
 
