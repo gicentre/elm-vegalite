@@ -9193,6 +9193,7 @@ of fields to be stored when the keys match.
 -}
 lookup : String -> ( VLProperty, Spec ) -> String -> List String -> List LabelledSpec -> List LabelledSpec
 lookup key1 ( vlProp, spec ) key2 fields =
+    -- TODO: Rename type signature to use Data rather than (VLProperty, Spec) on next major revision.
     (::)
         ( "lookup"
         , toList
