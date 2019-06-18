@@ -7118,7 +7118,7 @@ if the number of plots exceeds an optional column limit (specified via
 
     spec = ...
     toVegaLite
-        [ facetflow [ fName "Origin", fMType Nominal ]
+        [ facetFlow [ fName "Origin", fMType Nominal ]
         , specification spec
         ]
 
