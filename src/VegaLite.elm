@@ -14244,7 +14244,7 @@ fieldTitleLabel ftp =
             "verbal"
 
         FTFunction ->
-            "function"
+            "functional"
 
         FTPlain ->
             "plain"
