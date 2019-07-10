@@ -4175,8 +4175,8 @@ type SortProperty
     | ByChannel Channel
 
 
-{-| Part or all of a Vega-Lite specification. Specs are usually nested
-and can range from a single Boolean value up to the entire Vega-Lite specification.
+{-| Part or all of a Vega-Lite specification. Specs are usually nested and can
+range from a single Boolean value up to the full visualization specification.
 -}
 type alias Spec =
     JE.Value
@@ -5939,6 +5939,11 @@ coLine =
 
 {-| Encode a color channel. The first parameter is a list of mark channel properties
 that characterise the way a data field is encoded by color.
+
+    enc =
+        encoding
+            << color [ mName "avHireTime", mMType Quantitative ]
+
 -}
 color : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 color markProps =
@@ -6651,6 +6656,14 @@ dataFromSource sourceName fmts =
 {-| Declare a data source from a url. The URL can be a local path on a web server
 or an external (CORS) URL. A list of field formatting instructions can be provided
 as the second parameter or an empty list to use the default formatting.
+
+    bikeData =
+        dataFromUrl "./data/bicycleHires.csv"
+            [ parse [ ( "numHires", foNum ), ( "avHireTime", foNum ) ] ]
+
+    popData =
+        dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+
 -}
 dataFromUrl : String -> List Format -> Data
 dataFromUrl url fmts =
@@ -10500,8 +10513,14 @@ point =
     mark Point
 
 
-{-| Encode a position channel. The first parameter identifies the channel,
-the second a list of encoding options.
+{-| Encode a position channel. The first parameter identifies the channel, the
+second a list of position encoding options.
+
+    enc =
+        encoding
+            << position X [ pName "month", pMType Temporal ]
+            << position Y [ pName "numfHires", pMType Quantitative ]
+
 -}
 position : Position -> List PositionChannel -> List LabelledSpec -> List LabelledSpec
 position pos pDefs =
@@ -12264,11 +12283,11 @@ passed to Vega-Lite for graphics generation. Commonly these will include at leas
 data, mark and encoding specifications.
 
 While simple functions like `bar` may be provided directly, it is usually clearer
-to label more complex ones such as encodings as separate expressions.
+to label more complex functions such as encodings with separate expressions.
 
-Specifications can be built up by chaining functions such as `dataColumn` or
-`position`. Functional composition using the `<<` operator allows this to be done
-compactly.
+Specifications can be built up by chaining functions such as [dataColumn](#dataColumn)
+or [position](#position). Functional composition using the `<<` operator allows
+this to be done compactly:
 
     let
         data =
@@ -12866,8 +12885,11 @@ wiAggregateOp =
     WAggregateOp
 
 
-{-| Override the default width of the visualization. If not specified the width
-will be calculated based on the content of the visualization.
+{-| Override the default width of the visualization in pixel units. If not
+specified, the width will be calculated based on the content of the visualization.
+
+    toVegaLite [ width 540, data [], enc [], bar [] ]
+
 -}
 width : Float -> ( VLProperty, Spec )
 width w =
@@ -12891,16 +12913,19 @@ wiDescending =
 
 
 {-| Field for which to compute a window operation. Not needed for
-operations that do not apply to fields such as `opCount`, `woRank` and `woDenseRank`.
+operations that do not apply to fields such as [opCount](#opCount), [woRank](#woRank)
+and [woDenseRank](#woDenseRank).
 -}
 wiField : String -> Window
 wiField =
     WField
 
 
-{-| Moving window for use by a window transform. The two parameters
-should either be `Just` a number indicating the offset from the current data object,
-or `Nothing` to indicate unbounded rows preceding or following the current data object.
+{-| Moving window for use by a window transform. The two parameters should either
+be [Just](https://package.elm-lang.org/packages/elm/core/latest/Maybe#Maybe) a number
+indicating the offset from the current data object, or
+[Nothing](https://package.elm-lang.org/packages/elm/core/latest/Maybe#Maybe) to
+indicate unbounded rows preceding or following the current data object.
 -}
 wiFrame : Maybe Int -> Maybe Int -> WindowProperty
 wiFrame =
