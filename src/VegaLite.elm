@@ -10527,7 +10527,7 @@ second a list of position encoding options.
     enc =
         encoding
             << position X [ pName "month", pMType Temporal ]
-            << position Y [ pName "numfHires", pMType Quantitative ]
+            << position Y [ pName "numHires", pMType Quantitative ]
 
 -}
 position : Position -> List PositionChannel -> List LabelledSpec -> List LabelledSpec
@@ -12886,7 +12886,12 @@ viewStyle =
     VBStyle
 
 
-{-| An aggregrate operation to be used in a window transformation.
+{-| An aggregate operation to be used in a window transformation.
+
+    transform
+        << window [ ( [ wiAggregateOp opSum, wiField "Time" ], "TotalTime" ) ]
+            [ wiFrame Nothing Nothing ]
+
 -}
 wiAggregateOp : Operation -> Window
 wiAggregateOp =
