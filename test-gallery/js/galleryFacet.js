@@ -7410,7 +7410,7 @@ var author$project$VegaLite$fieldTitleLabel = function (ftp) {
 		case 0:
 			return 'verbal';
 		case 1:
-			return 'function';
+			return 'functional';
 		default:
 			return 'plain';
 	}
