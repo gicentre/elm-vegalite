@@ -3763,6 +3763,13 @@ type
 
 
 {-| Type of measurement to be associated with some channel.
+
+  - `Nominal` indicates categories that have no order. e.g. people's names; country names.
+  - `Ordinal` indicates ordered categories. e.g. Small / Medium / Large; 1st, 2nd, 3rd.
+  - `Quantitative` indicates numerical measurements and counts. e.g. price; temperature; frequency.
+  - `Temporal` indicates time-related data.
+  - `GeoFeature` indicates one or more geographic locations. e.g. a longitude/latitude; country outline.
+
 -}
 type Measurement
     = Nominal
@@ -5782,7 +5789,8 @@ chY2 =
 
 
 {-| [Circle mark](https://vega.github.io/vega-lite/docs/circle.html) for
-symbolising points.
+symbolising points. Unlike the [point](#point) mark, circles are filled by default
+and may be sized via a separate [size](#size) encoding.
 -}
 circle : List MarkProperty -> ( VLProperty, Spec )
 circle =
