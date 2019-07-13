@@ -400,7 +400,6 @@ module VegaLite exposing
     , axTicks
     , axTickSize
     , axTickMinStep
-    , axTickStep
     , axTickWidth
     , axTitle
     , axTitleAlign
@@ -570,7 +569,6 @@ module VegaLite exposing
     , scClamp
     , scInterpolate
     , scNice
-    , scReverse
     , scZero
     , scBand
     , scBinLinear
@@ -586,7 +584,6 @@ module VegaLite exposing
     , scExponent
     , scQuantile
     , scQuantize
-    , scSequential
     , scSqrt
     , scThreshold
     , scTime
@@ -868,7 +865,6 @@ module VegaLite exposing
     , axcoTickRound
     , axcoTickSize
     , axcoTickMinStep
-    , axcoTickStep
     , axcoTickWidth
     , axcoTitleAlign
     , axcoTitleAngle
@@ -1123,7 +1119,10 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    --, scReverse
+    , axTickStep
+    , axcoTickStep
+    , scReverse
+    , scSequential
     )
 
 {-| Create Vega-Lite specifications in Elm. A specification can be sent to a
@@ -1724,7 +1723,6 @@ See the
 @docs axTicks
 @docs axTickSize
 @docs axTickMinStep
-@docs axTickStep
 @docs axTickWidth
 @docs axTitle
 @docs axTitleAlign
@@ -1983,7 +1981,6 @@ Used to specify how the encoding of a data field should be applied. See the
 @docs scClamp
 @docs scInterpolate
 @docs scNice
-@docs scReverse
 @docs scZero
 @docs scBand
 @docs scBinLinear
@@ -1999,7 +1996,6 @@ Used to specify how the encoding of a data field should be applied. See the
 @docs scExponent
 @docs scQuantile
 @docs scQuantize
-@docs scSequential
 @docs scSqrt
 @docs scThreshold
 @docs scTime
@@ -2436,7 +2432,6 @@ See the
 @docs axcoTickRound
 @docs axcoTickSize
 @docs axcoTickMinStep
-@docs axcoTickStep
 @docs axcoTickWidth
 @docs axcoTitleAlign
 @docs axcoTitleAngle
@@ -2760,6 +2755,16 @@ to the functions that generate them.
 @docs Window
 @docs WOperation
 @docs WindowProperty
+
+---
+
+
+## Deprecated functions
+
+@docs axTickStep
+@docs axcoTickStep
+@docs scReverse
+@docs scSequential
 
 -}
 
@@ -4969,7 +4974,7 @@ axcoTickSize =
     TickSize
 
 
-{-| Deprecated in favour of axcoTickMinStep.
+{-| Deprecated in favour of [axcoTickMinStep](#axcoTickMinStep).
 -}
 axcoTickStep : Float -> AxisConfig
 axcoTickStep =
@@ -11372,7 +11377,8 @@ scRangeStep =
     SRangeStep
 
 
-{-| Reverse the order of a scaling.
+{-| Deprecated in favour of [pSort](#pSort), [mSort](#mSort) or [fSort](#fSort),
+providing [soDescending](#soDescending) as the sort order.
 -}
 scReverse : Bool -> ScaleProperty
 scReverse =
