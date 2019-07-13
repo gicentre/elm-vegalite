@@ -61,7 +61,7 @@ bar3 =
         enc =
             encoding
                 << position X [ pName "people", pMType Quantitative, pAggregate opSum, pAxis [ axTitle "population" ] ]
-                << position Y [ pName "age", pMType Ordinal, pScale [ scRangeStep (Just 17) ] ]
+                << position Y [ pName "age", pMType Ordinal, pScale [ scRangeStep (Just 17) ], pSort [ soDescending ] ]
     in
     toVegaLite
         [ des

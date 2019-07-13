@@ -10,18 +10,36 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+{-| No borders around maps
+-}
+cfg : List LabelledSpec -> ( VLProperty, Spec )
+cfg =
+    configure
+        << configuration (coView [ vicoStroke Nothing ])
+
+
 geo1 : Spec
 geo1 =
-    toVegaLite
-        [ description "Choropleth of US unemployment rate by county"
-        , width 500
-        , height 300
-        , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "counties" ]
-        , transform <| lookup "id" (dataFromUrl "https://vega.github.io/vega-lite/data/unemployment.tsv" []) "id" [ "rate" ] <| []
-        , geoshape []
-        , encoding <| color [ mName "rate", mMType Quantitative ] []
-        ]
+    let
+        countyData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "counties" ]
+
+        unemploymentData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment.tsv" []
+
+        trans =
+            transform
+                << lookup "id" unemploymentData "id" [ "rate" ]
+
+        proj =
+            projection [ prType albersUsa ]
+
+        enc =
+            encoding
+                << color [ mName "rate", mMType Quantitative, mSort [ soDescending ] ]
+    in
+    toVegaLite [ cfg [], width 500, height 300, countyData, proj, trans [], enc [], geoshape [] ]
 
 
 geo2 : Spec
@@ -35,7 +53,8 @@ geo2 =
                 << color [ mName "digit", mMType Nominal ]
     in
     toVegaLite
-        [ description "US zip codes: One dot per zipcode colored by first digit"
+        [ cfg []
+        , description "US zip codes: One dot per zipcode colored by first digit"
         , width 500
         , height 300
         , projection [ prType albersUsa ]
@@ -74,7 +93,8 @@ geo3 =
                 ]
     in
     toVegaLite
-        [ des
+        [ cfg []
+        , des
         , width 500
         , height 300
         , projection [ prType albersUsa ]
@@ -132,7 +152,8 @@ geo4 =
                 ]
     in
     toVegaLite
-        [ description "Rules (line segments) connecting SEA to every airport reachable via direct flight"
+        [ cfg []
+        , description "Rules (line segments) connecting SEA to every airport reachable via direct flight"
         , width 800
         , height 500
         , projection [ prType albersUsa ]
@@ -146,7 +167,7 @@ geo5 =
         enc =
             encoding
                 << shape [ mName "geo", mMType GeoFeature ]
-                << color [ mRepeat arRow, mMType Quantitative ]
+                << color [ mRepeat arRow, mMType Quantitative, mSort [ soDescending ] ]
 
         spec =
             asSpec
@@ -160,7 +181,8 @@ geo5 =
                 ]
     in
     toVegaLite
-        [ description "Population per state, engineers per state, and hurricanes per state"
+        [ cfg []
+        , description "Population per state, engineers per state, and hurricanes per state"
         , repeat [ rowFields [ "population", "engineers", "hurricanes" ] ]
         , resolve <| resolution (reScale [ ( chColor, reIndependent ) ]) []
         , specification spec
@@ -194,7 +216,8 @@ geo6 =
                 ]
     in
     toVegaLite
-        [ des
+        [ cfg []
+        , des
         , width 800
         , height 500
         , projection [ prType albersUsa ]
@@ -250,7 +273,8 @@ geo7 =
                 ]
     in
     toVegaLite
-        [ description "Line drawn between airports in the U.S. simulating a flight itinerary"
+        [ cfg []
+        , description "Line drawn between airports in the U.S. simulating a flight itinerary"
         , width 800
         , height 500
         , projection [ prType albersUsa ]
@@ -264,11 +288,12 @@ geo8 =
         enc =
             encoding
                 << shape [ mName "geo", mMType GeoFeature ]
-                << color [ mName "pct", mMType Quantitative ]
+                << color [ mName "pct", mMType Quantitative, mSort [ soDescending ] ]
                 << row [ fName "group", fMType Nominal ]
     in
     toVegaLite
-        [ description "Income in the U.S. by state, faceted over income brackets"
+        [ cfg []
+        , description "Income in the U.S. by state, faceted over income brackets"
         , width 500
         , height 300
         , dataFromUrl "https://vega.github.io/vega-lite/data/income.json" []
@@ -337,10 +362,10 @@ geo9 =
                 ]
     in
     toVegaLite
-        [ description "Geographic position of London underground lines"
+        [ cfg []
+        , description "Geographic position of London underground lines"
         , width 700
         , height 500
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
         , layer [ polySpec, labelSpec, routeSpec ]
         ]
 
