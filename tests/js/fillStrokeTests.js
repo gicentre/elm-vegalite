@@ -5734,126 +5734,6 @@ var author$project$VegaLite$dataValuesSpecs = function (dvs) {
 			return A2(elm$core$List$map, elm$json$Json$Encode$bool, bs);
 	}
 };
-var author$project$VegaLite$dataValueSpec = function (val) {
-	switch (val.$) {
-		case 2:
-			var x = val.a;
-			return elm$json$Json$Encode$float(x);
-		case 3:
-			var s = val.a;
-			return elm$json$Json$Encode$string(s);
-		case 0:
-			var b = val.a;
-			return elm$json$Json$Encode$bool(b);
-		default:
-			var d = val.a;
-			return elm$json$Json$Encode$object(
-				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
-	}
-};
-var author$project$VegaLite$imMethodLabel = function (method) {
-	switch (method) {
-		case 0:
-			return 'value';
-		case 1:
-			return 'mean';
-		case 2:
-			return 'median';
-		case 3:
-			return 'max';
-		default:
-			return 'min';
-	}
-};
-var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
-var author$project$VegaLite$imputeProperty = function (ip) {
-	switch (ip.$) {
-		case 0:
-			if (!ip.a.$) {
-				if (!ip.b.$) {
-					var n1 = ip.a.a;
-					var n2 = ip.b.a;
-					return _Utils_Tuple2(
-						'frame',
-						A2(
-							elm$json$Json$Encode$list,
-							elm$json$Json$Encode$int,
-							_List_fromArray(
-								[n1, n2])));
-				} else {
-					var n1 = ip.a.a;
-					var _n2 = ip.b;
-					return _Utils_Tuple2(
-						'frame',
-						author$project$VegaLite$toList(
-							_List_fromArray(
-								[
-									elm$json$Json$Encode$int(n1),
-									elm$json$Json$Encode$null
-								])));
-				}
-			} else {
-				if (!ip.b.$) {
-					var _n1 = ip.a;
-					var n2 = ip.b.a;
-					return _Utils_Tuple2(
-						'frame',
-						author$project$VegaLite$toList(
-							_List_fromArray(
-								[
-									elm$json$Json$Encode$null,
-									elm$json$Json$Encode$int(n2)
-								])));
-				} else {
-					var _n3 = ip.a;
-					var _n4 = ip.b;
-					return _Utils_Tuple2(
-						'frame',
-						author$project$VegaLite$toList(
-							_List_fromArray(
-								[elm$json$Json$Encode$null, elm$json$Json$Encode$null])));
-				}
-			}
-		case 1:
-			var dVals = ip.a;
-			return _Utils_Tuple2(
-				'keyvals',
-				author$project$VegaLite$toList(
-					author$project$VegaLite$dataValuesSpecs(dVals)));
-		case 2:
-			var start = ip.a;
-			var stop = ip.b;
-			var step = ip.c;
-			return _Utils_Tuple2(
-				'keyvals',
-				elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'start',
-							elm$json$Json$Encode$float(start)),
-							_Utils_Tuple2(
-							'stop',
-							elm$json$Json$Encode$float(stop)),
-							_Utils_Tuple2(
-							'step',
-							elm$json$Json$Encode$float(step))
-						])));
-		case 3:
-			var method = ip.a;
-			return _Utils_Tuple2(
-				'method',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$imMethodLabel(method)));
-		case 5:
-			var dVal = ip.a;
-			return _Utils_Tuple2(
-				'value',
-				author$project$VegaLite$dataValueSpec(dVal));
-		default:
-			return _Utils_Tuple2('groupby', elm$json$Json$Encode$null);
-	}
-};
 var author$project$VegaLite$compositionAlignmentSpec = function (ca) {
 	switch (ca) {
 		case 0:
@@ -6706,6 +6586,7 @@ var author$project$VegaLite$sortProperty = function (sp) {
 			return _List_Nil;
 	}
 };
+var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
 var elm$core$List$append = F2(
 	function (xs, ys) {
 		if (!ys.b) {
@@ -6768,7 +6649,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					elm$json$Json$Encode$object(
 						A2(elm$core$List$map, author$project$VegaLite$scaleProperty, sps)))
 				]);
-		case 11:
+		case 10:
 			var lps = field.a;
 			return _Utils_eq(lps, _List_Nil) ? _List_fromArray(
 				[
@@ -6845,16 +6726,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'bin',
 					elm$json$Json$Encode$string('binned'))
 				]);
-		case 7:
-			var ips = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'impute',
-					elm$json$Json$Encode$object(
-						A2(elm$core$List$map, author$project$VegaLite$imputeProperty, ips)))
-				]);
-		case 12:
+		case 11:
 			var selName = field.a;
 			var ifClause = field.b;
 			var elseClause = field.c;
@@ -6870,7 +6742,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 								author$project$VegaLite$booleanOpSpec(selName)),
 							A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, ifClause)))),
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, elseClause));
-		case 13:
+		case 12:
 			var tests = field.a;
 			var elseClause = field.b;
 			var testClause = function (_n4) {
@@ -6890,7 +6762,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'condition',
 					A2(elm$json$Json$Encode$list, testClause, tests)),
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, elseClause));
-		case 8:
+		case 7:
 			var tu = field.a;
 			return _List_fromArray(
 				[
@@ -6899,7 +6771,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					elm$json$Json$Encode$string(
 						author$project$VegaLite$timeUnitLabel(tu)))
 				]);
-		case 9:
+		case 8:
 			var t = field.a;
 			return _List_fromArray(
 				[
@@ -6907,7 +6779,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'title',
 					elm$json$Json$Encode$string(t))
 				]);
-		case 10:
+		case 9:
 			var op = field.a;
 			return _List_fromArray(
 				[
@@ -6916,7 +6788,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					elm$json$Json$Encode$string(
 						author$project$VegaLite$operationLabel(op)))
 				]);
-		case 14:
+		case 13:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -6924,7 +6796,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'value',
 					elm$json$Json$Encode$string(s))
 				]);
-		case 15:
+		case 14:
 			var x = field.a;
 			return _List_fromArray(
 				[
@@ -6932,7 +6804,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'value',
 					elm$json$Json$Encode$float(x))
 				]);
-		case 16:
+		case 15:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -7229,7 +7101,7 @@ var author$project$VegaLite$MName = function (a) {
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
 var author$project$VegaLite$MNumber = function (a) {
-	return {$: 15, a: a};
+	return {$: 14, a: a};
 };
 var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
 var author$project$VegaLite$MStroke = function (a) {
@@ -7571,6 +7443,125 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 			return _Utils_Tuple2(
 				'titleY',
 				elm$json$Json$Encode$float(n));
+	}
+};
+var author$project$VegaLite$dataValueSpec = function (val) {
+	switch (val.$) {
+		case 2:
+			var x = val.a;
+			return elm$json$Json$Encode$float(x);
+		case 3:
+			var s = val.a;
+			return elm$json$Json$Encode$string(s);
+		case 0:
+			var b = val.a;
+			return elm$json$Json$Encode$bool(b);
+		default:
+			var d = val.a;
+			return elm$json$Json$Encode$object(
+				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+	}
+};
+var author$project$VegaLite$imMethodLabel = function (method) {
+	switch (method) {
+		case 0:
+			return 'value';
+		case 1:
+			return 'mean';
+		case 2:
+			return 'median';
+		case 3:
+			return 'max';
+		default:
+			return 'min';
+	}
+};
+var author$project$VegaLite$imputeProperty = function (ip) {
+	switch (ip.$) {
+		case 0:
+			if (!ip.a.$) {
+				if (!ip.b.$) {
+					var n1 = ip.a.a;
+					var n2 = ip.b.a;
+					return _Utils_Tuple2(
+						'frame',
+						A2(
+							elm$json$Json$Encode$list,
+							elm$json$Json$Encode$int,
+							_List_fromArray(
+								[n1, n2])));
+				} else {
+					var n1 = ip.a.a;
+					var _n2 = ip.b;
+					return _Utils_Tuple2(
+						'frame',
+						author$project$VegaLite$toList(
+							_List_fromArray(
+								[
+									elm$json$Json$Encode$int(n1),
+									elm$json$Json$Encode$null
+								])));
+				}
+			} else {
+				if (!ip.b.$) {
+					var _n1 = ip.a;
+					var n2 = ip.b.a;
+					return _Utils_Tuple2(
+						'frame',
+						author$project$VegaLite$toList(
+							_List_fromArray(
+								[
+									elm$json$Json$Encode$null,
+									elm$json$Json$Encode$int(n2)
+								])));
+				} else {
+					var _n3 = ip.a;
+					var _n4 = ip.b;
+					return _Utils_Tuple2(
+						'frame',
+						author$project$VegaLite$toList(
+							_List_fromArray(
+								[elm$json$Json$Encode$null, elm$json$Json$Encode$null])));
+				}
+			}
+		case 1:
+			var dVals = ip.a;
+			return _Utils_Tuple2(
+				'keyvals',
+				author$project$VegaLite$toList(
+					author$project$VegaLite$dataValuesSpecs(dVals)));
+		case 2:
+			var start = ip.a;
+			var stop = ip.b;
+			var step = ip.c;
+			return _Utils_Tuple2(
+				'keyvals',
+				elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'start',
+							elm$json$Json$Encode$float(start)),
+							_Utils_Tuple2(
+							'stop',
+							elm$json$Json$Encode$float(stop)),
+							_Utils_Tuple2(
+							'step',
+							elm$json$Json$Encode$float(step))
+						])));
+		case 3:
+			var method = ip.a;
+			return _Utils_Tuple2(
+				'method',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$imMethodLabel(method)));
+		case 5:
+			var dVal = ip.a;
+			return _Utils_Tuple2(
+				'value',
+				author$project$VegaLite$dataValueSpec(dVal));
+		default:
+			return _Utils_Tuple2('groupby', elm$json$Json$Encode$null);
 	}
 };
 var author$project$VegaLite$stackOffsetSpec = function (sp) {
@@ -8005,7 +7996,7 @@ var author$project$FillStrokeTests$combined1 = author$project$FillStrokeTests$en
 		author$project$VegaLite$fill(_List_Nil)));
 var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$MString = function (a) {
-	return {$: 16, a: a};
+	return {$: 15, a: a};
 };
 var author$project$VegaLite$mStr = author$project$VegaLite$MString;
 var author$project$FillStrokeTests$combined2 = author$project$FillStrokeTests$encChart(

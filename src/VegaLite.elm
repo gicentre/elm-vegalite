@@ -9308,9 +9308,8 @@ generating function. The third is the name of the field in the secondary
 data source to match values with the primary key. The fourth parameter is the list
 of fields to be stored when the keys match.
 -}
-lookup : String -> ( VLProperty, Spec ) -> String -> List String -> List LabelledSpec -> List LabelledSpec
+lookup : String -> Data -> String -> List String -> List LabelledSpec -> List LabelledSpec
 lookup key1 ( vlProp, spec ) key2 fields =
-    -- TODO: Rename type signature to use Data rather than (VLProperty, Spec) on next major revision.
     (::)
         ( "lookup"
         , toList

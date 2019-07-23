@@ -5876,7 +5876,7 @@ var author$project$VegaLite$FoUtc = function (a) {
 };
 var author$project$VegaLite$foUtc = author$project$VegaLite$FoUtc;
 var author$project$VegaLite$MNumber = function (a) {
-	return {$: 15, a: a};
+	return {$: 14, a: a};
 };
 var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
 var author$project$VegaLite$Numbers = function (a) {
@@ -7623,7 +7623,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					elm$json$Json$Encode$object(
 						A2(elm$core$List$map, author$project$VegaLite$scaleProperty, sps)))
 				]);
-		case 11:
+		case 10:
 			var lps = field.a;
 			return _Utils_eq(lps, _List_Nil) ? _List_fromArray(
 				[
@@ -7700,16 +7700,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'bin',
 					elm$json$Json$Encode$string('binned'))
 				]);
-		case 7:
-			var ips = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'impute',
-					elm$json$Json$Encode$object(
-						A2(elm$core$List$map, author$project$VegaLite$imputeProperty, ips)))
-				]);
-		case 12:
+		case 11:
 			var selName = field.a;
 			var ifClause = field.b;
 			var elseClause = field.c;
@@ -7725,7 +7716,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 								author$project$VegaLite$booleanOpSpec(selName)),
 							A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, ifClause)))),
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, elseClause));
-		case 13:
+		case 12:
 			var tests = field.a;
 			var elseClause = field.b;
 			var testClause = function (_n4) {
@@ -7745,7 +7736,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'condition',
 					A2(elm$json$Json$Encode$list, testClause, tests)),
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, elseClause));
-		case 8:
+		case 7:
 			var tu = field.a;
 			return _List_fromArray(
 				[
@@ -7754,7 +7745,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					elm$json$Json$Encode$string(
 						author$project$VegaLite$timeUnitLabel(tu)))
 				]);
-		case 9:
+		case 8:
 			var t = field.a;
 			return _List_fromArray(
 				[
@@ -7762,7 +7753,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'title',
 					elm$json$Json$Encode$string(t))
 				]);
-		case 10:
+		case 9:
 			var op = field.a;
 			return _List_fromArray(
 				[
@@ -7771,7 +7762,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					elm$json$Json$Encode$string(
 						author$project$VegaLite$operationLabel(op)))
 				]);
-		case 14:
+		case 13:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -7779,7 +7770,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'value',
 					elm$json$Json$Encode$string(s))
 				]);
-		case 15:
+		case 14:
 			var x = field.a;
 			return _List_fromArray(
 				[
@@ -7787,7 +7778,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					'value',
 					elm$json$Json$Encode$float(x))
 				]);
-		case 16:
+		case 15:
 			var s = field.a;
 			return _List_fromArray(
 				[
