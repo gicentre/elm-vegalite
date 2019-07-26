@@ -7245,6 +7245,13 @@ var author$project$VegaLite$stackOffset = function (offset) {
 		'stack',
 		author$project$VegaLite$stackOffsetSpec(offset));
 };
+var author$project$VegaLite$tfLabel = function (tf) {
+	if (tf === 1) {
+		return 'group';
+	} else {
+		return 'bounds';
+	}
+};
 var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 	switch (titleCfg.$) {
 		case 0:
@@ -7280,26 +7287,47 @@ var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 				'fontSize',
 				elm$json$Json$Encode$float(x));
 		case 6:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontStyle',
+				elm$json$Json$Encode$string(s));
+		case 8:
+			var tf = titleCfg.a;
+			return _Utils_Tuple2(
+				'frame',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$tfLabel(tf)));
+		case 7:
 			var w = titleCfg.a;
 			return _Utils_Tuple2(
 				'fontWeight',
 				author$project$VegaLite$fontWeightSpec(w));
-		case 7:
+		case 9:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'limit',
 				elm$json$Json$Encode$float(x));
-		case 8:
+		case 10:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'offset',
 				elm$json$Json$Encode$float(x));
-		default:
+		case 11:
 			var sd = titleCfg.a;
 			return _Utils_Tuple2(
 				'orient',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$sideLabel(sd)));
+		case 12:
+			var styles = titleCfg.a;
+			return _Utils_Tuple2(
+				'style',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
+		default:
+			var n = titleCfg.a;
+			return _Utils_Tuple2(
+				'zindex',
+				elm$json$Json$Encode$int(n));
 	}
 };
 var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
@@ -7928,7 +7956,7 @@ var author$project$VegaLite$TFontSize = function (a) {
 };
 var author$project$VegaLite$ticoFontSize = author$project$VegaLite$TFontSize;
 var author$project$VegaLite$TFontWeight = function (a) {
-	return {$: 6, a: a};
+	return {$: 7, a: a};
 };
 var author$project$VegaLite$ticoFontWeight = author$project$VegaLite$TFontWeight;
 var author$project$VegaLite$VLTitle = 2;

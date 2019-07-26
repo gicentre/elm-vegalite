@@ -142,6 +142,10 @@ advanced5 =
         des =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
 
+        cfg =
+            configure
+                << configuration (coTitle [ ticoFrame tfBounds, ticoFontStyle "italic" ])
+
         data =
             dataFromColumns []
                 << dataColumn "team" (strs [ "Germany", "Mexico", "South Korea", "Sweden", "Germany", "Mexico", "South Korea", "Sweden", "Germany", "Mexico", "South Korea", "Sweden" ])
@@ -168,7 +172,15 @@ advanced5 =
                 , ( "Sweden", "#0c71ab" )
                 ]
     in
-    toVegaLite [ des, data [], trans [], enc [], line [ maOrient moVertical ] ]
+    toVegaLite
+        [ des
+        , title "World Cup 2018: Group F Rankings"
+        , cfg []
+        , data []
+        , trans []
+        , enc []
+        , line [ maOrient moVertical ]
+        ]
 
 
 advanced6 : Spec
