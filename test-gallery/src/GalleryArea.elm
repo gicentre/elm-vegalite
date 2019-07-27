@@ -234,17 +234,18 @@ area7 =
         spec3 =
             asSpec [ textMark [ maBaseline vaMiddle ], enc3 [] ]
 
-        config =
+        cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
                 << configuration (coAxis [ axcoDomain False, axcoTicks False, axcoLabels False, axcoGrid False ])
+                << configuration (coConcat [ cocoSpacing 10 ])
 
         res =
             resolve
                 << resolution (reScale [ ( chX, reShared ) ])
     in
     toVegaLite
-        [ config []
+        [ cfg []
         , res []
         , cars
         , trans []
