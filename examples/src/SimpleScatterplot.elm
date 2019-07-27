@@ -16,7 +16,7 @@ scatter =
                 << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
                 << color [ mName "Origin", mMType Nominal ]
     in
-    toVegaLite [ cars, circle [], enc [] ]
+    toVegaLite [ cars, enc [], circle [] ]
 
 
 

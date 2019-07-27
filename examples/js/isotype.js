@@ -8236,12 +8236,12 @@ var author$project$Isotype$livestock = function () {
 				author$project$VegaLite$width(800),
 				author$project$VegaLite$height(200),
 				data(_List_Nil),
+				enc(_List_Nil),
 				author$project$VegaLite$point(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maFilled(true)
-					])),
-				enc(_List_Nil)
+					]))
 			]));
 }();
 var author$project$VegaLite$calculateAs = F2(
@@ -8930,13 +8930,13 @@ var author$project$Isotype$personGrid = function () {
 				author$project$VegaLite$height(400),
 				data(_List_Nil),
 				trans(_List_Nil),
+				enc(_List_Nil),
+				sel(_List_Nil),
 				author$project$VegaLite$point(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maFilled(true)
-					])),
-				enc(_List_Nil),
-				sel(_List_Nil)
+					]))
 			]));
 }();
 var author$project$VegaLite$combineSpecs = function (specs) {

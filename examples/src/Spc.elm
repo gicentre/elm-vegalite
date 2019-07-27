@@ -24,7 +24,7 @@ spc1 =
 spc2 : Spec
 spc2 =
     toVegaLite
-        [ config, spcData, line [ maColor "#777" ], encLine ]
+        [ config, spcData, encLine, line [ maColor "#777" ] ]
 
 
 spc3 : Spec
@@ -34,7 +34,7 @@ spc3 =
         , spcData
         , layer
             (List.map sdLine [ 0, 1.5, -1.5, 2, -2, 3, -3 ]
-                ++ [ asSpec [ line [ maColor "#777" ], encLine ] ]
+                ++ [ asSpec [ encLine, line [ maColor "#777" ] ] ]
             )
         ]
 
@@ -43,9 +43,9 @@ spc4 : Spec
 spc4 =
     let
         specLine =
-            asSpec [ line [ maColor "#777" ], encLine ]
+            asSpec [ encLine, line [ maColor "#777" ] ]
 
-        encPoint =
+        enc =
             encoding
                 << position X [ pName "month", pMType Temporal, pAxis [] ]
                 << position Y [ pName "crimes", pMType Quantitative, pAxis [] ]
@@ -53,7 +53,7 @@ spc4 =
                 << shape [ mName "shifts", mMType Nominal, mScale shiftShapes, mLegend [] ]
 
         specPoint =
-            asSpec [ point [ maFilled True, maSize 60 ], encPoint [] ]
+            asSpec [ enc [], point [ maFilled True, maSize 60 ] ]
     in
     toVegaLite
         [ config
@@ -72,7 +72,7 @@ spc5 =
             transform
                 << filter (fiExpr "datum.shiftDirection != 'normal'")
 
-        encShifts =
+        enc =
             encoding
                 << position X [ pName "month", pMType Temporal, pAxis [] ]
                 << position Y [ pName "crimes", pMType Quantitative, pAxis [] ]
@@ -83,7 +83,7 @@ spc5 =
             asSpec [ line [ maStrokeWidth 1.4, maColor "#777" ], encLine ]
 
         specShifts =
-            asSpec [ trans [], line [], encShifts [] ]
+            asSpec [ trans [], enc [], line [] ]
     in
     toVegaLite
         [ config
@@ -98,12 +98,12 @@ cusum1 =
         specCusum =
             asSpec [ line [ maColor "#777" ], encCusum ]
 
-        encZeroLine =
+        enc =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
 
         specZeroLine =
-            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
+            asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
         [ config, cusumData -1, layer [ specZeroLine, specCusum ] ]
@@ -115,12 +115,12 @@ cusum2 =
         specCusum =
             asSpec [ line [ maColor "#777" ], encCusum ]
 
-        encZeroLine =
+        enc =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
 
         specZeroLine =
-            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
+            asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
         [ config, cusumData 21, layer [ specZeroLine, specCusum ] ]
@@ -132,12 +132,12 @@ cusum3 =
         specCusum =
             asSpec [ line [ maColor "#777" ], encCusum ]
 
-        encZeroLine =
+        enc =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
 
         specZeroLine =
-            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
+            asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
         [ config, cusumData 24, layer [ specZeroLine, specCusum ] ]
@@ -149,12 +149,12 @@ cusumInteractive baseline =
         specCusum =
             asSpec [ line [ maColor "#777" ], encCusum ]
 
-        encZeroLine =
+        enc =
             encoding
                 << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
 
         specZeroLine =
-            asSpec [ rule [ maColor "rgb(62,156,167)" ], encZeroLine [] ]
+            asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
         [ config
@@ -258,8 +258,17 @@ config =
 encLine : ( VLProperty, Spec )
 encLine =
     (encoding
-        << position X [ pName "month", pMType Temporal, pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ], pScale [ scNice niYear ] ]
-        << position Y [ pName "crimes", pMType Quantitative, pAxis [ axGrid False ] ]
+        << position X
+            [ pName "month"
+            , pMType Temporal
+            , pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ]
+            , pScale [ scNice niYear ]
+            ]
+        << position Y
+            [ pName "crimes"
+            , pMType Quantitative
+            , pAxis [ axGrid False ]
+            ]
     )
         []
 
@@ -267,8 +276,17 @@ encLine =
 encCusum : ( VLProperty, Spec )
 encCusum =
     (encoding
-        << position X [ pName "month", pMType Temporal, pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ], pScale [ scNice niYear ] ]
-        << position Y [ pName "cusum", pMType Quantitative, pAxis [ axTitle "Crimes above/below target (thousands)" ] ]
+        << position X
+            [ pName "month"
+            , pMType Temporal
+            , pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ]
+            , pScale [ scNice niYear ]
+            ]
+        << position Y
+            [ pName "cusum"
+            , pMType Quantitative
+            , pAxis [ axTitle "Crimes above/below target (thousands)" ]
+            ]
     )
         []
 
@@ -303,7 +321,7 @@ sdLine n =
             else
                 []
     in
-    asSpec [ trans [], rule dash, enc [] ]
+    asSpec [ trans [], enc [], rule dash ]
 
 
 sdRegion : Float -> Spec
@@ -333,7 +351,7 @@ sdRegion n =
                 << position Y [ pName "upper", pMType Quantitative, pScale [ scDomain (doNums [ 12, 32 ]) ], pAxis [] ]
                 << position Y2 [ pName "lower", pMType Quantitative ]
     in
-    asSpec [ trans [], rect fillCol, enc [] ]
+    asSpec [ trans [], enc [], rect fillCol ]
 
 
 

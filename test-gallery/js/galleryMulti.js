@@ -9183,11 +9183,18 @@ var author$project$VegaLite$pTimeUnit = author$project$VegaLite$PTimeUnit;
 var author$project$VegaLite$SeMulti = 1;
 var author$project$VegaLite$seMulti = 1;
 var author$project$VegaLite$VLTitle = 2;
-var author$project$VegaLite$title = function (s) {
-	return _Utils_Tuple2(
-		2,
-		elm$json$Json$Encode$string(s));
-};
+var author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			elm$json$Json$Encode$object(
+				A2(
+					elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						elm$json$Json$Encode$string(txt)),
+					A2(elm$core$List$map, author$project$VegaLite$titleConfigSpec, tps))));
+	});
 var author$project$GalleryMulti$multi5 = function () {
 	var weatherColors = author$project$VegaLite$categoricalDomainMap(
 		_List_fromArray(

@@ -72,9 +72,9 @@ personGrid =
         , height 400
         , data []
         , trans []
-        , point [ maFilled True ]
         , enc []
         , sel []
+        , point [ maFilled True ]
         ]
 
 
@@ -142,7 +142,14 @@ livestock =
                 << opacity [ mNum 1 ]
                 << size [ mNum 200 ]
     in
-    toVegaLite [ config [], width 800, height 200, data [], point [ maFilled True ], enc [] ]
+    toVegaLite
+        [ config []
+        , width 800
+        , height 200
+        , data []
+        , enc []
+        , point [ maFilled True ]
+        ]
 
 
 

@@ -11895,11 +11895,18 @@ var author$project$VegaLite$TFontWeight = function (a) {
 };
 var author$project$VegaLite$ticoFontWeight = author$project$VegaLite$TFontWeight;
 var author$project$VegaLite$VLTitle = 2;
-var author$project$VegaLite$title = function (s) {
-	return _Utils_Tuple2(
-		2,
-		elm$json$Json$Encode$string(s));
-};
+var author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			elm$json$Json$Encode$object(
+				A2(
+					elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						elm$json$Json$Encode$string(txt)),
+					A2(elm$core$List$map, author$project$VegaLite$titleConfigSpec, tps))));
+	});
 var elm$core$String$concat = function (strings) {
 	return A2(elm$core$String$join, '', strings);
 };

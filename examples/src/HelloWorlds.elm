@@ -6,42 +6,44 @@ import VegaLite exposing (..)
 
 myFirstVis : Spec
 myFirstVis =
-    toVegaLite
-        [ title "Hello, World!"
-        , dataFromColumns [] <| dataColumn "x" (nums [ 10, 20, 30 ]) []
-        , circle []
-        , encoding <| position X [ pName "x", pMType Quantitative ] []
-        ]
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 10, 20, 30 ])
+
+        enc =
+            encoding
+                << position X [ pName "x", pMType Quantitative ]
+    in
+    toVegaLite [ title "Hello, World!" [], data [], enc [], circle [] ]
 
 
 mySecondVis : Spec
 mySecondVis =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
         enc =
             encoding
                 << position X [ pName "Cylinders", pMType Ordinal ]
                 << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
     in
-    toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , circle []
-        , enc []
-        ]
+    toVegaLite [ data [], enc [], circle [] ]
 
 
 myOtherVis : Spec
 myOtherVis =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
         enc =
             encoding
                 << position X [ pName "Cylinders", pMType Ordinal ]
                 << position Y [ pName "Miles_per_Gallon", pAggregate opMean, pMType Quantitative ]
     in
-    toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , bar []
-        , enc []
-        ]
+    toVegaLite [ data [], enc [], bar [] ]
 
 
 

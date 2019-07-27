@@ -5787,8 +5787,8 @@ var author$project$SimpleScatterplot$scatter = function () {
 		_List_fromArray(
 			[
 				cars,
-				author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var author$project$VegaLite$combineSpecs = function (specs) {

@@ -7316,10 +7316,883 @@ var author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) {
 			author$project$VegaLite$RStrings(range))
 		]);
 };
-var author$project$VegaLite$TitleStyle = function (a) {
-	return {$: 37, a: a};
+var author$project$VegaLite$Line = 7;
+var author$project$VegaLite$line = author$project$VegaLite$mark(7);
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
 };
-var author$project$VegaLite$coTitle = author$project$VegaLite$TitleStyle;
+var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
+var author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MScale = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$mScale = author$project$VegaLite$MScale;
+var author$project$VegaLite$MOrient = function (a) {
+	return {$: 29, a: a};
+};
+var author$project$VegaLite$maOrient = author$project$VegaLite$MOrient;
+var author$project$VegaLite$MOVertical = 1;
+var author$project$VegaLite$moVertical = 1;
+var author$project$VegaLite$FrBounds = 0;
+var author$project$VegaLite$tfBounds = 0;
+var author$project$VegaLite$TFontStyle = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$tiFontStyle = author$project$VegaLite$TFontStyle;
+var author$project$VegaLite$TFrame = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$tiFrame = author$project$VegaLite$TFrame;
+var author$project$VegaLite$VLTitle = 2;
+var author$project$VegaLite$anchorLabel = function (an) {
+	switch (an) {
+		case 0:
+			return 'start';
+		case 1:
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var author$project$VegaLite$tfLabel = function (tf) {
+	if (tf === 1) {
+		return 'group';
+	} else {
+		return 'bounds';
+	}
+};
+var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
+	switch (titleCfg.$) {
+		case 0:
+			var an = titleCfg.a;
+			return _Utils_Tuple2(
+				'anchor',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$anchorLabel(an)));
+		case 1:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'angle',
+				elm$json$Json$Encode$float(x));
+		case 2:
+			var va = titleCfg.a;
+			return _Utils_Tuple2(
+				'baseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 3:
+			var clr = titleCfg.a;
+			return _Utils_Tuple2(
+				'color',
+				elm$json$Json$Encode$string(clr));
+		case 4:
+			var fnt = titleCfg.a;
+			return _Utils_Tuple2(
+				'font',
+				elm$json$Json$Encode$string(fnt));
+		case 5:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontSize',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontStyle',
+				elm$json$Json$Encode$string(s));
+		case 8:
+			var tf = titleCfg.a;
+			return _Utils_Tuple2(
+				'frame',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$tfLabel(tf)));
+		case 7:
+			var w = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontWeight',
+				author$project$VegaLite$fontWeightSpec(w));
+		case 9:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'limit',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'offset',
+				elm$json$Json$Encode$float(x));
+		case 11:
+			var sd = titleCfg.a;
+			return _Utils_Tuple2(
+				'orient',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$sideLabel(sd)));
+		case 12:
+			var styles = titleCfg.a;
+			return _Utils_Tuple2(
+				'style',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
+		default:
+			var n = titleCfg.a;
+			return _Utils_Tuple2(
+				'zindex',
+				elm$json$Json$Encode$int(n));
+	}
+};
+var author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			elm$json$Json$Encode$object(
+				A2(
+					elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						elm$json$Json$Encode$string(txt)),
+					A2(elm$core$List$map, author$project$VegaLite$titleConfigSpec, tps))));
+	});
+var author$project$VegaLite$WDescending = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$wiDescending = author$project$VegaLite$WDescending;
+var author$project$VegaLite$WOp = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$wiOp = author$project$VegaLite$WOp;
+var author$project$VegaLite$WSort = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$wiSort = author$project$VegaLite$WSort;
+var author$project$VegaLite$Rank = 1;
+var author$project$VegaLite$woRank = 1;
+var elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var author$project$GalleryAdvanced$advanced5 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		A2(
+			author$project$VegaLite$window,
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					_List_fromArray(
+						[
+							author$project$VegaLite$wiOp(author$project$VegaLite$woRank)
+						]),
+					'rank')
+				]),
+			_List_fromArray(
+				[
+					author$project$VegaLite$wiSort(
+					_List_fromArray(
+						[
+							author$project$VegaLite$wiDescending('point'),
+							author$project$VegaLite$wiDescending('diff')
+						])),
+					author$project$VegaLite$wiGroupBy(
+					_List_fromArray(
+						['matchday']))
+				])));
+	var teamColours = author$project$VegaLite$categoricalDomainMap(
+		_List_fromArray(
+			[
+				_Utils_Tuple2('Germany', 'black'),
+				_Utils_Tuple2('Mexico', '#127153'),
+				_Utils_Tuple2('South Korea', '#c91a3c'),
+				_Utils_Tuple2('Sweden', '#0c71ab')
+			]));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('matchday'),
+							author$project$VegaLite$pMType(1)
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('rank'),
+						author$project$VegaLite$pMType(1)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('team'),
+					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mScale(teamColours)
+				])));
+	var des = author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						author$project$VegaLite$dataColumn,
+						'team',
+						author$project$VegaLite$strs(
+							_List_fromArray(
+								['Germany', 'Mexico', 'South Korea', 'Sweden', 'Germany', 'Mexico', 'South Korea', 'Sweden', 'Germany', 'Mexico', 'South Korea', 'Sweden'])))),
+				A2(
+					author$project$VegaLite$dataColumn,
+					'matchday',
+					author$project$VegaLite$nums(
+						_List_fromArray(
+							[1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])))),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'point',
+				author$project$VegaLite$nums(
+					_List_fromArray(
+						[0, 3, 0, 3, 3, 6, 0, 3, 3, 6, 3, 6])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'diff',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[-1, 1, -1, 1, 0, 2, -2, 0, -2, -1, 0, 3]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				A2(
+				author$project$VegaLite$title,
+				'World Cup 2018: Group F Rankings',
+				_List_fromArray(
+					[
+						author$project$VegaLite$tiFrame(author$project$VegaLite$tfBounds),
+						author$project$VegaLite$tiFontStyle('italic')
+					])),
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maOrient(author$project$VegaLite$moVertical)
+					]))
+			]));
+}();
+var author$project$VegaLite$Bold = 0;
+var author$project$VegaLite$Expr = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$expr = author$project$VegaLite$Expr;
+var author$project$VegaLite$VLHeight = 4;
+var author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		elm$json$Json$Encode$float(h));
+};
+var author$project$VegaLite$MDataCondition = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var author$project$VegaLite$mDataCondition = author$project$VegaLite$MDataCondition;
+var author$project$VegaLite$MBaseline = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$maBaseline = author$project$VegaLite$MBaseline;
+var author$project$VegaLite$MdY = function (a) {
+	return {$: 14, a: a};
+};
+var author$project$VegaLite$maDy = author$project$VegaLite$MdY;
+var author$project$VegaLite$MFontWeight = function (a) {
+	return {$: 22, a: a};
+};
+var author$project$VegaLite$maFontWeight = author$project$VegaLite$MFontWeight;
+var author$project$VegaLite$MSize = function (a) {
+	return {$: 35, a: a};
+};
+var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
+var author$project$VegaLite$MX2Offset = function (a) {
+	return {$: 57, a: a};
+};
+var author$project$VegaLite$maX2Offset = author$project$VegaLite$MX2Offset;
+var author$project$VegaLite$MXOffset = function (a) {
+	return {$: 55, a: a};
+};
+var author$project$VegaLite$maXOffset = author$project$VegaLite$MXOffset;
+var author$project$VegaLite$PSort = function (a) {
+	return {$: 13, a: a};
+};
+var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
+var author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var author$project$VegaLite$pTitle = author$project$VegaLite$PTitle;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
+var author$project$VegaLite$TName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$textChannelProperty = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								elm$json$Json$Encode$string(
+									author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$operationLabel(op)))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$timeUnitLabel(tu)))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					elm$json$Json$Encode$string(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					elm$json$Json$Encode$string(fmt))
+				]);
+		case 11:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					elm$json$Json$Encode$string('number'))
+				]);
+		case 12:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					elm$json$Json$Encode$string('time'))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					elm$json$Json$Encode$object(
+						A2(
+							elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								author$project$VegaLite$booleanOpSpec(selName)),
+							A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)))),
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
+		default:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_n1) {
+				var predicate = _n1.a;
+				var ifClause = _n1.b;
+				return elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							author$project$VegaLite$booleanOpSpec(predicate)),
+						A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)));
+			};
+			return A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2(elm$json$Json$Encode$list, testClause, tests)),
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
+	}
+};
+var author$project$VegaLite$text = function (tDefs) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, tDefs))));
+};
+var author$project$VegaLite$Text = 12;
+var author$project$VegaLite$textMark = author$project$VegaLite$mark(12);
+var author$project$VegaLite$AlignMiddle = 1;
+var author$project$VegaLite$vaMiddle = 1;
+var author$project$VegaLite$AlignTop = 0;
+var author$project$VegaLite$vaTop = 0;
+var author$project$VegaLite$VLWidth = 3;
+var author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		elm$json$Json$Encode$float(w));
+};
+var author$project$VegaLite$Lead = 7;
+var author$project$VegaLite$woLead = 7;
+var author$project$GalleryAdvanced$advanced6 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						A2(
+							elm$core$Basics$composeL,
+							A2(
+								elm$core$Basics$composeL,
+								A2(
+									elm$core$Basics$composeL,
+									A2(
+										elm$core$Basics$composeL,
+										author$project$VegaLite$transform,
+										A2(
+											author$project$VegaLite$window,
+											_List_fromArray(
+												[
+													_Utils_Tuple2(
+													_List_fromArray(
+														[
+															author$project$VegaLite$wiAggregateOp(author$project$VegaLite$opSum),
+															author$project$VegaLite$wiField('amount')
+														]),
+													'sum')
+												]),
+											_List_Nil)),
+									A2(
+										author$project$VegaLite$window,
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												_List_fromArray(
+													[
+														author$project$VegaLite$wiOp(author$project$VegaLite$woLead),
+														author$project$VegaLite$wiField('label')
+													]),
+												'lead')
+											]),
+										_List_Nil)),
+								A2(author$project$VegaLite$calculateAs, 'datum.lead === null ? datum.label : datum.lead', 'lead')),
+							A2(author$project$VegaLite$calculateAs, 'datum.label === \'End\' ? 0 : datum.sum - datum.amount', 'previous_sum')),
+						A2(author$project$VegaLite$calculateAs, 'datum.label === \'End\' ? datum.sum : datum.amount', 'amount')),
+					A2(author$project$VegaLite$calculateAs, '(datum.label !== \'Begin\' && datum.label !== \'End\' && datum.amount > 0 ? \'+\' : \'\') + datum.amount', 'text_amount')),
+				A2(author$project$VegaLite$calculateAs, '(datum.sum + datum.previous_sum) / 2', 'center')),
+			A2(author$project$VegaLite$calculateAs, 'datum.sum < datum.previous_sum ? datum.sum : \'\'', 'sum_dec')),
+		A2(author$project$VegaLite$calculateAs, 'datum.sum > datum.previous_sum ? datum.sum : \'\'', 'sum_inc'));
+	var enc5 = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('center'),
+							author$project$VegaLite$pMType(2)
+						]))),
+			author$project$VegaLite$text(
+				_List_fromArray(
+					[
+						author$project$VegaLite$tName('text_amount'),
+						author$project$VegaLite$tMType(0)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					A2(
+					author$project$VegaLite$mDataCondition,
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							author$project$VegaLite$expr('datum.label === \'Begin\' || datum.label === \'End\''),
+							_List_fromArray(
+								[
+									author$project$VegaLite$mStr('#725a30')
+								]))
+						]),
+					_List_fromArray(
+						[
+							author$project$VegaLite$mStr('white')
+						]))
+				])));
+	var spec5 = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc5(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maBaseline(author$project$VegaLite$vaMiddle),
+						author$project$VegaLite$maFontWeight(0)
+					]))
+			]));
+	var enc4 = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('sum_dec'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('sum_dec'),
+					author$project$VegaLite$tMType(0)
+				])));
+	var spec4 = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc4(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maDy(8),
+						author$project$VegaLite$maBaseline(author$project$VegaLite$vaTop),
+						author$project$VegaLite$maFontWeight(0),
+						author$project$VegaLite$maColor('#404040')
+					]))
+			]));
+	var enc3 = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('sum_inc'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('sum_inc'),
+					author$project$VegaLite$tMType(0)
+				])));
+	var spec3 = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc3(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maDy(-8),
+						author$project$VegaLite$maFontWeight(0),
+						author$project$VegaLite$maColor('#404040')
+					]))
+			]));
+	var enc2 = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				2,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('lead'),
+						author$project$VegaLite$pMType(1)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('sum'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var spec2 = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc2(_List_Nil),
+				author$project$VegaLite$rule(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor('#404040'),
+						author$project$VegaLite$maOpacity(1),
+						author$project$VegaLite$maStrokeWidth(2),
+						author$project$VegaLite$maXOffset(-22.5),
+						author$project$VegaLite$maX2Offset(22.5)
+					]))
+			]));
+	var enc1 = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('previous_sum'),
+							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pTitle('Amount')
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				3,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('sum'),
+						author$project$VegaLite$pMType(2)
+					]))),
+		author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					A2(
+					author$project$VegaLite$mDataCondition,
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							author$project$VegaLite$expr('datum.label === \'Begin\' || datum.label === \'End\''),
+							_List_fromArray(
+								[
+									author$project$VegaLite$mStr('#f7e0b6')
+								])),
+							_Utils_Tuple2(
+							author$project$VegaLite$expr('datum.sum < datum.previous_sum'),
+							_List_fromArray(
+								[
+									author$project$VegaLite$mStr('#f78a64')
+								]))
+						]),
+					_List_fromArray(
+						[
+							author$project$VegaLite$mStr('#93c4aa')
+						]))
+				])));
+	var spec1 = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc1(_List_Nil),
+				author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maSize(45)
+					]))
+			]));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$encoding,
+		A2(
+			author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('label'),
+					author$project$VegaLite$pMType(1),
+					author$project$VegaLite$pSort(_List_Nil),
+					author$project$VegaLite$pTitle('Months')
+				])));
+	var des = author$project$VegaLite$description('Waterfall chart of monthly profit and loss');
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'label',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['Begin', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'End'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'amount',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[4000, 1707, -1425, -1030, 1812, -1067, -1481, 1228, 1176, 1146, 1205, -1388, 1492, 0]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				author$project$VegaLite$width(800),
+				author$project$VegaLite$height(450),
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[spec1, spec2, spec3, spec4, spec5]))
+			]));
+}();
+var author$project$VegaLite$lookup = F4(
+	function (key1, _n0, key2, fields) {
+		var vlProp = _n0.a;
+		var spec = _n0.b;
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'lookup',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							elm$json$Json$Encode$string(key1),
+							spec,
+							elm$json$Json$Encode$string(key2),
+							A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fields)
+						]))));
+	});
+var author$project$GalleryAdvanced$advanced7 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		A4(
+			author$project$VegaLite$lookup,
+			'person',
+			A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/lookup_people.csv', _List_Nil),
+			'name',
+			_List_fromArray(
+				['age', 'height'])));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('group'),
+						author$project$VegaLite$pMType(1)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('age'),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
+				])));
+	var des = author$project$VegaLite$description('Using the lookup transform to combine data');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/lookup_groups.csv');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$Domain = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$axcoDomain = author$project$VegaLite$Domain;
+var author$project$VegaLite$LabelAngle = function (a) {
+	return {$: 12, a: a};
+};
+var author$project$VegaLite$axcoLabelAngle = author$project$VegaLite$LabelAngle;
+var author$project$VegaLite$TickColor = function (a) {
+	return {$: 29, a: a};
+};
+var author$project$VegaLite$axcoTickColor = author$project$VegaLite$TickColor;
+var author$project$VegaLite$AxisX = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$coAxisX = author$project$VegaLite$AxisX;
+var author$project$VegaLite$NamedStyles = function (a) {
+	return {$: 22, a: a};
+};
+var author$project$VegaLite$coNamedStyles = author$project$VegaLite$NamedStyles;
+var author$project$VegaLite$View = function (a) {
+	return {$: 40, a: a};
+};
+var author$project$VegaLite$coView = author$project$VegaLite$View;
 var author$project$VegaLite$autosizeProperty = function (asCfg) {
 	switch (asCfg) {
 		case 3:
@@ -7641,16 +8514,6 @@ var author$project$VegaLite$fieldTitleLabel = function (ftp) {
 			return 'functional';
 		default:
 			return 'plain';
-	}
-};
-var author$project$VegaLite$anchorLabel = function (an) {
-	switch (an) {
-		case 0:
-			return 'start';
-		case 1:
-			return 'middle';
-		default:
-			return 'end';
 	}
 };
 var author$project$VegaLite$headerProperty = function (hProp) {
@@ -8773,91 +9636,6 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 				elm$json$Json$Encode$string(e));
 	}
 };
-var author$project$VegaLite$tfLabel = function (tf) {
-	if (tf === 1) {
-		return 'group';
-	} else {
-		return 'bounds';
-	}
-};
-var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
-	switch (titleCfg.$) {
-		case 0:
-			var an = titleCfg.a;
-			return _Utils_Tuple2(
-				'anchor',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$anchorLabel(an)));
-		case 1:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'angle',
-				elm$json$Json$Encode$float(x));
-		case 2:
-			var va = titleCfg.a;
-			return _Utils_Tuple2(
-				'baseline',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$vAlignLabel(va)));
-		case 3:
-			var clr = titleCfg.a;
-			return _Utils_Tuple2(
-				'color',
-				elm$json$Json$Encode$string(clr));
-		case 4:
-			var fnt = titleCfg.a;
-			return _Utils_Tuple2(
-				'font',
-				elm$json$Json$Encode$string(fnt));
-		case 5:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'fontSize',
-				elm$json$Json$Encode$float(x));
-		case 6:
-			var s = titleCfg.a;
-			return _Utils_Tuple2(
-				'fontStyle',
-				elm$json$Json$Encode$string(s));
-		case 8:
-			var tf = titleCfg.a;
-			return _Utils_Tuple2(
-				'frame',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$tfLabel(tf)));
-		case 7:
-			var w = titleCfg.a;
-			return _Utils_Tuple2(
-				'fontWeight',
-				author$project$VegaLite$fontWeightSpec(w));
-		case 9:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'limit',
-				elm$json$Json$Encode$float(x));
-		case 10:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'offset',
-				elm$json$Json$Encode$float(x));
-		case 11:
-			var sd = titleCfg.a;
-			return _Utils_Tuple2(
-				'orient',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$sideLabel(sd)));
-		case 12:
-			var styles = titleCfg.a;
-			return _Utils_Tuple2(
-				'style',
-				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
-		default:
-			var n = titleCfg.a;
-			return _Utils_Tuple2(
-				'zindex',
-				elm$json$Json$Encode$int(n));
-	}
-};
 var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 	switch (viewCfg.$) {
 		case 0:
@@ -9229,785 +10007,6 @@ var author$project$VegaLite$configure = function (configs) {
 		27,
 		elm$json$Json$Encode$object(configs));
 };
-var author$project$VegaLite$Line = 7;
-var author$project$VegaLite$line = author$project$VegaLite$mark(7);
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
-var author$project$VegaLite$MName = function (a) {
-	return {$: 0, a: a};
-};
-var author$project$VegaLite$mName = author$project$VegaLite$MName;
-var author$project$VegaLite$MScale = function (a) {
-	return {$: 3, a: a};
-};
-var author$project$VegaLite$mScale = author$project$VegaLite$MScale;
-var author$project$VegaLite$MOrient = function (a) {
-	return {$: 29, a: a};
-};
-var author$project$VegaLite$maOrient = author$project$VegaLite$MOrient;
-var author$project$VegaLite$MOVertical = 1;
-var author$project$VegaLite$moVertical = 1;
-var author$project$VegaLite$FrBounds = 0;
-var author$project$VegaLite$tfBounds = 0;
-var author$project$VegaLite$TFontStyle = function (a) {
-	return {$: 6, a: a};
-};
-var author$project$VegaLite$ticoFontStyle = author$project$VegaLite$TFontStyle;
-var author$project$VegaLite$TFrame = function (a) {
-	return {$: 8, a: a};
-};
-var author$project$VegaLite$ticoFrame = author$project$VegaLite$TFrame;
-var author$project$VegaLite$VLTitle = 2;
-var author$project$VegaLite$title = function (s) {
-	return _Utils_Tuple2(
-		2,
-		elm$json$Json$Encode$string(s));
-};
-var author$project$VegaLite$WDescending = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$wiDescending = author$project$VegaLite$WDescending;
-var author$project$VegaLite$WOp = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$wiOp = author$project$VegaLite$WOp;
-var author$project$VegaLite$WSort = function (a) {
-	return {$: 3, a: a};
-};
-var author$project$VegaLite$wiSort = author$project$VegaLite$WSort;
-var author$project$VegaLite$Rank = 1;
-var author$project$VegaLite$woRank = 1;
-var elm$core$Basics$negate = function (n) {
-	return -n;
-};
-var author$project$GalleryAdvanced$advanced5 = function () {
-	var trans = A2(
-		elm$core$Basics$composeL,
-		author$project$VegaLite$transform,
-		A2(
-			author$project$VegaLite$window,
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					_List_fromArray(
-						[
-							author$project$VegaLite$wiOp(author$project$VegaLite$woRank)
-						]),
-					'rank')
-				]),
-			_List_fromArray(
-				[
-					author$project$VegaLite$wiSort(
-					_List_fromArray(
-						[
-							author$project$VegaLite$wiDescending('point'),
-							author$project$VegaLite$wiDescending('diff')
-						])),
-					author$project$VegaLite$wiGroupBy(
-					_List_fromArray(
-						['matchday']))
-				])));
-	var teamColours = author$project$VegaLite$categoricalDomainMap(
-		_List_fromArray(
-			[
-				_Utils_Tuple2('Germany', 'black'),
-				_Utils_Tuple2('Mexico', '#127153'),
-				_Utils_Tuple2('South Korea', '#c91a3c'),
-				_Utils_Tuple2('Sweden', '#0c71ab')
-			]));
-	var enc = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$encoding,
-				A2(
-					author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							author$project$VegaLite$pName('matchday'),
-							author$project$VegaLite$pMType(1)
-						]))),
-			A2(
-				author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('rank'),
-						author$project$VegaLite$pMType(1)
-					]))),
-		author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					author$project$VegaLite$mName('team'),
-					author$project$VegaLite$mMType(0),
-					author$project$VegaLite$mScale(teamColours)
-				])));
-	var des = author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
-	var data = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				A2(
-					elm$core$Basics$composeL,
-					author$project$VegaLite$dataFromColumns(_List_Nil),
-					A2(
-						author$project$VegaLite$dataColumn,
-						'team',
-						author$project$VegaLite$strs(
-							_List_fromArray(
-								['Germany', 'Mexico', 'South Korea', 'Sweden', 'Germany', 'Mexico', 'South Korea', 'Sweden', 'Germany', 'Mexico', 'South Korea', 'Sweden'])))),
-				A2(
-					author$project$VegaLite$dataColumn,
-					'matchday',
-					author$project$VegaLite$nums(
-						_List_fromArray(
-							[1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])))),
-			A2(
-				author$project$VegaLite$dataColumn,
-				'point',
-				author$project$VegaLite$nums(
-					_List_fromArray(
-						[0, 3, 0, 3, 3, 6, 0, 3, 3, 6, 3, 6])))),
-		A2(
-			author$project$VegaLite$dataColumn,
-			'diff',
-			author$project$VegaLite$nums(
-				_List_fromArray(
-					[-1, 1, -1, 1, 0, 2, -2, 0, -2, -1, 0, 3]))));
-	var cfg = A2(
-		elm$core$Basics$composeL,
-		author$project$VegaLite$configure,
-		author$project$VegaLite$configuration(
-			author$project$VegaLite$coTitle(
-				_List_fromArray(
-					[
-						author$project$VegaLite$ticoFrame(author$project$VegaLite$tfBounds),
-						author$project$VegaLite$ticoFontStyle('italic')
-					]))));
-	return author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				des,
-				author$project$VegaLite$title('World Cup 2018: Group F Rankings'),
-				cfg(_List_Nil),
-				data(_List_Nil),
-				trans(_List_Nil),
-				enc(_List_Nil),
-				author$project$VegaLite$line(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maOrient(author$project$VegaLite$moVertical)
-					]))
-			]));
-}();
-var author$project$VegaLite$Bold = 0;
-var author$project$VegaLite$Expr = function (a) {
-	return {$: 0, a: a};
-};
-var author$project$VegaLite$expr = author$project$VegaLite$Expr;
-var author$project$VegaLite$VLHeight = 4;
-var author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		4,
-		elm$json$Json$Encode$float(h));
-};
-var author$project$VegaLite$MDataCondition = F2(
-	function (a, b) {
-		return {$: 12, a: a, b: b};
-	});
-var author$project$VegaLite$mDataCondition = author$project$VegaLite$MDataCondition;
-var author$project$VegaLite$MBaseline = function (a) {
-	return {$: 3, a: a};
-};
-var author$project$VegaLite$maBaseline = author$project$VegaLite$MBaseline;
-var author$project$VegaLite$MdY = function (a) {
-	return {$: 14, a: a};
-};
-var author$project$VegaLite$maDy = author$project$VegaLite$MdY;
-var author$project$VegaLite$MFontWeight = function (a) {
-	return {$: 22, a: a};
-};
-var author$project$VegaLite$maFontWeight = author$project$VegaLite$MFontWeight;
-var author$project$VegaLite$MSize = function (a) {
-	return {$: 35, a: a};
-};
-var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
-var author$project$VegaLite$MX2Offset = function (a) {
-	return {$: 57, a: a};
-};
-var author$project$VegaLite$maX2Offset = author$project$VegaLite$MX2Offset;
-var author$project$VegaLite$MXOffset = function (a) {
-	return {$: 55, a: a};
-};
-var author$project$VegaLite$maXOffset = author$project$VegaLite$MXOffset;
-var author$project$VegaLite$PSort = function (a) {
-	return {$: 13, a: a};
-};
-var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
-var author$project$VegaLite$PTitle = function (a) {
-	return {$: 9, a: a};
-};
-var author$project$VegaLite$pTitle = author$project$VegaLite$PTitle;
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
-var author$project$VegaLite$TName = function (a) {
-	return {$: 0, a: a};
-};
-var author$project$VegaLite$tName = author$project$VegaLite$TName;
-var author$project$VegaLite$textChannelProperty = function (tDef) {
-	switch (tDef.$) {
-		case 0:
-			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					elm$json$Json$Encode$string(s))
-				]);
-		case 1:
-			var arr = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'repeat',
-								elm$json$Json$Encode$string(
-									author$project$VegaLite$arrangementLabel(arr)))
-							])))
-				]);
-		case 2:
-			var measure = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$measurementLabel(measure)))
-				]);
-		case 3:
-			var bps = tDef.a;
-			return _List_fromArray(
-				[
-					author$project$VegaLite$bin(bps)
-				]);
-		case 4:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'bin',
-					elm$json$Json$Encode$string('binned'))
-				]);
-		case 5:
-			var op = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aggregate',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
-				]);
-		case 6:
-			var tu = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'timeUnit',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$timeUnitLabel(tu)))
-				]);
-		case 7:
-			var t = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'title',
-					elm$json$Json$Encode$string(t))
-				]);
-		case 10:
-			var fmt = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'format',
-					elm$json$Json$Encode$string(fmt))
-				]);
-		case 11:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					elm$json$Json$Encode$string('number'))
-				]);
-		case 12:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					elm$json$Json$Encode$string('time'))
-				]);
-		case 8:
-			var selName = tDef.a;
-			var ifClause = tDef.b;
-			var elseClause = tDef.c;
-			return A2(
-				elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					elm$json$Json$Encode$object(
-						A2(
-							elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								author$project$VegaLite$booleanOpSpec(selName)),
-							A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)))),
-				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
-		default:
-			var tests = tDef.a;
-			var elseClause = tDef.b;
-			var testClause = function (_n1) {
-				var predicate = _n1.a;
-				var ifClause = _n1.b;
-				return elm$json$Json$Encode$object(
-					A2(
-						elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							author$project$VegaLite$booleanOpSpec(predicate)),
-						A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)));
-			};
-			return A2(
-				elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					A2(elm$json$Json$Encode$list, testClause, tests)),
-				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
-	}
-};
-var author$project$VegaLite$text = function (tDefs) {
-	return elm$core$List$cons(
-		_Utils_Tuple2(
-			'text',
-			elm$json$Json$Encode$object(
-				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, tDefs))));
-};
-var author$project$VegaLite$Text = 12;
-var author$project$VegaLite$textMark = author$project$VegaLite$mark(12);
-var author$project$VegaLite$AlignMiddle = 1;
-var author$project$VegaLite$vaMiddle = 1;
-var author$project$VegaLite$AlignTop = 0;
-var author$project$VegaLite$vaTop = 0;
-var author$project$VegaLite$VLWidth = 3;
-var author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		3,
-		elm$json$Json$Encode$float(w));
-};
-var author$project$VegaLite$Lead = 7;
-var author$project$VegaLite$woLead = 7;
-var author$project$GalleryAdvanced$advanced6 = function () {
-	var trans = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				A2(
-					elm$core$Basics$composeL,
-					A2(
-						elm$core$Basics$composeL,
-						A2(
-							elm$core$Basics$composeL,
-							A2(
-								elm$core$Basics$composeL,
-								A2(
-									elm$core$Basics$composeL,
-									A2(
-										elm$core$Basics$composeL,
-										author$project$VegaLite$transform,
-										A2(
-											author$project$VegaLite$window,
-											_List_fromArray(
-												[
-													_Utils_Tuple2(
-													_List_fromArray(
-														[
-															author$project$VegaLite$wiAggregateOp(author$project$VegaLite$opSum),
-															author$project$VegaLite$wiField('amount')
-														]),
-													'sum')
-												]),
-											_List_Nil)),
-									A2(
-										author$project$VegaLite$window,
-										_List_fromArray(
-											[
-												_Utils_Tuple2(
-												_List_fromArray(
-													[
-														author$project$VegaLite$wiOp(author$project$VegaLite$woLead),
-														author$project$VegaLite$wiField('label')
-													]),
-												'lead')
-											]),
-										_List_Nil)),
-								A2(author$project$VegaLite$calculateAs, 'datum.lead === null ? datum.label : datum.lead', 'lead')),
-							A2(author$project$VegaLite$calculateAs, 'datum.label === \'End\' ? 0 : datum.sum - datum.amount', 'previous_sum')),
-						A2(author$project$VegaLite$calculateAs, 'datum.label === \'End\' ? datum.sum : datum.amount', 'amount')),
-					A2(author$project$VegaLite$calculateAs, '(datum.label !== \'Begin\' && datum.label !== \'End\' && datum.amount > 0 ? \'+\' : \'\') + datum.amount', 'text_amount')),
-				A2(author$project$VegaLite$calculateAs, '(datum.sum + datum.previous_sum) / 2', 'center')),
-			A2(author$project$VegaLite$calculateAs, 'datum.sum < datum.previous_sum ? datum.sum : \'\'', 'sum_dec')),
-		A2(author$project$VegaLite$calculateAs, 'datum.sum > datum.previous_sum ? datum.sum : \'\'', 'sum_inc'));
-	var enc5 = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$encoding,
-				A2(
-					author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							author$project$VegaLite$pName('center'),
-							author$project$VegaLite$pMType(2)
-						]))),
-			author$project$VegaLite$text(
-				_List_fromArray(
-					[
-						author$project$VegaLite$tName('text_amount'),
-						author$project$VegaLite$tMType(0)
-					]))),
-		author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					A2(
-					author$project$VegaLite$mDataCondition,
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							author$project$VegaLite$expr('datum.label === \'Begin\' || datum.label === \'End\''),
-							_List_fromArray(
-								[
-									author$project$VegaLite$mStr('#725a30')
-								]))
-						]),
-					_List_fromArray(
-						[
-							author$project$VegaLite$mStr('white')
-						]))
-				])));
-	var spec5 = author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				enc5(_List_Nil),
-				author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maBaseline(author$project$VegaLite$vaMiddle),
-						author$project$VegaLite$maFontWeight(0)
-					]))
-			]));
-	var enc4 = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			author$project$VegaLite$encoding,
-			A2(
-				author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('sum_dec'),
-						author$project$VegaLite$pMType(2)
-					]))),
-		author$project$VegaLite$text(
-			_List_fromArray(
-				[
-					author$project$VegaLite$tName('sum_dec'),
-					author$project$VegaLite$tMType(0)
-				])));
-	var spec4 = author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				enc4(_List_Nil),
-				author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maDy(8),
-						author$project$VegaLite$maBaseline(author$project$VegaLite$vaTop),
-						author$project$VegaLite$maFontWeight(0),
-						author$project$VegaLite$maColor('#404040')
-					]))
-			]));
-	var enc3 = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			author$project$VegaLite$encoding,
-			A2(
-				author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('sum_inc'),
-						author$project$VegaLite$pMType(2)
-					]))),
-		author$project$VegaLite$text(
-			_List_fromArray(
-				[
-					author$project$VegaLite$tName('sum_inc'),
-					author$project$VegaLite$tMType(0)
-				])));
-	var spec3 = author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				enc3(_List_Nil),
-				author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maDy(-8),
-						author$project$VegaLite$maFontWeight(0),
-						author$project$VegaLite$maColor('#404040')
-					]))
-			]));
-	var enc2 = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			author$project$VegaLite$encoding,
-			A2(
-				author$project$VegaLite$position,
-				2,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('lead'),
-						author$project$VegaLite$pMType(1)
-					]))),
-		A2(
-			author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					author$project$VegaLite$pName('sum'),
-					author$project$VegaLite$pMType(2)
-				])));
-	var spec2 = author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				enc2(_List_Nil),
-				author$project$VegaLite$rule(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maColor('#404040'),
-						author$project$VegaLite$maOpacity(1),
-						author$project$VegaLite$maStrokeWidth(2),
-						author$project$VegaLite$maXOffset(-22.5),
-						author$project$VegaLite$maX2Offset(22.5)
-					]))
-			]));
-	var enc1 = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$encoding,
-				A2(
-					author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							author$project$VegaLite$pName('previous_sum'),
-							author$project$VegaLite$pMType(2),
-							author$project$VegaLite$pTitle('Amount')
-						]))),
-			A2(
-				author$project$VegaLite$position,
-				3,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('sum'),
-						author$project$VegaLite$pMType(2)
-					]))),
-		author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					A2(
-					author$project$VegaLite$mDataCondition,
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							author$project$VegaLite$expr('datum.label === \'Begin\' || datum.label === \'End\''),
-							_List_fromArray(
-								[
-									author$project$VegaLite$mStr('#f7e0b6')
-								])),
-							_Utils_Tuple2(
-							author$project$VegaLite$expr('datum.sum < datum.previous_sum'),
-							_List_fromArray(
-								[
-									author$project$VegaLite$mStr('#f78a64')
-								]))
-						]),
-					_List_fromArray(
-						[
-							author$project$VegaLite$mStr('#93c4aa')
-						]))
-				])));
-	var spec1 = author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				enc1(_List_Nil),
-				author$project$VegaLite$bar(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maSize(45)
-					]))
-			]));
-	var enc = A2(
-		elm$core$Basics$composeL,
-		author$project$VegaLite$encoding,
-		A2(
-			author$project$VegaLite$position,
-			0,
-			_List_fromArray(
-				[
-					author$project$VegaLite$pName('label'),
-					author$project$VegaLite$pMType(1),
-					author$project$VegaLite$pSort(_List_Nil),
-					author$project$VegaLite$pTitle('Months')
-				])));
-	var des = author$project$VegaLite$description('Waterfall chart of monthly profit and loss');
-	var data = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			author$project$VegaLite$dataFromColumns(_List_Nil),
-			A2(
-				author$project$VegaLite$dataColumn,
-				'label',
-				author$project$VegaLite$strs(
-					_List_fromArray(
-						['Begin', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'End'])))),
-		A2(
-			author$project$VegaLite$dataColumn,
-			'amount',
-			author$project$VegaLite$nums(
-				_List_fromArray(
-					[4000, 1707, -1425, -1030, 1812, -1067, -1481, 1228, 1176, 1146, 1205, -1388, 1492, 0]))));
-	return author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				des,
-				author$project$VegaLite$width(800),
-				author$project$VegaLite$height(450),
-				data(_List_Nil),
-				trans(_List_Nil),
-				enc(_List_Nil),
-				author$project$VegaLite$layer(
-				_List_fromArray(
-					[spec1, spec2, spec3, spec4, spec5]))
-			]));
-}();
-var author$project$VegaLite$lookup = F4(
-	function (key1, _n0, key2, fields) {
-		var vlProp = _n0.a;
-		var spec = _n0.b;
-		return elm$core$List$cons(
-			_Utils_Tuple2(
-				'lookup',
-				author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							elm$json$Json$Encode$string(key1),
-							spec,
-							elm$json$Json$Encode$string(key2),
-							A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fields)
-						]))));
-	});
-var author$project$GalleryAdvanced$advanced7 = function () {
-	var trans = A2(
-		elm$core$Basics$composeL,
-		author$project$VegaLite$transform,
-		A4(
-			author$project$VegaLite$lookup,
-			'person',
-			A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/lookup_people.csv', _List_Nil),
-			'name',
-			_List_fromArray(
-				['age', 'height'])));
-	var enc = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			author$project$VegaLite$encoding,
-			A2(
-				author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('group'),
-						author$project$VegaLite$pMType(1)
-					]))),
-		A2(
-			author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					author$project$VegaLite$pName('age'),
-					author$project$VegaLite$pMType(2),
-					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
-				])));
-	var des = author$project$VegaLite$description('Using the lookup transform to combine data');
-	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/lookup_groups.csv');
-	return author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				des,
-				data(_List_Nil),
-				trans(_List_Nil),
-				enc(_List_Nil),
-				author$project$VegaLite$bar(_List_Nil)
-			]));
-}();
-var author$project$VegaLite$Domain = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$axcoDomain = author$project$VegaLite$Domain;
-var author$project$VegaLite$LabelAngle = function (a) {
-	return {$: 12, a: a};
-};
-var author$project$VegaLite$axcoLabelAngle = author$project$VegaLite$LabelAngle;
-var author$project$VegaLite$TickColor = function (a) {
-	return {$: 29, a: a};
-};
-var author$project$VegaLite$axcoTickColor = author$project$VegaLite$TickColor;
-var author$project$VegaLite$AxisX = function (a) {
-	return {$: 3, a: a};
-};
-var author$project$VegaLite$coAxisX = author$project$VegaLite$AxisX;
-var author$project$VegaLite$NamedStyles = function (a) {
-	return {$: 22, a: a};
-};
-var author$project$VegaLite$coNamedStyles = author$project$VegaLite$NamedStyles;
-var author$project$VegaLite$View = function (a) {
-	return {$: 40, a: a};
-};
-var author$project$VegaLite$coView = author$project$VegaLite$View;
 var author$project$VegaLite$DAggregate = function (a) {
 	return {$: 4, a: a};
 };

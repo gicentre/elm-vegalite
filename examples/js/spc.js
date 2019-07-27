@@ -9574,7 +9574,7 @@ var author$project$Spc$cusum1 = function () {
 					])),
 				author$project$Spc$encCusum
 			]));
-	var encZeroLine = A2(
+	var enc = A2(
 		elm$core$Basics$composeL,
 		author$project$VegaLite$encoding,
 		A2(
@@ -9589,12 +9589,12 @@ var author$project$Spc$cusum1 = function () {
 	var specZeroLine = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				enc(_List_Nil),
 				author$project$VegaLite$rule(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maColor('rgb(62,156,167)')
-					])),
-				encZeroLine(_List_Nil)
+					]))
 			]));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9617,7 +9617,7 @@ var author$project$Spc$cusum2 = function () {
 					])),
 				author$project$Spc$encCusum
 			]));
-	var encZeroLine = A2(
+	var enc = A2(
 		elm$core$Basics$composeL,
 		author$project$VegaLite$encoding,
 		A2(
@@ -9632,12 +9632,12 @@ var author$project$Spc$cusum2 = function () {
 	var specZeroLine = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				enc(_List_Nil),
 				author$project$VegaLite$rule(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maColor('rgb(62,156,167)')
-					])),
-				encZeroLine(_List_Nil)
+					]))
 			]));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9677,7 +9677,7 @@ var author$project$Spc$cusumInteractive = function (baseline) {
 					])),
 				author$project$Spc$encCusum
 			]));
-	var encZeroLine = A2(
+	var enc = A2(
 		elm$core$Basics$composeL,
 		author$project$VegaLite$encoding,
 		A2(
@@ -9692,12 +9692,12 @@ var author$project$Spc$cusumInteractive = function (baseline) {
 	var specZeroLine = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				enc(_List_Nil),
 				author$project$VegaLite$rule(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maColor('rgb(62,156,167)')
-					])),
-				encZeroLine(_List_Nil)
+					]))
 			]));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10082,12 +10082,12 @@ var author$project$Spc$spc2 = author$project$VegaLite$toVegaLite(
 		[
 			author$project$Spc$config,
 			author$project$Spc$spcData,
+			author$project$Spc$encLine,
 			author$project$VegaLite$line(
 			_List_fromArray(
 				[
 					author$project$VegaLite$maColor('#777')
-				])),
-			author$project$Spc$encLine
+				]))
 		]));
 var author$project$VegaLite$aggregate = F2(
 	function (ops, groups) {
@@ -10623,8 +10623,8 @@ var author$project$Spc$sdLine = function (n) {
 		_List_fromArray(
 			[
 				trans(_List_Nil),
-				author$project$VegaLite$rule(dash),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				author$project$VegaLite$rule(dash)
 			]));
 };
 var author$project$Spc$spc3 = author$project$VegaLite$toVegaLite(
@@ -10644,12 +10644,12 @@ var author$project$Spc$spc3 = author$project$VegaLite$toVegaLite(
 						author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
+								author$project$Spc$encLine,
 								author$project$VegaLite$line(
 								_List_fromArray(
 									[
 										author$project$VegaLite$maColor('#777')
-									])),
-								author$project$Spc$encLine
+									]))
 							]))
 					])))
 		]));
@@ -11302,14 +11302,14 @@ var author$project$Spc$spc4 = function () {
 	var specLine = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				author$project$Spc$encLine,
 				author$project$VegaLite$line(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maColor('#777')
-					])),
-				author$project$Spc$encLine
+					]))
 			]));
-	var encPoint = A2(
+	var enc = A2(
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
@@ -11355,13 +11355,13 @@ var author$project$Spc$spc4 = function () {
 	var specPoint = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				enc(_List_Nil),
 				author$project$VegaLite$point(
 				_List_fromArray(
 					[
 						author$project$VegaLite$maFilled(true),
 						author$project$VegaLite$maSize(60)
-					])),
-				encPoint(_List_Nil)
+					]))
 			]));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -11456,8 +11456,8 @@ var author$project$Spc$sdRegion = function (n) {
 		_List_fromArray(
 			[
 				trans(_List_Nil),
-				author$project$VegaLite$rect(fillCol),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				author$project$VegaLite$rect(fillCol)
 			]));
 };
 var author$project$VegaLite$Ordinal = 1;
@@ -11754,7 +11754,7 @@ var author$project$Spc$spc5 = function () {
 					])),
 				author$project$Spc$encLine
 			]));
-	var encShifts = A2(
+	var enc = A2(
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
@@ -11799,8 +11799,8 @@ var author$project$Spc$spc5 = function () {
 		_List_fromArray(
 			[
 				trans(_List_Nil),
-				author$project$VegaLite$line(_List_Nil),
-				encShifts(_List_Nil)
+				enc(_List_Nil),
+				author$project$VegaLite$line(_List_Nil)
 			]));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(

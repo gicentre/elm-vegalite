@@ -5185,11 +5185,113 @@ var author$project$VegaLite$position = F2(
 		}
 	});
 var author$project$VegaLite$VLTitle = 2;
-var author$project$VegaLite$title = function (s) {
-	return _Utils_Tuple2(
-		2,
-		elm$json$Json$Encode$string(s));
+var author$project$VegaLite$anchorLabel = function (an) {
+	switch (an) {
+		case 0:
+			return 'start';
+		case 1:
+			return 'middle';
+		default:
+			return 'end';
+	}
 };
+var author$project$VegaLite$tfLabel = function (tf) {
+	if (tf === 1) {
+		return 'group';
+	} else {
+		return 'bounds';
+	}
+};
+var author$project$VegaLite$titleConfigSpec = function (titleCfg) {
+	switch (titleCfg.$) {
+		case 0:
+			var an = titleCfg.a;
+			return _Utils_Tuple2(
+				'anchor',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$anchorLabel(an)));
+		case 1:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'angle',
+				elm$json$Json$Encode$float(x));
+		case 2:
+			var va = titleCfg.a;
+			return _Utils_Tuple2(
+				'baseline',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$vAlignLabel(va)));
+		case 3:
+			var clr = titleCfg.a;
+			return _Utils_Tuple2(
+				'color',
+				elm$json$Json$Encode$string(clr));
+		case 4:
+			var fnt = titleCfg.a;
+			return _Utils_Tuple2(
+				'font',
+				elm$json$Json$Encode$string(fnt));
+		case 5:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontSize',
+				elm$json$Json$Encode$float(x));
+		case 6:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontStyle',
+				elm$json$Json$Encode$string(s));
+		case 8:
+			var tf = titleCfg.a;
+			return _Utils_Tuple2(
+				'frame',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$tfLabel(tf)));
+		case 7:
+			var w = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontWeight',
+				author$project$VegaLite$fontWeightSpec(w));
+		case 9:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'limit',
+				elm$json$Json$Encode$float(x));
+		case 10:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'offset',
+				elm$json$Json$Encode$float(x));
+		case 11:
+			var sd = titleCfg.a;
+			return _Utils_Tuple2(
+				'orient',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$sideLabel(sd)));
+		case 12:
+			var styles = titleCfg.a;
+			return _Utils_Tuple2(
+				'style',
+				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, styles));
+		default:
+			var n = titleCfg.a;
+			return _Utils_Tuple2(
+				'zindex',
+				elm$json$Json$Encode$int(n));
+	}
+};
+var author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			elm$json$Json$Encode$object(
+				A2(
+					elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						elm$json$Json$Encode$string(txt)),
+					A2(elm$core$List$map, author$project$VegaLite$titleConfigSpec, tps))));
+	});
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -5272,32 +5374,41 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
-var author$project$HelloWorlds$myFirstVis = author$project$VegaLite$toVegaLite(
-	_List_fromArray(
-		[
-			author$project$VegaLite$title('Hello, World!'),
-			A2(
-			author$project$VegaLite$dataFromColumns,
-			_List_Nil,
-			A3(
-				author$project$VegaLite$dataColumn,
-				'x',
-				author$project$VegaLite$nums(
-					_List_fromArray(
-						[10, 20, 30])),
-				_List_Nil)),
-			author$project$VegaLite$circle(_List_Nil),
-			author$project$VegaLite$encoding(
-			A3(
-				author$project$VegaLite$position,
-				0,
+var elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var author$project$HelloWorlds$myFirstVis = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$encoding,
+		A2(
+			author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('x'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'x',
+			author$project$VegaLite$nums(
 				_List_fromArray(
-					[
-						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2)
-					]),
-				_List_Nil))
-		]));
+					[10, 20, 30]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				A2(author$project$VegaLite$title, 'Hello, World!', _List_Nil),
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
 var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$Bar = 1;
 var author$project$VegaLite$bar = author$project$VegaLite$mark(1);
@@ -5331,11 +5442,6 @@ var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
-var elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
 var author$project$HelloWorlds$myOtherVis = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -5359,12 +5465,13 @@ var author$project$HelloWorlds$myOtherVis = function () {
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
 					author$project$VegaLite$pMType(2)
 				])));
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var author$project$HelloWorlds$mySecondVis = function () {
@@ -5389,12 +5496,13 @@ var author$project$HelloWorlds$mySecondVis = function () {
 					author$project$VegaLite$pName('Miles_per_Gallon'),
 					author$project$VegaLite$pMType(2)
 				])));
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var author$project$VegaLite$combineSpecs = function (specs) {

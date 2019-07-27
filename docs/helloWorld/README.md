@@ -75,11 +75,20 @@ import VegaLite exposing (..)
 
 myVis : Spec
 myVis =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 10, 20, 30 ])
+
+        enc =
+            encoding
+                << position X [ pName "x", pMType Quantitative ]
+    in
     toVegaLite
-        [ title "Hello, World!"
-        , dataFromColumns [] <| dataColumn "x" (nums [ 10, 20, 30 ]) []
+        [ title "Hello, World!" []
+        , data []
+        , enc []
         , circle []
-        , encoding <| position X [ pName "x", pMType Quantitative ] []
         ]
 
 
