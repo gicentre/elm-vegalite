@@ -7247,24 +7247,12 @@ var author$project$GalleryAdvanced$advanced4 = function () {
 						]))
 				])));
 	var desc = author$project$VegaLite$description('A scatterplot showing each movie in the database and the difference from the average movie rating.');
-	var data = A2(
-		author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/movies.json',
-		_List_fromArray(
-			[
-				author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'Release_Date',
-						author$project$VegaLite$foDate('%d-%b-%y'))
-					]))
-			]));
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				desc,
-				data,
+				data(_List_Nil),
 				trans(_List_Nil),
 				enc(_List_Nil),
 				author$project$VegaLite$point(

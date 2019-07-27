@@ -118,7 +118,6 @@ advanced4 =
 
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
-                [ parse [ ( "Release_Date", foDate "%d-%b-%y" ) ] ]
 
         trans =
             transform
@@ -131,9 +130,19 @@ advanced4 =
         enc =
             encoding
                 << position X [ pName "Release_Date", pMType Temporal ]
-                << position Y [ pName "RatingDelta", pMType Quantitative, pAxis [ axTitle "Residual" ] ]
+                << position Y
+                    [ pName "RatingDelta"
+                    , pMType Quantitative
+                    , pAxis [ axTitle "Residual" ]
+                    ]
     in
-    toVegaLite [ desc, data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
+    toVegaLite
+        [ desc
+        , data []
+        , trans []
+        , enc []
+        , point [ maStrokeWidth 0.3, maOpacity 0.3 ]
+        ]
 
 
 advanced5 : Spec
