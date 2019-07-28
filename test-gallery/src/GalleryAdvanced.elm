@@ -418,6 +418,27 @@ advanced8 =
         ]
 
 
+advanced9 : Spec
+advanced9 =
+    let
+        desc =
+            description "Production budget of the film with highest US Gross in each major genre."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+
+        enc =
+            encoding
+                << position X
+                    [ pName "Production_Budget"
+                    , pMType Quantitative
+                    , pAggregate (opArgMax (Just "US_Gross"))
+                    ]
+                << position Y [ pName "Major_Genre", pMType Nominal ]
+    in
+    toVegaLite [ desc, data [], enc [], bar [] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -433,6 +454,7 @@ mySpecs =
         , ( "advanced6", advanced6 )
         , ( "advanced7", advanced7 )
         , ( "advanced8", advanced8 )
+        , ( "advanced9", advanced9 )
         ]
 
 

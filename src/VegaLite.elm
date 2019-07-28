@@ -3886,8 +3886,8 @@ type MonthName
 [opVariance](#opVariance) and [opVarianceP](#opVarianceP).
 -}
 type Operation
-    = ArgMax
-    | ArgMin
+    = ArgMax (Maybe String)
+    | ArgMin (Maybe String)
     | CI0
     | CI1
     | Count
@@ -10511,10 +10511,30 @@ opacity markProps =
     (::) ( "opacity", List.concatMap markChannelProperty markProps |> JE.object )
 
 
-{-| An input data object containing the maximum field value to be used in an
-aggregation operation.
+{-| An input data object containing the minimum field value to be used in an
+aggregation operation. If supplied as part of an encoding aggregation, the parameter
+should be `Just` the name of the field to maximise. For example the following would
+find the production budget for the maximum US grossing film in each genre.
+
+    encoding
+        << position X
+            [ pName "Production_Budget"
+            , pMType Quantitative
+            , pAggregate (opArgMax (Just "US_Gross"))
+            ]
+        << position Y [ pName "Major_Genre", pMType Nominal ]
+
+If supplied as part of a transform, the parameter should be `Nothing` as the field
+is specified in the [aggregate](#aggregate) parameter. For example,
+
+    trans =
+        transform
+            << aggregate
+                [ opAs (opArgMax Nothing) "US_Gross" "amUSGross" ]
+                [ "Major_Genre" ]
+
 -}
-opArgMax : Operation
+opArgMax : Maybe String -> Operation
 opArgMax =
     ArgMax
 
@@ -10522,7 +10542,7 @@ opArgMax =
 {-| An input data object containing the minimum field value to be used in an
 aggregation operation.
 -}
-opArgMin : Operation
+opArgMin : Maybe String -> Operation
 opArgMin =
     ArgMin
 
@@ -10546,7 +10566,7 @@ parameter can be an empty string.
 opAs : Operation -> String -> String -> Spec
 opAs op field label =
     JE.object
-        [ ( "op", JE.string (operationLabel op) )
+        [ ( "op", operationSpec op )
         , ( "field", JE.string field )
         , ( "as", JE.string label )
         ]
@@ -14869,7 +14889,7 @@ detailChannelProperty field =
             ( "timeUnit", JE.string (timeUnitLabel tu) )
 
         DAggregate op ->
-            ( "aggregate", JE.string (operationLabel op) )
+            ( "aggregate", operationSpec op )
 
 
 
@@ -14983,7 +15003,7 @@ facetChannelProperty fMap =
                     ( "sort", JE.object (List.concatMap sortProperty sps) )
 
         FAggregate op ->
-            ( "aggregate", JE.string (operationLabel op) )
+            ( "aggregate", operationSpec op )
 
         FTimeUnit tu ->
             ( "timeUnit", JE.string (timeUnitLabel tu) )
@@ -15366,7 +15386,7 @@ hyperlinkChannelProperty field =
             [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
 
         HAggregate op ->
-            [ ( "aggregate", JE.string (operationLabel op) ) ]
+            [ ( "aggregate", operationSpec op ) ]
 
         HString s ->
             [ ( "value", JE.string s ) ]
@@ -15867,7 +15887,7 @@ markChannelProperty field =
             [ ( "title", JE.string t ) ]
 
         MAggregate op ->
-            [ ( "aggregate", JE.string (operationLabel op) ) ]
+            [ ( "aggregate", operationSpec op ) ]
 
         MPath s ->
             [ ( "value", JE.string s ) ]
@@ -16230,68 +16250,86 @@ monthNameLabel mon =
             "Dec"
 
 
-operationLabel : Operation -> String
-operationLabel op =
+operationSpec : Operation -> Spec
+operationSpec op =
     case op of
-        ArgMax ->
-            "argmax"
+        ArgMax maybeField ->
+            case maybeField of
+                Nothing ->
+                    JE.string "argmax"
 
-        ArgMin ->
-            "argmin"
+                Just f ->
+                    if String.length (String.trim f) == 0 then
+                        JE.string "argmax"
+
+                    else
+                        JE.object [ ( "argmax", JE.string f ) ]
+
+        ArgMin maybeField ->
+            case maybeField of
+                Nothing ->
+                    JE.string "argmin"
+
+                Just f ->
+                    if String.length (String.trim f) == 0 then
+                        JE.string "argmin"
+
+                    else
+                        JE.object [ ( "argmin", JE.string f ) ]
 
         Count ->
-            "count"
+            JE.string "count"
 
         CI0 ->
-            "ci0"
+            JE.string "ci0"
 
         CI1 ->
-            "ci1"
+            JE.string "ci1"
 
         Distinct ->
-            "distinct"
+            JE.string "distinct"
 
         Max ->
-            "max"
+            JE.string "max"
 
         Mean ->
-            "mean"
+            JE.string "mean"
 
         Median ->
-            "median"
+            JE.string "median"
 
         Min ->
-            "min"
+            JE.string "min"
 
         Missing ->
-            "missing"
+            JE.string "missing"
 
         Q1 ->
-            "q1"
+            JE.string "q1"
 
         Q3 ->
-            "q3"
+            JE.string "q3"
 
         Stdev ->
-            "stdev"
+            JE.string "stdev"
 
         StdevP ->
-            "stdevp"
+            JE.string "stdevp"
 
         Sum ->
-            "sum"
+            JE.string "sum"
 
         Stderr ->
-            "stderr"
+            JE.string "stderr"
 
         Valid ->
-            "valid"
+            JE.string "valid"
 
         Variance ->
-            "variance"
+            JE.string "variance"
 
         VarianceP ->
-            "variancep"
+            JE.string "variancep"
 
 
 orderChannelProperty : OrderChannel -> LabelledSpec
@@ -16310,7 +16348,7 @@ orderChannelProperty oDef =
             bin bps
 
         OAggregate op ->
-            ( "aggregate", JE.string (operationLabel op) )
+            ( "aggregate", operationSpec op )
 
         OTimeUnit tu ->
             ( "timeUnit", JE.string (timeUnitLabel tu) )
@@ -16510,7 +16548,7 @@ positionChannelProperty pDef =
             ( "bin", JE.string "binned" )
 
         PAggregate op ->
-            ( "aggregate", JE.string (operationLabel op) )
+            ( "aggregate", operationSpec op )
 
         PTimeUnit tu ->
             ( "timeUnit", JE.string (timeUnitLabel tu) )
@@ -17071,11 +17109,11 @@ sortProperty sp =
             [ ( "encoding", JE.string (channelLabel ch) ) ]
 
         ByFieldOp field op ->
-            [ ( "field", JE.string field ), ( "op", JE.string (operationLabel op) ) ]
+            [ ( "field", JE.string field ), ( "op", operationSpec op ) ]
 
         ByRepeatOp arr op ->
             [ ( "field", JE.object [ ( "repeat", JE.string (arrangementLabel arr) ) ] )
-            , ( "op", JE.string (operationLabel op) )
+            , ( "op", operationSpec op )
             ]
 
         CustomSort dvs ->
@@ -17210,7 +17248,7 @@ textChannelProperty tDef =
             [ ( "bin", JE.string "binned" ) ]
 
         TAggregate op ->
-            [ ( "aggregate", JE.string (operationLabel op) ) ]
+            [ ( "aggregate", operationSpec op ) ]
 
         TTimeUnit tu ->
             [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
@@ -17662,7 +17700,7 @@ windowFieldProperty : Window -> LabelledSpec
 windowFieldProperty w =
     case w of
         WAggregateOp op ->
-            ( "op", JE.string (operationLabel op) )
+            ( "op", operationSpec op )
 
         WOp op ->
             ( "op", JE.string (wOperationLabel op) )

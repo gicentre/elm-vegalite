@@ -79,6 +79,13 @@
     </p>
     <div id="advanced8" class="view"></div>
 
+    <p>
+      By setting aggregate to an object with opArgMax (or opArgMin) describing
+      the field to maximize/minimize, the following plot shows the production
+      budget of the film with the highest US Gross in each major genre.
+    </p>
+    <div id="advanced9" class="view"></div>
+
     <script>
       Elm.GalleryAdvanced.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
