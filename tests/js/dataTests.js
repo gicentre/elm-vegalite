@@ -7662,10 +7662,13 @@ var author$project$VegaLite$booleanOpSpec = function (bo) {
 		case 0:
 			var ex = bo.a;
 			return elm$json$Json$Encode$string(ex);
-		case 2:
+		case 1:
+			var f = bo.a;
+			return author$project$VegaLite$filterSpec(f);
+		case 3:
 			var selName = bo.a;
 			return elm$json$Json$Encode$string(selName);
-		case 1:
+		case 2:
 			var sel = bo.a;
 			return elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -7674,7 +7677,7 @@ var author$project$VegaLite$booleanOpSpec = function (bo) {
 						'selection',
 						elm$json$Json$Encode$string(sel))
 					]));
-		case 3:
+		case 4:
 			var operand1 = bo.a;
 			var operand2 = bo.b;
 			return elm$json$Json$Encode$object(
@@ -7688,7 +7691,7 @@ var author$project$VegaLite$booleanOpSpec = function (bo) {
 							_List_fromArray(
 								[operand1, operand2])))
 					]));
-		case 4:
+		case 5:
 			var operand1 = bo.a;
 			var operand2 = bo.b;
 			return elm$json$Json$Encode$object(
@@ -7710,6 +7713,196 @@ var author$project$VegaLite$booleanOpSpec = function (bo) {
 						_Utils_Tuple2(
 						'not',
 						author$project$VegaLite$booleanOpSpec(operand))
+					]));
+	}
+};
+var author$project$VegaLite$filterSpec = function (f) {
+	switch (f.$) {
+		case 5:
+			var ex = f.a;
+			return elm$json$Json$Encode$string(ex);
+		case 6:
+			var boolExpr = f.a;
+			return author$project$VegaLite$booleanOpSpec(boolExpr);
+		case 0:
+			var field = f.a;
+			var val = f.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2(
+						'equal',
+						author$project$VegaLite$dataValueSpec(val))
+					]));
+		case 1:
+			var field = f.a;
+			var val = f.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2(
+						'lt',
+						author$project$VegaLite$dataValueSpec(val))
+					]));
+		case 2:
+			var field = f.a;
+			var val = f.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2(
+						'lte',
+						author$project$VegaLite$dataValueSpec(val))
+					]));
+		case 3:
+			var field = f.a;
+			var val = f.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2(
+						'gt',
+						author$project$VegaLite$dataValueSpec(val))
+					]));
+		case 4:
+			var field = f.a;
+			var val = f.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2(
+						'gte',
+						author$project$VegaLite$dataValueSpec(val))
+					]));
+		case 7:
+			var selName = f.a;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						elm$json$Json$Encode$string(selName))
+					]));
+		case 9:
+			var field = f.a;
+			var vals = f.b;
+			var values = function () {
+				if (!vals.$) {
+					var mn = vals.a;
+					var mx = vals.b;
+					return A2(
+						elm$json$Json$Encode$list,
+						elm$json$Json$Encode$float,
+						_List_fromArray(
+							[mn, mx]));
+				} else {
+					if (!vals.a.b) {
+						if (!vals.b.b) {
+							return author$project$VegaLite$toList(
+								_List_fromArray(
+									[elm$json$Json$Encode$null, elm$json$Json$Encode$null]));
+						} else {
+							var dMax = vals.b;
+							return author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										elm$json$Json$Encode$null,
+										elm$json$Json$Encode$object(
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMax))
+									]));
+						}
+					} else {
+						if (!vals.b.b) {
+							var dMin = vals.a;
+							return author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										elm$json$Json$Encode$object(
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMin)),
+										elm$json$Json$Encode$null
+									]));
+						} else {
+							var dMin = vals.a;
+							var dMax = vals.b;
+							return A2(
+								elm$json$Json$Encode$list,
+								elm$json$Json$Encode$object,
+								_List_fromArray(
+									[
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMin),
+										A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, dMax)
+									]));
+						}
+					}
+				}
+			}();
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2('range', values)
+					]));
+		case 8:
+			var field = f.a;
+			var vals = f.b;
+			var values = function () {
+				switch (vals.$) {
+					case 2:
+						var xs = vals.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs);
+					case 1:
+						var ds = vals.a;
+						return A2(
+							elm$json$Json$Encode$list,
+							function (d) {
+								return elm$json$Json$Encode$object(
+									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+							},
+							ds);
+					case 3:
+						var ss = vals.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, ss);
+					default:
+						var bs = vals.a;
+						return A2(elm$json$Json$Encode$list, elm$json$Json$Encode$bool, bs);
+				}
+			}();
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2('oneOf', values)
+					]));
+		default:
+			var field = f.a;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'field',
+						elm$json$Json$Encode$string(field)),
+						_Utils_Tuple2(
+						'valid',
+						elm$json$Json$Encode$bool(true))
 					]));
 	}
 };
@@ -8659,19 +8852,17 @@ var author$project$DataTests$data7 = author$project$DataTests$showData(
 	A2(author$project$VegaLite$dataFromUrl, 'data/dataTest.json', _List_Nil));
 var author$project$DataTests$data8 = author$project$DataTests$dataSource('myData1');
 var author$project$DataTests$data9 = author$project$DataTests$dataSource('myData2');
-var author$project$VegaLite$Circle = 5;
-var author$project$VegaLite$circle = author$project$VegaLite$mark(5);
-var author$project$VegaLite$flattenAs = F2(
-	function (fields, names) {
-		return elm$core$List$cons(
-			_Utils_Tuple2(
-				'flattenAs',
-				A2(
-					elm$json$Json$Encode$list,
-					elm$json$Json$Encode$list(elm$json$Json$Encode$string),
-					_List_fromArray(
-						[fields, names]))));
-	});
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$fiExpr = author$project$VegaLite$FExpr;
+var author$project$VegaLite$filter = function (f) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			author$project$VegaLite$filterSpec(f)));
+};
 var author$project$VegaLite$VLTransform = 11;
 var elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -9077,6 +9268,165 @@ var author$project$VegaLite$transform = function (transforms) {
 		11,
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
+var author$project$DataTests$filter1 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			author$project$VegaLite$fiExpr('datum.a == \'A\' || datum.a == \'C\' || datum.a == \'E\'')));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('a'),
+						author$project$VegaLite$pMType(1)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('b'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'a',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'b',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[28, 55, 43, 91, 81, 53, 19, 87, 52]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$FCompose = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$fiCompose = author$project$VegaLite$FCompose;
+var author$project$VegaLite$FEqual = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var author$project$VegaLite$fiEqual = author$project$VegaLite$FEqual;
+var author$project$VegaLite$FilterOp = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$fiOp = author$project$VegaLite$FilterOp;
+var author$project$VegaLite$Or = F2(
+	function (a, b) {
+		return {$: 5, a: a, b: b};
+	});
+var author$project$VegaLite$or = F2(
+	function (op1, op2) {
+		return A2(author$project$VegaLite$Or, op1, op2);
+	});
+var author$project$DataTests$filter2 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			author$project$VegaLite$fiCompose(
+				A2(
+					author$project$VegaLite$or,
+					A2(
+						author$project$VegaLite$or,
+						author$project$VegaLite$fiOp(
+							A2(
+								author$project$VegaLite$fiEqual,
+								'a',
+								author$project$VegaLite$str('A'))),
+						author$project$VegaLite$fiOp(
+							A2(
+								author$project$VegaLite$fiEqual,
+								'a',
+								author$project$VegaLite$str('C')))),
+					author$project$VegaLite$fiOp(
+						A2(
+							author$project$VegaLite$fiEqual,
+							'a',
+							author$project$VegaLite$str('E')))))));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('a'),
+						author$project$VegaLite$pMType(1)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('b'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'a',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'b',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[28, 55, 43, 91, 81, 53, 19, 87, 52]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$Circle = 5;
+var author$project$VegaLite$circle = author$project$VegaLite$mark(5);
+var author$project$VegaLite$flattenAs = F2(
+	function (fields, names) {
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'flattenAs',
+				A2(
+					elm$json$Json$Encode$list,
+					elm$json$Json$Encode$list(elm$json$Json$Encode$string),
+					_List_fromArray(
+						[fields, names]))));
+	});
 var author$project$DataTests$flatten1 = function () {
 	var trans = A2(
 		elm$core$Basics$composeL,
@@ -12037,7 +12387,6 @@ var author$project$DataTests$impute8 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$dataName = F2(
 	function (s, data) {
 		var extract = function (d) {
@@ -12433,9 +12782,11 @@ var author$project$DataTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('sample1', author$project$DataTests$sample1),
 			_Utils_Tuple2('bin1', author$project$DataTests$bin1),
 			_Utils_Tuple2('sequence1', author$project$DataTests$sequence1),
-			_Utils_Tuple2('sequence2', author$project$DataTests$sequence2)
+			_Utils_Tuple2('sequence2', author$project$DataTests$sequence2),
+			_Utils_Tuple2('filter1', author$project$DataTests$filter1),
+			_Utils_Tuple2('filter2', author$project$DataTests$filter2)
 		]));
-var author$project$DataTests$sourceExample = author$project$DataTests$sequence1;
+var author$project$DataTests$sourceExample = author$project$DataTests$filter2;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
