@@ -48,7 +48,7 @@ advanced2 =
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
+                << filter (fiExpr "isValid(datum.IMDB_Rating)")
                 << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageRating" ) ]
                     [ wiFrame Nothing Nothing ]
                 << filter (fiExpr "(datum.IMDB_Rating - datum.AverageRating) > 2.5")
@@ -84,7 +84,7 @@ advanced3 =
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
+                << filter (fiExpr "isValid(datum.IMDB_Rating)")
                 << timeUnitAs year "Release_Date" "year"
                 << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageYearRating" ) ]
                     [ wiGroupBy [ "year" ], wiFrame Nothing Nothing ]
@@ -121,7 +121,7 @@ advanced4 =
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
+                << filter (fiExpr "isValid(datum.IMDB_Rating)")
                 << filter (fiRange "Release_Date" (dtRange [] [ dtYear 2019 ]))
                 << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageRating" ) ]
                     [ wiFrame Nothing Nothing ]
