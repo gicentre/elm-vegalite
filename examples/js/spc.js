@@ -8716,48 +8716,75 @@ var author$project$VegaLite$measurementLabel = function (mType) {
 			return 'geojson';
 	}
 };
-var author$project$VegaLite$operationLabel = function (op) {
-	switch (op) {
+var elm$core$String$length = _String_length;
+var author$project$VegaLite$operationSpec = function (op) {
+	switch (op.$) {
 		case 0:
-			return 'argmax';
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return elm$json$Json$Encode$string('argmax');
+			} else {
+				var f = maybeField.a;
+				return (!elm$core$String$length(
+					elm$core$String$trim(f))) ? elm$json$Json$Encode$string('argmax') : elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmax',
+							elm$json$Json$Encode$string(f))
+						]));
+			}
 		case 1:
-			return 'argmin';
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return elm$json$Json$Encode$string('argmin');
+			} else {
+				var f = maybeField.a;
+				return (!elm$core$String$length(
+					elm$core$String$trim(f))) ? elm$json$Json$Encode$string('argmin') : elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmin',
+							elm$json$Json$Encode$string(f))
+						]));
+			}
 		case 4:
-			return 'count';
+			return elm$json$Json$Encode$string('count');
 		case 2:
-			return 'ci0';
+			return elm$json$Json$Encode$string('ci0');
 		case 3:
-			return 'ci1';
+			return elm$json$Json$Encode$string('ci1');
 		case 5:
-			return 'distinct';
+			return elm$json$Json$Encode$string('distinct');
 		case 6:
-			return 'max';
+			return elm$json$Json$Encode$string('max');
 		case 7:
-			return 'mean';
+			return elm$json$Json$Encode$string('mean');
 		case 8:
-			return 'median';
+			return elm$json$Json$Encode$string('median');
 		case 9:
-			return 'min';
+			return elm$json$Json$Encode$string('min');
 		case 10:
-			return 'missing';
+			return elm$json$Json$Encode$string('missing');
 		case 11:
-			return 'q1';
+			return elm$json$Json$Encode$string('q1');
 		case 12:
-			return 'q3';
+			return elm$json$Json$Encode$string('q3');
 		case 14:
-			return 'stdev';
+			return elm$json$Json$Encode$string('stdev');
 		case 15:
-			return 'stdevp';
+			return elm$json$Json$Encode$string('stdevp');
 		case 16:
-			return 'sum';
+			return elm$json$Json$Encode$string('sum');
 		case 13:
-			return 'stderr';
+			return elm$json$Json$Encode$string('stderr');
 		case 17:
-			return 'valid';
+			return elm$json$Json$Encode$string('valid');
 		case 18:
-			return 'variance';
+			return elm$json$Json$Encode$string('variance');
 		default:
-			return 'variancep';
+			return elm$json$Json$Encode$string('variancep');
 	}
 };
 var author$project$VegaLite$cInterpolateSpec = function (iType) {
@@ -9141,8 +9168,7 @@ var author$project$VegaLite$sortProperty = function (sp) {
 					elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2(
 					'op',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		case 3:
 			var arr = sp.a;
@@ -9161,8 +9187,7 @@ var author$project$VegaLite$sortProperty = function (sp) {
 							]))),
 					_Utils_Tuple2(
 					'op',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		default:
 			var dvs = sp.a;
@@ -9193,8 +9218,7 @@ var author$project$VegaLite$positionChannelProperty = function (pDef) {
 			var op = pDef.a;
 			return _Utils_Tuple2(
 				'aggregate',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$operationLabel(op)));
+				author$project$VegaLite$operationSpec(op));
 		case 8:
 			var tu = pDef.a;
 			return _Utils_Tuple2(
@@ -10147,8 +10171,7 @@ var author$project$VegaLite$opAs = F3(
 				[
 					_Utils_Tuple2(
 					'op',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op))),
+					author$project$VegaLite$operationSpec(op)),
 					_Utils_Tuple2(
 					'field',
 					elm$json$Json$Encode$string(field)),
@@ -10157,10 +10180,10 @@ var author$project$VegaLite$opAs = F3(
 					elm$json$Json$Encode$string(label))
 				]));
 	});
-var author$project$VegaLite$Mean = 7;
-var author$project$VegaLite$opMean = 7;
-var author$project$VegaLite$Stdev = 14;
-var author$project$VegaLite$opStdev = 14;
+var author$project$VegaLite$Mean = {$: 7};
+var author$project$VegaLite$opMean = author$project$VegaLite$Mean;
+var author$project$VegaLite$Stdev = {$: 14};
+var author$project$VegaLite$opStdev = author$project$VegaLite$Stdev;
 var author$project$VegaLite$SDomain = function (a) {
 	return {$: 1, a: a};
 };
@@ -11433,8 +11456,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 				[
 					_Utils_Tuple2(
 					'aggregate',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		case 13:
 			var s = field.a;
@@ -11707,8 +11729,7 @@ var author$project$VegaLite$detailChannelProperty = function (field) {
 			var op = field.a;
 			return _Utils_Tuple2(
 				'aggregate',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$operationLabel(op)));
+				author$project$VegaLite$operationSpec(op));
 	}
 };
 var author$project$VegaLite$detail = function (detailProps) {
@@ -12108,7 +12129,6 @@ var elm$core$Task$perform = F2(
 		return elm$core$Task$command(
 			A2(elm$core$Task$map, toMessage, task));
 	});
-var elm$core$String$length = _String_length;
 var elm$core$String$dropLeft = F2(
 	function (n, string) {
 		return (n < 1) ? string : A3(

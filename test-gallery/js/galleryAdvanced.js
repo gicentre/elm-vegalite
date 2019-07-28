@@ -3899,8 +3899,8 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$Sum = 16;
-var author$project$VegaLite$opSum = 16;
+var author$project$VegaLite$Sum = {$: 16};
+var author$project$VegaLite$opSum = author$project$VegaLite$Sum;
 var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
@@ -4474,48 +4474,75 @@ var author$project$VegaLite$measurementLabel = function (mType) {
 			return 'geojson';
 	}
 };
-var author$project$VegaLite$operationLabel = function (op) {
-	switch (op) {
+var elm$core$String$length = _String_length;
+var author$project$VegaLite$operationSpec = function (op) {
+	switch (op.$) {
 		case 0:
-			return 'argmax';
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return elm$json$Json$Encode$string('argmax');
+			} else {
+				var f = maybeField.a;
+				return (!elm$core$String$length(
+					elm$core$String$trim(f))) ? elm$json$Json$Encode$string('argmax') : elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmax',
+							elm$json$Json$Encode$string(f))
+						]));
+			}
 		case 1:
-			return 'argmin';
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return elm$json$Json$Encode$string('argmin');
+			} else {
+				var f = maybeField.a;
+				return (!elm$core$String$length(
+					elm$core$String$trim(f))) ? elm$json$Json$Encode$string('argmin') : elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmin',
+							elm$json$Json$Encode$string(f))
+						]));
+			}
 		case 4:
-			return 'count';
+			return elm$json$Json$Encode$string('count');
 		case 2:
-			return 'ci0';
+			return elm$json$Json$Encode$string('ci0');
 		case 3:
-			return 'ci1';
+			return elm$json$Json$Encode$string('ci1');
 		case 5:
-			return 'distinct';
+			return elm$json$Json$Encode$string('distinct');
 		case 6:
-			return 'max';
+			return elm$json$Json$Encode$string('max');
 		case 7:
-			return 'mean';
+			return elm$json$Json$Encode$string('mean');
 		case 8:
-			return 'median';
+			return elm$json$Json$Encode$string('median');
 		case 9:
-			return 'min';
+			return elm$json$Json$Encode$string('min');
 		case 10:
-			return 'missing';
+			return elm$json$Json$Encode$string('missing');
 		case 11:
-			return 'q1';
+			return elm$json$Json$Encode$string('q1');
 		case 12:
-			return 'q3';
+			return elm$json$Json$Encode$string('q3');
 		case 14:
-			return 'stdev';
+			return elm$json$Json$Encode$string('stdev');
 		case 15:
-			return 'stdevp';
+			return elm$json$Json$Encode$string('stdevp');
 		case 16:
-			return 'sum';
+			return elm$json$Json$Encode$string('sum');
 		case 13:
-			return 'stderr';
+			return elm$json$Json$Encode$string('stderr');
 		case 17:
-			return 'valid';
+			return elm$json$Json$Encode$string('valid');
 		case 18:
-			return 'variance';
+			return elm$json$Json$Encode$string('variance');
 		default:
-			return 'variancep';
+			return elm$json$Json$Encode$string('variancep');
 	}
 };
 var author$project$VegaLite$cInterpolateSpec = function (iType) {
@@ -4969,8 +4996,7 @@ var author$project$VegaLite$sortProperty = function (sp) {
 					elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2(
 					'op',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		case 3:
 			var arr = sp.a;
@@ -4989,8 +5015,7 @@ var author$project$VegaLite$sortProperty = function (sp) {
 							]))),
 					_Utils_Tuple2(
 					'op',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		default:
 			var dvs = sp.a;
@@ -5038,8 +5063,7 @@ var author$project$VegaLite$positionChannelProperty = function (pDef) {
 			var op = pDef.a;
 			return _Utils_Tuple2(
 				'aggregate',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$operationLabel(op)));
+				author$project$VegaLite$operationSpec(op));
 		case 8:
 			var tu = pDef.a;
 			return _Utils_Tuple2(
@@ -5759,8 +5783,7 @@ var author$project$VegaLite$windowFieldProperty = function (w) {
 			var op = w.a;
 			return _Utils_Tuple2(
 				'op',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$operationLabel(op)));
+				author$project$VegaLite$operationSpec(op));
 		case 1:
 			var op = w.a;
 			return _Utils_Tuple2(
@@ -6329,8 +6352,8 @@ var author$project$VegaLite$MColor = function (a) {
 	return {$: 8, a: a};
 };
 var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
-var author$project$VegaLite$Mean = 7;
-var author$project$VegaLite$opMean = 7;
+var author$project$VegaLite$Mean = {$: 7};
+var author$project$VegaLite$opMean = author$project$VegaLite$Mean;
 var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
@@ -6919,8 +6942,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 				[
 					_Utils_Tuple2(
 					'aggregate',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		case 13:
 			var s = field.a;
@@ -7665,8 +7687,7 @@ var author$project$VegaLite$textChannelProperty = function (tDef) {
 				[
 					_Utils_Tuple2(
 					'aggregate',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op)))
+					author$project$VegaLite$operationSpec(op))
 				]);
 		case 6:
 			var tu = tDef.a;
@@ -10028,8 +10049,7 @@ var author$project$VegaLite$detailChannelProperty = function (field) {
 			var op = field.a;
 			return _Utils_Tuple2(
 				'aggregate',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$operationLabel(op)));
+				author$project$VegaLite$operationSpec(op));
 	}
 };
 var author$project$VegaLite$detail = function (detailProps) {
@@ -10091,8 +10111,7 @@ var author$project$VegaLite$opAs = F3(
 				[
 					_Utils_Tuple2(
 					'op',
-					elm$json$Json$Encode$string(
-						author$project$VegaLite$operationLabel(op))),
+					author$project$VegaLite$operationSpec(op)),
 					_Utils_Tuple2(
 					'field',
 					elm$json$Json$Encode$string(field)),
@@ -10101,12 +10120,12 @@ var author$project$VegaLite$opAs = F3(
 					elm$json$Json$Encode$string(label))
 				]));
 	});
-var author$project$VegaLite$Count = 4;
-var author$project$VegaLite$opCount = 4;
-var author$project$VegaLite$Max = 6;
-var author$project$VegaLite$opMax = 6;
-var author$project$VegaLite$Min = 9;
-var author$project$VegaLite$opMin = 9;
+var author$project$VegaLite$Count = {$: 4};
+var author$project$VegaLite$opCount = author$project$VegaLite$Count;
+var author$project$VegaLite$Max = {$: 6};
+var author$project$VegaLite$opMax = author$project$VegaLite$Max;
+var author$project$VegaLite$Min = {$: 9};
+var author$project$VegaLite$opMin = author$project$VegaLite$Min;
 var author$project$VegaLite$PHeight = {$: 2};
 var author$project$VegaLite$pHeight = author$project$VegaLite$PHeight;
 var author$project$VegaLite$PNumber = function (a) {
@@ -10459,6 +10478,46 @@ var author$project$GalleryAdvanced$advanced8 = function () {
 					[specLine, specAxis, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot]))
 			]));
 }();
+var author$project$VegaLite$ArgMax = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$opArgMax = author$project$VegaLite$ArgMax;
+var author$project$GalleryAdvanced$advanced9 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('Production_Budget'),
+						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pAggregate(
+						author$project$VegaLite$opArgMax(
+							elm$core$Maybe$Just('US_Gross')))
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('Major_Genre'),
+					author$project$VegaLite$pMType(0)
+				])));
+	var desc = author$project$VegaLite$description('Production budget of the film with highest US Gross in each major genre.');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -10472,7 +10531,8 @@ var author$project$GalleryAdvanced$mySpecs = author$project$VegaLite$combineSpec
 			_Utils_Tuple2('advanced5', author$project$GalleryAdvanced$advanced5),
 			_Utils_Tuple2('advanced6', author$project$GalleryAdvanced$advanced6),
 			_Utils_Tuple2('advanced7', author$project$GalleryAdvanced$advanced7),
-			_Utils_Tuple2('advanced8', author$project$GalleryAdvanced$advanced8)
+			_Utils_Tuple2('advanced8', author$project$GalleryAdvanced$advanced8),
+			_Utils_Tuple2('advanced9', author$project$GalleryAdvanced$advanced9)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
