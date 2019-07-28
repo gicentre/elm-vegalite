@@ -463,9 +463,56 @@ sequence2 =
     toVegaLite [ data, trans [], enc [], line [] ]
 
 
+filter1 : Spec
+filter1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        trans =
+            transform
+                << filter (fiExpr "datum.a == 'A' || datum.a == 'C' || datum.a == 'E'")
+
+        enc =
+            encoding
+                << position X [ pName "a", pMType Ordinal ]
+                << position Y [ pName "b", pMType Quantitative ]
+    in
+    toVegaLite [ data [], trans [], enc [], bar [] ]
+
+
+filter2 : Spec
+filter2 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        trans =
+            transform
+                << filter
+                    (or
+                        (or (fiEqual "a" (str "A") |> fiOp)
+                            (fiEqual "a" (str "C") |> fiOp)
+                        )
+                        (fiEqual "a" (str "E") |> fiOp)
+                        |> fiCompose
+                    )
+
+        enc =
+            encoding
+                << position X [ pName "a", pMType Ordinal ]
+                << position Y [ pName "b", pMType Quantitative ]
+    in
+    toVegaLite [ data [], trans [], enc [], bar [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    sequence1
+    filter2
 
 
 
@@ -505,6 +552,8 @@ mySpecs =
         , ( "bin1", bin1 )
         , ( "sequence1", sequence1 )
         , ( "sequence2", sequence2 )
+        , ( "filter1", filter1 )
+        , ( "filter2", filter2 )
         ]
 
 

@@ -63,6 +63,19 @@ table3 =
         des =
             description "'Binned heatmap' comparing movie ratings."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+
+        trans =
+            transform
+                << filter
+                    (fiCompose
+                        (and
+                            (fiValid "IMDB_Rating" |> fiOp)
+                            (fiValid "Rotten_Tomatoes_Rating" |> fiOp)
+                        )
+                    )
+
         enc =
             encoding
                 << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [ biMaxBins 60 ] ]
@@ -78,7 +91,8 @@ table3 =
         [ des
         , width 300
         , height 200
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+        , data []
+        , trans []
         , rect []
         , enc []
         , config []
