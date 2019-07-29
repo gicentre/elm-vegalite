@@ -217,7 +217,7 @@ advanced6 =
         enc1 =
             encoding
                 << position Y [ pName "previous_sum", pMType Quantitative, pTitle "Amount" ]
-                << position Y2 [ pName "sum", pMType Quantitative ]
+                << position Y2 [ pName "sum" ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.label === 'Begin' || datum.label === 'End'", [ mStr "#f7e0b6" ] )
@@ -231,7 +231,7 @@ advanced6 =
 
         enc2 =
             encoding
-                << position X2 [ pName "lead", pMType Ordinal ]
+                << position X2 [ pName "lead" ]
                 << position Y [ pName "sum", pMType Quantitative ]
 
         spec2 =
@@ -363,10 +363,10 @@ advanced8 =
                 << color [ mName "species", mMType Nominal ]
                 << detail [ dName "index", dMType Nominal ]
                 << tooltips
-                    [ [ tName "petalLength" ]
-                    , [ tName "petalWidth" ]
-                    , [ tName "sepalLength" ]
-                    , [ tName "sepalWidth" ]
+                    [ [ tName "petalLength", tMType Quantitative ]
+                    , [ tName "petalWidth", tMType Quantitative ]
+                    , [ tName "sepalLength", tMType Quantitative ]
+                    , [ tName "sepalWidth", tMType Quantitative ]
                     ]
 
         specLine =
