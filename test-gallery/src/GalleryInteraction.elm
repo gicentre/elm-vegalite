@@ -415,6 +415,93 @@ interaction10 =
         ]
 
 
+interaction11 : Spec
+interaction11 =
+    let
+        desc =
+            description "Drag a rectangular brush to show (first 20) selected points in a table."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        trans =
+            transform
+                << window [ ( [ wiOp woRowNumber ], "rowNumber" ) ] []
+
+        sel =
+            selection
+                << select "brush" seInterval []
+
+        encPoint =
+            encoding
+                << position X [ pName "Horsepower", pMType Quantitative ]
+                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << color
+                    [ mSelectionCondition (selectionName "brush")
+                        [ mName "Cylinders", mMType Ordinal ]
+                        [ mStr "grey" ]
+                    ]
+
+        specPoint =
+            asSpec [ sel [], point [], encPoint [] ]
+
+        tableTrans =
+            transform
+                << filter (fiSelection "brush")
+                << window [ ( [ wiOp woRank ], "rank" ) ] []
+                << filter (fiLessThan "rank" (num 20))
+
+        encHPText =
+            encoding
+                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << text [ tName "Horsepower", tMType Nominal ]
+
+        specHPText =
+            asSpec
+                [ title "Engine power" []
+                , tableTrans []
+                , textMark []
+                , encHPText []
+                ]
+
+        encMPGText =
+            encoding
+                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << text [ tName "Miles_per_Gallon", tMType Nominal ]
+
+        specMPGText =
+            asSpec
+                [ title "Efficiency (mpg)" []
+                , tableTrans []
+                , textMark []
+                , encMPGText []
+                ]
+
+        encOriginText =
+            encoding
+                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << text [ tName "Origin", tMType Nominal ]
+
+        specOriginText =
+            asSpec
+                [ title "Country of origin" []
+                , tableTrans []
+                , textMark []
+                , encOriginText []
+                ]
+
+        res =
+            resolve
+                << resolution (reLegend [ ( chColor, reIndependent ) ])
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+    in
+    toVegaLite
+        [ cfg [], data [], trans [], res [], hConcat [ specPoint, specHPText, specMPGText, specOriginText ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -432,6 +519,7 @@ mySpecs =
         , ( "interaction8", interaction8 )
         , ( "interaction9", interaction9 )
         , ( "interaction10", interaction10 )
+        , ( "interaction11", interaction11 )
         ]
 
 
