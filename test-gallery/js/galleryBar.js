@@ -6820,8 +6820,7 @@ var author$project$GalleryBar$bar11 = function () {
 					2,
 					_List_fromArray(
 						[
-							author$project$VegaLite$pName('percentage_end'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pName('percentage_end')
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10446,8 +10445,7 @@ var author$project$GalleryBar$bar8 = function () {
 			2,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('end'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pName('end')
 				])));
 	var des = author$project$VegaLite$description('A simple bar chart with ranged data (aka Gantt Chart).');
 	var data = A2(

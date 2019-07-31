@@ -35,8 +35,12 @@ error1 =
 
         encCIs =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pAggregate opCI0 ]
-                << position X2 [ pName "yield", pMType Quantitative, pAggregate opCI1 ]
+                << position X
+                    [ pName "yield"
+                    , pMType Quantitative
+                    , pAggregate opCI0
+                    ]
+                << position X2 [ pName "yield", pAggregate opCI1 ]
 
         specCIs =
             asSpec [ rule [], encCIs [] ]
@@ -111,11 +115,7 @@ error3 =
                     , pAggregate opCI0
                     , pAxis [ axTitle "Miles/Gallon" ]
                     ]
-                << position Y2
-                    [ pName "Miles_per_Gallon"
-                    , pMType Quantitative
-                    , pAggregate opCI1
-                    ]
+                << position Y2 [ pName "Miles_per_Gallon", pAggregate opCI1 ]
                 << opacity [ mNum 0.3 ]
 
         specBand =
@@ -173,7 +173,7 @@ error4 =
         encRect =
             encoding
                 << position Y [ pName "lower", pMType Quantitative ]
-                << position Y2 [ pName "upper", pMType Quantitative ]
+                << position Y2 [ pName "upper" ]
                 << opacity [ mNum 0.2 ]
 
         specRect =

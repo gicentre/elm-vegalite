@@ -212,9 +212,9 @@ area7 =
         enc2 =
             encoding
                 << position X [ pName "nx", pMType Quantitative, pAxis [] ]
-                << position X2 [ pName "nx2", pMType Quantitative ]
+                << position X2 [ pName "nx2" ]
                 << position Y [ pName "ny", pMType Quantitative, pAxis [] ]
-                << position Y2 [ pName "ny2", pMType Quantitative ]
+                << position Y2 [ pName "ny2" ]
                 << color [ mName "Origin", mMType Nominal, mLegend [] ]
                 << opacity [ mName "Cylinders", mMType Quantitative, mLegend [] ]
                 << tooltips

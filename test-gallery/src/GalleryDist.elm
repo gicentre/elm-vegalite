@@ -78,7 +78,7 @@ dist3 =
                     , pScale [ scZero False ]
                     , pAxis [ axTitle "IMDB rating" ]
                     ]
-                << position X2 [ pName "bin_IMDB_Rating_end", pMType Quantitative ]
+                << position X2 [ pName "bin_IMDB_Rating_end" ]
 
         cdEnc =
             encoding
@@ -125,8 +125,12 @@ dist4 =
 
         encLWhisker =
             encoding
-                << position Y [ pName "lowerWhisker", pMType Quantitative, pAxis [ axTitle "Population" ] ]
-                << position Y2 [ pName "lowerBox", pMType Quantitative ]
+                << position Y
+                    [ pName "lowerWhisker"
+                    , pMType Quantitative
+                    , pAxis [ axTitle "Population" ]
+                    ]
+                << position Y2 [ pName "lowerBox" ]
 
         specLWhisker =
             asSpec [ rule [ maStyle [ "boxWhisker" ] ], encLWhisker [] ]
@@ -134,7 +138,7 @@ dist4 =
         encUWhisker =
             encoding
                 << position Y [ pName "upperBox", pMType Quantitative ]
-                << position Y2 [ pName "upperWhisker", pMType Quantitative ]
+                << position Y2 [ pName "upperWhisker" ]
 
         specUWhisker =
             asSpec [ rule [ maStyle [ "boxWhisker" ] ], encUWhisker [] ]
@@ -142,7 +146,7 @@ dist4 =
         encBox =
             encoding
                 << position Y [ pName "lowerBox", pMType Quantitative ]
-                << position Y2 [ pName "upperBox", pMType Quantitative ]
+                << position Y2 [ pName "upperBox" ]
                 << size [ mNum 5 ]
 
         specBox =
@@ -190,7 +194,7 @@ dist5 =
         encLWhisker =
             encoding
                 << position Y [ pName "lowerWhisker", pMType Quantitative, pAxis [ axTitle "Population" ] ]
-                << position Y2 [ pName "lowerBox", pMType Quantitative ]
+                << position Y2 [ pName "lowerBox" ]
 
         specLWhisker =
             asSpec [ rule [ maStyle [ "boxWhisker" ] ], encLWhisker [] ]
@@ -198,7 +202,7 @@ dist5 =
         encUWhisker =
             encoding
                 << position Y [ pName "upperBox", pMType Quantitative ]
-                << position Y2 [ pName "upperWhisker", pMType Quantitative ]
+                << position Y2 [ pName "upperWhisker" ]
 
         specUWhisker =
             asSpec
@@ -207,7 +211,7 @@ dist5 =
         encBox =
             encoding
                 << position Y [ pName "lowerBox", pMType Quantitative ]
-                << position Y2 [ pName "upperBox", pMType Quantitative ]
+                << position Y2 [ pName "upperBox" ]
                 << size [ mNum 5 ]
 
         specBox =

@@ -7964,8 +7964,7 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 				2,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('lead'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pName('lead')
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8010,8 +8009,7 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 				3,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('sum'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pName('sum')
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10240,19 +10238,23 @@ var author$project$GalleryAdvanced$advanced8 = function () {
 				[
 					_List_fromArray(
 					[
-						author$project$VegaLite$tName('petalLength')
+						author$project$VegaLite$tName('petalLength'),
+						author$project$VegaLite$tMType(2)
 					]),
 					_List_fromArray(
 					[
-						author$project$VegaLite$tName('petalWidth')
+						author$project$VegaLite$tName('petalWidth'),
+						author$project$VegaLite$tMType(2)
 					]),
 					_List_fromArray(
 					[
-						author$project$VegaLite$tName('sepalLength')
+						author$project$VegaLite$tName('sepalLength'),
+						author$project$VegaLite$tMType(2)
 					]),
 					_List_fromArray(
 					[
-						author$project$VegaLite$tName('sepalWidth')
+						author$project$VegaLite$tName('sepalWidth'),
+						author$project$VegaLite$tMType(2)
 					])
 				])));
 	var specLine = author$project$VegaLite$asSpec(

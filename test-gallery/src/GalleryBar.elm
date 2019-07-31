@@ -201,7 +201,7 @@ bar8 =
             encoding
                 << position Y [ pName "task", pMType Ordinal ]
                 << position X [ pName "start", pMType Quantitative ]
-                << position X2 [ pName "end", pMType Quantitative ]
+                << position X2 [ pName "end" ]
     in
     toVegaLite [ des, data [], bar [], enc [] ]
 
@@ -270,9 +270,17 @@ bar11 =
 
         enc =
             encoding
-                << position X [ pName "percentage_start", pMType Quantitative, pAxis [ axTitle "Percentage" ] ]
-                << position X2 [ pName "percentage_end", pMType Quantitative ]
-                << position Y [ pName "question", pMType Nominal, pAxis [ axTitle "Question", axOffset 5, axTicks False, axMinExtent 60, axDomain False ] ]
+                << position X
+                    [ pName "percentage_start"
+                    , pMType Quantitative
+                    , pAxis [ axTitle "Percentage" ]
+                    ]
+                << position X2 [ pName "percentage_end" ]
+                << position Y
+                    [ pName "question"
+                    , pMType Nominal
+                    , pAxis [ axTitle "Question", axOffset 5, axTicks False, axMinExtent 60, axDomain False ]
+                    ]
                 << color
                     [ mName "type"
                     , mMType Nominal

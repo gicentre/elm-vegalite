@@ -6361,8 +6361,7 @@ var author$project$GalleryDist$dist3 = function () {
 			2,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('bin_IMDB_Rating_end'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pName('bin_IMDB_Rating_end')
 				])));
 	var des = author$project$VegaLite$description('A layered histogram and cumulative histogram.');
 	var dEnc = A2(
@@ -7014,8 +7013,7 @@ var author$project$GalleryDist$dist4 = function () {
 			3,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('upperWhisker'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pName('upperWhisker')
 				])));
 	var specUWhisker = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7052,8 +7050,7 @@ var author$project$GalleryDist$dist4 = function () {
 			3,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('lowerBox'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pName('lowerBox')
 				])));
 	var specLWhisker = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7124,8 +7121,7 @@ var author$project$GalleryDist$dist4 = function () {
 				3,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('upperBox'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pName('upperBox')
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(
@@ -7221,8 +7217,7 @@ var author$project$GalleryDist$dist5 = function () {
 			3,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('upperWhisker'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pName('upperWhisker')
 				])));
 	var specUWhisker = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7259,8 +7254,7 @@ var author$project$GalleryDist$dist5 = function () {
 			3,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('lowerBox'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pName('lowerBox')
 				])));
 	var specLWhisker = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7331,8 +7325,7 @@ var author$project$GalleryDist$dist5 = function () {
 				3,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('upperBox'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pName('upperBox')
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(

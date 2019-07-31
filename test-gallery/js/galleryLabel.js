@@ -8992,7 +8992,11 @@ var author$project$GalleryLabel$label3 = function () {
 					author$project$VegaLite$aggregate,
 					_List_fromArray(
 						[
-							A3(author$project$VegaLite$opAs, author$project$VegaLite$opArgMin, 'scaled_date', 'aggregated')
+							A3(
+							author$project$VegaLite$opAs,
+							author$project$VegaLite$opArgMin(elm$core$Maybe$Nothing),
+							'scaled_date',
+							'aggregated')
 						]),
 					_List_fromArray(
 						['decade']))),
@@ -9009,7 +9013,11 @@ var author$project$GalleryLabel$label3 = function () {
 					author$project$VegaLite$aggregate,
 					_List_fromArray(
 						[
-							A3(author$project$VegaLite$opAs, author$project$VegaLite$opArgMax, 'scaled_date', 'aggregated')
+							A3(
+							author$project$VegaLite$opAs,
+							author$project$VegaLite$opArgMax(elm$core$Maybe$Nothing),
+							'scaled_date',
+							'aggregated')
 						]),
 					_List_fromArray(
 						['decade']))),
@@ -9297,8 +9305,7 @@ var author$project$GalleryLabel$label4 = function () {
 				3,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('Value'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pName('Value')
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -9692,9 +9699,7 @@ var author$project$GalleryLabel$label7 = function () {
 				2,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('end'),
-						author$project$VegaLite$pMType(3),
-						author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
+						author$project$VegaLite$pName('end')
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(

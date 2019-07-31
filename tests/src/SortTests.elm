@@ -88,9 +88,9 @@ stack1 =
         enc =
             encoding
                 << position X [ pName "x", pMType Quantitative, pAxis [] ]
-                << position X2 [ pName "x2", pMType Quantitative ]
+                << position X2 [ pName "x2" ]
                 << position Y [ pName "y", pMType Quantitative, pAxis [] ]
-                << position Y2 [ pName "y2", pMType Quantitative ]
+                << position Y2 [ pName "y2" ]
                 << color [ mName "Origin", mMType Nominal ]
                 << opacity [ mName "Cylinders", mMType Quantitative, mLegend [] ]
                 << tooltips

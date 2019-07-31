@@ -9879,8 +9879,7 @@ var author$project$GalleryArea$area7 = function () {
 								2,
 								_List_fromArray(
 									[
-										author$project$VegaLite$pName('nx2'),
-										author$project$VegaLite$pMType(2)
+										author$project$VegaLite$pName('nx2')
 									]))),
 						A2(
 							author$project$VegaLite$position,
@@ -9896,8 +9895,7 @@ var author$project$GalleryArea$area7 = function () {
 						3,
 						_List_fromArray(
 							[
-								author$project$VegaLite$pName('ny2'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pName('ny2')
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(

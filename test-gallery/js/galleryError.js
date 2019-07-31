@@ -6092,7 +6092,6 @@ var author$project$GalleryError$error1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('yield'),
-					author$project$VegaLite$pMType(2),
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCI1)
 				])));
 	var specCIs = author$project$VegaLite$asSpec(
@@ -6750,7 +6749,6 @@ var author$project$GalleryError$error3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2),
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCI1)
 					]))),
 		author$project$VegaLite$opacity(
@@ -6816,8 +6814,7 @@ var author$project$GalleryError$error4 = function () {
 				3,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('upper'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pName('upper')
 					]))),
 		author$project$VegaLite$opacity(
 			_List_fromArray(

@@ -114,7 +114,7 @@ label3 =
 
         transTextMin =
             transform
-                << aggregate [ opAs opArgMin "scaled_date" "aggregated" ] [ "decade" ]
+                << aggregate [ opAs (opArgMin Nothing) "scaled_date" "aggregated" ] [ "decade" ]
                 << calculateAs "datum.aggregated.scaled_date" "scaled_date"
                 << calculateAs "datum.aggregated.CO2" "CO2"
 
@@ -127,7 +127,7 @@ label3 =
 
         transTextMax =
             transform
-                << aggregate [ opAs opArgMax "scaled_date" "aggregated" ] [ "decade" ]
+                << aggregate [ opAs (opArgMax Nothing) "scaled_date" "aggregated" ] [ "decade" ]
                 << calculateAs "datum.aggregated.scaled_date" "scaled_date"
                 << calculateAs "datum.aggregated.CO2" "CO2"
 
@@ -181,7 +181,7 @@ label4 =
             encoding
                 << position X [ pName "Day", pMType Ordinal, pAxis [ axLabelAngle 0 ] ]
                 << position Y [ pName "baseline", pMType Quantitative ]
-                << position Y2 [ pName "Value", pMType Quantitative ]
+                << position Y2 [ pName "Value" ]
                 << color [ mStr "#e45755" ]
 
         specUpperBar =
@@ -296,7 +296,7 @@ label7 =
         encRects =
             encoding
                 << position X [ pName "start", pMType Temporal, pTimeUnit year, pAxis [] ]
-                << position X2 [ pName "end", pMType Temporal, pTimeUnit year ]
+                << position X2 [ pName "end" ]
                 << color [ mName "event", mMType Nominal ]
 
         specRects =

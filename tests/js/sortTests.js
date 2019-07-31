@@ -9362,8 +9362,7 @@ var author$project$SortTests$stack1 = function () {
 								2,
 								_List_fromArray(
 									[
-										author$project$VegaLite$pName('x2'),
-										author$project$VegaLite$pMType(2)
+										author$project$VegaLite$pName('x2')
 									]))),
 						A2(
 							author$project$VegaLite$position,
@@ -9379,8 +9378,7 @@ var author$project$SortTests$stack1 = function () {
 						3,
 						_List_fromArray(
 							[
-								author$project$VegaLite$pName('y2'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pName('y2')
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
