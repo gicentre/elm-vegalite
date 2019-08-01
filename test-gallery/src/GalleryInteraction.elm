@@ -499,7 +499,95 @@ interaction11 =
                 << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
-        [ cfg [], data [], trans [], res [], hConcat [ specPoint, specHPText, specMPGText, specOriginText ] ]
+        [ cfg []
+        , data []
+        , trans []
+        , res []
+        , hConcat [ specPoint, specHPText, specMPGText, specOriginText ]
+        ]
+
+
+interaction12 : Spec
+interaction12 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "actual" (strs [ "A", "A", "A", "B", "B", "B", "C", "C", "C" ])
+                << dataColumn "predicted" (strs [ "A", "B", "C", "A", "B", "C", "A", "B", "C" ])
+                << dataColumn "count" (nums [ 13, 0, 0, 0, 10, 6, 0, 0, 9 ])
+
+        sel =
+            selection
+                << select "highlight" seSingle []
+
+        cfg =
+            configure
+                << configuration
+                    (coScale
+                        [ sacoBandPaddingInner 0
+                        , sacoBandPaddingOuter 0
+                        , sacoRangeStep (Just 40)
+                        ]
+                    )
+                << configuration (coRange [ racoRamp "yellowgreenblue" ])
+
+        enc =
+            encoding
+                << position X [ pName "predicted", pMType Nominal ]
+                << position Y [ pName "actual", pMType Nominal ]
+                << color [ mName "count", mMType Quantitative ]
+                << opacity
+                    [ mSelectionCondition (selectionName "highlight")
+                        [ mNum 1 ]
+                        [ mNum 0.5 ]
+                    ]
+    in
+    toVegaLite [ cfg [], data [], sel [], enc [], bar [] ]
+
+
+interaction13 : Spec
+interaction13 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+
+        sel =
+            selection
+                << select "brush" seInterval [ seEncodings [ chY ] ]
+
+        encMain =
+            encoding
+                << position Y
+                    [ pName "Name"
+                    , pMType Nominal
+                    , pScale [ scDomain (doSelection "brush") ]
+                    , pAxis [ axMinExtent 200, axTitle "" ]
+                    , pSort [ soByChannel chX, soDescending ]
+                    ]
+                << position X
+                    [ pAggregate opCount
+                    , pMType Quantitative
+                    , pScale [ scDomain (doNums [ 0, 6 ]) ]
+                    , pAxis [ axOrient siTop ]
+                    ]
+
+        specMain =
+            asSpec [ encMain [], bar [] ]
+
+        encMini =
+            encoding
+                << position Y
+                    [ pName "Name"
+                    , pMType Nominal
+                    , pSort [ soByChannel chX, soDescending ]
+                    , pAxis []
+                    ]
+                << position X [ pAggregate opCount, pMType Quantitative, pAxis [] ]
+
+        specMini =
+            asSpec [ width 50, height 200, sel [], encMini [], bar [] ]
+    in
+    toVegaLite [ data [], hConcat [ specMain, specMini ] ]
 
 
 
@@ -520,6 +608,8 @@ mySpecs =
         , ( "interaction9", interaction9 )
         , ( "interaction10", interaction10 )
         , ( "interaction11", interaction11 )
+        , ( "interaction12", interaction12 )
+        , ( "interaction13", interaction13 )
         ]
 
 

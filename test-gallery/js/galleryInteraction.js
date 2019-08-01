@@ -9582,6 +9582,321 @@ var author$project$GalleryInteraction$interaction11 = function () {
 					[specPoint, specHPText, specMPGText, specOriginText]))
 			]));
 }();
+var author$project$VegaLite$Range = function (a) {
+	return {$: 28, a: a};
+};
+var author$project$VegaLite$coRange = author$project$VegaLite$Range;
+var author$project$VegaLite$opacity = function (markProps) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'opacity',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
+};
+var author$project$VegaLite$RRamp = function (a) {
+	return {$: 4, a: a};
+};
+var author$project$VegaLite$racoRamp = author$project$VegaLite$RRamp;
+var author$project$VegaLite$SCBandPaddingOuter = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$sacoBandPaddingOuter = author$project$VegaLite$SCBandPaddingOuter;
+var author$project$VegaLite$SCRangeStep = function (a) {
+	return {$: 18, a: a};
+};
+var author$project$VegaLite$sacoRangeStep = author$project$VegaLite$SCRangeStep;
+var author$project$GalleryInteraction$interaction12 = function () {
+	var sel = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$selection,
+		A3(author$project$VegaLite$select, 'highlight', author$project$VegaLite$seSingle, _List_Nil));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$encoding,
+					A2(
+						author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								author$project$VegaLite$pName('predicted'),
+								author$project$VegaLite$pMType(0)
+							]))),
+				A2(
+					author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('actual'),
+							author$project$VegaLite$pMType(0)
+						]))),
+			author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						author$project$VegaLite$mName('count'),
+						author$project$VegaLite$mMType(2)
+					]))),
+		author$project$VegaLite$opacity(
+			_List_fromArray(
+				[
+					A3(
+					author$project$VegaLite$mSelectionCondition,
+					author$project$VegaLite$selectionName('highlight'),
+					_List_fromArray(
+						[
+							author$project$VegaLite$mNum(1)
+						]),
+					_List_fromArray(
+						[
+							author$project$VegaLite$mNum(0.5)
+						]))
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					author$project$VegaLite$dataColumn,
+					'actual',
+					author$project$VegaLite$strs(
+						_List_fromArray(
+							['A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C'])))),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'predicted',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'count',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[13, 0, 0, 0, 10, 6, 0, 0, 9]))));
+	var cfg = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$configure,
+			author$project$VegaLite$configuration(
+				author$project$VegaLite$coScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$sacoBandPaddingInner(0),
+							author$project$VegaLite$sacoBandPaddingOuter(0),
+							author$project$VegaLite$sacoRangeStep(
+							elm$core$Maybe$Just(40))
+						])))),
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coRange(
+				_List_fromArray(
+					[
+						author$project$VegaLite$racoRamp('yellowgreenblue')
+					]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data(_List_Nil),
+				sel(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var author$project$VegaLite$AxMinExtent = function (a) {
+	return {$: 25, a: a};
+};
+var author$project$VegaLite$axMinExtent = author$project$VegaLite$AxMinExtent;
+var author$project$VegaLite$AxOrient = function (a) {
+	return {$: 27, a: a};
+};
+var author$project$VegaLite$axOrient = author$project$VegaLite$AxOrient;
+var author$project$VegaLite$AxTitle = function (a) {
+	return {$: 39, a: a};
+};
+var author$project$VegaLite$axTitle = author$project$VegaLite$AxTitle;
+var author$project$VegaLite$ChX = 0;
+var author$project$VegaLite$chX = 0;
+var author$project$VegaLite$ChY = 1;
+var author$project$VegaLite$chY = 1;
+var author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$doNums = author$project$VegaLite$DNumbers;
+var author$project$VegaLite$DSelection = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$doSelection = author$project$VegaLite$DSelection;
+var author$project$VegaLite$VLHeight = 4;
+var author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		elm$json$Json$Encode$float(h));
+};
+var author$project$VegaLite$Count = {$: 4};
+var author$project$VegaLite$opCount = author$project$VegaLite$Count;
+var author$project$VegaLite$PAggregate = function (a) {
+	return {$: 10, a: a};
+};
+var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
+var author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$PSort = function (a) {
+	return {$: 13, a: a};
+};
+var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
+var author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$scDomain = author$project$VegaLite$SDomain;
+var author$project$VegaLite$Encodings = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$seEncodings = author$project$VegaLite$Encodings;
+var author$project$VegaLite$STop = 0;
+var author$project$VegaLite$siTop = 0;
+var author$project$VegaLite$ByChannel = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$soByChannel = author$project$VegaLite$ByChannel;
+var author$project$VegaLite$Descending = {$: 1};
+var author$project$VegaLite$soDescending = author$project$VegaLite$Descending;
+var author$project$VegaLite$VLWidth = 3;
+var author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		elm$json$Json$Encode$float(w));
+};
+var author$project$GalleryInteraction$interaction13 = function () {
+	var sel = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$selection,
+		A3(
+			author$project$VegaLite$select,
+			'brush',
+			author$project$VegaLite$seInterval,
+			_List_fromArray(
+				[
+					author$project$VegaLite$seEncodings(
+					_List_fromArray(
+						[author$project$VegaLite$chY]))
+				])));
+	var encMini = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('Name'),
+						author$project$VegaLite$pMType(0),
+						author$project$VegaLite$pSort(
+						_List_fromArray(
+							[
+								author$project$VegaLite$soByChannel(author$project$VegaLite$chX),
+								author$project$VegaLite$soDescending
+							])),
+						author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pAxis(_List_Nil)
+				])));
+	var specMini = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(50),
+				author$project$VegaLite$height(200),
+				sel(_List_Nil),
+				encMini(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+	var encMain = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('Name'),
+						author$project$VegaLite$pMType(0),
+						author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$scDomain(
+								author$project$VegaLite$doSelection('brush'))
+							])),
+						author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								author$project$VegaLite$axMinExtent(200),
+								author$project$VegaLite$axTitle('')
+							])),
+						author$project$VegaLite$pSort(
+						_List_fromArray(
+							[
+								author$project$VegaLite$soByChannel(author$project$VegaLite$chX),
+								author$project$VegaLite$soDescending
+							]))
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$scDomain(
+							author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 6])))
+						])),
+					author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							author$project$VegaLite$axOrient(author$project$VegaLite$siTop)
+						]))
+				])));
+	var specMain = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encMain(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[specMain, specMini]))
+			]));
+}();
 var author$project$VegaLite$calculateAs = F2(
 	function (ex, label) {
 		return elm$core$List$cons(
@@ -9840,18 +10155,8 @@ var author$project$GalleryInteraction$interaction3 = function () {
 }();
 var author$project$VegaLite$Area = 0;
 var author$project$VegaLite$area = author$project$VegaLite$mark(0);
-var author$project$VegaLite$ChX = 0;
-var author$project$VegaLite$chX = 0;
 var author$project$VegaLite$Sum = {$: 16};
 var author$project$VegaLite$opSum = author$project$VegaLite$Sum;
-var author$project$VegaLite$PAggregate = function (a) {
-	return {$: 10, a: a};
-};
-var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
-var author$project$VegaLite$Encodings = function (a) {
-	return {$: 7, a: a};
-};
-var author$project$VegaLite$seEncodings = author$project$VegaLite$Encodings;
 var author$project$VegaLite$YearMonth = {$: 3};
 var author$project$VegaLite$yearMonth = author$project$VegaLite$YearMonth;
 var author$project$GalleryInteraction$interaction4 = function () {
@@ -9999,18 +10304,6 @@ var author$project$GalleryInteraction$interaction5 = function () {
 }();
 var author$project$VegaLite$Circle = 5;
 var author$project$VegaLite$circle = author$project$VegaLite$mark(5);
-var author$project$VegaLite$DNumbers = function (a) {
-	return {$: 0, a: a};
-};
-var author$project$VegaLite$doNums = author$project$VegaLite$DNumbers;
-var author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
-var author$project$VegaLite$SDomain = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$scDomain = author$project$VegaLite$SDomain;
 var author$project$VegaLite$BindScales = {$: 1};
 var author$project$VegaLite$seBindScales = author$project$VegaLite$BindScales;
 var author$project$GalleryInteraction$interaction6 = function () {
@@ -10258,13 +10551,6 @@ var author$project$VegaLite$Month = {$: 10};
 var author$project$VegaLite$month = author$project$VegaLite$Month;
 var author$project$VegaLite$Mean = {$: 7};
 var author$project$VegaLite$opMean = author$project$VegaLite$Mean;
-var author$project$VegaLite$opacity = function (markProps) {
-	return elm$core$List$cons(
-		_Utils_Tuple2(
-			'opacity',
-			elm$json$Json$Encode$object(
-				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
-};
 var author$project$GalleryInteraction$interaction8 = function () {
 	var trans = A2(
 		elm$core$Basics$composeL,
@@ -10372,12 +10658,6 @@ var author$project$VegaLite$FoDate = function (a) {
 var author$project$VegaLite$foDate = author$project$VegaLite$FoDate;
 var author$project$VegaLite$AlignLeft = 1;
 var author$project$VegaLite$haLeft = 1;
-var author$project$VegaLite$VLHeight = 4;
-var author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		4,
-		elm$json$Json$Encode$float(h));
-};
 var author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
 };
@@ -10394,12 +10674,6 @@ var author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var author$project$VegaLite$parse = author$project$VegaLite$Parse;
-var author$project$VegaLite$VLWidth = 3;
-var author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		3,
-		elm$json$Json$Encode$float(w));
-};
 var elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -10611,7 +10885,9 @@ var author$project$GalleryInteraction$mySpecs = author$project$VegaLite$combineS
 			_Utils_Tuple2('interaction8', author$project$GalleryInteraction$interaction8),
 			_Utils_Tuple2('interaction9', author$project$GalleryInteraction$interaction9),
 			_Utils_Tuple2('interaction10', author$project$GalleryInteraction$interaction10),
-			_Utils_Tuple2('interaction11', author$project$GalleryInteraction$interaction11)
+			_Utils_Tuple2('interaction11', author$project$GalleryInteraction$interaction11),
+			_Utils_Tuple2('interaction12', author$project$GalleryInteraction$interaction12),
+			_Utils_Tuple2('interaction13', author$project$GalleryInteraction$interaction13)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
