@@ -3421,21 +3421,31 @@ var author$project$VegaLite$markProperty = function (mProp) {
 				'line',
 				author$project$VegaLite$lineMarkerSpec(lm));
 		case 51:
+			var w = mProp.a;
+			return _Utils_Tuple2(
+				'width',
+				elm$json$Json$Encode$float(w));
+		case 52:
+			var h = mProp.a;
+			return _Utils_Tuple2(
+				'height',
+				elm$json$Json$Encode$float(h));
+		case 53:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'x',
 				elm$json$Json$Encode$float(x));
-		case 52:
+		case 54:
 			var y = mProp.a;
 			return _Utils_Tuple2(
 				'y',
 				elm$json$Json$Encode$float(y));
-		case 53:
+		case 55:
 			var x = mProp.a;
 			return _Utils_Tuple2(
 				'x2',
 				elm$json$Json$Encode$float(x));
-		case 54:
+		case 56:
 			var y = mProp.a;
 			return _Utils_Tuple2(
 				'y2',
@@ -3445,17 +3455,17 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'order',
 				elm$json$Json$Encode$bool(b));
-		case 55:
+		case 57:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'xOffset',
 				elm$json$Json$Encode$float(o));
-		case 57:
+		case 59:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'x2Offset',
 				elm$json$Json$Encode$float(o));
-		case 56:
+		case 58:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'yOffset',
