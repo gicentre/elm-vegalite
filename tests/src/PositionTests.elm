@@ -7,40 +7,69 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
-data : List DataColumn -> Data
-data =
+emptyData : List DataColumn -> Data
+emptyData =
     dataFromColumns []
         << dataColumn "empty" (nums [ 0 ])
 
 
+data : List DataColumn -> Data
+data =
+    dataFromColumns []
+        << dataColumn "cat" (nums [ 1, 2, 3, 4, 5 ])
+        << dataColumn "val" (nums [ 10, 20, 30, 20, 10 ])
+
+
 position1 : Spec
 position1 =
-    toVegaLite [ data [], circle [ maX 150, maY 150, maSize 200 ] ]
+    toVegaLite [ emptyData [], circle [ maX 150, maY 150, maSize 200 ] ]
 
 
 position2 : Spec
 position2 =
-    toVegaLite [ data [], bar [ maX 150, maY 150 ] ]
+    toVegaLite [ emptyData [], bar [ maX 150, maY 150 ] ]
 
 
 position3 : Spec
 position3 =
-    toVegaLite [ data [], bar [ maX 150, maY 150, maX2 200 ] ]
+    toVegaLite [ emptyData [], bar [ maX 150, maY 150, maX2 200 ] ]
 
 
 position4 : Spec
 position4 =
-    toVegaLite [ data [], bar [ maX 150, maY 150, maY2 200 ] ]
+    toVegaLite [ emptyData [], bar [ maX 150, maY 150, maY2 200 ] ]
 
 
 position5 : Spec
 position5 =
-    toVegaLite [ data [], bar [ maX 150, maY 150, maX2 200, maY2 200 ] ]
+    toVegaLite [ emptyData [], bar [ maX 150, maY 150, maX2 200, maY2 200 ] ]
+
+
+position6 : Spec
+position6 =
+    let
+        enc =
+            encoding
+                << position X [ pName "cat", pMType Ordinal ]
+                << position Y [ pName "val", pMType Quantitative ]
+    in
+    toVegaLite [ width 300, data [], enc [], bar [ maWidth 20 ] ]
+
+
+position7 : Spec
+position7 =
+    let
+        enc =
+            encoding
+                << position X [ pName "val", pMType Quantitative ]
+                << position Y [ pName "cat", pMType Ordinal ]
+    in
+    toVegaLite [ height 300, data [], enc [], bar [ maHeight 20 ] ]
 
 
 sourceExample : Spec
 sourceExample =
-    position5
+    position7
 
 
 
@@ -55,6 +84,8 @@ mySpecs =
         , ( "position3", position3 )
         , ( "position4", position4 )
         , ( "position5", position5 )
+        , ( "position6", position6 )
+        , ( "position7", position7 )
         ]
 
 

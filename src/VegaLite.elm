@@ -257,6 +257,8 @@ module VegaLite exposing
     , maThickness
     , maTicks
     , maTooltip
+    , maWidth
+    , maHeight
     , maX
     , maY
     , maXOffset
@@ -1556,6 +1558,8 @@ property documentation.
 @docs maThickness
 @docs maTicks
 @docs maTooltip
+@docs maWidth
+@docs maHeight
 @docs maX
 @docs maY
 @docs maXOffset
@@ -3774,8 +3778,9 @@ type MarkOrientation
 [maStrokeMiterLimit](#maStrokeMiterLimit), [maStrokeOpacity](#maStrokeOpacity),
 [maStrokeWidth](#maStrokeWidth), [maStyle](#maStyle), [maTension](#maTension),
 [maText](#maText), [maTheta](#maTheta), [maThickness](#maThickness), [maTicks](#maTicks),
-[maTooltip](#maTooltip), [maX](#maX), [maY](#maY), [maXOffset](#maXOffset), [maYOffset](#maYOffset),
-[maX2](#maX2), [maY2](#maY2), [maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
+[maTooltip](#maTooltip), [maX](#maX), [maWidth](#maWidth), [maHeight](#maHeight),
+[maY](#maY), [maXOffset](#maXOffset), [maYOffset](#maYOffset), [maX2](#maX2),
+[maY2](#maY2), [maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
 -}
 type
     MarkProperty
@@ -3834,6 +3839,8 @@ type
     | MThickness Float
     | MTicks (List MarkProperty)
     | MTooltip TooltipContent
+    | MWidth Float
+    | MHeight Float
     | MX Float
     | MY Float
     | MX2 Float
@@ -9759,6 +9766,13 @@ mAggregate =
     MAggregate
 
 
+{-| Explicitly set the height of a mark.
+-}
+maHeight : Float -> MarkProperty
+maHeight =
+    MHeight
+
+
 {-| Hyperlink to be associated with a mark making it a clickable hyperlink.
 -}
 maHRef : String -> MarkProperty
@@ -9995,6 +10009,13 @@ maTicks =
 maTooltip : TooltipContent -> MarkProperty
 maTooltip =
     MTooltip
+
+
+{-| Explicitly set the width of a mark (e.g. bar width)
+-}
+maWidth : Float -> MarkProperty
+maWidth =
+    MWidth
 
 
 {-| X position of a mark.
@@ -16160,6 +16181,12 @@ markProperty mProp =
 
         MLine lm ->
             ( "line", lineMarkerSpec lm )
+
+        MWidth w ->
+            ( "width", JE.float w )
+
+        MHeight h ->
+            ( "height", JE.float h )
 
         MX x ->
             ( "x", JE.float x )
