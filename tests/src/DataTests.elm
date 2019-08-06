@@ -510,9 +510,31 @@ filter2 =
     toVegaLite [ data [], trans [], enc [], bar [] ]
 
 
+annotate1 : Spec
+annotate1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91, 81 ])
+
+        enc =
+            encoding
+                << position X [ pName "a", pMType Ordinal ]
+                << position Y [ pName "b", pMType Quantitative ]
+
+        specBars =
+            asSpec [ enc [], bar [] ]
+
+        specText =
+            asSpec [ noData, textMark [ maText "Test" ] ]
+    in
+    toVegaLite [ data [], layer [ specBars, specText ] ]
+
+
 sourceExample : Spec
 sourceExample =
-    filter2
+    annotate1
 
 
 
@@ -554,6 +576,7 @@ mySpecs =
         , ( "sequence2", sequence2 )
         , ( "filter1", filter1 )
         , ( "filter2", filter2 )
+        , ( "annotate1", annotate1 )
         ]
 
 

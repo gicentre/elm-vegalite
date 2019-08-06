@@ -13,6 +13,7 @@ module VegaLite exposing
     , datasets
     , dataColumn
     , dataRow
+    , noData
     , Data
     , DataColumn
     , DataRow
@@ -1184,6 +1185,7 @@ Functions and types for declaring the data to the visualized. See the
 @docs datasets
 @docs dataColumn
 @docs dataRow
+@docs noData
 @docs Data
 @docs DataColumn
 @docs DataRow
@@ -10462,6 +10464,13 @@ niYear =
 noClip : ClipRect
 noClip =
     NoClip
+
+
+{-| Ignore the data of a specification's parent when used in a composed spec.
+-}
+noData : Data
+noData =
+    ( VLData, JE.null )
 
 
 {-| Apply a negation Boolean operation as part of a logical composition. Boolean

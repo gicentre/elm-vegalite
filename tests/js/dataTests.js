@@ -80,271 +80,6 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
 
 
 
-var _List_Nil = { $: 0 };
-var _List_Nil_UNUSED = { $: '[]' };
-
-function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
-function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
-
-
-var _List_cons = F2(_List_Cons);
-
-function _List_fromArray(arr)
-{
-	var out = _List_Nil;
-	for (var i = arr.length; i--; )
-	{
-		out = _List_Cons(arr[i], out);
-	}
-	return out;
-}
-
-function _List_toArray(xs)
-{
-	for (var out = []; xs.b; xs = xs.b) // WHILE_CONS
-	{
-		out.push(xs.a);
-	}
-	return out;
-}
-
-var _List_map2 = F3(function(f, xs, ys)
-{
-	for (var arr = []; xs.b && ys.b; xs = xs.b, ys = ys.b) // WHILE_CONSES
-	{
-		arr.push(A2(f, xs.a, ys.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_map3 = F4(function(f, xs, ys, zs)
-{
-	for (var arr = []; xs.b && ys.b && zs.b; xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
-	{
-		arr.push(A3(f, xs.a, ys.a, zs.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_map4 = F5(function(f, ws, xs, ys, zs)
-{
-	for (var arr = []; ws.b && xs.b && ys.b && zs.b; ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
-	{
-		arr.push(A4(f, ws.a, xs.a, ys.a, zs.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_map5 = F6(function(f, vs, ws, xs, ys, zs)
-{
-	for (var arr = []; vs.b && ws.b && xs.b && ys.b && zs.b; vs = vs.b, ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
-	{
-		arr.push(A5(f, vs.a, ws.a, xs.a, ys.a, zs.a));
-	}
-	return _List_fromArray(arr);
-});
-
-var _List_sortBy = F2(function(f, xs)
-{
-	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
-		return _Utils_cmp(f(a), f(b));
-	}));
-});
-
-var _List_sortWith = F2(function(f, xs)
-{
-	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
-		var ord = A2(f, a, b);
-		return ord === elm$core$Basics$EQ ? 0 : ord === elm$core$Basics$LT ? -1 : 1;
-	}));
-});
-
-
-
-// EQUALITY
-
-function _Utils_eq(x, y)
-{
-	for (
-		var pair, stack = [], isEqual = _Utils_eqHelp(x, y, 0, stack);
-		isEqual && (pair = stack.pop());
-		isEqual = _Utils_eqHelp(pair.a, pair.b, 0, stack)
-		)
-	{}
-
-	return isEqual;
-}
-
-function _Utils_eqHelp(x, y, depth, stack)
-{
-	if (depth > 100)
-	{
-		stack.push(_Utils_Tuple2(x,y));
-		return true;
-	}
-
-	if (x === y)
-	{
-		return true;
-	}
-
-	if (typeof x !== 'object' || x === null || y === null)
-	{
-		typeof x === 'function' && _Debug_crash(5);
-		return false;
-	}
-
-	/**_UNUSED/
-	if (x.$ === 'Set_elm_builtin')
-	{
-		x = elm$core$Set$toList(x);
-		y = elm$core$Set$toList(y);
-	}
-	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
-	{
-		x = elm$core$Dict$toList(x);
-		y = elm$core$Dict$toList(y);
-	}
-	//*/
-
-	/**/
-	if (x.$ < 0)
-	{
-		x = elm$core$Dict$toList(x);
-		y = elm$core$Dict$toList(y);
-	}
-	//*/
-
-	for (var key in x)
-	{
-		if (!_Utils_eqHelp(x[key], y[key], depth + 1, stack))
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
-var _Utils_equal = F2(_Utils_eq);
-var _Utils_notEqual = F2(function(a, b) { return !_Utils_eq(a,b); });
-
-
-
-// COMPARISONS
-
-// Code in Generate/JavaScript.hs, Basics.js, and List.js depends on
-// the particular integer values assigned to LT, EQ, and GT.
-
-function _Utils_cmp(x, y, ord)
-{
-	if (typeof x !== 'object')
-	{
-		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
-	}
-
-	/**_UNUSED/
-	if (x instanceof String)
-	{
-		var a = x.valueOf();
-		var b = y.valueOf();
-		return a === b ? 0 : a < b ? -1 : 1;
-	}
-	//*/
-
-	/**/
-	if (!x.$)
-	//*/
-	/**_UNUSED/
-	if (x.$[0] === '#')
-	//*/
-	{
-		return (ord = _Utils_cmp(x.a, y.a))
-			? ord
-			: (ord = _Utils_cmp(x.b, y.b))
-				? ord
-				: _Utils_cmp(x.c, y.c);
-	}
-
-	// traverse conses until end of a list or a mismatch
-	for (; x.b && y.b && !(ord = _Utils_cmp(x.a, y.a)); x = x.b, y = y.b) {} // WHILE_CONSES
-	return ord || (x.b ? /*GT*/ 1 : y.b ? /*LT*/ -1 : /*EQ*/ 0);
-}
-
-var _Utils_lt = F2(function(a, b) { return _Utils_cmp(a, b) < 0; });
-var _Utils_le = F2(function(a, b) { return _Utils_cmp(a, b) < 1; });
-var _Utils_gt = F2(function(a, b) { return _Utils_cmp(a, b) > 0; });
-var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
-
-var _Utils_compare = F2(function(x, y)
-{
-	var n = _Utils_cmp(x, y);
-	return n < 0 ? elm$core$Basics$LT : n ? elm$core$Basics$GT : elm$core$Basics$EQ;
-});
-
-
-// COMMON VALUES
-
-var _Utils_Tuple0 = 0;
-var _Utils_Tuple0_UNUSED = { $: '#0' };
-
-function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
-function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
-
-function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
-function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
-
-function _Utils_chr(c) { return c; }
-function _Utils_chr_UNUSED(c) { return new String(c); }
-
-
-// RECORDS
-
-function _Utils_update(oldRecord, updatedFields)
-{
-	var newRecord = {};
-
-	for (var key in oldRecord)
-	{
-		newRecord[key] = oldRecord[key];
-	}
-
-	for (var key in updatedFields)
-	{
-		newRecord[key] = updatedFields[key];
-	}
-
-	return newRecord;
-}
-
-
-// APPEND
-
-var _Utils_append = F2(_Utils_ap);
-
-function _Utils_ap(xs, ys)
-{
-	// append Strings
-	if (typeof xs === 'string')
-	{
-		return xs + ys;
-	}
-
-	// append Lists
-	if (!xs.b)
-	{
-		return ys;
-	}
-	var root = _List_Cons(xs.a, ys);
-	xs = xs.b
-	for (var curr = root; xs.b; xs = xs.b) // WHILE_CONS
-	{
-		curr = curr.b = _List_Cons(xs.a, ys);
-	}
-	return root;
-}
-
-
-
 var _JsArray_empty = [];
 
 function _JsArray_singleton(value)
@@ -776,6 +511,271 @@ function _Debug_regionToString(region)
 	}
 	return 'on lines ' + region.L.A + ' through ' + region.Q.A;
 }
+
+
+
+// EQUALITY
+
+function _Utils_eq(x, y)
+{
+	for (
+		var pair, stack = [], isEqual = _Utils_eqHelp(x, y, 0, stack);
+		isEqual && (pair = stack.pop());
+		isEqual = _Utils_eqHelp(pair.a, pair.b, 0, stack)
+		)
+	{}
+
+	return isEqual;
+}
+
+function _Utils_eqHelp(x, y, depth, stack)
+{
+	if (depth > 100)
+	{
+		stack.push(_Utils_Tuple2(x,y));
+		return true;
+	}
+
+	if (x === y)
+	{
+		return true;
+	}
+
+	if (typeof x !== 'object' || x === null || y === null)
+	{
+		typeof x === 'function' && _Debug_crash(5);
+		return false;
+	}
+
+	/**_UNUSED/
+	if (x.$ === 'Set_elm_builtin')
+	{
+		x = elm$core$Set$toList(x);
+		y = elm$core$Set$toList(y);
+	}
+	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
+	{
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
+	}
+	//*/
+
+	/**/
+	if (x.$ < 0)
+	{
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
+	}
+	//*/
+
+	for (var key in x)
+	{
+		if (!_Utils_eqHelp(x[key], y[key], depth + 1, stack))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+var _Utils_equal = F2(_Utils_eq);
+var _Utils_notEqual = F2(function(a, b) { return !_Utils_eq(a,b); });
+
+
+
+// COMPARISONS
+
+// Code in Generate/JavaScript.hs, Basics.js, and List.js depends on
+// the particular integer values assigned to LT, EQ, and GT.
+
+function _Utils_cmp(x, y, ord)
+{
+	if (typeof x !== 'object')
+	{
+		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
+	}
+
+	/**_UNUSED/
+	if (x instanceof String)
+	{
+		var a = x.valueOf();
+		var b = y.valueOf();
+		return a === b ? 0 : a < b ? -1 : 1;
+	}
+	//*/
+
+	/**/
+	if (!x.$)
+	//*/
+	/**_UNUSED/
+	if (x.$[0] === '#')
+	//*/
+	{
+		return (ord = _Utils_cmp(x.a, y.a))
+			? ord
+			: (ord = _Utils_cmp(x.b, y.b))
+				? ord
+				: _Utils_cmp(x.c, y.c);
+	}
+
+	// traverse conses until end of a list or a mismatch
+	for (; x.b && y.b && !(ord = _Utils_cmp(x.a, y.a)); x = x.b, y = y.b) {} // WHILE_CONSES
+	return ord || (x.b ? /*GT*/ 1 : y.b ? /*LT*/ -1 : /*EQ*/ 0);
+}
+
+var _Utils_lt = F2(function(a, b) { return _Utils_cmp(a, b) < 0; });
+var _Utils_le = F2(function(a, b) { return _Utils_cmp(a, b) < 1; });
+var _Utils_gt = F2(function(a, b) { return _Utils_cmp(a, b) > 0; });
+var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
+
+var _Utils_compare = F2(function(x, y)
+{
+	var n = _Utils_cmp(x, y);
+	return n < 0 ? elm$core$Basics$LT : n ? elm$core$Basics$GT : elm$core$Basics$EQ;
+});
+
+
+// COMMON VALUES
+
+var _Utils_Tuple0 = 0;
+var _Utils_Tuple0_UNUSED = { $: '#0' };
+
+function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
+
+function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+
+function _Utils_chr(c) { return c; }
+function _Utils_chr_UNUSED(c) { return new String(c); }
+
+
+// RECORDS
+
+function _Utils_update(oldRecord, updatedFields)
+{
+	var newRecord = {};
+
+	for (var key in oldRecord)
+	{
+		newRecord[key] = oldRecord[key];
+	}
+
+	for (var key in updatedFields)
+	{
+		newRecord[key] = updatedFields[key];
+	}
+
+	return newRecord;
+}
+
+
+// APPEND
+
+var _Utils_append = F2(_Utils_ap);
+
+function _Utils_ap(xs, ys)
+{
+	// append Strings
+	if (typeof xs === 'string')
+	{
+		return xs + ys;
+	}
+
+	// append Lists
+	if (!xs.b)
+	{
+		return ys;
+	}
+	var root = _List_Cons(xs.a, ys);
+	xs = xs.b
+	for (var curr = root; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		curr = curr.b = _List_Cons(xs.a, ys);
+	}
+	return root;
+}
+
+
+
+var _List_Nil = { $: 0 };
+var _List_Nil_UNUSED = { $: '[]' };
+
+function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
+
+
+var _List_cons = F2(_List_Cons);
+
+function _List_fromArray(arr)
+{
+	var out = _List_Nil;
+	for (var i = arr.length; i--; )
+	{
+		out = _List_Cons(arr[i], out);
+	}
+	return out;
+}
+
+function _List_toArray(xs)
+{
+	for (var out = []; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		out.push(xs.a);
+	}
+	return out;
+}
+
+var _List_map2 = F3(function(f, xs, ys)
+{
+	for (var arr = []; xs.b && ys.b; xs = xs.b, ys = ys.b) // WHILE_CONSES
+	{
+		arr.push(A2(f, xs.a, ys.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map3 = F4(function(f, xs, ys, zs)
+{
+	for (var arr = []; xs.b && ys.b && zs.b; xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A3(f, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map4 = F5(function(f, ws, xs, ys, zs)
+{
+	for (var arr = []; ws.b && xs.b && ys.b && zs.b; ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A4(f, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map5 = F6(function(f, vs, ws, xs, ys, zs)
+{
+	for (var arr = []; vs.b && ws.b && xs.b && ys.b && zs.b; vs = vs.b, ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A5(f, vs.a, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_sortBy = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		return _Utils_cmp(f(a), f(b));
+	}));
+});
+
+var _List_sortWith = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		var ord = A2(f, a, b);
+		return ord === elm$core$Basics$EQ ? 0 : ord === elm$core$Basics$LT ? -1 : 1;
+	}));
+});
 
 
 
@@ -4289,135 +4289,105 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$DataTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
+var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
-var author$project$VegaLite$X2 = 2;
 var author$project$VegaLite$Y = 1;
-var author$project$VegaLite$AxTickMinStep = function (a) {
-	return {$: 37, a: a};
-};
-var author$project$VegaLite$axTickStep = author$project$VegaLite$AxTickMinStep;
-var author$project$VegaLite$Bar = 1;
-var author$project$VegaLite$VLMark = 10;
-var author$project$VegaLite$markLabel = function (m) {
-	switch (m) {
+var author$project$VegaLite$vlPropertyLabel = function (spec) {
+	switch (spec) {
 		case 0:
-			return 'area';
+			return 'name';
 		case 1:
-			return 'bar';
+			return 'description';
 		case 2:
-			return 'boxplot';
-		case 5:
-			return 'circle';
+			return 'title';
 		case 3:
-			return 'errorband';
+			return 'width';
 		case 4:
-			return 'errorbar';
-		case 7:
-			return 'line';
+			return 'height';
 		case 6:
-			return 'geoshape';
-		case 8:
-			return 'point';
-		case 9:
-			return 'rect';
-		case 10:
-			return 'rule';
-		case 11:
-			return 'square';
-		case 12:
-			return 'text';
-		case 13:
-			return 'tick';
-		default:
-			return 'trail';
-	}
-};
-var author$project$VegaLite$TTNone = 2;
-var author$project$VegaLite$cursorLabel = function (cur) {
-	switch (cur) {
-		case 0:
-			return 'auto';
-		case 1:
-			return 'default';
-		case 2:
-			return 'none';
-		case 3:
-			return 'context-menu';
-		case 4:
-			return 'help';
+			return 'padding';
 		case 5:
-			return 'pointer';
-		case 6:
-			return 'progress';
+			return 'autosize';
 		case 7:
-			return 'wait';
+			return 'background';
 		case 8:
-			return 'cell';
+			return 'data';
 		case 9:
-			return 'crosshair';
-		case 10:
-			return 'text';
-		case 11:
-			return 'vertical-text';
+			return 'datasets';
 		case 12:
-			return 'alias';
+			return 'projection';
+		case 10:
+			return 'mark';
+		case 11:
+			return 'transform';
 		case 13:
-			return 'copy';
-		case 14:
-			return 'move';
-		case 15:
-			return 'no-drop';
-		case 16:
-			return 'not-allowed';
-		case 17:
-			return 'all-scroll';
-		case 18:
-			return 'col-resize';
-		case 19:
-			return 'row-resize';
-		case 20:
-			return 'n-resize';
-		case 21:
-			return 'e-resize';
-		case 22:
-			return 's-resize';
-		case 23:
-			return 'w-resize';
-		case 24:
-			return 'ne-resize';
-		case 25:
-			return 'nw-resize';
-		case 26:
-			return 'se-resize';
+			return 'encoding';
 		case 27:
-			return 'sw-resize';
+			return 'config';
 		case 28:
-			return 'ew-resize';
-		case 29:
-			return 'ns-resize';
-		case 30:
-			return 'nesw-resize';
-		case 31:
-			return 'nwse-resize';
-		case 32:
-			return 'zoom-in';
-		case 33:
-			return 'zoom-out';
-		case 34:
-			return 'grab';
+			return 'selection';
+		case 15:
+			return 'concat';
+		case 18:
+			return 'columns';
+		case 16:
+			return 'hconcat';
+		case 17:
+			return 'vconcat';
+		case 14:
+			return 'layer';
+		case 19:
+			return 'repeat';
+		case 20:
+			return 'facet';
+		case 23:
+			return 'spacing';
+		case 24:
+			return 'align';
+		case 25:
+			return 'bounds';
+		case 26:
+			return 'center';
+		case 21:
+			return 'spec';
+		case 22:
+			return 'resolve';
 		default:
-			return 'grabbing';
+			return 'view';
 	}
 };
-var elm$core$Array$branchFactor = 32;
-var elm$core$Array$Array_elm_builtin = F4(
-	function (a, b, c, d) {
-		return {$: 0, a: a, b: b, c: c, d: d};
+var elm$core$Basics$apR = F2(
+	function (x, f) {
+		return f(x);
 	});
 var elm$core$Basics$EQ = 1;
-var elm$core$Basics$GT = 2;
 var elm$core$Basics$LT = 0;
+var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
+var elm$core$Array$foldr = F3(
+	function (func, baseCase, _n0) {
+		var tree = _n0.c;
+		var tail = _n0.d;
+		var helper = F2(
+			function (node, acc) {
+				if (!node.$) {
+					var subTree = node.a;
+					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
+				} else {
+					var values = node.a;
+					return A3(elm$core$Elm$JsArray$foldr, func, acc, values);
+				}
+			});
+		return A3(
+			elm$core$Elm$JsArray$foldr,
+			helper,
+			A3(elm$core$Elm$JsArray$foldr, func, baseCase, tail),
+			tree);
+	});
+var elm$core$Array$toList = function (array) {
+	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
+};
+var elm$core$Basics$GT = 2;
 var elm$core$Dict$foldr = F3(
 	function (func, acc, t) {
 		foldr:
@@ -4443,7 +4413,6 @@ var elm$core$Dict$foldr = F3(
 			}
 		}
 	});
-var elm$core$List$cons = _List_cons;
 var elm$core$Dict$toList = function (dict) {
 	return A3(
 		elm$core$Dict$foldr,
@@ -4471,48 +4440,9 @@ var elm$core$Set$toList = function (_n0) {
 	var dict = _n0;
 	return elm$core$Dict$keys(dict);
 };
-var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
-var elm$core$Array$foldr = F3(
-	function (func, baseCase, _n0) {
-		var tree = _n0.c;
-		var tail = _n0.d;
-		var helper = F2(
-			function (node, acc) {
-				if (!node.$) {
-					var subTree = node.a;
-					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
-				} else {
-					var values = node.a;
-					return A3(elm$core$Elm$JsArray$foldr, func, acc, values);
-				}
-			});
-		return A3(
-			elm$core$Elm$JsArray$foldr,
-			helper,
-			A3(elm$core$Elm$JsArray$foldr, func, baseCase, tail),
-			tree);
-	});
-var elm$core$Array$toList = function (array) {
-	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
-};
-var elm$core$Basics$ceiling = _Basics_ceiling;
-var elm$core$Basics$fdiv = _Basics_fdiv;
-var elm$core$Basics$logBase = F2(
-	function (base, number) {
-		return _Basics_log(number) / _Basics_log(base);
-	});
-var elm$core$Basics$toFloat = _Basics_toFloat;
-var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
-	A2(elm$core$Basics$logBase, 2, elm$core$Array$branchFactor));
-var elm$core$Elm$JsArray$empty = _JsArray_empty;
-var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
-var elm$core$Array$Leaf = function (a) {
-	return {$: 1, a: a};
-};
-var elm$core$Array$SubTree = function (a) {
-	return {$: 0, a: a};
-};
-var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
+var elm$core$List$cons = _List_cons;
+var elm$core$Basics$add = _Basics_add;
+var elm$core$Basics$gt = _Utils_gt;
 var elm$core$List$foldl = F3(
 	function (func, acc, list) {
 		foldl:
@@ -4535,6 +4465,98 @@ var elm$core$List$foldl = F3(
 var elm$core$List$reverse = function (list) {
 	return A3(elm$core$List$foldl, elm$core$List$cons, _List_Nil, list);
 };
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
+var elm$core$Array$branchFactor = 32;
+var elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 0, a: a, b: b, c: c, d: d};
+	});
+var elm$core$Basics$ceiling = _Basics_ceiling;
+var elm$core$Basics$fdiv = _Basics_fdiv;
+var elm$core$Basics$logBase = F2(
+	function (base, number) {
+		return _Basics_log(number) / _Basics_log(base);
+	});
+var elm$core$Basics$toFloat = _Basics_toFloat;
+var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
+	A2(elm$core$Basics$logBase, 2, elm$core$Array$branchFactor));
+var elm$core$Elm$JsArray$empty = _JsArray_empty;
+var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
+var elm$core$Array$Leaf = function (a) {
+	return {$: 1, a: a};
+};
+var elm$core$Array$SubTree = function (a) {
+	return {$: 0, a: a};
+};
+var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
 var elm$core$Array$compressNodes = F2(
 	function (nodes, acc) {
 		compressNodes:
@@ -4557,10 +4579,6 @@ var elm$core$Array$compressNodes = F2(
 			}
 		}
 	});
-var elm$core$Basics$apR = F2(
-	function (x, f) {
-		return f(x);
-	});
 var elm$core$Basics$eq = _Utils_equal;
 var elm$core$Tuple$first = function (_n0) {
 	var x = _n0.a;
@@ -4582,13 +4600,11 @@ var elm$core$Array$treeFromBuilder = F2(
 			}
 		}
 	});
-var elm$core$Basics$add = _Basics_add;
 var elm$core$Basics$apL = F2(
 	function (f, x) {
 		return f(x);
 	});
 var elm$core$Basics$floor = _Basics_floor;
-var elm$core$Basics$gt = _Utils_gt;
 var elm$core$Basics$max = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) > 0) ? x : y;
@@ -4885,6 +4901,145 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 			}
 		}
 	});
+var elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			elm$core$List$foldl,
+			F2(
+				function (_n0, obj) {
+					var k = _n0.a;
+					var v = _n0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(0),
+			pairs));
+};
+var author$project$VegaLite$asSpec = function (specs) {
+	return elm$json$Json$Encode$object(
+		A2(
+			elm$core$List$map,
+			function (_n0) {
+				var s = _n0.a;
+				var v = _n0.b;
+				return _Utils_Tuple2(
+					author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var author$project$VegaLite$Bar = 1;
+var author$project$VegaLite$VLMark = 10;
+var author$project$VegaLite$markLabel = function (m) {
+	switch (m) {
+		case 0:
+			return 'area';
+		case 1:
+			return 'bar';
+		case 2:
+			return 'boxplot';
+		case 5:
+			return 'circle';
+		case 3:
+			return 'errorband';
+		case 4:
+			return 'errorbar';
+		case 7:
+			return 'line';
+		case 6:
+			return 'geoshape';
+		case 8:
+			return 'point';
+		case 9:
+			return 'rect';
+		case 10:
+			return 'rule';
+		case 11:
+			return 'square';
+		case 12:
+			return 'text';
+		case 13:
+			return 'tick';
+		default:
+			return 'trail';
+	}
+};
+var author$project$VegaLite$TTNone = 2;
+var author$project$VegaLite$cursorLabel = function (cur) {
+	switch (cur) {
+		case 0:
+			return 'auto';
+		case 1:
+			return 'default';
+		case 2:
+			return 'none';
+		case 3:
+			return 'context-menu';
+		case 4:
+			return 'help';
+		case 5:
+			return 'pointer';
+		case 6:
+			return 'progress';
+		case 7:
+			return 'wait';
+		case 8:
+			return 'cell';
+		case 9:
+			return 'crosshair';
+		case 10:
+			return 'text';
+		case 11:
+			return 'vertical-text';
+		case 12:
+			return 'alias';
+		case 13:
+			return 'copy';
+		case 14:
+			return 'move';
+		case 15:
+			return 'no-drop';
+		case 16:
+			return 'not-allowed';
+		case 17:
+			return 'all-scroll';
+		case 18:
+			return 'col-resize';
+		case 19:
+			return 'row-resize';
+		case 20:
+			return 'n-resize';
+		case 21:
+			return 'e-resize';
+		case 22:
+			return 's-resize';
+		case 23:
+			return 'w-resize';
+		case 24:
+			return 'ne-resize';
+		case 25:
+			return 'nw-resize';
+		case 26:
+			return 'se-resize';
+		case 27:
+			return 'sw-resize';
+		case 28:
+			return 'ew-resize';
+		case 29:
+			return 'ns-resize';
+		case 30:
+			return 'nesw-resize';
+		case 31:
+			return 'nwse-resize';
+		case 32:
+			return 'zoom-in';
+		case 33:
+			return 'zoom-out';
+		case 34:
+			return 'grab';
+		default:
+			return 'grabbing';
+	}
+};
 var elm$json$Json$Encode$float = _Json_wrap;
 var elm$json$Json$Encode$string = _Json_wrap;
 var author$project$VegaLite$extentSpec = function (ext) {
@@ -5040,75 +5195,6 @@ var author$project$VegaLite$vAlignLabel = function (al) {
 			return 'bottom';
 	}
 };
-var elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							elm$core$List$foldl,
-							fn,
-							acc,
-							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
-	});
 var elm$json$Json$Encode$bool = _Json_wrap;
 var elm$json$Json$Encode$list = F2(
 	function (func, entries) {
@@ -5120,19 +5206,6 @@ var elm$json$Json$Encode$list = F2(
 				entries));
 	});
 var elm$json$Json$Encode$null = _Json_encodeNull;
-var elm$json$Json$Encode$object = function (pairs) {
-	return _Json_wrap(
-		A3(
-			elm$core$List$foldl,
-			F2(
-				function (_n0, obj) {
-					var k = _n0.a;
-					var v = _n0.b;
-					return A3(_Json_addField, k, v, obj);
-				}),
-			_Json_emptyObject(0),
-			pairs));
-};
 var author$project$VegaLite$lineMarkerSpec = function (pm) {
 	if (!pm.$) {
 		return elm$json$Json$Encode$bool(false);
@@ -5876,16 +5949,22 @@ var author$project$VegaLite$encoding = function (channels) {
 		13,
 		elm$json$Json$Encode$object(channels));
 };
+var author$project$VegaLite$VLLayer = 14;
+var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
+var author$project$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		14,
+		author$project$VegaLite$toList(specs));
+};
+var author$project$VegaLite$MText = function (a) {
+	return {$: 46, a: a};
+};
+var author$project$VegaLite$maText = author$project$VegaLite$MText;
+var author$project$VegaLite$noData = _Utils_Tuple2(8, elm$json$Json$Encode$null);
 var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$PAxis = function (a) {
-	return {$: 12, a: a};
-};
-var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PBinned = {$: 7};
-var author$project$VegaLite$pBinned = author$project$VegaLite$PBinned;
 var author$project$VegaLite$PmType = function (a) {
 	return {$: 5, a: a};
 };
@@ -5898,6 +5977,7 @@ var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
 var author$project$VegaLite$Longitude2 = 6;
+var author$project$VegaLite$X2 = 2;
 var author$project$VegaLite$Y2 = 3;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
@@ -6348,7 +6428,6 @@ var author$project$VegaLite$imMethodLabel = function (method) {
 			return 'min';
 	}
 };
-var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
 var author$project$VegaLite$imputeProperty = function (ip) {
 	switch (ip.$) {
 		case 0:
@@ -7223,70 +7302,12 @@ var author$project$VegaLite$position = F2(
 							A2(elm$core$List$map, author$project$VegaLite$positionChannelProperty, pDefs))));
 		}
 	});
-var author$project$VegaLite$vlPropertyLabel = function (spec) {
-	switch (spec) {
-		case 0:
-			return 'name';
-		case 1:
-			return 'description';
-		case 2:
-			return 'title';
-		case 3:
-			return 'width';
-		case 4:
-			return 'height';
-		case 6:
-			return 'padding';
-		case 5:
-			return 'autosize';
-		case 7:
-			return 'background';
-		case 8:
-			return 'data';
-		case 9:
-			return 'datasets';
-		case 12:
-			return 'projection';
-		case 10:
-			return 'mark';
-		case 11:
-			return 'transform';
-		case 13:
-			return 'encoding';
-		case 27:
-			return 'config';
-		case 28:
-			return 'selection';
-		case 15:
-			return 'concat';
-		case 18:
-			return 'columns';
-		case 16:
-			return 'hconcat';
-		case 17:
-			return 'vconcat';
-		case 14:
-			return 'layer';
-		case 19:
-			return 'repeat';
-		case 20:
-			return 'facet';
-		case 23:
-			return 'spacing';
-		case 24:
-			return 'align';
-		case 25:
-			return 'bounds';
-		case 26:
-			return 'center';
-		case 21:
-			return 'spec';
-		case 22:
-			return 'resolve';
-		default:
-			return 'view';
-	}
+var author$project$VegaLite$Strings = function (a) {
+	return {$: 3, a: a};
 };
+var author$project$VegaLite$strs = author$project$VegaLite$Strings;
+var author$project$VegaLite$Text = 12;
+var author$project$VegaLite$textMark = author$project$VegaLite$mark(12);
 var author$project$VegaLite$toVegaLite = function (spec) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -7310,6 +7331,80 @@ var elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
+var author$project$DataTests$annotate1 = function () {
+	var specText = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$noData,
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maText('Test')
+					]))
+			]));
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('a'),
+						author$project$VegaLite$pMType(1)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('b'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var specBars = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'a',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'D', 'E'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'b',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[28, 55, 43, 91, 81]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[specBars, specText]))
+			]));
+}();
+var author$project$VegaLite$AxTickMinStep = function (a) {
+	return {$: 37, a: a};
+};
+var author$project$VegaLite$axTickStep = author$project$VegaLite$AxTickMinStep;
+var author$project$VegaLite$PAxis = function (a) {
+	return {$: 12, a: a};
+};
+var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
+var author$project$VegaLite$PBinned = {$: 7};
+var author$project$VegaLite$pBinned = author$project$VegaLite$PBinned;
 var author$project$DataTests$bin1 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -7412,10 +7507,6 @@ var author$project$DataTests$showData = function (data) {
 				author$project$VegaLite$bar(_List_Nil)
 			]));
 };
-var author$project$VegaLite$Strings = function (a) {
-	return {$: 3, a: a};
-};
-var author$project$VegaLite$strs = author$project$VegaLite$Strings;
 var author$project$DataTests$data1 = function () {
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -8889,7 +8980,6 @@ var author$project$DataTests$data7 = author$project$DataTests$showData(
 	A2(author$project$VegaLite$dataFromUrl, 'data/dataTest.json', _List_Nil));
 var author$project$DataTests$data8 = author$project$DataTests$dataSource('myData1');
 var author$project$DataTests$data9 = author$project$DataTests$dataSource('myData2');
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -12573,19 +12663,6 @@ var author$project$DataTests$namedData3 = function () {
 				author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$asSpec = function (specs) {
-	return elm$json$Json$Encode$object(
-		A2(
-			elm$core$List$map,
-			function (_n0) {
-				var s = _n0.a;
-				var v = _n0.b;
-				return _Utils_Tuple2(
-					author$project$VegaLite$vlPropertyLabel(s),
-					v);
-			},
-			specs));
-};
 var author$project$VegaLite$VLHConcat = 16;
 var author$project$VegaLite$hConcat = function (specs) {
 	return _Utils_Tuple2(
@@ -12821,9 +12898,10 @@ var author$project$DataTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('sequence1', author$project$DataTests$sequence1),
 			_Utils_Tuple2('sequence2', author$project$DataTests$sequence2),
 			_Utils_Tuple2('filter1', author$project$DataTests$filter1),
-			_Utils_Tuple2('filter2', author$project$DataTests$filter2)
+			_Utils_Tuple2('filter2', author$project$DataTests$filter2),
+			_Utils_Tuple2('annotate1', author$project$DataTests$annotate1)
 		]));
-var author$project$DataTests$sourceExample = author$project$DataTests$filter2;
+var author$project$DataTests$sourceExample = author$project$DataTests$annotate1;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
