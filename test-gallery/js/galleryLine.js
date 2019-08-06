@@ -5008,34 +5008,39 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 		case 4:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
-				'padding',
-				elm$json$Json$Encode$float(x));
-		case 15:
-			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'base',
-				elm$json$Json$Encode$float(x));
-		case 13:
-			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'exponent',
-				elm$json$Json$Encode$float(x));
-		case 14:
-			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'constant',
+				'align',
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
-				'paddingInner',
+				'padding',
+				elm$json$Json$Encode$float(x));
+		case 16:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'base',
+				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'exponent',
+				elm$json$Json$Encode$float(x));
+		case 15:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'constant',
 				elm$json$Json$Encode$float(x));
 		case 6:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
-				'paddingOuter',
+				'paddingInner',
 				elm$json$Json$Encode$float(x));
 		case 7:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'paddingOuter',
+				elm$json$Json$Encode$float(x));
+		case 8:
 			var numOrNull = scaleProp.a;
 			if (!numOrNull.$) {
 				var x = numOrNull.a;
@@ -5045,27 +5050,27 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			} else {
 				return _Utils_Tuple2('rangeStep', elm$json$Json$Encode$null);
 			}
-		case 8:
+		case 9:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'round',
 				elm$json$Json$Encode$bool(b));
-		case 9:
+		case 10:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'clamp',
 				elm$json$Json$Encode$bool(b));
-		case 10:
+		case 11:
 			var interp = scaleProp.a;
 			return _Utils_Tuple2(
 				'interpolate',
 				author$project$VegaLite$cInterpolateSpec(interp));
-		case 11:
+		case 12:
 			var ni = scaleProp.a;
 			return _Utils_Tuple2(
 				'nice',
 				author$project$VegaLite$scaleNiceSpec(ni));
-		case 12:
+		case 13:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'zero',
@@ -8511,7 +8516,7 @@ var author$project$VegaLite$Parse = function (a) {
 };
 var author$project$VegaLite$parse = author$project$VegaLite$Parse;
 var author$project$VegaLite$SZero = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var author$project$VegaLite$scZero = author$project$VegaLite$SZero;
 var author$project$VegaLite$TmType = function (a) {
@@ -9634,11 +9639,11 @@ var author$project$VegaLite$PAggregate = function (a) {
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
 var author$project$VegaLite$SPadding = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var author$project$VegaLite$scPadding = author$project$VegaLite$SPadding;
 var author$project$VegaLite$SRangeStep = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$scRangeStep = author$project$VegaLite$SRangeStep;
 var author$project$GalleryLine$line4 = function () {

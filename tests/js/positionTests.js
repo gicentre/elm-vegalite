@@ -5986,64 +5986,6 @@ var author$project$PositionTests$position1 = author$project$VegaLite$toVegaLite(
 					author$project$VegaLite$maSize(200)
 				]))
 		]));
-var author$project$VegaLite$Bar = 1;
-var author$project$VegaLite$bar = author$project$VegaLite$mark(1);
-var author$project$PositionTests$position2 = author$project$VegaLite$toVegaLite(
-	_List_fromArray(
-		[
-			author$project$PositionTests$emptyData(_List_Nil),
-			author$project$VegaLite$bar(
-			_List_fromArray(
-				[
-					author$project$VegaLite$maX(150),
-					author$project$VegaLite$maY(150)
-				]))
-		]));
-var author$project$VegaLite$MX2 = function (a) {
-	return {$: 55, a: a};
-};
-var author$project$VegaLite$maX2 = author$project$VegaLite$MX2;
-var author$project$PositionTests$position3 = author$project$VegaLite$toVegaLite(
-	_List_fromArray(
-		[
-			author$project$PositionTests$emptyData(_List_Nil),
-			author$project$VegaLite$bar(
-			_List_fromArray(
-				[
-					author$project$VegaLite$maX(150),
-					author$project$VegaLite$maY(150),
-					author$project$VegaLite$maX2(200)
-				]))
-		]));
-var author$project$VegaLite$MY2 = function (a) {
-	return {$: 56, a: a};
-};
-var author$project$VegaLite$maY2 = author$project$VegaLite$MY2;
-var author$project$PositionTests$position4 = author$project$VegaLite$toVegaLite(
-	_List_fromArray(
-		[
-			author$project$PositionTests$emptyData(_List_Nil),
-			author$project$VegaLite$bar(
-			_List_fromArray(
-				[
-					author$project$VegaLite$maX(150),
-					author$project$VegaLite$maY(150),
-					author$project$VegaLite$maY2(200)
-				]))
-		]));
-var author$project$PositionTests$position5 = author$project$VegaLite$toVegaLite(
-	_List_fromArray(
-		[
-			author$project$PositionTests$emptyData(_List_Nil),
-			author$project$VegaLite$bar(
-			_List_fromArray(
-				[
-					author$project$VegaLite$maX(150),
-					author$project$VegaLite$maY(150),
-					author$project$VegaLite$maX2(200),
-					author$project$VegaLite$maY2(200)
-				]))
-		]));
 var author$project$PositionTests$data = A2(
 	elm$core$Basics$composeL,
 	A2(
@@ -6065,16 +6007,14 @@ var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
+var author$project$VegaLite$Bar = 1;
+var author$project$VegaLite$bar = author$project$VegaLite$mark(1);
 var author$project$VegaLite$VLEncoding = 13;
 var author$project$VegaLite$encoding = function (channels) {
 	return _Utils_Tuple2(
 		13,
 		elm$json$Json$Encode$object(channels));
 };
-var author$project$VegaLite$MWidth = function (a) {
-	return {$: 51, a: a};
-};
-var author$project$VegaLite$maWidth = author$project$VegaLite$MWidth;
 var author$project$VegaLite$PmType = function (a) {
 	return {$: 5, a: a};
 };
@@ -6083,6 +6023,10 @@ var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -7039,34 +6983,39 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 		case 4:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
-				'padding',
-				elm$json$Json$Encode$float(x));
-		case 15:
-			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'base',
-				elm$json$Json$Encode$float(x));
-		case 13:
-			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'exponent',
-				elm$json$Json$Encode$float(x));
-		case 14:
-			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'constant',
+				'align',
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
-				'paddingInner',
+				'padding',
+				elm$json$Json$Encode$float(x));
+		case 16:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'base',
+				elm$json$Json$Encode$float(x));
+		case 14:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'exponent',
+				elm$json$Json$Encode$float(x));
+		case 15:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'constant',
 				elm$json$Json$Encode$float(x));
 		case 6:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
-				'paddingOuter',
+				'paddingInner',
 				elm$json$Json$Encode$float(x));
 		case 7:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'paddingOuter',
+				elm$json$Json$Encode$float(x));
+		case 8:
 			var numOrNull = scaleProp.a;
 			if (!numOrNull.$) {
 				var x = numOrNull.a;
@@ -7076,27 +7025,27 @@ var author$project$VegaLite$scaleProperty = function (scaleProp) {
 			} else {
 				return _Utils_Tuple2('rangeStep', elm$json$Json$Encode$null);
 			}
-		case 8:
+		case 9:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'round',
 				elm$json$Json$Encode$bool(b));
-		case 9:
+		case 10:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'clamp',
 				elm$json$Json$Encode$bool(b));
-		case 10:
+		case 11:
 			var interp = scaleProp.a;
 			return _Utils_Tuple2(
 				'interpolate',
 				author$project$VegaLite$cInterpolateSpec(interp));
-		case 11:
+		case 12:
 			var ni = scaleProp.a;
 			return _Utils_Tuple2(
 				'nice',
 				author$project$VegaLite$scaleNiceSpec(ni));
-		case 12:
+		case 13:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'zero',
@@ -7408,12 +7357,130 @@ var author$project$VegaLite$position = F2(
 							A2(elm$core$List$map, author$project$VegaLite$positionChannelProperty, pDefs))));
 		}
 	});
+var author$project$VegaLite$SAlign = function (a) {
+	return {$: 4, a: a};
+};
+var elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var author$project$VegaLite$scAlign = function (x) {
+	return author$project$VegaLite$SAlign(
+		A2(
+			elm$core$Basics$max,
+			0,
+			A2(elm$core$Basics$min, 1, x)));
+};
+var author$project$VegaLite$SPaddingInner = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$scPaddingInner = author$project$VegaLite$SPaddingInner;
 var author$project$VegaLite$VLWidth = 3;
 var author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(
 		3,
 		elm$json$Json$Encode$float(w));
 };
+var author$project$PositionTests$barAlign = function (x) {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('cat'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$scAlign(x),
+								author$project$VegaLite$scPaddingInner(0.5)
+							]))
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('val'),
+					author$project$VegaLite$pMType(2)
+				])));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(400),
+				author$project$PositionTests$data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(_List_Nil)
+			]));
+};
+var author$project$PositionTests$position10 = author$project$PositionTests$barAlign(0.5);
+var author$project$PositionTests$position11 = author$project$PositionTests$barAlign(0.7);
+var author$project$PositionTests$position12 = author$project$PositionTests$barAlign(1);
+var author$project$PositionTests$position2 = author$project$VegaLite$toVegaLite(
+	_List_fromArray(
+		[
+			author$project$PositionTests$emptyData(_List_Nil),
+			author$project$VegaLite$bar(
+			_List_fromArray(
+				[
+					author$project$VegaLite$maX(150),
+					author$project$VegaLite$maY(150)
+				]))
+		]));
+var author$project$VegaLite$MX2 = function (a) {
+	return {$: 55, a: a};
+};
+var author$project$VegaLite$maX2 = author$project$VegaLite$MX2;
+var author$project$PositionTests$position3 = author$project$VegaLite$toVegaLite(
+	_List_fromArray(
+		[
+			author$project$PositionTests$emptyData(_List_Nil),
+			author$project$VegaLite$bar(
+			_List_fromArray(
+				[
+					author$project$VegaLite$maX(150),
+					author$project$VegaLite$maY(150),
+					author$project$VegaLite$maX2(200)
+				]))
+		]));
+var author$project$VegaLite$MY2 = function (a) {
+	return {$: 56, a: a};
+};
+var author$project$VegaLite$maY2 = author$project$VegaLite$MY2;
+var author$project$PositionTests$position4 = author$project$VegaLite$toVegaLite(
+	_List_fromArray(
+		[
+			author$project$PositionTests$emptyData(_List_Nil),
+			author$project$VegaLite$bar(
+			_List_fromArray(
+				[
+					author$project$VegaLite$maX(150),
+					author$project$VegaLite$maY(150),
+					author$project$VegaLite$maY2(200)
+				]))
+		]));
+var author$project$PositionTests$position5 = author$project$VegaLite$toVegaLite(
+	_List_fromArray(
+		[
+			author$project$PositionTests$emptyData(_List_Nil),
+			author$project$VegaLite$bar(
+			_List_fromArray(
+				[
+					author$project$VegaLite$maX(150),
+					author$project$VegaLite$maY(150),
+					author$project$VegaLite$maX2(200),
+					author$project$VegaLite$maY2(200)
+				]))
+		]));
+var author$project$VegaLite$MWidth = function (a) {
+	return {$: 51, a: a};
+};
+var author$project$VegaLite$maWidth = author$project$VegaLite$MWidth;
 var author$project$PositionTests$position6 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -7494,6 +7561,8 @@ var author$project$PositionTests$position7 = function () {
 					]))
 			]));
 }();
+var author$project$PositionTests$position8 = author$project$PositionTests$barAlign(0);
+var author$project$PositionTests$position9 = author$project$PositionTests$barAlign(0.3);
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -7506,9 +7575,14 @@ var author$project$PositionTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('position4', author$project$PositionTests$position4),
 			_Utils_Tuple2('position5', author$project$PositionTests$position5),
 			_Utils_Tuple2('position6', author$project$PositionTests$position6),
-			_Utils_Tuple2('position7', author$project$PositionTests$position7)
+			_Utils_Tuple2('position7', author$project$PositionTests$position7),
+			_Utils_Tuple2('position8', author$project$PositionTests$position8),
+			_Utils_Tuple2('position9', author$project$PositionTests$position9),
+			_Utils_Tuple2('position10', author$project$PositionTests$position10),
+			_Utils_Tuple2('position11', author$project$PositionTests$position11),
+			_Utils_Tuple2('position12', author$project$PositionTests$position12)
 		]));
-var author$project$PositionTests$sourceExample = author$project$PositionTests$position7;
+var author$project$PositionTests$sourceExample = author$project$PositionTests$position12;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

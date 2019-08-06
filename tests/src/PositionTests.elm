@@ -67,9 +67,49 @@ position7 =
     toVegaLite [ height 300, data [], enc [], bar [ maHeight 20 ] ]
 
 
+barAlign : Float -> Spec
+barAlign x =
+    let
+        enc =
+            encoding
+                << position X
+                    [ pName "cat"
+                    , pMType Ordinal
+                    , pScale [ scAlign x, scPaddingInner 0.5 ]
+                    ]
+                << position Y [ pName "val", pMType Quantitative ]
+    in
+    toVegaLite [ width 400, data [], enc [], bar [] ]
+
+
+position8 : Spec
+position8 =
+    barAlign 0
+
+
+position9 : Spec
+position9 =
+    barAlign 0.3
+
+
+position10 : Spec
+position10 =
+    barAlign 0.5
+
+
+position11 : Spec
+position11 =
+    barAlign 0.7
+
+
+position12 : Spec
+position12 =
+    barAlign 1
+
+
 sourceExample : Spec
 sourceExample =
-    position7
+    position12
 
 
 
@@ -86,6 +126,11 @@ mySpecs =
         , ( "position5", position5 )
         , ( "position6", position6 )
         , ( "position7", position7 )
+        , ( "position8", position8 )
+        , ( "position9", position9 )
+        , ( "position10", position10 )
+        , ( "position11", position11 )
+        , ( "position12", position12 )
         ]
 
 
