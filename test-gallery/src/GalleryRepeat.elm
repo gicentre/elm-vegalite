@@ -170,7 +170,7 @@ repeat5 =
                 << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
 
-        config =
+        cfg =
             configure
                 << configuration (coRange [ racoHeatmap "greenblue" ])
                 << configuration (coView [ vicoStroke Nothing ])
@@ -220,11 +220,76 @@ repeat5 =
     in
     toVegaLite
         [ des
+        , cfg []
         , spacing 15
         , bounds boFlush
-        , config []
         , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
         , vConcat [ spec1, spec2 ]
+        ]
+
+
+repeat6 : Spec
+repeat6 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+
+        cfg =
+            configure
+                << configuration (coAxis [ axcoGrid False ])
+                << configuration (coView [ vicoStroke Nothing ])
+
+        trans =
+            transform
+                << filter (fiExpr "datum.year == 2000")
+
+        transF =
+            transform << filter (fiEqual "sex" (num 2))
+
+        encF =
+            encoding
+                << position Y [ pName "age", pMType Ordinal, pAxis [], pSort [ soDescending ] ]
+                << position X
+                    [ pName "people"
+                    , pMType Quantitative
+                    , pAggregate opSum
+                    , pAxis [ axTitle "population", axFormat "s" ]
+                    , pSort [ soDescending ]
+                    ]
+
+        specF =
+            asSpec [ title "Female" [], transF [], encF [], bar [ maColor "#e377c2" ] ]
+
+        encGap =
+            encoding
+                << position Y [ pName "age", pMType Ordinal, pAxis [], pSort [ soDescending ] ]
+                << text [ tName "age", tMType Quantitative ]
+
+        specGap =
+            asSpec [ width 20, encGap [], textMark [ maAlign haCenter ] ]
+
+        transM =
+            transform << filter (fiEqual "sex" (num 1))
+
+        encM =
+            encoding
+                << position Y [ pName "age", pMType Ordinal, pAxis [], pSort [ soDescending ] ]
+                << position X
+                    [ pName "people"
+                    , pMType Quantitative
+                    , pAggregate opSum
+                    , pAxis [ axTitle "population", axFormat "s" ]
+                    ]
+
+        specM =
+            asSpec [ title "Male" [], transM [], encM [], bar [ maColor "#1f77b4" ] ]
+    in
+    toVegaLite
+        [ cfg []
+        , data
+        , trans []
+        , spacing 0
+        , hConcat [ specF, specGap, specM ]
         ]
 
 
@@ -240,6 +305,7 @@ mySpecs =
         , ( "repeat3", repeat3 )
         , ( "repeat4", repeat4 )
         , ( "repeat5", repeat5 )
+        , ( "repeat6", repeat6 )
         ]
 
 

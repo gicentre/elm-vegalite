@@ -9142,7 +9142,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 				enc1(_List_Nil)
 			]));
 	var des = author$project$VegaLite$description('Marginal histograms show the counts along the x and y dimension');
-	var config = A2(
+	var cfg = A2(
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
@@ -9163,13 +9163,391 @@ var author$project$GalleryRepeat$repeat5 = function () {
 		_List_fromArray(
 			[
 				des,
+				cfg(_List_Nil),
 				author$project$VegaLite$spacing(15),
 				author$project$VegaLite$bounds(author$project$VegaLite$boFlush),
-				config(_List_Nil),
 				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
 				author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[spec1, spec2]))
+			]));
+}();
+var author$project$VegaLite$AxFormat = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$axFormat = author$project$VegaLite$AxFormat;
+var author$project$VegaLite$Grid = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$axcoGrid = author$project$VegaLite$Grid;
+var author$project$VegaLite$Axis = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$coAxis = author$project$VegaLite$Axis;
+var author$project$VegaLite$FEqual = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var author$project$VegaLite$fiEqual = author$project$VegaLite$FEqual;
+var author$project$VegaLite$AlignCenter = 0;
+var author$project$VegaLite$haCenter = 0;
+var author$project$VegaLite$MAlign = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$maAlign = author$project$VegaLite$MAlign;
+var author$project$VegaLite$MColor = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
+var author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$num = author$project$VegaLite$Number;
+var author$project$VegaLite$Sum = {$: 16};
+var author$project$VegaLite$opSum = author$project$VegaLite$Sum;
+var author$project$VegaLite$PSort = function (a) {
+	return {$: 13, a: a};
+};
+var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
+var author$project$VegaLite$Descending = {$: 1};
+var author$project$VegaLite$soDescending = author$project$VegaLite$Descending;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
+var author$project$VegaLite$TName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$textChannelProperty = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								elm$json$Json$Encode$string(
+									author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					author$project$VegaLite$operationSpec(op))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$timeUnitLabel(tu)))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					elm$json$Json$Encode$string(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					elm$json$Json$Encode$string(fmt))
+				]);
+		case 11:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					elm$json$Json$Encode$string('number'))
+				]);
+		case 12:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					elm$json$Json$Encode$string('time'))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					elm$json$Json$Encode$object(
+						A2(
+							elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								author$project$VegaLite$booleanOpSpec(selName)),
+							A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)))),
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
+		default:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_n1) {
+				var predicate = _n1.a;
+				var ifClause = _n1.b;
+				return elm$json$Json$Encode$object(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							author$project$VegaLite$booleanOpSpec(predicate)),
+						A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, ifClause)));
+			};
+			return A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2(elm$json$Json$Encode$list, testClause, tests)),
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, elseClause));
+	}
+};
+var author$project$VegaLite$text = function (tDefs) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$textChannelProperty, tDefs))));
+};
+var author$project$VegaLite$Text = 12;
+var author$project$VegaLite$textMark = author$project$VegaLite$mark(12);
+var author$project$VegaLite$VLTitle = 2;
+var author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			elm$json$Json$Encode$object(
+				A2(
+					elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						elm$json$Json$Encode$string(txt)),
+					A2(elm$core$List$map, author$project$VegaLite$titleConfigSpec, tps))));
+	});
+var author$project$GalleryRepeat$repeat6 = function () {
+	var transM = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			A2(
+				author$project$VegaLite$fiEqual,
+				'sex',
+				author$project$VegaLite$num(1))));
+	var transF = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			A2(
+				author$project$VegaLite$fiEqual,
+				'sex',
+				author$project$VegaLite$num(2))));
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			author$project$VegaLite$fiExpr('datum.year == 2000')));
+	var encM = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('age'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pAxis(_List_Nil),
+						author$project$VegaLite$pSort(
+						_List_fromArray(
+							[author$project$VegaLite$soDescending]))
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('people'),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pAggregate(author$project$VegaLite$opSum),
+					author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							author$project$VegaLite$axTitle('population'),
+							author$project$VegaLite$axFormat('s')
+						]))
+				])));
+	var specM = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2(author$project$VegaLite$title, 'Male', _List_Nil),
+				transM(_List_Nil),
+				encM(_List_Nil),
+				author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor('#1f77b4')
+					]))
+			]));
+	var encGap = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('age'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pAxis(_List_Nil),
+						author$project$VegaLite$pSort(
+						_List_fromArray(
+							[author$project$VegaLite$soDescending]))
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('age'),
+					author$project$VegaLite$tMType(2)
+				])));
+	var specGap = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(20),
+				encGap(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maAlign(author$project$VegaLite$haCenter)
+					]))
+			]));
+	var encF = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('age'),
+						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pAxis(_List_Nil),
+						author$project$VegaLite$pSort(
+						_List_fromArray(
+							[author$project$VegaLite$soDescending]))
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('people'),
+					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pAggregate(author$project$VegaLite$opSum),
+					author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							author$project$VegaLite$axTitle('population'),
+							author$project$VegaLite$axFormat('s')
+						])),
+					author$project$VegaLite$pSort(
+					_List_fromArray(
+						[author$project$VegaLite$soDescending]))
+				])));
+	var specF = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2(author$project$VegaLite$title, 'Female', _List_Nil),
+				transF(_List_Nil),
+				encF(_List_Nil),
+				author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor('#e377c2')
+					]))
+			]));
+	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var cfg = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$configure,
+			author$project$VegaLite$configuration(
+				author$project$VegaLite$coAxis(
+					_List_fromArray(
+						[
+							author$project$VegaLite$axcoGrid(false)
+						])))),
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing)
+					]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data,
+				trans(_List_Nil),
+				author$project$VegaLite$spacing(0),
+				author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[specF, specGap, specM]))
 			]));
 }();
 var author$project$VegaLite$combineSpecs = function (specs) {
@@ -9182,7 +9560,8 @@ var author$project$GalleryRepeat$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('repeat2', author$project$GalleryRepeat$repeat2),
 			_Utils_Tuple2('repeat3', author$project$GalleryRepeat$repeat3),
 			_Utils_Tuple2('repeat4', author$project$GalleryRepeat$repeat4),
-			_Utils_Tuple2('repeat5', author$project$GalleryRepeat$repeat5)
+			_Utils_Tuple2('repeat5', author$project$GalleryRepeat$repeat5),
+			_Utils_Tuple2('repeat6', author$project$GalleryRepeat$repeat6)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
