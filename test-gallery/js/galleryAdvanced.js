@@ -6060,7 +6060,7 @@ var author$project$GalleryAdvanced$advanced1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$asSpec = function (specs) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -6363,16 +6363,237 @@ var author$project$VegaLite$layer = function (specs) {
 		14,
 		author$project$VegaLite$toList(specs));
 };
-var author$project$VegaLite$MColor = function (a) {
-	return {$: 8, a: a};
+var author$project$VegaLite$Line = 7;
+var author$project$VegaLite$line = author$project$VegaLite$mark(7);
+var author$project$VegaLite$MOpacity = function (a) {
+	return {$: 26, a: a};
 };
-var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
+var author$project$VegaLite$maOpacity = author$project$VegaLite$MOpacity;
 var author$project$VegaLite$Mean = {$: 7};
 var author$project$VegaLite$opMean = author$project$VegaLite$Mean;
 var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
+var author$project$VegaLite$PTimeUnit = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$pTimeUnit = author$project$VegaLite$PTimeUnit;
+var author$project$VegaLite$Point = 8;
+var author$project$VegaLite$point = author$project$VegaLite$mark(8);
+var author$project$VegaLite$Year = {$: 0};
+var author$project$VegaLite$year = author$project$VegaLite$Year;
+var author$project$GalleryAdvanced$advanced10 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			author$project$VegaLite$fiExpr('datum.symbol === \'GOOG\'')));
+	var encRaw = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('date'),
+						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('price'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var specRaw = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encRaw(_List_Nil),
+				author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maOpacity(0.3)
+					]))
+			]));
+	var encAv = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('date'),
+						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('price'),
+					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
+					author$project$VegaLite$pMType(2)
+				])));
+	var specAv = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encAv(_List_Nil),
+				author$project$VegaLite$line(_List_Nil)
+			]));
+	var desc = author$project$VegaLite$description('Plot showing average data with raw values in the background.');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/stocks.csv');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				data(_List_Nil),
+				trans(_List_Nil),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[specRaw, specAv]))
+			]));
+}();
+var author$project$VegaLite$VLHeight = 4;
+var author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		elm$json$Json$Encode$float(h));
+};
+var author$project$VegaLite$MColor = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
+var author$project$VegaLite$MSize = function (a) {
+	return {$: 35, a: a};
+};
+var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
+var author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var author$project$VegaLite$pTitle = author$project$VegaLite$PTitle;
+var author$project$VegaLite$VLWidth = 3;
+var author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		elm$json$Json$Encode$float(w));
+};
+var elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var author$project$GalleryAdvanced$advanced11 = function () {
+	var trans = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		A2(
+			author$project$VegaLite$window,
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					_List_fromArray(
+						[
+							author$project$VegaLite$wiAggregateOp(author$project$VegaLite$opMean),
+							author$project$VegaLite$wiField('temp_max')
+						]),
+					'rollingMean')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					author$project$VegaLite$wiFrame,
+					elm$core$Maybe$Just(-15),
+					elm$core$Maybe$Just(15))
+				])));
+	var encRaw = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('date'),
+						author$project$VegaLite$pTitle('Date'),
+						author$project$VegaLite$pMType(3)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('temp_max'),
+					author$project$VegaLite$pTitle('Maximum temperature'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var specRaw = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encRaw(_List_Nil),
+				author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maOpacity(0.3)
+					]))
+			]));
+	var encAv = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('date'),
+						author$project$VegaLite$pMType(3)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('rollingMean'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var specAv = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encAv(_List_Nil),
+				author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor('red'),
+						author$project$VegaLite$maSize(3)
+					]))
+			]));
+	var desc = author$project$VegaLite$description('Plot showing a 30 day rolling average with raw values in the background.');
+	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/seattle-weather.csv');
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				author$project$VegaLite$width(400),
+				author$project$VegaLite$height(300),
+				data(_List_Nil),
+				trans(_List_Nil),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[specRaw, specAv]))
+			]));
+}();
+var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$Rule = 10;
 var author$project$VegaLite$rule = author$project$VegaLite$mark(10);
 var author$project$GalleryAdvanced$advanced2 = function () {
@@ -7037,8 +7258,6 @@ var author$project$VegaLite$WGroupBy = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$wiGroupBy = author$project$VegaLite$WGroupBy;
-var author$project$VegaLite$Year = {$: 0};
-var author$project$VegaLite$year = author$project$VegaLite$Year;
 var author$project$GalleryAdvanced$advanced3 = function () {
 	var trans = A2(
 		elm$core$Basics$composeL,
@@ -7168,7 +7387,6 @@ var author$project$GalleryAdvanced$advanced3 = function () {
 					[barSpec, tickSpec]))
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$DateRange = F2(
 	function (a, b) {
 		return {$: 1, a: a, b: b};
@@ -7183,16 +7401,10 @@ var author$project$VegaLite$FRange = F2(
 		return {$: 9, a: a, b: b};
 	});
 var author$project$VegaLite$fiRange = author$project$VegaLite$FRange;
-var author$project$VegaLite$MOpacity = function (a) {
-	return {$: 26, a: a};
-};
-var author$project$VegaLite$maOpacity = author$project$VegaLite$MOpacity;
 var author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 43, a: a};
 };
 var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
-var author$project$VegaLite$Point = 8;
-var author$project$VegaLite$point = author$project$VegaLite$mark(8);
 var author$project$GalleryAdvanced$advanced4 = function () {
 	var trans = A2(
 		elm$core$Basics$composeL,
@@ -7317,8 +7529,6 @@ var author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) {
 			author$project$VegaLite$RStrings(range))
 		]);
 };
-var author$project$VegaLite$Line = 7;
-var author$project$VegaLite$line = author$project$VegaLite$mark(7);
 var author$project$VegaLite$MmType = function (a) {
 	return {$: 2, a: a};
 };
@@ -7469,9 +7679,6 @@ var author$project$VegaLite$WSort = function (a) {
 var author$project$VegaLite$wiSort = author$project$VegaLite$WSort;
 var author$project$VegaLite$Rank = 1;
 var author$project$VegaLite$woRank = 1;
-var elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var author$project$GalleryAdvanced$advanced5 = function () {
 	var trans = A2(
 		elm$core$Basics$composeL,
@@ -7598,12 +7805,6 @@ var author$project$VegaLite$Expr = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$expr = author$project$VegaLite$Expr;
-var author$project$VegaLite$VLHeight = 4;
-var author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		4,
-		elm$json$Json$Encode$float(h));
-};
 var author$project$VegaLite$MDataCondition = F2(
 	function (a, b) {
 		return {$: 12, a: a, b: b};
@@ -7621,10 +7822,6 @@ var author$project$VegaLite$MFontWeight = function (a) {
 	return {$: 22, a: a};
 };
 var author$project$VegaLite$maFontWeight = author$project$VegaLite$MFontWeight;
-var author$project$VegaLite$MSize = function (a) {
-	return {$: 35, a: a};
-};
-var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
 var author$project$VegaLite$MX2Offset = function (a) {
 	return {$: 59, a: a};
 };
@@ -7637,10 +7834,6 @@ var author$project$VegaLite$PSort = function (a) {
 	return {$: 13, a: a};
 };
 var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
-var author$project$VegaLite$PTitle = function (a) {
-	return {$: 9, a: a};
-};
-var author$project$VegaLite$pTitle = author$project$VegaLite$PTitle;
 var author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
@@ -7794,12 +7987,6 @@ var author$project$VegaLite$AlignMiddle = 1;
 var author$project$VegaLite$vaMiddle = 1;
 var author$project$VegaLite$AlignTop = 0;
 var author$project$VegaLite$vaTop = 0;
-var author$project$VegaLite$VLWidth = 3;
-var author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		3,
-		elm$json$Json$Encode$float(w));
-};
 var author$project$VegaLite$Lead = 7;
 var author$project$VegaLite$woLead = 7;
 var author$project$GalleryAdvanced$advanced6 = function () {
@@ -10549,7 +10736,9 @@ var author$project$GalleryAdvanced$mySpecs = author$project$VegaLite$combineSpec
 			_Utils_Tuple2('advanced6', author$project$GalleryAdvanced$advanced6),
 			_Utils_Tuple2('advanced7', author$project$GalleryAdvanced$advanced7),
 			_Utils_Tuple2('advanced8', author$project$GalleryAdvanced$advanced8),
-			_Utils_Tuple2('advanced9', author$project$GalleryAdvanced$advanced9)
+			_Utils_Tuple2('advanced9', author$project$GalleryAdvanced$advanced9),
+			_Utils_Tuple2('advanced10', author$project$GalleryAdvanced$advanced10),
+			_Utils_Tuple2('advanced11', author$project$GalleryAdvanced$advanced11)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {

@@ -439,6 +439,70 @@ advanced9 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
+advanced10 : Spec
+advanced10 =
+    let
+        desc =
+            description "Plot showing average data with raw values in the background."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+
+        trans =
+            transform << filter (fiExpr "datum.symbol === 'GOOG'")
+
+        encRaw =
+            encoding
+                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
+                << position Y [ pName "price", pMType Quantitative ]
+
+        specRaw =
+            asSpec [ encRaw [], point [ maOpacity 0.3 ] ]
+
+        encAv =
+            encoding
+                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
+                << position Y [ pName "price", pAggregate opMean, pMType Quantitative ]
+
+        specAv =
+            asSpec [ encAv [], line [] ]
+    in
+    toVegaLite [ desc, data [], trans [], layer [ specRaw, specAv ] ]
+
+
+advanced11 : Spec
+advanced11 =
+    let
+        desc =
+            description "Plot showing a 30 day rolling average with raw values in the background."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
+
+        trans =
+            transform
+                << window [ ( [ wiAggregateOp opMean, wiField "temp_max" ], "rollingMean" ) ]
+                    [ wiFrame (Just -15) (Just 15) ]
+
+        encRaw =
+            encoding
+                << position X [ pName "date", pTitle "Date", pMType Temporal ]
+                << position Y [ pName "temp_max", pTitle "Maximum temperature", pMType Quantitative ]
+
+        specRaw =
+            asSpec [ encRaw [], point [ maOpacity 0.3 ] ]
+
+        encAv =
+            encoding
+                << position X [ pName "date", pMType Temporal ]
+                << position Y [ pName "rollingMean", pMType Quantitative ]
+
+        specAv =
+            asSpec [ encAv [], line [ maColor "red", maSize 3 ] ]
+    in
+    toVegaLite [ desc, width 400, height 300, data [], trans [], layer [ specRaw, specAv ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -455,6 +519,8 @@ mySpecs =
         , ( "advanced7", advanced7 )
         , ( "advanced8", advanced8 )
         , ( "advanced9", advanced9 )
+        , ( "advanced10", advanced10 )
+        , ( "advanced11", advanced11 )
         ]
 
 
