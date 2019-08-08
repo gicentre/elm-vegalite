@@ -34,42 +34,6 @@ bar2 : Spec
 bar2 =
     let
         des =
-            description "Simple histogram of IMDB ratings."
-
-        data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-
-        enc =
-            encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
-    in
-    toVegaLite
-        [ des, data, enc [], bar [] ]
-
-
-bar3 : Spec
-bar3 =
-    let
-        data =
-            dataFromColumns []
-                << dataColumn "binStart" (nums [ 8, 10, 12, 14, 16, 18, 20, 22 ])
-                << dataColumn "binEnd" (nums [ 10, 12, 14, 16, 18, 20, 22, 24 ])
-                << dataColumn "count" (nums [ 7, 29, 71, 127, 94, 54, 17, 5 ])
-
-        enc =
-            encoding
-                << position X [ pName "binStart", pMType Quantitative, pBin [ biStep 2 ] ]
-                << position X2 [ pName "binEnd" ]
-                << position Y [ pName "count", pMType Quantitative ]
-    in
-    toVegaLite [ data [], enc [], bar [] ]
-
-
-bar4 : Spec
-bar4 =
-    let
-        des =
             description "A bar chart showing the US population distribution of age groups in 2000."
 
         data =
@@ -86,18 +50,13 @@ bar4 =
                     , pAggregate opSum
                     , pAxis [ axTitle "population" ]
                     ]
-                << position Y
-                    [ pName "age"
-                    , pMType Ordinal
-                    , pScale [ scRangeStep (Just 17) ]
-                    , pSort [ soDescending ]
-                    ]
+                << position Y [ pName "age", pMType Ordinal ]
     in
-    toVegaLite [ des, data, trans [], enc [], bar [] ]
+    toVegaLite [ des, heightStep 17, data, trans [], enc [], bar [] ]
 
 
-bar5 : Spec
-bar5 =
+bar3 : Spec
+bar3 =
     let
         des =
             description "A bar chart showing the US population distribution of age groups in 2000, sorted by population"
@@ -119,11 +78,46 @@ bar5 =
                 << position Y
                     [ pName "age"
                     , pMType Ordinal
-                    , pScale [ scRangeStep (Just 17) ]
-                    , pSort [ soByChannel chX ]
+                    , pSort [ soByChannel chX, soDescending ]
                     ]
     in
-    toVegaLite [ des, data, trans [], enc [], bar [] ]
+    toVegaLite [ des, heightStep 17, data, trans [], enc [], bar [] ]
+
+
+bar4 : Spec
+bar4 =
+    let
+        des =
+            description "Simple histogram of IMDB ratings."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        enc =
+            encoding
+                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [] ]
+                << position Y [ pAggregate opCount, pMType Quantitative ]
+    in
+    toVegaLite
+        [ des, data, enc [], bar [] ]
+
+
+bar5 : Spec
+bar5 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "binStart" (nums [ 8, 10, 12, 14, 16, 18, 20, 22 ])
+                << dataColumn "binEnd" (nums [ 10, 12, 14, 16, 18, 20, 22, 24 ])
+                << dataColumn "count" (nums [ 7, 29, 71, 127, 94, 54, 17, 5 ])
+
+        enc =
+            encoding
+                << position X [ pName "binStart", pMType Quantitative, pBin [ biStep 2 ] ]
+                << position X2 [ pName "binEnd" ]
+                << position Y [ pName "count", pMType Quantitative ]
+    in
+    toVegaLite [ data [], enc [], bar [] ]
 
 
 bar6 : Spec
@@ -173,17 +167,26 @@ bar7 =
 
         enc =
             encoding
-                << position X [ pName "gender", pMType Nominal, pScale [ scRangeStep (Just 12) ], pAxis [ axTitle "" ] ]
-                << position Y [ pName "people", pMType Quantitative, pAggregate opSum, pAxis [ axTitle "population", axGrid False ] ]
+                << position X [ pName "gender", pMType Nominal, pAxis [ axTitle "" ] ]
+                << position Y
+                    [ pName "people"
+                    , pMType Quantitative
+                    , pAggregate opSum
+                    , pAxis [ axTitle "population", axGrid False ]
+                    ]
                 << column [ fName "age", fMType Ordinal ]
-                << color [ mName "gender", mMType Nominal, mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ] ]
+                << color
+                    [ mName "gender"
+                    , mMType Nominal
+                    , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
+                    ]
 
         cfg =
             configure
                 << configuration (coAxis [ axcoDomainWidth 1 ])
                 << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite [ des, cfg [], data, trans [], enc [], bar [] ]
+    toVegaLite [ des, cfg [], widthStep 12, data, trans [], enc [], bar [] ]
 
 
 bar8 : Spec
@@ -206,7 +209,12 @@ bar8 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month, pAxis [ axTitle "Month of the year" ] ]
+                << position X
+                    [ pName "date"
+                    , pMType Ordinal
+                    , pTimeUnit month
+                    , pAxis [ axTitle "Month of the year" ]
+                    ]
                 << position Y [ pMType Quantitative, pAggregate opCount ]
                 << color
                     [ mName "weather"
@@ -252,11 +260,21 @@ bar10 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal, pScale [ scRangeStep (Just 17) ] ]
-                << position Y [ pName "people", pMType Quantitative, pAggregate opSum, pAxis [ axTitle "Population" ], pStack stNormalize ]
-                << color [ mName "gender", mMType Nominal, mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ] ]
+                << position X [ pName "age", pMType Ordinal ]
+                << position Y
+                    [ pName "people"
+                    , pMType Quantitative
+                    , pAggregate opSum
+                    , pAxis [ axTitle "Population" ]
+                    , pStack stNormalize
+                    ]
+                << color
+                    [ mName "gender"
+                    , mMType Nominal
+                    , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
+                    ]
     in
-    toVegaLite [ des, data, trans [], enc [], bar [] ]
+    toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
 
 
 bar11 : Spec
@@ -316,12 +334,22 @@ bar13 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal, pScale [ scRangeStep (Just 17) ] ]
-                << position Y [ pName "people", pMType Quantitative, pAggregate opSum, pAxis [ axTitle "Population" ], pStack stNone ]
-                << color [ mName "gender", mMType Nominal, mScale [ scRange (raStrs [ "#e377c2", "#1f77b4" ]) ] ]
+                << position X [ pName "age", pMType Ordinal ]
+                << position Y
+                    [ pName "people"
+                    , pMType Quantitative
+                    , pAggregate opSum
+                    , pAxis [ axTitle "Population" ]
+                    , pStack stNone
+                    ]
+                << color
+                    [ mName "gender"
+                    , mMType Nominal
+                    , mScale [ scRange (raStrs [ "#e377c2", "#1f77b4" ]) ]
+                    ]
                 << opacity [ mNum 0.7 ]
     in
-    toVegaLite [ des, data, trans [], enc [], bar [] ]
+    toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
 
 
 bar14 : Spec
