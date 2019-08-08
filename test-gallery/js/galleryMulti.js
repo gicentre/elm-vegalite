@@ -9414,7 +9414,7 @@ var author$project$GalleryMulti$multi5 = function () {
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				author$project$VegaLite$title('Seattle Weather, 2012-2015'),
+				A2(author$project$VegaLite$title, 'Seattle Weather, 2012-2015', _List_Nil),
 				des,
 				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
 				author$project$VegaLite$vConcat(
@@ -9933,7 +9933,7 @@ var author$project$GalleryMulti$multi6 = function () {
 	var specOriginText = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				author$project$VegaLite$title('Country of origin'),
+				A2(author$project$VegaLite$title, 'Country of origin', _List_Nil),
 				tableTrans(_List_Nil),
 				author$project$VegaLite$textMark(_List_Nil),
 				encOriginText(_List_Nil)
@@ -9961,7 +9961,7 @@ var author$project$GalleryMulti$multi6 = function () {
 	var specMPGText = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				author$project$VegaLite$title('Efficiency (mpg)'),
+				A2(author$project$VegaLite$title, 'Efficiency (mpg)', _List_Nil),
 				tableTrans(_List_Nil),
 				author$project$VegaLite$textMark(_List_Nil),
 				encMPGText(_List_Nil)
@@ -9989,7 +9989,7 @@ var author$project$GalleryMulti$multi6 = function () {
 	var specHPText = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				author$project$VegaLite$title('Engine power'),
+				A2(author$project$VegaLite$title, 'Engine power', _List_Nil),
 				tableTrans(_List_Nil),
 				author$project$VegaLite$textMark(_List_Nil),
 				encHPText(_List_Nil)
@@ -10053,6 +10053,22 @@ var author$project$VegaLite$lookup = F4(
 							spec,
 							elm$json$Json$Encode$string(key2),
 							A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fields)
+						]))));
+	});
+var author$project$VegaLite$lookupAs = F4(
+	function (key1, _n0, key2, asName) {
+		var vlProp = _n0.a;
+		var spec = _n0.b;
+		return elm$core$List$cons(
+			_Utils_Tuple2(
+				'lookupAs',
+				author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							elm$json$Json$Encode$string(key1),
+							spec,
+							elm$json$Json$Encode$string(key2),
+							elm$json$Json$Encode$string(asName)
 						]))));
 	});
 var author$project$VegaLite$MColor = function (a) {
@@ -10241,35 +10257,21 @@ var author$project$GalleryMulti$multi7 = function () {
 			elm$core$Basics$composeL,
 			A2(
 				elm$core$Basics$composeL,
-				A2(
-					elm$core$Basics$composeL,
-					A2(
-						elm$core$Basics$composeL,
-						A2(
-							elm$core$Basics$composeL,
-							A2(
-								elm$core$Basics$composeL,
-								author$project$VegaLite$transform,
-								author$project$VegaLite$filter(
-									author$project$VegaLite$fiSelection('mySelection'))),
-							A4(
-								author$project$VegaLite$lookup,
-								'origin',
-								A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-								'iata',
-								_List_fromArray(
-									['latitude', 'longitude']))),
-						A2(author$project$VegaLite$calculateAs, 'datum.latitude', 'oLat')),
-					A2(author$project$VegaLite$calculateAs, 'datum.longitude', 'oLon')),
-				A4(
-					author$project$VegaLite$lookup,
-					'destination',
-					A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-					'iata',
-					_List_fromArray(
-						['latitude', 'longitude']))),
-			A2(author$project$VegaLite$calculateAs, 'datum.latitude', 'dLat')),
-		A2(author$project$VegaLite$calculateAs, 'datum.longitude', 'dLon'));
+				author$project$VegaLite$transform,
+				author$project$VegaLite$filter(
+					author$project$VegaLite$fiSelection('mySelection'))),
+			A4(
+				author$project$VegaLite$lookupAs,
+				'origin',
+				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+				'iata',
+				'o')),
+		A4(
+			author$project$VegaLite$lookupAs,
+			'destination',
+			A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+			'iata',
+			'd'));
 	var lineEnc = A2(
 		elm$core$Basics$composeL,
 		A2(
@@ -10284,7 +10286,7 @@ var author$project$GalleryMulti$multi7 = function () {
 						4,
 						_List_fromArray(
 							[
-								author$project$VegaLite$pName('oLon'),
+								author$project$VegaLite$pName('o.longitude'),
 								author$project$VegaLite$pMType(2)
 							]))),
 				A2(
@@ -10292,7 +10294,7 @@ var author$project$GalleryMulti$multi7 = function () {
 					5,
 					_List_fromArray(
 						[
-							author$project$VegaLite$pName('oLat'),
+							author$project$VegaLite$pName('o.latitude'),
 							author$project$VegaLite$pMType(2)
 						]))),
 			A2(
@@ -10300,14 +10302,14 @@ var author$project$GalleryMulti$multi7 = function () {
 				6,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('dLon')
+						author$project$VegaLite$pName('d.longitude')
 					]))),
 		A2(
 			author$project$VegaLite$position,
 			7,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pName('dLat')
+					author$project$VegaLite$pName('d.latitude')
 				])));
 	var lineSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(

@@ -291,7 +291,7 @@ multi5 =
                     ]
     in
     toVegaLite
-        [ title "Seattle Weather, 2012-2015"
+        [ title "Seattle Weather, 2012-2015" []
         , des
         , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , vConcat [ spec1, spec2 ]
@@ -340,7 +340,12 @@ multi6 =
                 << text [ tName "Horsepower", tMType Nominal ]
 
         specHPText =
-            asSpec [ title "Engine power", tableTrans [], textMark [], encHPText [] ]
+            asSpec
+                [ title "Engine power" []
+                , tableTrans []
+                , textMark []
+                , encHPText []
+                ]
 
         encMPGText =
             encoding
@@ -348,7 +353,12 @@ multi6 =
                 << text [ tName "Miles_per_Gallon", tMType Nominal ]
 
         specMPGText =
-            asSpec [ title "Efficiency (mpg)", tableTrans [], textMark [], encMPGText [] ]
+            asSpec
+                [ title "Efficiency (mpg)" []
+                , tableTrans []
+                , textMark []
+                , encMPGText []
+                ]
 
         encOriginText =
             encoding
@@ -356,7 +366,12 @@ multi6 =
                 << text [ tName "Origin", tMType Nominal ]
 
         specOriginText =
-            asSpec [ title "Country of origin", tableTrans [], textMark [], encOriginText [] ]
+            asSpec
+                [ title "Country of origin" []
+                , tableTrans []
+                , textMark []
+                , encOriginText []
+                ]
 
         res =
             resolve
@@ -367,7 +382,12 @@ multi6 =
                 << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
-        [ cfg [], data [], trans [], res [], hConcat [ specPoint, specHPText, specMPGText, specOriginText ] ]
+        [ cfg []
+        , data []
+        , trans []
+        , res []
+        , hConcat [ specPoint, specHPText, specMPGText, specOriginText ]
+        ]
 
 
 multi7 : Spec
@@ -389,25 +409,21 @@ multi7 =
         lineTrans =
             transform
                 << filter (fiSelection "mySelection")
-                << lookup "origin"
+                << lookupAs "origin"
                     (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
                     "iata"
-                    [ "latitude", "longitude" ]
-                << calculateAs "datum.latitude" "oLat"
-                << calculateAs "datum.longitude" "oLon"
-                << lookup "destination"
+                    "o"
+                << lookupAs "destination"
                     (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
                     "iata"
-                    [ "latitude", "longitude" ]
-                << calculateAs "datum.latitude" "dLat"
-                << calculateAs "datum.longitude" "dLon"
+                    "d"
 
         lineEnc =
             encoding
-                << position Longitude [ pName "oLon", pMType Quantitative ]
-                << position Latitude [ pName "oLat", pMType Quantitative ]
-                << position Longitude2 [ pName "dLon" ]
-                << position Latitude2 [ pName "dLat" ]
+                << position Longitude [ pName "o.longitude", pMType Quantitative ]
+                << position Latitude [ pName "o.latitude", pMType Quantitative ]
+                << position Longitude2 [ pName "d.longitude" ]
+                << position Latitude2 [ pName "d.latitude" ]
 
         lineSpec =
             asSpec
