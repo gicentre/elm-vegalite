@@ -10030,7 +10030,7 @@ var author$project$GalleryLabel$label8 = function () {
 							author$project$VegaLite$scDomain(
 							author$project$VegaLite$doNums(
 								_List_fromArray(
-									[1, 5])))
+									[0, 6])))
 						])),
 					author$project$VegaLite$pAxis(
 					_List_fromArray(

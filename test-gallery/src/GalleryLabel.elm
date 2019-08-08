@@ -382,7 +382,7 @@ label8 =
                 << position X
                     [ pName "median"
                     , pMType Quantitative
-                    , pScale [ scDomain (doNums [ 1, 5 ]) ]
+                    , pScale [ scDomain (doNums [ 0, 6 ]) ]
                     , pAxis [ axTitle "" ]
                     ]
 
