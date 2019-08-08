@@ -9654,10 +9654,18 @@ var author$project$VegaLite$SPadding = function (a) {
 	return {$: 5, a: a};
 };
 var author$project$VegaLite$scPadding = author$project$VegaLite$SPadding;
-var author$project$VegaLite$SRangeStep = function (a) {
-	return {$: 8, a: a};
+var author$project$VegaLite$VLWidthStep = 5;
+var author$project$VegaLite$widthStep = function (ws) {
+	return _Utils_Tuple2(
+		5,
+		elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					elm$json$Json$Encode$float(ws))
+				])));
 };
-var author$project$VegaLite$scRangeStep = author$project$VegaLite$SRangeStep;
 var author$project$GalleryLine$line4 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -9676,8 +9684,6 @@ var author$project$GalleryLine$line4 = function () {
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
-									author$project$VegaLite$scRangeStep(
-									elm$core$Maybe$Just(50)),
 									author$project$VegaLite$scPadding(0.5)
 								]))
 						]))),
@@ -9701,6 +9707,7 @@ var author$project$GalleryLine$line4 = function () {
 		_List_fromArray(
 			[
 				des,
+				author$project$VegaLite$widthStep(50),
 				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil),
 				author$project$VegaLite$line(_List_Nil),
 				enc(_List_Nil)

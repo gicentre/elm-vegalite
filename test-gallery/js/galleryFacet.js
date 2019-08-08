@@ -5305,10 +5305,6 @@ var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
-var author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6181,10 +6177,6 @@ var author$project$VegaLite$SRange = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$scRange = author$project$VegaLite$SRange;
-var author$project$VegaLite$SRangeStep = function (a) {
-	return {$: 8, a: a};
-};
-var author$project$VegaLite$scRangeStep = author$project$VegaLite$SRangeStep;
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -6678,6 +6670,18 @@ var author$project$VegaLite$transform = function (transforms) {
 		13,
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
+var author$project$VegaLite$VLWidthStep = 5;
+var author$project$VegaLite$widthStep = function (ws) {
+	return _Utils_Tuple2(
+		5,
+		elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					elm$json$Json$Encode$float(ws))
+				])));
+};
 var elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -6707,13 +6711,7 @@ var author$project$GalleryFacet$facet1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('age'),
-								author$project$VegaLite$pMType(1),
-								author$project$VegaLite$pScale(
-								_List_fromArray(
-									[
-										author$project$VegaLite$scRangeStep(
-										elm$core$Maybe$Just(17))
-									]))
+								author$project$VegaLite$pMType(1)
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -6755,6 +6753,7 @@ var author$project$GalleryFacet$facet1 = function () {
 		_List_fromArray(
 			[
 				des,
+				author$project$VegaLite$widthStep(17),
 				data(_List_Nil),
 				trans(_List_Nil),
 				author$project$VegaLite$bar(_List_Nil),
@@ -6927,6 +6926,10 @@ var author$project$VegaLite$opacity = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
+var author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
 var author$project$VegaLite$SZero = function (a) {
 	return {$: 13, a: a};
 };
@@ -7033,6 +7036,18 @@ var author$project$VegaLite$HTitle = function (a) {
 	return {$: 3, a: a};
 };
 var author$project$VegaLite$hdTitle = author$project$VegaLite$HTitle;
+var author$project$VegaLite$VLHeightStep = 6;
+var author$project$VegaLite$heightStep = function (hs) {
+	return _Utils_Tuple2(
+		6,
+		elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					elm$json$Json$Encode$float(hs))
+				])));
+};
 var author$project$VegaLite$Median = {$: 8};
 var author$project$VegaLite$opMedian = author$project$VegaLite$Median;
 var author$project$VegaLite$PSort = function (a) {
@@ -7083,12 +7098,6 @@ var author$project$GalleryFacet$facet6 = function () {
 					[
 						author$project$VegaLite$pName('variety'),
 						author$project$VegaLite$pMType(1),
-						author$project$VegaLite$pScale(
-						_List_fromArray(
-							[
-								author$project$VegaLite$scRangeStep(
-								elm$core$Maybe$Just(12))
-							])),
 						author$project$VegaLite$pSort(
 						_List_fromArray(
 							[
@@ -7130,6 +7139,7 @@ var author$project$GalleryFacet$facet6 = function () {
 				author$project$VegaLite$asSpec(
 					_List_fromArray(
 						[
+							author$project$VegaLite$heightStep(12),
 							enc(_List_Nil),
 							author$project$VegaLite$point(_List_Nil)
 						])))

@@ -26,12 +26,21 @@ facet1 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal, pScale [ scRangeStep (Just 17) ] ]
-                << position Y [ pName "people", pMType Quantitative, pAggregate opSum, pAxis [ axTitle "Population" ] ]
-                << color [ mName "gender", mMType Nominal, mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ] ]
+                << position X [ pName "age", pMType Ordinal ]
+                << position Y
+                    [ pName "people"
+                    , pMType Quantitative
+                    , pAggregate opSum
+                    , pAxis [ axTitle "Population" ]
+                    ]
+                << color
+                    [ mName "gender"
+                    , mMType Nominal
+                    , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
+                    ]
                 << row [ fName "gender", fMType Nominal ]
     in
-    toVegaLite [ des, data [], trans [], bar [], enc [] ]
+    toVegaLite [ des, widthStep 17, data [], trans [], bar [], enc [] ]
 
 
 facet2 : Spec
@@ -131,7 +140,6 @@ facet6 =
                 << position Y
                     [ pName "variety"
                     , pMType Ordinal
-                    , pScale [ scRangeStep (Just 12) ]
                     , pSort [ soByChannel chX, soDescending ]
                     ]
                 << color [ mName "year", mMType Nominal ]
@@ -145,7 +153,7 @@ facet6 =
             , fSort [ soByField "yield" opMedian ]
             , fHeader [ hdTitle "" ]
             ]
-        , specification (asSpec [ enc [], point [] ])
+        , specification (asSpec [ heightStep 12, enc [], point [] ])
         ]
 
 

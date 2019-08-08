@@ -31,10 +31,10 @@ advanced1 =
         enc =
             encoding
                 << position X [ pName "PercentOfTotal", pMType Quantitative, pAxis [ axTitle "% of total time" ] ]
-                << position Y [ pName "Activity", pMType Nominal, pScale [ scRangeStep (Just 12) ] ]
+                << position Y [ pName "Activity", pMType Nominal ]
     in
     toVegaLite
-        [ desc, data [], trans [], bar [], enc [] ]
+        [ desc, heightStep 12, data [], trans [], bar [], enc [] ]
 
 
 advanced2 : Spec
@@ -44,13 +44,12 @@ advanced2 =
             description "Calculation of difference from average"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
         trans =
             transform
                 << filter (fiExpr "isValid(datum.IMDB_Rating)")
-                << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageRating" ) ]
-                    [ wiFrame Nothing Nothing ]
+                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageRating" ] []
                 << filter (fiExpr "(datum.IMDB_Rating - datum.AverageRating) > 2.5")
 
         barEnc =
@@ -69,7 +68,7 @@ advanced2 =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]
     in
     toVegaLite
-        [ desc, data [], trans [], layer [ barSpec, ruleSpec ] ]
+        [ desc, data, trans [], layer [ barSpec, ruleSpec ] ]
 
 
 advanced3 : Spec
@@ -79,15 +78,13 @@ advanced3 =
             description "Calculation of difference from annual average"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
-                [ parse [ ( "Release_Date", foDate "%d-%b-%y" ) ] ]
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
         trans =
             transform
                 << filter (fiExpr "isValid(datum.IMDB_Rating)")
                 << timeUnitAs year "Release_Date" "year"
-                << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageYearRating" ) ]
-                    [ wiGroupBy [ "year" ], wiFrame Nothing Nothing ]
+                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageYearRating" ] [ wiGroupBy [ "year" ] ]
                 << filter (fiExpr "(datum.IMDB_Rating - datum.AverageYearRating) > 2.5")
 
         barEnc =
@@ -123,8 +120,7 @@ advanced4 =
             transform
                 << filter (fiExpr "isValid(datum.IMDB_Rating)")
                 << filter (fiRange "Release_Date" (dtRange [] [ dtYear 2019 ]))
-                << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageRating" ) ]
-                    [ wiFrame Nothing Nothing ]
+                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageRating" ] []
                 << calculateAs "datum.IMDB_Rating - datum.AverageRating" "RatingDelta"
 
         enc =

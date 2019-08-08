@@ -84,12 +84,13 @@ line4 =
 
         enc =
             encoding
-                << position X [ pName "year", pMType Ordinal, pScale [ scRangeStep (Just 50), scPadding 0.5 ] ]
+                << position X [ pName "year", pMType Ordinal, pScale [ scPadding 0.5 ] ]
                 << position Y [ pName "yield", pMType Quantitative, pAggregate opMedian ]
                 << color [ mName "site", mMType Nominal ]
     in
     toVegaLite
         [ des
+        , widthStep 50
         , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
         , line []
         , enc []
