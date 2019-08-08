@@ -243,7 +243,7 @@ line10 =
 
         transTextMin =
             transform
-                << aggregate [ opAs opArgMin "scaled_date" "aggregated" ] [ "decade" ]
+                << aggregate [ opAs (opArgMin Nothing) "scaled_date" "aggregated" ] [ "decade" ]
                 << calculateAs "datum.aggregated.scaled_date" "scaled_date"
                 << calculateAs "datum.aggregated.CO2" "CO2"
 
@@ -256,7 +256,7 @@ line10 =
 
         transTextMax =
             transform
-                << aggregate [ opAs opArgMax "scaled_date" "aggregated" ] [ "decade" ]
+                << aggregate [ opAs (opArgMax Nothing) "scaled_date" "aggregated" ] [ "decade" ]
                 << calculateAs "datum.aggregated.scaled_date" "scaled_date"
                 << calculateAs "datum.aggregated.CO2" "CO2"
 

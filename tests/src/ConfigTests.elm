@@ -17,7 +17,15 @@ singleVis config =
                 << color [ mName "Cylinders", mMType Ordinal ]
                 << shape [ mName "Origin", mMType Nominal ]
     in
-    toVegaLite [ title "Car Scatter", config [], cars, width 200, height 200, point [ maSize 100 ], scatterEnc [] ]
+    toVegaLite
+        [ title "Car Scatter" []
+        , config []
+        , cars
+        , width 200
+        , height 200
+        , point [ maSize 100 ]
+        , scatterEnc []
+        ]
 
 
 compositeVis : (List a -> ( VLProperty, Spec )) -> Spec
@@ -34,7 +42,14 @@ compositeVis config =
                 << shape [ mName "Origin", mMType Nominal ]
 
         scatterSpec =
-            asSpec [ title "Car Scatter", width 200, height 200, padding (paSize 20), point [ maSize 100 ], scatterEnc [] ]
+            asSpec
+                [ title "Car Scatter" []
+                , width 200
+                , height 200
+                , padding (paSize 20)
+                , point [ maSize 100 ]
+                , scatterEnc []
+                ]
 
         barEnc =
             encoding
@@ -49,10 +64,24 @@ compositeVis config =
                 << color [ mName "Origin", mMType Nominal ]
 
         barSpec =
-            asSpec [ title "Car Histogram", width 200, height 200, padding (paSize 20), bar [], barEnc [] ]
+            asSpec
+                [ title "Car Histogram" []
+                , width 200
+                , height 200
+                , padding (paSize 20)
+                , bar []
+                , barEnc []
+                ]
 
         streamSpec =
-            asSpec [ title "Car Streamgraph", width 200, height 200, padding (paSize 20), area [], streamEnc [] ]
+            asSpec
+                [ title "Car Streamgraph" []
+                , width 200
+                , height 200
+                , padding (paSize 20)
+                , area []
+                , streamEnc []
+                ]
 
         res =
             resolve
@@ -88,7 +117,7 @@ vbTest =
 
         scatterSpec =
             asSpec
-                [ title "Car Scatter"
+                [ title "Car Scatter" []
                 , width 200
                 , height 200
                 , point [ maSize 100 ]
@@ -97,7 +126,7 @@ vbTest =
 
         barSpec =
             asSpec
-                [ title "Car Histogram"
+                [ title "Car Histogram" []
                 , width 200
                 , height 200
                 , viewBackground
@@ -124,7 +153,7 @@ vbTest =
 
         streamSpec =
             asSpec
-                [ title "Car Streamgraph"
+                [ title "Car Streamgraph" []
                 , width 200
                 , height 200
                 , viewBackground [ viewStyle [ "myStyle", "mySecondStyle" ] ]

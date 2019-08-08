@@ -8979,13 +8979,13 @@ var author$project$VegaLite$configuration = function (cfg) {
 	return elm$core$List$cons(
 		author$project$VegaLite$configProperty(cfg));
 };
-var author$project$VegaLite$VLConfig = 27;
+var author$project$VegaLite$VLConfig = 29;
 var author$project$VegaLite$configure = function (configs) {
 	return _Utils_Tuple2(
-		27,
+		29,
 		elm$json$Json$Encode$object(configs));
 };
-var author$project$VegaLite$VLData = 8;
+var author$project$VegaLite$VLData = 10;
 var author$project$VegaLite$dataTypeSpec = function (dType) {
 	switch (dType.$) {
 		case 0:
@@ -9103,7 +9103,7 @@ var author$project$VegaLite$formatProperty = function (fmt) {
 var author$project$VegaLite$dataFromUrl = F2(
 	function (url, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -9111,7 +9111,7 @@ var author$project$VegaLite$dataFromUrl = F2(
 						'url',
 						elm$json$Json$Encode$string(url))
 					]))) : _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -9124,14 +9124,14 @@ var author$project$VegaLite$dataFromUrl = F2(
 							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
 					])));
 	});
-var author$project$VegaLite$VLEncoding = 13;
+var author$project$VegaLite$VLEncoding = 15;
 var author$project$VegaLite$encoding = function (channels) {
 	return _Utils_Tuple2(
-		13,
+		15,
 		elm$json$Json$Encode$object(channels));
 };
 var author$project$VegaLite$Geoshape = 6;
-var author$project$VegaLite$VLMark = 10;
+var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
 	switch (m) {
 		case 0:
@@ -9170,12 +9170,12 @@ var author$project$VegaLite$mark = F2(
 	function (m, mProps) {
 		if (!mProps.b) {
 			return _Utils_Tuple2(
-				10,
+				12,
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$markLabel(m)));
 		} else {
 			return _Utils_Tuple2(
-				10,
+				12,
 				elm$json$Json$Encode$object(
 					A2(
 						elm$core$List$cons,
@@ -9215,55 +9215,59 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'title';
 		case 3:
 			return 'width';
+		case 5:
+			return 'width';
 		case 4:
 			return 'height';
 		case 6:
-			return 'padding';
-		case 5:
-			return 'autosize';
-		case 7:
-			return 'background';
+			return 'height';
 		case 8:
-			return 'data';
+			return 'padding';
+		case 7:
+			return 'autosize';
 		case 9:
-			return 'datasets';
-		case 12:
-			return 'projection';
+			return 'background';
 		case 10:
-			return 'mark';
+			return 'data';
 		case 11:
-			return 'transform';
-		case 13:
-			return 'encoding';
-		case 27:
-			return 'config';
-		case 28:
-			return 'selection';
-		case 15:
-			return 'concat';
-		case 18:
-			return 'columns';
-		case 16:
-			return 'hconcat';
-		case 17:
-			return 'vconcat';
+			return 'datasets';
 		case 14:
-			return 'layer';
-		case 19:
-			return 'repeat';
+			return 'projection';
+		case 12:
+			return 'mark';
+		case 13:
+			return 'transform';
+		case 15:
+			return 'encoding';
+		case 29:
+			return 'config';
+		case 30:
+			return 'selection';
+		case 17:
+			return 'concat';
 		case 20:
-			return 'facet';
-		case 23:
-			return 'spacing';
-		case 24:
-			return 'align';
-		case 25:
-			return 'bounds';
-		case 26:
-			return 'center';
+			return 'columns';
+		case 18:
+			return 'hconcat';
+		case 19:
+			return 'vconcat';
+		case 16:
+			return 'layer';
 		case 21:
-			return 'spec';
+			return 'repeat';
 		case 22:
+			return 'facet';
+		case 25:
+			return 'spacing';
+		case 26:
+			return 'align';
+		case 27:
+			return 'bounds';
+		case 28:
+			return 'center';
+		case 23:
+			return 'spec';
+		case 24:
 			return 'resolve';
 		default:
 			return 'view';
@@ -9275,7 +9279,7 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 			elm$core$List$cons,
 			_Utils_Tuple2(
 				'$schema',
-				elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v3.json')),
+				elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v4.json')),
 			A2(
 				elm$core$List$map,
 				function (_n0) {
@@ -9443,10 +9447,10 @@ var author$project$VegaLite$calculateAs = F2(
 							elm$json$Json$Encode$string(label)
 						]))));
 	});
-var author$project$VegaLite$VLLayer = 14;
+var author$project$VegaLite$VLLayer = 16;
 var author$project$VegaLite$layer = function (specs) {
 	return _Utils_Tuple2(
-		14,
+		16,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$VegaLite$MLegend = function (a) {
@@ -10250,7 +10254,7 @@ var author$project$VegaLite$text = function (tDefs) {
 };
 var author$project$VegaLite$Text = 12;
 var author$project$VegaLite$textMark = author$project$VegaLite$mark(12);
-var author$project$VegaLite$VLTransform = 11;
+var author$project$VegaLite$VLTransform = 13;
 var elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
 		return true;
@@ -10653,8 +10657,8 @@ var author$project$VegaLite$transform = function (transforms) {
 						]));
 		}
 	};
-	return elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(11, elm$json$Json$Encode$null) : _Utils_Tuple2(
-		11,
+	return elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, elm$json$Json$Encode$null) : _Utils_Tuple2(
+		13,
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
 var author$project$GeoTests$choropleth2 = function () {
@@ -10770,10 +10774,10 @@ var author$project$VegaLite$PType = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$prType = author$project$VegaLite$PType;
-var author$project$VegaLite$VLProjection = 12;
+var author$project$VegaLite$VLProjection = 14;
 var author$project$VegaLite$projection = function (pProps) {
 	return _Utils_Tuple2(
-		12,
+		14,
 		elm$json$Json$Encode$object(
 			A2(elm$core$List$map, author$project$VegaLite$projectionProperty, pProps)));
 };
@@ -11024,7 +11028,7 @@ var author$project$VegaLite$graticuleProperty = function (prop) {
 };
 var author$project$VegaLite$graticule = function (grProps) {
 	return _Utils_eq(grProps, _List_Nil) ? _Utils_Tuple2(
-		8,
+		10,
 		elm$json$Json$Encode$object(
 			_List_fromArray(
 				[
@@ -11032,7 +11036,7 @@ var author$project$VegaLite$graticule = function (grProps) {
 					'graticule',
 					elm$json$Json$Encode$bool(true))
 				]))) : _Utils_Tuple2(
-		8,
+		10,
 		elm$json$Json$Encode$object(
 			_List_fromArray(
 				[
@@ -11058,7 +11062,7 @@ var author$project$VegaLite$PrRotate = F3(
 	});
 var author$project$VegaLite$prRotate = author$project$VegaLite$PrRotate;
 var author$project$VegaLite$sphere = _Utils_Tuple2(
-	8,
+	10,
 	elm$json$Json$Encode$object(
 		_List_fromArray(
 			[
@@ -11396,10 +11400,10 @@ var author$project$GeoTests$map1d = function () {
 					[backgroundSpec, cSpec, hSpec, vSpec]))
 			]));
 }();
-var author$project$VegaLite$VLHConcat = 16;
+var author$project$VegaLite$VLHConcat = 18;
 var author$project$VegaLite$hConcat = function (specs) {
 	return _Utils_Tuple2(
-		16,
+		18,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$GeoTests$mapComp1 = function () {
@@ -12023,7 +12027,7 @@ var author$project$GeoTests$scribbleMap1 = function () {
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				author$project$VegaLite$title('US connected zip codes'),
+				A2(author$project$VegaLite$title, 'US connected zip codes', _List_Nil),
 				config(_List_Nil),
 				author$project$VegaLite$width(1000),
 				author$project$VegaLite$height(600),
@@ -12131,7 +12135,7 @@ var author$project$GeoTests$scribbleMap2 = function () {
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				author$project$VegaLite$title('US connected zip codes, coloured by first three digits'),
+				A2(author$project$VegaLite$title, 'US connected zip codes, coloured by first three digits', _List_Nil),
 				config(_List_Nil),
 				author$project$VegaLite$width(1000),
 				author$project$VegaLite$height(600),

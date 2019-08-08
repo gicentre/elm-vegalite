@@ -2317,55 +2317,59 @@ var author$project$VegaLite$vlPropertyLabel = function (spec) {
 			return 'title';
 		case 3:
 			return 'width';
+		case 5:
+			return 'width';
 		case 4:
 			return 'height';
 		case 6:
-			return 'padding';
-		case 5:
-			return 'autosize';
-		case 7:
-			return 'background';
+			return 'height';
 		case 8:
-			return 'data';
+			return 'padding';
+		case 7:
+			return 'autosize';
 		case 9:
-			return 'datasets';
-		case 12:
-			return 'projection';
+			return 'background';
 		case 10:
-			return 'mark';
+			return 'data';
 		case 11:
-			return 'transform';
-		case 13:
-			return 'encoding';
-		case 27:
-			return 'config';
-		case 28:
-			return 'selection';
-		case 15:
-			return 'concat';
-		case 18:
-			return 'columns';
-		case 16:
-			return 'hconcat';
-		case 17:
-			return 'vconcat';
+			return 'datasets';
 		case 14:
-			return 'layer';
-		case 19:
-			return 'repeat';
+			return 'projection';
+		case 12:
+			return 'mark';
+		case 13:
+			return 'transform';
+		case 15:
+			return 'encoding';
+		case 29:
+			return 'config';
+		case 30:
+			return 'selection';
+		case 17:
+			return 'concat';
 		case 20:
-			return 'facet';
-		case 23:
-			return 'spacing';
-		case 24:
-			return 'align';
-		case 25:
-			return 'bounds';
-		case 26:
-			return 'center';
+			return 'columns';
+		case 18:
+			return 'hconcat';
+		case 19:
+			return 'vconcat';
+		case 16:
+			return 'layer';
 		case 21:
-			return 'spec';
+			return 'repeat';
 		case 22:
+			return 'facet';
+		case 25:
+			return 'spacing';
+		case 26:
+			return 'align';
+		case 27:
+			return 'bounds';
+		case 28:
+			return 'center';
+		case 23:
+			return 'spec';
+		case 24:
 			return 'resolve';
 		default:
 			return 'view';
@@ -2950,7 +2954,7 @@ var author$project$VegaLite$AxTitle = function (a) {
 };
 var author$project$VegaLite$axTitle = author$project$VegaLite$AxTitle;
 var author$project$VegaLite$Bar = 1;
-var author$project$VegaLite$VLMark = 10;
+var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
 	switch (m) {
 		case 0:
@@ -3583,12 +3587,12 @@ var author$project$VegaLite$mark = F2(
 	function (m, mProps) {
 		if (!mProps.b) {
 			return _Utils_Tuple2(
-				10,
+				12,
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$markLabel(m)));
 		} else {
 			return _Utils_Tuple2(
-				10,
+				12,
 				elm$json$Json$Encode$object(
 					A2(
 						elm$core$List$cons,
@@ -5240,7 +5244,7 @@ var author$project$VegaLite$dataColumn = F2(
 						col));
 		}
 	});
-var author$project$VegaLite$VLData = 8;
+var author$project$VegaLite$VLData = 10;
 var author$project$VegaLite$dataTypeSpec = function (dType) {
 	switch (dType.$) {
 		case 0:
@@ -5423,13 +5427,13 @@ var author$project$VegaLite$dataFromColumns = F2(
 			elm$json$Json$Encode$object,
 			author$project$VegaLite$transpose(cols));
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
 						_Utils_Tuple2('values', dataArray)
 					]))) : _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -5462,16 +5466,16 @@ var author$project$VegaLite$DTYear = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$dtYear = author$project$VegaLite$DTYear;
-var author$project$VegaLite$VLEncoding = 13;
+var author$project$VegaLite$VLEncoding = 15;
 var author$project$VegaLite$encoding = function (channels) {
 	return _Utils_Tuple2(
-		13,
+		15,
 		elm$json$Json$Encode$object(channels));
 };
-var author$project$VegaLite$VLLayer = 14;
+var author$project$VegaLite$VLLayer = 16;
 var author$project$VegaLite$layer = function (specs) {
 	return _Utils_Tuple2(
-		14,
+		16,
 		author$project$VegaLite$toList(specs));
 };
 var author$project$VegaLite$MLegend = function (a) {
@@ -6198,7 +6202,7 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 			elm$core$List$cons,
 			_Utils_Tuple2(
 				'$schema',
-				elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v3.json')),
+				elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v4.json')),
 			A2(
 				elm$core$List$map,
 				function (_n0) {
@@ -6210,7 +6214,7 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
-var author$project$VegaLite$VLTransform = 11;
+var author$project$VegaLite$VLTransform = 13;
 var elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
 		return true;
@@ -6613,8 +6617,8 @@ var author$project$VegaLite$transform = function (transforms) {
 						]));
 		}
 	};
-	return elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(11, elm$json$Json$Encode$null) : _Utils_Tuple2(
-		11,
+	return elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, elm$json$Json$Encode$null) : _Utils_Tuple2(
+		13,
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
 var author$project$VegaLite$VLWidth = 3;
@@ -6877,7 +6881,7 @@ var author$project$VegaLite$dName = author$project$VegaLite$DName;
 var author$project$VegaLite$dataFromUrl = F2(
 	function (url, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -6885,7 +6889,7 @@ var author$project$VegaLite$dataFromUrl = F2(
 						'url',
 						elm$json$Json$Encode$string(url))
 					]))) : _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -9074,22 +9078,22 @@ var author$project$VegaLite$configuration = function (cfg) {
 	return elm$core$List$cons(
 		author$project$VegaLite$configProperty(cfg));
 };
-var author$project$VegaLite$VLConfig = 27;
+var author$project$VegaLite$VLConfig = 29;
 var author$project$VegaLite$configure = function (configs) {
 	return _Utils_Tuple2(
-		27,
+		29,
 		elm$json$Json$Encode$object(configs));
 };
 var author$project$VegaLite$dataFromJson = F2(
 	function (json, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
 						_Utils_Tuple2('values', json)
 					]))) : _Utils_Tuple2(
-			8,
+			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -9112,7 +9116,7 @@ var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
-var author$project$VegaLite$VLFacet = 20;
+var author$project$VegaLite$VLFacet = 22;
 var author$project$VegaLite$facetChannelProperty = function (fMap) {
 	switch (fMap.$) {
 		case 0:
@@ -9202,7 +9206,7 @@ var author$project$VegaLite$facetMappingProperty = function (fMap) {
 };
 var author$project$VegaLite$facet = function (fMaps) {
 	return _Utils_Tuple2(
-		20,
+		22,
 		elm$json$Json$Encode$object(
 			A2(elm$core$List$map, author$project$VegaLite$facetMappingProperty, fMaps)));
 };
@@ -9297,10 +9301,10 @@ var author$project$VegaLite$resolution = function (res) {
 	return elm$core$List$cons(
 		author$project$VegaLite$resolveProperty(res));
 };
-var author$project$VegaLite$VLResolve = 22;
+var author$project$VegaLite$VLResolve = 24;
 var author$project$VegaLite$resolve = function (res) {
 	return _Utils_Tuple2(
-		22,
+		24,
 		elm$json$Json$Encode$object(res));
 };
 var author$project$VegaLite$RowBy = function (a) {
@@ -9311,9 +9315,9 @@ var author$project$VegaLite$SNice = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$scNice = author$project$VegaLite$SNice;
-var author$project$VegaLite$VLSpec = 21;
+var author$project$VegaLite$VLSpec = 23;
 var author$project$VegaLite$specification = function (spec) {
-	return _Utils_Tuple2(21, spec);
+	return _Utils_Tuple2(23, spec);
 };
 var author$project$VegaLite$Tick = 13;
 var author$project$VegaLite$tick = author$project$VegaLite$mark(13);
@@ -10440,7 +10444,7 @@ var author$project$GalleryLayer$layer6 = function () {
 		_List_fromArray(
 			[
 				author$project$VegaLite$description('A layered bar chart with floating bars representing weekly weather data'),
-				author$project$VegaLite$title('Weekly Weather Observations and Predictions'),
+				A2(author$project$VegaLite$title, 'Weekly Weather Observations and Predictions', _List_Nil),
 				author$project$VegaLite$width(250),
 				author$project$VegaLite$height(200),
 				A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/weather.json', _List_Nil),

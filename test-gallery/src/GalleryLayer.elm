@@ -374,7 +374,7 @@ layer6 =
     in
     toVegaLite
         [ description "A layered bar chart with floating bars representing weekly weather data"
-        , title "Weekly Weather Observations and Predictions"
+        , title "Weekly Weather Observations and Predictions" []
         , width 250
         , height 200
         , dataFromUrl "https://vega.github.io/vega-lite/data/weather.json" []

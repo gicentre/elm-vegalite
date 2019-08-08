@@ -208,7 +208,7 @@ dashboard1 =
                 << position Y [ pAggregate opCount, pMType Quantitative ]
 
         histoSpec =
-            asSpec [ title "Frequency histogram", bar [], histoEnc [] ]
+            asSpec [ title "Frequency histogram" [], bar [], histoEnc [] ]
 
         scatterEnc =
             encoding
@@ -216,7 +216,7 @@ dashboard1 =
                 << position Y [ pName "precipitation", pMType Quantitative ]
 
         scatterSpec =
-            asSpec [ title "Scatterplot", point [], scatterEnc [] ]
+            asSpec [ title "Scatterplot" [], point [], scatterEnc [] ]
 
         barEnc =
             encoding
@@ -224,14 +224,14 @@ dashboard1 =
                 << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
 
         barSpec =
-            asSpec [ title "Bar chart", bar [], barEnc [] ]
+            asSpec [ title "Bar chart" [], bar [], barEnc [] ]
 
         annotationEnc =
             encoding
                 << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean, pScale [ scDomain (doNums [ 0, 5.5 ]) ] ]
 
         annotationSpec =
-            asSpec [ title "Annotation", width 200, rule [], annotationEnc [] ]
+            asSpec [ title "Annotation" [], width 200, rule [], annotationEnc [] ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
