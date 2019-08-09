@@ -365,26 +365,24 @@ module VegaLite exposing
     , soByChannel
     , soByRepeat
     , soCustom
-    , axDomain
-    , axFormat
-    , axFormatAsNum
-    , axFormatAsTemporal
-    , axGrid
-    , axLabelAngle
-    , axLabelOverlap
-    , axLabelPadding
-    , axLabels
+    , axBandPosition
     , axMaxExtent
     , axMinExtent
-    , axOffset
     , axOrient
+    , axOffset
     , axPosition
-    , axBandPosition
-    , axDates
+    , axZIndex
+    , axDataCondition
+    , axDomain
     , axDomainColor
     , axDomainOpacity
     , axDomainWidth
+    , axFormat
+    , axFormatAsNum
+    , axFormatAsTemporal
+    , axLabels
     , axLabelAlign
+    , axLabelAngle
     , axLabelBaseline
     , axLabelBound
     , axLabelColor
@@ -392,34 +390,44 @@ module VegaLite exposing
     , axLabelFlushOffset
     , axLabelFont
     , axLabelFontSize
+    , axLabelFontStyle
     , axLabelFontWeight
     , axLabelLimit
     , axLabelOpacity
+    , axLabelOverlap
+    , axLabelPadding
+    , axTicks
     , axTickColor
     , axTickCount
     , axTickExtra
     , axTickOffset
     , axTickOpacity
     , axTickRound
-    , axTicks
     , axTickSize
     , axTickMinStep
     , axTickWidth
+    , axValues
+    , axDates
     , axTitle
     , axTitleAlign
+    , axTitleAnchor
     , axTitleAngle
     , axTitleBaseline
     , axTitleColor
     , axTitleFont
     , axTitleFontSize
+    , axTitleFontStyle
     , axTitleFontWeight
     , axTitleLimit
     , axTitleOpacity
     , axTitlePadding
     , axTitleX
     , axTitleY
-    , axValues
-    , axZIndex
+    , axGrid
+    , axGridColor
+    , axGridDash
+    , axGridOpacity
+    , axGridWidth
     , haLeft
     , haCenter
     , haRight
@@ -1718,27 +1726,35 @@ See the
 See the
 [Vega-Lite axis property documentation](https://vega.github.io/vega-lite/docs/axis.html#axis-properties)
 
-@docs axDomain
-@docs axFormat
-@docs axFormatAsNum
-@docs axFormatAsTemporal
-@docs axGrid
-@docs axLabelAngle
-@docs axLabelOverlap
-@docs axLabelPadding
-@docs axLabels
-@docs axMaxExtent
-@docs axMinExtent
-@docs axOffset
-@docs axOrient
-@docs axPosition
+
+### General
 
 @docs axBandPosition
-@docs axDates
+@docs axMaxExtent
+@docs axMinExtent
+@docs axOrient
+@docs axOffset
+@docs axPosition
+@docs axZIndex
+@docs axDataCondition
+
+
+### Domain
+
+@docs axDomain
 @docs axDomainColor
 @docs axDomainOpacity
 @docs axDomainWidth
+
+
+### Labels
+
+@docs axFormat
+@docs axFormatAsNum
+@docs axFormatAsTemporal
+@docs axLabels
 @docs axLabelAlign
+@docs axLabelAngle
 @docs axLabelBaseline
 @docs axLabelBound
 @docs axLabelColor
@@ -1746,34 +1762,56 @@ See the
 @docs axLabelFlushOffset
 @docs axLabelFont
 @docs axLabelFontSize
+@docs axLabelFontStyle
 @docs axLabelFontWeight
 @docs axLabelLimit
 @docs axLabelOpacity
+@docs axLabelOverlap
+@docs axLabelPadding
+
+
+### Ticks
+
+@docs axTicks
 @docs axTickColor
 @docs axTickCount
 @docs axTickExtra
 @docs axTickOffset
 @docs axTickOpacity
 @docs axTickRound
-@docs axTicks
 @docs axTickSize
 @docs axTickMinStep
 @docs axTickWidth
+@docs axValues
+@docs axDates
+
+
+### Title
+
 @docs axTitle
 @docs axTitleAlign
+@docs axTitleAnchor
 @docs axTitleAngle
 @docs axTitleBaseline
 @docs axTitleColor
 @docs axTitleFont
 @docs axTitleFontSize
+@docs axTitleFontStyle
 @docs axTitleFontWeight
 @docs axTitleLimit
 @docs axTitleOpacity
 @docs axTitlePadding
 @docs axTitleX
 @docs axTitleY
-@docs axValues
-@docs axZIndex
+
+
+### Grid
+
+@docs axGrid
+@docs axGridColor
+@docs axGridDash
+@docs axGridOpacity
+@docs axGridWidth
 
 
 ## Positioning Constants
@@ -2934,6 +2972,12 @@ type AxisConfig
 -}
 type AxisProperty
     = AxBandPosition Float
+    | AxMaxExtent Float
+    | AxMinExtent Float
+    | AxOrient Side
+    | AxOffset Float
+    | AxPosition Float
+    | AxZIndex Int
     | AxDomain Bool
     | AxDomainColor String
     | AxDomainOpacity Float
@@ -2941,27 +2985,23 @@ type AxisProperty
     | AxFormat String
     | AxFormatAsNum
     | AxFormatAsTemporal
-    | AxGrid Bool
+    | AxLabels Bool
     | AxLabelAlign HAlign
     | AxLabelAngle Float
     | AxLabelBaseline VAlign
     | AxLabelBound (Maybe Float)
     | AxLabelColor String
+      --TODO | AxLabelExpr String
     | AxLabelFlush (Maybe Float)
     | AxLabelFlushOffset Float
     | AxLabelFont String
     | AxLabelFontSize Float
+    | AxLabelFontStyle String
     | AxLabelFontWeight FontWeight
     | AxLabelLimit Float
     | AxLabelOpacity Float
     | AxLabelOverlap OverlapStrategy
     | AxLabelPadding Float
-    | AxLabels Bool
-    | AxMaxExtent Float
-    | AxMinExtent Float
-    | AxOffset Float
-    | AxOrient Side
-    | AxPosition Float
     | AxTickColor String
     | AxTickCount Int
     | AxTickExtra Bool
@@ -2970,24 +3010,33 @@ type AxisProperty
     | AxTickRound Bool
     | AxTicks Bool
     | AxTickSize Float
-    | AxTickMinStep Float
     | AxTickWidth Float
+      -- TODO: Should we replace with datatypes so can accommodate numbers, strings and dates?
+      -- Could drop AxDates if so.
+    | AxDates (List (List DateTime))
+    | AxValues (List Float)
     | AxTitle String
     | AxTitleAlign HAlign
+    | AxTitleAnchor Anchor
     | AxTitleAngle Float
     | AxTitleBaseline VAlign
     | AxTitleColor String
     | AxTitleFont String
     | AxTitleFontSize Float
+    | AxTitleFontStyle String
     | AxTitleFontWeight FontWeight
     | AxTitleLimit Float
     | AxTitleOpacity Float
     | AxTitlePadding Float
     | AxTitleX Float
     | AxTitleY Float
-    | AxValues (List Float)
-    | AxDates (List (List DateTime))
-    | AxZIndex Int
+    | AxGrid Bool
+    | AxGridColor String
+    | AxGridDash (List Float)
+    | AxGridOpacity Float
+    | AxGridWidth Float
+    | AxTickMinStep Float
+    | AxDataCondition BooleanOp AxisProperty AxisProperty
 
 
 {-| Generated by [iRange](#iRange), [iCheckbox](#iCheckbox),
@@ -4867,6 +4916,19 @@ axcoGrid =
     Grid
 
 
+{-| Make an axis property (tick, grid or label) conditional on one or more predicate
+expressions. The first parameter is a list of tuples each pairing a test condition
+with axis property if that condition evaluates to true. The second is the axis
+property if none of the tests are true.
+
+    TODO: XXX
+
+-}
+axDataCondition : BooleanOp -> AxisProperty -> AxisProperty -> AxisProperty
+axDataCondition =
+    AxDataCondition
+
+
 {-| Default axis grid color style.
 -}
 axcoGridColor : String -> AxisConfig
@@ -5253,6 +5315,35 @@ axGrid =
     AxGrid
 
 
+{-| Color of grid lines associated with an axis.
+-}
+axGridColor : String -> AxisProperty
+axGridColor =
+    AxGridColor
+
+
+{-| Axis grid line dash style. The parameter is a list of alternating 'on' and
+'off' lengths in pixels representing the dashed line.
+-}
+axGridDash : List Float -> AxisProperty
+axGridDash =
+    AxGridDash
+
+
+{-| Opacity of grid lines associated with an axis.
+-}
+axGridOpacity : Float -> AxisProperty
+axGridOpacity =
+    AxGridOpacity
+
+
+{-| Width of grid lines associated with an axis.
+-}
+axGridWidth : Float -> AxisProperty
+axGridWidth =
+    AxGridWidth
+
+
 {-| Horizontal alignment of axis tick labels.
 -}
 axLabelAlign : HAlign -> AxisProperty
@@ -5311,6 +5402,13 @@ axLabelFont =
 axLabelFontSize : Float -> AxisProperty
 axLabelFontSize =
     AxLabelFontSize
+
+
+{-| Font style of an axis label (e.g. "italic")
+-}
+axLabelFontStyle : String -> AxisProperty
+axLabelFontStyle =
+    AxLabelFontStyle
 
 
 {-| Font weight of an axis label.
@@ -5415,11 +5513,18 @@ axTitleFont =
     AxTitleFont
 
 
-{-| Font size for an axis title.
+{-| Font size of an axis title.
 -}
 axTitleFontSize : Float -> AxisProperty
 axTitleFontSize =
     AxTitleFontSize
+
+
+{-| Font style of an axis title (e.g. "italic").
+-}
+axTitleFontStyle : String -> AxisProperty
+axTitleFontStyle =
+    AxTitleFontStyle
 
 
 {-| Font weight of an axis title.
@@ -5558,6 +5663,13 @@ axTitle =
 axTitleAlign : HAlign -> AxisProperty
 axTitleAlign =
     AxTitleAlign
+
+
+{-| Anchor position of an axis title.
+-}
+axTitleAnchor : Anchor -> AxisProperty
+axTitleAnchor =
+    AxTitleAnchor
 
 
 {-| Angle in degrees of an axis title.
@@ -7562,7 +7674,10 @@ fiOp =
 
 
 {-| Filter a data stream so that only data in a given field that are within the
-given range are used.
+given range are used. For example,
+
+    filter (fiRange "date" (dtRange [ dtYear 2006 ] [ dtYear 20016 ]))
+
 -}
 fiRange : String -> FilterRange -> Filter
 fiRange =
@@ -14235,6 +14350,19 @@ axisProperty axisProp =
         AxBandPosition n ->
             ( "bandPosition", JE.float n )
 
+        AxDataCondition predicate ifClause elseClause ->
+            ( Tuple.first (axisProperty ifClause)
+            , JE.object
+                [ ( "condition"
+                  , JE.object
+                        [ ( "test", booleanOpSpec predicate )
+                        , ( "value", Tuple.second (axisProperty ifClause) )
+                        ]
+                  )
+                , ( "value", Tuple.second (axisProperty elseClause) )
+                ]
+            )
+
         AxFormat fmt ->
             ( "format", JE.string fmt )
 
@@ -14243,6 +14371,18 @@ axisProperty axisProp =
 
         AxFormatAsTemporal ->
             ( "formatType", JE.string "time" )
+
+        AxGridColor c ->
+            ( "gridColor", JE.string c )
+
+        AxGridDash ds ->
+            ( "gridDash", JE.list JE.float ds )
+
+        AxGridOpacity o ->
+            ( "gridOpacity", JE.float o )
+
+        AxGridWidth w ->
+            ( "gridWidth", JE.float w )
 
         AxLabels b ->
             ( "labels", JE.bool b )
@@ -14291,6 +14431,9 @@ axisProperty axisProp =
 
         AxLabelFontSize n ->
             ( "labelFontSize", JE.float n )
+
+        AxLabelFontStyle s ->
+            ( "labelFontStyle", JE.string s )
 
         AxLabelFontWeight fw ->
             ( "labelFontWeight", fontWeightSpec fw )
@@ -14385,6 +14528,9 @@ axisProperty axisProp =
         AxTitleAngle angle ->
             ( "titleAngle", JE.float angle )
 
+        AxTitleAnchor an ->
+            ( "titleAnchor", JE.string (anchorLabel an) )
+
         AxTitleBaseline va ->
             ( "titleBaseline", JE.string (vAlignLabel va) )
 
@@ -14396,6 +14542,9 @@ axisProperty axisProp =
 
         AxTitleFontSize n ->
             ( "titleFontSize", JE.float n )
+
+        AxTitleFontStyle s ->
+            ( "titleFontStyle", JE.string s )
 
         AxTitleFontWeight fw ->
             ( "titleFontWeight", fontWeightSpec fw )
@@ -15150,32 +15299,26 @@ fieldTitleLabel ftp =
             "plain"
 
 
-filterSpec : Filter -> Spec
-filterSpec f =
+filterProperty : Filter -> List LabelledSpec
+filterProperty f =
     case f of
-        FExpr ex ->
-            JE.string ex
-
-        FCompose boolExpr ->
-            booleanOpSpec boolExpr
-
         FEqual field val ->
-            JE.object [ ( "field", JE.string field ), ( "equal", dataValueSpec val ) ]
+            [ ( "field", JE.string field ), ( "equal", dataValueSpec val ) ]
 
         FLessThan field val ->
-            JE.object [ ( "field", JE.string field ), ( "lt", dataValueSpec val ) ]
+            [ ( "field", JE.string field ), ( "lt", dataValueSpec val ) ]
 
         FLessThanEq field val ->
-            JE.object [ ( "field", JE.string field ), ( "lte", dataValueSpec val ) ]
+            [ ( "field", JE.string field ), ( "lte", dataValueSpec val ) ]
 
         FGreaterThan field val ->
-            JE.object [ ( "field", JE.string field ), ( "gt", dataValueSpec val ) ]
+            [ ( "field", JE.string field ), ( "gt", dataValueSpec val ) ]
 
         FGreaterThanEq field val ->
-            JE.object [ ( "field", JE.string field ), ( "gte", dataValueSpec val ) ]
+            [ ( "field", JE.string field ), ( "gte", dataValueSpec val ) ]
 
         FSelection selName ->
-            JE.object [ ( "selection", JE.string selName ) ]
+            [ ( "selection", JE.string selName ) ]
 
         FRange field vals ->
             let
@@ -15199,7 +15342,7 @@ filterSpec f =
                                 , List.map dateTimeProperty dMax
                                 ]
             in
-            JE.object [ ( "field", JE.string field ), ( "range", values ) ]
+            [ ( "field", JE.string field ), ( "range", values ) ]
 
         FOneOf field vals ->
             let
@@ -15217,10 +15360,26 @@ filterSpec f =
                         Booleans bs ->
                             JE.list JE.bool bs
             in
-            JE.object [ ( "field", JE.string field ), ( "oneOf", values ) ]
+            [ ( "field", JE.string field ), ( "oneOf", values ) ]
 
         FValid field ->
-            JE.object [ ( "field", JE.string field ), ( "valid", JE.bool True ) ]
+            [ ( "field", JE.string field ), ( "valid", JE.bool True ) ]
+
+        _ ->
+            []
+
+
+filterSpec : Filter -> Spec
+filterSpec f =
+    case f of
+        FExpr ex ->
+            JE.string ex
+
+        FCompose boolExpr ->
+            booleanOpSpec boolExpr
+
+        _ ->
+            JE.object (filterProperty f)
 
 
 fontWeightSpec : FontWeight -> Spec
@@ -16520,7 +16679,11 @@ pointMarkerSpec pm =
             JE.bool False
 
         PMMarker mps ->
-            JE.object (List.map markProperty mps)
+            if mps == [] then
+                JE.bool True
+
+            else
+                JE.object (List.map markProperty mps)
 
 
 projectionLabel : Projection -> String

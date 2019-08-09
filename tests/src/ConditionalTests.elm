@@ -13,7 +13,7 @@ markCondition1 =
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
-        config =
+        cfg =
             configure
                 << configuration (coRemoveInvalid False)
 
@@ -31,7 +31,7 @@ markCondition1 =
                         [ mStr "#0099ee" ]
                     ]
     in
-    toVegaLite [ config [], data, point [], enc [] ]
+    toVegaLite [ cfg [], data, point [], enc [] ]
 
 
 markCondition2 : Spec
@@ -54,6 +54,102 @@ markCondition2 =
                     ]
     in
     toVegaLite [ width 400, data [], circle [ maSize 800 ], enc [] ]
+
+
+axisCondition1 : Spec
+axisCondition1 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        enc =
+            encoding
+                << position X
+                    [ pName "IMDB_Rating"
+                    , pMType Quantitative
+                    , pAxis
+                        [ axTickCount 20
+                        , axDataCondition (expr "datum.value <= 5")
+                            (axGridDash [ 2, 2 ])
+                            (axGridDash [])
+                        ]
+                    ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+    in
+    toVegaLite [ data, point [ maOpacity 0.1 ], enc [] ]
+
+
+axisCondition2 : Spec
+axisCondition2 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        enc =
+            encoding
+                << position X
+                    [ pName "IMDB_Rating"
+                    , pMType Quantitative
+                    , pAxis
+                        [ axTickCount 20
+                        , axDataCondition (expr "datum.value <= 2")
+                            (axTickColor "red")
+                            (axTickColor "blue")
+                        , axDataCondition (expr "datum.value >=8")
+                            (axTickOpacity 0.3)
+                            (axTickOpacity 0.8)
+                        , axDataCondition (expr "datum.label =='4.0'")
+                            (axTickWidth 5)
+                            (axTickWidth 2)
+                        ]
+                    ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+    in
+    toVegaLite [ width 600, data, point [ maOpacity 0.1 ], enc [] ]
+
+
+axisCondition3 : Spec
+axisCondition3 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        enc =
+            encoding
+                << position X
+                    [ pName "IMDB_Rating"
+                    , pMType Quantitative
+                    , pAxis
+                        [ axTickCount 20
+                        , axDataCondition (expr "datum.value <= 1")
+                            (axLabelAlign haRight)
+                            (axLabelAlign haLeft)
+                        , axDataCondition (expr "datum.value <= 2")
+                            (axLabelColor "red")
+                            (axLabelColor "blue")
+                        , axDataCondition (expr "datum.value <= 3")
+                            (axLabelBaseline vaTop)
+                            (axLabelBaseline vaBottom)
+                        , axDataCondition (expr "datum.value <= 4")
+                            (axLabelFont "serif")
+                            (axLabelFont "sans-serif")
+                        , axDataCondition (expr "datum.value <= 6")
+                            (axLabelFontSize 12)
+                            (axLabelFontSize 18)
+                        , axDataCondition (expr "datum.value <=8")
+                            (axLabelFontStyle "normal")
+                            (axLabelFontStyle "italic")
+                        , axDataCondition (expr "datum.label =='4.0'")
+                            (axLabelFontWeight Bold)
+                            (axLabelFontWeight W100)
+                        , axDataCondition (expr "datum.value >=9")
+                            (axLabelOpacity 0.3)
+                            (axLabelOpacity 0.8)
+                        ]
+                    ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+    in
+    toVegaLite [ width 600, data, point [ maOpacity 0.1 ], enc [] ]
 
 
 selectionCondition1 : Spec
@@ -270,6 +366,9 @@ mySpecs =
     combineSpecs
         [ ( "markCondition1", markCondition1 )
         , ( "markCondition2", markCondition2 )
+        , ( "axisCondition1", axisCondition1 )
+        , ( "axisCondition2", axisCondition2 )
+        , ( "axisCondition3", axisCondition3 )
         , ( "selectionCondition1", selectionCondition1 )
         , ( "selectionCondition2", selectionCondition2 )
         , ( "selectionCondition3", selectionCondition3 )
