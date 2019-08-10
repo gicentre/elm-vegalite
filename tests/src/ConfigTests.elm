@@ -215,6 +215,21 @@ paddingCfg =
         |> singleVis
 
 
+axisCfg1 : Spec
+axisCfg1 =
+    configure
+        << configuration
+            (coAxis
+                [ axcoTitleFontStyle "italic"
+                , axcoTitleFont "serif"
+                , axcoLabelFontStyle "italic"
+                , axcoLabelFont "serif"
+                , axcoTitleAnchor anEnd
+                ]
+            )
+        |> singleVis
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -228,6 +243,7 @@ mySpecs =
         , ( "mark2", markCfg2 )
         , ( "padding", paddingCfg )
         , ( "vbTest", vbTest )
+        , ( "axisCfg1", axisCfg1 )
         ]
 
 

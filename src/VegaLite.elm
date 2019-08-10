@@ -878,9 +878,10 @@ module VegaLite exposing
     , axcoLabelColor
     , axcoLabelFlush
     , axcoLabelFlushOffset
-    , axcoLabelFontWeight
     , axcoLabelFont
     , axcoLabelFontSize
+    , axcoLabelFontStyle
+    , axcoLabelFontWeight
     , axcoLabelLimit
     , axcoLabelOpacity
     , axcoLabelOverlap
@@ -896,12 +897,14 @@ module VegaLite exposing
     , axcoTickMinStep
     , axcoTickWidth
     , axcoTitleAlign
+    , axcoTitleAnchor
     , axcoTitleAngle
     , axcoTitleBaseline
     , axcoTitleColor
     , axcoTitleFont
-    , axcoTitleFontWeight
     , axcoTitleFontSize
+    , axcoTitleFontStyle
+    , axcoTitleFontWeight
     , axcoTitleLimit
     , axcoTitleOpacity
     , axcoTitlePadding
@@ -2513,9 +2516,10 @@ See the
 @docs axcoLabelColor
 @docs axcoLabelFlush
 @docs axcoLabelFlushOffset
-@docs axcoLabelFontWeight
 @docs axcoLabelFont
 @docs axcoLabelFontSize
+@docs axcoLabelFontStyle
+@docs axcoLabelFontWeight
 @docs axcoLabelLimit
 @docs axcoLabelOpacity
 @docs axcoLabelOverlap
@@ -2531,12 +2535,14 @@ See the
 @docs axcoTickMinStep
 @docs axcoTickWidth
 @docs axcoTitleAlign
+@docs axcoTitleAnchor
 @docs axcoTitleAngle
 @docs axcoTitleBaseline
 @docs axcoTitleColor
 @docs axcoTitleFont
-@docs axcoTitleFontWeight
 @docs axcoTitleFontSize
+@docs axcoTitleFontStyle
+@docs axcoTitleFontWeight
 @docs axcoTitleLimit
 @docs axcoTitleOpacity
 @docs axcoTitlePadding
@@ -2937,8 +2943,10 @@ type AxisConfig
     | LabelFlush (Maybe Float)
     | LabelFlushOffset Float
     | LabelColor String
+    | LabelExpr String
     | LabelFont String
     | LabelFontSize Float
+    | LabelFontStyle String
     | LabelFontWeight FontWeight
     | LabelLimit Float
     | LabelOpacity Float
@@ -2957,11 +2965,13 @@ type AxisConfig
     | TickMinStep Float
     | TickWidth Float
     | TitleAlign HAlign
+    | TitleAnchor Anchor
     | TitleAngle Float
     | TitleBaseline VAlign
     | TitleColor String
     | TitleFont String
     | TitleFontSize Float
+    | TitleFontStyle String
     | TitleFontWeight FontWeight
     | TitleLimit Float
     | TitleOpacity Float
@@ -5042,6 +5052,13 @@ axcoLabelFontSize =
     LabelFontSize
 
 
+{-| Default axis label font style (e.g. "italic")
+-}
+axcoLabelFontStyle : String -> AxisConfig
+axcoLabelFontStyle =
+    LabelFontStyle
+
+
 {-| Default axis label font weight.
 -}
 axcoLabelFontWeight : FontWeight -> AxisConfig
@@ -5167,13 +5184,6 @@ axcoTickStep =
     TickMinStep
 
 
-{-| Default opacity of axis titles.
--}
-axcoTitleOpacity : Float -> AxisConfig
-axcoTitleOpacity =
-    TitleOpacity
-
-
 {-| Default axis tick mark width.
 -}
 axcoTickWidth : Float -> AxisConfig
@@ -5186,6 +5196,13 @@ axcoTickWidth =
 axcoTitleAlign : HAlign -> AxisConfig
 axcoTitleAlign =
     TitleAlign
+
+
+{-| Default anchor position of axis titles.
+-}
+axcoTitleAnchor : Anchor -> AxisConfig
+axcoTitleAnchor =
+    TitleAnchor
 
 
 {-| Default axis title angle.
@@ -5230,11 +5247,25 @@ axcoTitleFontSize =
     TitleFontSize
 
 
+{-| Default axis title font style (e.g. "italic").
+-}
+axcoTitleFontStyle : String -> AxisConfig
+axcoTitleFontStyle =
+    TitleFontStyle
+
+
 {-| Default axis title maximum size.
 -}
 axcoTitleLimit : Float -> AxisConfig
 axcoTitleLimit =
     TitleLimit
+
+
+{-| Default opacity of axis titles.
+-}
+axcoTitleOpacity : Float -> AxisConfig
+axcoTitleOpacity =
+    TitleOpacity
 
 
 {-| Default axis title padding between axis line and text.
@@ -14288,6 +14319,9 @@ axisConfigProperty axisCfg =
         LabelColor c ->
             ( "labelColor", JE.string c )
 
+        LabelExpr ex ->
+            ( "labelExpr", JE.string ex )
+
         LabelFlush mn ->
             case mn of
                 Just n ->
@@ -14305,6 +14339,9 @@ axisConfigProperty axisCfg =
 
         LabelFont f ->
             ( "labelFont", JE.string f )
+
+        LabelFontStyle s ->
+            ( "labelFontStyle", JE.string s )
 
         LabelFontSize x ->
             ( "labelFontSize", JE.float x )
@@ -14360,6 +14397,9 @@ axisConfigProperty axisCfg =
         TitleAngle angle ->
             ( "titleAngle", JE.float angle )
 
+        TitleAnchor an ->
+            ( "titleAnchor", JE.string (anchorLabel an) )
+
         TitleBaseline va ->
             ( "titleBaseline", JE.string (vAlignLabel va) )
 
@@ -14368,6 +14408,9 @@ axisConfigProperty axisCfg =
 
         TitleFont f ->
             ( "titleFont", JE.string f )
+
+        TitleFontStyle s ->
+            ( "titleFontStyle", JE.string s )
 
         TitleFontWeight w ->
             ( "titleFontWeight", fontWeightSpec w )
