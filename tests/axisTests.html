@@ -82,6 +82,23 @@
 
     <div style="clear:left"></div>
 
+    <h2>Axis label expressions</h2>
+    <figure class="cell">
+      <div id="axis7"></div>
+      <figcaption>
+        Should recalculate label to be 0.01 of data value.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="axis8"></div>
+      <figcaption>
+        Preface each label with the word 'number'
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
     <script>
       Elm.AxisTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {

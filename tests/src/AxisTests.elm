@@ -120,6 +120,36 @@ axis6 =
     toVegaLite [ temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
+axis7 : Spec
+axis7 =
+    let
+        enc =
+            encoding
+                << position X
+                    [ pName "x"
+                    , pMType Quantitative
+                    , pAxis [ axLabelExpr "datum.value / 100" ]
+                    ]
+                << position Y [ pName "y", pMType Quantitative ]
+    in
+    toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis8 : Spec
+axis8 =
+    let
+        enc =
+            encoding
+                << position X
+                    [ pName "catX"
+                    , pMType Ordinal
+                    , pAxis [ axLabelExpr "'number '+ datum.label" ]
+                    ]
+                << position Y [ pName "y", pMType Quantitative ]
+    in
+    toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -133,6 +163,8 @@ mySpecs =
         , ( "axis4", axis4 )
         , ( "axis5", axis5 )
         , ( "axis6", axis6 )
+        , ( "axis7", axis7 )
+        , ( "axis8", axis8 )
         ]
 
 

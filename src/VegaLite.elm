@@ -386,6 +386,7 @@ module VegaLite exposing
     , axLabelBaseline
     , axLabelBound
     , axLabelColor
+    , axLabelExpr
     , axLabelFlush
     , axLabelFlushOffset
     , axLabelFont
@@ -1758,6 +1759,7 @@ See the
 @docs axLabelBaseline
 @docs axLabelBound
 @docs axLabelColor
+@docs axLabelExpr
 @docs axLabelFlush
 @docs axLabelFlushOffset
 @docs axLabelFont
@@ -2991,7 +2993,7 @@ type AxisProperty
     | AxLabelBaseline VAlign
     | AxLabelBound (Maybe Float)
     | AxLabelColor String
-      --TODO | AxLabelExpr String
+    | AxLabelExpr String
     | AxLabelFlush (Maybe Float)
     | AxLabelFlushOffset Float
     | AxLabelFont String
@@ -5382,6 +5384,20 @@ axLabelBound =
 axLabelColor : String -> AxisProperty
 axLabelColor =
     AxLabelColor
+
+
+{-| An expression to generate axis labels. The parameter is a valid
+[Vega expression](https://vega.github.io/vega/docs/expressions/). Can reference
+`datum.value` and `datum.label` for access to the underlying data values and
+default label text respectively. For example, to provide labels in 1/1000ths of
+the data values associated with the x-axis:
+
+    pAxis [ axLabelExpr "datum.value / 1000" ]
+
+-}
+axLabelExpr : String -> AxisProperty
+axLabelExpr =
+    AxLabelExpr
 
 
 {-| How or if labels at beginning or end of the axis should be aligned. Specifies
@@ -14441,6 +14457,9 @@ axisProperty axisProp =
 
         AxLabelColor s ->
             ( "labelColor", JE.string s )
+
+        AxLabelExpr ex ->
+            ( "labelExpr", JE.string ex )
 
         AxLabelFlush mn ->
             case mn of
