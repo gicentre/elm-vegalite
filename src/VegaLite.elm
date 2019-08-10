@@ -4915,11 +4915,23 @@ axcoGrid =
 
 
 {-| Make an axis property (tick, grid or label) conditional on one or more predicate
-expressions. The first parameter is a list of tuples each pairing a test condition
-with axis property if that condition evaluates to true. The second is the axis
-property if none of the tests are true.
+expressions. The first parameter is the test to apply. The second and third are
+the axis property values to set if the test evaluates to true or false respectively.
+Note that that the two [AxisProperty](#AxisProperty) values must be of the same type.
 
-    TODO: XXX
+The test parameter has access to the axis properties `value` and `label` corresponding
+to the value associated with an individual axis element and its text label. These
+should be used rather than the underlying data field when referencing a data value.
+For example,
+
+     pAxis
+        [ axDataCondition (expr "datum.value <= 2")
+            (axTickColor "red")
+            (axTickColor "blue")
+        , axDataCondition (expr "datum.label =='4.0'")
+            (axTickWidth 5)
+            (axTickWidth 2)
+        ]
 
 -}
 axDataCondition : BooleanOp -> AxisProperty -> AxisProperty -> AxisProperty
