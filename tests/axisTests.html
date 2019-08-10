@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elm-Vegalite Axis Tests</title>
+    <meta charset="utf-8" />
+
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.0/build/vega-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+
+    <script src="js/axisTests.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      figcaption {
+        padding-top: 0.5em;
+      }
+      .cell {
+        float: left;
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Elm-Vega Axis Tests</h1>
+
+    <h2>Default Axes</h2>
+    <figure class="cell">
+      <div id="axis1"></div>
+      <figcaption>Default quantitative axes</figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="axis2"></div>
+      <figcaption>
+        Default ordinal x-axis (numbers as strings in alphabetical order)
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="axis3"></div>
+      <figcaption>
+        Default temporal x-axis
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
+    <h2>Explicit Axis Values</h2>
+    <figure class="cell">
+      <div id="axis4"></div>
+      <figcaption>Explicit x-axis values at 1, 25, 39 and 90</figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="axis5"></div>
+      <figcaption>
+        Explicit x-axis values at "1", "25", "39", "dummy" (should be ignored)
+        and "90"
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="axis6"></div>
+      <figcaption>
+        Explicit x-axis values at 4th Jan, 8th Jan and 20th Jan (should be
+        ignored as outside of domain).
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
+    <script>
+      Elm.AxisTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: true,
+            logLevel: vega.Warn
+          }).catch(console.warn);
+        }
+      });
+    </script>
+  </body>
+</html>

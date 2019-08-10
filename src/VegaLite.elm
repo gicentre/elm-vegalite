@@ -407,7 +407,6 @@ module VegaLite exposing
     , axTickMinStep
     , axTickWidth
     , axValues
-    , axDates
     , axTitle
     , axTitleAlign
     , axTitleAnchor
@@ -1155,6 +1154,7 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
+    , axDates
     , axTickStep
     , axcoTickStep
     , sacoRangeStep
@@ -1783,7 +1783,6 @@ See the
 @docs axTickMinStep
 @docs axTickWidth
 @docs axValues
-@docs axDates
 
 
 ### Title
@@ -2872,6 +2871,7 @@ to the functions that generate them.
 
 ## Deprecated functions
 
+@docs axDates
 @docs axTickStep
 @docs axcoTickStep
 @docs sacoRangeStep
@@ -3011,10 +3011,8 @@ type AxisProperty
     | AxTicks Bool
     | AxTickSize Float
     | AxTickWidth Float
-      -- TODO: Should we replace with datatypes so can accommodate numbers, strings and dates?
-      -- Could drop AxDates if so.
     | AxDates (List (List DateTime))
-    | AxValues (List Float)
+    | AxValues DataValues
     | AxTitle String
     | AxTitleAlign HAlign
     | AxTitleAnchor Anchor
@@ -5246,7 +5244,7 @@ axcoTitleY =
     TitleY
 
 
-{-| Dates/times to appear along an axis.
+{-| Deprecated in favour of [axValues](#axValues).
 -}
 axDates : List (List DateTime) -> AxisProperty
 axDates =
@@ -5686,9 +5684,30 @@ axTitlePadding =
     AxTitlePadding
 
 
-{-| Numeric values to appear along an axis.
+{-| Set explicit tick/grid/label values along an axis. For example, for a
+quantitative field:
+
+    pAxis [ axValues (nums [ 2, 3, 5, 7, 11, 13, 17 ]) ]
+
+Or a categorical field:
+
+    pAxis [ axValues (strs [ "cats", "dogs", "parrots" ]) ]
+
+Or for a temporal field:
+
+    pAxis
+        [ axValues
+            (dts
+                [ [ dtYear 2019, dtMonth Mar, dtDate 31 ]
+                , [ dtYear 2019, dtMonth Jun, dtDate 30 ]
+                , [ dtYear 2019, dtMonth Sep, dtDate 30 ]
+                , [ dtYear 2019, dtMonth Dec, dtDate 31 ]
+                ]
+            )
+        ]
+
 -}
-axValues : List Float -> AxisProperty
+axValues : DataValues -> AxisProperty
 axValues =
     AxValues
 
@@ -14514,7 +14533,7 @@ axisProperty axisProp =
             ( "tickWidth", JE.float n )
 
         AxValues vals ->
-            ( "values", JE.list JE.float vals )
+            ( "values", toList (dataValuesSpecs vals) )
 
         AxDates dtss ->
             ( "values", JE.list (\ds -> JE.object (List.map dateTimeProperty ds)) dtss )
