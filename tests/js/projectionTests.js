@@ -4980,6 +4980,16 @@ var author$project$VegaLite$autosizeProperty = function (asCfg) {
 				elm$json$Json$Encode$string('padding'));
 	}
 };
+var author$project$VegaLite$anchorLabel = function (an) {
+	switch (an) {
+		case 0:
+			return 'start';
+		case 1:
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
 var elm$json$Json$Encode$float = _Json_wrap;
 var author$project$VegaLite$fontWeightSpec = function (w) {
 	switch (w) {
@@ -5077,12 +5087,12 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			return _Utils_Tuple2(
 				'domainWidth',
 				elm$json$Json$Encode$float(w));
-		case 25:
+		case 27:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'maxExtent',
 				elm$json$Json$Encode$float(n));
-		case 26:
+		case 28:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'minExtent',
@@ -5153,6 +5163,11 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			return _Utils_Tuple2(
 				'labelColor',
 				elm$json$Json$Encode$string(c));
+		case 18:
+			var ex = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelExpr',
+				elm$json$Json$Encode$string(ex));
 		case 15:
 			var mn = axisCfg.a;
 			if (!mn.$) {
@@ -5172,145 +5187,161 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			return _Utils_Tuple2(
 				'labelFlushOffset',
 				elm$json$Json$Encode$float(n));
-		case 18:
+		case 19:
 			var f = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelFont',
 				elm$json$Json$Encode$string(f));
-		case 19:
+		case 21:
+			var s = axisCfg.a;
+			return _Utils_Tuple2(
+				'labelFontStyle',
+				elm$json$Json$Encode$string(s));
+		case 20:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelFontSize',
 				elm$json$Json$Encode$float(x));
-		case 20:
+		case 22:
 			var fw = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelFontWeight',
 				author$project$VegaLite$fontWeightSpec(fw));
-		case 21:
+		case 23:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelLimit',
 				elm$json$Json$Encode$float(x));
-		case 22:
+		case 24:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelOpacity',
 				elm$json$Json$Encode$float(n));
-		case 23:
+		case 25:
 			var strat = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$overlapStrategyLabel(strat)));
-		case 24:
+		case 26:
 			var pad = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelPadding',
 				elm$json$Json$Encode$float(pad));
-		case 27:
+		case 29:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
 				'shortTimeLabels',
 				elm$json$Json$Encode$bool(b));
-		case 28:
+		case 30:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
 				'ticks',
 				elm$json$Json$Encode$bool(b));
-		case 29:
+		case 31:
 			var c = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickColor',
 				elm$json$Json$Encode$string(c));
-		case 30:
+		case 32:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickExtra',
 				elm$json$Json$Encode$bool(b));
-		case 31:
+		case 33:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickOffset',
 				elm$json$Json$Encode$float(n));
-		case 32:
+		case 34:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickOpacity',
 				elm$json$Json$Encode$float(n));
-		case 35:
+		case 37:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickMinStep',
 				elm$json$Json$Encode$float(n));
-		case 33:
+		case 35:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickRound',
 				elm$json$Json$Encode$bool(b));
-		case 34:
+		case 36:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickSize',
 				elm$json$Json$Encode$float(x));
-		case 36:
+		case 38:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickWidth',
 				elm$json$Json$Encode$float(x));
-		case 37:
+		case 39:
 			var al = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$hAlignLabel(al)));
-		case 38:
+		case 41:
 			var angle = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAngle',
 				elm$json$Json$Encode$float(angle));
-		case 39:
+		case 40:
+			var an = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleAnchor',
+				elm$json$Json$Encode$string(
+					author$project$VegaLite$anchorLabel(an)));
+		case 42:
 			var va = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$vAlignLabel(va)));
-		case 40:
+		case 43:
 			var c = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				elm$json$Json$Encode$string(c));
-		case 41:
+		case 44:
 			var f = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				elm$json$Json$Encode$string(f));
-		case 43:
+		case 46:
+			var s = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleFontStyle',
+				elm$json$Json$Encode$string(s));
+		case 47:
 			var w = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
 				author$project$VegaLite$fontWeightSpec(w));
-		case 42:
+		case 45:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				elm$json$Json$Encode$float(x));
-		case 44:
+		case 48:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				elm$json$Json$Encode$float(x));
-		case 45:
+		case 49:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleOpacity',
 				elm$json$Json$Encode$float(n));
-		case 46:
+		case 50:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				elm$json$Json$Encode$float(x));
-		case 47:
+		case 51:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleX',
@@ -5357,16 +5388,6 @@ var author$project$VegaLite$fieldTitleLabel = function (ftp) {
 			return 'functional';
 		default:
 			return 'plain';
-	}
-};
-var author$project$VegaLite$anchorLabel = function (an) {
-	switch (an) {
-		case 0:
-			return 'start';
-		case 1:
-			return 'middle';
-		default:
-			return 'end';
 	}
 };
 var author$project$VegaLite$sideLabel = function (side) {
@@ -6324,7 +6345,7 @@ var author$project$VegaLite$pointMarkerSpec = function (pm) {
 			return elm$json$Json$Encode$bool(false);
 		default:
 			var mps = pm.a;
-			return elm$json$Json$Encode$object(
+			return _Utils_eq(mps, _List_Nil) ? elm$json$Json$Encode$bool(true) : elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$markProperty, mps));
 	}
 };
