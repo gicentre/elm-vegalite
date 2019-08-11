@@ -84,69 +84,79 @@ label3 =
         des =
             description "Carbon dioxide in the atmosphere."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/co2-concentration.csv"
+                [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
+
         trans =
             transform
                 << calculateAs "year(datum.Date)" "year"
-                << calculateAs "month(datum.Date)" "month"
                 << calculateAs "floor(datum.year / 10)" "decade"
-                << calculateAs "(datum.year % 10) + (datum.month / 12)" "scaled_date"
+                << calculateAs "(datum.year % 10) + (month(datum.Date)/12)" "scaled_date"
+                << window
+                    [ ( [ wiOp woFirstValue, wiField "scaled_date" ], "first_date" )
+                    , ( [ wiOp woLastValue, wiField "scaled_date" ], "last_date" )
+                    ]
+                    [ wiSort [ wiAscending "scaled_date" ], wiGroupBy [ "decade" ], wiFrame Nothing Nothing ]
+                << calculateAs "datum.first_date === datum.scaled_date ? 'first' : datum.last_date === datum.scaled_date ? 'last' : null" "end"
 
         encPosition =
             encoding
                 << position X
                     [ pName "scaled_date"
                     , pMType Quantitative
-                    , pAxis [ axTitle "Year into decade", axTickCount 10, axValues [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] ]
+                    , pAxis [ axTitle "Year into decade", axTickCount 11 ]
                     ]
                 << position Y
                     [ pName "CO2"
+                    , pTitle "CO₂ concentration in ppm"
                     , pMType Quantitative
                     , pScale [ scZero False ]
-                    , pAxis [ axTitle "CO2 concentration in ppm" ]
                     ]
 
         encLine =
             encoding
-                << color [ mName "decade", mMType Nominal, mLegend [] ]
+                << color
+                    [ mName "decade"
+                    , mMType Ordinal
+                    , mScale [ scScheme "magma" [] ]
+                    , mLegend []
+                    ]
 
         specLine =
-            asSpec [ line [ maOrient moVertical ], encLine [] ]
+            asSpec [ encLine [], line [] ]
 
         transTextMin =
             transform
-                << aggregate [ opAs (opArgMin Nothing) "scaled_date" "aggregated" ] [ "decade" ]
-                << calculateAs "datum.aggregated.scaled_date" "scaled_date"
-                << calculateAs "datum.aggregated.CO2" "CO2"
+                << filter (fiEqual "end" (str "first"))
 
         encTextMin =
             encoding
-                << text [ tName "aggregated.year", tMType Nominal ]
+                << text [ tName "year", tMType Nominal ]
 
         specTextMin =
-            asSpec [ transTextMin [], textMark [ maAlign haLeft, maBaseline vaTop, maDx 3, maDy 1 ], encTextMin [] ]
+            asSpec [ transTextMin [], encTextMin [], textMark [ maBaseline vaTop ] ]
 
         transTextMax =
             transform
-                << aggregate [ opAs (opArgMax Nothing) "scaled_date" "aggregated" ] [ "decade" ]
-                << calculateAs "datum.aggregated.scaled_date" "scaled_date"
-                << calculateAs "datum.aggregated.CO2" "CO2"
+                << filter (fiEqual "end" (str "last"))
 
         encTextMax =
             encoding
-                << text [ tName "aggregated.year", tMType Nominal ]
+                << text [ tName "year", tMType Nominal ]
 
         specTextMax =
-            asSpec [ transTextMax [], textMark [ maAlign haLeft, maBaseline vaBottom, maDx 3, maDy 1 ], encTextMax [] ]
+            asSpec [ transTextMax [], encTextMax [], textMark [ maBaseline vaBottom ] ]
 
         cfg =
-            configure << configuration (coView [ vicoStroke Nothing ])
+            configure << configuration (coText [ maAlign haLeft, maDx 3, maDy 1 ])
     in
     toVegaLite
         [ des
         , cfg []
         , width 800
         , height 500
-        , dataFromUrl "https://vega.github.io/vega-lite/data/co2-concentration.csv" [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
+        , data
         , trans []
         , encPosition []
         , layer [ specLine, specTextMin, specTextMax ]
@@ -361,7 +371,7 @@ label8 =
                     [ pName "value"
                     , pMType Quantitative
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
-                    , pAxis [ axGrid False, axValues [ 1, 2, 3, 4, 5 ] ]
+                    , pAxis [ axGrid False, axValues (nums [ 1, 2, 3, 4, 5 ]) ]
                     ]
                 << size
                     [ mAggregate opCount

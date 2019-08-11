@@ -16,6 +16,9 @@ line1 =
         des =
             description "Google's stock price over time."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
 
@@ -24,43 +27,53 @@ line1 =
                 << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pMType Quantitative ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trans []
-        , line []
-        , enc []
-        ]
+    toVegaLite [ des, data, trans [], enc [], line [] ]
 
 
 line2 : Spec
 line2 =
     let
         des =
-            description "Google's stock price over time with point markers."
+            description "Line chart with point markers."
 
-        trans =
-            transform << filter (fiExpr "datum.symbol === 'GOOG'")
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
+                << position Y [ pName "price", pMType Quantitative, pAggregate opMean ]
+                << color [ mName "symbol", mMType Nominal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trans []
-        , line [ maColor "green", maPoint (pmMarker [ maColor "purple" ]) ]
-        , enc []
-        ]
+    toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
 
 line3 : Spec
 line3 =
     let
         des =
+            description "Line chart with stroked point markers."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        enc =
+            encoding
+                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
+                << position Y [ pName "price", pMType Quantitative, pAggregate opMean ]
+                << color [ mName "symbol", mMType Nominal ]
+    in
+    toVegaLite [ des, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
+
+
+line4 : Spec
+line4 =
+    let
+        des =
             description "Stock prices of 5 tech companies over time."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
 
         enc =
             encoding
@@ -68,19 +81,17 @@ line3 =
                 << position Y [ pName "price", pMType Quantitative ]
                 << color [ mName "symbol", mMType Nominal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , line []
-        , enc []
-        ]
+    toVegaLite [ des, data, enc [], line [] ]
 
 
-line4 : Spec
-line4 =
+line5 : Spec
+line5 =
     let
         des =
             description "Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
 
         enc =
             encoding
@@ -88,43 +99,17 @@ line4 =
                 << position Y [ pName "yield", pMType Quantitative, pAggregate opMedian ]
                 << color [ mName "site", mMType Nominal ]
     in
-    toVegaLite
-        [ des
-        , widthStep 50
-        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
-        , line []
-        , enc []
-        ]
-
-
-line5 : Spec
-line5 =
-    let
-        des =
-            description "Google's stock price over time (quantized as a step-chart)."
-
-        trans =
-            transform << filter (fiExpr "datum.symbol === 'GOOG'")
-
-        enc =
-            encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
-    in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trans []
-        , line [ maInterpolate miStepAfter ]
-        , enc []
-        ]
+    toVegaLite [ des, widthStep 50, data, enc [], line [] ]
 
 
 line6 : Spec
 line6 =
     let
         des =
-            description "Google's stock price over time (smoothed with monotonic interpolation)."
+            description "Google's stock price over time (quantized as a step-chart)."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
@@ -134,20 +119,70 @@ line6 =
                 << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pMType Quantitative ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trans []
-        , line [ maInterpolate miMonotone ]
-        , enc []
-        ]
+    toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miStepAfter ] ]
 
 
 line7 : Spec
 line7 =
     let
         des =
+            description "Google's stock price over time (smoothed with monotonic interpolation)."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        trans =
+            transform << filter (fiExpr "datum.symbol === 'GOOG'")
+
+        enc =
+            encoding
+                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pMType Quantitative ]
+    in
+    toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miMonotone ] ]
+
+
+line8 : Spec
+line8 =
+    let
+        des =
+            description "Line chart with conditional grid dash."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol === 'GOOG'")
+                << timeUnitAs year "date" "years"
+                << filter (fiRange "years" (dtRange [ dtYear 2006 ] [ dtYear 2008 ]))
+
+        enc =
+            encoding
+                << position X
+                    [ pName "date"
+                    , pMType Temporal
+                    , pAxis
+                        [ axTickCount 20
+
+                        -- TODO: Update when we have inline temporal binning
+                        --  , axDataCondition (fiOp (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ]))) (axGridDash []) (axGridDash [ 2, 2 ])
+                        , axDataCondition (expr "datum.label === '2007' || datum.label === '2008'") (axGridDash []) (axGridDash [ 2, 2 ])
+                        ]
+                    ]
+                << position Y [ pName "price", pMType Quantitative ]
+    in
+    toVegaLite [ des, data, trans [], enc [], line [] ]
+
+
+line9 : Spec
+line9 =
+    let
+        des =
             description "A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/driving.json" []
 
         enc =
             encoding
@@ -155,19 +190,17 @@ line7 =
                 << position Y [ pName "gas", pMType Quantitative, pScale [ scZero False ] ]
                 << order [ oName "year", oMType Temporal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/driving.json" []
-        , enc []
-        , line [ maPoint (pmMarker []) ]
-        ]
+    toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line8 : Spec
-line8 =
+line10 : Spec
+line10 =
     let
         des =
             description "Stock prices of five tech companies over time double encoding price with vertical position and line thickness."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
 
         enc =
             encoding
@@ -176,16 +209,11 @@ line8 =
                 << size [ mName "price", mMType Quantitative ]
                 << color [ mName "symbol", mMType Nominal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trail []
-        , enc []
-        ]
+    toVegaLite [ des, data, enc [], trail [] ]
 
 
-line9 : Spec
-line9 =
+line11 : Spec
+line11 =
     let
         des =
             description "Line chart with markers and invalid values."
@@ -200,91 +228,96 @@ line9 =
                 << position X [ pName "x", pMType Quantitative ]
                 << position Y [ pName "y", pMType Quantitative ]
     in
-    toVegaLite
-        [ des
-        , data []
-        , line [ maPoint (pmMarker []) ]
-        , enc []
-        ]
+    toVegaLite [ des, data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line10 : Spec
-line10 =
+line12 : Spec
+line12 =
     let
         des =
             description "Carbon dioxide in the atmosphere."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/co2-concentration.csv"
+                [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
+
         trans =
             transform
                 << calculateAs "year(datum.Date)" "year"
-                << calculateAs "month(datum.Date)" "month"
                 << calculateAs "floor(datum.year / 10)" "decade"
-                << calculateAs "(datum.year % 10) + (datum.month / 12)" "scaled_date"
+                << calculateAs "(datum.year % 10) + (month(datum.Date)/12)" "scaled_date"
+                << window
+                    [ ( [ wiOp woFirstValue, wiField "scaled_date" ], "first_date" )
+                    , ( [ wiOp woLastValue, wiField "scaled_date" ], "last_date" )
+                    ]
+                    [ wiSort [ wiAscending "scaled_date" ], wiGroupBy [ "decade" ], wiFrame Nothing Nothing ]
+                << calculateAs "datum.first_date === datum.scaled_date ? 'first' : datum.last_date === datum.scaled_date ? 'last' : null" "end"
 
         encPosition =
             encoding
                 << position X
                     [ pName "scaled_date"
                     , pMType Quantitative
-                    , pAxis [ axTitle "Year into decade", axTickCount 10, axValues [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] ]
+                    , pAxis [ axTitle "Year into decade", axTickCount 11 ]
                     ]
                 << position Y
                     [ pName "CO2"
+                    , pTitle "CO₂ concentration in ppm"
                     , pMType Quantitative
                     , pScale [ scZero False ]
-                    , pAxis [ axTitle "CO2 concentration in ppm" ]
                     ]
 
         encLine =
             encoding
-                << color [ mName "decade", mMType Nominal, mLegend [] ]
+                << color
+                    [ mName "decade"
+                    , mMType Ordinal
+                    , mScale [ scScheme "magma" [] ]
+                    , mLegend []
+                    ]
 
         specLine =
-            asSpec [ line [ maOrient moVertical ], encLine [] ]
+            asSpec [ encLine [], line [] ]
 
         transTextMin =
             transform
-                << aggregate [ opAs (opArgMin Nothing) "scaled_date" "aggregated" ] [ "decade" ]
-                << calculateAs "datum.aggregated.scaled_date" "scaled_date"
-                << calculateAs "datum.aggregated.CO2" "CO2"
+                << filter (fiEqual "end" (str "first"))
 
         encTextMin =
             encoding
-                << text [ tName "aggregated.year", tMType Nominal ]
+                << text [ tName "year", tMType Nominal ]
 
         specTextMin =
-            asSpec [ transTextMin [], textMark [ maAlign haLeft, maBaseline vaTop, maDx 3, maDy 1 ], encTextMin [] ]
+            asSpec [ transTextMin [], encTextMin [], textMark [ maBaseline vaTop ] ]
 
         transTextMax =
             transform
-                << aggregate [ opAs (opArgMax Nothing) "scaled_date" "aggregated" ] [ "decade" ]
-                << calculateAs "datum.aggregated.scaled_date" "scaled_date"
-                << calculateAs "datum.aggregated.CO2" "CO2"
+                << filter (fiEqual "end" (str "last"))
 
         encTextMax =
             encoding
-                << text [ tName "aggregated.year", tMType Nominal ]
+                << text [ tName "year", tMType Nominal ]
 
         specTextMax =
-            asSpec [ transTextMax [], textMark [ maAlign haLeft, maBaseline vaBottom, maDx 3, maDy 1 ], encTextMax [] ]
+            asSpec [ transTextMax [], encTextMax [], textMark [ maBaseline vaBottom ] ]
 
-        config =
-            configure << configuration (coView [ vicoStroke Nothing ])
+        cfg =
+            configure << configuration (coText [ maAlign haLeft, maDx 3, maDy 1 ])
     in
     toVegaLite
         [ des
-        , config []
+        , cfg []
         , width 800
         , height 500
-        , dataFromUrl "https://vega.github.io/vega-lite/data/co2-concentration.csv" [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
+        , data
         , trans []
         , encPosition []
         , layer [ specLine, specTextMin, specTextMax ]
         ]
 
 
-line11 : Spec
-line11 =
+line13 : Spec
+line13 =
     let
         des =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
@@ -318,8 +351,8 @@ line11 =
     toVegaLite [ des, data [], trans [], enc [], line [ maOrient moVertical ] ]
 
 
-line12 : Spec
-line12 =
+line14 : Spec
+line14 =
     let
         des =
             description "Plots a function using a generated sequence"
@@ -370,6 +403,8 @@ mySpecs =
         , ( "line10", line10 )
         , ( "line11", line11 )
         , ( "line12", line12 )
+        , ( "line13", line13 )
+        , ( "line14", line14 )
         ]
 
 
