@@ -327,6 +327,51 @@ advanced7 =
 advanced8 : Spec
 advanced8 =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
+
+        trans =
+            transform
+                << foldAs [ "petalWidth", "petalLength", "sepalWidth", "sepalLength" ] "measurement" "value"
+                << density "value" [ dnBandwidth 0.3, dnGroupBy [ "measurement" ] ]
+
+        enc =
+            encoding
+                << position X [ pName "value", pMType Quantitative, pTitle "width/length (cm)" ]
+                << position Y [ pName "density", pMType Quantitative ]
+                << row [ fName "measurement", fMType Nominal ]
+    in
+    toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
+
+
+advanced9 : Spec
+advanced9 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
+
+        trans =
+            transform
+                << foldAs [ "petalWidth", "petalLength", "sepalWidth", "sepalLength" ] "measurement" "value"
+                << density "value"
+                    [ dnBandwidth 0.3
+                    , dnGroupBy [ "measurement" ]
+                    , dnExtent (num 0) (num 8)
+                    , dnSteps 200
+                    ]
+
+        enc =
+            encoding
+                << position X [ pName "value", pMType Quantitative, pTitle "width/length (cm)" ]
+                << position Y [ pName "density", pMType Quantitative ]
+                << color [ mName "measurement", mMType Nominal ]
+    in
+    toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
+
+
+advanced10 : Spec
+advanced10 =
+    let
         des =
             description "Parallel coordinates plot with manual generation of parallel axes"
 
@@ -414,8 +459,8 @@ advanced8 =
         ]
 
 
-advanced9 : Spec
-advanced9 =
+advanced11 : Spec
+advanced11 =
     let
         desc =
             description "Production budget of the film with highest US Gross in each major genre."
@@ -435,8 +480,8 @@ advanced9 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-advanced10 : Spec
-advanced10 =
+advanced12 : Spec
+advanced12 =
     let
         desc =
             description "Plot showing average data with raw values in the background."
@@ -466,8 +511,8 @@ advanced10 =
     toVegaLite [ desc, data [], trans [], layer [ specRaw, specAv ] ]
 
 
-advanced11 : Spec
-advanced11 =
+advanced13 : Spec
+advanced13 =
     let
         desc =
             description "Plot showing a 30 day rolling average with raw values in the background."
@@ -517,6 +562,8 @@ mySpecs =
         , ( "advanced9", advanced9 )
         , ( "advanced10", advanced10 )
         , ( "advanced11", advanced11 )
+        , ( "advanced12", advanced13 )
+        , ( "advanced13", advanced13 )
         ]
 
 
