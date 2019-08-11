@@ -251,6 +251,28 @@ fold1 =
     let
         data =
             dataFromColumns []
+                << dataColumn "city" (strs [ "Bristol", "Bristol", "Sheffield", "Sheffield", "Glasgow", "Glasgow" ])
+                << dataColumn "temperature" (nums [ 12, 14, 11, 13, 7, 10 ])
+                << dataColumn "year" (nums [ 2017, 2018, 2017, 2018, 2017, 2018 ])
+
+        trans =
+            transform
+                << pivot "year" "temperature" [ piGroupBy [ "city" ] ]
+
+        enc =
+            encoding
+                -- 2017 temperatures for the Bristol, Sheffield and Glasgow
+                << position X [ pName "2017", pMType Quantitative ]
+                << position Y [ pName "city", pMType Nominal ]
+    in
+    toVegaLite [ data [], trans [], enc [], circle [] ]
+
+
+fold2 : Spec
+fold2 =
+    let
+        data =
+            dataFromColumns []
                 << dataColumn "country" (strs [ "USA", "Canada" ])
                 << dataColumn "gold" (nums [ 10, 7 ])
                 << dataColumn "silver" (nums [ 20, 26 ])
@@ -267,6 +289,31 @@ fold1 =
                 << color [ mName "country", mMType Nominal ]
     in
     toVegaLite [ data [], trans [], bar [], enc [] ]
+
+
+pivot1 : Spec
+pivot1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "country" (strs [ "USA", "USA", "Canada", "Canada" ])
+                << dataColumn "medalType" (strs [ "gold", "silver", "gold", "silver" ])
+                << dataColumn "count" (nums [ 10, 20, 7, 26 ])
+
+        trans =
+            transform
+                << pivot "medalType" "count" [ piGroupBy [ "country" ] ]
+
+        enc =
+            encoding
+                << position X [ pName "country", pMType Nominal ]
+                << position Y [ pRepeat arFlow, pMType Quantitative ]
+                << color [ mName "country", mMType Nominal ]
+
+        spec =
+            asSpec [ data [], trans [], enc [], bar [] ]
+    in
+    toVegaLite [ repeatFlow [ "gold", "silver" ], specification spec ]
 
 
 imputeData : List DataColumn -> Data
@@ -592,6 +639,7 @@ mySpecs =
         , ( "geodata2", geodata2 )
         , ( "flatten1", flatten1 )
         , ( "fold1", fold1 )
+        , ( "pivot1", pivot1 )
         , ( "impute1", impute1 )
         , ( "impute2", impute2 )
         , ( "impute3", impute3 )
