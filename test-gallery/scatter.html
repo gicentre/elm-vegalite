@@ -130,6 +130,12 @@
     </p>
     <div id="scatter12" class="view"></div>
 
+    <p>
+      A scatterplot with a cubic polynomial regression line overlaid limited to
+      the range of 10% to 90% of Rotten Tomatoes ratings.
+    </p>
+    <div id="scatter13" class="view"></div>
+
     <script>
       Elm.GalleryScatter.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {

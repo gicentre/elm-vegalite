@@ -285,6 +285,32 @@ scatter12 =
     toVegaLite [ width 300, height 300, data, enc [], layer [ pointSpec, trendSpec ] ]
 
 
+scatter13 : Spec
+scatter13 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << regression "IMDB_Rating"
+                    "Rotten_Tomatoes_Rating"
+                    [ rgMethod rgPoly, rgOrder 3, rgExtent (num 10) (num 90) ]
+
+        enc =
+            encoding
+                << position X [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position Y [ pName "IMDB_Rating", pMType Quantitative ]
+
+        pointSpec =
+            asSpec [ point [ maFilled True, maOpacity 0.3 ] ]
+
+        regSpec =
+            asSpec [ trans [], line [ maColor "firebrick" ] ]
+    in
+    toVegaLite [ width 300, height 300, data, enc [], layer [ pointSpec, regSpec ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -304,6 +330,7 @@ mySpecs =
         , ( "scatter10", scatter10 )
         , ( "scatter11", scatter11 )
         , ( "scatter12", scatter12 )
+        , ( "scatter13", scatter13 )
         ]
 
 
