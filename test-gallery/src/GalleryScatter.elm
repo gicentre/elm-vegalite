@@ -244,6 +244,9 @@ scatter11 =
         des =
             description "A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
         trans =
             transform
                 << calculateAs "datum.Origin[0]" "OriginInitial"
@@ -255,13 +258,31 @@ scatter11 =
                 << color [ mName "Origin", mMType Nominal ]
                 << text [ tName "OriginInitial", tMType Nominal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , trans []
-        , textMark []
-        , enc []
-        ]
+    toVegaLite [ des, data, trans [], textMark [], enc [] ]
+
+
+scatter12 : Spec
+scatter12 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << loess "IMDB_Rating" "Rotten_Tomatoes_Rating" [ lsBandwidth 0.1 ]
+
+        enc =
+            encoding
+                << position X [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position Y [ pName "IMDB_Rating", pMType Quantitative ]
+
+        pointSpec =
+            asSpec [ point [ maFilled True, maOpacity 0.3 ] ]
+
+        trendSpec =
+            asSpec [ trans [], line [ maColor "firebrick" ] ]
+    in
+    toVegaLite [ width 300, height 300, data, enc [], layer [ pointSpec, trendSpec ] ]
 
 
 
@@ -282,6 +303,7 @@ mySpecs =
         , ( "scatter9", scatter9 )
         , ( "scatter10", scatter10 )
         , ( "scatter11", scatter11 )
+        , ( "scatter12", scatter12 )
         ]
 
 

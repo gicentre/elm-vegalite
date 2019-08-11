@@ -125,6 +125,11 @@
     </p>
     <div id="scatter11" class="view"></div>
 
+    <p>
+      A scatterplot with a loess trendline overlaid.
+    </p>
+    <div id="scatter12" class="view"></div>
+
     <script>
       Elm.GalleryScatter.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
