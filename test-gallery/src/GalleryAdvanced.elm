@@ -30,7 +30,7 @@ advanced1 =
 
         enc =
             encoding
-                << position X [ pName "PercentOfTotal", pQuant, pAxis [ axTitle "% of total time" ] ]
+                << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total time" ]
                 << position Y [ pName "Activity", pNominal ]
     in
     toVegaLite
@@ -54,7 +54,7 @@ advanced2 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -88,7 +88,7 @@ advanced3 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -125,11 +125,7 @@ advanced4 =
         enc =
             encoding
                 << position X [ pName "Release_Date", pTemporal ]
-                << position Y
-                    [ pName "RatingDelta"
-                    , pQuant
-                    , pAxis [ axTitle "Residual" ]
-                    ]
+                << position Y [ pName "RatingDelta", pQuant, pTitle "Residual" ]
     in
     toVegaLite [ desc, data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
 
@@ -390,6 +386,80 @@ advanced9 =
 advanced10 : Spec
 advanced10 =
     let
+        des =
+            description "Cumulative Frequency Distribution"
+
+        data =
+            dataFromUrl "https://gicentre.github.io/data/putneyAirQuality2018.csv"
+                [ parse [ ( "NOX", foNum ) ] ]
+
+        trans =
+            transform
+                << window [ ( [ wiAggregateOp opCount ], "cumulativeCount" ) ]
+                    [ wiSort [ wiAscending "NOX" ] ]
+
+        enc =
+            encoding
+                << position X
+                    [ pName "NOX"
+                    , pQuant
+                    , pTitle "NOX concentration (μg/㎥)"
+                    ]
+                << position Y [ pName "cumulativeCount", pQuant ]
+    in
+    toVegaLite [ des, width 500, data, trans [], enc [], area [] ]
+
+
+advanced11 : Spec
+advanced11 =
+    let
+        des =
+            description "Layered Histogram and Cumulative Histogram"
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << binAs [] "IMDB_Rating" "binIMDB_Rating"
+                << aggregate [ opAs opCount "" "count" ] [ "binIMDB_Rating", "binIMDB_Rating_end" ]
+                << filter (fiExpr "datum.binIMDB_Rating !== null")
+                << window [ ( [ wiAggregateOp opSum, wiField "count" ], "cumulativeCount" ) ]
+                    [ wiSort [ wiAscending "binIMDB_Rating" ], wiFrame Nothing (Just 0) ]
+
+        enc =
+            encoding
+                << position X
+                    [ pName "binIMDB_Rating"
+                    , pQuant
+                    , pScale [ scZero False ]
+                    , pTitle "IMDB Rating"
+                    ]
+                << position X2 [ pName "binIMDB_Rating_end" ]
+
+        enc1 =
+            encoding
+                << position Y [ pName "cumulativeCount", pQuant ]
+
+        enc2 =
+            encoding
+                << position Y [ pName "count", pQuant ]
+    in
+    toVegaLite
+        [ des
+        , data
+        , trans []
+        , enc []
+        , layer
+            [ asSpec [ enc1 [], bar [] ]
+            , asSpec [ enc2 [], bar [ maColor "yellow", maOpacity 0.5 ] ]
+            ]
+        ]
+
+
+advanced12 : Spec
+advanced12 =
+    let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
 
@@ -407,8 +477,8 @@ advanced10 =
     toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
 
 
-advanced11 : Spec
-advanced11 =
+advanced13 : Spec
+advanced13 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
@@ -432,8 +502,8 @@ advanced11 =
     toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
 
 
-advanced12 : Spec
-advanced12 =
+advanced14 : Spec
+advanced14 =
     let
         des =
             description "Parallel coordinates plot with manual generation of parallel axes"
@@ -478,7 +548,7 @@ advanced12 =
 
         encAxis =
             encoding
-                << position X [ pName "key", pNominal, pAxis [ axTitle "" ] ]
+                << position X [ pName "key", pNominal, pTitle "" ]
                 << detail [ dAggregate opCount, dQuant ]
 
         specAxis =
@@ -522,8 +592,8 @@ advanced12 =
         ]
 
 
-advanced13 : Spec
-advanced13 =
+advanced15 : Spec
+advanced15 =
     let
         desc =
             description "Production budget of the film with highest US Gross in each major genre."
@@ -543,8 +613,8 @@ advanced13 =
     toVegaLite [ desc, data, enc [], bar [] ]
 
 
-advanced14 : Spec
-advanced14 =
+advanced16 : Spec
+advanced16 =
     let
         desc =
             description "Plot showing average data with raw values in the background."
@@ -574,8 +644,8 @@ advanced14 =
     toVegaLite [ desc, data, trans [], layer [ specRaw, specAv ] ]
 
 
-advanced15 : Spec
-advanced15 =
+advanced17 : Spec
+advanced17 =
     let
         desc =
             description "Plot showing a 30 day rolling average with raw values in the background."
@@ -629,6 +699,8 @@ mySpecs =
         , ( "advanced13", advanced13 )
         , ( "advanced14", advanced14 )
         , ( "advanced15", advanced15 )
+        , ( "advanced16", advanced16 )
+        , ( "advanced17", advanced17 )
         ]
 
 
