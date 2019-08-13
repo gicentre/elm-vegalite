@@ -6166,9 +6166,9 @@ biNice =
 
 
 {-| Binning transformation that may be referenced in other transformations or
-encodings. The type of binning can be customised with a list of `BinProperty`
-generating functions ([biBase](#biBase), [biDivide](#biDivide) etc.) or an empty
-list to use the default binning.
+encodings. The first parameter is a list of customisation optiona ([biBase](#biBase),
+[biDivide](#biDivide) etc.) or an empty list to use the default binning. Sthe second
+is the field to bin and the third the name to give the output binned data.
 
     trans =
         transform
