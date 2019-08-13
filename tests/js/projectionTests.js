@@ -5031,14 +5031,14 @@ var author$project$VegaLite$hAlignLabel = function (al) {
 			return 'right';
 	}
 };
-var author$project$VegaLite$overlapStrategyLabel = function (strat) {
+var author$project$VegaLite$overlapStrategySpec = function (strat) {
 	switch (strat) {
 		case 0:
-			return 'false';
+			return elm$json$Json$Encode$bool(false);
 		case 1:
-			return 'parity';
+			return elm$json$Json$Encode$string('parity');
 		default:
-			return 'greedy';
+			return elm$json$Json$Encode$string('greedy');
 	}
 };
 var author$project$VegaLite$vAlignLabel = function (al) {
@@ -5060,6 +5060,7 @@ var elm$json$Json$Encode$list = F2(
 				_Json_emptyArray(0),
 				entries));
 	});
+var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 	switch (axisCfg.$) {
 		case 0:
@@ -5109,7 +5110,7 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				elm$json$Json$Encode$string(c));
 		case 7:
 			var ds = axisCfg.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('gridDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'gridDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, ds));
 		case 8:
@@ -5221,8 +5222,7 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			var strat = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$overlapStrategyLabel(strat)));
+				author$project$VegaLite$overlapStrategySpec(strat));
 		case 26:
 			var pad = axisCfg.a;
 			return _Utils_Tuple2(
@@ -5639,7 +5639,7 @@ var author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				elm$json$Json$Encode$string(s));
 		case 29:
 			var xs = legendConfig.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		case 30:
@@ -5740,8 +5740,7 @@ var author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 			var lo = legendConfig.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$overlapStrategyLabel(lo)));
+				author$project$VegaLite$overlapStrategySpec(lo));
 		case 27:
 			var b = legendConfig.a;
 			return _Utils_Tuple2(
@@ -6057,7 +6056,6 @@ var author$project$VegaLite$ttContentLabel = function (ttContent) {
 			return 'null';
 	}
 };
-var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$lineMarkerSpec = function (pm) {
 	if (!pm.$) {
 		return elm$json$Json$Encode$bool(false);
@@ -6185,7 +6183,7 @@ var author$project$VegaLite$markProperty = function (mProp) {
 				elm$json$Json$Encode$float(x));
 		case 41:
 			var xs = mProp.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		case 42:
@@ -7244,7 +7242,7 @@ var author$project$VegaLite$selectionMarkProperty = function (markProp) {
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var xs = markProp.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		default:
@@ -7554,7 +7552,7 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 				elm$json$Json$Encode$float(x));
 		case 11:
 			var xs = viewCfg.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		case 12:

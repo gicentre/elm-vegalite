@@ -2305,7 +2305,7 @@ var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$And = F2(
 	function (a, b) {
-		return {$: 4, a: a, b: b};
+		return {$: 5, a: a, b: b};
 	});
 var author$project$VegaLite$and = F2(
 	function (op1, op2) {
@@ -3334,7 +3334,7 @@ var author$project$VegaLite$markProperty = function (mProp) {
 				elm$json$Json$Encode$float(x));
 		case 41:
 			var xs = mProp.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		case 42:
@@ -3657,14 +3657,14 @@ var author$project$VegaLite$anchorLabel = function (an) {
 			return 'end';
 	}
 };
-var author$project$VegaLite$overlapStrategyLabel = function (strat) {
+var author$project$VegaLite$overlapStrategySpec = function (strat) {
 	switch (strat) {
 		case 0:
-			return 'false';
+			return elm$json$Json$Encode$bool(false);
 		case 1:
-			return 'parity';
+			return elm$json$Json$Encode$string('parity');
 		default:
-			return 'greedy';
+			return elm$json$Json$Encode$string('greedy');
 	}
 };
 var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
@@ -3716,7 +3716,7 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				elm$json$Json$Encode$string(c));
 		case 7:
 			var ds = axisCfg.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('gridDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'gridDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, ds));
 		case 8:
@@ -3828,8 +3828,7 @@ var author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			var strat = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$overlapStrategyLabel(strat)));
+				author$project$VegaLite$overlapStrategySpec(strat));
 		case 26:
 			var pad = axisCfg.a;
 			return _Utils_Tuple2(
@@ -4220,7 +4219,7 @@ var author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				elm$json$Json$Encode$string(s));
 		case 29:
 			var xs = legendConfig.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		case 30:
@@ -4321,8 +4320,7 @@ var author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 			var lo = legendConfig.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$overlapStrategyLabel(lo)));
+				author$project$VegaLite$overlapStrategySpec(lo));
 		case 27:
 			var b = legendConfig.a;
 			return _Utils_Tuple2(
@@ -5223,7 +5221,7 @@ var author$project$VegaLite$selectionMarkProperty = function (markProp) {
 				elm$json$Json$Encode$float(x));
 		case 5:
 			var xs = markProp.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		default:
@@ -5533,7 +5531,7 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 				elm$json$Json$Encode$float(x));
 		case 11:
 			var xs = viewCfg.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
 		case 12:
@@ -6186,6 +6184,28 @@ var author$project$VegaLite$bin = function (bProps) {
 		elm$json$Json$Encode$object(
 			A2(elm$core$List$map, author$project$VegaLite$binProperty, bProps)));
 };
+var author$project$VegaLite$dataValuesSpecs = function (dvs) {
+	switch (dvs.$) {
+		case 2:
+			var xs = dvs.a;
+			return A2(elm$core$List$map, elm$json$Json$Encode$float, xs);
+		case 3:
+			var ss = dvs.a;
+			return A2(elm$core$List$map, elm$json$Json$Encode$string, ss);
+		case 1:
+			var dtss = dvs.a;
+			return A2(
+				elm$core$List$map,
+				function (ds) {
+					return elm$json$Json$Encode$object(
+						A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, ds));
+				},
+				dtss);
+		default:
+			var bs = dvs.a;
+			return A2(elm$core$List$map, elm$json$Json$Encode$bool, bs);
+	}
+};
 var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
 var author$project$VegaLite$filterProperty = function (f) {
 	switch (f.$) {
@@ -6364,100 +6384,6 @@ var author$project$VegaLite$filterProperty = function (f) {
 			return _List_Nil;
 	}
 };
-var author$project$VegaLite$booleanOpSpec = function (bo) {
-	switch (bo.$) {
-		case 0:
-			var ex = bo.a;
-			return elm$json$Json$Encode$string(ex);
-		case 1:
-			var f = bo.a;
-			return author$project$VegaLite$filterSpec(f);
-		case 3:
-			var selName = bo.a;
-			return elm$json$Json$Encode$string(selName);
-		case 2:
-			var sel = bo.a;
-			return elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'selection',
-						elm$json$Json$Encode$string(sel))
-					]));
-		case 4:
-			var operand1 = bo.a;
-			var operand2 = bo.b;
-			return elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'and',
-						A2(
-							elm$json$Json$Encode$list,
-							author$project$VegaLite$booleanOpSpec,
-							_List_fromArray(
-								[operand1, operand2])))
-					]));
-		case 5:
-			var operand1 = bo.a;
-			var operand2 = bo.b;
-			return elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'or',
-						A2(
-							elm$json$Json$Encode$list,
-							author$project$VegaLite$booleanOpSpec,
-							_List_fromArray(
-								[operand1, operand2])))
-					]));
-		default:
-			var operand = bo.a;
-			return elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'not',
-						author$project$VegaLite$booleanOpSpec(operand))
-					]));
-	}
-};
-var author$project$VegaLite$filterSpec = function (f) {
-	switch (f.$) {
-		case 5:
-			var ex = f.a;
-			return elm$json$Json$Encode$string(ex);
-		case 6:
-			var boolExpr = f.a;
-			return author$project$VegaLite$booleanOpSpec(boolExpr);
-		default:
-			return elm$json$Json$Encode$object(
-				author$project$VegaLite$filterProperty(f));
-	}
-};
-var author$project$VegaLite$dataValuesSpecs = function (dvs) {
-	switch (dvs.$) {
-		case 2:
-			var xs = dvs.a;
-			return A2(elm$core$List$map, elm$json$Json$Encode$float, xs);
-		case 3:
-			var ss = dvs.a;
-			return A2(elm$core$List$map, elm$json$Json$Encode$string, ss);
-		case 1:
-			var dtss = dvs.a;
-			return A2(
-				elm$core$List$map,
-				function (ds) {
-					return elm$json$Json$Encode$object(
-						A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, ds));
-				},
-				dtss);
-		default:
-			var bs = dvs.a;
-			return A2(elm$core$List$map, elm$json$Json$Encode$bool, bs);
-	}
-};
 var author$project$VegaLite$legendProperty = function (legendProp) {
 	switch (legendProp.$) {
 		case 0:
@@ -6586,8 +6512,7 @@ var author$project$VegaLite$legendProperty = function (legendProp) {
 			var lo = legendProp.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$overlapStrategyLabel(lo)));
+				author$project$VegaLite$overlapStrategySpec(lo));
 		case 22:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
@@ -7228,6 +7153,82 @@ var author$project$VegaLite$sortProperty = function (sp) {
 			return _List_Nil;
 	}
 };
+var author$project$VegaLite$booleanOpSpec = function (bo) {
+	switch (bo.$) {
+		case 0:
+			var ex = bo.a;
+			return elm$json$Json$Encode$string(ex);
+		case 1:
+			var f = bo.a;
+			return author$project$VegaLite$filterSpec(f);
+		case 2:
+			var tr = bo.a;
+			var f = bo.b;
+			return A2(author$project$VegaLite$trFilterSpec, tr, f);
+		case 4:
+			var selName = bo.a;
+			return elm$json$Json$Encode$string(selName);
+		case 3:
+			var sel = bo.a;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						elm$json$Json$Encode$string(sel))
+					]));
+		case 5:
+			var operand1 = bo.a;
+			var operand2 = bo.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'and',
+						A2(
+							elm$json$Json$Encode$list,
+							author$project$VegaLite$booleanOpSpec,
+							_List_fromArray(
+								[operand1, operand2])))
+					]));
+		case 6:
+			var operand1 = bo.a;
+			var operand2 = bo.b;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'or',
+						A2(
+							elm$json$Json$Encode$list,
+							author$project$VegaLite$booleanOpSpec,
+							_List_fromArray(
+								[operand1, operand2])))
+					]));
+		default:
+			var operand = bo.a;
+			return elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'not',
+						author$project$VegaLite$booleanOpSpec(operand))
+					]));
+	}
+};
+var author$project$VegaLite$filterSpec = function (f) {
+	switch (f.$) {
+		case 5:
+			var ex = f.a;
+			return elm$json$Json$Encode$string(ex);
+		case 6:
+			var boolExpr = f.a;
+			return author$project$VegaLite$booleanOpSpec(boolExpr);
+		default:
+			return elm$json$Json$Encode$object(
+				author$project$VegaLite$filterProperty(f));
+	}
+};
 var author$project$VegaLite$markChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -7294,7 +7295,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 				]);
 		case 6:
 			var sps = field.a;
-			_n1$4:
+			_n2$4:
 			while (true) {
 				if (!sps.b) {
 					return _List_fromArray(
@@ -7305,7 +7306,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 					if (!sps.b.b) {
 						switch (sps.a.$) {
 							case 0:
-								var _n2 = sps.a;
+								var _n3 = sps.a;
 								return _List_fromArray(
 									[
 										_Utils_Tuple2(
@@ -7313,7 +7314,7 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 										elm$json$Json$Encode$string('ascending'))
 									]);
 							case 1:
-								var _n3 = sps.a;
+								var _n4 = sps.a;
 								return _List_fromArray(
 									[
 										_Utils_Tuple2(
@@ -7330,10 +7331,10 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 											author$project$VegaLite$dataValuesSpecs(dvs)))
 									]);
 							default:
-								break _n1$4;
+								break _n2$4;
 						}
 					} else {
-						break _n1$4;
+						break _n2$4;
 					}
 				}
 			}
@@ -7370,9 +7371,9 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 		case 12:
 			var tests = field.a;
 			var elseClause = field.b;
-			var testClause = function (_n4) {
-				var predicate = _n4.a;
-				var ifClause = _n4.b;
+			var testClause = function (_n5) {
+				var predicate = _n5.a;
+				var ifClause = _n5.b;
 				return elm$json$Json$Encode$object(
 					A2(
 						elm$core$List$cons,
@@ -7446,6 +7447,22 @@ var author$project$VegaLite$markChannelProperty = function (field) {
 				]);
 	}
 };
+var author$project$VegaLite$trFilterSpec = F2(
+	function (mc, f) {
+		switch (f.$) {
+			case 5:
+				var ex = f.a;
+				return elm$json$Json$Encode$string(ex);
+			case 6:
+				var boolExpr = f.a;
+				return author$project$VegaLite$booleanOpSpec(boolExpr);
+			default:
+				return elm$json$Json$Encode$object(
+					_Utils_ap(
+						author$project$VegaLite$markChannelProperty(mc),
+						author$project$VegaLite$filterProperty(f)));
+		}
+	});
 var author$project$VegaLite$fillOpacity = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -7553,7 +7570,7 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 				elm$json$Json$Encode$string(c));
 		case 59:
 			var ds = axisProp.a;
-			return _Utils_Tuple2(
+			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('gridDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'gridDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, ds));
 		case 60:
@@ -7665,8 +7682,7 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 			var strat = axisProp.a;
 			return _Utils_Tuple2(
 				'labelOverlap',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$overlapStrategyLabel(strat)));
+				author$project$VegaLite$overlapStrategySpec(strat));
 		case 30:
 			var pad = axisProp.a;
 			return _Utils_Tuple2(
@@ -8208,7 +8224,7 @@ var author$project$VegaLite$select = F3(
 				elm$json$Json$Encode$object(selProps)));
 	});
 var author$project$VegaLite$Selection = function (a) {
-	return {$: 2, a: a};
+	return {$: 3, a: a};
 };
 var author$project$VegaLite$selected = author$project$VegaLite$Selection;
 var author$project$VegaLite$VLSelection = 30;
@@ -8218,7 +8234,7 @@ var author$project$VegaLite$selection = function (sels) {
 		elm$json$Json$Encode$object(sels));
 };
 var author$project$VegaLite$SelectionName = function (a) {
-	return {$: 3, a: a};
+	return {$: 4, a: a};
 };
 var author$project$VegaLite$selectionName = author$project$VegaLite$SelectionName;
 var author$project$VegaLite$strokeWidth = function (markProps) {
@@ -8516,7 +8532,7 @@ var author$project$VegaLite$MColor = function (a) {
 };
 var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
 var author$project$VegaLite$Not = function (a) {
-	return {$: 6, a: a};
+	return {$: 7, a: a};
 };
 var author$project$VegaLite$not = author$project$VegaLite$Not;
 var author$project$VegaLite$PTimeUnit = function (a) {
