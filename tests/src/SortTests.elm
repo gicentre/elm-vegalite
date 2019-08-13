@@ -20,7 +20,7 @@ sortQuant yField sps =
             encoding
                 << position X [ pName "Horsepower", pQuant, pSort sps ]
                 << position Y [ pName yField, pQuant ]
-                << order [ oName yField, oMType Ordinal ]
+                << order [ oName yField, oOrdinal ]
     in
     toVegaLite [ height 300, data [], enc [], line [ maStrokeWidth 0.5 ] ]
 
@@ -91,11 +91,11 @@ stack1 =
                 << position X2 [ pName "x2" ]
                 << position Y [ pName "y", pQuant, pAxis [] ]
                 << position Y2 [ pName "y2" ]
-                << color [ mName "Origin", mMType Nominal ]
-                << opacity [ mName "Cylinders", mMType Quantitative, mLegend [] ]
+                << color [ mName "Origin", mNominal ]
+                << opacity [ mName "Cylinders", mQuant, mLegend [] ]
                 << tooltips
-                    [ [ tName "Origin", tMType Nominal ]
-                    , [ tName "Cylinders", tMType Quantitative ]
+                    [ [ tName "Origin", tNominal ]
+                    , [ tName "Cylinders", tQuant ]
                     ]
     in
     toVegaLite [ cars, trans [], enc [], rect [] ]

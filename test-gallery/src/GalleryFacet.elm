@@ -35,10 +35,10 @@ facet1 =
                     ]
                 << color
                     [ mName "gender"
-                    , mMType Nominal
+                    , mNominal
                     , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
                     ]
-                << row [ fName "gender", fMType Nominal ]
+                << row [ fName "gender", fNominal ]
     in
     toVegaLite [ des, widthStep 17, data [], trans [], bar [], enc [] ]
 
@@ -53,8 +53,8 @@ facet2 =
             encoding
                 << position X [ pName "yield", pQuant, pAggregate opSum ]
                 << position Y [ pName "variety", pNominal ]
-                << color [ mName "site", mMType Nominal ]
-                << column [ fName "year", fMType Ordinal ]
+                << color [ mName "site", mNominal ]
+                << column [ fName "year", fOrdinal ]
     in
     toVegaLite
         [ des
@@ -74,7 +74,7 @@ facet3 =
             encoding
                 << position X [ pName "Worldwide_Gross", pQuant ]
                 << position Y [ pName "US_DVD_Sales", pQuant ]
-                << column [ fName "MPAA_Rating", fMType Ordinal ]
+                << column [ fName "MPAA_Rating", fOrdinal ]
     in
     toVegaLite
         [ des
@@ -94,7 +94,7 @@ facet4 =
             encoding
                 << position X [ pName "Horsepower", pQuant, pBin [ biMaxBins 15 ] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << row [ fName "Origin", fMType Ordinal ]
+                << row [ fName "Origin", fOrdinal ]
     in
     toVegaLite
         [ des
@@ -115,7 +115,7 @@ facet5 =
                 << position X [ pName "X", pQuant, pScale [ scZero False ] ]
                 << position Y [ pName "Y", pQuant, pScale [ scZero False ] ]
                 << opacity [ mNum 1 ]
-                << column [ fName "Series", fMType Ordinal ]
+                << column [ fName "Series", fOrdinal ]
     in
     toVegaLite [ des, dataFromUrl "https://vega.github.io/vega-lite/data/anscombe.json" [], circle [], enc [] ]
 
@@ -142,14 +142,14 @@ facet6 =
                     , pOrdinal
                     , pSort [ soByChannel chX, soDescending ]
                     ]
-                << color [ mName "year", mMType Nominal ]
+                << color [ mName "year", mNominal ]
     in
     toVegaLite
         [ data []
         , columns (Just 2)
         , facetFlow
             [ fName "site"
-            , fMType Ordinal
+            , fOrdinal
             , fSort [ soByField "yield" opMedian ]
             , fHeader [ hdTitle "" ]
             ]
@@ -180,12 +180,12 @@ facet7 =
                     ]
                 << color
                     [ mName "symbol"
-                    , mMType Nominal
+                    , mNominal
                     , mLegend []
                     ]
                 << row
                     [ fName "symbol"
-                    , fMType Nominal
+                    , fNominal
                     , fHeader [ hdTitle "Stock price", hdLabelAngle 0 ]
                     ]
 

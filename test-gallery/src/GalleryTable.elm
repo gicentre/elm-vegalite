@@ -23,7 +23,7 @@ table1 =
             encoding
                 << position X [ pName "Cylinders", pOrdinal ]
                 << position Y [ pName "Origin", pNominal ]
-                << color [ mName "Horsepower", mMType Quantitative, mAggregate opMean ]
+                << color [ mName "Horsepower", mQuant, mAggregate opMean ]
     in
     toVegaLite [ des, data, rect [], enc [] ]
 
@@ -47,7 +47,7 @@ table2 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit date, pAxis [ axTitle "Day", axLabelAngle 0, axFormat "%e" ] ]
                 << position Y [ pName "date", pOrdinal, pTimeUnit month, pAxis [ axTitle "Month" ] ]
-                << color [ mName "temp", mMType Quantitative, mAggregate opMax, mLegend [ leTitle "" ] ]
+                << color [ mName "temp", mQuant, mAggregate opMax, mLegend [ leTitle "" ] ]
     in
     toVegaLite [ des, cfg [], data, enc [], rect [] ]
 
@@ -75,7 +75,7 @@ table3 =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 60 ] ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 40 ] ]
-                << color [ mMType Quantitative, mAggregate opCount ]
+                << color [ mQuant, mAggregate opCount ]
 
         cfg =
             configure
@@ -98,7 +98,7 @@ table4 =
             encoding
                 << position X [ pName "time", pOrdinal, pTimeUnit hours ]
                 << position Y [ pName "time", pOrdinal, pTimeUnit day ]
-                << size [ mName "count", mMType Quantitative, mAggregate opSum ]
+                << size [ mName "count", mQuant, mAggregate opSum ]
     in
     toVegaLite [ des, data, enc [], circle [] ]
 
@@ -119,7 +119,7 @@ table5 =
 
         encRect =
             encoding
-                << color [ mName "*", mMType Quantitative, mAggregate opCount ]
+                << color [ mName "*", mQuant, mAggregate opCount ]
 
         specRect =
             asSpec [ encRect [], rect [] ]
@@ -127,7 +127,7 @@ table5 =
         encText =
             encoding
                 << color [ mStr "white" ]
-                << text [ tName "*", tMType Quantitative, tAggregate opCount ]
+                << text [ tName "*", tQuant, tAggregate opCount ]
 
         specText =
             asSpec [ encText [], textMark [] ]
@@ -175,7 +175,7 @@ table6 =
                         ]
                     ]
                 << position Y [ pName "symbol", pNominal, pTitle "" ]
-                << color [ mAggregate opSum, mName "price", mMType Quantitative, mTitle "Price" ]
+                << color [ mAggregate opSum, mName "price", mQuant, mTitle "Price" ]
 
         cfg =
             configure

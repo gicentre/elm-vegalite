@@ -15,7 +15,7 @@ arrow1 =
             encoding
                 << position X [ pName "DEP_TIME", pQuant ]
                 << position Y [ pName "ARR_DELAY", pQuant ]
-                << color [ mName "DISTANCE", mMType Quantitative ]
+                << color [ mName "DISTANCE", mQuant ]
     in
     toVegaLite [ width 500, height 300, data, enc [], circle [ maSize 4 ] ]
 

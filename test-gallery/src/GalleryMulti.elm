@@ -127,7 +127,7 @@ multi3 =
                 << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Origin", mMType Nominal ]
+                        [ mName "Origin", mNominal ]
                         [ mStr "grey" ]
                     ]
 
@@ -166,14 +166,14 @@ multi4 =
 
         enc1 =
             encoding
-                << color [ mAggregate opCount, mMType Quantitative, mLegend [ leTitle "" ] ]
+                << color [ mAggregate opCount, mQuant, mLegend [ leTitle "" ] ]
 
         spec1 =
             asSpec [ width 300, rect [], enc1 [] ]
 
         enc2 =
             encoding
-                << size [ mAggregate opCount, mMType Quantitative, mLegend [ leTitle "In Selected Category" ] ]
+                << size [ mAggregate opCount, mQuant, mLegend [ leTitle "In Selected Category" ] ]
                 << color [ mStr "#666" ]
 
         spec2 =
@@ -257,14 +257,14 @@ multi5 =
                     [ mSelectionCondition (selectionName "myBrush")
                         [ mName "weather"
                         , mTitle "Weather"
-                        , mMType Nominal
+                        , mNominal
                         , mScale weatherColors
                         ]
                         [ mStr "#cfdebe" ]
                     ]
                 << size
                     [ mName "precipitation"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scDomain (doNums [ -1, 50 ]) ]
                     ]
 
@@ -284,7 +284,7 @@ multi5 =
                 << color
                     [ mSelectionCondition (selectionName "myClick")
                         [ mName "weather"
-                        , mMType Nominal
+                        , mNominal
                         , mScale weatherColors
                         ]
                         [ mStr "#acbf98" ]
@@ -321,7 +321,7 @@ multi6 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "brush")
-                        [ mName "Cylinders", mMType Ordinal ]
+                        [ mName "Cylinders", mOrdinal ]
                         [ mStr "grey" ]
                     ]
 
@@ -337,7 +337,7 @@ multi6 =
         encHPText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Horsepower", tMType Nominal ]
+                << text [ tName "Horsepower", tNominal ]
 
         specHPText =
             asSpec
@@ -350,7 +350,7 @@ multi6 =
         encMPGText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Miles_per_Gallon", tMType Nominal ]
+                << text [ tName "Miles_per_Gallon", tNominal ]
 
         specMPGText =
             asSpec
@@ -363,7 +363,7 @@ multi6 =
         encOriginText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Origin", tMType Nominal ]
+                << text [ tName "Origin", tNominal ]
 
         specOriginText =
             asSpec
@@ -446,8 +446,8 @@ multi7 =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << size [ mName "routes", mMType Quantitative, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
-                << order [ oName "routes", oMType Quantitative, oSort [ soDescending ] ]
+                << size [ mName "routes", mQuant, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
+                << order [ oName "routes", oQuant, oSort [ soDescending ] ]
 
         sel =
             selection

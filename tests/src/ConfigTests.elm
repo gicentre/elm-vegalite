@@ -14,8 +14,8 @@ singleVis config =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Cylinders", mMType Ordinal ]
-                << shape [ mName "Origin", mMType Nominal ]
+                << color [ mName "Cylinders", mOrdinal ]
+                << shape [ mName "Origin", mNominal ]
     in
     toVegaLite
         [ title "Car Scatter" []
@@ -38,8 +38,8 @@ compositeVis config =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Cylinders", mMType Ordinal ]
-                << shape [ mName "Origin", mMType Nominal ]
+                << color [ mName "Cylinders", mOrdinal ]
+                << shape [ mName "Origin", mNominal ]
 
         scatterSpec =
             asSpec
@@ -55,13 +55,13 @@ compositeVis config =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         streamEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
                 << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         barSpec =
             asSpec
@@ -100,20 +100,20 @@ vbTest =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Cylinders", mMType Ordinal ]
-                << shape [ mName "Origin", mMType Nominal ]
+                << color [ mName "Cylinders", mOrdinal ]
+                << shape [ mName "Origin", mNominal ]
 
         barEnc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         streamEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
                 << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         scatterSpec =
             asSpec

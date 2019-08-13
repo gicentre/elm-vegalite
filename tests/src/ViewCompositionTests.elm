@@ -25,7 +25,7 @@ genderChart hdProps cProps =
             encoding
                 << column
                     [ fName "gender"
-                    , fMType Nominal
+                    , fNominal
                     , fHeader hdProps
                     ]
                 << position X
@@ -41,7 +41,7 @@ genderChart hdProps cProps =
                     ]
                 << color
                     [ mName "gender"
-                    , mMType Nominal
+                    , mNominal
                     , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
                     ]
     in
@@ -118,7 +118,7 @@ grid1 =
             encoding
                 << position X [ pName "cat", pOrdinal, pAxis [] ]
                 << position Y [ pName "val", pQuant, pAxis [] ]
-                << color [ mName "cat", mMType Nominal, mLegend [] ]
+                << color [ mName "cat", mNominal, mLegend [] ]
 
         specByCatVal =
             asSpec [ width 120, height 120, bar [], encByCatVal [] ]
@@ -129,8 +129,8 @@ grid1 =
         , spacingRC 20 80
         , specification specByCatVal
         , facet
-            [ rowBy [ fName "row", fMType Ordinal, fHeader [ hdTitle "" ] ]
-            , columnBy [ fName "col", fMType Ordinal, fHeader [ hdTitle "" ] ]
+            [ rowBy [ fName "row", fOrdinal, fHeader [ hdTitle "" ] ]
+            , columnBy [ fName "col", fOrdinal, fHeader [ hdTitle "" ] ]
             ]
         ]
 
@@ -142,7 +142,7 @@ grid2 =
             encoding
                 << position X [ pName "cat", pOrdinal, pAxis [] ]
                 << position Y [ pName "val", pQuant, pAxis [] ]
-                << color [ mName "cat", mMType Nominal, mLegend [] ]
+                << color [ mName "cat", mNominal, mLegend [] ]
 
         specByCatVal =
             asSpec [ width 120, height 120, bar [], encByCatVal [] ]
@@ -157,7 +157,7 @@ grid2 =
         , trans []
         , columns (Just 5)
         , specification specByCatVal
-        , facetFlow [ fName "index", fMType Ordinal, fHeader [ hdTitle "" ] ]
+        , facetFlow [ fName "index", fOrdinal, fHeader [ hdTitle "" ] ]
         ]
 
 
@@ -168,7 +168,7 @@ grid3 =
             encoding
                 << position X [ pName "cat", pOrdinal, pAxis [] ]
                 << position Y [ pName "val", pQuant, pAxis [] ]
-                << color [ mName "cat", mMType Nominal, mLegend [] ]
+                << color [ mName "cat", mNominal, mLegend [] ]
 
         specByCatVal =
             asSpec [ width 120, height 120, bar [], encByCatVal [] ]
@@ -183,7 +183,7 @@ grid3 =
         , trans []
         , columns Nothing
         , specification specByCatVal
-        , facetFlow [ fName "index", fMType Ordinal, fHeader [ hdTitle "" ] ]
+        , facetFlow [ fName "index", fOrdinal, fHeader [ hdTitle "" ] ]
         ]
 
 
@@ -197,7 +197,7 @@ grid4 =
             encoding
                 << position X [ pRepeat arFlow, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         spec =
             asSpec [ carData [], bar [], enc [] ]
@@ -219,7 +219,7 @@ grid5 =
             encoding
                 << position X [ pRepeat arRow, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         spec =
             asSpec [ carData [], bar [], enc [] ]

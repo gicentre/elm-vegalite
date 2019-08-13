@@ -43,7 +43,7 @@ line2 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
                 << position Y [ pName "price", pQuant, pAggregate opMean ]
-                << color [ mName "symbol", mMType Nominal ]
+                << color [ mName "symbol", mNominal ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -61,7 +61,7 @@ line3 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
                 << position Y [ pName "price", pQuant, pAggregate opMean ]
-                << color [ mName "symbol", mMType Nominal ]
+                << color [ mName "symbol", mNominal ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
 
@@ -79,7 +79,7 @@ line4 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
-                << color [ mName "symbol", mMType Nominal ]
+                << color [ mName "symbol", mNominal ]
     in
     toVegaLite [ des, data, enc [], line [] ]
 
@@ -97,7 +97,7 @@ line5 =
             encoding
                 << position X [ pName "year", pOrdinal, pScale [ scPadding 0.5 ] ]
                 << position Y [ pName "yield", pQuant, pAggregate opMedian ]
-                << color [ mName "site", mMType Nominal ]
+                << color [ mName "site", mNominal ]
     in
     toVegaLite [ des, widthStep 50, data, enc [], line [] ]
 
@@ -193,7 +193,7 @@ line9 =
             encoding
                 << position X [ pName "miles", pQuant, pScale [ scZero False ] ]
                 << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
-                << order [ oName "year", oMType Temporal ]
+                << order [ oName "year", oTemporal ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -211,8 +211,8 @@ line10 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
-                << size [ mName "price", mMType Quantitative ]
-                << color [ mName "symbol", mMType Nominal ]
+                << size [ mName "price", mQuant ]
+                << color [ mName "symbol", mNominal ]
     in
     toVegaLite [ des, data, enc [], trail [] ]
 
@@ -276,7 +276,7 @@ line12 =
             encoding
                 << color
                     [ mName "decade"
-                    , mMType Ordinal
+                    , mOrdinal
                     , mScale [ scScheme "magma" [] ]
                     , mLegend []
                     ]
@@ -290,7 +290,7 @@ line12 =
 
         encTextMin =
             encoding
-                << text [ tName "year", tMType Nominal ]
+                << text [ tName "year", tNominal ]
 
         specTextMin =
             asSpec [ transTextMin [], encTextMin [], textMark [ maBaseline vaTop ] ]
@@ -301,7 +301,7 @@ line12 =
 
         encTextMax =
             encoding
-                << text [ tName "year", tMType Nominal ]
+                << text [ tName "year", tNominal ]
 
         specTextMax =
             asSpec [ transTextMax [], encTextMax [], textMark [ maBaseline vaBottom ] ]
@@ -343,7 +343,7 @@ line13 =
             encoding
                 << position X [ pName "matchday", pOrdinal ]
                 << position Y [ pName "rank", pOrdinal ]
-                << color [ mName "team", mMType Nominal, mScale teamColours ]
+                << color [ mName "team", mNominal, mScale teamColours ]
 
         teamColours =
             categoricalDomainMap

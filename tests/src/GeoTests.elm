@@ -46,7 +46,7 @@ choropleth1 =
         , configure <| configuration (coView [ vicoStroke Nothing ]) []
         , dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
         , geoshape [ maStrokeOpacity 0 ]
-        , encoding <| color [ mName "id", mMType Nominal ] []
+        , encoding <| color [ mName "id", mNominal ] []
         ]
 
 
@@ -59,7 +59,7 @@ choropleth2 =
 
         polyEnc =
             encoding
-                << color [ mName "id", mMType Nominal, mScale boroughColors, mLegend [] ]
+                << color [ mName "id", mNominal, mScale boroughColors, mLegend [] ]
                 << opacity [ mNum 1 ]
 
         polySpec =
@@ -73,7 +73,7 @@ choropleth2 =
             encoding
                 << position Longitude [ pName "cx", pQuant ]
                 << position Latitude [ pName "cy", pQuant ]
-                << text [ tName "bLabel", tMType Nominal ]
+                << text [ tName "bLabel", tNominal ]
 
         labelSpec =
             asSpec [ dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" [], trans [], textMark [], labelEnc [] ]
@@ -93,7 +93,7 @@ tubeLines1 =
         , height 500
         , dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json" [ topojsonFeature "line" ]
         , geoshape [ maFilled False ]
-        , encoding <| color [ mName "id", mMType Nominal ] []
+        , encoding <| color [ mName "id", mNominal ] []
         ]
 
 
@@ -104,7 +104,7 @@ tubeLines2 =
             encoding
                 << color
                     [ mName "id"
-                    , mMType Nominal
+                    , mNominal
                     , mLegend [ leTitle "", leOrient loBottomRight ]
                     , mScale tubeLineColors
                     ]
@@ -133,7 +133,7 @@ tubeLines3 =
             encoding
                 << position Longitude [ pName "cx", pQuant ]
                 << position Latitude [ pName "cy", pQuant ]
-                << text [ tName "bLabel", tMType Nominal ]
+                << text [ tName "bLabel", tNominal ]
                 << size [ mNum 8 ]
                 << opacity [ mNum 0.6 ]
 
@@ -148,7 +148,7 @@ tubeLines3 =
             encoding
                 << color
                     [ mName "id"
-                    , mMType Nominal
+                    , mNominal
                     , mLegend [ leTitle "", leOrient loBottomRight, leOffset 0 ]
                     , mScale tubeLineColors
                     ]
@@ -489,7 +489,7 @@ dotMap1 =
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
                 << size [ mNum 1 ]
-                << color [ mName "digit", mMType Nominal ]
+                << color [ mName "digit", mNominal ]
     in
     toVegaLite
         [ description "US zip codes: One dot per zipcode colored by first digit"
@@ -524,9 +524,9 @@ scribbleMap1 =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << order [ oName "zip_code", oMType Quantitative ]
+                << order [ oName "zip_code", oQuant ]
                 << color [ mStr "#666" ]
-                << detail [ dName "conterminous", dMType Nominal ]
+                << detail [ dName "conterminous", dNominal ]
     in
     toVegaLite
         [ title "US connected zip codes" []
@@ -563,9 +563,9 @@ scribbleMap2 =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << order [ oName "zip_code", oMType Quantitative ]
-                << color [ mName "digit3", mMType Nominal, mLegend [] ]
-                << detail [ dName "ziplen", dMType Nominal ]
+                << order [ oName "zip_code", oQuant ]
+                << color [ mName "digit3", mNominal, mLegend [] ]
+                << detail [ dName "ziplen", dNominal ]
     in
     toVegaLite
         [ title "US connected zip codes, coloured by first three digits" []

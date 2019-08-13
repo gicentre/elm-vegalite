@@ -19,13 +19,13 @@ hyperlink1 =
             encoding
                 << position X [ pName "label", pNominal, pAxis [] ]
                 << size [ mNum 8000 ]
-                << color [ mName "label", mMType Nominal, mLegend [] ]
-                << hyperlink [ hName "url", hMType Nominal ]
+                << color [ mName "label", mNominal, mLegend [] ]
+                << hyperlink [ hName "url", hNominal ]
 
         encLabel =
             encoding
                 << position X [ pName "label", pNominal, pAxis [] ]
-                << text [ tName "label", tMType Nominal ]
+                << text [ tName "label", tNominal ]
                 << color [ mStr "white" ]
                 << size [ mNum 16 ]
 

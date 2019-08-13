@@ -20,8 +20,8 @@ repeat1 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
                 << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
-                << detail [ dName "date", dMType Temporal, dTimeUnit year ]
-                << color [ mName "location", mMType Nominal ]
+                << detail [ dName "date", dTemporal, dTimeUnit year ]
+                << color [ mName "location", mNominal ]
                 << opacity [ mNum 0.2 ]
 
         spec1 =
@@ -31,7 +31,7 @@ repeat1 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
                 << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
-                << color [ mName "location", mMType Nominal ]
+                << color [ mName "location", mNominal ]
 
         spec2 =
             asSpec [ line [], enc2 [] ]
@@ -69,7 +69,7 @@ repeat2 =
             encoding
                 << position X [ pName "temp_min", pQuant, pBin [] ]
                 << position Y [ pName "temp_max", pQuant, pBin [] ]
-                << size [ mAggregate opCount, mMType Quantitative ]
+                << size [ mAggregate opCount, mQuant ]
 
         spec2 =
             asSpec [ point [], enc2 [] ]
@@ -92,7 +92,7 @@ repeat3 =
             encoding
                 << position X [ pRepeat arColumn, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         spec =
             asSpec
@@ -137,7 +137,7 @@ repeat4 =
                 << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Origin", mMType Nominal ]
+                        [ mName "Origin", mNominal ]
                         [ mStr "grey" ]
                     ]
 
@@ -195,7 +195,7 @@ repeat5 =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [] ]
-                << color [ mAggregate opCount, mMType Quantitative ]
+                << color [ mAggregate opCount, mQuant ]
 
         spec2_1 =
             asSpec [ rect [], enc2_1 [] ]
@@ -263,7 +263,7 @@ repeat6 =
         encGap =
             encoding
                 << position Y [ pName "age", pOrdinal, pAxis [], pSort [ soDescending ] ]
-                << text [ tName "age", tMType Quantitative ]
+                << text [ tName "age", tQuant ]
 
         specGap =
             asSpec [ width 20, encGap [], textMark [ maAlign haCenter ] ]

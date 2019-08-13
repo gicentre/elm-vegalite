@@ -163,7 +163,7 @@ advanced5 =
             encoding
                 << position X [ pName "matchday", pOrdinal ]
                 << position Y [ pName "rank", pOrdinal ]
-                << color [ mName "team", mMType Nominal, mScale teamColours ]
+                << color [ mName "team", mNominal, mScale teamColours ]
 
         teamColours =
             categoricalDomainMap
@@ -245,7 +245,7 @@ advanced6 =
         enc3 =
             encoding
                 << position Y [ pName "sum_inc", pQuant ]
-                << text [ tName "sum_inc", tMType Nominal ]
+                << text [ tName "sum_inc", tNominal ]
 
         spec3 =
             asSpec
@@ -260,7 +260,7 @@ advanced6 =
         enc4 =
             encoding
                 << position Y [ pName "sum_dec", pQuant ]
-                << text [ tName "sum_dec", tMType Nominal ]
+                << text [ tName "sum_dec", tNominal ]
 
         spec4 =
             asSpec
@@ -276,7 +276,7 @@ advanced6 =
         enc5 =
             encoding
                 << position Y [ pName "center", pQuant ]
-                << text [ tName "text_amount", tMType Nominal ]
+                << text [ tName "text_amount", tNominal ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.label === 'Begin' || datum.label === 'End'"
@@ -339,7 +339,7 @@ advanced8 =
             encoding
                 << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
                 << position Y [ pName "density", pQuant ]
-                << row [ fName "measurement", fMType Nominal ]
+                << row [ fName "measurement", fNominal ]
     in
     toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
 
@@ -364,7 +364,7 @@ advanced9 =
             encoding
                 << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
                 << position Y [ pName "density", pQuant ]
-                << color [ mName "measurement", mMType Nominal ]
+                << color [ mName "measurement", mNominal ]
     in
     toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
 
@@ -401,13 +401,13 @@ advanced10 =
             encoding
                 << position X [ pName "key", pNominal ]
                 << position Y [ pName "normVal", pQuant, pAxis [] ]
-                << color [ mName "species", mMType Nominal ]
-                << detail [ dName "index", dMType Nominal ]
+                << color [ mName "species", mNominal ]
+                << detail [ dName "index", dNominal ]
                 << tooltips
-                    [ [ tName "petalLength", tMType Quantitative ]
-                    , [ tName "petalWidth", tMType Quantitative ]
-                    , [ tName "sepalLength", tMType Quantitative ]
-                    , [ tName "sepalWidth", tMType Quantitative ]
+                    [ [ tName "petalLength", tQuant ]
+                    , [ tName "petalWidth", tQuant ]
+                    , [ tName "sepalLength", tQuant ]
+                    , [ tName "sepalWidth", tQuant ]
                     ]
 
         specLine =
@@ -416,7 +416,7 @@ advanced10 =
         encAxis =
             encoding
                 << position X [ pName "key", pNominal, pAxis [ axTitle "" ] ]
-                << detail [ dAggregate opCount, dMType Quantitative ]
+                << detail [ dAggregate opCount, dQuant ]
 
         specAxis =
             asSpec [ encAxis [], rule [ maColor "#ccc" ] ]
@@ -425,7 +425,7 @@ advanced10 =
             encoding
                 << position X [ pName "key", pNominal ]
                 << position Y [ pNum 0 ]
-                << text [ tName "max", tMType Quantitative, tAggregate opMax ]
+                << text [ tName "max", tQuant, tAggregate opMax ]
 
         specAxisLabelsTop =
             asSpec [ encAxisLabelsTop [], textMark [ maStyle [ "label" ] ] ]
@@ -434,7 +434,7 @@ advanced10 =
             encoding
                 << position X [ pName "key", pNominal ]
                 << position Y [ pNum 150 ]
-                << text [ tName "mid", tMType Quantitative, tAggregate opMin ]
+                << text [ tName "mid", tQuant, tAggregate opMin ]
 
         specAxisLabelsMid =
             asSpec [ encAxisLabelsMid [], textMark [ maStyle [ "label" ] ] ]
@@ -443,7 +443,7 @@ advanced10 =
             encoding
                 << position X [ pName "key", pNominal ]
                 << position Y [ pHeight ]
-                << text [ tName "min", tMType Quantitative, tAggregate opMin ]
+                << text [ tName "min", tQuant, tAggregate opMin ]
 
         specAxisLabelsBot =
             asSpec [ encAxisLabelsBot [], textMark [ maStyle [ "label" ] ] ]

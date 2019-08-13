@@ -30,7 +30,7 @@ label1 =
             asSpec [ bar [] ]
 
         specText =
-            asSpec [ textMark [ maStyle [ "label" ] ], encoding (text [ tName "b", tMType Quantitative ] []) ]
+            asSpec [ textMark [ maStyle [ "label" ] ], encoding (text [ tName "b", tQuant ] []) ]
 
         config =
             configure << configuration (coNamedStyle "label" [ maAlign haLeft, maBaseline vaMiddle, maDx 3 ])
@@ -51,7 +51,7 @@ label2 =
 
         encRect =
             encoding
-                << color [ mName "*", mMType Quantitative, mAggregate opCount ]
+                << color [ mName "*", mQuant, mAggregate opCount ]
 
         specRect =
             asSpec [ rect [], encRect [] ]
@@ -59,7 +59,7 @@ label2 =
         encText =
             encoding
                 << color [ mStr "white" ]
-                << text [ tName "*", tMType Quantitative, tAggregate opCount ]
+                << text [ tName "*", tQuant, tAggregate opCount ]
 
         specText =
             asSpec [ textMark [], encText [] ]
@@ -118,7 +118,7 @@ label3 =
             encoding
                 << color
                     [ mName "decade"
-                    , mMType Ordinal
+                    , mOrdinal
                     , mScale [ scScheme "magma" [] ]
                     , mLegend []
                     ]
@@ -132,7 +132,7 @@ label3 =
 
         encTextMin =
             encoding
-                << text [ tName "year", tMType Nominal ]
+                << text [ tName "year", tNominal ]
 
         specTextMin =
             asSpec [ transTextMin [], encTextMin [], textMark [ maBaseline vaTop ] ]
@@ -143,7 +143,7 @@ label3 =
 
         encTextMax =
             encoding
-                << text [ tName "year", tMType Nominal ]
+                << text [ tName "year", tNominal ]
 
         specTextMax =
             asSpec [ transTextMax [], encTextMax [], textMark [ maBaseline vaBottom ] ]
@@ -218,7 +218,7 @@ label4 =
             encoding
                 << position X [ pWidth ]
                 << position Y [ pName "ThresholdValue", pQuant, pAxis [ axTitle "PM2.5 Value" ] ]
-                << text [ tName "Threshold", tMType Ordinal ]
+                << text [ tName "Threshold", tOrdinal ]
 
         layer1 =
             asSpec [ thresholdData [], layer [ specRule, specText ] ]
@@ -307,7 +307,7 @@ label7 =
             encoding
                 << position X [ pName "start", pTemporal, pTimeUnit year, pAxis [] ]
                 << position X2 [ pName "end" ]
-                << color [ mName "event", mMType Nominal ]
+                << color [ mName "event", mNominal ]
 
         specRects =
             asSpec [ highlights [], rect [], encRects [] ]
@@ -375,7 +375,7 @@ label8 =
                     ]
                 << size
                     [ mAggregate opCount
-                    , mMType Quantitative
+                    , mQuant
                     , mLegend [ leTitle "Number of Ratings", leOffset 75 ]
                     ]
 
@@ -401,14 +401,14 @@ label8 =
 
         encTextLo =
             encoding
-                << text [ tName "lo", tMType Nominal ]
+                << text [ tName "lo", tNominal ]
 
         specTextLo =
             asSpec [ encTextLo [], textMark [ maX -5, maAlign haRight ] ]
 
         encTextHi =
             encoding
-                << text [ tName "hi", tMType Nominal ]
+                << text [ tName "hi", tNominal ]
 
         specTextHi =
             asSpec [ encTextHi [], textMark [ maX 255, maAlign haLeft ] ]

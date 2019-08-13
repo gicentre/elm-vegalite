@@ -67,9 +67,9 @@ interaction2 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
-                << tooltip [ tName "Name", tMType Nominal ]
-                << hyperlink [ hName "url", hMType Nominal ]
+                << color [ mName "Origin", mNominal ]
+                << tooltip [ tName "Name", tNominal ]
+                << hyperlink [ hName "url", hNominal ]
     in
     toVegaLite
         [ des
@@ -95,7 +95,7 @@ interaction3 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Cylinders", mMType Ordinal ]
+                        [ mName "Cylinders", mOrdinal ]
                         [ mStr "grey" ]
                     ]
     in
@@ -181,7 +181,7 @@ interaction6 =
             encoding
                 << position X [ pName "Horsepower", pQuant, pScale [ scDomain (doNums [ 75, 150 ]) ] ]
                 << position Y [ pName "Miles_per_Gallon", pQuant, pScale [ scDomain (doNums [ 20, 40 ]) ] ]
-                << size [ mName "Cylinders", mMType Quantitative ]
+                << size [ mName "Cylinders", mQuant ]
     in
     toVegaLite
         [ des
@@ -223,7 +223,7 @@ interaction7 =
             encoding
                 << color
                     [ mSelectionCondition (selectionName "CylYr")
-                        [ mName "Origin", mMType Nominal ]
+                        [ mName "Origin", mNominal ]
                         [ mStr "grey" ]
                     ]
 
@@ -236,7 +236,7 @@ interaction7 =
 
         enc2 =
             encoding
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
                 << size [ mNum 100 ]
 
         spec2 =
@@ -304,7 +304,7 @@ interaction9 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
-                << color [ mName "symbol", mMType Nominal ]
+                << color [ mName "symbol", mNominal ]
 
         spec1 =
             asSpec
@@ -348,8 +348,8 @@ interaction9 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
-                << text [ tName "price", tMType Quantitative ]
-                << color [ mName "symbol", mMType Nominal ]
+                << text [ tName "price", tQuant ]
+                << color [ mName "symbol", mNominal ]
     in
     toVegaLite
         [ width 800
@@ -373,9 +373,9 @@ interaction10 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonthDate ]
                 << tooltips
-                    [ [ tName "date", tMType Temporal, tTimeUnit yearMonthDate ]
-                    , [ tName "temp_max", tMType Quantitative ]
-                    , [ tName "temp_min", tMType Quantitative ]
+                    [ [ tName "date", tTemporal, tTimeUnit yearMonthDate ]
+                    , [ tName "temp_max", tQuant ]
+                    , [ tName "temp_min", tQuant ]
                     ]
 
         enc1 =
@@ -438,7 +438,7 @@ interaction11 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "brush")
-                        [ mName "Cylinders", mMType Ordinal ]
+                        [ mName "Cylinders", mOrdinal ]
                         [ mStr "grey" ]
                     ]
 
@@ -454,7 +454,7 @@ interaction11 =
         encHPText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Horsepower", tMType Nominal ]
+                << text [ tName "Horsepower", tNominal ]
 
         specHPText =
             asSpec
@@ -467,7 +467,7 @@ interaction11 =
         encMPGText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Miles_per_Gallon", tMType Nominal ]
+                << text [ tName "Miles_per_Gallon", tNominal ]
 
         specMPGText =
             asSpec
@@ -480,7 +480,7 @@ interaction11 =
         encOriginText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Origin", tMType Nominal ]
+                << text [ tName "Origin", tNominal ]
 
         specOriginText =
             asSpec
@@ -535,7 +535,7 @@ interaction12 =
             encoding
                 << position X [ pName "predicted", pNominal ]
                 << position Y [ pName "actual", pNominal ]
-                << color [ mName "count", mMType Quantitative ]
+                << color [ mName "count", mQuant ]
                 << opacity
                     [ mSelectionCondition (selectionName "highlight")
                         [ mNum 1 ]

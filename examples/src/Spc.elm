@@ -49,8 +49,8 @@ spc4 =
             encoding
                 << position X [ pName "month", pTemporal, pAxis [] ]
                 << position Y [ pName "crimes", pQuant, pAxis [] ]
-                << color [ mName "shiftDirection", mMType Nominal, mScale shiftColours, mLegend [] ]
-                << shape [ mName "shifts", mMType Nominal, mScale shiftShapes, mLegend [] ]
+                << color [ mName "shiftDirection", mNominal, mScale shiftColours, mLegend [] ]
+                << shape [ mName "shifts", mNominal, mScale shiftShapes, mLegend [] ]
 
         specPoint =
             asSpec [ enc [], point [ maFilled True, maSize 60 ] ]
@@ -76,8 +76,8 @@ spc5 =
             encoding
                 << position X [ pName "month", pTemporal, pAxis [] ]
                 << position Y [ pName "crimes", pQuant, pAxis [] ]
-                << color [ mName "shiftDirection", mMType Nominal, mScale shiftColours, mLegend [] ]
-                << detail [ dName "groups", dMType Ordinal ]
+                << color [ mName "shiftDirection", mNominal, mScale shiftColours, mLegend [] ]
+                << detail [ dName "groups", dOrdinal ]
 
         specLine =
             asSpec [ line [ maStrokeWidth 1.4, maColor "#777" ], encLine ]

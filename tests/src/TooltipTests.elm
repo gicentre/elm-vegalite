@@ -19,7 +19,7 @@ tooltip1 =
             encoding
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
-                << tooltip [ tName "b", tMType Quantitative ]
+                << tooltip [ tName "b", tQuant ]
     in
     toVegaLite [ data [], bar [], enc [] ]
 
@@ -37,8 +37,8 @@ tooltip2 =
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
                 << tooltips
-                    [ [ tName "a", tMType Ordinal ]
-                    , [ tName "b", tMType Quantitative ]
+                    [ [ tName "a", tOrdinal ]
+                    , [ tName "b", tQuant ]
                     ]
     in
     toVegaLite [ data [], bar [], enc [] ]

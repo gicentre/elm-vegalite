@@ -14,8 +14,8 @@ trail1 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
-                << size [ mName "price", mMType Quantitative ]
-                << color [ mName "symbol", mMType Nominal ]
+                << size [ mName "price", mQuant ]
+                << color [ mName "symbol", mNominal ]
     in
     toVegaLite
         [ width 400
@@ -36,7 +36,7 @@ trail2 =
             encoding
                 << position X [ pName "miles", pQuant, pScale [ scZero False ] ]
                 << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
-                << size [ mName "year", mMType Temporal, mLegend [] ]
+                << size [ mName "year", mTemporal, mLegend [] ]
     in
     toVegaLite [ data [], trail [ maOrder False ], enc [] ]
 

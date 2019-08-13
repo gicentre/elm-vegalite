@@ -76,8 +76,8 @@ scatter4 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
-                << shape [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
+                << shape [ mName "Origin", mNominal ]
     in
     toVegaLite
         [ des
@@ -97,7 +97,7 @@ scatter5 =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
-                << size [ mAggregate opCount, mMType Quantitative ]
+                << size [ mAggregate opCount, mQuant ]
     in
     toVegaLite
         [ des
@@ -117,7 +117,7 @@ scatter6 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << size [ mName "Acceleration", mMType Quantitative ]
+                << size [ mName "Acceleration", mQuant ]
     in
     toVegaLite
         [ des
@@ -188,7 +188,7 @@ scatter9 =
             encoding
                 << position X [ pName "income", pQuant, pScale [ scType scLog ] ]
                 << position Y [ pName "health", pQuant, pScale [ scZero False ] ]
-                << size [ mName "population", mMType Quantitative ]
+                << size [ mName "population", mQuant ]
                 << color [ mStr "#000" ]
 
         sel =
@@ -221,11 +221,11 @@ scatter10 =
                 << position Y [ pName "Entity", pNominal, pAxis [ axTitle "" ] ]
                 << size
                     [ mName "Deaths"
-                    , mMType Quantitative
+                    , mQuant
                     , mLegend [ leTitle "Annual Global Deaths" ]
                     , mScale [ scRange (raNums [ 0, 5000 ]) ]
                     ]
-                << color [ mName "Entity", mMType Nominal, mLegend [] ]
+                << color [ mName "Entity", mNominal, mLegend [] ]
     in
     toVegaLite
         [ des
@@ -255,8 +255,8 @@ scatter11 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
-                << text [ tName "OriginInitial", tMType Nominal ]
+                << color [ mName "Origin", mNominal ]
+                << text [ tName "OriginInitial", tNominal ]
     in
     toVegaLite [ des, data, trans [], textMark [], enc [] ]
 

@@ -114,10 +114,10 @@ livestock =
             encoding
                 << position X [ pName "col", pOrdinal, pAxis [] ]
                 << position Y [ pName "animal", pOrdinal, pAxis [] ]
-                << row [ fName "country", fMType Nominal, fHeader [ hdTitle "" ] ]
+                << row [ fName "country", fNominal, fHeader [ hdTitle "" ] ]
                 << shape
                     [ mName "animal"
-                    , mMType Nominal
+                    , mNominal
                     , mScale <|
                         categoricalDomainMap
                             [ ( "person", Dict.get "person" isotypes |> Maybe.withDefault "circle" )
@@ -129,7 +129,7 @@ livestock =
                     ]
                 << color
                     [ mName "animal"
-                    , mMType Nominal
+                    , mNominal
                     , mLegend []
                     , mScale <|
                         categoricalDomainMap

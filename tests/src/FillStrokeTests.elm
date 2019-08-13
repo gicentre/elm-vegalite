@@ -21,7 +21,7 @@ encChart extraEnc =
             encoding
                 << position X [ pName "x", pQuant ]
                 << position Y [ pName "y", pQuant ]
-                << color [ mName "cat", mMType Nominal ]
+                << color [ mName "cat", mNominal ]
                 << size [ mNum 2000 ]
                 << extraEnc
     in
@@ -40,7 +40,7 @@ fill1 =
 
 fill2 : Spec
 fill2 =
-    encChart (fill [ mName "y", mMType Ordinal ])
+    encChart (fill [ mName "y", mOrdinal ])
 
 
 fill3 : Spec
@@ -55,7 +55,7 @@ stroke1 =
 
 stroke2 : Spec
 stroke2 =
-    encChart (stroke [ mName "y", mMType Ordinal ])
+    encChart (stroke [ mName "y", mOrdinal ])
 
 
 stroke3 : Spec
@@ -70,12 +70,12 @@ combined1 =
 
 combined2 : Spec
 combined2 =
-    encChart (stroke [ mName "y", mMType Ordinal ] << fill [ mStr "red" ])
+    encChart (stroke [ mName "y", mOrdinal ] << fill [ mStr "red" ])
 
 
 combined3 : Spec
 combined3 =
-    encChart (stroke [ mStr "red" ] << fill [ mName "y", mMType Ordinal ])
+    encChart (stroke [ mStr "red" ] << fill [ mName "y", mOrdinal ])
 
 
 geo1 : Spec
@@ -106,7 +106,7 @@ geo2 =
 
         -- NOTE: There is a bug in Vega-Lite that prevents nested geometry from being read correctly.
         enc =
-            encoding << color [ mName "features.geometry.type", mMType Nominal ]
+            encoding << color [ mName "features.geometry.type", mNominal ]
     in
     toVegaLite
         [ width 300

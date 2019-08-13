@@ -116,7 +116,7 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mMType Nominal ]
+            << color [ mName "weather", mNominal ]
 in
 toVegaLite
     [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -155,7 +155,7 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mMType Nominal, mScale weatherColors ]
+            << color [ mName "weather", mNominal, mScale weatherColors ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -178,7 +178,7 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mMType Nominal, mScale weatherColors ]
+            << color [ mName "weather", mNominal, mScale weatherColors ]
 in
 toVegaLite
     [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -202,8 +202,8 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mMType Nominal, mLegend [], mScale weatherColors ]
-            << column [ fName "weather", fMType Nominal ]
+            << color [ mName "weather", mNominal, mLegend [], mScale weatherColors ]
+            << column [ fName "weather", fNominal ]
 in
 toVegaLite
     [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -386,8 +386,8 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mMType Nominal, mLegend [], mScale weatherColors ]
-            << column [ fName "weather", fMType Nominal ]
+            << color [ mName "weather", mNominal, mLegend [], mScale weatherColors ]
+            << column [ fName "weather", fNominal ]
 
     histoSpec =
         asSpec [ bar [], histoEnc [] ]
@@ -474,7 +474,7 @@ let
             << position Y [ pName "Miles_per_Gallon", pQuant ]
             << color
                 [ mSelectionCondition (selectionName "picked")
-                    [ mName "Origin", mMType Nominal ]
+                    [ mName "Origin", mNominal ]
                     [ mStr "grey" ]
                 ]
 
@@ -510,7 +510,7 @@ scatterProps =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "picked")
-                        [ mName "Origin", mMType Nominal ]
+                        [ mName "Origin", mNominal ]
                         [ mStr "grey" ]
                     ]
     in
@@ -681,7 +681,7 @@ let
             << position Y [ pRepeat arRow, pQuant ]
             << color
                 [ mSelectionCondition (selectionName "picked")
-                    [ mName "Origin", mMType Nominal ]
+                    [ mName "Origin", mNominal ]
                     [ mStr "grey" ]
                 ]
 
@@ -719,7 +719,7 @@ let
         encoding
             << position X [ pRepeat arColumn, pQuant ]
             << position Y [ pRepeat arRow, pQuant ]
-            << color [ mName "Origin", mMType Nominal ]
+            << color [ mName "Origin", mNominal ]
 
     sel =
         selection

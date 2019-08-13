@@ -137,8 +137,8 @@ data11 =
             encoding
                 << position X [ pName "Answer", pNominal ]
                 << position Y [ pName "Percent", pQuant, pAggregate opMean ]
-                << color [ mName "Pollster", mMType Nominal ]
-                << column [ fName "Pollster", fMType Nominal ]
+                << color [ mName "Pollster", mNominal ]
+                << column [ fName "Pollster", fNominal ]
     in
     toVegaLite [ pollData, enc [], bar [] ]
 
@@ -192,7 +192,7 @@ geodata1 =
         , configure <| configuration (coView [ vicoStroke Nothing ]) []
         , dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
         , geoshape []
-        , encoding <| color [ mName "id", mMType Nominal ] []
+        , encoding <| color [ mName "id", mNominal ] []
         ]
 
 
@@ -211,7 +211,7 @@ geodata2 =
         , configure <| configuration (coView [ vicoStroke Nothing ]) []
         , dataFromJson geojson [ jsonProperty "features" ]
         , projection [ prType orthographic ]
-        , encoding (color [ mName "properties.Region", mMType Nominal, mLegend [ leTitle "" ] ] [])
+        , encoding (color [ mName "properties.Region", mNominal, mLegend [ leTitle "" ] ] [])
         , geoshape []
         ]
 
@@ -241,7 +241,7 @@ flatten1 =
             encoding
                 << position X [ pName "quant", pQuant ]
                 << position Y [ pName "cat", pNominal ]
-                << color [ mName "key", mMType Nominal ]
+                << color [ mName "key", mNominal ]
     in
     toVegaLite [ data [], trans [], circle [], enc [] ]
 
@@ -283,10 +283,10 @@ fold2 =
 
         enc =
             encoding
-                << column [ fName "k", fMType Nominal ]
+                << column [ fName "k", fNominal ]
                 << position X [ pName "country", pNominal ]
                 << position Y [ pName "v", pQuant ]
-                << color [ mName "country", mMType Nominal ]
+                << color [ mName "country", mNominal ]
     in
     toVegaLite [ data [], trans [], bar [], enc [] ]
 
@@ -308,7 +308,7 @@ pivot1 =
             encoding
                 << position X [ pName "country", pNominal ]
                 << position Y [ pRepeat arFlow, pQuant ]
-                << color [ mName "country", mMType Nominal ]
+                << color [ mName "country", mNominal ]
 
         spec =
             asSpec [ data [], trans [], enc [], bar [] ]
@@ -335,7 +335,7 @@ impute1 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], trans [], line [], enc [] ]
 
@@ -351,7 +351,7 @@ impute2 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], trans [], line [], enc [] ]
 
@@ -367,7 +367,7 @@ impute3 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], trans [], line [], enc [] ]
 
@@ -379,7 +379,7 @@ impute4 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 0) ] ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
 
@@ -391,7 +391,7 @@ impute5 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imMethod imMean ] ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
 
@@ -403,7 +403,7 @@ impute6 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imMethod imMean, imFrame (Just -2) (Just 2) ] ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
 
@@ -415,7 +415,7 @@ impute7 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 100), imKeyVals (nums [ 4 ]) ] ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
 
@@ -427,7 +427,7 @@ impute8 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 100), imKeyValSequence 4 6 1 ] ]
-                << color [ mName "c", mMType Nominal ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
 

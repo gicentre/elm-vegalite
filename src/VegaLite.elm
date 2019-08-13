@@ -501,6 +501,11 @@ module VegaLite exposing
     , shape
     , mName
     , mRepeat
+    , mNominal
+    , mOrdinal
+    , mQuant
+    , mTemporal
+    , mGeo
     , mMType
     , mScale
     , mBin
@@ -581,6 +586,11 @@ module VegaLite exposing
     , tooltips
     , tName
     , tRepeat
+    , tNominal
+    , tOrdinal
+    , tQuant
+    , tTemporal
+    , tGeo
     , tMType
     , tBin
     , tBinned
@@ -594,6 +604,11 @@ module VegaLite exposing
     , hyperlink
     , hName
     , hRepeat
+    , hNominal
+    , hOrdinal
+    , hQuant
+    , hTemporal
+    , hGeo
     , hMType
     , hBin
     , hBinned
@@ -603,6 +618,11 @@ module VegaLite exposing
     , order
     , oName
     , oRepeat
+    , oNominal
+    , oOrdinal
+    , oQuant
+    , oTemporal
+    , oGeo
     , oMType
     , oBin
     , oAggregate
@@ -612,6 +632,11 @@ module VegaLite exposing
     , column
     , detail
     , dName
+    , dNominal
+    , dOrdinal
+    , dQuant
+    , dTemporal
+    , dGeo
     , dMType
     , dAggregate
     , dBin
@@ -718,6 +743,11 @@ module VegaLite exposing
     , columnBy
     , rowBy
     , fName
+    , fNominal
+    , fOrdinal
+    , fQuant
+    , fTemporal
+    , fGeo
     , fMType
     , fAggregate
     , fBin
@@ -2003,6 +2033,11 @@ color or size.
 
 @docs mName
 @docs mRepeat
+@docs mNominal
+@docs mOrdinal
+@docs mQuant
+@docs mTemporal
+@docs mGeo
 @docs mMType
 @docs mScale
 @docs mBin
@@ -2100,6 +2135,11 @@ See the
 @docs tooltips
 @docs tName
 @docs tRepeat
+@docs tNominal
+@docs tOrdinal
+@docs tQuant
+@docs tTemporal
+@docs tGeo
 @docs tMType
 @docs tBin
 @docs tBinned
@@ -2123,6 +2163,11 @@ other visual channels such as marks or texts. See the
 @docs hyperlink
 @docs hName
 @docs hRepeat
+@docs hNominal
+@docs hOrdinal
+@docs hQuant
+@docs hTemporal
+@docs hGeo
 @docs hMType
 @docs hBin
 @docs hBinned
@@ -2140,6 +2185,11 @@ or order of data points in a connected scatterplot. See the
 @docs order
 @docs oName
 @docs oRepeat
+@docs oNominal
+@docs oOrdinal
+@docs oQuant
+@docs oTemporal
+@docs oGeo
 @docs oMType
 @docs oBin
 @docs oAggregate
@@ -2169,6 +2219,11 @@ data items with the same value are placed in the same group. See the
 
 @docs detail
 @docs dName
+@docs dNominal
+@docs dOrdinal
+@docs dQuant
+@docs dTemporal
+@docs dGeo
 @docs dMType
 @docs dAggregate
 @docs dBin
@@ -2321,6 +2376,11 @@ arrangement. See the
 @docs rowBy
 
 @docs fName
+@docs fNominal
+@docs fOrdinal
+@docs fQuant
+@docs fTemporal
+@docs fGeo
 @docs fMType
 @docs fAggregate
 @docs fBin
@@ -7535,6 +7595,14 @@ detail detailProps =
     (::) ( "detail", List.map detailChannelProperty detailProps |> JE.object )
 
 
+{-| Indicate a data field encoded with a detail channel is a geo feature. Equivalent
+to `dMType GeoFeature`.
+-}
+dGeo : DetailChannel
+dGeo =
+    DmType GeoFeature
+
+
 {-| Name of field used for encoding with a level of detail (grouping) channel.
 -}
 dName : String -> DetailChannel
@@ -7542,7 +7610,9 @@ dName =
     DName
 
 
-{-| Level of measurement when encoding with a level of detail (grouping) channel.
+{-| Level of measurement when encoding with a detail (grouping) channel. See also
+[dNominal](#dNominal), dOrdinal](#dOrdinal), [dQuant](#dQuant),
+[dTemporal](#dTemporal) and [dGeo](#dGeo) for shorthand equivalents.
 -}
 dMType : Measurement -> DetailChannel
 dMType =
@@ -7616,6 +7686,14 @@ dnMinSteps =
     DnMinSteps
 
 
+{-| Indicate a data field encoded with a detail channel is nominal. Equivalent to
+`dMType Nominal`.
+-}
+dNominal : DetailChannel
+dNominal =
+    DmType Nominal
+
+
 {-| The exact number of samples to take from the extent domain when estimating
 density. Will override [dnMinSteps](#dnMinSteps) and [dnMaxSteps](#dnMaxSteps)
 and is useful in conjunction with a fixed extent to ensure consistent sample points
@@ -7665,6 +7743,14 @@ doNums =
     DNumbers
 
 
+{-| Indicate a data field encoded with a detail channel is ordinal. Equivalent to
+`dMType Ordinal`.
+-}
+dOrdinal : DetailChannel
+dOrdinal =
+    DmType Ordinal
+
+
 {-| Scale domain based on a named interactive selection.
 -}
 doSelection : String -> ScaleDomain
@@ -7684,6 +7770,14 @@ doStrs =
 doUnaggregated : ScaleDomain
 doUnaggregated =
     Unaggregated
+
+
+{-| Indicate a data field encoded with a detail channel is quantitative. Equivalent
+to `dMType Quantitative`.
+-}
+dQuant : DetailChannel
+dQuant =
+    DmType Quantitative
 
 
 {-| Delimited file format (DSV) with a given separator.
@@ -7712,6 +7806,14 @@ dtDate =
 dtDay : DayName -> DateTime
 dtDay =
     DTDay
+
+
+{-| Indicate a data field encoded with a detail channel is temporal. Equivalent to
+`dMType Temporal`.
+-}
+dTemporal : DetailChannel
+dTemporal =
+    DmType Temporal
 
 
 {-| Hour of the day (0=midnight, 1=1am, 23=11pm etc.).
@@ -7961,6 +8063,14 @@ fBin =
     FBin
 
 
+{-| Indicate a data field encoded as a facet property is a geo feature. Equivalent
+to `fMType GeoFeature`.
+-}
+fGeo : FacetChannel
+fGeo =
+    FmType GeoFeature
+
+
 {-| Guide that spans a collection of faceted plots, each of which may have their own axes.
 -}
 fHeader : List HeaderProperty -> FacetChannel
@@ -8174,7 +8284,17 @@ fName =
     FName
 
 
-{-| Level of measurement when encoding with a facet channel.
+{-| Indicate a data field encoded as a facet property is nominal. Equivalent to
+`fMType Nominal`.
+-}
+fNominal : FacetChannel
+fNominal =
+    FmType Nominal
+
+
+{-| Level of measurement when encoding as a facet. See also [fNominal](#fNominal),
+fOrdinal](#fOrdinal), [fQuant](#fQuant), [fTemporal](#fTemporal) and [fGeo](#fGeo)
+for shorthand equivalents.
 -}
 fMType : Measurement -> FacetChannel
 fMType =
@@ -8249,11 +8369,27 @@ foNum =
     FoNum
 
 
+{-| Indicate a data field encoded as a facet property is ordinal. Equivalent to
+`fMType Ordinal`.
+-}
+fOrdinal : FacetChannel
+fOrdinal =
+    FmType Ordinal
+
+
 {-| Similar to [foDate](#foDate) but for UTC format dates.
 -}
 foUtc : String -> DataType
 foUtc =
     FoUtc
+
+
+{-| Indicate a data field encoded as a facet property is quantitative. Equivalent
+to `fMType Quantitative`.
+-}
+fQuant : FacetChannel
+fQuant =
+    FmType Quantitative
 
 
 {-| Sort order for a field when encoding with a faceted channel.
@@ -8268,6 +8404,14 @@ foUtc =
 fSort : List SortProperty -> FacetChannel
 fSort =
     FSort
+
+
+{-| Indicate a data field encoded as a facet property is temporal. Equivalent to
+`fMType Temporal`.
+-}
+fTemporal : FacetChannel
+fTemporal =
+    FmType Temporal
 
 
 {-| Field titles to be displayed as 'SUM(field)', 'YEAR(date)' etc.
@@ -8878,7 +9022,17 @@ heightStep hs =
     ( VLHeightStep, JE.object [ ( "step", JE.float hs ) ] )
 
 
-{-| Level of measurement when encoding with a hyperlink channel.
+{-| Indicate a data field encoded as a hyperlink property is a geo feature. Equivalent
+to `hMType GeoFeature`.
+-}
+hGeo : HyperlinkChannel
+hGeo =
+    HmType GeoFeature
+
+
+{-| Level of measurement when encoding with a hyperlink channel. See also
+[hNominal](#hNominal), [hOrdinal](#hOrdinal), [hQuant](#hQuant), [hTemporal](#hTemporal)
+and [hGeo](#hGeo) for shorthand equivalents.
 -}
 hMType : Measurement -> HyperlinkChannel
 hMType =
@@ -8890,6 +9044,22 @@ hMType =
 hName : String -> HyperlinkChannel
 hName =
     HName
+
+
+{-| Indicate a data field encoded as a hyperlink property is nominal. Equivalent to
+`hMType Nominal`.
+-}
+hNominal : HyperlinkChannel
+hNominal =
+    HmType Nominal
+
+
+{-| Indicate a data field encoded as a hyperlink property is ordinal. Equivalent to
+`hMType Ordinal`.
+-}
+hOrdinal : HyperlinkChannel
+hOrdinal =
+    HmType Ordinal
 
 
 {-| Hour of the day time unit used for discretizing temporal data.
@@ -8950,6 +9120,22 @@ hslLong =
 hStr : String -> HyperlinkChannel
 hStr =
     HString
+
+
+{-| Indicate a data field encoded as a hyperlink property is temporal. Equivalent to
+`hMType Temporal`.
+-}
+hTemporal : HyperlinkChannel
+hTemporal =
+    HmType Temporal
+
+
+{-| Indicate a data field encoded as a hyperlink property is quantitative. Equivalent
+to `hMType Quantitative`.
+-}
+hQuant : HyperlinkChannel
+hQuant =
+    HmType Quantitative
 
 
 {-| Time unit aggregation of field values when encoding with a hyperlink channel.
@@ -10894,6 +11080,14 @@ mercator =
     Mercator
 
 
+{-| Indicate a data field encoded as a mark property is a geo feature. Equivalent
+to `mMType GeoFeature`.
+-}
+mGeo : MarkChannel
+mGeo =
+    MmType GeoFeature
+
+
 {-| Cubic basis spline interpolation between points anchored at first and last points.
 -}
 miBasis : MarkInterpolation
@@ -11011,7 +11205,9 @@ mLegend =
     MLegend
 
 
-{-| Level of measurement when encoding with a mark property channel.
+{-| Level of measurement when encoding with a mark property channel. See also
+[nNominal](#mNominal), [mOrdinal](#mOrdinal), [mQuant](#mQuant), [mTemporal](#mTemporal)
+and [mGeo](#mGeo) for shorthand equivalents.
 -}
 mMType : Measurement -> MarkChannel
 mMType =
@@ -11023,6 +11219,14 @@ mMType =
 mName : String -> MarkChannel
 mName =
     MName
+
+
+{-| Indicate a data field encoded as a mark property is nominal. Equivalent to
+`mMType Nominal`.
+-}
+mNominal : MarkChannel
+mNominal =
+    MmType Nominal
 
 
 {-| Literal numeric value when encoding with a mark property channel.
@@ -11060,6 +11264,14 @@ monthDateHours =
     MonthDateHours
 
 
+{-| Indicate a data field encoded as a mark property is ordinal. Equivalent to
+`mMType Ordinal`.
+-}
+mOrdinal : MarkChannel
+mOrdinal =
+    MmType Ordinal
+
+
 {-| Indicate vertical mark orientation.
 -}
 moVertical : MarkOrientation
@@ -11073,6 +11285,14 @@ for providing custom shapes.
 mPath : String -> MarkChannel
 mPath =
     MPath
+
+
+{-| Indicate a data field encoded as a mark property is quantitative. Equivalent to
+`mMType Quantitative`.
+-}
+mQuant : MarkChannel
+mQuant =
+    MmType Quantitative
 
 
 {-| Reference in a mark channel to a field name generated by [repeatFlow](#repeatFlow)
@@ -11120,6 +11340,14 @@ mSort =
 mStr : String -> MarkChannel
 mStr =
     MString
+
+
+{-| Indicate a data field encoded as a mark property is temporal. Equivalent to
+`mMType Temporal`.
+-}
+mTemporal : MarkChannel
+mTemporal =
+    MmType Temporal
 
 
 {-| Time unit aggregation of field values when encoding with a mark property channel.
@@ -11291,7 +11519,17 @@ oBin =
     OBin
 
 
-{-| Level of measurement when encoding with an order channel.
+{-| Indicate a data field encoded with an order channel is a geo feature. Equivalent
+to `oMType GeoFeature`.
+-}
+oGeo : OrderChannel
+oGeo =
+    OmType GeoFeature
+
+
+{-| Level of measurement when encoding with an order channel. See also
+[oNominal](#oNominal), oOrdinal](#oOrdinal), [oQuant](#oQuant),
+[oTemporal](#oTemporal) and [oGeo](#oGeo) for shorthand equivalents.
 -}
 oMType : Measurement -> OrderChannel
 oMType =
@@ -11303,6 +11541,22 @@ oMType =
 oName : String -> OrderChannel
 oName =
     OName
+
+
+{-| Indicate a data field encoded with an order channel is nominal. Equivalent to
+`oMType Nominal`.
+-}
+oNominal : OrderChannel
+oNominal =
+    OmType Nominal
+
+
+{-| Indicate a data field encoded with an order channel is ordinal. Equivalent to
+`oMType Ordinal`.
+-}
+oOrdinal : OrderChannel
+oOrdinal =
+    OmType Ordinal
 
 
 {-| Encode an opacity channel.
@@ -11507,6 +11761,14 @@ or op1 op2 =
     Or op1 op2
 
 
+{-| Indicate a data field encoded with an order channel is quantitative. Equivalent
+to `oMType Quantitative`.
+-}
+oQuant : OrderChannel
+oQuant =
+    OmType Quantitative
+
+
 {-| Encode an order channel. The first parameter is a list of order encoding
 options such as the data to encode, sort direction etc.
 
@@ -11563,6 +11825,14 @@ osParity =
 oSort : List SortProperty -> OrderChannel
 oSort =
     OSort
+
+
+{-| Indicate a data field encoded with an order channel is temporal. Equivalent to
+`oMType Temporal`.
+-}
+oTemporal : OrderChannel
+oTemporal =
+    OmType Temporal
 
 
 {-| Time unit aggregation of field values when encoding with an order channel.
@@ -11839,7 +12109,7 @@ pOrdinal =
     PmType Ordinal
 
 
-{-| IIndicate a data field encoded as a position is quantitative. Equivalent to
+{-| Indicate a data field encoded as a position is quantitative. Equivalent to
 `pMType Quantitative`.
 -}
 pQuant : PositionChannel
@@ -13694,6 +13964,14 @@ tFormatAsTemporal =
     TFormatAsTemporal
 
 
+{-| Indicate a data field encoded as a text property is a geo feature. Equivalent
+to `tMType GeoFeature`.
+-}
+tGeo : TextChannel
+tGeo =
+    TmType GeoFeature
+
+
 {-| Anchor position when placing a title.
 -}
 tiAnchor : Anchor -> TitleProperty
@@ -13929,7 +14207,9 @@ title txt tps =
     ( VLTitle, JE.object (( "text", JE.string txt ) :: List.map titleConfigSpec tps) )
 
 
-{-| Level of measurement when encoding with a text channel.
+{-| Level of measurement when encoding with a text channel. See also [tNominal](#tNominal),
+[tOrdinal](#tOrdinal), [tQuant](#tQuant), [tTemporal](#tTemporal) and [tGeo](#tGeo)
+for shorthand equivalents.
 -}
 tMType : Measurement -> TextChannel
 tMType =
@@ -13941,6 +14221,22 @@ tMType =
 tName : String -> TextChannel
 tName =
     TName
+
+
+{-| Indicate a data field encoded as a text property is nominal. Equivalent to
+`tMType Nominal`.
+-}
+tNominal : TextChannel
+tNominal =
+    TmType Nominal
+
+
+{-| Indicate a data field encoded as a text property is ordinal. Equivalent to
+`tMType Ordinal`.
+-}
+tOrdinal : TextChannel
+tOrdinal =
+    TmType Ordinal
 
 
 {-| Reference in a text channel to a field name generated by [repeatFlow](#repeatFlow)
@@ -14486,6 +14782,14 @@ ttData =
     TTData
 
 
+{-| Indicate a data field encoded as a text property is temporal. Equivalent to
+`tMType Temporal`.
+-}
+tTemporal : TextChannel
+tTemporal =
+    TmType Temporal
+
+
 {-| Indicate tooltips are generated by the encoded data used by the mark (default).
 
     circle [ maTooltip ttEncoding ]
@@ -14518,6 +14822,14 @@ tTitle =
 ttNone : TooltipContent
 ttNone =
     TTNone
+
+
+{-| Indicate a data field encoded as a text property is quantitative. Equivalent to
+`tMType Quantitative`.
+-}
+tQuant : TextChannel
+tQuant =
+    TmType Quantitative
 
 
 {-| UTC version of a given a time (coordinated universal time, independent of local

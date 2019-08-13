@@ -37,7 +37,7 @@ geo1 =
 
         enc =
             encoding
-                << color [ mName "rate", mMType Quantitative, mSort [ soDescending ] ]
+                << color [ mName "rate", mQuant, mSort [ soDescending ] ]
     in
     toVegaLite [ cfg [], width 500, height 300, countyData, proj, trans [], enc [], geoshape [] ]
 
@@ -50,7 +50,7 @@ geo2 =
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
                 << size [ mNum 1 ]
-                << color [ mName "digit", mMType Nominal ]
+                << color [ mName "digit", mNominal ]
     in
     toVegaLite
         [ cfg []
@@ -166,8 +166,8 @@ geo5 =
     let
         enc =
             encoding
-                << shape [ mName "geo", mMType GeoFeature ]
-                << color [ mRepeat arRow, mMType Quantitative, mSort [ soDescending ] ]
+                << shape [ mName "geo", mGeo ]
+                << color [ mRepeat arRow, mQuant, mSort [ soDescending ] ]
 
         spec =
             asSpec
@@ -206,7 +206,7 @@ geo6 =
             encoding
                 << position Longitude [ pName "lon", pQuant ]
                 << position Latitude [ pName "lat", pQuant ]
-                << text [ tName "city", tMType Nominal ]
+                << text [ tName "city", tNominal ]
 
         overlaySpec =
             asSpec
@@ -262,7 +262,7 @@ geo7 =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << order [ oName "order", oMType Ordinal ]
+                << order [ oName "order", oOrdinal ]
 
         flightsSpec =
             asSpec
@@ -287,9 +287,9 @@ geo8 =
     let
         enc =
             encoding
-                << shape [ mName "geo", mMType GeoFeature ]
-                << color [ mName "pct", mMType Quantitative, mSort [ soDescending ] ]
-                << row [ fName "group", fMType Nominal ]
+                << shape [ mName "geo", mGeo ]
+                << color [ mName "pct", mQuant, mSort [ soDescending ] ]
+                << row [ fName "group", fNominal ]
     in
     toVegaLite
         [ cfg []
@@ -334,7 +334,7 @@ geo9 =
             encoding
                 << position Longitude [ pName "cx", pQuant ]
                 << position Latitude [ pName "cy", pQuant ]
-                << text [ tName "bLabel", tMType Nominal ]
+                << text [ tName "bLabel", tNominal ]
                 << size [ mNum 8 ]
                 << opacity [ mNum 0.6 ]
 
@@ -349,7 +349,7 @@ geo9 =
             encoding
                 << color
                     [ mName "id"
-                    , mMType Nominal
+                    , mNominal
                     , mLegend [ leTitle "", leOrient loBottomRight, leOffset 0 ]
                     , mScale tubeLineColors
                     ]

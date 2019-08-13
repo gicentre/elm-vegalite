@@ -14,7 +14,7 @@ scatter =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
     in
     toVegaLite [ cars, enc [], circle [] ]
 

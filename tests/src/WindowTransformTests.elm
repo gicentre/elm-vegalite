@@ -142,7 +142,7 @@ window5 =
             encoding
                 << position X [ pName "matchday", pOrdinal ]
                 << position Y [ pName "rank", pOrdinal ]
-                << color [ mName "team", mMType Nominal, mScale teamColours ]
+                << color [ mName "team", mNominal, mScale teamColours ]
 
         teamColours =
             categoricalDomainMap

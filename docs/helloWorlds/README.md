@@ -101,7 +101,7 @@ myOtherVis =
 
         enc =
             encoding
-                << position X [ pName "Cylinders", pMOrdinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
                 << position Y [ pName "Miles_per_Gallon", pAggregate opMean, pQuant ]
     in
     toVegaLite [ data [], enc [], bar [] ]

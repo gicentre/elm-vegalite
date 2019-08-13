@@ -57,19 +57,19 @@ cross =
 scatter1 : Spec
 scatter1 =
     chart "Default nominal shapes."
-        (shape [ mName "Origin", mMType Nominal ])
+        (shape [ mName "Origin", mNominal ])
 
 
 scatter2 : Spec
 scatter2 =
     chart "Default ordinal shapes."
-        (shape [ mName "Cylinders", mMType Ordinal ])
+        (shape [ mName "Cylinders", mOrdinal ])
 
 
 scatter3 : Spec
 scatter3 =
     chart "Enlarged shapes (but legend shapes should remain same size)"
-        (shape [ mName "Origin", mMType Nominal ]
+        (shape [ mName "Origin", mNominal ]
             << size [ mNum 200 ]
         )
 
@@ -77,7 +77,7 @@ scatter3 =
 scatter4 : Spec
 scatter4 =
     chart "Reduced shapes (but legend shapes should remain same size)"
-        (shape [ mName "Origin", mMType Nominal ]
+        (shape [ mName "Origin", mNominal ]
             << size [ mNum 20 ]
         )
 
@@ -85,39 +85,39 @@ scatter4 =
 scatter5 : Spec
 scatter5 =
     chart "Fixed shape, sized by number of cylinder category"
-        (size [ mName "Cylinders", mMType Ordinal ])
+        (size [ mName "Cylinders", mOrdinal ])
 
 
 scatter6 : Spec
 scatter6 =
     chart "Sized by number of cylinders, shape by origin"
-        (shape [ mName "Origin", mMType Nominal ]
-            << size [ mName "Cylinders", mMType Ordinal ]
+        (shape [ mName "Origin", mNominal ]
+            << size [ mName "Cylinders", mOrdinal ]
         )
 
 
 scatter7 : Spec
 scatter7 =
     chart "Sized and shaped by number of cylinders (should only have a single set of legend items)"
-        (shape [ mName "Cylinders", mMType Ordinal ]
-            << size [ mName "Cylinders", mMType Ordinal ]
+        (shape [ mName "Cylinders", mOrdinal ]
+            << size [ mName "Cylinders", mOrdinal ]
         )
 
 
 scatter8 : Spec
 scatter8 =
     chart "Sized, shaped and coloured by number of cylinders (should only have a single set of legend items)"
-        (shape [ mName "Cylinders", mMType Ordinal ]
-            << size [ mName "Cylinders", mMType Ordinal ]
-            << color [ mName "Cylinders", mMType Ordinal ]
+        (shape [ mName "Cylinders", mOrdinal ]
+            << size [ mName "Cylinders", mOrdinal ]
+            << color [ mName "Cylinders", mOrdinal ]
         )
 
 
 scatter9 : Spec
 scatter9 =
     chart "Custom-shaped and coloured by origin (should only have a single set of legend items)"
-        (shape [ mName "Origin", mMType Nominal ]
-            << color [ mName "Origin", mMType Nominal ]
+        (shape [ mName "Origin", mNominal ]
+            << color [ mName "Origin", mNominal ]
         )
 
 
@@ -126,7 +126,7 @@ scatter10 =
     chart "Custom-shaped and coloured by origin (should only have a single set of legend items)"
         (shape
             [ mName "Origin"
-            , mMType Nominal
+            , mNominal
             , mScale <|
                 categoricalDomainMap
                     [ ( "Europe", square )
@@ -134,16 +134,16 @@ scatter10 =
                     , ( "USA", tri )
                     ]
             ]
-            << color [ mName "Origin", mMType Nominal ]
+            << color [ mName "Origin", mNominal ]
         )
 
 
 scatter11 : Spec
 scatter11 =
     chart "Sized, shaped and coloured by number of cylinders (should have two sets of legend items)"
-        (shape [ mName "Cylinders", mMType Ordinal ]
-            << size [ mName "Cylinders", mMType Ordinal ]
-            << color [ mName "Origin", mMType Nominal ]
+        (shape [ mName "Cylinders", mOrdinal ]
+            << size [ mName "Cylinders", mOrdinal ]
+            << color [ mName "Origin", mNominal ]
         )
 
 
@@ -157,7 +157,7 @@ scatter13 : Spec
 scatter13 =
     chart "Custom nominal shape with unit area sized by Cylinders."
         (shape [ mPath unitSquare ]
-            << size [ mName "Cylinders", mMType Ordinal ]
+            << size [ mName "Cylinders", mOrdinal ]
         )
 
 
@@ -165,7 +165,7 @@ scatter14 : Spec
 scatter14 =
     chart "Custom nominal shape with area of 10x10 pixel units."
         (shape [ mPath largeSquare ]
-            << color [ mName "Origin", mMType Nominal ]
+            << color [ mName "Origin", mNominal ]
         )
 
 
@@ -174,7 +174,7 @@ scatter15 =
     chart "Custom shape sets encoding origin."
         (shape
             [ mName "Origin"
-            , mMType Nominal
+            , mNominal
             , mScale <|
                 categoricalDomainMap
                     [ ( "Europe", square )

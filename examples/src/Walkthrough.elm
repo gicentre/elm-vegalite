@@ -35,7 +35,7 @@ stackedHistogram =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "weather", mMType Nominal ]
+                << color [ mName "weather", mNominal ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -62,7 +62,7 @@ stackedHistogram2 =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "weather", mMType Nominal, mScale weatherColors ]
+                << color [ mName "weather", mNominal, mScale weatherColors ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -78,7 +78,7 @@ lineChart =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "weather", mMType Nominal, mScale weatherColors ]
+                << color [ mName "weather", mNominal, mScale weatherColors ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -94,8 +94,8 @@ multiBar =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "weather", mMType Nominal, mLegend [], mScale weatherColors ]
-                << column [ fName "weather", fMType Nominal ]
+                << color [ mName "weather", mNominal, mLegend [], mScale weatherColors ]
+                << column [ fName "weather", fNominal ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -246,8 +246,8 @@ dashboard2 =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "weather", mMType Nominal, mLegend [], mScale weatherColors ]
-                << column [ fName "weather", fMType Nominal ]
+                << color [ mName "weather", mNominal, mLegend [], mScale weatherColors ]
+                << column [ fName "weather", fNominal ]
 
         histoSpec =
             asSpec [ bar [], histoEnc [] ]
@@ -316,7 +316,7 @@ scatterProps =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "picked")
-                        [ mName "Origin", mMType Nominal ]
+                        [ mName "Origin", mNominal ]
                         [ mStr "grey" ]
                     ]
     in
@@ -437,7 +437,7 @@ coordinatedScatter1 =
                 << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "picked")
-                        [ mName "Origin", mMType Nominal ]
+                        [ mName "Origin", mNominal ]
                         [ mStr "grey" ]
                     ]
 
@@ -469,7 +469,7 @@ coordinatedScatter2 =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
                 << position Y [ pRepeat arRow, pQuant ]
-                << color [ mName "Origin", mMType Nominal ]
+                << color [ mName "Origin", mNominal ]
 
         sel =
             selection

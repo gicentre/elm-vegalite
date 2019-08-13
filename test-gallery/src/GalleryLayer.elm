@@ -41,7 +41,7 @@ layer1 =
                     ]
                 << position Y [ pName "low", pQuant, pScale [ scZero False ] ]
                 << position Y2 [ pName "high", pQuant ]
-                << color [ mName "isIncrease", mMType Nominal, mLegend [], mScale [ scRange (raStrs [ "#ae1325", "#06982d" ]) ] ]
+                << color [ mName "isIncrease", mNominal, mLegend [], mScale [ scRange (raStrs [ "#ae1325", "#06982d" ]) ] ]
 
         specLine =
             asSpec [ rule [], encLine [] ]
@@ -52,7 +52,7 @@ layer1 =
                 << position Y [ pName "open", pQuant ]
                 << position Y2 [ pName "close", pQuant ]
                 << size [ mNum 5 ]
-                << color [ mName "isIncrease", mMType Nominal, mLegend [] ]
+                << color [ mName "isIncrease", mNominal, mLegend [] ]
 
         specBar =
             asSpec [ bar [], encBar [] ]
@@ -82,7 +82,7 @@ layer2 =
         encLine =
             encoding
                 << position X [ pName "life_expect", pQuant ]
-                << detail [ dName "country", dMType Nominal ]
+                << detail [ dName "country", dNominal ]
                 << color [ mStr "#db646f" ]
 
         specLine =
@@ -90,8 +90,17 @@ layer2 =
 
         encPoints =
             encoding
-                << position X [ pName "life_expect", pQuant, pAxis [ axTitle "Life Expectancy (years)" ] ]
-                << color [ mName "year", mMType Ordinal, mScale (domainRangeMap ( 1955, "#e6959c" ) ( 2000, "#911a24" )), mLegend [ leTitle "Year" ] ]
+                << position X
+                    [ pName "life_expect"
+                    , pQuant
+                    , pAxis [ axTitle "Life Expectancy (years)" ]
+                    ]
+                << color
+                    [ mName "year"
+                    , mOrdinal
+                    , mScale (domainRangeMap ( 1955, "#e6959c" ) ( 2000, "#911a24" ))
+                    , mLegend [ leTitle "Year" ]
+                    ]
                 << size [ mNum 100 ]
                 << opacity [ mNum 1 ]
 
@@ -136,7 +145,7 @@ layer3 =
                 )
 
         fac =
-            facet [ rowBy [ fName "title", fMType Ordinal, fHeader [ hdLabelAngle 30, hdTitle "" ] ] ]
+            facet [ rowBy [ fName "title", fOrdinal, fHeader [ hdLabelAngle 30, hdTitle "" ] ] ]
 
         res =
             resolve << resolution (reScale [ ( chX, reIndependent ) ])
@@ -144,7 +153,7 @@ layer3 =
         encLine =
             encoding
                 << position X [ pName "life_expect", pQuant ]
-                << detail [ dName "country", dMType Nominal ]
+                << detail [ dName "country", dNominal ]
                 << color [ mStr "#db646f" ]
 
         enc1 =
@@ -367,7 +376,7 @@ layer6 =
                         , axOrient siTop
                         ]
                     ]
-                << text [ tName "day", tMType Nominal ]
+                << text [ tName "day", tNominal ]
 
         spec7 =
             asSpec [ textMark [ maAlign haCenter, maDy -105 ], enc7 [] ]

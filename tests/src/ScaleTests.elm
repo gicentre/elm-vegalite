@@ -18,8 +18,8 @@ scale1 =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mStr "rgb(203,24,29)" ]
-                << size [ mName "Acceleration", mMType Quantitative, mBin [] ]
-                << opacity [ mName "Acceleration", mMType Quantitative, mBin [] ]
+                << size [ mName "Acceleration", mQuant, mBin [] ]
+                << opacity [ mName "Acceleration", mQuant, mBin [] ]
     in
     toVegaLite [ cars, enc [], point [ maFilled True, maStroke "white", maStrokeWidth 0.4 ] ]
 
@@ -38,7 +38,7 @@ scale2 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Acceleration", mMType Quantitative, mBin [] ]
+                << color [ mName "Acceleration", mQuant, mBin [] ]
     in
     toVegaLite [ conf [], cars, enc [], point [] ]
 
@@ -60,12 +60,12 @@ scale3 =
                     ]
                 << size
                     [ mName "b"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scType scQuantile ]
                     ]
                 << color
                     [ mName "b"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scType scQuantile ]
                     , mLegend [ leTitle "Quantile" ]
                     ]
@@ -90,12 +90,12 @@ scale4 =
                     ]
                 << size
                     [ mName "b"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scType scQuantize ]
                     ]
                 << color
                     [ mName "b"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scType scQuantize, scZero True ]
                     , mLegend [ leTitle "Quantize" ]
                     ]
@@ -120,7 +120,7 @@ scale5 =
                     ]
                 << size
                     [ mName "b"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale
                         [ scType scThreshold
                         , scDomain (doNums [ 30, 70 ])
@@ -129,7 +129,7 @@ scale5 =
                     ]
                 << color
                     [ mName "b"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale
                         [ scType scThreshold
                         , scDomain (doNums [ 30, 70 ])
@@ -152,7 +152,7 @@ scale6 =
             encoding
                 << size
                     [ mName "r"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]) ]
                     , mLegend []
                     ]
@@ -171,7 +171,7 @@ scale7 =
             encoding
                 << size
                     [ mName "r"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]), scType scPow, scExponent 2 ]
                     , mLegend []
                     ]
@@ -190,7 +190,7 @@ scale8 =
             encoding
                 << size
                     [ mName "r"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]), scType scPow, scExponent 1.2 ]
                     , mLegend []
                     ]
@@ -209,7 +209,7 @@ scale9 =
             encoding
                 << size
                     [ mName "r"
-                    , mMType Quantitative
+                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]), scType scLog, scBase e ]
                     , mLegend []
                     ]

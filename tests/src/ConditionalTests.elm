@@ -176,7 +176,7 @@ selectionCondition1 =
             encoding
                 << position Y [ pName "Origin", pOrdinal ]
                 << position X [ pName "Cylinders", pOrdinal ]
-                << color [ mAggregate opCount, mName "*", mMType Quantitative ]
+                << color [ mAggregate opCount, mName "*", mQuant ]
     in
     toVegaLite
         [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
@@ -209,7 +209,7 @@ selectionCondition2 =
                 << color
                     [ mSelectionCondition
                         (and (selectionName "alex") (selectionName "morgan"))
-                        [ mAggregate opCount, mName "*", mMType Quantitative ]
+                        [ mAggregate opCount, mName "*", mQuant ]
                         [ mStr "gray" ]
                     ]
     in
@@ -278,7 +278,7 @@ selectionCondition4 =
                 << color
                     [ mSelectionCondition
                         (selectionName "mySelection")
-                        [ mAggregate opCount, mName "*", mMType Quantitative ]
+                        [ mAggregate opCount, mName "*", mQuant ]
                         [ mStr "gray" ]
                     ]
     in
@@ -309,7 +309,7 @@ selectionCondition5 =
                 << color
                     [ mSelectionCondition
                         (selectionName "mySelection")
-                        [ mAggregate opCount, mName "*", mMType Quantitative ]
+                        [ mAggregate opCount, mName "*", mQuant ]
                         [ mStr "gray" ]
                     ]
     in

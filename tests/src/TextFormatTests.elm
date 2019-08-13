@@ -25,10 +25,28 @@ textFormat1 =
 
         encLabel =
             encoding
-                << position X [ pName "a", pTemporal, pAxis [ axFormatAsTemporal, axFormat "%y" ] ]
-                << position Y [ pName "b", pQuant, pScale [ scZero False ], pAxis [ axFormatAsNum, axFormat ".2f" ] ]
-                << text [ tName "a", tMType Temporal, tFormatAsTemporal, tFormat "%b `%y" ]
-                << color [ mName "a", mMType Temporal, mLegend [ leFormatAsTemporal, leFormat "%b %Y" ] ]
+                << position X
+                    [ pName "a"
+                    , pTemporal
+                    , pAxis [ axFormatAsTemporal, axFormat "%y" ]
+                    ]
+                << position Y
+                    [ pName "b"
+                    , pQuant
+                    , pScale [ scZero False ]
+                    , pAxis [ axFormatAsNum, axFormat ".2f" ]
+                    ]
+                << text
+                    [ tName "a"
+                    , tTemporal
+                    , tFormatAsTemporal
+                    , tFormat "%b `%y"
+                    ]
+                << color
+                    [ mName "a"
+                    , mTemporal
+                    , mLegend [ leFormatAsTemporal, leFormat "%b %Y" ]
+                    ]
 
         specLabel =
             asSpec [ textMark [ maDy 4, maDx 22 ], encLabel [] ]
@@ -50,8 +68,8 @@ textFormat2 =
             encoding
                 << position X [ pName "crimeType", pNominal, pAxis [ axTitle "" ] ]
                 << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
-                << color [ mName "crimeType", mMType Nominal, mLegend [] ]
-                << column [ fName "month", fMType Temporal, fHeader [ hdFormatAsTemporal, hdFormat "%b %y" ] ]
+                << color [ mName "crimeType", mNominal, mLegend [] ]
+                << column [ fName "month", fTemporal, fHeader [ hdFormatAsTemporal, hdFormat "%b %y" ] ]
     in
     toVegaLite [ width 100, data [], trans [], bar [], enc [] ]
 
