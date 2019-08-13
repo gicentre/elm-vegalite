@@ -18,8 +18,8 @@ sortQuant yField sps =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative, pSort sps ]
-                << position Y [ pName yField, pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant, pSort sps ]
+                << position Y [ pName yField, pQuant ]
                 << order [ oName yField, oMType Ordinal ]
     in
     toVegaLite [ height 300, data [], enc [], line [ maStrokeWidth 0.5 ] ]
@@ -52,10 +52,10 @@ sortCustom =
             encoding
                 << position X
                     [ pName "a"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pSort [ soCustom (strs [ "B", "A", "C" ]) ]
                     ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ data [], enc [], bar [] ]
 
@@ -87,9 +87,9 @@ stack1 =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative, pAxis [] ]
+                << position X [ pName "x", pQuant, pAxis [] ]
                 << position X2 [ pName "x2" ]
-                << position Y [ pName "y", pMType Quantitative, pAxis [] ]
+                << position Y [ pName "y", pQuant, pAxis [] ]
                 << position Y2 [ pName "y2" ]
                 << color [ mName "Origin", mMType Nominal ]
                 << opacity [ mName "Cylinders", mMType Quantitative, mLegend [] ]

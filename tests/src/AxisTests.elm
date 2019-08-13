@@ -39,8 +39,8 @@ axis1 =
     let
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -50,8 +50,8 @@ axis2 =
     let
         enc =
             encoding
-                << position X [ pName "catX", pMType Ordinal ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position X [ pName "catX", pOrdinal ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -61,8 +61,8 @@ axis3 =
     let
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -74,10 +74,10 @@ axis4 =
             encoding
                 << position X
                     [ pName "x"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axValues (nums [ 1, 25, 39, 90 ]) ]
                     ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -89,10 +89,10 @@ axis5 =
             encoding
                 << position X
                     [ pName "catX"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pAxis [ axValues (strs [ "1", "25", "39", "dummy", "90" ]) ]
                     ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -104,7 +104,7 @@ axis6 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pAxis
                         [ axValues
                             (dts
@@ -115,7 +115,7 @@ axis6 =
                             )
                         ]
                     ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -127,10 +127,10 @@ axis7 =
             encoding
                 << position X
                     [ pName "x"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axLabelExpr "datum.value / 100" ]
                     ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -142,10 +142,10 @@ axis8 =
             encoding
                 << position X
                     [ pName "catX"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pAxis [ axLabelExpr "'number '+ datum.label" ]
                     ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 

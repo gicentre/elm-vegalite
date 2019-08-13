@@ -19,8 +19,8 @@ encChart extraEnc =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant ]
                 << color [ mName "cat", mMType Nominal ]
                 << size [ mNum 2000 ]
                 << extraEnc

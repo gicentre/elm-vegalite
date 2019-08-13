@@ -23,8 +23,8 @@ window1 =
 
         enc =
             encoding
-                << position X [ pName "PercentOfTotal", pMType Quantitative, pAxis [ axTitle "% of total time" ] ]
-                << position Y [ pName "Activity", pMType Nominal, pScale [ scRangeStep (Just 12) ] ]
+                << position X [ pName "PercentOfTotal", pQuant, pAxis [ axTitle "% of total time" ] ]
+                << position Y [ pName "Activity", pNominal, pScale [ scRangeStep (Just 12) ] ]
     in
     toVegaLite
         [ data []
@@ -49,15 +49,15 @@ window2 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
-                << position Y [ pName "Title", pMType Ordinal ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
             asSpec [ bar [], barEnc [] ]
 
         ruleEnc =
             encoding
-                << position X [ pName "AverageRating", pAggregate opMean, pMType Quantitative ]
+                << position X [ pName "AverageRating", pAggregate opMean, pQuant ]
 
         ruleSpec =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]
@@ -82,16 +82,16 @@ window3 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
-                << position Y [ pName "Title", pMType Ordinal ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
             asSpec [ bar [ maClip True ], barEnc [] ]
 
         tickEnc =
             encoding
-                << position X [ pName "AverageYearRating", pMType Quantitative ]
-                << position Y [ pName "Title", pMType Ordinal ]
+                << position X [ pName "AverageYearRating", pQuant ]
+                << position Y [ pName "Title", pOrdinal ]
                 << color [ mStr "red" ]
 
         tickSpec =
@@ -117,8 +117,8 @@ window4 =
 
         enc =
             encoding
-                << position X [ pName "Release_Date", pMType Temporal ]
-                << position Y [ pName "RatingDelta", pMType Quantitative, pAxis [ axTitle "Residual" ] ]
+                << position X [ pName "Release_Date", pTemporal ]
+                << position Y [ pName "RatingDelta", pQuant, pAxis [ axTitle "Residual" ] ]
     in
     toVegaLite [ data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
 
@@ -140,8 +140,8 @@ window5 =
 
         enc =
             encoding
-                << position X [ pName "matchday", pMType Ordinal ]
-                << position Y [ pName "rank", pMType Ordinal ]
+                << position X [ pName "matchday", pOrdinal ]
+                << position Y [ pName "rank", pOrdinal ]
                 << color [ mName "team", mMType Nominal, mScale teamColours ]
 
         teamColours =
@@ -170,10 +170,10 @@ window6 =
 
         enc =
             encoding
-                << position X [ pName "score", pMType Quantitative ]
+                << position X [ pName "score", pQuant ]
                 << position Y
                     [ pName "student"
-                    , pMType Nominal
+                    , pNominal
                     , pSort [ soByField "score" opMean, soDescending ]
                     ]
     in
@@ -195,16 +195,16 @@ window7 =
 
         circleEnc =
             encoding
-                << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         circleSpec =
             asSpec [ circle [], circleEnc [] ]
 
         lineEnc =
             encoding
-                << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
-                << position Y [ pName "Average_MPG", pMType Quantitative, pAxis [ axTitle "Miles per gallon" ] ]
+                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position Y [ pName "Average_MPG", pQuant, pAxis [ axTitle "Miles per gallon" ] ]
 
         lineSpec =
             asSpec [ line [ maColor "red" ], lineEnc [] ]
@@ -227,8 +227,8 @@ joinAggregate1 =
 
         enc =
             encoding
-                << position X [ pName "PercentOfTotal", pMType Quantitative, pAxis [ axTitle "% of total Time" ] ]
-                << position Y [ pName "Activity", pMType Nominal, pScale [ scRangeStep (Just 12) ] ]
+                << position X [ pName "PercentOfTotal", pQuant, pAxis [ axTitle "% of total Time" ] ]
+                << position Y [ pName "Activity", pNominal, pScale [ scRangeStep (Just 12) ] ]
     in
     toVegaLite [ data [], trans [], enc [], bar [] ]
 
@@ -247,10 +247,10 @@ joinAggregate2 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
                 << position Y
                     [ pName "Title"
-                    , pMType Nominal
+                    , pNominal
                     , pAxis [ axTitle "" ]
                     , pSort [ soByChannel chX, soDescending ]
                     ]
@@ -274,10 +274,10 @@ joinAggregate3 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
                 << position Y
                     [ pName "Title"
-                    , pMType Nominal
+                    , pNominal
                     , pAxis [ axTitle "" ]
                     , pSort [ soByChannel chX, soDescending ]
                     ]

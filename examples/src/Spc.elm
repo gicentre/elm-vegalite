@@ -14,8 +14,8 @@ spc1 =
     let
         enc =
             encoding
-                << position X [ pName "month", pMType Temporal ]
-                << position Y [ pName "crimes", pMType Quantitative ]
+                << position X [ pName "month", pTemporal ]
+                << position Y [ pName "crimes", pQuant ]
     in
     toVegaLite
         [ width 500, height 200, spcData, line [], enc [] ]
@@ -47,8 +47,8 @@ spc4 =
 
         enc =
             encoding
-                << position X [ pName "month", pMType Temporal, pAxis [] ]
-                << position Y [ pName "crimes", pMType Quantitative, pAxis [] ]
+                << position X [ pName "month", pTemporal, pAxis [] ]
+                << position Y [ pName "crimes", pQuant, pAxis [] ]
                 << color [ mName "shiftDirection", mMType Nominal, mScale shiftColours, mLegend [] ]
                 << shape [ mName "shifts", mMType Nominal, mScale shiftShapes, mLegend [] ]
 
@@ -74,8 +74,8 @@ spc5 =
 
         enc =
             encoding
-                << position X [ pName "month", pMType Temporal, pAxis [] ]
-                << position Y [ pName "crimes", pMType Quantitative, pAxis [] ]
+                << position X [ pName "month", pTemporal, pAxis [] ]
+                << position Y [ pName "crimes", pQuant, pAxis [] ]
                 << color [ mName "shiftDirection", mMType Nominal, mScale shiftColours, mLegend [] ]
                 << detail [ dName "groups", dMType Ordinal ]
 
@@ -100,7 +100,7 @@ cusum1 =
 
         enc =
             encoding
-                << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
+                << position Y [ pName "zeroLine", pQuant, pAxis [] ]
 
         specZeroLine =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
@@ -117,7 +117,7 @@ cusum2 =
 
         enc =
             encoding
-                << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
+                << position Y [ pName "zeroLine", pQuant, pAxis [] ]
 
         specZeroLine =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
@@ -134,7 +134,7 @@ cusum3 =
 
         enc =
             encoding
-                << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
+                << position Y [ pName "zeroLine", pQuant, pAxis [] ]
 
         specZeroLine =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
@@ -151,7 +151,7 @@ cusumInteractive baseline =
 
         enc =
             encoding
-                << position Y [ pName "zeroLine", pMType Quantitative, pAxis [] ]
+                << position Y [ pName "zeroLine", pQuant, pAxis [] ]
 
         specZeroLine =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
@@ -260,13 +260,13 @@ encLine =
     (encoding
         << position X
             [ pName "month"
-            , pMType Temporal
+            , pTemporal
             , pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ]
             , pScale [ scNice niYear ]
             ]
         << position Y
             [ pName "crimes"
-            , pMType Quantitative
+            , pQuant
             , pAxis [ axGrid False ]
             ]
     )
@@ -278,13 +278,13 @@ encCusum =
     (encoding
         << position X
             [ pName "month"
-            , pMType Temporal
+            , pTemporal
             , pAxis [ axTitle "", axDomain False, axGrid False, axFormat "%Y" ]
             , pScale [ scNice niYear ]
             ]
         << position Y
             [ pName "cusum"
-            , pMType Quantitative
+            , pQuant
             , pAxis [ axTitle "Crimes above/below target (thousands)" ]
             ]
     )
@@ -303,7 +303,7 @@ sdLine n =
             encoding
                 << position Y
                     [ pName "sd"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 12, 32 ]) ]
                     , pAxis [ axGrid False, axTitle "Crimes (thousands)" ]
                     ]
@@ -348,8 +348,8 @@ sdRegion n =
 
         enc =
             encoding
-                << position Y [ pName "upper", pMType Quantitative, pScale [ scDomain (doNums [ 12, 32 ]) ], pAxis [] ]
-                << position Y2 [ pName "lower", pMType Quantitative ]
+                << position Y [ pName "upper", pQuant, pScale [ scDomain (doNums [ 12, 32 ]) ], pAxis [] ]
+                << position Y2 [ pName "lower", pQuant ]
     in
     asSpec [ trans [], enc [], rect fillCol ]
 

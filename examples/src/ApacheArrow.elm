@@ -13,8 +13,8 @@ arrow1 =
 
         enc =
             encoding
-                << position X [ pName "DEP_TIME", pMType Quantitative ]
-                << position Y [ pName "ARR_DELAY", pMType Quantitative ]
+                << position X [ pName "DEP_TIME", pQuant ]
+                << position Y [ pName "ARR_DELAY", pQuant ]
                 << color [ mName "DISTANCE", mMType Quantitative ]
     in
     toVegaLite [ width 500, height 300, data, enc [], circle [ maSize 4 ] ]
@@ -32,8 +32,8 @@ arrow2 =
 
         enc =
             encoding
-                << position X [ pName "winnerscore", pMType Quantitative, pScale [ scDomain (doNums [ 0, 700 ]) ] ]
-                << position Y [ pName "loserscore", pMType Quantitative, pScale [ scDomain (doNums [ 0, 700 ]) ] ]
+                << position X [ pName "winnerscore", pQuant, pScale [ scDomain (doNums [ 0, 700 ]) ] ]
+                << position Y [ pName "loserscore", pQuant, pScale [ scDomain (doNums [ 0, 700 ]) ] ]
     in
     toVegaLite [ width 500, height 500, data, trans [], enc [], circle [ maSize 9, maOpacity 0.4 ] ]
 

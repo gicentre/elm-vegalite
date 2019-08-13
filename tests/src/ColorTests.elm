@@ -19,8 +19,8 @@ chart desText enc =
 
         fullEnc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << size [ mNum 60 ]
                 << opacity [ mNum 1 ]
                 << enc

@@ -389,6 +389,11 @@ module VegaLite exposing
     , Position(..)
     , pName
     , pRepeat
+    , pNominal
+    , pOrdinal
+    , pQuant
+    , pTemporal
+    , pGeo
     , pMType
     , pBin
     , pBinned
@@ -1819,6 +1824,11 @@ See the
 
 @docs pName
 @docs pRepeat
+@docs pNominal
+@docs pOrdinal
+@docs pQuant
+@docs pTemporal
+@docs pGeo
 @docs pMType
 @docs pBin
 @docs pBinned
@@ -11773,11 +11783,36 @@ pmTransparent =
     PMTransparent
 
 
-{-| Level of measurement when encoding with a position channel.
+{-| Level of measurement when encoding with a position channel. See also
+[pNominal](#pNominal), [pOrdinal](#pOrdinal), [pQuant](#pQuant), [pTemporal](#pTemporal)
+and [pGeo](#pGeo) for shorthand equivalents.
 -}
 pMType : Measurement -> PositionChannel
 pMType =
     PmType
+
+
+{-| Indicate a data field encoded as a position is a geo feature. Equivalent to
+`pMType GeoFeature`.
+-}
+pGeo : PositionChannel
+pGeo =
+    pMType GeoFeature
+
+
+{-| Name of field used for encoding with a position channel.
+-}
+pName : String -> PositionChannel
+pName =
+    PName
+
+
+{-| Indicate a data field encoded as a position is nominal. Equivalent to
+`pMType Nominal`.
+-}
+pNominal : PositionChannel
+pNominal =
+    PmType Nominal
 
 
 {-| Set a position to an arbitrary value. Useful for placing items at the top of
@@ -11794,6 +11829,22 @@ symbolising a data point with a symbol.
 point : List MarkProperty -> ( VLProperty, Spec )
 point =
     mark Point
+
+
+{-| Indicate a data field encoded as a position is ordinal. Equivalent to
+`pMType Ordinal`.
+-}
+pOrdinal : PositionChannel
+pOrdinal =
+    PmType Ordinal
+
+
+{-| IIndicate a data field encoded as a position is quantitative. Equivalent to
+`pMType Quantitative`.
+-}
+pQuant : PositionChannel
+pQuant =
+    PmType Quantitative
 
 
 {-| Encode a position channel. The first parameter identifies the channel, the
@@ -11840,13 +11891,6 @@ position pos pDefs =
 
         Latitude2 ->
             (::) ( positionLabel Latitude2, List.map positionChannelProperty pDefs |> JE.object )
-
-
-{-| Name of field used for encoding with a position channel.
--}
-pName : String -> PositionChannel
-pName =
-    PName
 
 
 {-| Projection’s center as longitude and latitude in degrees.
@@ -12071,6 +12115,14 @@ example, stacking areas away from a centreline can be used to create a
 pStack : StackOffset -> PositionChannel
 pStack =
     PStack
+
+
+{-| Indicate a data field encoded as a position is temporal. Equivalent to
+`pMType Temporal`.
+-}
+pTemporal : PositionChannel
+pTemporal =
+    PmType Temporal
 
 
 {-| Form of time unit aggregation of field values when encoding with a position channel.

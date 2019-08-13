@@ -18,8 +18,8 @@ axis1 =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative, pAxis [] ]
-                << position Y [ pName "y", pMType Quantitative, pAxis [] ]
+                << position X [ pName "x", pQuant, pAxis [] ]
+                << position Y [ pName "y", pQuant, pAxis [] ]
                 << order [ oName "order", oMType Ordinal ]
     in
     toVegaLite [ data [], enc [], line [] ]
@@ -41,8 +41,8 @@ scaleEncode enc =
 scale0 : Spec
 scale0 =
     (encoding
-        << position X [ pName "x", pMType Quantitative ]
-        << position Y [ pName "y", pMType Quantitative ]
+        << position X [ pName "x", pQuant ]
+        << position Y [ pName "y", pQuant ]
         << color [ mName "val", mMType Ordinal ]
         << size [ mName "val", mMType Quantitative ]
         << shape [ mName "cat", mMType Nominal ]
@@ -54,8 +54,8 @@ scale0 =
 scale1 : Spec
 scale1 =
     (encoding
-        << position X [ pName "x", pMType Quantitative, pScale [] ]
-        << position Y [ pName "y", pMType Quantitative ]
+        << position X [ pName "x", pQuant, pScale [] ]
+        << position Y [ pName "y", pQuant ]
         << color [ mName "val", mMType Ordinal ]
         << size [ mName "val", mMType Quantitative ]
         << shape [ mName "cat", mMType Nominal ]
@@ -67,8 +67,8 @@ scale1 =
 scale2 : Spec
 scale2 =
     (encoding
-        << position X [ pName "x", pMType Quantitative ]
-        << position Y [ pName "y", pMType Quantitative, pScale [] ]
+        << position X [ pName "x", pQuant ]
+        << position Y [ pName "y", pQuant, pScale [] ]
         << color [ mName "val", mMType Ordinal ]
         << size [ mName "val", mMType Quantitative ]
         << shape [ mName "cat", mMType Nominal ]
@@ -80,8 +80,8 @@ scale2 =
 scale3 : Spec
 scale3 =
     (encoding
-        << position X [ pName "x", pMType Quantitative ]
-        << position Y [ pName "y", pMType Quantitative ]
+        << position X [ pName "x", pQuant ]
+        << position Y [ pName "y", pQuant ]
         << color [ mName "val", mMType Ordinal, mScale [] ]
         << size [ mName "val", mMType Quantitative ]
         << shape [ mName "cat", mMType Nominal ]
@@ -93,8 +93,8 @@ scale3 =
 scale4 : Spec
 scale4 =
     (encoding
-        << position X [ pName "x", pMType Quantitative ]
-        << position Y [ pName "y", pMType Quantitative ]
+        << position X [ pName "x", pQuant ]
+        << position Y [ pName "y", pQuant ]
         << color [ mName "val", mMType Ordinal ]
         << size [ mName "val", mMType Quantitative, mScale [] ]
         << shape [ mName "cat", mMType Nominal ]
@@ -106,8 +106,8 @@ scale4 =
 scale5 : Spec
 scale5 =
     (encoding
-        << position X [ pName "x", pMType Quantitative ]
-        << position Y [ pName "y", pMType Quantitative ]
+        << position X [ pName "x", pQuant ]
+        << position Y [ pName "y", pQuant ]
         << color [ mName "val", mMType Ordinal ]
         << size [ mName "val", mMType Quantitative ]
         << shape [ mName "cat", mMType Nominal, mScale [] ]
@@ -125,8 +125,8 @@ filter1 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null"
@@ -158,8 +158,8 @@ filter2 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null"

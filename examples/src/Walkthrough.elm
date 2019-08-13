@@ -9,7 +9,7 @@ stripPlot =
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , tick []
-        , encoding (position X [ pName "temp_max", pMType Quantitative ] [])
+        , encoding (position X [ pName "temp_max", pQuant ] [])
         ]
 
 
@@ -18,8 +18,8 @@ histogram =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -33,8 +33,8 @@ stackedHistogram =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "weather", mMType Nominal ]
     in
     toVegaLite
@@ -60,8 +60,8 @@ stackedHistogram2 =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "weather", mMType Nominal, mScale weatherColors ]
     in
     toVegaLite
@@ -76,8 +76,8 @@ lineChart =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "weather", mMType Nominal, mScale weatherColors ]
     in
     toVegaLite
@@ -92,8 +92,8 @@ multiBar =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "weather", mMType Nominal, mLegend [], mScale weatherColors ]
                 << column [ fName "weather", fMType Nominal ]
     in
@@ -109,8 +109,8 @@ barChart =
     let
         enc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -123,10 +123,10 @@ barChartWithAverage : Spec
 barChartWithAverage =
     let
         precipEnc =
-            encoding << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+            encoding << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         barEnc =
-            encoding << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
+            encoding << position X [ pName "date", pOrdinal, pTimeUnit month ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -140,13 +140,13 @@ barChartPair =
     let
         bar1Enc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         bar2Enc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pName "temp_max", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pName "temp_max", pQuant, pAggregate opMean ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -159,8 +159,8 @@ barChartTriplet =
     let
         enc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pRepeat arRow, pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
 
         spec =
             asSpec
@@ -180,8 +180,8 @@ splom =
     let
         enc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pRepeat arRow, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pRepeat arRow, pQuant ]
 
         spec =
             asSpec
@@ -204,31 +204,31 @@ dashboard1 =
     let
         histoEnc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
 
         histoSpec =
             asSpec [ title "Frequency histogram" [], bar [], histoEnc [] ]
 
         scatterEnc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative ]
-                << position Y [ pName "precipitation", pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant ]
+                << position Y [ pName "precipitation", pQuant ]
 
         scatterSpec =
             asSpec [ title "Scatterplot" [], point [], scatterEnc [] ]
 
         barEnc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         barSpec =
             asSpec [ title "Bar chart" [], bar [], barEnc [] ]
 
         annotationEnc =
             encoding
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean, pScale [ scDomain (doNums [ 0, 5.5 ]) ] ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean, pScale [ scDomain (doNums [ 0, 5.5 ]) ] ]
 
         annotationSpec =
             asSpec [ title "Annotation" [], width 200, rule [], annotationEnc [] ]
@@ -244,8 +244,8 @@ dashboard2 =
     let
         histoEnc =
             encoding
-                << position X [ pName "temp_max", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "weather", mMType Nominal, mLegend [], mScale weatherColors ]
                 << column [ fName "weather", fMType Nominal ]
 
@@ -254,20 +254,20 @@ dashboard2 =
 
         scatterEnc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pRepeat arRow, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pRepeat arRow, pQuant ]
 
         scatterSpec =
             asSpec [ point [], scatterEnc [] ]
 
         barEnc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pRepeat arRow, pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
 
         annotationEnc =
             encoding
-                << position Y [ pRepeat arRow, pMType Quantitative, pAggregate opMean ]
+                << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
 
         layerSpec =
             asSpec
@@ -312,8 +312,8 @@ scatterProps =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "picked")
                         [ mName "Origin", mMType Nominal ]
@@ -433,8 +433,8 @@ coordinatedScatter1 =
     let
         enc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pRepeat arRow, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "picked")
                         [ mName "Origin", mMType Nominal ]
@@ -467,8 +467,8 @@ coordinatedScatter2 =
     let
         enc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pRepeat arRow, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pRepeat arRow, pQuant ]
                 << color [ mName "Origin", mMType Nominal ]
 
         sel =
@@ -500,10 +500,10 @@ contextAndFocus =
 
         encContext =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y
                     [ pName "price"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTickCount 3, axGrid False ]
                     ]
 
@@ -514,11 +514,11 @@ contextAndFocus =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pScale [ scDomain (doSelection "brush") ]
                     , pAxis [ axTitle "" ]
                     ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position Y [ pName "price", pQuant ]
 
         specDetail =
             asSpec [ width 400, area [], encDetail [] ]
@@ -546,13 +546,13 @@ crossFilter =
 
         totalEnc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pAggregate opCount, pQuant ]
 
         selectedEnc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mStr "goldenrod" ]
     in
     toVegaLite

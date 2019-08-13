@@ -21,8 +21,8 @@ area1 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "count", pMType Quantitative, pAggregate opSum, pAxis [ axTitle "Count" ] ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [ axTitle "Count" ] ]
     in
     toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
 
@@ -41,8 +41,8 @@ area2 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
     in
     toVegaLite
         [ des
@@ -70,8 +70,8 @@ area3 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ des, data, trans [], enc [], area [ maPoint (pmMarker []), maLine (lmMarker []) ] ]
 
@@ -87,8 +87,8 @@ area4 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "count", pMType Quantitative, pAggregate opSum ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "count", pQuant, pAggregate opSum ]
                 << color [ mName "series", mMType Nominal, mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ des, data, enc [], area [] ]
@@ -105,8 +105,8 @@ area5 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
-                << position Y [ pName "count", pMType Quantitative, pAggregate opSum, pAxis [], pStack stNormalize ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
+                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stNormalize ]
                 << color [ mName "series", mMType Nominal, mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
@@ -123,8 +123,8 @@ area6 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
-                << position Y [ pName "count", pMType Quantitative, pAggregate opSum, pAxis [], pStack stCenter ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
+                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stCenter ]
                 << color [ mName "series", mMType Nominal, mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
@@ -148,7 +148,7 @@ area7 =
             encoding
                 << position X
                     [ pName "x"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scZero False, scNice niFalse ]
                     ]
 
@@ -156,7 +156,7 @@ area7 =
             encoding
                 << position Y
                     [ pName "y"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 50 ]) ]
                     ]
                 << opacity [ mNum 0.6 ]
@@ -168,7 +168,7 @@ area7 =
             encoding
                 << position Y
                     [ pName "ny"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 50 ]) ]
                     , pAxis [ axTitle "y" ]
                     ]
@@ -224,7 +224,7 @@ area8 =
             encoding
                 << position X
                     [ pName "xc"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opMin
                     , pTitle "Origin"
                     , pAxis [ axOrient siTop ]
@@ -237,9 +237,9 @@ area8 =
 
         enc2 =
             encoding
-                << position X [ pName "nx", pMType Quantitative, pAxis [] ]
+                << position X [ pName "nx", pQuant, pAxis [] ]
                 << position X2 [ pName "nx2" ]
-                << position Y [ pName "ny", pMType Quantitative, pAxis [] ]
+                << position Y [ pName "ny", pQuant, pAxis [] ]
                 << position Y2 [ pName "ny2" ]
                 << color [ mName "Origin", mMType Nominal, mLegend [] ]
                 << opacity [ mName "Cylinders", mMType Quantitative, mLegend [] ]
@@ -253,8 +253,8 @@ area8 =
 
         enc3 =
             encoding
-                << position X [ pName "xc", pMType Quantitative, pAxis [] ]
-                << position Y [ pName "yc", pMType Quantitative, pAxis [ axTitle "Cylinders" ] ]
+                << position X [ pName "xc", pQuant, pAxis [] ]
+                << position Y [ pName "yc", pQuant, pAxis [ axTitle "Cylinders" ] ]
                 << text [ tName "Cylinders", tMType Nominal ]
 
         spec3 =

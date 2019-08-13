@@ -12,8 +12,8 @@ showData data =
     let
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "val", pMType Quantitative ]
+                << position X [ pName "cat", pNominal ]
+                << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ data, enc [], bar [] ]
 
@@ -97,8 +97,8 @@ dataSource name =
 
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "val", pMType Quantitative ]
+                << position X [ pName "cat", pNominal ]
+                << position Y [ pName "val", pQuant ]
     in
     toVegaLite
         [ datasets
@@ -135,8 +135,8 @@ data11 =
 
         enc =
             encoding
-                << position X [ pName "Answer", pMType Nominal ]
-                << position Y [ pName "Percent", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "Answer", pNominal ]
+                << position Y [ pName "Percent", pQuant, pAggregate opMean ]
                 << color [ mName "Pollster", mMType Nominal ]
                 << column [ fName "Pollster", fMType Nominal ]
     in
@@ -153,8 +153,8 @@ namedData1 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Ordinal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ data [] |> dataName "source", enc [], bar [] ]
 
@@ -167,8 +167,8 @@ namedData2 =
 
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "val", pMType Quantitative ]
+                << position X [ pName "cat", pNominal ]
+                << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ data, enc [], bar [] ]
 
@@ -178,8 +178,8 @@ namedData3 =
     let
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "val", pMType Quantitative ]
+                << position X [ pName "cat", pNominal ]
+                << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ dataFromColumns [] [] |> dataName "source", enc [], bar [] ]
 
@@ -239,8 +239,8 @@ flatten1 =
 
         enc =
             encoding
-                << position X [ pName "quant", pMType Quantitative ]
-                << position Y [ pName "cat", pMType Nominal ]
+                << position X [ pName "quant", pQuant ]
+                << position Y [ pName "cat", pNominal ]
                 << color [ mName "key", mMType Nominal ]
     in
     toVegaLite [ data [], trans [], circle [], enc [] ]
@@ -262,8 +262,8 @@ fold1 =
         enc =
             encoding
                 -- 2017 temperatures for the Bristol, Sheffield and Glasgow
-                << position X [ pName "2017", pMType Quantitative ]
-                << position Y [ pName "city", pMType Nominal ]
+                << position X [ pName "2017", pQuant ]
+                << position Y [ pName "city", pNominal ]
     in
     toVegaLite [ data [], trans [], enc [], circle [] ]
 
@@ -284,8 +284,8 @@ fold2 =
         enc =
             encoding
                 << column [ fName "k", fMType Nominal ]
-                << position X [ pName "country", pMType Nominal ]
-                << position Y [ pName "v", pMType Quantitative ]
+                << position X [ pName "country", pNominal ]
+                << position Y [ pName "v", pQuant ]
                 << color [ mName "country", mMType Nominal ]
     in
     toVegaLite [ data [], trans [], bar [], enc [] ]
@@ -306,8 +306,8 @@ pivot1 =
 
         enc =
             encoding
-                << position X [ pName "country", pMType Nominal ]
-                << position Y [ pRepeat arFlow, pMType Quantitative ]
+                << position X [ pName "country", pNominal ]
+                << position Y [ pRepeat arFlow, pQuant ]
                 << color [ mName "country", mMType Nominal ]
 
         spec =
@@ -333,8 +333,8 @@ impute1 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], trans [], line [], enc [] ]
@@ -349,8 +349,8 @@ impute2 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], trans [], line [], enc [] ]
@@ -365,8 +365,8 @@ impute3 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], trans [], line [], enc [] ]
@@ -377,8 +377,8 @@ impute4 =
     let
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative, pImpute [ imNewValue (num 0) ] ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 0) ] ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
@@ -389,8 +389,8 @@ impute5 =
     let
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative, pImpute [ imMethod imMean ] ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant, pImpute [ imMethod imMean ] ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
@@ -401,8 +401,8 @@ impute6 =
     let
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative, pImpute [ imMethod imMean, imFrame (Just -2) (Just 2) ] ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant, pImpute [ imMethod imMean, imFrame (Just -2) (Just 2) ] ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
@@ -413,8 +413,8 @@ impute7 =
     let
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative, pImpute [ imNewValue (num 100), imKeyVals (nums [ 4 ]) ] ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 100), imKeyVals (nums [ 4 ]) ] ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
@@ -425,8 +425,8 @@ impute8 =
     let
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative, pScale [ scNice (niTickCount 1) ] ]
-                << position Y [ pName "b", pMType Quantitative, pImpute [ imNewValue (num 100), imKeyValSequence 4 6 1 ] ]
+                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 100), imKeyValSequence 4 6 1 ] ]
                 << color [ mName "c", mMType Nominal ]
     in
     toVegaLite [ imputeData [], line [], enc [] ]
@@ -444,8 +444,8 @@ sample1 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         spec1 =
             asSpec [ point [], enc [] ]
@@ -467,9 +467,9 @@ bin1 =
 
         enc =
             encoding
-                << position X [ pName "bin_start", pMType Quantitative, pBinned, pAxis [ axTickStep 2 ] ]
-                << position X2 [ pName "bin_end", pMType Quantitative ]
-                << position Y [ pName "count", pMType Quantitative ]
+                << position X [ pName "bin_start", pQuant, pBinned, pAxis [ axTickStep 2 ] ]
+                << position X2 [ pName "bin_end", pQuant ]
+                << position Y [ pName "count", pQuant ]
     in
     toVegaLite [ data [], enc [], bar [] ]
 
@@ -483,8 +483,8 @@ bin2 =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "x", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite [ width 300, data [], enc [], bar [] ]
 
@@ -498,8 +498,8 @@ bin3 =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative, pBin [ biAnchor 0.5 ] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "x", pQuant, pBin [ biAnchor 0.5 ] ]
+                << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite [ width 300, data [], enc [], bar [] ]
 
@@ -516,8 +516,8 @@ sequence1 =
 
         enc =
             encoding
-                << position X [ pName "data", pMType Quantitative ]
-                << position Y [ pName "v", pMType Quantitative ]
+                << position X [ pName "data", pQuant ]
+                << position Y [ pName "v", pQuant ]
     in
     toVegaLite [ data, trans [], enc [], line [] ]
 
@@ -534,8 +534,8 @@ sequence2 =
 
         enc =
             encoding
-                << position X [ pName "u", pMType Quantitative ]
-                << position Y [ pName "v", pMType Quantitative ]
+                << position X [ pName "u", pQuant ]
+                << position Y [ pName "v", pQuant ]
     in
     toVegaLite [ data, trans [], enc [], line [] ]
 
@@ -554,8 +554,8 @@ filter1 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Ordinal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ data [], trans [], enc [], bar [] ]
 
@@ -581,8 +581,8 @@ filter2 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Ordinal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ data [], trans [], enc [], bar [] ]
 
@@ -597,8 +597,8 @@ annotate1 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Ordinal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
 
         specBars =
             asSpec [ enc [], bar [] ]

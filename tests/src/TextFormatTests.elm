@@ -17,16 +17,16 @@ textFormat1 =
 
         encSym =
             encoding
-                << position X [ pName "a", pMType Temporal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pTemporal ]
+                << position Y [ pName "b", pQuant ]
 
         specSym =
             asSpec [ circle [], encSym [] ]
 
         encLabel =
             encoding
-                << position X [ pName "a", pMType Temporal, pAxis [ axFormatAsTemporal, axFormat "%y" ] ]
-                << position Y [ pName "b", pMType Quantitative, pScale [ scZero False ], pAxis [ axFormatAsNum, axFormat ".2f" ] ]
+                << position X [ pName "a", pTemporal, pAxis [ axFormatAsTemporal, axFormat "%y" ] ]
+                << position Y [ pName "b", pQuant, pScale [ scZero False ], pAxis [ axFormatAsNum, axFormat ".2f" ] ]
                 << text [ tName "a", tMType Temporal, tFormatAsTemporal, tFormat "%b `%y" ]
                 << color [ mName "a", mMType Temporal, mLegend [ leFormatAsTemporal, leFormat "%b %Y" ] ]
 
@@ -48,8 +48,8 @@ textFormat2 =
 
         enc =
             encoding
-                << position X [ pName "crimeType", pMType Nominal, pAxis [ axTitle "" ] ]
-                << position Y [ pName "reportedCrimes", pMType Quantitative, pAggregate opSum ]
+                << position X [ pName "crimeType", pNominal, pAxis [ axTitle "" ] ]
+                << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
                 << color [ mName "crimeType", mMType Nominal, mLegend [] ]
                 << column [ fName "month", fMType Temporal, fHeader [ hdFormatAsTemporal, hdFormat "%b %y" ] ]
     in

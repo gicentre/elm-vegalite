@@ -12,8 +12,8 @@ singleVis config =
 
         scatterEnc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Cylinders", mMType Ordinal ]
                 << shape [ mName "Origin", mMType Nominal ]
     in
@@ -36,8 +36,8 @@ compositeVis config =
 
         scatterEnc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Cylinders", mMType Ordinal ]
                 << shape [ mName "Origin", mMType Nominal ]
 
@@ -53,14 +53,14 @@ compositeVis config =
 
         barEnc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "Origin", mMType Nominal ]
 
         streamEnc =
             encoding
-                << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
-                << position Y [ pAggregate opCount, pMType Quantitative, pStack stCenter, pAxis [] ]
+                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
                 << color [ mName "Origin", mMType Nominal ]
 
         barSpec =
@@ -98,21 +98,21 @@ vbTest =
 
         scatterEnc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Cylinders", mMType Ordinal ]
                 << shape [ mName "Origin", mMType Nominal ]
 
         barEnc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color [ mName "Origin", mMType Nominal ]
 
         streamEnc =
             encoding
-                << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
-                << position Y [ pAggregate opCount, pMType Quantitative, pStack stCenter, pAxis [] ]
+                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
                 << color [ mName "Origin", mMType Nominal ]
 
         scatterSpec =

@@ -20,8 +20,8 @@ chart des enc =
             []
         , point [ maFilled True ]
         , (encoding
-            << position X [ pName "Horsepower", pMType Quantitative ]
-            << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+            << position X [ pName "Horsepower", pQuant ]
+            << position Y [ pName "Miles_per_Gallon", pQuant ]
             << opacity [ mNum 0.6 ]
             << enc
           )
@@ -232,8 +232,8 @@ personGrid =
 
         enc =
             encoding
-                << position X [ pName "col", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "row", pMType Ordinal, pAxis [] ]
+                << position X [ pName "col", pOrdinal, pAxis [] ]
+                << position Y [ pName "row", pOrdinal, pAxis [] ]
                 << shape [ mPath <| Maybe.withDefault "circle" <| Dict.get "person" isotypes ]
                 << color
                     [ mSelectionCondition (selectionName "highlight")

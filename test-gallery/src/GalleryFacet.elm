@@ -26,10 +26,10 @@ facet1 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal ]
+                << position X [ pName "age", pOrdinal ]
                 << position Y
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "Population" ]
                     ]
@@ -51,8 +51,8 @@ facet2 =
 
         enc =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pAggregate opSum ]
-                << position Y [ pName "variety", pMType Nominal ]
+                << position X [ pName "yield", pQuant, pAggregate opSum ]
+                << position Y [ pName "variety", pNominal ]
                 << color [ mName "site", mMType Nominal ]
                 << column [ fName "year", fMType Ordinal ]
     in
@@ -72,8 +72,8 @@ facet3 =
 
         enc =
             encoding
-                << position X [ pName "Worldwide_Gross", pMType Quantitative ]
-                << position Y [ pName "US_DVD_Sales", pMType Quantitative ]
+                << position X [ pName "Worldwide_Gross", pQuant ]
+                << position Y [ pName "US_DVD_Sales", pQuant ]
                 << column [ fName "MPAA_Rating", fMType Ordinal ]
     in
     toVegaLite
@@ -92,8 +92,8 @@ facet4 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative, pBin [ biMaxBins 15 ] ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position X [ pName "Horsepower", pQuant, pBin [ biMaxBins 15 ] ]
+                << position Y [ pQuant, pAggregate opCount ]
                 << row [ fName "Origin", fMType Ordinal ]
     in
     toVegaLite
@@ -112,8 +112,8 @@ facet5 =
 
         enc =
             encoding
-                << position X [ pName "X", pMType Quantitative, pScale [ scZero False ] ]
-                << position Y [ pName "Y", pMType Quantitative, pScale [ scZero False ] ]
+                << position X [ pName "X", pQuant, pScale [ scZero False ] ]
+                << position Y [ pName "Y", pQuant, pScale [ scZero False ] ]
                 << opacity [ mNum 1 ]
                 << column [ fName "Series", fMType Ordinal ]
     in
@@ -133,13 +133,13 @@ facet6 =
             encoding
                 << position X
                     [ pName "yield"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opMedian
                     , pScale [ scZero False ]
                     ]
                 << position Y
                     [ pName "variety"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pSort [ soByChannel chX, soDescending ]
                     ]
                 << color [ mName "year", mMType Nominal ]
@@ -170,12 +170,12 @@ facet7 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pAxis [ axFormat "%Y", axTitle "", axGrid False ]
                     ]
                 << position Y
                     [ pName "price"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "", axGrid False ]
                     ]
                 << color

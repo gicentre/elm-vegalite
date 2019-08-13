@@ -17,13 +17,13 @@ error1 =
             description "Error bars showing confidence intervals"
 
         encVariety =
-            encoding << position Y [ pName "variety", pMType Ordinal ]
+            encoding << position Y [ pName "variety", pOrdinal ]
 
         encPoints =
             encoding
                 << position X
                     [ pName "yield"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opMean
                     , pScale [ scZero False ]
                     , pAxis [ axTitle "Barley Yield" ]
@@ -37,7 +37,7 @@ error1 =
             encoding
                 << position X
                     [ pName "yield"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opCI0
                     ]
                 << position X2 [ pName "yield", pAggregate opCI1 ]
@@ -66,13 +66,13 @@ error2 =
                 << calculateAs "datum.mean+datum.stdev" "upper"
 
         encVariety =
-            encoding << position Y [ pName "variety", pMType Ordinal ]
+            encoding << position Y [ pName "variety", pOrdinal ]
 
         encMeans =
             encoding
                 << position X
                     [ pName "mean"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scZero False ]
                     , pAxis [ axTitle "Barley Yield" ]
                     ]
@@ -83,8 +83,8 @@ error2 =
 
         encStdevs =
             encoding
-                << position X [ pName "upper", pMType Quantitative ]
-                << position X2 [ pName "lower", pMType Quantitative ]
+                << position X [ pName "upper", pQuant ]
+                << position X2 [ pName "lower", pQuant ]
 
         specStdevs =
             asSpec [ rule [], encStdevs [] ]
@@ -105,13 +105,13 @@ error3 =
             description "Line chart with confidence interval band."
 
         encTime =
-            encoding << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
+            encoding << position X [ pName "Year", pTemporal, pTimeUnit year ]
 
         encBand =
             encoding
                 << position Y
                     [ pName "Miles_per_Gallon"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opCI0
                     , pAxis [ axTitle "Miles/Gallon" ]
                     ]
@@ -125,7 +125,7 @@ error3 =
             encoding
                 << position Y
                     [ pName "Miles_per_Gallon"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opMean
                     ]
 
@@ -148,8 +148,8 @@ error4 =
 
         encPoints =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         specPoints =
             asSpec [ point [], encPoints [] ]
@@ -165,14 +165,14 @@ error4 =
                 << calculateAs "datum.mean_MPG-datum.dev_MPG" "lower"
 
         encMean =
-            encoding << position Y [ pName "mean_MPG", pMType Quantitative ]
+            encoding << position Y [ pName "mean_MPG", pQuant ]
 
         specMean =
             asSpec [ rule [], encMean [] ]
 
         encRect =
             encoding
-                << position Y [ pName "lower", pMType Quantitative ]
+                << position Y [ pName "lower", pQuant ]
                 << position Y2 [ pName "upper" ]
                 << opacity [ mNum 0.2 ]
 

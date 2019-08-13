@@ -23,21 +23,21 @@ multi1 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pScale [ scDomain (doSelection "myBrush") ]
                     , pAxis [ axTitle "" ]
                     ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position Y [ pName "price", pQuant ]
 
         spec1 =
             asSpec [ width 500, area [], enc1 [] ]
 
         enc2 =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y
                     [ pName "price"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTickCount 3, axGrid False ]
                     ]
 
@@ -72,10 +72,10 @@ multi2 =
             encoding
                 << position X
                     [ pRepeat arColumn
-                    , pMType Quantitative
+                    , pQuant
                     , pBin [ biMaxBins 20 ]
                     ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position Y [ pAggregate opCount, pQuant ]
 
         spec1 =
             asSpec [ sel [], bar [] ]
@@ -123,8 +123,8 @@ multi3 =
 
         enc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pRepeat arRow, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
                         [ mName "Origin", mMType Nominal ]
@@ -161,8 +161,8 @@ multi4 =
 
         encPosition =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
 
         enc1 =
             encoding
@@ -190,8 +190,8 @@ multi4 =
 
         encBar =
             encoding
-                << position X [ pName "Major_Genre", pMType Nominal, pAxis [ axLabelAngle -40 ] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "Major_Genre", pNominal, pAxis [ axLabelAngle -40 ] ]
+                << position Y [ pAggregate opCount, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myPts")
                         [ mStr "steelblue" ]
@@ -243,13 +243,13 @@ multi5 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pTimeUnit monthDate
                     , pAxis [ axTitle "Date", axFormat "%b" ]
                     ]
                 << position Y
                     [ pName "temp_max"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ -5, 40 ]) ]
                     , pAxis [ axTitle "Maximum Daily Temperature (C)" ]
                     ]
@@ -279,8 +279,8 @@ multi5 =
 
         enc2 =
             encoding
-                << position X [ pAggregate opCount, pMType Quantitative ]
-                << position Y [ pName "weather", pMType Nominal ]
+                << position X [ pAggregate opCount, pQuant ]
+                << position Y [ pName "weather", pNominal ]
                 << color
                     [ mSelectionCondition (selectionName "myClick")
                         [ mName "weather"
@@ -317,8 +317,8 @@ multi6 =
 
         encPoint =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "brush")
                         [ mName "Cylinders", mMType Ordinal ]
@@ -336,7 +336,7 @@ multi6 =
 
         encHPText =
             encoding
-                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
                 << text [ tName "Horsepower", tMType Nominal ]
 
         specHPText =
@@ -349,7 +349,7 @@ multi6 =
 
         encMPGText =
             encoding
-                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
                 << text [ tName "Miles_per_Gallon", tMType Nominal ]
 
         specMPGText =
@@ -362,7 +362,7 @@ multi6 =
 
         encOriginText =
             encoding
-                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
                 << text [ tName "Origin", tMType Nominal ]
 
         specOriginText =
@@ -420,8 +420,8 @@ multi7 =
 
         lineEnc =
             encoding
-                << position Longitude [ pName "o.longitude", pMType Quantitative ]
-                << position Latitude [ pName "o.latitude", pMType Quantitative ]
+                << position Longitude [ pName "o.longitude", pQuant ]
+                << position Latitude [ pName "o.latitude", pQuant ]
                 << position Longitude2 [ pName "d.longitude" ]
                 << position Latitude2 [ pName "d.latitude" ]
 
@@ -444,8 +444,8 @@ multi7 =
 
         airportEnc =
             encoding
-                << position Longitude [ pName "longitude", pMType Quantitative ]
-                << position Latitude [ pName "latitude", pMType Quantitative ]
+                << position Longitude [ pName "longitude", pQuant ]
+                << position Latitude [ pName "latitude", pQuant ]
                 << size [ mName "routes", mMType Quantitative, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
                 << order [ oName "routes", oMType Quantitative, oSort [ soDescending ] ]
 

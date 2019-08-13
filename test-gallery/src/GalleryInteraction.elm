@@ -32,8 +32,8 @@ interaction1 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Ordinal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
                 << fillOpacity [ mSelectionCondition (selectionName "select") [ mNum 1 ] [ mNum 0.3 ] ]
                 << strokeWidth
                     [ mDataCondition
@@ -65,8 +65,8 @@ interaction2 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin", mMType Nominal ]
                 << tooltip [ tName "Name", tMType Nominal ]
                 << hyperlink [ hName "url", hMType Nominal ]
@@ -91,8 +91,8 @@ interaction3 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
                         [ mName "Cylinders", mMType Ordinal ]
@@ -123,8 +123,8 @@ interaction4 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonth ]
-                << position Y [ pName "count", pMType Quantitative, pAggregate opSum ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonth ]
+                << position Y [ pName "count", pQuant, pAggregate opSum ]
 
         specBackground =
             asSpec [ area [], sel [] ]
@@ -151,8 +151,8 @@ interaction5 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << size
                     [ mSelectionCondition (selectionName "myPaintbrush")
                         [ mNum 300 ]
@@ -179,8 +179,8 @@ interaction6 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative, pScale [ scDomain (doNums [ 75, 150 ]) ] ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative, pScale [ scDomain (doNums [ 20, 40 ]) ] ]
+                << position X [ pName "Horsepower", pQuant, pScale [ scDomain (doNums [ 75, 150 ]) ] ]
+                << position Y [ pName "Miles_per_Gallon", pQuant, pScale [ scDomain (doNums [ 20, 40 ]) ] ]
                 << size [ mName "Cylinders", mMType Quantitative ]
     in
     toVegaLite
@@ -216,8 +216,8 @@ interaction7 =
 
         encPosition =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         enc1 =
             encoding
@@ -261,11 +261,11 @@ interaction8 =
             selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
 
         encPosition =
-            encoding << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+            encoding << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         enc1 =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
                 << opacity
                     [ mSelectionCondition (selectionName "myBrush")
                         [ mNum 1 ]
@@ -302,8 +302,8 @@ interaction9 =
 
         enc1 =
             encoding
-                << position X [ pName "date", pMType Temporal ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
                 << color [ mName "symbol", mMType Nominal ]
 
         spec1 =
@@ -339,15 +339,15 @@ interaction9 =
             asSpec [ rule [ maColor "gray" ], enc2_1 [] ]
 
         enc2_1 =
-            encoding << position X [ pName "date", pMType Temporal ]
+            encoding << position X [ pName "date", pTemporal ]
 
         spec2_2 =
             asSpec [ textMark [ maAlign haLeft, maDx 5, maDy -5 ], enc2_2 [] ]
 
         enc2_2 =
             encoding
-                << position X [ pName "date", pMType Temporal ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
                 << text [ tName "price", tMType Quantitative ]
                 << color [ mName "symbol", mMType Nominal ]
     in
@@ -371,7 +371,7 @@ interaction10 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonthDate ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonthDate ]
                 << tooltips
                     [ [ tName "date", tMType Temporal, tTimeUnit yearMonthDate ]
                     , [ tName "temp_max", tMType Quantitative ]
@@ -380,14 +380,14 @@ interaction10 =
 
         enc1 =
             encoding
-                << position Y [ pName "temp_max", pMType Quantitative ]
+                << position Y [ pName "temp_max", pQuant ]
 
         spec1 =
             asSpec [ line [ maColor "orange" ], enc1 [] ]
 
         enc2 =
             encoding
-                << position Y [ pName "temp_min", pMType Quantitative ]
+                << position Y [ pName "temp_min", pQuant ]
 
         spec2 =
             asSpec [ line [ maColor "red" ], enc2 [] ]
@@ -434,8 +434,8 @@ interaction11 =
 
         encPoint =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "brush")
                         [ mName "Cylinders", mMType Ordinal ]
@@ -453,7 +453,7 @@ interaction11 =
 
         encHPText =
             encoding
-                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
                 << text [ tName "Horsepower", tMType Nominal ]
 
         specHPText =
@@ -466,7 +466,7 @@ interaction11 =
 
         encMPGText =
             encoding
-                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
                 << text [ tName "Miles_per_Gallon", tMType Nominal ]
 
         specMPGText =
@@ -479,7 +479,7 @@ interaction11 =
 
         encOriginText =
             encoding
-                << position Y [ pName "rowNumber", pMType Ordinal, pAxis [] ]
+                << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
                 << text [ tName "Origin", tMType Nominal ]
 
         specOriginText =
@@ -533,8 +533,8 @@ interaction12 =
 
         enc =
             encoding
-                << position X [ pName "predicted", pMType Nominal ]
-                << position Y [ pName "actual", pMType Nominal ]
+                << position X [ pName "predicted", pNominal ]
+                << position Y [ pName "actual", pNominal ]
                 << color [ mName "count", mMType Quantitative ]
                 << opacity
                     [ mSelectionCondition (selectionName "highlight")
@@ -559,14 +559,14 @@ interaction13 =
             encoding
                 << position Y
                     [ pName "Name"
-                    , pMType Nominal
+                    , pNominal
                     , pScale [ scDomain (doSelection "brush") ]
                     , pAxis [ axMinExtent 200, axTitle "" ]
                     , pSort [ soByChannel chX, soDescending ]
                     ]
                 << position X
                     [ pAggregate opCount
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
                     , pAxis [ axOrient siTop ]
                     ]
@@ -578,11 +578,11 @@ interaction13 =
             encoding
                 << position Y
                     [ pName "Name"
-                    , pMType Nominal
+                    , pNominal
                     , pSort [ soByChannel chX, soDescending ]
                     , pAxis []
                     ]
-                << position X [ pAggregate opCount, pMType Quantitative, pAxis [] ]
+                << position X [ pAggregate opCount, pQuant, pAxis [] ]
 
         specMini =
             asSpec [ width 50, height 200, sel [], encMini [], bar [] ]

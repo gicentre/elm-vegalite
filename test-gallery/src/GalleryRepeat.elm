@@ -18,8 +18,8 @@ repeat1 =
 
         enc1 =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pRepeat arColumn, pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
                 << detail [ dName "date", dMType Temporal, dTimeUnit year ]
                 << color [ mName "location", mMType Nominal ]
                 << opacity [ mNum 0.2 ]
@@ -29,8 +29,8 @@ repeat1 =
 
         enc2 =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pRepeat arColumn, pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
                 << color [ mName "location", mMType Nominal ]
 
         spec2 =
@@ -59,16 +59,16 @@ repeat2 =
 
         enc1 =
             encoding
-                << position X [ pName "date", pTimeUnit month, pMType Ordinal ]
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pTimeUnit month, pOrdinal ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         spec1 =
             asSpec [ bar [], enc1 [] ]
 
         enc2 =
             encoding
-                << position X [ pName "temp_min", pMType Quantitative, pBin [] ]
-                << position Y [ pName "temp_max", pMType Quantitative, pBin [] ]
+                << position X [ pName "temp_min", pQuant, pBin [] ]
+                << position Y [ pName "temp_max", pQuant, pBin [] ]
                 << size [ mAggregate opCount, mMType Quantitative ]
 
         spec2 =
@@ -90,8 +90,8 @@ repeat3 =
 
         enc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative, pBin [] ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position X [ pRepeat arColumn, pQuant, pBin [] ]
+                << position Y [ pQuant, pAggregate opCount ]
                 << color [ mName "Origin", mMType Nominal ]
 
         spec =
@@ -133,8 +133,8 @@ repeat4 =
 
         enc =
             encoding
-                << position X [ pRepeat arColumn, pMType Quantitative ]
-                << position Y [ pRepeat arRow, pMType Quantitative ]
+                << position X [ pRepeat arColumn, pQuant ]
+                << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
                         [ mName "Origin", mMType Nominal ]
@@ -167,8 +167,8 @@ repeat5 =
 
         encPosition =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
 
         cfg =
             configure
@@ -177,10 +177,10 @@ repeat5 =
 
         enc1 =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [], pBin [] ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [], pBin [] ]
                 << position Y
                     [ pAggregate opCount
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 1000 ]) ]
                     , pAxis [ axTitle "" ]
                     ]
@@ -193,8 +193,8 @@ repeat5 =
 
         enc2_1 =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [] ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [] ]
                 << color [ mAggregate opCount, mMType Quantitative ]
 
         spec2_1 =
@@ -204,13 +204,13 @@ repeat5 =
             encoding
                 << position Y
                     [ pName "Rotten_Tomatoes_Rating"
-                    , pMType Quantitative
+                    , pQuant
                     , pBin []
                     , pAxis []
                     ]
                 << position X
                     [ pAggregate opCount
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 1000 ]) ]
                     , pAxis [ axTitle "" ]
                     ]
@@ -248,10 +248,10 @@ repeat6 =
 
         encF =
             encoding
-                << position Y [ pName "age", pMType Ordinal, pAxis [], pSort [ soDescending ] ]
+                << position Y [ pName "age", pOrdinal, pAxis [], pSort [ soDescending ] ]
                 << position X
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axFormat "s" ]
                     , pSort [ soDescending ]
@@ -262,7 +262,7 @@ repeat6 =
 
         encGap =
             encoding
-                << position Y [ pName "age", pMType Ordinal, pAxis [], pSort [ soDescending ] ]
+                << position Y [ pName "age", pOrdinal, pAxis [], pSort [ soDescending ] ]
                 << text [ tName "age", tMType Quantitative ]
 
         specGap =
@@ -273,10 +273,10 @@ repeat6 =
 
         encM =
             encoding
-                << position Y [ pName "age", pMType Ordinal, pAxis [], pSort [ soDescending ] ]
+                << position Y [ pName "age", pOrdinal, pAxis [], pSort [ soDescending ] ]
                 << position X
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axFormat "s" ]
                     ]

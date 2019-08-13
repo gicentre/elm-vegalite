@@ -18,8 +18,8 @@ dist1 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [] ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position Y [ pQuant, pAggregate opCount ]
     in
     toVegaLite
         [ des
@@ -42,8 +42,8 @@ dist2 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "cumulativeCount", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "cumulativeCount", pQuant ]
     in
     toVegaLite
         [ des
@@ -74,7 +74,7 @@ dist3 =
             encoding
                 << position X
                     [ pName "bin_IMDB_Rating"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scZero False ]
                     , pAxis [ axTitle "IMDB rating" ]
                     ]
@@ -82,14 +82,14 @@ dist3 =
 
         cdEnc =
             encoding
-                << position Y [ pName "cumulativeCount", pMType Quantitative ]
+                << position Y [ pName "cumulativeCount", pQuant ]
 
         specCumulative =
             asSpec [ cdEnc [], bar [] ]
 
         dEnc =
             encoding
-                << position Y [ pName "count", pMType Quantitative ]
+                << position Y [ pName "count", pQuant ]
 
         specDist =
             asSpec [ dEnc [], bar [ maColor "yellow", maOpacity 0.5 ] ]
@@ -121,13 +121,13 @@ dist4 =
                     [ "age" ]
 
         encAge =
-            encoding << position X [ pName "age", pMType Ordinal ]
+            encoding << position X [ pName "age", pOrdinal ]
 
         encLWhisker =
             encoding
                 << position Y
                     [ pName "lowerWhisker"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "Population" ]
                     ]
                 << position Y2 [ pName "lowerBox" ]
@@ -137,7 +137,7 @@ dist4 =
 
         encUWhisker =
             encoding
-                << position Y [ pName "upperBox", pMType Quantitative ]
+                << position Y [ pName "upperBox", pQuant ]
                 << position Y2 [ pName "upperWhisker" ]
 
         specUWhisker =
@@ -145,7 +145,7 @@ dist4 =
 
         encBox =
             encoding
-                << position Y [ pName "lowerBox", pMType Quantitative ]
+                << position Y [ pName "lowerBox", pQuant ]
                 << position Y2 [ pName "upperBox" ]
                 << size [ mNum 5 ]
 
@@ -154,7 +154,7 @@ dist4 =
 
         encBoxMid =
             encoding
-                << position Y [ pName "midBox", pMType Quantitative ]
+                << position Y [ pName "midBox", pQuant ]
                 << color [ mStr "white" ]
                 << size [ mNum 5 ]
 
@@ -189,11 +189,11 @@ dist5 =
                 << calculateAs "max(0,datum.lowerBox - datum.IQR *1.5)" "lowerWhisker"
 
         encAge =
-            encoding << position X [ pName "age", pMType Ordinal ]
+            encoding << position X [ pName "age", pOrdinal ]
 
         encLWhisker =
             encoding
-                << position Y [ pName "lowerWhisker", pMType Quantitative, pAxis [ axTitle "Population" ] ]
+                << position Y [ pName "lowerWhisker", pQuant, pAxis [ axTitle "Population" ] ]
                 << position Y2 [ pName "lowerBox" ]
 
         specLWhisker =
@@ -201,7 +201,7 @@ dist5 =
 
         encUWhisker =
             encoding
-                << position Y [ pName "upperBox", pMType Quantitative ]
+                << position Y [ pName "upperBox", pQuant ]
                 << position Y2 [ pName "upperWhisker" ]
 
         specUWhisker =
@@ -210,7 +210,7 @@ dist5 =
 
         encBox =
             encoding
-                << position Y [ pName "lowerBox", pMType Quantitative ]
+                << position Y [ pName "lowerBox", pQuant ]
                 << position Y2 [ pName "upperBox" ]
                 << size [ mNum 5 ]
 
@@ -219,7 +219,7 @@ dist5 =
 
         encBoxMid =
             encoding
-                << position Y [ pName "midBox", pMType Quantitative ]
+                << position Y [ pName "midBox", pQuant ]
                 << color [ mStr "white" ]
                 << size [ mNum 5 ]
 

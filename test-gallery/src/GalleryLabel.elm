@@ -23,8 +23,8 @@ label1 =
 
         enc =
             encoding
-                << position X [ pName "b", pMType Quantitative ]
-                << position Y [ pName "a", pMType Ordinal ]
+                << position X [ pName "b", pQuant ]
+                << position Y [ pName "a", pOrdinal ]
 
         specBar =
             asSpec [ bar [] ]
@@ -46,8 +46,8 @@ label2 =
 
         encPosition =
             encoding
-                << position X [ pName "Cylinders", pMType Ordinal ]
-                << position Y [ pName "Origin", pMType Ordinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
+                << position Y [ pName "Origin", pOrdinal ]
 
         encRect =
             encoding
@@ -104,13 +104,13 @@ label3 =
             encoding
                 << position X
                     [ pName "scaled_date"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "Year into decade", axTickCount 11 ]
                     ]
                 << position Y
                     [ pName "CO2"
                     , pTitle "CO₂ concentration in ppm"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scZero False ]
                     ]
 
@@ -176,8 +176,8 @@ label4 =
 
         encBar =
             encoding
-                << position X [ pName "Day", pMType Ordinal, pAxis [ axLabelAngle 0 ] ]
-                << position Y [ pName "Value", pMType Quantitative ]
+                << position X [ pName "Day", pOrdinal, pAxis [ axLabelAngle 0 ] ]
+                << position Y [ pName "Value", pQuant ]
 
         specBar =
             asSpec [ bar [], encBar [] ]
@@ -189,8 +189,8 @@ label4 =
 
         encUpperBar =
             encoding
-                << position X [ pName "Day", pMType Ordinal, pAxis [ axLabelAngle 0 ] ]
-                << position Y [ pName "baseline", pMType Quantitative ]
+                << position X [ pName "Day", pOrdinal, pAxis [ axLabelAngle 0 ] ]
+                << position Y [ pName "baseline", pQuant ]
                 << position Y2 [ pName "Value" ]
                 << color [ mStr "#e45755" ]
 
@@ -209,7 +209,7 @@ label4 =
 
         encRule =
             encoding
-                << position Y [ pName "ThresholdValue", pMType Quantitative ]
+                << position Y [ pName "ThresholdValue", pQuant ]
 
         specText =
             asSpec [ textMark [ maAlign haRight, maDx -2, maDy -4 ], encText [] ]
@@ -217,7 +217,7 @@ label4 =
         encText =
             encoding
                 << position X [ pWidth ]
-                << position Y [ pName "ThresholdValue", pMType Quantitative, pAxis [ axTitle "PM2.5 Value" ] ]
+                << position Y [ pName "ThresholdValue", pQuant, pAxis [ axTitle "PM2.5 Value" ] ]
                 << text [ tName "Threshold", tMType Ordinal ]
 
         layer1 =
@@ -234,15 +234,15 @@ label5 =
 
         encBar =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         specBar =
             asSpec [ bar [], encBar [] ]
 
         encLine =
             encoding
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
                 << color [ mStr "red" ]
                 << size [ mNum 3 ]
 
@@ -264,15 +264,15 @@ label6 =
 
         encBars =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [], pAxis [] ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [], pAxis [] ]
+                << position Y [ pQuant, pAggregate opCount ]
 
         specBars =
             asSpec [ bar [], encBars [] ]
 
         encMean =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "IMDB_Rating", pQuant, pAggregate opMean ]
                 << color [ mStr "red" ]
                 << size [ mNum 5 ]
 
@@ -305,7 +305,7 @@ label7 =
 
         encRects =
             encoding
-                << position X [ pName "start", pMType Temporal, pTimeUnit year, pAxis [] ]
+                << position X [ pName "start", pTemporal, pTimeUnit year, pAxis [] ]
                 << position X2 [ pName "end" ]
                 << color [ mName "event", mMType Nominal ]
 
@@ -314,8 +314,8 @@ label7 =
 
         encPopulation =
             encoding
-                << position X [ pName "year", pMType Temporal, pTimeUnit year, pAxis [ axTitle "" ] ]
-                << position Y [ pName "population", pMType Quantitative ]
+                << position X [ pName "year", pTemporal, pTimeUnit year, pAxis [ axTitle "" ] ]
+                << position Y [ pName "population", pQuant ]
                 << color [ mStr "#333" ]
 
         specLine =
@@ -347,7 +347,7 @@ label8 =
             encoding
                 << position Y
                     [ pName "name"
-                    , pMType Nominal
+                    , pNominal
                     , pSort []
                     , pAxis
                         [ axDomain False
@@ -369,7 +369,7 @@ label8 =
             encoding
                 << position X
                     [ pName "value"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
                     , pAxis [ axGrid False, axValues (nums [ 1, 2, 3, 4, 5 ]) ]
                     ]
@@ -391,7 +391,7 @@ label8 =
             encoding
                 << position X
                     [ pName "median"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
                     , pAxis [ axTitle "" ]
                     ]

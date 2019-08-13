@@ -17,14 +17,14 @@ hyperlink1 =
 
         encCircle =
             encoding
-                << position X [ pName "label", pMType Nominal, pAxis [] ]
+                << position X [ pName "label", pNominal, pAxis [] ]
                 << size [ mNum 8000 ]
                 << color [ mName "label", mMType Nominal, mLegend [] ]
                 << hyperlink [ hName "url", hMType Nominal ]
 
         encLabel =
             encoding
-                << position X [ pName "label", pMType Nominal, pAxis [] ]
+                << position X [ pName "label", pNominal, pAxis [] ]
                 << text [ tName "label", tMType Nominal ]
                 << color [ mStr "white" ]
                 << size [ mNum 16 ]
@@ -47,8 +47,8 @@ hyperlink2 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
                 << hyperlink [ hStr "http://www.imdb.com" ]
     in
     toVegaLite [ data, point [ maCursor cuPointer ], enc [] ]
@@ -62,8 +62,8 @@ hyperlink3 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.IMDB_Rating*10 > datum.Rotten_Tomatoes_Rating"

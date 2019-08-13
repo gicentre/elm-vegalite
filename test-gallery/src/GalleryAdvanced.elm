@@ -30,8 +30,8 @@ advanced1 =
 
         enc =
             encoding
-                << position X [ pName "PercentOfTotal", pMType Quantitative, pAxis [ axTitle "% of total time" ] ]
-                << position Y [ pName "Activity", pMType Nominal ]
+                << position X [ pName "PercentOfTotal", pQuant, pAxis [ axTitle "% of total time" ] ]
+                << position Y [ pName "Activity", pNominal ]
     in
     toVegaLite
         [ desc, heightStep 12, data [], trans [], bar [], enc [] ]
@@ -54,15 +54,15 @@ advanced2 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
-                << position Y [ pName "Title", pMType Ordinal ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
             asSpec [ bar [], barEnc [] ]
 
         ruleEnc =
             encoding
-                << position X [ pName "AverageRating", pAggregate opMean, pMType Quantitative ]
+                << position X [ pName "AverageRating", pAggregate opMean, pQuant ]
 
         ruleSpec =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]
@@ -89,16 +89,16 @@ advanced3 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pAxis [ axTitle "IMDB Rating" ] ]
-                << position Y [ pName "Title", pMType Ordinal ]
+                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
             asSpec [ bar [ maClip True ], barEnc [] ]
 
         tickEnc =
             encoding
-                << position X [ pName "AverageYearRating", pMType Quantitative ]
-                << position Y [ pName "Title", pMType Ordinal ]
+                << position X [ pName "AverageYearRating", pQuant ]
+                << position Y [ pName "Title", pOrdinal ]
                 << color [ mStr "red" ]
 
         tickSpec =
@@ -125,10 +125,10 @@ advanced4 =
 
         enc =
             encoding
-                << position X [ pName "Release_Date", pMType Temporal ]
+                << position X [ pName "Release_Date", pTemporal ]
                 << position Y
                     [ pName "RatingDelta"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "Residual" ]
                     ]
     in
@@ -161,8 +161,8 @@ advanced5 =
 
         enc =
             encoding
-                << position X [ pName "matchday", pMType Ordinal ]
-                << position Y [ pName "rank", pMType Ordinal ]
+                << position X [ pName "matchday", pOrdinal ]
+                << position Y [ pName "rank", pOrdinal ]
                 << color [ mName "team", mMType Nominal, mScale teamColours ]
 
         teamColours =
@@ -208,11 +208,11 @@ advanced6 =
 
         enc =
             encoding
-                << position X [ pName "label", pMType Ordinal, pSort [], pTitle "Months" ]
+                << position X [ pName "label", pOrdinal, pSort [], pTitle "Months" ]
 
         enc1 =
             encoding
-                << position Y [ pName "previous_sum", pMType Quantitative, pTitle "Amount" ]
+                << position Y [ pName "previous_sum", pQuant, pTitle "Amount" ]
                 << position Y2 [ pName "sum" ]
                 << color
                     [ mDataCondition
@@ -228,7 +228,7 @@ advanced6 =
         enc2 =
             encoding
                 << position X2 [ pName "lead" ]
-                << position Y [ pName "sum", pMType Quantitative ]
+                << position Y [ pName "sum", pQuant ]
 
         spec2 =
             asSpec
@@ -244,7 +244,7 @@ advanced6 =
 
         enc3 =
             encoding
-                << position Y [ pName "sum_inc", pMType Quantitative ]
+                << position Y [ pName "sum_inc", pQuant ]
                 << text [ tName "sum_inc", tMType Nominal ]
 
         spec3 =
@@ -259,7 +259,7 @@ advanced6 =
 
         enc4 =
             encoding
-                << position Y [ pName "sum_dec", pMType Quantitative ]
+                << position Y [ pName "sum_dec", pQuant ]
                 << text [ tName "sum_dec", tMType Nominal ]
 
         spec4 =
@@ -275,7 +275,7 @@ advanced6 =
 
         enc5 =
             encoding
-                << position Y [ pName "center", pMType Quantitative ]
+                << position Y [ pName "center", pQuant ]
                 << text [ tName "text_amount", tMType Nominal ]
                 << color
                     [ mDataCondition
@@ -318,8 +318,8 @@ advanced7 =
 
         enc =
             encoding
-                << position X [ pName "group", pMType Ordinal ]
-                << position Y [ pName "age", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "group", pOrdinal ]
+                << position Y [ pName "age", pQuant, pAggregate opMean ]
     in
     toVegaLite [ des, data [], trans [], enc [], bar [] ]
 
@@ -337,8 +337,8 @@ advanced8 =
 
         enc =
             encoding
-                << position X [ pName "value", pMType Quantitative, pTitle "width/length (cm)" ]
-                << position Y [ pName "density", pMType Quantitative ]
+                << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
+                << position Y [ pName "density", pQuant ]
                 << row [ fName "measurement", fMType Nominal ]
     in
     toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
@@ -362,8 +362,8 @@ advanced9 =
 
         enc =
             encoding
-                << position X [ pName "value", pMType Quantitative, pTitle "width/length (cm)" ]
-                << position Y [ pName "density", pMType Quantitative ]
+                << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
+                << position Y [ pName "density", pQuant ]
                 << color [ mName "measurement", mMType Nominal ]
     in
     toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
@@ -399,8 +399,8 @@ advanced10 =
 
         encLine =
             encoding
-                << position X [ pName "key", pMType Nominal ]
-                << position Y [ pName "normVal", pMType Quantitative, pAxis [] ]
+                << position X [ pName "key", pNominal ]
+                << position Y [ pName "normVal", pQuant, pAxis [] ]
                 << color [ mName "species", mMType Nominal ]
                 << detail [ dName "index", dMType Nominal ]
                 << tooltips
@@ -415,7 +415,7 @@ advanced10 =
 
         encAxis =
             encoding
-                << position X [ pName "key", pMType Nominal, pAxis [ axTitle "" ] ]
+                << position X [ pName "key", pNominal, pAxis [ axTitle "" ] ]
                 << detail [ dAggregate opCount, dMType Quantitative ]
 
         specAxis =
@@ -423,7 +423,7 @@ advanced10 =
 
         encAxisLabelsTop =
             encoding
-                << position X [ pName "key", pMType Nominal ]
+                << position X [ pName "key", pNominal ]
                 << position Y [ pNum 0 ]
                 << text [ tName "max", tMType Quantitative, tAggregate opMax ]
 
@@ -432,7 +432,7 @@ advanced10 =
 
         encAxisLabelsMid =
             encoding
-                << position X [ pName "key", pMType Nominal ]
+                << position X [ pName "key", pNominal ]
                 << position Y [ pNum 150 ]
                 << text [ tName "mid", tMType Quantitative, tAggregate opMin ]
 
@@ -441,7 +441,7 @@ advanced10 =
 
         encAxisLabelsBot =
             encoding
-                << position X [ pName "key", pMType Nominal ]
+                << position X [ pName "key", pNominal ]
                 << position Y [ pHeight ]
                 << text [ tName "min", tMType Quantitative, tAggregate opMin ]
 
@@ -472,10 +472,10 @@ advanced11 =
             encoding
                 << position X
                     [ pName "Production_Budget"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate (opArgMax (Just "US_Gross"))
                     ]
-                << position Y [ pName "Major_Genre", pMType Nominal ]
+                << position Y [ pName "Major_Genre", pNominal ]
     in
     toVegaLite [ desc, data [], enc [], bar [] ]
 
@@ -494,16 +494,16 @@ advanced12 =
 
         encRaw =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position Y [ pName "price", pQuant ]
 
         specRaw =
             asSpec [ encRaw [], point [ maOpacity 0.3 ] ]
 
         encAv =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
-                << position Y [ pName "price", pAggregate opMean, pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position Y [ pName "price", pAggregate opMean, pQuant ]
 
         specAv =
             asSpec [ encAv [], line [] ]
@@ -527,16 +527,16 @@ advanced13 =
 
         encRaw =
             encoding
-                << position X [ pName "date", pTitle "Date", pMType Temporal ]
-                << position Y [ pName "temp_max", pTitle "Maximum temperature", pMType Quantitative ]
+                << position X [ pName "date", pTitle "Date", pTemporal ]
+                << position Y [ pName "temp_max", pTitle "Maximum temperature", pQuant ]
 
         specRaw =
             asSpec [ encRaw [], point [ maOpacity 0.3 ] ]
 
         encAv =
             encoding
-                << position X [ pName "date", pMType Temporal ]
-                << position Y [ pName "rollingMean", pMType Quantitative ]
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "rollingMean", pQuant ]
 
         specAv =
             asSpec [ encAv [], line [ maColor "red", maSize 3 ] ]

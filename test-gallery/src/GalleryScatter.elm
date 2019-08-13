@@ -18,8 +18,8 @@ scatter1 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
         [ des
@@ -37,7 +37,7 @@ scatter2 =
 
         enc =
             encoding
-                << position X [ pName "precipitation", pMType Quantitative ]
+                << position X [ pName "precipitation", pQuant ]
     in
     toVegaLite
         [ des
@@ -55,8 +55,8 @@ scatter3 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Cylinders", pMType Ordinal ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Cylinders", pOrdinal ]
     in
     toVegaLite
         [ des
@@ -74,8 +74,8 @@ scatter4 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin", mMType Nominal ]
                 << shape [ mName "Origin", mMType Nominal ]
     in
@@ -95,8 +95,8 @@ scatter5 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
                 << size [ mAggregate opCount, mMType Quantitative ]
     in
     toVegaLite
@@ -115,8 +115,8 @@ scatter6 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << size [ mName "Acceleration", mMType Quantitative ]
     in
     toVegaLite
@@ -139,8 +139,8 @@ scatter7 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null"
@@ -167,8 +167,8 @@ scatter8 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
         [ des
@@ -186,8 +186,8 @@ scatter9 =
 
         enc =
             encoding
-                << position X [ pName "income", pMType Quantitative, pScale [ scType scLog ] ]
-                << position Y [ pName "health", pMType Quantitative, pScale [ scZero False ] ]
+                << position X [ pName "income", pQuant, pScale [ scType scLog ] ]
+                << position Y [ pName "health", pQuant, pScale [ scZero False ] ]
                 << size [ mName "population", mMType Quantitative ]
                 << color [ mStr "#000" ]
 
@@ -217,8 +217,8 @@ scatter10 =
 
         enc =
             encoding
-                << position X [ pName "Year", pMType Ordinal, pAxis [ axLabelAngle 0 ] ]
-                << position Y [ pName "Entity", pMType Nominal, pAxis [ axTitle "" ] ]
+                << position X [ pName "Year", pOrdinal, pAxis [ axLabelAngle 0 ] ]
+                << position Y [ pName "Entity", pNominal, pAxis [ axTitle "" ] ]
                 << size
                     [ mName "Deaths"
                     , mMType Quantitative
@@ -253,8 +253,8 @@ scatter11 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin", mMType Nominal ]
                 << text [ tName "OriginInitial", tMType Nominal ]
     in
@@ -273,8 +273,8 @@ scatter12 =
 
         enc =
             encoding
-                << position X [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
-                << position Y [ pName "IMDB_Rating", pMType Quantitative ]
+                << position X [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position Y [ pName "IMDB_Rating", pQuant ]
 
         pointSpec =
             asSpec [ point [ maFilled True, maOpacity 0.3 ] ]
@@ -299,8 +299,8 @@ scatter13 =
 
         enc =
             encoding
-                << position X [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
-                << position Y [ pName "IMDB_Rating", pMType Quantitative ]
+                << position X [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position Y [ pName "IMDB_Rating", pQuant ]
 
         pointSpec =
             asSpec [ point [ maFilled True, maOpacity 0.3 ] ]

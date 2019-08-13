@@ -50,8 +50,8 @@ position6 =
     let
         enc =
             encoding
-                << position X [ pName "cat", pMType Ordinal ]
-                << position Y [ pName "val", pMType Quantitative ]
+                << position X [ pName "cat", pOrdinal ]
+                << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ width 300, data [], enc [], bar [ maWidth 20 ] ]
 
@@ -61,8 +61,8 @@ position7 =
     let
         enc =
             encoding
-                << position X [ pName "val", pMType Quantitative ]
-                << position Y [ pName "cat", pMType Ordinal ]
+                << position X [ pName "val", pQuant ]
+                << position Y [ pName "cat", pOrdinal ]
     in
     toVegaLite [ height 300, data [], enc [], bar [ maHeight 20 ] ]
 
@@ -74,10 +74,10 @@ barAlign x =
             encoding
                 << position X
                     [ pName "cat"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pScale [ scAlign x, scPaddingInner 0.5 ]
                     ]
-                << position Y [ pName "val", pMType Quantitative ]
+                << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ width 400, data [], enc [], bar [] ]
 

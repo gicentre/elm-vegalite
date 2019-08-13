@@ -34,13 +34,13 @@ layer1 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pTimeUnit yearMonthDate
                     , pScale [ scDomain (doDts [ [ dtMonth May, dtDate 31, dtYear 2009 ], [ dtMonth Jul, dtDate 1, dtYear 2009 ] ]) ]
                     , pAxis [ axTitle "Date in 2009", axFormat "%m/%d" ]
                     ]
-                << position Y [ pName "low", pMType Quantitative, pScale [ scZero False ] ]
-                << position Y2 [ pName "high", pMType Quantitative ]
+                << position Y [ pName "low", pQuant, pScale [ scZero False ] ]
+                << position Y2 [ pName "high", pQuant ]
                 << color [ mName "isIncrease", mMType Nominal, mLegend [], mScale [ scRange (raStrs [ "#ae1325", "#06982d" ]) ] ]
 
         specLine =
@@ -48,9 +48,9 @@ layer1 =
 
         encBar =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit yearMonthDate ]
-                << position Y [ pName "open", pMType Quantitative ]
-                << position Y2 [ pName "close", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonthDate ]
+                << position Y [ pName "open", pQuant ]
+                << position Y2 [ pName "close", pQuant ]
                 << size [ mNum 5 ]
                 << color [ mName "isIncrease", mMType Nominal, mLegend [] ]
 
@@ -75,13 +75,13 @@ layer2 =
             encoding
                 << position Y
                     [ pName "country"
-                    , pMType Nominal
+                    , pNominal
                     , pAxis [ axTitle "Country", axOffset 5, axTicks False, axMinExtent 70, axDomain False ]
                     ]
 
         encLine =
             encoding
-                << position X [ pName "life_expect", pMType Quantitative ]
+                << position X [ pName "life_expect", pQuant ]
                 << detail [ dName "country", dMType Nominal ]
                 << color [ mStr "#db646f" ]
 
@@ -90,7 +90,7 @@ layer2 =
 
         encPoints =
             encoding
-                << position X [ pName "life_expect", pMType Quantitative, pAxis [ axTitle "Life Expectancy (years)" ] ]
+                << position X [ pName "life_expect", pQuant, pAxis [ axTitle "Life Expectancy (years)" ] ]
                 << color [ mName "year", mMType Ordinal, mScale (domainRangeMap ( 1955, "#e6959c" ) ( 2000, "#911a24" )), mLegend [ leTitle "Year" ] ]
                 << size [ mNum 100 ]
                 << opacity [ mNum 1 ]
@@ -143,7 +143,7 @@ layer3 =
 
         encLine =
             encoding
-                << position X [ pName "life_expect", pMType Quantitative ]
+                << position X [ pName "life_expect", pQuant ]
                 << detail [ dName "country", dMType Nominal ]
                 << color [ mStr "#db646f" ]
 
@@ -151,7 +151,7 @@ layer3 =
             encoding
                 << position X
                     [ pName "ranges[2]"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scNice niFalse ]
                     , pAxis [ axTitle "" ]
                     ]
@@ -160,31 +160,31 @@ layer3 =
             asSpec [ bar [ maColor "#eee" ], enc1 [] ]
 
         enc2 =
-            encoding << position X [ pName "ranges[1]", pMType Quantitative ]
+            encoding << position X [ pName "ranges[1]", pQuant ]
 
         spec2 =
             asSpec [ bar [ maColor "#ddd" ], enc2 [] ]
 
         enc3 =
-            encoding << position X [ pName "ranges[0]", pMType Quantitative ]
+            encoding << position X [ pName "ranges[0]", pQuant ]
 
         spec3 =
             asSpec [ bar [ maColor "#ccc" ], enc3 [] ]
 
         enc4 =
-            encoding << position X [ pName "measures[1]", pMType Quantitative ]
+            encoding << position X [ pName "measures[1]", pQuant ]
 
         spec4 =
             asSpec [ bar [ maColor "lightsteelblue", maSize 10 ], enc4 [] ]
 
         enc5 =
-            encoding << position X [ pName "measures[0]", pMType Quantitative ]
+            encoding << position X [ pName "measures[0]", pQuant ]
 
         spec5 =
             asSpec [ bar [ maColor "steelblue", maSize 10 ], enc5 [] ]
 
         enc6 =
-            encoding << position X [ pName "markers[0]", pMType Quantitative ]
+            encoding << position X [ pName "markers[0]", pQuant ]
 
         spec6 =
             asSpec [ tick [ maColor "black" ], enc6 [] ]
@@ -206,18 +206,18 @@ layer4 =
             description "Layered bar/line chart with dual axes"
 
         encTime =
-            encoding << position X [ pName "date", pMType Ordinal, pTimeUnit month ]
+            encoding << position X [ pName "date", pOrdinal, pTimeUnit month ]
 
         encBar =
             encoding
-                << position Y [ pName "precipitation", pMType Quantitative, pAggregate opMean, pAxis [ axGrid False ] ]
+                << position Y [ pName "precipitation", pQuant, pAggregate opMean, pAxis [ axGrid False ] ]
 
         specBar =
             asSpec [ bar [], encBar [] ]
 
         encLine =
             encoding
-                << position Y [ pName "temp_max", pMType Quantitative, pAggregate opMean, pAxis [ axGrid False ], pScale [ scZero False ] ]
+                << position Y [ pName "temp_max", pQuant, pAggregate opMean, pAxis [ axGrid False ], pScale [ scZero False ] ]
                 << color [ mStr "firebrick" ]
 
         specLine =
@@ -251,11 +251,11 @@ layer5 =
             transform << calculateAs "datum.y - 50" "ny"
 
         encX =
-            encoding << position X [ pName "x", pMType Quantitative, pScale [ scZero False, scNice niFalse ] ]
+            encoding << position X [ pName "x", pQuant, pScale [ scZero False, scNice niFalse ] ]
 
         encLower =
             encoding
-                << position Y [ pName "y", pMType Quantitative, pScale [ scDomain (doNums [ 0, 50 ]) ] ]
+                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 0, 50 ]) ] ]
                 << opacity [ mNum 0.6 ]
 
         specLower =
@@ -263,7 +263,7 @@ layer5 =
 
         encUpper =
             encoding
-                << position Y [ pName "ny", pMType Quantitative, pScale [ scDomain (doNums [ 0, 50 ]) ], pAxis [ axTitle "y" ] ]
+                << position Y [ pName "ny", pQuant, pScale [ scDomain (doNums [ 0, 50 ]) ], pAxis [ axTitle "y" ] ]
                 << opacity [ mNum 0.3 ]
 
         specUpper =
@@ -289,9 +289,9 @@ layer6 =
     let
         enc1 =
             encoding
-                << position Y [ pName "record.low", pMType Quantitative, pScale [ scDomain (doNums [ 10, 70 ]) ], pAxis [ axTitle "Temperature (F)" ] ]
-                << position Y2 [ pName "record.high", pMType Quantitative ]
-                << position X [ pName "id", pMType Ordinal, pAxis [ axTitle "Day" ] ]
+                << position Y [ pName "record.low", pQuant, pScale [ scDomain (doNums [ 10, 70 ]) ], pAxis [ axTitle "Temperature (F)" ] ]
+                << position Y2 [ pName "record.high", pQuant ]
+                << position X [ pName "id", pOrdinal, pAxis [ axTitle "Day" ] ]
                 << size [ mNum 20 ]
                 << color [ mStr "#ccc" ]
 
@@ -300,9 +300,9 @@ layer6 =
 
         enc2 =
             encoding
-                << position Y [ pName "normal.low", pMType Quantitative ]
-                << position Y2 [ pName "normal.high", pMType Quantitative ]
-                << position X [ pName "id", pMType Ordinal ]
+                << position Y [ pName "normal.low", pQuant ]
+                << position Y2 [ pName "normal.high", pQuant ]
+                << position X [ pName "id", pOrdinal ]
                 << size [ mNum 20 ]
                 << color [ mStr "#999" ]
 
@@ -311,9 +311,9 @@ layer6 =
 
         enc3 =
             encoding
-                << position Y [ pName "actual.low", pMType Quantitative ]
-                << position Y2 [ pName "actual.high", pMType Quantitative ]
-                << position X [ pName "id", pMType Ordinal ]
+                << position Y [ pName "actual.low", pQuant ]
+                << position Y2 [ pName "actual.high", pQuant ]
+                << position X [ pName "id", pOrdinal ]
                 << size [ mNum 12 ]
                 << color [ mStr "#000" ]
 
@@ -322,9 +322,9 @@ layer6 =
 
         enc4 =
             encoding
-                << position Y [ pName "forecast.low.low", pMType Quantitative ]
-                << position Y2 [ pName "forecast.low.high", pMType Quantitative ]
-                << position X [ pName "id", pMType Ordinal ]
+                << position Y [ pName "forecast.low.low", pQuant ]
+                << position Y2 [ pName "forecast.low.high", pQuant ]
+                << position X [ pName "id", pOrdinal ]
                 << size [ mNum 12 ]
                 << color [ mStr "#000" ]
 
@@ -333,9 +333,9 @@ layer6 =
 
         enc5 =
             encoding
-                << position Y [ pName "forecast.low.high", pMType Quantitative ]
-                << position Y2 [ pName "forecast.high.low", pMType Quantitative ]
-                << position X [ pName "id", pMType Ordinal ]
+                << position Y [ pName "forecast.low.high", pQuant ]
+                << position Y2 [ pName "forecast.high.low", pQuant ]
+                << position X [ pName "id", pOrdinal ]
                 << size [ mNum 3 ]
                 << color [ mStr "#000" ]
 
@@ -344,9 +344,9 @@ layer6 =
 
         enc6 =
             encoding
-                << position Y [ pName "forecast.high.low", pMType Quantitative ]
-                << position Y2 [ pName "forecast.high.high", pMType Quantitative ]
-                << position X [ pName "id", pMType Ordinal ]
+                << position Y [ pName "forecast.high.low", pQuant ]
+                << position Y2 [ pName "forecast.high.high", pQuant ]
+                << position X [ pName "id", pOrdinal ]
                 << size [ mNum 12 ]
                 << color [ mStr "#000" ]
 
@@ -357,7 +357,7 @@ layer6 =
             encoding
                 << position X
                     [ pName "id"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pAxis
                         [ axDomain False
                         , axTicks False

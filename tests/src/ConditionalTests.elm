@@ -19,8 +19,8 @@ markCondition1 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
                 << color
                     [ mDataCondition
                         [ ( or (expr "datum.IMDB_Rating === null")
@@ -43,7 +43,7 @@ markCondition2 =
 
         enc =
             encoding
-                << position X [ pName "value", pMType Ordinal ]
+                << position X [ pName "value", pOrdinal ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.value < 40", [ mStr "blue" ] )
@@ -66,7 +66,7 @@ axisCondition1 =
             encoding
                 << position X
                     [ pName "IMDB_Rating"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis
                         [ axTickCount 20
                         , axDataCondition (expr "datum.value <= 5")
@@ -74,7 +74,7 @@ axisCondition1 =
                             (axGridDash [])
                         ]
                     ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
     in
     toVegaLite [ data, point [ maOpacity 0.1 ], enc [] ]
 
@@ -89,7 +89,7 @@ axisCondition2 =
             encoding
                 << position X
                     [ pName "IMDB_Rating"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis
                         [ axTickCount 20
                         , axDataCondition (expr "datum.value <= 2")
@@ -103,7 +103,7 @@ axisCondition2 =
                             (axTickWidth 2)
                         ]
                     ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
     in
     toVegaLite [ width 600, data, point [ maOpacity 0.1 ], enc [] ]
 
@@ -118,7 +118,7 @@ axisCondition3 =
             encoding
                 << position X
                     [ pName "IMDB_Rating"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis
                         [ axTickCount 20
                         , axDataCondition (expr "datum.value <= 1")
@@ -147,7 +147,7 @@ axisCondition3 =
                             (axLabelOpacity 0.8)
                         ]
                     ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
     in
     toVegaLite [ width 600, data, point [ maOpacity 0.1 ], enc [] ]
 
@@ -174,8 +174,8 @@ selectionCondition1 =
 
         enc =
             encoding
-                << position Y [ pName "Origin", pMType Ordinal ]
-                << position X [ pName "Cylinders", pMType Ordinal ]
+                << position Y [ pName "Origin", pOrdinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
                 << color [ mAggregate opCount, mName "*", mMType Quantitative ]
     in
     toVegaLite
@@ -204,8 +204,8 @@ selectionCondition2 =
 
         enc =
             encoding
-                << position Y [ pName "Origin", pMType Ordinal ]
-                << position X [ pName "Cylinders", pMType Ordinal ]
+                << position Y [ pName "Origin", pOrdinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
                 << color
                     [ mSelectionCondition
                         (and (selectionName "alex") (selectionName "morgan"))
@@ -238,16 +238,16 @@ selectionCondition3 =
 
         enc1 =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         spec1 =
             asSpec [ sel [], point [], enc1 [] ]
 
         enc2 =
             encoding
-                << position X [ pName "Acceleration", pMType Quantitative, pScale [ scDomain (doNums [ 0, 25 ]) ] ]
-                << position Y [ pName "Displacement", pMType Quantitative, pScale [ scDomain (doNums [ 0, 500 ]) ] ]
+                << position X [ pName "Acceleration", pQuant, pScale [ scDomain (doNums [ 0, 25 ]) ] ]
+                << position Y [ pName "Displacement", pQuant, pScale [ scDomain (doNums [ 0, 500 ]) ] ]
 
         spec2 =
             asSpec [ trans [], point [], enc2 [] ]
@@ -273,8 +273,8 @@ selectionCondition4 =
 
         enc =
             encoding
-                << position Y [ pName "Origin", pMType Ordinal ]
-                << position X [ pName "Cylinders", pMType Ordinal ]
+                << position Y [ pName "Origin", pOrdinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
                 << color
                     [ mSelectionCondition
                         (selectionName "mySelection")
@@ -304,8 +304,8 @@ selectionCondition5 =
 
         enc =
             encoding
-                << position Y [ pName "Origin", pMType Ordinal ]
-                << position X [ pName "Cylinders", pMType Ordinal ]
+                << position Y [ pName "Origin", pOrdinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
                 << color
                     [ mSelectionCondition
                         (selectionName "mySelection")
@@ -329,8 +329,8 @@ bindScales1 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
         [ width 300, height 300, data [], sel [], circle [], enc [] ]
@@ -350,8 +350,8 @@ bindScales2 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
         [ width 300, height 300, data [], sel [], circle [], enc [] ]

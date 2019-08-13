@@ -74,14 +74,9 @@ myFirstVis =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
     in
-    toVegaLite
-        [ title "Hello, World!" []
-        , data []
-        , enc []
-        , circle []
-        ]
+    toVegaLite [ title "Hello, World!" [], data [], enc [], circle [] ]
 
 
 mySecondVis : Spec
@@ -92,14 +87,10 @@ mySecondVis =
 
         enc =
             encoding
-                << position X [ pName "Cylinders", pMType Ordinal ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Cylinders", pOrdinal ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
-    toVegaLite
-        [ data []
-        , enc []
-        , circle []
-        ]
+    toVegaLite [ data [], enc [], circle [] ]
 
 
 myOtherVis : Spec
@@ -110,14 +101,10 @@ myOtherVis =
 
         enc =
             encoding
-                << position X [ pName "Cylinders", pMType Ordinal ]
-                << position Y [ pName "Miles_per_Gallon", pAggregate opMean, pMType Quantitative ]
+                << position X [ pName "Cylinders", pMOrdinal ]
+                << position Y [ pName "Miles_per_Gallon", pAggregate opMean, pQuant ]
     in
-    toVegaLite
-        [ data []
-        , enc []
-        , bar []
-        ]
+    toVegaLite [ data [], enc [], bar [] ]
 
 
 

@@ -82,7 +82,7 @@ myVis =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
     in
     toVegaLite
         [ title "Hello, World!" []

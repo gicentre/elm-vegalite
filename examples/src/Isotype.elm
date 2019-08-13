@@ -56,8 +56,8 @@ personGrid =
 
         enc =
             encoding
-                << position X [ pName "col", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "row", pMType Ordinal, pAxis [] ]
+                << position X [ pName "col", pOrdinal, pAxis [] ]
+                << position Y [ pName "row", pOrdinal, pAxis [] ]
                 << shape [ mPath <| Maybe.withDefault "circle" <| Dict.get "person" isotypes ]
                 << color
                     [ mSelectionCondition (selectionName "highlight")
@@ -112,8 +112,8 @@ livestock =
 
         enc =
             encoding
-                << position X [ pName "col", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "animal", pMType Ordinal, pAxis [] ]
+                << position X [ pName "col", pOrdinal, pAxis [] ]
+                << position Y [ pName "animal", pOrdinal, pAxis [] ]
                 << row [ fName "country", fMType Nominal, fHeader [ hdTitle "" ] ]
                 << shape
                     [ mName "animal"

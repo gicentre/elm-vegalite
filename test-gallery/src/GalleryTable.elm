@@ -21,8 +21,8 @@ table1 =
 
         enc =
             encoding
-                << position X [ pName "Cylinders", pMType Ordinal ]
-                << position Y [ pName "Origin", pMType Nominal ]
+                << position X [ pName "Cylinders", pOrdinal ]
+                << position Y [ pName "Origin", pNominal ]
                 << color [ mName "Horsepower", mMType Quantitative, mAggregate opMean ]
     in
     toVegaLite [ des, data, rect [], enc [] ]
@@ -45,8 +45,8 @@ table2 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Ordinal, pTimeUnit date, pAxis [ axTitle "Day", axLabelAngle 0, axFormat "%e" ] ]
-                << position Y [ pName "date", pMType Ordinal, pTimeUnit month, pAxis [ axTitle "Month" ] ]
+                << position X [ pName "date", pOrdinal, pTimeUnit date, pAxis [ axTitle "Day", axLabelAngle 0, axFormat "%e" ] ]
+                << position Y [ pName "date", pOrdinal, pTimeUnit month, pAxis [ axTitle "Month" ] ]
                 << color [ mName "temp", mMType Quantitative, mAggregate opMax, mLegend [ leTitle "" ] ]
     in
     toVegaLite [ des, cfg [], data, enc [], rect [] ]
@@ -73,8 +73,8 @@ table3 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [ biMaxBins 60 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [ biMaxBins 40 ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 60 ] ]
+                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 40 ] ]
                 << color [ mMType Quantitative, mAggregate opCount ]
 
         cfg =
@@ -96,8 +96,8 @@ table4 =
 
         enc =
             encoding
-                << position X [ pName "time", pMType Ordinal, pTimeUnit hours ]
-                << position Y [ pName "time", pMType Ordinal, pTimeUnit day ]
+                << position X [ pName "time", pOrdinal, pTimeUnit hours ]
+                << position Y [ pName "time", pOrdinal, pTimeUnit day ]
                 << size [ mName "count", mMType Quantitative, mAggregate opSum ]
     in
     toVegaLite [ des, data, enc [], circle [] ]
@@ -114,8 +114,8 @@ table5 =
 
         encPosition =
             encoding
-                << position X [ pName "Cylinders", pMType Ordinal ]
-                << position Y [ pName "Origin", pMType Ordinal ]
+                << position X [ pName "Cylinders", pOrdinal ]
+                << position Y [ pName "Origin", pOrdinal ]
 
         encRect =
             encoding
@@ -157,7 +157,7 @@ table6 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pTimeUnit yearMonthDate
                     , pTitle "Time"
                     , pAxis
@@ -174,7 +174,7 @@ table6 =
                             (axTickColor "")
                         ]
                     ]
-                << position Y [ pName "symbol", pMType Nominal, pTitle "" ]
+                << position Y [ pName "symbol", pNominal, pTitle "" ]
                 << color [ mAggregate opSum, mName "price", mMType Quantitative, mTitle "Price" ]
 
         cfg =

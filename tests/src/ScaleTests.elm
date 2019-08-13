@@ -15,8 +15,8 @@ scale1 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mStr "rgb(203,24,29)" ]
                 << size [ mName "Acceleration", mMType Quantitative, mBin [] ]
                 << opacity [ mName "Acceleration", mMType Quantitative, mBin [] ]
@@ -36,8 +36,8 @@ scale2 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pMType Quantitative ]
-                << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Acceleration", mMType Quantitative, mBin [] ]
     in
     toVegaLite [ conf [], cars, enc [], point [] ]
@@ -54,7 +54,7 @@ scale3 =
             encoding
                 << position Y
                     [ pName "b"
-                    , pMType Nominal
+                    , pNominal
                     , pSort []
                     , pAxis [ axTicks False, axDomain False, axTitle "" ]
                     ]
@@ -84,7 +84,7 @@ scale4 =
             encoding
                 << position Y
                     [ pName "b"
-                    , pMType Nominal
+                    , pNominal
                     , pSort []
                     , pAxis [ axTicks False, axDomain False, axTitle "" ]
                     ]
@@ -114,7 +114,7 @@ scale5 =
             encoding
                 << position Y
                     [ pName "b"
-                    , pMType Nominal
+                    , pNominal
                     , pSort []
                     , pAxis [ axTicks False, axDomain False, axTitle "" ]
                     ]

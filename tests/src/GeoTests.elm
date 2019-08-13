@@ -71,8 +71,8 @@ choropleth2 =
 
         labelEnc =
             encoding
-                << position Longitude [ pName "cx", pMType Quantitative ]
-                << position Latitude [ pName "cy", pMType Quantitative ]
+                << position Longitude [ pName "cx", pQuant ]
+                << position Latitude [ pName "cy", pQuant ]
                 << text [ tName "bLabel", tMType Nominal ]
 
         labelSpec =
@@ -131,8 +131,8 @@ tubeLines3 =
 
         labelEnc =
             encoding
-                << position Longitude [ pName "cx", pMType Quantitative ]
-                << position Latitude [ pName "cy", pMType Quantitative ]
+                << position Longitude [ pName "cx", pQuant ]
+                << position Latitude [ pName "cy", pQuant ]
                 << text [ tName "bLabel", tMType Nominal ]
                 << size [ mNum 8 ]
                 << opacity [ mNum 0.6 ]
@@ -486,8 +486,8 @@ dotMap1 =
     let
         enc =
             encoding
-                << position Longitude [ pName "longitude", pMType Quantitative ]
-                << position Latitude [ pName "latitude", pMType Quantitative ]
+                << position Longitude [ pName "longitude", pQuant ]
+                << position Latitude [ pName "latitude", pQuant ]
                 << size [ mNum 1 ]
                 << color [ mName "digit", mMType Nominal ]
     in
@@ -522,8 +522,8 @@ scribbleMap1 =
 
         enc =
             encoding
-                << position Longitude [ pName "longitude", pMType Quantitative ]
-                << position Latitude [ pName "latitude", pMType Quantitative ]
+                << position Longitude [ pName "longitude", pQuant ]
+                << position Latitude [ pName "latitude", pQuant ]
                 << order [ oName "zip_code", oMType Quantitative ]
                 << color [ mStr "#666" ]
                 << detail [ dName "conterminous", dMType Nominal ]
@@ -561,8 +561,8 @@ scribbleMap2 =
 
         enc =
             encoding
-                << position Longitude [ pName "longitude", pMType Quantitative ]
-                << position Latitude [ pName "latitude", pMType Quantitative ]
+                << position Longitude [ pName "longitude", pQuant ]
+                << position Latitude [ pName "latitude", pQuant ]
                 << order [ oName "zip_code", oMType Quantitative ]
                 << color [ mName "digit3", mMType Nominal, mLegend [] ]
                 << detail [ dName "ziplen", dMType Nominal ]
@@ -595,18 +595,18 @@ map1d =
 
         cEnc =
             encoding
-                << position Longitude [ pName "cx", pMType Quantitative ]
-                << position Latitude [ pName "cy", pMType Quantitative ]
+                << position Longitude [ pName "cx", pQuant ]
+                << position Latitude [ pName "cy", pQuant ]
 
         hEnc =
             encoding
-                << position Longitude [ pName "cx", pMType Quantitative ]
+                << position Longitude [ pName "cx", pQuant ]
                 << position Latitude [ pNum 51.28 ]
 
         vEnc =
             encoding
                 << position Longitude [ pNum -0.52 ]
-                << position Latitude [ pName "cy", pMType Quantitative ]
+                << position Latitude [ pName "cy", pQuant ]
 
         cSpec =
             asSpec [ centroidData [], circle [], cEnc [] ]

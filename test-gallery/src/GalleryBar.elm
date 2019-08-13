@@ -24,8 +24,8 @@ bar1 =
 
         enc =
             encoding
-                << position X [ pName "a", pMType Ordinal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ des, data [], enc [], bar [] ]
 
@@ -46,11 +46,11 @@ bar2 =
             encoding
                 << position X
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population" ]
                     ]
-                << position Y [ pName "age", pMType Ordinal ]
+                << position Y [ pName "age", pOrdinal ]
     in
     toVegaLite [ des, heightStep 17, data, trans [], enc [], bar [] ]
 
@@ -71,13 +71,13 @@ bar3 =
             encoding
                 << position X
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population" ]
                     ]
                 << position Y
                     [ pName "age"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pSort [ soByChannel chX, soDescending ]
                     ]
     in
@@ -95,8 +95,8 @@ bar4 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pMType Quantitative, pBin [] ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite
         [ des, data, enc [], bar [] ]
@@ -113,9 +113,9 @@ bar5 =
 
         enc =
             encoding
-                << position X [ pName "binStart", pMType Quantitative, pBin [ biStep 2 ] ]
+                << position X [ pName "binStart", pQuant, pBin [ biStep 2 ] ]
                 << position X2 [ pName "binEnd" ]
-                << position Y [ pName "count", pMType Quantitative ]
+                << position Y [ pName "count", pQuant ]
     in
     toVegaLite [ data [], enc [], bar [] ]
 
@@ -141,12 +141,12 @@ bar6 =
             encoding
                 << position X
                     [ pName "x1"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scType scLog, scBase 10 ]
                     , pAxis [ axTickCount 5 ]
                     ]
                 << position X2 [ pName "x2" ]
-                << position Y [ pAggregate opCount, pMType Quantitative ]
+                << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite [ des, data [], trans [], enc [], bar [] ]
 
@@ -167,10 +167,10 @@ bar7 =
 
         enc =
             encoding
-                << position X [ pName "gender", pMType Nominal, pAxis [ axTitle "" ] ]
+                << position X [ pName "gender", pNominal, pAxis [ axTitle "" ] ]
                 << position Y
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axGrid False ]
                     ]
@@ -211,11 +211,11 @@ bar8 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pTimeUnit month
                     , pAxis [ axTitle "Month of the year" ]
                     ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position Y [ pQuant, pAggregate opCount ]
                 << color
                     [ mName "weather"
                     , mMType Nominal
@@ -237,8 +237,8 @@ bar9 =
 
         enc =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pAggregate opSum ]
-                << position Y [ pName "variety", pMType Nominal ]
+                << position X [ pName "yield", pQuant, pAggregate opSum ]
+                << position Y [ pName "variety", pNominal ]
                 << color [ mName "site", mMType Nominal ]
     in
     toVegaLite [ des, data, enc [], bar [] ]
@@ -260,10 +260,10 @@ bar10 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal ]
+                << position X [ pName "age", pOrdinal ]
                 << position Y
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "Population" ]
                     , pStack stNormalize
@@ -291,8 +291,8 @@ bar11 =
 
         enc =
             encoding
-                << position Y [ pName "task", pMType Ordinal ]
-                << position X [ pName "start", pMType Quantitative ]
+                << position Y [ pName "task", pOrdinal ]
+                << position X [ pName "start", pQuant ]
                 << position X2 [ pName "end" ]
     in
     toVegaLite [ des, data [], enc [], bar [] ]
@@ -311,8 +311,8 @@ bar12 =
 
         enc =
             encoding
-                << position X [ pName "color", pMType Nominal ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "color", pNominal ]
+                << position Y [ pName "b", pQuant ]
                 << color [ mName "color", mMType Nominal, mScale [] ]
     in
     toVegaLite [ des, data [], enc [], bar [] ]
@@ -334,10 +334,10 @@ bar13 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal ]
+                << position X [ pName "age", pOrdinal ]
                 << position Y
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "Population" ]
                     , pStack stNone
@@ -368,14 +368,14 @@ bar14 =
             encoding
                 << position Y
                     [ pName "age"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pAxis []
                     , pSort [ soDescending ]
                     ]
                 << position X
                     [ pName "signedPeople"
                     , pAggregate opSum
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "Population", axFormat "s" ]
                     ]
                 << color
@@ -412,13 +412,13 @@ bar15 =
             encoding
                 << position X
                     [ pName "percentage_start"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "Percentage" ]
                     ]
                 << position X2 [ pName "percentage_end" ]
                 << position Y
                     [ pName "question"
-                    , pMType Nominal
+                    , pNominal
                     , pAxis [ axTitle "Question", axOffset 5, axTicks False, axMinExtent 60, axDomain False ]
                     ]
                 << color
@@ -452,8 +452,8 @@ bar16 =
 
         enc =
             encoding
-                << position X [ pName "b", pMType Quantitative ]
-                << position Y [ pName "a", pMType Ordinal ]
+                << position X [ pName "b", pQuant ]
+                << position Y [ pName "a", pOrdinal ]
 
         specBar =
             asSpec [ bar [] ]
@@ -491,10 +491,10 @@ bar17 =
 
         enc =
             encoding
-                << position X [ pName "data", pMType Ordinal ]
+                << position X [ pName "data", pOrdinal ]
                 << position Y
                     [ pName "id"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pAxis []
                     , pSort [ soDescending ]
                     ]
@@ -553,8 +553,8 @@ bar18 =
 
         enc =
             encoding
-                << position X [ pName "col", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "animal", pMType Ordinal, pAxis [] ]
+                << position X [ pName "col", pOrdinal, pAxis [] ]
+                << position Y [ pName "animal", pOrdinal, pAxis [] ]
                 << row [ fName "country", fMType Nominal, fHeader [ hdTitle "" ] ]
                 << shape
                     [ mName "animal"
@@ -616,8 +616,8 @@ bar19 =
 
         enc =
             encoding
-                << position X [ pName "rank", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "animal", pMType Nominal, pAxis [], pSort [] ]
+                << position X [ pName "rank", pOrdinal, pAxis [] ]
+                << position Y [ pName "animal", pNominal, pAxis [], pSort [] ]
                 << row [ fName "country", fMType Nominal, fHeader [ hdTitle "" ] ]
                 << text [ tName "emoji", tMType Nominal ]
                 << size [ mNum 65 ]

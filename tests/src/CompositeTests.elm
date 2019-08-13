@@ -12,8 +12,8 @@ bPlot ext =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal ]
-                << position Y [ pName "people", pMType Quantitative, pAxis [ axTitle "Population" ] ]
+                << position X [ pName "age", pOrdinal ]
+                << position Y [ pName "people", pQuant, pAxis [ axTitle "Population" ] ]
     in
     toVegaLite [ pop, boxplot [ maExtent ext ], enc [] ]
 
@@ -36,8 +36,8 @@ boxplot3 =
 
         enc =
             encoding
-                << position X [ pName "age", pMType Ordinal ]
-                << position Y [ pName "people", pMType Quantitative, pAxis [ axTitle "Population" ] ]
+                << position X [ pName "age", pOrdinal ]
+                << position Y [ pName "people", pQuant, pAxis [ axTitle "Population" ] ]
     in
     toVegaLite
         [ pop
@@ -95,10 +95,10 @@ eBand ext =
 
         enc =
             encoding
-                << position X [ pName "Year", pMType Temporal, pTimeUnit year ]
+                << position X [ pName "Year", pTemporal, pTimeUnit year ]
                 << position Y
                     [ pName "Miles_per_Gallon"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scZero False ]
                     , pTitle ("Miles per Gallon " ++ label)
                     ]
@@ -124,10 +124,10 @@ eBar ext =
 
         enc =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pScale [ scZero False ] ]
+                << position X [ pName "yield", pQuant, pScale [ scZero False ] ]
                 << position Y
                     [ pName "variety"
-                    , pMType Ordinal
+                    , pOrdinal
                     ]
     in
     toVegaLite [ barley, errorbar [ maExtent ext, maTicks [ maStroke "blue" ] ], enc [] ]
@@ -154,8 +154,8 @@ errorbar3 =
 
         encErrorBars =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pScale [ scZero False ] ]
-                << position Y [ pName "variety", pMType Ordinal ]
+                << position X [ pName "yield", pQuant, pScale [ scZero False ] ]
+                << position Y [ pName "variety", pOrdinal ]
                 << color [ mStr "#4682b4" ]
 
         specPoints =
@@ -163,8 +163,8 @@ errorbar3 =
 
         encPoints =
             encoding
-                << position X [ pName "yield", pMType Quantitative, pAggregate opMean ]
-                << position Y [ pName "variety", pMType Ordinal ]
+                << position X [ pName "yield", pQuant, pAggregate opMean ]
+                << position Y [ pName "variety", pOrdinal ]
     in
     toVegaLite
         [ des

@@ -15,8 +15,8 @@ timeByUnit tu =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit tu ]
-                << position Y [ pName "temperature", pMType Quantitative, pAggregate opMean, pScale [ scZero False ] ]
+                << position X [ pName "date", pTemporal, pTimeUnit tu ]
+                << position Y [ pName "temperature", pQuant, pAggregate opMean, pScale [ scZero False ] ]
     in
     toVegaLite [ width 800, data, enc [], line [ maStrokeWidth 0.2 ] ]
 
@@ -141,8 +141,8 @@ parseTime dType =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, tu, timeScale, pAxis [ axFormat "%d %b %H:%M" ] ]
-                << position Y [ pName "value", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, tu, timeScale, pAxis [ axFormat "%d %b %H:%M" ] ]
+                << position Y [ pName "value", pQuant ]
                 << size [ mNum 500 ]
     in
     toVegaLite [ width 800, data [], enc [], circle [] ]

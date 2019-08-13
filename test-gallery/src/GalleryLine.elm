@@ -24,8 +24,8 @@ line1 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ des, data, trans [], enc [], line [] ]
 
@@ -41,8 +41,8 @@ line2 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
-                << position Y [ pName "price", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position Y [ pName "price", pQuant, pAggregate opMean ]
                 << color [ mName "symbol", mMType Nominal ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
@@ -59,8 +59,8 @@ line3 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pTimeUnit year ]
-                << position Y [ pName "price", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position Y [ pName "price", pQuant, pAggregate opMean ]
                 << color [ mName "symbol", mMType Nominal ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
@@ -77,8 +77,8 @@ line4 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
                 << color [ mName "symbol", mMType Nominal ]
     in
     toVegaLite [ des, data, enc [], line [] ]
@@ -95,8 +95,8 @@ line5 =
 
         enc =
             encoding
-                << position X [ pName "year", pMType Ordinal, pScale [ scPadding 0.5 ] ]
-                << position Y [ pName "yield", pMType Quantitative, pAggregate opMedian ]
+                << position X [ pName "year", pOrdinal, pScale [ scPadding 0.5 ] ]
+                << position Y [ pName "yield", pQuant, pAggregate opMedian ]
                 << color [ mName "site", mMType Nominal ]
     in
     toVegaLite [ des, widthStep 50, data, enc [], line [] ]
@@ -116,8 +116,8 @@ line6 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miStepAfter ] ]
 
@@ -136,8 +136,8 @@ line7 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miMonotone ] ]
 
@@ -164,7 +164,7 @@ line8 =
             encoding
                 << position X
                     [ pName "date"
-                    , pMType Temporal
+                    , pTemporal
                     , pAxis
                         [ axTickCount 20
                         , axDataCondition
@@ -175,7 +175,7 @@ line8 =
                             (axGridDash [ 2, 2 ])
                         ]
                     ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ des, data, trans [], enc [], line [] ]
 
@@ -191,8 +191,8 @@ line9 =
 
         enc =
             encoding
-                << position X [ pName "miles", pMType Quantitative, pScale [ scZero False ] ]
-                << position Y [ pName "gas", pMType Quantitative, pScale [ scZero False ] ]
+                << position X [ pName "miles", pQuant, pScale [ scZero False ] ]
+                << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
                 << order [ oName "year", oMType Temporal ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
@@ -209,8 +209,8 @@ line10 =
 
         enc =
             encoding
-                << position X [ pName "date", pMType Temporal, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "price", pMType Quantitative ]
+                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position Y [ pName "price", pQuant ]
                 << size [ mName "price", mMType Quantitative ]
                 << color [ mName "symbol", mMType Nominal ]
     in
@@ -230,8 +230,8 @@ line11 =
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
-                << position Y [ pName "y", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ des, data [], enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -262,13 +262,13 @@ line12 =
             encoding
                 << position X
                     [ pName "scaled_date"
-                    , pMType Quantitative
+                    , pQuant
                     , pAxis [ axTitle "Year into decade", axTickCount 11 ]
                     ]
                 << position Y
                     [ pName "CO2"
                     , pTitle "CO₂ concentration in ppm"
-                    , pMType Quantitative
+                    , pQuant
                     , pScale [ scZero False ]
                     ]
 
@@ -341,8 +341,8 @@ line13 =
 
         enc =
             encoding
-                << position X [ pName "matchday", pMType Ordinal ]
-                << position Y [ pName "rank", pMType Ordinal ]
+                << position X [ pName "matchday", pOrdinal ]
+                << position Y [ pName "rank", pOrdinal ]
                 << color [ mName "team", mMType Nominal, mScale teamColours ]
 
         teamColours =
@@ -372,16 +372,16 @@ line14 =
 
         encSin =
             encoding
-                << position X [ pName "u", pMType Quantitative, pTitle "x" ]
-                << position Y [ pName "v", pMType Quantitative, pTitle "sin(x)" ]
+                << position X [ pName "u", pQuant, pTitle "x" ]
+                << position Y [ pName "v", pQuant, pTitle "sin(x)" ]
 
         specSin =
             asSpec [ encSin [], line [] ]
 
         encCos =
             encoding
-                << position X [ pName "u", pMType Quantitative, pTitle "x" ]
-                << position Y [ pName "w", pMType Quantitative, pTitle "cos(x)" ]
+                << position X [ pName "u", pQuant, pTitle "x" ]
+                << position Y [ pName "w", pQuant, pTitle "cos(x)" ]
 
         specCos =
             asSpec [ encCos [], line [ maStroke "firebrick" ] ]

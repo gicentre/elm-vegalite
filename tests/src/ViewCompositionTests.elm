@@ -30,12 +30,12 @@ genderChart hdProps cProps =
                     ]
                 << position X
                     [ pName "age"
-                    , pMType Ordinal
+                    , pOrdinal
                     , pScale [ scRangeStep (Just 17) ]
                     ]
                 << position Y
                     [ pName "people"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "Population" ]
                     ]
@@ -116,8 +116,8 @@ grid1 =
     let
         encByCatVal =
             encoding
-                << position X [ pName "cat", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "val", pMType Quantitative, pAxis [] ]
+                << position X [ pName "cat", pOrdinal, pAxis [] ]
+                << position Y [ pName "val", pQuant, pAxis [] ]
                 << color [ mName "cat", mMType Nominal, mLegend [] ]
 
         specByCatVal =
@@ -140,8 +140,8 @@ grid2 =
     let
         encByCatVal =
             encoding
-                << position X [ pName "cat", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "val", pMType Quantitative, pAxis [] ]
+                << position X [ pName "cat", pOrdinal, pAxis [] ]
+                << position Y [ pName "val", pQuant, pAxis [] ]
                 << color [ mName "cat", mMType Nominal, mLegend [] ]
 
         specByCatVal =
@@ -166,8 +166,8 @@ grid3 =
     let
         encByCatVal =
             encoding
-                << position X [ pName "cat", pMType Ordinal, pAxis [] ]
-                << position Y [ pName "val", pMType Quantitative, pAxis [] ]
+                << position X [ pName "cat", pOrdinal, pAxis [] ]
+                << position Y [ pName "val", pQuant, pAxis [] ]
                 << color [ mName "cat", mMType Nominal, mLegend [] ]
 
         specByCatVal =
@@ -195,8 +195,8 @@ grid4 =
 
         enc =
             encoding
-                << position X [ pRepeat arFlow, pMType Quantitative, pBin [] ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position X [ pRepeat arFlow, pQuant, pBin [] ]
+                << position Y [ pQuant, pAggregate opCount ]
                 << color [ mName "Origin", mMType Nominal ]
 
         spec =
@@ -217,8 +217,8 @@ grid5 =
 
         enc =
             encoding
-                << position X [ pRepeat arRow, pMType Quantitative, pBin [] ]
-                << position Y [ pMType Quantitative, pAggregate opCount ]
+                << position X [ pRepeat arRow, pQuant, pBin [] ]
+                << position Y [ pQuant, pAggregate opCount ]
                 << color [ mName "Origin", mMType Nominal ]
 
         spec =
