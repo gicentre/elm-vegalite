@@ -4289,8 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$SortTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$dayLabel = function (dayName) {
@@ -5982,14 +5980,15 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$oMType = author$project$VegaLite$OmType;
 var author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$oName = author$project$VegaLite$OName;
+var author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$oOrdinal = author$project$VegaLite$OmType(1);
 var author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -6389,14 +6388,15 @@ var author$project$VegaLite$order = function (oDefs) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$orderChannelProperty, oDefs))));
 };
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PSort = function (a) {
 	return {$: 13, a: a};
 };
@@ -8399,7 +8399,7 @@ var author$project$SortTests$sortQuant = F2(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Horsepower'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pSort(sps)
 							]))),
 				A2(
@@ -8408,13 +8408,13 @@ var author$project$SortTests$sortQuant = F2(
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName(yField),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$order(
 				_List_fromArray(
 					[
 						author$project$VegaLite$oName(yField),
-						author$project$VegaLite$oMType(1)
+						author$project$VegaLite$oOrdinal
 					])));
 		var data = A2(
 			elm$core$Basics$composeL,
@@ -8455,6 +8455,7 @@ var author$project$SortTests$sortAsc = A2(
 		[author$project$VegaLite$soAscending]));
 var author$project$VegaLite$Bar = 1;
 var author$project$VegaLite$bar = author$project$VegaLite$mark(1);
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$CustomSort = function (a) {
 	return {$: 2, a: a};
 };
@@ -8475,7 +8476,7 @@ var author$project$SortTests$sortCustom = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('a'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pSort(
 						_List_fromArray(
 							[
@@ -8491,7 +8492,7 @@ var author$project$SortTests$sortCustom = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('b'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -8539,7 +8540,6 @@ var author$project$SortTests$sortWeight = A2(
 		[
 			A2(author$project$VegaLite$soByField, 'Weight_in_lbs', author$project$VegaLite$opMean)
 		]));
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$aggregate = F2(
 	function (ops, groups) {
 		return elm$core$List$cons(
@@ -8587,14 +8587,16 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$opAs = F3(
 	function (op, field, label) {
 		return elm$json$Json$Encode$object(
@@ -8734,14 +8736,15 @@ var author$project$VegaLite$stack = F5(
 							A2(author$project$VegaLite$stackPropertySpec, 'sort', sProps)
 						]))));
 	});
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
+var author$project$VegaLite$tQuant = author$project$VegaLite$TmType(2);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -9786,7 +9789,7 @@ var author$project$SortTests$stack1 = function () {
 									_List_fromArray(
 										[
 											author$project$VegaLite$pName('x'),
-											author$project$VegaLite$pMType(2),
+											author$project$VegaLite$pQuant,
 											author$project$VegaLite$pAxis(_List_Nil)
 										]))),
 							A2(
@@ -9802,7 +9805,7 @@ var author$project$SortTests$stack1 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('y'),
-									author$project$VegaLite$pMType(2),
+									author$project$VegaLite$pQuant,
 									author$project$VegaLite$pAxis(_List_Nil)
 								]))),
 					A2(
@@ -9816,13 +9819,13 @@ var author$project$SortTests$stack1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Origin'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]))),
 			author$project$VegaLite$opacity(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		author$project$VegaLite$tooltips(
@@ -9831,12 +9834,12 @@ var author$project$SortTests$stack1 = function () {
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('Origin'),
-						author$project$VegaLite$tMType(0)
+						author$project$VegaLite$tNominal
 					]),
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('Cylinders'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					])
 				])));
 	var cars = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);

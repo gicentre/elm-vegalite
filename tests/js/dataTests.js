@@ -4289,8 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$DataTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
@@ -6065,14 +6063,17 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -8329,7 +8330,7 @@ var author$project$DataTests$annotate1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('a'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8337,7 +8338,7 @@ var author$project$DataTests$annotate1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('b'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specBars = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8395,7 +8396,7 @@ var author$project$DataTests$bin1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('bin_start'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBinned,
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -8409,7 +8410,7 @@ var author$project$DataTests$bin1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('bin_end'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8417,7 +8418,7 @@ var author$project$DataTests$bin1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('count'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -8480,7 +8481,7 @@ var author$project$DataTests$bin2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -8489,7 +8490,7 @@ var author$project$DataTests$bin2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -8525,7 +8526,7 @@ var author$project$DataTests$bin3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -8538,7 +8539,7 @@ var author$project$DataTests$bin3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -8559,6 +8560,7 @@ var author$project$DataTests$bin3 = function () {
 			]));
 }();
 var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
 var author$project$DataTests$showData = function (data) {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -8571,7 +8573,7 @@ var author$project$DataTests$showData = function (data) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cat'),
-						author$project$VegaLite$pMType(0)
+						author$project$VegaLite$pNominal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8579,7 +8581,7 @@ var author$project$DataTests$showData = function (data) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('val'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -8781,7 +8783,7 @@ var author$project$DataTests$dataSource = function (name) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cat'),
-						author$project$VegaLite$pMType(0)
+						author$project$VegaLite$pNominal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8789,7 +8791,7 @@ var author$project$DataTests$dataSource = function (name) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('val'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var dataRows = A2(
 		elm$core$Basics$composeL,
@@ -9108,22 +9110,22 @@ var author$project$VegaLite$dataFromUrl = F2(
 							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
 					])));
 	});
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
 };
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$Mean = {$: 7};
 var author$project$VegaLite$opMean = author$project$VegaLite$Mean;
 var author$project$DataTests$data11 = function () {
@@ -9147,7 +9149,7 @@ var author$project$DataTests$data11 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Answer'),
-								author$project$VegaLite$pMType(0)
+								author$project$VegaLite$pNominal
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -9155,20 +9157,20 @@ var author$project$DataTests$data11 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Percent'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Pollster'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]))),
 		author$project$VegaLite$column(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('Pollster'),
-					author$project$VegaLite$fMType(0)
+					author$project$VegaLite$fNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9921,7 +9923,7 @@ var author$project$DataTests$filter1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('a'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -9929,7 +9931,7 @@ var author$project$DataTests$filter1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('b'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -10014,7 +10016,7 @@ var author$project$DataTests$filter2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('a'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10022,7 +10024,7 @@ var author$project$DataTests$filter2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('b'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -10086,7 +10088,7 @@ var author$project$DataTests$flatten1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('quant'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10094,13 +10096,13 @@ var author$project$DataTests$flatten1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cat'),
-						author$project$VegaLite$pMType(0)
+						author$project$VegaLite$pNominal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('key'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var data = author$project$VegaLite$dataFromJson(
 		A2(
@@ -10256,7 +10258,7 @@ var author$project$DataTests$fold1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('2017'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10264,7 +10266,7 @@ var author$project$DataTests$fold1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('city'),
-					author$project$VegaLite$pMType(0)
+					author$project$VegaLite$pNominal
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -12156,7 +12158,7 @@ var author$project$DataTests$geodata1 = author$project$VegaLite$toVegaLite(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('id'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]),
 				_List_Nil))
 		]));
@@ -12417,7 +12419,7 @@ var author$project$DataTests$geodata2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('properties.Region'),
-							author$project$VegaLite$mMType(0),
+							author$project$VegaLite$mNominal,
 							author$project$VegaLite$mLegend(
 							_List_fromArray(
 								[
@@ -12636,7 +12638,7 @@ var author$project$DataTests$impute1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12650,13 +12652,13 @@ var author$project$DataTests$impute1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12710,7 +12712,7 @@ var author$project$DataTests$impute2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12724,13 +12726,13 @@ var author$project$DataTests$impute2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12776,7 +12778,7 @@ var author$project$DataTests$impute3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12790,13 +12792,13 @@ var author$project$DataTests$impute3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12825,7 +12827,7 @@ var author$project$DataTests$impute4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12839,7 +12841,7 @@ var author$project$DataTests$impute4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pImpute(
 						_List_fromArray(
 							[
@@ -12851,7 +12853,7 @@ var author$project$DataTests$impute4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12875,7 +12877,7 @@ var author$project$DataTests$impute5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12889,7 +12891,7 @@ var author$project$DataTests$impute5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pImpute(
 						_List_fromArray(
 							[
@@ -12900,7 +12902,7 @@ var author$project$DataTests$impute5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12924,7 +12926,7 @@ var author$project$DataTests$impute6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12938,7 +12940,7 @@ var author$project$DataTests$impute6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pImpute(
 						_List_fromArray(
 							[
@@ -12953,7 +12955,7 @@ var author$project$DataTests$impute6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12981,7 +12983,7 @@ var author$project$DataTests$impute7 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -12995,7 +12997,7 @@ var author$project$DataTests$impute7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pImpute(
 						_List_fromArray(
 							[
@@ -13011,7 +13013,7 @@ var author$project$DataTests$impute7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -13035,7 +13037,7 @@ var author$project$DataTests$impute8 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('a'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -13049,7 +13051,7 @@ var author$project$DataTests$impute8 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('b'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pImpute(
 						_List_fromArray(
 							[
@@ -13062,7 +13064,7 @@ var author$project$DataTests$impute8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('c'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -13116,7 +13118,7 @@ var author$project$DataTests$namedData1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('a'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -13124,7 +13126,7 @@ var author$project$DataTests$namedData1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('b'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -13166,7 +13168,7 @@ var author$project$DataTests$namedData2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cat'),
-						author$project$VegaLite$pMType(0)
+						author$project$VegaLite$pNominal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -13174,7 +13176,7 @@ var author$project$DataTests$namedData2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('val'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		author$project$VegaLite$dataName,
@@ -13200,7 +13202,7 @@ var author$project$DataTests$namedData3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cat'),
-						author$project$VegaLite$pMType(0)
+						author$project$VegaLite$pNominal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -13208,7 +13210,7 @@ var author$project$DataTests$namedData3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('val'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -13264,7 +13266,7 @@ var author$project$DataTests$pivot1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('country'),
-							author$project$VegaLite$pMType(0)
+							author$project$VegaLite$pNominal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -13272,13 +13274,13 @@ var author$project$DataTests$pivot1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arFlow),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('country'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -13352,7 +13354,7 @@ var author$project$DataTests$sample1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -13360,7 +13362,7 @@ var author$project$DataTests$sample1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var spec1 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13437,7 +13439,7 @@ var author$project$DataTests$sequence1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('data'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -13445,7 +13447,7 @@ var author$project$DataTests$sequence1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('v'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A3(author$project$VegaLite$dataSequence, 0, 12.7, 0.1);
 	return author$project$VegaLite$toVegaLite(
@@ -13500,7 +13502,7 @@ var author$project$DataTests$sequence2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('u'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -13508,7 +13510,7 @@ var author$project$DataTests$sequence2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('v'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A4(author$project$VegaLite$dataSequenceAs, 0, 12.7, 0.1, 'u');
 	return author$project$VegaLite$toVegaLite(

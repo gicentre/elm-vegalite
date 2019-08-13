@@ -2299,8 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryInteraction$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$And = F2(
@@ -7500,14 +7498,17 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -8365,7 +8366,7 @@ var author$project$GalleryInteraction$interaction1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('a'),
-								author$project$VegaLite$pMType(1)
+								author$project$VegaLite$pOrdinal
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -8373,7 +8374,7 @@ var author$project$GalleryInteraction$interaction1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('b'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$fillOpacity(
 				_List_fromArray(
@@ -8462,7 +8463,6 @@ var author$project$GalleryInteraction$interaction1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$asSpec = function (specs) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -8535,20 +8535,23 @@ var author$project$VegaLite$Not = function (a) {
 	return {$: 7, a: a};
 };
 var author$project$VegaLite$not = author$project$VegaLite$Not;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 8, a: a};
 };
 var author$project$VegaLite$pTimeUnit = author$project$VegaLite$PTimeUnit;
 var author$project$VegaLite$Rule = 10;
 var author$project$VegaLite$rule = author$project$VegaLite$mark(10);
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tQuant = author$project$VegaLite$TmType(2);
+var author$project$VegaLite$tTemporal = author$project$VegaLite$TmType(3);
 var author$project$VegaLite$TTimeUnit = function (a) {
 	return {$: 6, a: a};
 };
@@ -8744,7 +8747,7 @@ var author$project$GalleryInteraction$interaction10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('temp_min'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var spec2 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8765,7 +8768,7 @@ var author$project$GalleryInteraction$interaction10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('temp_max'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var spec1 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8788,7 +8791,7 @@ var author$project$GalleryInteraction$interaction10 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$yearMonthDate)
 					]))),
 		author$project$VegaLite$tooltips(
@@ -8797,18 +8800,18 @@ var author$project$GalleryInteraction$interaction10 = function () {
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('date'),
-						author$project$VegaLite$tMType(3),
+						author$project$VegaLite$tTemporal,
 						author$project$VegaLite$tTimeUnit(author$project$VegaLite$yearMonthDate)
 					]),
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('temp_max'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('temp_min'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					])
 				])));
 	var desc = author$project$VegaLite$description('Multi Series Line Chart with Tooltip');
@@ -8832,7 +8835,6 @@ var author$project$GalleryInteraction$interaction10 = function () {
 					[spec1, spec2, spec3]))
 			]));
 }();
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$ChColor = 4;
 var author$project$VegaLite$chColor = 4;
 var author$project$VegaLite$View = function (a) {
@@ -8860,14 +8862,14 @@ var author$project$VegaLite$hConcat = function (specs) {
 		18,
 		author$project$VegaLite$toList(specs));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mOrdinal = author$project$VegaLite$MmType(1);
 var author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
@@ -8955,6 +8957,8 @@ var author$project$VegaLite$resolve = function (res) {
 };
 var author$project$VegaLite$SeInterval = 2;
 var author$project$VegaLite$seInterval = 2;
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$text = function (tDefs) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -9883,7 +9887,7 @@ var author$project$GalleryInteraction$interaction11 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9891,7 +9895,7 @@ var author$project$GalleryInteraction$interaction11 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -9902,7 +9906,7 @@ var author$project$GalleryInteraction$interaction11 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Cylinders'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]),
 					_List_fromArray(
 						[
@@ -9927,14 +9931,14 @@ var author$project$GalleryInteraction$interaction11 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('rowNumber'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('Origin'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var specOriginText = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9955,14 +9959,14 @@ var author$project$GalleryInteraction$interaction11 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('rowNumber'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('Miles_per_Gallon'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var specMPGText = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9983,14 +9987,14 @@ var author$project$GalleryInteraction$interaction11 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('rowNumber'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('Horsepower'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var specHPText = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10027,6 +10031,7 @@ var author$project$VegaLite$Range = function (a) {
 	return {$: 28, a: a};
 };
 var author$project$VegaLite$coRange = author$project$VegaLite$Range;
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$opacity = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -10034,6 +10039,7 @@ var author$project$VegaLite$opacity = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
 var author$project$VegaLite$RRamp = function (a) {
 	return {$: 4, a: a};
 };
@@ -10066,7 +10072,7 @@ var author$project$GalleryInteraction$interaction12 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('predicted'),
-								author$project$VegaLite$pMType(0)
+								author$project$VegaLite$pNominal
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -10074,13 +10080,13 @@ var author$project$GalleryInteraction$interaction12 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('actual'),
-							author$project$VegaLite$pMType(0)
+							author$project$VegaLite$pNominal
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('count'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$opacity(
 			_List_fromArray(
@@ -10243,7 +10249,7 @@ var author$project$GalleryInteraction$interaction13 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Name'),
-						author$project$VegaLite$pMType(0),
+						author$project$VegaLite$pNominal,
 						author$project$VegaLite$pSort(
 						_List_fromArray(
 							[
@@ -10258,7 +10264,7 @@ var author$project$GalleryInteraction$interaction13 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specMini = author$project$VegaLite$asSpec(
@@ -10281,7 +10287,7 @@ var author$project$GalleryInteraction$interaction13 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Name'),
-						author$project$VegaLite$pMType(0),
+						author$project$VegaLite$pNominal,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -10307,7 +10313,7 @@ var author$project$GalleryInteraction$interaction13 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -10350,14 +10356,14 @@ var author$project$VegaLite$calculateAs = F2(
 							elm$json$Json$Encode$string(label)
 						]))));
 	});
-var author$project$VegaLite$HmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$hMType = author$project$VegaLite$HmType;
 var author$project$VegaLite$HName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$hName = author$project$VegaLite$HName;
+var author$project$VegaLite$HmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$hNominal = author$project$VegaLite$HmType(0);
 var author$project$VegaLite$hyperlinkChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -10471,6 +10477,7 @@ var author$project$VegaLite$hyperlink = function (hyperProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$hyperlinkChannelProperty, hyperProps))));
 };
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$tooltip = function (tDefs) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -10500,7 +10507,7 @@ var author$project$GalleryInteraction$interaction2 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('Horsepower'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -10508,25 +10515,25 @@ var author$project$GalleryInteraction$interaction2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Miles_per_Gallon'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Origin'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]))),
 			author$project$VegaLite$tooltip(
 				_List_fromArray(
 					[
 						author$project$VegaLite$tName('Name'),
-						author$project$VegaLite$tMType(0)
+						author$project$VegaLite$tNominal
 					]))),
 		author$project$VegaLite$hyperlink(
 			_List_fromArray(
 				[
 					author$project$VegaLite$hName('url'),
-					author$project$VegaLite$hMType(0)
+					author$project$VegaLite$hNominal
 				])));
 	var des = author$project$VegaLite$description('Scatterplot with external links and tooltips');
 	return author$project$VegaLite$toVegaLite(
@@ -10557,7 +10564,7 @@ var author$project$GalleryInteraction$interaction3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10565,7 +10572,7 @@ var author$project$GalleryInteraction$interaction3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10576,7 +10583,7 @@ var author$project$GalleryInteraction$interaction3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Cylinders'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]),
 					_List_fromArray(
 						[
@@ -10646,7 +10653,7 @@ var author$project$GalleryInteraction$interaction4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$yearMonth)
 					]))),
 		A2(
@@ -10655,7 +10662,7 @@ var author$project$GalleryInteraction$interaction4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('count'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opSum)
 				])));
 	var des = author$project$VegaLite$description('Area chart with rectangular brush');
@@ -10707,7 +10714,7 @@ var author$project$GalleryInteraction$interaction5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10715,7 +10722,7 @@ var author$project$GalleryInteraction$interaction5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(
@@ -10770,7 +10777,7 @@ var author$project$GalleryInteraction$interaction6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -10786,7 +10793,7 @@ var author$project$GalleryInteraction$interaction6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -10800,7 +10807,7 @@ var author$project$GalleryInteraction$interaction6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Cylinders'),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var des = author$project$VegaLite$description('Drag to pan. Zoom in or out with mousewheel/zoom gesture.');
 	return author$project$VegaLite$toVegaLite(
@@ -10916,7 +10923,7 @@ var author$project$GalleryInteraction$interaction7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10924,7 +10931,7 @@ var author$project$GalleryInteraction$interaction7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var enc2 = A2(
 		elm$core$Basics$composeL,
@@ -10935,7 +10942,7 @@ var author$project$GalleryInteraction$interaction7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Origin'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(
@@ -10961,7 +10968,7 @@ var author$project$GalleryInteraction$interaction7 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Origin'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]),
 					_List_fromArray(
 						[
@@ -11020,7 +11027,7 @@ var author$project$GalleryInteraction$interaction8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var enc2 = A2(
@@ -11049,7 +11056,7 @@ var author$project$GalleryInteraction$interaction8 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		author$project$VegaLite$opacity(
@@ -11155,7 +11162,7 @@ var author$project$GalleryInteraction$interaction9 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('date'),
-								author$project$VegaLite$pMType(3)
+								author$project$VegaLite$pTemporal
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -11163,19 +11170,19 @@ var author$project$GalleryInteraction$interaction9 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('price'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$text(
 				_List_fromArray(
 					[
 						author$project$VegaLite$tName('price'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('symbol'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var spec2_2 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11198,7 +11205,7 @@ var author$project$GalleryInteraction$interaction9 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('date'),
-					author$project$VegaLite$pMType(3)
+					author$project$VegaLite$pTemporal
 				])));
 	var spec2_1 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11249,7 +11256,7 @@ var author$project$GalleryInteraction$interaction9 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('date'),
-							author$project$VegaLite$pMType(3)
+							author$project$VegaLite$pTemporal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -11257,13 +11264,13 @@ var author$project$GalleryInteraction$interaction9 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('price'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('symbol'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var spec1 = author$project$VegaLite$asSpec(
 		_List_fromArray(

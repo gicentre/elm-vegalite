@@ -4289,7 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$HyperlinkTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
@@ -7536,14 +7535,15 @@ var author$project$VegaLite$encoding = function (channels) {
 		15,
 		elm$json$Json$Encode$object(channels));
 };
-var author$project$VegaLite$HmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$hMType = author$project$VegaLite$HmType;
 var author$project$VegaLite$HName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$hName = author$project$VegaLite$HName;
+var author$project$VegaLite$HmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$hNominal = author$project$VegaLite$HmType(0);
 var author$project$VegaLite$hyperlinkChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -7667,14 +7667,14 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MNumber = function (a) {
 	return {$: 14, a: a};
 };
@@ -7691,14 +7691,14 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -8437,14 +8437,14 @@ var author$project$VegaLite$Strings = function (a) {
 	return {$: 3, a: a};
 };
 var author$project$VegaLite$strs = author$project$VegaLite$Strings;
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -8625,14 +8625,14 @@ var author$project$HyperlinkTests$hyperlink1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('label'),
-								author$project$VegaLite$pMType(0),
+								author$project$VegaLite$pNominal,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				author$project$VegaLite$text(
 					_List_fromArray(
 						[
 							author$project$VegaLite$tName('label'),
-							author$project$VegaLite$tMType(0)
+							author$project$VegaLite$tNominal
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
@@ -8665,7 +8665,7 @@ var author$project$HyperlinkTests$hyperlink1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('label'),
-								author$project$VegaLite$pMType(0),
+								author$project$VegaLite$pNominal,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				author$project$VegaLite$size(
@@ -8677,14 +8677,14 @@ var author$project$HyperlinkTests$hyperlink1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('label'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		author$project$VegaLite$hyperlink(
 			_List_fromArray(
 				[
 					author$project$VegaLite$hName('url'),
-					author$project$VegaLite$hMType(0)
+					author$project$VegaLite$hNominal
 				])));
 	var symbolSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8722,7 +8722,6 @@ var author$project$HyperlinkTests$hyperlink1 = function () {
 					[symbolSpec, labelSpec]))
 			]));
 }();
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$dataFromUrl = F2(
 	function (url, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -8751,6 +8750,8 @@ var author$project$VegaLite$HString = function (a) {
 	return {$: 9, a: a};
 };
 var author$project$VegaLite$hStr = author$project$VegaLite$HString;
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$point = author$project$VegaLite$mark(8);
 var author$project$HyperlinkTests$hyperlink2 = function () {
@@ -8767,7 +8768,7 @@ var author$project$HyperlinkTests$hyperlink2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -8775,7 +8776,7 @@ var author$project$HyperlinkTests$hyperlink2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$hyperlink(
 			_List_fromArray(
@@ -8828,7 +8829,7 @@ var author$project$HyperlinkTests$hyperlink3 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('IMDB_Rating'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -8836,7 +8837,7 @@ var author$project$HyperlinkTests$hyperlink3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(

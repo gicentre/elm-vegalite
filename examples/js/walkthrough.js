@@ -2790,8 +2790,6 @@ var elm$json$Json$Encode$object = function (pairs) {
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$Bar = 1;
@@ -3780,14 +3778,17 @@ var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 8, a: a};
 };
@@ -6199,7 +6200,7 @@ var author$project$Walkthrough$barChart = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		A2(
@@ -6208,7 +6209,7 @@ var author$project$Walkthrough$barChart = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	return author$project$VegaLite$toVegaLite(
@@ -6250,7 +6251,7 @@ var author$project$Walkthrough$barChartPair = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		A2(
@@ -6259,7 +6260,7 @@ var author$project$Walkthrough$barChartPair = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('temp_max'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var bar1Enc = A2(
@@ -6273,7 +6274,7 @@ var author$project$Walkthrough$barChartPair = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		A2(
@@ -6282,7 +6283,7 @@ var author$project$Walkthrough$barChartPair = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	return author$project$VegaLite$toVegaLite(
@@ -6353,7 +6354,7 @@ var author$project$Walkthrough$barChartTriplet = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		A2(
@@ -6362,7 +6363,7 @@ var author$project$Walkthrough$barChartTriplet = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var spec = author$project$VegaLite$asSpec(
@@ -6403,7 +6404,7 @@ var author$project$Walkthrough$barChartWithAverage = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var barEnc = A2(
@@ -6415,7 +6416,7 @@ var author$project$Walkthrough$barChartWithAverage = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('date'),
-					author$project$VegaLite$pMType(1),
+					author$project$VegaLite$pOrdinal,
 					author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 				])));
 	return author$project$VegaLite$toVegaLite(
@@ -6440,7 +6441,6 @@ var author$project$Walkthrough$barChartWithAverage = function () {
 					]))
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$Area = 0;
 var author$project$VegaLite$area = author$project$VegaLite$mark(0);
 var author$project$VegaLite$AxFormat = function (a) {
@@ -6479,6 +6479,8 @@ var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
 var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$SDomain = function (a) {
 	return {$: 1, a: a};
 };
@@ -6905,7 +6907,7 @@ var author$project$Walkthrough$contextAndFocus = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -6924,7 +6926,7 @@ var author$project$Walkthrough$contextAndFocus = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('price'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specDetail = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -6944,7 +6946,7 @@ var author$project$Walkthrough$contextAndFocus = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6957,7 +6959,7 @@ var author$project$Walkthrough$contextAndFocus = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('price'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -6983,7 +6985,6 @@ var author$project$Walkthrough$contextAndFocus = function () {
 					[specContext, specDetail]))
 			]));
 }();
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$Column = 0;
 var author$project$VegaLite$arColumn = 0;
 var author$project$VegaLite$Circle = 5;
@@ -6999,14 +7000,15 @@ var author$project$VegaLite$ColumnFields = function (a) {
 	return {$: 1, a: a};
 };
 var author$project$VegaLite$columnFields = author$project$VegaLite$ColumnFields;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MSelectionCondition = F3(
 	function (a, b, c) {
 		return {$: 11, a: a, b: b, c: c};
@@ -7047,7 +7049,7 @@ var author$project$Walkthrough$coordinatedScatter1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7055,7 +7057,7 @@ var author$project$Walkthrough$coordinatedScatter1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -7066,7 +7068,7 @@ var author$project$Walkthrough$coordinatedScatter1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Origin'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]),
 					_List_fromArray(
 						[
@@ -7122,7 +7124,7 @@ var author$project$Walkthrough$coordinatedScatter2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7130,13 +7132,13 @@ var author$project$Walkthrough$coordinatedScatter2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var spec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7826,7 +7828,7 @@ var author$project$Walkthrough$crossFilter = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7834,7 +7836,7 @@ var author$project$Walkthrough$crossFilter = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var selectedEnc = A2(
 		elm$core$Basics$composeL,
@@ -7849,7 +7851,7 @@ var author$project$Walkthrough$crossFilter = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7857,7 +7859,7 @@ var author$project$Walkthrough$crossFilter = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -8061,7 +8063,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('temp_max'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8069,7 +8071,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var scatterSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8089,7 +8091,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('temp_max'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -8098,7 +8100,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var histoSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8118,7 +8120,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		A2(
@@ -8127,7 +8129,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
@@ -8146,7 +8148,7 @@ var author$project$Walkthrough$dashboard1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
 					author$project$VegaLite$pScale(
 					_List_fromArray(
@@ -8382,14 +8384,14 @@ var author$project$VegaLite$column = function (fFields) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$facetChannelProperty, fFields))));
 };
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
@@ -8457,7 +8459,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8465,7 +8467,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var scatterSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8503,7 +8505,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('temp_max'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pBin(_List_Nil)
 							]))),
 				A2(
@@ -8512,13 +8514,13 @@ var author$project$Walkthrough$dashboard2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('weather'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mLegend(_List_Nil),
 						author$project$VegaLite$mScale(author$project$Walkthrough$weatherColors)
 					]))),
@@ -8526,7 +8528,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('weather'),
-					author$project$VegaLite$fMType(0)
+					author$project$VegaLite$fNominal
 				])));
 	var histoSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8545,7 +8547,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 					]))),
 		A2(
@@ -8554,7 +8556,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var annotationEnc = A2(
@@ -8566,7 +8568,7 @@ var author$project$Walkthrough$dashboard2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var layerSpec = author$project$VegaLite$asSpec(
@@ -8631,7 +8633,7 @@ var author$project$Walkthrough$histogram = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('temp_max'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -8640,7 +8642,7 @@ var author$project$Walkthrough$histogram = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -8670,7 +8672,7 @@ var author$project$Walkthrough$scatterProps = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -8678,7 +8680,7 @@ var author$project$Walkthrough$scatterProps = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -8689,7 +8691,7 @@ var author$project$Walkthrough$scatterProps = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Origin'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]),
 					_List_fromArray(
 						[
@@ -8943,7 +8945,7 @@ var author$project$Walkthrough$lineChart = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('temp_max'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -8952,13 +8954,13 @@ var author$project$Walkthrough$lineChart = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('weather'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(author$project$Walkthrough$weatherColors)
 				])));
 	return author$project$VegaLite$toVegaLite(
@@ -8985,7 +8987,7 @@ var author$project$Walkthrough$multiBar = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('temp_max'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pBin(_List_Nil)
 							]))),
 				A2(
@@ -8994,13 +8996,13 @@ var author$project$Walkthrough$multiBar = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('weather'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mLegend(_List_Nil),
 						author$project$VegaLite$mScale(author$project$Walkthrough$weatherColors)
 					]))),
@@ -9008,7 +9010,7 @@ var author$project$Walkthrough$multiBar = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('weather'),
-					author$project$VegaLite$fMType(0)
+					author$project$VegaLite$fNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9030,7 +9032,7 @@ var author$project$Walkthrough$splom = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -9038,7 +9040,7 @@ var author$project$Walkthrough$splom = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var spec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9077,7 +9079,7 @@ var author$project$Walkthrough$stackedHistogram = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('temp_max'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -9086,13 +9088,13 @@ var author$project$Walkthrough$stackedHistogram = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('weather'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9116,7 +9118,7 @@ var author$project$Walkthrough$stackedHistogram2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('temp_max'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -9125,13 +9127,13 @@ var author$project$Walkthrough$stackedHistogram2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('weather'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(author$project$Walkthrough$weatherColors)
 				])));
 	return author$project$VegaLite$toVegaLite(
@@ -9156,7 +9158,7 @@ var author$project$Walkthrough$stripPlot = author$project$VegaLite$toVegaLite(
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('temp_max'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]),
 				_List_Nil))
 		]));

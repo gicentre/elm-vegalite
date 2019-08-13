@@ -2299,7 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryDist$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$Bar = 1;
@@ -3788,14 +3787,15 @@ var author$project$VegaLite$PBin = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$pBin = author$project$VegaLite$PBin;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6203,7 +6203,7 @@ var author$project$GalleryDist$dist1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -6211,7 +6211,7 @@ var author$project$GalleryDist$dist1 = function () {
 			1,
 			_List_fromArray(
 				[
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
 				])));
 	var des = author$project$VegaLite$description('Simple histogram of IMDB ratings.');
@@ -7116,7 +7116,7 @@ var author$project$GalleryDist$dist2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7124,7 +7124,7 @@ var author$project$GalleryDist$dist2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('cumulativeCount'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Cumulative frequency distribution');
 	return author$project$VegaLite$toVegaLite(
@@ -7299,7 +7299,7 @@ var author$project$GalleryDist$dist3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('bin_IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -7328,7 +7328,7 @@ var author$project$GalleryDist$dist3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('count'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specDist = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7350,7 +7350,7 @@ var author$project$GalleryDist$dist3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('cumulativeCount'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specCumulative = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7370,7 +7370,6 @@ var author$project$GalleryDist$dist3 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$color = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -7400,6 +7399,8 @@ var author$project$VegaLite$Q1 = {$: 11};
 var author$project$VegaLite$opQ1 = author$project$VegaLite$Q1;
 var author$project$VegaLite$Q3 = {$: 12};
 var author$project$VegaLite$opQ3 = author$project$VegaLite$Q3;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Rule = 10;
 var author$project$VegaLite$rule = author$project$VegaLite$mark(10);
 var author$project$VegaLite$size = function (markProps) {
@@ -7438,7 +7439,7 @@ var author$project$GalleryDist$dist4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('upperBox'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7470,7 +7471,7 @@ var author$project$GalleryDist$dist4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('lowerWhisker'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -7509,7 +7510,7 @@ var author$project$GalleryDist$dist4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('midBox'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
@@ -7546,7 +7547,7 @@ var author$project$GalleryDist$dist4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('lowerBox'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7581,7 +7582,7 @@ var author$project$GalleryDist$dist4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('age'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var des = author$project$VegaLite$description('A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000.');
 	return author$project$VegaLite$toVegaLite(
@@ -7642,7 +7643,7 @@ var author$project$GalleryDist$dist5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('upperBox'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7674,7 +7675,7 @@ var author$project$GalleryDist$dist5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('lowerWhisker'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -7713,7 +7714,7 @@ var author$project$GalleryDist$dist5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('midBox'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
@@ -7750,7 +7751,7 @@ var author$project$GalleryDist$dist5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('lowerBox'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7785,7 +7786,7 @@ var author$project$GalleryDist$dist5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('age'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var des = author$project$VegaLite$description('A Tukey box plot showing median and interquartile range in the US population distribution of age groups in 2000. This isn\'t strictly a Tukey box plot as the IQR extends beyond the min/max values for some age cohorts.');
 	return author$project$VegaLite$toVegaLite(

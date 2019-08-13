@@ -2299,9 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryFacet$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxTitle = function (a) {
@@ -5377,14 +5374,15 @@ var author$project$VegaLite$encoding = function (channels) {
 		15,
 		elm$json$Json$Encode$object(channels));
 };
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -5395,14 +5393,14 @@ var author$project$VegaLite$filter = function (f) {
 			'filter',
 			author$project$VegaLite$filterSpec(f)));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -5417,14 +5415,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -7114,7 +7115,7 @@ var author$project$GalleryFacet$facet1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('age'),
-								author$project$VegaLite$pMType(1)
+								author$project$VegaLite$pOrdinal
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -7122,7 +7123,7 @@ var author$project$GalleryFacet$facet1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('people'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opSum),
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -7134,7 +7135,7 @@ var author$project$GalleryFacet$facet1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('gender'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
@@ -7148,7 +7149,7 @@ var author$project$GalleryFacet$facet1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('gender'),
-					author$project$VegaLite$fMType(0)
+					author$project$VegaLite$fNominal
 				])));
 	var des = author$project$VegaLite$description('A trellis bar chart showing the US population distribution of age groups and gender in 2000');
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/population.json');
@@ -7170,6 +7171,8 @@ var author$project$VegaLite$column = function (fFields) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$facetChannelProperty, fFields))));
 };
+var author$project$VegaLite$fOrdinal = author$project$VegaLite$FmType(1);
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
 var author$project$GalleryFacet$facet2 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -7186,7 +7189,7 @@ var author$project$GalleryFacet$facet2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('yield'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pAggregate(author$project$VegaLite$opSum)
 							]))),
 				A2(
@@ -7195,19 +7198,19 @@ var author$project$GalleryFacet$facet2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('variety'),
-							author$project$VegaLite$pMType(0)
+							author$project$VegaLite$pNominal
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('site'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]))),
 		author$project$VegaLite$column(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('year'),
-					author$project$VegaLite$fMType(1)
+					author$project$VegaLite$fOrdinal
 				])));
 	var des = author$project$VegaLite$description('Barley crop yields in 1931 and 1932 shown as stacked bar charts');
 	return author$project$VegaLite$toVegaLite(
@@ -7235,7 +7238,7 @@ var author$project$GalleryFacet$facet3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Worldwide_Gross'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7243,13 +7246,13 @@ var author$project$GalleryFacet$facet3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('US_DVD_Sales'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$column(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('MPAA_Rating'),
-					author$project$VegaLite$fMType(1)
+					author$project$VegaLite$fOrdinal
 				])));
 	var des = author$project$VegaLite$description('Scatterplots of movie takings vs profits for different MPAA ratings');
 	return author$project$VegaLite$toVegaLite(
@@ -7285,7 +7288,7 @@ var author$project$GalleryFacet$facet4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(
 							_List_fromArray(
 								[
@@ -7297,14 +7300,14 @@ var author$project$GalleryFacet$facet4 = function () {
 				1,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
 					]))),
 		author$project$VegaLite$row(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('Origin'),
-					author$project$VegaLite$fMType(1)
+					author$project$VegaLite$fOrdinal
 				])));
 	var des = author$project$VegaLite$description('Disitributions of car engine power for different countries of origin');
 	return author$project$VegaLite$toVegaLite(
@@ -7353,7 +7356,7 @@ var author$project$GalleryFacet$facet5 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('X'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pScale(
 								_List_fromArray(
 									[
@@ -7366,7 +7369,7 @@ var author$project$GalleryFacet$facet5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Y'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -7382,7 +7385,7 @@ var author$project$GalleryFacet$facet5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('Series'),
-					author$project$VegaLite$fMType(1)
+					author$project$VegaLite$fOrdinal
 				])));
 	var des = author$project$VegaLite$description('Anscombe\'s Quartet');
 	return author$project$VegaLite$toVegaLite(
@@ -7486,7 +7489,7 @@ var author$project$GalleryFacet$facet6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('yield'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opMedian),
 							author$project$VegaLite$pScale(
 							_List_fromArray(
@@ -7500,7 +7503,7 @@ var author$project$GalleryFacet$facet6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('variety'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pSort(
 						_List_fromArray(
 							[
@@ -7512,7 +7515,7 @@ var author$project$GalleryFacet$facet6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('year'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('The Trellis display by Becker et al. helped establish small multiples as a \'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables\'');
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/barley.json');
@@ -7526,7 +7529,7 @@ var author$project$GalleryFacet$facet6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$fName('site'),
-						author$project$VegaLite$fMType(1),
+						author$project$VegaLite$fOrdinal,
 						author$project$VegaLite$fSort(
 						_List_fromArray(
 							[
@@ -7548,7 +7551,6 @@ var author$project$GalleryFacet$facet6 = function () {
 						])))
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$Area = 0;
 var author$project$VegaLite$area = author$project$VegaLite$mark(0);
 var author$project$VegaLite$AxFormat = function (a) {
@@ -9387,6 +9389,8 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$RIndependent = 1;
 var author$project$VegaLite$reIndependent = 1;
 var author$project$VegaLite$RScale = function (a) {
@@ -9497,7 +9501,7 @@ var author$project$GalleryFacet$facet7 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('date'),
-								author$project$VegaLite$pMType(3),
+								author$project$VegaLite$pTemporal,
 								author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
@@ -9512,7 +9516,7 @@ var author$project$GalleryFacet$facet7 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('price'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
@@ -9524,14 +9528,14 @@ var author$project$GalleryFacet$facet7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('symbol'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		author$project$VegaLite$row(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('symbol'),
-					author$project$VegaLite$fMType(0),
+					author$project$VegaLite$fNominal,
 					author$project$VegaLite$fHeader(
 					_List_fromArray(
 						[

@@ -4525,7 +4525,6 @@ var author$project$ShapeTests$isotypes = function () {
 				_Utils_Tuple2('person', person)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var elm$core$Array$branchFactor = 32;
@@ -9566,14 +9565,15 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -11134,7 +11134,7 @@ var author$project$ShapeTests$personGrid = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('col'),
-									author$project$VegaLite$pMType(1),
+									author$project$VegaLite$pOrdinal,
 									author$project$VegaLite$pAxis(_List_Nil)
 								]))),
 					A2(
@@ -11143,7 +11143,7 @@ var author$project$ShapeTests$personGrid = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('row'),
-								author$project$VegaLite$pMType(1),
+								author$project$VegaLite$pOrdinal,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				author$project$VegaLite$shape(
@@ -11212,7 +11212,6 @@ var author$project$ShapeTests$personGrid = function () {
 				sel(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$dataFromUrl = F2(
 	function (url, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -11260,6 +11259,8 @@ var author$project$VegaLite$opacity = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$ShapeTests$chart = F2(
 	function (des, enc) {
 		return author$project$VegaLite$toVegaLite(
@@ -11295,7 +11296,7 @@ var author$project$ShapeTests$chart = F2(
 									_List_fromArray(
 										[
 											author$project$VegaLite$pName('Horsepower'),
-											author$project$VegaLite$pMType(2)
+											author$project$VegaLite$pQuant
 										]))),
 							A2(
 								author$project$VegaLite$position,
@@ -11303,7 +11304,7 @@ var author$project$ShapeTests$chart = F2(
 								_List_fromArray(
 									[
 										author$project$VegaLite$pName('Miles_per_Gallon'),
-										author$project$VegaLite$pMType(2)
+										author$project$VegaLite$pQuant
 									]))),
 						author$project$VegaLite$opacity(
 							_List_fromArray(
@@ -11313,15 +11314,15 @@ var author$project$ShapeTests$chart = F2(
 					enc)(_List_Nil)
 				]));
 	});
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$ShapeTests$scatter1 = A2(
 	author$project$ShapeTests$chart,
 	'Default nominal shapes.',
@@ -11329,7 +11330,7 @@ var author$project$ShapeTests$scatter1 = A2(
 		_List_fromArray(
 			[
 				author$project$VegaLite$mName('Origin'),
-				author$project$VegaLite$mMType(0)
+				author$project$VegaLite$mNominal
 			])));
 var author$project$ShapeTests$cross = 'M -1.5 -1.5 m1 0 h 1 v 1 h 1 v 1 h -1 v 1 h -1  v -1 h -1 v -1 h 1z';
 var author$project$ShapeTests$square = 'M -1.5 -1.5 h 3 v 3 h -3z';
@@ -11388,7 +11389,7 @@ var author$project$ShapeTests$scatter10 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(
 					author$project$VegaLite$categoricalDomainMap(
 						_List_fromArray(
@@ -11402,8 +11403,9 @@ var author$project$ShapeTests$scatter10 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				]))));
+var author$project$VegaLite$mOrdinal = author$project$VegaLite$MmType(1);
 var author$project$ShapeTests$scatter11 = A2(
 	author$project$ShapeTests$chart,
 	'Sized, shaped and coloured by number of cylinders (should have two sets of legend items)',
@@ -11415,19 +11417,19 @@ var author$project$ShapeTests$scatter11 = A2(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					])),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				]))));
 var author$project$ShapeTests$unitSquare = 'M -0.5 -0.5 h 1 v 1 h -1z';
 var author$project$ShapeTests$scatter12 = A2(
@@ -11452,7 +11454,7 @@ var author$project$ShapeTests$scatter13 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Cylinders'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				]))));
 var author$project$ShapeTests$largeSquare = 'M -5 -5 h 10 v 10 h -10z';
 var author$project$ShapeTests$scatter14 = A2(
@@ -11469,7 +11471,7 @@ var author$project$ShapeTests$scatter14 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				]))));
 var author$project$ShapeTests$scatter15 = A2(
 	author$project$ShapeTests$chart,
@@ -11478,7 +11480,7 @@ var author$project$ShapeTests$scatter15 = A2(
 		_List_fromArray(
 			[
 				author$project$VegaLite$mName('Origin'),
-				author$project$VegaLite$mMType(0),
+				author$project$VegaLite$mNominal,
 				author$project$VegaLite$mScale(
 				author$project$VegaLite$categoricalDomainMap(
 					_List_fromArray(
@@ -11495,7 +11497,7 @@ var author$project$ShapeTests$scatter2 = A2(
 		_List_fromArray(
 			[
 				author$project$VegaLite$mName('Cylinders'),
-				author$project$VegaLite$mMType(1)
+				author$project$VegaLite$mOrdinal
 			])));
 var author$project$ShapeTests$scatter3 = A2(
 	author$project$ShapeTests$chart,
@@ -11506,7 +11508,7 @@ var author$project$ShapeTests$scatter3 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])),
 		author$project$VegaLite$size(
 			_List_fromArray(
@@ -11522,7 +11524,7 @@ var author$project$ShapeTests$scatter4 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])),
 		author$project$VegaLite$size(
 			_List_fromArray(
@@ -11536,7 +11538,7 @@ var author$project$ShapeTests$scatter5 = A2(
 		_List_fromArray(
 			[
 				author$project$VegaLite$mName('Cylinders'),
-				author$project$VegaLite$mMType(1)
+				author$project$VegaLite$mOrdinal
 			])));
 var author$project$ShapeTests$scatter6 = A2(
 	author$project$ShapeTests$chart,
@@ -11547,13 +11549,13 @@ var author$project$ShapeTests$scatter6 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])),
 		author$project$VegaLite$size(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Cylinders'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				]))));
 var author$project$ShapeTests$scatter7 = A2(
 	author$project$ShapeTests$chart,
@@ -11564,13 +11566,13 @@ var author$project$ShapeTests$scatter7 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Cylinders'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				])),
 		author$project$VegaLite$size(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Cylinders'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				]))));
 var author$project$ShapeTests$scatter8 = A2(
 	author$project$ShapeTests$chart,
@@ -11583,19 +11585,19 @@ var author$project$ShapeTests$scatter8 = A2(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					])),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Cylinders'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				]))));
 var author$project$ShapeTests$scatter9 = A2(
 	author$project$ShapeTests$chart,
@@ -11606,13 +11608,13 @@ var author$project$ShapeTests$scatter9 = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				]))));
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);

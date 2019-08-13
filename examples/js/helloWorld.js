@@ -2299,7 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$HelloWorld$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Circle = 5;
 var author$project$VegaLite$VLMark = 12;
@@ -3980,14 +3979,15 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6394,7 +6394,7 @@ var author$project$HelloWorld$myVis = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('x'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,

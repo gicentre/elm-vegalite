@@ -4780,9 +4780,6 @@ var elm$json$Json$Encode$object = function (pairs) {
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxTitle = function (a) {
@@ -9432,14 +9429,15 @@ var author$project$VegaLite$FHeader = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$fHeader = author$project$VegaLite$FHeader;
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -9450,14 +9448,14 @@ var author$project$VegaLite$filter = function (f) {
 			'filter',
 			author$project$VegaLite$filterSpec(f)));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -9472,14 +9470,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
@@ -10913,7 +10914,7 @@ var author$project$ViewCompositionTests$genderChart = F2(
 							_List_fromArray(
 								[
 									author$project$VegaLite$fName('gender'),
-									author$project$VegaLite$fMType(0),
+									author$project$VegaLite$fNominal,
 									author$project$VegaLite$fHeader(hdProps)
 								]))),
 					A2(
@@ -10922,7 +10923,7 @@ var author$project$ViewCompositionTests$genderChart = F2(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('age'),
-								author$project$VegaLite$pMType(1),
+								author$project$VegaLite$pOrdinal,
 								author$project$VegaLite$pScale(
 								_List_fromArray(
 									[
@@ -10936,7 +10937,7 @@ var author$project$ViewCompositionTests$genderChart = F2(
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('people'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opSum),
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -10948,7 +10949,7 @@ var author$project$ViewCompositionTests$genderChart = F2(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('gender'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
@@ -11036,6 +11037,7 @@ var author$project$VegaLite$ColumnBy = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$columnBy = author$project$VegaLite$ColumnBy;
+var author$project$VegaLite$fOrdinal = author$project$VegaLite$FmType(1);
 var author$project$VegaLite$VLFacet = 22;
 var author$project$VegaLite$facetMappingProperty = function (fMap) {
 	if (fMap.$ === 1) {
@@ -11360,7 +11362,7 @@ var author$project$ViewCompositionTests$grid1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('cat'),
-							author$project$VegaLite$pMType(1),
+							author$project$VegaLite$pOrdinal,
 							author$project$VegaLite$pAxis(_List_Nil)
 						]))),
 			A2(
@@ -11369,14 +11371,14 @@ var author$project$ViewCompositionTests$grid1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('val'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var specByCatVal = author$project$VegaLite$asSpec(
@@ -11401,7 +11403,7 @@ var author$project$ViewCompositionTests$grid1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$fName('row'),
-								author$project$VegaLite$fMType(1),
+								author$project$VegaLite$fOrdinal,
 								author$project$VegaLite$fHeader(
 								_List_fromArray(
 									[
@@ -11412,7 +11414,7 @@ var author$project$ViewCompositionTests$grid1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$fName('col'),
-								author$project$VegaLite$fMType(1),
+								author$project$VegaLite$fOrdinal,
 								author$project$VegaLite$fHeader(
 								_List_fromArray(
 									[
@@ -11457,7 +11459,7 @@ var author$project$ViewCompositionTests$grid2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('cat'),
-							author$project$VegaLite$pMType(1),
+							author$project$VegaLite$pOrdinal,
 							author$project$VegaLite$pAxis(_List_Nil)
 						]))),
 			A2(
@@ -11466,14 +11468,14 @@ var author$project$ViewCompositionTests$grid2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('val'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var specByCatVal = author$project$VegaLite$asSpec(
@@ -11497,7 +11499,7 @@ var author$project$ViewCompositionTests$grid2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$fName('index'),
-						author$project$VegaLite$fMType(1),
+						author$project$VegaLite$fOrdinal,
 						author$project$VegaLite$fHeader(
 						_List_fromArray(
 							[
@@ -11524,7 +11526,7 @@ var author$project$ViewCompositionTests$grid3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('cat'),
-							author$project$VegaLite$pMType(1),
+							author$project$VegaLite$pOrdinal,
 							author$project$VegaLite$pAxis(_List_Nil)
 						]))),
 			A2(
@@ -11533,14 +11535,14 @@ var author$project$ViewCompositionTests$grid3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('val'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var specByCatVal = author$project$VegaLite$asSpec(
@@ -11563,7 +11565,7 @@ var author$project$ViewCompositionTests$grid3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$fName('index'),
-						author$project$VegaLite$fMType(1),
+						author$project$VegaLite$fOrdinal,
 						author$project$VegaLite$fHeader(
 						_List_fromArray(
 							[
@@ -11604,7 +11606,7 @@ var author$project$ViewCompositionTests$grid4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arFlow),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -11612,14 +11614,14 @@ var author$project$ViewCompositionTests$grid4 = function () {
 				1,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var carData = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	var spec = author$project$VegaLite$asSpec(
@@ -11679,7 +11681,7 @@ var author$project$ViewCompositionTests$grid5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -11687,14 +11689,14 @@ var author$project$ViewCompositionTests$grid5 = function () {
 				1,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var carData = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	var spec = author$project$VegaLite$asSpec(

@@ -2299,8 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryLine$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxFormat = function (a) {
@@ -5371,14 +5369,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6833,7 +6834,7 @@ var author$project$GalleryLine$line1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6846,7 +6847,7 @@ var author$project$GalleryLine$line1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('price'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Google\'s stock price over time.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -6860,7 +6861,6 @@ var author$project$GalleryLine$line1 = function () {
 				author$project$VegaLite$line(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$color = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -6868,14 +6868,16 @@ var author$project$VegaLite$color = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$size = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -6901,7 +6903,7 @@ var author$project$GalleryLine$line10 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('date'),
-								author$project$VegaLite$pMType(3),
+								author$project$VegaLite$pTemporal,
 								author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
@@ -6914,19 +6916,19 @@ var author$project$GalleryLine$line10 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('price'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('price'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('symbol'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('Stock prices of five tech companies over time double encoding price with vertical position and line thickness.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -7098,7 +7100,7 @@ var author$project$GalleryLine$line11 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7106,7 +7108,7 @@ var author$project$GalleryLine$line11 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Line chart with markers and invalid values.');
 	var data = A2(
@@ -7140,7 +7142,6 @@ var author$project$GalleryLine$line11 = function () {
 					]))
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$asSpec = function (specs) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -9142,6 +9143,8 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$mOrdinal = author$project$VegaLite$MmType(1);
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -9187,14 +9190,14 @@ var author$project$VegaLite$Str = function (a) {
 	return {$: 3, a: a};
 };
 var author$project$VegaLite$str = author$project$VegaLite$Str;
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -9651,7 +9654,7 @@ var author$project$GalleryLine$line12 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('year'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var specTextMin = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9671,7 +9674,7 @@ var author$project$GalleryLine$line12 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('year'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var specTextMax = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9695,7 +9698,7 @@ var author$project$GalleryLine$line12 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('scaled_date'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9710,7 +9713,7 @@ var author$project$GalleryLine$line12 = function () {
 				[
 					author$project$VegaLite$pName('CO2'),
 					author$project$VegaLite$pTitle('CO₂ concentration in ppm'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -9724,7 +9727,7 @@ var author$project$GalleryLine$line12 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('decade'),
-					author$project$VegaLite$mMType(1),
+					author$project$VegaLite$mOrdinal,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -9825,6 +9828,7 @@ var author$project$VegaLite$MOrient = function (a) {
 var author$project$VegaLite$maOrient = author$project$VegaLite$MOrient;
 var author$project$VegaLite$MOVertical = 1;
 var author$project$VegaLite$moVertical = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Strings = function (a) {
 	return {$: 3, a: a};
 };
@@ -9886,7 +9890,7 @@ var author$project$GalleryLine$line13 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('matchday'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9894,13 +9898,13 @@ var author$project$GalleryLine$line13 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('rank'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('team'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(teamColours)
 				])));
 	var des = author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
@@ -10001,7 +10005,7 @@ var author$project$GalleryLine$line14 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('u'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pTitle('x')
 					]))),
 		A2(
@@ -10010,7 +10014,7 @@ var author$project$GalleryLine$line14 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('v'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pTitle('sin(x)')
 				])));
 	var specSin = author$project$VegaLite$asSpec(
@@ -10030,7 +10034,7 @@ var author$project$GalleryLine$line14 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('u'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pTitle('x')
 					]))),
 		A2(
@@ -10039,7 +10043,7 @@ var author$project$GalleryLine$line14 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('w'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pTitle('cos(x)')
 				])));
 	var specCos = author$project$VegaLite$asSpec(
@@ -10093,7 +10097,7 @@ var author$project$GalleryLine$line2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('date'),
-							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTemporal,
 							author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 						]))),
 			A2(
@@ -10102,14 +10106,14 @@ var author$project$GalleryLine$line2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('price'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('symbol'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('Line chart with point markers.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -10149,7 +10153,7 @@ var author$project$GalleryLine$line3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('date'),
-							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTemporal,
 							author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 						]))),
 			A2(
@@ -10158,14 +10162,14 @@ var author$project$GalleryLine$line3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('price'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('symbol'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('Line chart with stroked point markers.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -10202,7 +10206,7 @@ var author$project$GalleryLine$line4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('date'),
-							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTemporal,
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
@@ -10215,13 +10219,13 @@ var author$project$GalleryLine$line4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('price'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('symbol'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('Stock prices of 5 tech companies over time.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -10266,7 +10270,7 @@ var author$project$GalleryLine$line5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('year'),
-							author$project$VegaLite$pMType(1),
+							author$project$VegaLite$pOrdinal,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -10279,14 +10283,14 @@ var author$project$GalleryLine$line5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('yield'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opMedian)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('site'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil);
@@ -10323,7 +10327,7 @@ var author$project$GalleryLine$line6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -10336,7 +10340,7 @@ var author$project$GalleryLine$line6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('price'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Google\'s stock price over time (quantized as a step-chart).');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -10373,7 +10377,7 @@ var author$project$GalleryLine$line7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -10386,7 +10390,7 @@ var author$project$GalleryLine$line7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('price'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Google\'s stock price over time (smoothed with monotonic interpolation).');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -10492,7 +10496,7 @@ var author$project$GalleryLine$line8 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -10523,7 +10527,7 @@ var author$project$GalleryLine$line8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('price'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Line chart with conditional grid dash.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -10537,14 +10541,14 @@ var author$project$GalleryLine$line8 = function () {
 				author$project$VegaLite$line(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$oMType = author$project$VegaLite$OmType;
 var author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$oName = author$project$VegaLite$OName;
+var author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$oTemporal = author$project$VegaLite$OmType(3);
 var author$project$VegaLite$orderChannelProperty = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -10644,7 +10648,7 @@ var author$project$GalleryLine$line9 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('miles'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -10657,7 +10661,7 @@ var author$project$GalleryLine$line9 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('gas'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -10668,7 +10672,7 @@ var author$project$GalleryLine$line9 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$oName('year'),
-					author$project$VegaLite$oMType(3)
+					author$project$VegaLite$oTemporal
 				])));
 	var des = author$project$VegaLite$description('A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/driving.json', _List_Nil);

@@ -2299,8 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$CompositeTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxTitle = function (a) {
@@ -3781,14 +3779,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6197,7 +6198,7 @@ var author$project$CompositeTests$bPlot = function (ext) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('age'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6205,7 +6206,7 @@ var author$project$CompositeTests$bPlot = function (ext) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('people'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -6282,7 +6283,7 @@ var author$project$CompositeTests$boxplot3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('age'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6290,7 +6291,7 @@ var author$project$CompositeTests$boxplot3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('people'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -6339,7 +6340,6 @@ var author$project$CompositeTests$boxplot3 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$Errorband = 3;
 var author$project$VegaLite$errorband = author$project$VegaLite$mark(3);
 var author$project$VegaLite$ExCI = {$: 0};
@@ -6364,6 +6364,8 @@ var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
 var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 8, a: a};
 };
@@ -6418,7 +6420,7 @@ var author$project$CompositeTests$eBand = function (ext) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Year'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 					]))),
 		A2(
@@ -6427,7 +6429,7 @@ var author$project$CompositeTests$eBand = function (ext) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -6470,7 +6472,7 @@ var author$project$CompositeTests$eBar = function (ext) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('yield'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -6483,7 +6485,7 @@ var author$project$CompositeTests$eBar = function (ext) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('variety'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var barley = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -6565,7 +6567,7 @@ var author$project$CompositeTests$errorbar3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('yield'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 					]))),
 		A2(
@@ -6574,7 +6576,7 @@ var author$project$CompositeTests$errorbar3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('variety'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var specPoints = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -6600,7 +6602,7 @@ var author$project$CompositeTests$errorbar3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('yield'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -6613,7 +6615,7 @@ var author$project$CompositeTests$errorbar3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('variety'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(

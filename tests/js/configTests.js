@@ -2299,9 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$ConfigTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
@@ -4703,26 +4700,30 @@ var author$project$VegaLite$height = function (h) {
 		4,
 		elm$json$Json$Encode$float(h));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$mOrdinal = author$project$VegaLite$MmType(1);
 var author$project$VegaLite$MSize = function (a) {
 	return {$: 37, a: a};
 };
 var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -6325,7 +6326,7 @@ var author$project$ConfigTests$singleVis = function (config) {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Horsepower'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -6333,19 +6334,19 @@ var author$project$ConfigTests$singleVis = function (config) {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Miles_per_Gallon'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var cars = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -8256,7 +8257,6 @@ var author$project$ConfigTests$axisCfg1 = author$project$ConfigTests$singleVis(
 						author$project$VegaLite$axcoLabelFont('serif'),
 						author$project$VegaLite$axcoTitleAnchor(author$project$VegaLite$anEnd)
 					])))));
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$Area = 0;
 var author$project$VegaLite$area = author$project$VegaLite$mark(0);
 var author$project$VegaLite$asSpec = function (specs) {
@@ -8298,6 +8298,8 @@ var author$project$VegaLite$PStack = function (a) {
 	return {$: 14, a: a};
 };
 var author$project$VegaLite$pStack = author$project$VegaLite$PStack;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 8, a: a};
 };
@@ -8405,7 +8407,7 @@ var author$project$ConfigTests$compositeVis = function (config) {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Year'),
-							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTemporal,
 							author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 						]))),
 			A2(
@@ -8414,7 +8416,7 @@ var author$project$ConfigTests$compositeVis = function (config) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pStack(author$project$VegaLite$stCenter),
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
@@ -8422,7 +8424,7 @@ var author$project$ConfigTests$compositeVis = function (config) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var streamSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8450,7 +8452,7 @@ var author$project$ConfigTests$compositeVis = function (config) {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Horsepower'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -8458,19 +8460,19 @@ var author$project$ConfigTests$compositeVis = function (config) {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Miles_per_Gallon'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var scatterSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8511,7 +8513,7 @@ var author$project$ConfigTests$compositeVis = function (config) {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -8519,13 +8521,13 @@ var author$project$ConfigTests$compositeVis = function (config) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8939,7 +8941,7 @@ var author$project$ConfigTests$vbTest = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Year'),
-							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTemporal,
 							author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 						]))),
 			A2(
@@ -8948,7 +8950,7 @@ var author$project$ConfigTests$vbTest = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pStack(author$project$VegaLite$stCenter),
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
@@ -8956,7 +8958,7 @@ var author$project$ConfigTests$vbTest = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var streamSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8989,7 +8991,7 @@ var author$project$ConfigTests$vbTest = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Horsepower'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -8997,19 +8999,19 @@ var author$project$ConfigTests$vbTest = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Miles_per_Gallon'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Cylinders'),
-						author$project$VegaLite$mMType(1)
+						author$project$VegaLite$mOrdinal
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var scatterSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9071,7 +9073,7 @@ var author$project$ConfigTests$vbTest = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9079,13 +9081,13 @@ var author$project$ConfigTests$vbTest = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(

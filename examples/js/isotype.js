@@ -3181,8 +3181,6 @@ var author$project$Isotype$toRows = F2(
 		return elm$core$Basics$append(
 			A2(elm$core$List$concatMap, fToCol, animalFreqs));
 	});
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$DStrings = function (a) {
@@ -7518,14 +7516,15 @@ var author$project$VegaLite$FHeader = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$fHeader = author$project$VegaLite$FHeader;
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$HTitle = function (a) {
 	return {$: 3, a: a};
 };
@@ -7540,14 +7539,14 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MNumber = function (a) {
 	return {$: 14, a: a};
 };
@@ -7571,14 +7570,15 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -8574,7 +8574,7 @@ var author$project$Isotype$livestock = function () {
 									_List_fromArray(
 										[
 											author$project$VegaLite$pName('col'),
-											author$project$VegaLite$pMType(1),
+											author$project$VegaLite$pOrdinal,
 											author$project$VegaLite$pAxis(_List_Nil)
 										]))),
 							A2(
@@ -8583,14 +8583,14 @@ var author$project$Isotype$livestock = function () {
 								_List_fromArray(
 									[
 										author$project$VegaLite$pName('animal'),
-										author$project$VegaLite$pMType(1),
+										author$project$VegaLite$pOrdinal,
 										author$project$VegaLite$pAxis(_List_Nil)
 									]))),
 						author$project$VegaLite$row(
 							_List_fromArray(
 								[
 									author$project$VegaLite$fName('country'),
-									author$project$VegaLite$fMType(0),
+									author$project$VegaLite$fNominal,
 									author$project$VegaLite$fHeader(
 									_List_fromArray(
 										[
@@ -8601,7 +8601,7 @@ var author$project$Isotype$livestock = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$mName('animal'),
-								author$project$VegaLite$mMType(0),
+								author$project$VegaLite$mNominal,
 								author$project$VegaLite$mScale(
 								author$project$VegaLite$categoricalDomainMap(
 									_List_fromArray(
@@ -8637,7 +8637,7 @@ var author$project$Isotype$livestock = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('animal'),
-							author$project$VegaLite$mMType(0),
+							author$project$VegaLite$mNominal,
 							author$project$VegaLite$mLegend(_List_Nil),
 							author$project$VegaLite$mScale(
 							author$project$VegaLite$categoricalDomainMap(
@@ -9536,7 +9536,7 @@ var author$project$Isotype$personGrid = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('col'),
-									author$project$VegaLite$pMType(1),
+									author$project$VegaLite$pOrdinal,
 									author$project$VegaLite$pAxis(_List_Nil)
 								]))),
 					A2(
@@ -9545,7 +9545,7 @@ var author$project$Isotype$personGrid = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('row'),
-								author$project$VegaLite$pMType(1),
+								author$project$VegaLite$pOrdinal,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				author$project$VegaLite$shape(

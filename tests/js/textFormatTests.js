@@ -4289,8 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$TextFormatTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
@@ -7566,14 +7564,15 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$mTemporal = author$project$VegaLite$MmType(3);
 var author$project$VegaLite$MdX = function (a) {
 	return {$: 14, a: a};
 };
@@ -7590,18 +7589,20 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
 var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -8342,14 +8343,14 @@ var author$project$VegaLite$TFormat = function (a) {
 var author$project$VegaLite$tFormat = author$project$VegaLite$TFormat;
 var author$project$VegaLite$TFormatAsTemporal = {$: 12};
 var author$project$VegaLite$tFormatAsTemporal = author$project$VegaLite$TFormatAsTemporal;
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tTemporal = author$project$VegaLite$TmType(3);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -8532,7 +8533,7 @@ var author$project$TextFormatTests$textFormat1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('a'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8540,7 +8541,7 @@ var author$project$TextFormatTests$textFormat1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('b'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specSym = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8563,7 +8564,7 @@ var author$project$TextFormatTests$textFormat1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('a'),
-								author$project$VegaLite$pMType(3),
+								author$project$VegaLite$pTemporal,
 								author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
@@ -8577,7 +8578,7 @@ var author$project$TextFormatTests$textFormat1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('b'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -8594,7 +8595,7 @@ var author$project$TextFormatTests$textFormat1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$tName('a'),
-						author$project$VegaLite$tMType(3),
+						author$project$VegaLite$tTemporal,
 						author$project$VegaLite$tFormatAsTemporal,
 						author$project$VegaLite$tFormat('%b `%y')
 					]))),
@@ -8602,7 +8603,7 @@ var author$project$TextFormatTests$textFormat1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('a'),
-					author$project$VegaLite$mMType(3),
+					author$project$VegaLite$mTemporal,
 					author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -8655,7 +8656,6 @@ var author$project$TextFormatTests$textFormat1 = function () {
 					[specSym, specLabel]))
 			]));
 }();
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$AxTitle = function (a) {
 	return {$: 42, a: a};
 };
@@ -8898,14 +8898,14 @@ var author$project$VegaLite$FHeader = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$fHeader = author$project$VegaLite$FHeader;
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$fTemporal = author$project$VegaLite$FmType(3);
 var author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -8922,12 +8922,15 @@ var author$project$VegaLite$HFormat = function (a) {
 var author$project$VegaLite$hdFormat = author$project$VegaLite$HFormat;
 var author$project$VegaLite$HFormatAsTemporal = {$: 2};
 var author$project$VegaLite$hdFormatAsTemporal = author$project$VegaLite$HFormatAsTemporal;
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$Sum = {$: 16};
 var author$project$VegaLite$opSum = author$project$VegaLite$Sum;
 var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
 var author$project$VegaLite$VLTransform = 13;
 var elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -9569,7 +9572,7 @@ var author$project$TextFormatTests$textFormat2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('crimeType'),
-								author$project$VegaLite$pMType(0),
+								author$project$VegaLite$pNominal,
 								author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
@@ -9582,21 +9585,21 @@ var author$project$TextFormatTests$textFormat2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('reportedCrimes'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opSum)
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('crimeType'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		author$project$VegaLite$column(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('month'),
-					author$project$VegaLite$fMType(3),
+					author$project$VegaLite$fTemporal,
 					author$project$VegaLite$fHeader(
 					_List_fromArray(
 						[

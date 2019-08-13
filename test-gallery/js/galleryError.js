@@ -2299,8 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryError$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$X2 = 2;
 var author$project$VegaLite$Y = 1;
@@ -4816,14 +4814,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
@@ -6250,7 +6251,7 @@ var author$project$GalleryError$error1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('variety'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var encPoints = A2(
 		elm$core$Basics$composeL,
@@ -6263,7 +6264,7 @@ var author$project$GalleryError$error1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('yield'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
 						author$project$VegaLite$pScale(
 						_List_fromArray(
@@ -6302,7 +6303,7 @@ var author$project$GalleryError$error1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('yield'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCI0)
 					]))),
 		A2(
@@ -7021,7 +7022,7 @@ var author$project$GalleryError$error2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('variety'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var encStdevs = A2(
 		elm$core$Basics$composeL,
@@ -7034,7 +7035,7 @@ var author$project$GalleryError$error2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('upper'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7042,7 +7043,7 @@ var author$project$GalleryError$error2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('lower'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specStdevs = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7061,7 +7062,7 @@ var author$project$GalleryError$error2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('mean'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -7101,7 +7102,6 @@ var author$project$GalleryError$error2 = function () {
 					[specMeans, specStdevs]))
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$Area = 0;
 var author$project$VegaLite$area = author$project$VegaLite$mark(0);
 var author$project$VegaLite$Line = 7;
@@ -7117,6 +7117,8 @@ var author$project$VegaLite$opacity = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 8, a: a};
 };
@@ -7133,7 +7135,7 @@ var author$project$GalleryError$error3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Year'),
-					author$project$VegaLite$pMType(3),
+					author$project$VegaLite$pTemporal,
 					author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 				])));
 	var encLine = A2(
@@ -7145,7 +7147,7 @@ var author$project$GalleryError$error3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var specLine = author$project$VegaLite$asSpec(
@@ -7167,7 +7169,7 @@ var author$project$GalleryError$error3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Miles_per_Gallon'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAggregate(author$project$VegaLite$opCI0),
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -7239,7 +7241,7 @@ var author$project$GalleryError$error4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('lower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7270,7 +7272,7 @@ var author$project$GalleryError$error4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7278,7 +7280,7 @@ var author$project$GalleryError$error4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specPoints = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7295,7 +7297,7 @@ var author$project$GalleryError$error4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('mean_MPG'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specMean = author$project$VegaLite$asSpec(
 		_List_fromArray(

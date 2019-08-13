@@ -4289,7 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GeoTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$View = function (a) {
 	return {$: 41, a: a};
 };
@@ -9332,14 +9331,15 @@ var author$project$VegaLite$height = function (h) {
 		4,
 		elm$json$Json$Encode$float(h));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MStrokeOpacity = function (a) {
 	return {$: 45, a: a};
 };
@@ -9476,7 +9476,7 @@ var author$project$GeoTests$choropleth1 = author$project$VegaLite$toVegaLite(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('id'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]),
 				_List_Nil))
 		]));
@@ -9560,7 +9560,6 @@ var author$project$GeoTests$boroughColors = author$project$VegaLite$categoricalD
 		]));
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Longitude = 4;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$asSpec = function (specs) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -9619,14 +9618,15 @@ var author$project$VegaLite$opacity = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude2 = 6;
 var author$project$VegaLite$X = 0;
@@ -10314,14 +10314,14 @@ var author$project$VegaLite$position = F2(
 							A2(elm$core$List$map, author$project$VegaLite$positionChannelProperty, pDefs))));
 		}
 	});
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -11097,7 +11097,7 @@ var author$project$GeoTests$choropleth2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('id'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mScale(author$project$GeoTests$boroughColors),
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
@@ -11137,7 +11137,7 @@ var author$project$GeoTests$choropleth2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('cx'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -11145,13 +11145,13 @@ var author$project$GeoTests$choropleth2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cy'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('bLabel'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var labelSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11298,7 +11298,7 @@ var author$project$GeoTests$dotMap1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('longitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -11306,7 +11306,7 @@ var author$project$GeoTests$dotMap1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('latitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
@@ -11317,7 +11317,7 @@ var author$project$GeoTests$dotMap1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('digit'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -11729,7 +11729,7 @@ var author$project$GeoTests$map1d = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('cy'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var hEnc = A2(
 		elm$core$Basics$composeL,
@@ -11742,7 +11742,7 @@ var author$project$GeoTests$map1d = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cx'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -11784,7 +11784,7 @@ var author$project$GeoTests$map1d = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('cx'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -11792,7 +11792,7 @@ var author$project$GeoTests$map1d = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('cy'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var cSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12183,14 +12183,14 @@ var author$project$VegaLite$TitleStyle = function (a) {
 	return {$: 38, a: a};
 };
 var author$project$VegaLite$coTitle = author$project$VegaLite$TitleStyle;
-var author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$dMType = author$project$VegaLite$DmType;
 var author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$dName = author$project$VegaLite$DName;
+var author$project$VegaLite$DmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$dNominal = author$project$VegaLite$DmType(0);
 var author$project$VegaLite$detailChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -12245,14 +12245,14 @@ var author$project$VegaLite$MInterpolate = function (a) {
 var author$project$VegaLite$maInterpolate = author$project$VegaLite$MInterpolate;
 var author$project$VegaLite$Monotone = 9;
 var author$project$VegaLite$miMonotone = 9;
-var author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$oMType = author$project$VegaLite$OmType;
 var author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$oName = author$project$VegaLite$OName;
+var author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$oQuant = author$project$VegaLite$OmType(2);
 var author$project$VegaLite$orderChannelProperty = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -12400,7 +12400,7 @@ var author$project$GeoTests$scribbleMap1 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('longitude'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -12408,13 +12408,13 @@ var author$project$GeoTests$scribbleMap1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('latitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$order(
 					_List_fromArray(
 						[
 							author$project$VegaLite$oName('zip_code'),
-							author$project$VegaLite$oMType(2)
+							author$project$VegaLite$oQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
@@ -12425,7 +12425,7 @@ var author$project$GeoTests$scribbleMap1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$dName('conterminous'),
-					author$project$VegaLite$dMType(0)
+					author$project$VegaLite$dNominal
 				])));
 	var config = A2(
 		elm$core$Basics$composeL,
@@ -12506,7 +12506,7 @@ var author$project$GeoTests$scribbleMap2 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('longitude'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -12514,26 +12514,26 @@ var author$project$GeoTests$scribbleMap2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('latitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$order(
 					_List_fromArray(
 						[
 							author$project$VegaLite$oName('zip_code'),
-							author$project$VegaLite$oMType(2)
+							author$project$VegaLite$oQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('digit3'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		author$project$VegaLite$detail(
 			_List_fromArray(
 				[
 					author$project$VegaLite$dName('ziplen'),
-					author$project$VegaLite$dMType(0)
+					author$project$VegaLite$dNominal
 				])));
 	var config = A2(
 		elm$core$Basics$composeL,
@@ -12727,7 +12727,7 @@ var author$project$GeoTests$tubeLines1 = author$project$VegaLite$toVegaLite(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('id'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]),
 				_List_Nil))
 		]));
@@ -12765,7 +12765,7 @@ var author$project$GeoTests$tubeLines2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('id'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -12816,7 +12816,7 @@ var author$project$GeoTests$tubeLines3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('id'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -12890,7 +12890,7 @@ var author$project$GeoTests$tubeLines3 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('cx'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -12898,13 +12898,13 @@ var author$project$GeoTests$tubeLines3 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('cy'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$text(
 					_List_fromArray(
 						[
 							author$project$VegaLite$tName('bLabel'),
-							author$project$VegaLite$tMType(0)
+							author$project$VegaLite$tNominal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(

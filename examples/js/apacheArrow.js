@@ -2299,7 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$ApacheArrow$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$Arrow = {$: 4};
@@ -5361,26 +5360,27 @@ var author$project$VegaLite$height = function (h) {
 		4,
 		elm$json$Json$Encode$float(h));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$MSize = function (a) {
 	return {$: 37, a: a};
 };
 var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6218,7 +6218,7 @@ var author$project$ApacheArrow$arrow1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('DEP_TIME'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -6226,13 +6226,13 @@ var author$project$ApacheArrow$arrow1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('ARR_DELAY'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('DISTANCE'),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var data = A2(
 		author$project$VegaLite$dataFromUrl,
@@ -6911,7 +6911,7 @@ var author$project$ApacheArrow$arrow2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('winnerscore'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -6927,7 +6927,7 @@ var author$project$ApacheArrow$arrow2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('loserscore'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[

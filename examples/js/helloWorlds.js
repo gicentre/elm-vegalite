@@ -2299,7 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$HelloWorlds$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Circle = 5;
 var author$project$VegaLite$VLMark = 12;
@@ -3980,14 +3979,15 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -6394,7 +6394,7 @@ var author$project$HelloWorlds$myFirstVis = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('x'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -6414,7 +6414,6 @@ var author$project$HelloWorlds$myFirstVis = function () {
 				author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$Bar = 1;
 var author$project$VegaLite$bar = author$project$VegaLite$mark(1);
 var author$project$VegaLite$dataFromUrl = F2(
@@ -6447,6 +6446,8 @@ var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$HelloWorlds$myOtherVis = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -6459,7 +6460,7 @@ var author$project$HelloWorlds$myOtherVis = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Cylinders'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6468,7 +6469,7 @@ var author$project$HelloWorlds$myOtherVis = function () {
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	return author$project$VegaLite$toVegaLite(
@@ -6491,7 +6492,7 @@ var author$project$HelloWorlds$mySecondVis = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Cylinders'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6499,7 +6500,7 @@ var author$project$HelloWorlds$mySecondVis = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	return author$project$VegaLite$toVegaLite(

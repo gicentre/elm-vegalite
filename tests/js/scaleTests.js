@@ -4289,7 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$ScaleTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
@@ -6689,14 +6688,15 @@ var author$project$VegaLite$MBin = function (a) {
 	return {$: 4, a: a};
 };
 var author$project$VegaLite$mBin = author$project$VegaLite$MBin;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$MString = function (a) {
 	return {$: 15, a: a};
 };
@@ -6720,14 +6720,14 @@ var author$project$VegaLite$opacity = function (markProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -8228,7 +8228,7 @@ var author$project$ScaleTests$scale1 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('Horsepower'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -8236,7 +8236,7 @@ var author$project$ScaleTests$scale1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Miles_per_Gallon'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
@@ -8247,14 +8247,14 @@ var author$project$ScaleTests$scale1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Acceleration'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mBin(_List_Nil)
 					]))),
 		author$project$VegaLite$opacity(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Acceleration'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mBin(_List_Nil)
 				])));
 	var cars = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
@@ -10231,7 +10231,7 @@ var author$project$ScaleTests$scale2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10239,13 +10239,13 @@ var author$project$ScaleTests$scale2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Acceleration'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mBin(_List_Nil)
 				])));
 	var conf = A2(
@@ -10267,7 +10267,6 @@ var author$project$ScaleTests$scale2 = function () {
 				author$project$VegaLite$point(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$AxDomain = function (a) {
 	return {$: 7, a: a};
 };
@@ -10437,6 +10436,8 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
 var author$project$VegaLite$PSort = function (a) {
 	return {$: 13, a: a};
 };
@@ -10461,7 +10462,7 @@ var author$project$ScaleTests$scale3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('b'),
-							author$project$VegaLite$pMType(0),
+							author$project$VegaLite$pNominal,
 							author$project$VegaLite$pSort(_List_Nil),
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -10475,7 +10476,7 @@ var author$project$ScaleTests$scale3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('b'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
@@ -10486,7 +10487,7 @@ var author$project$ScaleTests$scale3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('b'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -10535,7 +10536,7 @@ var author$project$ScaleTests$scale4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('b'),
-							author$project$VegaLite$pMType(0),
+							author$project$VegaLite$pNominal,
 							author$project$VegaLite$pSort(_List_Nil),
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -10549,7 +10550,7 @@ var author$project$ScaleTests$scale4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('b'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
@@ -10560,7 +10561,7 @@ var author$project$ScaleTests$scale4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('b'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -10627,7 +10628,7 @@ var author$project$ScaleTests$scale5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('b'),
-							author$project$VegaLite$pMType(0),
+							author$project$VegaLite$pNominal,
 							author$project$VegaLite$pSort(_List_Nil),
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -10641,7 +10642,7 @@ var author$project$ScaleTests$scale5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('b'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
@@ -10660,7 +10661,7 @@ var author$project$ScaleTests$scale5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('b'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -10702,7 +10703,7 @@ var author$project$ScaleTests$scale6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('r'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -10744,7 +10745,7 @@ var author$project$ScaleTests$scale7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('r'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -10782,7 +10783,7 @@ var author$project$ScaleTests$scale8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('r'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -10827,7 +10828,7 @@ var author$project$ScaleTests$scale9 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('r'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mScale(
 					_List_fromArray(
 						[

@@ -2299,10 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryRepeat$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$Column = 0;
@@ -4640,14 +4636,15 @@ var author$project$VegaLite$ColumnFields = function (a) {
 	return {$: 1, a: a};
 };
 var author$project$VegaLite$columnFields = author$project$VegaLite$ColumnFields;
-var author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$dMType = author$project$VegaLite$DmType;
 var author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$dName = author$project$VegaLite$DName;
+var author$project$VegaLite$DmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$dTemporal = author$project$VegaLite$DmType(3);
 var author$project$VegaLite$DTimeUnit = function (a) {
 	return {$: 3, a: a};
 };
@@ -5503,14 +5500,15 @@ var author$project$VegaLite$mark = F2(
 		}
 	});
 var author$project$VegaLite$line = author$project$VegaLite$mark(7);
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MNumber = function (a) {
 	return {$: 14, a: a};
 };
@@ -5530,14 +5528,17 @@ var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PRepeat = function (a) {
 	return {$: 4, a: a};
 };
@@ -6335,7 +6336,7 @@ var author$project$GalleryRepeat$repeat1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('date'),
-							author$project$VegaLite$pMType(1),
+							author$project$VegaLite$pOrdinal,
 							author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 						]))),
 			A2(
@@ -6344,14 +6345,14 @@ var author$project$GalleryRepeat$repeat1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('location'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var spec2 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -6376,7 +6377,7 @@ var author$project$GalleryRepeat$repeat1 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('date'),
-									author$project$VegaLite$pMType(1),
+									author$project$VegaLite$pOrdinal,
 									author$project$VegaLite$pTimeUnit(author$project$VegaLite$month)
 								]))),
 					A2(
@@ -6385,21 +6386,21 @@ var author$project$GalleryRepeat$repeat1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 							]))),
 				author$project$VegaLite$detail(
 					_List_fromArray(
 						[
 							author$project$VegaLite$dName('date'),
-							author$project$VegaLite$dMType(3),
+							author$project$VegaLite$dTemporal,
 							author$project$VegaLite$dTimeUnit(author$project$VegaLite$year)
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('location'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]))),
 		author$project$VegaLite$opacity(
 			_List_fromArray(
@@ -6451,6 +6452,7 @@ var author$project$VegaLite$MAggregate = function (a) {
 	return {$: 9, a: a};
 };
 var author$project$VegaLite$mAggregate = author$project$VegaLite$MAggregate;
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$Count = {$: 4};
 var author$project$VegaLite$opCount = author$project$VegaLite$Count;
 var author$project$VegaLite$PBin = function (a) {
@@ -7111,7 +7113,7 @@ var author$project$GalleryRepeat$repeat2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('temp_min'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -7120,14 +7122,14 @@ var author$project$GalleryRepeat$repeat2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('temp_max'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var spec2 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7147,7 +7149,7 @@ var author$project$GalleryRepeat$repeat2 = function () {
 					[
 						author$project$VegaLite$pName('date'),
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$month),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7155,7 +7157,7 @@ var author$project$GalleryRepeat$repeat2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var spec1 = author$project$VegaLite$asSpec(
@@ -7190,7 +7192,7 @@ var author$project$GalleryRepeat$repeat3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -7198,14 +7200,14 @@ var author$project$GalleryRepeat$repeat3 = function () {
 				1,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(author$project$VegaLite$opCount)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var spec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7698,7 +7700,7 @@ var author$project$GalleryRepeat$repeat4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pRepeat(author$project$VegaLite$arColumn),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7706,7 +7708,7 @@ var author$project$GalleryRepeat$repeat4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pRepeat(author$project$VegaLite$arRow),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -7717,7 +7719,7 @@ var author$project$GalleryRepeat$repeat4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('Origin'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]),
 					_List_fromArray(
 						[
@@ -9415,7 +9417,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -9428,7 +9430,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pBin(
 					_List_fromArray(
 						[
@@ -9446,7 +9448,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil),
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
@@ -9456,7 +9458,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -9491,7 +9493,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -9500,14 +9502,14 @@ var author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var spec2_1 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9535,7 +9537,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(_List_Nil),
 						author$project$VegaLite$pBin(_List_Nil)
 					]))),
@@ -9545,7 +9547,7 @@ var author$project$GalleryRepeat$repeat5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -9637,14 +9639,14 @@ var author$project$VegaLite$PSort = function (a) {
 var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
 var author$project$VegaLite$Descending = {$: 1};
 var author$project$VegaLite$soDescending = author$project$VegaLite$Descending;
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tQuant = author$project$VegaLite$TmType(2);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -9832,7 +9834,7 @@ var author$project$GalleryRepeat$repeat6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('age'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(_List_Nil),
 						author$project$VegaLite$pSort(
 						_List_fromArray(
@@ -9844,7 +9846,7 @@ var author$project$GalleryRepeat$repeat6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('people'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opSum),
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
@@ -9876,7 +9878,7 @@ var author$project$GalleryRepeat$repeat6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('age'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(_List_Nil),
 						author$project$VegaLite$pSort(
 						_List_fromArray(
@@ -9886,7 +9888,7 @@ var author$project$GalleryRepeat$repeat6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('age'),
-					author$project$VegaLite$tMType(2)
+					author$project$VegaLite$tQuant
 				])));
 	var specGap = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9910,7 +9912,7 @@ var author$project$GalleryRepeat$repeat6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('age'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(_List_Nil),
 						author$project$VegaLite$pSort(
 						_List_fromArray(
@@ -9922,7 +9924,7 @@ var author$project$GalleryRepeat$repeat6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('people'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opSum),
 					author$project$VegaLite$pAxis(
 					_List_fromArray(

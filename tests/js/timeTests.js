@@ -4290,8 +4290,6 @@ var elm$core$Basics$identity = function (x) {
 };
 var author$project$TimeTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
 var author$project$TimeTests$Local = 0;
-var author$project$VegaLite$Quantitative = 2;
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxFormat = function (a) {
@@ -5993,18 +5991,21 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
 var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 8, a: a};
 };
@@ -8387,7 +8388,7 @@ var author$project$TimeTests$parseTime = function (dType) {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('date'),
-							author$project$VegaLite$pMType(3),
+							author$project$VegaLite$pTemporal,
 							tu,
 							timeScale,
 							author$project$VegaLite$pAxis(
@@ -8402,7 +8403,7 @@ var author$project$TimeTests$parseTime = function (dType) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('value'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(
@@ -8496,7 +8497,7 @@ var author$project$TimeTests$timeByUnit = function (tu) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pTimeUnit(tu)
 					]))),
 		A2(
@@ -8505,7 +8506,7 @@ var author$project$TimeTests$timeByUnit = function (tu) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('temperature'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
 					author$project$VegaLite$pScale(
 					_List_fromArray(

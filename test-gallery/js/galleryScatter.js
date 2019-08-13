@@ -2299,7 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryScatter$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$VLData = 10;
@@ -3033,14 +3032,15 @@ var author$project$VegaLite$MTooltip = function (a) {
 	return {$: 53, a: a};
 };
 var author$project$VegaLite$maTooltip = author$project$VegaLite$MTooltip;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -6195,7 +6195,7 @@ var author$project$GalleryScatter$scatter1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6203,7 +6203,7 @@ var author$project$GalleryScatter$scatter1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via point marks).');
 	return author$project$VegaLite$toVegaLite(
@@ -6219,8 +6219,6 @@ var author$project$GalleryScatter$scatter1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$AxLabelAngle = function (a) {
 	return {$: 16, a: a};
 };
@@ -6262,14 +6260,16 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -6290,6 +6290,9 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$RNumbers = function (a) {
 	return {$: 0, a: a};
 };
@@ -6952,7 +6955,7 @@ var author$project$GalleryScatter$scatter10 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Year'),
-								author$project$VegaLite$pMType(1),
+								author$project$VegaLite$pOrdinal,
 								author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
@@ -6965,7 +6968,7 @@ var author$project$GalleryScatter$scatter10 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Entity'),
-							author$project$VegaLite$pMType(0),
+							author$project$VegaLite$pNominal,
 							author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
@@ -6976,7 +6979,7 @@ var author$project$GalleryScatter$scatter10 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Deaths'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mLegend(
 						_List_fromArray(
 							[
@@ -6995,7 +6998,7 @@ var author$project$GalleryScatter$scatter10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Entity'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var des = author$project$VegaLite$description('Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes');
@@ -7029,14 +7032,14 @@ var author$project$VegaLite$calculateAs = F2(
 							elm$json$Json$Encode$string(label)
 						]))));
 	});
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -7198,7 +7201,7 @@ var author$project$GalleryScatter$scatter11 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Horsepower'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -7206,19 +7209,19 @@ var author$project$GalleryScatter$scatter11 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Miles_per_Gallon'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Origin'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('OriginInitial'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var des = author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol.');
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
@@ -7392,7 +7395,7 @@ var author$project$GalleryScatter$scatter12 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7400,7 +7403,7 @@ var author$project$GalleryScatter$scatter12 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('IMDB_Rating'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -7582,7 +7585,7 @@ var author$project$GalleryScatter$scatter13 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7590,7 +7593,7 @@ var author$project$GalleryScatter$scatter13 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('IMDB_Rating'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -7617,7 +7620,7 @@ var author$project$GalleryScatter$scatter2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('precipitation'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('Shows the distribution of a single variable (precipitation) using tick marks.');
 	return author$project$VegaLite$toVegaLite(
@@ -7641,7 +7644,7 @@ var author$project$GalleryScatter$scatter3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -7649,7 +7652,7 @@ var author$project$GalleryScatter$scatter3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Cylinders'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var des = author$project$VegaLite$description('Shows the relationship between horsepower and the number of cylinders using tick marks.');
 	return author$project$VegaLite$toVegaLite(
@@ -7684,7 +7687,7 @@ var author$project$GalleryScatter$scatter4 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('Horsepower'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -7692,19 +7695,19 @@ var author$project$GalleryScatter$scatter4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Miles_per_Gallon'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('Origin'),
-						author$project$VegaLite$mMType(0)
+						author$project$VegaLite$mNominal
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Origin'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var des = author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape.');
 	return author$project$VegaLite$toVegaLite(
@@ -7744,7 +7747,7 @@ var author$project$GalleryScatter$scatter5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pBin(
 							_List_fromArray(
 								[
@@ -7757,7 +7760,7 @@ var author$project$GalleryScatter$scatter5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -7768,7 +7771,7 @@ var author$project$GalleryScatter$scatter5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var des = author$project$VegaLite$description('A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews.');
 	return author$project$VegaLite$toVegaLite(
@@ -7794,7 +7797,7 @@ var author$project$GalleryScatter$scatter6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Horsepower'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -7802,13 +7805,13 @@ var author$project$GalleryScatter$scatter6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Miles_per_Gallon'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$size(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('Acceleration'),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var des = author$project$VegaLite$description('A bubbleplot showing horsepower on x, miles per gallons on y, and acceleration on size.');
 	return author$project$VegaLite$toVegaLite(
@@ -9788,7 +9791,7 @@ var author$project$GalleryScatter$scatter7 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9796,7 +9799,7 @@ var author$project$GalleryScatter$scatter7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -9845,7 +9848,7 @@ var author$project$GalleryScatter$scatter8 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -9853,7 +9856,7 @@ var author$project$GalleryScatter$scatter8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var des = author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via circle marks).');
 	return author$project$VegaLite$toVegaLite(
@@ -9928,7 +9931,7 @@ var author$project$GalleryScatter$scatter9 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('income'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pScale(
 								_List_fromArray(
 									[
@@ -9941,7 +9944,7 @@ var author$project$GalleryScatter$scatter9 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('health'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
@@ -9952,7 +9955,7 @@ var author$project$GalleryScatter$scatter9 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('population'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(

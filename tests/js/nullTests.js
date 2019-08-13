@@ -4289,8 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$NullTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$dayLabel = function (dayName) {
@@ -5972,14 +5970,15 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$oMType = author$project$VegaLite$OmType;
 var author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$oName = author$project$VegaLite$OName;
+var author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$oOrdinal = author$project$VegaLite$OmType(1);
 var author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -6383,14 +6382,15 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -8388,7 +8388,7 @@ var author$project$NullTests$axis1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('x'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAxis(_List_Nil)
 						]))),
 			A2(
@@ -8397,14 +8397,14 @@ var author$project$NullTests$axis1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('y'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(_List_Nil)
 					]))),
 		author$project$VegaLite$order(
 			_List_fromArray(
 				[
 					author$project$VegaLite$oName('order'),
-					author$project$VegaLite$oMType(1)
+					author$project$VegaLite$oOrdinal
 				])));
 	var data = A2(
 		elm$core$Basics$composeL,
@@ -10442,7 +10442,7 @@ var author$project$NullTests$filter1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10450,7 +10450,7 @@ var author$project$NullTests$filter1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -11138,7 +11138,7 @@ var author$project$NullTests$filter2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -11146,7 +11146,7 @@ var author$project$NullTests$filter2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -11242,15 +11242,17 @@ var author$project$NullTests$scaleEncode = function (enc) {
 				author$project$VegaLite$point(_List_Nil)
 			]));
 };
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
+var author$project$VegaLite$mOrdinal = author$project$VegaLite$MmType(1);
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$shape = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -11283,7 +11285,7 @@ var author$project$NullTests$scale0 = author$project$NullTests$scaleEncode(
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -11291,25 +11293,25 @@ var author$project$NullTests$scale0 = author$project$NullTests$scaleEncode(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('val'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('val'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])))(_List_Nil));
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
@@ -11333,7 +11335,7 @@ var author$project$NullTests$scale1 = author$project$NullTests$scaleEncode(
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2),
+									author$project$VegaLite$pQuant,
 									author$project$VegaLite$pScale(_List_Nil)
 								]))),
 					A2(
@@ -11342,25 +11344,25 @@ var author$project$NullTests$scale1 = author$project$NullTests$scaleEncode(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('val'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('val'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])))(_List_Nil));
 var author$project$NullTests$scale2 = author$project$NullTests$scaleEncode(
 	A2(
@@ -11380,7 +11382,7 @@ var author$project$NullTests$scale2 = author$project$NullTests$scaleEncode(
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -11388,26 +11390,26 @@ var author$project$NullTests$scale2 = author$project$NullTests$scaleEncode(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pScale(_List_Nil)
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('val'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('val'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])))(_List_Nil));
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
@@ -11431,7 +11433,7 @@ var author$project$NullTests$scale3 = author$project$NullTests$scaleEncode(
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -11439,26 +11441,26 @@ var author$project$NullTests$scale3 = author$project$NullTests$scaleEncode(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('val'),
-							author$project$VegaLite$mMType(1),
+							author$project$VegaLite$mOrdinal,
 							author$project$VegaLite$mScale(_List_Nil)
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('val'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])))(_List_Nil));
 var author$project$NullTests$scale4 = author$project$NullTests$scaleEncode(
 	A2(
@@ -11478,7 +11480,7 @@ var author$project$NullTests$scale4 = author$project$NullTests$scaleEncode(
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -11486,26 +11488,26 @@ var author$project$NullTests$scale4 = author$project$NullTests$scaleEncode(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('val'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('val'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mScale(_List_Nil)
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])))(_List_Nil));
 var author$project$NullTests$scale5 = author$project$NullTests$scaleEncode(
 	A2(
@@ -11525,7 +11527,7 @@ var author$project$NullTests$scale5 = author$project$NullTests$scaleEncode(
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -11533,25 +11535,25 @@ var author$project$NullTests$scale5 = author$project$NullTests$scaleEncode(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('val'),
-							author$project$VegaLite$mMType(1)
+							author$project$VegaLite$mOrdinal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('val'),
-						author$project$VegaLite$mMType(2)
+						author$project$VegaLite$mQuant
 					]))),
 		author$project$VegaLite$shape(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('cat'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(_List_Nil)
 				])))(_List_Nil));
 var author$project$VegaLite$combineSpecs = function (specs) {

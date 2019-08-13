@@ -3278,7 +3278,6 @@ var author$project$AxisTests$data = A2(
 				elm$core$List$map,
 				elm$core$Basics$toFloat,
 				A2(elm$core$List$range, 1, 100)))));
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$VLEncoding = 15;
@@ -4025,14 +4024,15 @@ var author$project$VegaLite$MPoint = function (a) {
 	return {$: 32, a: a};
 };
 var author$project$VegaLite$maPoint = author$project$VegaLite$MPoint;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
@@ -6341,7 +6341,7 @@ var author$project$AxisTests$axis1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6349,7 +6349,7 @@ var author$project$AxisTests$axis1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6365,6 +6365,7 @@ var author$project$AxisTests$axis1 = function () {
 			]));
 }();
 var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$AxisTests$axis2 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -6377,7 +6378,7 @@ var author$project$AxisTests$axis2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('catX'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6385,7 +6386,7 @@ var author$project$AxisTests$axis2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6418,6 +6419,7 @@ var author$project$AxisTests$temporalData = A2(
 			_List_fromArray(
 				[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))));
 var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$AxisTests$axis3 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -6430,7 +6432,7 @@ var author$project$AxisTests$axis3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -6438,7 +6440,7 @@ var author$project$AxisTests$axis3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6473,7 +6475,7 @@ var author$project$AxisTests$axis4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6489,7 +6491,7 @@ var author$project$AxisTests$axis4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6516,7 +6518,7 @@ var author$project$AxisTests$axis5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('catX'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6532,7 +6534,7 @@ var author$project$AxisTests$axis5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6576,7 +6578,7 @@ var author$project$AxisTests$axis6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6611,7 +6613,7 @@ var author$project$AxisTests$axis6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6642,7 +6644,7 @@ var author$project$AxisTests$axis7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('x'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6655,7 +6657,7 @@ var author$project$AxisTests$axis7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -6682,7 +6684,7 @@ var author$project$AxisTests$axis8 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('catX'),
-						author$project$VegaLite$pMType(1),
+						author$project$VegaLite$pOrdinal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -6695,7 +6697,7 @@ var author$project$AxisTests$axis8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('y'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(

@@ -8278,8 +8278,6 @@ var author$project$Spc$cusumData = function (x) {
 					elm$core$List$length(month),
 					0))))(_List_Nil);
 };
-var author$project$VegaLite$Quantitative = 2;
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxDomain = function (a) {
@@ -8310,18 +8308,21 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
 var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -10371,7 +10372,7 @@ var author$project$Spc$encCusum = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('month'),
-					author$project$VegaLite$pMType(3),
+					author$project$VegaLite$pTemporal,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -10392,7 +10393,7 @@ var author$project$Spc$encCusum = A2(
 		_List_fromArray(
 			[
 				author$project$VegaLite$pName('cusum'),
-				author$project$VegaLite$pMType(2),
+				author$project$VegaLite$pQuant,
 				author$project$VegaLite$pAxis(
 				_List_fromArray(
 					[
@@ -10590,7 +10591,7 @@ var author$project$Spc$cusum1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('zeroLine'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specZeroLine = author$project$VegaLite$asSpec(
@@ -10633,7 +10634,7 @@ var author$project$Spc$cusum2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('zeroLine'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specZeroLine = author$project$VegaLite$asSpec(
@@ -10693,7 +10694,7 @@ var author$project$Spc$cusumInteractive = function (baseline) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('zeroLine'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specZeroLine = author$project$VegaLite$asSpec(
@@ -11025,7 +11026,7 @@ var author$project$Spc$spc1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('month'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -11033,7 +11034,7 @@ var author$project$Spc$spc1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('crimes'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -11056,7 +11057,7 @@ var author$project$Spc$encLine = A2(
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('month'),
-					author$project$VegaLite$pMType(3),
+					author$project$VegaLite$pTemporal,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -11077,7 +11078,7 @@ var author$project$Spc$encLine = A2(
 		_List_fromArray(
 			[
 				author$project$VegaLite$pName('crimes'),
-				author$project$VegaLite$pMType(2),
+				author$project$VegaLite$pQuant,
 				author$project$VegaLite$pAxis(
 				_List_fromArray(
 					[
@@ -11803,7 +11804,7 @@ var author$project$Spc$sdLine = function (n) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('sd'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -11928,7 +11929,6 @@ var author$project$Spc$shiftShapes = author$project$VegaLite$categoricalDomainMa
 			_Utils_Tuple2('below2SD', 'diamond'),
 			_Utils_Tuple2('lowerOutlier', 'triangle-down')
 		]));
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$color = function (markProps) {
 	return elm$core$List$cons(
 		_Utils_Tuple2(
@@ -11940,14 +11940,15 @@ var author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -11995,7 +11996,7 @@ var author$project$Spc$spc4 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('month'),
-								author$project$VegaLite$pMType(3),
+								author$project$VegaLite$pTemporal,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				A2(
@@ -12004,14 +12005,14 @@ var author$project$Spc$spc4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('crimes'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAxis(_List_Nil)
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('shiftDirection'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mScale(author$project$Spc$shiftColours),
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
@@ -12019,7 +12020,7 @@ var author$project$Spc$spc4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('shifts'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(author$project$Spc$shiftShapes),
 					author$project$VegaLite$mLegend(_List_Nil)
 				])));
@@ -12104,7 +12105,7 @@ var author$project$Spc$sdRegion = function (n) {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('upper'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -12121,7 +12122,7 @@ var author$project$Spc$sdRegion = function (n) {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('lower'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	return author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12131,15 +12132,15 @@ var author$project$Spc$sdRegion = function (n) {
 				author$project$VegaLite$rect(fillCol)
 			]));
 };
-var author$project$VegaLite$Ordinal = 1;
-var author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$dMType = author$project$VegaLite$DmType;
 var author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$dName = author$project$VegaLite$DName;
+var author$project$VegaLite$DmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$dOrdinal = author$project$VegaLite$DmType(1);
 var author$project$VegaLite$detailChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -12222,7 +12223,7 @@ var author$project$Spc$spc5 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('month'),
-								author$project$VegaLite$pMType(3),
+								author$project$VegaLite$pTemporal,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				A2(
@@ -12231,14 +12232,14 @@ var author$project$Spc$spc5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('crimes'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pAxis(_List_Nil)
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('shiftDirection'),
-						author$project$VegaLite$mMType(0),
+						author$project$VegaLite$mNominal,
 						author$project$VegaLite$mScale(author$project$Spc$shiftColours),
 						author$project$VegaLite$mLegend(_List_Nil)
 					]))),
@@ -12246,7 +12247,7 @@ var author$project$Spc$spc5 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$dName('groups'),
-					author$project$VegaLite$dMType(1)
+					author$project$VegaLite$dOrdinal
 				])));
 	var specShifts = author$project$VegaLite$asSpec(
 		_List_fromArray(

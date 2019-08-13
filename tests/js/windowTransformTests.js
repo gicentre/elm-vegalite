@@ -4780,8 +4780,6 @@ var elm$json$Json$Encode$object = function (pairs) {
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxTitle = function (a) {
@@ -6227,14 +6225,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
@@ -9117,7 +9118,7 @@ var author$project$WindowTransformTests$joinAggregate1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('PercentOfTotal'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9130,7 +9131,7 @@ var author$project$WindowTransformTests$joinAggregate1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Activity'),
-					author$project$VegaLite$pMType(0),
+					author$project$VegaLite$pNominal,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -9242,7 +9243,7 @@ var author$project$WindowTransformTests$joinAggregate2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9255,7 +9256,7 @@ var author$project$WindowTransformTests$joinAggregate2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Title'),
-					author$project$VegaLite$pMType(0),
+					author$project$VegaLite$pNominal,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -9337,7 +9338,7 @@ var author$project$WindowTransformTests$joinAggregate3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9350,7 +9351,7 @@ var author$project$WindowTransformTests$joinAggregate3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Title'),
-					author$project$VegaLite$pMType(0),
+					author$project$VegaLite$pNominal,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -9503,7 +9504,7 @@ var author$project$WindowTransformTests$window1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('PercentOfTotal'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9516,7 +9517,7 @@ var author$project$WindowTransformTests$window1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Activity'),
-					author$project$VegaLite$pMType(0),
+					author$project$VegaLite$pNominal,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -9550,7 +9551,6 @@ var author$project$WindowTransformTests$window1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$asSpec = function (specs) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -9578,6 +9578,8 @@ var author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var author$project$VegaLite$pAggregate = author$project$VegaLite$PAggregate;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Rule = 10;
 var author$project$VegaLite$rule = author$project$VegaLite$mark(10);
 var author$project$WindowTransformTests$window2 = function () {
@@ -9618,7 +9620,7 @@ var author$project$WindowTransformTests$window2 = function () {
 				[
 					author$project$VegaLite$pName('AverageRating'),
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var ruleSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9642,7 +9644,7 @@ var author$project$WindowTransformTests$window2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9655,7 +9657,7 @@ var author$project$WindowTransformTests$window2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Title'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9745,7 +9747,7 @@ var author$project$WindowTransformTests$window3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('AverageYearRating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9753,7 +9755,7 @@ var author$project$WindowTransformTests$window3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Title'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -9790,7 +9792,7 @@ var author$project$WindowTransformTests$window3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9803,7 +9805,7 @@ var author$project$WindowTransformTests$window3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Title'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9825,7 +9827,6 @@ var author$project$WindowTransformTests$window3 = function () {
 					[barSpec, tickSpec]))
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$DateRange = F2(
 	function (a, b) {
 		return {$: 1, a: a, b: b};
@@ -9848,6 +9849,8 @@ var author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 46, a: a};
 };
 var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$point = author$project$VegaLite$mark(8);
 var author$project$WindowTransformTests$window4 = function () {
@@ -9901,7 +9904,7 @@ var author$project$WindowTransformTests$window4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Release_Date'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -9909,7 +9912,7 @@ var author$project$WindowTransformTests$window4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('RatingDelta'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -9986,14 +9989,14 @@ var author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) {
 };
 var author$project$VegaLite$Line = 7;
 var author$project$VegaLite$line = author$project$VegaLite$mark(7);
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
@@ -10065,7 +10068,7 @@ var author$project$WindowTransformTests$window5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('matchday'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10073,13 +10076,13 @@ var author$project$WindowTransformTests$window5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('rank'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('team'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(teamColours)
 				])));
 	var data = A2(
@@ -10163,7 +10166,7 @@ var author$project$WindowTransformTests$window6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('score'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10171,7 +10174,7 @@ var author$project$WindowTransformTests$window6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('student'),
-					author$project$VegaLite$pMType(0),
+					author$project$VegaLite$pNominal,
 					author$project$VegaLite$pSort(
 					_List_fromArray(
 						[
@@ -10266,7 +10269,7 @@ var author$project$WindowTransformTests$window7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Year'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 					]))),
 		A2(
@@ -10275,7 +10278,7 @@ var author$project$WindowTransformTests$window7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Average_MPG'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -10304,7 +10307,7 @@ var author$project$WindowTransformTests$window7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Year'),
-						author$project$VegaLite$pMType(3),
+						author$project$VegaLite$pTemporal,
 						author$project$VegaLite$pTimeUnit(author$project$VegaLite$year)
 					]))),
 		A2(
@@ -10313,7 +10316,7 @@ var author$project$WindowTransformTests$window7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var circleSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(

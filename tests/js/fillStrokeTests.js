@@ -4289,8 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$FillStrokeTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$Circle = 5;
@@ -7461,14 +7459,15 @@ var author$project$VegaLite$height = function (h) {
 		4,
 		elm$json$Json$Encode$float(h));
 };
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MNumber = function (a) {
 	return {$: 14, a: a};
 };
@@ -7481,14 +7480,15 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -8341,7 +8341,7 @@ var author$project$FillStrokeTests$encChart = function (extraEnc) {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('x'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -8349,13 +8349,13 @@ var author$project$FillStrokeTests$encChart = function (extraEnc) {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('y'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('cat'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
@@ -8430,6 +8430,7 @@ var author$project$FillStrokeTests$combined1 = author$project$FillStrokeTests$en
 		author$project$VegaLite$stroke(_List_Nil),
 		author$project$VegaLite$fill(_List_Nil)));
 var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$mOrdinal = author$project$VegaLite$MmType(1);
 var author$project$VegaLite$MString = function (a) {
 	return {$: 15, a: a};
 };
@@ -8441,7 +8442,7 @@ var author$project$FillStrokeTests$combined2 = author$project$FillStrokeTests$en
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('y'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				])),
 		author$project$VegaLite$fill(
 			_List_fromArray(
@@ -8460,7 +8461,7 @@ var author$project$FillStrokeTests$combined3 = author$project$FillStrokeTests$en
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('y'),
-					author$project$VegaLite$mMType(1)
+					author$project$VegaLite$mOrdinal
 				]))));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {
@@ -8475,7 +8476,7 @@ var author$project$FillStrokeTests$fill2 = author$project$FillStrokeTests$encCha
 		_List_fromArray(
 			[
 				author$project$VegaLite$mName('y'),
-				author$project$VegaLite$mMType(1)
+				author$project$VegaLite$mOrdinal
 			])));
 var author$project$FillStrokeTests$fill3 = author$project$FillStrokeTests$encChart(
 	author$project$VegaLite$fill(
@@ -8740,7 +8741,7 @@ var author$project$FillStrokeTests$geo2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('features.geometry.type'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -8759,7 +8760,7 @@ var author$project$FillStrokeTests$stroke2 = author$project$FillStrokeTests$encC
 		_List_fromArray(
 			[
 				author$project$VegaLite$mName('y'),
-				author$project$VegaLite$mMType(1)
+				author$project$VegaLite$mOrdinal
 			])));
 var author$project$FillStrokeTests$stroke3 = author$project$FillStrokeTests$encChart(
 	author$project$VegaLite$stroke(

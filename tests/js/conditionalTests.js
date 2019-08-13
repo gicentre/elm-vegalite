@@ -4289,7 +4289,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$ConditionalTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxDataCondition = F3(
@@ -5038,14 +5037,15 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Point = 8;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -8198,7 +8198,7 @@ var author$project$ConditionalTests$axisCondition1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -8218,7 +8218,7 @@ var author$project$ConditionalTests$axisCondition1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -8263,7 +8263,7 @@ var author$project$ConditionalTests$axisCondition2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -8291,7 +8291,7 @@ var author$project$ConditionalTests$axisCondition2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -8361,7 +8361,7 @@ var author$project$ConditionalTests$axisCondition3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -8414,7 +8414,7 @@ var author$project$ConditionalTests$axisCondition3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -8848,7 +8848,7 @@ var author$project$ConditionalTests$bindScales1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8856,7 +8856,7 @@ var author$project$ConditionalTests$bindScales1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	return author$project$VegaLite$toVegaLite(
@@ -8898,7 +8898,7 @@ var author$project$ConditionalTests$bindScales2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -8906,7 +8906,7 @@ var author$project$ConditionalTests$bindScales2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
 	return author$project$VegaLite$toVegaLite(
@@ -10534,7 +10534,7 @@ var author$project$ConditionalTests$markCondition1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('IMDB_Rating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10542,7 +10542,7 @@ var author$project$ConditionalTests$markCondition1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10581,7 +10581,6 @@ var author$project$ConditionalTests$markCondition1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -10725,6 +10724,8 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$ConditionalTests$markCondition2 = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -10737,7 +10738,7 @@ var author$project$ConditionalTests$markCondition2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('value'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10798,14 +10799,14 @@ var author$project$VegaLite$MAggregate = function (a) {
 	return {$: 9, a: a};
 };
 var author$project$VegaLite$mAggregate = author$project$VegaLite$MAggregate;
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$MCursor = function (a) {
 	return {$: 10, a: a};
 };
@@ -10882,7 +10883,7 @@ var author$project$ConditionalTests$selectionCondition1 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Origin'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10890,14 +10891,14 @@ var author$project$ConditionalTests$selectionCondition1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Cylinders'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
 					author$project$VegaLite$mName('*'),
-					author$project$VegaLite$mMType(2)
+					author$project$VegaLite$mQuant
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -10974,7 +10975,7 @@ var author$project$ConditionalTests$selectionCondition2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Origin'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10982,7 +10983,7 @@ var author$project$ConditionalTests$selectionCondition2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Cylinders'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10997,7 +10998,7 @@ var author$project$ConditionalTests$selectionCondition2 = function () {
 						[
 							author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
 							author$project$VegaLite$mName('*'),
-							author$project$VegaLite$mMType(2)
+							author$project$VegaLite$mQuant
 						]),
 					_List_fromArray(
 						[
@@ -11708,7 +11709,7 @@ var author$project$ConditionalTests$selectionCondition3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Acceleration'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -11724,7 +11725,7 @@ var author$project$ConditionalTests$selectionCondition3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Displacement'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -11752,7 +11753,7 @@ var author$project$ConditionalTests$selectionCondition3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Horsepower'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -11760,7 +11761,7 @@ var author$project$ConditionalTests$selectionCondition3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Miles_per_Gallon'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var spec1 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11806,7 +11807,7 @@ var author$project$ConditionalTests$selectionCondition4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Origin'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -11814,7 +11815,7 @@ var author$project$ConditionalTests$selectionCondition4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Cylinders'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -11826,7 +11827,7 @@ var author$project$ConditionalTests$selectionCondition4 = function () {
 						[
 							author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
 							author$project$VegaLite$mName('*'),
-							author$project$VegaLite$mMType(2)
+							author$project$VegaLite$mQuant
 						]),
 					_List_fromArray(
 						[
@@ -11877,7 +11878,7 @@ var author$project$ConditionalTests$selectionCondition5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('Origin'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -11885,7 +11886,7 @@ var author$project$ConditionalTests$selectionCondition5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Cylinders'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -11897,7 +11898,7 @@ var author$project$ConditionalTests$selectionCondition5 = function () {
 						[
 							author$project$VegaLite$mAggregate(author$project$VegaLite$opCount),
 							author$project$VegaLite$mName('*'),
-							author$project$VegaLite$mMType(2)
+							author$project$VegaLite$mQuant
 						]),
 					_List_fromArray(
 						[

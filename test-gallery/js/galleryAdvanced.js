@@ -2299,8 +2299,6 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$GalleryAdvanced$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
-var author$project$VegaLite$Nominal = 0;
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$AxTitle = function (a) {
@@ -4023,14 +4021,17 @@ var author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var author$project$VegaLite$pAxis = author$project$VegaLite$PAxis;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pNominal = author$project$VegaLite$PmType(0);
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -7204,7 +7205,7 @@ var author$project$GalleryAdvanced$advanced1 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('PercentOfTotal'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -7217,7 +7218,7 @@ var author$project$GalleryAdvanced$advanced1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Activity'),
-					author$project$VegaLite$pMType(0)
+					author$project$VegaLite$pNominal
 				])));
 	var desc = author$project$VegaLite$description('Calculation of percentage of total');
 	var data = A2(
@@ -9233,14 +9234,15 @@ var author$project$VegaLite$DAggregate = function (a) {
 	return {$: 4, a: a};
 };
 var author$project$VegaLite$dAggregate = author$project$VegaLite$DAggregate;
-var author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$dMType = author$project$VegaLite$DmType;
 var author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$dName = author$project$VegaLite$DName;
+var author$project$VegaLite$DmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$dNominal = author$project$VegaLite$DmType(0);
+var author$project$VegaLite$dQuant = author$project$VegaLite$DmType(2);
 var author$project$VegaLite$dataFromUrl = F2(
 	function (url, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -9342,14 +9344,14 @@ var author$project$VegaLite$layer = function (specs) {
 };
 var author$project$VegaLite$Line = 7;
 var author$project$VegaLite$line = author$project$VegaLite$mark(7);
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
 };
@@ -9418,14 +9420,14 @@ var author$project$VegaLite$TAggregate = function (a) {
 	return {$: 5, a: a};
 };
 var author$project$VegaLite$tAggregate = author$project$VegaLite$TAggregate;
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tQuant = author$project$VegaLite$TmType(2);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -9658,7 +9660,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('key'),
-									author$project$VegaLite$pMType(0)
+									author$project$VegaLite$pNominal
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -9666,20 +9668,20 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('normVal'),
-								author$project$VegaLite$pMType(2),
+								author$project$VegaLite$pQuant,
 								author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('species'),
-							author$project$VegaLite$mMType(0)
+							author$project$VegaLite$mNominal
 						]))),
 			author$project$VegaLite$detail(
 				_List_fromArray(
 					[
 						author$project$VegaLite$dName('index'),
-						author$project$VegaLite$dMType(0)
+						author$project$VegaLite$dNominal
 					]))),
 		author$project$VegaLite$tooltips(
 			_List_fromArray(
@@ -9687,22 +9689,22 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('petalLength'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('petalWidth'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('sepalLength'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
 						author$project$VegaLite$tName('sepalWidth'),
-						author$project$VegaLite$tMType(2)
+						author$project$VegaLite$tQuant
 					])
 				])));
 	var specLine = author$project$VegaLite$asSpec(
@@ -9728,7 +9730,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('key'),
-							author$project$VegaLite$pMType(0)
+							author$project$VegaLite$pNominal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9741,7 +9743,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('max'),
-					author$project$VegaLite$tMType(2),
+					author$project$VegaLite$tQuant,
 					author$project$VegaLite$tAggregate(author$project$VegaLite$opMax)
 				])));
 	var specAxisLabelsTop = author$project$VegaLite$asSpec(
@@ -9769,7 +9771,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('key'),
-							author$project$VegaLite$pMType(0)
+							author$project$VegaLite$pNominal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9782,7 +9784,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('mid'),
-					author$project$VegaLite$tMType(2),
+					author$project$VegaLite$tQuant,
 					author$project$VegaLite$tAggregate(author$project$VegaLite$opMin)
 				])));
 	var specAxisLabelsMid = author$project$VegaLite$asSpec(
@@ -9810,7 +9812,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('key'),
-							author$project$VegaLite$pMType(0)
+							author$project$VegaLite$pNominal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9821,7 +9823,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('min'),
-					author$project$VegaLite$tMType(2),
+					author$project$VegaLite$tQuant,
 					author$project$VegaLite$tAggregate(author$project$VegaLite$opMin)
 				])));
 	var specAxisLabelsBot = author$project$VegaLite$asSpec(
@@ -9847,7 +9849,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('key'),
-						author$project$VegaLite$pMType(0),
+						author$project$VegaLite$pNominal,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -9858,7 +9860,7 @@ var author$project$GalleryAdvanced$advanced10 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$dAggregate(author$project$VegaLite$opCount),
-					author$project$VegaLite$dMType(2)
+					author$project$VegaLite$dQuant
 				])));
 	var specAxis = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9948,7 +9950,7 @@ var author$project$GalleryAdvanced$advanced11 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Production_Budget'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAggregate(
 						author$project$VegaLite$opArgMax(
 							elm$core$Maybe$Just('US_Gross')))
@@ -9959,7 +9961,7 @@ var author$project$GalleryAdvanced$advanced11 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Major_Genre'),
-					author$project$VegaLite$pMType(0)
+					author$project$VegaLite$pNominal
 				])));
 	var desc = author$project$VegaLite$description('Production budget of the film with highest US Gross in each major genre.');
 	var data = author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
@@ -9972,13 +9974,14 @@ var author$project$GalleryAdvanced$advanced11 = function () {
 				author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Temporal = 3;
 var author$project$VegaLite$MSize = function (a) {
 	return {$: 37, a: a};
 };
 var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
 var author$project$VegaLite$Mean = {$: 7};
 var author$project$VegaLite$opMean = author$project$VegaLite$Mean;
+var author$project$VegaLite$Temporal = 3;
+var author$project$VegaLite$pTemporal = author$project$VegaLite$PmType(3);
 var author$project$VegaLite$PTitle = function (a) {
 	return {$: 9, a: a};
 };
@@ -10020,7 +10023,7 @@ var author$project$GalleryAdvanced$advanced13 = function () {
 					[
 						author$project$VegaLite$pName('date'),
 						author$project$VegaLite$pTitle('Date'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10029,7 +10032,7 @@ var author$project$GalleryAdvanced$advanced13 = function () {
 				[
 					author$project$VegaLite$pName('temp_max'),
 					author$project$VegaLite$pTitle('Maximum temperature'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specRaw = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10052,7 +10055,7 @@ var author$project$GalleryAdvanced$advanced13 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('date'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10060,7 +10063,7 @@ var author$project$GalleryAdvanced$advanced13 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('rollingMean'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var specAv = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10088,7 +10091,6 @@ var author$project$GalleryAdvanced$advanced13 = function () {
 					[specRaw, specAv]))
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -10099,6 +10101,8 @@ var author$project$VegaLite$filter = function (f) {
 			'filter',
 			author$project$VegaLite$filterSpec(f)));
 };
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$GalleryAdvanced$advanced2 = function () {
 	var trans = A2(
 		elm$core$Basics$composeL,
@@ -10128,7 +10132,7 @@ var author$project$GalleryAdvanced$advanced2 = function () {
 				[
 					author$project$VegaLite$pName('AverageRating'),
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var ruleSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10153,7 +10157,7 @@ var author$project$GalleryAdvanced$advanced2 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -10166,7 +10170,7 @@ var author$project$GalleryAdvanced$advanced2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Title'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10252,7 +10256,7 @@ var author$project$GalleryAdvanced$advanced3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('AverageYearRating'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10260,7 +10264,7 @@ var author$project$GalleryAdvanced$advanced3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Title'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10286,7 +10290,7 @@ var author$project$GalleryAdvanced$advanced3 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('IMDB_Rating'),
-						author$project$VegaLite$pMType(2),
+						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -10299,7 +10303,7 @@ var author$project$GalleryAdvanced$advanced3 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('Title'),
-					author$project$VegaLite$pMType(1)
+					author$project$VegaLite$pOrdinal
 				])));
 	var barSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10382,7 +10386,7 @@ var author$project$GalleryAdvanced$advanced4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('Release_Date'),
-						author$project$VegaLite$pMType(3)
+						author$project$VegaLite$pTemporal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -10390,7 +10394,7 @@ var author$project$GalleryAdvanced$advanced4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('RatingDelta'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -10546,7 +10550,7 @@ var author$project$GalleryAdvanced$advanced5 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('matchday'),
-							author$project$VegaLite$pMType(1)
+							author$project$VegaLite$pOrdinal
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -10554,13 +10558,13 @@ var author$project$GalleryAdvanced$advanced5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('rank'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('team'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mScale(teamColours)
 				])));
 	var des = author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
@@ -10649,6 +10653,7 @@ var author$project$VegaLite$PSort = function (a) {
 	return {$: 13, a: a};
 };
 var author$project$VegaLite$pSort = author$project$VegaLite$PSort;
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$AlignTop = 0;
 var author$project$VegaLite$vaTop = 0;
 var author$project$VegaLite$Lead = 7;
@@ -10719,13 +10724,13 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('center'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$text(
 				_List_fromArray(
 					[
 						author$project$VegaLite$tName('text_amount'),
-						author$project$VegaLite$tMType(0)
+						author$project$VegaLite$tNominal
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
@@ -10768,13 +10773,13 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('sum_dec'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('sum_dec'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var spec4 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10800,13 +10805,13 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('sum_inc'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('sum_inc'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var spec3 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10838,7 +10843,7 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('sum'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var spec2 = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10867,7 +10872,7 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('previous_sum'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pTitle('Amount')
 						]))),
 			A2(
@@ -10921,7 +10926,7 @@ var author$project$GalleryAdvanced$advanced6 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('label'),
-					author$project$VegaLite$pMType(1),
+					author$project$VegaLite$pOrdinal,
 					author$project$VegaLite$pSort(_List_Nil),
 					author$project$VegaLite$pTitle('Months')
 				])));
@@ -10995,7 +11000,7 @@ var author$project$GalleryAdvanced$advanced7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('group'),
-						author$project$VegaLite$pMType(1)
+						author$project$VegaLite$pOrdinal
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -11003,7 +11008,7 @@ var author$project$GalleryAdvanced$advanced7 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('age'),
-					author$project$VegaLite$pMType(2),
+					author$project$VegaLite$pQuant,
 					author$project$VegaLite$pAggregate(author$project$VegaLite$opMean)
 				])));
 	var des = author$project$VegaLite$description('Using the lookup transform to combine data');
@@ -11142,14 +11147,14 @@ var author$project$VegaLite$DnGroupBy = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$dnGroupBy = author$project$VegaLite$DnGroupBy;
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$foldAs = F3(
 	function (fields, keyName, valName) {
 		return elm$core$List$cons(
@@ -11277,7 +11282,7 @@ var author$project$GalleryAdvanced$advanced8 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('value'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pTitle('width/length (cm)')
 						]))),
 			A2(
@@ -11286,13 +11291,13 @@ var author$project$GalleryAdvanced$advanced8 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('density'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$row(
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('measurement'),
-					author$project$VegaLite$fMType(0)
+					author$project$VegaLite$fNominal
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/iris.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(
@@ -11359,7 +11364,7 @@ var author$project$GalleryAdvanced$advanced9 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('value'),
-							author$project$VegaLite$pMType(2),
+							author$project$VegaLite$pQuant,
 							author$project$VegaLite$pTitle('width/length (cm)')
 						]))),
 			A2(
@@ -11368,13 +11373,13 @@ var author$project$GalleryAdvanced$advanced9 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('density'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('measurement'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	var data = A2(author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/iris.json', _List_Nil);
 	return author$project$VegaLite$toVegaLite(

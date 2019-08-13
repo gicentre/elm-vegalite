@@ -5772,7 +5772,6 @@ var author$project$GalleryGeo$cfg = A2(
 				[
 					author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing)
 				]))));
-var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$AlbersUsa = {$: 1};
 var author$project$VegaLite$albersUsa = author$project$VegaLite$AlbersUsa;
 var author$project$VegaLite$arrangementLabel = function (arrng) {
@@ -7373,14 +7372,15 @@ var author$project$VegaLite$lookup = F4(
 							A2(elm$json$Json$Encode$list, elm$json$Json$Encode$string, fields)
 						]))));
 	});
-var author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$mMType = author$project$VegaLite$MmType;
 var author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Quantitative = 2;
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
 var author$project$VegaLite$MSort = function (a) {
 	return {$: 6, a: a};
 };
@@ -8138,7 +8138,7 @@ var author$project$GalleryGeo$geo1 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('rate'),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mSort(
 					_List_fromArray(
 						[author$project$VegaLite$soDescending]))
@@ -8165,7 +8165,6 @@ var author$project$GalleryGeo$geo1 = function () {
 }();
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Longitude = 4;
-var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$calculateAs = F2(
 	function (ex, label) {
 		return elm$core$List$cons(
@@ -8186,18 +8185,20 @@ var author$project$VegaLite$description = function (s) {
 		1,
 		elm$json$Json$Encode$string(s));
 };
+var author$project$VegaLite$Nominal = 0;
+var author$project$VegaLite$mNominal = author$project$VegaLite$MmType(0);
 var author$project$VegaLite$MNumber = function (a) {
 	return {$: 14, a: a};
 };
 var author$project$VegaLite$mNum = author$project$VegaLite$MNumber;
-var author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
 var author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$pName = author$project$VegaLite$PName;
+var author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude2 = 6;
 var author$project$VegaLite$X = 0;
@@ -8908,7 +8909,7 @@ var author$project$GalleryGeo$geo2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('longitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -8916,7 +8917,7 @@ var author$project$GalleryGeo$geo2 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('latitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
@@ -8927,7 +8928,7 @@ var author$project$GalleryGeo$geo2 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('digit'),
-					author$project$VegaLite$mMType(0)
+					author$project$VegaLite$mNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -8987,7 +8988,7 @@ var author$project$GalleryGeo$geo3 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('longitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -8995,7 +8996,7 @@ var author$project$GalleryGeo$geo3 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('latitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
@@ -9123,7 +9124,7 @@ var author$project$GalleryGeo$geo4 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('origin_longitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -9131,7 +9132,7 @@ var author$project$GalleryGeo$geo4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('origin_latitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9139,7 +9140,7 @@ var author$project$GalleryGeo$geo4 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('dest_longitude'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		A2(
 			author$project$VegaLite$position,
@@ -9147,7 +9148,7 @@ var author$project$GalleryGeo$geo4 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$pName('dest_latitude'),
-					author$project$VegaLite$pMType(2)
+					author$project$VegaLite$pQuant
 				])));
 	var flightsSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9192,7 +9193,7 @@ var author$project$GalleryGeo$geo4 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('longitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -9200,7 +9201,7 @@ var author$project$GalleryGeo$geo4 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('latitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
@@ -9236,7 +9237,6 @@ var author$project$GalleryGeo$geo4 = function () {
 					[backdropSpec, airportsSpec, flightsSpec]))
 			]));
 }();
-var author$project$VegaLite$GeoFeature = 4;
 var author$project$VegaLite$Row = 1;
 var author$project$VegaLite$arRow = 1;
 var author$project$VegaLite$ChColor = 4;
@@ -9257,6 +9257,8 @@ var author$project$VegaLite$lookupAs = F4(
 							elm$json$Json$Encode$string(asName)
 						]))));
 	});
+var author$project$VegaLite$GeoFeature = 4;
+var author$project$VegaLite$mGeo = author$project$VegaLite$MmType(4);
 var author$project$VegaLite$MRepeat = function (a) {
 	return {$: 1, a: a};
 };
@@ -9381,13 +9383,13 @@ var author$project$GalleryGeo$geo5 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('geo'),
-						author$project$VegaLite$mMType(4)
+						author$project$VegaLite$mGeo
 					]))),
 		author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					author$project$VegaLite$mRepeat(author$project$VegaLite$arRow),
-					author$project$VegaLite$mMType(2),
+					author$project$VegaLite$mQuant,
 					author$project$VegaLite$mSort(
 					_List_fromArray(
 						[author$project$VegaLite$soDescending]))
@@ -9444,14 +9446,14 @@ var author$project$GalleryGeo$geo5 = function () {
 				author$project$VegaLite$specification(spec)
 			]));
 }();
-var author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$tMType = author$project$VegaLite$TmType;
 var author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$tName = author$project$VegaLite$TName;
+var author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$tNominal = author$project$VegaLite$TmType(0);
 var author$project$VegaLite$textChannelProperty = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -9607,7 +9609,7 @@ var author$project$GalleryGeo$geo6 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('lon'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9615,13 +9617,13 @@ var author$project$GalleryGeo$geo6 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('lat'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$text(
 			_List_fromArray(
 				[
 					author$project$VegaLite$tName('city'),
-					author$project$VegaLite$tMType(0)
+					author$project$VegaLite$tNominal
 				])));
 	var overlaySpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9668,7 +9670,6 @@ var author$project$GalleryGeo$geo6 = function () {
 					[backdropSpec, overlaySpec]))
 			]));
 }();
-var author$project$VegaLite$Ordinal = 1;
 var author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -9810,14 +9811,15 @@ var author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
-var author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var author$project$VegaLite$oMType = author$project$VegaLite$OmType;
 var author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$oName = author$project$VegaLite$OName;
+var author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$Ordinal = 1;
+var author$project$VegaLite$oOrdinal = author$project$VegaLite$OmType(1);
 var author$project$VegaLite$orderChannelProperty = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -9948,7 +9950,7 @@ var author$project$GalleryGeo$geo7 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('longitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			A2(
 				author$project$VegaLite$position,
@@ -9956,13 +9958,13 @@ var author$project$GalleryGeo$geo7 = function () {
 				_List_fromArray(
 					[
 						author$project$VegaLite$pName('latitude'),
-						author$project$VegaLite$pMType(2)
+						author$project$VegaLite$pQuant
 					]))),
 		author$project$VegaLite$order(
 			_List_fromArray(
 				[
 					author$project$VegaLite$oName('order'),
-					author$project$VegaLite$oMType(1)
+					author$project$VegaLite$oOrdinal
 				])));
 	var flightsSpec = author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10007,7 +10009,7 @@ var author$project$GalleryGeo$geo7 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('longitude'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -10015,7 +10017,7 @@ var author$project$GalleryGeo$geo7 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$pName('latitude'),
-							author$project$VegaLite$pMType(2)
+							author$project$VegaLite$pQuant
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
@@ -10051,14 +10053,14 @@ var author$project$GalleryGeo$geo7 = function () {
 					[backdropSpec, airportsSpec, flightsSpec]))
 			]));
 }();
-var author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var author$project$VegaLite$fMType = author$project$VegaLite$FmType;
 var author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$fName = author$project$VegaLite$FName;
+var author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$fNominal = author$project$VegaLite$FmType(0);
 var author$project$VegaLite$facetChannelProperty = function (fMap) {
 	switch (fMap.$) {
 		case 0:
@@ -10150,13 +10152,13 @@ var author$project$GalleryGeo$geo8 = function () {
 					_List_fromArray(
 						[
 							author$project$VegaLite$mName('geo'),
-							author$project$VegaLite$mMType(4)
+							author$project$VegaLite$mGeo
 						]))),
 			author$project$VegaLite$color(
 				_List_fromArray(
 					[
 						author$project$VegaLite$mName('pct'),
-						author$project$VegaLite$mMType(2),
+						author$project$VegaLite$mQuant,
 						author$project$VegaLite$mSort(
 						_List_fromArray(
 							[author$project$VegaLite$soDescending]))
@@ -10165,7 +10167,7 @@ var author$project$GalleryGeo$geo8 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$fName('group'),
-					author$project$VegaLite$fMType(0)
+					author$project$VegaLite$fNominal
 				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10304,7 +10306,7 @@ var author$project$GalleryGeo$geo9 = function () {
 			_List_fromArray(
 				[
 					author$project$VegaLite$mName('id'),
-					author$project$VegaLite$mMType(0),
+					author$project$VegaLite$mNominal,
 					author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -10378,7 +10380,7 @@ var author$project$GalleryGeo$geo9 = function () {
 							_List_fromArray(
 								[
 									author$project$VegaLite$pName('cx'),
-									author$project$VegaLite$pMType(2)
+									author$project$VegaLite$pQuant
 								]))),
 					A2(
 						author$project$VegaLite$position,
@@ -10386,13 +10388,13 @@ var author$project$GalleryGeo$geo9 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('cy'),
-								author$project$VegaLite$pMType(2)
+								author$project$VegaLite$pQuant
 							]))),
 				author$project$VegaLite$text(
 					_List_fromArray(
 						[
 							author$project$VegaLite$tName('bLabel'),
-							author$project$VegaLite$tMType(0)
+							author$project$VegaLite$tNominal
 						]))),
 			author$project$VegaLite$size(
 				_List_fromArray(
