@@ -68,44 +68,61 @@
     <div id="advanced6" class="view"></div>
 
     <p>
-      Using the lookup transform to combine data from two separate data sources
-      that share a common key.
+      Filtering the top-k items. A bar graph showing the scores of the top 5
+      students. This shows an example of the window transform, for how the top K
+      (5) can be filtered, and also how a rank can be computed for each student.
     </p>
     <div id="advanced7" class="view"></div>
 
     <p>
-      Faceted density estimates of Iris morphology measures.
+      Top-k items with 'others'. Adapted by
+      <a
+        href="https://observablehq.com/@manzt/top-k-plot-with-others-vega-lite-example"
+        target="_blank"
+        >this example by Trevor Manz</a
+      >.
     </p>
     <div id="advanced8" class="view"></div>
 
     <p>
-      Stacked density estimates of Iris morphology measures.
+      Using the lookup transform to combine data from two separate data sources
+      that share a common key.
     </p>
     <div id="advanced9" class="view"></div>
+
+    <p>
+      Faceted density estimates of Iris morphology measures.
+    </p>
+    <div id="advanced10" class="view"></div>
+
+    <p>
+      Stacked density estimates of Iris morphology measures.
+    </p>
+    <div id="advanced11" class="view"></div>
 
     <p>
       Alhough Vega-Lite supports only a single scale per axis, one can create a
       parallel coordinate plot by folding variables, using `joinaggregate` to
       normalize their values and using ticks and rules to manually create axes.
     </p>
-    <div id="advanced10" class="view"></div>
+    <div id="advanced12" class="view"></div>
 
     <p>
       By setting aggregate to an object with opArgMax (or opArgMin) describing
       the field to maximize/minimize, the following plot shows the production
       budget of the film with the highest US Gross in each major genre.
     </p>
-    <div id="advanced11" class="view"></div>
+    <div id="advanced13" class="view"></div>
 
     <p>
       Plot showing average data with raw values in the background.
     </p>
-    <div id="advanced12" class="view"></div>
+    <div id="advanced14" class="view"></div>
 
     <p>
       Plot showing a 30 day rolling average with raw values in the background.
     </p>
-    <div id="advanced13" class="view"></div>
+    <div id="advanced15" class="view"></div>
 
     <script>
       Elm.GalleryAdvanced.init().ports.elmToJS.subscribe(function(namedSpecs) {

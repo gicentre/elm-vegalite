@@ -34,7 +34,7 @@ advanced1 =
                 << position Y [ pName "Activity", pNominal ]
     in
     toVegaLite
-        [ desc, heightStep 12, data [], trans [], bar [], enc [] ]
+        [ desc, heightStep 12, data [], trans [], enc [], bar [] ]
 
 
 advanced2 : Spec
@@ -58,17 +58,16 @@ advanced2 =
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
-            asSpec [ bar [], barEnc [] ]
+            asSpec [ barEnc [], bar [] ]
 
         ruleEnc =
             encoding
                 << position X [ pName "AverageRating", pAggregate opMean, pQuant ]
 
         ruleSpec =
-            asSpec [ rule [ maColor "red" ], ruleEnc [] ]
+            asSpec [ ruleEnc [], rule [ maColor "red" ] ]
     in
-    toVegaLite
-        [ desc, data, trans [], layer [ barSpec, ruleSpec ] ]
+    toVegaLite [ desc, data, trans [], layer [ barSpec, ruleSpec ] ]
 
 
 advanced3 : Spec
@@ -93,7 +92,7 @@ advanced3 =
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
-            asSpec [ bar [ maClip True ], barEnc [] ]
+            asSpec [ barEnc [], bar [ maClip True ] ]
 
         tickEnc =
             encoding
@@ -102,7 +101,7 @@ advanced3 =
                 << color [ mStr "red" ]
 
         tickSpec =
-            asSpec [ tick [], tickEnc [] ]
+            asSpec [ tickEnc [], tick [] ]
     in
     toVegaLite [ desc, data, trans [], layer [ barSpec, tickSpec ] ]
 
@@ -114,7 +113,7 @@ advanced4 =
             description "A scatterplot showing each movie in the database and the difference from the average movie rating."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
         trans =
             transform
@@ -132,13 +131,7 @@ advanced4 =
                     , pAxis [ axTitle "Residual" ]
                     ]
     in
-    toVegaLite
-        [ desc
-        , data []
-        , trans []
-        , enc []
-        , point [ maStrokeWidth 0.3, maOpacity 0.3 ]
-        ]
+    toVegaLite [ desc, data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
 
 
 advanced5 : Spec
@@ -304,10 +297,80 @@ advanced7 : Spec
 advanced7 =
     let
         des =
+            description "Filtering the top-k items"
+
+        data =
+            dataFromColumns []
+                << dataColumn "student" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V" ])
+                << dataColumn "score" (nums [ 100, 56, 88, 65, 45, 23, 66, 67, 13, 12, 50, 78, 66, 30, 97, 75, 24, 42, 76, 78, 21, 46 ])
+
+        trans =
+            transform
+                << window [ ( [ wiOp woRank ], "rank" ) ]
+                    [ wiSort [ wiDescending "score" ] ]
+                << filter (fiExpr "datum.rank <=5")
+
+        enc =
+            encoding
+                << position X [ pName "score", pQuant ]
+                << position Y
+                    [ pName "student"
+                    , pNominal
+                    , pSort [ soByField "score" opMean, soDescending ]
+                    ]
+    in
+    toVegaLite [ des, data [], trans [], enc [], bar [] ]
+
+
+advanced8 : Spec
+advanced8 =
+    let
+        des =
+            description "Top-k items with 'others'"
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << aggregate [ opAs opMean "Worldwide_Gross" "aggregateGross" ] [ "Director" ]
+                << window [ ( [ wiOp woRowNumber ], "rank" ) ]
+                    [ wiSort [ wiDescending "aggregateGross" ] ]
+                << calculateAs "datum.rank < 10 ? datum.Director : 'All Others'" "rankedDirector"
+
+        enc =
+            encoding
+                << position X
+                    [ pName "aggregateGross"
+                    , pQuant
+                    , pAggregate opMean
+                    , pTitle ""
+                    ]
+                << position Y
+                    [ pName "rankedDirector"
+                    , pOrdinal
+                    , pSort [ soByField "aggregateGross" opMean, soDescending ]
+                    , pTitle ""
+                    ]
+    in
+    toVegaLite
+        [ des
+        , title "Top Directors by Average Worldwide Gross" []
+        , data
+        , trans []
+        , enc []
+        , bar []
+        ]
+
+
+advanced9 : Spec
+advanced9 =
+    let
+        des =
             description "Using the lookup transform to combine data"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/lookup_groups.csv"
+            dataFromUrl "https://vega.github.io/vega-lite/data/lookup_groups.csv" []
 
         trans =
             transform
@@ -321,11 +384,11 @@ advanced7 =
                 << position X [ pName "group", pOrdinal ]
                 << position Y [ pName "age", pQuant, pAggregate opMean ]
     in
-    toVegaLite [ des, data [], trans [], enc [], bar [] ]
+    toVegaLite [ des, data, trans [], enc [], bar [] ]
 
 
-advanced8 : Spec
-advanced8 =
+advanced10 : Spec
+advanced10 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
@@ -344,8 +407,8 @@ advanced8 =
     toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
 
 
-advanced9 : Spec
-advanced9 =
+advanced11 : Spec
+advanced11 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
@@ -369,8 +432,8 @@ advanced9 =
     toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
 
 
-advanced10 : Spec
-advanced10 =
+advanced12 : Spec
+advanced12 =
     let
         des =
             description "Parallel coordinates plot with manual generation of parallel axes"
@@ -387,7 +450,7 @@ advanced10 =
                     )
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json"
+            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
 
         trans =
             transform
@@ -453,20 +516,20 @@ advanced10 =
         , cfg []
         , width 600
         , height 300
-        , data []
+        , data
         , trans []
         , layer [ specLine, specAxis, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot ]
         ]
 
 
-advanced11 : Spec
-advanced11 =
+advanced13 : Spec
+advanced13 =
     let
         desc =
             description "Production budget of the film with highest US Gross in each major genre."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
         enc =
             encoding
@@ -477,17 +540,17 @@ advanced11 =
                     ]
                 << position Y [ pName "Major_Genre", pNominal ]
     in
-    toVegaLite [ desc, data [], enc [], bar [] ]
+    toVegaLite [ desc, data, enc [], bar [] ]
 
 
-advanced12 : Spec
-advanced12 =
+advanced14 : Spec
+advanced14 =
     let
         desc =
             description "Plot showing average data with raw values in the background."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
@@ -508,17 +571,17 @@ advanced12 =
         specAv =
             asSpec [ encAv [], line [] ]
     in
-    toVegaLite [ desc, data [], trans [], layer [ specRaw, specAv ] ]
+    toVegaLite [ desc, data, trans [], layer [ specRaw, specAv ] ]
 
 
-advanced13 : Spec
-advanced13 =
+advanced15 : Spec
+advanced15 =
     let
         desc =
             description "Plot showing a 30 day rolling average with raw values in the background."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
+            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
 
         trans =
             transform
@@ -541,7 +604,7 @@ advanced13 =
         specAv =
             asSpec [ encAv [], line [ maColor "red", maSize 3 ] ]
     in
-    toVegaLite [ desc, width 400, height 300, data [], trans [], layer [ specRaw, specAv ] ]
+    toVegaLite [ desc, width 400, height 300, data, trans [], layer [ specRaw, specAv ] ]
 
 
 
@@ -562,8 +625,10 @@ mySpecs =
         , ( "advanced9", advanced9 )
         , ( "advanced10", advanced10 )
         , ( "advanced11", advanced11 )
-        , ( "advanced12", advanced13 )
+        , ( "advanced12", advanced12 )
         , ( "advanced13", advanced13 )
+        , ( "advanced14", advanced14 )
+        , ( "advanced15", advanced15 )
         ]
 
 
