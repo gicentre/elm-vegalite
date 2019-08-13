@@ -16,18 +16,16 @@ table1 =
         des =
             description "'Table heatmap' showing engine size/power for three countries."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
         enc =
             encoding
                 << position X [ pName "Cylinders", pMType Ordinal ]
                 << position Y [ pName "Origin", pMType Nominal ]
                 << color [ mName "Horsepower", mMType Quantitative, mAggregate opMean ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , rect []
-        , enc []
-        ]
+    toVegaLite [ des, data, rect [], enc [] ]
 
 
 table2 : Spec
@@ -36,7 +34,10 @@ table2 =
         des =
             description "Annual weather 'heatmap'"
 
-        conf =
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-temps.csv" []
+
+        cfg =
             configure
                 << configuration (coView [ vicoStrokeWidth 0 ])
                 << configuration (coScale [ sacoRangeStep (Just 13) ])
@@ -48,13 +49,7 @@ table2 =
                 << position Y [ pName "date", pMType Ordinal, pTimeUnit month, pAxis [ axTitle "Month" ] ]
                 << color [ mName "temp", mMType Quantitative, mAggregate opMax, mLegend [ leTitle "" ] ]
     in
-    toVegaLite
-        [ des
-        , conf []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-temps.csv" []
-        , rect []
-        , enc []
-        ]
+    toVegaLite [ des, cfg [], data, enc [], rect [] ]
 
 
 table3 : Spec
@@ -64,7 +59,7 @@ table3 =
             description "'Binned heatmap' comparing movie ratings."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
         trans =
             transform
@@ -82,21 +77,12 @@ table3 =
                 << position Y [ pName "Rotten_Tomatoes_Rating", pMType Quantitative, pBin [ biMaxBins 40 ] ]
                 << color [ mMType Quantitative, mAggregate opCount ]
 
-        config =
+        cfg =
             configure
                 << configuration (coRange [ racoHeatmap "greenblue" ])
                 << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite
-        [ des
-        , width 300
-        , height 200
-        , data []
-        , trans []
-        , rect []
-        , enc []
-        , config []
-        ]
+    toVegaLite [ des, cfg [], width 300, height 200, data, trans [], enc [], rect [] ]
 
 
 table4 : Spec
@@ -105,18 +91,16 @@ table4 =
         des =
             description "Table bubble plot in the style of a Github punched card."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/github.csv" []
+
         enc =
             encoding
                 << position X [ pName "time", pMType Ordinal, pTimeUnit hours ]
                 << position Y [ pName "time", pMType Ordinal, pTimeUnit day ]
                 << size [ mName "count", mMType Quantitative, mAggregate opSum ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/github.csv" []
-        , circle []
-        , enc []
-        ]
+    toVegaLite [ des, data, enc [], circle [] ]
 
 
 table5 : Spec
@@ -124,6 +108,9 @@ table5 =
     let
         des =
             description "Layering text over 'heatmap'."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
 
         encPosition =
             encoding
@@ -135,7 +122,7 @@ table5 =
                 << color [ mName "*", mMType Quantitative, mAggregate opCount ]
 
         specRect =
-            asSpec [ rect [], encRect [] ]
+            asSpec [ encRect [], rect [] ]
 
         encText =
             encoding
@@ -143,20 +130,59 @@ table5 =
                 << text [ tName "*", tMType Quantitative, tAggregate opCount ]
 
         specText =
-            asSpec [ textMark [], encText [] ]
+            asSpec [ encText [], textMark [] ]
 
-        config =
+        cfg =
             configure
                 << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
                 << configuration (coText [ maBaseline vaMiddle ])
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , encPosition []
-        , layer [ specRect, specText ]
-        , config []
-        ]
+    toVegaLite [ des, cfg [], data, encPosition [], layer [ specRect, specText ] ]
+
+
+table6 : Spec
+table6 =
+    let
+        des =
+            description "Lasagna Plot (Dense Time-Series Heatmap)."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol !== 'GOOG'")
+
+        enc =
+            encoding
+                << position X
+                    [ pName "date"
+                    , pMType Ordinal
+                    , pTimeUnit yearMonthDate
+                    , pTitle "Time"
+                    , pAxis
+                        [ axFormat "%Y"
+                        , axLabelAngle 0
+                        , axLabelOverlap osNone
+                        , axDataCondition
+                            (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ]) |> fiOpTrans (mTimeUnit monthDate))
+                            (axLabelColor "black")
+                            (axLabelColor "")
+                        , axDataCondition
+                            (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ]) |> fiOpTrans (mTimeUnit monthDate))
+                            (axTickColor "black")
+                            (axTickColor "")
+                        ]
+                    ]
+                << position Y [ pName "symbol", pMType Nominal, pTitle "" ]
+                << color [ mAggregate opSum, mName "price", mMType Quantitative, mTitle "Price" ]
+
+        cfg =
+            configure
+                << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
+                << configuration (coText [ maBaseline vaMiddle ])
+    in
+    toVegaLite [ des, width 300, height 100, cfg [], data, trans [], enc [], rect [] ]
 
 
 
@@ -171,6 +197,7 @@ mySpecs =
         , ( "table3", table3 )
         , ( "table4", table4 )
         , ( "table5", table5 )
+        , ( "table6", table6 )
         ]
 
 

@@ -154,8 +154,11 @@ line8 =
         trans =
             transform
                 << filter (fiExpr "datum.symbol === 'GOOG'")
-                << timeUnitAs year "date" "years"
-                << filter (fiRange "years" (dtRange [ dtYear 2006 ] [ dtYear 2008 ]))
+                << filter
+                    (fiRange "date" (dtRange [ dtYear 2006 ] [ dtYear 2008 ])
+                        |> fiOpTrans (mTimeUnit year)
+                        |> fiCompose
+                    )
 
         enc =
             encoding
@@ -164,10 +167,12 @@ line8 =
                     , pMType Temporal
                     , pAxis
                         [ axTickCount 20
-
-                        -- TODO: Update when we have inline temporal binning
-                        --  , axDataCondition (fiOp (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ]))) (axGridDash []) (axGridDash [ 2, 2 ])
-                        , axDataCondition (expr "datum.label === '2007' || datum.label === '2008'") (axGridDash []) (axGridDash [ 2, 2 ])
+                        , axDataCondition
+                            (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ])
+                                |> fiOpTrans (mTimeUnit monthDate)
+                            )
+                            (axGridDash [])
+                            (axGridDash [ 2, 2 ])
                         ]
                     ]
                 << position Y [ pName "price", pMType Quantitative ]
