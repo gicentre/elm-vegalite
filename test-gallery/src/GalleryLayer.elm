@@ -36,15 +36,27 @@ layer1 =
                     [ pName "date"
                     , pTemporal
                     , pTimeUnit yearMonthDate
-                    , pScale [ scDomain (doDts [ [ dtMonth May, dtDate 31, dtYear 2009 ], [ dtMonth Jul, dtDate 1, dtYear 2009 ] ]) ]
+                    , pScale
+                        [ scDomain
+                            (doDts
+                                [ [ dtMonth May, dtDate 31, dtYear 2009 ]
+                                , [ dtMonth Jul, dtDate 1, dtYear 2009 ]
+                                ]
+                            )
+                        ]
                     , pAxis [ axTitle "Date in 2009", axFormat "%m/%d" ]
                     ]
                 << position Y [ pName "low", pQuant, pScale [ scZero False ] ]
                 << position Y2 [ pName "high", pQuant ]
-                << color [ mName "isIncrease", mNominal, mLegend [], mScale [ scRange (raStrs [ "#ae1325", "#06982d" ]) ] ]
+                << color
+                    [ mName "isIncrease"
+                    , mNominal
+                    , mLegend []
+                    , mScale [ scRange (raStrs [ "#ae1325", "#06982d" ]) ]
+                    ]
 
         specLine =
-            asSpec [ rule [], encLine [] ]
+            asSpec [ encLine [], rule [] ]
 
         encBar =
             encoding
@@ -55,7 +67,7 @@ layer1 =
                 << color [ mName "isIncrease", mNominal, mLegend [] ]
 
         specBar =
-            asSpec [ bar [], encBar [] ]
+            asSpec [ encBar [], bar [] ]
     in
     toVegaLite [ des, width 320, data [], trans [], layer [ specLine, specBar ] ]
 
@@ -65,6 +77,9 @@ layer2 =
     let
         des =
             description "A ranged dot plot that uses 'layer' to convey changing life expectancy for the five most populous countries (between 1955 and 2000)."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/countries.json" []
 
         trans =
             transform
@@ -76,7 +91,13 @@ layer2 =
                 << position Y
                     [ pName "country"
                     , pNominal
-                    , pAxis [ axTitle "Country", axOffset 5, axTicks False, axMinExtent 70, axDomain False ]
+                    , pAxis
+                        [ axTitle "Country"
+                        , axOffset 5
+                        , axTicks False
+                        , axMinExtent 70
+                        , axDomain False
+                        ]
                     ]
 
         encLine =
@@ -86,7 +107,7 @@ layer2 =
                 << color [ mStr "#db646f" ]
 
         specLine =
-            asSpec [ line [], encLine [] ]
+            asSpec [ encLine [], line [] ]
 
         encPoints =
             encoding
@@ -105,15 +126,9 @@ layer2 =
                 << opacity [ mNum 1 ]
 
         specPoints =
-            asSpec [ point [ maFilled True ], encPoints [] ]
+            asSpec [ encPoints [], point [ maFilled True ] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/countries.json" []
-        , trans []
-        , encCountry []
-        , layer [ specLine, specPoints ]
-        ]
+    toVegaLite [ des, data, trans [], encCountry [], layer [ specLine, specPoints ] ]
 
 
 layer3 : Spec
@@ -122,7 +137,7 @@ layer3 =
         des =
             description "Bullet chart"
 
-        conf =
+        cfg =
             configure << configuration (coTick [ maThickness 2 ])
 
         row title ranges measures marker =
@@ -144,9 +159,6 @@ layer3 =
                     ]
                 )
 
-        fac =
-            facet [ rowBy [ fName "title", fOrdinal, fHeader [ hdLabelAngle 30, hdTitle "" ] ] ]
-
         res =
             resolve << resolution (reScale [ ( chX, reIndependent ) ])
 
@@ -166,44 +178,44 @@ layer3 =
                     ]
 
         spec1 =
-            asSpec [ bar [ maColor "#eee" ], enc1 [] ]
+            asSpec [ enc1 [], bar [ maColor "#eee" ] ]
 
         enc2 =
             encoding << position X [ pName "ranges[1]", pQuant ]
 
         spec2 =
-            asSpec [ bar [ maColor "#ddd" ], enc2 [] ]
+            asSpec [ enc2 [], bar [ maColor "#ddd" ] ]
 
         enc3 =
             encoding << position X [ pName "ranges[0]", pQuant ]
 
         spec3 =
-            asSpec [ bar [ maColor "#ccc" ], enc3 [] ]
+            asSpec [ enc3 [], bar [ maColor "#ccc" ] ]
 
         enc4 =
             encoding << position X [ pName "measures[1]", pQuant ]
 
         spec4 =
-            asSpec [ bar [ maColor "lightsteelblue", maSize 10 ], enc4 [] ]
+            asSpec [ enc4 [], bar [ maColor "lightsteelblue", maSize 10 ] ]
 
         enc5 =
             encoding << position X [ pName "measures[0]", pQuant ]
 
         spec5 =
-            asSpec [ bar [ maColor "steelblue", maSize 10 ], enc5 [] ]
+            asSpec [ enc5 [], bar [ maColor "steelblue", maSize 10 ], enc5 [] ]
 
         enc6 =
             encoding << position X [ pName "markers[0]", pQuant ]
 
         spec6 =
-            asSpec [ tick [ maColor "black" ], enc6 [] ]
+            asSpec [ enc6 [], tick [ maColor "black" ] ]
     in
     toVegaLite
         [ des
-        , conf []
+        , cfg []
         , data []
-        , fac
         , res []
+        , facet [ rowBy [ fName "title", fOrdinal, fHeader [ hdLabelAngle 30, hdTitle "" ] ] ]
         , specification (asSpec [ layer [ spec1, spec2, spec3, spec4, spec5, spec6 ] ])
         ]
 
@@ -212,25 +224,50 @@ layer4 : Spec
 layer4 =
     let
         des =
-            description "Layered bar/line chart with dual axes"
+            description "A dual axis chart, created by setting y's scale resolution to independent."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/weather.csv" []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.location == \"Seattle\"")
+                << calculateAs "datum.precipitation * 25.4" "precipitationmm"
 
         encTime =
-            encoding << position X [ pName "date", pOrdinal, pTimeUnit month ]
-
-        encBar =
             encoding
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean, pAxis [ axGrid False ] ]
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pTimeUnit month
+                    , pAxis [ axFormat "%b", axTitle "" ]
+                    ]
 
-        specBar =
-            asSpec [ bar [], encBar [] ]
+        encArea =
+            encoding
+                << position Y
+                    [ pName "temp_max"
+                    , pQuant
+                    , pAggregate opMean
+                    , pScale [ scDomain (doNums [ 0, 30 ]) ]
+                    , pAxis [ axTitle "Avgerage Temperature (°C)", axTitleColor "#85C5A6" ]
+                    ]
+                << position Y2 [ pName "temp_min", pAggregate opMean ]
+
+        specArea =
+            asSpec [ encArea [], area [ maOpacity 0.3, maColor "#85C5A6" ] ]
 
         encLine =
             encoding
-                << position Y [ pName "temp_max", pQuant, pAggregate opMean, pAxis [ axGrid False ], pScale [ scZero False ] ]
-                << color [ mStr "firebrick" ]
+                << position Y
+                    [ pName "precipitationmm"
+                    , pQuant
+                    , pAggregate opMean
+                    , pAxis [ axTitle "Precipitation (mm)", axTitleColor "#85A9C5" ]
+                    ]
 
         specLine =
-            asSpec [ line [], encLine [] ]
+            asSpec [ encLine [], line [ maStroke "#85A9C5", maInterpolate miMonotone ] ]
 
         res =
             resolve
@@ -238,10 +275,13 @@ layer4 =
     in
     toVegaLite
         [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        , width 400
+        , height 300
+        , data
+        , trans []
         , encTime []
-        , layer [ specBar, specLine ]
         , res []
+        , layer [ specArea, specLine ]
         ]
 
 
@@ -250,6 +290,10 @@ layer5 =
     let
         des =
             description "Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)"
+
+        cfg =
+            configure
+                << configuration (coArea [ maInterpolate miMonotone, maOrient moVertical ])
 
         data =
             dataFromColumns []
@@ -268,7 +312,7 @@ layer5 =
                 << opacity [ mNum 0.6 ]
 
         specLower =
-            asSpec [ area [ maClip True ], encLower [] ]
+            asSpec [ encLower [], area [ maClip True ] ]
 
         encUpper =
             encoding
@@ -276,26 +320,25 @@ layer5 =
                 << opacity [ mNum 0.3 ]
 
         specUpper =
-            asSpec [ trans [], area [ maClip True ], encUpper [] ]
-
-        config =
-            configure
-                << configuration (coArea [ maInterpolate miMonotone, maOrient moVertical ])
+            asSpec [ encUpper [], trans [], area [ maClip True ] ]
     in
     toVegaLite
         [ des
         , width 300
         , height 50
+        , cfg []
         , data []
         , encX []
         , layer [ specLower, specUpper ]
-        , config []
         ]
 
 
 layer6 : Spec
 layer6 =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/weather.json" []
+
         enc1 =
             encoding
                 << position Y [ pName "record.low", pQuant, pScale [ scDomain (doNums [ 10, 70 ]) ], pAxis [ axTitle "Temperature (F)" ] ]
@@ -386,7 +429,7 @@ layer6 =
         , title "Weekly Weather Observations and Predictions" []
         , width 250
         , height 200
-        , dataFromUrl "https://vega.github.io/vega-lite/data/weather.json" []
+        , data
         , layer [ spec1, spec2, spec3, spec4, spec5, spec6, spec7 ]
         ]
 
