@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elm-Vegalite Interaction Tests</title>
+    <meta charset="utf-8" />
+
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.0/build/vega-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
+
+    <script src="js/interactionTests.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      figcaption {
+        padding-top: 0.5em;
+      }
+      .cell {
+        float: left;
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Elm-Vega Interaction Tests</h1>
+
+    <h2>Direct Selection</h2>
+    <figure class="cell">
+      <div id="interaction1"></div>
+      <figcaption>Single selection: Click on line to highlight.</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="interaction2"></div>
+      <figcaption>
+        Multiple selection: Shift-click on lines to highlight.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="interaction3"></div>
+      <figcaption>
+        Nearest point projected to all points with same attribute.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction4"></div>
+      <figcaption>
+        Interval selection projected to x channel (time).
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction5"></div>
+      <figcaption>
+        Bind to x-scale (temporal zooming)
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction6"></div>
+      <figcaption>
+        Bind to x and y scales (graphic zooming)
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
+    <h2>Indirect Selection</h2>
+
+    <figure class="cell">
+      <div id="interaction7"></div>
+      <figcaption>Selection of crime type by radio button.</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="interaction8"></div>
+      <figcaption>Filtering by crime rate via min and max sliders</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <script>
+      Elm.InteractionTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: true,
+            logLevel: vega.Warn
+          }).catch(console.warn);
+        }
+      });
+    </script>
+  </body>
+</html>
