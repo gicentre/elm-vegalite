@@ -10929,6 +10929,890 @@ var author$project$GalleryLayer$layer6 = function () {
 					[spec1, spec2, spec3, spec4, spec5, spec6, spec7]))
 			]));
 }();
+var author$project$VegaLite$AnStart = 0;
+var author$project$VegaLite$anStart = 0;
+var author$project$VegaLite$Domain = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$axcoDomain = author$project$VegaLite$Domain;
+var author$project$VegaLite$GridOpacity = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$axcoGridOpacity = author$project$VegaLite$GridOpacity;
+var author$project$VegaLite$LabelAngle = function (a) {
+	return {$: 12, a: a};
+};
+var author$project$VegaLite$axcoLabelAngle = author$project$VegaLite$LabelAngle;
+var author$project$VegaLite$LabelColor = function (a) {
+	return {$: 17, a: a};
+};
+var author$project$VegaLite$axcoLabelColor = author$project$VegaLite$LabelColor;
+var author$project$VegaLite$Ticks = function (a) {
+	return {$: 30, a: a};
+};
+var author$project$VegaLite$axcoTicks = author$project$VegaLite$Ticks;
+var author$project$VegaLite$Axis = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$coAxis = author$project$VegaLite$Axis;
+var author$project$VegaLite$Background = function (a) {
+	return {$: 10, a: a};
+};
+var author$project$VegaLite$coBackground = author$project$VegaLite$Background;
+var author$project$VegaLite$Padding = function (a) {
+	return {$: 25, a: a};
+};
+var author$project$VegaLite$coPadding = author$project$VegaLite$Padding;
+var author$project$VegaLite$Scale = function (a) {
+	return {$: 32, a: a};
+};
+var author$project$VegaLite$coScale = author$project$VegaLite$Scale;
+var author$project$VegaLite$TextStyle = function (a) {
+	return {$: 36, a: a};
+};
+var author$project$VegaLite$coText = author$project$VegaLite$TextStyle;
+var author$project$VegaLite$TitleStyle = function (a) {
+	return {$: 38, a: a};
+};
+var author$project$VegaLite$coTitle = author$project$VegaLite$TitleStyle;
+var author$project$VegaLite$View = function (a) {
+	return {$: 41, a: a};
+};
+var author$project$VegaLite$coView = author$project$VegaLite$View;
+var author$project$VegaLite$dataFromRows = F2(
+	function (fmts, rows) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						author$project$VegaLite$toList(rows))
+					]))) : _Utils_Tuple2(
+			10,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						author$project$VegaLite$toList(rows)),
+						_Utils_Tuple2(
+						'format',
+						elm$json$Json$Encode$object(
+							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var author$project$VegaLite$dataRow = function (r) {
+	return elm$core$List$cons(
+		elm$json$Json$Encode$object(
+			A2(
+				elm$core$List$map,
+				function (_n0) {
+					var colName = _n0.a;
+					var val = _n0.b;
+					return _Utils_Tuple2(
+						colName,
+						author$project$VegaLite$dataValueSpec(val));
+				},
+				r)));
+};
+var author$project$VegaLite$GrLinear = 0;
+var author$project$VegaLite$grLinear = 0;
+var author$project$VegaLite$GrStops = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$grStops = author$project$VegaLite$GrStops;
+var author$project$VegaLite$GrX1 = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$grX1 = author$project$VegaLite$GrX1;
+var author$project$VegaLite$GrX2 = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$grX2 = author$project$VegaLite$GrX2;
+var author$project$VegaLite$GrY1 = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$grY1 = author$project$VegaLite$GrY1;
+var author$project$VegaLite$GrY2 = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$grY2 = author$project$VegaLite$GrY2;
+var author$project$VegaLite$AlignLeft = 1;
+var author$project$VegaLite$haLeft = 1;
+var author$project$VegaLite$MAngle = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$maAngle = author$project$VegaLite$MAngle;
+var author$project$VegaLite$MColorGradient = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var author$project$VegaLite$maColorGradient = author$project$VegaLite$MColorGradient;
+var author$project$VegaLite$MdX = function (a) {
+	return {$: 14, a: a};
+};
+var author$project$VegaLite$maDx = author$project$VegaLite$MdX;
+var author$project$VegaLite$MFill = function (a) {
+	return {$: 17, a: a};
+};
+var author$project$VegaLite$maFill = author$project$VegaLite$MFill;
+var author$project$VegaLite$MFont = function (a) {
+	return {$: 21, a: a};
+};
+var author$project$VegaLite$maFont = author$project$VegaLite$MFont;
+var author$project$VegaLite$MPoint = function (a) {
+	return {$: 32, a: a};
+};
+var author$project$VegaLite$maPoint = author$project$VegaLite$MPoint;
+var author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 46, a: a};
+};
+var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
+var author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$num = author$project$VegaLite$Number;
+var author$project$VegaLite$PNumber = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$pNum = author$project$VegaLite$PNumber;
+var author$project$VegaLite$PSize = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$paSize = author$project$VegaLite$PSize;
+var author$project$VegaLite$PMMarker = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$pmMarker = author$project$VegaLite$PMMarker;
+var author$project$VegaLite$SCBandPaddingInner = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$sacoBandPaddingInner = author$project$VegaLite$SCBandPaddingInner;
+var author$project$VegaLite$Str = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$str = author$project$VegaLite$Str;
+var author$project$VegaLite$tQuant = author$project$VegaLite$TmType(2);
+var author$project$VegaLite$TAnchor = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$ticoAnchor = author$project$VegaLite$TAnchor;
+var author$project$VegaLite$TColor = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$ticoColor = author$project$VegaLite$TColor;
+var author$project$VegaLite$TFont = function (a) {
+	return {$: 4, a: a};
+};
+var author$project$VegaLite$ticoFont = author$project$VegaLite$TFont;
+var author$project$VegaLite$TFontSize = function (a) {
+	return {$: 5, a: a};
+};
+var author$project$VegaLite$ticoFontSize = author$project$VegaLite$TFontSize;
+var author$project$VegaLite$VStroke = function (a) {
+	return {$: 7, a: a};
+};
+var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
+var author$project$GalleryLayer$layer7 = function () {
+	var textColour = 'rgb(143,154,174)';
+	var partnerColour = 'rgb(91,198,214)';
+	var partnerAnnotationData = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromRows(_List_Nil),
+		author$project$VegaLite$dataRow(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'partnerX',
+					author$project$VegaLite$num(2018)),
+					_Utils_Tuple2(
+					'partnerY',
+					author$project$VegaLite$num(25)),
+					_Utils_Tuple2(
+					'partnerAnnotation',
+					author$project$VegaLite$str('partner\'s age'))
+				])));
+	var minAge = function (age) {
+		return (age / 2) + 7;
+	};
+	var maxAge = function (age) {
+		return (age - 7) * 2;
+	};
+	var encPartners = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('year'),
+						author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('partnerAge'),
+					author$project$VegaLite$pQuant
+				])));
+	var specPartners = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encPartners(_List_Nil),
+				author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						A2(
+						author$project$VegaLite$maColorGradient,
+						author$project$VegaLite$grLinear,
+						_List_fromArray(
+							[
+								author$project$VegaLite$grX1(1),
+								author$project$VegaLite$grX2(1),
+								author$project$VegaLite$grY1(1),
+								author$project$VegaLite$grY2(0),
+								author$project$VegaLite$grStops(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(0, 'black'),
+										_Utils_Tuple2(1, partnerColour)
+									]))
+							]))
+					]))
+			]));
+	var encPartnerText = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('year'),
+							author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('partnerAge'),
+						author$project$VegaLite$pQuant
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('partnerAge'),
+					author$project$VegaLite$tQuant
+				])));
+	var specPartnerText = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encPartnerText(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(partnerColour),
+						author$project$VegaLite$maDy(-7)
+					]))
+			]));
+	var encPartnerRange = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('start'),
+							author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				2,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('end'),
+						author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pNum(420)
+				])));
+	var encPartnerNames = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('start'),
+							author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pNum(435)
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('name'),
+					author$project$VegaLite$tNominal
+				])));
+	var encPartnerLabel = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('partnerX'),
+							author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('partnerY'),
+						author$project$VegaLite$pQuant
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('partnerAnnotation'),
+					author$project$VegaLite$tNominal
+				])));
+	var encDiCaprioText = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('year'),
+							author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('dcAge'),
+						author$project$VegaLite$pQuant
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('dcAge'),
+					author$project$VegaLite$tQuant
+				])));
+	var encDiCaprioLabel = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('dcX'),
+							author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('dcY'),
+						author$project$VegaLite$pQuant
+					]))),
+		author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					author$project$VegaLite$tName('dcAnnotation'),
+					author$project$VegaLite$tNominal
+				])));
+	var encDiCaprio = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('year'),
+						author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('dcAge'),
+					author$project$VegaLite$pQuant
+				])));
+	var encBand = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$encoding,
+				A2(
+					author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('year'),
+							author$project$VegaLite$pOrdinal,
+							author$project$VegaLite$pAxis(
+							_List_fromArray(
+								[
+									author$project$VegaLite$axTitle('')
+								]))
+						]))),
+			A2(
+				author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('minAge'),
+						author$project$VegaLite$pQuant,
+						author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$scZero(false),
+								author$project$VegaLite$scDomain(
+								author$project$VegaLite$doNums(
+									_List_fromArray(
+										[16, 50])))
+							])),
+						author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								author$project$VegaLite$axTitle('')
+							]))
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			3,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('maxAge')
+				])));
+	var dcData = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						author$project$VegaLite$dataFromColumns(_List_Nil),
+						A2(
+							author$project$VegaLite$dataColumn,
+							'year',
+							author$project$VegaLite$nums(
+								A2(
+									elm$core$List$map,
+									elm$core$Basics$toFloat,
+									A2(elm$core$List$range, 1999, 2019))))),
+					A2(
+						author$project$VegaLite$dataColumn,
+						'dcAge',
+						author$project$VegaLite$nums(
+							A2(
+								elm$core$List$map,
+								elm$core$Basics$toFloat,
+								A2(elm$core$List$range, 24, 44))))),
+				A2(
+					author$project$VegaLite$dataColumn,
+					'minAge',
+					author$project$VegaLite$nums(
+						A2(
+							elm$core$List$map,
+							minAge,
+							A2(elm$core$List$range, 24, 44))))),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'maxAge',
+				author$project$VegaLite$nums(
+					A2(
+						elm$core$List$map,
+						maxAge,
+						A2(elm$core$List$range, 24, 44))))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'partnerAge',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[18, 19, 20, 21, 22, 23, 20, 21, 22, 23, 24, 25, 23, 22, 20, 21, 25, 24, 25, 20, 21]))));
+	var dcColour = 'rgb(223,117,45)';
+	var specBand = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encBand(_List_Nil),
+				author$project$VegaLite$area(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maClip(true),
+						author$project$VegaLite$maFill(dcColour),
+						author$project$VegaLite$maOpacity(0.2)
+					]))
+			]));
+	var specDiCaprio = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encDiCaprio(_List_Nil),
+				author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(dcColour),
+						author$project$VegaLite$maStrokeWidth(1),
+						author$project$VegaLite$maPoint(
+						author$project$VegaLite$pmMarker(
+							_List_fromArray(
+								[
+									author$project$VegaLite$maStroke(dcColour),
+									author$project$VegaLite$maStrokeWidth(1.5),
+									author$project$VegaLite$maFill('rgb(42,24,12)')
+								])))
+					]))
+			]));
+	var specDiCaprioText = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encDiCaprioText(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(dcColour),
+						author$project$VegaLite$maDy(-11)
+					]))
+			]));
+	var dcAnnotationData = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromRows(_List_Nil),
+			author$project$VegaLite$dataRow(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'dcX',
+						author$project$VegaLite$num(2019)),
+						_Utils_Tuple2(
+						'dcY',
+						author$project$VegaLite$num(44)),
+						_Utils_Tuple2(
+						'dcAnnotation',
+						author$project$VegaLite$str('Leo\'s age'))
+					]))),
+		author$project$VegaLite$dataRow(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'dcX',
+					author$project$VegaLite$num(2012)),
+					_Utils_Tuple2(
+					'dcY',
+					author$project$VegaLite$num(32)),
+					_Utils_Tuple2(
+					'dcAnnotation',
+					author$project$VegaLite$str('xkcd non-creepiness range'))
+				])));
+	var cfg = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						A2(
+							elm$core$Basics$composeL,
+							A2(
+								elm$core$Basics$composeL,
+								author$project$VegaLite$configure,
+								author$project$VegaLite$configuration(
+									author$project$VegaLite$coScale(
+										_List_fromArray(
+											[
+												author$project$VegaLite$sacoBandPaddingInner(0.5)
+											])))),
+							author$project$VegaLite$configuration(
+								author$project$VegaLite$coAxis(
+									_List_fromArray(
+										[
+											author$project$VegaLite$axcoGridOpacity(0.1),
+											author$project$VegaLite$axcoTicks(false),
+											author$project$VegaLite$axcoDomain(false),
+											author$project$VegaLite$axcoLabelColor(textColour),
+											author$project$VegaLite$axcoLabelAngle(0)
+										])))),
+						author$project$VegaLite$configuration(
+							author$project$VegaLite$coView(
+								_List_fromArray(
+									[
+										author$project$VegaLite$vicoStroke(elm$core$Maybe$Nothing)
+									])))),
+					author$project$VegaLite$configuration(
+						author$project$VegaLite$coPadding(
+							author$project$VegaLite$paSize(60)))),
+				author$project$VegaLite$configuration(
+					author$project$VegaLite$coBackground('black'))),
+			author$project$VegaLite$configuration(
+				author$project$VegaLite$coText(
+					_List_fromArray(
+						[
+							author$project$VegaLite$maColor(textColour)
+						])))),
+		author$project$VegaLite$configuration(
+			author$project$VegaLite$coTitle(
+				_List_fromArray(
+					[
+						author$project$VegaLite$ticoColor(textColour),
+						author$project$VegaLite$ticoFont('FjallaOne'),
+						author$project$VegaLite$ticoFontSize(22),
+						author$project$VegaLite$ticoAnchor(author$project$VegaLite$anStart)
+					]))));
+	var annotationFont = author$project$VegaLite$maFont('FjallaOne');
+	var specDiCaprioLabel = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				dcAnnotationData(_List_Nil),
+				encDiCaprioLabel(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(dcColour),
+						author$project$VegaLite$maAlign(author$project$VegaLite$haLeft),
+						annotationFont,
+						author$project$VegaLite$maDx(10),
+						author$project$VegaLite$maDy(5),
+						author$project$VegaLite$maSize(14)
+					]))
+			]));
+	var specPartnerLabel = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				partnerAnnotationData(_List_Nil),
+				encPartnerLabel(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(partnerColour),
+						author$project$VegaLite$maAlign(author$project$VegaLite$haLeft),
+						annotationFont,
+						author$project$VegaLite$maDx(17),
+						author$project$VegaLite$maDy(5),
+						author$project$VegaLite$maSize(14)
+					]))
+			]));
+	var annotationData = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						A2(
+							elm$core$Basics$composeL,
+							A2(
+								elm$core$Basics$composeL,
+								A2(
+									elm$core$Basics$composeL,
+									author$project$VegaLite$dataFromRows(_List_Nil),
+									author$project$VegaLite$dataRow(
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												'name',
+												author$project$VegaLite$str('Gisele Bundchen')),
+												_Utils_Tuple2(
+												'start',
+												author$project$VegaLite$num(1999)),
+												_Utils_Tuple2(
+												'end',
+												author$project$VegaLite$num(2004))
+											]))),
+								author$project$VegaLite$dataRow(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'name',
+											author$project$VegaLite$str('Bar Refaeli')),
+											_Utils_Tuple2(
+											'start',
+											author$project$VegaLite$num(2005)),
+											_Utils_Tuple2(
+											'end',
+											author$project$VegaLite$num(2010))
+										]))),
+							author$project$VegaLite$dataRow(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'name',
+										author$project$VegaLite$str('Blake Lively')),
+										_Utils_Tuple2(
+										'start',
+										author$project$VegaLite$num(2011)),
+										_Utils_Tuple2(
+										'end',
+										author$project$VegaLite$num(2011))
+									]))),
+						author$project$VegaLite$dataRow(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'name',
+									author$project$VegaLite$str('Erin Heatherton')),
+									_Utils_Tuple2(
+									'start',
+									author$project$VegaLite$num(2012)),
+									_Utils_Tuple2(
+									'end',
+									author$project$VegaLite$num(2012))
+								]))),
+					author$project$VegaLite$dataRow(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'name',
+								author$project$VegaLite$str('Toni Garrn')),
+								_Utils_Tuple2(
+								'start',
+								author$project$VegaLite$num(2013)),
+								_Utils_Tuple2(
+								'end',
+								author$project$VegaLite$num(2014))
+							]))),
+				author$project$VegaLite$dataRow(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'name',
+							author$project$VegaLite$str('Kelly Rohrbach')),
+							_Utils_Tuple2(
+							'start',
+							author$project$VegaLite$num(2015)),
+							_Utils_Tuple2(
+							'end',
+							author$project$VegaLite$num(2015))
+						]))),
+			author$project$VegaLite$dataRow(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'name',
+						author$project$VegaLite$str('Nina Agdal')),
+						_Utils_Tuple2(
+						'start',
+						author$project$VegaLite$num(2016)),
+						_Utils_Tuple2(
+						'end',
+						author$project$VegaLite$num(2017))
+					]))),
+		author$project$VegaLite$dataRow(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'name',
+					author$project$VegaLite$str('Camilla Morrone')),
+					_Utils_Tuple2(
+					'start',
+					author$project$VegaLite$num(2018)),
+					_Utils_Tuple2(
+					'end',
+					author$project$VegaLite$num(2019))
+				])));
+	var specPartnerNames = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				annotationData(_List_Nil),
+				encPartnerNames(_List_Nil),
+				author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(partnerColour),
+						author$project$VegaLite$maAlign(author$project$VegaLite$haLeft),
+						author$project$VegaLite$maAngle(30),
+						annotationFont
+					]))
+			]));
+	var specPartnerRange = author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				annotationData(_List_Nil),
+				encPartnerRange(_List_Nil),
+				author$project$VegaLite$rule(
+				_List_fromArray(
+					[
+						author$project$VegaLite$maColor(partnerColour)
+					]))
+			]));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				A2(author$project$VegaLite$title, 'Leonardo DiCaprio has never dated a woman over 25', _List_Nil),
+				author$project$VegaLite$width(650),
+				author$project$VegaLite$height(400),
+				cfg(_List_Nil),
+				dcData(_List_Nil),
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[specBand, specDiCaprio, specDiCaprioText, specDiCaprioLabel, specPartners, specPartnerText, specPartnerRange, specPartnerNames, specPartnerLabel]))
+			]));
+}();
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -10940,7 +11824,8 @@ var author$project$GalleryLayer$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('layer3', author$project$GalleryLayer$layer3),
 			_Utils_Tuple2('layer4', author$project$GalleryLayer$layer4),
 			_Utils_Tuple2('layer5', author$project$GalleryLayer$layer5),
-			_Utils_Tuple2('layer6', author$project$GalleryLayer$layer6)
+			_Utils_Tuple2('layer6', author$project$GalleryLayer$layer6),
+			_Utils_Tuple2('layer7', author$project$GalleryLayer$layer7)
 		]));
 var elm$core$Basics$always = F2(
 	function (a, _n0) {

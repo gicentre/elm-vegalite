@@ -434,6 +434,255 @@ layer6 =
         ]
 
 
+layer7 : Spec
+layer7 =
+    let
+        minAge age =
+            toFloat age / 2 + 7
+
+        maxAge age =
+            toFloat ((age - 7) * 2)
+
+        textColour =
+            "rgb(143,154,174)"
+
+        dcColour =
+            "rgb(223,117,45)"
+
+        partnerColour =
+            "rgb(91,198,214)"
+
+        annotationFont =
+            maFont "FjallaOne"
+
+        dcData =
+            dataFromColumns []
+                << dataColumn "year" (List.range 1999 2019 |> List.map toFloat |> nums)
+                << dataColumn "dcAge" (List.range 24 44 |> List.map toFloat |> nums)
+                << dataColumn "minAge" (List.range 24 44 |> List.map minAge |> nums)
+                << dataColumn "maxAge" (List.range 24 44 |> List.map maxAge |> nums)
+                << dataColumn "partnerAge" ([ 18, 19, 20, 21, 22, 23, 20, 21, 22, 23, 24, 25, 23, 22, 20, 21, 25, 24, 25, 20, 21 ] |> nums)
+
+        annotationData =
+            dataFromRows []
+                << dataRow
+                    [ ( "name", str "Gisele Bundchen" )
+                    , ( "start", num 1999 )
+                    , ( "end", num 2004 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Bar Refaeli" )
+                    , ( "start", num 2005 )
+                    , ( "end", num 2010 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Blake Lively" )
+                    , ( "start", num 2011 )
+                    , ( "end", num 2011 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Erin Heatherton" )
+                    , ( "start", num 2012 )
+                    , ( "end", num 2012 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Toni Garrn" )
+                    , ( "start", num 2013 )
+                    , ( "end", num 2014 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Kelly Rohrbach" )
+                    , ( "start", num 2015 )
+                    , ( "end", num 2015 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Nina Agdal" )
+                    , ( "start", num 2016 )
+                    , ( "end", num 2017 )
+                    ]
+                << dataRow
+                    [ ( "name", str "Camilla Morrone" )
+                    , ( "start", num 2018 )
+                    , ( "end", num 2019 )
+                    ]
+
+        dcAnnotationData =
+            dataFromRows []
+                << dataRow
+                    [ ( "dcX", num 2019 )
+                    , ( "dcY", num 44 )
+                    , ( "dcAnnotation", str "Leo's age" )
+                    ]
+                << dataRow
+                    [ ( "dcX", num 2012 )
+                    , ( "dcY", num 32 )
+                    , ( "dcAnnotation", str "xkcd non-creepiness range" )
+                    ]
+
+        partnerAnnotationData =
+            dataFromRows []
+                << dataRow
+                    [ ( "partnerX", num 2018 )
+                    , ( "partnerY", num 25 )
+                    , ( "partnerAnnotation", str "partner's age" )
+                    ]
+
+        -- XKCD Creepiness range
+        encBand =
+            encoding
+                << position X [ pName "year", pOrdinal, pAxis [ axTitle "" ] ]
+                << position Y
+                    [ pName "minAge"
+                    , pQuant
+                    , pScale [ scZero False, scDomain (doNums [ 16, 50 ]) ]
+                    , pAxis [ axTitle "" ]
+                    ]
+                << position Y2 [ pName "maxAge" ]
+
+        specBand =
+            asSpec [ encBand [], area [ maClip True, maFill dcColour, maOpacity 0.2 ] ]
+
+        -- Leo's age
+        encDiCaprio =
+            encoding
+                << position X [ pName "year", pOrdinal ]
+                << position Y [ pName "dcAge", pQuant ]
+
+        specDiCaprio =
+            asSpec
+                [ encDiCaprio []
+                , line
+                    [ maColor dcColour
+                    , maStrokeWidth 1
+                    , maPoint (pmMarker [ maStroke dcColour, maStrokeWidth 1.5, maFill "rgb(42,24,12)" ])
+                    ]
+                ]
+
+        encDiCaprioText =
+            encoding
+                << position X [ pName "year", pOrdinal ]
+                << position Y [ pName "dcAge", pQuant ]
+                << text [ tName "dcAge", tQuant ]
+
+        specDiCaprioText =
+            asSpec [ encDiCaprioText [], textMark [ maColor dcColour, maDy -11 ] ]
+
+        encDiCaprioLabel =
+            encoding
+                << position X [ pName "dcX", pOrdinal ]
+                << position Y [ pName "dcY", pQuant ]
+                << text [ tName "dcAnnotation", tNominal ]
+
+        specDiCaprioLabel =
+            asSpec
+                [ dcAnnotationData []
+                , encDiCaprioLabel []
+                , textMark [ maColor dcColour, maAlign haLeft, annotationFont, maDx 10, maDy 5, maSize 14 ]
+                ]
+
+        -- Partners' ages
+        encPartners =
+            encoding
+                << position X [ pName "year", pOrdinal ]
+                << position Y [ pName "partnerAge", pQuant ]
+
+        specPartners =
+            asSpec
+                [ encPartners []
+                , bar
+                    [ maColorGradient grLinear
+                        [ grX1 1
+                        , grX2 1
+                        , grY1 1
+                        , grY2 0
+                        , grStops [ ( 0, "black" ), ( 1, partnerColour ) ]
+                        ]
+                    ]
+                ]
+
+        -- Partners' names
+        encPartnerText =
+            encoding
+                << position X [ pName "year", pOrdinal ]
+                << position Y [ pName "partnerAge", pQuant ]
+                << text [ tName "partnerAge", tQuant ]
+
+        specPartnerText =
+            asSpec [ encPartnerText [], textMark [ maColor partnerColour, maDy -7 ] ]
+
+        encPartnerRange =
+            encoding
+                << position X [ pName "start", pOrdinal ]
+                << position X2 [ pName "end", pOrdinal ]
+                << position Y [ pNum 420 ]
+
+        specPartnerRange =
+            asSpec [ annotationData [], encPartnerRange [], rule [ maColor partnerColour ] ]
+
+        encPartnerNames =
+            encoding
+                << position X [ pName "start", pOrdinal ]
+                << position Y [ pNum 435 ]
+                << text [ tName "name", tNominal ]
+
+        specPartnerNames =
+            asSpec
+                [ annotationData []
+                , encPartnerNames []
+                , textMark [ maColor partnerColour, maAlign haLeft, maAngle 30, annotationFont ]
+                ]
+
+        encPartnerLabel =
+            encoding
+                << position X [ pName "partnerX", pOrdinal ]
+                << position Y [ pName "partnerY", pQuant ]
+                << text [ tName "partnerAnnotation", tNominal ]
+
+        specPartnerLabel =
+            asSpec
+                [ partnerAnnotationData []
+                , encPartnerLabel []
+                , textMark [ maColor partnerColour, maAlign haLeft, annotationFont, maDx 17, maDy 5, maSize 14 ]
+                ]
+
+        cfg =
+            configure
+                << configuration (coScale [ sacoBandPaddingInner 0.5 ])
+                << configuration
+                    (coAxis
+                        [ axcoGridOpacity 0.1
+                        , axcoTicks False
+                        , axcoDomain False
+                        , axcoLabelColor textColour
+                        , axcoLabelAngle 0
+                        ]
+                    )
+                << configuration (coView [ vicoStroke Nothing ])
+                << configuration (coPadding (paSize 60))
+                << configuration (coBackground "black")
+                << configuration (coText [ maColor textColour ])
+                << configuration (coTitle [ ticoColor textColour, ticoFont "FjallaOne", ticoFontSize 22, ticoAnchor anStart ])
+    in
+    toVegaLite
+        [ title "Leonardo DiCaprio has never dated a woman over 25" []
+        , width 650
+        , height 400
+        , cfg []
+        , dcData []
+        , layer
+            [ specBand
+            , specDiCaprio
+            , specDiCaprioText
+            , specDiCaprioLabel
+            , specPartners
+            , specPartnerText
+            , specPartnerRange
+            , specPartnerNames
+            , specPartnerLabel
+            ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -447,6 +696,7 @@ mySpecs =
         , ( "layer4", layer4 )
         , ( "layer5", layer5 )
         , ( "layer6", layer6 )
+        , ( "layer7", layer7 )
         ]
 
 
