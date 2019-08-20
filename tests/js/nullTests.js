@@ -6397,6 +6397,51 @@ var author$project$VegaLite$Longitude = 4;
 var author$project$VegaLite$Longitude2 = 6;
 var author$project$VegaLite$X2 = 2;
 var author$project$VegaLite$Y2 = 3;
+var author$project$VegaLite$AxGridColor = function (a) {
+	return {$: 58, a: a};
+};
+var author$project$VegaLite$AxGridDash = function (a) {
+	return {$: 59, a: a};
+};
+var author$project$VegaLite$AxGridOpacity = function (a) {
+	return {$: 60, a: a};
+};
+var author$project$VegaLite$AxGridWidth = function (a) {
+	return {$: 61, a: a};
+};
+var author$project$VegaLite$AxLabelAlign = function (a) {
+	return {$: 15, a: a};
+};
+var author$project$VegaLite$AxLabelBaseline = function (a) {
+	return {$: 17, a: a};
+};
+var author$project$VegaLite$AxLabelColor = function (a) {
+	return {$: 19, a: a};
+};
+var author$project$VegaLite$AxLabelFont = function (a) {
+	return {$: 23, a: a};
+};
+var author$project$VegaLite$AxLabelFontSize = function (a) {
+	return {$: 24, a: a};
+};
+var author$project$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 25, a: a};
+};
+var author$project$VegaLite$AxLabelFontWeight = function (a) {
+	return {$: 26, a: a};
+};
+var author$project$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 28, a: a};
+};
+var author$project$VegaLite$AxTickColor = function (a) {
+	return {$: 31, a: a};
+};
+var author$project$VegaLite$AxTickOpacity = function (a) {
+	return {$: 35, a: a};
+};
+var author$project$VegaLite$AxTickWidth = function (a) {
+	return {$: 39, a: a};
+};
 var author$project$VegaLite$anchorLabel = function (an) {
 	switch (an) {
 		case 0:
@@ -7598,10 +7643,135 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 				elm$json$Json$Encode$float(n));
 		case 63:
 			var predicate = axisProp.a;
-			var ifClause = axisProp.b;
-			var elseClause = axisProp.c;
+			var cap = axisProp.b;
+			var _n1 = function () {
+				switch (cap.$) {
+					case 0:
+						var ha1 = cap.a;
+						var ha2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelAlign(ha1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelAlign(ha2)));
+					case 1:
+						var va1 = cap.a;
+						var va2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelBaseline(va1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelBaseline(va2)));
+					case 2:
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelColor(c1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelColor(c2)));
+					case 3:
+						var f1 = cap.a;
+						var f2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFont(f1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFont(f2)));
+					case 4:
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontSize(s1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontSize(s2)));
+					case 5:
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontStyle(s1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontStyle(s2)));
+					case 6:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontWeight(w1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontWeight(w2)));
+					case 7:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelOpacity(o1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelOpacity(o2)));
+					case 8:
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickColor(c1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickColor(c2)));
+					case 9:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickOpacity(o1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickOpacity(o2)));
+					case 10:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickWidth(w1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickWidth(w2)));
+					case 11:
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridColor(c1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridColor(c2)));
+					case 12:
+						var d1 = cap.a;
+						var d2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridDash(d1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridDash(d2)));
+					case 13:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridOpacity(o1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridOpacity(o2)));
+					default:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridWidth(w1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridWidth(w2)));
+				}
+			}();
+			var ifProp = _n1.a;
+			var elseProp = _n1.b;
 			return _Utils_Tuple2(
-				author$project$VegaLite$axisProperty(ifClause).a,
+				ifProp.a,
 				elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
@@ -7613,13 +7783,9 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 										_Utils_Tuple2(
 										'test',
 										author$project$VegaLite$booleanOpSpec(predicate)),
-										_Utils_Tuple2(
-										'value',
-										author$project$VegaLite$axisProperty(ifClause).b)
+										_Utils_Tuple2('value', ifProp.b)
 									]))),
-							_Utils_Tuple2(
-							'value',
-							author$project$VegaLite$axisProperty(elseClause).b)
+							_Utils_Tuple2('value', elseProp.b)
 						])));
 		case 11:
 			var fmt = axisProp.a;

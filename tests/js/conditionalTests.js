@@ -4291,19 +4291,20 @@ var elm$core$Basics$identity = function (x) {
 var author$project$ConditionalTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
-var author$project$VegaLite$AxDataCondition = F3(
-	function (a, b, c) {
-		return {$: 63, a: a, b: b, c: c};
+var author$project$VegaLite$AxDataCondition = F2(
+	function (a, b) {
+		return {$: 63, a: a, b: b};
 	});
 var author$project$VegaLite$axDataCondition = author$project$VegaLite$AxDataCondition;
-var author$project$VegaLite$AxGridDash = function (a) {
-	return {$: 59, a: a};
-};
-var author$project$VegaLite$axGridDash = author$project$VegaLite$AxGridDash;
 var author$project$VegaLite$AxTickCount = function (a) {
 	return {$: 32, a: a};
 };
 var author$project$VegaLite$axTickCount = author$project$VegaLite$AxTickCount;
+var author$project$VegaLite$CAxGridDash = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var author$project$VegaLite$cAxGridDash = author$project$VegaLite$CAxGridDash;
 var author$project$VegaLite$VLData = 10;
 var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
 var elm$core$Array$foldr = F3(
@@ -5806,6 +5807,51 @@ var author$project$VegaLite$arrangementLabel = function (arrng) {
 		default:
 			return 'repeat';
 	}
+};
+var author$project$VegaLite$AxGridColor = function (a) {
+	return {$: 58, a: a};
+};
+var author$project$VegaLite$AxGridDash = function (a) {
+	return {$: 59, a: a};
+};
+var author$project$VegaLite$AxGridOpacity = function (a) {
+	return {$: 60, a: a};
+};
+var author$project$VegaLite$AxGridWidth = function (a) {
+	return {$: 61, a: a};
+};
+var author$project$VegaLite$AxLabelAlign = function (a) {
+	return {$: 15, a: a};
+};
+var author$project$VegaLite$AxLabelBaseline = function (a) {
+	return {$: 17, a: a};
+};
+var author$project$VegaLite$AxLabelColor = function (a) {
+	return {$: 19, a: a};
+};
+var author$project$VegaLite$AxLabelFont = function (a) {
+	return {$: 23, a: a};
+};
+var author$project$VegaLite$AxLabelFontSize = function (a) {
+	return {$: 24, a: a};
+};
+var author$project$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 25, a: a};
+};
+var author$project$VegaLite$AxLabelFontWeight = function (a) {
+	return {$: 26, a: a};
+};
+var author$project$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 28, a: a};
+};
+var author$project$VegaLite$AxTickColor = function (a) {
+	return {$: 31, a: a};
+};
+var author$project$VegaLite$AxTickOpacity = function (a) {
+	return {$: 35, a: a};
+};
+var author$project$VegaLite$AxTickWidth = function (a) {
+	return {$: 39, a: a};
 };
 var author$project$VegaLite$anchorLabel = function (an) {
 	switch (an) {
@@ -7410,10 +7456,135 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 				elm$json$Json$Encode$float(n));
 		case 63:
 			var predicate = axisProp.a;
-			var ifClause = axisProp.b;
-			var elseClause = axisProp.c;
+			var cap = axisProp.b;
+			var _n1 = function () {
+				switch (cap.$) {
+					case 0:
+						var ha1 = cap.a;
+						var ha2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelAlign(ha1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelAlign(ha2)));
+					case 1:
+						var va1 = cap.a;
+						var va2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelBaseline(va1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelBaseline(va2)));
+					case 2:
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelColor(c1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelColor(c2)));
+					case 3:
+						var f1 = cap.a;
+						var f2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFont(f1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFont(f2)));
+					case 4:
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontSize(s1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontSize(s2)));
+					case 5:
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontStyle(s1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontStyle(s2)));
+					case 6:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontWeight(w1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelFontWeight(w2)));
+					case 7:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelOpacity(o1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxLabelOpacity(o2)));
+					case 8:
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickColor(c1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickColor(c2)));
+					case 9:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickOpacity(o1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickOpacity(o2)));
+					case 10:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickWidth(w1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxTickWidth(w2)));
+					case 11:
+						var c1 = cap.a;
+						var c2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridColor(c1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridColor(c2)));
+					case 12:
+						var d1 = cap.a;
+						var d2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridDash(d1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridDash(d2)));
+					case 13:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridOpacity(o1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridOpacity(o2)));
+					default:
+						var w1 = cap.a;
+						var w2 = cap.b;
+						return _Utils_Tuple2(
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridWidth(w1)),
+							author$project$VegaLite$axisProperty(
+								author$project$VegaLite$AxGridWidth(w2)));
+				}
+			}();
+			var ifProp = _n1.a;
+			var elseProp = _n1.b;
 			return _Utils_Tuple2(
-				author$project$VegaLite$axisProperty(ifClause).a,
+				ifProp.a,
 				elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
@@ -7425,13 +7596,9 @@ var author$project$VegaLite$axisProperty = function (axisProp) {
 										_Utils_Tuple2(
 										'test',
 										author$project$VegaLite$booleanOpSpec(predicate)),
-										_Utils_Tuple2(
-										'value',
-										author$project$VegaLite$axisProperty(ifClause).b)
+										_Utils_Tuple2('value', ifProp.b)
 									]))),
-							_Utils_Tuple2(
-							'value',
-							author$project$VegaLite$axisProperty(elseClause).b)
+							_Utils_Tuple2('value', elseProp.b)
 						])));
 		case 11:
 			var fmt = axisProp.a;
@@ -8203,13 +8370,14 @@ var author$project$ConditionalTests$axisCondition1 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$axTickCount(20),
-								A3(
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 5'),
-								author$project$VegaLite$axGridDash(
+								A2(
+									author$project$VegaLite$cAxGridDash,
 									_List_fromArray(
-										[2, 2])),
-								author$project$VegaLite$axGridDash(_List_Nil))
+										[2, 2]),
+									_List_Nil))
 							]))
 					]))),
 		A2(
@@ -8233,18 +8401,21 @@ var author$project$ConditionalTests$axisCondition1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$AxTickColor = function (a) {
-	return {$: 31, a: a};
-};
-var author$project$VegaLite$axTickColor = author$project$VegaLite$AxTickColor;
-var author$project$VegaLite$AxTickOpacity = function (a) {
-	return {$: 35, a: a};
-};
-var author$project$VegaLite$axTickOpacity = author$project$VegaLite$AxTickOpacity;
-var author$project$VegaLite$AxTickWidth = function (a) {
-	return {$: 39, a: a};
-};
-var author$project$VegaLite$axTickWidth = author$project$VegaLite$AxTickWidth;
+var author$project$VegaLite$CAxTickColor = F2(
+	function (a, b) {
+		return {$: 8, a: a, b: b};
+	});
+var author$project$VegaLite$cAxTickColor = author$project$VegaLite$CAxTickColor;
+var author$project$VegaLite$CAxTickOpacity = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var author$project$VegaLite$cAxTickOpacity = author$project$VegaLite$CAxTickOpacity;
+var author$project$VegaLite$CAxTickWidth = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var author$project$VegaLite$cAxTickWidth = author$project$VegaLite$CAxTickWidth;
 var author$project$VegaLite$VLWidth = 3;
 var author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(
@@ -8268,21 +8439,18 @@ var author$project$ConditionalTests$axisCondition2 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$axTickCount(20),
-								A3(
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 2'),
-								author$project$VegaLite$axTickColor('red'),
-								author$project$VegaLite$axTickColor('blue')),
-								A3(
+								A2(author$project$VegaLite$cAxTickColor, 'red', 'blue')),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value >=8'),
-								author$project$VegaLite$axTickOpacity(0.3),
-								author$project$VegaLite$axTickOpacity(0.8)),
-								A3(
+								A2(author$project$VegaLite$cAxTickOpacity, 0.3, 0.8)),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.label ==\'4.0\''),
-								author$project$VegaLite$axTickWidth(5),
-								author$project$VegaLite$axTickWidth(2))
+								A2(author$project$VegaLite$cAxTickWidth, 5, 2))
 							]))
 					]))),
 		A2(
@@ -8309,38 +8477,46 @@ var author$project$ConditionalTests$axisCondition2 = function () {
 }();
 var author$project$VegaLite$Bold = 0;
 var author$project$VegaLite$W100 = 4;
-var author$project$VegaLite$AxLabelAlign = function (a) {
-	return {$: 15, a: a};
-};
-var author$project$VegaLite$axLabelAlign = author$project$VegaLite$AxLabelAlign;
-var author$project$VegaLite$AxLabelBaseline = function (a) {
-	return {$: 17, a: a};
-};
-var author$project$VegaLite$axLabelBaseline = author$project$VegaLite$AxLabelBaseline;
-var author$project$VegaLite$AxLabelColor = function (a) {
-	return {$: 19, a: a};
-};
-var author$project$VegaLite$axLabelColor = author$project$VegaLite$AxLabelColor;
-var author$project$VegaLite$AxLabelFont = function (a) {
-	return {$: 23, a: a};
-};
-var author$project$VegaLite$axLabelFont = author$project$VegaLite$AxLabelFont;
-var author$project$VegaLite$AxLabelFontSize = function (a) {
-	return {$: 24, a: a};
-};
-var author$project$VegaLite$axLabelFontSize = author$project$VegaLite$AxLabelFontSize;
-var author$project$VegaLite$AxLabelFontStyle = function (a) {
-	return {$: 25, a: a};
-};
-var author$project$VegaLite$axLabelFontStyle = author$project$VegaLite$AxLabelFontStyle;
-var author$project$VegaLite$AxLabelFontWeight = function (a) {
-	return {$: 26, a: a};
-};
-var author$project$VegaLite$axLabelFontWeight = author$project$VegaLite$AxLabelFontWeight;
-var author$project$VegaLite$AxLabelOpacity = function (a) {
-	return {$: 28, a: a};
-};
-var author$project$VegaLite$axLabelOpacity = author$project$VegaLite$AxLabelOpacity;
+var author$project$VegaLite$CAxLabelAlign = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelAlign = author$project$VegaLite$CAxLabelAlign;
+var author$project$VegaLite$CAxLabelBaseline = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelBaseline = author$project$VegaLite$CAxLabelBaseline;
+var author$project$VegaLite$CAxLabelColor = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelColor = author$project$VegaLite$CAxLabelColor;
+var author$project$VegaLite$CAxLabelFont = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelFont = author$project$VegaLite$CAxLabelFont;
+var author$project$VegaLite$CAxLabelFontSize = F2(
+	function (a, b) {
+		return {$: 4, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelFontSize = author$project$VegaLite$CAxLabelFontSize;
+var author$project$VegaLite$CAxLabelFontStyle = F2(
+	function (a, b) {
+		return {$: 5, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelFontStyle = author$project$VegaLite$CAxLabelFontStyle;
+var author$project$VegaLite$CAxLabelFontWeight = F2(
+	function (a, b) {
+		return {$: 6, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelFontWeight = author$project$VegaLite$CAxLabelFontWeight;
+var author$project$VegaLite$CAxLabelOpacity = F2(
+	function (a, b) {
+		return {$: 7, a: a, b: b};
+	});
+var author$project$VegaLite$cAxLabelOpacity = author$project$VegaLite$CAxLabelOpacity;
 var author$project$VegaLite$AlignLeft = 1;
 var author$project$VegaLite$haLeft = 1;
 var author$project$VegaLite$AlignRight = 2;
@@ -8366,46 +8542,38 @@ var author$project$ConditionalTests$axisCondition3 = function () {
 						_List_fromArray(
 							[
 								author$project$VegaLite$axTickCount(20),
-								A3(
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 1'),
-								author$project$VegaLite$axLabelAlign(author$project$VegaLite$haRight),
-								author$project$VegaLite$axLabelAlign(author$project$VegaLite$haLeft)),
-								A3(
+								A2(author$project$VegaLite$cAxLabelAlign, author$project$VegaLite$haRight, author$project$VegaLite$haLeft)),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 2'),
-								author$project$VegaLite$axLabelColor('red'),
-								author$project$VegaLite$axLabelColor('blue')),
-								A3(
+								A2(author$project$VegaLite$cAxLabelColor, 'red', 'blue')),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 3'),
-								author$project$VegaLite$axLabelBaseline(author$project$VegaLite$vaTop),
-								author$project$VegaLite$axLabelBaseline(author$project$VegaLite$vaBottom)),
-								A3(
+								A2(author$project$VegaLite$cAxLabelBaseline, author$project$VegaLite$vaTop, author$project$VegaLite$vaBottom)),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 4'),
-								author$project$VegaLite$axLabelFont('serif'),
-								author$project$VegaLite$axLabelFont('sans-serif')),
-								A3(
+								A2(author$project$VegaLite$cAxLabelFont, 'serif', 'sans-serif')),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <= 6'),
-								author$project$VegaLite$axLabelFontSize(12),
-								author$project$VegaLite$axLabelFontSize(18)),
-								A3(
+								A2(author$project$VegaLite$cAxLabelFontSize, 12, 18)),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value <=8'),
-								author$project$VegaLite$axLabelFontStyle('normal'),
-								author$project$VegaLite$axLabelFontStyle('italic')),
-								A3(
+								A2(author$project$VegaLite$cAxLabelFontStyle, 'normal', 'italic')),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.label ==\'4.0\''),
-								author$project$VegaLite$axLabelFontWeight(0),
-								author$project$VegaLite$axLabelFontWeight(4)),
-								A3(
+								A2(author$project$VegaLite$cAxLabelFontWeight, 0, 4)),
+								A2(
 								author$project$VegaLite$axDataCondition,
 								author$project$VegaLite$expr('datum.value >=9'),
-								author$project$VegaLite$axLabelOpacity(0.3),
-								author$project$VegaLite$axLabelOpacity(0.8))
+								A2(author$project$VegaLite$cAxLabelOpacity, 0.3, 0.8))
 							]))
 					]))),
 		A2(
