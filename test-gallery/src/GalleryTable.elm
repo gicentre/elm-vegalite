@@ -166,12 +166,10 @@ table6 =
                         , axLabelOverlap osNone
                         , axDataCondition
                             (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ]) |> fiOpTrans (mTimeUnit monthDate))
-                            (axLabelColor "black")
-                            (axLabelColor "")
+                            (cAxLabelColor "black" "")
                         , axDataCondition
                             (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ]) |> fiOpTrans (mTimeUnit monthDate))
-                            (axTickColor "black")
-                            (axTickColor "")
+                            (cAxTickColor "black" "")
                         ]
                     ]
                 << position Y [ pName "symbol", pNominal, pTitle "" ]

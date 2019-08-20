@@ -27,7 +27,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `loess` (and associated `ls` loess property functions) for locally-estimated scatterplot smoothing.
 - `maColorGradient`, `maFillGradient` and `maStrokeGradient` (and associated `gr` gradient property functions) for gradient-based colouring.
 - `mSort` for sorting by mark properties like `color`.
-- `axDataCondition` for conditional axis formatting.
+- `axDataCondition` and associated `cAx` property functions for conditional axis formatting.
 - Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
 - New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle` and `ticoZIndex`.
 - `coConcat` for configuring concatenations (`cocoSpacing` and `cocoColumns`).

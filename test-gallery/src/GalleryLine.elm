@@ -171,8 +171,7 @@ line8 =
                             (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ])
                                 |> fiOpTrans (mTimeUnit monthDate)
                             )
-                            (axGridDash [])
-                            (axGridDash [ 2, 2 ])
+                            (cAxGridDash [] [ 2, 2 ])
                         ]
                     ]
                 << position Y [ pName "price", pQuant ]

@@ -770,7 +770,7 @@ layer8 =
                         , axTickCount 54
                         , axGridColor "black"
                         , axGridOpacity 0.6
-                        , axDataCondition (expr "year(datum.value) % 50 == 0") (axGridWidth 2) (axGridWidth 0.5)
+                        , axDataCondition (expr "year(datum.value) % 50 == 0") (cAxGridWidth 2 0.5)
                         , axLabelExpr "if (year(datum.value) % 10 == 5, ' ', if(year(datum.value) % 50 == 0, utcFormat(datum.value,'%Y'), utcFormat(datum.value,'%y')))"
                         , axTitle "5 Years each division"
                         , axZIndex 1
@@ -782,7 +782,7 @@ layer8 =
                     , pAxis
                         [ axTickCount 20
                         , axGridColor "black"
-                        , axDataCondition (expr "datum.value % 10 == 0") (axGridWidth 2) (axGridWidth 0.5)
+                        , axDataCondition (expr "datum.value % 10 == 0") (cAxGridWidth 2 0.5)
                         , axLabelExpr "if (datum.value % 10 == 5, '5', datum.value)"
                         , axDomainWidth 2
                         , axDomainColor "rgb(46,41,43)"

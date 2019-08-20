@@ -69,9 +69,7 @@ axisCondition1 =
                     , pQuant
                     , pAxis
                         [ axTickCount 20
-                        , axDataCondition (expr "datum.value <= 5")
-                            (axGridDash [ 2, 2 ])
-                            (axGridDash [])
+                        , axDataCondition (expr "datum.value <= 5") (cAxGridDash [ 2, 2 ] [])
                         ]
                     ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
@@ -92,15 +90,9 @@ axisCondition2 =
                     , pQuant
                     , pAxis
                         [ axTickCount 20
-                        , axDataCondition (expr "datum.value <= 2")
-                            (axTickColor "red")
-                            (axTickColor "blue")
-                        , axDataCondition (expr "datum.value >=8")
-                            (axTickOpacity 0.3)
-                            (axTickOpacity 0.8)
-                        , axDataCondition (expr "datum.label =='4.0'")
-                            (axTickWidth 5)
-                            (axTickWidth 2)
+                        , axDataCondition (expr "datum.value <= 2") (cAxTickColor "red" "blue")
+                        , axDataCondition (expr "datum.value >=8") (cAxTickOpacity 0.3 0.8)
+                        , axDataCondition (expr "datum.label =='4.0'") (cAxTickWidth 5 2)
                         ]
                     ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
@@ -121,30 +113,14 @@ axisCondition3 =
                     , pQuant
                     , pAxis
                         [ axTickCount 20
-                        , axDataCondition (expr "datum.value <= 1")
-                            (axLabelAlign haRight)
-                            (axLabelAlign haLeft)
-                        , axDataCondition (expr "datum.value <= 2")
-                            (axLabelColor "red")
-                            (axLabelColor "blue")
-                        , axDataCondition (expr "datum.value <= 3")
-                            (axLabelBaseline vaTop)
-                            (axLabelBaseline vaBottom)
-                        , axDataCondition (expr "datum.value <= 4")
-                            (axLabelFont "serif")
-                            (axLabelFont "sans-serif")
-                        , axDataCondition (expr "datum.value <= 6")
-                            (axLabelFontSize 12)
-                            (axLabelFontSize 18)
-                        , axDataCondition (expr "datum.value <=8")
-                            (axLabelFontStyle "normal")
-                            (axLabelFontStyle "italic")
-                        , axDataCondition (expr "datum.label =='4.0'")
-                            (axLabelFontWeight Bold)
-                            (axLabelFontWeight W100)
-                        , axDataCondition (expr "datum.value >=9")
-                            (axLabelOpacity 0.3)
-                            (axLabelOpacity 0.8)
+                        , axDataCondition (expr "datum.value <= 1") (cAxLabelAlign haRight haLeft)
+                        , axDataCondition (expr "datum.value <= 2") (cAxLabelColor "red" "blue")
+                        , axDataCondition (expr "datum.value <= 3") (cAxLabelBaseline vaTop vaBottom)
+                        , axDataCondition (expr "datum.value <= 4") (cAxLabelFont "serif" "sans-serif")
+                        , axDataCondition (expr "datum.value <= 6") (cAxLabelFontSize 12 18)
+                        , axDataCondition (expr "datum.value <=8") (cAxLabelFontStyle "normal" "italic")
+                        , axDataCondition (expr "datum.label =='4.0'") (cAxLabelFontWeight Bold W100)
+                        , axDataCondition (expr "datum.value >=9") (cAxLabelOpacity 0.3 0.8)
                         ]
                     ]
                 << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
