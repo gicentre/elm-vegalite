@@ -12539,7 +12539,7 @@ regression fDep fInd rgProps =
         )
 
 
-{-| Scale domain should be independent of others in a composite visualization.
+{-| Channel should be independent of others in a composite visualization.
 -}
 reIndependent : Resolution
 reIndependent =
@@ -12602,7 +12602,7 @@ reScale =
     RScale
 
 
-{-| Scale domain should be shared with others in a composite visualization.
+{-| Channel should be shared with others in a composite visualization.
 -}
 reShared : Resolution
 reShared =
