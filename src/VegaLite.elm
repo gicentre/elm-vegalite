@@ -5292,11 +5292,11 @@ axcoLabelAlign =
     LabelAlign
 
 
-{-| Default axis label angle.
+{-| Default axis label angle (degrees from horizontal).
 -}
 axcoLabelAngle : Float -> AxisConfig
 axcoLabelAngle =
-    LabelAngle
+    LabelAngle << positiveAngle
 
 
 {-| Default axis label vertical alignment.
@@ -5504,11 +5504,11 @@ axcoTitleAnchor =
     TitleAnchor
 
 
-{-| Default axis title angle.
+{-| Default axis title angle (degrees from horizontal).
 -}
 axcoTitleAngle : Float -> AxisConfig
 axcoTitleAngle =
-    TitleAngle
+    TitleAngle << positiveAngle
 
 
 {-| Default axis title vertical alignment.
@@ -5918,11 +5918,11 @@ axTitleY =
     AxTitleY
 
 
-{-| Rotation angle in degrees of axis labels.
+{-| Rotation angle of axis labels (degrees from horizontal).
 -}
 axLabelAngle : Float -> AxisProperty
 axLabelAngle =
-    AxLabelAngle
+    AxLabelAngle << positiveAngle
 
 
 {-| Overlap strategy for labels when they are too large to fit within the space
@@ -6028,11 +6028,11 @@ axTitleAnchor =
     AxTitleAnchor
 
 
-{-| Angle in degrees of an axis title.
+{-| Angle of an axis title (degrees from horizontal).
 -}
 axTitleAngle : Float -> AxisProperty
 axTitleAngle =
-    AxTitleAngle
+    AxTitleAngle << positiveAngle
 
 
 {-| Padding in pixels between a title and axis.
@@ -8864,12 +8864,12 @@ hdLabelAnchor =
     HLabelAnchor
 
 
-{-| Header label rotation angle (in degrees) for a faceted view. A 'label' is the
-title for each sub-plot in a faceted view.
+{-| Header label rotation angle (in degrees from horizontal) for a faceted view.
+A 'label' is the title for each sub-plot in a faceted view.
 -}
 hdLabelAngle : Float -> HeaderProperty
 hdLabelAngle =
-    HLabelAngle
+    HLabelAngle << positiveAngle
 
 
 {-| Header label text color for a faceted view.
@@ -8937,11 +8937,11 @@ hdTitleAnchor =
     HTitleAnchor
 
 
-{-| Text angle of a header title in a faceted view.
+{-| Text angle of a header title in a faceted view (degrees from horizontal).
 -}
 hdTitleAngle : Float -> HeaderProperty
 hdTitleAngle =
-    HTitleAngle
+    HTitleAngle << positiveAngle
 
 
 {-| Vertical alignment of a header title in a faceted view.
@@ -10499,11 +10499,11 @@ maAlign =
     MAlign
 
 
-{-| Rotation angle in degrees of a text mark.
+{-| Rotation angle of a text mark (degrees from horizontal).
 -}
 maAngle : Float -> MarkProperty
 maAngle =
-    MAngle
+    MAngle << positiveAngle
 
 
 {-| Band size of a bar mark.
@@ -13979,11 +13979,11 @@ tiAnchor =
     TAnchor
 
 
-{-| Angle of title text.
+{-| Angle of title text (degrees from horizontal).
 -}
 tiAngle : Float -> TitleProperty
 tiAngle =
-    TAngle
+    TAngle << positiveAngle
 
 
 {-| Vertical alignment of a title.
@@ -14091,11 +14091,11 @@ ticoAnchor =
     TAnchor
 
 
-{-| Default angle when orientating titles.
+{-| Default angle when orientating titles (degrees from horizontal).
 -}
 ticoAngle : Float -> TitleConfig
 ticoAngle =
-    TAngle
+    TAngle << positiveAngle
 
 
 {-| Default vertical alignment when placing titles.
@@ -18265,6 +18265,15 @@ pointMarkerSpec pm =
 
             else
                 JE.object (List.map markProperty mps)
+
+
+positiveAngle : Float -> Float
+positiveAngle a =
+    if a < 0 then
+        a + 360
+
+    else
+        a
 
 
 projectionLabel : Projection -> String
