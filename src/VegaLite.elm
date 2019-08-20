@@ -5719,10 +5719,14 @@ axLabelColor =
 {-| An expression to generate axis labels. The parameter is a valid
 [Vega expression](https://vega.github.io/vega/docs/expressions/). Can reference
 `datum.value` and `datum.label` for access to the underlying data values and
-default label text respectively. For example, to provide labels in 1/1000ths of
-the data values associated with the x-axis:
+default label text respectively. For example, to provide 4 digit years every decade
+and 2-digit years for all other tick marks:
 
-    pAxis [ axLabelExpr "datum.value / 1000" ]
+    pAxis
+        [ axLabelExpr "if(year(datum.value) % 10 == 0"
+            ++ ", utcFormat(datum.value,'%Y')"
+            ++ ", utcFormat(datum.value,'%y'))"
+        ]
 
 -}
 axLabelExpr : String -> AxisProperty
