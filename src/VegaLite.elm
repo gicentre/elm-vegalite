@@ -11879,11 +11879,12 @@ pAggregate =
 
 {-| Parsing rules when processing some data text, specified as a list of tuples
 in the form (_fieldname_, _datatype_). Useful when automatic type inference needs
-to be overridden, for example when converting strings to numbers:
+to be overridden, for example when converting integers representing years into dates
+and strings into numbers:
 
     data =
         dataFromUrl "myDataFile.csv"
-            [ parse [ ( "x", foNum ), ( "y", foNum ) ] ]
+            [ parse [ ( "year", foDate "%Y" ), ( "y", foNum ) ] ]
 
 -}
 parse : List ( String, DataType ) -> Format
