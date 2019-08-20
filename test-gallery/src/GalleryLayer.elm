@@ -683,6 +683,233 @@ layer7 =
         ]
 
 
+layer8 : Spec
+layer8 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/wheat.json" []
+
+        dataAnnotation =
+            dataFromRows []
+                << dataRow [ ( "x", str "1626" ), ( "y", num 8 ), ( "name", str "Weekly Wages of a Good Mechanic" ) ]
+
+        dataMonarch =
+            dataFromUrl "https://vega.github.io/vega-lite/data/monarchs.json"
+                [ parse [ ( "start", foDate "%Y" ), ( "end", foDate "%Y" ) ] ]
+
+        dataCurves =
+            dataFromRows []
+                << dataRow [ ( "x", str "1675" ), ( "y", num 80.3 ), ( "curve", str "inset" ) ]
+
+        curves =
+            categoricalDomainMap [ ( "inset", "m-43 a43,25 0 1,0 86,0a43,25 0 1,0 -86,0 a43,25.5 0 1,0 86,0a43,25.5 0 1,0 -86,0" ) ]
+
+        dataText1 =
+            dataFromRows []
+                << dataRow [ ( "x", str "1675" ), ( "y", num 76 ), ( "name", str "CHART" ) ]
+                << dataRow [ ( "x", str "1675.5" ), ( "y", num 76 ), ( "name", str "CHART" ) ]
+
+        dataText2 =
+            dataFromRows []
+                << dataRow [ ( "x", str "1675" ), ( "y", num 72.5 ), ( "name", str "Showing at One View" ) ]
+                << dataRow [ ( "x", str "1675" ), ( "y", num 68 ), ( "name", str "The Price of The Quarter of Wheat" ) ]
+                << dataRow [ ( "x", str "1675" ), ( "y", num 58 ), ( "name", str "The Year 1565 to 1821" ) ]
+
+        dataText3 =
+            dataFromRows []
+                << dataRow [ ( "x", str "1675" ), ( "y", num 62 ), ( "name", str "⤙ from ⤚" ) ]
+                << dataRow [ ( "x", str "1675" ), ( "y", num 55 ), ( "name", str "⤙ by ⤚" ) ]
+
+        dataText4 =
+            dataFromRows []
+                << dataRow [ ( "x", str "1574" ), ( "y", num 102 ), ( "name", str "16th Century" ) ]
+                << dataRow [ ( "x", str "1650" ), ( "y", num 102 ), ( "name", str "17th Century" ) ]
+                << dataRow [ ( "x", str "1750" ), ( "y", num 102 ), ( "name", str "18th Century" ) ]
+                << dataRow [ ( "x", str "1822" ), ( "y", num 102 ), ( "name", str "19th Century" ) ]
+                << dataRow [ ( "x", str "1675" ), ( "y", num 64.3 ), ( "name", str "& Wages of Labour by the Week" ) ]
+                << dataRow [ ( "x", str "1675" ), ( "y", num 52.7 ), ( "name", str "WILLIAM PLAYFIAR" ) ]
+
+        dataCentury =
+            dataFromColumns [ parse [ ( "year", foDate "%Y" ) ] ]
+                << dataColumn "year" (nums [ 1565, 1590, 1600, 1605, 1650, 1695, 1700, 1705, 1750, 1795, 1800, 1805, 1810, 1830 ])
+                << dataColumn "y" (nums [ 106, 102, 100, 101, 106, 101, 100, 101, 106, 101, 100, 102, 103.5, 106 ])
+                << dataColumn "y2" (nums [ 105, 102, 100, 101, 105, 101, 100, 101, 105, 101, 100, 102, 103.5, 105 ])
+
+        transMonarchBar =
+            transform
+                << calculateAs "((!datum.commonwealth && datum.index % 2) ? -1: 1) * 1.5 + 97" "y"
+                << calculateAs "97" "x"
+
+        transMonarchText =
+            transform
+                << calculateAs "((!datum.commonwealth && datum.index % 2) ? -1: 1) + 94" "y"
+                << calculateAs "+datum.start + (+datum.end - +datum.start)/2" "x"
+
+        cfg =
+            configure
+                << configuration
+                    (coAxis
+                        [ axcoTitleFont "Pinyon Script"
+                        , axcoTitleFontWeight Bold
+                        , axcoLabelFont "Pinyon Script"
+                        , axcoLabelFontSize 8
+                        , axcoLabelFontWeight Bold
+                        ]
+                    )
+                << configuration (coText [ maFont "Pinyon Script", maFontWeight Bold, maAlign haCenter ])
+
+        encWheat =
+            encoding
+                << position X
+                    [ pName "year"
+                    , pTemporal
+                    , pAxis
+                        [ axDomainWidth 2
+                        , axDomainColor "rgb(46,41,43)"
+                        , axTicks False
+                        , axTickCount 54
+                        , axGridColor "black"
+                        , axGridOpacity 0.6
+                        , axDataCondition (expr "year(datum.value) % 50 == 0") (axGridWidth 2) (axGridWidth 0.5)
+                        , axLabelExpr "if (year(datum.value) % 10 == 5, ' ', if(year(datum.value) % 50 == 0, utcFormat(datum.value,'%Y'), utcFormat(datum.value,'%y')))"
+                        , axTitle "5 Years each division"
+                        , axZIndex 1
+                        ]
+                    ]
+                << position Y
+                    [ pName "wheat"
+                    , pQuant
+                    , pAxis
+                        [ axTickCount 20
+                        , axGridColor "black"
+                        , axDataCondition (expr "datum.value % 10 == 0") (axGridWidth 2) (axGridWidth 0.5)
+                        , axLabelExpr "if (datum.value % 10 == 5, '5', datum.value)"
+                        , axDomainWidth 2
+                        , axDomainColor "rgb(46,41,43)"
+                        , axTitle ""
+                        , axZIndex 1
+                        ]
+                    , pScale [ scDomain (doNums [ 0, 100 ]) ]
+                    ]
+
+        specWheat =
+            asSpec
+                [ encWheat []
+                , area
+                    [ maInterpolate miStepAfter
+                    , maColorGradient grLinear
+                        [ grX1 1
+                        , grX2 1
+                        , grY1 1
+                        , grY2 0
+                        , grStops
+                            [ ( 0.4, "black" )
+                            , ( 0.2, "white" )
+                            ]
+                        ]
+                    , maOpacity 0.8
+                    ]
+                ]
+
+        encWages =
+            encoding
+                << position X [ pName "year", pTemporal ]
+                << position Y
+                    [ pName "wages"
+                    , pQuant
+                    , pAxis
+                        [ axDomainWidth 2 ]
+                    ]
+
+        specMechanicArea =
+            asSpec
+                [ encWages []
+                , area [ maColor "rgb(170,210,220)", maLine (lmMarker [ maColor "black", maStrokeWidth 1 ]) ]
+                ]
+
+        specMechanicLine =
+            asSpec
+                [ encWages []
+                , line [ maColor "rgb(215,102,110)", maStrokeWidth 3, maYOffset -2 ]
+                ]
+
+        specAnnotation =
+            asSpec [ dataAnnotation [], encText [], textMark [ maAngle -2 ] ]
+
+        encMonarchBar =
+            encoding
+                << position X [ pName "start", pTemporal ]
+                << position X2 [ pName "end" ]
+                << position Y [ pName "y", pQuant ]
+                << position Y2 [ pName "x" ]
+                << fill
+                    [ mName "commonwealth"
+                    , mNominal
+                    , mScale [ scRange (raStrs [ "black", "white" ]) ]
+                    , mLegend []
+                    ]
+
+        specMonarchBar =
+            asSpec [ dataMonarch, transMonarchBar [], encMonarchBar [], bar [ maStroke "black" ] ]
+
+        encText =
+            encoding
+                << position X [ pName "x", pTemporal ]
+                << position Y [ pName "y", pQuant ]
+                << text [ tName "name", tNominal ]
+
+        encCurves =
+            encoding
+                << position X [ pName "x", pTemporal ]
+                << position Y [ pName "y", pQuant ]
+                << shape [ mName "curve", mNominal, mScale curves, mLegend [] ]
+
+        specCurves =
+            asSpec [ dataCurves [], encCurves [], point [ maStroke "black", maOpacity 1 ] ]
+
+        specText =
+            asSpec
+                [ encText []
+                , layer
+                    [ asSpec [ dataMonarch, transMonarchText [], textMark [] ]
+                    , asSpec [ dataText1 [], textMark [ maFontSize 20, maFont "Old Standard TT" ] ]
+                    , asSpec [ dataText2 [], textMark [ maFontSize 15 ] ]
+                    , asSpec [ dataText3 [], textMark [] ]
+                    , asSpec [ dataText4 [], textMark [ maFont "Old Standard TT" ] ]
+                    ]
+                ]
+
+        encCentury =
+            encoding
+                << position X [ pName "year", pTemporal ]
+                << position Y [ pName "y", pQuant ]
+                << position Y2 [ pName "y2" ]
+
+        specCentury =
+            asSpec
+                [ dataCentury []
+                , encCentury []
+                , area [ maStroke "black", maFill "black", maStrokeWidth 3, maInterpolate miMonotone ]
+                ]
+    in
+    toVegaLite
+        [ cfg []
+        , width 900
+        , height 450
+        , data
+        , layer
+            [ specWheat
+            , specMechanicArea
+            , specMechanicLine
+            , specAnnotation
+            , specMonarchBar
+            , specCurves
+            , specText
+            , specCentury
+            ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -697,6 +924,7 @@ mySpecs =
         , ( "layer5", layer5 )
         , ( "layer6", layer6 )
         , ( "layer7", layer7 )
+        , ( "layer8", layer8 )
         ]
 
 
