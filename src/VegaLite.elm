@@ -8406,7 +8406,7 @@ fiOpTrans =
 {-| Filter a data stream so that only data in a given field that are within the
 given range are used. For example,
 
-    filter (fiRange "date" (dtRange [ dtYear 2006 ] [ dtYear 20016 ]))
+    filter (fiRange "date" (dtRange [ dtYear 2006 ] [ dtYear 2016 ]))
 
 -}
 fiRange : String -> FilterRange -> Filter
