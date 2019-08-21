@@ -8919,6 +8919,239 @@ var author$project$FillStrokeTests$geo2 = function () {
 				author$project$VegaLite$geoshape(_List_Nil)
 			]));
 }();
+var author$project$VegaLite$Bar = 1;
+var author$project$VegaLite$bar = author$project$VegaLite$mark(1);
+var author$project$VegaLite$GrLinear = 0;
+var author$project$VegaLite$grLinear = 0;
+var author$project$VegaLite$GrStops = function (a) {
+	return {$: 6, a: a};
+};
+var author$project$VegaLite$grStops = author$project$VegaLite$GrStops;
+var author$project$VegaLite$GrX1 = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$grX1 = author$project$VegaLite$GrX1;
+var author$project$VegaLite$GrX2 = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$grX2 = author$project$VegaLite$GrX2;
+var author$project$VegaLite$GrY1 = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$VegaLite$grY1 = author$project$VegaLite$GrY1;
+var author$project$VegaLite$GrY2 = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$VegaLite$grY2 = author$project$VegaLite$GrY2;
+var author$project$VegaLite$MColorGradient = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var author$project$VegaLite$maColorGradient = author$project$VegaLite$MColorGradient;
+var author$project$VegaLite$pMType = author$project$VegaLite$PmType;
+var author$project$FillStrokeTests$gradient1 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('cat'),
+						author$project$VegaLite$pMType(0)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('value'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'cat',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['a', 'b', 'c', 'd'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'value',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[10, 5, 20, 8]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(200),
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						A2(
+						author$project$VegaLite$maColorGradient,
+						author$project$VegaLite$grLinear,
+						_List_fromArray(
+							[
+								author$project$VegaLite$grX1(1),
+								author$project$VegaLite$grX2(1),
+								author$project$VegaLite$grY1(0),
+								author$project$VegaLite$grY2(1),
+								author$project$VegaLite$grStops(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(0, 'red'),
+										_Utils_Tuple2(1, 'blue')
+									]))
+							]))
+					]))
+			]));
+}();
+var author$project$VegaLite$Area = 0;
+var author$project$VegaLite$area = author$project$VegaLite$mark(0);
+var author$project$FillStrokeTests$gradient2 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('cat'),
+						author$project$VegaLite$pMType(0)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('value'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'cat',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['a', 'b', 'c', 'd'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'value',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[10, 5, 20, 8]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$area(
+				_List_fromArray(
+					[
+						A2(
+						author$project$VegaLite$maColorGradient,
+						author$project$VegaLite$grLinear,
+						_List_fromArray(
+							[
+								author$project$VegaLite$grX1(0),
+								author$project$VegaLite$grX2(1),
+								author$project$VegaLite$grY1(1),
+								author$project$VegaLite$grY2(1),
+								author$project$VegaLite$grStops(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(0, 'red'),
+										_Utils_Tuple2(1, 'blue')
+									]))
+							]))
+					]))
+			]));
+}();
+var author$project$FillStrokeTests$gradient3 = function () {
+	var enc = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$encoding,
+			A2(
+				author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						author$project$VegaLite$pName('cat'),
+						author$project$VegaLite$pMType(0)
+					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('value'),
+					author$project$VegaLite$pMType(2)
+				])));
+	var data = A2(
+		elm$core$Basics$composeL,
+		A2(
+			elm$core$Basics$composeL,
+			author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				author$project$VegaLite$dataColumn,
+				'cat',
+				author$project$VegaLite$strs(
+					_List_fromArray(
+						['a', 'b', 'c', 'd'])))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'value',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[10, 5, 20, 8]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				author$project$VegaLite$width(300),
+				data(_List_Nil),
+				enc(_List_Nil),
+				author$project$VegaLite$area(
+				_List_fromArray(
+					[
+						A2(
+						author$project$VegaLite$maColorGradient,
+						author$project$VegaLite$grLinear,
+						_List_fromArray(
+							[
+								author$project$VegaLite$grX1(0),
+								author$project$VegaLite$grX2(1),
+								author$project$VegaLite$grY1(1),
+								author$project$VegaLite$grY2(1),
+								author$project$VegaLite$grStops(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(1, 'blue'),
+										_Utils_Tuple2(0, 'red')
+									]))
+							]))
+					]))
+			]));
+}();
 var author$project$FillStrokeTests$stroke1 = author$project$FillStrokeTests$encChart(
 	author$project$VegaLite$stroke(_List_Nil));
 var author$project$FillStrokeTests$stroke2 = author$project$FillStrokeTests$encChart(
@@ -8951,9 +9184,12 @@ var author$project$FillStrokeTests$mySpecs = author$project$VegaLite$combineSpec
 			_Utils_Tuple2('combined2', author$project$FillStrokeTests$combined2),
 			_Utils_Tuple2('combined3', author$project$FillStrokeTests$combined3),
 			_Utils_Tuple2('geo1', author$project$FillStrokeTests$geo1),
-			_Utils_Tuple2('geo2', author$project$FillStrokeTests$geo2)
+			_Utils_Tuple2('geo2', author$project$FillStrokeTests$geo2),
+			_Utils_Tuple2('gradient1', author$project$FillStrokeTests$gradient1),
+			_Utils_Tuple2('gradient2', author$project$FillStrokeTests$gradient2),
+			_Utils_Tuple2('gradient3', author$project$FillStrokeTests$gradient3)
 		]));
-var author$project$FillStrokeTests$sourceExample = author$project$FillStrokeTests$defChart;
+var author$project$FillStrokeTests$sourceExample = author$project$FillStrokeTests$gradient1;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

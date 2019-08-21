@@ -117,9 +117,99 @@ geo2 =
         ]
 
 
+gradient1 : Spec
+gradient1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "cat" (strs [ "a", "b", "c", "d" ])
+                << dataColumn "value" (nums [ 10, 5, 20, 8 ])
+
+        enc =
+            encoding
+                << position X [ pName "cat", pMType Nominal ]
+                << position Y [ pName "value", pMType Quantitative ]
+    in
+    toVegaLite
+        [ width 200
+        , data []
+        , enc []
+        , bar
+            [ maColorGradient grLinear
+                [ grX1 1
+                , grX2 1
+                , grY1 0
+                , grY2 1
+                , grStops
+                    [ ( 0, "red" )
+                    , ( 1, "blue" )
+                    ]
+                ]
+            ]
+        ]
+
+
+gradient2 : Spec
+gradient2 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "cat" (strs [ "a", "b", "c", "d" ])
+                << dataColumn "value" (nums [ 10, 5, 20, 8 ])
+
+        enc =
+            encoding
+                << position X [ pName "cat", pMType Nominal ]
+                << position Y [ pName "value", pMType Quantitative ]
+    in
+    toVegaLite
+        [ width 300
+        , data []
+        , enc []
+        , area
+            [ maColorGradient grLinear
+                [ grX1 0
+                , grX2 1
+                , grY1 1
+                , grY2 1
+                , grStops [ ( 0, "red" ), ( 1, "blue" ) ]
+                ]
+            ]
+        ]
+
+
+gradient3 : Spec
+gradient3 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "cat" (strs [ "a", "b", "c", "d" ])
+                << dataColumn "value" (nums [ 10, 5, 20, 8 ])
+
+        enc =
+            encoding
+                << position X [ pName "cat", pMType Nominal ]
+                << position Y [ pName "value", pMType Quantitative ]
+    in
+    toVegaLite
+        [ width 300
+        , data []
+        , enc []
+        , area
+            [ maColorGradient grLinear
+                [ grX1 0
+                , grX2 1
+                , grY1 1
+                , grY2 1
+                , grStops [ ( 1, "blue" ), ( 0, "red" ) ]
+                ]
+            ]
+        ]
+
+
 sourceExample : Spec
 sourceExample =
-    defChart
+    gradient1
 
 
 
@@ -141,6 +231,9 @@ mySpecs =
         , ( "combined3", combined3 )
         , ( "geo1", geo1 )
         , ( "geo2", geo2 )
+        , ( "gradient1", gradient1 )
+        , ( "gradient2", gradient2 )
+        , ( "gradient3", gradient3 )
         ]
 
 
