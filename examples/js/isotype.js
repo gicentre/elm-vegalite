@@ -7037,6 +7037,11 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 				'opacity',
 				elm$json$Json$Encode$float(x));
 		case 7:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'step',
+				elm$json$Json$Encode$float(x));
+		case 8:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -7048,34 +7053,34 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					elm$json$Json$Encode$string(''));
 			}
-		case 8:
+		case 9:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 10:
+		case 11:
 			var cap = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeCapLabel(cap)));
-		case 13:
+		case 14:
 			var jn = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeJoinLabel(jn)));
-		case 9:
+		case 10:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 12:
 			var xs = viewCfg.a;
 			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 12:
+		case 13:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
@@ -8671,7 +8676,7 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 				spec)));
 };
 var author$project$VegaLite$VStroke = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
 var author$project$VegaLite$VLWidth = 3;

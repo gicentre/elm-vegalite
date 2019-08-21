@@ -5496,6 +5496,11 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 				'opacity',
 				elm$json$Json$Encode$float(x));
 		case 7:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'step',
+				elm$json$Json$Encode$float(x));
+		case 8:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -5507,34 +5512,34 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					elm$json$Json$Encode$string(''));
 			}
-		case 8:
+		case 9:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 10:
+		case 11:
 			var cap = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeCapLabel(cap)));
-		case 13:
+		case 14:
 			var jn = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeJoinLabel(jn)));
-		case 9:
+		case 10:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 12:
 			var xs = viewCfg.a;
 			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 12:
+		case 13:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
@@ -9770,7 +9775,7 @@ var author$project$VegaLite$transform = function (transforms) {
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
 var author$project$VegaLite$VStroke = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
 var author$project$VegaLite$WOp = function (a) {
@@ -10216,10 +10221,10 @@ var author$project$VegaLite$SCBandPaddingOuter = function (a) {
 	return {$: 1, a: a};
 };
 var author$project$VegaLite$sacoBandPaddingOuter = author$project$VegaLite$SCBandPaddingOuter;
-var author$project$VegaLite$SCRangeStep = function (a) {
-	return {$: 18, a: a};
+var author$project$VegaLite$VStep = function (a) {
+	return {$: 7, a: a};
 };
-var author$project$VegaLite$sacoRangeStep = author$project$VegaLite$SCRangeStep;
+var author$project$VegaLite$vicoStep = author$project$VegaLite$VStep;
 var author$project$GalleryInteraction$interaction12 = function () {
 	var sel = A2(
 		elm$core$Basics$composeL,
@@ -10300,21 +10305,27 @@ var author$project$GalleryInteraction$interaction12 = function () {
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
-			author$project$VegaLite$configure,
+			A2(
+				elm$core$Basics$composeL,
+				author$project$VegaLite$configure,
+				author$project$VegaLite$configuration(
+					author$project$VegaLite$coScale(
+						_List_fromArray(
+							[
+								author$project$VegaLite$sacoBandPaddingInner(0),
+								author$project$VegaLite$sacoBandPaddingOuter(0)
+							])))),
 			author$project$VegaLite$configuration(
-				author$project$VegaLite$coScale(
+				author$project$VegaLite$coRange(
 					_List_fromArray(
 						[
-							author$project$VegaLite$sacoBandPaddingInner(0),
-							author$project$VegaLite$sacoBandPaddingOuter(0),
-							author$project$VegaLite$sacoRangeStep(
-							elm$core$Maybe$Just(40))
+							author$project$VegaLite$racoRamp('yellowgreenblue')
 						])))),
 		author$project$VegaLite$configuration(
-			author$project$VegaLite$coRange(
+			author$project$VegaLite$coView(
 				_List_fromArray(
 					[
-						author$project$VegaLite$racoRamp('yellowgreenblue')
+						author$project$VegaLite$vicoStep(40)
 					]))));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(

@@ -8950,6 +8950,11 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 				'opacity',
 				elm$json$Json$Encode$float(x));
 		case 7:
+			var x = viewCfg.a;
+			return _Utils_Tuple2(
+				'step',
+				elm$json$Json$Encode$float(x));
+		case 8:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -8961,34 +8966,34 @@ var author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					elm$json$Json$Encode$string(''));
 			}
-		case 8:
+		case 9:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				elm$json$Json$Encode$float(x));
-		case 10:
+		case 11:
 			var cap = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeCapLabel(cap)));
-		case 13:
+		case 14:
 			var jn = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$strokeJoinLabel(jn)));
-		case 9:
+		case 10:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				elm$json$Json$Encode$float(x));
-		case 11:
+		case 12:
 			var xs = viewCfg.a;
 			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2(elm$json$Json$Encode$list, elm$json$Json$Encode$float, xs));
-		case 12:
+		case 13:
 			var x = viewCfg.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
@@ -9483,10 +9488,6 @@ var author$project$VegaLite$PmType = function (a) {
 var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Quantitative = 2;
 var author$project$VegaLite$pQuant = author$project$VegaLite$PmType(2);
-var author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var author$project$VegaLite$pScale = author$project$VegaLite$PScale;
 var author$project$VegaLite$Latitude = 5;
 var author$project$VegaLite$Latitude2 = 7;
 var author$project$VegaLite$Longitude = 4;
@@ -10348,10 +10349,6 @@ var author$project$VegaLite$SRange = function (a) {
 	return {$: 2, a: a};
 };
 var author$project$VegaLite$scRange = author$project$VegaLite$SRange;
-var author$project$VegaLite$SRangeStep = function (a) {
-	return {$: 8, a: a};
-};
-var author$project$VegaLite$scRangeStep = author$project$VegaLite$SRangeStep;
 var author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -11058,6 +11055,18 @@ var author$project$VegaLite$transform = function (transforms) {
 		13,
 		A2(elm$json$Json$Encode$list, assemble, transforms));
 };
+var author$project$VegaLite$VLWidthStep = 5;
+var author$project$VegaLite$widthStep = function (ws) {
+	return _Utils_Tuple2(
+		5,
+		elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					elm$json$Json$Encode$float(ws))
+				])));
+};
 var author$project$ViewCompositionTests$genderChart = F2(
 	function (hdProps, cProps) {
 		var trans = A2(
@@ -11091,13 +11100,7 @@ var author$project$ViewCompositionTests$genderChart = F2(
 						_List_fromArray(
 							[
 								author$project$VegaLite$pName('age'),
-								author$project$VegaLite$pOrdinal,
-								author$project$VegaLite$pScale(
-								_List_fromArray(
-									[
-										author$project$VegaLite$scRangeStep(
-										elm$core$Maybe$Just(17))
-									]))
+								author$project$VegaLite$pOrdinal
 							]))),
 				A2(
 					author$project$VegaLite$position,
@@ -11135,6 +11138,7 @@ var author$project$ViewCompositionTests$genderChart = F2(
 		return author$project$VegaLite$toVegaLite(
 			_List_fromArray(
 				[
+					author$project$VegaLite$widthStep(17),
 					conf(_List_Nil),
 					pop,
 					trans(_List_Nil),
@@ -11293,7 +11297,7 @@ var author$project$VegaLite$VHeight = function (a) {
 };
 var author$project$VegaLite$vicoHeight = author$project$VegaLite$VHeight;
 var author$project$VegaLite$VStroke = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var author$project$VegaLite$vicoStroke = author$project$VegaLite$VStroke;
 var author$project$ViewCompositionTests$cfg = A2(
@@ -11593,15 +11597,11 @@ var author$project$ViewCompositionTests$grid1 = function () {
 			]));
 }();
 var author$project$VegaLite$VLColumns = 20;
-var author$project$VegaLite$columns = function (maybeCols) {
-	if (!maybeCols.$) {
-		var cols = maybeCols.a;
-		return _Utils_Tuple2(
-			20,
-			elm$json$Json$Encode$int(cols));
-	} else {
-		return _Utils_Tuple2(20, elm$json$Json$Encode$null);
-	}
+var author$project$VegaLite$columns = function (cols) {
+	return _Utils_Tuple2(
+		20,
+		elm$json$Json$Encode$int(
+			A2(elm$core$Basics$max, 0, cols)));
 };
 var author$project$VegaLite$facetFlow = function (fFields) {
 	return _Utils_Tuple2(
@@ -11660,8 +11660,7 @@ var author$project$ViewCompositionTests$grid2 = function () {
 				author$project$ViewCompositionTests$cfg(_List_Nil),
 				author$project$ViewCompositionTests$data(_List_Nil),
 				trans(_List_Nil),
-				author$project$VegaLite$columns(
-				elm$core$Maybe$Just(5)),
+				author$project$VegaLite$columns(5),
 				author$project$VegaLite$specification(specByCatVal),
 				author$project$VegaLite$facetFlow(
 				_List_fromArray(
@@ -11727,7 +11726,7 @@ var author$project$ViewCompositionTests$grid3 = function () {
 				author$project$ViewCompositionTests$cfg(_List_Nil),
 				author$project$ViewCompositionTests$data(_List_Nil),
 				trans(_List_Nil),
-				author$project$VegaLite$columns(elm$core$Maybe$Nothing),
+				author$project$VegaLite$columns(0),
 				author$project$VegaLite$specification(specByCatVal),
 				author$project$VegaLite$facetFlow(
 				_List_fromArray(
@@ -11802,8 +11801,7 @@ var author$project$ViewCompositionTests$grid4 = function () {
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				author$project$VegaLite$columns(
-				elm$core$Maybe$Just(3)),
+				author$project$VegaLite$columns(3),
 				author$project$VegaLite$repeatFlow(
 				_List_fromArray(
 					['Horsepower', 'Miles_per_Gallon', 'Acceleration', 'Displacement', 'Weight_in_lbs'])),
