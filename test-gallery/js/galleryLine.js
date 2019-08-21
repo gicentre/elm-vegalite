@@ -3250,10 +3250,12 @@ var author$project$VegaLite$dataValueSpec = function (val) {
 		case 0:
 			var b = val.a;
 			return elm$json$Json$Encode$bool(b);
-		default:
+		case 1:
 			var d = val.a;
 			return elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+		default:
+			return elm$json$Json$Encode$null;
 	}
 };
 var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
@@ -7107,149 +7109,54 @@ var author$project$GalleryLine$line10 = function () {
 				author$project$VegaLite$trail(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$dataColumn = F2(
-	function (colName, data) {
-		switch (data.$) {
-			case 2:
-				var col = data.a;
-				return elm$core$List$cons(
-					A2(
-						elm$core$List$map,
-						function (x) {
-							return _Utils_Tuple2(
-								colName,
-								elm$json$Json$Encode$float(x));
-						},
-						col));
-			case 3:
-				var col = data.a;
-				return elm$core$List$cons(
-					A2(
-						elm$core$List$map,
-						function (s) {
-							return _Utils_Tuple2(
-								colName,
-								elm$json$Json$Encode$string(s));
-						},
-						col));
-			case 1:
-				var col = data.a;
-				return elm$core$List$cons(
-					A2(
-						elm$core$List$map,
-						function (ds) {
-							return _Utils_Tuple2(
-								colName,
-								elm$json$Json$Encode$object(
-									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, ds)));
-						},
-						col));
-			default:
-				var col = data.a;
-				return elm$core$List$cons(
-					A2(
-						elm$core$List$map,
-						function (b) {
-							return _Utils_Tuple2(
-								colName,
-								elm$json$Json$Encode$bool(b));
-						},
-						col));
-		}
-	});
-var elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
-var elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return elm$core$Maybe$Just(x);
-	} else {
-		return elm$core$Maybe$Nothing;
-	}
-};
-var elm$core$List$repeatHelp = F3(
-	function (result, n, value) {
-		repeatHelp:
-		while (true) {
-			if (n <= 0) {
-				return result;
-			} else {
-				var $temp$result = A2(elm$core$List$cons, value, result),
-					$temp$n = n - 1,
-					$temp$value = value;
-				result = $temp$result;
-				n = $temp$n;
-				value = $temp$value;
-				continue repeatHelp;
-			}
-		}
-	});
-var elm$core$List$repeat = F2(
-	function (n, value) {
-		return A3(elm$core$List$repeatHelp, _List_Nil, n, value);
-	});
-var elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (!maybe.$) {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var author$project$VegaLite$transpose = function (xss) {
-	var numCols = A2(
-		elm$core$Basics$composeR,
-		elm$core$List$head,
-		A2(
-			elm$core$Basics$composeR,
-			elm$core$Maybe$withDefault(_List_Nil),
-			elm$core$List$length));
-	return A3(
-		elm$core$List$foldr,
-		elm$core$List$map2(elm$core$List$cons),
-		A2(
-			elm$core$List$repeat,
-			numCols(xss),
-			_List_Nil),
-		xss);
-};
-var author$project$VegaLite$dataFromColumns = F2(
-	function (fmts, cols) {
-		var dataArray = A2(
-			elm$json$Json$Encode$list,
-			elm$json$Json$Encode$object,
-			author$project$VegaLite$transpose(cols));
+var author$project$VegaLite$dataFromRows = F2(
+	function (fmts, rows) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
 			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
-						_Utils_Tuple2('values', dataArray)
+						_Utils_Tuple2(
+						'values',
+						author$project$VegaLite$toList(rows))
 					]))) : _Utils_Tuple2(
 			10,
 			elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
-						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'values',
+						author$project$VegaLite$toList(rows)),
 						_Utils_Tuple2(
 						'format',
 						elm$json$Json$Encode$object(
 							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
 					])));
 	});
+var author$project$VegaLite$dataRow = function (r) {
+	return elm$core$List$cons(
+		elm$json$Json$Encode$object(
+			A2(
+				elm$core$List$map,
+				function (_n0) {
+					var colName = _n0.a;
+					var val = _n0.b;
+					return _Utils_Tuple2(
+						colName,
+						author$project$VegaLite$dataValueSpec(val));
+				},
+				r)));
+};
 var author$project$VegaLite$MPoint = function (a) {
 	return {$: 32, a: a};
 };
 var author$project$VegaLite$maPoint = author$project$VegaLite$MPoint;
-var author$project$VegaLite$Numbers = function (a) {
+var author$project$VegaLite$NullValue = {$: 4};
+var author$project$VegaLite$nullValue = author$project$VegaLite$NullValue;
+var author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
-var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
+var author$project$VegaLite$num = author$project$VegaLite$Number;
 var author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
@@ -7281,19 +7188,83 @@ var author$project$GalleryLine$line11 = function () {
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
-			author$project$VegaLite$dataFromColumns(_List_Nil),
 			A2(
-				author$project$VegaLite$dataColumn,
-				'x',
-				author$project$VegaLite$nums(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					A2(
+						elm$core$Basics$composeL,
+						A2(
+							elm$core$Basics$composeL,
+							A2(
+								elm$core$Basics$composeL,
+								author$project$VegaLite$dataFromRows(_List_Nil),
+								author$project$VegaLite$dataRow(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'x',
+											author$project$VegaLite$num(1)),
+											_Utils_Tuple2(
+											'y',
+											author$project$VegaLite$num(10))
+										]))),
+							author$project$VegaLite$dataRow(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'x',
+										author$project$VegaLite$num(2)),
+										_Utils_Tuple2(
+										'y',
+										author$project$VegaLite$num(30))
+									]))),
+						author$project$VegaLite$dataRow(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'x',
+									author$project$VegaLite$num(3)),
+									_Utils_Tuple2('y', author$project$VegaLite$nullValue)
+								]))),
+					author$project$VegaLite$dataRow(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'x',
+								author$project$VegaLite$num(4)),
+								_Utils_Tuple2(
+								'y',
+								author$project$VegaLite$num(15))
+							]))),
+				author$project$VegaLite$dataRow(
 					_List_fromArray(
-						[1, 2, 3, 4, 5, 6, 7])))),
-		A2(
-			author$project$VegaLite$dataColumn,
-			'y',
-			author$project$VegaLite$nums(
+						[
+							_Utils_Tuple2(
+							'x',
+							author$project$VegaLite$num(5)),
+							_Utils_Tuple2('y', author$project$VegaLite$nullValue)
+						]))),
+			author$project$VegaLite$dataRow(
 				_List_fromArray(
-					[10, 30, 0 / 0, 15, 0 / 0, 40, 20]))));
+					[
+						_Utils_Tuple2(
+						'x',
+						author$project$VegaLite$num(6)),
+						_Utils_Tuple2(
+						'y',
+						author$project$VegaLite$num(40))
+					]))),
+		author$project$VegaLite$dataRow(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'x',
+					author$project$VegaLite$num(7)),
+					_Utils_Tuple2(
+					'y',
+					author$project$VegaLite$num(20))
+				])));
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -9988,12 +9959,151 @@ var author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) {
 			author$project$VegaLite$RStrings(range))
 		]);
 };
+var author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$object(
+									A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return elm$core$List$cons(
+					A2(
+						elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2(elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3(elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var author$project$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		elm$core$Basics$composeR,
+		elm$core$List$head,
+		A2(
+			elm$core$Basics$composeR,
+			elm$core$Maybe$withDefault(_List_Nil),
+			elm$core$List$length));
+	return A3(
+		elm$core$List$foldr,
+		elm$core$List$map2(elm$core$List$cons),
+		A2(
+			elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			elm$json$Json$Encode$list,
+			elm$json$Json$Encode$object,
+			author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			10,
+			elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						elm$json$Json$Encode$object(
+							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
 var author$project$VegaLite$MOrient = function (a) {
 	return {$: 31, a: a};
 };
 var author$project$VegaLite$maOrient = author$project$VegaLite$MOrient;
 var author$project$VegaLite$MOVertical = 1;
 var author$project$VegaLite$moVertical = 1;
+var author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$nums = author$project$VegaLite$Numbers;
 var author$project$VegaLite$pOrdinal = author$project$VegaLite$PmType(1);
 var author$project$VegaLite$Strings = function (a) {
 	return {$: 3, a: a};

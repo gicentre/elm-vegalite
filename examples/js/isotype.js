@@ -3081,6 +3081,7 @@ var elm$core$List$map = F2(
 	});
 var elm$json$Json$Encode$bool = _Json_wrap;
 var elm$json$Json$Encode$float = _Json_wrap;
+var elm$json$Json$Encode$null = _Json_encodeNull;
 var elm$json$Json$Encode$object = function (pairs) {
 	return _Json_wrap(
 		A3(
@@ -3105,10 +3106,12 @@ var author$project$VegaLite$dataValueSpec = function (val) {
 		case 0:
 			var b = val.a;
 			return elm$json$Json$Encode$bool(b);
-		default:
+		case 1:
 			var d = val.a;
 			return elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+		default:
+			return elm$json$Json$Encode$null;
 	}
 };
 var author$project$VegaLite$dataRow = function (r) {
@@ -3332,7 +3335,6 @@ var author$project$VegaLite$dataValuesSpecs = function (dvs) {
 	}
 };
 var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
-var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$filterProperty = function (f) {
 	switch (f.$) {
 		case 0:

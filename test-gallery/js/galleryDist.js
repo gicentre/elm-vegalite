@@ -4060,10 +4060,12 @@ var author$project$VegaLite$dataValueSpec = function (val) {
 		case 0:
 			var b = val.a;
 			return elm$json$Json$Encode$bool(b);
-		default:
+		case 1:
 			var d = val.a;
 			return elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+		default:
+			return elm$json$Json$Encode$null;
 	}
 };
 var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);

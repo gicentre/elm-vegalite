@@ -5206,6 +5206,7 @@ var author$project$VegaLite$dataValuesSpecs = function (dvs) {
 			return A2(elm$core$List$map, elm$json$Json$Encode$bool, bs);
 	}
 };
+var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$dataValueSpec = function (val) {
 	switch (val.$) {
 		case 2:
@@ -5217,13 +5218,14 @@ var author$project$VegaLite$dataValueSpec = function (val) {
 		case 0:
 			var b = val.a;
 			return elm$json$Json$Encode$bool(b);
-		default:
+		case 1:
 			var d = val.a;
 			return elm$json$Json$Encode$object(
 				A2(elm$core$List$map, author$project$VegaLite$dateTimeProperty, d));
+		default:
+			return elm$json$Json$Encode$null;
 	}
 };
-var elm$json$Json$Encode$null = _Json_encodeNull;
 var author$project$VegaLite$filterProperty = function (f) {
 	switch (f.$) {
 		case 0:
