@@ -11193,7 +11193,11 @@ var author$project$VegaLite$grLinear = 0;
 var author$project$VegaLite$GrStops = function (a) {
 	return {$: 6, a: a};
 };
-var author$project$VegaLite$grStops = author$project$VegaLite$GrStops;
+var elm$core$List$sortBy = _List_sortBy;
+var author$project$VegaLite$grStops = A2(
+	elm$core$Basics$composeR,
+	elm$core$List$sortBy(elm$core$Tuple$first),
+	author$project$VegaLite$GrStops);
 var author$project$VegaLite$GrX1 = function (a) {
 	return {$: 0, a: a};
 };

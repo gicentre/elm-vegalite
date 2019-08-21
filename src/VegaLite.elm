@@ -8898,7 +8898,7 @@ grStepMinor =
 -}
 grStops : List ( Float, String ) -> GradientProperty
 grStops =
-    GrStops
+    List.sortBy Tuple.first >> GrStops
 
 
 {-| The precision of the graticule in degrees. If unspecified, the default of 2.5
