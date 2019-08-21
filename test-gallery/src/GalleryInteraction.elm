@@ -522,14 +522,9 @@ interaction12 =
 
         cfg =
             configure
-                << configuration
-                    (coScale
-                        [ sacoBandPaddingInner 0
-                        , sacoBandPaddingOuter 0
-                        , sacoRangeStep (Just 40)
-                        ]
-                    )
+                << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
                 << configuration (coRange [ racoRamp "yellowgreenblue" ])
+                << configuration (coView [ vicoStep 40 ])
 
         enc =
             encoding

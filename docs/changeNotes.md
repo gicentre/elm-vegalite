@@ -32,6 +32,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `axDataCondition` and associated `cAx` property functions for conditional axis formatting.
 - Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
 - New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle` and `ticoZIndex`.
+- `vicoStep` for configuring default step size for discrete x and y discrete fields.
 - `coConcat` for configuring concatenations (`cocoSpacing` and `cocoColumns`).
 - `fiOp` for converting filters into `BooleanOp` and therefore allowing Boolean composition of filter functions.
 - `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.
@@ -45,7 +46,8 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `axDates` deprecated in favour of new more flexible `axValues`.
 - `scReverse` deprecated in favour of `mSort` (while `scReverse` works, it is not part of the Vega-Lite schema).
-- `scRangeStep`, `sacoRangeStep` and `sacoTextXRangeStep` deprecated in favour of `widthStep` and `heightStep`.
+- `scRangeStep`, deprecated in favour of `widthStep` and `heightStep`.
+- `sacoRangeStep` and `sacoTextXRangeStep` deprecated in favour of `vicoStep`.
 
 ## Bug Fixes
 

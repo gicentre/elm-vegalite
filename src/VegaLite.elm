@@ -1099,6 +1099,7 @@ module VegaLite exposing
     , vicoFill
     , vicoFillOpacity
     , vicoOpacity
+    , vicoStep
     , vicoStroke
     , vicoStrokeCap
     , vicoStrokeDash
@@ -2907,6 +2908,7 @@ See the
 @docs vicoFill
 @docs vicoFillOpacity
 @docs vicoOpacity
+@docs vicoStep
 @docs vicoStroke
 @docs vicoStrokeCap
 @docs vicoStrokeDash
@@ -4891,6 +4893,7 @@ type ViewConfig
     | VFill (Maybe String)
     | VFillOpacity Float
     | VOpacity Float
+    | VStep Float
     | VStroke (Maybe String)
     | VStrokeOpacity Float
     | VStrokeWidth Float
@@ -13113,7 +13116,7 @@ sacoPointPadding =
     SCPointPadding
 
 
-{-| Deprecated in favour of [widthStep](#widthStep) and [heightStep](#heightStep).
+{-| Deprecated in favour of [vicoStep](#vicoStep).
 -}
 sacoRangeStep : Maybe Float -> ScaleConfig
 sacoRangeStep =
@@ -13128,7 +13131,7 @@ sacoRound =
     SCRound
 
 
-{-| Deprecated in favour of [widthStep](#widthStep) and [heightStep](#heightStep).
+{-| Deprecated in favour of [vicoStep](#vicoStep).
 -}
 sacoTextXRangeStep : Float -> ScaleConfig
 sacoTextXRangeStep =
@@ -15132,6 +15135,13 @@ vicoHeight =
 vicoOpacity : Float -> ViewConfig
 vicoOpacity =
     VOpacity
+
+
+{-| Default step size for x/y discrete fields.
+-}
+vicoStep : Float -> ViewConfig
+vicoStep =
+    VStep
 
 
 {-| Default stroke color for single views. If `Nothing` is provided,
@@ -19836,6 +19846,9 @@ viewConfigProperty viewCfg =
 
         VOpacity x ->
             ( "opacity", JE.float x )
+
+        VStep x ->
+            ( "step", JE.float x )
 
         VStroke ms ->
             case ms of

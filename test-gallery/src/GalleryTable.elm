@@ -39,8 +39,7 @@ table2 =
 
         cfg =
             configure
-                << configuration (coView [ vicoStrokeWidth 0 ])
-                << configuration (coScale [ sacoRangeStep (Just 13) ])
+                << configuration (coView [ vicoStrokeWidth 0, vicoStep 13 ])
                 << configuration (coAxis [ axcoDomain False ])
 
         enc =

@@ -31,7 +31,6 @@ genderChart hdProps cProps =
                 << position X
                     [ pName "age"
                     , pOrdinal
-                    , pScale [ scRangeStep (Just 17) ]
                     ]
                 << position Y
                     [ pName "people"
@@ -45,7 +44,7 @@ genderChart hdProps cProps =
                     , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
                     ]
     in
-    toVegaLite [ conf [], pop, trans [], enc [], bar [] ]
+    toVegaLite [ widthStep 17, conf [], pop, trans [], enc [], bar [] ]
 
 
 columns1 : Spec
@@ -155,7 +154,7 @@ grid2 =
         [ cfg []
         , data []
         , trans []
-        , columns (Just 5)
+        , columns 5
         , specification specByCatVal
         , facetFlow [ fName "index", fOrdinal, fHeader [ hdTitle "" ] ]
         ]
@@ -181,7 +180,7 @@ grid3 =
         [ cfg []
         , data []
         , trans []
-        , columns Nothing
+        , columns 0
         , specification specByCatVal
         , facetFlow [ fName "index", fOrdinal, fHeader [ hdTitle "" ] ]
         ]
@@ -203,7 +202,7 @@ grid4 =
             asSpec [ carData [], bar [], enc [] ]
     in
     toVegaLite
-        [ columns (Just 3)
+        [ columns 3
         , repeatFlow [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ]
         , specification spec
         ]

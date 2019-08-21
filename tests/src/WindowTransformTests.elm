@@ -23,11 +23,12 @@ window1 =
 
         enc =
             encoding
-                << position X [ pName "PercentOfTotal", pQuant, pAxis [ axTitle "% of total time" ] ]
-                << position Y [ pName "Activity", pNominal, pScale [ scRangeStep (Just 12) ] ]
+                << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total time" ]
+                << position Y [ pName "Activity", pNominal ]
     in
     toVegaLite
-        [ data []
+        [ heightStep 12
+        , data []
         , trans []
         , bar []
         , enc []
@@ -49,7 +50,7 @@ window2 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -82,7 +83,7 @@ window3 =
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -118,7 +119,7 @@ window4 =
         enc =
             encoding
                 << position X [ pName "Release_Date", pTemporal ]
-                << position Y [ pName "RatingDelta", pQuant, pAxis [ axTitle "Residual" ] ]
+                << position Y [ pName "RatingDelta", pQuant, pTitle "Residual" ]
     in
     toVegaLite [ data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
 
@@ -204,7 +205,7 @@ window7 =
         lineEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
-                << position Y [ pName "Average_MPG", pQuant, pAxis [ axTitle "Miles per gallon" ] ]
+                << position Y [ pName "Average_MPG", pQuant, pTitle "Miles per gallon" ]
 
         lineSpec =
             asSpec [ line [ maColor "red" ], lineEnc [] ]
@@ -227,10 +228,10 @@ joinAggregate1 =
 
         enc =
             encoding
-                << position X [ pName "PercentOfTotal", pQuant, pAxis [ axTitle "% of total Time" ] ]
-                << position Y [ pName "Activity", pNominal, pScale [ scRangeStep (Just 12) ] ]
+                << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total Time" ]
+                << position Y [ pName "Activity", pNominal ]
     in
-    toVegaLite [ data [], trans [], enc [], bar [] ]
+    toVegaLite [ heightStep 12, data [], trans [], enc [], bar [] ]
 
 
 joinAggregate2 : Spec
@@ -247,11 +248,11 @@ joinAggregate2 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y
                     [ pName "Title"
                     , pNominal
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     , pSort [ soByChannel chX, soDescending ]
                     ]
     in
@@ -274,11 +275,11 @@ joinAggregate3 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [ axTitle "IMDB Rating" ] ]
+                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y
                     [ pName "Title"
                     , pNominal
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     , pSort [ soByChannel chX, soDescending ]
                     ]
     in
