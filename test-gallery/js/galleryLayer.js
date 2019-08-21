@@ -12099,6 +12099,11 @@ var author$project$VegaLite$shape = function (markProps) {
 				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
 };
 var author$project$GalleryLayer$layer8 = function () {
+	var transWages = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$transform,
+		author$project$VegaLite$filter(
+			author$project$VegaLite$fiExpr('year(datum.year) <= 1810')));
 	var transMonarchText = A2(
 		elm$core$Basics$composeL,
 		A2(
@@ -12194,8 +12199,8 @@ var author$project$GalleryLayer$layer8 = function () {
 								author$project$VegaLite$grStops(
 								_List_fromArray(
 									[
-										_Utils_Tuple2(0.4, 'black'),
-										_Utils_Tuple2(0.2, 'white')
+										_Utils_Tuple2(0.2, 'white'),
+										_Utils_Tuple2(0.4, 'black')
 									]))
 							])),
 						author$project$VegaLite$maOpacity(0.8)
@@ -12227,33 +12232,41 @@ var author$project$GalleryLayer$layer8 = function () {
 							author$project$VegaLite$axDomainWidth(2)
 						]))
 				])));
-	var specMechanicArea = author$project$VegaLite$asSpec(
+	var specMechanic = author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				transWages(_List_Nil),
 				encWages(_List_Nil),
-				author$project$VegaLite$area(
+				author$project$VegaLite$layer(
 				_List_fromArray(
 					[
-						author$project$VegaLite$maColor('rgb(170,210,220)'),
-						author$project$VegaLite$maLine(
-						author$project$VegaLite$lmMarker(
-							_List_fromArray(
-								[
-									author$project$VegaLite$maColor('black'),
-									author$project$VegaLite$maStrokeWidth(1)
-								])))
-					]))
-			]));
-	var specMechanicLine = author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				encWages(_List_Nil),
-				author$project$VegaLite$line(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maColor('rgb(215,102,110)'),
-						author$project$VegaLite$maStrokeWidth(3),
-						author$project$VegaLite$maYOffset(-2)
+						author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								author$project$VegaLite$area(
+								_List_fromArray(
+									[
+										author$project$VegaLite$maColor('rgb(170,210,220)'),
+										author$project$VegaLite$maLine(
+										author$project$VegaLite$lmMarker(
+											_List_fromArray(
+												[
+													author$project$VegaLite$maColor('black'),
+													author$project$VegaLite$maStrokeWidth(1)
+												])))
+									]))
+							])),
+						author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								author$project$VegaLite$line(
+								_List_fromArray(
+									[
+										author$project$VegaLite$maColor('rgb(215,102,110)'),
+										author$project$VegaLite$maStrokeWidth(3),
+										author$project$VegaLite$maYOffset(-2)
+									]))
+							]))
 					]))
 			]));
 	var encText = A2(
@@ -12543,13 +12556,23 @@ var author$project$GalleryLayer$layer8 = function () {
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
-			author$project$VegaLite$dataFromRows(_List_Nil),
+			author$project$VegaLite$dataFromRows(
+				_List_fromArray(
+					[
+						author$project$VegaLite$parse(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'x',
+								author$project$VegaLite$foDate('%Y %m'))
+							]))
+					])),
 			author$project$VegaLite$dataRow(
 				_List_fromArray(
 					[
 						_Utils_Tuple2(
 						'x',
-						author$project$VegaLite$str('1675')),
+						author$project$VegaLite$str('1675 1')),
 						_Utils_Tuple2(
 						'y',
 						author$project$VegaLite$num(76)),
@@ -12562,7 +12585,7 @@ var author$project$GalleryLayer$layer8 = function () {
 				[
 					_Utils_Tuple2(
 					'x',
-					author$project$VegaLite$str('1675.5')),
+					author$project$VegaLite$str('1675 6')),
 					_Utils_Tuple2(
 					'y',
 					author$project$VegaLite$num(76)),
@@ -12824,7 +12847,7 @@ var author$project$GalleryLayer$layer8 = function () {
 				data,
 				author$project$VegaLite$layer(
 				_List_fromArray(
-					[specWheat, specMechanicArea, specMechanicLine, specAnnotation, specMonarchBar, specCurves, specText, specCentury]))
+					[specWheat, specMechanic, specAnnotation, specMonarchBar, specCurves, specText, specCentury]))
 			]));
 }();
 var author$project$VegaLite$combineSpecs = function (specs) {

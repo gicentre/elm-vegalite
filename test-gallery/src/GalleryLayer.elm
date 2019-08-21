@@ -705,9 +705,9 @@ layer8 =
             categoricalDomainMap [ ( "inset", "m-43 a43,25 0 1,0 86,0a43,25 0 1,0 -86,0 a43,25.5 0 1,0 86,0a43,25.5 0 1,0 -86,0" ) ]
 
         dataText1 =
-            dataFromRows []
-                << dataRow [ ( "x", str "1675" ), ( "y", num 76 ), ( "name", str "CHART" ) ]
-                << dataRow [ ( "x", str "1675.5" ), ( "y", num 76 ), ( "name", str "CHART" ) ]
+            dataFromRows [ parse [ ( "x", foDate "%Y %m" ) ] ]
+                << dataRow [ ( "x", str "1675 1" ), ( "y", num 76 ), ( "name", str "CHART" ) ]
+                << dataRow [ ( "x", str "1675 6" ), ( "y", num 76 ), ( "name", str "CHART" ) ]
 
         dataText2 =
             dataFromRows []
@@ -734,6 +734,10 @@ layer8 =
                 << dataColumn "year" (nums [ 1565, 1590, 1600, 1605, 1650, 1695, 1700, 1705, 1750, 1795, 1800, 1805, 1810, 1830 ])
                 << dataColumn "y" (nums [ 106, 102, 100, 101, 106, 101, 100, 101, 106, 101, 100, 102, 103.5, 106 ])
                 << dataColumn "y2" (nums [ 105, 102, 100, 101, 105, 101, 100, 101, 105, 101, 100, 102, 103.5, 105 ])
+
+        transWages =
+            transform
+                << filter (fiExpr "year(datum.year) <= 1810")
 
         transMonarchBar =
             transform
@@ -803,8 +807,8 @@ layer8 =
                         , grY1 1
                         , grY2 0
                         , grStops
-                            [ ( 0.4, "black" )
-                            , ( 0.2, "white" )
+                            [ ( 0.2, "white" )
+                            , ( 0.4, "black" )
                             ]
                         ]
                     , maOpacity 0.8
@@ -817,20 +821,17 @@ layer8 =
                 << position Y
                     [ pName "wages"
                     , pQuant
-                    , pAxis
-                        [ axDomainWidth 2 ]
+                    , pAxis [ axDomainWidth 2 ]
                     ]
 
-        specMechanicArea =
+        specMechanic =
             asSpec
-                [ encWages []
-                , area [ maColor "rgb(170,210,220)", maLine (lmMarker [ maColor "black", maStrokeWidth 1 ]) ]
-                ]
-
-        specMechanicLine =
-            asSpec
-                [ encWages []
-                , line [ maColor "rgb(215,102,110)", maStrokeWidth 3, maYOffset -2 ]
+                [ transWages []
+                , encWages []
+                , layer
+                    [ asSpec [ area [ maColor "rgb(170,210,220)", maLine (lmMarker [ maColor "black", maStrokeWidth 1 ]) ] ]
+                    , asSpec [ line [ maColor "rgb(215,102,110)", maStrokeWidth 3, maYOffset -2 ] ]
+                    ]
                 ]
 
         specAnnotation =
@@ -899,8 +900,7 @@ layer8 =
         , data
         , layer
             [ specWheat
-            , specMechanicArea
-            , specMechanicLine
+            , specMechanic
             , specAnnotation
             , specMonarchBar
             , specCurves
