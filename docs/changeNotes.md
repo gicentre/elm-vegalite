@@ -36,6 +36,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `maWidth` and `maHeight` for explicitly setting mark width and height.
 - `scAlign` for aligning marks within a range.
 - `noData` for preventing inheritance of parent data source in a specfication.
+- `nullValue` for explicitly setting data values to null.
 - `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
 
 ## Deprecations
