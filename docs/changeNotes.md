@@ -17,6 +17,8 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
   Should use `osNone`, `osGreedy` and `osParity` instead. These were always available, but the constructors themselves had been inadvertantly exposed, so it is unlikely to require a change in practice.
 - _`lookup` now uses the `Data` type alias as part of its type signature._
   This is unlikely to impact any use of the API but is technically a breaking change.
+- _`columns` now takes an `int` rather than `Maybe int`._
+  To update older code, replace `columns (Just n)` with `columns n` and `columns Nothing` with `columns 0`.
 
 ## Additions
 

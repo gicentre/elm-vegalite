@@ -146,7 +146,7 @@ facet6 =
     in
     toVegaLite
         [ data []
-        , columns (Just 2)
+        , columns 2
         , facetFlow
             [ fName "site"
             , fOrdinal
