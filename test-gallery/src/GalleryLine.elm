@@ -223,9 +223,14 @@ line11 =
             description "Line chart with markers and invalid values."
 
         data =
-            dataFromColumns []
-                << dataColumn "x" (nums [ 1, 2, 3, 4, 5, 6, 7 ])
-                << dataColumn "y" (nums [ 10, 30, 0 / 0, 15, 0 / 0, 40, 20 ])
+            dataFromRows []
+                << dataRow [ ( "x", num 1 ), ( "y", num 10 ) ]
+                << dataRow [ ( "x", num 2 ), ( "y", num 30 ) ]
+                << dataRow [ ( "x", num 3 ), ( "y", nullValue ) ]
+                << dataRow [ ( "x", num 4 ), ( "y", num 15 ) ]
+                << dataRow [ ( "x", num 5 ), ( "y", nullValue ) ]
+                << dataRow [ ( "x", num 6 ), ( "y", num 40 ) ]
+                << dataRow [ ( "x", num 7 ), ( "y", num 20 ) ]
 
         enc =
             encoding

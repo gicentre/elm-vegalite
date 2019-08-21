@@ -1,6 +1,6 @@
 port module GalleryLayer exposing (elmToJS)
 
-import Json.Encode as JE
+import Json.Encode
 import Platform
 import VegaLite exposing (..)
 
@@ -141,16 +141,16 @@ layer3 =
             configure << configuration (coTick [ maThickness 2 ])
 
         row title ranges measures marker =
-            JE.object
-                [ ( "title", JE.string title )
-                , ( "ranges", JE.list JE.float ranges )
-                , ( "measures", JE.list JE.float measures )
-                , ( "markers", JE.list JE.float [ marker ] )
+            Json.Encode.object
+                [ ( "title", Json.Encode.string title )
+                , ( "ranges", Json.Encode.list Json.Encode.float ranges )
+                , ( "measures", Json.Encode.list Json.Encode.float measures )
+                , ( "markers", Json.Encode.list Json.Encode.float [ marker ] )
                 ]
 
         data =
             dataFromJson
-                (JE.list identity
+                (Json.Encode.list identity
                     [ row "Revenue" [ 150, 225, 300 ] [ 220, 270 ] 250
                     , row "Profit" [ 20, 25, 30 ] [ 21, 23 ] 26
                     , row "Order size" [ 350, 500, 600 ] [ 100, 320 ] 550
