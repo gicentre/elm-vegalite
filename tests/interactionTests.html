@@ -68,12 +68,44 @@
     <figure class="cell">
       <div id="interaction5"></div>
       <figcaption>
-        Bind to x-scale (temporal zooming)
+        Interval selection initialised in both x and y extents.
       </figcaption>
     </figure>
 
     <figure class="cell">
       <div id="interaction6"></div>
+      <figcaption>
+        Interval selection initialised in y extent only and therefore implicitly
+        projected across the x channel.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction7"></div>
+      <figcaption>
+        Interval selection initialised in x extent only and explicitly projected
+        across the y Channel.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction8"></div>
+      <figcaption>
+        Interval selection with no initialization because both init values set
+        to
+        <code>Nothing</code>.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction9"></div>
+      <figcaption>
+        Bind to x-scale (temporal zooming)
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="interaction10"></div>
       <figcaption>
         Bind to x and y scales (graphic zooming)
       </figcaption>
@@ -84,19 +116,24 @@
     <h2>Indirect Selection</h2>
 
     <figure class="cell">
-      <div id="interaction7"></div>
+      <div id="interaction11"></div>
       <figcaption>Selection of crime type by radio button.</figcaption>
     </figure>
     <div style="clear:left"></div>
 
     <figure class="cell">
-      <div id="interaction8"></div>
+      <div id="interaction12"></div>
       <figcaption>Filtering by crime rate via min and max sliders</figcaption>
     </figure>
     <div style="clear:left"></div>
 
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
     <script>
-      Elm.InteractionTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.InteractionTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,

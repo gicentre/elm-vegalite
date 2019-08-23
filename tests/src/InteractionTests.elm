@@ -1,6 +1,9 @@
 port module InteractionTests exposing (elmToJS)
 
-import Platform
+import Browser
+import Html exposing (Html, div, pre)
+import Html.Attributes exposing (id)
+import Json.Encode
 import VegaLite exposing (..)
 
 
@@ -89,7 +92,11 @@ interaction5 =
     let
         sel =
             selection
-                << select "mySelection" seInterval [ seBindScales, seEncodings [ chX ] ]
+                << select "mySelection"
+                    seInterval
+                    [ seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] ))
+                        (Just ( num 4000, num 8000 ))
+                    ]
     in
     toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
@@ -99,13 +106,61 @@ interaction6 =
     let
         sel =
             selection
-                << select "mySelection" seInterval [ seBindScales ]
+                << select "mySelection"
+                    seInterval
+                    [ seInitInterval Nothing (Just ( num 4000, num 8000 )) ]
     in
     toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction7 : Spec
 interaction7 =
+    let
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seEncodings [ chX ]
+                    , seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] )) Nothing
+                    ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction8 : Spec
+interaction8 =
+    let
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seInitInterval Nothing Nothing ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction9 : Spec
+interaction9 =
+    let
+        sel =
+            selection
+                << select "mySelection" seInterval [ seBindScales, seEncodings [ chX ] ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction10 : Spec
+interaction10 =
+    let
+        sel =
+            selection
+                << select "mySelection" seInterval [ seBindScales ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction11 : Spec
+interaction11 =
     let
         sel =
             selection
@@ -130,8 +185,8 @@ interaction7 =
     toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
-interaction8 : Spec
-interaction8 =
+interaction12 : Spec
+interaction12 =
     let
         sel =
             selection
@@ -153,6 +208,11 @@ interaction8 =
     toVegaLite [ width 540, data, trans [], sel [], enc [], circle [] ]
 
 
+sourceExample : Spec
+sourceExample =
+    interaction7
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -168,22 +228,42 @@ mySpecs =
         , ( "interaction6", interaction6 )
         , ( "interaction7", interaction7 )
         , ( "interaction8", interaction8 )
+        , ( "interaction9", interaction9 )
+        , ( "interaction10", interaction10 )
+        , ( "interaction11", interaction11 )
+        , ( "interaction12", interaction12 )
         ]
 
 
 
-{- The code below is boilerplate for creating a headless Elm module that opens
-   an outgoing port to Javascript and sends the specs to it.
+{- ---------------------------------------------------------------------------
+   The code below creates an Elm module that opens an outgoing port to Javascript
+   and sends both the specs and DOM node to it.
+   This is used to display the generated Vega specs for testing purposes.
 -}
 
 
 main : Program () Spec msg
 main =
-    Platform.worker
+    Browser.element
         { init = always ( mySpecs, elmToJS mySpecs )
+        , view = view
         , update = \_ model -> ( model, Cmd.none )
         , subscriptions = always Sub.none
         }
+
+
+
+-- View
+
+
+view : Spec -> Html msg
+view spec =
+    div []
+        [ div [ id "specSource" ] []
+        , pre []
+            [ Html.text (Json.Encode.encode 2 sourceExample) ]
+        ]
 
 
 port elmToJS : Spec -> Cmd msg
