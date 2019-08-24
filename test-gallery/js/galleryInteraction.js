@@ -4852,6 +4852,7 @@ var author$project$VegaLite$selectionLabel = function (seType) {
 			return 'interval';
 	}
 };
+var author$project$VegaLite$NullValue = {$: 4};
 var author$project$VegaLite$inputProperty = function (prop) {
 	switch (prop.$) {
 		case 3:
@@ -5241,6 +5242,7 @@ var author$project$VegaLite$selectionResolutionLabel = function (res) {
 			return 'intersect';
 	}
 };
+var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
 var elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -5271,6 +5273,94 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 						elm$core$List$map,
 						elm$core$Tuple$mapSecond(author$project$VegaLite$dataValueSpec),
 						iVals)));
+		case 9:
+			var maybeX = selProp.a;
+			var maybeY = selProp.b;
+			var yExtent = _Utils_eq(
+				maybeY,
+				elm$core$Maybe$Just(
+					_Utils_Tuple2(author$project$VegaLite$NullValue, author$project$VegaLite$NullValue))) ? elm$core$Maybe$Nothing : maybeY;
+			var xExtent = _Utils_eq(
+				maybeX,
+				elm$core$Maybe$Just(
+					_Utils_Tuple2(author$project$VegaLite$NullValue, author$project$VegaLite$NullValue))) ? elm$core$Maybe$Nothing : maybeX;
+			var _n1 = _Utils_Tuple2(xExtent, yExtent);
+			if (!_n1.a.$) {
+				if (!_n1.b.$) {
+					var _n2 = _n1.a.a;
+					var xMin = _n2.a;
+					var xMax = _n2.b;
+					var _n3 = _n1.b.a;
+					var yMin = _n3.a;
+					var yMax = _n3.b;
+					return _Utils_Tuple2(
+						'init',
+						elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'x',
+									author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												author$project$VegaLite$dataValueSpec(xMin),
+												author$project$VegaLite$dataValueSpec(xMax)
+											]))),
+									_Utils_Tuple2(
+									'y',
+									author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												author$project$VegaLite$dataValueSpec(yMin),
+												author$project$VegaLite$dataValueSpec(yMax)
+											])))
+								])));
+				} else {
+					var _n4 = _n1.a.a;
+					var xMin = _n4.a;
+					var xMax = _n4.b;
+					var _n5 = _n1.b;
+					return _Utils_Tuple2(
+						'init',
+						elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'x',
+									author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												author$project$VegaLite$dataValueSpec(xMin),
+												author$project$VegaLite$dataValueSpec(xMax)
+											])))
+								])));
+				}
+			} else {
+				if (!_n1.b.$) {
+					var _n6 = _n1.a;
+					var _n7 = _n1.b.a;
+					var yMin = _n7.a;
+					var yMax = _n7.b;
+					return _Utils_Tuple2(
+						'init',
+						elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'y',
+									author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												author$project$VegaLite$dataValueSpec(yMin),
+												author$project$VegaLite$dataValueSpec(yMax)
+											])))
+								])));
+				} else {
+					var _n8 = _n1.a;
+					var _n9 = _n1.b;
+					return _Utils_Tuple2('init', elm$json$Json$Encode$null);
+				}
+			}
 		case 7:
 			var channels = selProp.a;
 			return _Utils_Tuple2(
@@ -5286,13 +5376,13 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 				elm$json$Json$Encode$string(evStr));
 		case 3:
 			var evStr = selProp.a;
-			var _n1 = elm$core$String$trim(evStr);
-			if (_n1 === '') {
+			var _n10 = elm$core$String$trim(evStr);
+			if (_n10 === '') {
 				return _Utils_Tuple2(
 					'clear',
 					elm$json$Json$Encode$bool(false));
 			} else {
-				var evStrTrimmed = _n1;
+				var evStrTrimmed = _n10;
 				return _Utils_Tuple2(
 					'clear',
 					elm$json$Json$Encode$string(evStrTrimmed));
@@ -5301,13 +5391,13 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'empty',
 				elm$json$Json$Encode$string('none'));
-		case 9:
+		case 10:
 			var res = selProp.a;
 			return _Utils_Tuple2(
 				'resolve',
 				elm$json$Json$Encode$string(
 					author$project$VegaLite$selectionResolutionLabel(res)));
-		case 10:
+		case 11:
 			var markProps = selProp.a;
 			return _Utils_Tuple2(
 				'mark',
@@ -5317,18 +5407,18 @@ var author$project$VegaLite$selectionProperty = function (selProp) {
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$string('scales'));
-		case 11:
+		case 12:
 			var binds = selProp.a;
 			return _Utils_Tuple2(
 				'bind',
 				elm$json$Json$Encode$object(
 					A2(elm$core$List$map, author$project$VegaLite$bindingSpec, binds)));
-		case 12:
+		case 13:
 			var b = selProp.a;
 			return _Utils_Tuple2(
 				'nearest',
 				elm$json$Json$Encode$bool(b));
-		case 13:
+		case 14:
 			var ex = selProp.a;
 			return _Utils_Tuple2(
 				'toggle',
@@ -6211,7 +6301,6 @@ var author$project$VegaLite$dataValuesSpecs = function (dvs) {
 			return A2(elm$core$List$map, elm$json$Json$Encode$bool, bs);
 	}
 };
-var author$project$VegaLite$toList = elm$json$Json$Encode$list(elm$core$Basics$identity);
 var author$project$VegaLite$filterProperty = function (f) {
 	switch (f.$) {
 		case 0:
@@ -8383,15 +8472,33 @@ var author$project$VegaLite$On = function (a) {
 var author$project$VegaLite$seOn = author$project$VegaLite$On;
 var author$project$VegaLite$SeSingle = 0;
 var author$project$VegaLite$seSingle = 0;
+var elm$core$Basics$neq = _Utils_notEqual;
+var elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
 var author$project$VegaLite$select = F3(
 	function (selName, sType, options) {
 		var selProps = A2(
-			elm$core$List$cons,
-			_Utils_Tuple2(
-				'type',
-				elm$json$Json$Encode$string(
-					author$project$VegaLite$selectionLabel(sType))),
-			A2(elm$core$List$map, author$project$VegaLite$selectionProperty, options));
+			elm$core$List$filter,
+			A2(
+				elm$core$Basics$composeR,
+				elm$core$Tuple$second,
+				elm$core$Basics$neq(elm$json$Json$Encode$null)),
+			A2(
+				elm$core$List$cons,
+				_Utils_Tuple2(
+					'type',
+					elm$json$Json$Encode$string(
+						author$project$VegaLite$selectionLabel(sType))),
+				A2(elm$core$List$map, author$project$VegaLite$selectionProperty, options)));
 		return elm$core$List$cons(
 			_Utils_Tuple2(
 				selName,
@@ -9860,18 +9967,6 @@ var author$project$VegaLite$sortFieldSpec = function (wsf) {
 				]));
 	}
 };
-var elm$core$Basics$neq = _Utils_notEqual;
-var elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
 var author$project$VegaLite$windowPropertySpec = F2(
 	function (wpName, wps) {
 		var wpSpec = function (wp) {
@@ -10857,7 +10952,7 @@ var author$project$GalleryInteraction$interaction4 = function () {
 			]));
 }();
 var author$project$VegaLite$Nearest = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var author$project$VegaLite$seNearest = author$project$VegaLite$Nearest;
 var author$project$VegaLite$size = function (markProps) {
@@ -11023,7 +11118,7 @@ var author$project$VegaLite$InStep = function (a) {
 };
 var author$project$VegaLite$inStep = author$project$VegaLite$InStep;
 var author$project$VegaLite$Bind = function (a) {
-	return {$: 11, a: a};
+	return {$: 12, a: a};
 };
 var author$project$VegaLite$seBind = author$project$VegaLite$Bind;
 var author$project$VegaLite$Fields = function (a) {
