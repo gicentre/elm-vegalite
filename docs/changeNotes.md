@@ -41,6 +41,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `noData` for preventing inheritance of parent data source in a specfication.
 - `nullValue` for explicitly setting data values to null.
 - `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
+- `seInitInterval` for initialising an interval selection's extent.
 
 ## Deprecations
 
