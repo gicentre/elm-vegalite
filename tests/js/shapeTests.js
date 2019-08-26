@@ -5506,6 +5506,18 @@ var author$project$VegaLite$symbolLabel = function (sym) {
 			return 'triangle-up';
 		case 5:
 			return 'triangle-down';
+		case 6:
+			return 'triangle-left';
+		case 7:
+			return 'triangle-right';
+		case 12:
+			return 'triangle';
+		case 9:
+			return 'stroke';
+		case 10:
+			return 'arrow';
+		case 11:
+			return 'wedge';
 		default:
 			var svgPath = sym.a;
 			return svgPath;
@@ -11896,6 +11908,159 @@ var author$project$ShapeTests$scatter9 = A2(
 					author$project$VegaLite$mName('Origin'),
 					author$project$VegaLite$mNominal
 				]))));
+var author$project$ShapeTests$horizLine = 'M -1 0 h 2';
+var author$project$VegaLite$asSpec = function (specs) {
+	return elm$json$Json$Encode$object(
+		A2(
+			elm$core$List$map,
+			function (_n0) {
+				var s = _n0.a;
+				var v = _n0.b;
+				return _Utils_Tuple2(
+					author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var author$project$VegaLite$VLColumns = 20;
+var author$project$VegaLite$columns = function (cols) {
+	return _Utils_Tuple2(
+		20,
+		elm$json$Json$Encode$int(
+			A2(elm$core$Basics$max, 0, cols)));
+};
+var author$project$VegaLite$VLConcat = 17;
+var author$project$VegaLite$concat = function (specs) {
+	return _Utils_Tuple2(
+		17,
+		author$project$VegaLite$toList(specs));
+};
+var author$project$VegaLite$MShape = function (a) {
+	return {$: 35, a: a};
+};
+var author$project$VegaLite$maShape = author$project$VegaLite$MShape;
+var author$project$VegaLite$MSize = function (a) {
+	return {$: 37, a: a};
+};
+var author$project$VegaLite$maSize = author$project$VegaLite$MSize;
+var author$project$VegaLite$MStroke = function (a) {
+	return {$: 38, a: a};
+};
+var author$project$VegaLite$maStroke = author$project$VegaLite$MStroke;
+var author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 46, a: a};
+};
+var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
+var author$project$VegaLite$SymArrow = {$: 10};
+var author$project$VegaLite$symArrow = author$project$VegaLite$SymArrow;
+var author$project$VegaLite$SymCircle = {$: 0};
+var author$project$VegaLite$symCircle = author$project$VegaLite$SymCircle;
+var author$project$VegaLite$SymCross = {$: 2};
+var author$project$VegaLite$symCross = author$project$VegaLite$SymCross;
+var author$project$VegaLite$SymDiamond = {$: 3};
+var author$project$VegaLite$symDiamond = author$project$VegaLite$SymDiamond;
+var author$project$VegaLite$SymPath = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$symPath = author$project$VegaLite$SymPath;
+var author$project$VegaLite$SymSquare = {$: 1};
+var author$project$VegaLite$symSquare = author$project$VegaLite$SymSquare;
+var author$project$VegaLite$SymStroke = {$: 9};
+var author$project$VegaLite$symStroke = author$project$VegaLite$SymStroke;
+var author$project$VegaLite$SymTriangle = {$: 12};
+var author$project$VegaLite$symTriangle = author$project$VegaLite$SymTriangle;
+var author$project$VegaLite$SymTriangleDown = {$: 5};
+var author$project$VegaLite$symTriangleDown = author$project$VegaLite$SymTriangleDown;
+var author$project$VegaLite$SymTriangleLeft = {$: 6};
+var author$project$VegaLite$symTriangleLeft = author$project$VegaLite$SymTriangleLeft;
+var author$project$VegaLite$SymTriangleRight = {$: 7};
+var author$project$VegaLite$symTriangleRight = author$project$VegaLite$SymTriangleRight;
+var author$project$VegaLite$SymTriangleUp = {$: 4};
+var author$project$VegaLite$symTriangleUp = author$project$VegaLite$SymTriangleUp;
+var author$project$VegaLite$SymWedge = {$: 11};
+var author$project$VegaLite$symWedge = author$project$VegaLite$SymWedge;
+var author$project$ShapeTests$symbols1 = function () {
+	var shapeSpec = function (sym) {
+		return author$project$VegaLite$asSpec(
+			_List_fromArray(
+				[
+					author$project$VegaLite$point(
+					_List_fromArray(
+						[
+							author$project$VegaLite$maFilled(true),
+							author$project$VegaLite$maStroke('black'),
+							author$project$VegaLite$maSize(400),
+							author$project$VegaLite$maShape(sym),
+							author$project$VegaLite$maStrokeWidth(0.5)
+						]))
+				]));
+	};
+	var data = A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'x',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[0]))));
+	return author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				author$project$VegaLite$columns(4),
+				author$project$VegaLite$concat(
+				_List_fromArray(
+					[
+						shapeSpec(author$project$VegaLite$symCircle),
+						shapeSpec(author$project$VegaLite$symSquare),
+						shapeSpec(author$project$VegaLite$symDiamond),
+						shapeSpec(author$project$VegaLite$symCross),
+						shapeSpec(author$project$VegaLite$symTriangleUp),
+						shapeSpec(author$project$VegaLite$symTriangleDown),
+						shapeSpec(author$project$VegaLite$symTriangleLeft),
+						shapeSpec(author$project$VegaLite$symTriangleRight),
+						shapeSpec(author$project$VegaLite$symTriangle),
+						shapeSpec(author$project$VegaLite$symArrow),
+						shapeSpec(author$project$VegaLite$symWedge),
+						shapeSpec(author$project$VegaLite$symStroke),
+						shapeSpec(
+						author$project$VegaLite$symPath(author$project$ShapeTests$horizLine))
+					]))
+			]));
+}();
+var author$project$VegaLite$LSymbolStrokeColor = function (a) {
+	return {$: 32, a: a};
+};
+var author$project$VegaLite$leSymbolStrokeColor = author$project$VegaLite$LSymbolStrokeColor;
+var author$project$VegaLite$LSymbolStrokeWidth = function (a) {
+	return {$: 31, a: a};
+};
+var author$project$VegaLite$leSymbolStrokeWidth = author$project$VegaLite$LSymbolStrokeWidth;
+var author$project$VegaLite$LSymbolType = function (a) {
+	return {$: 29, a: a};
+};
+var author$project$VegaLite$leSymbolType = author$project$VegaLite$LSymbolType;
+var author$project$VegaLite$MLegend = function (a) {
+	return {$: 10, a: a};
+};
+var author$project$VegaLite$mLegend = author$project$VegaLite$MLegend;
+var author$project$ShapeTests$symbols2 = A2(
+	author$project$ShapeTests$chart,
+	'Legend using non-default bordered square symbols)',
+	author$project$VegaLite$color(
+		_List_fromArray(
+			[
+				author$project$VegaLite$mName('Origin'),
+				author$project$VegaLite$mNominal,
+				author$project$VegaLite$mLegend(
+				_List_fromArray(
+					[
+						author$project$VegaLite$leSymbolType(author$project$VegaLite$symSquare),
+						author$project$VegaLite$leSymbolStrokeColor('black'),
+						author$project$VegaLite$leSymbolStrokeWidth(0.5)
+					]))
+			])));
 var author$project$VegaLite$combineSpecs = function (specs) {
 	return elm$json$Json$Encode$object(specs);
 };
@@ -11917,9 +12082,11 @@ var author$project$ShapeTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('custom2', author$project$ShapeTests$scatter13),
 			_Utils_Tuple2('custom3', author$project$ShapeTests$scatter14),
 			_Utils_Tuple2('custom4', author$project$ShapeTests$scatter15),
-			_Utils_Tuple2('isotype1', author$project$ShapeTests$personGrid)
+			_Utils_Tuple2('isotype1', author$project$ShapeTests$personGrid),
+			_Utils_Tuple2('symbols1', author$project$ShapeTests$symbols1),
+			_Utils_Tuple2('symbols2', author$project$ShapeTests$symbols2)
 		]));
-var author$project$ShapeTests$sourceExample = author$project$ShapeTests$personGrid;
+var author$project$ShapeTests$sourceExample = author$project$ShapeTests$symbols1;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

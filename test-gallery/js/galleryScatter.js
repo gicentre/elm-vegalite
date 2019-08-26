@@ -3352,6 +3352,18 @@ var author$project$VegaLite$symbolLabel = function (sym) {
 			return 'triangle-up';
 		case 5:
 			return 'triangle-down';
+		case 6:
+			return 'triangle-left';
+		case 7:
+			return 'triangle-right';
+		case 12:
+			return 'triangle';
+		case 9:
+			return 'stroke';
+		case 10:
+			return 'arrow';
+		case 11:
+			return 'wedge';
 		default:
 			var svgPath = sym.a;
 			return svgPath;
