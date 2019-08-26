@@ -54,6 +54,11 @@ cross =
     "M -1.5 -1.5 m1 0 h 1 v 1 h 1 v 1 h -1 v 1 h -1  v -1 h -1 v -1 h 1z"
 
 
+horizLine : String
+horizLine =
+    "M -1 0 h 2"
+
+
 scatter1 : Spec
 scatter1 =
     chart "Default nominal shapes."
@@ -254,9 +259,62 @@ personGrid =
         ]
 
 
+symbols1 : Spec
+symbols1 =
+    let
+        data =
+            dataFromColumns [] << dataColumn "x" (nums [ 0 ])
+
+        shapeSpec sym =
+            asSpec
+                [ point
+                    [ maFilled True
+                    , maStroke "black"
+                    , maSize 400
+                    , maShape sym
+                    , maStrokeWidth 0.5
+                    ]
+                ]
+    in
+    toVegaLite
+        [ data []
+        , columns 4
+        , concat
+            [ shapeSpec symCircle
+            , shapeSpec symSquare
+            , shapeSpec symDiamond
+            , shapeSpec symCross
+            , shapeSpec symTriangleUp
+            , shapeSpec symTriangleDown
+            , shapeSpec symTriangleLeft
+            , shapeSpec symTriangleRight
+            , shapeSpec symTriangle
+            , shapeSpec symArrow
+            , shapeSpec symWedge
+            , shapeSpec symStroke
+            , shapeSpec (symPath horizLine)
+            ]
+        ]
+
+
+symbols2 : Spec
+symbols2 =
+    chart "Legend using non-default bordered square symbols)"
+        (color
+            [ mName "Origin"
+            , mNominal
+            , mLegend
+                [ leSymbolType symSquare
+                , leSymbolStrokeColor "black"
+                , leSymbolStrokeWidth 0.5
+                ]
+            ]
+        )
+
+
 sourceExample : Spec
 sourceExample =
-    personGrid
+    symbols1
 
 
 
@@ -282,6 +340,8 @@ mySpecs =
         , ( "custom3", scatter14 )
         , ( "custom4", scatter15 )
         , ( "isotype1", personGrid )
+        , ( "symbols1", symbols1 )
+        , ( "symbols2", symbols2 )
         ]
 
 
