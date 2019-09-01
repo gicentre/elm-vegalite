@@ -3,6 +3,7 @@
 Major release supporting Vega-Lite 4.0. Includes a small number of breaking changes that should provide greater flexibility and some simplification of the API.
 
 - TODO: **default** setting for lookup, and possibly more flexable `as` naming to allow lists of names.
+- TODO: **key** channel.
 
 ## Breaking Changes
 
@@ -23,6 +24,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 ## Additions
 
 - Convenience functions for setting a channel's measurement type. `pNominal`, `pOrdinal`, `pQuant`, `pTemporal` and `pGeo` equivalent to `pMType Nominal`, `pMType Ordinal` etc. Similar functions for `m` (mark), `t` (text), `h` (hyperlink), `o` (order) `d` (detail) and `f` (facet) channels.
+- `image` mark and associated `url` channel and `maAspect` mark property for displaying images.
 - `pivot` (and associated `pi` pivot property functions) for data shaping.
 - `regression` (and associated `rg` regression property functions) for regression modelling.
 - `density` (and associated `dn` density property functions) for KDE transforms.

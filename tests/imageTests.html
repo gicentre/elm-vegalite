@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elm-Vegalite Image Tests</title>
+    <meta charset="utf-8" />
+
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.1/build/vega-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@5"></script>
+
+    <script src="js/imageTests.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      figcaption {
+        padding-top: 0.5em;
+      }
+      .cell {
+        float: left;
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Elm-Vega Image Tests</h1>
+
+    <h2>Static images</h2>
+    <figure class="cell">
+      <div id="image1"></div>
+      <figcaption>Scatterplot using a single image as a symbol.</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <h2>Data-driven images</h2>
+    <figure class="cell">
+      <div id="image2"></div>
+      <figcaption>
+        Scatterplot using symbols derived from a data field.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <h2>Image alignment and aspect ratios</h2>
+    <figure class="cell">
+      <div id="image3"></div>
+      <figcaption>
+        Original non-square aspect ratio.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="image4"></div>
+      <figcaption>
+        Forced square aspect ratio.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="image5"></div>
+      <figcaption>
+        Left alignment
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="image6"></div>
+      <figcaption>
+        Centre alignment
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="image7"></div>
+      <figcaption>
+        Right alignment
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="image8"></div>
+      <figcaption>
+        Top baseline.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="image9"></div>
+      <figcaption>
+        Middle baseline.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="image10"></div>
+      <figcaption>
+        Bottom baseline.
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
+    <script>
+      Elm.ImageTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: true,
+            logLevel: vega.Warn
+          }).catch(console.warn);
+        }
+      });
+    </script>
+  </body>
+</html>
