@@ -8648,10 +8648,35 @@ var author$project$ImageTests$image1 = function () {
 					]))
 			]));
 }();
+var author$project$VegaLite$asSpec = function (specs) {
+	return elm$json$Json$Encode$object(
+		A2(
+			elm$core$List$map,
+			function (_n0) {
+				var s = _n0.a;
+				var v = _n0.b;
+				return _Utils_Tuple2(
+					author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var author$project$VegaLite$Circle = 5;
+var author$project$VegaLite$circle = author$project$VegaLite$mark(5);
 var author$project$VegaLite$DNumbers = function (a) {
 	return {$: 0, a: a};
 };
 var author$project$VegaLite$doNums = author$project$VegaLite$DNumbers;
+var author$project$VegaLite$VLLayer = 16;
+var author$project$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		16,
+		author$project$VegaLite$toList(specs));
+};
+var author$project$VegaLite$MColor = function (a) {
+	return {$: 8, a: a};
+};
+var author$project$VegaLite$maColor = author$project$VegaLite$MColor;
 var author$project$VegaLite$PScale = function (a) {
 	return {$: 11, a: a};
 };
@@ -8728,14 +8753,24 @@ var author$project$ImageTests$lakeImage = function (mProps) {
 			[
 				data(_List_Nil),
 				enc(_List_Nil),
-				author$project$VegaLite$image(
-				_Utils_ap(
-					_List_fromArray(
-						[
-							author$project$VegaLite$maWidth(100),
-							author$project$VegaLite$maHeight(100)
-						]),
-					mProps))
+				author$project$VegaLite$layer(
+				_List_fromArray(
+					[
+						author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								author$project$VegaLite$image(mProps)
+							])),
+						author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								author$project$VegaLite$circle(
+								_List_fromArray(
+									[
+										author$project$VegaLite$maColor('red')
+									]))
+							]))
+					]))
 			]));
 };
 var author$project$VegaLite$MBaseline = function (a) {
@@ -8747,6 +8782,8 @@ var author$project$VegaLite$vaBottom = 2;
 var author$project$ImageTests$image10 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(61),
 			author$project$VegaLite$maBaseline(author$project$VegaLite$vaBottom)
 		]));
 var author$project$VegaLite$HName = function (a) {
@@ -8838,11 +8875,14 @@ var author$project$VegaLite$maAspect = author$project$VegaLite$MAspect;
 var author$project$ImageTests$image3 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
 			author$project$VegaLite$maAspect(true)
 		]));
 var author$project$ImageTests$image4 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(100),
 			author$project$VegaLite$maAspect(false)
 		]));
 var author$project$VegaLite$AlignLeft = 1;
@@ -8854,6 +8894,8 @@ var author$project$VegaLite$maAlign = author$project$VegaLite$MAlign;
 var author$project$ImageTests$image5 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(61),
 			author$project$VegaLite$maAlign(author$project$VegaLite$haLeft)
 		]));
 var author$project$VegaLite$AlignCenter = 0;
@@ -8861,6 +8903,8 @@ var author$project$VegaLite$haCenter = 0;
 var author$project$ImageTests$image6 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(61),
 			author$project$VegaLite$maAlign(author$project$VegaLite$haCenter)
 		]));
 var author$project$VegaLite$AlignRight = 2;
@@ -8868,6 +8912,8 @@ var author$project$VegaLite$haRight = 2;
 var author$project$ImageTests$image7 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(61),
 			author$project$VegaLite$maAlign(author$project$VegaLite$haRight)
 		]));
 var author$project$VegaLite$AlignTop = 0;
@@ -8875,6 +8921,8 @@ var author$project$VegaLite$vaTop = 0;
 var author$project$ImageTests$image8 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(61),
 			author$project$VegaLite$maBaseline(author$project$VegaLite$vaTop)
 		]));
 var author$project$VegaLite$AlignMiddle = 1;
@@ -8882,6 +8930,8 @@ var author$project$VegaLite$vaMiddle = 1;
 var author$project$ImageTests$image9 = author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
+			author$project$VegaLite$maWidth(100),
+			author$project$VegaLite$maHeight(61),
 			author$project$VegaLite$maBaseline(author$project$VegaLite$vaMiddle)
 		]));
 var author$project$VegaLite$combineSpecs = function (specs) {
@@ -8901,7 +8951,7 @@ var author$project$ImageTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('image9', author$project$ImageTests$image9),
 			_Utils_Tuple2('image10', author$project$ImageTests$image10)
 		]));
-var author$project$ImageTests$sourceExample = author$project$ImageTests$image3;
+var author$project$ImageTests$sourceExample = author$project$ImageTests$image10;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;

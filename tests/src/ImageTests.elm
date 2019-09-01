@@ -68,53 +68,53 @@ lakeImage mProps =
     toVegaLite
         [ data []
         , enc []
-        , image ([ maWidth 100, maHeight 100 ] ++ mProps)
+        , layer [ asSpec [ image mProps ], asSpec [ circle [ maColor "red" ] ] ]
         ]
 
 
 image3 : Spec
 image3 =
-    lakeImage [ maAspect True ]
+    lakeImage [ maWidth 100, maAspect True ]
 
 
 image4 : Spec
 image4 =
-    lakeImage [ maAspect False ]
+    lakeImage [ maWidth 100, maHeight 100, maAspect False ]
 
 
 image5 : Spec
 image5 =
-    lakeImage [ maAlign haLeft ]
+    lakeImage [ maWidth 100, maHeight 61, maAlign haLeft ]
 
 
 image6 : Spec
 image6 =
-    lakeImage [ maAlign haCenter ]
+    lakeImage [ maWidth 100, maHeight 61, maAlign haCenter ]
 
 
 image7 : Spec
 image7 =
-    lakeImage [ maAlign haRight ]
+    lakeImage [ maWidth 100, maHeight 61, maAlign haRight ]
 
 
 image8 : Spec
 image8 =
-    lakeImage [ maBaseline vaTop ]
+    lakeImage [ maWidth 100, maHeight 61, maBaseline vaTop ]
 
 
 image9 : Spec
 image9 =
-    lakeImage [ maBaseline vaMiddle ]
+    lakeImage [ maWidth 100, maHeight 61, maBaseline vaMiddle ]
 
 
 image10 : Spec
 image10 =
-    lakeImage [ maBaseline vaBottom ]
+    lakeImage [ maWidth 100, maHeight 61, maBaseline vaBottom ]
 
 
 sourceExample : Spec
 sourceExample =
-    image3
+    image10
 
 
 
