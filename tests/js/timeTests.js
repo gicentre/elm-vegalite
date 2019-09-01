@@ -4313,20 +4313,22 @@ var author$project$VegaLite$markLabel = function (m) {
 		case 4:
 			return 'errorbar';
 		case 7:
+			return 'image';
+		case 8:
 			return 'line';
 		case 6:
 			return 'geoshape';
-		case 8:
-			return 'point';
 		case 9:
-			return 'rect';
+			return 'point';
 		case 10:
-			return 'rule';
+			return 'rect';
 		case 11:
-			return 'square';
+			return 'rule';
 		case 12:
-			return 'text';
+			return 'square';
 		case 13:
+			return 'text';
+		case 14:
 			return 'tick';
 		default:
 			return 'trail';
@@ -5572,11 +5574,16 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'yOffset',
 				elm$json$Json$Encode$float(o));
-		default:
+		case 63:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'y2Offset',
 				elm$json$Json$Encode$float(o));
+		default:
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'aspect',
+				elm$json$Json$Encode$bool(b));
 	}
 };
 var author$project$VegaLite$pointMarkerSpec = function (pm) {
@@ -8626,7 +8633,7 @@ var author$project$TimeTests$parseTime = function (dType) {
 };
 var author$project$TimeTests$localTime = author$project$TimeTests$parseTime(0);
 var author$project$VegaLite$dataFromUrl = F2(
-	function (url, fmts) {
+	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
 			10,
 			elm$json$Json$Encode$object(
@@ -8634,7 +8641,7 @@ var author$project$VegaLite$dataFromUrl = F2(
 					[
 						_Utils_Tuple2(
 						'url',
-						elm$json$Json$Encode$string(url))
+						elm$json$Json$Encode$string(u))
 					]))) : _Utils_Tuple2(
 			10,
 			elm$json$Json$Encode$object(
@@ -8642,15 +8649,15 @@ var author$project$VegaLite$dataFromUrl = F2(
 					[
 						_Utils_Tuple2(
 						'url',
-						elm$json$Json$Encode$string(url)),
+						elm$json$Json$Encode$string(u)),
 						_Utils_Tuple2(
 						'format',
 						elm$json$Json$Encode$object(
 							A2(elm$core$List$concatMap, author$project$VegaLite$formatProperty, fmts)))
 					])));
 	});
-var author$project$VegaLite$Line = 7;
-var author$project$VegaLite$line = author$project$VegaLite$mark(7);
+var author$project$VegaLite$Line = 8;
+var author$project$VegaLite$line = author$project$VegaLite$mark(8);
 var author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 46, a: a};
 };

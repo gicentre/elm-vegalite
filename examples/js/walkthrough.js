@@ -2809,20 +2809,22 @@ var author$project$VegaLite$markLabel = function (m) {
 		case 4:
 			return 'errorbar';
 		case 7:
+			return 'image';
+		case 8:
 			return 'line';
 		case 6:
 			return 'geoshape';
-		case 8:
-			return 'point';
 		case 9:
-			return 'rect';
+			return 'point';
 		case 10:
-			return 'rule';
+			return 'rect';
 		case 11:
-			return 'square';
+			return 'rule';
 		case 12:
-			return 'text';
+			return 'square';
 		case 13:
+			return 'text';
+		case 14:
 			return 'tick';
 		default:
 			return 'trail';
@@ -3580,11 +3582,16 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'yOffset',
 				elm$json$Json$Encode$float(o));
-		default:
+		case 63:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'y2Offset',
 				elm$json$Json$Encode$float(o));
+		default:
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'aspect',
+				elm$json$Json$Encode$bool(b));
 	}
 };
 var author$project$VegaLite$pointMarkerSpec = function (pm) {
@@ -3753,7 +3760,7 @@ var elm$core$List$concatMap = F2(
 			A2(elm$core$List$map, f, list));
 	});
 var author$project$VegaLite$dataFromUrl = F2(
-	function (url, fmts) {
+	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
 			10,
 			elm$json$Json$Encode$object(
@@ -3761,7 +3768,7 @@ var author$project$VegaLite$dataFromUrl = F2(
 					[
 						_Utils_Tuple2(
 						'url',
-						elm$json$Json$Encode$string(url))
+						elm$json$Json$Encode$string(u))
 					]))) : _Utils_Tuple2(
 			10,
 			elm$json$Json$Encode$object(
@@ -3769,7 +3776,7 @@ var author$project$VegaLite$dataFromUrl = F2(
 					[
 						_Utils_Tuple2(
 						'url',
-						elm$json$Json$Encode$string(url)),
+						elm$json$Json$Encode$string(u)),
 						_Utils_Tuple2(
 						'format',
 						elm$json$Json$Encode$object(
@@ -6572,8 +6579,8 @@ var author$project$VegaLite$layer = function (specs) {
 		16,
 		author$project$VegaLite$toList(specs));
 };
-var author$project$VegaLite$Rule = 10;
-var author$project$VegaLite$rule = author$project$VegaLite$mark(10);
+var author$project$VegaLite$Rule = 11;
+var author$project$VegaLite$rule = author$project$VegaLite$mark(11);
 var author$project$Walkthrough$barChartWithAverage = function () {
 	var precipEnc = A2(
 		elm$core$Basics$composeL,
@@ -8243,8 +8250,8 @@ var author$project$VegaLite$PBin = function (a) {
 	return {$: 6, a: a};
 };
 var author$project$VegaLite$pBin = author$project$VegaLite$PBin;
-var author$project$VegaLite$Point = 8;
-var author$project$VegaLite$point = author$project$VegaLite$mark(8);
+var author$project$VegaLite$Point = 9;
+var author$project$VegaLite$point = author$project$VegaLite$mark(9);
 var author$project$VegaLite$VLTitle = 2;
 var author$project$VegaLite$tfLabel = function (tf) {
 	if (tf === 1) {
@@ -9221,8 +9228,8 @@ var author$project$Walkthrough$interactiveScatter9 = function () {
 			sel(_List_Nil),
 			author$project$Walkthrough$scatterProps));
 }();
-var author$project$VegaLite$Line = 7;
-var author$project$VegaLite$line = author$project$VegaLite$mark(7);
+var author$project$VegaLite$Line = 8;
+var author$project$VegaLite$line = author$project$VegaLite$mark(8);
 var author$project$Walkthrough$lineChart = function () {
 	var enc = A2(
 		elm$core$Basics$composeL,
@@ -9436,8 +9443,8 @@ var author$project$Walkthrough$stackedHistogram2 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var author$project$VegaLite$Tick = 13;
-var author$project$VegaLite$tick = author$project$VegaLite$mark(13);
+var author$project$VegaLite$Tick = 14;
+var author$project$VegaLite$tick = author$project$VegaLite$mark(14);
 var author$project$Walkthrough$stripPlot = author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[

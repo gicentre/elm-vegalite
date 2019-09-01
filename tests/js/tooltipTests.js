@@ -4308,20 +4308,22 @@ var author$project$VegaLite$markLabel = function (m) {
 		case 4:
 			return 'errorbar';
 		case 7:
+			return 'image';
+		case 8:
 			return 'line';
 		case 6:
 			return 'geoshape';
-		case 8:
-			return 'point';
 		case 9:
-			return 'rect';
+			return 'point';
 		case 10:
-			return 'rule';
+			return 'rect';
 		case 11:
-			return 'square';
+			return 'rule';
 		case 12:
-			return 'text';
+			return 'square';
 		case 13:
+			return 'text';
+		case 14:
 			return 'tick';
 		default:
 			return 'trail';
@@ -5567,11 +5569,16 @@ var author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'yOffset',
 				elm$json$Json$Encode$float(o));
-		default:
+		case 63:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'y2Offset',
 				elm$json$Json$Encode$float(o));
+		default:
+			var b = mProp.a;
+			return _Utils_Tuple2(
+				'aspect',
+				elm$json$Json$Encode$bool(b));
 	}
 };
 var author$project$VegaLite$pointMarkerSpec = function (pm) {
