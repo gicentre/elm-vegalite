@@ -7,53 +7,44 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
-image1 : Spec
-image1 =
-    let
-        base =
-            "https://vega.github.io/vega-lite/data/"
+base : String
+base =
+    "https://vega.github.io/vega-lite/data/"
 
+
+imageEnc : (List DataColumn -> List DataColumn) -> (List LabelledSpec -> List LabelledSpec) -> Spec
+imageEnc dataSupp encSupp =
+    let
         data =
             dataFromColumns []
                 << dataColumn "x" (nums [ 0.5, 1.5, 2.5 ])
                 << dataColumn "y" (nums [ 0.5, 1.5, 2.5 ])
+                << dataSupp
 
         enc =
             encoding
                 << position X [ pName "x", pQuant ]
                 << position Y [ pName "y", pQuant ]
-                << url [ hStr (base ++ "ffox.png") ]
+                << encSupp
     in
     toVegaLite [ data [], enc [], image [ maWidth 25, maHeight 25 ] ]
+
+
+image1 : Spec
+image1 =
+    imageEnc (always []) (url [ hStr (base ++ "ffox.png") ])
 
 
 image2 : Spec
 image2 =
-    let
-        base =
-            "https://vega.github.io/vega-lite/data/"
-
-        data =
-            dataFromColumns []
-                << dataColumn "x" (nums [ 0.5, 1.5, 2.5 ])
-                << dataColumn "y" (nums [ 0.5, 1.5, 2.5 ])
-                << dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
-
-        enc =
-            encoding
-                << position X [ pName "x", pQuant ]
-                << position Y [ pName "y", pQuant ]
-                << url [ hName "img", hNominal ]
-    in
-    toVegaLite [ data [], enc [], image [ maWidth 25, maHeight 25 ] ]
+    imageEnc
+        (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ]))
+        (url [ hName "img", hNominal ])
 
 
 lakeImage : List MarkProperty -> Spec
 lakeImage mProps =
     let
-        base =
-            "https://vega.github.io/vega-lite/data/"
-
         data =
             dataFromColumns []
                 << dataColumn "x" (nums [ 5 ])
@@ -61,14 +52,18 @@ lakeImage mProps =
 
         enc =
             encoding
-                << position X [ pName "x", pQuant, pScale [ scDomain (doNums [ 1, 10 ]) ] ]
-                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 1, 10 ]) ] ]
-                << url [ hStr "https://gicentre.github.io/data/images/LillyTarn.jpg" ]
+                << position X [ pName "x", pQuant, pScale [ scDomain (doNums [ 0, 10 ]) ] ]
+                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 0, 10 ]) ] ]
+
+        encImage =
+            enc << url [ hStr "https://gicentre.github.io/data/images/LillyTarn.jpg" ]
     in
     toVegaLite
         [ data []
-        , enc []
-        , layer [ asSpec [ image mProps ], asSpec [ circle [ maColor "red" ] ] ]
+        , layer
+            [ asSpec [ encImage [], image mProps ]
+            , asSpec [ enc [], circle [ maColor "red" ] ]
+            ]
         ]
 
 
@@ -112,9 +107,31 @@ image10 =
     lakeImage [ maWidth 100, maHeight 61, maBaseline vaBottom ]
 
 
+image11 : Spec
+image11 =
+    imageEnc
+        (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
+            << dataColumn "mag" (nums [ 1, 1, 1 ])
+        )
+        (url [ hName "img", hNominal ]
+            << size [ mName "mag", mQuant ]
+        )
+
+
+image12 : Spec
+image12 =
+    imageEnc
+        (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
+            << dataColumn "mag" (nums [ 1, 2, 1 ])
+        )
+        (url [ hName "img", hNominal ]
+            << size [ mName "mag", mQuant ]
+        )
+
+
 sourceExample : Spec
 sourceExample =
-    image10
+    image12
 
 
 
@@ -134,6 +151,8 @@ mySpecs =
         , ( "image8", image8 )
         , ( "image9", image9 )
         , ( "image10", image10 )
+        , ( "image11", image11 )
+        , ( "image12", image12 )
         ]
 
 

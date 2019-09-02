@@ -4289,6 +4289,7 @@ var elm$core$Basics$identity = function (x) {
 	return x;
 };
 var author$project$ImageTests$elmToJS = _Platform_outgoingPort('elmToJS', elm$core$Basics$identity);
+var author$project$ImageTests$base = 'https://vega.github.io/vega-lite/data/';
 var author$project$VegaLite$X = 0;
 var author$project$VegaLite$Y = 1;
 var author$project$VegaLite$dayLabel = function (dayName) {
@@ -5232,10 +5233,6 @@ var author$project$VegaLite$encoding = function (channels) {
 		15,
 		elm$json$Json$Encode$object(channels));
 };
-var author$project$VegaLite$HString = function (a) {
-	return {$: 9, a: a};
-};
-var author$project$VegaLite$hStr = author$project$VegaLite$HString;
 var author$project$VegaLite$Image = 7;
 var author$project$VegaLite$VLMark = 12;
 var author$project$VegaLite$markLabel = function (m) {
@@ -8470,6 +8467,74 @@ var author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
+var elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var author$project$ImageTests$imageEnc = F2(
+	function (dataSupp, encSupp) {
+		var enc = A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$encoding,
+					A2(
+						author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								author$project$VegaLite$pName('x'),
+								author$project$VegaLite$pQuant
+							]))),
+				A2(
+					author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							author$project$VegaLite$pName('y'),
+							author$project$VegaLite$pQuant
+						]))),
+			encSupp);
+		var data = A2(
+			elm$core$Basics$composeL,
+			A2(
+				elm$core$Basics$composeL,
+				A2(
+					elm$core$Basics$composeL,
+					author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						author$project$VegaLite$dataColumn,
+						'x',
+						author$project$VegaLite$nums(
+							_List_fromArray(
+								[0.5, 1.5, 2.5])))),
+				A2(
+					author$project$VegaLite$dataColumn,
+					'y',
+					author$project$VegaLite$nums(
+						_List_fromArray(
+							[0.5, 1.5, 2.5])))),
+			dataSupp);
+		return author$project$VegaLite$toVegaLite(
+			_List_fromArray(
+				[
+					data(_List_Nil),
+					enc(_List_Nil),
+					author$project$VegaLite$image(
+					_List_fromArray(
+						[
+							author$project$VegaLite$maWidth(25),
+							author$project$VegaLite$maHeight(25)
+						]))
+				]));
+	});
+var author$project$VegaLite$HString = function (a) {
+	return {$: 9, a: a};
+};
+var author$project$VegaLite$hStr = author$project$VegaLite$HString;
 var author$project$VegaLite$hyperlinkChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -8583,71 +8648,18 @@ var author$project$VegaLite$url = function (hyperProps) {
 			elm$json$Json$Encode$object(
 				A2(elm$core$List$concatMap, author$project$VegaLite$hyperlinkChannelProperty, hyperProps))));
 };
-var elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
+var elm$core$Basics$always = F2(
+	function (a, _n0) {
+		return a;
 	});
-var author$project$ImageTests$image1 = function () {
-	var data = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			author$project$VegaLite$dataFromColumns(_List_Nil),
-			A2(
-				author$project$VegaLite$dataColumn,
-				'x',
-				author$project$VegaLite$nums(
-					_List_fromArray(
-						[0.5, 1.5, 2.5])))),
-		A2(
-			author$project$VegaLite$dataColumn,
-			'y',
-			author$project$VegaLite$nums(
-				_List_fromArray(
-					[0.5, 1.5, 2.5]))));
-	var base = 'https://vega.github.io/vega-lite/data/';
-	var enc = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$encoding,
-				A2(
-					author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							author$project$VegaLite$pName('x'),
-							author$project$VegaLite$pQuant
-						]))),
-			A2(
-				author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('y'),
-						author$project$VegaLite$pQuant
-					]))),
-		author$project$VegaLite$url(
-			_List_fromArray(
-				[
-					author$project$VegaLite$hStr(base + 'ffox.png')
-				])));
-	return author$project$VegaLite$toVegaLite(
+var author$project$ImageTests$image1 = A2(
+	author$project$ImageTests$imageEnc,
+	elm$core$Basics$always(_List_Nil),
+	author$project$VegaLite$url(
 		_List_fromArray(
 			[
-				data(_List_Nil),
-				enc(_List_Nil),
-				author$project$VegaLite$image(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maWidth(25),
-						author$project$VegaLite$maHeight(25)
-					]))
-			]));
-}();
+				author$project$VegaLite$hStr(author$project$ImageTests$base + 'ffox.png')
+			])));
 var author$project$VegaLite$asSpec = function (specs) {
 	return elm$json$Json$Encode$object(
 		A2(
@@ -8690,31 +8702,13 @@ var author$project$ImageTests$lakeImage = function (mProps) {
 		elm$core$Basics$composeL,
 		A2(
 			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$encoding,
-				A2(
-					author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							author$project$VegaLite$pName('x'),
-							author$project$VegaLite$pQuant,
-							author$project$VegaLite$pScale(
-							_List_fromArray(
-								[
-									author$project$VegaLite$scDomain(
-									author$project$VegaLite$doNums(
-										_List_fromArray(
-											[1, 10])))
-								]))
-						]))),
+			author$project$VegaLite$encoding,
 			A2(
 				author$project$VegaLite$position,
-				1,
+				0,
 				_List_fromArray(
 					[
-						author$project$VegaLite$pName('y'),
+						author$project$VegaLite$pName('x'),
 						author$project$VegaLite$pQuant,
 						author$project$VegaLite$pScale(
 						_List_fromArray(
@@ -8722,9 +8716,28 @@ var author$project$ImageTests$lakeImage = function (mProps) {
 								author$project$VegaLite$scDomain(
 								author$project$VegaLite$doNums(
 									_List_fromArray(
-										[1, 10])))
+										[0, 10])))
 							]))
 					]))),
+		A2(
+			author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					author$project$VegaLite$pName('y'),
+					author$project$VegaLite$pQuant,
+					author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							author$project$VegaLite$scDomain(
+							author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 10])))
+						]))
+				])));
+	var encImage = A2(
+		elm$core$Basics$composeL,
+		enc,
 		author$project$VegaLite$url(
 			_List_fromArray(
 				[
@@ -8747,23 +8760,23 @@ var author$project$ImageTests$lakeImage = function (mProps) {
 			author$project$VegaLite$nums(
 				_List_fromArray(
 					[5]))));
-	var base = 'https://vega.github.io/vega-lite/data/';
 	return author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				data(_List_Nil),
-				enc(_List_Nil),
 				author$project$VegaLite$layer(
 				_List_fromArray(
 					[
 						author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
+								encImage(_List_Nil),
 								author$project$VegaLite$image(mProps)
 							])),
 						author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
+								enc(_List_Nil),
 								author$project$VegaLite$circle(
 								_List_fromArray(
 									[
@@ -8795,79 +8808,99 @@ var author$project$VegaLite$HmType = function (a) {
 };
 var author$project$VegaLite$Nominal = 0;
 var author$project$VegaLite$hNominal = author$project$VegaLite$HmType(0);
+var author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$VegaLite$mName = author$project$VegaLite$MName;
+var author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$VegaLite$mQuant = author$project$VegaLite$MmType(2);
+var author$project$VegaLite$size = function (markProps) {
+	return elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			elm$json$Json$Encode$object(
+				A2(elm$core$List$concatMap, author$project$VegaLite$markChannelProperty, markProps))));
+};
 var author$project$VegaLite$Strings = function (a) {
 	return {$: 3, a: a};
 };
 var author$project$VegaLite$strs = author$project$VegaLite$Strings;
-var author$project$ImageTests$image2 = function () {
-	var enc = A2(
+var author$project$ImageTests$image11 = A2(
+	author$project$ImageTests$imageEnc,
+	A2(
 		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$encoding,
-				A2(
-					author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							author$project$VegaLite$pName('x'),
-							author$project$VegaLite$pQuant
-						]))),
-			A2(
-				author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						author$project$VegaLite$pName('y'),
-						author$project$VegaLite$pQuant
-					]))),
-		author$project$VegaLite$url(
-			_List_fromArray(
-				[
-					author$project$VegaLite$hName('img'),
-					author$project$VegaLite$hNominal
-				])));
-	var base = 'https://vega.github.io/vega-lite/data/';
-	var data = A2(
-		elm$core$Basics$composeL,
-		A2(
-			elm$core$Basics$composeL,
-			A2(
-				elm$core$Basics$composeL,
-				author$project$VegaLite$dataFromColumns(_List_Nil),
-				A2(
-					author$project$VegaLite$dataColumn,
-					'x',
-					author$project$VegaLite$nums(
-						_List_fromArray(
-							[0.5, 1.5, 2.5])))),
-			A2(
-				author$project$VegaLite$dataColumn,
-				'y',
-				author$project$VegaLite$nums(
-					_List_fromArray(
-						[0.5, 1.5, 2.5])))),
 		A2(
 			author$project$VegaLite$dataColumn,
 			'img',
 			author$project$VegaLite$strs(
 				_List_fromArray(
-					[base + 'ffox.png', base + 'gimp.png', base + '7zip.png']))));
-	return author$project$VegaLite$toVegaLite(
+					[author$project$ImageTests$base + 'ffox.png', author$project$ImageTests$base + 'gimp.png', author$project$ImageTests$base + '7zip.png']))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'mag',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[1, 1, 1])))),
+	A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$url(
+			_List_fromArray(
+				[
+					author$project$VegaLite$hName('img'),
+					author$project$VegaLite$hNominal
+				])),
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('mag'),
+					author$project$VegaLite$mQuant
+				]))));
+var author$project$ImageTests$image12 = A2(
+	author$project$ImageTests$imageEnc,
+	A2(
+		elm$core$Basics$composeL,
+		A2(
+			author$project$VegaLite$dataColumn,
+			'img',
+			author$project$VegaLite$strs(
+				_List_fromArray(
+					[author$project$ImageTests$base + 'ffox.png', author$project$ImageTests$base + 'gimp.png', author$project$ImageTests$base + '7zip.png']))),
+		A2(
+			author$project$VegaLite$dataColumn,
+			'mag',
+			author$project$VegaLite$nums(
+				_List_fromArray(
+					[1, 2, 1])))),
+	A2(
+		elm$core$Basics$composeL,
+		author$project$VegaLite$url(
+			_List_fromArray(
+				[
+					author$project$VegaLite$hName('img'),
+					author$project$VegaLite$hNominal
+				])),
+		author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					author$project$VegaLite$mName('mag'),
+					author$project$VegaLite$mQuant
+				]))));
+var author$project$ImageTests$image2 = A2(
+	author$project$ImageTests$imageEnc,
+	A2(
+		author$project$VegaLite$dataColumn,
+		'img',
+		author$project$VegaLite$strs(
+			_List_fromArray(
+				[author$project$ImageTests$base + 'ffox.png', author$project$ImageTests$base + 'gimp.png', author$project$ImageTests$base + '7zip.png']))),
+	author$project$VegaLite$url(
 		_List_fromArray(
 			[
-				data(_List_Nil),
-				enc(_List_Nil),
-				author$project$VegaLite$image(
-				_List_fromArray(
-					[
-						author$project$VegaLite$maWidth(25),
-						author$project$VegaLite$maHeight(25)
-					]))
-			]));
-}();
+				author$project$VegaLite$hName('img'),
+				author$project$VegaLite$hNominal
+			])));
 var author$project$VegaLite$MAspect = function (a) {
 	return {$: 64, a: a};
 };
@@ -8949,9 +8982,11 @@ var author$project$ImageTests$mySpecs = author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('image7', author$project$ImageTests$image7),
 			_Utils_Tuple2('image8', author$project$ImageTests$image8),
 			_Utils_Tuple2('image9', author$project$ImageTests$image9),
-			_Utils_Tuple2('image10', author$project$ImageTests$image10)
+			_Utils_Tuple2('image10', author$project$ImageTests$image10),
+			_Utils_Tuple2('image11', author$project$ImageTests$image11),
+			_Utils_Tuple2('image12', author$project$ImageTests$image12)
 		]));
-var author$project$ImageTests$sourceExample = author$project$ImageTests$image10;
+var author$project$ImageTests$sourceExample = author$project$ImageTests$image12;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
@@ -9222,10 +9257,6 @@ var elm$url$Url$fromString = function (str) {
 		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
 };
 var elm$browser$Browser$element = _Browser_element;
-var elm$core$Basics$always = F2(
-	function (a, _n0) {
-		return a;
-	});
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var elm$core$Platform$Sub$batch = _Platform_batch;
