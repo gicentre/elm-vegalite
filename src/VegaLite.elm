@@ -4414,7 +4414,7 @@ type PositionChannel
 [azimuthalEqualArea](#azimuthalEqualArea), [azimuthalEquidistant](#azimuthalEquidistant),
 [conicConformal](#conicConformal), [conicEqualArea](#conicEqualArea),
 [conicEquidistant](#conicEquidistant), [equirectangular](#equirectangular),
-[gnomonic](#gnomonic),[identityProjection](#identityProjection), [mercator](#mercator),
+[gnomonic](#gnomonic), [identityProjection](#identityProjection), [mercator](#mercator),
 [orthographic](#orthographic), [stereographic](#stereographic),
 [transverseMercator](#transverseMercator) and [customProjection](#customProjection).
 -}
@@ -12590,7 +12590,7 @@ projection pProps =
 
 {-| Reflect the x-coordinates after performing an identity projection. This
 creates a left-right mirror image of the geoshape marks when subject to an
-identity projection with [identityProjection](#identityProjection).
+[identityProjection](#identityProjection).
 -}
 prReflectX : Bool -> ProjectionProperty
 prReflectX =
@@ -12599,7 +12599,7 @@ prReflectX =
 
 {-| Reflect the y-coordinates after performing an identity projection. This
 creates a top-bottom mirror image of the geoshape marks when subject to an
-identity projection with [identityProjection](#identityProjection).
+[identityProjection](#identityProjection).
 -}
 prReflectY : Bool -> ProjectionProperty
 prReflectY =
