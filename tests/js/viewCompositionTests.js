@@ -8126,17 +8126,19 @@ var author$project$VegaLite$projectionLabel = function (proj) {
 		case 7:
 			var projName = proj.a;
 			return projName;
+		case 9:
+			return 'equalEarth';
 		case 8:
 			return 'equirectangular';
-		case 9:
-			return 'gnomonic';
 		case 10:
-			return 'identity';
+			return 'gnomonic';
 		case 11:
-			return 'mercator';
+			return 'identity';
 		case 12:
-			return 'orthographic';
+			return 'mercator';
 		case 13:
+			return 'orthographic';
+		case 14:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';

@@ -7967,17 +7967,19 @@ var author$project$VegaLite$projectionLabel = function (proj) {
 		case 7:
 			var projName = proj.a;
 			return projName;
+		case 9:
+			return 'equalEarth';
 		case 8:
 			return 'equirectangular';
-		case 9:
-			return 'gnomonic';
 		case 10:
-			return 'identity';
+			return 'gnomonic';
 		case 11:
-			return 'mercator';
+			return 'identity';
 		case 12:
-			return 'orthographic';
+			return 'mercator';
 		case 13:
+			return 'orthographic';
+		case 14:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';
@@ -11757,7 +11759,7 @@ var author$project$VegaLite$MFilled = function (a) {
 	return {$: 19, a: a};
 };
 var author$project$VegaLite$maFilled = author$project$VegaLite$MFilled;
-var author$project$VegaLite$Orthographic = {$: 12};
+var author$project$VegaLite$Orthographic = {$: 13};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
 var author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {

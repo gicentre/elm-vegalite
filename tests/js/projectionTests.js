@@ -6506,17 +6506,19 @@ var author$project$VegaLite$projectionLabel = function (proj) {
 		case 7:
 			var projName = proj.a;
 			return projName;
+		case 9:
+			return 'equalEarth';
 		case 8:
 			return 'equirectangular';
-		case 9:
-			return 'gnomonic';
 		case 10:
-			return 'identity';
+			return 'gnomonic';
 		case 11:
-			return 'mercator';
+			return 'identity';
 		case 12:
-			return 'orthographic';
+			return 'mercator';
 		case 13:
+			return 'orthographic';
+		case 14:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';
@@ -8199,7 +8201,7 @@ var author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 46, a: a};
 };
 var author$project$VegaLite$maStrokeWidth = author$project$VegaLite$MStrokeWidth;
-var author$project$VegaLite$Orthographic = {$: 12};
+var author$project$VegaLite$Orthographic = {$: 13};
 var author$project$VegaLite$orthographic = author$project$VegaLite$Orthographic;
 var author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
@@ -8461,7 +8463,7 @@ var author$project$ProjectionTests$d3Projections = function () {
 		_List_fromArray(
 			['airy', 'aitoff', 'armadillo', 'august', 'baker', 'berghaus', 'bertin1953', 'boggs', 'bonne', 'bottomley', 'collignon', 'craig', 'craster', 'cylindricalequalarea', 'cylindricalstereographic', 'eckert1', 'eckert2', 'eckert3', 'eckert4', 'eckert5', 'eckert6', 'eisenlohr', 'fahey', 'foucaut', 'gingery', 'winkel3']));
 }();
-var author$project$VegaLite$Identity = {$: 10};
+var author$project$VegaLite$Identity = {$: 11};
 var author$project$VegaLite$identityProjection = author$project$VegaLite$Identity;
 var author$project$VegaLite$PReflectX = function (a) {
 	return {$: 8, a: a};
@@ -8570,15 +8572,17 @@ var author$project$VegaLite$ConicEqualArea = {$: 5};
 var author$project$VegaLite$conicEqualArea = author$project$VegaLite$ConicEqualArea;
 var author$project$VegaLite$ConicEquidistant = {$: 6};
 var author$project$VegaLite$conicEquidistant = author$project$VegaLite$ConicEquidistant;
+var author$project$VegaLite$EqualEarth = {$: 9};
+var author$project$VegaLite$equalEarth = author$project$VegaLite$EqualEarth;
 var author$project$VegaLite$Equirectangular = {$: 8};
 var author$project$VegaLite$equirectangular = author$project$VegaLite$Equirectangular;
-var author$project$VegaLite$Gnomonic = {$: 9};
+var author$project$VegaLite$Gnomonic = {$: 10};
 var author$project$VegaLite$gnomonic = author$project$VegaLite$Gnomonic;
-var author$project$VegaLite$Mercator = {$: 11};
+var author$project$VegaLite$Mercator = {$: 12};
 var author$project$VegaLite$mercator = author$project$VegaLite$Mercator;
-var author$project$VegaLite$Stereographic = {$: 13};
+var author$project$VegaLite$Stereographic = {$: 14};
 var author$project$VegaLite$stereographic = author$project$VegaLite$Stereographic;
-var author$project$VegaLite$TransverseMercator = {$: 14};
+var author$project$VegaLite$TransverseMercator = {$: 15};
 var author$project$VegaLite$transverseMercator = author$project$VegaLite$TransverseMercator;
 var author$project$ProjectionTests$standardProjs = _List_fromArray(
 	[
@@ -8625,6 +8629,13 @@ var author$project$ProjectionTests$standardProjs = _List_fromArray(
 		_List_fromArray(
 			[
 				author$project$VegaLite$prType(author$project$VegaLite$conicEquidistant)
+			])),
+		A2(
+		author$project$ProjectionTests$worldMapTemplate,
+		'EqualEarth',
+		_List_fromArray(
+			[
+				author$project$VegaLite$prType(author$project$VegaLite$equalEarth)
 			])),
 		A2(
 		author$project$ProjectionTests$worldMapTemplate,
