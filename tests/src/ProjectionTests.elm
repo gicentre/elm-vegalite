@@ -43,6 +43,7 @@ standardProjs =
     , worldMapTemplate "ConicConformal" [ prType conicConformal, prClipAngle (Just 65) ]
     , worldMapTemplate "ConicEqualArea" [ prType conicEqualArea ]
     , worldMapTemplate "ConicEquidistant" [ prType conicEquidistant ]
+    , worldMapTemplate "EqualEarth" [ prType equalEarth ]
     , worldMapTemplate "Equirectangular" [ prType equirectangular ]
     , worldMapTemplate "Gnomonic" [ prType gnomonic ]
     , worldMapTemplate "Identity" [ prType identityProjection ]
