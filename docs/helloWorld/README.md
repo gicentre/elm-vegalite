@@ -23,7 +23,7 @@ To get started, copy this example to a file `helloWorld.html` somewhere on your 
 
   <!-- These scripts link to the Vega/Vega-Lite runtime -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.1/build/vega-lite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.2/build/vega-lite.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@5"></script>
 
   <!-- This is the script generated from Elm -->
