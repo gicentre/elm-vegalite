@@ -20,6 +20,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
   This is unlikely to impact any use of the API but is technically a breaking change.
 - _`columns` now takes an `int` rather than `Maybe int`._
   To update older code, replace `columns (Just n)` with `columns n` and `columns Nothing` with `columns 0`.
+- _tooltips are now disabled by default_ (via change in Vega-lite) and can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`. Documentation for `ttEncode` and `ttNone` updated to reflect new default behavour.
 
 ## Additions
 
