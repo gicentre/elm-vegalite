@@ -4,10 +4,17 @@ import Platform
 import VegaLite exposing (..)
 
 
+cfg =
+    configure
+        << configuration (coView [ vicoStroke Nothing ])
+        << configuration (coBackground "rgba(0,0,0,0)")
+
+
 stripPlot : Spec
 stripPlot =
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , tick []
         , encoding (position X [ pName "temp_max", pQuant ] [])
         ]
@@ -22,7 +29,8 @@ histogram =
                 << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , bar []
         , enc []
         ]
@@ -38,7 +46,8 @@ stackedHistogram =
                 << color [ mName "weather", mNominal ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , bar []
         , enc []
         ]
@@ -65,7 +74,8 @@ stackedHistogram2 =
                 << color [ mName "weather", mNominal, mScale weatherColors ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , bar []
         , enc []
         ]
@@ -81,7 +91,8 @@ lineChart =
                 << color [ mName "weather", mNominal, mScale weatherColors ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , line []
         , enc []
         ]
@@ -98,7 +109,8 @@ multiBar =
                 << column [ fName "weather", fNominal ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , bar []
         , enc []
         ]
@@ -113,7 +125,8 @@ barChart =
                 << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , bar []
         , enc []
         ]
@@ -129,7 +142,8 @@ barChartWithAverage =
             encoding << position X [ pName "date", pOrdinal, pTimeUnit month ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , precipEnc []
         , layer [ asSpec [ bar [], barEnc [] ], asSpec [ rule [] ] ]
         ]
@@ -149,7 +163,8 @@ barChartPair =
                 << position Y [ pName "temp_max", pQuant, pAggregate opMean ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , vConcat [ asSpec [ bar [], bar1Enc [] ], asSpec [ bar [], bar2Enc [] ] ]
         ]
 
@@ -170,7 +185,8 @@ barChartTriplet =
                 ]
     in
     toVegaLite
-        [ repeat [ rowFields [ "precipitation", "temp_max", "wind" ] ]
+        [ cfg []
+        , repeat [ rowFields [ "precipitation", "temp_max", "wind" ] ]
         , specification spec
         ]
 
@@ -191,7 +207,8 @@ splom =
                 ]
     in
     toVegaLite
-        [ repeat
+        [ cfg []
+        , repeat
             [ rowFields [ "temp_max", "precipitation", "wind" ]
             , columnFields [ "wind", "precipitation", "temp_max" ]
             ]
@@ -234,7 +251,8 @@ dashboard1 =
             asSpec [ title "Annotation" [], width 200, rule [], annotationEnc [] ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , hConcat [ histoSpec, scatterSpec, barSpec, annotationSpec ]
         ]
 
@@ -293,7 +311,8 @@ dashboard2 =
                 ]
     in
     toVegaLite
-        [ --  dataFromUrl "https://vega.github.io/vega-lite/data/newYork-weather.csv" []
+        [ cfg []
+        , --  dataFromUrl "https://vega.github.io/vega-lite/data/newYork-weather.csv" []
           dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
         , vConcat
             [ asSpec [ hConcat [ splomSpec, barsSpec ] ]
@@ -320,7 +339,8 @@ scatterProps =
                         [ mStr "grey" ]
                     ]
     in
-    [ dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+    [ cfg []
+    , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
     , trans []
     , circle []
     , enc []
@@ -454,7 +474,8 @@ coordinatedScatter1 =
                 ]
     in
     toVegaLite
-        [ repeat
+        [ cfg []
+        , repeat
             [ rowFields [ "Displacement", "Miles_per_Gallon" ]
             , columnFields [ "Horsepower", "Miles_per_Gallon" ]
             ]
@@ -484,7 +505,8 @@ coordinatedScatter2 =
                 ]
     in
     toVegaLite
-        [ repeat
+        [ cfg []
+        , repeat
             [ rowFields [ "Displacement", "Miles_per_Gallon" ]
             , columnFields [ "Horsepower", "Miles_per_Gallon" ]
             ]
@@ -524,7 +546,8 @@ contextAndFocus =
             asSpec [ width 400, area [], encDetail [] ]
     in
     toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/sp500.csv" []
+        [ cfg []
+        , dataFromUrl "https://vega.github.io/vega-lite/data/sp500.csv" []
         , vConcat [ specContext, specDetail ]
         ]
 
@@ -556,7 +579,8 @@ crossFilter =
                 << color [ mStr "goldenrod" ]
     in
     toVegaLite
-        [ repeat [ columnFields [ "hour", "delay", "distance" ] ]
+        [ cfg []
+        , repeat [ columnFields [ "hour", "delay", "distance" ] ]
         , specification <|
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/flights-2k.json"
