@@ -2892,6 +2892,10 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 			$author$project$VegaLite$RStrings(range))
 		]);
 };
+var $author$project$VegaLite$Background = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$coBackground = $author$project$VegaLite$Background;
 var $author$project$VegaLite$View = function (a) {
 	return {$: 41, a: a};
 };
@@ -8974,13 +8978,17 @@ var $author$project$Isotype$livestock = function () {
 				])));
 	var config = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$configure,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coView(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+						])))),
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coView(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
-					]))));
+			$author$project$VegaLite$coBackground('rgba(0,0,0,0)')));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -9898,13 +9906,17 @@ var $author$project$Isotype$personGrid = function () {
 					A2($elm$core$List$range, 1, 100)))));
 	var config = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$configure,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coView(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+						])))),
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coView(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
-					]))));
+			$author$project$VegaLite$coBackground('rgba(0,0,0,0)')));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

@@ -40,6 +40,7 @@ personGrid =
         config =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
+                << configuration (coBackground "rgba(0,0,0,0)")
 
         data =
             dataFromColumns []
@@ -104,6 +105,7 @@ livestock =
         config =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
+                << configuration (coBackground "rgba(0,0,0,0)")
 
         data =
             dataFromRows []
