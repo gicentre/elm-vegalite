@@ -6206,7 +6206,7 @@ azimuthalEquidistant =
 views or layers can have their own background styles in addition to this global
 background color. Should be specified with a CSS
 string such as `#ffe` or `rgb(200,20,150)`. If not specified the background will
-be transparent.
+be white.
 -}
 background : String -> ( VLProperty, Spec )
 background colour =
