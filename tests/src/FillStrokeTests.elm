@@ -85,12 +85,13 @@ geo1 =
             geoFeatureCollection
                 [ geometry (geoPolygon [ [ ( -2, 58 ), ( 3, 58 ), ( 3, 53 ), ( -2, 53 ), ( -2, 58 ) ] ]) []
                 , geometry (geoLine [ ( 4, 52 ), ( 4, 59 ), ( -3, 59 ) ]) []
+                , geometry (geoPoint 4 55) []
                 ]
     in
     toVegaLite
         [ width 300
         , height 300
-        , dataFromJson geojson []
+        , dataFromJson geojson [ jsonProperty "features" ]
         , geoshape []
         ]
 
@@ -102,18 +103,23 @@ geo2 =
             geoFeatureCollection
                 [ geometry (geoPolygon [ [ ( -2, 58 ), ( 3, 58 ), ( 3, 53 ), ( -2, 53 ), ( -2, 58 ) ] ]) []
                 , geometry (geoLine [ ( 4, 52 ), ( 4, 59 ), ( -3, 59 ) ]) []
+                , geometry (geoPoint 4 55) []
                 ]
 
-        -- NOTE: There is a bug in Vega-Lite that prevents nested geometry from being read correctly.
         enc =
-            encoding << color [ mName "features.geometry.type", mNominal ]
+            encoding
+                << stroke [ mName "geometry.type", mNominal ]
+                << fill
+                    [ mDataCondition [ ( expr "datum.geometry.type === 'Polygon'", [ mName "geometry.type", mNominal ] ) ]
+                        [ mStr "rgb(0,0,0,0)" ]
+                    ]
     in
     toVegaLite
         [ width 300
         , height 300
         , enc []
-        , dataFromJson geojson []
-        , geoshape []
+        , dataFromJson geojson [ jsonProperty "features" ]
+        , geoshape [ maStrokeWidth 2 ]
         ]
 
 

@@ -135,7 +135,7 @@ scatter7 =
 
         config =
             configure
-                << configuration (coRemoveInvalid False)
+                << configuration (coMark [ maRemoveInvalid False ])
 
         enc =
             encoding
