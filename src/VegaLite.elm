@@ -11098,9 +11098,9 @@ maRadius =
     MRadius
 
 
-{-| Determine whether or not invalid (`null` and `NaN`) values and represented.
-If `true` (default), invalid values are filtered out, otherwise they are treated
-as if 0.
+{-| Determine whether or not invalid (`null` and `NaN`) values are considered for
+encoding as marks. If `true` (default), invalid values are ignored, otherwise
+they are treated as if 0.
 -}
 maRemoveInvalid : Bool -> MarkProperty
 maRemoveInvalid =
