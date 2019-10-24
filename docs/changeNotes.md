@@ -12,6 +12,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - _`axValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than just a list of floats._
   To update older code, replace `axValues [1,2,3] with axValues (nums [1,2,3])`.
 - _Removed (invalid) functions `mImpute` and `dImpute`._
+- _Removed `coRemoveInvalid` and added `maRemoveInvalid`_. To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
 - `opArgMin` and `opArgMax` now require a `Maybe String` parameter.
   To update older code, replace `opArgMin` with `opArgMin Nothing`.
 - _Overlap strategy constructors hidden._

@@ -243,6 +243,7 @@ module VegaLite exposing
     , maBorders
     , maBox
     , maClip
+    , maRemoveInvalid
     , maColor
     , maColorGradient
     , maCursor
@@ -951,7 +952,6 @@ module VegaLite exposing
     , coProjection
     , coRange
     , coRect
-    , coRemoveInvalid
     , coRule
     , coScale
     , coSelection
@@ -1702,6 +1702,7 @@ property documentation.
 @docs maBorders
 @docs maBox
 @docs maClip
+@docs maRemoveInvalid
 @docs maColor
 @docs maColorGradient
 @docs maCursor
@@ -2736,7 +2737,6 @@ Allows default properties for most marks and guides to be set. See the
 @docs coProjection
 @docs coRange
 @docs coRect
-@docs coRemoveInvalid
 @docs coRule
 @docs coScale
 @docs coSelection
@@ -3468,9 +3468,8 @@ type ConditionalAxisProperty
 [coHeader](#coHeader), [coLegend](#coLegend), [coLine](#coLine), [coMark](#coMark),
 [coNamedStyle](#coNamedStyle), [coNamedStyles](#coNamedStyles),
 [coNumberFormat](#coNumberFormat), [coPadding](#coPadding), [coPoint](#coPoint),
-[coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
-[coRemoveInvalid](#coRemoveInvalid), [coRule](#coRule), [coScale](#coScale),
-[coSelection](#coSelection), [coSquare](#coSquare), [coStack](#coStack),
+[coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect), [coRule](#coRule),
+[coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare), [coStack](#coStack),
 [coText](#coText), [coTick](#coTick), [coTitle](#coTitle), [coTimeFormat](#coTimeFormat),
 [coTrail](#coTrail) and [coView](#coView).
 -}
@@ -3505,7 +3504,6 @@ type ConfigurationProperty
     | Projection (List ProjectionProperty)
     | Range (List RangeConfig)
     | RectStyle (List MarkProperty)
-    | RemoveInvalid Bool
     | RuleStyle (List MarkProperty)
     | Scale (List ScaleConfig)
     | SelectionStyle (List ( Selection, List SelectionProperty ))
@@ -4183,8 +4181,8 @@ type MarkOrientation
 [maFillOpacity](#maFillOpacity), [maFont](#maFont), [maFontSize](#maFontSize),
 [maFontStyle](#maFontStyle), [maFontWeight](#maFontWeight), [maInterpolate](#maInterpolate),
 [maLine](#maLine), [maMedian](#maMedian), [maOpacity](#maOpacity), [maOutliers](#maOutliers),
-[maOrient](#maOrient), [maPoint](#maPoint), [maRadius](#maRadius), [maRule](#maRule),
-[maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
+[maOrient](#maOrient), [maPoint](#maPoint), [maRadius](#maRadius), [maRemoveInvalid](#maRemoveInvalid),
+[maRule](#maRule), [maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
 [maStroke](#maStroke), [maStrokeGradient](#maStrokeGradient), [maStrokeCap](#maStrokeCap),
 [maStrokeDash](#maStrokeDash), [maStrokeDashOffset](#maStrokeDashOffset),
 [maStrokeJoin](#maStrokeJoin), [maStrokeMiterLimit](#maStrokeMiterLimit),
@@ -4234,6 +4232,7 @@ type
     | MOrient MarkOrientation
     | MPoint PointMarker
     | MRadius Float
+    | MRemoveInvalid Bool
     | MRule (List MarkProperty)
     | MShape Symbol
     | MShortTimeLabels Bool
@@ -7063,14 +7062,6 @@ coRange =
 coRect : List MarkProperty -> ConfigurationProperty
 coRect =
     RectStyle
-
-
-{-| Configure the default handling of invalid (`null` and `NaN`) values. If `true`,
-invalid values are skipped or filtered out when represented as marks.
--}
-coRemoveInvalid : Bool -> ConfigurationProperty
-coRemoveInvalid =
-    RemoveInvalid
 
 
 {-| Configure the default appearance of rule marks.
@@ -11105,6 +11096,15 @@ maPoint =
 maRadius : Float -> MarkProperty
 maRadius =
     MRadius
+
+
+{-| Determine whether or not invalid (`null` and `NaN`) values and represented.
+If `true` (default), invalid values are filtered out, otherwise they are treated
+as if 0.
+-}
+maRemoveInvalid : Bool -> MarkProperty
+maRemoveInvalid =
+    MRemoveInvalid
 
 
 {-| Rule (main line) properties for the errorbar and boxplot marks.
@@ -16531,13 +16531,6 @@ configProperty configProp =
         FieldTitle ftp ->
             ( "fieldTitle", JE.string (fieldTitleLabel ftp) )
 
-        RemoveInvalid b ->
-            if b then
-                ( "invalidValues", JE.string "filter" )
-
-            else
-                ( "invalidValues", JE.null )
-
         NumberFormat fmt ->
             ( "numberFormat", JE.string fmt )
 
@@ -18258,6 +18251,13 @@ markProperty mProp =
 
         MHRef s ->
             ( "href", JE.string s )
+
+        MRemoveInvalid b ->
+            if b then
+                ( "invalid", JE.string "filter" )
+
+            else
+                ( "invalid", JE.null )
 
         MFill col ->
             ( "fill", JE.string col )

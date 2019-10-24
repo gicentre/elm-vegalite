@@ -121,7 +121,7 @@ filter1 =
     let
         config =
             configure
-                << configuration (coRemoveInvalid False)
+                << configuration (coMark [ maRemoveInvalid False ])
 
         enc =
             encoding
@@ -149,7 +149,7 @@ filter2 =
     let
         config =
             configure
-                << configuration (coRemoveInvalid False)
+                << configuration (coMark [ maRemoveInvalid False ])
 
         trans =
             transform
