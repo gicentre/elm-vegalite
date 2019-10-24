@@ -2,7 +2,7 @@
 
 Major release supporting Vega-Lite 4.0. Includes a small number of breaking changes that should provide greater flexibility and some simplification of the API.
 
-- TODO: **default** setting for lookup, and possibly more flexable `as` naming to allow lists of names.
+- TODO: **default** setting for lookup, and possibly more flexible `as` naming to allow lists of names.
 - TODO: **key** channel.
 
 ## Breaking Changes
@@ -14,13 +14,14 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - _Removed (invalid) functions `mImpute` and `dImpute`._
 - `opArgMin` and `opArgMax` now require a `Maybe String` parameter.
   To update older code, replace `opArgMin` with `opArgMin Nothing`.
-- _Overlap strategy constuctors hidden._
-  Should use `osNone`, `osGreedy` and `osParity` instead. These were always available, but the constructors themselves had been inadvertantly exposed, so it is unlikely to require a change in practice.
+- _Overlap strategy constructors hidden._
+  Should use `osNone`, `osGreedy` and `osParity` instead. These were always available, but the constructors themselves had been inadvertently exposed, so it is unlikely to require a change in practice.
 - _`lookup` now uses the `Data` type alias as part of its type signature._
   This is unlikely to impact any use of the API but is technically a breaking change.
 - _`columns` now takes an `int` rather than `Maybe int`._
   To update older code, replace `columns (Just n)` with `columns n` and `columns Nothing` with `columns 0`.
-- _tooltips are now disabled by default_ (via change in Vega-lite) and can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`. Documentation for `ttEncode` and `ttNone` updated to reflect new default behavour.
+- _tooltips are now disabled by default_ (via change in Vega-lite) and can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`. Documentation for `ttEncode` and `ttNone` updated to reflect new default behaviour.
+- _background is now white by default_ (via a chanfe in Vega-lite). Previously backgrounds were transparent. Can mimic previous behaviour by adding a transparent configuration `configuration (coBackground "rgba(0,0,0,0)")`
 
 ## Additions
 
@@ -41,7 +42,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.
 - `maWidth` and `maHeight` for explicitly setting mark width and height.
 - `scAlign` for aligning marks within a range.
-- `noData` for preventing inheritance of parent data source in a specfication.
+- `noData` for preventing inheritance of parent data source in a specification.
 - `nullValue` for explicitly setting data values to null.
 - `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
 - `seInitInterval` for initialising an interval selection's extent.
@@ -64,5 +65,5 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 ## Other Changes
 
 - Improvements to the API documentation with a larger number of inline examples.
-- New gallery examples reflecting addtions to the Vega-Lite example set.
+- New gallery examples reflecting additions to the Vega-Lite example set.
 - Numerous minor gallery example updates to reflect API changes and provide more idiomatic specifications.
