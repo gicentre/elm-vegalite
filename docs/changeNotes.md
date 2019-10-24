@@ -61,6 +61,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `coFieldTitle` now correctly creates a 'functional' label.
 - Overlap strategy `osNone` now evaluates correctly.
+- Field definitions inside `mDataCondition` now handled correctly (previously only worked with value definitions).
 - Empty grid/stroke dash list now correctly generates a `null` value rather than empty array in JSON spec (while an empty array works, it is not permitted by the Vega-Lite schema).
 
 ## Other Changes
