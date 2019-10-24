@@ -18101,7 +18101,14 @@ markChannelProperty field =
                             :: List.concatMap markChannelProperty ifClause
                         )
             in
-            ( "condition", JE.list testClause tests )
+            ( "condition"
+            , case tests of
+                [ test ] ->
+                    testClause test
+
+                _ ->
+                    JE.list testClause tests
+            )
                 :: List.concatMap markChannelProperty elseClause
 
         MTimeUnit tu ->
