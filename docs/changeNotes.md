@@ -3,7 +3,6 @@
 Major release supporting Vega-Lite 4.0. Includes a small number of breaking changes that should provide greater flexibility and some simplification of the API.
 
 - TODO: **default** setting for lookup, and possibly more flexible `as` naming to allow lists of names.
-- TODO: **key** channel.
 
 ## Breaking Changes
 
@@ -49,6 +48,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `seInitInterval` for initialising an interval selection's extent.
 - Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and , `symStroke`
 - `equalEarth` map projection type.
+- `key` channel for binding with Vega View API.
 
 ## Deprecations
 

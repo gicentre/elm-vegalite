@@ -667,6 +667,7 @@ module VegaLite exposing
     , dAggregate
     , dBin
     , dTimeUnit
+    , key
     , scType
     , scDomain
     , scRange
@@ -2291,6 +2292,16 @@ data items with the same value are placed in the same group. See the
 @docs dAggregate
 @docs dBin
 @docs dTimeUnit
+
+
+## Key channel
+
+Enables object constancy for transitions over dynamic data. When a visualization’s
+data is updated (via the [Vega View API](https://vega.github.io/vega/docs/api/view/#data),
+the key value will be used to match data elements to existing mark instances. See the
+[Vega-Lite key channel documentation](https://vega.github.io/vega-lite/docs/encoding.html#key).
+
+@docs key
 
 
 ## Scaling
@@ -8768,7 +8779,7 @@ geometry gType properties =
         JE.object
             [ ( "type", JE.string "Feature" )
             , ( "geometry", geometryTypeSpec gType )
-            , ( "properties", JE.object (List.map (\( key, val ) -> ( key, dataValueSpec val )) properties) )
+            , ( "properties", JE.object (List.map (\( k, val ) -> ( k, dataValueSpec val )) properties) )
             ]
 
 
@@ -9608,12 +9619,12 @@ when `a` is 30 and its color group (`c`) is 1:
 
 -}
 impute : String -> String -> List ImputeProperty -> List LabelledSpec -> List LabelledSpec
-impute fields key imProps =
+impute fields k imProps =
     (::)
         ( "impute"
         , toList
             [ JE.string fields
-            , JE.string key
+            , JE.string k
             , imputePropertySpec "frame" imProps
             , imputePropertySpec "keyVals" imProps
             , imputePropertySpec "keyValSequence" imProps
@@ -9806,6 +9817,20 @@ e.g., specifying the property `values.features` is equivalent to retrieving
 jsonProperty : String -> Format
 jsonProperty =
     JSON
+
+
+{-| Encode an key channel for use with the [Vega View API](https://vega.github.io/vega/docs/api/view/#data).
+The first parameter is the name of the data field to use as a unique key for data
+binding.
+
+    enc =
+        encoding
+            << key "myFieldName"
+
+-}
+key : String -> List LabelledSpec -> List LabelledSpec
+key f =
+    (::) ( "key", JE.string f )
 
 
 {-| Lab color interpolation for continuous color scales.
@@ -14778,8 +14803,8 @@ transform transforms =
 
                 "impute" ->
                     case JD.decodeString (JD.list JD.value) (JE.encode 0 val) of
-                        Ok [ imp, key, frameObj, keyValsObj, keyValSequenceObj, methodObj, groupbyObj, valueObj ] ->
-                            ([ ( "impute", imp ), ( "key", key ) ]
+                        Ok [ imp, k, frameObj, keyValsObj, keyValSequenceObj, methodObj, groupbyObj, valueObj ] ->
+                            ([ ( "impute", imp ), ( "key", k ) ]
                                 ++ (if frameObj == JE.null then
                                         []
 
