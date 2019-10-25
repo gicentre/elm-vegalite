@@ -9812,7 +9812,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 					var _v12 = _v11.a;
 					var imp = _v12.a;
 					var _v13 = _v12.b;
-					var key = _v13.a;
+					var k = _v13.a;
 					var _v14 = _v13.b;
 					var frameObj = _v14.a;
 					var _v15 = _v14.b;
@@ -9830,7 +9830,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 							_List_fromArray(
 								[
 									_Utils_Tuple2('impute', imp),
-									_Utils_Tuple2('key', key)
+									_Utils_Tuple2('key', k)
 								]),
 							_Utils_ap(
 								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
@@ -12837,10 +12837,10 @@ var $author$project$VegaLite$geometry = F2(
 						A2(
 							$elm$core$List$map,
 							function (_v0) {
-								var key = _v0.a;
+								var k = _v0.a;
 								var val = _v0.b;
 								return _Utils_Tuple2(
-									key,
+									k,
 									$author$project$VegaLite$dataValueSpec(val));
 							},
 							properties)))
@@ -13085,7 +13085,7 @@ var $author$project$VegaLite$imputePropertySpec = F2(
 		}
 	});
 var $author$project$VegaLite$impute = F3(
-	function (fields, key, imProps) {
+	function (fields, k, imProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
 				'impute',
@@ -13093,7 +13093,7 @@ var $author$project$VegaLite$impute = F3(
 					_List_fromArray(
 						[
 							$elm$json$Json$Encode$string(fields),
-							$elm$json$Json$Encode$string(key),
+							$elm$json$Json$Encode$string(k),
 							A2($author$project$VegaLite$imputePropertySpec, 'frame', imProps),
 							A2($author$project$VegaLite$imputePropertySpec, 'keyVals', imProps),
 							A2($author$project$VegaLite$imputePropertySpec, 'keyValSequence', imProps),

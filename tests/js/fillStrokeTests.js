@@ -9093,10 +9093,10 @@ var $author$project$VegaLite$geometry = F2(
 						A2(
 							$elm$core$List$map,
 							function (_v0) {
-								var key = _v0.a;
+								var k = _v0.a;
 								var val = _v0.b;
 								return _Utils_Tuple2(
-									key,
+									k,
 									$author$project$VegaLite$dataValueSpec(val));
 							},
 							properties)))
