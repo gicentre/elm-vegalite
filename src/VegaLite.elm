@@ -2594,11 +2594,11 @@ otherwise make them grey":
 
     enc =
         encoding
-            << position X [ pName "Horsepower", pMType Quantitative ]
-            << position Y [ pName "Miles_per_Gallon", pMType Quantitative ]
+            << position X [ pName "Horsepower", pQuant ]
+            << position Y [ pName "Miles_per_Gallon", pQuant ]
             << color
                 [ mSelectionCondition (selectionName "myBrush")
-                    [ mName "Cylinders", mMType Ordinal ]
+                    [ mName "Cylinders", mOrdinal ]
                     [ mStr "grey" ]
                 ]
 
@@ -2611,7 +2611,7 @@ expressions:
 
     enc =
         encoding
-            << position X [ pName "value", pMType Ordinal ]
+            << position X [ pName "value", pOrdinal ]
             << color
                 [ mDataCondition
                     [ ( expr "datum.value < 40", [ mStr "blue" ] )
@@ -6447,13 +6447,13 @@ a one-to-one correspondence between domain and range values.
 
     color
         [ mName "weather"
-        , mMType Nominal
-        , mScale <|
-            categoricalDomainMap
-                [ ( "sun", "yellow" )
-                , ( "rain", "blue" )
-                , ( "fog", "grey" )
-                ]
+        , mNominal
+        , categoricalDomainMap
+            [ ( "sun", "yellow" )
+            , ( "rain", "blue" )
+            , ( "fog", "grey" )
+            ]
+            |> mScale
         ]
 
 -}
@@ -6842,7 +6842,7 @@ such as the data to encode, colour scaling etc.
 
     enc =
         encoding
-            << color [ mName "avHireTime", mMType Quantitative ]
+            << color [ mName "avHireTime", mQuant ]
 
 -}
 color : List MarkChannel -> List LabelledSpec -> List LabelledSpec
@@ -6864,9 +6864,9 @@ refer to the individual faceted plots, not the assemblage as a whole.
 
         enc =
             encoding
-                << position X [ pName "month", pMType Temporal ]
-                << position Y [ pName "reportedCrimes", pMType Quantitative, pAggregate opSum ]
-                << column [ fName "crimeType", fMType Nominal ]
+                << position X [ pName "month", pTemporal ]
+                << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
+                << column [ fName "crimeType", fNominal ]
     in
     toVegaLite [ width 100, data [], bar [], enc [] ]
 
@@ -6957,13 +6957,13 @@ default to a single row of unlimited columns.
 
         enc =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
 
         encCos =
-            enc << position Y [ pName "cosX", pMType Quantitative ]
+            enc << position Y [ pName "cosX", pQuant ]
 
         encSin =
-            enc << position Y [ pName "sinX", pMType Quantitative ]
+            enc << position Y [ pName "sinX", pQuant ]
     in
     toVegaLite
         [ data
@@ -7834,7 +7834,7 @@ parameter is a list of the field characteristics to be grouped.
 
     enc =
         encoding
-            << detail [ dName "avHireTime", dMType Quantitative ]
+            << detail [ dName "avHireTime", dQuant ]
 
 -}
 detail : List DetailChannel -> List LabelledSpec -> List LabelledSpec
@@ -7969,7 +7969,7 @@ domain and range values.
 
     color
         [ mName "year"
-        , mMType Ordinal
+        , mOrdinal
         , mScale (domainRangeMap ( 1955, "#e6959c" ) ( 2000, "#911a24" ))
         ]
 
@@ -8143,8 +8143,8 @@ commonly built by chaining series of channel encoding functions together such as
 
     enc =
         encoding
-            << position X [ pName "month", pMType Temporal ]
-            << position Y [ pName "score", pMType Quantitative ]
+            << position X [ pName "month", pTemporal ]
+            << position Y [ pName "score", pQuant ]
             << color [ mName "team", mMType Nominal ]
 
 -}
@@ -8252,8 +8252,8 @@ except that the fields for faceting by rows and by columns are set explicitly.
 
     spec = ...
     toVegaLite
-        [ facet [ rowBy [ fName "month", fMType Ordinal ]
-                , columnBy [ fName "week", fMType Ordinal ]
+        [ facet [ rowBy [ fName "month", fOrdinal ]
+                , columnBy [ fName "week", fOrdinal ]
                 ]
         , specification spec
         ]
@@ -8275,7 +8275,7 @@ if the number of plots exceeds an optional column limit (specified via
 
     spec = ...
     toVegaLite
-        [ facetFlow [ fName "Origin", fMType Nominal ]
+        [ facetFlow [ fName "Origin", fNominal ]
         , specification spec
         ]
 
@@ -8600,9 +8600,9 @@ tidyverse . It is the inverse of [pivot](#pivot).
 
     enc =
         encoding
-            << position X [ pName "key", pMType Nominal ]
-            << position Y [ pName "city", pMType Nominal ]
-            << size [ mName "value", mMType Quantitative ]
+            << position X [ pName "key", pNominal ]
+            << position Y [ pName "city", pNominal ]
+            << size [ mName "value", mQuant ]
 
 -}
 fold : List String -> List LabelledSpec -> List LabelledSpec
@@ -8659,7 +8659,7 @@ fQuant =
 
     row
         [ fName "site"
-        , fMType Ordinal
+        , fOrdinal
         , fSort [ soByField "x" opMedian, soDescending ]
         ]
 
@@ -9611,9 +9611,9 @@ when `a` is 30 and its color group (`c`) is 1:
 
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative ]
-                << position Y [ pName "b", pMType Quantitative ]
-                << color [ mName "c", mMType Nominal ]
+                << position X [ pName "a", pQuant ]
+                << position Y [ pName "b", pQuant ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ data [], trans [], enc [], line [] ]
 
@@ -9851,9 +9851,9 @@ For example, adding text annotations to a bar chart:
 
         enc =
             encoding
-                << position X [ pName "x", pMType Ordinal ]
-                << position Y [ pName "a", pMType Quantitative ]
-                << text [ tName "a", tMType Nominal ]
+                << position X [ pName "x", pOrdinal ]
+                << position Y [ pName "a", pQuant ]
+                << text [ tName "a", tNominal ]
     in
     toVegaLite
         [ data []
@@ -10728,14 +10728,8 @@ access individual fields. For example,
 
     enc =
         encoding
-            << position Longitude
-                [ pName "o.longitude"
-                , pMType Quantitative
-                ]
-            << position Latitude
-                [ pName "o.latitude"
-                , pMType Quantitative
-                ]
+            << position Longitude [ pName "o.longitude", pQuant ]
+            << position Latitude [ pName "o.latitude", pQuant ]
 
 -}
 lookupAs : String -> Data -> String -> String -> List LabelledSpec -> List LabelledSpec
@@ -11647,7 +11641,7 @@ is true; the third parameter is the encoding if the selection is false.
 
     color
         [ mSelectionCondition (selectionName "myBrush")
-            [ mName "myField", mMType Ordinal ]
+            [ mName "myField", mOrdinal ]
             [ mStr "grey" ]
         ]
 
@@ -11921,10 +11915,10 @@ find the production budget for the maximum US grossing film in each genre.
     encoding
         << position X
             [ pName "Production_Budget"
-            , pMType Quantitative
+            , pQuant
             , pAggregate (opArgMax (Just "US_Gross"))
             ]
-        << position Y [ pName "Major_Genre", pMType Nominal ]
+        << position Y [ pName "Major_Genre", pNominal ]
 
 If supplied as part of a transform, the parameter should be `Nothing` as the field
 is specified in the [aggregate](#aggregate) parameter. For example,
@@ -12121,7 +12115,7 @@ options such as the data to encode, sort direction etc.
 
     enc =
         encoding
-            << order [ oName "yield", oMType Ordinal, oSort [ soDescending ] ]
+            << order [ oName "yield", oOrdinal, oSort [ soDescending ] ]
 
 -}
 order : List OrderChannel -> List LabelledSpec -> List LabelledSpec
@@ -12211,12 +12205,8 @@ parameter.
 
     enc =
         encoding
-            << position X [ pName "role", pMType Ordinal ]
-            << position Y
-                [ pName "salary"
-                , pMType Quantitative
-                , pAggregate opMean
-                ]
+            << position X [ pName "role", pOrdinal ]
+            << position Y [ pName "salary", pQuant, pAggregate opMean ]
 
 -}
 pAggregate : Operation -> PositionChannel
@@ -12260,8 +12250,8 @@ parameter. For example, to encode a frequency histogram with bins every 5 units,
 
     enc =
         encoding
-            << position X [ pName "x", pMType Ordinal, pBin [ biStep 5 ] ]
-            << position Y [ pMType Quantitative, pAggregate opCount ]
+            << position X [ pName "x", pOrdinal, pBin [ biStep 5 ] ]
+            << position Y [ pQuant, pAggregate opCount ]
 
 -}
 pBin : List BinProperty -> PositionChannel
@@ -12298,13 +12288,9 @@ when `a` is 30 and its color group (`c`) is 1:
 
         enc =
             encoding
-                << position X [ pName "a", pMType Quantitative ]
-                << position Y
-                    [ pName "b"
-                    , pMType Quantitative
-                    , pImpute [ imMethod imMean ]
-                    ]
-                << color [ mName "c", mMType Nominal ]
+                << position X [ pName "a", pQuant ]
+                << position Y [ pName "b", pQuant, pImpute [ imMethod imMean ] ]
+                << color [ mName "c", mNominal ]
     in
     toVegaLite [ data [], enc [], line [] ]
 
@@ -12360,8 +12346,8 @@ tidyverse. It is the inverse of [fold](#fold).
     enc =
         encoding
             -- 2017 temperatures for the Bristol, Sheffield and Glasgow
-            << position X [ pName "2017", pMType Quantitative ]
-            << position Y [ pName "city", pMType Nominal ]
+            << position X [ pName "2017", pQuant ]
+            << position Y [ pName "city", pNominal ]
 
 -}
 pivot : String -> String -> List PivotProperty -> List LabelledSpec -> List LabelledSpec
@@ -12470,8 +12456,8 @@ second a list of position encoding options.
 
     enc =
         encoding
-            << position X [ pName "month", pMType Temporal ]
-            << position Y [ pName "numHires", pMType Quantitative ]
+            << position X [ pName "month", pTemporal ]
+            << position Y [ pName "numHires", pQuant ]
 
 -}
 position : Position -> List PositionChannel -> List LabelledSpec -> List LabelledSpec
@@ -12554,7 +12540,7 @@ fields that are to be arranged in columns, in rows or a with a flow layout.
 
     enc =
         encoding
-            << position X [ pRepeat arFlow, pMType Quantitative ]
+            << position X [ pRepeat arFlow, pQuant ]
 
     spec =
           asSpec [ data [], tick [], enc [] ]
@@ -12696,11 +12682,7 @@ to have an inner spacing of 50% (0.5) of the total space allocated to each bar.
 
     enc =
         encoding
-            << position X
-                [ pName "ageGroup"
-                , pMType Nominal
-                , pScale [ scPaddingInner 0.5 ]
-                ]
+            << position X [ pName "ageGroup", pNominal, pScale [ scPaddingInner 0.5 ] ]
 
 -}
 pScale : List ScaleProperty -> PositionChannel
@@ -12721,13 +12703,9 @@ example, stacking areas away from a centreline can be used to create a
 
     enc =
         encoding
-            << position X [ pName "week", pMType Ordinal ]
-            << position Y
-                [ pName "takings"
-                , pMType Quantitative
-                , pStack stCenter
-                ]
-            << color [ mName "shop", mMType Nominal ]
+            << position X [ pName "week", pOrdinal ]
+            << position Y [ pName "takings", pQuant, pStack stCenter ]
+            << color [ mName "shop", mNominal ]
 
 -}
 pStack : StackOffset -> PositionChannel
@@ -12985,16 +12963,16 @@ share channel encodings.
 
         encBar =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
-                << position Y [ pName "a", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "a", pQuant ]
 
         specBar =
             asSpec [ bar [], encBar [] ]
 
         encLine =
             encoding
-                << position X [ pName "x", pMType Quantitative ]
-                << position Y [ pName "b", pMType Quantitative ]
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "b", pQuant ]
 
         specLine =
             asSpec [ line [ maColor "firebrick" ], encLine [] ]
@@ -13074,14 +13052,14 @@ refer to the individual faceted plots, not the assemblage as a whole.
 
         enc =
             encoding
-                << position X [ pName "month", pMType Temporal ]
+                << position X [ pName "month", pTemporal ]
                 << position Y
                     [ pName "reportedCrimes"
-                    , pMType Quantitative
+                    , pQuant
                     , pAggregate opSum
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
-                << row [ fName "crimeType", fMType Nominal ]
+                << row [ fName "crimeType", fNominal ]
     in
     toVegaLite [ height 80, data [], bar [], enc [] ]
 
@@ -13492,7 +13470,7 @@ range to use (list of two numbers between 0 and 1). For example
 
     color
         [ mName "value"
-        , mMType Ordinal
+        , mOrdinal
         , mScale [ scScheme "redblue" [ 0, 0.8 ] ]
         ]
 
@@ -13768,7 +13746,7 @@ selection sels =
 
     color
         [ mSelectionCondition (selectionName "myBrush")
-            [ mName "myField", mMType Nominal ]
+            [ mName "myField", mNominal ]
             [ mStr "grey" ]
         ]
 
@@ -13860,7 +13838,7 @@ such as the data to encode, custom shape encodings etc.
 
     enc =
         encoding
-            << shape [ mName "company", mMType Nominal ]
+            << shape [ mName "company", mNominal ]
 
 -}
 shape : List MarkChannel -> List LabelledSpec -> List LabelledSpec
@@ -13901,7 +13879,7 @@ such as the data to encode, size scaling etc.
 
     enc =
         encoding
-            << size [ mName "population", mMType Quantitative ]
+            << size [ mName "population", mQuant ]
 
 -}
 size : List MarkChannel -> List LabelledSpec -> List LabelledSpec
@@ -13967,11 +13945,7 @@ soAscending =
 
 {-| Sort by another channel.
 
-    position Y
-        [ pName "age"
-        , pMType Ordinal
-        , pSort [ soByChannel chX ]
-        ]
+    position Y [ pName "age", pOrdinal, pSort [ soByChannel chX ] ]
 
 -}
 soByChannel : Channel -> SortProperty
@@ -13985,7 +13959,7 @@ the data in each variety category:
 
     position Y
         [ pName "variety"
-        , pMType Ordinal
+        , pOrdinal
         , pSort [ soByField "age" opMean, soDescending ]
         ]
 
@@ -14036,7 +14010,7 @@ spacingRC spRow spCol =
 
     spec = ...
     toVegaLite
-        [ facet [ rowBy [ fName "Origin", fMType Nominal ] ]
+        [ facet [ rowBy [ fName "Origin", fNominal ] ]
         , specification spec
         ]
 
@@ -14326,7 +14300,7 @@ such as the data to encode, number formatting etc.
 
     enc =
         encoding
-            << text [ tName "keyword", tMType Nominal ]
+            << text [ tName "keyword", tNominal ]
 
 -}
 text : List TextChannel -> List LabelledSpec -> List LabelledSpec
@@ -14669,8 +14643,7 @@ tRepeat =
 
 {-| Encode a tooltip channel using a single data field.
 
-     tooltip
-        [ tName "Month", tMType Temporal, tFormat "%B %Y" ]
+     tooltip [ tName "Month", tTemporal, tFormat "%B %Y" ]
 
 To encode multiple tooltip values with a mark, use [tooltips](#tooltips).
 
@@ -14685,8 +14658,8 @@ list of the multiple tooltips, each of which is a list of text channel propertie
 that define the channel.
 
     tooltips
-        [ [ tName "month", tMType Temporal, tFormat "%B %Y" ]
-        , [ tName "temperature", tMType Quantitative ]
+        [ [ tName "month", tTemporal, tFormat "%B %Y" ]
+        , [ tName "temperature", tQuant ]
         ]
 
 -}
@@ -14736,8 +14709,8 @@ this to be done compactly:
 
         enc =
             encoding
-                << position X [ pName "a", pMType Nominal ]
-                << position Y [ pName "b", pMType Quantitative, pAggregate opMean ]
+                << position X [ pName "a", pNominal ]
+                << position Y [ pName "b", pQuant, pAggregate opMean ]
     in
     toVegaLite [ data [], enc [], bar [] ]
 
@@ -15277,7 +15250,7 @@ another `TimeUnit` generating function.
     encoding
         << position X
             [ pName "date"
-            , pMType Temporal
+            , pTemporal
             , pTimeUnit (utc yearMonthDateHours)
             ]
 
