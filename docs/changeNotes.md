@@ -50,6 +50,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle` and `ticoZIndex`.
 - `vicoStep` for configuring default step size for discrete x and y discrete fields.
 - `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight` for dimension configuration depending on type of data.
+- `vicoBackground` for configuring default single view plot area background appearance.
 - `coConcat` for configuring concatenations (`cocoSpacing` and `cocoColumns`).
 - `fiOp` for converting filters into `BooleanOp` and therefore allowing Boolean composition of filter functions.
 - `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.

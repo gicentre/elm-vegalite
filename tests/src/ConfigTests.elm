@@ -150,6 +150,7 @@ vbTest =
                         , ( "mySecondStyle", [ maFill "black", maStroke "blue" ] )
                         ]
                     )
+                << configuration (coView [ vicoBackground [ viewFill (Just "#feb") ] ])
 
         streamSpec =
             asSpec
