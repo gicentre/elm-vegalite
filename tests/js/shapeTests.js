@@ -9124,40 +9124,20 @@ var $author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 				$elm$json$Json$Encode$int(n));
 	}
 };
-var $author$project$VegaLite$viewConfigProperty = function (viewCfg) {
-	switch (viewCfg.$) {
+var $author$project$VegaLite$viewBackgroundSpec = function (vb) {
+	switch (vb.$) {
 		case 0:
-			var x = viewCfg.a;
+			var styles = vb.a;
 			return _Utils_Tuple2(
-				'continuousWidth',
-				$elm$json$Json$Encode$float(x));
+				'style',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles));
 		case 1:
-			var x = viewCfg.a;
-			return _Utils_Tuple2(
-				'continuousHeight',
-				$elm$json$Json$Encode$float(x));
-		case 2:
-			var x = viewCfg.a;
-			return _Utils_Tuple2(
-				'discreteWidth',
-				$elm$json$Json$Encode$float(x));
-		case 3:
-			var x = viewCfg.a;
-			return _Utils_Tuple2(
-				'discreteHeight',
-				$elm$json$Json$Encode$float(x));
-		case 4:
-			var b = viewCfg.a;
-			return _Utils_Tuple2(
-				'clip',
-				$elm$json$Json$Encode$bool(b));
-		case 5:
-			var r = viewCfg.a;
+			var r = vb.a;
 			return _Utils_Tuple2(
 				'cornerRadius',
 				$elm$json$Json$Encode$float(r));
-		case 6:
-			var ms = viewCfg.a;
+		case 2:
+			var ms = vb.a;
 			if (!ms.$) {
 				var s = ms.a;
 				return _Utils_Tuple2(
@@ -9168,23 +9148,18 @@ var $author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'fill',
 					$elm$json$Json$Encode$string(''));
 			}
-		case 7:
-			var x = viewCfg.a;
+		case 3:
+			var x = vb.a;
 			return _Utils_Tuple2(
 				'fillOpacity',
 				$elm$json$Json$Encode$float(x));
-		case 8:
-			var x = viewCfg.a;
+		case 4:
+			var x = vb.a;
 			return _Utils_Tuple2(
 				'opacity',
 				$elm$json$Json$Encode$float(x));
-		case 9:
-			var x = viewCfg.a;
-			return _Utils_Tuple2(
-				'step',
-				$elm$json$Json$Encode$float(x));
-		case 10:
-			var ms = viewCfg.a;
+		case 5:
+			var ms = vb.a;
 			if (!ms.$) {
 				var s = ms.a;
 				return _Utils_Tuple2(
@@ -9195,43 +9170,219 @@ var $author$project$VegaLite$viewConfigProperty = function (viewCfg) {
 					'stroke',
 					$elm$json$Json$Encode$string(''));
 			}
-		case 11:
-			var x = viewCfg.a;
+		case 6:
+			var x = vb.a;
 			return _Utils_Tuple2(
 				'strokeOpacity',
 				$elm$json$Json$Encode$float(x));
-		case 13:
-			var cap = viewCfg.a;
+		case 8:
+			var cap = vb.a;
 			return _Utils_Tuple2(
 				'strokeCap',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$strokeCapLabel(cap)));
-		case 16:
-			var jn = viewCfg.a;
+		case 11:
+			var jn = vb.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$strokeJoinLabel(jn)));
-		case 12:
-			var x = viewCfg.a;
+		case 7:
+			var x = vb.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				$elm$json$Json$Encode$float(x));
-		case 14:
-			var xs = viewCfg.a;
+		case 9:
+			var xs = vb.a;
 			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 15:
-			var x = viewCfg.a;
+		case 10:
+			var x = vb.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
 				$elm$json$Json$Encode$float(x));
 		default:
-			var x = viewCfg.a;
+			var x = vb.a;
 			return _Utils_Tuple2(
 				'strokeMiterLimit',
 				$elm$json$Json$Encode$float(x));
+	}
+};
+var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
+	switch (viewCfg.$) {
+		case 2:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'continuousWidth',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 3:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'continuousHeight',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 5:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'discreteWidth',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 6:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'discreteHeight',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 1:
+			var b = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'clip',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 4:
+			var r = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadius',
+					$elm$json$Json$Encode$float(r))
+				]);
+		case 7:
+			var ms = viewCfg.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'fill',
+						$elm$json$Json$Encode$string(s))
+					]);
+			} else {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'fill',
+						$elm$json$Json$Encode$string(''))
+					]);
+			}
+		case 8:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fillOpacity',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 9:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'opacity',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 10:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 11:
+			var ms = viewCfg.a;
+			if (!ms.$) {
+				var s = ms.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'stroke',
+						$elm$json$Json$Encode$string(s))
+					]);
+			} else {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'stroke',
+						$elm$json$Json$Encode$string(''))
+					]);
+			}
+		case 12:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeOpacity',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 14:
+			var cap = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeCap',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$strokeCapLabel(cap)))
+				]);
+		case 17:
+			var jn = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeJoin',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$strokeJoinLabel(jn)))
+				]);
+		case 13:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeWidth',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 15:
+			var xs = viewCfg.a;
+			return _Utils_eq(xs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeDash',
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
+				]);
+		case 16:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeDashOffset',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 18:
+			var x = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeMiterLimit',
+					$elm$json$Json$Encode$float(x))
+				]);
+		default:
+			var vbs = viewCfg.a;
+			return A2($elm$core$List$map, $author$project$VegaLite$viewBackgroundSpec, vbs);
 	}
 };
 var $author$project$VegaLite$configProperty = function (configProp) {
@@ -9492,7 +9643,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'view',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$viewConfigProperty, vcs)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$viewConfigProperties, vcs)));
 		default:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
@@ -11656,7 +11807,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 		A2($elm$json$Json$Encode$list, assemble, transforms));
 };
 var $author$project$VegaLite$VStroke = function (a) {
-	return {$: 10, a: a};
+	return {$: 11, a: a};
 };
 var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
 var $author$project$VegaLite$VLWidth = 3;
