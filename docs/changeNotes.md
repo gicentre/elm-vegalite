@@ -8,20 +8,32 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - _`title` now takes a list of optional title properties._
   To update older code, simply add a `[]` as a second parameter to `title`
+
+- _Replaced `coRemoveInvalid` with `maRemoveInvalid`_.
+  To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
+
+- _Tooltips are now disabled by default_ (via change in Vega-lite).
+  Can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`. Documentation for `ttEncode` and `ttNone` updated to reflect new default behaviour.
+
+- _Background is now white by default_ (via a change in Vega-lite).
+  Previously backgrounds were transparent. Can mimic previous behaviour by adding a transparent configuration `configuration (coBackground "rgba(0,0,0,0)")`
+
 - _`axValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than just a list of floats._
   To update older code, replace `axValues [1,2,3] with axValues (nums [1,2,3])`.
+
 - _Removed (invalid) functions `mImpute` and `dImpute`._
-- _Removed `coRemoveInvalid` and added `maRemoveInvalid`_. To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
-- `opArgMin` and `opArgMax` now require a `Maybe String` parameter.
+
+- _`opArgMin` and `opArgMax` now require a `Maybe String` parameter._
   To update older code, replace `opArgMin` with `opArgMin Nothing`.
+
 - _Overlap strategy constructors hidden._
   Should use `osNone`, `osGreedy` and `osParity` instead. These were always available, but the constructors themselves had been inadvertently exposed, so it is unlikely to require a change in practice.
+
 - _`lookup` now uses the `Data` type alias as part of its type signature._
   This is unlikely to impact any use of the API but is technically a breaking change.
+
 - _`columns` now takes an `int` rather than `Maybe int`._
   To update older code, replace `columns (Just n)` with `columns n` and `columns Nothing` with `columns 0`.
-- _tooltips are now disabled by default_ (via change in Vega-lite) and can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`. Documentation for `ttEncode` and `ttNone` updated to reflect new default behaviour.
-- _background is now white by default_ (via a chanfe in Vega-lite). Previously backgrounds were transparent. Can mimic previous behaviour by adding a transparent configuration `configuration (coBackground "rgba(0,0,0,0)")`
 
 ## Additions
 
@@ -37,6 +49,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
 - New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle` and `ticoZIndex`.
 - `vicoStep` for configuring default step size for discrete x and y discrete fields.
+- `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight` for dimension configuration depending on type of data.
 - `coConcat` for configuring concatenations (`cocoSpacing` and `cocoColumns`).
 - `fiOp` for converting filters into `BooleanOp` and therefore allowing Boolean composition of filter functions.
 - `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.
@@ -56,6 +69,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `scReverse` deprecated in favour of `mSort` (while `scReverse` works, it is not part of the Vega-Lite schema).
 - `scRangeStep`, deprecated in favour of `widthStep` and `heightStep`.
 - `sacoRangeStep` and `sacoTextXRangeStep` deprecated in favour of `vicoStep`.
+- `vicoWidth` and `vicoHeight` deprecated in favour of `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight`.
 
 ## Bug Fixes
 

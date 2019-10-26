@@ -71,7 +71,7 @@ configExample =
             configure
                 << configuration (coBackground "rgb(251,247,238)")
                 << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight W600, ticoFontSize 18 ])
-                << configuration (coView [ vicoWidth 500, vicoHeight 300, vicoStroke Nothing ])
+                << configuration (coView [ vicoContinuousWidth 500, vicoContinuousHeight 300, vicoStroke Nothing ])
                 << configuration (coAutosize [ asFit ])
                 << configuration (coProjection [ prType orthographic, prRotate 0 0 0 ])
 

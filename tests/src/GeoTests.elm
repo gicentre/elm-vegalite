@@ -30,7 +30,7 @@ defaultSize2 : Spec
 defaultSize2 =
     toVegaLite
         [ description "Default map size with view width and height specified in config."
-        , configure <| configuration (coView [ vicoWidth 500, vicoHeight 300 ]) <| []
+        , configure <| configuration (coView [ vicoContinuousWidth 500, vicoContinuousHeight 300 ]) <| []
         , projection [ prType albersUsa ]
         , dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "counties" ]
         , geoshape []

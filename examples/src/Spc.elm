@@ -248,7 +248,7 @@ cusumData x =
 config : ( VLProperty, Spec )
 config =
     (configure
-        << configuration (coView [ vicoStroke Nothing, vicoWidth 500, vicoHeight 220 ])
+        << configuration (coView [ vicoStroke Nothing, vicoContinuousWidth 500, vicoContinuousHeight 220 ])
         << configuration (coBackground "#fffff8")
         << configuration (coAxis [ axcoLabelFont "ETBembo", axcoTitleFont "ETBembo" ])
     )

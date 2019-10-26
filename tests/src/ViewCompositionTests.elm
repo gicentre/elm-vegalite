@@ -106,7 +106,7 @@ cfg =
     -- Styling to remove axis gridlines and labels
     configure
         << configuration (coHeader [ hdLabelFontSize 0.1 ])
-        << configuration (coView [ vicoStroke Nothing, vicoHeight 120 ])
+        << configuration (coView [ vicoStroke Nothing, vicoContinuousHeight 120 ])
         << configuration (coFacet [ facoSpacing 80, facoColumns 5 ])
 
 
