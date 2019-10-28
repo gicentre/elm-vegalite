@@ -63,6 +63,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and , `symStroke`
 - `equalEarth` map projection type.
 - `key` channel for binding with Vega View API.
+- `asFitX` and `asFitY` for autosizing in one dimension only.
 
 ## Deprecations
 
