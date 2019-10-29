@@ -30,7 +30,7 @@ geo1 =
 
         trans =
             transform
-                << lookup "id" unemploymentData "id" [ "rate" ]
+                << lookup "id" unemploymentData "id" (luFields [ "rate" ])
 
         proj =
             projection [ prType albersUsa ]
@@ -105,6 +105,9 @@ geo3 =
 geo4 : Spec
 geo4 =
     let
+        airportData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
+
         backdropSpec =
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
@@ -120,28 +123,20 @@ geo4 =
                 << color [ mStr "gray" ]
 
         airportsSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
-                , circle []
-                , airportsEnc []
-                ]
+            asSpec [ airportData, circle [], airportsEnc [] ]
 
         trans =
             transform
                 << filter (fiEqual "origin" (str "SEA"))
-                << lookup "origin" (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []) "iata" [ "latitude", "longitude" ]
-                << calculateAs "datum.latitude" "origin_latitude"
-                << calculateAs "datum.longitude" "origin_longitude"
-                << lookup "destination" (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []) "iata" [ "latitude", "longitude" ]
-                << calculateAs "datum.latitude" "dest_latitude"
-                << calculateAs "datum.longitude" "dest_longitude"
+                << lookup "origin" airportData "iata" (luAs "o")
+                << lookup "destination" airportData "iata" (luAs "d")
 
         flightsEnc =
             encoding
-                << position Longitude [ pName "origin_longitude", pQuant ]
-                << position Latitude [ pName "origin_latitude", pQuant ]
-                << position Longitude2 [ pName "dest_longitude", pQuant ]
-                << position Latitude2 [ pName "dest_latitude", pQuant ]
+                << position Longitude [ pName "o.longitude", pQuant ]
+                << position Latitude [ pName "o.latitude", pQuant ]
+                << position Longitude2 [ pName "d.longitude" ]
+                << position Latitude2 [ pName "d.latitude" ]
 
         flightsSpec =
             asSpec
@@ -164,6 +159,9 @@ geo4 =
 geo5 : Spec
 geo5 =
     let
+        geoData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
+
         enc =
             encoding
                 << shape [ mName "geo", mGeo ]
@@ -174,7 +172,7 @@ geo5 =
                 [ width 500
                 , height 300
                 , dataFromUrl "https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv" []
-                , transform <| lookupAs "id" (dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]) "id" "geo" []
+                , transform <| lookup "id" geoData "id" (luAs "geo") []
                 , projection [ prType albersUsa ]
                 , geoshape []
                 , enc []
@@ -228,6 +226,9 @@ geo6 =
 geo7 : Spec
 geo7 =
     let
+        airportData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
+
         backdropSpec =
             asSpec
                 [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
@@ -243,11 +244,7 @@ geo7 =
                 << color [ mStr "gray" ]
 
         airportsSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
-                , circle []
-                , airportsEnc []
-                ]
+            asSpec [ airportData, circle [], airportsEnc [] ]
 
         itinerary =
             dataFromColumns []
@@ -256,7 +253,7 @@ geo7 =
 
         trans =
             transform
-                << lookup "airport" (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []) "iata" [ "latitude", "longitude" ]
+                << lookup "airport" airportData "iata" (luFields [ "latitude", "longitude" ])
 
         flightsEnc =
             encoding
@@ -285,6 +282,9 @@ geo7 =
 geo8 : Spec
 geo8 =
     let
+        geoData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
+
         enc =
             encoding
                 << shape [ mName "geo", mGeo ]
@@ -297,7 +297,7 @@ geo8 =
         , width 500
         , height 300
         , dataFromUrl "https://vega.github.io/vega-lite/data/income.json" []
-        , transform <| lookupAs "id" (dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]) "id" "geo" []
+        , transform <| lookup "id" geoData "id" (luAs "geo") []
         , projection [ prType albersUsa ]
         , geoshape []
         , enc []

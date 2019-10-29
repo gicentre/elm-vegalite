@@ -373,7 +373,7 @@ advanced9 =
                 << lookup "person"
                     (dataFromUrl "https://vega.github.io/vega-lite/data/lookup_people.csv" [])
                     "name"
-                    [ "age", "height" ]
+                    (luFields [ "age", "height" ])
 
         enc =
             encoding

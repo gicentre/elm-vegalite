@@ -409,14 +409,14 @@ multi7 =
         lineTrans =
             transform
                 << filter (fiSelection "mySelection")
-                << lookupAs "origin"
+                << lookup "origin"
                     (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
                     "iata"
-                    "o"
-                << lookupAs "destination"
+                    (luAs "o")
+                << lookup "destination"
                     (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
                     "iata"
-                    "d"
+                    (luAs "d")
 
         lineEnc =
             encoding
@@ -439,7 +439,7 @@ multi7 =
                 << lookup "origin"
                     (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
                     "iata"
-                    [ "state", "latitude", "longitude" ]
+                    (luFields [ "state", "latitude", "longitude" ])
                 << filter (fiExpr "datum.state !== 'PR' && datum.state !== 'VI'")
 
         airportEnc =
