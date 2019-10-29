@@ -2,12 +2,13 @@
 
 Major release supporting Vega-Lite 4.0. Includes a small number of breaking changes that should provide greater flexibility and some simplification of the API.
 
-- TODO: **default** setting for lookup, and possibly more flexible `as` naming to allow lists of names.
-
 ## Breaking Changes
 
 - _`title` now takes a list of optional title properties._
   To update older code, simply add a `[]` as a second parameter to `title`
+
+- _`lookup` now allows naming of individual matched fields and a default for failed lookups_.
+  Instead of `lookup "key1" secondaryData "key2" ["field1", "field2"]` use `lookup "key1" secondaryData "key2" (luFields ["field1", "field2"])`. Additional functions `luAs`, `luAsWithDefault`, `luFieldsAs`, `luFieldsAsWithDefault`, `luFields` and `luFieldsWithDefault` provide greater naming and default behaviour.
 
 - _Replaced `coRemoveInvalid` with `maRemoveInvalid`_.
   To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
@@ -68,6 +69,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 ## Deprecations
 
 - `axDates` deprecated in favour of new more flexible `axValues`.
+- `lookupAs` deprecated in favour of `lookup` with `luAs`.
 - `scReverse` deprecated in favour of `mSort` (while `scReverse` works, it is not part of the Vega-Lite schema).
 - `scRangeStep`, deprecated in favour of `widthStep` and `heightStep`.
 - `sacoRangeStep` and `sacoTextXRangeStep` deprecated in favour of `vicoStep`.
