@@ -8,7 +8,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
   To update older code, simply add a `[]` as a second parameter to `title`
 
 - _`lookup` now allows naming of individual matched fields and a default for failed lookups_.
-  Instead of `lookup "key1" secondaryData "key2" ["field1", "field2"]` use `lookup "key1" secondaryData "key2" (luFields ["field1", "field2"])`. Additional functions `luAs`, `luAsWithDefault`, `luFieldsAs`, `luFieldsAsWithDefault`, `luFields` and `luFieldsWithDefault` provide greater naming and default behaviour.
+  Instead of `lookup "key1" secondaryData "key2" ["field1", "field2"]` use `lookup "key1" secondaryData "key2" (luFields ["field1", "field2"])`. Additional functions `luAs`, `luAsWithDefault`, `luFieldsAs`, `luFieldsAsWithDefault`, `luFields` and `luFieldsWithDefault` provide greater naming and default behaviour. It also uses the `Data` type alias as part of its type signature, which is unlikely to impact any use of the API but is technically a breaking change.
 
 - _Replaced `coRemoveInvalid` with `maRemoveInvalid`_.
   To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
@@ -29,9 +29,6 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - _Overlap strategy constructors hidden._
   Should use `osNone`, `osGreedy` and `osParity` instead. These were always available, but the constructors themselves had been inadvertently exposed, so it is unlikely to require a change in practice.
-
-- _`lookup` now uses the `Data` type alias as part of its type signature._
-  This is unlikely to impact any use of the API but is technically a breaking change.
 
 - _`columns` now takes an `int` rather than `Maybe int`._
   To update older code, replace `columns (Just n)` with `columns n` and `columns Nothing` with `columns 0`.
@@ -61,7 +58,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `nullValue` for explicitly setting data values to null.
 - `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
 - `seInitInterval` for initialising an interval selection's extent.
-- Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and , `symStroke`
+- Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke`
 - `equalEarth` map projection type.
 - `key` channel for binding with Vega View API.
 - `asFitX` and `asFitY` for autosizing in one dimension only.
