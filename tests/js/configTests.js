@@ -2813,7 +2813,7 @@ var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 	switch (asCfg) {
-		case 3:
+		case 5:
 			return _Utils_Tuple2(
 				'type',
 				$elm$json$Json$Encode$string('pad'));
@@ -2824,8 +2824,16 @@ var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 		case 2:
 			return _Utils_Tuple2(
 				'type',
+				$elm$json$Json$Encode$string('fit-x'));
+		case 3:
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string('fit-y'));
+		case 4:
+			return _Utils_Tuple2(
+				'type',
 				$elm$json$Json$Encode$string('none'));
-		case 5:
+		case 7:
 			return _Utils_Tuple2(
 				'resize',
 				$elm$json$Json$Encode$bool(true));
@@ -7683,7 +7691,11 @@ var $author$project$VegaLite$Latitude2 = 7;
 var $author$project$VegaLite$Longitude = 4;
 var $author$project$VegaLite$Longitude2 = 6;
 var $author$project$VegaLite$X2 = 2;
+var $author$project$VegaLite$XError = 8;
+var $author$project$VegaLite$XError2 = 10;
 var $author$project$VegaLite$Y2 = 3;
+var $author$project$VegaLite$YError = 9;
+var $author$project$VegaLite$YError2 = 11;
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 58, a: a};
 };
@@ -8460,6 +8472,14 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 			return 'x2';
 		case 3:
 			return 'y2';
+		case 8:
+			return 'xError';
+		case 9:
+			return 'yError';
+		case 10:
+			return 'xError2';
+		case 11:
+			return 'yError2';
 		case 4:
 			return 'longitude';
 		case 5:
@@ -8503,6 +8523,30 @@ var $author$project$VegaLite$position = F2(
 				return $elm$core$List$cons(
 					_Utils_Tuple2(
 						$author$project$VegaLite$positionLabel(3),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 8:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(8),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 9:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(9),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 10:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(10),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 11:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(11),
 						$elm$json$Json$Encode$object(
 							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
 			case 4:

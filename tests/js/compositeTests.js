@@ -3828,7 +3828,11 @@ var $author$project$VegaLite$Latitude2 = 7;
 var $author$project$VegaLite$Longitude = 4;
 var $author$project$VegaLite$Longitude2 = 6;
 var $author$project$VegaLite$X2 = 2;
+var $author$project$VegaLite$XError = 8;
+var $author$project$VegaLite$XError2 = 10;
 var $author$project$VegaLite$Y2 = 3;
+var $author$project$VegaLite$YError = 9;
+var $author$project$VegaLite$YError2 = 11;
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -6231,6 +6235,14 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 			return 'x2';
 		case 3:
 			return 'y2';
+		case 8:
+			return 'xError';
+		case 9:
+			return 'yError';
+		case 10:
+			return 'xError2';
+		case 11:
+			return 'yError2';
 		case 4:
 			return 'longitude';
 		case 5:
@@ -6274,6 +6286,30 @@ var $author$project$VegaLite$position = F2(
 				return $elm$core$List$cons(
 					_Utils_Tuple2(
 						$author$project$VegaLite$positionLabel(3),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 8:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(8),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 9:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(9),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 10:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(10),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 11:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(11),
 						$elm$json$Json$Encode$object(
 							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
 			case 4:
@@ -6849,6 +6885,642 @@ var $author$project$CompositeTests$errorbar3 = function () {
 					[specErrorBars, specPoints]))
 			]));
 }();
+var $author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$head,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Maybe$withDefault(_List_Nil),
+			$elm$core$List$length));
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$List$map2($elm$core$List$cons),
+		A2(
+			$elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var $author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			$elm$json$Json$Encode$list,
+			$elm$json$Json$Encode$object,
+			$author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var $author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$Strings = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
+var $author$project$CompositeTests$errorbar4 = function () {
+	var encPoints = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('yield'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('variety'),
+					$author$project$VegaLite$pOrdinal
+				])));
+	var specPoints = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFilled(true),
+						$author$project$VegaLite$maColor('black')
+					])),
+				encPoints(_List_Nil)
+			]));
+	var encErrorBars = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('yield'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scZero(false)
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('variety'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			8,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('yieldError')
+				])));
+	var specErrorBars = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$errorbar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTicks(_List_Nil)
+					])),
+				encErrorBars(_List_Nil)
+			]));
+	var des = $author$project$VegaLite$description('Symetric error bars encoded with xError channel');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'yieldError',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[7.55, 6.98, 3.92, 11.97])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'yield',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[32.4, 30.97, 33.96, 30.45])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'variety',
+			$author$project$VegaLite$strs(
+				_List_fromArray(
+					['Glabron', 'Manchuria', 'No. 457', 'No. 462']))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specErrorBars, specPoints]))
+			]));
+}();
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $author$project$CompositeTests$errorbar5 = function () {
+	var encPoints = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('yield'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('variety'),
+					$author$project$VegaLite$pOrdinal
+				])));
+	var specPoints = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFilled(true),
+						$author$project$VegaLite$maColor('black')
+					])),
+				encPoints(_List_Nil)
+			]));
+	var encErrorBars = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('yield'),
+								$author$project$VegaLite$pQuant,
+								$author$project$VegaLite$pScale(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$scZero(false)
+									]))
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('variety'),
+							$author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				8,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('yieldError')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			10,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('yieldError2')
+				])));
+	var specErrorBars = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$errorbar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTicks(_List_Nil)
+					])),
+				encErrorBars(_List_Nil)
+			]));
+	var des = $author$project$VegaLite$description('Asymetric error bars encoded with xError and xError2 channels');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						$author$project$VegaLite$dataColumn,
+						'yieldError',
+						$author$project$VegaLite$nums(
+							_List_fromArray(
+								[7.55, 6.98, 3.92, 11.97])))),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'yieldError2',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[-10.55, -3.98, -0.92, -15.97])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'yield',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[32.4, 30.97, 33.96, 30.45])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'variety',
+			$author$project$VegaLite$strs(
+				_List_fromArray(
+					['Glabron', 'Manchuria', 'No. 457', 'No. 462']))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specErrorBars, specPoints]))
+			]));
+}();
+var $author$project$CompositeTests$errorbar6 = function () {
+	var encPoints = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('yield'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('variety'),
+					$author$project$VegaLite$pOrdinal
+				])));
+	var specPoints = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFilled(true),
+						$author$project$VegaLite$maColor('black')
+					])),
+				encPoints(_List_Nil)
+			]));
+	var encErrorBars = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('yield'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scZero(false)
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('variety'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			9,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('yieldError')
+				])));
+	var specErrorBars = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$errorbar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTicks(_List_Nil)
+					])),
+				encErrorBars(_List_Nil)
+			]));
+	var des = $author$project$VegaLite$description('Symetric error bars encoded with yError channel');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'yieldError',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[7.55, 6.98, 3.92, 11.97])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'yield',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[32.4, 30.97, 33.96, 30.45])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'variety',
+			$author$project$VegaLite$strs(
+				_List_fromArray(
+					['Glabron', 'Manchuria', 'No. 457', 'No. 462']))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specErrorBars, specPoints]))
+			]));
+}();
+var $author$project$CompositeTests$errorbar7 = function () {
+	var encPoints = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('yield'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('variety'),
+					$author$project$VegaLite$pOrdinal
+				])));
+	var specPoints = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFilled(true),
+						$author$project$VegaLite$maColor('black')
+					])),
+				encPoints(_List_Nil)
+			]));
+	var encErrorBars = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('yield'),
+								$author$project$VegaLite$pQuant,
+								$author$project$VegaLite$pScale(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$scZero(false)
+									]))
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('variety'),
+							$author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				9,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('yieldError')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			11,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('yieldError2')
+				])));
+	var specErrorBars = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$errorbar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTicks(_List_Nil)
+					])),
+				encErrorBars(_List_Nil)
+			]));
+	var des = $author$project$VegaLite$description('Asymetric error bars encoded with yError and yError2 channels');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						$author$project$VegaLite$dataColumn,
+						'yieldError',
+						$author$project$VegaLite$nums(
+							_List_fromArray(
+								[7.55, 6.98, 3.92, 11.97])))),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'yieldError2',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[-10.55, -3.98, -0.92, -15.97])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'yield',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[32.4, 30.97, 33.96, 30.45])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'variety',
+			$author$project$VegaLite$strs(
+				_List_fromArray(
+					['Glabron', 'Manchuria', 'No. 457', 'No. 462']))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specErrorBars, specPoints]))
+			]));
+}();
 var $author$project$CompositeTests$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -6859,7 +7531,11 @@ var $author$project$CompositeTests$mySpecs = $author$project$VegaLite$combineSpe
 			_Utils_Tuple2('errorband2', $author$project$CompositeTests$errorband2),
 			_Utils_Tuple2('errorbar1', $author$project$CompositeTests$errorbar1),
 			_Utils_Tuple2('errorbar2', $author$project$CompositeTests$errorbar2),
-			_Utils_Tuple2('errorbar3', $author$project$CompositeTests$errorbar3)
+			_Utils_Tuple2('errorbar3', $author$project$CompositeTests$errorbar3),
+			_Utils_Tuple2('errorbar4', $author$project$CompositeTests$errorbar4),
+			_Utils_Tuple2('errorbar5', $author$project$CompositeTests$errorbar5),
+			_Utils_Tuple2('errorbar6', $author$project$CompositeTests$errorbar6),
+			_Utils_Tuple2('errorbar7', $author$project$CompositeTests$errorbar7)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

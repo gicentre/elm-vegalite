@@ -5202,7 +5202,7 @@ var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 	switch (asCfg) {
-		case 3:
+		case 5:
 			return _Utils_Tuple2(
 				'type',
 				$elm$json$Json$Encode$string('pad'));
@@ -5213,8 +5213,16 @@ var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 		case 2:
 			return _Utils_Tuple2(
 				'type',
+				$elm$json$Json$Encode$string('fit-x'));
+		case 3:
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string('fit-y'));
+		case 4:
+			return _Utils_Tuple2(
+				'type',
 				$elm$json$Json$Encode$string('none'));
-		case 5:
+		case 7:
 			return _Utils_Tuple2(
 				'resize',
 				$elm$json$Json$Encode$bool(true));

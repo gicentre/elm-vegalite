@@ -2809,7 +2809,7 @@ var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 	switch (asCfg) {
-		case 3:
+		case 5:
 			return _Utils_Tuple2(
 				'type',
 				$elm$json$Json$Encode$string('pad'));
@@ -2820,8 +2820,16 @@ var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 		case 2:
 			return _Utils_Tuple2(
 				'type',
+				$elm$json$Json$Encode$string('fit-x'));
+		case 3:
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string('fit-y'));
+		case 4:
+			return _Utils_Tuple2(
+				'type',
 				$elm$json$Json$Encode$string('none'));
-		case 5:
+		case 7:
 			return _Utils_Tuple2(
 				'resize',
 				$elm$json$Json$Encode$bool(true));
@@ -7649,21 +7657,120 @@ var $author$project$VegaLite$height = function (h) {
 		$elm$json$Json$Encode$float(h));
 };
 var $author$project$VegaLite$lookup = F4(
-	function (key1, _v0, key2, fields) {
+	function (key1, _v0, key2, lufs) {
 		var vlProp = _v0.a;
 		var spec = _v0.b;
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
 				'lookup',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(key1),
-							spec,
-							$elm$json$Json$Encode$string(key2),
-							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields)
-						]))));
+				function () {
+					switch (lufs.$) {
+						case 0:
+							var fs = lufs.a;
+							return $author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$string(key1),
+										spec,
+										$elm$json$Json$Encode$string(key2),
+										A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs),
+										$elm$json$Json$Encode$null,
+										$elm$json$Json$Encode$null
+									]));
+						case 1:
+							var fas = lufs.a;
+							return $author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$string(key1),
+										spec,
+										$elm$json$Json$Encode$string(key2),
+										A2(
+										$elm$json$Json$Encode$list,
+										function (_v2) {
+											var f = _v2.a;
+											return $elm$json$Json$Encode$string(f);
+										},
+										fas),
+										A2(
+										$elm$json$Json$Encode$list,
+										function (_v3) {
+											var a = _v3.b;
+											return $elm$json$Json$Encode$string(a);
+										},
+										fas),
+										$elm$json$Json$Encode$null
+									]));
+						case 2:
+							var s = lufs.a;
+							return $author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$string(key1),
+										spec,
+										$elm$json$Json$Encode$string(key2),
+										$elm$json$Json$Encode$null,
+										$elm$json$Json$Encode$string(s),
+										$elm$json$Json$Encode$null
+									]));
+						case 3:
+							var fs = lufs.a;
+							var def = lufs.b;
+							return $author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$string(key1),
+										spec,
+										$elm$json$Json$Encode$string(key2),
+										A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs),
+										$elm$json$Json$Encode$null,
+										$elm$json$Json$Encode$string(def)
+									]));
+						case 4:
+							var fas = lufs.a;
+							var def = lufs.b;
+							return $author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$string(key1),
+										spec,
+										$elm$json$Json$Encode$string(key2),
+										A2(
+										$elm$json$Json$Encode$list,
+										function (_v4) {
+											var f = _v4.a;
+											return $elm$json$Json$Encode$string(f);
+										},
+										fas),
+										A2(
+										$elm$json$Json$Encode$list,
+										function (_v5) {
+											var a = _v5.b;
+											return $elm$json$Json$Encode$string(a);
+										},
+										fas),
+										$elm$json$Json$Encode$string(def)
+									]));
+						default:
+							var s = lufs.a;
+							var def = lufs.b;
+							return $author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$string(key1),
+										spec,
+										$elm$json$Json$Encode$string(key2),
+										$elm$json$Json$Encode$null,
+										$elm$json$Json$Encode$string(s),
+										$elm$json$Json$Encode$string(def)
+									]));
+					}
+				}()));
 	});
+var $author$project$VegaLite$LUFields = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$luFields = $author$project$VegaLite$LUFields;
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
@@ -7792,9 +7899,9 @@ var $elm$core$List$isEmpty = function (xs) {
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $elm$json$Json$Decode$value = _Json_decodeValue;
 var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v91) {
-		var trName = _v91.a;
-		var val = _v91.b;
+	var assemble = function (_v88) {
+		var trName = _v88.a;
+		var val = _v88.b;
 		switch (trName) {
 			case 'aggregate':
 				var _v1 = A2(
@@ -8041,7 +8148,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((!_v37.$) && _v37.a.b) && _v37.a.b.b) && _v37.a.b.b.b) && _v37.a.b.b.b.b) && (!_v37.a.b.b.b.b.b)) {
+				if ((((((((!_v37.$) && _v37.a.b) && _v37.a.b.b) && _v37.a.b.b.b) && _v37.a.b.b.b.b) && _v37.a.b.b.b.b.b) && _v37.a.b.b.b.b.b.b) && (!_v37.a.b.b.b.b.b.b.b)) {
 					var _v38 = _v37.a;
 					var key1 = _v38.a;
 					var _v39 = _v38.b;
@@ -8050,70 +8157,74 @@ var $author$project$VegaLite$transform = function (transforms) {
 					var key2 = _v40.a;
 					var _v41 = _v40.b;
 					var fields = _v41.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('lookup', key1),
-								_Utils_Tuple2(
-								'from',
-								$elm$json$Json$Encode$object(
-									_List_fromArray(
-										[
-											_Utils_Tuple2('data', dataSpec),
-											_Utils_Tuple2('key', key2),
-											_Utils_Tuple2('fields', fields)
-										])))
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'lookupAs':
-				var _v42 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((!_v42.$) && _v42.a.b) && _v42.a.b.b) && _v42.a.b.b.b) && _v42.a.b.b.b.b) && (!_v42.a.b.b.b.b.b)) {
-					var _v43 = _v42.a;
-					var key1 = _v43.a;
-					var _v44 = _v43.b;
-					var dataSpec = _v44.a;
-					var _v45 = _v44.b;
-					var key2 = _v45.a;
-					var _v46 = _v45.b;
-					var asName = _v46.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('lookup', key1),
-								_Utils_Tuple2(
-								'from',
-								$elm$json$Json$Encode$object(
-									_List_fromArray(
-										[
-											_Utils_Tuple2('data', dataSpec),
-											_Utils_Tuple2('key', key2)
-										]))),
-								_Utils_Tuple2('as', asName)
-							]));
+					var _v42 = _v41.b;
+					var aliases = _v42.a;
+					var _v43 = _v42.b;
+					var def = _v43.a;
+					var lSpecs = _Utils_eq(aliases, $elm$json$Json$Encode$null) ? _List_fromArray(
+						[
+							_Utils_Tuple2('lookup', key1),
+							_Utils_Tuple2(
+							'from',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2('data', dataSpec),
+										_Utils_Tuple2('key', key2),
+										_Utils_Tuple2('fields', fields)
+									])))
+						]) : (_Utils_eq(fields, $elm$json$Json$Encode$null) ? _List_fromArray(
+						[
+							_Utils_Tuple2('lookup', key1),
+							_Utils_Tuple2(
+							'from',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2('data', dataSpec),
+										_Utils_Tuple2('key', key2)
+									]))),
+							_Utils_Tuple2('as', aliases)
+						]) : _List_fromArray(
+						[
+							_Utils_Tuple2('lookup', key1),
+							_Utils_Tuple2(
+							'from',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2('data', dataSpec),
+										_Utils_Tuple2('key', key2),
+										_Utils_Tuple2('fields', fields)
+									]))),
+							_Utils_Tuple2('as', aliases)
+						]));
+					return _Utils_eq(
+						def,
+						$elm$json$Json$Encode$string('')) ? $elm$json$Json$Encode$object(lSpecs) : $elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2('default', def),
+							lSpecs));
 				} else {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'pivot':
-				var _v47 = A2(
+				var _v44 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v47.$) && _v47.a.b) && _v47.a.b.b) && _v47.a.b.b.b) && _v47.a.b.b.b.b) && _v47.a.b.b.b.b.b) && (!_v47.a.b.b.b.b.b.b)) {
-					var _v48 = _v47.a;
-					var pField = _v48.a;
+				if (((((((!_v44.$) && _v44.a.b) && _v44.a.b.b) && _v44.a.b.b.b) && _v44.a.b.b.b.b) && _v44.a.b.b.b.b.b) && (!_v44.a.b.b.b.b.b.b)) {
+					var _v45 = _v44.a;
+					var pField = _v45.a;
+					var _v46 = _v45.b;
+					var pValField = _v46.a;
+					var _v47 = _v46.b;
+					var gbObj = _v47.a;
+					var _v48 = _v47.b;
+					var liObj = _v48.a;
 					var _v49 = _v48.b;
-					var pValField = _v49.a;
-					var _v50 = _v49.b;
-					var gbObj = _v50.a;
-					var _v51 = _v50.b;
-					var liObj = _v51.a;
-					var _v52 = _v51.b;
-					var opObj = _v52.a;
+					var opObj = _v49.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -8139,25 +8250,25 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'regression':
-				var _v53 = A2(
+				var _v50 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((((!_v53.$) && _v53.a.b) && _v53.a.b.b) && _v53.a.b.b.b) && _v53.a.b.b.b.b) && _v53.a.b.b.b.b.b) && _v53.a.b.b.b.b.b.b) && _v53.a.b.b.b.b.b.b.b) && (!_v53.a.b.b.b.b.b.b.b.b)) {
-					var _v54 = _v53.a;
-					var fDep = _v54.a;
+				if (((((((((!_v50.$) && _v50.a.b) && _v50.a.b.b) && _v50.a.b.b.b) && _v50.a.b.b.b.b) && _v50.a.b.b.b.b.b) && _v50.a.b.b.b.b.b.b) && _v50.a.b.b.b.b.b.b.b) && (!_v50.a.b.b.b.b.b.b.b.b)) {
+					var _v51 = _v50.a;
+					var fDep = _v51.a;
+					var _v52 = _v51.b;
+					var fInd = _v52.a;
+					var _v53 = _v52.b;
+					var gbObj = _v53.a;
+					var _v54 = _v53.b;
+					var meObj = _v54.a;
 					var _v55 = _v54.b;
-					var fInd = _v55.a;
+					var orObj = _v55.a;
 					var _v56 = _v55.b;
-					var gbObj = _v56.a;
+					var exObj = _v56.a;
 					var _v57 = _v56.b;
-					var meObj = _v57.a;
-					var _v58 = _v57.b;
-					var orObj = _v58.a;
-					var _v59 = _v58.b;
-					var exObj = _v59.a;
-					var _v60 = _v59.b;
-					var asObj = _v60.a;
+					var asObj = _v57.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -8193,15 +8304,15 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'flattenAs':
-				var _v61 = A2(
+				var _v58 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((!_v61.$) && _v61.a.b) && _v61.a.b.b) && (!_v61.a.b.b.b)) {
-					var _v62 = _v61.a;
-					var fields = _v62.a;
-					var _v63 = _v62.b;
-					var names = _v63.a;
+				if ((((!_v58.$) && _v58.a.b) && _v58.a.b.b) && (!_v58.a.b.b.b)) {
+					var _v59 = _v58.a;
+					var fields = _v59.a;
+					var _v60 = _v59.b;
+					var names = _v60.a;
 					return $elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -8212,17 +8323,17 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'foldAs':
-				var _v64 = A2(
+				var _v61 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v64.$) && _v64.a.b) && _v64.a.b.b) && _v64.a.b.b.b) && (!_v64.a.b.b.b.b)) {
-					var _v65 = _v64.a;
-					var fields = _v65.a;
-					var _v66 = _v65.b;
-					var keyName = _v66.a;
-					var _v67 = _v66.b;
-					var valName = _v67.a;
+				if (((((!_v61.$) && _v61.a.b) && _v61.a.b.b) && _v61.a.b.b.b) && (!_v61.a.b.b.b.b)) {
+					var _v62 = _v61.a;
+					var fields = _v62.a;
+					var _v63 = _v62.b;
+					var keyName = _v63.a;
+					var _v64 = _v63.b;
+					var valName = _v64.a;
 					return $elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -8237,23 +8348,23 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'stack':
-				var _v68 = A2(
+				var _v65 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((!_v68.$) && _v68.a.b) && _v68.a.b.b) && _v68.a.b.b.b) && _v68.a.b.b.b.b) && _v68.a.b.b.b.b.b) && _v68.a.b.b.b.b.b.b) && (!_v68.a.b.b.b.b.b.b.b)) {
-					var _v69 = _v68.a;
-					var field = _v69.a;
+				if ((((((((!_v65.$) && _v65.a.b) && _v65.a.b.b) && _v65.a.b.b.b) && _v65.a.b.b.b.b) && _v65.a.b.b.b.b.b) && _v65.a.b.b.b.b.b.b) && (!_v65.a.b.b.b.b.b.b.b)) {
+					var _v66 = _v65.a;
+					var field = _v66.a;
+					var _v67 = _v66.b;
+					var grp = _v67.a;
+					var _v68 = _v67.b;
+					var start = _v68.a;
+					var _v69 = _v68.b;
+					var end = _v69.a;
 					var _v70 = _v69.b;
-					var grp = _v70.a;
+					var offsetObj = _v70.a;
 					var _v71 = _v70.b;
-					var start = _v71.a;
-					var _v72 = _v71.b;
-					var end = _v72.a;
-					var _v73 = _v72.b;
-					var offsetObj = _v73.a;
-					var _v74 = _v73.b;
-					var sortObj = _v74.a;
+					var sortObj = _v71.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -8279,17 +8390,17 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'timeUnit':
-				var _v75 = A2(
+				var _v72 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v75.$) && _v75.a.b) && _v75.a.b.b) && _v75.a.b.b.b) && (!_v75.a.b.b.b.b)) {
-					var _v76 = _v75.a;
-					var tu = _v76.a;
-					var _v77 = _v76.b;
-					var field = _v77.a;
-					var _v78 = _v77.b;
-					var label = _v78.a;
+				if (((((!_v72.$) && _v72.a.b) && _v72.a.b.b) && _v72.a.b.b.b) && (!_v72.a.b.b.b.b)) {
+					var _v73 = _v72.a;
+					var tu = _v73.a;
+					var _v74 = _v73.b;
+					var field = _v74.a;
+					var _v75 = _v74.b;
+					var label = _v75.a;
 					return $elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -8301,21 +8412,21 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'window':
-				var _v79 = A2(
+				var _v76 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v79.$) && _v79.a.b) && _v79.a.b.b) && _v79.a.b.b.b) && _v79.a.b.b.b.b) && _v79.a.b.b.b.b.b) && (!_v79.a.b.b.b.b.b.b)) {
-					var _v80 = _v79.a;
-					var winObj = _v80.a;
+				if (((((((!_v76.$) && _v76.a.b) && _v76.a.b.b) && _v76.a.b.b.b) && _v76.a.b.b.b.b) && _v76.a.b.b.b.b.b) && (!_v76.a.b.b.b.b.b.b)) {
+					var _v77 = _v76.a;
+					var winObj = _v77.a;
+					var _v78 = _v77.b;
+					var frameObj = _v78.a;
+					var _v79 = _v78.b;
+					var peersObj = _v79.a;
+					var _v80 = _v79.b;
+					var groupbyObj = _v80.a;
 					var _v81 = _v80.b;
-					var frameObj = _v81.a;
-					var _v82 = _v81.b;
-					var peersObj = _v82.a;
-					var _v83 = _v82.b;
-					var groupbyObj = _v83.a;
-					var _v84 = _v83.b;
-					var sortObj = _v84.a;
+					var sortObj = _v81.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -8345,21 +8456,21 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'joinaggregate':
-				var _v85 = A2(
+				var _v82 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v85.$) && _v85.a.b) && _v85.a.b.b) && _v85.a.b.b.b) && _v85.a.b.b.b.b) && _v85.a.b.b.b.b.b) && (!_v85.a.b.b.b.b.b.b)) {
-					var _v86 = _v85.a;
-					var joinObjs = _v86.a;
+				if (((((((!_v82.$) && _v82.a.b) && _v82.a.b.b) && _v82.a.b.b.b) && _v82.a.b.b.b.b) && _v82.a.b.b.b.b.b) && (!_v82.a.b.b.b.b.b.b)) {
+					var _v83 = _v82.a;
+					var joinObjs = _v83.a;
+					var _v84 = _v83.b;
+					var frameObj = _v84.a;
+					var _v85 = _v84.b;
+					var peersObj = _v85.a;
+					var _v86 = _v85.b;
+					var groupbyObj = _v86.a;
 					var _v87 = _v86.b;
-					var frameObj = _v87.a;
-					var _v88 = _v87.b;
-					var peersObj = _v88.a;
-					var _v89 = _v88.b;
-					var groupbyObj = _v89.a;
-					var _v90 = _v89.b;
-					var sortObj = _v90.a;
+					var sortObj = _v87.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -8416,8 +8527,9 @@ var $author$project$GalleryGeo$geo1 = function () {
 			'id',
 			unemploymentData,
 			'id',
-			_List_fromArray(
-				['rate'])));
+			$author$project$VegaLite$luFields(
+				_List_fromArray(
+					['rate']))));
 	var proj = $author$project$VegaLite$projection(
 		_List_fromArray(
 			[
@@ -8495,8 +8607,12 @@ var $author$project$VegaLite$Latitude2 = 7;
 var $author$project$VegaLite$Longitude2 = 6;
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$X2 = 2;
+var $author$project$VegaLite$XError = 8;
+var $author$project$VegaLite$XError2 = 10;
 var $author$project$VegaLite$Y = 1;
 var $author$project$VegaLite$Y2 = 3;
+var $author$project$VegaLite$YError = 9;
+var $author$project$VegaLite$YError2 = 11;
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 58, a: a};
 };
@@ -9273,6 +9389,14 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 			return 'x2';
 		case 3:
 			return 'y2';
+		case 8:
+			return 'xError';
+		case 9:
+			return 'yError';
+		case 10:
+			return 'xError2';
+		case 11:
+			return 'yError2';
 		case 4:
 			return 'longitude';
 		case 5:
@@ -9316,6 +9440,30 @@ var $author$project$VegaLite$position = F2(
 				return $elm$core$List$cons(
 					_Utils_Tuple2(
 						$author$project$VegaLite$positionLabel(3),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 8:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(8),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 9:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(9),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 10:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(10),
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
+			case 11:
+				return $elm$core$List$cons(
+					_Utils_Tuple2(
+						$author$project$VegaLite$positionLabel(11),
 						$elm$json$Json$Encode$object(
 							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
 			case 4:
@@ -9522,6 +9670,10 @@ var $author$project$VegaLite$filter = function (f) {
 			'filter',
 			$author$project$VegaLite$filterSpec(f)));
 };
+var $author$project$VegaLite$LUAs = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
 var $author$project$VegaLite$Rule = 11;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$Str = function (a) {
@@ -9529,44 +9681,6 @@ var $author$project$VegaLite$Str = function (a) {
 };
 var $author$project$VegaLite$str = $author$project$VegaLite$Str;
 var $author$project$GalleryGeo$geo4 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						A2(
-							$elm$core$Basics$composeL,
-							A2(
-								$elm$core$Basics$composeL,
-								$author$project$VegaLite$transform,
-								$author$project$VegaLite$filter(
-									A2(
-										$author$project$VegaLite$fiEqual,
-										'origin',
-										$author$project$VegaLite$str('SEA')))),
-							A4(
-								$author$project$VegaLite$lookup,
-								'origin',
-								A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-								'iata',
-								_List_fromArray(
-									['latitude', 'longitude']))),
-						A2($author$project$VegaLite$calculateAs, 'datum.latitude', 'origin_latitude')),
-					A2($author$project$VegaLite$calculateAs, 'datum.longitude', 'origin_longitude')),
-				A4(
-					$author$project$VegaLite$lookup,
-					'destination',
-					A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-					'iata',
-					_List_fromArray(
-						['latitude', 'longitude']))),
-			A2($author$project$VegaLite$calculateAs, 'datum.latitude', 'dest_latitude')),
-		A2($author$project$VegaLite$calculateAs, 'datum.longitude', 'dest_longitude'));
 	var flightsEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -9581,7 +9695,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 						4,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('origin_longitude'),
+								$author$project$VegaLite$pName('o.longitude'),
 								$author$project$VegaLite$pQuant
 							]))),
 				A2(
@@ -9589,7 +9703,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 					5,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('origin_latitude'),
+							$author$project$VegaLite$pName('o.latitude'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -9597,25 +9711,15 @@ var $author$project$GalleryGeo$geo4 = function () {
 				6,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('dest_longitude'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('d.longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			7,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('dest_latitude'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pName('d.latitude')
 				])));
-	var flightsSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
-				trans(_List_Nil),
-				$author$project$VegaLite$rule(_List_Nil),
-				flightsEnc(_List_Nil)
-			]));
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -9671,12 +9775,45 @@ var $author$project$GalleryGeo$geo4 = function () {
 				[
 					$author$project$VegaLite$mStr('gray')
 				])));
+	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+				airportData,
 				$author$project$VegaLite$circle(_List_Nil),
 				airportsEnc(_List_Nil)
+			]));
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$transform,
+				$author$project$VegaLite$filter(
+					A2(
+						$author$project$VegaLite$fiEqual,
+						'origin',
+						$author$project$VegaLite$str('SEA')))),
+			A4(
+				$author$project$VegaLite$lookup,
+				'origin',
+				airportData,
+				'iata',
+				$author$project$VegaLite$luAs('o'))),
+		A4(
+			$author$project$VegaLite$lookup,
+			'destination',
+			airportData,
+			'iata',
+			$author$project$VegaLite$luAs('d')));
+	var flightsSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
+				trans(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil),
+				flightsEnc(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9699,22 +9836,6 @@ var $author$project$VegaLite$Row = 1;
 var $author$project$VegaLite$arRow = 1;
 var $author$project$VegaLite$ChColor = 4;
 var $author$project$VegaLite$chColor = 4;
-var $author$project$VegaLite$lookupAs = F4(
-	function (key1, _v0, key2, asName) {
-		var vlProp = _v0.a;
-		var spec = _v0.b;
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'lookupAs',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(key1),
-							spec,
-							$elm$json$Json$Encode$string(key2),
-							$elm$json$Json$Encode$string(asName)
-						]))));
-	});
 var $author$project$VegaLite$GeoFeature = 4;
 var $author$project$VegaLite$mGeo = $author$project$VegaLite$MmType(4);
 var $author$project$VegaLite$MRepeat = function (a) {
@@ -9832,6 +9953,13 @@ var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(23, spec);
 };
 var $author$project$GalleryGeo$geo5 = function () {
+	var geoData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -9860,17 +9988,11 @@ var $author$project$GalleryGeo$geo5 = function () {
 				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv', _List_Nil),
 				$author$project$VegaLite$transform(
 				A5(
-					$author$project$VegaLite$lookupAs,
+					$author$project$VegaLite$lookup,
 					'id',
-					A2(
-						$author$project$VegaLite$dataFromUrl,
-						'https://vega.github.io/vega-lite/data/us-10m.json',
-						_List_fromArray(
-							[
-								$author$project$VegaLite$topojsonFeature('states')
-							])),
+					geoData,
 					'id',
-					'geo',
+					$author$project$VegaLite$luAs('geo'),
 					_List_Nil)),
 				$author$project$VegaLite$projection(
 				_List_fromArray(
@@ -10368,16 +10490,6 @@ var $author$project$VegaLite$Strings = function (a) {
 };
 var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
 var $author$project$GalleryGeo$geo7 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		A4(
-			$author$project$VegaLite$lookup,
-			'airport',
-			A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-			'iata',
-			_List_fromArray(
-				['latitude', 'longitude'])));
 	var itinerary = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10424,14 +10536,6 @@ var $author$project$GalleryGeo$geo7 = function () {
 					$author$project$VegaLite$oName('order'),
 					$author$project$VegaLite$oOrdinal
 				])));
-	var flightsSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				itinerary(_List_Nil),
-				trans(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				flightsEnc(_List_Nil)
-			]));
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -10487,12 +10591,32 @@ var $author$project$GalleryGeo$geo7 = function () {
 				[
 					$author$project$VegaLite$mStr('gray')
 				])));
+	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+				airportData,
 				$author$project$VegaLite$circle(_List_Nil),
 				airportsEnc(_List_Nil)
+			]));
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A4(
+			$author$project$VegaLite$lookup,
+			'airport',
+			airportData,
+			'iata',
+			$author$project$VegaLite$luFields(
+				_List_fromArray(
+					['latitude', 'longitude']))));
+	var flightsSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				itinerary(_List_Nil),
+				trans(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil),
+				flightsEnc(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10599,6 +10723,13 @@ var $author$project$VegaLite$row = function (fFields) {
 				A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields))));
 };
 var $author$project$GalleryGeo$geo8 = function () {
+	var geoData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10637,17 +10768,11 @@ var $author$project$GalleryGeo$geo8 = function () {
 				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/income.json', _List_Nil),
 				$author$project$VegaLite$transform(
 				A5(
-					$author$project$VegaLite$lookupAs,
+					$author$project$VegaLite$lookup,
 					'id',
-					A2(
-						$author$project$VegaLite$dataFromUrl,
-						'https://vega.github.io/vega-lite/data/us-10m.json',
-						_List_fromArray(
-							[
-								$author$project$VegaLite$topojsonFeature('states')
-							])),
+					geoData,
 					'id',
-					'geo',
+					$author$project$VegaLite$luAs('geo'),
 					_List_Nil)),
 				$author$project$VegaLite$projection(
 				_List_fromArray(

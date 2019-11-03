@@ -86,6 +86,36 @@
     </figure>
     <div style="clear:left"></div>
 
+    <figure class="cell">
+      <div id="errorbar4"></div>
+      <figcaption>Symmetric error bars with explicit xError channel</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="errorbar5"></div>
+      <figcaption>
+        Asymmetric error bars with explicit xError and xError2 channels
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="errorbar6"></div>
+      <figcaption>
+        Symmetric vertical error bars with explicit yError channel
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="errorbar7"></div>
+      <figcaption>
+        Asymmetric vertical error bars with explicit yError and yError2 channels
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
     <script>
       Elm.CompositeTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
