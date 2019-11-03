@@ -33,6 +33,8 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - _`columns` now takes an `int` rather than `Maybe int`._
   To update older code, replace `columns (Just n)` with `columns n` and `columns Nothing` with `columns 0`.
 
+- `Position` custom type has extra variants `XError`, `XError2`, `YError` and `YError2`. Technically a breaking change but unlikely to affect existing specifications unless pattern matching against `Position`.
+
 ## Additions
 
 - Convenience functions for setting a channel's measurement type. `pNominal`, `pOrdinal`, `pQuant`, `pTemporal` and `pGeo` equivalent to `pMType Nominal`, `pMType Ordinal` etc. Similar functions for `m` (mark), `t` (text), `h` (hyperlink), `o` (order) `d` (detail) and `f` (facet) channels.
@@ -84,3 +86,4 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - Improvements to the API documentation with a larger number of inline examples.
 - New gallery examples reflecting additions to the Vega-Lite example set.
 - Numerous minor gallery example updates to reflect API changes and provide more idiomatic specifications.
+- Additional tests for new functionality.

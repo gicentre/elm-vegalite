@@ -173,6 +173,154 @@ errorbar3 =
         ]
 
 
+errorbar4 : Spec
+errorbar4 =
+    let
+        des =
+            description "Symetric error bars encoded with xError channel"
+
+        data =
+            dataFromColumns []
+                << dataColumn "yieldError" (nums [ 7.55, 6.98, 3.92, 11.97 ])
+                << dataColumn "yield" (nums [ 32.4, 30.97, 33.96, 30.45 ])
+                << dataColumn "variety" (strs [ "Glabron", "Manchuria", "No. 457", "No. 462" ])
+
+        specErrorBars =
+            asSpec [ errorbar [ maTicks [] ], encErrorBars [] ]
+
+        encErrorBars =
+            encoding
+                << position X [ pName "yield", pQuant, pScale [ scZero False ] ]
+                << position Y [ pName "variety", pOrdinal ]
+                << position XError [ pName "yieldError" ]
+
+        specPoints =
+            asSpec [ point [ maFilled True, maColor "black" ], encPoints [] ]
+
+        encPoints =
+            encoding
+                << position X [ pName "yield", pQuant ]
+                << position Y [ pName "variety", pOrdinal ]
+    in
+    toVegaLite
+        [ des
+        , data []
+        , layer [ specErrorBars, specPoints ]
+        ]
+
+
+errorbar5 : Spec
+errorbar5 =
+    let
+        des =
+            description "Asymetric error bars encoded with xError and xError2 channels"
+
+        data =
+            dataFromColumns []
+                << dataColumn "yieldError" (nums [ 7.55, 6.98, 3.92, 11.97 ])
+                << dataColumn "yieldError2" (nums [ -10.55, -3.98, -0.92, -15.97 ])
+                << dataColumn "yield" (nums [ 32.4, 30.97, 33.96, 30.45 ])
+                << dataColumn "variety" (strs [ "Glabron", "Manchuria", "No. 457", "No. 462" ])
+
+        specErrorBars =
+            asSpec [ errorbar [ maTicks [] ], encErrorBars [] ]
+
+        encErrorBars =
+            encoding
+                << position X [ pName "yield", pQuant, pScale [ scZero False ] ]
+                << position Y [ pName "variety", pOrdinal ]
+                << position XError [ pName "yieldError" ]
+                << position XError2 [ pName "yieldError2" ]
+
+        specPoints =
+            asSpec [ point [ maFilled True, maColor "black" ], encPoints [] ]
+
+        encPoints =
+            encoding
+                << position X [ pName "yield", pQuant ]
+                << position Y [ pName "variety", pOrdinal ]
+    in
+    toVegaLite
+        [ des
+        , data []
+        , layer [ specErrorBars, specPoints ]
+        ]
+
+
+errorbar6 : Spec
+errorbar6 =
+    let
+        des =
+            description "Symetric error bars encoded with yError channel"
+
+        data =
+            dataFromColumns []
+                << dataColumn "yieldError" (nums [ 7.55, 6.98, 3.92, 11.97 ])
+                << dataColumn "yield" (nums [ 32.4, 30.97, 33.96, 30.45 ])
+                << dataColumn "variety" (strs [ "Glabron", "Manchuria", "No. 457", "No. 462" ])
+
+        specErrorBars =
+            asSpec [ errorbar [ maTicks [] ], encErrorBars [] ]
+
+        encErrorBars =
+            encoding
+                << position Y [ pName "yield", pQuant, pScale [ scZero False ] ]
+                << position X [ pName "variety", pOrdinal ]
+                << position YError [ pName "yieldError" ]
+
+        specPoints =
+            asSpec [ point [ maFilled True, maColor "black" ], encPoints [] ]
+
+        encPoints =
+            encoding
+                << position Y [ pName "yield", pQuant ]
+                << position X [ pName "variety", pOrdinal ]
+    in
+    toVegaLite
+        [ des
+        , data []
+        , layer [ specErrorBars, specPoints ]
+        ]
+
+
+errorbar7 : Spec
+errorbar7 =
+    let
+        des =
+            description "Asymetric error bars encoded with yError and yError2 channels"
+
+        data =
+            dataFromColumns []
+                << dataColumn "yieldError" (nums [ 7.55, 6.98, 3.92, 11.97 ])
+                << dataColumn "yieldError2" (nums [ -10.55, -3.98, -0.92, -15.97 ])
+                << dataColumn "yield" (nums [ 32.4, 30.97, 33.96, 30.45 ])
+                << dataColumn "variety" (strs [ "Glabron", "Manchuria", "No. 457", "No. 462" ])
+
+        specErrorBars =
+            asSpec [ errorbar [ maTicks [] ], encErrorBars [] ]
+
+        encErrorBars =
+            encoding
+                << position Y [ pName "yield", pQuant, pScale [ scZero False ] ]
+                << position X [ pName "variety", pOrdinal ]
+                << position YError [ pName "yieldError" ]
+                << position YError2 [ pName "yieldError2" ]
+
+        specPoints =
+            asSpec [ point [ maFilled True, maColor "black" ], encPoints [] ]
+
+        encPoints =
+            encoding
+                << position Y [ pName "yield", pQuant ]
+                << position X [ pName "variety", pOrdinal ]
+    in
+    toVegaLite
+        [ des
+        , data []
+        , layer [ specErrorBars, specPoints ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -188,6 +336,10 @@ mySpecs =
         , ( "errorbar1", errorbar1 )
         , ( "errorbar2", errorbar2 )
         , ( "errorbar3", errorbar3 )
+        , ( "errorbar4", errorbar4 )
+        , ( "errorbar5", errorbar5 )
+        , ( "errorbar6", errorbar6 )
+        , ( "errorbar7", errorbar7 )
         ]
 
 
