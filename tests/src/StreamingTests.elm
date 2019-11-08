@@ -1,4 +1,4 @@
-port module Streaming exposing (elmToJS)
+port module StreamingTests exposing (elmToJS)
 
 import Platform
 import VegaLite exposing (..)

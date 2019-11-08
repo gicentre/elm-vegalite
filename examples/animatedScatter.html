@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animated Scatterplot</title>
+    <meta charset="utf-8" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      figcaption {
+        padding-top: 0.5em;
+      }
+      .cell {
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.0-beta.11/build/vega-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <!-- This is the script generated from Elm -->
+    <script src="js/animatedScatter.js"></script>
+  </head>
+
+  <body>
+    <h1>Animated Scatterplot</h1>
+
+    <p>
+      Uses the Vega View API to generate a dataset comprising as sequence of
+      years, accumulating at a regular time interval (1961, 1962, 1963...).
+    </p>
+
+    <p>
+      The specification then performs a lookup between these generated year data
+      and a full time series dataset. Only those years that match those so far
+      generated are then displayed.
+    </p>
+
+    <div id="animatedScatter1"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
+    <script>
+      Elm.AnimatedScatter.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: false,
+            logLevel: vega.Warn
+          }).then(dataGenerator);
+        }
+      });
+
+      dataGenerator = res => {
+        const start = 1961;
+        const end = 2018;
+        const interval = 1000;
+
+        // Start timer.
+        let valueGenerator = newGenerator();
+        let intervalId = window.setInterval(() => {
+          let changeSet = vega
+            .changeset()
+            .insert(valueGenerator())
+            .remove();
+          res.view.change("table", changeSet).run();
+        }, interval);
+
+        // Sequentially generate values within a range [start,end] inclusive
+        function newGenerator() {
+          let counter = start;
+          return () => {
+            if (counter < end) {
+              return { fYears: counter++ };
+            } else {
+              window.clearInterval(intervalId); // Stop timer when we reach end.
+              return { fYears: counter };
+            }
+          };
+        }
+      };
+    </script>
+  </body>
+</html>
