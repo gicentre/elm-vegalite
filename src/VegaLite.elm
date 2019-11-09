@@ -14790,11 +14790,21 @@ timeUnitAs tu field label =
 
 
 {-| Title to be displayed for a plot. The first parameter is the text of the title,
-the second a list of any title properties to configure its appearance.
+the second a list of any title properties to configure its appearance. To display
+a title over more than one line, insert line breaks with `\n` or use a multi-line
+string. For example,
+
+    title "First line\nSecond line" []
+
+or
+
+    title """First line
+    Second line""" []
+
 -}
 title : String -> List TitleProperty -> ( VLProperty, Spec )
 title txt tps =
-    ( VLTitle, JE.object (( "text", JE.string txt ) :: List.map titleConfigSpec tps) )
+    ( VLTitle, JE.object (( "text", titleSpec txt ) :: List.map titleConfigSpec tps) )
 
 
 {-| Level of measurement when encoding with a text channel. See also [tNominal](#tNominal),
@@ -20235,6 +20245,19 @@ titleConfigSpec titleCfg =
 
         TZIndex n ->
             ( "zindex", JE.int n )
+
+
+titleSpec : String -> Spec
+titleSpec tText =
+    case String.split "\n" tText of
+        [] ->
+            JE.string ""
+
+        [ s ] ->
+            JE.string s
+
+        ss ->
+            JE.list JE.string ss
 
 
 

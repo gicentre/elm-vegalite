@@ -51,7 +51,13 @@ textFormat1 =
         specLabel =
             asSpec [ textMark [ maDy 4, maDx 22 ], encLabel [] ]
     in
-    toVegaLite [ width 600, height 400, data [], layer [ specSym, specLabel ] ]
+    toVegaLite
+        [ width 600
+        , height 400
+        , title "A title over\ntwo lines with an \\n escaped new line on the second line." []
+        , data []
+        , layer [ specSym, specLabel ]
+        ]
 
 
 textFormat2 : Spec
