@@ -10085,6 +10085,20 @@ var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
 var $author$project$VegaLite$Point = 9;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$VLTitle = 2;
+var $author$project$VegaLite$titleSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {
 		return _Utils_Tuple2(
@@ -10094,7 +10108,7 @@ var $author$project$VegaLite$title = F2(
 					$elm$core$List$cons,
 					_Utils_Tuple2(
 						'text',
-						$elm$json$Json$Encode$string(txt)),
+						$author$project$VegaLite$titleSpec(txt)),
 					A2($elm$core$List$map, $author$project$VegaLite$titleConfigSpec, tps))));
 	});
 var $author$project$Walkthrough$dashboard1 = function () {
