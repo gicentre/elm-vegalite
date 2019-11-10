@@ -57,44 +57,43 @@ multi2 =
         des =
             description "Cross-filter."
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/flights-2k.json"
+                [ parse [ ( "date", foDate "" ) ] ]
+
         trans =
             transform
                 << calculateAs "hours(datum.date)" "time"
 
+        encPosition =
+            encoding
+                << position X [ pRepeat arColumn, pQuant, pBin [ biMaxBins 20 ] ]
+                << position Y [ pAggregate opCount, pQuant ]
+
+        encAll =
+            encPosition
+                << color [ mStr "#ddd" ]
+
+        specAll =
+            asSpec [ encAll [], bar [] ]
+
         sel =
-            selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
+            selection
+                << select "myBrush" seInterval [ seEncodings [ chX ], seSelectionMark [ smFill "steelblue" ] ]
 
         selTrans =
             transform
                 << filter (fiSelection "myBrush")
 
-        encPosition =
-            encoding
-                << position X
-                    [ pRepeat arColumn
-                    , pQuant
-                    , pBin [ biMaxBins 20 ]
-                    ]
-                << position Y [ pAggregate opCount, pQuant ]
-
-        spec1 =
-            asSpec [ sel [], bar [] ]
-
-        spec2 =
-            asSpec [ selTrans [], bar [], encoding (color [ mStr "goldenrod" ] []) ]
-
-        spec =
-            asSpec
-                [ des
-                , dataFromUrl "https://vega.github.io/vega-lite/data/flights-2k.json" [ parse [ ( "date", foDate "" ) ] ]
-                , trans []
-                , encPosition []
-                , layer [ spec1, spec2 ]
-                ]
+        specSelection =
+            asSpec [ sel [], selTrans [], encPosition [], bar [] ]
     in
     toVegaLite
-        [ repeat [ columnFields [ "distance", "delay", "time" ] ]
-        , specification spec
+        [ des
+        , data
+        , trans []
+        , repeat [ columnFields [ "distance", "delay", "time" ] ]
+        , specification (asSpec [ layer [ specAll, specSelection ] ])
         ]
 
 

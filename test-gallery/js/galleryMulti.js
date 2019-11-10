@@ -7201,6 +7201,14 @@ var $author$project$VegaLite$repeat = function (fields) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$repeatFieldsProperty, fields)));
 };
+var $author$project$VegaLite$SelectionMark = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$seSelectionMark = $author$project$VegaLite$SelectionMark;
+var $author$project$VegaLite$SMFill = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$smFill = $author$project$VegaLite$SMFill;
 var $author$project$VegaLite$VLSpec = 23;
 var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(23, spec);
@@ -7839,20 +7847,6 @@ var $author$project$GalleryMulti$multi2 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiSelection('myBrush')));
-	var spec2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				selTrans(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mStr('goldenrod')
-						]),
-					_List_Nil))
-			]));
 	var sel = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -7864,14 +7858,13 @@ var $author$project$GalleryMulti$multi2 = function () {
 				[
 					$author$project$VegaLite$seEncodings(
 					_List_fromArray(
-						[$author$project$VegaLite$chX]))
+						[$author$project$VegaLite$chX])),
+					$author$project$VegaLite$seSelectionMark(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$smFill('steelblue')
+						]))
 				])));
-	var spec1 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				sel(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
-			]));
 	var encPosition = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7898,33 +7891,48 @@ var $author$project$GalleryMulti$multi2 = function () {
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Cross-filter.');
-	var spec = $author$project$VegaLite$asSpec(
+	var specSelection = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				des,
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/flights-2k.json',
+				sel(_List_Nil),
+				selTrans(_List_Nil),
+				encPosition(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var encAll = A2(
+		$elm$core$Basics$composeL,
+		encPosition,
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#ddd')
+				])));
+	var specAll = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encAll(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var des = $author$project$VegaLite$description('Cross-filter.');
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/flights-2k.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$parse(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'date',
-								$author$project$VegaLite$foDate(''))
-							]))
-					])),
-				trans(_List_Nil),
-				encPosition(_List_Nil),
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[spec1, spec2]))
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				des,
+				data,
+				trans(_List_Nil),
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
@@ -7932,7 +7940,14 @@ var $author$project$GalleryMulti$multi2 = function () {
 						_List_fromArray(
 							['distance', 'delay', 'time']))
 					])),
-				$author$project$VegaLite$specification(spec)
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$layer(
+							_List_fromArray(
+								[specAll, specSelection]))
+						])))
 			]));
 }();
 var $author$project$VegaLite$Row = 1;
