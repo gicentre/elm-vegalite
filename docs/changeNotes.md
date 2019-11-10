@@ -62,7 +62,8 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `nullValue` for explicitly setting data values to null.
 - `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
 - `seInitInterval` for initialising an interval selection's extent.
-- Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke`
+- Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke` and `mSymbol` convenience function for symbol literals.
+- `tStr` for string literals in a text encoding channel.
 - `equalEarth` map projection type.
 - `key` channel for binding with Vega View API.
 - `asFitX` and `asFitY` for autosizing in one dimension only.
