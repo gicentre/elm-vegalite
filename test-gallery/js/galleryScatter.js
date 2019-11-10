@@ -7413,7 +7413,7 @@ var $author$project$VegaLite$textChannelProperty = function (tDef) {
 								$author$project$VegaLite$booleanOpSpec(selName)),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperty, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperty, elseClause));
-		default:
+		case 9:
 			var tests = tDef.a;
 			var elseClause = tDef.b;
 			var testClause = function (_v1) {
@@ -7433,6 +7433,14 @@ var $author$project$VegaLite$textChannelProperty = function (tDef) {
 					'condition',
 					A2($elm$json$Json$Encode$list, testClause, tests)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperty, elseClause));
+		default:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$string(s))
+				]);
 	}
 };
 var $author$project$VegaLite$text = function (tDefs) {
