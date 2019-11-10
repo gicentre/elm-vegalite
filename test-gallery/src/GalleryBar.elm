@@ -474,6 +474,78 @@ bar16 =
 bar17 : Spec
 bar17 =
     let
+        des =
+            description "Bar chart with label overlay"
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << calculateAs "isValid(datum.Major_Genre)? datum.Major_Genre : 'unclassified'" "genre"
+
+        enc =
+            encoding
+                << position Y
+                    [ pName "genre"
+                    , pNominal
+                    , pSort
+                        [ soCustom
+                            (strs
+                                [ "Action"
+                                , "Adventure"
+                                , "Comedy"
+                                , "Black Comedy"
+                                , "Romantic Comedy"
+                                , "Concert/Performance"
+                                , "Documentary"
+                                , "Drama"
+                                , "Horror"
+                                , "Musical"
+                                , "Thriller/Suspense"
+                                , "Western"
+                                , "unclassified"
+                                ]
+                            )
+                        ]
+                    , pAxis []
+                    ]
+
+        encBar =
+            encoding
+                << position X
+                    [ pName "IMDB_Rating"
+                    , pAggregate opMean
+                    , pQuant
+                    , pScale [ scDomain (doNums [ 0, 10 ]) ]
+                    , pTitle "Mean IMDB Ratings"
+                    ]
+
+        specBar =
+            asSpec [ encBar [], bar [ maColor "#ddd" ] ]
+
+        encText =
+            encoding
+                << text [ tName "genre", tNominal ]
+                << detail [ dAggregate opCount, dQuant ]
+
+        specText =
+            asSpec [ encText [], textMark [ maAlign haLeft, maX 5 ] ]
+    in
+    toVegaLite
+        [ des
+        , width 200
+        , heightStep 16
+        , data
+        , trans []
+        , enc []
+        , layer [ specBar, specText ]
+        ]
+
+
+bar18 : Spec
+bar18 =
+    let
         desc =
             description "A Wilkinson dot plot"
 
@@ -523,8 +595,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar18 : Spec
-bar18 =
+bar19 : Spec
+bar19 =
     let
         isotypes =
             let
@@ -594,8 +666,8 @@ bar18 =
         ]
 
 
-bar19 : Spec
-bar19 =
+bar20 : Spec
+bar20 =
     let
         des =
             description "Isotype bar chart using emojis for symbols"
@@ -660,6 +732,7 @@ mySpecs =
         , ( "bar17", bar17 )
         , ( "bar18", bar18 )
         , ( "bar19", bar19 )
+        , ( "bar20", bar20 )
         ]
 
 
