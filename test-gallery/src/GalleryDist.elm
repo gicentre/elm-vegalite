@@ -109,131 +109,33 @@ dist4 =
         des =
             description "A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000."
 
-        trans =
-            transform
-                << aggregate
-                    [ opAs opMin "people" "lowerWhisker"
-                    , opAs opQ1 "people" "lowerBox"
-                    , opAs opMedian "people" "midBox"
-                    , opAs opQ3 "people" "upperBox"
-                    , opAs opMax "people" "upperWhisker"
-                    ]
-                    [ "age" ]
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
 
-        encAge =
-            encoding << position X [ pName "age", pOrdinal ]
-
-        encLWhisker =
+        enc =
             encoding
-                << position Y
-                    [ pName "lowerWhisker"
-                    , pQuant
-                    , pAxis [ axTitle "Population" ]
-                    ]
-                << position Y2 [ pName "lowerBox" ]
-
-        specLWhisker =
-            asSpec [ rule [ maStyle [ "boxWhisker" ] ], encLWhisker [] ]
-
-        encUWhisker =
-            encoding
-                << position Y [ pName "upperBox", pQuant ]
-                << position Y2 [ pName "upperWhisker" ]
-
-        specUWhisker =
-            asSpec [ rule [ maStyle [ "boxWhisker" ] ], encUWhisker [] ]
-
-        encBox =
-            encoding
-                << position Y [ pName "lowerBox", pQuant ]
-                << position Y2 [ pName "upperBox" ]
-                << size [ mNum 5 ]
-
-        specBox =
-            asSpec [ bar [ maStyle [ "box" ] ], encBox [] ]
-
-        encBoxMid =
-            encoding
-                << position Y [ pName "midBox", pQuant ]
-                << color [ mStr "white" ]
-                << size [ mNum 5 ]
-
-        specBoxMid =
-            asSpec [ tick [ maStyle [ "boxMid" ] ], encBoxMid [] ]
+                << position X [ pName "age", pOrdinal ]
+                << position Y [ pName "people", pQuant, pTitle "population" ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
-        , trans []
-        , encAge []
-        , layer [ specLWhisker, specUWhisker, specBox, specBoxMid ]
-        ]
+    toVegaLite [ des, data, enc [], boxplot [ maExtent exRange ] ]
 
 
 dist5 : Spec
 dist5 =
     let
         des =
-            description "A Tukey box plot showing median and interquartile range in the US population distribution of age groups in 2000. This isn't strictly a Tukey box plot as the IQR extends beyond the min/max values for some age cohorts."
+            description "Tukey box plot showing median, min, and max in the US population distribution of age groups in 2000."
 
-        trans =
-            transform
-                << aggregate
-                    [ opAs opQ1 "people" "lowerBox"
-                    , opAs opQ3 "people" "upperBox"
-                    , opAs opMedian "people" "midBox"
-                    ]
-                    [ "age" ]
-                << calculateAs "datum.upperBox - datum.lowerBox" "IQR"
-                << calculateAs "datum.upperBox + datum.IQR * 1.5" "upperWhisker"
-                << calculateAs "max(0,datum.lowerBox - datum.IQR *1.5)" "lowerWhisker"
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
 
-        encAge =
-            encoding << position X [ pName "age", pOrdinal ]
-
-        encLWhisker =
+        enc =
             encoding
-                << position Y [ pName "lowerWhisker", pQuant, pAxis [ axTitle "Population" ] ]
-                << position Y2 [ pName "lowerBox" ]
-
-        specLWhisker =
-            asSpec [ rule [ maStyle [ "boxWhisker" ] ], encLWhisker [] ]
-
-        encUWhisker =
-            encoding
-                << position Y [ pName "upperBox", pQuant ]
-                << position Y2 [ pName "upperWhisker" ]
-
-        specUWhisker =
-            asSpec
-                [ rule [ maStyle [ "boxWhisker" ] ], encUWhisker [] ]
-
-        encBox =
-            encoding
-                << position Y [ pName "lowerBox", pQuant ]
-                << position Y2 [ pName "upperBox" ]
+                << position X [ pName "age", pOrdinal ]
+                << position Y [ pName "people", pQuant, pTitle "population" ]
                 << size [ mNum 5 ]
-
-        specBox =
-            asSpec [ bar [ maStyle [ "box" ] ], encBox [] ]
-
-        encBoxMid =
-            encoding
-                << position Y [ pName "midBox", pQuant ]
-                << color [ mStr "white" ]
-                << size [ mNum 5 ]
-
-        specBoxMid =
-            asSpec
-                [ tick [ maStyle [ "boxMid" ] ], encBoxMid [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
-        , trans []
-        , encAge []
-        , layer [ specLWhisker, specUWhisker, specBox, specBoxMid ]
-        ]
+    toVegaLite [ des, data, enc [], boxplot [ maExtent (exIqrScale 1.5) ] ]
 
 
 

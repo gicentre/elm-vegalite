@@ -7630,39 +7630,66 @@ var $author$project$GalleryDist$dist3 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$color = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'color',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, markProps))));
+var $author$project$VegaLite$Boxplot = 2;
+var $author$project$VegaLite$boxplot = $author$project$VegaLite$mark(2);
+var $author$project$VegaLite$ExRange = {$: 4};
+var $author$project$VegaLite$exRange = $author$project$VegaLite$ExRange;
+var $author$project$VegaLite$MExtent = function (a) {
+	return {$: 16, a: a};
 };
+var $author$project$VegaLite$maExtent = $author$project$VegaLite$MExtent;
+var $author$project$VegaLite$Ordinal = 1;
+var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$GalleryDist$dist4 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('age'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('people'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pTitle('population')
+				])));
+	var des = $author$project$VegaLite$description('A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$boxplot(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maExtent($author$project$VegaLite$exRange)
+					]))
+			]));
+}();
+var $author$project$VegaLite$ExIqrScale = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$exIqrScale = $author$project$VegaLite$ExIqrScale;
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
-var $author$project$VegaLite$MString = function (a) {
-	return {$: 15, a: a};
-};
-var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
-var $author$project$VegaLite$MStyle = function (a) {
-	return {$: 48, a: a};
-};
-var $author$project$VegaLite$maStyle = $author$project$VegaLite$MStyle;
-var $author$project$VegaLite$Max = {$: 6};
-var $author$project$VegaLite$opMax = $author$project$VegaLite$Max;
-var $author$project$VegaLite$Median = {$: 8};
-var $author$project$VegaLite$opMedian = $author$project$VegaLite$Median;
-var $author$project$VegaLite$Min = {$: 9};
-var $author$project$VegaLite$opMin = $author$project$VegaLite$Min;
-var $author$project$VegaLite$Q1 = {$: 11};
-var $author$project$VegaLite$opQ1 = $author$project$VegaLite$Q1;
-var $author$project$VegaLite$Q3 = {$: 12};
-var $author$project$VegaLite$opQ3 = $author$project$VegaLite$Q3;
-var $author$project$VegaLite$Ordinal = 1;
-var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Rule = 11;
-var $author$project$VegaLite$rule = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -7670,395 +7697,50 @@ var $author$project$VegaLite$size = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, markProps))));
 };
-var $author$project$VegaLite$Tick = 14;
-var $author$project$VegaLite$tick = $author$project$VegaLite$mark(14);
-var $author$project$GalleryDist$dist4 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		A2(
-			$author$project$VegaLite$aggregate,
-			_List_fromArray(
-				[
-					A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMin, 'people', 'lowerWhisker'),
-					A3($author$project$VegaLite$opAs, $author$project$VegaLite$opQ1, 'people', 'lowerBox'),
-					A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMedian, 'people', 'midBox'),
-					A3($author$project$VegaLite$opAs, $author$project$VegaLite$opQ3, 'people', 'upperBox'),
-					A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMax, 'people', 'upperWhisker')
-				]),
-			_List_fromArray(
-				['age'])));
-	var encUWhisker = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('upperBox'),
-						$author$project$VegaLite$pQuant
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			3,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('upperWhisker')
-				])));
-	var specUWhisker = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$rule(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['boxWhisker']))
-					])),
-				encUWhisker(_List_Nil)
-			]));
-	var encLWhisker = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('lowerWhisker'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Population')
-							]))
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			3,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('lowerBox')
-				])));
-	var specLWhisker = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$rule(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['boxWhisker']))
-					])),
-				encLWhisker(_List_Nil)
-			]));
-	var encBoxMid = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('midBox'),
-							$author$project$VegaLite$pQuant
-						]))),
-			$author$project$VegaLite$color(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mStr('white')
-					]))),
-		$author$project$VegaLite$size(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mNum(5)
-				])));
-	var specBoxMid = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$tick(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['boxMid']))
-					])),
-				encBoxMid(_List_Nil)
-			]));
-	var encBox = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('lowerBox'),
-							$author$project$VegaLite$pQuant
-						]))),
-			A2(
-				$author$project$VegaLite$position,
-				3,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('upperBox')
-					]))),
-		$author$project$VegaLite$size(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mNum(5)
-				])));
-	var specBox = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['box']))
-					])),
-				encBox(_List_Nil)
-			]));
-	var encAge = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			0,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('age'),
-					$author$project$VegaLite$pOrdinal
-				])));
-	var des = $author$project$VegaLite$description('A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000.');
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil),
-				trans(_List_Nil),
-				encAge(_List_Nil),
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[specLWhisker, specUWhisker, specBox, specBoxMid]))
-			]));
-}();
-var $author$project$VegaLite$calculateAs = F2(
-	function (ex, label) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'calculate',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(ex),
-							$elm$json$Json$Encode$string(label)
-						]))));
-	});
 var $author$project$GalleryDist$dist5 = function () {
-	var trans = A2(
+	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
 				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$transform,
-					A2(
-						$author$project$VegaLite$aggregate,
-						_List_fromArray(
-							[
-								A3($author$project$VegaLite$opAs, $author$project$VegaLite$opQ1, 'people', 'lowerBox'),
-								A3($author$project$VegaLite$opAs, $author$project$VegaLite$opQ3, 'people', 'upperBox'),
-								A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMedian, 'people', 'midBox')
-							]),
-						_List_fromArray(
-							['age']))),
-				A2($author$project$VegaLite$calculateAs, 'datum.upperBox - datum.lowerBox', 'IQR')),
-			A2($author$project$VegaLite$calculateAs, 'datum.upperBox + datum.IQR * 1.5', 'upperWhisker')),
-		A2($author$project$VegaLite$calculateAs, 'max(0,datum.lowerBox - datum.IQR *1.5)', 'lowerWhisker'));
-	var encUWhisker = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('age'),
+							$author$project$VegaLite$pOrdinal
+						]))),
 			A2(
 				$author$project$VegaLite$position,
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('upperBox'),
-						$author$project$VegaLite$pQuant
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			3,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('upperWhisker')
-				])));
-	var specUWhisker = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$rule(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['boxWhisker']))
-					])),
-				encUWhisker(_List_Nil)
-			]));
-	var encLWhisker = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('lowerWhisker'),
+						$author$project$VegaLite$pName('people'),
 						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Population')
-							]))
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			3,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('lowerBox')
-				])));
-	var specLWhisker = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$rule(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['boxWhisker']))
-					])),
-				encLWhisker(_List_Nil)
-			]));
-	var encBoxMid = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('midBox'),
-							$author$project$VegaLite$pQuant
-						]))),
-			$author$project$VegaLite$color(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mStr('white')
+						$author$project$VegaLite$pTitle('population')
 					]))),
 		$author$project$VegaLite$size(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mNum(5)
 				])));
-	var specBoxMid = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$tick(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['boxMid']))
-					])),
-				encBoxMid(_List_Nil)
-			]));
-	var encBox = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('lowerBox'),
-							$author$project$VegaLite$pQuant
-						]))),
-			A2(
-				$author$project$VegaLite$position,
-				3,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('upperBox')
-					]))),
-		$author$project$VegaLite$size(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mNum(5)
-				])));
-	var specBox = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['box']))
-					])),
-				encBox(_List_Nil)
-			]));
-	var encAge = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			0,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('age'),
-					$author$project$VegaLite$pOrdinal
-				])));
-	var des = $author$project$VegaLite$description('A Tukey box plot showing median and interquartile range in the US population distribution of age groups in 2000. This isn\'t strictly a Tukey box plot as the IQR extends beyond the min/max values for some age cohorts.');
+	var des = $author$project$VegaLite$description('Tukey box plot showing median, min, and max in the US population distribution of age groups in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil),
-				trans(_List_Nil),
-				encAge(_List_Nil),
-				$author$project$VegaLite$layer(
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$boxplot(
 				_List_fromArray(
-					[specLWhisker, specUWhisker, specBox, specBoxMid]))
+					[
+						$author$project$VegaLite$maExtent(
+						$author$project$VegaLite$exIqrScale(1.5))
+					]))
 			]));
 }();
 var $author$project$GalleryDist$mySpecs = $author$project$VegaLite$combineSpecs(
