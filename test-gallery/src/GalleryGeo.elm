@@ -37,7 +37,7 @@ geo1 =
 
         enc =
             encoding
-                << color [ mName "rate", mQuant, mSort [ soDescending ] ]
+                << color [ mName "rate", mQuant ]
     in
     toVegaLite [ cfg [], width 500, height 300, countyData, proj, trans [], enc [], geoshape [] ]
 
@@ -162,28 +162,28 @@ geo5 =
         geoData =
             dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv" []
+
+        trans =
+            transform
+                << lookup "id" geoData "id" (luAs "geo")
+
         enc =
             encoding
                 << shape [ mName "geo", mGeo ]
-                << color [ mRepeat arRow, mQuant, mSort [ soDescending ] ]
+                << color [ mRepeat arRow, mQuant ]
 
-        spec =
-            asSpec
-                [ width 500
-                , height 300
-                , dataFromUrl "https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv" []
-                , transform <| lookup "id" geoData "id" (luAs "geo") []
-                , projection [ prType albersUsa ]
-                , geoshape []
-                , enc []
-                ]
+        res =
+            resolve
+                << resolution (reScale [ ( chColor, reIndependent ) ])
     in
     toVegaLite
         [ cfg []
         , description "Population per state, engineers per state, and hurricanes per state"
         , repeat [ rowFields [ "population", "engineers", "hurricanes" ] ]
-        , resolve <| resolution (reScale [ ( chColor, reIndependent ) ]) []
-        , specification spec
+        , res []
+        , specification (asSpec [ width 500, height 300, data, trans [], projection [ prType albersUsa ], enc [], geoshape [] ])
         ]
 
 
