@@ -5470,6 +5470,20 @@ var $author$project$VegaLite$tfLabel = function (tf) {
 		return 'bounds';
 	}
 };
+var $author$project$VegaLite$titleSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
 var $author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 	switch (titleCfg.$) {
 		case 0:
@@ -5541,6 +5555,46 @@ var $author$project$VegaLite$titleConfigSpec = function (titleCfg) {
 			return _Utils_Tuple2(
 				'style',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles));
+		case 13:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitle',
+				$author$project$VegaLite$titleSpec(s));
+		case 14:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleColor',
+				$elm$json$Json$Encode$string(s));
+		case 15:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFont',
+				$elm$json$Json$Encode$string(s));
+		case 16:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFontSize',
+				$elm$json$Json$Encode$float(x));
+		case 17:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 18:
+			var w = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFontWeight',
+				$author$project$VegaLite$fontWeightSpec(w));
+		case 19:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 20:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitlePadding',
+				$elm$json$Json$Encode$float(x));
 		default:
 			var n = titleCfg.a;
 			return _Utils_Tuple2(
@@ -8583,20 +8637,6 @@ var $author$project$VegaLite$shape = function (markProps) {
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, markProps))));
 };
 var $author$project$VegaLite$VLTitle = 2;
-var $author$project$VegaLite$titleSpec = function (tText) {
-	var _v0 = A2($elm$core$String$split, '\n', tText);
-	if (!_v0.b) {
-		return $elm$json$Json$Encode$string('');
-	} else {
-		if (!_v0.b.b) {
-			var s = _v0.a;
-			return $elm$json$Json$Encode$string(s);
-		} else {
-			var ss = _v0;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-		}
-	}
-};
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {
 		return _Utils_Tuple2(
@@ -9301,6 +9341,198 @@ var $author$project$ConfigTests$paddingCfg = $author$project$ConfigTests$singleV
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coPadding(
 				A4($author$project$VegaLite$paEdges, 90, 60, 30, 0)))));
+var $author$project$VegaLite$Circle = 5;
+var $author$project$VegaLite$circle = $author$project$VegaLite$mark(5);
+var $author$project$VegaLite$TSubtitle = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$tiSubtitle = $author$project$VegaLite$TSubtitle;
+var $author$project$ConfigTests$titleCfg1 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Horsepower'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Miles_per_Gallon'),
+					$author$project$VegaLite$pQuant
+				])));
+	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				A2(
+				$author$project$VegaLite$title,
+				'Car\nScatter',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tiSubtitle('A subtitle\nalso over two lines')
+					])),
+				cars,
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$height(200),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$W900 = 12;
+var $author$project$VegaLite$TAnchor = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$tiAnchor = $author$project$VegaLite$TAnchor;
+var $author$project$VegaLite$TSubtitleColor = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$tiSubtitleColor = $author$project$VegaLite$TSubtitleColor;
+var $author$project$VegaLite$TSubtitleFont = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$tiSubtitleFont = $author$project$VegaLite$TSubtitleFont;
+var $author$project$VegaLite$TSubtitleFontSize = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$tiSubtitleFontSize = $author$project$VegaLite$TSubtitleFontSize;
+var $author$project$VegaLite$TSubtitleFontStyle = function (a) {
+	return {$: 17, a: a};
+};
+var $author$project$VegaLite$tiSubtitleFontStyle = $author$project$VegaLite$TSubtitleFontStyle;
+var $author$project$VegaLite$TSubtitleFontWeight = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TSubtitleFontWeight;
+var $author$project$VegaLite$TSubtitleLineHeight = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$tiSubtitleLineHeight = $author$project$VegaLite$TSubtitleLineHeight;
+var $author$project$VegaLite$TSubtitlePadding = function (a) {
+	return {$: 20, a: a};
+};
+var $author$project$VegaLite$tiSubtitlePadding = $author$project$VegaLite$TSubtitlePadding;
+var $author$project$ConfigTests$titleCfg2 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Horsepower'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Miles_per_Gallon'),
+					$author$project$VegaLite$pQuant
+				])));
+	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				A2(
+				$author$project$VegaLite$title,
+				'Car\nScatter',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tiSubtitle('A subtitle\nalso over two lines'),
+						$author$project$VegaLite$tiAnchor($author$project$VegaLite$anEnd),
+						$author$project$VegaLite$tiSubtitleColor('red'),
+						$author$project$VegaLite$tiSubtitleFont('serif'),
+						$author$project$VegaLite$tiSubtitleFontSize(10),
+						$author$project$VegaLite$tiSubtitleFontStyle('italic'),
+						$author$project$VegaLite$tiSubtitleFontWeight(12),
+						$author$project$VegaLite$tiSubtitleLineHeight(18),
+						$author$project$VegaLite$tiSubtitlePadding(60)
+					])),
+				cars,
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$height(200),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TAnchor;
+var $author$project$VegaLite$ticoSubtitleColor = $author$project$VegaLite$TSubtitleColor;
+var $author$project$VegaLite$ticoSubtitleFont = $author$project$VegaLite$TSubtitleFont;
+var $author$project$VegaLite$ticoSubtitleFontSize = $author$project$VegaLite$TSubtitleFontSize;
+var $author$project$VegaLite$ticoSubtitleFontStyle = $author$project$VegaLite$TSubtitleFontStyle;
+var $author$project$VegaLite$ticoSubtitleFontWeight = $author$project$VegaLite$TSubtitleFontWeight;
+var $author$project$VegaLite$ticoSubtitleLineHeight = $author$project$VegaLite$TSubtitleLineHeight;
+var $author$project$VegaLite$ticoSubtitlePadding = $author$project$VegaLite$TSubtitlePadding;
+var $author$project$ConfigTests$titleCfg3 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Horsepower'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Miles_per_Gallon'),
+					$author$project$VegaLite$pQuant
+				])));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coTitle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$ticoAnchor($author$project$VegaLite$anEnd),
+						$author$project$VegaLite$ticoSubtitleColor('red'),
+						$author$project$VegaLite$ticoSubtitleFont('serif'),
+						$author$project$VegaLite$ticoSubtitleFontSize(10),
+						$author$project$VegaLite$ticoSubtitleFontStyle('italic'),
+						$author$project$VegaLite$ticoSubtitleFontWeight(12),
+						$author$project$VegaLite$ticoSubtitleLineHeight(18),
+						$author$project$VegaLite$ticoSubtitlePadding(60)
+					]))));
+	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				A2(
+				$author$project$VegaLite$title,
+				'Car\nScatter',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tiSubtitle('A subtitle\nalso over two lines')
+					])),
+				cars,
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$height(200),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$VLBackground = 9;
 var $author$project$VegaLite$background = function (colour) {
 	return _Utils_Tuple2(
@@ -9586,7 +9818,10 @@ var $author$project$ConfigTests$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('mark2', $author$project$ConfigTests$markCfg2),
 			_Utils_Tuple2('padding', $author$project$ConfigTests$paddingCfg),
 			_Utils_Tuple2('vbTest', $author$project$ConfigTests$vbTest),
-			_Utils_Tuple2('axisCfg1', $author$project$ConfigTests$axisCfg1)
+			_Utils_Tuple2('axisCfg1', $author$project$ConfigTests$axisCfg1),
+			_Utils_Tuple2('titleCfg1', $author$project$ConfigTests$titleCfg1),
+			_Utils_Tuple2('titleCfg2', $author$project$ConfigTests$titleCfg2),
+			_Utils_Tuple2('titleCfg3', $author$project$ConfigTests$titleCfg3)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
