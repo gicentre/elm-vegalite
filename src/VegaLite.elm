@@ -6255,8 +6255,9 @@ axTickSize =
     AxTickSize
 
 
-{-| Title to display as part of an axis. An empty string can be used
-to prevent a title being displayed.
+{-| Title to display as part of an axis. An empty string can be used to prevent
+a title being displayed. Multi-line titles can be specified by adding a `\n` at
+line breaks.
 -}
 axTitle : String -> AxisProperty
 axTitle =
@@ -9310,8 +9311,9 @@ hdLabelPadding =
     HLabelPadding
 
 
-{-| Header title in a faceted view. A 'title' is the overall title describing
-the collection of faceted plots.
+{-| Header title in a faceted view. A 'title' is the overall title describing the
+collection of faceted plots. Multi-line titles can be specified by adding a `\n`
+at line breaks.
 -}
 hdTitle : String -> HeaderProperty
 hdTitle =
@@ -10622,7 +10624,8 @@ leTickCount =
     LTickCount
 
 
-{-| Title of a legend.
+{-| Title of a legend. Multi-line titles can be specified by adding a `\n` at
+line breaks.
 -}
 leTitle : String -> LegendProperty
 leTitle =
@@ -11913,7 +11916,8 @@ mTimeUnit =
     MTimeUnit
 
 
-{-| Title of a field when encoding with a mark property channel.
+{-| Title of a field when encoding with a mark property channel. Multi-line titles
+can be specified by adding a `\n` at line breaks.
 -}
 mTitle : String -> MarkChannel
 mTitle =
@@ -12973,7 +12977,8 @@ pTimeUnit =
     PTimeUnit
 
 
-{-| Title of a field when encoding with a position channel.
+{-| Title of a field when encoding with a position channel. Multi-line titles can
+be specified by adding a `\n` at line breaks.
 -}
 pTitle : String -> PositionChannel
 pTitle =
@@ -15568,7 +15573,8 @@ tTimeUnit =
     TTimeUnit
 
 
-{-| Title of a field when encoding with a text or tooltip channel.
+{-| Title of a field when encoding with a text or tooltip channel. Multi-line
+titles can be specified by adding a `\n` at line breaks.
 -}
 tTitle : String -> TextChannel
 tTitle =
@@ -16671,7 +16677,7 @@ axisProperty axisProp =
             ( "values", JE.list (\ds -> JE.object (List.map dateTimeProperty ds)) dtss )
 
         AxTitle s ->
-            ( "title", JE.string s )
+            ( "title", titleSpec s )
 
         AxTitleAlign al ->
             ( "titleAlign", JE.string (hAlignLabel al) )
@@ -17894,7 +17900,7 @@ headerProperty hProp =
             ( "labelPadding", JE.float x )
 
         HTitle s ->
-            ( "title", JE.string s )
+            ( "title", titleSpec s )
 
         HTitleAnchor a ->
             ( "titleAnchor", JE.string (anchorLabel a) )
@@ -18314,7 +18320,7 @@ legendProperty legendProp =
                 ( "title", JE.null )
 
             else
-                ( "title", JE.string s )
+                ( "title", titleSpec s )
 
         LTitleAlign ha ->
             ( "titleAlign", JE.string (hAlignLabel ha) )
@@ -18525,7 +18531,7 @@ markChannelProperty field =
             [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
 
         MTitle t ->
-            [ ( "title", JE.string t ) ]
+            [ ( "title", titleSpec t ) ]
 
         MAggregate op ->
             [ ( "aggregate", operationSpec op ) ]
@@ -19314,7 +19320,7 @@ positionChannelProperty pDef =
             ( "timeUnit", JE.string (timeUnitLabel tu) )
 
         PTitle t ->
-            ( "title", JE.string t )
+            ( "title", titleSpec t )
 
         PSort sps ->
             case sps of
@@ -20237,7 +20243,7 @@ textChannelProperty tDef =
             [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
 
         TTitle t ->
-            [ ( "title", JE.string t ) ]
+            [ ( "title", titleSpec t ) ]
 
         TFormat fmt ->
             [ ( "format", JE.string fmt ) ]

@@ -8,13 +8,13 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
   To update older code, simply add a `[]` as a second parameter to `title`
 
 - _`lookup` now allows naming of individual matched fields and a default for failed lookups_.
-  Instead of `lookup "key1" secondaryData "key2" ["field1", "field2"]` use `lookup "key1" secondaryData "key2" (luFields ["field1", "field2"])`. Additional functions `luAs`, `luAsWithDefault`, `luFieldsAs`, `luFieldsAsWithDefault`, `luFields` and `luFieldsWithDefault` provide greater naming and default behaviour. It also uses the `Data` type alias as part of its type signature, which is unlikely to impact any use of the API but is technically a breaking change.
+  Instead of `lookup "key1" secondaryData "key2" ["field1", "field2"]` use `lookup "key1" secondaryData "key2" (luFields ["field1", "field2"])`. Additional functions `luAs`, `luAsWithDefault`, `luFieldsAs`, `luFieldsAsWithDefault`, `luFields` and `luFieldsWithDefault` provide greater flexibility in naming and default behaviour. It also uses the `Data` type alias as part of its type signature, which is unlikely to impact any use of the API but is technically a breaking change.
 
 - _Replaced `coRemoveInvalid` with `maRemoveInvalid`_.
   To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
 
 - _Tooltips are now disabled by default_ (via change in Vega-lite).
-  Can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`. Documentation for `ttEncode` and `ttNone` updated to reflect new default behaviour.
+  Can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`.
 
 - _Background is now white by default_ (via a change in Vega-lite).
   Previously backgrounds were transparent. Can mimic previous behaviour by adding a transparent configuration `configuration (coBackground "rgba(0,0,0,0)")`
@@ -45,7 +45,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `loess` (and associated `ls` loess property functions) for locally-estimated scatterplot smoothing.
 - `maColorGradient`, `maFillGradient` and `maStrokeGradient` (and associated `gr` gradient property functions) for gradient-based colouring.
 - `mSort` for sorting by mark properties like `color`.
-- `title` can now be formatted over multiple lines with `\n` or `"""` multi-line strings.
+- `title` and component titles (axis title, legend title etc.) can now be formatted over multiple lines with `\n` or `"""` multi-line strings.
 - `axDataCondition` and associated `cAx` property functions for conditional axis formatting.
 - Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
 - New title option `tiSubtitle` for specifying secondary title text. Can be styled via new functions `tiSubtitleColor`, `tiSubtitleFont`, `tiSubtitleFontSize`, `tiSubtitleFontStyle`, `tiSubtitleFontWeight`, `tiSubtitleLineHeight` and `tiSubtitlePadding`.
