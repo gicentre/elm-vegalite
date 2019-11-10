@@ -7834,10 +7834,6 @@ var $author$project$VegaLite$MmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
-var $author$project$VegaLite$MSort = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$mSort = $author$project$VegaLite$MSort;
 var $author$project$VegaLite$PType = function (a) {
 	return {$: 0, a: a};
 };
@@ -7849,8 +7845,6 @@ var $author$project$VegaLite$projection = function (pProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pProps)));
 };
-var $author$project$VegaLite$Descending = {$: 1};
-var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
 var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -8596,10 +8590,7 @@ var $author$project$GalleryGeo$geo1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('rate'),
-					$author$project$VegaLite$mQuant,
-					$author$project$VegaLite$mSort(
-					_List_fromArray(
-						[$author$project$VegaLite$soDescending]))
+					$author$project$VegaLite$mQuant
 				])));
 	var countyData = A2(
 		$author$project$VegaLite$dataFromUrl,
@@ -10007,6 +9998,15 @@ var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(23, spec);
 };
 var $author$project$GalleryGeo$geo5 = function () {
+	var res = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$resolve,
+		$author$project$VegaLite$resolution(
+			$author$project$VegaLite$reScale(
+				_List_fromArray(
+					[
+						_Utils_Tuple2($author$project$VegaLite$chColor, $author$project$VegaLite$reIndependent)
+					]))));
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,
 		'https://vega.github.io/vega-lite/data/us-10m.json',
@@ -10014,6 +10014,15 @@ var $author$project$GalleryGeo$geo5 = function () {
 			[
 				$author$project$VegaLite$topojsonFeature('states')
 			]));
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A4(
+			$author$project$VegaLite$lookup,
+			'id',
+			geoData,
+			'id',
+			$author$project$VegaLite$luAs('geo')));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10029,33 +10038,9 @@ var $author$project$GalleryGeo$geo5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mRepeat($author$project$VegaLite$arRow),
-					$author$project$VegaLite$mQuant,
-					$author$project$VegaLite$mSort(
-					_List_fromArray(
-						[$author$project$VegaLite$soDescending]))
+					$author$project$VegaLite$mQuant
 				])));
-	var spec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(500),
-				$author$project$VegaLite$height(300),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv', _List_Nil),
-				$author$project$VegaLite$transform(
-				A5(
-					$author$project$VegaLite$lookup,
-					'id',
-					geoData,
-					'id',
-					$author$project$VegaLite$luAs('geo'),
-					_List_Nil)),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
-				$author$project$VegaLite$geoshape(_List_Nil),
-				enc(_List_Nil)
-			]));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -10068,16 +10053,23 @@ var $author$project$GalleryGeo$geo5 = function () {
 						_List_fromArray(
 							['population', 'engineers', 'hurricanes']))
 					])),
-				$author$project$VegaLite$resolve(
-				A2(
-					$author$project$VegaLite$resolution,
-					$author$project$VegaLite$reScale(
-						_List_fromArray(
-							[
-								_Utils_Tuple2($author$project$VegaLite$chColor, $author$project$VegaLite$reIndependent)
-							])),
-					_List_Nil)),
-				$author$project$VegaLite$specification(spec)
+				res(_List_Nil),
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$width(500),
+							$author$project$VegaLite$height(300),
+							data,
+							trans(_List_Nil),
+							$author$project$VegaLite$projection(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
+								])),
+							enc(_List_Nil),
+							$author$project$VegaLite$geoshape(_List_Nil)
+						])))
 			]));
 }();
 var $author$project$VegaLite$TName = function (a) {
@@ -10705,6 +10697,10 @@ var $author$project$VegaLite$FmType = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
+var $author$project$VegaLite$MSort = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$mSort = $author$project$VegaLite$MSort;
 var $author$project$VegaLite$facetChannelProperty = function (fMap) {
 	switch (fMap.$) {
 		case 0:
@@ -10784,6 +10780,8 @@ var $author$project$VegaLite$row = function (fFields) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields))));
 };
+var $author$project$VegaLite$Descending = {$: 1};
+var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
 var $author$project$GalleryGeo$geo8 = function () {
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,

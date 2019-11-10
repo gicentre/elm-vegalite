@@ -10455,7 +10455,7 @@ var $author$project$GalleryRepeat$repeat6 = function () {
 				$author$project$VegaLite$bar(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maColor('#1f77b4')
+						$author$project$VegaLite$maColor('#00c475')
 					]))
 			]));
 	var encGap = A2(
@@ -10536,7 +10536,7 @@ var $author$project$GalleryRepeat$repeat6 = function () {
 				$author$project$VegaLite$bar(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maColor('#e377c2')
+						$author$project$VegaLite$maColor('#9955fb')
 					]))
 			]));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
