@@ -7737,8 +7737,8 @@ to use the default formatting.
     toVegaLite
         [ datasets [ ( "myData", data [] ),  ( "myJson", dataFromJson json [] ) ]
         , dataFromSource "myData" []
-        , bar []
         , enc []
+        , bar []
         ]
 
 -}
