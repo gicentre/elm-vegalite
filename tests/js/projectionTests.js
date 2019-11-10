@@ -5674,6 +5674,20 @@ var $author$project$VegaLite$sideLabel = function (side) {
 			return 'right';
 	}
 };
+var $author$project$VegaLite$titleSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
 var $author$project$VegaLite$headerProperty = function (hProp) {
 	switch (hProp.$) {
 		case 0:
@@ -5741,7 +5755,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'title',
-				$elm$json$Json$Encode$string(s));
+				$author$project$VegaLite$titleSpec(s));
 		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(
@@ -7775,20 +7789,6 @@ var $author$project$VegaLite$tfLabel = function (tf) {
 		return 'group';
 	} else {
 		return 'bounds';
-	}
-};
-var $author$project$VegaLite$titleSpec = function (tText) {
-	var _v0 = A2($elm$core$String$split, '\n', tText);
-	if (!_v0.b) {
-		return $elm$json$Json$Encode$string('');
-	} else {
-		if (!_v0.b.b) {
-			var s = _v0.a;
-			return $elm$json$Json$Encode$string(s);
-		} else {
-			var ss = _v0;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-		}
 	}
 };
 var $author$project$VegaLite$titleConfigSpec = function (titleCfg) {

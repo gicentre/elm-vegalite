@@ -6557,6 +6557,20 @@ var $author$project$VegaLite$overlapStrategySpec = function (strat) {
 			return $elm$json$Json$Encode$string('greedy');
 	}
 };
+var $author$project$VegaLite$titleSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
 var $author$project$VegaLite$legendProperty = function (legendProp) {
 	switch (legendProp.$) {
 		case 0:
@@ -6747,7 +6761,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			var s = legendProp.a;
 			return (s === '') ? _Utils_Tuple2('title', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'title',
-				$elm$json$Json$Encode$string(s));
+				$author$project$VegaLite$titleSpec(s));
 		case 35:
 			var ha = legendProp.a;
 			return _Utils_Tuple2(
@@ -7652,7 +7666,7 @@ var $author$project$VegaLite$markChannelProperty = function (field) {
 				[
 					_Utils_Tuple2(
 					'title',
-					$elm$json$Json$Encode$string(t))
+					$author$project$VegaLite$titleSpec(t))
 				]);
 		case 9:
 			var op = field.a;
@@ -8146,7 +8160,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			var s = axisProp.a;
 			return _Utils_Tuple2(
 				'title',
-				$elm$json$Json$Encode$string(s));
+				$author$project$VegaLite$titleSpec(s));
 		case 43:
 			var al = axisProp.a;
 			return _Utils_Tuple2(
@@ -8376,7 +8390,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			var t = pDef.a;
 			return _Utils_Tuple2(
 				'title',
-				$elm$json$Json$Encode$string(t));
+				$author$project$VegaLite$titleSpec(t));
 		case 13:
 			var sps = pDef.a;
 			_v1$4:
@@ -9953,7 +9967,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'title',
-				$elm$json$Json$Encode$string(s));
+				$author$project$VegaLite$titleSpec(s));
 		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(
@@ -10647,20 +10661,6 @@ var $author$project$VegaLite$tfLabel = function (tf) {
 		return 'group';
 	} else {
 		return 'bounds';
-	}
-};
-var $author$project$VegaLite$titleSpec = function (tText) {
-	var _v0 = A2($elm$core$String$split, '\n', tText);
-	if (!_v0.b) {
-		return $elm$json$Json$Encode$string('');
-	} else {
-		if (!_v0.b.b) {
-			var s = _v0.a;
-			return $elm$json$Json$Encode$string(s);
-		} else {
-			var ss = _v0;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-		}
 	}
 };
 var $author$project$VegaLite$titleConfigSpec = function (titleCfg) {
