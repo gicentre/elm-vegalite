@@ -178,7 +178,7 @@ bar7 =
                 << color
                     [ mName "gender"
                     , mNominal
-                    , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
+                    , mScale [ scRange (raStrs [ "#9955fb", "#00c475" ]) ]
                     ]
 
         cfg =
@@ -271,7 +271,7 @@ bar10 =
                 << color
                     [ mName "gender"
                     , mNominal
-                    , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
+                    , mScale [ scRange (raStrs [ "#9955fb", "#00c475" ]) ]
                     ]
     in
     toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
@@ -345,7 +345,7 @@ bar13 =
                 << color
                     [ mName "gender"
                     , mNominal
-                    , mScale [ scRange (raStrs [ "#e377c2", "#1f77b4" ]) ]
+                    , mScale [ scRange (raStrs [ "#9955fb", "#00c475" ]) ]
                     ]
                 << opacity [ mNum 0.7 ]
     in
@@ -381,7 +381,7 @@ bar14 =
                 << color
                     [ mName "gender"
                     , mNominal
-                    , mScale [ scRange (raStrs [ "#e377c2", "#1f77b4" ]) ]
+                    , mScale [ scRange (raStrs [ "#9955fb", "#00c475" ]) ]
                     , mLegend [ leOrient loTop, leTitle "" ]
                     ]
 
