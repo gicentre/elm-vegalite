@@ -428,6 +428,150 @@ label8 =
         ]
 
 
+label9 : Spec
+label9 =
+    let
+        des =
+            description "Comparing Likert scale ratings between two conditions."
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+                << configuration
+                    (coNamedStyles
+                        [ ( "arrow-label", [ maDy 12, maFontSize 9.5 ] )
+                        , ( "arrow-label2", [ maDy 24, maFontSize 9.5 ] )
+                        ]
+                    )
+                << configuration (coTitle [ ticoFontSize 12 ])
+
+        lickertData =
+            dataFromColumns []
+                << dataColumn "measure" (strs [ "Open Exploration", "Focused Question Answering", "Open Exploration", "Focused Question Answering" ])
+                << dataColumn "mean" (nums [ 1.81, -1.69, 2.19, -0.06 ])
+                << dataColumn "lo" (nums [ 1.26, -2.33, 1.67, -0.47 ])
+                << dataColumn "hi" (nums [ 2.37, -1.05, 2.71, 0.35 ])
+                << dataColumn "study" (strs [ "PoleStar vs Voyager", "PoleStar vs Voyager", "PoleStar vs Voyager 2", "PoleStar vs Voyager 2" ])
+
+        labelData =
+            dataFromColumns []
+                << dataColumn "from" (nums [ -0.25, 0.25 ])
+                << dataColumn "to" (nums [ -2.9, 2.9 ])
+                << dataColumn "label" (strs [ "PoleStar", "Voyager / Voyager 2" ])
+
+        encLickert =
+            encoding
+                << position Y
+                    [ pName "study"
+                    , pNominal
+                    , pAxis [ axTitle "", axLabelPadding 5, axDomain False, axTicks False, axGrid False ]
+                    ]
+
+        encLickertWhiskers =
+            encoding
+                << position X
+                    [ pName "lo"
+                    , pQuant
+                    , pScale [ scDomain (doNums [ -3, 3 ]) ]
+                    , pAxis
+                        [ axTitle ""
+                        , axGridDash [ 3, 3 ]
+                        , axDataCondition (expr "datum.value === 0") (cAxGridColor "#666" "#ccc")
+                        ]
+                    ]
+                << position X2 [ pName "hi" ]
+
+        specLickertWhiskers =
+            asSpec [ encLickertWhiskers [], rule [] ]
+
+        encLickertMeans =
+            encoding
+                << position X [ pName "mean", pQuant ]
+                << color [ mName "measure", mNominal, mScale [ scRange (raStrs [ "black", "white" ]) ], mLegend [] ]
+
+        specLickertMeans =
+            asSpec [ encLickertMeans [], circle [ maStroke "black", maOpacity 1 ] ]
+
+        specLickert =
+            asSpec
+                [ title "Mean of Subject Ratings (95% CIs)" [ tiFrame tfBounds ]
+                , encLickert []
+                , layer [ specLickertWhiskers, specLickertMeans ]
+                ]
+
+        encLabel1 =
+            encoding
+                << position X [ pName "from", pQuant, pScale [ scZero False ], pAxis [] ]
+                << position X2 [ pName "to" ]
+
+        specLabel1 =
+            asSpec [ encLabel1 [], rule [] ]
+
+        encLabel2 =
+            encoding
+                << position X [ pName "to", pQuant, pAxis [] ]
+                << shape
+                    [ mDataCondition [ ( expr "datum.to > 0", [ mSymbol symTriangleRight ] ) ]
+                        [ mSymbol symTriangleLeft ]
+                    ]
+
+        specLabel2 =
+            asSpec [ encLabel2 [], point [ maFilled True, maSize 60, maFill "black" ] ]
+
+        transLabel3 =
+            transform
+                << filter (fiExpr "datum.label === 'PoleStar'")
+
+        encLabel3 =
+            encoding
+                << position X [ pName "from", pQuant, pAxis [] ]
+                << text [ tName "label", tNominal ]
+
+        specLabel3 =
+            asSpec [ transLabel3 [], encLabel3 [], textMark [ maAlign haRight, maStyle [ "arrow-label" ] ] ]
+
+        transLabel4 =
+            transform
+                << filter (fiExpr "datum.label !== 'PoleStar'")
+
+        encLabel4 =
+            encoding
+                << position X [ pName "from", pQuant, pAxis [] ]
+                << text [ tName "label", tNominal ]
+
+        specLabel4 =
+            asSpec [ transLabel4 [], encLabel4 [], textMark [ maAlign haLeft, maStyle [ "arrow-label" ] ] ]
+
+        transLabel5 =
+            transform
+                << filter (fiExpr "datum.label === 'PoleStar'")
+
+        encLabel5 =
+            encoding
+                << position X [ pName "from", pQuant, pAxis [] ]
+                << text [ tStr "more valuable" ]
+
+        specLabel5 =
+            asSpec [ transLabel5 [], encLabel5 [], textMark [ maAlign haRight, maStyle [ "arrow-label2" ] ] ]
+
+        transLabel6 =
+            transform
+                << filter (fiExpr "datum.label !== 'PoleStar'")
+
+        encLabel6 =
+            encoding
+                << position X [ pName "from", pQuant, pAxis [] ]
+                << text [ tStr "more valuable" ]
+
+        specLabel6 =
+            asSpec [ transLabel6 [], encLabel6 [], textMark [ maAlign haLeft, maStyle [ "arrow-label2" ] ] ]
+
+        specLabels =
+            asSpec [ labelData [], layer [ specLabel1, specLabel2, specLabel3, specLabel4, specLabel5, specLabel6 ] ]
+    in
+    toVegaLite [ des, cfg [], lickertData [], spacing 10, vConcat [ specLickert, specLabels ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -443,6 +587,7 @@ mySpecs =
         , ( "label6", label6 )
         , ( "label7", label7 )
         , ( "label8", label8 )
+        , ( "label9", label9 )
         ]
 
 
