@@ -7380,7 +7380,7 @@ var $author$project$GalleryBar$bar10 = function () {
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
-									['#EA98D2', '#659CCA'])))
+									['#9955fb', '#00c475'])))
 						]))
 				])));
 	var des = $author$project$VegaLite$description('Population structure as a normalised stacked bar chart.');
@@ -7586,7 +7586,7 @@ var $author$project$GalleryBar$bar13 = function () {
 								$author$project$VegaLite$scRange(
 								$author$project$VegaLite$raStrs(
 									_List_fromArray(
-										['#e377c2', '#1f77b4'])))
+										['#9955fb', '#00c475'])))
 							]))
 					]))),
 		$author$project$VegaLite$opacity(
@@ -9953,7 +9953,7 @@ var $author$project$GalleryBar$bar14 = function () {
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
-									['#e377c2', '#1f77b4'])))
+									['#9955fb', '#00c475'])))
 						])),
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
@@ -10465,6 +10465,192 @@ var $author$project$GalleryBar$bar16 = function () {
 					[specBar, specText]))
 			]));
 }();
+var $author$project$VegaLite$DAggregate = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$dAggregate = $author$project$VegaLite$DAggregate;
+var $author$project$VegaLite$DmType = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$dQuant = $author$project$VegaLite$DmType(2);
+var $author$project$VegaLite$detailChannelProperty = function (field) {
+	switch (field.$) {
+		case 0:
+			var s = field.a;
+			return _Utils_Tuple2(
+				'field',
+				$elm$json$Json$Encode$string(s));
+		case 1:
+			var t = field.a;
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$measurementLabel(t)));
+		case 2:
+			var bps = field.a;
+			return $author$project$VegaLite$bin(bps);
+		case 3:
+			var tu = field.a;
+			return _Utils_Tuple2(
+				'timeUnit',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$timeUnitLabel(tu)));
+		default:
+			var op = field.a;
+			return _Utils_Tuple2(
+				'aggregate',
+				$author$project$VegaLite$operationSpec(op));
+	}
+};
+var $author$project$VegaLite$detail = function (detailProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'detail',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $author$project$VegaLite$detailChannelProperty, detailProps))));
+};
+var $author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doNums = $author$project$VegaLite$DNumbers;
+var $author$project$VegaLite$VLHeightStep = 6;
+var $author$project$VegaLite$heightStep = function (hs) {
+	return _Utils_Tuple2(
+		6,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(hs))
+				])));
+};
+var $author$project$VegaLite$MColor = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
+var $author$project$VegaLite$MX = function (a) {
+	return {$: 57, a: a};
+};
+var $author$project$VegaLite$maX = $author$project$VegaLite$MX;
+var $author$project$VegaLite$Count = {$: 4};
+var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
+var $author$project$VegaLite$Mean = {$: 7};
+var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$CustomSort = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$soCustom = $author$project$VegaLite$CustomSort;
+var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
+var $author$project$GalleryBar$bar17 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$calculateAs, 'isValid(datum.Major_Genre)? datum.Major_Genre : \'unclassified\'', 'genre'));
+	var encText = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			$author$project$VegaLite$text(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tName('genre'),
+						$author$project$VegaLite$tNominal
+					]))),
+		$author$project$VegaLite$detail(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$dAggregate($author$project$VegaLite$opCount),
+					$author$project$VegaLite$dQuant
+				])));
+	var specText = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encText(_List_Nil),
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
+						$author$project$VegaLite$maX(5)
+					]))
+			]));
+	var encBar = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('IMDB_Rating'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 10])))
+						])),
+					$author$project$VegaLite$pTitle('Mean IMDB Ratings')
+				])));
+	var specBar = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encBar(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maColor('#ddd')
+					]))
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('genre'),
+					$author$project$VegaLite$pNominal,
+					$author$project$VegaLite$pSort(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$soCustom(
+							$author$project$VegaLite$strs(
+								_List_fromArray(
+									['Action', 'Adventure', 'Comedy', 'Black Comedy', 'Romantic Comedy', 'Concert/Performance', 'Documentary', 'Drama', 'Horror', 'Musical', 'Thriller/Suspense', 'Western', 'unclassified'])))
+						])),
+					$author$project$VegaLite$pAxis(_List_Nil)
+				])));
+	var des = $author$project$VegaLite$description('Bar chart with label overlay');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$heightStep(16),
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specBar, specText]))
+			]));
+}();
 var $author$project$VegaLite$Circle = 5;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(5);
 var $author$project$VegaLite$MOpacity = function (a) {
@@ -10691,7 +10877,7 @@ var $author$project$VegaLite$window = F2(
 	});
 var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
-var $author$project$GalleryBar$bar17 = function () {
+var $author$project$GalleryBar$bar18 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11120,7 +11306,7 @@ var $author$project$GalleryBar$toRows = F2(
 		return $elm$core$Basics$append(
 			A2($elm$core$List$concatMap, fToCol, animalFreqs));
 	});
-var $author$project$GalleryBar$bar18 = function () {
+var $author$project$GalleryBar$bar19 = function () {
 	var isotypes = function () {
 		var sheep = 'M-4.1 -0.5c0.2 0 0.2 0.2 0.5 0.2c0.3 0 0.3 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.4 -0.2c0.1 0 0.2 0.2 0.4 0.1c0.2 0 0.2 -0.2 0.4 -0.3c0.1 0 0.1 -0.1 0.4 0c0.3 0 0.3 -0.4 0.6 -0.4c0.3 0 0.6 -0.3 0.7 -0.2c0.1 0.1 1.4 1 1.3 1.4c-0.1 0.4 -0.3 0.3 -0.4 0.3c-0.1 0 -0.5 -0.4 -0.7 -0.2c-0.3 0.2 -0.1 0.4 -0.2 0.6c-0.1 0.1 -0.2 0.2 -0.3 0.4c0 0.2 0.1 0.3 0 0.5c-0.1 0.2 -0.3 0.2 -0.3 0.5c0 0.3 -0.2 0.3 -0.3 0.6c-0.1 0.2 0 0.3 -0.1 0.5c-0.1 0.2 -0.1 0.2 -0.2 0.3c-0.1 0.1 0.3 1.1 0.3 1.1l-0.3 0c0 0 -0.3 -0.9 -0.3 -1c0 -0.1 -0.1 -0.2 -0.3 -0.2c-0.2 0 -0.3 0.1 -0.4 0.4c0 0.3 -0.2 0.8 -0.2 0.8l-0.3 0l0.3 -1c0 0 0.1 -0.6 -0.2 -0.5c-0.3 0.1 -0.2 -0.1 -0.4 -0.1c-0.2 -0.1 -0.3 0.1 -0.4 0c-0.2 -0.1 -0.3 0.1 -0.5 0c-0.2 -0.1 -0.1 0 -0.3 0.3c-0.2 0.3 -0.4 0.3 -0.4 0.3l0.2 1.1l-0.3 0l-0.2 -1.1c0 0 -0.4 -0.6 -0.5 -0.4c-0.1 0.3 -0.1 0.4 -0.3 0.4c-0.1 -0.1 -0.2 1.1 -0.2 1.1l-0.3 0l0.2 -1.1c0 0 -0.3 -0.1 -0.3 -0.5c0 -0.3 0.1 -0.5 0.1 -0.7c0.1 -0.2 -0.1 -1 -0.2 -1.1c-0.1 -0.2 -0.2 -0.8 -0.2 -0.8c0 0 -0.1 -0.5 0.4 -0.8z';
 		var pig = 'M1.2 -2c0 0 0.7 0 1.2 0.5c0.5 0.5 0.4 0.6 0.5 0.6c0.1 0 0.7 0 0.8 0.1c0.1 0 0.2 0.2 0.2 0.2c0 0 -0.6 0.2 -0.6 0.3c0 0.1 0.4 0.9 0.6 0.9c0.1 0 0.6 0 0.6 0.1c0 0.1 0 0.7 -0.1 0.7c-0.1 0 -1.2 0.4 -1.5 0.5c-0.3 0.1 -1.1 0.5 -1.1 0.7c-0.1 0.2 0.4 1.2 0.4 1.2l-0.4 0c0 0 -0.4 -0.8 -0.4 -0.9c0 -0.1 -0.1 -0.3 -0.1 -0.3l-0.2 0l-0.5 1.3l-0.4 0c0 0 -0.1 -0.4 0 -0.6c0.1 -0.1 0.3 -0.6 0.3 -0.7c0 0 -0.8 0 -1.5 -0.1c-0.7 -0.1 -1.2 -0.3 -1.2 -0.2c0 0.1 -0.4 0.6 -0.5 0.6c0 0 0.3 0.9 0.3 0.9l-0.4 0c0 0 -0.4 -0.5 -0.4 -0.6c0 -0.1 -0.2 -0.6 -0.2 -0.5c0 0 -0.4 0.4 -0.6 0.4c-0.2 0.1 -0.4 0.1 -0.4 0.1c0 0 -0.1 0.6 -0.1 0.6l-0.5 0l0 -1c0 0 0.5 -0.4 0.5 -0.5c0 -0.1 -0.7 -1.2 -0.6 -1.4c0.1 -0.1 0.1 -1.1 0.1 -1.1c0 0 -0.2 0.1 -0.2 0.1c0 0 0 0.9 0 1c0 0.1 -0.2 0.3 -0.3 0.3c-0.1 0 0 -0.5 0 -0.9c0 -0.4 0 -0.4 0.2 -0.6c0.2 -0.2 0.6 -0.3 0.8 -0.8c0.3 -0.5 1 -0.6 1 -0.6z';
@@ -11288,8 +11474,53 @@ var $author$project$GalleryBar$bar18 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
-var $author$project$GalleryBar$bar19 = function () {
+var $author$project$GalleryBar$bar2 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum.year == 2000')));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('people'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axTitle('population')
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('age'),
+					$author$project$VegaLite$pOrdinal
+				])));
+	var des = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				$author$project$VegaLite$heightStep(17),
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var $author$project$GalleryBar$bar20 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11415,64 +11646,6 @@ var $author$project$GalleryBar$bar19 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$VLHeightStep = 6;
-var $author$project$VegaLite$heightStep = function (hs) {
-	return _Utils_Tuple2(
-		6,
-		$elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'step',
-					$elm$json$Json$Encode$float(hs))
-				])));
-};
-var $author$project$GalleryBar$bar2 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('datum.year == 2000')));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('people'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('population')
-							]))
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('age'),
-					$author$project$VegaLite$pOrdinal
-				])));
-	var des = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				des,
-				$author$project$VegaLite$heightStep(17),
-				data,
-				trans(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
-			]));
-}();
 var $author$project$VegaLite$ChX = 0;
 var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$ByChannel = function (a) {
@@ -11531,8 +11704,6 @@ var $author$project$GalleryBar$bar3 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$Count = {$: 4};
-var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
 var $author$project$VegaLite$PBin = function (a) {
 	return {$: 6, a: a};
 };
@@ -11671,10 +11842,6 @@ var $author$project$VegaLite$binAs = F3(
 							$elm$json$Json$Encode$string(label)
 						]))));
 	});
-var $author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$SBase = function (a) {
 	return {$: 16, a: a};
 };
@@ -11835,7 +12002,7 @@ var $author$project$GalleryBar$bar7 = function () {
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
-									['#EA98D2', '#659CCA'])))
+									['#9955fb', '#00c475'])))
 						]))
 				])));
 	var des = $author$project$VegaLite$description('Grouped bar chart showing population structure by age and gender.');
@@ -12003,7 +12170,8 @@ var $author$project$GalleryBar$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('bar16', $author$project$GalleryBar$bar16),
 			_Utils_Tuple2('bar17', $author$project$GalleryBar$bar17),
 			_Utils_Tuple2('bar18', $author$project$GalleryBar$bar18),
-			_Utils_Tuple2('bar19', $author$project$GalleryBar$bar19)
+			_Utils_Tuple2('bar19', $author$project$GalleryBar$bar19),
+			_Utils_Tuple2('bar20', $author$project$GalleryBar$bar20)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
