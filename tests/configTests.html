@@ -94,6 +94,34 @@
     </figure>
     <div style="clear:left"></div>
 
+    <h2>Title Configuration</h2>
+
+    <figure class="cell">
+      <div id="titleCfg1"></div>
+      <figcaption>
+        Multi-line title and multi-line subtitle with default configurations.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="titleCfg2"></div>
+      <figcaption>
+        Title and subtitle appearance controlled directly with title parameters.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="titleCfg3"></div>
+      <figcaption>
+        Title and subtitle appearance via config options (should be identical to
+        previous chart.). NB. At Vega-Lite 4.0.0-beta11, the subtitle config
+        options appear to be part of the schema but not yet implemented.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
     <script>
       Elm.ConfigTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {

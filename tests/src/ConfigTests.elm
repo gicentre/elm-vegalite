@@ -231,6 +231,95 @@ axisCfg1 =
         |> singleVis
 
 
+titleCfg1 : Spec
+titleCfg1 =
+    let
+        cars =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+    in
+    toVegaLite
+        [ title "Car\nScatter" [ tiSubtitle "A subtitle\nalso over two lines" ]
+        , cars
+        , width 200
+        , height 200
+        , enc []
+        , circle []
+        ]
+
+
+titleCfg2 : Spec
+titleCfg2 =
+    let
+        cars =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+    in
+    toVegaLite
+        [ title "Car\nScatter"
+            [ tiSubtitle "A subtitle\nalso over two lines"
+            , tiAnchor anEnd
+            , tiSubtitleColor "red"
+            , tiSubtitleFont "serif"
+            , tiSubtitleFontSize 10
+            , tiSubtitleFontStyle "italic"
+            , tiSubtitleFontWeight W900
+            , tiSubtitleLineHeight 18
+            , tiSubtitlePadding 60
+            ]
+        , cars
+        , width 200
+        , height 200
+        , enc []
+        , circle []
+        ]
+
+
+titleCfg3 : Spec
+titleCfg3 =
+    let
+        cars =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+
+        cfg =
+            configure
+                << configuration
+                    (coTitle
+                        [ ticoAnchor anEnd
+                        , ticoSubtitleColor "red"
+                        , ticoSubtitleFont "serif"
+                        , ticoSubtitleFontSize 10
+                        , ticoSubtitleFontStyle "italic"
+                        , ticoSubtitleFontWeight W900
+                        , ticoSubtitleLineHeight 18
+                        , ticoSubtitlePadding 60
+                        ]
+                    )
+    in
+    toVegaLite
+        [ cfg []
+        , title "Car\nScatter" [ tiSubtitle "A subtitle\nalso over two lines" ]
+        , cars
+        , width 200
+        , height 200
+        , enc []
+        , circle []
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -245,6 +334,9 @@ mySpecs =
         , ( "padding", paddingCfg )
         , ( "vbTest", vbTest )
         , ( "axisCfg1", axisCfg1 )
+        , ( "titleCfg1", titleCfg1 )
+        , ( "titleCfg2", titleCfg2 )
+        , ( "titleCfg3", titleCfg3 )
         ]
 
 
