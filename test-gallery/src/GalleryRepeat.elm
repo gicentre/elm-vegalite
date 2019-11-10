@@ -258,7 +258,7 @@ repeat6 =
                     ]
 
         specF =
-            asSpec [ title "Female" [], transF [], encF [], bar [ maColor "#e377c2" ] ]
+            asSpec [ title "Female" [], transF [], encF [], bar [ maColor "#9955fb" ] ]
 
         encGap =
             encoding
@@ -282,7 +282,7 @@ repeat6 =
                     ]
 
         specM =
-            asSpec [ title "Male" [], transM [], encM [], bar [ maColor "#1f77b4" ] ]
+            asSpec [ title "Male" [], transM [], encM [], bar [ maColor "#00c475" ] ]
     in
     toVegaLite
         [ cfg []
