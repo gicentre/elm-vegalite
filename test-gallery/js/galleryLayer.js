@@ -6991,9 +6991,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 									]))),
 							_Utils_Tuple2('as', aliases)
 						]));
-					return _Utils_eq(
-						def,
-						$elm$json$Json$Encode$string('')) ? $elm$json$Json$Encode$object(lSpecs) : $elm$json$Json$Encode$object(
+					return _Utils_eq(def, $elm$json$Json$Encode$null) ? $elm$json$Json$Encode$object(lSpecs) : $elm$json$Json$Encode$object(
 						A2(
 							$elm$core$List$cons,
 							_Utils_Tuple2('default', def),
