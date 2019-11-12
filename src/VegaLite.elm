@@ -15313,7 +15313,7 @@ transform transforms =
                                         , ( "as", aliases )
                                         ]
                             in
-                            if def == JE.string "" then
+                            if def == JE.null then
                                 JE.object lSpecs
 
                             else
