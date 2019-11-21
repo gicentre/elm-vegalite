@@ -7378,7 +7378,7 @@ var $author$project$GalleryBar$bar10 = function () {
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
-									['#9955fb', '#00c475'])))
+									['#675193', '#ca8861'])))
 						]))
 				])));
 	var des = $author$project$VegaLite$description('Population structure as a normalised stacked bar chart.');
@@ -7584,7 +7584,7 @@ var $author$project$GalleryBar$bar13 = function () {
 								$author$project$VegaLite$scRange(
 								$author$project$VegaLite$raStrs(
 									_List_fromArray(
-										['#9955fb', '#00c475'])))
+										['#675193', '#ca8861'])))
 							]))
 					]))),
 		$author$project$VegaLite$opacity(
@@ -9951,7 +9951,7 @@ var $author$project$GalleryBar$bar14 = function () {
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
-									['#9955fb', '#00c475'])))
+									['#675193', '#ca8861'])))
 						])),
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
@@ -12008,7 +12008,7 @@ var $author$project$GalleryBar$bar7 = function () {
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
-									['#9955fb', '#00c475'])))
+									['#675193', '#ca8861'])))
 						]))
 				])));
 	var des = $author$project$VegaLite$description('Grouped bar chart showing population structure by age and gender.');

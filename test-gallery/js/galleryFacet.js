@@ -7400,7 +7400,7 @@ var $author$project$GalleryFacet$facet1 = function () {
 								$author$project$VegaLite$scRange(
 								$author$project$VegaLite$raStrs(
 									_List_fromArray(
-										['#9955fb', '#00c475'])))
+										['#675193', '#ca8861'])))
 							]))
 					]))),
 		$author$project$VegaLite$row(

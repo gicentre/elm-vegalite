@@ -36,7 +36,7 @@ facet1 =
                 << color
                     [ mName "gender"
                     , mNominal
-                    , mScale [ scRange (raStrs [ "#9955fb", "#00c475" ]) ]
+                    , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
                 << row [ fName "gender", fNominal ]
     in
