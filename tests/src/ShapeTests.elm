@@ -29,6 +29,50 @@ chart des enc =
         ]
 
 
+rectTest : List MarkProperty -> Spec
+rectTest mps =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        enc =
+            encoding
+                << position X [ pName "Origin", pNominal ]
+                << position Y [ pName "Cylinders", pOrdinal ]
+    in
+    toVegaLite [ width 200, height 200, data, enc [], rect (maSize 30 :: maOpacity 0.6 :: mps) ]
+
+
+rounded1 : Spec
+rounded1 =
+    rectTest [ maCornerRadius 8 ]
+
+
+rounded2 : Spec
+rounded2 =
+    rectTest [ maCornerRadiusTopLeft 8 ]
+
+
+rounded3 : Spec
+rounded3 =
+    rectTest [ maCornerRadiusTopRight 8 ]
+
+
+rounded4 : Spec
+rounded4 =
+    rectTest [ maCornerRadiusBottomLeft 8 ]
+
+
+rounded5 : Spec
+rounded5 =
+    rectTest [ maCornerRadiusBottomRight 8 ]
+
+
+rounded6 : Spec
+rounded6 =
+    rectTest [ maCornerRadius 16, maCornerRadiusBottomLeft 0, maCornerRadiusTopRight 0 ]
+
+
 unitSquare : String
 unitSquare =
     "M -0.5 -0.5 h 1 v 1 h -1z"
@@ -326,6 +370,12 @@ mySpecs =
     combineSpecs
         [ ( "defNominal", scatter1 )
         , ( "defOrdinal", scatter2 )
+        , ( "rounded1", rounded1 )
+        , ( "rounded2", rounded2 )
+        , ( "rounded3", rounded3 )
+        , ( "rounded4", rounded4 )
+        , ( "rounded5", rounded5 )
+        , ( "rounded6", rounded6 )
         , ( "size1", scatter3 )
         , ( "size2", scatter4 )
         , ( "size3", scatter5 )
