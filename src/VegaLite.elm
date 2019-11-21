@@ -469,6 +469,7 @@ module VegaLite exposing
     , cAxLabelOpacity
     , axLabelOverlap
     , axLabelPadding
+    , axLabelSeparation
     , axTicks
     , axTickColor
     , cAxTickColor
@@ -1009,6 +1010,7 @@ module VegaLite exposing
     , axcoLabelOpacity
     , axcoLabelOverlap
     , axcoLabelPadding
+    , axcoLabelSeparation
     , axcoShortTimeLabels
     , axcoTicks
     , axcoTickColor
@@ -2081,6 +2083,7 @@ See the
 @docs cAxLabelOpacity
 @docs axLabelOverlap
 @docs axLabelPadding
+@docs axLabelSeparation
 
 
 #### Axis Ticks
@@ -2939,6 +2942,7 @@ See the
 @docs axcoLabelOpacity
 @docs axcoLabelOverlap
 @docs axcoLabelPadding
+@docs axcoLabelSeparation
 @docs axcoShortTimeLabels
 @docs axcoTicks
 @docs axcoTickColor
@@ -3381,8 +3385,8 @@ type Autosize
 [axcoLabelFontStyle](#axcoLabelFontStyle), [axcoLabelFontWeight](#axcoLabelFontWeight),
 [axcoLabelLimit](#axcoLabelLimit), [axcoLabelOpacity](#axcoLabelOpacity),
 [axcoLabelOverlap](#axcoLabelOverlap), [axcoLabelPadding](#axcoLabelPadding),
-[axcoShortTimeLabels](#axcoShortTimeLabels), [axcoTicks](#axcoTicks),
-[axcoTickColor](#axcoTickColor), [axcoTickExtra](#axcoTickExtra),
+[axcoLabelSeparation](#axcoLabelSeparation), [axcoShortTimeLabels](#axcoShortTimeLabels),
+[axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor), [axcoTickExtra](#axcoTickExtra),
 [axcoTickOffset](#axcoTickOffset), [axcoTickOpacity](#axcoTickOpacity),
 [axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize),
 [axcoTickMinStep](#axcoTickMinStep), [axcoTickWidth](#axcoTickWidth),
@@ -3422,6 +3426,7 @@ type AxisConfig
     | LabelOpacity Float
     | LabelOverlap OverlapStrategy
     | LabelPadding Float
+    | LabelSeparation Float
     | MaxExtent Float
     | MinExtent Float
     | ShortTimeLabels Bool
@@ -3462,17 +3467,17 @@ type AxisConfig
 [axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
 [axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit),
 [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap),
-[axLabelPadding](#axLabelPadding), [axTicks](#axTicks), [axTickColor](#axTickColor),
-[axTickCount](#axTickCount), [axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset),
-[axTickOpacity](#axTickOpacity), [axTickRound](#axTickRound), [axTickSize](#axTickSize),
-[axTickMinStep](#axTickMinStep), [axTickWidth](#axTickWidth), [axValues](#axValues),
-[axTitle](#axTitle), [axTitleAlign](#axTitleAlign), [axTitleAnchor](#axTitleAnchor),
-[axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline), [axTitleColor](#axTitleColor),
-[axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize), [axTitleFontStyle](#axTitleFontStyle),
-[axTitleFontWeight](#axTitleFontWeight), [axTitleLimit](#axTitleLimit), [axTitleOpacity](#axTitleOpacity),
-[axTitlePadding](#axTitlePadding), [axTitleX](#axTitleX), [axTitleY](#axTitleY),
-[axGrid](#axGrid), [axGridColor](#axGridColor), [axGridDash](#axGridDash),
-[axGridOpacity](#axGridOpacity) and [axGridWidth](#axGridWidth).
+[axLabelPadding](#axLabelPadding), [axLabelSeparation](#axLabelSeparation),
+[axTicks](#axTicks), [axTickColor](#axTickColor), [axTickCount](#axTickCount),
+[axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset), [axTickOpacity](#axTickOpacity),
+[axTickRound](#axTickRound), [axTickSize](#axTickSize), [axTickMinStep](#axTickMinStep),
+[axTickWidth](#axTickWidth), [axValues](#axValues), [axTitle](#axTitle), [axTitleAlign](#axTitleAlign),
+[axTitleAnchor](#axTitleAnchor), [axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline),
+[axTitleColor](#axTitleColor), [axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize),
+[axTitleFontStyle](#axTitleFontStyle), [axTitleFontWeight](#axTitleFontWeight),
+[axTitleLimit](#axTitleLimit), [axTitleOpacity](#axTitleOpacity), [axTitlePadding](#axTitlePadding),
+[axTitleX](#axTitleX), [axTitleY](#axTitleY), [axGrid](#axGrid), [axGridColor](#axGridColor),
+[axGridDash](#axGridDash), [axGridOpacity](#axGridOpacity) and [axGridWidth](#axGridWidth).
 -}
 type AxisProperty
     = AxBandPosition Float
@@ -3506,6 +3511,7 @@ type AxisProperty
     | AxLabelOpacity Float
     | AxLabelOverlap OverlapStrategy
     | AxLabelPadding Float
+    | AxLabelSeparation Float
     | AxTickColor String
     | AxTickCount Int
     | AxTickExtra Bool
@@ -5852,6 +5858,13 @@ axcoLabelPadding =
     LabelPadding
 
 
+{-| Default axis label separation (minimum spacing between axis labels).
+-}
+axcoLabelSeparation : Float -> AxisConfig
+axcoLabelSeparation =
+    LabelSeparation
+
+
 {-| Default maximum extent style.
 -}
 axcoMaxExtent : Float -> AxisConfig
@@ -6399,6 +6412,14 @@ axLabelOverlap =
 axLabelPadding : Float -> AxisProperty
 axLabelPadding =
     AxLabelPadding
+
+
+{-| The minimum separation between labels (in pixel units) before they are considered
+non-overlapping. Ignored if [axLabelOverlap](#axLabelOverlap) is [osNone](#osNone).
+-}
+axLabelSeparation : Float -> AxisProperty
+axLabelSeparation =
+    AxLabelSeparation
 
 
 {-| Whether or not axis labels should be displayed.
@@ -16612,6 +16633,9 @@ axisConfigProperty axisCfg =
         LabelPadding pad ->
             ( "labelPadding", JE.float pad )
 
+        LabelSeparation x ->
+            ( "labelSeparation", JE.float x )
+
         ShortTimeLabels b ->
             ( "shortTimeLabels", JE.bool b )
 
@@ -16845,6 +16869,9 @@ axisProperty axisProp =
 
         AxLabelPadding pad ->
             ( "labelPadding", JE.float pad )
+
+        AxLabelSeparation x ->
+            ( "labelSeparation", JE.float x )
 
         AxDomain b ->
             ( "domain", JE.bool b )
