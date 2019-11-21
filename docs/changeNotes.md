@@ -67,6 +67,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `equalEarth` map projection type.
 - `key` channel for binding with Vega View API.
 - `asFitX` and `asFitY` for autosizing in one dimension only.
+- Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
 
 ## Deprecations
 

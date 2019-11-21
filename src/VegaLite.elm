@@ -11398,6 +11398,9 @@ specification. For example,
 
     maColor "hsl(180, 50%, 50%)"
 
+An empty string (`""`) indicates that no filling should be provided (but for clearer
+semantics, better to use `maFilled False`).
+
 -}
 maFill : String -> MarkProperty
 maFill =
@@ -11618,6 +11621,8 @@ specification. For example,
     maColor "rgb(255,204,210)"
 
     maColor "hsl(180, 50%, 50%)"
+
+An empty string (`""`) indicates that no stroke around a mark be drawn.
 
 -}
 maStroke : String -> MarkProperty
@@ -18917,7 +18922,11 @@ markProperty mProp =
                 ( "invalid", JE.null )
 
         MFill col ->
-            ( "fill", JE.string col )
+            if String.trim col == "" then
+                ( "fill", JE.null )
+
+            else
+                ( "fill", JE.string col )
 
         MFillGradient cGrad props ->
             ( "fill"
@@ -18944,7 +18953,11 @@ markProperty mProp =
             )
 
         MStroke col ->
-            ( "stroke", JE.string col )
+            if String.trim col == "" then
+                ( "stroke", JE.null )
+
+            else
+                ( "stroke", JE.string col )
 
         MStrokeCap sc ->
             ( "strokeCap", JE.string (strokeCapLabel sc) )
