@@ -164,6 +164,40 @@ interaction11 =
     let
         sel =
             selection
+                << select "mySelection" seSingle [ seBindLegend [ blField "crimeType" ] ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction12 : Spec
+interaction12 =
+    let
+        sel =
+            selection
+                << select "mySelection" seSingle [ seBindLegend [ blChannel chColor, blEvent "dblclick" ] ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction13 : Spec
+interaction13 =
+    let
+        sel =
+            selection
+                << select "mySelection"
+                    seMulti
+                    [ seOn "click"
+                    , seBindLegend [ blField "crimeType", blEvent "dblclick" ]
+                    ]
+    in
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+
+
+interaction14 : Spec
+interaction14 =
+    let
+        sel =
+            selection
                 << select "mySelection"
                     seSingle
                     [ seFields [ "crimeType" ]
@@ -185,8 +219,8 @@ interaction11 =
     toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
-interaction12 : Spec
-interaction12 =
+interaction15 : Spec
+interaction15 =
     let
         sel =
             selection
@@ -210,7 +244,7 @@ interaction12 =
 
 sourceExample : Spec
 sourceExample =
-    interaction7
+    interaction11
 
 
 
@@ -232,6 +266,9 @@ mySpecs =
         , ( "interaction10", interaction10 )
         , ( "interaction11", interaction11 )
         , ( "interaction12", interaction12 )
+        , ( "interaction13", interaction13 )
+        , ( "interaction14", interaction14 )
+        , ( "interaction15", interaction15 )
         ]
 
 

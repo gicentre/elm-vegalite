@@ -46,6 +46,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 - `maColorGradient`, `maFillGradient` and `maStrokeGradient` (and associated `gr` gradient property functions) for gradient-based colouring.
 - `maCornerRadius`, `maCornerRadiusBottomLeft`, `maCornerRadiusBottomRight`, `maCornerRadiusTopLeft` and `maCornerRadiusTopRight` for rounding a rectangle mark.
 - `mSort` for sorting by mark properties like `color`.
+- `seBindLegend` and associated property functions `blField`, `blChannel` and `blEvent` for creating interactive legends.
 - `title` and component titles (axis title, legend title etc.) can now be formatted over multiple lines with `\n` or `"""` multi-line strings.
 - `axDataCondition` and associated `cAx` property functions for conditional axis formatting.
 - Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axLabelSeparation`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoLabelSeparation`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
