@@ -105,6 +105,8 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * `dtMonthNum` for referencing a month by its numeric value.
 
+- `biSelectionExtent` for basing a bin extent on an interactive selection.
+
 - Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
 
 ## Deprecations

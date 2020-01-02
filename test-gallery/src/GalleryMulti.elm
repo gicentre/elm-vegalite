@@ -471,6 +471,44 @@ multi7 =
         ]
 
 
+multi8 : Spec
+multi8 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/flights-5k.json"
+                [ parse [ ( "date", foDate "" ) ] ]
+
+        trans =
+            transform
+                << calculateAs "hours(datum.date) + minutes(datum.date) / 60" "time"
+
+        sel =
+            selection
+                << select "brush" seInterval [ seEncodings [ chX ] ]
+
+        enc1 =
+            encoding
+                << position X [ pName "time", pBin [ biMaxBins 30 ], pQuant ]
+                << position Y [ pAggregate opCount, pQuant ]
+
+        spec1 =
+            asSpec [ width 963, height 100, sel [], enc1 [], bar [] ]
+
+        enc2 =
+            encoding
+                << position X
+                    [ pName "time"
+                    , pBin [ biMaxBins 30, biSelectionExtent "brush" ]
+                    , pQuant
+                    ]
+                << position Y [ pAggregate opCount, pQuant ]
+
+        spec2 =
+            asSpec [ width 963, height 100, enc2 [], bar [] ]
+    in
+    toVegaLite [ data, trans [], vConcat [ spec1, spec2 ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -485,6 +523,7 @@ mySpecs =
         , ( "multi5", multi5 )
         , ( "multi6", multi6 )
         , ( "multi7", multi7 )
+        , ( "multi8", multi8 )
         ]
 
 
