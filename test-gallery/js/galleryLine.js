@@ -6511,9 +6511,9 @@ var $elm$core$List$isEmpty = function (xs) {
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $elm$json$Json$Decode$value = _Json_decodeValue;
 var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v91) {
-		var trName = _v91.a;
-		var val = _v91.b;
+	var assemble = function (_v97) {
+		var trName = _v97.a;
+		var val = _v97.b;
 		switch (trName) {
 			case 'aggregate':
 				var _v1 = A2(
@@ -6889,26 +6889,68 @@ var $author$project$VegaLite$transform = function (transforms) {
 				} else {
 					return $elm$json$Json$Encode$null;
 				}
-			case 'regression':
+			case 'quantile':
 				var _v53 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((((!_v53.$) && _v53.a.b) && _v53.a.b.b) && _v53.a.b.b.b) && _v53.a.b.b.b.b) && _v53.a.b.b.b.b.b) && _v53.a.b.b.b.b.b.b) && _v53.a.b.b.b.b.b.b.b) && (!_v53.a.b.b.b.b.b.b.b.b)) {
+				if (((((((!_v53.$) && _v53.a.b) && _v53.a.b.b) && _v53.a.b.b.b) && _v53.a.b.b.b.b) && _v53.a.b.b.b.b.b) && (!_v53.a.b.b.b.b.b.b)) {
 					var _v54 = _v53.a;
-					var fDep = _v54.a;
+					var qField = _v54.a;
 					var _v55 = _v54.b;
-					var fInd = _v55.a;
+					var gbObj = _v55.a;
 					var _v56 = _v55.b;
-					var gbObj = _v56.a;
+					var pObj = _v56.a;
 					var _v57 = _v56.b;
-					var meObj = _v57.a;
+					var sObj = _v57.a;
 					var _v58 = _v57.b;
-					var orObj = _v58.a;
-					var _v59 = _v58.b;
-					var exObj = _v59.a;
-					var _v60 = _v59.b;
-					var asObj = _v60.a;
+					var asObj = _v58.a;
+					return $elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2('quantile', qField),
+							_Utils_ap(
+								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+									[
+										_Utils_Tuple2('groupby', gbObj)
+									]),
+								_Utils_ap(
+									_Utils_eq(pObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+										[
+											_Utils_Tuple2('probs', pObj)
+										]),
+									_Utils_ap(
+										_Utils_eq(sObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+											[
+												_Utils_Tuple2('step', sObj)
+											]),
+										_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+											[
+												_Utils_Tuple2('as', asObj)
+											]))))));
+				} else {
+					return $elm$json$Json$Encode$null;
+				}
+			case 'regression':
+				var _v59 = A2(
+					$elm$json$Json$Decode$decodeString,
+					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
+					A2($elm$json$Json$Encode$encode, 0, val));
+				if (((((((((!_v59.$) && _v59.a.b) && _v59.a.b.b) && _v59.a.b.b.b) && _v59.a.b.b.b.b) && _v59.a.b.b.b.b.b) && _v59.a.b.b.b.b.b.b) && _v59.a.b.b.b.b.b.b.b) && (!_v59.a.b.b.b.b.b.b.b.b)) {
+					var _v60 = _v59.a;
+					var fDep = _v60.a;
+					var _v61 = _v60.b;
+					var fInd = _v61.a;
+					var _v62 = _v61.b;
+					var gbObj = _v62.a;
+					var _v63 = _v62.b;
+					var meObj = _v63.a;
+					var _v64 = _v63.b;
+					var orObj = _v64.a;
+					var _v65 = _v64.b;
+					var exObj = _v65.a;
+					var _v66 = _v65.b;
+					var asObj = _v66.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -6944,15 +6986,15 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'flattenAs':
-				var _v61 = A2(
+				var _v67 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((!_v61.$) && _v61.a.b) && _v61.a.b.b) && (!_v61.a.b.b.b)) {
-					var _v62 = _v61.a;
-					var fields = _v62.a;
-					var _v63 = _v62.b;
-					var names = _v63.a;
+				if ((((!_v67.$) && _v67.a.b) && _v67.a.b.b) && (!_v67.a.b.b.b)) {
+					var _v68 = _v67.a;
+					var fields = _v68.a;
+					var _v69 = _v68.b;
+					var names = _v69.a;
 					return $elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -6963,17 +7005,17 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'foldAs':
-				var _v64 = A2(
+				var _v70 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v64.$) && _v64.a.b) && _v64.a.b.b) && _v64.a.b.b.b) && (!_v64.a.b.b.b.b)) {
-					var _v65 = _v64.a;
-					var fields = _v65.a;
-					var _v66 = _v65.b;
-					var keyName = _v66.a;
-					var _v67 = _v66.b;
-					var valName = _v67.a;
+				if (((((!_v70.$) && _v70.a.b) && _v70.a.b.b) && _v70.a.b.b.b) && (!_v70.a.b.b.b.b)) {
+					var _v71 = _v70.a;
+					var fields = _v71.a;
+					var _v72 = _v71.b;
+					var keyName = _v72.a;
+					var _v73 = _v72.b;
+					var valName = _v73.a;
 					return $elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -6988,23 +7030,23 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'stack':
-				var _v68 = A2(
+				var _v74 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((!_v68.$) && _v68.a.b) && _v68.a.b.b) && _v68.a.b.b.b) && _v68.a.b.b.b.b) && _v68.a.b.b.b.b.b) && _v68.a.b.b.b.b.b.b) && (!_v68.a.b.b.b.b.b.b.b)) {
-					var _v69 = _v68.a;
-					var field = _v69.a;
-					var _v70 = _v69.b;
-					var grp = _v70.a;
-					var _v71 = _v70.b;
-					var start = _v71.a;
-					var _v72 = _v71.b;
-					var end = _v72.a;
-					var _v73 = _v72.b;
-					var offsetObj = _v73.a;
-					var _v74 = _v73.b;
-					var sortObj = _v74.a;
+				if ((((((((!_v74.$) && _v74.a.b) && _v74.a.b.b) && _v74.a.b.b.b) && _v74.a.b.b.b.b) && _v74.a.b.b.b.b.b) && _v74.a.b.b.b.b.b.b) && (!_v74.a.b.b.b.b.b.b.b)) {
+					var _v75 = _v74.a;
+					var field = _v75.a;
+					var _v76 = _v75.b;
+					var grp = _v76.a;
+					var _v77 = _v76.b;
+					var start = _v77.a;
+					var _v78 = _v77.b;
+					var end = _v78.a;
+					var _v79 = _v78.b;
+					var offsetObj = _v79.a;
+					var _v80 = _v79.b;
+					var sortObj = _v80.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -7030,17 +7072,17 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'timeUnit':
-				var _v75 = A2(
+				var _v81 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v75.$) && _v75.a.b) && _v75.a.b.b) && _v75.a.b.b.b) && (!_v75.a.b.b.b.b)) {
-					var _v76 = _v75.a;
-					var tu = _v76.a;
-					var _v77 = _v76.b;
-					var field = _v77.a;
-					var _v78 = _v77.b;
-					var label = _v78.a;
+				if (((((!_v81.$) && _v81.a.b) && _v81.a.b.b) && _v81.a.b.b.b) && (!_v81.a.b.b.b.b)) {
+					var _v82 = _v81.a;
+					var tu = _v82.a;
+					var _v83 = _v82.b;
+					var field = _v83.a;
+					var _v84 = _v83.b;
+					var label = _v84.a;
 					return $elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -7052,21 +7094,21 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'window':
-				var _v79 = A2(
+				var _v85 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v79.$) && _v79.a.b) && _v79.a.b.b) && _v79.a.b.b.b) && _v79.a.b.b.b.b) && _v79.a.b.b.b.b.b) && (!_v79.a.b.b.b.b.b.b)) {
-					var _v80 = _v79.a;
-					var winObj = _v80.a;
-					var _v81 = _v80.b;
-					var frameObj = _v81.a;
-					var _v82 = _v81.b;
-					var peersObj = _v82.a;
-					var _v83 = _v82.b;
-					var groupbyObj = _v83.a;
-					var _v84 = _v83.b;
-					var sortObj = _v84.a;
+				if (((((((!_v85.$) && _v85.a.b) && _v85.a.b.b) && _v85.a.b.b.b) && _v85.a.b.b.b.b) && _v85.a.b.b.b.b.b) && (!_v85.a.b.b.b.b.b.b)) {
+					var _v86 = _v85.a;
+					var winObj = _v86.a;
+					var _v87 = _v86.b;
+					var frameObj = _v87.a;
+					var _v88 = _v87.b;
+					var peersObj = _v88.a;
+					var _v89 = _v88.b;
+					var groupbyObj = _v89.a;
+					var _v90 = _v89.b;
+					var sortObj = _v90.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -7096,21 +7138,21 @@ var $author$project$VegaLite$transform = function (transforms) {
 					return $elm$json$Json$Encode$null;
 				}
 			case 'joinaggregate':
-				var _v85 = A2(
+				var _v91 = A2(
 					$elm$json$Json$Decode$decodeString,
 					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
 					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v85.$) && _v85.a.b) && _v85.a.b.b) && _v85.a.b.b.b) && _v85.a.b.b.b.b) && _v85.a.b.b.b.b.b) && (!_v85.a.b.b.b.b.b.b)) {
-					var _v86 = _v85.a;
-					var joinObjs = _v86.a;
-					var _v87 = _v86.b;
-					var frameObj = _v87.a;
-					var _v88 = _v87.b;
-					var peersObj = _v88.a;
-					var _v89 = _v88.b;
-					var groupbyObj = _v89.a;
-					var _v90 = _v89.b;
-					var sortObj = _v90.a;
+				if (((((((!_v91.$) && _v91.a.b) && _v91.a.b.b) && _v91.a.b.b.b) && _v91.a.b.b.b.b) && _v91.a.b.b.b.b.b) && (!_v91.a.b.b.b.b.b.b)) {
+					var _v92 = _v91.a;
+					var joinObjs = _v92.a;
+					var _v93 = _v92.b;
+					var frameObj = _v93.a;
+					var _v94 = _v93.b;
+					var peersObj = _v94.a;
+					var _v95 = _v94.b;
+					var groupbyObj = _v95.a;
+					var _v96 = _v95.b;
+					var sortObj = _v96.a;
 					return $elm$json$Json$Encode$object(
 						_Utils_ap(
 							_List_fromArray(
@@ -10292,9 +10334,7 @@ var $author$project$VegaLite$windowPropertySpec = F2(
 		};
 		var specList = A2(
 			$elm$core$List$filter,
-			function (x) {
-				return !_Utils_eq(x, $elm$json$Json$Encode$null);
-			},
+			$elm$core$Basics$neq($elm$json$Json$Encode$null),
 			A2($elm$core$List$map, wpSpec, wps));
 		if (specList.b && (!specList.b.b)) {
 			var spec = specList.a;
