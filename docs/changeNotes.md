@@ -65,7 +65,9 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `maWidth` and `maHeight` for explicitly setting mark width and height.
 
-* Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
+* `pBand` for setting position/size relative to a band width.
+
+- Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
 
 ### Selections
 
