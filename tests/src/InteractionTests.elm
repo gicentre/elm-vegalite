@@ -242,9 +242,75 @@ interaction15 =
     toVegaLite [ width 540, data, trans [], sel [], enc [], circle [] ]
 
 
+interaction16 : Spec
+interaction16 =
+    let
+        stockData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+                [ csv, parse [ ( "date", foDate "" ) ] ]
+
+        sel =
+            selection
+                << select "index"
+                    seSingle
+                    [ seOn "mouseover"
+                    , seEncodings [ chX ]
+                    , seNearest True
+                    , seInit [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ]
+                    ]
+
+        trans =
+            transform
+                << lookupSelection "symbol" "index" "symbol"
+                << calculateAs "datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0"
+                    "indexed_price"
+
+        pointEnc =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [] ]
+
+        pointSpec =
+            asSpec [ sel [], pointEnc [], point [ maOpacity 0 ] ]
+
+        lineEnc =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [] ]
+                << position Y [ pName "indexed_price", pQuant, pAxis [ axFormat "%" ] ]
+                << color [ mName "symbol", mNominal ]
+
+        lineSpec =
+            asSpec [ trans [], lineEnc [], line [] ]
+
+        ruleTrans =
+            transform
+                << filter (fiSelection "index")
+
+        ruleEnc =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [] ]
+                << color [ mStr "firebrick" ]
+
+        textEnc =
+            encoding
+                << position Y [ pNum 310 ]
+                << text [ tName "date", tTemporal, tTimeUnit yearMonth ]
+
+        labelledRuleSpec =
+            asSpec
+                [ ruleTrans []
+                , ruleEnc []
+                , layer
+                    [ asSpec [ rule [ maStrokeWidth 0.5 ] ]
+                    , asSpec [ textEnc [], textMark [ maAlign haCenter, maFontWeight W100 ] ]
+                    ]
+                ]
+    in
+    toVegaLite [ width 650, height 300, stockData, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
+
+
 sourceExample : Spec
 sourceExample =
-    interaction11
+    interaction16
 
 
 
@@ -269,6 +335,7 @@ mySpecs =
         , ( "interaction13", interaction13 )
         , ( "interaction14", interaction14 )
         , ( "interaction15", interaction15 )
+        , ( "interaction16", interaction16 )
         ]
 
 
