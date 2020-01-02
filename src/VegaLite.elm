@@ -15698,7 +15698,7 @@ transform transforms =
                                     else
                                         [ ( "groupby", gbObj ) ]
                                    )
-                                ++ (if cnObj == JE.null then
+                                ++ (if cmObj == JE.null then
                                         []
 
                                     else
