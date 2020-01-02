@@ -14,7 +14,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
   To stop filtering of invalid values, this is now specified as a mark property. For example, instead of `configuration (coRemoveInvalid False)`, use `configuration (coMark [ maRemoveInvalid False ])`.
 
 * _Tooltips are now disabled by default_ (via change in Vega-lite).
-  Can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncode`.
+  Can be enabled either via an explicit `tooltip` channel, or by setting `maTooltip ttEncoding`.
 
 - _Background is now white by default_ (via a change in Vega-lite).
   Previously backgrounds were transparent. Can mimic previous behaviour by adding a transparent configuration `configuration (coBackground "rgba(0,0,0,0)")`
