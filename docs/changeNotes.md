@@ -143,6 +143,8 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * `vicoWidth` and `vicoHeight` deprecated in favour of `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight`.
 
+- `coStack` deprecated as it is unecessary.
+
 ## Bug Fixes
 
 - `coFieldTitle` now correctly creates a 'functional' label.

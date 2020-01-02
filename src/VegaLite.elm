@@ -994,7 +994,6 @@ module VegaLite exposing
     , coScale
     , coSelection
     , coSquare
-    , coStack
     , coText
     , coTick
     , coTitle
@@ -1329,6 +1328,7 @@ module VegaLite exposing
     , axDates
     , axTickStep
     , axcoTickStep
+    , coStack
     , lookupAs
     , sacoRangeStep
     , sacoTextXRangeStep
@@ -2961,7 +2961,6 @@ Allows default properties for most marks and guides to be set. See the
 @docs coScale
 @docs coSelection
 @docs coSquare
-@docs coStack
 @docs coText
 @docs coTick
 @docs coTitle
@@ -3390,6 +3389,7 @@ to the functions that generate them.
 @docs axDates
 @docs axTickStep
 @docs axcoTickStep
+@docs coStack
 @docs lookupAs
 @docs sacoRangeStep
 @docs sacoTextXRangeStep
@@ -3771,7 +3771,7 @@ type ConditionalAxisProperty
 [coNamedStyle](#coNamedStyle), [coNamedStyles](#coNamedStyles),
 [coNumberFormat](#coNumberFormat), [coPadding](#coPadding), [coPoint](#coPoint),
 [coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect), [coRule](#coRule),
-[coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare), [coStack](#coStack),
+[coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
 [coText](#coText), [coTick](#coTick), [coTitle](#coTitle), [coTimeFormat](#coTimeFormat),
 [coTrail](#coTrail) and [coView](#coView).
 -}
@@ -7613,7 +7613,7 @@ coSquare =
     SquareStyle
 
 
-{-| Configure the default stack offset style for stackable marks.
+{-| Deprecated as stack offset is not supported since Vega-Lite 4.
 -}
 coStack : StackOffset -> ConfigurationProperty
 coStack =
