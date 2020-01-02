@@ -8987,8 +8987,6 @@ var $author$project$TimeTests$parseTime = function (dType) {
 			]));
 };
 var $author$project$TimeTests$localTime = $author$project$TimeTests$parseTime(0);
-var $author$project$VegaLite$Date = {$: 13};
-var $author$project$VegaLite$date = $author$project$VegaLite$Date;
 var $author$project$VegaLite$dataFromUrl = F2(
 	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -9015,16 +9013,80 @@ var $author$project$VegaLite$dataFromUrl = F2(
 	});
 var $author$project$VegaLite$Line = 8;
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(8);
-var $author$project$VegaLite$MStrokeWidth = function (a) {
-	return {$: 52, a: a};
+var $author$project$VegaLite$MFill = function (a) {
+	return {$: 22, a: a};
 };
-var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$maFill = $author$project$VegaLite$MFill;
+var $author$project$VegaLite$MPoint = function (a) {
+	return {$: 37, a: a};
+};
+var $author$project$VegaLite$maPoint = $author$project$VegaLite$MPoint;
+var $author$project$VegaLite$Month = {$: 10};
+var $author$project$VegaLite$month = $author$project$VegaLite$Month;
 var $author$project$VegaLite$Mean = {$: 7};
 var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
 var $author$project$VegaLite$PAggregate = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PBand = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$pBand = $author$project$VegaLite$PBand;
+var $author$project$VegaLite$PMMarker = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
+var $author$project$TimeTests$timeBand = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pBand(0.5)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('temp'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
+					$author$project$VegaLite$pQuant
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-temps.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(400),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$maFill('black')
+								])))
+					]))
+			]));
+}();
+var $author$project$VegaLite$Date = {$: 13};
+var $author$project$VegaLite$date = $author$project$VegaLite$Date;
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 52, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 13, a: a};
 };
@@ -9091,8 +9153,6 @@ var $author$project$TimeTests$timeMinutes = $author$project$TimeTests$timeByUnit
 var $author$project$VegaLite$MinutesSeconds = {$: 19};
 var $author$project$VegaLite$minutesSeconds = $author$project$VegaLite$MinutesSeconds;
 var $author$project$TimeTests$timeMinutesSeconds = $author$project$TimeTests$timeByUnit($author$project$VegaLite$minutesSeconds);
-var $author$project$VegaLite$Month = {$: 10};
-var $author$project$VegaLite$month = $author$project$VegaLite$Month;
 var $author$project$TimeTests$timeMonth = $author$project$TimeTests$timeByUnit($author$project$VegaLite$month);
 var $author$project$VegaLite$MonthDate = {$: 11};
 var $author$project$VegaLite$monthDate = $author$project$VegaLite$MonthDate;
@@ -9134,7 +9194,8 @@ var $author$project$TimeTests$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('timeMinutes', $author$project$TimeTests$timeMinutes),
 			_Utils_Tuple2('timeMinutesSeconds', $author$project$TimeTests$timeMinutesSeconds),
 			_Utils_Tuple2('localTime', $author$project$TimeTests$localTime),
-			_Utils_Tuple2('utcTime', $author$project$TimeTests$utcTime)
+			_Utils_Tuple2('utcTime', $author$project$TimeTests$utcTime),
+			_Utils_Tuple2('timeBand', $author$project$TimeTests$timeBand)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -9150,7 +9211,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$TimeTests$sourceExample = $author$project$TimeTests$timeByUnit($author$project$VegaLite$year);
+var $author$project$TimeTests$sourceExample = $author$project$TimeTests$timeBand;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$TimeTests$view = function (spec) {

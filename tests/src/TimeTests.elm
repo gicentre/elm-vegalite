@@ -158,9 +158,28 @@ utcTime =
     parseTime UTC
 
 
+timeBand : Spec
+timeBand =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-temps.csv" []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTimeUnit month, pTemporal, pBand 0.5 ]
+                << position Y [ pName "temp", pAggregate opMean, pQuant ]
+    in
+    toVegaLite
+        [ width 400
+        , data
+        , enc []
+        , line [ maPoint (pmMarker [ maFill "black" ]) ]
+        ]
+
+
 sourceExample : Spec
 sourceExample =
-    timeByUnit year
+    timeBand
 
 
 
@@ -187,6 +206,7 @@ mySpecs =
         , ( "timeMinutesSeconds", timeMinutesSeconds )
         , ( "localTime", localTime )
         , ( "utcTime", utcTime )
+        , ( "timeBand", timeBand )
         ]
 
 
