@@ -9015,7 +9015,7 @@ foBoo =
 
 
 {-| Date format for parsing input data using
-[D3's formatting specifiers](https://vega.github.io/vega-lite/docs/data.html#format)
+[D3's formatting specifiers](https://github.com/d3/d3-time-format#locale_format)
 or left as an empty string for default formatting.
 -}
 foDate : String -> DataType
