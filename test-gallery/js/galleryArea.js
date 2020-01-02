@@ -6259,6 +6259,11 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 				'sort',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperty, sps)));
+		case 14:
+			var x = pDef.a;
+			return _Utils_Tuple2(
+				'band',
+				$elm$json$Json$Encode$float(x));
 		case 11:
 			var sps = pDef.a;
 			return _Utils_eq(sps, _List_Nil) ? _Utils_Tuple2('scale', $elm$json$Json$Encode$null) : _Utils_Tuple2(
@@ -6271,7 +6276,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 				'axis',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisProperty, aps)));
-		case 14:
+		case 15:
 			var so = pDef.a;
 			return $author$project$VegaLite$stackOffset(so);
 		case 4:
@@ -7524,7 +7529,7 @@ var $author$project$VegaLite$AxDomain = function (a) {
 };
 var $author$project$VegaLite$axDomain = $author$project$VegaLite$AxDomain;
 var $author$project$VegaLite$PStack = function (a) {
-	return {$: 14, a: a};
+	return {$: 15, a: a};
 };
 var $author$project$VegaLite$pStack = $author$project$VegaLite$PStack;
 var $author$project$VegaLite$OfNormalize = 1;
