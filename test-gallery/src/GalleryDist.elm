@@ -184,6 +184,38 @@ dist7 =
     toVegaLite [ des, data, enc [], boxplot [ maExtent (exIqrScale 1.5) ] ]
 
 
+dist8 : Spec
+dist8 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/normal-2d.json" []
+
+        trans =
+            transform
+                << quantile "u" [ qtStep 0.01, qtAs "p" "v" ]
+                << calculateAs "quantileUniform(datum.p)" "unif"
+                << calculateAs "quantileNormal(datum.p)" "norm"
+
+        enc1 =
+            encoding
+                << position X [ pName "unif", pQuant ]
+                << position Y [ pName "v", pQuant ]
+
+        enc2 =
+            encoding
+                << position X [ pName "norm", pQuant ]
+                << position Y [ pName "v", pQuant ]
+    in
+    toVegaLite
+        [ data
+        , trans []
+        , hConcat
+            [ asSpec [ enc1 [], point [] ]
+            , asSpec [ enc2 [], point [] ]
+            ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -198,6 +230,7 @@ mySpecs =
         , ( "dist5", dist5 )
         , ( "dist6", dist6 )
         , ( "dist7", dist7 )
+        , ( "dist8", dist8 )
         ]
 
 
