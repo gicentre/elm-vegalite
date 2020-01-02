@@ -157,6 +157,7 @@ module VegaLite exposing
     , piLimit
     , piOp
     , lookup
+    , lookupSelection
     , luFields
     , luFieldsWithDefault
     , luFieldsAs
@@ -1633,6 +1634,7 @@ Create lookups between data tables in order to join values from multiple sources
 See the [Vega-Lite lookup documentation](https://vega.github.io/vega-lite/docs/lookup.html).
 
 @docs lookup
+@docs lookupSelection
 @docs luFields
 @docs luFieldsWithDefault
 @docs luFieldsAs
@@ -11124,6 +11126,8 @@ generating function. The third is the name of the field in the secondary
 data source to match values with the primary key. The fourth parameter is the list
 of fields to be stored when the keys match.
 
+For linking data with interactive selections, see [lookupSelection](#lookupSelection).
+
 A common use for lookup is to join geographic and attribute data sources. Below
 `geodata` is the primary data source containing borough boundaries and `censusData`
 the secondary data source containing attribute data. Both have common data field
@@ -11222,6 +11226,35 @@ should be replaced with
 lookupAs : String -> Data -> String -> String -> List LabelledSpec -> List LabelledSpec
 lookupAs key1 sData key2 luAlias =
     lookup key1 sData key2 (luAs luAlias)
+
+
+{-| Attach the results of an interactive selection to a primary data source.
+The first three parameters are the field in the primary data source to look up;
+the name of the interactive selection; and the name of the field in the selection
+to link with the primary data field. This is similar to [lookup](#lookup) except
+that the data in a selection are used in place of the secondary data source.
+
+For example:
+
+      sel =
+          selection
+              << select "mySel" seSingle [ seOn "mouseover", seEncodings [ chX ] ]
+
+      trans =
+          transform
+              << lookupSelection "country" "mySel" "country"
+
+-}
+lookupSelection : String -> String -> String -> List LabelledSpec -> List LabelledSpec
+lookupSelection key1 selName key2 =
+    (::)
+        ( "lookup"
+        , toList
+            [ JE.string key1
+            , JE.string selName
+            , JE.string key2
+            ]
+        )
 
 
 {-| Position legend outside and to the right of the visualization it describes.
@@ -15676,6 +15709,12 @@ transform transforms =
 
                 "lookup" ->
                     case JD.decodeString (JD.list JD.value) (JE.encode 0 val) of
+                        Ok [ key1, selName, key2 ] ->
+                            JE.object
+                                [ ( "lookup", key1 )
+                                , ( "from", JE.object [ ( "selection", selName ), ( "key", key2 ) ] )
+                                ]
+
                         Ok [ key1, dataSpec, key2, fields, aliases, def ] ->
                             let
                                 lSpecs =

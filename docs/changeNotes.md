@@ -43,65 +43,67 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `pivot` (and associated `pi` pivot property functions) for data shaping.
 
-* `regression` (and associated `rg` regression property functions) for regression modelling.
+* `lookupSelection` for lookups that rely on an interactive selection of data.
 
-- `density` (and associated `dn` density property functions) for KDE transforms.
+- `regression` (and associated `rg` regression property functions) for regression modelling.
 
-* `loess` (and associated `ls` loess property functions) for locally-estimated scatterplot smoothing.
+* `density` (and associated `dn` density property functions) for KDE transforms.
 
-- `maColorGradient`, `maFillGradient` and `maStrokeGradient` (and associated `gr` gradient property functions) for gradient-based colouring.
+- `loess` (and associated `ls` loess property functions) for locally-estimated scatterplot smoothing.
 
-* `maCornerRadius`, `maCornerRadiusBottomLeft`, `maCornerRadiusBottomRight`, `maCornerRadiusTopLeft` and `maCornerRadiusTopRight` for rounding a rectangle mark.
+* `maColorGradient`, `maFillGradient` and `maStrokeGradient` (and associated `gr` gradient property functions) for gradient-based colouring.
 
-- `mSort` for sorting by mark properties like `color`.
+- `maCornerRadius`, `maCornerRadiusBottomLeft`, `maCornerRadiusBottomRight`, `maCornerRadiusTopLeft` and `maCornerRadiusTopRight` for rounding a rectangle mark.
 
-* `seBindLegend` and associated property functions `blField`, `blChannel` and `blEvent` for creating interactive legends.
+* `mSort` for sorting by mark properties like `color`.
 
-- `title` and component titles (axis title, legend title etc.) can now be formatted over multiple lines with `\n` or `"""` multi-line strings.
+- `seBindLegend` and associated property functions `blField`, `blChannel` and `blEvent` for creating interactive legends.
 
-* `axDataCondition` and associated `cAx` property functions for conditional axis formatting.
+* `title` and component titles (axis title, legend title etc.) can now be formatted over multiple lines with `\n` or `"""` multi-line strings.
 
-- Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axLabelSeparation`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoLabelSeparation`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
+- `axDataCondition` and associated `cAx` property functions for conditional axis formatting.
 
-* New title option `tiSubtitle` for specifying secondary title text. Can be styled via new functions `tiSubtitleColor`, `tiSubtitleFont`, `tiSubtitleFontSize`, `tiSubtitleFontStyle`, `tiSubtitleFontWeight`, `tiSubtitleLineHeight` and `tiSubtitlePadding`.
+* Additional axis formatting options: `axGridColor`, `axGridOpacity`, `axGridWidth`, `axLabelExpr`, `axLabelFontStyle`, `axLabelSeparation`, `axTitleFontStyle` and `axTitleAnchor` along with extra config options `axcoLabelFontStyle`, `axcoLabelSeparation`, `axcoTitleFontStyle` and `axcoTitleAnchor`.
 
-- New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle`, `ticoZIndex`, `ticoSubtitleColor`, `ticoSubtitleFont`, `ticoSubtitleFontSize`, `ticoSubtitleFontStyle`, `ticoSubtitleFontWeight`, `ticoSubtitleLineHeight` and `ticoSubtitlePadding`.
+- New title option `tiSubtitle` for specifying secondary title text. Can be styled via new functions `tiSubtitleColor`, `tiSubtitleFont`, `tiSubtitleFontSize`, `tiSubtitleFontStyle`, `tiSubtitleFontWeight`, `tiSubtitleLineHeight` and `tiSubtitlePadding`.
 
-* `vicoStep` for configuring default step size for discrete x and y discrete fields.
+* New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle`, `ticoZIndex`, `ticoSubtitleColor`, `ticoSubtitleFont`, `ticoSubtitleFontSize`, `ticoSubtitleFontStyle`, `ticoSubtitleFontWeight`, `ticoSubtitleLineHeight` and `ticoSubtitlePadding`.
 
-- `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight` for dimension configuration depending on type of data.
+- `vicoStep` for configuring default step size for discrete x and y discrete fields.
 
-* `vicoBackground` for configuring default single view plot area background appearance.
+* `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight` for dimension configuration depending on type of data.
 
-- `coConcat` for configuring concatenations (`cocoSpacing` and `cocoColumns`).
+- `vicoBackground` for configuring default single view plot area background appearance.
 
-* `fiOp` for converting filters into `BooleanOp` and therefore allowing Boolean composition of filter functions.
+* `coConcat` for configuring concatenations (`cocoSpacing` and `cocoColumns`).
 
-- `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.
+- `fiOp` for converting filters into `BooleanOp` and therefore allowing Boolean composition of filter functions.
 
-* `maWidth` and `maHeight` for explicitly setting mark width and height.
+* `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.
 
-- `scAlign` for aligning marks within a range.
+- `maWidth` and `maHeight` for explicitly setting mark width and height.
 
-* `noData` for preventing inheritance of parent data source in a specification.
+* `scAlign` for aligning marks within a range.
 
-- `nullValue` for explicitly setting data values to null.
+- `noData` for preventing inheritance of parent data source in a specification.
 
-* `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
+* `nullValue` for explicitly setting data values to null.
 
-- `seInitInterval` for initialising an interval selection's extent.
+- `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
 
-* Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke` and `mSymbol` convenience function for symbol literals.
+* `seInitInterval` for initialising an interval selection's extent.
 
-- `tStr` for string literals in a text encoding channel.
+- Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke` and `mSymbol` convenience function for symbol literals.
 
-* `equalEarth` map projection type.
+* `tStr` for string literals in a text encoding channel.
 
-- `key` channel for binding with Vega View API.
+- `equalEarth` map projection type.
 
-* `asFitX` and `asFitY` for autosizing in one dimension only.
+* `key` channel for binding with Vega View API.
 
-- Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
+- `asFitX` and `asFitY` for autosizing in one dimension only.
+
+* Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
 
 ## Deprecations
 
