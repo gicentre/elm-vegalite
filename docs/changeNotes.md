@@ -103,7 +103,9 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `asFitX` and `asFitY` for autosizing in one dimension only.
 
-* Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
+* `dtMonthNum` for referencing a month by its numeric value.
+
+- Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
 
 ## Deprecations
 
