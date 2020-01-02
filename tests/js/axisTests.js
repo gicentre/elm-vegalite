@@ -6663,9 +6663,49 @@ var $author$project$AxisTests$axis1 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$VLWidth = 3;
+var $author$project$VegaLite$widthOfContainer = _Utils_Tuple2(
+	3,
+	$elm$json$Json$Encode$string('container'));
+var $author$project$AxisTests$axis2 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$widthOfContainer,
+				$author$project$AxisTests$data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(_List_Nil))
+					]))
+			]));
+}();
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$AxisTests$axis2 = function () {
+var $author$project$AxisTests$axis3 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6719,7 +6759,7 @@ var $author$project$AxisTests$temporalData = A2(
 		$author$project$VegaLite$nums(
 			_List_fromArray(
 				[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))));
-var $author$project$AxisTests$axis3 = function () {
+var $author$project$AxisTests$axis4 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6762,7 +6802,7 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$AxisTests$axis4 = function () {
+var $author$project$AxisTests$axis5 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6805,7 +6845,7 @@ var $author$project$AxisTests$axis4 = function () {
 					]))
 			]));
 }();
-var $author$project$AxisTests$axis5 = function () {
+var $author$project$AxisTests$axis6 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6865,7 +6905,7 @@ var $author$project$VegaLite$DateTimes = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$dts = $author$project$VegaLite$DateTimes;
-var $author$project$AxisTests$axis6 = function () {
+var $author$project$AxisTests$axis7 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6931,7 +6971,7 @@ var $author$project$VegaLite$AxLabelExpr = function (a) {
 	return {$: 20, a: a};
 };
 var $author$project$VegaLite$axLabelExpr = $author$project$VegaLite$AxLabelExpr;
-var $author$project$AxisTests$axis7 = function () {
+var $author$project$AxisTests$axis8 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6971,7 +7011,7 @@ var $author$project$AxisTests$axis7 = function () {
 					]))
 			]));
 }();
-var $author$project$AxisTests$axis8 = function () {
+var $author$project$AxisTests$axis9 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7024,7 +7064,8 @@ var $author$project$AxisTests$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('axis5', $author$project$AxisTests$axis5),
 			_Utils_Tuple2('axis6', $author$project$AxisTests$axis6),
 			_Utils_Tuple2('axis7', $author$project$AxisTests$axis7),
-			_Utils_Tuple2('axis8', $author$project$AxisTests$axis8)
+			_Utils_Tuple2('axis8', $author$project$AxisTests$axis8),
+			_Utils_Tuple2('axis9', $author$project$AxisTests$axis9)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

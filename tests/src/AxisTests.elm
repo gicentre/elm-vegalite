@@ -50,14 +50,25 @@ axis2 =
     let
         enc =
             encoding
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant ]
+    in
+    toVegaLite [ widthOfContainer, data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis3 : Spec
+axis3 =
+    let
+        enc =
+            encoding
                 << position X [ pName "catX", pOrdinal ]
                 << position Y [ pName "y", pQuant ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis3 : Spec
-axis3 =
+axis4 : Spec
+axis4 =
     let
         enc =
             encoding
@@ -67,8 +78,8 @@ axis3 =
     toVegaLite [ temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis4 : Spec
-axis4 =
+axis5 : Spec
+axis5 =
     let
         enc =
             encoding
@@ -82,8 +93,8 @@ axis4 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis5 : Spec
-axis5 =
+axis6 : Spec
+axis6 =
     let
         enc =
             encoding
@@ -97,8 +108,8 @@ axis5 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis6 : Spec
-axis6 =
+axis7 : Spec
+axis7 =
     let
         enc =
             encoding
@@ -120,8 +131,8 @@ axis6 =
     toVegaLite [ temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis7 : Spec
-axis7 =
+axis8 : Spec
+axis8 =
     let
         enc =
             encoding
@@ -135,8 +146,8 @@ axis7 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis8 : Spec
-axis8 =
+axis9 : Spec
+axis9 =
     let
         enc =
             encoding
@@ -165,6 +176,7 @@ mySpecs =
         , ( "axis6", axis6 )
         , ( "axis7", axis7 )
         , ( "axis8", axis8 )
+        , ( "axis9", axis9 )
         ]
 
 

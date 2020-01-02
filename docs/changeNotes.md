@@ -117,13 +117,15 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `widthStep` and `heightStep` for setting the width/height of a discrete x or y field (e.g. individual bars in a bar chart).
 
-* `asFitX` and `asFitY` for autosizing in one dimension only.
+* `widthOfContainer` and `heightOfContainer` for responsive sizing.
 
-- Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke` and `mSymbol` convenience function for symbol literals.
+- `asFitX` and `asFitY` for autosizing in one dimension only.
 
-* `equalEarth` map projection type.
+* Additional symbols `symTriangleLeft`, `symTriangleRight`, `symTriangle`, `symArrow`, `symWedge` and `symStroke` and `mSymbol` convenience function for symbol literals.
 
-- `key` channel for binding with Vega View API.
+- `equalEarth` map projection type.
+
+* `key` channel for binding with Vega View API.
 
 ## Deprecations
 

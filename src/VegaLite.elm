@@ -900,7 +900,9 @@ module VegaLite exposing
     , name
     , description
     , height
+    , heightOfContainer
     , width
+    , widthOfContainer
     , widthStep
     , heightStep
     , padding
@@ -2840,7 +2842,9 @@ These are in addition to the data and transform options described above. See the
 @docs name
 @docs description
 @docs height
+@docs heightOfContainer
 @docs width
+@docs widthOfContainer
 @docs widthStep
 @docs heightStep
 @docs padding
@@ -9819,6 +9823,14 @@ height h =
     ( VLHeight, JE.float h )
 
 
+{-| Set the height of the view to be that of the surrounding container. Allows
+responsive sizing to be specified.
+-}
+heightOfContainer : ( VLProperty, Spec )
+heightOfContainer =
+    ( VLHeight, JE.string "container" )
+
+
 {-| Set the height of the discrete y-field (e.g. individual bars in a horizontal
 bar chart). The total height is then calculated based on the number of discrete
 fields (e.g. bars).
@@ -16575,6 +16587,14 @@ with [autosize])(#autosize).
 width : Float -> ( VLProperty, Spec )
 width w =
     ( VLWidth, JE.float w )
+
+
+{-| Set the width of the view to be that of the surrounding container. Allows
+responsive sizing to be specified.
+-}
+widthOfContainer : ( VLProperty, Spec )
+widthOfContainer =
+    ( VLWidth, JE.string "container" )
 
 
 {-| Set the width of the discrete x-field (e.g. individual bars in a bar chart).
