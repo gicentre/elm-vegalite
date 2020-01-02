@@ -57,8 +57,54 @@ dist2 =
 dist3 : Spec
 dist3 =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << density "IMDB_Rating" [ dnBandwidth 0.3 ]
+
+        enc =
+            encoding
+                << position X [ pName "value", pQuant, pTitle "IMDB Rating" ]
+                << position Y [ pName "density", pQuant ]
+    in
+    toVegaLite [ width 400, height 100, data, trans [], enc [], area [] ]
+
+
+dist4 : Spec
+dist4 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << density "IMDB_Rating"
+                    [ dnBandwidth 0.3
+                    , dnGroupBy [ "Major_Genre" ]
+                    , dnExtent (num 0) (num 10)
+                    , dnCounts True
+                    , dnSteps 50
+                    ]
+
+        enc =
+            encoding
+                << position X [ pName "value", pQuant ]
+                << position Y [ pName "density", pQuant, pStack stZero ]
+                << color [ mName "Major_Genre", mScale [ scScheme "category20" [] ], mNominal ]
+    in
+    toVegaLite [ width 400, height 100, data, trans [], enc [], area [] ]
+
+
+dist5 : Spec
+dist5 =
+    let
         des =
             description "A layered histogram and cumulative histogram."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
 
         trans =
             transform
@@ -96,15 +142,15 @@ dist3 =
     in
     toVegaLite
         [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+        , data
         , trans []
         , layer [ specCumulative, specDist ]
         , enc []
         ]
 
 
-dist4 : Spec
-dist4 =
+dist6 : Spec
+dist6 =
     let
         des =
             description "A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000."
@@ -120,8 +166,8 @@ dist4 =
     toVegaLite [ des, data, enc [], boxplot [ maExtent exRange ] ]
 
 
-dist5 : Spec
-dist5 =
+dist7 : Spec
+dist7 =
     let
         des =
             description "Tukey box plot showing median, min, and max in the US population distribution of age groups in 2000."
@@ -150,6 +196,8 @@ mySpecs =
         , ( "dist3", dist3 )
         , ( "dist4", dist4 )
         , ( "dist5", dist5 )
+        , ( "dist6", dist6 )
+        , ( "dist7", dist7 )
         ]
 
 
