@@ -131,19 +131,21 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 ## Deprecations
 
-- `axDates` deprecated in favour of new more flexible `axValues`.
+- `axcoShortTimeLabels` deprecated as this is the default since VL4.
 
-* `lookupAs` deprecated in favour of `lookup` with `luAs`.
+* `axDates` deprecated in favour of new more flexible `axValues`.
 
-- `scReverse` deprecated in favour of `mSort` (while `scReverse` works, it is not part of the Vega-Lite schema).
+- `lookupAs` deprecated in favour of `lookup` with `luAs`.
 
-* `scRangeStep`, deprecated in favour of `widthStep` and `heightStep`.
+* `scReverse` deprecated in favour of `mSort` (while `scReverse` works, it is not part of the Vega-Lite schema).
 
-- `sacoRangeStep` and `sacoTextXRangeStep` deprecated in favour of `vicoStep`.
+- `scRangeStep`, deprecated in favour of `widthStep` and `heightStep`.
 
-* `vicoWidth` and `vicoHeight` deprecated in favour of `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight`.
+* `sacoRangeStep` and `sacoTextXRangeStep` deprecated in favour of `vicoStep`.
 
-- `coStack` deprecated as it is unecessary.
+- `vicoWidth` and `vicoHeight` deprecated in favour of `vicoContinuousWidth`, `vicoDiscreteWidth`, `vicoContinuousHeight` and `vicoDiscreteHeight`.
+
+* `coStack` deprecated as it is unecessary.
 
 ## Bug Fixes
 

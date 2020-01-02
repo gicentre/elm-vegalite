@@ -1029,7 +1029,6 @@ module VegaLite exposing
     , axcoLabelOverlap
     , axcoLabelPadding
     , axcoLabelSeparation
-    , axcoShortTimeLabels
     , axcoTicks
     , axcoTickColor
     , axcoTickExtra
@@ -1325,9 +1324,10 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
+    , axcoShortTimeLabels
+    , axcoTickStep
     , axDates
     , axTickStep
-    , axcoTickStep
     , coStack
     , lookupAs
     , sacoRangeStep
@@ -3003,7 +3003,6 @@ See the
 @docs axcoLabelOverlap
 @docs axcoLabelPadding
 @docs axcoLabelSeparation
-@docs axcoShortTimeLabels
 @docs axcoTicks
 @docs axcoTickColor
 @docs axcoTickExtra
@@ -3386,9 +3385,10 @@ to the functions that generate them.
 
 # 11. Deprecated functions
 
+@docs axcoShortTimeLabels
+@docs axcoTickStep
 @docs axDates
 @docs axTickStep
-@docs axcoTickStep
 @docs coStack
 @docs lookupAs
 @docs sacoRangeStep
@@ -3449,8 +3449,8 @@ type Autosize
 [axcoLabelFontStyle](#axcoLabelFontStyle), [axcoLabelFontWeight](#axcoLabelFontWeight),
 [axcoLabelLimit](#axcoLabelLimit), [axcoLabelOpacity](#axcoLabelOpacity),
 [axcoLabelOverlap](#axcoLabelOverlap), [axcoLabelPadding](#axcoLabelPadding),
-[axcoLabelSeparation](#axcoLabelSeparation), [axcoShortTimeLabels](#axcoShortTimeLabels),
-[axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor), [axcoTickExtra](#axcoTickExtra),
+[axcoLabelSeparation](#axcoLabelSeparation),[axcoTicks](#axcoTicks),
+[axcoTickColor](#axcoTickColor), [axcoTickExtra](#axcoTickExtra),
 [axcoTickOffset](#axcoTickOffset), [axcoTickOpacity](#axcoTickOpacity),
 [axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize),
 [axcoTickMinStep](#axcoTickMinStep), [axcoTickWidth](#axcoTickWidth),
@@ -5973,7 +5973,7 @@ axcoMinExtent =
     MinExtent
 
 
-{-| Whether or not an axis should use short time labels by default.
+{-| Deprecated since short time labels are used by default since VL4
 -}
 axcoShortTimeLabels : Bool -> AxisConfig
 axcoShortTimeLabels =
