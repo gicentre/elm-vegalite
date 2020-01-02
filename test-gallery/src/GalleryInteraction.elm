@@ -298,7 +298,11 @@ interaction9 : Spec
 interaction9 =
     let
         desc =
-            description "Displays tooltips for all stock prices of the hovered time"
+            description "Displays labels for all stock prices of the hovered time"
+
+        stockData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+                [ parse [ ( "date", foDate "" ) ] ]
 
         enc1 =
             encoding
@@ -351,16 +355,141 @@ interaction9 =
                 << text [ tName "price", tQuant ]
                 << color [ mName "symbol", mNominal ]
     in
-    toVegaLite
-        [ width 800
-        , height 400
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" [ parse [ ( "date", foDate "" ) ] ]
-        , layer [ spec1, spec2 ]
-        ]
+    toVegaLite [ width 400, height 300, stockData, layer [ spec1, spec2 ] ]
 
 
 interaction10 : Spec
 interaction10 =
+    let
+        desc =
+            description "Displays tooltips for all stock prices of the hovered time"
+
+        stockData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+                [ parse [ ( "date", foDate "" ) ] ]
+
+        enc =
+            encoding
+                << position X [ pName "date", pTemporal ]
+
+        transSelFilter =
+            transform
+                << filter (fiSelection "hover")
+
+        enc1 =
+            encoding
+                << position Y [ pName "price", pQuant ]
+                << color [ mName "symbol", mNominal ]
+
+        spec1 =
+            asSpec
+                [ enc1 []
+                , layer
+                    [ asSpec [ line [] ]
+                    , asSpec [ transSelFilter [], point [] ]
+                    ]
+                ]
+
+        sel =
+            selection
+                << select "hover"
+                    seSingle
+                    [ seFields [ "date" ]
+                    , seEmpty
+                    , seOn "mouseover"
+                    , seClear "mouseout"
+                    , seNearest True
+                    ]
+
+        transPivot =
+            transform
+                << pivot "symbol" "price" [ piGroupBy [ "date" ] ]
+
+        enc2 =
+            encoding
+                << opacity [ mSelectionCondition (expr "hover") [ mNum 0.3 ] [ mNum 0 ] ]
+                << tooltips
+                    [ [ tName "AAPL", tQuant ]
+                    , [ tName "AMZN", tQuant ]
+                    , [ tName "GOOG", tQuant ]
+                    , [ tName "IBM", tQuant ]
+                    , [ tName "MSFT", tQuant ]
+                    ]
+
+        spec2 =
+            asSpec [ sel [], transPivot [], enc2 [], rule [] ]
+    in
+    toVegaLite [ width 400, height 300, stockData, enc [], layer [ spec1, spec2 ] ]
+
+
+interaction11 : Spec
+interaction11 =
+    let
+        stockData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+                [ csv, parse [ ( "date", foDate "" ) ] ]
+
+        sel =
+            selection
+                << select "index"
+                    seSingle
+                    [ seOn "mouseover"
+                    , seEncodings [ chX ]
+                    , seNearest True
+                    , seInit [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ]
+                    ]
+
+        trans =
+            transform
+                << lookupSelection "symbol" "index" "symbol"
+                << calculateAs "datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0"
+                    "indexed_price"
+
+        pointEnc =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [] ]
+
+        pointSpec =
+            asSpec [ sel [], pointEnc [], point [ maOpacity 0 ] ]
+
+        lineEnc =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [] ]
+                << position Y [ pName "indexed_price", pQuant, pAxis [ axFormat "%" ] ]
+                << color [ mName "symbol", mNominal ]
+
+        lineSpec =
+            asSpec [ trans [], lineEnc [], line [] ]
+
+        ruleTrans =
+            transform
+                << filter (fiSelection "index")
+
+        ruleEnc =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [] ]
+                << color [ mStr "firebrick" ]
+
+        textEnc =
+            encoding
+                << position Y [ pNum 310 ]
+                << text [ tName "date", tTemporal, tTimeUnit yearMonth ]
+
+        labelledRuleSpec =
+            asSpec
+                [ ruleTrans []
+                , ruleEnc []
+                , layer
+                    [ asSpec [ rule [ maStrokeWidth 0.5 ] ]
+                    , asSpec [ textEnc [], textMark [ maAlign haCenter, maFontWeight W100 ] ]
+                    ]
+                ]
+    in
+    toVegaLite [ width 650, height 300, stockData, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
+
+
+interaction12 : Spec
+interaction12 =
     let
         desc =
             description "Multi Series Line Chart with Tooltip"
@@ -415,8 +544,8 @@ interaction10 =
         ]
 
 
-interaction11 : Spec
-interaction11 =
+interaction13 : Spec
+interaction13 =
     let
         desc =
             description "Drag a rectangular brush to show (first 20) selected points in a table."
@@ -507,8 +636,8 @@ interaction11 =
         ]
 
 
-interaction12 : Spec
-interaction12 =
+interaction14 : Spec
+interaction14 =
     let
         data =
             dataFromColumns []
@@ -540,8 +669,8 @@ interaction12 =
     toVegaLite [ cfg [], data [], sel [], enc [], bar [] ]
 
 
-interaction13 : Spec
-interaction13 =
+interaction15 : Spec
+interaction15 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
@@ -605,6 +734,8 @@ mySpecs =
         , ( "interaction11", interaction11 )
         , ( "interaction12", interaction12 )
         , ( "interaction13", interaction13 )
+        , ( "interaction14", interaction14 )
+        , ( "interaction15", interaction15 )
         ]
 
 
