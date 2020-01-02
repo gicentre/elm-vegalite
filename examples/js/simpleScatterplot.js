@@ -3816,27 +3816,32 @@ var $author$project$VegaLite$dateTimeProperty = function (dtp) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$monthNameLabel(mon)));
 		case 3:
+			var n = dtp.a;
+			return _Utils_Tuple2(
+				'month',
+				$elm$json$Json$Encode$int(n));
+		case 4:
 			var d = dtp.a;
 			return _Utils_Tuple2(
 				'date',
 				$elm$json$Json$Encode$int(d));
-		case 4:
+		case 5:
 			var d = dtp.a;
 			return _Utils_Tuple2(
 				'day',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$dayLabel(d)));
-		case 5:
+		case 6:
 			var h = dtp.a;
 			return _Utils_Tuple2(
 				'hours',
 				$elm$json$Json$Encode$int(h));
-		case 6:
+		case 7:
 			var m = dtp.a;
 			return _Utils_Tuple2(
 				'minutes',
 				$elm$json$Json$Encode$int(m));
-		case 7:
+		case 8:
 			var s = dtp.a;
 			return _Utils_Tuple2(
 				'seconds',
