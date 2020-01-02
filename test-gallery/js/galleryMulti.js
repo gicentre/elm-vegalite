@@ -4040,7 +4040,7 @@ var $author$project$VegaLite$anchorLabel = function (an) {
 var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$VegaLite$binProperty = function (binProp) {
 	switch (binProp.$) {
-		case 4:
+		case 5:
 			var n = binProp.a;
 			return _Utils_Tuple2(
 				'maxbins',
@@ -4055,17 +4055,17 @@ var $author$project$VegaLite$binProperty = function (binProp) {
 			return _Utils_Tuple2(
 				'base',
 				$elm$json$Json$Encode$float(x));
-		case 7:
+		case 8:
 			var x = binProp.a;
 			return _Utils_Tuple2(
 				'step',
 				$elm$json$Json$Encode$float(x));
-		case 8:
+		case 9:
 			var xs = binProp.a;
 			return _Utils_Tuple2(
 				'steps',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 5:
+		case 6:
 			var x = binProp.a;
 			return _Utils_Tuple2(
 				'minstep',
@@ -4085,6 +4085,17 @@ var $author$project$VegaLite$binProperty = function (binProp) {
 					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
+		case 4:
+			var s = binProp.a;
+			return _Utils_Tuple2(
+				'extent',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'selection',
+							$elm$json$Json$Encode$string(s))
+						])));
 		default:
 			var b = binProp.a;
 			return _Utils_Tuple2(
@@ -7288,7 +7299,7 @@ var $author$project$VegaLite$arColumn = 0;
 var $author$project$VegaLite$Bar = 1;
 var $author$project$VegaLite$bar = $author$project$VegaLite$mark(1);
 var $author$project$VegaLite$MaxBins = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$biMaxBins = $author$project$VegaLite$MaxBins;
 var $author$project$VegaLite$calculateAs = F2(
@@ -11774,6 +11785,121 @@ var $author$project$GalleryMulti$multi7 = function () {
 					[backdropSpec, lineSpec, airportSpec]))
 			]));
 }();
+var $author$project$VegaLite$SelectionExtent = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$biSelectionExtent = $author$project$VegaLite$SelectionExtent;
+var $author$project$GalleryMulti$multi8 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$calculateAs, 'hours(datum.date) + minutes(datum.date) / 60', 'time'));
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'brush',
+			$author$project$VegaLite$seInterval,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seEncodings(
+					_List_fromArray(
+						[$author$project$VegaLite$chX]))
+				])));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('time'),
+						$author$project$VegaLite$pBin(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$biMaxBins(30),
+								$author$project$VegaLite$biSelectionExtent('brush')
+							])),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(963),
+				$author$project$VegaLite$height(100),
+				enc2(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('time'),
+						$author$project$VegaLite$pBin(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$biMaxBins(30)
+							])),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(963),
+				$author$project$VegaLite$height(100),
+				sel(_List_Nil),
+				enc1(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/flights-5k.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				trans(_List_Nil),
+				$author$project$VegaLite$vConcat(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
 var $author$project$GalleryMulti$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -11783,7 +11909,8 @@ var $author$project$GalleryMulti$mySpecs = $author$project$VegaLite$combineSpecs
 			_Utils_Tuple2('multi4', $author$project$GalleryMulti$multi4),
 			_Utils_Tuple2('multi5', $author$project$GalleryMulti$multi5),
 			_Utils_Tuple2('multi6', $author$project$GalleryMulti$multi6),
-			_Utils_Tuple2('multi7', $author$project$GalleryMulti$multi7)
+			_Utils_Tuple2('multi7', $author$project$GalleryMulti$multi7),
+			_Utils_Tuple2('multi8', $author$project$GalleryMulti$multi8)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

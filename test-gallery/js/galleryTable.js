@@ -2903,9 +2903,10 @@ var $elm$json$Json$Encode$list = F2(
 				_Json_emptyArray(0),
 				entries));
 	});
+var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$binProperty = function (binProp) {
 	switch (binProp.$) {
-		case 4:
+		case 5:
 			var n = binProp.a;
 			return _Utils_Tuple2(
 				'maxbins',
@@ -2920,17 +2921,17 @@ var $author$project$VegaLite$binProperty = function (binProp) {
 			return _Utils_Tuple2(
 				'base',
 				$elm$json$Json$Encode$float(x));
-		case 7:
+		case 8:
 			var x = binProp.a;
 			return _Utils_Tuple2(
 				'step',
 				$elm$json$Json$Encode$float(x));
-		case 8:
+		case 9:
 			var xs = binProp.a;
 			return _Utils_Tuple2(
 				'steps',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 5:
+		case 6:
 			var x = binProp.a;
 			return _Utils_Tuple2(
 				'minstep',
@@ -2950,6 +2951,17 @@ var $author$project$VegaLite$binProperty = function (binProp) {
 					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
+		case 4:
+			var s = binProp.a;
+			return _Utils_Tuple2(
+				'extent',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'selection',
+							$elm$json$Json$Encode$string(s))
+						])));
 		default:
 			var b = binProp.a;
 			return _Utils_Tuple2(
@@ -3011,7 +3023,6 @@ var $author$project$VegaLite$monthNameLabel = function (mon) {
 			return 'Dec';
 	}
 };
-var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$dateTimeProperty = function (dtp) {
 	switch (dtp.$) {
 		case 0:
@@ -9062,7 +9073,7 @@ var $author$project$VegaLite$and = F2(
 		return A2($author$project$VegaLite$And, op1, op2);
 	});
 var $author$project$VegaLite$MaxBins = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$biMaxBins = $author$project$VegaLite$MaxBins;
 var $author$project$VegaLite$Range = function (a) {
