@@ -6707,7 +6707,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 										_Utils_Tuple2('groupby', gbObj)
 									]),
 								_Utils_ap(
-									_Utils_eq(cnObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+									_Utils_eq(cmObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
 										[
 											_Utils_Tuple2('cumulative', cnObj)
 										]),
@@ -7471,6 +7471,304 @@ var $author$project$GalleryDist$dist2 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$densityPropertySpec = F2(
+	function (dpName, dps) {
+		var dpSpec = function (dp) {
+			switch (dpName) {
+				case 'groupby':
+					if (!dp.$) {
+						var fields = dp.a;
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'cumulative':
+					if (dp.$ === 1) {
+						var b = dp.a;
+						return $elm$json$Json$Encode$bool(b);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'counts':
+					if (dp.$ === 2) {
+						var b = dp.a;
+						return $elm$json$Json$Encode$bool(b);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'bandwidth':
+					if (dp.$ === 3) {
+						var x = dp.a;
+						return $elm$json$Json$Encode$float(x);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'extent':
+					if (dp.$ === 4) {
+						var mn = dp.a;
+						var mx = dp.b;
+						return A2(
+							$elm$json$Json$Encode$list,
+							$author$project$VegaLite$dataValueSpec,
+							_List_fromArray(
+								[mn, mx]));
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'minsteps':
+					if (dp.$ === 5) {
+						var n = dp.a;
+						return $elm$json$Json$Encode$int(n);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'maxsteps':
+					if (dp.$ === 6) {
+						var n = dp.a;
+						return $elm$json$Json$Encode$int(n);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'steps':
+					if (dp.$ === 7) {
+						var n = dp.a;
+						return $elm$json$Json$Encode$int(n);
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				case 'as':
+					if (dp.$ === 8) {
+						var vStr = dp.a;
+						var dStr = dp.b;
+						return A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$string,
+							_List_fromArray(
+								[vStr, dStr]));
+					} else {
+						return $elm$json$Json$Encode$null;
+					}
+				default:
+					return $elm$json$Json$Encode$null;
+			}
+		};
+		var specList = A2(
+			$elm$core$List$filter,
+			function (x) {
+				return !_Utils_eq(x, $elm$json$Json$Encode$null);
+			},
+			A2($elm$core$List$map, dpSpec, dps));
+		if (specList.b && (!specList.b.b)) {
+			var spec = specList.a;
+			return spec;
+		} else {
+			return $elm$json$Json$Encode$null;
+		}
+	});
+var $author$project$VegaLite$density = F2(
+	function (field, dnProps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'density',
+				$author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							$elm$json$Json$Encode$string(field),
+							A2($author$project$VegaLite$densityPropertySpec, 'groupby', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'cumulative', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'counts', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'bandwidth', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'extent', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'minsteps', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'maxsteps', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'steps', dnProps),
+							A2($author$project$VegaLite$densityPropertySpec, 'as', dnProps)
+						]))));
+	});
+var $author$project$VegaLite$DnBandwidth = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$dnBandwidth = $author$project$VegaLite$DnBandwidth;
+var $author$project$VegaLite$VLHeight = 4;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$VegaLite$VLWidth = 3;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$GalleryDist$dist3 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2(
+			$author$project$VegaLite$density,
+			'IMDB_Rating',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$dnBandwidth(0.3)
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('value'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pTitle('IMDB Rating')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('density'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(400),
+				$author$project$VegaLite$height(100),
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$color = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'color',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, markProps))));
+};
+var $author$project$VegaLite$DnCounts = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$dnCounts = $author$project$VegaLite$DnCounts;
+var $author$project$VegaLite$DnExtent = F2(
+	function (a, b) {
+		return {$: 4, a: a, b: b};
+	});
+var $author$project$VegaLite$dnExtent = $author$project$VegaLite$DnExtent;
+var $author$project$VegaLite$DnGroupBy = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dnGroupBy = $author$project$VegaLite$DnGroupBy;
+var $author$project$VegaLite$DnSteps = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$dnSteps = $author$project$VegaLite$DnSteps;
+var $author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$Nominal = 0;
+var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
+var $author$project$VegaLite$MScale = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$PStack = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$pStack = $author$project$VegaLite$PStack;
+var $author$project$VegaLite$SScheme = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
+var $author$project$VegaLite$OfZero = 0;
+var $author$project$VegaLite$stZero = 0;
+var $author$project$GalleryDist$dist4 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2(
+			$author$project$VegaLite$density,
+			'IMDB_Rating',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$dnBandwidth(0.3),
+					$author$project$VegaLite$dnGroupBy(
+					_List_fromArray(
+						['Major_Genre'])),
+					A2(
+					$author$project$VegaLite$dnExtent,
+					$author$project$VegaLite$num(0),
+					$author$project$VegaLite$num(10)),
+					$author$project$VegaLite$dnCounts(true),
+					$author$project$VegaLite$dnSteps(50)
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('value'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('density'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pStack($author$project$VegaLite$stZero)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('Major_Genre'),
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							A2($author$project$VegaLite$scScheme, 'category20', _List_Nil)
+						])),
+					$author$project$VegaLite$mNominal
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(400),
+				$author$project$VegaLite$height(100),
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$aggregate = F2(
 	function (ops, groups) {
 		return $elm$core$List$cons(
@@ -7577,7 +7875,7 @@ var $author$project$VegaLite$SZero = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
-var $author$project$GalleryDist$dist3 = function () {
+var $author$project$GalleryDist$dist5 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7653,6 +7951,7 @@ var $author$project$GalleryDist$dist3 = function () {
 					$author$project$VegaLite$pName('bin_IMDB_Rating_end')
 				])));
 	var des = $author$project$VegaLite$description('A layered histogram and cumulative histogram.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	var dEnc = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -7696,7 +7995,7 @@ var $author$project$GalleryDist$dist3 = function () {
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
+				data,
 				trans(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -7714,11 +8013,7 @@ var $author$project$VegaLite$MExtent = function (a) {
 var $author$project$VegaLite$maExtent = $author$project$VegaLite$MExtent;
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 9, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$GalleryDist$dist4 = function () {
+var $author$project$GalleryDist$dist6 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7771,7 +8066,7 @@ var $author$project$VegaLite$size = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, markProps))));
 };
-var $author$project$GalleryDist$dist5 = function () {
+var $author$project$GalleryDist$dist7 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7824,7 +8119,9 @@ var $author$project$GalleryDist$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('dist2', $author$project$GalleryDist$dist2),
 			_Utils_Tuple2('dist3', $author$project$GalleryDist$dist3),
 			_Utils_Tuple2('dist4', $author$project$GalleryDist$dist4),
-			_Utils_Tuple2('dist5', $author$project$GalleryDist$dist5)
+			_Utils_Tuple2('dist5', $author$project$GalleryDist$dist5),
+			_Utils_Tuple2('dist6', $author$project$GalleryDist$dist6),
+			_Utils_Tuple2('dist7', $author$project$GalleryDist$dist7)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

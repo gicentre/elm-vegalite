@@ -12243,7 +12243,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 										_Utils_Tuple2('groupby', gbObj)
 									]),
 								_Utils_ap(
-									_Utils_eq(cnObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
+									_Utils_eq(cmObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
 										[
 											_Utils_Tuple2('cumulative', cnObj)
 										]),
