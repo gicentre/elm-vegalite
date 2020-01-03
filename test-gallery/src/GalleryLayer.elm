@@ -27,49 +27,32 @@ layer1 =
                 << dataColumn "signal" (strs [ "short", "short", "short", "short", "short", "short", "short", "short", "short", "short", "long", "short", "short", "short", "short", "short", "short", "long", "long", "long", "long", "long" ])
                 << dataColumn "ret" (nums [ -4.89396411092985, -0.322580645161295, 3.68663594470045, 4.51010886469673, 6.08424336973478, 1.2539184952978, -5.02431118314424, -5.46623794212217, -8.3743842364532, -5.52763819095477, 3.4920634920635, 0.155038759689914, 5.82822085889571, 8.17610062893082, 8.59872611464968, 15.4907975460123, 11.7370892018779, -10.4234527687296, 0, 0, 5.26315789473684, 6.73758865248228 ])
 
-        trans =
-            transform << calculateAs "datum.open > datum.close" "isIncrease"
-
-        encLine =
+        enc =
             encoding
-                << position X
-                    [ pName "date"
-                    , pTemporal
-                    , pTimeUnit yearMonthDate
-                    , pScale
-                        [ scDomain
-                            (doDts
-                                [ [ dtMonth May, dtDate 31, dtYear 2009 ]
-                                , [ dtMonth Jul, dtDate 1, dtYear 2009 ]
-                                ]
-                            )
-                        ]
-                    , pAxis [ axTitle "Date in 2009", axFormat "%m/%d" ]
-                    ]
-                << position Y [ pName "low", pQuant, pScale [ scZero False ] ]
-                << position Y2 [ pName "high", pQuant ]
+                << position X [ pName "date", pTitle "", pTemporal ]
                 << color
-                    [ mName "isIncrease"
-                    , mNominal
-                    , mLegend []
-                    , mScale [ scRange (raStrs [ "#ae1325", "#06982d" ]) ]
+                    [ mDataCondition
+                        [ ( expr "datum.open < datum.close", [ mStr "orange" ] ) ]
+                        [ mStr "steelBlue" ]
                     ]
 
-        specLine =
-            asSpec [ encLine [], rule [] ]
+        encRule =
+            encoding
+                << position Y [ pName "low", pScale [ scZero False ], pQuant ]
+                << position Y2 [ pName "high" ]
+
+        specRule =
+            asSpec [ rule [], encRule [] ]
 
         encBar =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonthDate ]
                 << position Y [ pName "open", pQuant ]
-                << position Y2 [ pName "close", pQuant ]
-                << size [ mNum 5 ]
-                << color [ mName "isIncrease", mNominal, mLegend [] ]
+                << position Y2 [ pName "close" ]
 
         specBar =
-            asSpec [ encBar [], bar [] ]
+            asSpec [ bar [ maSize 8 ], encBar [] ]
     in
-    toVegaLite [ des, width 320, data [], trans [], layer [ specLine, specBar ] ]
+    toVegaLite [ width 400, data [], enc [], layer [ specRule, specBar ] ]
 
 
 layer2 : Spec
