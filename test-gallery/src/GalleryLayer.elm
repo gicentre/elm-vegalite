@@ -198,7 +198,17 @@ layer3 =
         , cfg []
         , data []
         , res []
-        , facet [ rowBy [ fName "title", fOrdinal, fHeader [ hdLabelAngle 30, hdTitle "" ] ] ]
+        , facet
+            [ rowBy
+                [ fName "title"
+                , fOrdinal
+                , fHeader
+                    [ hdLabelAngle 0
+                    , hdLabelAlign haLeft
+                    , hdTitle ""
+                    ]
+                ]
+            ]
         , specification (asSpec [ layer [ spec1, spec2, spec3, spec4, spec5, spec6 ] ])
         ]
 

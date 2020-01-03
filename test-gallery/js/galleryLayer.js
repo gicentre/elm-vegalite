@@ -10383,6 +10383,12 @@ var $author$project$VegaLite$facet = function (fMaps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$facetMappingProperty, fMaps)));
 };
+var $author$project$VegaLite$AlignLeft = 1;
+var $author$project$VegaLite$haLeft = 1;
+var $author$project$VegaLite$HLabelAlign = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$hdLabelAlign = $author$project$VegaLite$HLabelAlign;
 var $author$project$VegaLite$HLabelAngle = function (a) {
 	return {$: 6, a: a};
 };
@@ -10766,7 +10772,8 @@ var $author$project$GalleryLayer$layer3 = function () {
 								$author$project$VegaLite$fHeader(
 								_List_fromArray(
 									[
-										$author$project$VegaLite$hdLabelAngle(30),
+										$author$project$VegaLite$hdLabelAngle(0),
+										$author$project$VegaLite$hdLabelAlign($author$project$VegaLite$haLeft),
 										$author$project$VegaLite$hdTitle('')
 									]))
 							]))
@@ -11818,8 +11825,6 @@ var $author$project$VegaLite$GrY2 = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$grY2 = $author$project$VegaLite$GrY2;
-var $author$project$VegaLite$AlignLeft = 1;
-var $author$project$VegaLite$haLeft = 1;
 var $author$project$VegaLite$MAngle = function (a) {
 	return {$: 1, a: a};
 };
