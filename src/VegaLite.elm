@@ -15811,7 +15811,7 @@ transform transforms =
                                         []
 
                                     else
-                                        [ ( "cumulative", cnObj ) ]
+                                        [ ( "cumulative", cmObj ) ]
                                    )
                                 ++ (if cnObj == JE.null then
                                         []
