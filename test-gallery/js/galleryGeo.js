@@ -4515,8 +4515,10 @@ var $author$project$VegaLite$projectionLabel = function (proj) {
 		case 12:
 			return 'mercator';
 		case 13:
-			return 'orthographic';
+			return 'naturalEarth1';
 		case 14:
+			return 'orthographic';
+		case 15:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';
@@ -8298,7 +8300,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 								_Utils_ap(
 									_Utils_eq(cmObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
 										[
-											_Utils_Tuple2('cumulative', cnObj)
+											_Utils_Tuple2('cumulative', cmObj)
 										]),
 									_Utils_ap(
 										_Utils_eq(cnObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
@@ -8323,7 +8325,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 													_Utils_ap(
 														_Utils_eq(mxsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
 															[
-																_Utils_Tuple2('maxSteps', mxsObj)
+																_Utils_Tuple2('maxsteps', mxsObj)
 															]),
 														_Utils_ap(
 															_Utils_eq(sObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(

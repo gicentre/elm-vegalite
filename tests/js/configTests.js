@@ -4532,8 +4532,10 @@ var $author$project$VegaLite$projectionLabel = function (proj) {
 		case 12:
 			return 'mercator';
 		case 13:
-			return 'orthographic';
+			return 'naturalEarth1';
 		case 14:
+			return 'orthographic';
+		case 15:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';

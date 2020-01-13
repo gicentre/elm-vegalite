@@ -6839,8 +6839,10 @@ var $author$project$VegaLite$projectionLabel = function (proj) {
 		case 12:
 			return 'mercator';
 		case 13:
-			return 'orthographic';
+			return 'naturalEarth1';
 		case 14:
+			return 'orthographic';
+		case 15:
 			return 'stereographic';
 		default:
 			return 'transverseMercator';
@@ -8842,7 +8844,7 @@ var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 52, a: a};
 };
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
-var $author$project$VegaLite$Orthographic = {$: 13};
+var $author$project$VegaLite$Orthographic = {$: 14};
 var $author$project$VegaLite$orthographic = $author$project$VegaLite$Orthographic;
 var $author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
@@ -9221,9 +9223,11 @@ var $author$project$VegaLite$Gnomonic = {$: 10};
 var $author$project$VegaLite$gnomonic = $author$project$VegaLite$Gnomonic;
 var $author$project$VegaLite$Mercator = {$: 12};
 var $author$project$VegaLite$mercator = $author$project$VegaLite$Mercator;
-var $author$project$VegaLite$Stereographic = {$: 14};
+var $author$project$VegaLite$NaturalEarth1 = {$: 13};
+var $author$project$VegaLite$naturalEarth1 = $author$project$VegaLite$NaturalEarth1;
+var $author$project$VegaLite$Stereographic = {$: 15};
 var $author$project$VegaLite$stereographic = $author$project$VegaLite$Stereographic;
-var $author$project$VegaLite$TransverseMercator = {$: 15};
+var $author$project$VegaLite$TransverseMercator = {$: 16};
 var $author$project$VegaLite$transverseMercator = $author$project$VegaLite$TransverseMercator;
 var $author$project$ProjectionTests$standardProjs = _List_fromArray(
 	[
@@ -9305,6 +9309,13 @@ var $author$project$ProjectionTests$standardProjs = _List_fromArray(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$prType($author$project$VegaLite$mercator)
+			])),
+		A2(
+		$author$project$ProjectionTests$worldMapTemplate,
+		'NaturalEarth1',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$prType($author$project$VegaLite$naturalEarth1)
 			])),
 		A2(
 		$author$project$ProjectionTests$worldMapTemplate,
