@@ -1,5 +1,7 @@
 # Vega Lite Changes
 
+## V2.0.0 ➡ V2.1.0
+
 ### Additions
 
 - `naturalEarth1` map projection type.
@@ -8,6 +10,8 @@
 
 - Correct `maxsteps` parameter output of `density` transform (thanks @dougburke for spotting this).
 - Correct but in `density` that was incorrectly using value of `dnCounts` for the `dnCumulative` setting (thanks @dougburke for spotting this).
+
+---
 
 ## V1.12 ➡ V2.0
 
