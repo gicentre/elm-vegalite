@@ -82,6 +82,7 @@ module VegaLite exposing
     , gnomonic
     , identityProjection
     , mercator
+    , naturalEarth1
     , orthographic
     , stereographic
     , transverseMercator
@@ -1514,6 +1515,7 @@ See the
 @docs gnomonic
 @docs identityProjection
 @docs mercator
+@docs naturalEarth1
 @docs orthographic
 @docs stereographic
 @docs transverseMercator
@@ -4804,7 +4806,7 @@ type PositionChannel
 [conicConformal](#conicConformal), [conicEqualArea](#conicEqualArea),
 [conicEquidistant](#conicEquidistant), [equalEarth](#equalEarth),
 [equirectangular](#equirectangular), [gnomonic](#gnomonic),
-[identityProjection](#identityProjection), [mercator](#mercator),
+[identityProjection](#identityProjection), [mercator](#mercator), [naturalEarth1](#naturalEarth1)
 [orthographic](#orthographic), [stereographic](#stereographic),
 [transverseMercator](#transverseMercator) and [customProjection](#customProjection).
 -}
@@ -4822,6 +4824,7 @@ type Projection
     | Gnomonic
     | Identity
     | Mercator
+    | NaturalEarth1
     | Orthographic
     | Stereographic
     | TransverseMercator
@@ -12442,6 +12445,13 @@ name s =
     ( VLName, JE.string s )
 
 
+{-| A natural earth map projection.
+-}
+naturalEarth1 : Projection
+naturalEarth1 =
+    NaturalEarth1
+
+
 {-| Nice time intervals that try to align with whole or rounded days.
 -}
 niDay : ScaleNice
@@ -19937,6 +19947,9 @@ projectionLabel proj =
 
         Mercator ->
             "mercator"
+
+        NaturalEarth1 ->
+            "naturalEarth1"
 
         Orthographic ->
             "orthographic"

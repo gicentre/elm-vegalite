@@ -48,6 +48,7 @@ standardProjs =
     , worldMapTemplate "Gnomonic" [ prType gnomonic ]
     , worldMapTemplate "Identity" [ prType identityProjection ]
     , worldMapTemplate "Mercator" [ prType mercator ]
+    , worldMapTemplate "NaturalEarth1" [ prType naturalEarth1 ]
     , worldMapTemplate "Orthographic" [ prType orthographic ]
     , worldMapTemplate "Stereographic" [ prType stereographic ]
     , worldMapTemplate "TransverseMercator" [ prType transverseMercator ]
