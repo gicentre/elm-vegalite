@@ -1,8 +1,15 @@
-# V1.12 ➡ V2.0
+# Vega Lite Changes
+
+### Bug Fixes
+
+- Correct `maxsteps` parameter output of `density` transform (thanks @dougburke for spotting this).
+- Correct but in `density` that was incorrectly using value of `dnCounts` for the `dnCumulative` setting (thanks @dougburke for spotting this).
+
+## V1.12 ➡ V2.0
 
 Major release supporting Vega-Lite 4.0. Includes a small number of breaking changes that should provide greater flexibility and some simplification of the API.
 
-## Breaking Changes
+### Breaking Changes
 
 - _`title` now takes a list of optional title properties._
   To update older code, simply add a `[]` as a second parameter to `title`
@@ -35,9 +42,9 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `Position` custom type has extra variants `XError`, `XError2`, `YError` and `YError2`. Technically a breaking change but unlikely to affect existing specifications unless pattern matching against `Position`.
 
-## Additions
+### Additions
 
-### Transforms
+#### Transforms
 
 - `density` (and associated `dn` density property functions) for KDE transforms.
 
@@ -53,7 +60,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `fiOpTrans` for combining an inline data transformation with a filter and converting to a `BooleanOp`. Especially useful when filtering temporal data that require aggregating with `mTimeUnit`.
 
-### Marks and Mark Properties
+#### Marks and Mark Properties
 
 - `image` mark and associated `url` channel and `maAspect` mark property for displaying images.
 
@@ -69,7 +76,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - Support empty strings for `maFill` and `maStroke` to indicate absence of fill or stroke.
 
-### Selections
+#### Selections
 
 - `lookupSelection` for lookups that rely on an interactive selection of data.
 
@@ -79,7 +86,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * `biSelectionExtent` for basing a bin extent on an interactive selection.
 
-### Configuration
+#### Configuration
 
 - New title configuration options: `ticoFontStyle`, `ticoFrame`, `ticoStyle`, `ticoZIndex`, `ticoSubtitleColor`, `ticoSubtitleFont`, `ticoSubtitleFontSize`, `ticoSubtitleFontStyle`, `ticoSubtitleFontWeight`, `ticoSubtitleLineHeight` and `ticoSubtitlePadding`.
 
@@ -91,7 +98,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 - `vicoBackground` for configuring default single view plot area background appearance.
 
-### Titles and Axes
+#### Titles and Axes
 
 - `title` and component titles (axis title, legend title etc.) can now be formatted over multiple lines with `\n` or `"""` multi-line strings.
 
@@ -101,7 +108,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * New title option `tiSubtitle` for specifying secondary title text. Can be styled via new functions `tiSubtitleColor`, `tiSubtitleFont`, `tiSubtitleFontSize`, `tiSubtitleFontStyle`, `tiSubtitleFontWeight`, `tiSubtitleLineHeight` and `tiSubtitlePadding`.
 
-### Data
+#### Data
 
 - `noData` for preventing inheritance of parent data source in a specification.
 
@@ -111,7 +118,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * `tStr` for string literals in a text encoding channel.
 
-### Other
+#### Other
 
 - Convenience functions for setting a channel's measurement type. `pNominal`, `pOrdinal`, `pQuant`, `pTemporal` and `pGeo` equivalent to `pMType Nominal`, `pMType Ordinal` etc. Similar functions for `m` (mark), `t` (text), `h` (hyperlink), `o` (order) `d` (detail) and `f` (facet) channels.
 
@@ -129,7 +136,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * `key` channel for binding with Vega View API.
 
-## Deprecations
+### Deprecations
 
 - `axcoShortTimeLabels` deprecated as this is the default since VL4.
 
@@ -147,7 +154,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * `coStack` deprecated as it is unecessary.
 
-## Bug Fixes
+### Bug Fixes
 
 - `coFieldTitle` now correctly creates a 'functional' label.
 
@@ -157,7 +164,7 @@ Major release supporting Vega-Lite 4.0. Includes a small number of breaking chan
 
 * Empty grid/stroke dash list now correctly generates a `null` value rather than empty array in JSON spec (while an empty array works, it is not permitted by the Vega-Lite schema).
 
-## Other Changes
+### Other Changes
 
 - Improvements to the API documentation with a larger number of inline examples.
 
