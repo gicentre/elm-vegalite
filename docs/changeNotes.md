@@ -1,5 +1,9 @@
 # Vega Lite Changes
 
+### Additions
+
+- `naturalEarth1` map projection type.
+
 ### Bug Fixes
 
 - Correct `maxsteps` parameter output of `density` transform (thanks @dougburke for spotting this).
