@@ -15841,7 +15841,7 @@ transform transforms =
                                         []
 
                                     else
-                                        [ ( "maxSteps", mxsObj ) ]
+                                        [ ( "maxsteps", mxsObj ) ]
                                    )
                                 ++ (if sObj == JE.null then
                                         []
