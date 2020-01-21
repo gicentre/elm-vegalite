@@ -1,5 +1,13 @@
 # Vega Lite Changes
 
+## Pending changes
+
+### Additions
+
+- `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
+
+---
+
 ## V2.0.0 ➡ V2.1.0
 
 ### Additions

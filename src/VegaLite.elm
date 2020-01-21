@@ -344,6 +344,7 @@ module VegaLite exposing
     , miCardinalOpen
     , miCardinalClosed
     , miLinear
+    , miLinearClosed
     , miMonotone
     , miStepwise
     , miStepAfter
@@ -1921,6 +1922,7 @@ property documentation.
 @docs miCardinalOpen
 @docs miCardinalClosed
 @docs miLinear
+@docs miLinearClosed
 @docs miMonotone
 @docs miStepwise
 @docs miStepAfter
@@ -12210,6 +12212,14 @@ miCardinalOpen =
 miLinear : MarkInterpolation
 miLinear =
     Linear
+
+
+{-| Linear (straight) interpolation between points that joins the first and last
+points in a sequence to form a closed polygon.
+-}
+miLinearClosed : MarkInterpolation
+miLinearClosed =
+    LinearClosed
 
 
 {-| Milliseconds time unit used for discretizing temporal data.
