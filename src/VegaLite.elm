@@ -11679,15 +11679,15 @@ maExtent =
 {-| Default fill color of a mark. Color strings can use any valid HTML color
 specification. For example,
 
-    maColor "#eee"
+    maFill "#eee"
 
-    maColor "#734FD8"
+    maFill "#734FD8"
 
-    maColor "crimson"
+    maFill "crimson"
 
-    maColor "rgb(255,204,210)"
+    maFill "rgb(255,204,210)"
 
-    maColor "hsl(180, 50%, 50%)"
+    maFill "hsl(180, 50%, 50%)"
 
 An empty string (`""`) indicates that no filling should be provided (but for clearer
 semantics, better to use `maFilled False`).
@@ -11903,15 +11903,15 @@ maSize =
 {-| Default stroke color of a mark. Color strings can use any valid HTML color
 specification. For example,
 
-    maColor "#eee"
+    maStroke "#eee"
 
-    maColor "#734FD8"
+    maStroke "#734FD8"
 
-    maColor "crimson"
+    maStroke "crimson"
 
-    maColor "rgb(255,204,210)"
+    maStroke "rgb(255,204,210)"
 
-    maColor "hsl(180, 50%, 50%)"
+    maStroke "hsl(180, 50%, 50%)"
 
 An empty string (`""`) indicates that no stroke around a mark be drawn.
 
