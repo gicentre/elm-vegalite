@@ -217,9 +217,47 @@ scale9 =
     toVegaLite [ data [], point [], enc [] ]
 
 
+divergingData =
+    dataFromColumns []
+        << dataColumn "category" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+        << dataColumn "value" (nums [ -28.6, -1.6, -13.6, 34.4, 24.4, -3.6, -57.6, 30.4, -4.6 ])
+
+
+scale10 : Spec
+scale10 =
+    let
+        enc =
+            encoding
+                << position X [ pName "category", pOrdinal ]
+                << position Y [ pName "value", pQuant ]
+                << color
+                    [ mName "value"
+                    , mQuant
+                    , mScale [ scScheme "redblue" [] ]
+                    ]
+    in
+    toVegaLite [ divergingData [], enc [], bar [] ]
+
+
+scale11 : Spec
+scale11 =
+    let
+        enc =
+            encoding
+                << position X [ pName "category", pOrdinal ]
+                << position Y [ pName "value", pQuant ]
+                << color
+                    [ mName "value"
+                    , mQuant
+                    , mScale [ scScheme "redblue" [], scDomainMid 0 ]
+                    ]
+    in
+    toVegaLite [ divergingData [], enc [], bar [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    scale9
+    scale11
 
 
 
@@ -238,6 +276,8 @@ mySpecs =
         , ( "scale7", scale7 )
         , ( "scale8", scale8 )
         , ( "scale9", scale9 )
+        , ( "scale10", scale10 )
+        , ( "scale11", scale11 )
         ]
 
 

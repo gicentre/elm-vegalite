@@ -4,7 +4,13 @@
 
 ### Additions
 
+- `scDomainMid` (VL4.1) for setting midpoint in a diverging continuous scale.
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
+
+### Other Changes
+
+- Minor corrections to the API documentation.
+- Additions to tests for new VL4.1 features
 
 ---
 
