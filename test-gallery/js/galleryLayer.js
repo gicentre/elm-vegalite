@@ -4912,7 +4912,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				$elm$json$Json$Encode$float(x));
-		case 16:
+		case 17:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'base',
@@ -4923,6 +4923,11 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				'exponent',
 				$elm$json$Json$Encode$float(x));
 		case 15:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'domainMid',
+				$elm$json$Json$Encode$float(x));
+		case 16:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'constant',

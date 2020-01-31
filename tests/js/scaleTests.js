@@ -6360,7 +6360,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				$elm$json$Json$Encode$float(x));
-		case 16:
+		case 17:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'base',
@@ -6371,6 +6371,11 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				'exponent',
 				$elm$json$Json$Encode$float(x));
 		case 15:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'domainMid',
+				$elm$json$Json$Encode$float(x));
+		case 16:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'constant',
@@ -8812,6 +8817,273 @@ var $author$project$ScaleTests$scale1 = function () {
 						$author$project$VegaLite$maStroke('white'),
 						$author$project$VegaLite$maStrokeWidth(0.4)
 					]))
+			]));
+}();
+var $author$project$VegaLite$Bar = 1;
+var $author$project$VegaLite$bar = $author$project$VegaLite$mark(1);
+var $author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$head,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Maybe$withDefault(_List_Nil),
+			$elm$core$List$length));
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$List$map2($elm$core$List$cons),
+		A2(
+			$elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var $author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			$elm$json$Json$Encode$list,
+			$elm$json$Json$Encode$object,
+			$author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperty, fmts)))
+					])));
+	});
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$Strings = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
+var $author$project$ScaleTests$divergingData = A2(
+	$elm$core$Basics$composeL,
+	A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'category',
+			$author$project$VegaLite$strs(
+				_List_fromArray(
+					['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])))),
+	A2(
+		$author$project$VegaLite$dataColumn,
+		'value',
+		$author$project$VegaLite$nums(
+			_List_fromArray(
+				[-28.6, -1.6, -13.6, 34.4, 24.4, -3.6, -57.6, 30.4, -4.6]))));
+var $author$project$VegaLite$MScale = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$Ordinal = 1;
+var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$SScheme = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
+var $author$project$ScaleTests$scale10 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('category'),
+							$author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('value'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('value'),
+					$author$project$VegaLite$mQuant,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							A2($author$project$VegaLite$scScheme, 'redblue', _List_Nil)
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$ScaleTests$divergingData(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$SDomainMid = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$scDomainMid = $author$project$VegaLite$SDomainMid;
+var $author$project$ScaleTests$scale11 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('category'),
+							$author$project$VegaLite$pOrdinal
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('value'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('value'),
+					$author$project$VegaLite$mQuant,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							A2($author$project$VegaLite$scScheme, 'redblue', _List_Nil),
+							$author$project$VegaLite$scDomainMid(0)
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$ScaleTests$divergingData(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Range = function (a) {
@@ -11270,141 +11542,6 @@ var $author$project$VegaLite$AxTitle = function (a) {
 var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$Circle = 5;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(5);
-var $author$project$VegaLite$dataColumn = F2(
-	function (colName, data) {
-		switch (data.$) {
-			case 2:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (x) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$float(x));
-						},
-						col));
-			case 3:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (s) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$string(s));
-						},
-						col));
-			case 1:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (ds) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
-						},
-						col));
-			default:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (b) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$bool(b));
-						},
-						col));
-		}
-	});
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$List$repeatHelp = F3(
-	function (result, n, value) {
-		repeatHelp:
-		while (true) {
-			if (n <= 0) {
-				return result;
-			} else {
-				var $temp$result = A2($elm$core$List$cons, value, result),
-					$temp$n = n - 1,
-					$temp$value = value;
-				result = $temp$result;
-				n = $temp$n;
-				value = $temp$value;
-				continue repeatHelp;
-			}
-		}
-	});
-var $elm$core$List$repeat = F2(
-	function (n, value) {
-		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
-	});
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (!maybe.$) {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$VegaLite$transpose = function (xss) {
-	var numCols = A2(
-		$elm$core$Basics$composeR,
-		$elm$core$List$head,
-		A2(
-			$elm$core$Basics$composeR,
-			$elm$core$Maybe$withDefault(_List_Nil),
-			$elm$core$List$length));
-	return A3(
-		$elm$core$List$foldr,
-		$elm$core$List$map2($elm$core$List$cons),
-		A2(
-			$elm$core$List$repeat,
-			numCols(xss),
-			_List_Nil),
-		xss);
-};
-var $author$project$VegaLite$dataFromColumns = F2(
-	function (fmts, cols) {
-		var dataArray = A2(
-			$elm$json$Json$Encode$list,
-			$elm$json$Json$Encode$object,
-			$author$project$VegaLite$transpose(cols));
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray)
-					]))) : _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperty, fmts)))
-					])));
-	});
 var $author$project$VegaLite$LTitle = function (a) {
 	return {$: 34, a: a};
 };
@@ -11413,14 +11550,6 @@ var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
-var $author$project$VegaLite$MScale = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$Numbers = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
 var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 12, a: a};
 };
@@ -11596,11 +11725,6 @@ var $author$project$VegaLite$SRange = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
-var $author$project$VegaLite$SScheme = F2(
-	function (a, b) {
-		return {$: 3, a: a, b: b};
-	});
-var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
 var $author$project$VegaLite$ScThreshold = 14;
 var $author$project$VegaLite$scThreshold = 14;
 var $author$project$ScaleTests$scale5 = function () {
@@ -11804,7 +11928,7 @@ var $author$project$ScaleTests$scale8 = function () {
 }();
 var $elm$core$Basics$e = _Basics_e;
 var $author$project$VegaLite$SBase = function (a) {
-	return {$: 16, a: a};
+	return {$: 17, a: a};
 };
 var $author$project$VegaLite$scBase = $author$project$VegaLite$SBase;
 var $author$project$VegaLite$ScLog = 3;
@@ -11858,7 +11982,9 @@ var $author$project$ScaleTests$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('scale6', $author$project$ScaleTests$scale6),
 			_Utils_Tuple2('scale7', $author$project$ScaleTests$scale7),
 			_Utils_Tuple2('scale8', $author$project$ScaleTests$scale8),
-			_Utils_Tuple2('scale9', $author$project$ScaleTests$scale9)
+			_Utils_Tuple2('scale9', $author$project$ScaleTests$scale9),
+			_Utils_Tuple2('scale10', $author$project$ScaleTests$scale10),
+			_Utils_Tuple2('scale11', $author$project$ScaleTests$scale11)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -11874,7 +12000,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$ScaleTests$sourceExample = $author$project$ScaleTests$scale9;
+var $author$project$ScaleTests$sourceExample = $author$project$ScaleTests$scale11;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$ScaleTests$view = function (spec) {

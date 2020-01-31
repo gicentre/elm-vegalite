@@ -5002,7 +5002,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				$elm$json$Json$Encode$float(x));
-		case 16:
+		case 17:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'base',
@@ -5013,6 +5013,11 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				'exponent',
 				$elm$json$Json$Encode$float(x));
 		case 15:
+			var x = scaleProp.a;
+			return _Utils_Tuple2(
+				'domainMid',
+				$elm$json$Json$Encode$float(x));
+		case 16:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'constant',
@@ -7660,7 +7665,7 @@ var $author$project$ColorTests$namedContinuous2 = A2(
 					]))
 			])));
 var $author$project$VegaLite$SReverse = function (a) {
-	return {$: 17, a: a};
+	return {$: 18, a: a};
 };
 var $author$project$VegaLite$scReverse = $author$project$VegaLite$SReverse;
 var $author$project$ColorTests$namedContinuous3 = A2(
@@ -7838,7 +7843,7 @@ var $author$project$ColorTests$scale7 = A2(
 					]))
 			])));
 var $author$project$VegaLite$SConstant = function (a) {
-	return {$: 15, a: a};
+	return {$: 16, a: a};
 };
 var $author$project$VegaLite$scConstant = $author$project$VegaLite$SConstant;
 var $author$project$ColorTests$scale8 = A2(
