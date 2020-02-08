@@ -5569,7 +5569,7 @@ operator. This version sets the same alignment for rows and columns.
 -}
 align : CompositionAlignment -> ( VLProperty, Spec )
 align algn =
-    ( VLAlign, compositionAlignmentSpec algn )
+    ( VLAlign, JE.string (compositionAlignmentLabel algn) )
 
 
 {-| Similar to [align](#align) but with independent alignments for rows (first
@@ -5577,7 +5577,12 @@ parameter) and columns (second parameter).
 -}
 alignRC : CompositionAlignment -> CompositionAlignment -> ( VLProperty, Spec )
 alignRC alRow alCol =
-    ( VLSpacing, JE.object [ ( "row", compositionAlignmentSpec alRow ), ( "col", compositionAlignmentSpec alCol ) ] )
+    ( VLSpacing
+    , JE.object
+        [ ( "row", JE.string (compositionAlignmentLabel alRow) )
+        , ( "col", JE.string (compositionAlignmentLabel alCol) )
+        ]
+    )
 
 
 {-| Apply an 'and' Boolean operation as part of a logical composition.
@@ -7400,7 +7405,7 @@ such as the data to encode, colour scaling etc.
 -}
 color : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 color markProps =
-    (::) ( "color", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "color", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Encodes a new facet to be arranged in columns. The first parameter is a list
@@ -8054,7 +8059,7 @@ dataFromColumns fmts cols =
         ( VLData
         , JE.object
             [ ( "values", dataArray )
-            , ( "format", JE.object (List.concatMap formatProperty fmts) )
+            , ( "format", JE.object (List.concatMap formatProperties fmts) )
             ]
         )
 
@@ -8108,7 +8113,7 @@ dataFromJson json fmts =
         ( VLData
         , JE.object
             [ ( "values", json )
-            , ( "format", JE.object (List.concatMap formatProperty fmts) )
+            , ( "format", JE.object (List.concatMap formatProperties fmts) )
             ]
         )
 
@@ -8140,7 +8145,7 @@ dataFromRows fmts rows =
         ( VLData
         , JE.object
             [ ( "values", toList rows )
-            , ( "format", JE.object (List.concatMap formatProperty fmts) )
+            , ( "format", JE.object (List.concatMap formatProperties fmts) )
             ]
         )
 
@@ -8171,7 +8176,7 @@ dataFromSource sourceName fmts =
         ( VLData
         , JE.object
             [ ( "name", JE.string sourceName )
-            , ( "format", JE.object (List.concatMap formatProperty fmts) )
+            , ( "format", JE.object (List.concatMap formatProperties fmts) )
             ]
         )
 
@@ -8197,7 +8202,7 @@ dataFromUrl u fmts =
         ( VLData
         , JE.object
             [ ( "url", JE.string u )
-            , ( "format", JE.object (List.concatMap formatProperty fmts) )
+            , ( "format", JE.object (List.concatMap formatProperties fmts) )
             ]
         )
 
@@ -8999,7 +9004,7 @@ are specified, `fill` takes precedence.
 -}
 fill : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 fill markProps =
-    (::) ( "fill", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "fill", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Encode a fill opacity channel. This acts in a similar way to encoding by `opacity`
@@ -9008,7 +9013,7 @@ encodings are specified, `fillOpacity` takes precedence.
 -}
 fillOpacity : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 fillOpacity markProps =
-    (::) ( "fillOpacity", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "fillOpacity", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Apply a filter to a channel or field that specifies which values will 'pass
@@ -9364,13 +9369,13 @@ geometry gType properties =
     if properties == [] then
         JE.object
             [ ( "type", JE.string "Feature" )
-            , ( "geometry", geometryTypeSpec gType )
+            , ( "geometry", JE.object (geometryTypeProperties gType) )
             ]
 
     else
         JE.object
             [ ( "type", JE.string "Feature" )
-            , ( "geometry", geometryTypeSpec gType )
+            , ( "geometry", JE.object (geometryTypeProperties gType) )
             , ( "properties", JE.object (List.map (\( k, val ) -> ( k, dataValueSpec val )) properties) )
             ]
 
@@ -10024,7 +10029,7 @@ type.
 -}
 hyperlink : List HyperlinkChannel -> List LabelledSpec -> List LabelledSpec
 hyperlink hyperProps =
-    (::) ( "href", List.concatMap hyperlinkChannelProperty hyperProps |> JE.object )
+    (::) ( "href", JE.object (List.concatMap hyperlinkChannelProperties hyperProps) )
 
 
 {-| Checkbox input element that can bound to a named field value.
@@ -12712,7 +12717,7 @@ oOrdinal =
 -}
 opacity : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 opacity markProps =
-    (::) ( "opacity", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "opacity", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| An input data object containing the minimum field value to be used in an
@@ -13881,6 +13886,13 @@ rgb =
     Rgb
 
 
+{-| Indicates an exponential regression method.
+-}
+rgExp : RegressionMethod
+rgExp =
+    RgExp
+
+
 {-| The min (first parameter) - max (second parameter) domain over which to estimate
 the dependent variable in a regression. If unspecified, the full extent of input
 values will be used.
@@ -13898,6 +13910,20 @@ rgGroupBy =
     RgGroupBy
 
 
+{-| Indicates a linear regression method.
+-}
+rgLinear : RegressionMethod
+rgLinear =
+    RgLinear
+
+
+{-| Indicates a log regression method.
+-}
+rgLog : RegressionMethod
+rgLog =
+    RgLog
+
+
 {-| The type of regression model to use when generating a 2d regression.
 -}
 rgMethod : RegressionMethod -> RegressionProperty
@@ -13911,6 +13937,28 @@ applies if [rgMethod](#rgMethod) is set to [rgPoly](#rgPoly).
 rgOrder : Int -> RegressionProperty
 rgOrder =
     RgOrder
+
+
+{-| Indicates a polynomial regression method. The order of the polynomial can be
+set with [rgOrder](#rgOrder) (defaulting to cubic if not provided).
+-}
+rgPoly : RegressionMethod
+rgPoly =
+    RgPoly
+
+
+{-| Indicates a power regression method.
+-}
+rgPow : RegressionMethod
+rgPow =
+    RgPow
+
+
+{-| Indicates a quadratic regression method.
+-}
+rgQuad : RegressionMethod
+rgQuad =
+    RgQuad
 
 
 {-| Encode a new facet to be arranged in rows. The first parameter is a list of
@@ -14759,7 +14807,7 @@ such as the data to encode, custom shape encodings etc.
 -}
 shape : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 shape markProps =
-    (::) ( "shape", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "shape", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Bottom side, used to specify an axis position.
@@ -14800,7 +14848,7 @@ such as the data to encode, size scaling etc.
 -}
 size : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 size markProps =
-    (::) ( "size", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "size", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Fill color of an interval selection mark (dragged rectangular area).
@@ -15047,7 +15095,7 @@ only affects the exterior boundary of marks.
 -}
 stroke : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 stroke markProps =
-    (::) ( "stroke", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "stroke", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Encode a stroke opacity channel. This acts in a similar way to encoding by
@@ -15056,14 +15104,14 @@ stroke markProps =
 -}
 strokeOpacity : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 strokeOpacity markProps =
-    (::) ( "strokeOpacity", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "strokeOpacity", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Encode a stroke width channel.
 -}
 strokeWidth : List MarkChannel -> List LabelledSpec -> List LabelledSpec
 strokeWidth markProps =
-    (::) ( "strokeWidth", List.concatMap markChannelProperty markProps |> JE.object )
+    (::) ( "strokeWidth", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| A list of string data values. Used when declaring inline data with
@@ -15220,7 +15268,7 @@ such as the data to encode, number formatting etc.
 -}
 text : List TextChannel -> List LabelledSpec -> List LabelledSpec
 text tDefs =
-    (::) ( "text", List.concatMap textChannelProperty tDefs |> JE.object )
+    (::) ( "text", List.concatMap textChannelProperties tDefs |> JE.object )
 
 
 {-| [Text mark](https://vega.github.io/vega-lite/docs/text.html) to be
@@ -15662,7 +15710,12 @@ or
 -}
 title : String -> List TitleProperty -> ( VLProperty, Spec )
 title txt tps =
-    ( VLTitle, JE.object (( "text", titleSpec txt ) :: List.map titleConfigSpec tps) )
+    ( VLTitle
+    , JE.object
+        (( "text", titleSpec txt )
+            :: List.map titleConfigProperty tps
+        )
+    )
 
 
 {-| Level of measurement when encoding with a text channel. See also [tNominal](#tNominal),
@@ -15715,7 +15768,7 @@ To encode multiple tooltip values with a mark, use [tooltips](#tooltips).
 -}
 tooltip : List TextChannel -> List LabelledSpec -> List LabelledSpec
 tooltip tDefs =
-    (::) ( "tooltip", JE.object (List.concatMap textChannelProperty tDefs) )
+    (::) ( "tooltip", JE.object (List.concatMap textChannelProperties tDefs) )
 
 
 {-| Encode a tooltip channel using multiple data fields. The first parameter is a
@@ -15730,7 +15783,7 @@ that define the channel.
 -}
 tooltips : List (List TextChannel) -> List LabelledSpec -> List LabelledSpec
 tooltips tDefss =
-    (::) ( "tooltip", JE.list (\tDefs -> JE.object (List.concatMap textChannelProperty tDefs)) tDefss )
+    (::) ( "tooltip", JE.list (\tDefs -> JE.object (List.concatMap textChannelProperties tDefs)) tDefss )
 
 
 {-| A topoJSON feature format containing an object with the given name. The name
@@ -15947,7 +16000,7 @@ specifying data-driven image files for the [image](#image) mark.
 -}
 url : List HyperlinkChannel -> List LabelledSpec -> List LabelledSpec
 url hyperProps =
-    (::) ( "url", List.concatMap hyperlinkChannelProperty hyperProps |> JE.object )
+    (::) ( "url", List.concatMap hyperlinkChannelProperties hyperProps |> JE.object )
 
 
 {-| UTC version of a given a time (coordinated universal time, independent of local
@@ -16150,7 +16203,7 @@ vicoWidth =
 -}
 viewBackground : List ViewBackground -> ( VLProperty, Spec )
 viewBackground vbs =
-    ( VLViewBackground, JE.object (List.map viewBackgroundSpec vbs) )
+    ( VLViewBackground, JE.object (List.map viewBackgroundProperty vbs) )
 
 
 {-| The radius in pixels of rounded corners in single view or layer background.
@@ -17259,27 +17312,27 @@ cInterpolateSpec iType =
             JE.object [ ( "type", JE.string "cubehelix-long" ), ( "gamma", JE.float gamma ) ]
 
 
-colorGradientSpec : ColorGradient -> Spec
-colorGradientSpec gr =
+colorGradientLabel : ColorGradient -> String
+colorGradientLabel gr =
     case gr of
         GrLinear ->
-            JE.string "linear"
+            "linear"
 
         GrRadial ->
-            JE.string "radial"
+            "radial"
 
 
-compositionAlignmentSpec : CompositionAlignment -> Spec
-compositionAlignmentSpec ca =
+compositionAlignmentLabel : CompositionAlignment -> String
+compositionAlignmentLabel ca =
     case ca of
         CANone ->
-            JE.string "none"
+            "none"
 
         CAEach ->
-            JE.string "each"
+            "each"
 
         CAAll ->
-            JE.string "all"
+            "all"
 
 
 concatConfigProperty : ConcatConfig -> LabelledSpec
@@ -17392,7 +17445,7 @@ configProperty configProp =
             ( "tick", JE.object (List.map markProperty mps) )
 
         TitleStyle tcs ->
-            ( "title", JE.object (List.map titleConfigSpec tcs) )
+            ( "title", JE.object (List.map titleConfigProperty tcs) )
 
         NamedStyle styleName mps ->
             ( "style", JE.object [ ( styleName, JE.object (List.map markProperty mps) ) ] )
@@ -17410,7 +17463,7 @@ configProperty configProp =
             ( "scale", JE.object (List.map scaleConfigProperty scs) )
 
         Stack so ->
-            stackOffset so
+            stackOffsetProperty so
 
         Range rcs ->
             ( "range", JE.object (List.map rangeConfigProperty rcs) )
@@ -17541,28 +17594,28 @@ cursorLabel cur =
             "grabbing"
 
 
-dataTypeSpec : DataType -> Spec
-dataTypeSpec dType =
+dataTypeLabel : DataType -> String
+dataTypeLabel dType =
     case dType of
         FoNum ->
-            JE.string "number"
+            "number"
 
         FoBoo ->
-            JE.string "boolean"
+            "boolean"
 
         FoDate dateFmt ->
             if dateFmt == "" then
-                JE.string "date"
+                "date"
 
             else
-                JE.string ("date:'" ++ dateFmt ++ "'")
+                "date:'" ++ dateFmt ++ "'"
 
         FoUtc dateFmt ->
             if dateFmt == "" then
-                JE.string "utc"
+                "utc"
 
             else
-                JE.string ("utc:'" ++ dateFmt ++ "'")
+                "utc:'" ++ dateFmt ++ "'"
 
 
 dataValueSpec : DataValue -> Spec
@@ -17817,7 +17870,7 @@ facetChannelProperty fMap =
                     ( "sort", toList (dataValuesSpecs dvs) )
 
                 _ ->
-                    ( "sort", JE.object (List.concatMap sortProperty sps) )
+                    ( "sort", JE.object (List.concatMap sortProperties sps) )
 
         FAggregate op ->
             ( "aggregate", operationSpec op )
@@ -17862,8 +17915,8 @@ fieldTitleLabel ftp =
             "plain"
 
 
-filterProperty : Filter -> List LabelledSpec
-filterProperty f =
+filterProperties : Filter -> List LabelledSpec
+filterProperties f =
     case f of
         FEqual field val ->
             [ ( "field", JE.string field ), ( "equal", dataValueSpec val ) ]
@@ -17942,7 +17995,7 @@ filterSpec f =
             booleanOpSpec boolExpr
 
         _ ->
-            JE.object (filterProperty f)
+            JE.object (filterProperties f)
 
 
 fontWeightSpec : FontWeight -> Spec
@@ -17988,8 +18041,8 @@ fontWeightSpec w =
             JE.float 900
 
 
-formatProperty : Format -> List LabelledSpec
-formatProperty fmt =
+formatProperties : Format -> List LabelledSpec
+formatProperties fmt =
     case fmt of
         JSON propertyName ->
             if String.trim propertyName == "" then
@@ -18021,11 +18074,20 @@ formatProperty fmt =
                 [ ( "parse", JE.null ) ]
 
             else
-                [ ( "parse", JE.object <| List.map (\( field, fFormat ) -> ( field, dataTypeSpec fFormat )) fmts ) ]
+                [ ( "parse"
+                  , JE.object
+                        (List.map
+                            (\( field, fFormat ) ->
+                                ( field, JE.string (dataTypeLabel fFormat) )
+                            )
+                            fmts
+                        )
+                  )
+                ]
 
 
-geometryTypeSpec : Geometry -> Spec
-geometryTypeSpec gType =
+geometryTypeProperties : Geometry -> List LabelledSpec
+geometryTypeProperties gType =
     let
         toCoords : List ( Float, Float ) -> Spec
         toCoords pairs =
@@ -18033,40 +18095,34 @@ geometryTypeSpec gType =
     in
     case gType of
         GeoPoint x y ->
-            JE.object
-                [ ( "type", JE.string "Point" )
-                , ( "coordinates", JE.list JE.float [ x, y ] )
-                ]
+            [ ( "type", JE.string "Point" )
+            , ( "coordinates", JE.list JE.float [ x, y ] )
+            ]
 
         GeoPoints coords ->
-            JE.object
-                [ ( "type", JE.string "MultiPoint" )
-                , ( "coordinates", toCoords coords )
-                ]
+            [ ( "type", JE.string "MultiPoint" )
+            , ( "coordinates", toCoords coords )
+            ]
 
         GeoLine coords ->
-            JE.object
-                [ ( "type", JE.string "LineString" )
-                , ( "coordinates", toCoords coords )
-                ]
+            [ ( "type", JE.string "LineString" )
+            , ( "coordinates", toCoords coords )
+            ]
 
         GeoLines coords ->
-            JE.object
-                [ ( "type", JE.string "MultiLineString" )
-                , ( "coordinates", JE.list toCoords coords )
-                ]
+            [ ( "type", JE.string "MultiLineString" )
+            , ( "coordinates", JE.list toCoords coords )
+            ]
 
         GeoPolygon coords ->
-            JE.object
-                [ ( "type", JE.string "Polygon" )
-                , ( "coordinates", JE.list toCoords coords )
-                ]
+            [ ( "type", JE.string "Polygon" )
+            , ( "coordinates", JE.list toCoords coords )
+            ]
 
         GeoPolygons coords ->
-            JE.object
-                [ ( "type", JE.string "MultiPolygon" )
-                , ( "coordinates", JE.list (\cs -> List.map toCoords cs |> toList) coords )
-                ]
+            [ ( "type", JE.string "MultiPolygon" )
+            , ( "coordinates", JE.list (\cs -> List.map toCoords cs |> toList) coords )
+            ]
 
 
 gradientProperty : GradientProperty -> LabelledSpec
@@ -18208,8 +18264,8 @@ headerProperty hProp =
             ( "titlePadding", JE.float x )
 
 
-hyperlinkChannelProperty : HyperlinkChannel -> List LabelledSpec
-hyperlinkChannelProperty field =
+hyperlinkChannelProperties : HyperlinkChannel -> List LabelledSpec
+hyperlinkChannelProperties field =
     case field of
         HName s ->
             [ ( "field", JE.string s ) ]
@@ -18227,12 +18283,12 @@ hyperlinkChannelProperty field =
             [ ( "bin", JE.string "binned" ) ]
 
         HSelectionCondition selName ifClause elseClause ->
-            ( "condition", JE.object (( "selection", booleanOpSpec selName ) :: List.concatMap hyperlinkChannelProperty ifClause) )
-                :: List.concatMap hyperlinkChannelProperty elseClause
+            ( "condition", JE.object (( "selection", booleanOpSpec selName ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                :: List.concatMap hyperlinkChannelProperties elseClause
 
         HDataCondition predicate ifClause elseClause ->
-            ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperty ifClause) )
-                :: List.concatMap hyperlinkChannelProperty elseClause
+            ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                :: List.concatMap hyperlinkChannelProperties elseClause
 
         HTimeUnit tu ->
             [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
@@ -18359,7 +18415,7 @@ legendConfigProperty legendConfig =
             ( "gradientWidth", JE.float x )
 
         LeGridAlign ga ->
-            ( "gridAlign", compositionAlignmentSpec ga )
+            ( "gridAlign", JE.string (compositionAlignmentLabel ga) )
 
         LeLabelAlign ha ->
             ( "labelAlign", JE.string (hAlignLabel ha) )
@@ -18528,7 +18584,7 @@ legendProperty legendProp =
             ( "gradientStrokeWidth", JE.float n )
 
         LGridAlign ga ->
-            ( "gridAlign", compositionAlignmentSpec ga )
+            ( "gridAlign", JE.string (compositionAlignmentLabel ga) )
 
         LLabelAlign ha ->
             ( "labelAlign", JE.string (hAlignLabel ha) )
@@ -18680,8 +18736,8 @@ mark m mProps =
             )
 
 
-markChannelProperty : MarkChannel -> List LabelledSpec
-markChannelProperty field =
+markChannelProperties : MarkChannel -> List LabelledSpec
+markChannelProperties field =
     case field of
         MName s ->
             [ ( "field", JE.string s ) ]
@@ -18724,7 +18780,7 @@ markChannelProperty field =
                     [ ( "sort", toList (dataValuesSpecs dvs) ) ]
 
                 _ ->
-                    [ ( "sort", JE.object (List.concatMap sortProperty sps) ) ]
+                    [ ( "sort", JE.object (List.concatMap sortProperties sps) ) ]
 
         MBinned ->
             [ ( "bin", JE.string "binned" ) ]
@@ -18733,17 +18789,17 @@ markChannelProperty field =
             ( "condition"
             , JE.object
                 (( "selection", booleanOpSpec selName )
-                    :: List.concatMap markChannelProperty ifClause
+                    :: List.concatMap markChannelProperties ifClause
                 )
             )
-                :: List.concatMap markChannelProperty elseClause
+                :: List.concatMap markChannelProperties elseClause
 
         MDataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
                     JE.object
                         (( "test", booleanOpSpec predicate )
-                            :: List.concatMap markChannelProperty ifClause
+                            :: List.concatMap markChannelProperties ifClause
                         )
             in
             ( "condition"
@@ -18754,7 +18810,7 @@ markChannelProperty field =
                 _ ->
                     JE.list testClause tests
             )
-                :: List.concatMap markChannelProperty elseClause
+                :: List.concatMap markChannelProperties elseClause
 
         MTimeUnit tu ->
             [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
@@ -18936,7 +18992,7 @@ markProperty mProp =
         MFillGradient cGrad props ->
             ( "fill"
             , JE.object
-                (( "gradient", colorGradientSpec cGrad )
+                (( "gradient", JE.string (colorGradientLabel cGrad) )
                     :: List.map gradientProperty props
                 )
             )
@@ -18944,7 +19000,7 @@ markProperty mProp =
         MColorGradient cGrad props ->
             ( "color"
             , JE.object
-                (( "gradient", colorGradientSpec cGrad )
+                (( "gradient", JE.string (colorGradientLabel cGrad) )
                     :: List.map gradientProperty props
                 )
             )
@@ -18952,7 +19008,7 @@ markProperty mProp =
         MStrokeGradient cGrad props ->
             ( "stroke"
             , JE.object
-                (( "gradient", colorGradientSpec cGrad )
+                (( "gradient", JE.string (colorGradientLabel cGrad) )
                     :: List.map gradientProperty props
                 )
             )
@@ -19314,7 +19370,7 @@ orderChannelProperty oDef =
                     ( "sort", toList (dataValuesSpecs dvs) )
 
                 _ ->
-                    ( "sort", JE.object (List.concatMap sortProperty sps) )
+                    ( "sort", JE.object (List.concatMap sortProperties sps) )
 
 
 overlapStrategySpec : OverlapStrategy -> Spec
@@ -19549,7 +19605,7 @@ positionChannelProperty pDef =
                     ( "sort", toList (dataValuesSpecs dvs) )
 
                 _ ->
-                    ( "sort", JE.object (List.concatMap sortProperty sps) )
+                    ( "sort", JE.object (List.concatMap sortProperties sps) )
 
         PBand x ->
             ( "band", JE.float x )
@@ -19569,7 +19625,7 @@ positionChannelProperty pDef =
                 ( "axis", JE.object (List.map axisProperty aps) )
 
         PStack so ->
-            stackOffset so
+            stackOffsetProperty so
 
         PRepeat arr ->
             ( "field", JE.object [ ( "repeat", JE.string (arrangementLabel arr) ) ] )
@@ -19685,49 +19741,6 @@ regMethodLabel rm =
 
         RgPoly ->
             "poly"
-
-
-{-| Indicates an exponential regression method.
--}
-rgExp : RegressionMethod
-rgExp =
-    RgExp
-
-
-{-| Indicates a linear regression method.
--}
-rgLinear : RegressionMethod
-rgLinear =
-    RgLinear
-
-
-{-| Indicates a log regression method.
--}
-rgLog : RegressionMethod
-rgLog =
-    RgLog
-
-
-{-| Indicates a polynomial regression method. The order of the polynomial can be
-set with [rgOrder](#rgOrder) (defaulting to cubic if not provided).
--}
-rgPoly : RegressionMethod
-rgPoly =
-    RgPoly
-
-
-{-| Indicates a power regression method.
--}
-rgPow : RegressionMethod
-rgPow =
-    RgPow
-
-
-{-| Indicates a quadratic regression method.
--}
-rgQuad : RegressionMethod
-rgQuad =
-    RgQuad
 
 
 regressionProperty : RegressionProperty -> LabelledSpec
@@ -20241,18 +20254,18 @@ sideLabel side =
             "right"
 
 
-sortFieldSpec : SortField -> Spec
-sortFieldSpec wsf =
+sortFieldProperties : SortField -> List LabelledSpec
+sortFieldProperties wsf =
     case wsf of
         WAscending f ->
-            JE.object [ ( "field", JE.string f ), ( "order", JE.string "ascending" ) ]
+            [ ( "field", JE.string f ), ( "order", JE.string "ascending" ) ]
 
         WDescending f ->
-            JE.object [ ( "field", JE.string f ), ( "order", JE.string "descending" ) ]
+            [ ( "field", JE.string f ), ( "order", JE.string "descending" ) ]
 
 
-sortProperty : SortProperty -> List LabelledSpec
-sortProperty sp =
+sortProperties : SortProperty -> List LabelledSpec
+sortProperties sp =
     case sp of
         Ascending ->
             [ ( "order", JE.string "ascending" ) ]
@@ -20276,8 +20289,8 @@ sortProperty sp =
             []
 
 
-stackOffset : StackOffset -> LabelledSpec
-stackOffset offset =
+stackOffsetProperty : StackOffset -> LabelledSpec
+stackOffsetProperty offset =
     ( "stack", stackOffsetSpec offset )
 
 
@@ -20304,7 +20317,7 @@ stackProperty sProp =
             ( "offset", stackOffsetSpec op )
 
         StSort sfs ->
-            ( "sort", JE.list sortFieldSpec sfs )
+            ( "sort", JE.list (sortFieldProperties >> JE.object) sfs )
 
 
 strokeCapLabel : StrokeCap -> String
@@ -20381,8 +20394,8 @@ symbolLabel sym =
             svgPath
 
 
-textChannelProperty : TextChannel -> List LabelledSpec
-textChannelProperty tDef =
+textChannelProperties : TextChannel -> List LabelledSpec
+textChannelProperties tDef =
     case tDef of
         TName s ->
             [ ( "field", JE.string s ) ]
@@ -20421,21 +20434,21 @@ textChannelProperty tDef =
             ( "condition"
             , JE.object
                 (( "selection", booleanOpSpec selName )
-                    :: List.concatMap textChannelProperty ifClause
+                    :: List.concatMap textChannelProperties ifClause
                 )
             )
-                :: List.concatMap textChannelProperty elseClause
+                :: List.concatMap textChannelProperties elseClause
 
         TDataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
                     JE.object
                         (( "test", booleanOpSpec predicate )
-                            :: List.concatMap textChannelProperty ifClause
+                            :: List.concatMap textChannelProperties ifClause
                         )
             in
             ( "condition", JE.list testClause tests )
-                :: List.concatMap textChannelProperty elseClause
+                :: List.concatMap textChannelProperties elseClause
 
         TString s ->
             [ ( "value", JE.string s ) ]
@@ -20551,8 +20564,8 @@ timeUnitSpec tUnit =
             JE.string (timeUnitLabel tUnit)
 
 
-titleConfigSpec : TitleConfig -> LabelledSpec
-titleConfigSpec titleCfg =
+titleConfigProperty : TitleConfig -> LabelledSpec
+titleConfigProperty titleCfg =
     case titleCfg of
         TAnchor an ->
             ( "anchor", JE.string (anchorLabel an) )
@@ -20654,7 +20667,7 @@ trFilterSpec mc f =
             booleanOpSpec boolExpr
 
         _ ->
-            JE.object (markChannelProperty mc ++ filterProperty f)
+            JE.object (markChannelProperties mc ++ filterProperties f)
 
 
 ttContentLabel : TooltipContent -> String
@@ -20683,8 +20696,8 @@ vAlignLabel al =
             "bottom"
 
 
-viewBackgroundSpec : ViewBackground -> LabelledSpec
-viewBackgroundSpec vb =
+viewBackgroundProperty : ViewBackground -> LabelledSpec
+viewBackgroundProperty vb =
     case vb of
         VBStyle styles ->
             ( "style", JE.list JE.string styles )
@@ -20812,7 +20825,7 @@ viewConfigProperties viewCfg =
             [ ( "strokeMiterLimit", JE.float x ) ]
 
         VBackground vbs ->
-            List.map viewBackgroundSpec vbs
+            List.map viewBackgroundProperty vbs
 
 
 vlPropertyLabel : VLProperty -> String
@@ -21027,4 +21040,4 @@ windowProperty wProp =
             ( "groupby", JE.list JE.string fs )
 
         WSort sfs ->
-            ( "sort", JE.list sortFieldSpec sfs )
+            ( "sort", JE.list (sortFieldProperties >> JE.object) sfs )
