@@ -71,7 +71,7 @@ window3 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
-                [ parse [ ( "Release_Date", foDate "%d-%b-%y" ) ] ]
+                [ parse [ ( "Release_Date", foDate "%b %d %Y" ) ] ]
 
         trans =
             transform
@@ -106,7 +106,7 @@ window4 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
-                [ parse [ ( "Release_Date", foDate "%d-%b-%y" ) ] ]
+                [ parse [ ( "Release_Date", foDate "%b %d %Y" ) ] ]
 
         trans =
             transform
