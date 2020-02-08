@@ -5129,12 +5129,11 @@ var $author$project$VegaLite$markLabel = function (m) {
 };
 var $author$project$VegaLite$TTNone = 2;
 var $elm$json$Json$Encode$bool = _Json_wrap;
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $author$project$VegaLite$colorGradientSpec = function (gr) {
+var $author$project$VegaLite$colorGradientLabel = function (gr) {
 	if (!gr) {
-		return $elm$json$Json$Encode$string('linear');
+		return 'linear';
 	} else {
-		return $elm$json$Json$Encode$string('radial');
+		return 'radial';
 	}
 };
 var $author$project$VegaLite$cursorLabel = function (cur) {
@@ -5214,6 +5213,7 @@ var $author$project$VegaLite$cursorLabel = function (cur) {
 	}
 };
 var $elm$json$Json$Encode$float = _Json_wrap;
+var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$extentSpec = function (ext) {
 	switch (ext.$) {
 		case 0:
@@ -5530,7 +5530,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 						$elm$core$List$cons,
 						_Utils_Tuple2(
 							'gradient',
-							$author$project$VegaLite$colorGradientSpec(cGrad)),
+							$elm$json$Json$Encode$string(
+								$author$project$VegaLite$colorGradientLabel(cGrad))),
 						A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))));
 		case 9:
 			var cGrad = mProp.a;
@@ -5542,7 +5543,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 						$elm$core$List$cons,
 						_Utils_Tuple2(
 							'gradient',
-							$author$project$VegaLite$colorGradientSpec(cGrad)),
+							$elm$json$Json$Encode$string(
+								$author$project$VegaLite$colorGradientLabel(cGrad))),
 						A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))));
 		case 45:
 			var cGrad = mProp.a;
@@ -5554,7 +5556,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 						$elm$core$List$cons,
 						_Utils_Tuple2(
 							'gradient',
-							$author$project$VegaLite$colorGradientSpec(cGrad)),
+							$elm$json$Json$Encode$string(
+								$author$project$VegaLite$colorGradientLabel(cGrad))),
 						A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))));
 		case 44:
 			var col = mProp.a;
@@ -6061,25 +6064,25 @@ var $elm$core$List$concatMap = F2(
 		return $elm$core$List$concat(
 			A2($elm$core$List$map, f, list));
 	});
-var $author$project$VegaLite$dataTypeSpec = function (dType) {
+var $author$project$VegaLite$dataTypeLabel = function (dType) {
 	switch (dType.$) {
 		case 0:
-			return $elm$json$Json$Encode$string('number');
+			return 'number';
 		case 1:
-			return $elm$json$Json$Encode$string('boolean');
+			return 'boolean';
 		case 2:
 			var dateFmt = dType.a;
-			return (dateFmt === '') ? $elm$json$Json$Encode$string('date') : $elm$json$Json$Encode$string('date:\'' + (dateFmt + '\''));
+			return (dateFmt === '') ? 'date' : ('date:\'' + (dateFmt + '\''));
 		default:
 			var dateFmt = dType.a;
-			return (dateFmt === '') ? $elm$json$Json$Encode$string('utc') : $elm$json$Json$Encode$string('utc:\'' + (dateFmt + '\''));
+			return (dateFmt === '') ? 'utc' : ('utc:\'' + (dateFmt + '\''));
 	}
 };
 var $elm$core$String$cons = _String_cons;
 var $elm$core$String$fromChar = function (_char) {
 	return A2($elm$core$String$cons, _char, '');
 };
-var $author$project$VegaLite$formatProperty = function (fmt) {
+var $author$project$VegaLite$formatProperties = function (fmt) {
 	switch (fmt.$) {
 		case 0:
 			var propertyName = fmt.a;
@@ -6169,7 +6172,8 @@ var $author$project$VegaLite$formatProperty = function (fmt) {
 								var fFormat = _v1.b;
 								return _Utils_Tuple2(
 									field,
-									$author$project$VegaLite$dataTypeSpec(fFormat));
+									$elm$json$Json$Encode$string(
+										$author$project$VegaLite$dataTypeLabel(fFormat)));
 							},
 							fmts)))
 				]);
@@ -6257,7 +6261,7 @@ var $author$project$VegaLite$dataFromColumns = F2(
 						_Utils_Tuple2(
 						'format',
 						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperty, fmts)))
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
 var $author$project$VegaLite$Numbers = function (a) {
@@ -6615,7 +6619,7 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 	}
 };
 var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
-var $author$project$VegaLite$filterProperty = function (f) {
+var $author$project$VegaLite$filterProperties = function (f) {
 	switch (f.$) {
 		case 0:
 			var field = f.a;
@@ -6792,14 +6796,14 @@ var $author$project$VegaLite$filterProperty = function (f) {
 			return _List_Nil;
 	}
 };
-var $author$project$VegaLite$compositionAlignmentSpec = function (ca) {
+var $author$project$VegaLite$compositionAlignmentLabel = function (ca) {
 	switch (ca) {
 		case 0:
-			return $elm$json$Json$Encode$string('none');
+			return 'none';
 		case 1:
-			return $elm$json$Json$Encode$string('each');
+			return 'each';
 		default:
-			return $elm$json$Json$Encode$string('all');
+			return 'all';
 	}
 };
 var $author$project$VegaLite$legendOrientLabel = function (orient) {
@@ -6934,7 +6938,8 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			var ga = legendProp.a;
 			return _Utils_Tuple2(
 				'gridAlign',
-				$author$project$VegaLite$compositionAlignmentSpec(ga));
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$compositionAlignmentLabel(ga)));
 		case 14:
 			var ha = legendProp.a;
 			return _Utils_Tuple2(
@@ -7629,7 +7634,7 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 			return 'size';
 	}
 };
-var $author$project$VegaLite$sortProperty = function (sp) {
+var $author$project$VegaLite$sortProperties = function (sp) {
 	switch (sp.$) {
 		case 0:
 			return _List_fromArray(
@@ -7763,10 +7768,10 @@ var $author$project$VegaLite$filterSpec = function (f) {
 			return $author$project$VegaLite$booleanOpSpec(boolExpr);
 		default:
 			return $elm$json$Json$Encode$object(
-				$author$project$VegaLite$filterProperty(f));
+				$author$project$VegaLite$filterProperties(f));
 	}
 };
-var $author$project$VegaLite$markChannelProperty = function (field) {
+var $author$project$VegaLite$markChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:
 			var s = field.a;
@@ -7880,7 +7885,7 @@ var $author$project$VegaLite$markChannelProperty = function (field) {
 					_Utils_Tuple2(
 					'sort',
 					$elm$json$Json$Encode$object(
-						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperty, sps)))
+						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
 				]);
 		case 5:
 			return _List_fromArray(
@@ -7903,8 +7908,8 @@ var $author$project$VegaLite$markChannelProperty = function (field) {
 							_Utils_Tuple2(
 								'selection',
 								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, elseClause));
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 12:
 			var tests = field.a;
 			var elseClause = field.b;
@@ -7917,7 +7922,7 @@ var $author$project$VegaLite$markChannelProperty = function (field) {
 						_Utils_Tuple2(
 							'test',
 							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, ifClause)));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
 			};
 			return A2(
 				$elm$core$List$cons,
@@ -7931,7 +7936,7 @@ var $author$project$VegaLite$markChannelProperty = function (field) {
 							return A2($elm$json$Json$Encode$list, testClause, tests);
 						}
 					}()),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperty, elseClause));
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 7:
 			var tu = field.a;
 			return _List_fromArray(
@@ -8003,8 +8008,8 @@ var $author$project$VegaLite$trFilterSpec = F2(
 			default:
 				return $elm$json$Json$Encode$object(
 					_Utils_ap(
-						$author$project$VegaLite$markChannelProperty(mc),
-						$author$project$VegaLite$filterProperty(f)));
+						$author$project$VegaLite$markChannelProperties(mc),
+						$author$project$VegaLite$filterProperties(f)));
 		}
 	});
 var $elm$core$Tuple$second = function (_v0) {
@@ -8639,7 +8644,7 @@ var $author$project$VegaLite$stackOffsetSpec = function (sp) {
 			return $elm$json$Json$Encode$null;
 	}
 };
-var $author$project$VegaLite$stackOffset = function (offset) {
+var $author$project$VegaLite$stackOffsetProperty = function (offset) {
 	return _Utils_Tuple2(
 		'stack',
 		$author$project$VegaLite$stackOffsetSpec(offset));
@@ -8716,7 +8721,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			return _Utils_Tuple2(
 				'sort',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperty, sps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)));
 		case 14:
 			var x = pDef.a;
 			return _Utils_Tuple2(
@@ -8736,7 +8741,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					A2($elm$core$List$map, $author$project$VegaLite$axisProperty, aps)));
 		case 15:
 			var so = pDef.a;
-			return $author$project$VegaLite$stackOffset(so);
+			return $author$project$VegaLite$stackOffsetProperty(so);
 		case 4:
 			var arr = pDef.a;
 			return _Utils_Tuple2(
