@@ -3994,8 +3994,7 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 22:
 			return 'milliseconds';
 		default:
-			var timeUnit = tu.a;
-			return 'utc' + $author$project$VegaLite$timeUnitLabel(timeUnit);
+			return '';
 	}
 };
 var $author$project$VegaLite$scaleNiceSpec = function (ni) {
@@ -6158,7 +6157,10 @@ var $author$project$VegaLite$imputeProperty = function (ip) {
 				'value',
 				$author$project$VegaLite$dataValueSpec(dVal));
 		default:
-			return _Utils_Tuple2('groupby', $elm$json$Json$Encode$null);
+			var fields = ip.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
 	}
 };
 var $author$project$VegaLite$stackOffsetSpec = function (sp) {

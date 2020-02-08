@@ -4080,8 +4080,7 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 22:
 			return 'milliseconds';
 		default:
-			var timeUnit = tu.a;
-			return 'utc' + $author$project$VegaLite$timeUnitLabel(timeUnit);
+			return '';
 	}
 };
 var $author$project$VegaLite$scaleNiceSpec = function (ni) {
@@ -6270,7 +6269,10 @@ var $author$project$VegaLite$imputeProperty = function (ip) {
 				'value',
 				$author$project$VegaLite$dataValueSpec(dVal));
 		default:
-			return _Utils_Tuple2('groupby', $elm$json$Json$Encode$null);
+			var fields = ip.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
 	}
 };
 var $author$project$VegaLite$stackOffsetSpec = function (sp) {
@@ -6648,24 +6650,32 @@ var $author$project$VegaLite$aggregate = F2(
 	function (ops, groups) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'aggregate',
-				$author$project$VegaLite$toList(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$toList(ops),
-							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, groups)
+							_Utils_Tuple2(
+							'aggregate',
+							$author$project$VegaLite$toList(ops)),
+							_Utils_Tuple2(
+							'groupby',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, groups))
 						]))));
 	});
 var $author$project$VegaLite$calculateAs = F2(
 	function (ex, label) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'calculate',
-				$author$project$VegaLite$toList(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							$elm$json$Json$Encode$string(ex),
-							$elm$json$Json$Encode$string(label)
+							_Utils_Tuple2(
+							'calculate',
+							$elm$json$Json$Encode$string(ex)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
 						]))));
 	});
 var $author$project$VegaLite$opAs = F3(
@@ -6687,7 +6697,6 @@ var $author$project$VegaLite$opAs = F3(
 var $author$project$VegaLite$Stdev = {$: 14};
 var $author$project$VegaLite$opStdev = $author$project$VegaLite$Stdev;
 var $author$project$VegaLite$VLTransform = 13;
-var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
 		return true;
@@ -6695,685 +6704,18 @@ var $elm$core$List$isEmpty = function (xs) {
 		return false;
 	}
 };
-var $elm$json$Json$Decode$list = _Json_decodeList;
-var $elm$json$Json$Decode$value = _Json_decodeValue;
 var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v97) {
-		var trName = _v97.a;
-		var val = _v97.b;
-		switch (trName) {
-			case 'aggregate':
-				var _v1 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((!_v1.$) && _v1.a.b) && _v1.a.b.b) && (!_v1.a.b.b.b)) {
-					var _v2 = _v1.a;
-					var ops = _v2.a;
-					var _v3 = _v2.b;
-					var groups = _v3.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('aggregate', ops),
-								_Utils_Tuple2('groupby', groups)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'bin':
-				var _v4 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v4.$) && _v4.a.b) && _v4.a.b.b) && _v4.a.b.b.b) && (!_v4.a.b.b.b.b)) {
-					var _v5 = _v4.a;
-					var binParams = _v5.a;
-					var _v6 = _v5.b;
-					var field = _v6.a;
-					var _v7 = _v6.b;
-					var label = _v7.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('bin', binParams),
-								_Utils_Tuple2('field', field),
-								_Utils_Tuple2('as', label)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'calculate':
-				var _v8 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((!_v8.$) && _v8.a.b) && _v8.a.b.b) && (!_v8.a.b.b.b)) {
-					var _v9 = _v8.a;
-					var ex = _v9.a;
-					var _v10 = _v9.b;
-					var label = _v10.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('calculate', ex),
-								_Utils_Tuple2('as', label)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'impute':
-				var _v11 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((((!_v11.$) && _v11.a.b) && _v11.a.b.b) && _v11.a.b.b.b) && _v11.a.b.b.b.b) && _v11.a.b.b.b.b.b) && _v11.a.b.b.b.b.b.b) && _v11.a.b.b.b.b.b.b.b) && _v11.a.b.b.b.b.b.b.b.b) && (!_v11.a.b.b.b.b.b.b.b.b.b)) {
-					var _v12 = _v11.a;
-					var imp = _v12.a;
-					var _v13 = _v12.b;
-					var k = _v13.a;
-					var _v14 = _v13.b;
-					var frameObj = _v14.a;
-					var _v15 = _v14.b;
-					var keyValsObj = _v15.a;
-					var _v16 = _v15.b;
-					var keyValSequenceObj = _v16.a;
-					var _v17 = _v16.b;
-					var methodObj = _v17.a;
-					var _v18 = _v17.b;
-					var groupbyObj = _v18.a;
-					var _v19 = _v18.b;
-					var valueObj = _v19.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('impute', imp),
-									_Utils_Tuple2('key', k)
-								]),
-							_Utils_ap(
-								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('frame', frameObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(keyValsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('keyvals', keyValsObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(keyValSequenceObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('keyvals', keyValSequenceObj)
-											]),
-										_Utils_ap(
-											_Utils_eq(methodObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('method', methodObj)
-												]),
-											_Utils_ap(
-												_Utils_eq(groupbyObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-													[
-														_Utils_Tuple2('groupby', groupbyObj)
-													]),
-												_Utils_eq(valueObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-													[
-														_Utils_Tuple2('value', valueObj)
-													]))))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'density':
-				var _v20 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((((((!_v20.$) && _v20.a.b) && _v20.a.b.b) && _v20.a.b.b.b) && _v20.a.b.b.b.b) && _v20.a.b.b.b.b.b) && _v20.a.b.b.b.b.b.b) && _v20.a.b.b.b.b.b.b.b) && _v20.a.b.b.b.b.b.b.b.b) && _v20.a.b.b.b.b.b.b.b.b.b) && _v20.a.b.b.b.b.b.b.b.b.b.b) && (!_v20.a.b.b.b.b.b.b.b.b.b.b.b)) {
-					var _v21 = _v20.a;
-					var dn = _v21.a;
-					var _v22 = _v21.b;
-					var gbObj = _v22.a;
-					var _v23 = _v22.b;
-					var cmObj = _v23.a;
-					var _v24 = _v23.b;
-					var cnObj = _v24.a;
-					var _v25 = _v24.b;
-					var bwObj = _v25.a;
-					var _v26 = _v25.b;
-					var exObj = _v26.a;
-					var _v27 = _v26.b;
-					var mnsObj = _v27.a;
-					var _v28 = _v27.b;
-					var mxsObj = _v28.a;
-					var _v29 = _v28.b;
-					var sObj = _v29.a;
-					var _v30 = _v29.b;
-					var asObj = _v30.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('density', dn)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(cmObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('cumulative', cmObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(cnObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('counts', cnObj)
-											]),
-										_Utils_ap(
-											_Utils_eq(bwObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('bandwidth', bwObj)
-												]),
-											_Utils_ap(
-												_Utils_eq(exObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-													[
-														_Utils_Tuple2('extent', exObj)
-													]),
-												_Utils_ap(
-													_Utils_eq(mnsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-														[
-															_Utils_Tuple2('minsteps', mnsObj)
-														]),
-													_Utils_ap(
-														_Utils_eq(mxsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-															[
-																_Utils_Tuple2('maxsteps', mxsObj)
-															]),
-														_Utils_ap(
-															_Utils_eq(sObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-																[
-																	_Utils_Tuple2('steps', sObj)
-																]),
-															_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-																[
-																	_Utils_Tuple2('as', asObj)
-																])))))))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'loess':
-				var _v31 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v31.$) && _v31.a.b) && _v31.a.b.b) && _v31.a.b.b.b) && _v31.a.b.b.b.b) && _v31.a.b.b.b.b.b) && (!_v31.a.b.b.b.b.b.b)) {
-					var _v32 = _v31.a;
-					var dField = _v32.a;
-					var _v33 = _v32.b;
-					var iField = _v33.a;
-					var _v34 = _v33.b;
-					var gbObj = _v34.a;
-					var _v35 = _v34.b;
-					var bwObj = _v35.a;
-					var _v36 = _v35.b;
-					var asObj = _v36.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('loess', dField),
-									_Utils_Tuple2('on', iField)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(bwObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('bandwidth', bwObj)
-										]),
-									_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('as', asObj)
-										])))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'lookup':
-				var _v37 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				_v37$2:
-				while (true) {
-					if ((((!_v37.$) && _v37.a.b) && _v37.a.b.b) && _v37.a.b.b.b) {
-						if (!_v37.a.b.b.b.b) {
-							var _v38 = _v37.a;
-							var key1 = _v38.a;
-							var _v39 = _v38.b;
-							var selName = _v39.a;
-							var _v40 = _v39.b;
-							var key2 = _v40.a;
-							return $elm$json$Json$Encode$object(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('selection', selName),
-													_Utils_Tuple2('key', key2)
-												])))
-									]));
-						} else {
-							if ((_v37.a.b.b.b.b.b && _v37.a.b.b.b.b.b.b) && (!_v37.a.b.b.b.b.b.b.b)) {
-								var _v41 = _v37.a;
-								var key1 = _v41.a;
-								var _v42 = _v41.b;
-								var dataSpec = _v42.a;
-								var _v43 = _v42.b;
-								var key2 = _v43.a;
-								var _v44 = _v43.b;
-								var fields = _v44.a;
-								var _v45 = _v44.b;
-								var aliases = _v45.a;
-								var _v46 = _v45.b;
-								var def = _v46.a;
-								var lSpecs = _Utils_eq(aliases, $elm$json$Json$Encode$null) ? _List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('data', dataSpec),
-													_Utils_Tuple2('key', key2),
-													_Utils_Tuple2('fields', fields)
-												])))
-									]) : (_Utils_eq(fields, $elm$json$Json$Encode$null) ? _List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('data', dataSpec),
-													_Utils_Tuple2('key', key2)
-												]))),
-										_Utils_Tuple2('as', aliases)
-									]) : _List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('data', dataSpec),
-													_Utils_Tuple2('key', key2),
-													_Utils_Tuple2('fields', fields)
-												]))),
-										_Utils_Tuple2('as', aliases)
-									]));
-								return _Utils_eq(def, $elm$json$Json$Encode$null) ? $elm$json$Json$Encode$object(lSpecs) : $elm$json$Json$Encode$object(
-									A2(
-										$elm$core$List$cons,
-										_Utils_Tuple2('default', def),
-										lSpecs));
-							} else {
-								break _v37$2;
-							}
-						}
-					} else {
-						break _v37$2;
-					}
-				}
-				return $elm$json$Json$Encode$null;
-			case 'pivot':
-				var _v47 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v47.$) && _v47.a.b) && _v47.a.b.b) && _v47.a.b.b.b) && _v47.a.b.b.b.b) && _v47.a.b.b.b.b.b) && (!_v47.a.b.b.b.b.b.b)) {
-					var _v48 = _v47.a;
-					var pField = _v48.a;
-					var _v49 = _v48.b;
-					var pValField = _v49.a;
-					var _v50 = _v49.b;
-					var gbObj = _v50.a;
-					var _v51 = _v50.b;
-					var liObj = _v51.a;
-					var _v52 = _v51.b;
-					var opObj = _v52.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('pivot', pField),
-									_Utils_Tuple2('value', pValField)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(liObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('limit', liObj)
-										]),
-									_Utils_eq(opObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('op', opObj)
-										])))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'quantile':
-				var _v53 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v53.$) && _v53.a.b) && _v53.a.b.b) && _v53.a.b.b.b) && _v53.a.b.b.b.b) && _v53.a.b.b.b.b.b) && (!_v53.a.b.b.b.b.b.b)) {
-					var _v54 = _v53.a;
-					var qField = _v54.a;
-					var _v55 = _v54.b;
-					var gbObj = _v55.a;
-					var _v56 = _v55.b;
-					var pObj = _v56.a;
-					var _v57 = _v56.b;
-					var sObj = _v57.a;
-					var _v58 = _v57.b;
-					var asObj = _v58.a;
-					return $elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2('quantile', qField),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(pObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('probs', pObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(sObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('step', sObj)
-											]),
-										_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('as', asObj)
-											]))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'regression':
-				var _v59 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((((!_v59.$) && _v59.a.b) && _v59.a.b.b) && _v59.a.b.b.b) && _v59.a.b.b.b.b) && _v59.a.b.b.b.b.b) && _v59.a.b.b.b.b.b.b) && _v59.a.b.b.b.b.b.b.b) && (!_v59.a.b.b.b.b.b.b.b.b)) {
-					var _v60 = _v59.a;
-					var fDep = _v60.a;
-					var _v61 = _v60.b;
-					var fInd = _v61.a;
-					var _v62 = _v61.b;
-					var gbObj = _v62.a;
-					var _v63 = _v62.b;
-					var meObj = _v63.a;
-					var _v64 = _v63.b;
-					var orObj = _v64.a;
-					var _v65 = _v64.b;
-					var exObj = _v65.a;
-					var _v66 = _v65.b;
-					var asObj = _v66.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('regression', fDep),
-									_Utils_Tuple2('on', fInd)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(meObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('method', meObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(orObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('order', orObj)
-											]),
-										_Utils_ap(
-											_Utils_eq(exObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('extent', exObj)
-												]),
-											_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('as', asObj)
-												])))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'flattenAs':
-				var _v67 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((!_v67.$) && _v67.a.b) && _v67.a.b.b) && (!_v67.a.b.b.b)) {
-					var _v68 = _v67.a;
-					var fields = _v68.a;
-					var _v69 = _v68.b;
-					var names = _v69.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('flatten', fields),
-								_Utils_Tuple2('as', names)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'foldAs':
-				var _v70 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v70.$) && _v70.a.b) && _v70.a.b.b) && _v70.a.b.b.b) && (!_v70.a.b.b.b.b)) {
-					var _v71 = _v70.a;
-					var fields = _v71.a;
-					var _v72 = _v71.b;
-					var keyName = _v72.a;
-					var _v73 = _v72.b;
-					var valName = _v73.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('fold', fields),
-								_Utils_Tuple2(
-								'as',
-								$author$project$VegaLite$toList(
-									_List_fromArray(
-										[keyName, valName])))
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'stack':
-				var _v74 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((!_v74.$) && _v74.a.b) && _v74.a.b.b) && _v74.a.b.b.b) && _v74.a.b.b.b.b) && _v74.a.b.b.b.b.b) && _v74.a.b.b.b.b.b.b) && (!_v74.a.b.b.b.b.b.b.b)) {
-					var _v75 = _v74.a;
-					var field = _v75.a;
-					var _v76 = _v75.b;
-					var grp = _v76.a;
-					var _v77 = _v76.b;
-					var start = _v77.a;
-					var _v78 = _v77.b;
-					var end = _v78.a;
-					var _v79 = _v78.b;
-					var offsetObj = _v79.a;
-					var _v80 = _v79.b;
-					var sortObj = _v80.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('stack', field),
-									_Utils_Tuple2('groupby', grp),
-									_Utils_Tuple2(
-									'as',
-									$author$project$VegaLite$toList(
-										_List_fromArray(
-											[start, end])))
-								]),
-							_Utils_ap(
-								_Utils_eq(offsetObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('offset', offsetObj)
-									]),
-								_Utils_eq(sortObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('sort', sortObj)
-									]))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'timeUnit':
-				var _v81 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v81.$) && _v81.a.b) && _v81.a.b.b) && _v81.a.b.b.b) && (!_v81.a.b.b.b.b)) {
-					var _v82 = _v81.a;
-					var tu = _v82.a;
-					var _v83 = _v82.b;
-					var field = _v83.a;
-					var _v84 = _v83.b;
-					var label = _v84.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('timeUnit', tu),
-								_Utils_Tuple2('field', field),
-								_Utils_Tuple2('as', label)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'window':
-				var _v85 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v85.$) && _v85.a.b) && _v85.a.b.b) && _v85.a.b.b.b) && _v85.a.b.b.b.b) && _v85.a.b.b.b.b.b) && (!_v85.a.b.b.b.b.b.b)) {
-					var _v86 = _v85.a;
-					var winObj = _v86.a;
-					var _v87 = _v86.b;
-					var frameObj = _v87.a;
-					var _v88 = _v87.b;
-					var peersObj = _v88.a;
-					var _v89 = _v88.b;
-					var groupbyObj = _v89.a;
-					var _v90 = _v89.b;
-					var sortObj = _v90.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('window', winObj)
-								]),
-							_Utils_ap(
-								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('frame', frameObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(peersObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('ignorePeers', peersObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(groupbyObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('groupby', groupbyObj)
-											]),
-										_Utils_eq(sortObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('sort', sortObj)
-											]))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'joinaggregate':
-				var _v91 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v91.$) && _v91.a.b) && _v91.a.b.b) && _v91.a.b.b.b) && _v91.a.b.b.b.b) && _v91.a.b.b.b.b.b) && (!_v91.a.b.b.b.b.b.b)) {
-					var _v92 = _v91.a;
-					var joinObjs = _v92.a;
-					var _v93 = _v92.b;
-					var frameObj = _v93.a;
-					var _v94 = _v93.b;
-					var peersObj = _v94.a;
-					var _v95 = _v94.b;
-					var groupbyObj = _v95.a;
-					var _v96 = _v95.b;
-					var sortObj = _v96.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('joinaggregate', joinObjs)
-								]),
-							_Utils_ap(
-								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('frame', frameObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(peersObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('ignorePeers', peersObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(groupbyObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('groupby', groupbyObj)
-											]),
-										_Utils_eq(sortObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('sort', sortObj)
-											]))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			default:
-				return $elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(trName, val)
-						]));
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
 		}
 	};
 	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(

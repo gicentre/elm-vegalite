@@ -8414,7 +8414,10 @@ var $author$project$VegaLite$imputeProperty = function (ip) {
 				'value',
 				$author$project$VegaLite$dataValueSpec(dVal));
 		default:
-			return _Utils_Tuple2('groupby', $elm$json$Json$Encode$null);
+			var fields = ip.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
 	}
 };
 var $author$project$VegaLite$stackOffsetSpec = function (sp) {
@@ -8760,7 +8763,6 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				spec)));
 };
 var $author$project$VegaLite$VLTransform = 13;
-var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
 		return true;
@@ -8768,627 +8770,18 @@ var $elm$core$List$isEmpty = function (xs) {
 		return false;
 	}
 };
-var $elm$json$Json$Decode$list = _Json_decodeList;
-var $elm$json$Json$Decode$value = _Json_decodeValue;
 var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v87) {
-		var trName = _v87.a;
-		var val = _v87.b;
-		switch (trName) {
-			case 'multiSpecs':
-				return val;
-			case 'impute':
-				var _v1 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((((!_v1.$) && _v1.a.b) && _v1.a.b.b) && _v1.a.b.b.b) && _v1.a.b.b.b.b) && _v1.a.b.b.b.b.b) && _v1.a.b.b.b.b.b.b) && _v1.a.b.b.b.b.b.b.b) && _v1.a.b.b.b.b.b.b.b.b) && (!_v1.a.b.b.b.b.b.b.b.b.b)) {
-					var _v2 = _v1.a;
-					var imp = _v2.a;
-					var _v3 = _v2.b;
-					var k = _v3.a;
-					var _v4 = _v3.b;
-					var frameObj = _v4.a;
-					var _v5 = _v4.b;
-					var keyValsObj = _v5.a;
-					var _v6 = _v5.b;
-					var keyValSequenceObj = _v6.a;
-					var _v7 = _v6.b;
-					var methodObj = _v7.a;
-					var _v8 = _v7.b;
-					var groupbyObj = _v8.a;
-					var _v9 = _v8.b;
-					var valueObj = _v9.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('impute', imp),
-									_Utils_Tuple2('key', k)
-								]),
-							_Utils_ap(
-								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('frame', frameObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(keyValsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('keyvals', keyValsObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(keyValSequenceObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('keyvals', keyValSequenceObj)
-											]),
-										_Utils_ap(
-											_Utils_eq(methodObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('method', methodObj)
-												]),
-											_Utils_ap(
-												_Utils_eq(groupbyObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-													[
-														_Utils_Tuple2('groupby', groupbyObj)
-													]),
-												_Utils_eq(valueObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-													[
-														_Utils_Tuple2('value', valueObj)
-													]))))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'density':
-				var _v10 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((((((!_v10.$) && _v10.a.b) && _v10.a.b.b) && _v10.a.b.b.b) && _v10.a.b.b.b.b) && _v10.a.b.b.b.b.b) && _v10.a.b.b.b.b.b.b) && _v10.a.b.b.b.b.b.b.b) && _v10.a.b.b.b.b.b.b.b.b) && _v10.a.b.b.b.b.b.b.b.b.b) && _v10.a.b.b.b.b.b.b.b.b.b.b) && (!_v10.a.b.b.b.b.b.b.b.b.b.b.b)) {
-					var _v11 = _v10.a;
-					var dn = _v11.a;
-					var _v12 = _v11.b;
-					var gbObj = _v12.a;
-					var _v13 = _v12.b;
-					var cmObj = _v13.a;
-					var _v14 = _v13.b;
-					var cnObj = _v14.a;
-					var _v15 = _v14.b;
-					var bwObj = _v15.a;
-					var _v16 = _v15.b;
-					var exObj = _v16.a;
-					var _v17 = _v16.b;
-					var mnsObj = _v17.a;
-					var _v18 = _v17.b;
-					var mxsObj = _v18.a;
-					var _v19 = _v18.b;
-					var sObj = _v19.a;
-					var _v20 = _v19.b;
-					var asObj = _v20.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('density', dn)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(cmObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('cumulative', cmObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(cnObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('counts', cnObj)
-											]),
-										_Utils_ap(
-											_Utils_eq(bwObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('bandwidth', bwObj)
-												]),
-											_Utils_ap(
-												_Utils_eq(exObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-													[
-														_Utils_Tuple2('extent', exObj)
-													]),
-												_Utils_ap(
-													_Utils_eq(mnsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-														[
-															_Utils_Tuple2('minsteps', mnsObj)
-														]),
-													_Utils_ap(
-														_Utils_eq(mxsObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-															[
-																_Utils_Tuple2('maxsteps', mxsObj)
-															]),
-														_Utils_ap(
-															_Utils_eq(sObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-																[
-																	_Utils_Tuple2('steps', sObj)
-																]),
-															_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-																[
-																	_Utils_Tuple2('as', asObj)
-																])))))))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'loess':
-				var _v21 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v21.$) && _v21.a.b) && _v21.a.b.b) && _v21.a.b.b.b) && _v21.a.b.b.b.b) && _v21.a.b.b.b.b.b) && (!_v21.a.b.b.b.b.b.b)) {
-					var _v22 = _v21.a;
-					var dField = _v22.a;
-					var _v23 = _v22.b;
-					var iField = _v23.a;
-					var _v24 = _v23.b;
-					var gbObj = _v24.a;
-					var _v25 = _v24.b;
-					var bwObj = _v25.a;
-					var _v26 = _v25.b;
-					var asObj = _v26.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('loess', dField),
-									_Utils_Tuple2('on', iField)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(bwObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('bandwidth', bwObj)
-										]),
-									_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('as', asObj)
-										])))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'lookup':
-				var _v27 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				_v27$2:
-				while (true) {
-					if ((((!_v27.$) && _v27.a.b) && _v27.a.b.b) && _v27.a.b.b.b) {
-						if (!_v27.a.b.b.b.b) {
-							var _v28 = _v27.a;
-							var key1 = _v28.a;
-							var _v29 = _v28.b;
-							var selName = _v29.a;
-							var _v30 = _v29.b;
-							var key2 = _v30.a;
-							return $elm$json$Json$Encode$object(
-								_List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('selection', selName),
-													_Utils_Tuple2('key', key2)
-												])))
-									]));
-						} else {
-							if ((_v27.a.b.b.b.b.b && _v27.a.b.b.b.b.b.b) && (!_v27.a.b.b.b.b.b.b.b)) {
-								var _v31 = _v27.a;
-								var key1 = _v31.a;
-								var _v32 = _v31.b;
-								var dataSpec = _v32.a;
-								var _v33 = _v32.b;
-								var key2 = _v33.a;
-								var _v34 = _v33.b;
-								var fields = _v34.a;
-								var _v35 = _v34.b;
-								var aliases = _v35.a;
-								var _v36 = _v35.b;
-								var def = _v36.a;
-								var lSpecs = _Utils_eq(aliases, $elm$json$Json$Encode$null) ? _List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('data', dataSpec),
-													_Utils_Tuple2('key', key2),
-													_Utils_Tuple2('fields', fields)
-												])))
-									]) : (_Utils_eq(fields, $elm$json$Json$Encode$null) ? _List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('data', dataSpec),
-													_Utils_Tuple2('key', key2)
-												]))),
-										_Utils_Tuple2('as', aliases)
-									]) : _List_fromArray(
-									[
-										_Utils_Tuple2('lookup', key1),
-										_Utils_Tuple2(
-										'from',
-										$elm$json$Json$Encode$object(
-											_List_fromArray(
-												[
-													_Utils_Tuple2('data', dataSpec),
-													_Utils_Tuple2('key', key2),
-													_Utils_Tuple2('fields', fields)
-												]))),
-										_Utils_Tuple2('as', aliases)
-									]));
-								return _Utils_eq(def, $elm$json$Json$Encode$null) ? $elm$json$Json$Encode$object(lSpecs) : $elm$json$Json$Encode$object(
-									A2(
-										$elm$core$List$cons,
-										_Utils_Tuple2('default', def),
-										lSpecs));
-							} else {
-								break _v27$2;
-							}
-						}
-					} else {
-						break _v27$2;
-					}
-				}
-				return $elm$json$Json$Encode$null;
-			case 'pivot':
-				var _v37 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v37.$) && _v37.a.b) && _v37.a.b.b) && _v37.a.b.b.b) && _v37.a.b.b.b.b) && _v37.a.b.b.b.b.b) && (!_v37.a.b.b.b.b.b.b)) {
-					var _v38 = _v37.a;
-					var pField = _v38.a;
-					var _v39 = _v38.b;
-					var pValField = _v39.a;
-					var _v40 = _v39.b;
-					var gbObj = _v40.a;
-					var _v41 = _v40.b;
-					var liObj = _v41.a;
-					var _v42 = _v41.b;
-					var opObj = _v42.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('pivot', pField),
-									_Utils_Tuple2('value', pValField)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(liObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('limit', liObj)
-										]),
-									_Utils_eq(opObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('op', opObj)
-										])))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'quantile':
-				var _v43 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v43.$) && _v43.a.b) && _v43.a.b.b) && _v43.a.b.b.b) && _v43.a.b.b.b.b) && _v43.a.b.b.b.b.b) && (!_v43.a.b.b.b.b.b.b)) {
-					var _v44 = _v43.a;
-					var qField = _v44.a;
-					var _v45 = _v44.b;
-					var gbObj = _v45.a;
-					var _v46 = _v45.b;
-					var pObj = _v46.a;
-					var _v47 = _v46.b;
-					var sObj = _v47.a;
-					var _v48 = _v47.b;
-					var asObj = _v48.a;
-					return $elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2('quantile', qField),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(pObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('probs', pObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(sObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('step', sObj)
-											]),
-										_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('as', asObj)
-											]))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'regression':
-				var _v49 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((((!_v49.$) && _v49.a.b) && _v49.a.b.b) && _v49.a.b.b.b) && _v49.a.b.b.b.b) && _v49.a.b.b.b.b.b) && _v49.a.b.b.b.b.b.b) && _v49.a.b.b.b.b.b.b.b) && (!_v49.a.b.b.b.b.b.b.b.b)) {
-					var _v50 = _v49.a;
-					var fDep = _v50.a;
-					var _v51 = _v50.b;
-					var fInd = _v51.a;
-					var _v52 = _v51.b;
-					var gbObj = _v52.a;
-					var _v53 = _v52.b;
-					var meObj = _v53.a;
-					var _v54 = _v53.b;
-					var orObj = _v54.a;
-					var _v55 = _v54.b;
-					var exObj = _v55.a;
-					var _v56 = _v55.b;
-					var asObj = _v56.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('regression', fDep),
-									_Utils_Tuple2('on', fInd)
-								]),
-							_Utils_ap(
-								_Utils_eq(gbObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('groupby', gbObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(meObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('method', meObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(orObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('order', orObj)
-											]),
-										_Utils_ap(
-											_Utils_eq(exObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('extent', exObj)
-												]),
-											_Utils_eq(asObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-												[
-													_Utils_Tuple2('as', asObj)
-												])))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'flattenAs':
-				var _v57 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((!_v57.$) && _v57.a.b) && _v57.a.b.b) && (!_v57.a.b.b.b)) {
-					var _v58 = _v57.a;
-					var fields = _v58.a;
-					var _v59 = _v58.b;
-					var names = _v59.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('flatten', fields),
-								_Utils_Tuple2('as', names)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'foldAs':
-				var _v60 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v60.$) && _v60.a.b) && _v60.a.b.b) && _v60.a.b.b.b) && (!_v60.a.b.b.b.b)) {
-					var _v61 = _v60.a;
-					var fields = _v61.a;
-					var _v62 = _v61.b;
-					var keyName = _v62.a;
-					var _v63 = _v62.b;
-					var valName = _v63.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('fold', fields),
-								_Utils_Tuple2(
-								'as',
-								$author$project$VegaLite$toList(
-									_List_fromArray(
-										[keyName, valName])))
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'stack':
-				var _v64 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if ((((((((!_v64.$) && _v64.a.b) && _v64.a.b.b) && _v64.a.b.b.b) && _v64.a.b.b.b.b) && _v64.a.b.b.b.b.b) && _v64.a.b.b.b.b.b.b) && (!_v64.a.b.b.b.b.b.b.b)) {
-					var _v65 = _v64.a;
-					var field = _v65.a;
-					var _v66 = _v65.b;
-					var grp = _v66.a;
-					var _v67 = _v66.b;
-					var start = _v67.a;
-					var _v68 = _v67.b;
-					var end = _v68.a;
-					var _v69 = _v68.b;
-					var offsetObj = _v69.a;
-					var _v70 = _v69.b;
-					var sortObj = _v70.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('stack', field),
-									_Utils_Tuple2('groupby', grp),
-									_Utils_Tuple2(
-									'as',
-									$author$project$VegaLite$toList(
-										_List_fromArray(
-											[start, end])))
-								]),
-							_Utils_ap(
-								_Utils_eq(offsetObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('offset', offsetObj)
-									]),
-								_Utils_eq(sortObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('sort', sortObj)
-									]))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'timeUnit':
-				var _v71 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((!_v71.$) && _v71.a.b) && _v71.a.b.b) && _v71.a.b.b.b) && (!_v71.a.b.b.b.b)) {
-					var _v72 = _v71.a;
-					var tu = _v72.a;
-					var _v73 = _v72.b;
-					var field = _v73.a;
-					var _v74 = _v73.b;
-					var label = _v74.a;
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2('timeUnit', tu),
-								_Utils_Tuple2('field', field),
-								_Utils_Tuple2('as', label)
-							]));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'window':
-				var _v75 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v75.$) && _v75.a.b) && _v75.a.b.b) && _v75.a.b.b.b) && _v75.a.b.b.b.b) && _v75.a.b.b.b.b.b) && (!_v75.a.b.b.b.b.b.b)) {
-					var _v76 = _v75.a;
-					var winObj = _v76.a;
-					var _v77 = _v76.b;
-					var frameObj = _v77.a;
-					var _v78 = _v77.b;
-					var peersObj = _v78.a;
-					var _v79 = _v78.b;
-					var groupbyObj = _v79.a;
-					var _v80 = _v79.b;
-					var sortObj = _v80.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('window', winObj)
-								]),
-							_Utils_ap(
-								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('frame', frameObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(peersObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('ignorePeers', peersObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(groupbyObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('groupby', groupbyObj)
-											]),
-										_Utils_eq(sortObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('sort', sortObj)
-											]))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			case 'joinaggregate':
-				var _v81 = A2(
-					$elm$json$Json$Decode$decodeString,
-					$elm$json$Json$Decode$list($elm$json$Json$Decode$value),
-					A2($elm$json$Json$Encode$encode, 0, val));
-				if (((((((!_v81.$) && _v81.a.b) && _v81.a.b.b) && _v81.a.b.b.b) && _v81.a.b.b.b.b) && _v81.a.b.b.b.b.b) && (!_v81.a.b.b.b.b.b.b)) {
-					var _v82 = _v81.a;
-					var joinObjs = _v82.a;
-					var _v83 = _v82.b;
-					var frameObj = _v83.a;
-					var _v84 = _v83.b;
-					var peersObj = _v84.a;
-					var _v85 = _v84.b;
-					var groupbyObj = _v85.a;
-					var _v86 = _v85.b;
-					var sortObj = _v86.a;
-					return $elm$json$Json$Encode$object(
-						_Utils_ap(
-							_List_fromArray(
-								[
-									_Utils_Tuple2('joinaggregate', joinObjs)
-								]),
-							_Utils_ap(
-								_Utils_eq(frameObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-									[
-										_Utils_Tuple2('frame', frameObj)
-									]),
-								_Utils_ap(
-									_Utils_eq(peersObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-										[
-											_Utils_Tuple2('ignorePeers', peersObj)
-										]),
-									_Utils_ap(
-										_Utils_eq(groupbyObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('groupby', groupbyObj)
-											]),
-										_Utils_eq(sortObj, $elm$json$Json$Encode$null) ? _List_Nil : _List_fromArray(
-											[
-												_Utils_Tuple2('sort', sortObj)
-											]))))));
-				} else {
-					return $elm$json$Json$Encode$null;
-				}
-			default:
-				return $elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(trName, val)
-						]));
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
 		}
 	};
 	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(
@@ -9486,18 +8879,6 @@ var $author$project$VegaLite$Number = function (a) {
 var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$VegaLite$Point = 9;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(9);
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$Basics$neq = _Utils_notEqual;
 var $author$project$VegaLite$regMethodLabel = function (rm) {
 	switch (rm) {
 		case 0:
@@ -9514,87 +8895,63 @@ var $author$project$VegaLite$regMethodLabel = function (rm) {
 			return 'poly';
 	}
 };
-var $author$project$VegaLite$regressionPropertySpec = F2(
-	function (rpName, rps) {
-		var rpSpec = function (rp) {
-			switch (rpName) {
-				case 'groupby':
-					if (!rp.$) {
-						var fields = rp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'method':
-					if (rp.$ === 1) {
-						var m = rp.a;
-						return $elm$json$Json$Encode$string(
-							$author$project$VegaLite$regMethodLabel(m));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'order':
-					if (rp.$ === 2) {
-						var n = rp.a;
-						return $elm$json$Json$Encode$int(n);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'extent':
-					if (rp.$ === 3) {
-						var mn = rp.a;
-						var mx = rp.b;
-						return A2(
-							$elm$json$Json$Encode$list,
-							$author$project$VegaLite$dataValueSpec,
-							_List_fromArray(
-								[mn, mx]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'as':
-					if (rp.$ === 4) {
-						var iStr = rp.a;
-						var dStr = rp.b;
-						return A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$string,
-							_List_fromArray(
-								[iStr, dStr]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, rpSpec, rps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+var $author$project$VegaLite$regressionProperty = function (regProp) {
+	switch (regProp.$) {
+		case 0:
+			var fields = regProp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var m = regProp.a;
+			return _Utils_Tuple2(
+				'method',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$regMethodLabel(m)));
+		case 2:
+			var n = regProp.a;
+			return _Utils_Tuple2(
+				'order',
+				$elm$json$Json$Encode$int(n));
+		case 3:
+			var mn = regProp.a;
+			var mx = regProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					$elm$json$Json$Encode$list,
+					$author$project$VegaLite$dataValueSpec,
+					_List_fromArray(
+						[mn, mx])));
+		default:
+			var iField = regProp.a;
+			var dField = regProp.b;
+			return _Utils_Tuple2(
+				'as',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$string,
+					_List_fromArray(
+						[iField, dField])));
+	}
+};
 var $author$project$VegaLite$regression = F3(
 	function (fDep, fInd, rgProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'regression',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(fDep),
-							$elm$json$Json$Encode$string(fInd),
-							A2($author$project$VegaLite$regressionPropertySpec, 'groupby', rgProps),
-							A2($author$project$VegaLite$regressionPropertySpec, 'method', rgProps),
-							A2($author$project$VegaLite$regressionPropertySpec, 'order', rgProps),
-							A2($author$project$VegaLite$regressionPropertySpec, 'extent', rgProps),
-							A2($author$project$VegaLite$regressionPropertySpec, 'as', rgProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'regression',
+								$elm$json$Json$Encode$string(fDep)),
+								_Utils_Tuple2(
+								'on',
+								$elm$json$Json$Encode$string(fInd))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$regressionProperty, rgProps)))));
 	});
 var $author$project$VegaLite$RgExtent = F2(
 	function (a, b) {
@@ -9749,12 +9106,17 @@ var $author$project$VegaLite$flattenAs = F2(
 	function (fields, names) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'flattenAs',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$list($elm$json$Json$Encode$string),
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
 					_List_fromArray(
-						[fields, names]))));
+						[
+							_Utils_Tuple2(
+							'flatten',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields)),
+							_Utils_Tuple2(
+							'as',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, names))
+						]))));
 	});
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
@@ -10216,13 +9578,20 @@ var $author$project$VegaLite$foldAs = F3(
 	function (fields, keyName, valName) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'foldAs',
-				$author$project$VegaLite$toList(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields),
-							$elm$json$Json$Encode$string(keyName),
-							$elm$json$Json$Encode$string(valName)
+							_Utils_Tuple2(
+							'fold',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields)),
+							_Utils_Tuple2(
+							'as',
+							A2(
+								$elm$json$Json$Encode$list,
+								$elm$json$Json$Encode$string,
+								_List_fromArray(
+									[keyName, valName])))
 						]))));
 	});
 var $author$project$VegaLite$MLegend = function (a) {
@@ -10392,54 +9761,43 @@ var $author$project$VegaLite$sortFieldSpec = function (wsf) {
 				]));
 	}
 };
-var $author$project$VegaLite$stackPropertySpec = F2(
-	function (sName, sps) {
-		var spSpec = function (sp) {
-			switch (sName) {
-				case 'offset':
-					if (!sp.$) {
-						var op = sp.a;
-						return $author$project$VegaLite$stackOffsetSpec(op);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'sort':
-					if (sp.$ === 1) {
-						var sfs = sp.a;
-						return A2($elm$json$Json$Encode$list, $author$project$VegaLite$sortFieldSpec, sfs);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, spSpec, sps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+var $author$project$VegaLite$stackProperty = function (sProp) {
+	if (!sProp.$) {
+		var op = sProp.a;
+		return _Utils_Tuple2(
+			'offset',
+			$author$project$VegaLite$stackOffsetSpec(op));
+	} else {
+		var sfs = sProp.a;
+		return _Utils_Tuple2(
+			'sort',
+			A2($elm$json$Json$Encode$list, $author$project$VegaLite$sortFieldSpec, sfs));
+	}
+};
 var $author$project$VegaLite$stack = F5(
 	function (f, grp, start, end, sProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'stack',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(f),
-							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, grp),
-							$elm$json$Json$Encode$string(start),
-							$elm$json$Json$Encode$string(end),
-							A2($author$project$VegaLite$stackPropertySpec, 'offset', sProps),
-							A2($author$project$VegaLite$stackPropertySpec, 'sort', sProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'stack',
+								$elm$json$Json$Encode$string(f)),
+								_Utils_Tuple2(
+								'groupby',
+								A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, grp)),
+								_Utils_Tuple2(
+								'as',
+								A2(
+									$elm$json$Json$Encode$list,
+									$elm$json$Json$Encode$string,
+									_List_fromArray(
+										[start, end])))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$stackProperty, sProps)))));
 	});
 var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
@@ -10670,88 +10028,71 @@ var $author$project$VegaLite$windowFieldProperty = function (w) {
 				$elm$json$Json$Encode$string(f));
 	}
 };
-var $author$project$VegaLite$windowPropertySpec = F2(
-	function (wpName, wps) {
-		var wpSpec = function (wp) {
-			switch (wpName) {
-				case 'frame':
-					if (!wp.$) {
-						if (!wp.a.$) {
-							if (!wp.b.$) {
-								var n1 = wp.a.a;
-								var n2 = wp.b.a;
-								return A2(
-									$elm$json$Json$Encode$list,
-									$elm$json$Json$Encode$int,
-									_List_fromArray(
-										[n1, n2]));
-							} else {
-								var n1 = wp.a.a;
-								var _v4 = wp.b;
-								return $author$project$VegaLite$toList(
-									_List_fromArray(
-										[
-											$elm$json$Json$Encode$int(n1),
-											$elm$json$Json$Encode$null
-										]));
-							}
-						} else {
-							if (!wp.b.$) {
-								var _v3 = wp.a;
-								var n2 = wp.b.a;
-								return $author$project$VegaLite$toList(
-									_List_fromArray(
-										[
-											$elm$json$Json$Encode$null,
-											$elm$json$Json$Encode$int(n2)
-										]));
-							} else {
-								var _v5 = wp.a;
-								var _v6 = wp.b;
-								return $author$project$VegaLite$toList(
-									_List_fromArray(
-										[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null]));
-							}
-						}
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'ignorePeers':
-					if (wp.$ === 1) {
-						var b = wp.a;
-						return $elm$json$Json$Encode$bool(b);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'groupby':
-					if (wp.$ === 2) {
-						var fs = wp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'sort':
-					if (wp.$ === 3) {
-						var sfs = wp.a;
-						return A2($elm$json$Json$Encode$list, $author$project$VegaLite$sortFieldSpec, sfs);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
+var $author$project$VegaLite$windowProperty = function (wProp) {
+	switch (wProp.$) {
+		case 0:
+			if (!wProp.a.$) {
+				if (!wProp.b.$) {
+					var n1 = wProp.a.a;
+					var n2 = wProp.b.a;
+					return _Utils_Tuple2(
+						'frame',
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$int,
+							_List_fromArray(
+								[n1, n2])));
+				} else {
+					var n1 = wProp.a.a;
+					var _v2 = wProp.b;
+					return _Utils_Tuple2(
+						'frame',
+						$author$project$VegaLite$toList(
+							_List_fromArray(
+								[
+									$elm$json$Json$Encode$int(n1),
+									$elm$json$Json$Encode$null
+								])));
+				}
+			} else {
+				if (!wProp.b.$) {
+					var _v1 = wProp.a;
+					var n2 = wProp.b.a;
+					return _Utils_Tuple2(
+						'frame',
+						$author$project$VegaLite$toList(
+							_List_fromArray(
+								[
+									$elm$json$Json$Encode$null,
+									$elm$json$Json$Encode$int(n2)
+								])));
+				} else {
+					var _v3 = wProp.a;
+					var _v4 = wProp.b;
+					return _Utils_Tuple2(
+						'frame',
+						$author$project$VegaLite$toList(
+							_List_fromArray(
+								[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null])));
+				}
 			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, wpSpec, wps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+		case 1:
+			var b = wProp.a;
+			return _Utils_Tuple2(
+				'ignorePeers',
+				$elm$json$Json$Encode$bool(b));
+		case 2:
+			var fs = wProp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs));
+		default:
+			var sfs = wProp.a;
+			return _Utils_Tuple2(
+				'sort',
+				A2($elm$json$Json$Encode$list, $author$project$VegaLite$sortFieldSpec, sfs));
+	}
+};
 var $author$project$VegaLite$window = F2(
 	function (wss, wProps) {
 		var winFieldDef = F2(
@@ -10766,23 +10107,21 @@ var $author$project$VegaLite$window = F2(
 			});
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'window',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'window',
 							A2(
-							$elm$json$Json$Encode$list,
-							function (_v0) {
-								var ws = _v0.a;
-								var out = _v0.b;
-								return A2(winFieldDef, ws, out);
-							},
-							wss),
-							A2($author$project$VegaLite$windowPropertySpec, 'frame', wProps),
-							A2($author$project$VegaLite$windowPropertySpec, 'ignorePeers', wProps),
-							A2($author$project$VegaLite$windowPropertySpec, 'groupby', wProps),
-							A2($author$project$VegaLite$windowPropertySpec, 'sort', wProps)
-						]))));
+								$elm$json$Json$Encode$list,
+								function (_v0) {
+									var ws = _v0.a;
+									var out = _v0.b;
+									return A2(winFieldDef, ws, out);
+								},
+								wss)),
+						A2($elm$core$List$map, $author$project$VegaLite$windowProperty, wProps)))));
 	});
 var $author$project$TransformTests$transform13 = function () {
 	var trans = A2(
@@ -10979,15 +10318,20 @@ var $author$project$VegaLite$timeUnitAs = F3(
 	function (tu, field, label) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'timeUnit',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$string,
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$timeUnitLabel(tu),
-							field,
-							label
+							_Utils_Tuple2(
+							'timeUnit',
+							$elm$json$Json$Encode$string(
+								$author$project$VegaLite$timeUnitLabel(tu))),
+							_Utils_Tuple2(
+							'field',
+							$elm$json$Json$Encode$string(field)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
 						]))));
 	});
 var $author$project$TransformTests$transform14 = function () {
@@ -11154,20 +10498,14 @@ var $author$project$VegaLite$joinAggregate = F2(
 	function (ops, wProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'joinaggregate',
-				$author$project$VegaLite$toList(
-					_Utils_ap(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$toList(ops)
-							]),
-						_List_fromArray(
-							[
-								A2($author$project$VegaLite$windowPropertySpec, 'frame', wProps),
-								A2($author$project$VegaLite$windowPropertySpec, 'ignorePeers', wProps),
-								A2($author$project$VegaLite$windowPropertySpec, 'groupby', wProps),
-								A2($author$project$VegaLite$windowPropertySpec, 'sort', wProps)
-							])))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'joinaggregate',
+							$author$project$VegaLite$toList(ops)),
+						A2($elm$core$List$map, $author$project$VegaLite$windowProperty, wProps)))));
 	});
 var $author$project$TransformTests$transform16 = function () {
 	var trans = A2(
@@ -11351,151 +10689,27 @@ var $author$project$VegaLite$ImMethod = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$imMethod = $author$project$VegaLite$ImMethod;
-var $author$project$VegaLite$imputePropertySpec = F2(
-	function (ipName, ips) {
-		var ipSpec = function (ip) {
-			switch (ipName) {
-				case 'frame':
-					if (!ip.$) {
-						if (!ip.a.$) {
-							if (!ip.b.$) {
-								var n1 = ip.a.a;
-								var n2 = ip.b.a;
-								return A2(
-									$elm$json$Json$Encode$list,
-									$elm$json$Json$Encode$int,
-									_List_fromArray(
-										[n1, n2]));
-							} else {
-								var n1 = ip.a.a;
-								var _v4 = ip.b;
-								return $author$project$VegaLite$toList(
-									_List_fromArray(
-										[
-											$elm$json$Json$Encode$int(n1),
-											$elm$json$Json$Encode$null
-										]));
-							}
-						} else {
-							if (!ip.b.$) {
-								var _v3 = ip.a;
-								var n2 = ip.b.a;
-								return $author$project$VegaLite$toList(
-									_List_fromArray(
-										[
-											$elm$json$Json$Encode$null,
-											$elm$json$Json$Encode$int(n2)
-										]));
-							} else {
-								var _v5 = ip.a;
-								var _v6 = ip.b;
-								return $author$project$VegaLite$toList(
-									_List_fromArray(
-										[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null]));
-							}
-						}
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'keyVals':
-					if (ip.$ === 1) {
-						var dVals = ip.a;
-						return $author$project$VegaLite$toList(
-							$author$project$VegaLite$dataValuesSpecs(dVals));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'keyValSequence':
-					if (ip.$ === 2) {
-						var start = ip.a;
-						var stop = ip.b;
-						var step = ip.c;
-						return $elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'start',
-									$elm$json$Json$Encode$float(start)),
-									_Utils_Tuple2(
-									'stop',
-									$elm$json$Json$Encode$float(stop)),
-									_Utils_Tuple2(
-									'step',
-									$elm$json$Json$Encode$float(step))
-								]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'groupby':
-					if (ip.$ === 4) {
-						var fields = ip.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'method':
-					if (ip.$ === 3) {
-						var method = ip.a;
-						return $elm$json$Json$Encode$string(
-							$author$project$VegaLite$imMethodLabel(method));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'value':
-					if (ip.$ === 5) {
-						var dVal = ip.a;
-						return $author$project$VegaLite$dataValueSpec(dVal);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, ipSpec, ips));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
 var $author$project$VegaLite$impute = F3(
 	function (fields, k, imProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'impute',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(fields),
-							$elm$json$Json$Encode$string(k),
-							A2($author$project$VegaLite$imputePropertySpec, 'frame', imProps),
-							A2($author$project$VegaLite$imputePropertySpec, 'keyVals', imProps),
-							A2($author$project$VegaLite$imputePropertySpec, 'keyValSequence', imProps),
-							A2($author$project$VegaLite$imputePropertySpec, 'method', imProps),
-							A2($author$project$VegaLite$imputePropertySpec, 'groupby', imProps),
-							A2($author$project$VegaLite$imputePropertySpec, 'value', imProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'impute',
+								$elm$json$Json$Encode$string(fields)),
+								_Utils_Tuple2(
+								'key',
+								$elm$json$Json$Encode$string(k))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$imputeProperty, imProps)))));
 	});
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
-var $author$project$VegaLite$NTickCount = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
-var $author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$SNice = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
 var $author$project$TransformTests$transform4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -11562,13 +10776,7 @@ var $author$project$TransformTests$transform4 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('a'),
-							$author$project$VegaLite$pQuant,
-							$author$project$VegaLite$pScale(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$scNice(
-									$author$project$VegaLite$niTickCount(1))
-								]))
+							$author$project$VegaLite$pQuant
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -11595,117 +10803,77 @@ var $author$project$TransformTests$transform4 = function () {
 }();
 var $author$project$VegaLite$Area = 0;
 var $author$project$VegaLite$area = $author$project$VegaLite$mark(0);
-var $author$project$VegaLite$densityPropertySpec = F2(
-	function (dpName, dps) {
-		var dpSpec = function (dp) {
-			switch (dpName) {
-				case 'groupby':
-					if (!dp.$) {
-						var fields = dp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'cumulative':
-					if (dp.$ === 1) {
-						var b = dp.a;
-						return $elm$json$Json$Encode$bool(b);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'counts':
-					if (dp.$ === 2) {
-						var b = dp.a;
-						return $elm$json$Json$Encode$bool(b);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'bandwidth':
-					if (dp.$ === 3) {
-						var x = dp.a;
-						return $elm$json$Json$Encode$float(x);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'extent':
-					if (dp.$ === 4) {
-						var mn = dp.a;
-						var mx = dp.b;
-						return A2(
-							$elm$json$Json$Encode$list,
-							$author$project$VegaLite$dataValueSpec,
-							_List_fromArray(
-								[mn, mx]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'minsteps':
-					if (dp.$ === 5) {
-						var n = dp.a;
-						return $elm$json$Json$Encode$int(n);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'maxsteps':
-					if (dp.$ === 6) {
-						var n = dp.a;
-						return $elm$json$Json$Encode$int(n);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'steps':
-					if (dp.$ === 7) {
-						var n = dp.a;
-						return $elm$json$Json$Encode$int(n);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'as':
-					if (dp.$ === 8) {
-						var vStr = dp.a;
-						var dStr = dp.b;
-						return A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$string,
-							_List_fromArray(
-								[vStr, dStr]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, dpSpec, dps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+var $author$project$VegaLite$densityProperty = function (denProp) {
+	switch (denProp.$) {
+		case 0:
+			var fields = denProp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var b = denProp.a;
+			return _Utils_Tuple2(
+				'cumulative',
+				$elm$json$Json$Encode$bool(b));
+		case 2:
+			var b = denProp.a;
+			return _Utils_Tuple2(
+				'counts',
+				$elm$json$Json$Encode$bool(b));
+		case 3:
+			var x = denProp.a;
+			return _Utils_Tuple2(
+				'bandwidth',
+				$elm$json$Json$Encode$float(x));
+		case 4:
+			var mn = denProp.a;
+			var mx = denProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					$elm$json$Json$Encode$list,
+					$author$project$VegaLite$dataValueSpec,
+					_List_fromArray(
+						[mn, mx])));
+		case 5:
+			var n = denProp.a;
+			return _Utils_Tuple2(
+				'minsteps',
+				$elm$json$Json$Encode$int(n));
+		case 6:
+			var n = denProp.a;
+			return _Utils_Tuple2(
+				'maxsteps',
+				$elm$json$Json$Encode$int(n));
+		case 7:
+			var n = denProp.a;
+			return _Utils_Tuple2(
+				'steps',
+				$elm$json$Json$Encode$int(n));
+		default:
+			var vStr = denProp.a;
+			var dStr = denProp.b;
+			return _Utils_Tuple2(
+				'as',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$string,
+					_List_fromArray(
+						[vStr, dStr])));
+	}
+};
 var $author$project$VegaLite$density = F2(
 	function (field, dnProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'density',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(field),
-							A2($author$project$VegaLite$densityPropertySpec, 'groupby', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'cumulative', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'counts', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'bandwidth', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'extent', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'minsteps', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'maxsteps', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'steps', dnProps),
-							A2($author$project$VegaLite$densityPropertySpec, 'as', dnProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'density',
+							$elm$json$Json$Encode$string(field)),
+						A2($elm$core$List$map, $author$project$VegaLite$densityProperty, dnProps)))));
 	});
 var $author$project$VegaLite$DnBandwidth = function (a) {
 	return {$: 3, a: a};
@@ -11763,65 +10931,47 @@ var $author$project$TransformTests$transform5 = function () {
 				$author$project$VegaLite$area(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$loessPropertySpec = F2(
-	function (lpName, lps) {
-		var lpSpec = function (lp) {
-			switch (lpName) {
-				case 'groupby':
-					if (!lp.$) {
-						var fields = lp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'bandwidth':
-					if (lp.$ === 1) {
-						var x = lp.a;
-						return $elm$json$Json$Encode$float(x);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'as':
-					if (lp.$ === 2) {
-						var dStr = lp.a;
-						var iStr = lp.b;
-						return A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$string,
-							_List_fromArray(
-								[dStr, iStr]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, lpSpec, lps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+var $author$project$VegaLite$loessProperty = function (denProp) {
+	switch (denProp.$) {
+		case 0:
+			var fields = denProp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var x = denProp.a;
+			return _Utils_Tuple2(
+				'bandwidth',
+				$elm$json$Json$Encode$float(x));
+		default:
+			var vStr = denProp.a;
+			var dStr = denProp.b;
+			return _Utils_Tuple2(
+				'as',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$string,
+					_List_fromArray(
+						[vStr, dStr])));
+	}
+};
 var $author$project$VegaLite$loess = F3(
 	function (depField, indField, lsProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'loess',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(depField),
-							$elm$json$Json$Encode$string(indField),
-							A2($author$project$VegaLite$loessPropertySpec, 'groupby', lsProps),
-							A2($author$project$VegaLite$loessPropertySpec, 'bandwidth', lsProps),
-							A2($author$project$VegaLite$loessPropertySpec, 'as', lsProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'loess',
+								$elm$json$Json$Encode$string(depField)),
+								_Utils_Tuple2(
+								'on',
+								$elm$json$Json$Encode$string(indField))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$loessProperty, lsProps)))));
 	});
 var $author$project$VegaLite$LsAs = F2(
 	function (a, b) {
@@ -11947,107 +11097,182 @@ var $author$project$VegaLite$lookup = F4(
 		var spec = _v0.b;
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'lookup',
+				'multiSpecs',
 				function () {
 					switch (lufs.$) {
 						case 0:
 							var fs = lufs.a;
-							return $author$project$VegaLite$toList(
+							return $elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$elm$json$Json$Encode$string(key1),
-										spec,
-										$elm$json$Json$Encode$string(key2),
-										A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs),
-										$elm$json$Json$Encode$null,
-										$elm$json$Json$Encode$null
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs))
+												])))
 									]));
 						case 1:
 							var fas = lufs.a;
-							return $author$project$VegaLite$toList(
+							return $elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$elm$json$Json$Encode$string(key1),
-										spec,
-										$elm$json$Json$Encode$string(key2),
-										A2(
-										$elm$json$Json$Encode$list,
-										function (_v2) {
-											var f = _v2.a;
-											return $elm$json$Json$Encode$string(f);
-										},
-										fas),
-										A2(
-										$elm$json$Json$Encode$list,
-										function (_v3) {
-											var a = _v3.b;
-											return $elm$json$Json$Encode$string(a);
-										},
-										fas),
-										$elm$json$Json$Encode$null
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2(
+														$elm$json$Json$Encode$list,
+														function (_v2) {
+															var f = _v2.a;
+															return $elm$json$Json$Encode$string(f);
+														},
+														fas)),
+													_Utils_Tuple2(
+													'as',
+													A2(
+														$elm$json$Json$Encode$list,
+														function (_v3) {
+															var a = _v3.b;
+															return $elm$json$Json$Encode$string(a);
+														},
+														fas))
+												])))
 									]));
 						case 2:
 							var s = lufs.a;
-							return $author$project$VegaLite$toList(
+							return $elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$elm$json$Json$Encode$string(key1),
-										spec,
-										$elm$json$Json$Encode$string(key2),
-										$elm$json$Json$Encode$null,
-										$elm$json$Json$Encode$string(s),
-										$elm$json$Json$Encode$null
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'as',
+													$elm$json$Json$Encode$string(s))
+												])))
 									]));
 						case 3:
 							var fs = lufs.a;
 							var def = lufs.b;
-							return $author$project$VegaLite$toList(
+							return $elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$elm$json$Json$Encode$string(key1),
-										spec,
-										$elm$json$Json$Encode$string(key2),
-										A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs),
-										$elm$json$Json$Encode$null,
-										$elm$json$Json$Encode$string(def)
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs)),
+													_Utils_Tuple2(
+													'default',
+													$elm$json$Json$Encode$string(def))
+												])))
 									]));
 						case 4:
 							var fas = lufs.a;
 							var def = lufs.b;
-							return $author$project$VegaLite$toList(
+							return $elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$elm$json$Json$Encode$string(key1),
-										spec,
-										$elm$json$Json$Encode$string(key2),
-										A2(
-										$elm$json$Json$Encode$list,
-										function (_v4) {
-											var f = _v4.a;
-											return $elm$json$Json$Encode$string(f);
-										},
-										fas),
-										A2(
-										$elm$json$Json$Encode$list,
-										function (_v5) {
-											var a = _v5.b;
-											return $elm$json$Json$Encode$string(a);
-										},
-										fas),
-										$elm$json$Json$Encode$string(def)
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2(
+														$elm$json$Json$Encode$list,
+														function (_v4) {
+															var f = _v4.a;
+															return $elm$json$Json$Encode$string(f);
+														},
+														fas)),
+													_Utils_Tuple2(
+													'as',
+													A2(
+														$elm$json$Json$Encode$list,
+														function (_v5) {
+															var a = _v5.b;
+															return $elm$json$Json$Encode$string(a);
+														},
+														fas)),
+													_Utils_Tuple2(
+													'default',
+													$elm$json$Json$Encode$string(def))
+												])))
 									]));
 						default:
 							var s = lufs.a;
 							var def = lufs.b;
-							return $author$project$VegaLite$toList(
+							return $elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$elm$json$Json$Encode$string(key1),
-										spec,
-										$elm$json$Json$Encode$string(key2),
-										$elm$json$Json$Encode$null,
-										$elm$json$Json$Encode$string(s),
-										$elm$json$Json$Encode$string(def)
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'as',
+													$elm$json$Json$Encode$string(s)),
+													_Utils_Tuple2(
+													'default',
+													$elm$json$Json$Encode$string(def))
+												])))
 									]));
 					}
 				}()));
@@ -12296,60 +11521,42 @@ var $author$project$VegaLite$PiGroupBy = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$piGroupBy = $author$project$VegaLite$PiGroupBy;
-var $author$project$VegaLite$pivotPropertySpec = F2(
-	function (ppName, pps) {
-		var ppSpec = function (pp) {
-			switch (ppName) {
-				case 'groupby':
-					if (!pp.$) {
-						var fields = pp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'limit':
-					if (pp.$ === 1) {
-						var n = pp.a;
-						return $elm$json$Json$Encode$int(n);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'op':
-					if (pp.$ === 2) {
-						var op = pp.a;
-						return $author$project$VegaLite$operationSpec(op);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, ppSpec, pps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+var $author$project$VegaLite$pivotProperty = function (pp) {
+	switch (pp.$) {
+		case 0:
+			var fields = pp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var n = pp.a;
+			return _Utils_Tuple2(
+				'limit',
+				$elm$json$Json$Encode$int(n));
+		default:
+			var op = pp.a;
+			return _Utils_Tuple2(
+				'op',
+				$author$project$VegaLite$operationSpec(op));
+	}
+};
 var $author$project$VegaLite$pivot = F3(
 	function (field, valField, pProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'pivot',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(field),
-							$elm$json$Json$Encode$string(valField),
-							A2($author$project$VegaLite$pivotPropertySpec, 'groupby', pProps),
-							A2($author$project$VegaLite$pivotPropertySpec, 'limit', pProps),
-							A2($author$project$VegaLite$pivotPropertySpec, 'op', pProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'pivot',
+								$elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'value',
+								$elm$json$Json$Encode$string(valField))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$pivotProperty, pProps)))));
 	});
 var $author$project$TransformTests$transform8 = function () {
 	var trans = A2(
@@ -12444,72 +11651,47 @@ var $author$project$VegaLite$QtStep = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$qtStep = $author$project$VegaLite$QtStep;
-var $author$project$VegaLite$quantilePropertySpec = F2(
-	function (qtName, qps) {
-		var qtSpec = function (qp) {
-			switch (qtName) {
-				case 'groupby':
-					if (!qp.$) {
-						var fields = qp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'probs':
-					if (qp.$ === 1) {
-						var xs = qp.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'step':
-					if (qp.$ === 2) {
-						var x = qp.a;
-						return $elm$json$Json$Encode$float(x);
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				case 'as':
-					if (qp.$ === 3) {
-						var pStr = qp.a;
-						var vStr = qp.b;
-						return A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$string,
-							_List_fromArray(
-								[pStr, vStr]));
-					} else {
-						return $elm$json$Json$Encode$null;
-					}
-				default:
-					return $elm$json$Json$Encode$null;
-			}
-		};
-		var specList = A2(
-			$elm$core$List$filter,
-			$elm$core$Basics$neq($elm$json$Json$Encode$null),
-			A2($elm$core$List$map, qtSpec, qps));
-		if (specList.b && (!specList.b.b)) {
-			var spec = specList.a;
-			return spec;
-		} else {
-			return $elm$json$Json$Encode$null;
-		}
-	});
+var $author$project$VegaLite$quantileProperty = function (qProp) {
+	switch (qProp.$) {
+		case 0:
+			var fields = qProp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var xs = qProp.a;
+			return _Utils_Tuple2(
+				'probs',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 2:
+			var x = qProp.a;
+			return _Utils_Tuple2(
+				'step',
+				$elm$json$Json$Encode$float(x));
+		default:
+			var pStr = qProp.a;
+			var vStr = qProp.b;
+			return _Utils_Tuple2(
+				'as',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$string,
+					_List_fromArray(
+						[pStr, vStr])));
+	}
+};
 var $author$project$VegaLite$quantile = F2(
 	function (field, qProps) {
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
-				'quantile',
-				$author$project$VegaLite$toList(
-					_List_fromArray(
-						[
-							$elm$json$Json$Encode$string(field),
-							A2($author$project$VegaLite$quantilePropertySpec, 'groupby', qProps),
-							A2($author$project$VegaLite$quantilePropertySpec, 'probs', qProps),
-							A2($author$project$VegaLite$quantilePropertySpec, 'step', qProps),
-							A2($author$project$VegaLite$quantilePropertySpec, 'as', qProps)
-						]))));
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'quantile',
+							$elm$json$Json$Encode$string(field)),
+						A2($elm$core$List$map, $author$project$VegaLite$quantileProperty, qProps)))));
 	});
 var $author$project$TransformTests$transform9 = function () {
 	var trans = A2(
