@@ -78,7 +78,7 @@ transform4 =
 
         enc =
             encoding
-                << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
+                << position X [ pName "a", pQuant ]
                 << position Y [ pName "b", pQuant ]
                 << color [ mName "c", mNominal ]
     in
