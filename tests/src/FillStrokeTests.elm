@@ -213,9 +213,41 @@ gradient3 =
         ]
 
 
+rounded1 : Spec
+rounded1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "cat" (strs [ "a", "b", "c", "d", "e", "f", "g", "h", "i" ])
+                << dataColumn "value" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        enc =
+            encoding
+                << position X [ pName "cat", pMType Nominal ]
+                << position Y [ pName "value", pMType Quantitative ]
+    in
+    toVegaLite [ data [], enc [], bar [ maCornerRadiusEnd 4 ] ]
+
+
+rounded2 : Spec
+rounded2 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "cat" (strs [ "a", "b", "c", "d", "e", "f", "g", "h", "i" ])
+                << dataColumn "value" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        enc =
+            encoding
+                << position X [ pName "value", pMType Quantitative ]
+                << position Y [ pName "cat", pMType Nominal ]
+    in
+    toVegaLite [ data [], enc [], bar [ maCornerRadiusEnd 4 ] ]
+
+
 sourceExample : Spec
 sourceExample =
-    gradient1
+    rounded2
 
 
 
@@ -240,6 +272,8 @@ mySpecs =
         , ( "gradient1", gradient1 )
         , ( "gradient2", gradient2 )
         , ( "gradient3", gradient3 )
+        , ( "rounded1", rounded1 )
+        , ( "rounded2", rounded2 )
         ]
 
 

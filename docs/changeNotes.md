@@ -4,8 +4,9 @@
 
 ### Additions
 
-- `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL4.1)
-- `scDomainMid` (VL4.1) for setting midpoint in a diverging continuous scale.
+- `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL4.1).
+- `maCornerRadiusEnd` for rounding upper or right corners of bar rectangles (VL4.1).
+- `scDomainMid` for setting midpoint in a diverging continuous scale (VL4.1).
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
 
 ### Other Changes
