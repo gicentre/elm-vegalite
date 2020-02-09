@@ -6604,6 +6604,47 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 			return '';
 	}
 };
+var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
+	switch (tUnit.$) {
+		case 23:
+			var tu = tUnit.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'utc',
+					$elm$json$Json$Encode$bool(true)),
+				$author$project$VegaLite$timeUnitProperties(tu));
+		case 24:
+			var n = tUnit.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'maxbins',
+					$elm$json$Json$Encode$int(n))
+				]);
+		case 25:
+			var x = tUnit.a;
+			var tu = tUnit.b;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(x)),
+				$author$project$VegaLite$timeUnitProperties(tu));
+		default:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'unit',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$timeUnitLabel(tUnit)))
+				]);
+	}
+};
+var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
+	return $elm$json$Json$Encode$object(
+		$author$project$VegaLite$timeUnitProperties(tUnit));
+};
 var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
 var $author$project$VegaLite$orderChannelProperty = function (oDef) {
 	switch (oDef.$) {
@@ -6642,8 +6683,7 @@ var $author$project$VegaLite$orderChannelProperty = function (oDef) {
 			var tu = oDef.a;
 			return _Utils_Tuple2(
 				'timeUnit',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$timeUnitLabel(tu)));
+				$author$project$VegaLite$timeUnitSpec(tu));
 		default:
 			var sps = oDef.a;
 			_v1$4:
@@ -7463,8 +7503,7 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 					[
 						_Utils_Tuple2(
 						'interval',
-						$elm$json$Json$Encode$string(
-							$author$project$VegaLite$timeUnitLabel(tu))),
+						$author$project$VegaLite$timeUnitSpec(tu)),
 						_Utils_Tuple2(
 						'step',
 						$elm$json$Json$Encode$int(step))
@@ -7894,8 +7933,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 				[
 					_Utils_Tuple2(
 					'timeUnit',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$timeUnitLabel(tu)))
+					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
 		case 8:
 			var t = field.a;
@@ -8629,8 +8667,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			var tu = pDef.a;
 			return _Utils_Tuple2(
 				'timeUnit',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$timeUnitLabel(tu)));
+				$author$project$VegaLite$timeUnitSpec(tu));
 		case 9:
 			var t = pDef.a;
 			return _Utils_Tuple2(
