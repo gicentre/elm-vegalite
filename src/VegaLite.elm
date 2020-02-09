@@ -15661,7 +15661,7 @@ timeUnitAs tu field label =
     (::)
         ( "multiSpecs"
         , JE.object
-            [ ( "timeUnit", JE.string (timeUnitLabel tu) )
+            [ ( "timeUnit", timeUnitSpec tu )
             , ( "field", JE.string field )
             , ( "as", JE.string label )
             ]
@@ -17756,7 +17756,7 @@ detailChannelProperty field =
             bin bps
 
         DTimeUnit tu ->
-            ( "timeUnit", JE.string (timeUnitLabel tu) )
+            ( "timeUnit", timeUnitSpec tu )
 
         DAggregate op ->
             ( "aggregate", operationSpec op )
@@ -17876,7 +17876,7 @@ facetChannelProperty fMap =
             ( "aggregate", operationSpec op )
 
         FTimeUnit tu ->
-            ( "timeUnit", JE.string (timeUnitLabel tu) )
+            ( "timeUnit", timeUnitSpec tu )
 
         FHeader hProps ->
             ( "header", JE.object (List.map headerProperty hProps) )
@@ -18291,7 +18291,7 @@ hyperlinkChannelProperties field =
                 :: List.concatMap hyperlinkChannelProperties elseClause
 
         HTimeUnit tu ->
-            [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
+            [ ( "timeUnit", timeUnitSpec tu ) ]
 
         HAggregate op ->
             [ ( "aggregate", operationSpec op ) ]
@@ -18813,7 +18813,7 @@ markChannelProperties field =
                 :: List.concatMap markChannelProperties elseClause
 
         MTimeUnit tu ->
-            [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
+            [ ( "timeUnit", timeUnitSpec tu ) ]
 
         MTitle t ->
             [ ( "title", titleSpec t ) ]
@@ -19353,7 +19353,7 @@ orderChannelProperty oDef =
             ( "aggregate", operationSpec op )
 
         OTimeUnit tu ->
-            ( "timeUnit", JE.string (timeUnitLabel tu) )
+            ( "timeUnit", timeUnitSpec tu )
 
         OSort sps ->
             case sps of
@@ -19585,7 +19585,7 @@ positionChannelProperty pDef =
             ( "aggregate", operationSpec op )
 
         PTimeUnit tu ->
-            ( "timeUnit", JE.string (timeUnitLabel tu) )
+            ( "timeUnit", timeUnitSpec tu )
 
         PTitle t ->
             ( "title", titleSpec t )
@@ -19969,7 +19969,7 @@ scaleNiceSpec ni =
             JE.string "year"
 
         NInterval tu step ->
-            JE.object [ ( "interval", JE.string (timeUnitLabel tu) ), ( "step", JE.int step ) ]
+            JE.object [ ( "interval", timeUnitSpec tu ), ( "step", JE.int step ) ]
 
         NTrue ->
             JE.bool True
@@ -20416,7 +20416,7 @@ textChannelProperties tDef =
             [ ( "aggregate", operationSpec op ) ]
 
         TTimeUnit tu ->
-            [ ( "timeUnit", JE.string (timeUnitLabel tu) ) ]
+            [ ( "timeUnit", timeUnitSpec tu ) ]
 
         TTitle t ->
             [ ( "title", titleSpec t ) ]
@@ -20540,28 +20540,26 @@ timeUnitLabel tu =
             ""
 
 
-timeUnitSpec : TimeUnit -> Spec
-timeUnitSpec tUnit =
+timeUnitProperties : TimeUnit -> List LabelledSpec
+timeUnitProperties tUnit =
     case tUnit of
         Utc tu ->
-            JE.string ("utc" ++ timeUnitLabel tu)
+            ( "utc", JE.bool True ) :: timeUnitProperties tu
 
         TUMaxBins n ->
-            JE.object [ ( "maxBins", JE.int n ) ]
+            -- TODO: Would we ever require utc and maxbins together (currently not possible)?
+            [ ( "maxbins", JE.int n ) ]
 
         TUStep x tu ->
-            case tu of
-                TUMaxBins n ->
-                    JE.object [ ( "maxBins", JE.int n ), ( "step", JE.float x ) ]
-
-                Utc utu ->
-                    JE.object [ ( "utc", JE.string (timeUnitLabel utu) ), ( "step", JE.float x ) ]
-
-                _ ->
-                    JE.object [ ( "unit", JE.string (timeUnitLabel tu) ), ( "step", JE.float x ) ]
+            ( "step", JE.float x ) :: timeUnitProperties tu
 
         _ ->
-            JE.string (timeUnitLabel tUnit)
+            [ ( "unit", JE.string (timeUnitLabel tUnit) ) ]
+
+
+timeUnitSpec : TimeUnit -> Spec
+timeUnitSpec tUnit =
+    JE.object (timeUnitProperties tUnit)
 
 
 titleConfigProperty : TitleConfig -> LabelledSpec

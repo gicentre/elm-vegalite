@@ -378,6 +378,67 @@ transform14 =
 transform15 : Spec
 transform15 =
     let
+        weather =
+            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
+                [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+
+        trans =
+            transform
+                -- calculateAs transforms to test that order of transforms is preserved.
+                << calculateAs "datum.date" "sampleDate"
+                << calculateAs "datum.temp_max" "maxTemp"
+                << timeUnitAs (month |> tuStep 2) "sampleDate" "bimonth"
+
+        enc =
+            encoding
+                << position X [ pName "bimonth", pTemporal, pAxis [ axFormat "%b" ] ]
+                << position Y [ pName "maxTemp", pQuant, pAggregate opMax ]
+    in
+    toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
+
+
+transform16 : Spec
+transform16 =
+    let
+        weather =
+            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
+                [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+
+        trans =
+            transform
+                << timeUnitAs (tuMaxBins 3) "date" "tBin"
+
+        enc =
+            encoding
+                << position X [ pName "tBin", pTemporal, pAxis [ axFormat "%b" ] ]
+                << position Y [ pName "temp_max", pQuant, pAggregate opMax ]
+    in
+    toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
+
+
+transform17 : Spec
+transform17 =
+    let
+        dateTime mnt =
+            "Sun, 01 Jan 2012 00:0" ++ String.fromInt mnt ++ ":00"
+
+        data =
+            dataFromColumns []
+                << dataColumn "date" (List.map dateTime (List.range 1 15) |> strs)
+                << dataColumn "distance" (nums [ 1, 1, 2, 1, 4, 2, 5, 2, 6, 4, 1, 1, 3, 0, 2, 3 ])
+
+        enc =
+            encoding
+                -- << position X [ pName "date", pTemporal, pTimeUnit (utc minutes |> tuStep 5) ]
+                << position X [ pName "date", pTemporal, pTimeUnit (tuMaxBins 15) ]
+                << position Y [ pName "distance", pQuant, pAggregate opSum ]
+    in
+    toVegaLite [ data [], enc [], bar [] ]
+
+
+transform18 : Spec
+transform18 =
+    let
         data =
             dataFromColumns []
                 << dataColumn "Activity" (strs [ "Sleeping", "Eating", "TV", "Work", "Exercise" ])
@@ -403,8 +464,8 @@ transform15 =
         ]
 
 
-transform16 : Spec
-transform16 =
+transform19 : Spec
+transform19 =
     let
         data =
             dataFromColumns []
@@ -426,7 +487,7 @@ transform16 =
 
 sourceExample : Spec
 sourceExample =
-    transform16
+    transform17
 
 
 
@@ -452,6 +513,9 @@ mySpecs =
         , ( "transform14", transform14 )
         , ( "transform15", transform15 )
         , ( "transform16", transform16 )
+        , ( "transform17", transform17 )
+        , ( "transform18", transform18 )
+        , ( "transform19", transform19 )
         ]
 
 
