@@ -165,10 +165,10 @@ multi4 =
 
         enc1 =
             encoding
-                << color [ mAggregate opCount, mQuant, mLegend [ leTitle "" ] ]
+                << color [ mAggregate opCount, mQuant, mLegend [ leTitle "All Movies", leDirection MOHorizontal, leGradientLength 120 ] ]
 
         spec1 =
-            asSpec [ width 300, rect [], enc1 [] ]
+            asSpec [ rect [], enc1 [] ]
 
         enc2 =
             encoding
