@@ -5086,7 +5086,7 @@ var $author$project$VegaLite$AxTickCount = function (a) {
 var $author$project$VegaLite$axTickCount = $author$project$VegaLite$AxTickCount;
 var $author$project$VegaLite$CAxGridDash = F2(
 	function (a, b) {
-		return {$: 12, a: a, b: b};
+		return {$: 13, a: a, b: b};
 	});
 var $author$project$VegaLite$cAxGridDash = $author$project$VegaLite$CAxGridDash;
 var $elm$core$Basics$composeL = F3(
@@ -5944,10 +5944,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				$elm$json$Json$Encode$float(x));
 		case 41:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'rule',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 5:
 			var props = mProp.a;
 			return _Utils_Tuple2(
@@ -5956,22 +5962,40 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
 		case 33:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'median',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'median',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'median',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 6:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'box',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'box',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'box',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 35:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'outliers',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'outliers',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'outliers',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 59:
 			var props = mProp.a;
 			return _Utils_Tuple2(
@@ -6151,11 +6175,17 @@ var $author$project$VegaLite$AxLabelFontWeight = function (a) {
 var $author$project$VegaLite$AxLabelOpacity = function (a) {
 	return {$: 28, a: a};
 };
+var $author$project$VegaLite$AxLabelPadding = function (a) {
+	return {$: 30, a: a};
+};
 var $author$project$VegaLite$AxTickColor = function (a) {
 	return {$: 32, a: a};
 };
 var $author$project$VegaLite$AxTickOpacity = function (a) {
 	return {$: 36, a: a};
+};
+var $author$project$VegaLite$AxTickSize = function (a) {
+	return {$: 39, a: a};
 };
 var $author$project$VegaLite$AxTickWidth = function (a) {
 	return {$: 40, a: a};
@@ -7913,6 +7943,14 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxLabelOpacity(o2)));
 					case 8:
+						var p1 = cap.a;
+						var p2 = cap.b;
+						return _Utils_Tuple2(
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxLabelPadding(p1)),
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxLabelPadding(p2)));
+					case 9:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -7920,7 +7958,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickColor(c2)));
-					case 9:
+					case 10:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
@@ -7928,7 +7966,15 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickOpacity(o1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickOpacity(o2)));
-					case 10:
+					case 15:
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxTickSize(s1)),
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxTickSize(s2)));
+					case 11:
 						var w1 = cap.a;
 						var w2 = cap.b;
 						return _Utils_Tuple2(
@@ -7936,7 +7982,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickWidth(w1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickWidth(w2)));
-					case 11:
+					case 12:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -7944,7 +7990,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridColor(c2)));
-					case 12:
+					case 13:
 						var d1 = cap.a;
 						var d2 = cap.b;
 						return _Utils_Tuple2(
@@ -7952,7 +7998,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridDash(d1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridDash(d2)));
-					case 13:
+					case 14:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
@@ -8829,19 +8875,29 @@ var $author$project$ConditionalTests$axisCondition1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$CAxTickColor = F2(
+var $author$project$VegaLite$CAxLabelPadding = F2(
 	function (a, b) {
 		return {$: 8, a: a, b: b};
+	});
+var $author$project$VegaLite$cAxLabelPadding = $author$project$VegaLite$CAxLabelPadding;
+var $author$project$VegaLite$CAxTickColor = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
 	});
 var $author$project$VegaLite$cAxTickColor = $author$project$VegaLite$CAxTickColor;
 var $author$project$VegaLite$CAxTickOpacity = F2(
 	function (a, b) {
-		return {$: 9, a: a, b: b};
+		return {$: 10, a: a, b: b};
 	});
 var $author$project$VegaLite$cAxTickOpacity = $author$project$VegaLite$CAxTickOpacity;
+var $author$project$VegaLite$CAxTickSize = F2(
+	function (a, b) {
+		return {$: 15, a: a, b: b};
+	});
+var $author$project$VegaLite$cAxTickSize = $author$project$VegaLite$CAxTickSize;
 var $author$project$VegaLite$CAxTickWidth = F2(
 	function (a, b) {
-		return {$: 10, a: a, b: b};
+		return {$: 11, a: a, b: b};
 	});
 var $author$project$VegaLite$cAxTickWidth = $author$project$VegaLite$CAxTickWidth;
 var $author$project$VegaLite$VLWidth = 3;
@@ -8873,6 +8929,10 @@ var $author$project$ConditionalTests$axisCondition2 = function () {
 								A2($author$project$VegaLite$cAxTickColor, 'red', 'blue')),
 								A2(
 								$author$project$VegaLite$axDataCondition,
+								$author$project$VegaLite$expr('datum.value >=5'),
+								A2($author$project$VegaLite$cAxTickSize, 12, 6)),
+								A2(
+								$author$project$VegaLite$axDataCondition,
 								$author$project$VegaLite$expr('datum.value >=8'),
 								A2($author$project$VegaLite$cAxTickOpacity, 0.3, 0.8)),
 								A2(
@@ -8887,7 +8947,15 @@ var $author$project$ConditionalTests$axisCondition2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							A2(
+							$author$project$VegaLite$axDataCondition,
+							$author$project$VegaLite$expr('datum.value <= 99'),
+							A2($author$project$VegaLite$cAxLabelPadding, 12, 8))
+						]))
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(

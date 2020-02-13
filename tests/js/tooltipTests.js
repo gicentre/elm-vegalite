@@ -5745,10 +5745,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				$elm$json$Json$Encode$float(x));
 		case 41:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'rule',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 5:
 			var props = mProp.a;
 			return _Utils_Tuple2(
@@ -5757,22 +5763,40 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
 		case 33:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'median',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'median',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'median',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 6:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'box',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'box',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'box',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 35:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'outliers',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'outliers',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'outliers',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 59:
 			var props = mProp.a;
 			return _Utils_Tuple2(
@@ -6348,11 +6372,17 @@ var $author$project$VegaLite$AxLabelFontWeight = function (a) {
 var $author$project$VegaLite$AxLabelOpacity = function (a) {
 	return {$: 28, a: a};
 };
+var $author$project$VegaLite$AxLabelPadding = function (a) {
+	return {$: 30, a: a};
+};
 var $author$project$VegaLite$AxTickColor = function (a) {
 	return {$: 32, a: a};
 };
 var $author$project$VegaLite$AxTickOpacity = function (a) {
 	return {$: 36, a: a};
+};
+var $author$project$VegaLite$AxTickSize = function (a) {
+	return {$: 39, a: a};
 };
 var $author$project$VegaLite$AxTickWidth = function (a) {
 	return {$: 40, a: a};
@@ -8007,6 +8037,14 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxLabelOpacity(o2)));
 					case 8:
+						var p1 = cap.a;
+						var p2 = cap.b;
+						return _Utils_Tuple2(
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxLabelPadding(p1)),
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxLabelPadding(p2)));
+					case 9:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -8014,7 +8052,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickColor(c2)));
-					case 9:
+					case 10:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
@@ -8022,7 +8060,15 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickOpacity(o1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickOpacity(o2)));
-					case 10:
+					case 15:
+						var s1 = cap.a;
+						var s2 = cap.b;
+						return _Utils_Tuple2(
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxTickSize(s1)),
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxTickSize(s2)));
+					case 11:
 						var w1 = cap.a;
 						var w2 = cap.b;
 						return _Utils_Tuple2(
@@ -8030,7 +8076,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickWidth(w1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickWidth(w2)));
-					case 11:
+					case 12:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -8038,7 +8084,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridColor(c2)));
-					case 12:
+					case 13:
 						var d1 = cap.a;
 						var d2 = cap.b;
 						return _Utils_Tuple2(
@@ -8046,7 +8092,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridDash(d1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridDash(d2)));
-					case 13:
+					case 14:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(

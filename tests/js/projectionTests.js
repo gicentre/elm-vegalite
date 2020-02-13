@@ -6661,10 +6661,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				$elm$json$Json$Encode$float(x));
 		case 41:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'rule',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 5:
 			var props = mProp.a;
 			return _Utils_Tuple2(
@@ -6673,22 +6679,40 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
 		case 33:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'median',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'median',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'median',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 6:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'box',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'box',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'box',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 35:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'outliers',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			if (!props.b) {
+				return _Utils_Tuple2(
+					'outliers',
+					$elm$json$Json$Encode$bool(false));
+			} else {
+				return _Utils_Tuple2(
+					'outliers',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+			}
 		case 59:
 			var props = mProp.a;
 			return _Utils_Tuple2(
