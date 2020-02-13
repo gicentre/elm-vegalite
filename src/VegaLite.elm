@@ -11319,9 +11319,9 @@ lookup key1 ( vlProp, spec ) key2 lufs =
                             [ ( "data", spec )
                             , ( "key", JE.string key2 )
                             , ( "fields", JE.list (\( f, _ ) -> JE.string f) fas )
-                            , ( "as", JE.list (\( _, a ) -> JE.string a) fas )
                             ]
                       )
+                    , ( "as", JE.list (\( _, a ) -> JE.string a) fas )
                     ]
 
             LUAs s ->
@@ -11331,9 +11331,9 @@ lookup key1 ( vlProp, spec ) key2 lufs =
                       , JE.object
                             [ ( "data", spec )
                             , ( "key", JE.string key2 )
-                            , ( "as", JE.string s )
                             ]
                       )
+                    , ( "as", JE.string s )
                     ]
 
             LUFieldsWithDefault fs def ->
@@ -11344,9 +11344,9 @@ lookup key1 ( vlProp, spec ) key2 lufs =
                             [ ( "data", spec )
                             , ( "key", JE.string key2 )
                             , ( "fields", JE.list JE.string fs )
-                            , ( "default", JE.string def )
                             ]
                       )
+                    , ( "default", JE.string def )
                     ]
 
             LUFieldsAsWithDefault fas def ->
@@ -11357,10 +11357,10 @@ lookup key1 ( vlProp, spec ) key2 lufs =
                             [ ( "data", spec )
                             , ( "key", JE.string key2 )
                             , ( "fields", JE.list (\( f, _ ) -> JE.string f) fas )
-                            , ( "as", JE.list (\( _, a ) -> JE.string a) fas )
-                            , ( "default", JE.string def )
                             ]
                       )
+                    , ( "as", JE.list (\( _, a ) -> JE.string a) fas )
+                    , ( "default", JE.string def )
                     ]
 
             LUAsWithDefault s def ->
@@ -11370,10 +11370,10 @@ lookup key1 ( vlProp, spec ) key2 lufs =
                       , JE.object
                             [ ( "data", spec )
                             , ( "key", JE.string key2 )
-                            , ( "as", JE.string s )
-                            , ( "default", JE.string def )
                             ]
                       )
+                    , ( "as", JE.string s )
+                    , ( "default", JE.string def )
                     ]
         )
 

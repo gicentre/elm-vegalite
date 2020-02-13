@@ -128,15 +128,15 @@ geo4 =
         trans =
             transform
                 << filter (fiEqual "origin" (str "SEA"))
-                << lookup "origin" airportData "iata" (luAs "o")
-                << lookup "destination" airportData "iata" (luAs "d")
+                << lookup "origin" airportData "iata" (luFieldsAs [ ( "longitude", "oLong" ), ( "latitude", "oLat" ) ])
+                << lookup "destination" airportData "iata" (luFieldsAs [ ( "longitude", "dLong" ), ( "latitude", "dLat" ) ])
 
         flightsEnc =
             encoding
-                << position Longitude [ pName "o.longitude", pQuant ]
-                << position Latitude [ pName "o.latitude", pQuant ]
-                << position Longitude2 [ pName "d.longitude" ]
-                << position Latitude2 [ pName "d.latitude" ]
+                << position Longitude [ pName "oLong", pQuant ]
+                << position Latitude [ pName "oLat", pQuant ]
+                << position Longitude2 [ pName "dLong" ]
+                << position Latitude2 [ pName "dLat" ]
 
         flightsSpec =
             asSpec

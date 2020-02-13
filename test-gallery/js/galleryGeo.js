@@ -8008,17 +8008,17 @@ var $author$project$VegaLite$lookup = F4(
 															var f = _v2.a;
 															return $elm$json$Json$Encode$string(f);
 														},
-														fas)),
-													_Utils_Tuple2(
-													'as',
-													A2(
-														$elm$json$Json$Encode$list,
-														function (_v3) {
-															var a = _v3.b;
-															return $elm$json$Json$Encode$string(a);
-														},
 														fas))
-												])))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										A2(
+											$elm$json$Json$Encode$list,
+											function (_v3) {
+												var a = _v3.b;
+												return $elm$json$Json$Encode$string(a);
+											},
+											fas))
 									]));
 						case 2:
 							var s = lufs.a;
@@ -8036,11 +8036,11 @@ var $author$project$VegaLite$lookup = F4(
 													_Utils_Tuple2('data', spec),
 													_Utils_Tuple2(
 													'key',
-													$elm$json$Json$Encode$string(key2)),
-													_Utils_Tuple2(
-													'as',
-													$elm$json$Json$Encode$string(s))
-												])))
+													$elm$json$Json$Encode$string(key2))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										$elm$json$Json$Encode$string(s))
 									]));
 						case 3:
 							var fs = lufs.a;
@@ -8062,11 +8062,11 @@ var $author$project$VegaLite$lookup = F4(
 													$elm$json$Json$Encode$string(key2)),
 													_Utils_Tuple2(
 													'fields',
-													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs)),
-													_Utils_Tuple2(
-													'default',
-													$elm$json$Json$Encode$string(def))
-												])))
+													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs))
+												]))),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
 									]));
 						case 4:
 							var fas = lufs.a;
@@ -8094,20 +8094,20 @@ var $author$project$VegaLite$lookup = F4(
 															var f = _v4.a;
 															return $elm$json$Json$Encode$string(f);
 														},
-														fas)),
-													_Utils_Tuple2(
-													'as',
-													A2(
-														$elm$json$Json$Encode$list,
-														function (_v5) {
-															var a = _v5.b;
-															return $elm$json$Json$Encode$string(a);
-														},
-														fas)),
-													_Utils_Tuple2(
-													'default',
-													$elm$json$Json$Encode$string(def))
-												])))
+														fas))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										A2(
+											$elm$json$Json$Encode$list,
+											function (_v5) {
+												var a = _v5.b;
+												return $elm$json$Json$Encode$string(a);
+											},
+											fas)),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
 									]));
 						default:
 							var s = lufs.a;
@@ -8126,14 +8126,14 @@ var $author$project$VegaLite$lookup = F4(
 													_Utils_Tuple2('data', spec),
 													_Utils_Tuple2(
 													'key',
-													$elm$json$Json$Encode$string(key2)),
-													_Utils_Tuple2(
-													'as',
-													$elm$json$Json$Encode$string(s)),
-													_Utils_Tuple2(
-													'default',
-													$elm$json$Json$Encode$string(def))
-												])))
+													$elm$json$Json$Encode$string(key2))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										$elm$json$Json$Encode$string(s)),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
 									]));
 					}
 				}()));
@@ -9450,10 +9450,10 @@ var $author$project$VegaLite$filter = function (f) {
 			'filter',
 			$author$project$VegaLite$filterSpec(f)));
 };
-var $author$project$VegaLite$LUAs = function (a) {
-	return {$: 2, a: a};
+var $author$project$VegaLite$LUFieldsAs = function (a) {
+	return {$: 1, a: a};
 };
-var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
+var $author$project$VegaLite$luFieldsAs = $author$project$VegaLite$LUFieldsAs;
 var $author$project$VegaLite$Rule = 11;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$Str = function (a) {
@@ -9475,7 +9475,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 						4,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('o.longitude'),
+								$author$project$VegaLite$pName('oLong'),
 								$author$project$VegaLite$pQuant
 							]))),
 				A2(
@@ -9483,7 +9483,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 					5,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('o.latitude'),
+							$author$project$VegaLite$pName('oLat'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -9491,14 +9491,14 @@ var $author$project$GalleryGeo$geo4 = function () {
 				6,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('d.longitude')
+						$author$project$VegaLite$pName('dLong')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			7,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('d.latitude')
+					$author$project$VegaLite$pName('dLat')
 				])));
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9580,13 +9580,23 @@ var $author$project$GalleryGeo$geo4 = function () {
 				'origin',
 				airportData,
 				'iata',
-				$author$project$VegaLite$luAs('o'))),
+				$author$project$VegaLite$luFieldsAs(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('longitude', 'oLong'),
+							_Utils_Tuple2('latitude', 'oLat')
+						])))),
 		A4(
 			$author$project$VegaLite$lookup,
 			'destination',
 			airportData,
 			'iata',
-			$author$project$VegaLite$luAs('d')));
+			$author$project$VegaLite$luFieldsAs(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('longitude', 'dLong'),
+						_Utils_Tuple2('latitude', 'dLat')
+					]))));
 	var flightsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -9616,6 +9626,10 @@ var $author$project$VegaLite$Row = 1;
 var $author$project$VegaLite$arRow = 1;
 var $author$project$VegaLite$ChColor = 4;
 var $author$project$VegaLite$chColor = 4;
+var $author$project$VegaLite$LUAs = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
 var $author$project$VegaLite$GeoFeature = 4;
 var $author$project$VegaLite$mGeo = $author$project$VegaLite$MmType(4);
 var $author$project$VegaLite$MRepeat = function (a) {

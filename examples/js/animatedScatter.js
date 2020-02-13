@@ -10496,17 +10496,17 @@ var $author$project$VegaLite$lookup = F4(
 															var f = _v2.a;
 															return $elm$json$Json$Encode$string(f);
 														},
-														fas)),
-													_Utils_Tuple2(
-													'as',
-													A2(
-														$elm$json$Json$Encode$list,
-														function (_v3) {
-															var a = _v3.b;
-															return $elm$json$Json$Encode$string(a);
-														},
 														fas))
-												])))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										A2(
+											$elm$json$Json$Encode$list,
+											function (_v3) {
+												var a = _v3.b;
+												return $elm$json$Json$Encode$string(a);
+											},
+											fas))
 									]));
 						case 2:
 							var s = lufs.a;
@@ -10524,11 +10524,11 @@ var $author$project$VegaLite$lookup = F4(
 													_Utils_Tuple2('data', spec),
 													_Utils_Tuple2(
 													'key',
-													$elm$json$Json$Encode$string(key2)),
-													_Utils_Tuple2(
-													'as',
-													$elm$json$Json$Encode$string(s))
-												])))
+													$elm$json$Json$Encode$string(key2))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										$elm$json$Json$Encode$string(s))
 									]));
 						case 3:
 							var fs = lufs.a;
@@ -10550,11 +10550,11 @@ var $author$project$VegaLite$lookup = F4(
 													$elm$json$Json$Encode$string(key2)),
 													_Utils_Tuple2(
 													'fields',
-													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs)),
-													_Utils_Tuple2(
-													'default',
-													$elm$json$Json$Encode$string(def))
-												])))
+													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs))
+												]))),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
 									]));
 						case 4:
 							var fas = lufs.a;
@@ -10582,20 +10582,20 @@ var $author$project$VegaLite$lookup = F4(
 															var f = _v4.a;
 															return $elm$json$Json$Encode$string(f);
 														},
-														fas)),
-													_Utils_Tuple2(
-													'as',
-													A2(
-														$elm$json$Json$Encode$list,
-														function (_v5) {
-															var a = _v5.b;
-															return $elm$json$Json$Encode$string(a);
-														},
-														fas)),
-													_Utils_Tuple2(
-													'default',
-													$elm$json$Json$Encode$string(def))
-												])))
+														fas))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										A2(
+											$elm$json$Json$Encode$list,
+											function (_v5) {
+												var a = _v5.b;
+												return $elm$json$Json$Encode$string(a);
+											},
+											fas)),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
 									]));
 						default:
 							var s = lufs.a;
@@ -10614,14 +10614,14 @@ var $author$project$VegaLite$lookup = F4(
 													_Utils_Tuple2('data', spec),
 													_Utils_Tuple2(
 													'key',
-													$elm$json$Json$Encode$string(key2)),
-													_Utils_Tuple2(
-													'as',
-													$elm$json$Json$Encode$string(s)),
-													_Utils_Tuple2(
-													'default',
-													$elm$json$Json$Encode$string(def))
-												])))
+													$elm$json$Json$Encode$string(key2))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										$elm$json$Json$Encode$string(s)),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
 									]));
 					}
 				}()));
