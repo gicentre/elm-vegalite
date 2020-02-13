@@ -91,11 +91,16 @@ axisCondition2 =
                     , pAxis
                         [ axTickCount 20
                         , axDataCondition (expr "datum.value <= 2") (cAxTickColor "red" "blue")
+                        , axDataCondition (expr "datum.value >=5") (cAxTickSize 12 6)
                         , axDataCondition (expr "datum.value >=8") (cAxTickOpacity 0.3 0.8)
                         , axDataCondition (expr "datum.label =='4.0'") (cAxTickWidth 5 2)
                         ]
                     ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position Y
+                    [ pName "Rotten_Tomatoes_Rating"
+                    , pQuant
+                    , pAxis [ axDataCondition (expr "datum.value <= 99") (cAxLabelPadding 12 8) ]
+                    ]
     in
     toVegaLite [ width 600, data, point [ maOpacity 0.1 ], enc [] ]
 

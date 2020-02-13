@@ -53,6 +53,35 @@ boxplot3 =
         ]
 
 
+boxplot4 : Spec
+boxplot4 =
+    let
+        pop =
+            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+
+        enc =
+            encoding
+                << position X [ pName "age", pOrdinal ]
+                << position Y [ pName "people", pQuant, pAxis [ axTitle "Population" ] ]
+    in
+    toVegaLite
+        [ pop
+        , boxplot
+            [ maExtent (exIqrScale 0.5)
+
+            -- Box, outliers, median and rule appear by default so empty list removes them.
+            , maBox []
+            , maOutliers []
+            , maMedian []
+            , maRule []
+
+            -- Default for ticks is absent unless added, so empty list displays them with default properties.
+            , maTicks []
+            ]
+        , enc []
+        ]
+
+
 eBand : String -> Spec
 eBand ext =
     let
@@ -331,6 +360,7 @@ mySpecs =
         [ ( "boxplot1", boxplot1 )
         , ( "boxplot2", boxplot2 )
         , ( "boxplot3", boxplot3 )
+        , ( "boxplot4", boxplot4 )
         , ( "errorband1", errorband1 )
         , ( "errorband2", errorband2 )
         , ( "errorbar1", errorbar1 )

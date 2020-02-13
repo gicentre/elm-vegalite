@@ -167,7 +167,7 @@ bar7 =
 
         enc =
             encoding
-                << position X [ pName "gender", pNominal, pAxis [ axTitle "" ] ]
+                << position X [ pName "gender", pNominal, pTitle "" ]
                 << position Y
                     [ pName "people"
                     , pQuant

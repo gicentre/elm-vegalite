@@ -7,7 +7,9 @@
 - `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL4.1).
 - `maCornerRadiusEnd` for rounding upper or right corners of bar rectangles (VL4.1).
 - `scDomainMid` for setting midpoint in a diverging continuous scale (VL4.1).
+- `cAxLabelPadding` and `cAxTickSize` conditional axis formatting (VL 4.1)
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
+- providing empty lists to the boxplot elements that appear by default (outliers, median, box and rule) now removes them.
 
 ### Other Changes
 
