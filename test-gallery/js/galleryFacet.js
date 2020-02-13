@@ -8698,11 +8698,17 @@ var $author$project$VegaLite$selectionMarkProperty = function (markProp) {
 			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'strokeDash',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		default:
+		case 6:
 			var x = markProp.a;
 			return _Utils_Tuple2(
 				'strokeDashOffset',
 				$elm$json$Json$Encode$float(x));
+		default:
+			var cur = markProp.a;
+			return _Utils_Tuple2(
+				'cursor',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$cursorLabel(cur)));
 	}
 };
 var $author$project$VegaLite$selectionResolutionLabel = function (res) {
@@ -9200,7 +9206,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'continuousHeight',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 5:
+		case 6:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9208,7 +9214,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'discreteWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 6:
+		case 7:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9232,7 +9238,16 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'cornerRadius',
 					$elm$json$Json$Encode$float(r))
 				]);
-		case 7:
+		case 5:
+			var cur = viewCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cursor',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$cursorLabel(cur)))
+				]);
+		case 8:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -9250,7 +9265,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 						$elm$json$Json$Encode$string(''))
 					]);
 			}
-		case 8:
+		case 9:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9258,7 +9273,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'fillOpacity',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 9:
+		case 10:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9266,7 +9281,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'opacity',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 10:
+		case 11:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9274,7 +9289,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'step',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 11:
+		case 12:
 			var ms = viewCfg.a;
 			if (!ms.$) {
 				var s = ms.a;
@@ -9292,7 +9307,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 						$elm$json$Json$Encode$string(''))
 					]);
 			}
-		case 12:
+		case 13:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9300,7 +9315,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'strokeOpacity',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 14:
+		case 15:
 			var cap = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9309,7 +9324,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$strokeCapLabel(cap)))
 				]);
-		case 17:
+		case 18:
 			var jn = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9318,7 +9333,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$strokeJoinLabel(jn)))
 				]);
-		case 13:
+		case 14:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9326,7 +9341,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'strokeWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 15:
+		case 16:
 			var xs = viewCfg.a;
 			return _Utils_eq(xs, _List_Nil) ? _List_fromArray(
 				[
@@ -9337,7 +9352,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'strokeDash',
 					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
 				]);
-		case 16:
+		case 17:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9345,7 +9360,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					'strokeDashOffset',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 18:
+		case 19:
 			var x = viewCfg.a;
 			return _List_fromArray(
 				[
@@ -9730,7 +9745,7 @@ var $author$project$VegaLite$resolve = function (res) {
 		$elm$json$Json$Encode$object(res));
 };
 var $author$project$VegaLite$VStroke = function (a) {
-	return {$: 11, a: a};
+	return {$: 12, a: a};
 };
 var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
 var $author$project$VegaLite$VLWidth = 3;
