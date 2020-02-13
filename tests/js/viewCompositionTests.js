@@ -7838,12 +7838,28 @@ var $author$project$VegaLite$facetChannelProperty = function (fMap) {
 			return _Utils_Tuple2(
 				'timeUnit',
 				$author$project$VegaLite$timeUnitSpec(tu));
-		default:
+		case 6:
 			var hProps = fMap.a;
 			return _Utils_Tuple2(
 				'header',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$headerProperty, hProps)));
+		case 7:
+			var al = fMap.a;
+			return _Utils_Tuple2(
+				'align',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$compositionAlignmentLabel(al)));
+		case 8:
+			var b = fMap.a;
+			return _Utils_Tuple2(
+				'center',
+				$elm$json$Json$Encode$bool(b));
+		default:
+			var x = fMap.a;
+			return _Utils_Tuple2(
+				'spacing',
+				$elm$json$Json$Encode$float(x));
 	}
 };
 var $author$project$VegaLite$column = function (fFields) {
@@ -11552,14 +11568,14 @@ var $author$project$VegaLite$View = function (a) {
 	return {$: 40, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
-var $author$project$VegaLite$FColumns = function (a) {
+var $author$project$VegaLite$FCColumns = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$facoColumns = $author$project$VegaLite$FColumns;
-var $author$project$VegaLite$FSpacing = function (a) {
+var $author$project$VegaLite$facoColumns = $author$project$VegaLite$FCColumns;
+var $author$project$VegaLite$FCSpacing = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$facoSpacing = $author$project$VegaLite$FSpacing;
+var $author$project$VegaLite$facoSpacing = $author$project$VegaLite$FCSpacing;
 var $author$project$VegaLite$VContinuousHeight = function (a) {
 	return {$: 3, a: a};
 };

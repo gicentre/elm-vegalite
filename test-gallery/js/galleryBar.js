@@ -10917,12 +10917,28 @@ var $author$project$VegaLite$facetChannelProperty = function (fMap) {
 			return _Utils_Tuple2(
 				'timeUnit',
 				$author$project$VegaLite$timeUnitSpec(tu));
-		default:
+		case 6:
 			var hProps = fMap.a;
 			return _Utils_Tuple2(
 				'header',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$headerProperty, hProps)));
+		case 7:
+			var al = fMap.a;
+			return _Utils_Tuple2(
+				'align',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$compositionAlignmentLabel(al)));
+		case 8:
+			var b = fMap.a;
+			return _Utils_Tuple2(
+				'center',
+				$elm$json$Json$Encode$bool(b));
+		default:
+			var x = fMap.a;
+			return _Utils_Tuple2(
+				'spacing',
+				$elm$json$Json$Encode$float(x));
 	}
 };
 var $author$project$VegaLite$row = function (fFields) {
@@ -11649,6 +11665,10 @@ var $author$project$VegaLite$column = function (fFields) {
 				A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields))));
 };
 var $author$project$VegaLite$fOrdinal = $author$project$VegaLite$FmType(1);
+var $author$project$VegaLite$FSpacing = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$fSpacing = $author$project$VegaLite$FSpacing;
 var $author$project$GalleryBar$bar7 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -11695,7 +11715,8 @@ var $author$project$GalleryBar$bar7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$fName('age'),
-						$author$project$VegaLite$fOrdinal
+						$author$project$VegaLite$fOrdinal,
+						$author$project$VegaLite$fSpacing(10)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
