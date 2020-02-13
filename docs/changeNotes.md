@@ -14,6 +14,7 @@
 - Minor corrections to the API documentation.
 - Internal refactor of transform functions that return multiple labelled specs.
 - Additions to tests for new VL4.1 features
+- Amended examples and tests to conform with the (breaking) changes in the VL4.1 schema.
 
 ---
 
