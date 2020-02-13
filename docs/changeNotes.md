@@ -8,6 +8,8 @@
 - `maCornerRadiusEnd` for rounding upper or right corners of bar rectangles (VL4.1).
 - `scDomainMid` for setting midpoint in a diverging continuous scale (VL4.1).
 - `cAxLabelPadding` and `cAxTickSize` conditional axis formatting (VL 4.1)
+- `smCursor` for setting cursor over selection mark (VL4.1)
+- `vicoCursor` for setting default cursor over view.
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
 - providing empty lists to the boxplot elements that appear by default (outliers, median, box and rule) now removes them.
 

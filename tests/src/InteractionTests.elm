@@ -308,9 +308,67 @@ interaction16 =
     toVegaLite [ width 650, height 300, stockData, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
 
 
+interaction17 : Spec
+interaction17 =
+    let
+        stockData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+                [ csv, parse [ ( "date", foDate "" ) ] ]
+
+        cfg =
+            configure
+                << configuration (coView [ vicoCursor cuText ])
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol==='GOOG'")
+
+        sel =
+            selection
+                << select "myBrush"
+                    seInterval
+                    [ seEncodings [ chX ]
+                    , seSelectionMark [ smCursor cuPointer ]
+                    ]
+
+        encLine =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
+    in
+    toVegaLite [ width 400, cfg [], stockData, trans [], sel [], encLine [], line [] ]
+
+
+
+-- "transform": [
+--     {"filter": "datum.symbol==='GOOG'"}
+--   ],
+--   "mark": "line",
+--   "width": 400,
+--   "encoding": {
+--     "x": {
+--       "field": "date",
+--       "type": "temporal"
+--     },
+--     "y": {
+--       "field": "price",
+--       "type": "quantitative"
+--     }
+--   },
+--   "selection": {
+--     "brush": {
+--       "type": "interval",
+--       "encodings": ["x"],
+--       "mark": {"cursor": "pointer"}
+--     }
+--   },
+--   "view": {"cursor": "text"}
+-- }
+
+
 sourceExample : Spec
 sourceExample =
-    interaction16
+    interaction17
 
 
 
@@ -336,6 +394,7 @@ mySpecs =
         , ( "interaction14", interaction14 )
         , ( "interaction15", interaction15 )
         , ( "interaction16", interaction16 )
+        , ( "interaction17", interaction17 )
         ]
 
 
