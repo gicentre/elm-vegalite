@@ -39,17 +39,32 @@ geo1 =
             encoding
                 << color [ mName "rate", mQuant ]
     in
-    toVegaLite [ cfg [], width 500, height 300, countyData, proj, trans [], enc [], geoshape [] ]
+    toVegaLite
+        [ cfg []
+        , width 500
+        , height 300
+        , countyData
+        , proj
+        , trans []
+        , enc []
+        , geoshape []
+        ]
 
 
 geo2 : Spec
 geo2 =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+
+        trans =
+            transform
+                << calculateAs "substring(datum.zip_code, 0, 1)" "digit"
+
         enc =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << size [ mNum 1 ]
                 << color [ mName "digit", mNominal ]
     in
     toVegaLite
@@ -57,11 +72,11 @@ geo2 =
         , description "US zip codes: One dot per zipcode colored by first digit"
         , width 500
         , height 300
+        , data
         , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
-        , transform <| calculateAs "substring(datum.zip_code, 0, 1)" "digit" <| []
-        , circle []
+        , trans []
         , enc []
+        , circle [ maSize 1 ]
         ]
 
 
@@ -71,12 +86,19 @@ geo3 =
         des =
             description "One dot per airport in the US overlayed on geoshape"
 
+        mapData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "states" ]
+
+        airportData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
+
+        enc =
+            encoding
+                << color [ mStr "#eee" ]
+
         backdropSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
-                , geoshape []
-                , encoding <| color [ mStr "#eee" ] []
-                ]
+            asSpec [ mapData, enc [], geoshape [] ]
 
         overlayEnc =
             encoding
@@ -86,11 +108,7 @@ geo3 =
                 << color [ mStr "steelblue" ]
 
         overlaySpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
-                , circle []
-                , overlayEnc []
-                ]
+            asSpec [ airportData, overlayEnc [], circle [] ]
     in
     toVegaLite
         [ cfg []
@@ -105,46 +123,42 @@ geo3 =
 geo4 : Spec
 geo4 =
     let
+        mapData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "states" ]
+
         airportData =
             dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
 
+        flightData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
+
         backdropSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
-                , geoshape []
-                , encoding <| color [ mStr "#eee" ] []
-                ]
+            asSpec [ mapData, geoshape [ maColor "#eee" ] ]
 
         airportsEnc =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << size [ mNum 5 ]
-                << color [ mStr "gray" ]
 
         airportsSpec =
-            asSpec [ airportData, circle [], airportsEnc [] ]
+            asSpec [ airportData, airportsEnc [], circle [ maColor "gray", maSize 5 ] ]
 
         trans =
             transform
                 << filter (fiEqual "origin" (str "SEA"))
-                << lookup "origin" airportData "iata" (luFieldsAs [ ( "longitude", "oLong" ), ( "latitude", "oLat" ) ])
-                << lookup "destination" airportData "iata" (luFieldsAs [ ( "longitude", "dLong" ), ( "latitude", "dLat" ) ])
+                << lookup "origin" airportData "iata" (luAs "o")
+                << lookup "destination" airportData "iata" (luAs "d")
 
         flightsEnc =
             encoding
-                << position Longitude [ pName "oLong", pQuant ]
-                << position Latitude [ pName "oLat", pQuant ]
-                << position Longitude2 [ pName "dLong" ]
-                << position Latitude2 [ pName "dLat" ]
+                << position Longitude [ pName "o.longitude", pQuant ]
+                << position Latitude [ pName "o.latitude", pQuant ]
+                << position Longitude2 [ pName "d.longitude" ]
+                << position Latitude2 [ pName "d.latitude" ]
 
         flightsSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
-                , trans []
-                , rule []
-                , flightsEnc []
-                ]
+            asSpec [ flightData, trans [], flightsEnc [], rule [] ]
     in
     toVegaLite
         [ cfg []
@@ -183,7 +197,17 @@ geo5 =
         , description "Population per state, engineers per state, and hurricanes per state"
         , repeat [ rowFields [ "population", "engineers", "hurricanes" ] ]
         , res []
-        , specification (asSpec [ width 500, height 300, data, trans [], projection [ prType albersUsa ], enc [], geoshape [] ])
+        , specification
+            (asSpec
+                [ width 500
+                , height 300
+                , data
+                , trans []
+                , projection [ prType albersUsa ]
+                , enc []
+                , geoshape []
+                ]
+            )
         ]
 
 
@@ -193,12 +217,15 @@ geo6 =
         des =
             description "US state capitals overlayed on map of the US"
 
+        mapData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "states" ]
+
+        capitalData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-state-capitals.json" []
+
         backdropSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
-                , geoshape []
-                , encoding <| color [ mStr "#ccc" ] []
-                ]
+            asSpec [ mapData, geoshape [ maColor "#ccc" ] ]
 
         overlayEnc =
             encoding
@@ -207,11 +234,7 @@ geo6 =
                 << text [ tName "city", tNominal ]
 
         overlaySpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-state-capitals.json" []
-                , textMark []
-                , overlayEnc []
-                ]
+            asSpec [ capitalData, overlayEnc [], textMark [] ]
     in
     toVegaLite
         [ cfg []
@@ -229,27 +252,25 @@ geo7 =
         airportData =
             dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
 
+        mapData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "states" ]
+
+        itineraryData =
+            dataFromColumns []
+                << dataColumn "airport" (strs [ "SEA", "SFO", "LAX", "LAS", "DFW", "DEN", "ORD", "JFK", "ATL" ])
+                << dataColumn "order" (nums [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+
         backdropSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
-                , geoshape []
-                , encoding <| color [ mStr "#eee" ] []
-                ]
+            asSpec [ mapData, geoshape [ maColor "#eee" ] ]
 
         airportsEnc =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << size [ mNum 5 ]
-                << color [ mStr "gray" ]
 
         airportsSpec =
-            asSpec [ airportData, circle [], airportsEnc [] ]
-
-        itinerary =
-            dataFromColumns []
-                << dataColumn "airport" (strs [ "SEA", "SFO", "LAX", "LAS", "DFW", "DEN", "ORD", "JFK", "ATL" ])
-                << dataColumn "order" (nums [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+            asSpec [ airportData, airportsEnc [], circle [ maSize 5, maColor "grey" ] ]
 
         trans =
             transform
@@ -262,12 +283,7 @@ geo7 =
                 << order [ oName "order", oOrdinal ]
 
         flightsSpec =
-            asSpec
-                [ itinerary []
-                , trans []
-                , line []
-                , flightsEnc []
-                ]
+            asSpec [ itineraryData [], trans [], flightsEnc [], line [] ]
     in
     toVegaLite
         [ cfg []
@@ -283,7 +299,15 @@ geo8 : Spec
 geo8 =
     let
         geoData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "states" ]
+
+        incomeData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/income.json" []
+
+        trans =
+            transform
+                << lookup "id" geoData "id" (luAs "geo")
 
         enc =
             encoding
@@ -296,17 +320,28 @@ geo8 =
         , description "Income in the U.S. by state, faceted over income brackets"
         , width 500
         , height 300
-        , dataFromUrl "https://vega.github.io/vega-lite/data/income.json" []
-        , transform <| lookup "id" geoData "id" (luAs "geo") []
+        , incomeData
+        , trans []
         , projection [ prType albersUsa ]
-        , geoshape []
         , enc []
+        , geoshape []
         ]
 
 
 geo9 : Spec
 geo9 =
     let
+        boroughData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
+                [ topojsonFeature "boroughs" ]
+
+        centroidData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" []
+
+        tubeData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
+                [ topojsonFeature "line" ]
+
         tubeLineColors =
             categoricalDomainMap
                 [ ( "Bakerloo", "rgb(137,78,36)" )
@@ -325,9 +360,8 @@ geo9 =
 
         polySpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
-                , geoshape [ maStroke "rgb(251,247,238)", maStrokeWidth 2 ]
-                , encoding <| color [ mStr "#ddc" ] []
+                [ boroughData
+                , geoshape [ maColor "#ddc", maStroke "rgb(251,247,238)", maStrokeWidth 2 ]
                 ]
 
         labelEnc =
@@ -335,15 +369,18 @@ geo9 =
                 << position Longitude [ pName "cx", pQuant ]
                 << position Latitude [ pName "cy", pQuant ]
                 << text [ tName "bLabel", tNominal ]
-                << size [ mNum 8 ]
-                << opacity [ mNum 0.6 ]
 
         trans =
             transform
                 << calculateAs "indexof (datum.name,' ') > 0  ? substring(datum.name,0,indexof(datum.name, ' ')) : datum.name" "bLabel"
 
         labelSpec =
-            asSpec [ dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" [], trans [], textMark [], labelEnc [] ]
+            asSpec
+                [ centroidData
+                , trans []
+                , labelEnc []
+                , textMark [ maSize 8, maOpacity 0.6 ]
+                ]
 
         tubeEnc =
             encoding
@@ -356,7 +393,7 @@ geo9 =
 
         routeSpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json" [ topojsonFeature "line" ]
+                [ tubeData
                 , geoshape [ maFilled False, maStrokeWidth 2 ]
                 , tubeEnc []
                 ]

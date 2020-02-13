@@ -8359,10 +8359,10 @@ var $author$project$VegaLite$description = function (s) {
 };
 var $author$project$VegaLite$Nominal = 0;
 var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
-var $author$project$VegaLite$MNumber = function (a) {
-	return {$: 14, a: a};
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 44, a: a};
 };
-var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
+var $author$project$VegaLite$maSize = $author$project$VegaLite$MSize;
 var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
@@ -9272,43 +9272,33 @@ var $author$project$VegaLite$position = F2(
 							A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
 		}
 	});
-var $author$project$VegaLite$size = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'size',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
-};
 var $author$project$GalleryGeo$geo2 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$calculateAs, 'substring(datum.zip_code, 0, 1)', 'digit'));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$encoding,
-					A2(
-						$author$project$VegaLite$position,
-						4,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('longitude'),
-								$author$project$VegaLite$pQuant
-							]))),
+				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					5,
+					4,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('latitude'),
+							$author$project$VegaLite$pName('longitude'),
 							$author$project$VegaLite$pQuant
 						]))),
-			$author$project$VegaLite$size(
+			A2(
+				$author$project$VegaLite$position,
+				5,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mNum(1)
+						$author$project$VegaLite$pName('latitude'),
+						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -9316,6 +9306,7 @@ var $author$project$GalleryGeo$geo2 = function () {
 					$author$project$VegaLite$mName('digit'),
 					$author$project$VegaLite$mNominal
 				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/zipcodes.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -9323,16 +9314,19 @@ var $author$project$GalleryGeo$geo2 = function () {
 				$author$project$VegaLite$description('US zip codes: One dot per zipcode colored by first digit'),
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
+				data,
 				$author$project$VegaLite$projection(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
 					])),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/zipcodes.csv', _List_Nil),
-				$author$project$VegaLite$transform(
-				A3($author$project$VegaLite$calculateAs, 'substring(datum.zip_code, 0, 1)', 'digit', _List_Nil)),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(1)
+					]))
 			]));
 }();
 var $author$project$VegaLite$asSpec = function (specs) {
@@ -9354,10 +9348,21 @@ var $author$project$VegaLite$layer = function (specs) {
 		16,
 		$author$project$VegaLite$toList(specs));
 };
+var $author$project$VegaLite$MNumber = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
 var $author$project$VegaLite$MString = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
+var $author$project$VegaLite$size = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
 var $author$project$GalleryGeo$geo3 = function () {
 	var overlayEnc = A2(
 		$elm$core$Basics$composeL,
@@ -9394,33 +9399,36 @@ var $author$project$GalleryGeo$geo3 = function () {
 				[
 					$author$project$VegaLite$mStr('steelblue')
 				])));
-	var overlaySpec = $author$project$VegaLite$asSpec(
+	var mapData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				overlayEnc(_List_Nil)
+				$author$project$VegaLite$topojsonFeature('states')
 			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#eee')
+				])));
 	var des = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/us-10m.json',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$topojsonFeature('states')
-					])),
-				$author$project$VegaLite$geoshape(_List_Nil),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mStr('#eee')
-						]),
-					_List_Nil))
+				mapData,
+				enc(_List_Nil),
+				$author$project$VegaLite$geoshape(_List_Nil)
+			]));
+	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
+	var overlaySpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				airportData,
+				overlayEnc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9450,10 +9458,14 @@ var $author$project$VegaLite$filter = function (f) {
 			'filter',
 			$author$project$VegaLite$filterSpec(f)));
 };
-var $author$project$VegaLite$LUFieldsAs = function (a) {
-	return {$: 1, a: a};
+var $author$project$VegaLite$LUAs = function (a) {
+	return {$: 2, a: a};
 };
-var $author$project$VegaLite$luFieldsAs = $author$project$VegaLite$LUFieldsAs;
+var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
+var $author$project$VegaLite$MColor = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
 var $author$project$VegaLite$Rule = 11;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$Str = function (a) {
@@ -9461,6 +9473,13 @@ var $author$project$VegaLite$Str = function (a) {
 };
 var $author$project$VegaLite$str = $author$project$VegaLite$Str;
 var $author$project$GalleryGeo$geo4 = function () {
+	var mapData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
 	var flightsEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -9475,7 +9494,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 						4,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('oLong'),
+								$author$project$VegaLite$pName('o.longitude'),
 								$author$project$VegaLite$pQuant
 							]))),
 				A2(
@@ -9483,7 +9502,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 					5,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('oLat'),
+							$author$project$VegaLite$pName('o.latitude'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -9491,77 +9510,59 @@ var $author$project$GalleryGeo$geo4 = function () {
 				6,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('dLong')
+						$author$project$VegaLite$pName('d.longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			7,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('dLat')
+					$author$project$VegaLite$pName('d.latitude')
 				])));
+	var flightData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil);
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/us-10m.json',
+				mapData,
+				$author$project$VegaLite$geoshape(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$topojsonFeature('states')
-					])),
-				$author$project$VegaLite$geoshape(_List_Nil),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mStr('#eee')
-						]),
-					_List_Nil))
+						$author$project$VegaLite$maColor('#eee')
+					]))
 			]));
 	var airportsEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
 			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$encoding,
-					A2(
-						$author$project$VegaLite$position,
-						4,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('longitude'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					5,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('latitude'),
-							$author$project$VegaLite$pQuant
-						]))),
-			$author$project$VegaLite$size(
+				$author$project$VegaLite$position,
+				4,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mNum(5)
+						$author$project$VegaLite$pName('longitude'),
+						$author$project$VegaLite$pQuant
 					]))),
-		$author$project$VegaLite$color(
+		A2(
+			$author$project$VegaLite$position,
+			5,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mStr('gray')
+					$author$project$VegaLite$pName('latitude'),
+					$author$project$VegaLite$pQuant
 				])));
 	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
 				airportData,
-				$author$project$VegaLite$circle(_List_Nil),
-				airportsEnc(_List_Nil)
+				airportsEnc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maColor('gray'),
+						$author$project$VegaLite$maSize(5)
+					]))
 			]));
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -9580,30 +9581,20 @@ var $author$project$GalleryGeo$geo4 = function () {
 				'origin',
 				airportData,
 				'iata',
-				$author$project$VegaLite$luFieldsAs(
-					_List_fromArray(
-						[
-							_Utils_Tuple2('longitude', 'oLong'),
-							_Utils_Tuple2('latitude', 'oLat')
-						])))),
+				$author$project$VegaLite$luAs('o'))),
 		A4(
 			$author$project$VegaLite$lookup,
 			'destination',
 			airportData,
 			'iata',
-			$author$project$VegaLite$luFieldsAs(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('longitude', 'dLong'),
-						_Utils_Tuple2('latitude', 'dLat')
-					]))));
+			$author$project$VegaLite$luAs('d')));
 	var flightsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
+				flightData,
 				trans(_List_Nil),
-				$author$project$VegaLite$rule(_List_Nil),
-				flightsEnc(_List_Nil)
+				flightsEnc(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -9626,10 +9617,6 @@ var $author$project$VegaLite$Row = 1;
 var $author$project$VegaLite$arRow = 1;
 var $author$project$VegaLite$ChColor = 4;
 var $author$project$VegaLite$chColor = 4;
-var $author$project$VegaLite$LUAs = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
 var $author$project$VegaLite$GeoFeature = 4;
 var $author$project$VegaLite$mGeo = $author$project$VegaLite$MmType(4);
 var $author$project$VegaLite$MRepeat = function (a) {
@@ -10007,33 +9994,31 @@ var $author$project$GalleryGeo$geo6 = function () {
 					$author$project$VegaLite$tName('city'),
 					$author$project$VegaLite$tNominal
 				])));
+	var mapData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
+	var des = $author$project$VegaLite$description('US state capitals overlayed on map of the US');
+	var capitalData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/us-state-capitals.json', _List_Nil);
 	var overlaySpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/us-state-capitals.json', _List_Nil),
-				$author$project$VegaLite$textMark(_List_Nil),
-				overlayEnc(_List_Nil)
+				capitalData,
+				overlayEnc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('US state capitals overlayed on map of the US');
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/us-10m.json',
+				mapData,
+				$author$project$VegaLite$geoshape(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$topojsonFeature('states')
-					])),
-				$author$project$VegaLite$geoshape(_List_Nil),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mStr('#ccc')
-						]),
-					_List_Nil))
+						$author$project$VegaLite$maColor('#ccc')
+					]))
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10291,7 +10276,14 @@ var $author$project$VegaLite$Strings = function (a) {
 };
 var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
 var $author$project$GalleryGeo$geo7 = function () {
-	var itinerary = A2(
+	var mapData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
+	var itineraryData = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -10340,65 +10332,46 @@ var $author$project$GalleryGeo$geo7 = function () {
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/us-10m.json',
+				mapData,
+				$author$project$VegaLite$geoshape(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$topojsonFeature('states')
-					])),
-				$author$project$VegaLite$geoshape(_List_Nil),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mStr('#eee')
-						]),
-					_List_Nil))
+						$author$project$VegaLite$maColor('#eee')
+					]))
 			]));
 	var airportsEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
 			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$encoding,
-					A2(
-						$author$project$VegaLite$position,
-						4,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('longitude'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					5,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('latitude'),
-							$author$project$VegaLite$pQuant
-						]))),
-			$author$project$VegaLite$size(
+				$author$project$VegaLite$position,
+				4,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mNum(5)
+						$author$project$VegaLite$pName('longitude'),
+						$author$project$VegaLite$pQuant
 					]))),
-		$author$project$VegaLite$color(
+		A2(
+			$author$project$VegaLite$position,
+			5,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mStr('gray')
+					$author$project$VegaLite$pName('latitude'),
+					$author$project$VegaLite$pQuant
 				])));
 	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
 				airportData,
-				$author$project$VegaLite$circle(_List_Nil),
-				airportsEnc(_List_Nil)
+				airportsEnc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(5),
+						$author$project$VegaLite$maColor('grey')
+					]))
 			]));
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -10414,10 +10387,10 @@ var $author$project$GalleryGeo$geo7 = function () {
 	var flightsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				itinerary(_List_Nil),
+				itineraryData(_List_Nil),
 				trans(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				flightsEnc(_List_Nil)
+				flightsEnc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10529,6 +10502,7 @@ var $author$project$VegaLite$row = function (fFields) {
 var $author$project$VegaLite$Descending = {$: 1};
 var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
 var $author$project$GalleryGeo$geo8 = function () {
+	var incomeData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/income.json', _List_Nil);
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,
 		'https://vega.github.io/vega-lite/data/us-10m.json',
@@ -10536,6 +10510,15 @@ var $author$project$GalleryGeo$geo8 = function () {
 			[
 				$author$project$VegaLite$topojsonFeature('states')
 			]));
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A4(
+			$author$project$VegaLite$lookup,
+			'id',
+			geoData,
+			'id',
+			$author$project$VegaLite$luAs('geo')));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10571,22 +10554,15 @@ var $author$project$GalleryGeo$geo8 = function () {
 				$author$project$VegaLite$description('Income in the U.S. by state, faceted over income brackets'),
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/income.json', _List_Nil),
-				$author$project$VegaLite$transform(
-				A5(
-					$author$project$VegaLite$lookup,
-					'id',
-					geoData,
-					'id',
-					$author$project$VegaLite$luAs('geo'),
-					_List_Nil)),
+				incomeData,
+				trans(_List_Nil),
 				$author$project$VegaLite$projection(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
 					])),
-				$author$project$VegaLite$geoshape(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$geoshape(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$DStrings = function (a) {
@@ -10656,6 +10632,10 @@ var $author$project$VegaLite$MFilled = function (a) {
 	return {$: 25, a: a};
 };
 var $author$project$VegaLite$maFilled = $author$project$VegaLite$MFilled;
+var $author$project$VegaLite$MOpacity = function (a) {
+	return {$: 34, a: a};
+};
+var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
 var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 45, a: a};
 };
@@ -10664,13 +10644,6 @@ var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 53, a: a};
 };
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
-var $author$project$VegaLite$opacity = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'opacity',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
-};
 var $author$project$GalleryGeo$geo9 = function () {
 	var tubeLineColors = $author$project$VegaLite$categoricalDomainMap(
 		_List_fromArray(
@@ -10705,6 +10678,13 @@ var $author$project$GalleryGeo$geo9 = function () {
 						])),
 					$author$project$VegaLite$mScale(tubeLineColors)
 				])));
+	var tubeData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/londonTubeLines.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('line')
+			]));
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -10712,13 +10692,7 @@ var $author$project$GalleryGeo$geo9 = function () {
 	var routeSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/londonTubeLines.json',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$topojsonFeature('line')
-					])),
+				tubeData,
 				$author$project$VegaLite$geoshape(
 				_List_fromArray(
 					[
@@ -10727,81 +10701,67 @@ var $author$project$GalleryGeo$geo9 = function () {
 					])),
 				tubeEnc(_List_Nil)
 			]));
-	var polySpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/londonBoroughs.json',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$topojsonFeature('boroughs')
-					])),
-				$author$project$VegaLite$geoshape(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStroke('rgb(251,247,238)'),
-						$author$project$VegaLite$maStrokeWidth(2)
-					])),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mStr('#ddc')
-						]),
-					_List_Nil))
-			]));
 	var labelEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
 				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							4,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('cx'),
-									$author$project$VegaLite$pQuant
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						5,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('cy'),
-								$author$project$VegaLite$pQuant
-							]))),
-				$author$project$VegaLite$text(
+					$author$project$VegaLite$position,
+					4,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$tName('bLabel'),
-							$author$project$VegaLite$tNominal
+							$author$project$VegaLite$pName('cx'),
+							$author$project$VegaLite$pQuant
 						]))),
-			$author$project$VegaLite$size(
+			A2(
+				$author$project$VegaLite$position,
+				5,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mNum(8)
+						$author$project$VegaLite$pName('cy'),
+						$author$project$VegaLite$pQuant
 					]))),
-		$author$project$VegaLite$opacity(
+		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mNum(0.6)
+					$author$project$VegaLite$tName('bLabel'),
+					$author$project$VegaLite$tNominal
 				])));
+	var centroidData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/londonCentroids.json', _List_Nil);
 	var labelSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/londonCentroids.json', _List_Nil),
+				centroidData,
 				trans(_List_Nil),
-				$author$project$VegaLite$textMark(_List_Nil),
-				labelEnc(_List_Nil)
+				labelEnc(_List_Nil),
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(8),
+						$author$project$VegaLite$maOpacity(0.6)
+					]))
+			]));
+	var boroughData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/londonBoroughs.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('boroughs')
+			]));
+	var polySpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				boroughData,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maColor('#ddc'),
+						$author$project$VegaLite$maStroke('rgb(251,247,238)'),
+						$author$project$VegaLite$maStrokeWidth(2)
+					]))
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
