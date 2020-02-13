@@ -1349,7 +1349,7 @@ module VegaLite exposing
     , vicoHeight
     )
 
-{-| Create Vega-Litte visualization specifications in Elm. This package allows you
+{-| Create Vega-Lite visualization specifications in Elm. This package allows you
 to generate the JSON specs that may be passed to the Vega-Lite runtime library via
 a port to activate the visualization. Alternatively, to avoid coding the link to
 the Vega-Lite runtime, you can embed specifications directly in a
