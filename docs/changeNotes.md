@@ -11,6 +11,7 @@
 - `smCursor` for setting cursor over selection mark (VL4.1)
 - `vicoCursor` for setting default cursor over view.
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
+- `fAlign`, `fCenter` and `fSpacing` for positioning of sub-plots in faceted views (VL 4).
 - providing empty lists to the boxplot elements that appear by default (outliers, median, box and rule) now removes them.
 
 ### Other Changes

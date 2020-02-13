@@ -174,7 +174,7 @@ bar7 =
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axGrid False ]
                     ]
-                << column [ fName "age", fOrdinal ]
+                << column [ fName "age", fOrdinal, fSpacing 10 ]
                 << color
                     [ mName "gender"
                     , mNominal
