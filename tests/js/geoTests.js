@@ -12396,24 +12396,30 @@ var $author$project$GeoTests$mapComp2 = function () {
 			]));
 }();
 var $author$project$GeoTests$mapComp3 = function () {
+	var dataGrat = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/graticule.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('graticule')
+			]));
+	var dataCountries = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/world-110m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('countries')
+			]));
 	var rotatedSpec = function (rot) {
 		var graticuleSpec = $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$width(300),
-					$author$project$VegaLite$height(300),
+					dataGrat,
 					$author$project$VegaLite$projection(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$prType($author$project$VegaLite$orthographic),
 							A3($author$project$VegaLite$prRotate, rot, 0, 0)
-						])),
-					A2(
-					$author$project$VegaLite$dataFromUrl,
-					'https://vega.github.io/vega-lite/data/graticule.json',
-					_List_fromArray(
-						[
-							$author$project$VegaLite$topojsonFeature('graticule')
 						])),
 					$author$project$VegaLite$geoshape(
 					_List_fromArray(
@@ -12426,20 +12432,12 @@ var $author$project$GeoTests$mapComp3 = function () {
 		var countrySpec = $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$width(300),
-					$author$project$VegaLite$height(300),
+					dataCountries,
 					$author$project$VegaLite$projection(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$prType($author$project$VegaLite$orthographic),
 							A3($author$project$VegaLite$prRotate, rot, 0, 0)
-						])),
-					A2(
-					$author$project$VegaLite$dataFromUrl,
-					'https://vega.github.io/vega-lite/data/world-110m.json',
-					_List_fromArray(
-						[
-							$author$project$VegaLite$topojsonFeature('countries')
 						])),
 					$author$project$VegaLite$geoshape(
 					_List_fromArray(
@@ -12452,23 +12450,26 @@ var $author$project$GeoTests$mapComp3 = function () {
 		return $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
+					$author$project$VegaLite$width(300),
+					$author$project$VegaLite$height(300),
 					$author$project$VegaLite$layer(
 					_List_fromArray(
 						[graticuleSpec, countrySpec]))
 				]));
 	};
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$configure(
-				A2(
-					$author$project$VegaLite$configuration,
-					$author$project$VegaLite$coView(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
-							])),
-					_List_Nil)),
+				cfg(_List_Nil),
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
 					[
@@ -12479,24 +12480,37 @@ var $author$project$GeoTests$mapComp3 = function () {
 			]));
 }();
 var $author$project$GeoTests$mapComp4 = function () {
+	var dataGrat = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/graticule.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('graticule')
+			]));
+	var dataGlobe = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'data/globe.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('globe')
+			]));
+	var dataCountries = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/world-110m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('countries')
+			]));
 	var rotatedSpec = function (rot) {
 		var seaSpec = $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$width(300),
-					$author$project$VegaLite$height(300),
+					dataGlobe,
 					$author$project$VegaLite$projection(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$prType($author$project$VegaLite$orthographic),
 							A3($author$project$VegaLite$prRotate, 0, 0, 0)
-						])),
-					A2(
-					$author$project$VegaLite$dataFromUrl,
-					'data/globe.json',
-					_List_fromArray(
-						[
-							$author$project$VegaLite$topojsonFeature('globe')
 						])),
 					$author$project$VegaLite$geoshape(
 					_List_fromArray(
@@ -12508,20 +12522,12 @@ var $author$project$GeoTests$mapComp4 = function () {
 		var graticuleSpec = $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$width(300),
-					$author$project$VegaLite$height(300),
+					dataGrat,
 					$author$project$VegaLite$projection(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$prType($author$project$VegaLite$orthographic),
 							A3($author$project$VegaLite$prRotate, rot, 0, 0)
-						])),
-					A2(
-					$author$project$VegaLite$dataFromUrl,
-					'https://vega.github.io/vega-lite/data/graticule.json',
-					_List_fromArray(
-						[
-							$author$project$VegaLite$topojsonFeature('graticule')
 						])),
 					$author$project$VegaLite$geoshape(
 					_List_fromArray(
@@ -12534,20 +12540,12 @@ var $author$project$GeoTests$mapComp4 = function () {
 		var countrySpec = $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$width(300),
-					$author$project$VegaLite$height(300),
+					dataCountries,
 					$author$project$VegaLite$projection(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$prType($author$project$VegaLite$orthographic),
 							A3($author$project$VegaLite$prRotate, rot, 0, 0)
-						])),
-					A2(
-					$author$project$VegaLite$dataFromUrl,
-					'https://vega.github.io/vega-lite/data/world-110m.json',
-					_List_fromArray(
-						[
-							$author$project$VegaLite$topojsonFeature('countries')
 						])),
 					$author$project$VegaLite$geoshape(
 					_List_fromArray(
@@ -12560,23 +12558,26 @@ var $author$project$GeoTests$mapComp4 = function () {
 		return $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
+					$author$project$VegaLite$width(300),
+					$author$project$VegaLite$height(300),
 					$author$project$VegaLite$layer(
 					_List_fromArray(
 						[seaSpec, graticuleSpec, countrySpec]))
 				]));
 	};
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$configure(
-				A2(
-					$author$project$VegaLite$configuration,
-					$author$project$VegaLite$coView(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
-							])),
-					_List_Nil)),
+				cfg(_List_Nil),
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
 					[

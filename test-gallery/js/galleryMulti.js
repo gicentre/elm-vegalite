@@ -7758,6 +7758,10 @@ var $author$project$VegaLite$Range = function (a) {
 	return {$: 28, a: a};
 };
 var $author$project$VegaLite$coRange = $author$project$VegaLite$Range;
+var $author$project$VegaLite$View = function (a) {
+	return {$: 40, a: a};
+};
+var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 	switch (asCfg) {
 		case 5:
@@ -9549,6 +9553,18 @@ var $author$project$VegaLite$configure = function (configs) {
 		29,
 		$elm$json$Json$Encode$object(configs));
 };
+var $author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
+var $author$project$VegaLite$LDirection = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$leDirection = $author$project$VegaLite$LDirection;
+var $author$project$VegaLite$LGradientLength = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$leGradientLength = $author$project$VegaLite$LGradientLength;
 var $author$project$VegaLite$LTitle = function (a) {
 	return {$: 34, a: a};
 };
@@ -9562,10 +9578,20 @@ var $author$project$VegaLite$MLegend = function (a) {
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
+var $author$project$VegaLite$MOHorizontal = 0;
+var $author$project$VegaLite$moHorizontal = 0;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
 var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RHeatmap = function (a) {
 	return {$: 2, a: a};
 };
@@ -9656,7 +9682,16 @@ var $author$project$VegaLite$size = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
+var $author$project$VegaLite$VStroke = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
 var $author$project$GalleryMulti$multi4 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('isValid(datum.Major_Genre)')));
 	var selTrans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -9697,6 +9732,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 					[
 						$author$project$VegaLite$pName('IMDB_Rating'),
 						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pTitle('IMDB Rating'),
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -9710,6 +9746,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 				[
 					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
 					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pTitle('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pBin(
 					_List_fromArray(
 						[
@@ -9733,6 +9770,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
+									$author$project$VegaLite$axTitle(''),
 									$author$project$VegaLite$axLabelAngle(-40)
 								]))
 						]))),
@@ -9742,7 +9780,8 @@ var $author$project$GalleryMulti$multi4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pTitle('Number of films')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -9769,11 +9808,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 					[
 						$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
 						$author$project$VegaLite$mQuant,
-						$author$project$VegaLite$mLegend(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$leTitle('In Selected Category')
-							]))
+						$author$project$VegaLite$mTitle('in selected genre')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -9784,8 +9819,8 @@ var $author$project$GalleryMulti$multi4 = function () {
 		_List_fromArray(
 			[
 				selTrans(_List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				enc2(_List_Nil)
+				enc2(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 	var enc1 = A2(
 		$elm$core$Basics$composeL,
@@ -9798,15 +9833,16 @@ var $author$project$GalleryMulti$multi4 = function () {
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$leTitle('')
+							$author$project$VegaLite$leTitle('Number of films'),
+							$author$project$VegaLite$leDirection($author$project$VegaLite$moHorizontal),
+							$author$project$VegaLite$leGradientLength(120)
 						]))
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$width(300),
-				$author$project$VegaLite$rect(_List_Nil),
-				enc1(_List_Nil)
+				enc1(_List_Nil),
+				$author$project$VegaLite$rect(_List_Nil)
 			]));
 	var heatSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9817,29 +9853,39 @@ var $author$project$GalleryMulti$multi4 = function () {
 					[spec1, spec2]))
 			]));
 	var des = $author$project$VegaLite$description('A dashboard with cross-highlighting');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	var config = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$configure,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coRange(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$racoHeatmap('greenblue')
+						])))),
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coRange(
+			$author$project$VegaLite$coView(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$racoHeatmap('greenblue')
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
 					]))));
 	var barSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(420),
 				$author$project$VegaLite$height(120),
-				$author$project$VegaLite$bar(_List_Nil),
 				sel(_List_Nil),
-				encBar(_List_Nil)
+				encBar(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
+				data,
+				trans(_List_Nil),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[heatSpec, barSpec])),
@@ -9893,10 +9939,6 @@ var $author$project$VegaLite$MScale = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$MTitle = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$MonthDate = {$: 11};
 var $author$project$VegaLite$monthDate = $author$project$VegaLite$MonthDate;
 var $author$project$VegaLite$PTimeUnit = function (a) {
@@ -10112,10 +10154,6 @@ var $author$project$GalleryMulti$multi5 = function () {
 					[spec1, spec2]))
 			]));
 }();
-var $author$project$VegaLite$View = function (a) {
-	return {$: 40, a: a};
-};
-var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$FLessThan = F2(
 	function (a, b) {
 		return {$: 1, a: a, b: b};
@@ -10290,10 +10328,6 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 13;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(13);
-var $author$project$VegaLite$VStroke = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
 var $author$project$VegaLite$WOp = function (a) {
 	return {$: 1, a: a};
 };
@@ -10704,10 +10738,6 @@ var $author$project$VegaLite$AlbersUsa = {$: 1};
 var $author$project$VegaLite$albersUsa = $author$project$VegaLite$AlbersUsa;
 var $author$project$VegaLite$Circle = 5;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(5);
-var $author$project$VegaLite$FExpr = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
 var $author$project$VegaLite$Geoshape = 6;
 var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$lookup = F4(

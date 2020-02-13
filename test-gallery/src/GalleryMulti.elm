@@ -154,29 +154,54 @@ multi4 =
         des =
             description "A dashboard with cross-highlighting"
 
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        trans =
+            transform
+                << filter (fiExpr "isValid(datum.Major_Genre)")
+
         selTrans =
             transform
                 << filter (fiSelection "myPts")
 
         encPosition =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position X
+                    [ pName "IMDB_Rating"
+                    , pQuant
+                    , pTitle "IMDB Rating"
+                    , pBin [ biMaxBins 10 ]
+                    ]
+                << position Y
+                    [ pName "Rotten_Tomatoes_Rating"
+                    , pQuant
+                    , pTitle "Rotten Tomatoes Rating"
+                    , pBin [ biMaxBins 10 ]
+                    ]
 
         enc1 =
             encoding
-                << color [ mAggregate opCount, mQuant, mLegend [ leTitle "" ] ]
+                << color
+                    [ mAggregate opCount
+                    , mQuant
+                    , mLegend
+                        [ leTitle "Number of films"
+                        , leDirection moHorizontal
+                        , leGradientLength 120
+                        ]
+                    ]
 
         spec1 =
-            asSpec [ width 300, rect [], enc1 [] ]
+            asSpec [ enc1 [], rect [] ]
 
         enc2 =
             encoding
-                << size [ mAggregate opCount, mQuant, mLegend [ leTitle "In Selected Category" ] ]
+                << size [ mAggregate opCount, mQuant, mTitle "in selected genre" ]
                 << color [ mStr "#666" ]
 
         spec2 =
-            asSpec [ selTrans [], point [], enc2 [] ]
+            asSpec [ selTrans [], enc2 [], point [] ]
 
         heatSpec =
             asSpec [ encPosition [], layer [ spec1, spec2 ] ]
@@ -185,12 +210,16 @@ multi4 =
             selection << select "myPts" seSingle [ seEncodings [ chX ] ]
 
         barSpec =
-            asSpec [ width 420, height 120, bar [], sel [], encBar [] ]
+            asSpec [ width 420, height 120, sel [], encBar [], bar [] ]
 
         encBar =
             encoding
-                << position X [ pName "Major_Genre", pNominal, pAxis [ axLabelAngle -40 ] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position X
+                    [ pName "Major_Genre"
+                    , pNominal
+                    , pAxis [ axTitle "", axLabelAngle -40 ]
+                    ]
+                << position Y [ pAggregate opCount, pQuant, pTitle "Number of films" ]
                 << color
                     [ mSelectionCondition (selectionName "myPts")
                         [ mStr "steelblue" ]
@@ -198,15 +227,23 @@ multi4 =
                     ]
 
         config =
-            configure << configuration (coRange [ racoHeatmap "greenblue" ])
+            configure
+                << configuration (coRange [ racoHeatmap "greenblue" ])
+                << configuration (coView [ vicoStroke Nothing ])
 
         res =
             resolve
-                << resolution (reLegend [ ( chColor, reIndependent ), ( chSize, reIndependent ) ])
+                << resolution
+                    (reLegend
+                        [ ( chColor, reIndependent )
+                        , ( chSize, reIndependent )
+                        ]
+                    )
     in
     toVegaLite
         [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+        , data
+        , trans []
         , vConcat [ heatSpec, barSpec ]
         , res []
         , config []

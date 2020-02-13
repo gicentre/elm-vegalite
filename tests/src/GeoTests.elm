@@ -417,68 +417,85 @@ mapComp2 =
 mapComp3 : Spec
 mapComp3 =
     let
+        dataGrat =
+            dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json"
+                [ topojsonFeature "graticule" ]
+
+        dataCountries =
+            dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json"
+                [ topojsonFeature "countries" ]
+
         rotatedSpec rot =
             let
                 graticuleSpec =
                     asSpec
-                        [ width 300
-                        , height 300
+                        [ dataGrat
                         , projection [ prType orthographic, prRotate rot 0 0 ]
-                        , dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
                         , geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ]
                         ]
 
                 countrySpec =
                     asSpec
-                        [ width 300
-                        , height 300
+                        [ dataCountries
                         , projection [ prType orthographic, prRotate rot 0 0 ]
-                        , dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
                         , geoshape [ maStroke "white", maFill "black", maStrokeWidth 0.5 ]
                         ]
             in
-            asSpec [ layer [ graticuleSpec, countrySpec ] ]
+            asSpec [ width 300, height 300, layer [ graticuleSpec, countrySpec ] ]
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
-        [ configure <| configuration (coView [ vicoStroke Nothing ]) <| [], hConcat [ rotatedSpec -65, rotatedSpec 115, rotatedSpec -65 ] ]
+        [ cfg [], hConcat [ rotatedSpec -65, rotatedSpec 115, rotatedSpec -65 ] ]
 
 
 mapComp4 : Spec
 mapComp4 =
     let
+        dataGlobe =
+            dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
+
+        dataGrat =
+            dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json"
+                [ topojsonFeature "graticule" ]
+
+        dataCountries =
+            dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json"
+                [ topojsonFeature "countries" ]
+
         rotatedSpec rot =
             let
                 seaSpec =
                     asSpec
-                        [ width 300
-                        , height 300
+                        [ dataGlobe
                         , projection [ prType orthographic, prRotate 0 0 0 ]
-                        , dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
                         , geoshape [ maFill "#c1e7f5", maStrokeOpacity 0 ]
                         ]
 
                 graticuleSpec =
                     asSpec
-                        [ width 300
-                        , height 300
+                        [ dataGrat
                         , projection [ prType orthographic, prRotate rot 0 0 ]
-                        , dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
                         , geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ]
                         ]
 
                 countrySpec =
                     asSpec
-                        [ width 300
-                        , height 300
+                        [ dataCountries
                         , projection [ prType orthographic, prRotate rot 0 0 ]
-                        , dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
                         , geoshape [ maStroke "white", maFill "#242", maStrokeWidth 0.1 ]
                         ]
             in
-            asSpec [ layer [ seaSpec, graticuleSpec, countrySpec ] ]
+            asSpec [ width 300, height 300, layer [ seaSpec, graticuleSpec, countrySpec ] ]
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
-        [ configure <| configuration (coView [ vicoStroke Nothing ]) <| [], hConcat [ rotatedSpec 0, rotatedSpec -40 ] ]
+        [ cfg [], hConcat [ rotatedSpec 0, rotatedSpec -40 ] ]
 
 
 dotMap1 : Spec
