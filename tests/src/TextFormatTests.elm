@@ -80,9 +80,61 @@ textFormat2 =
     toVegaLite [ width 100, data [], trans [], bar [], enc [] ]
 
 
+textAlign1 : Spec
+textAlign1 =
+    let
+        cfg =
+            configure
+                << configuration (coMark [ maFontSize 20 ])
+
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 10, 20 ])
+                << dataColumn "y" (nums [ 10, 20 ])
+
+        enc =
+            encoding
+                << position X
+                    [ pName "x"
+                    , pQuant
+                    , pTitle ""
+                    , pScale [ scDomain (doNums [ 5, 25 ]), scNice niFalse ]
+                    ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pTitle ""
+                    , pScale [ scDomain (doNums [ 5, 25 ]), scNice niFalse ]
+                    ]
+                << text [ tStr "Xxgqh" ]
+
+        mk va =
+            case va of
+                "top" ->
+                    asSpec [ title va [], data [], enc [], textMark [ maBaseline vaTop ] ]
+
+                "middle" ->
+                    asSpec [ title va [], data [], enc [], textMark [ maBaseline vaMiddle ] ]
+
+                "alphabetic" ->
+                    asSpec [ title va [], data [], enc [], textMark [ maBaseline vaAlphabetic ] ]
+
+                "bottom" ->
+                    asSpec [ title va [], data [], enc [], textMark [ maBaseline vaBottom ] ]
+
+                _ ->
+                    asSpec []
+    in
+    toVegaLite
+        [ cfg []
+        , columns 2
+        , concat (List.map mk [ "top", "middle", "alphabetic", "bottom" ])
+        ]
+
+
 sourceExample : Spec
 sourceExample =
-    textFormat2
+    textAlign1
 
 
 
@@ -94,6 +146,7 @@ mySpecs =
     combineSpecs
         [ ( "textFormat1", textFormat1 )
         , ( "textFormat2", textFormat2 )
+        , ( "textAlign1", textAlign1 )
         ]
 
 
