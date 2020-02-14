@@ -5313,8 +5313,10 @@ var $author$project$VegaLite$vAlignLabel = function (al) {
 			return 'top';
 		case 1:
 			return 'middle';
-		default:
+		case 2:
 			return 'bottom';
+		default:
+			return 'alphabetic';
 	}
 };
 var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
