@@ -13,6 +13,7 @@
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
 - `fAlign`, `fCenter` and `fSpacing` for positioning of sub-plots in faceted views (VL 4).
 - `vaAlphabetic` for baseline vertical alignment of text marks.
+- `maLimit`, `maEllipsis` and `maDir` with `tdLeftToRight` and `tdRightToLeft` for truncating and formatting text marks.
 - providing empty lists to the boxplot elements that appear by default (outliers, median, box and rule) now removes them.
 
 ### Other Changes

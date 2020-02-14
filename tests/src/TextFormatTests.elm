@@ -49,7 +49,10 @@ textFormat1 =
                     ]
 
         specLabel =
-            asSpec [ textMark [ maDy 4, maDx 22 ], encLabel [] ]
+            asSpec
+                [ encLabel []
+                , textMark [ maDy 4, maDx 22, maBaseline vaMiddle, maLimit 30, maEllipsis "~ ", maDir tdRightToLeft ]
+                ]
     in
     toVegaLite
         [ width 600
