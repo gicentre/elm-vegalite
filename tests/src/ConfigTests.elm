@@ -46,7 +46,6 @@ compositeVis config =
                 [ title "Car Scatter" []
                 , width 200
                 , height 200
-                , padding (paSize 20)
                 , point [ maSize 100 ]
                 , scatterEnc []
                 ]
@@ -68,7 +67,6 @@ compositeVis config =
                 [ title "Car Histogram" []
                 , width 200
                 , height 200
-                , padding (paSize 20)
                 , bar []
                 , barEnc []
                 ]
@@ -78,7 +76,6 @@ compositeVis config =
                 [ title "Car Streamgraph" []
                 , width 200
                 , height 200
-                , padding (paSize 20)
                 , area []
                 , streamEnc []
                 ]
@@ -185,9 +182,10 @@ darkCfg : Spec
 darkCfg =
     configure
         << configuration (coBackground "black")
+        << configuration (coFont "serif")
         << configuration (coTitle [ ticoFont "Roboto", ticoColor "#fff" ])
-        << configuration (coAxis [ axcoDomainColor "yellow", axcoGridColor "rgb(255,255,200)", axcoGridOpacity 0.2, axcoLabelColor "#fcf", axcoTickColor "white", axcoTitleColor "rgb(200,255,200)", axcoLabelFont "Roboto", axcoTitleFont "Roboto" ])
-        << configuration (coLegend [ lecoFillColor "#333", lecoStrokeColor "#444", lecoTitleColor "rgb(200,200,200)", lecoLabelColor "white", lecoSymbolFillColor "red", lecoGradientStrokeColor "yellow", lecoLabelFont "Roboto", lecoTitleFont "Roboto" ])
+        << configuration (coAxis [ axcoDomainColor "yellow", axcoGridColor "rgb(255,255,200)", axcoGridOpacity 0.2, axcoLabelColor "#fcf", axcoTickColor "white", axcoTitleColor "rgb(200,255,200)" ])
+        << configuration (coLegend [ lecoFillColor "#333", lecoStrokeColor "#444", lecoTitleColor "rgb(200,200,200)", lecoLabelColor "white", lecoSymbolFillColor "red", lecoGradientStrokeColor "yellow" ])
         |> compositeVis
 
 
