@@ -314,6 +314,7 @@ module VegaLite exposing
     , maStyle
     , maTension
     , maText
+    , maLineHeight
     , maTheta
     , maThickness
     , maTicks
@@ -1904,6 +1905,7 @@ property documentation.
 @docs maStyle
 @docs maTension
 @docs maText
+@docs maLineHeight
 @docs maTheta
 @docs maThickness
 @docs maTicks
@@ -4604,9 +4606,9 @@ type MarkOrientation
 [maEllipsis](#maEllipsis), [maExtent](#maExtent), [maFill](#maFill), [maFillGradient](#maFillGradient),
 [maFilled](#maFilled), [maFillOpacity](#maFillOpacity), [maFont](#maFont), [maFontSize](#maFontSize),
 [maFontStyle](#maFontStyle), [maFontWeight](#maFontWeight), [maInterpolate](#maInterpolate),
-[maLimit](#maLimit), [maLine](#maLine), [maMedian](#maMedian), [maOpacity](#maOpacity),
-[maOutliers](#maOutliers), [maOrient](#maOrient), [maPoint](#maPoint), [maRadius](#maRadius),
-[maRemoveInvalid](#maRemoveInvalid), [maRule](#maRule), [maShape](#maShape),
+[maLimit](#maLimit), [maLine](#maLine), [maLineHeight](#maLineHeight), [maMedian](#maMedian),
+[maOpacity](#maOpacity), [maOutliers](#maOutliers), [maOrient](#maOrient), [maPoint](#maPoint),
+[maRadius](#maRadius), [maRemoveInvalid](#maRemoveInvalid), [maRule](#maRule), [maShape](#maShape),
 [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize), [maStroke](#maStroke),
 [maStrokeGradient](#maStrokeGradient), [maStrokeCap](#maStrokeCap), [maStrokeDash](#maStrokeDash),
 [maStrokeDashOffset](#maStrokeDashOffset), [maStrokeJoin](#maStrokeJoin), [maStrokeMiterLimit](#maStrokeMiterLimit),
@@ -4658,6 +4660,7 @@ type
     | MFontWeight FontWeight
     | MInterpolate MarkInterpolation
     | MLine LineMarker
+    | MLineHeight Float
     | MMedian (List MarkProperty)
     | MOpacity Float
     | MOutliers (List MarkProperty)
@@ -11981,6 +11984,13 @@ that exceeds this limit will be truncated with an ellipsis.
 maLimit : Float -> MarkProperty
 maLimit =
     MLimit
+
+
+{-| Line height for multi-line text marks.
+-}
+maLineHeight : Float -> MarkProperty
+maLineHeight =
+    MLineHeight
 
 
 {-| Appearance of a line marker joining the vertices of an area mark.
@@ -19319,6 +19329,9 @@ markProperty mProp =
 
         MText txt ->
             ( "text", JE.string txt )
+
+        MLineHeight x ->
+            ( "lineHeight", JE.float x )
 
         MLimit x ->
             ( "limit", JE.float x )

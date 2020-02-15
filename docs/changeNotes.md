@@ -16,7 +16,7 @@
 - `maLimit`, `maEllipsis` and `maDir` with `tdLeftToRight` and `tdRightToLeft` for truncating and formatting text marks.
 - providing empty lists to the boxplot elements that appear by default (outliers, median, box and rule) now removes them.
 - `\n` in a `tStr` string literal now respects multiple-lines in text mark.
-- `ticoLineHeight`, `axcoTitleLineHeight` and `lecoTitleLineHeight` for multi-line text line height configuration.
+- `ticoLineHeight`, `axcoTitleLineHeight`, `lecoTitleLineHeight` and `maLineHeight` for multi-line text line height configuration.
 
 ### Other Changes
 

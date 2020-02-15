@@ -143,6 +143,7 @@ multiline1 =
                 << configuration (coTitle [ ticoLineHeight 24, ticoSubtitleLineHeight 24 ])
                 << configuration (coAxis [ axcoTitleLineHeight 24 ])
                 << configuration (coLegend [ lecoTitleLineHeight 24 ])
+                << configuration (coMark [ maLineHeight 16 ])
 
         data1 =
             dataFromColumns []
