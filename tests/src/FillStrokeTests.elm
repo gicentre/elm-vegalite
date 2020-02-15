@@ -245,9 +245,160 @@ rounded2 =
     toVegaLite [ data [], enc [], bar [ maCornerRadiusEnd 4 ] ]
 
 
+strokeDash1 : Spec
+strokeDash1 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
+                << strokeDash [ mName "symbol", mNominal ]
+    in
+    toVegaLite [ data, enc [], line [] ]
+
+
+strokeDash2 : Spec
+strokeDash2 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
+                << strokeDash
+                    [ mName "symbol"
+                    , mNominal
+                    , mScale
+                        [ scDomain (doStrs [ "AAPL", "AMZN", "GOOG", "IBM", "MSFT" ])
+                        , scRange (raNumLists [ [ 1, 0 ], [ 3, 1 ], [ 2, 3 ], [ 4, 4 ], [ 5, 6 ] ])
+                        ]
+                    ]
+    in
+    toVegaLite [ data, enc [], line [] ]
+
+
+strokeDash3 : Spec
+strokeDash3 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 ])
+                << dataColumn "y" (nums [ 100, 100, 90, 90, 80, 80, 70, 70, 60, 60, 50, 50, 40, 40, 30, 30, 20, 20, 10, 10 ])
+                << dataColumn "cat" (nums [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ])
+
+        encBase =
+            encoding
+                << position X [ pName "x", pQuant, pAxis [ axTitle "", axGrid False ] ]
+                << position Y [ pName "y", pQuant, pAxis [ axTitle "", axGrid False ] ]
+
+        enc1 =
+            encBase
+                << strokeDash [ mName "cat", mNominal ]
+
+        spec1 =
+            asSpec [ title "Nominal" [], width 200, enc1 [], line [] ]
+
+        enc2 =
+            encBase
+                << strokeDash [ mName "cat", mOrdinal ]
+
+        spec2 =
+            asSpec [ title "Ordinal" [], width 200, enc2 [], line [] ]
+
+        res =
+            resolve
+                << resolution (reScale [ ( chStrokeDash, reIndependent ) ])
+    in
+    toVegaLite [ data [], res [], concat [ spec1, spec2 ] ]
+
+
+strokeDash4 : Spec
+strokeDash4 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 ])
+                << dataColumn "y" (nums [ 100, 100, 90, 90, 80, 80, 70, 70, 60, 60, 50, 50, 40, 40, 30, 30, 20, 20, 10, 10 ])
+                << dataColumn "cat" (nums [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10 ])
+
+        d1 =
+            [ 1, 0 ]
+
+        d2 =
+            [ 16, 4 ]
+
+        d3 =
+            [ 10, 4 ]
+
+        d4 =
+            [ 8, 4 ]
+
+        d5 =
+            [ 8, 4, 4, 4 ]
+
+        d6 =
+            [ 6, 4 ]
+
+        d7 =
+            [ 5, 4 ]
+
+        d8 =
+            [ 4, 6 ]
+
+        d9 =
+            [ 2, 4 ]
+
+        d10 =
+            [ 1, 3 ]
+
+        encBase =
+            encoding
+                << position X [ pName "x", pQuant, pAxis [ axTitle "", axGrid False ] ]
+                << position Y [ pName "y", pQuant, pAxis [ axTitle "", axGrid False ] ]
+
+        enc1 =
+            encBase
+                << strokeDash
+                    [ mName "cat"
+                    , mNominal
+                    , mScale
+                        [ scDomain (doNums [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ])
+                        , scRange (raNumLists [ d1, d7, d9, d5, d10, d2, d6, d4, d8, d3 ])
+                        ]
+                    ]
+
+        spec1 =
+            asSpec [ title "Nominal" [], width 200, height 100, enc1 [], line [] ]
+
+        enc2 =
+            encBase
+                << strokeDash
+                    [ mName "cat"
+                    , mOrdinal
+                    , mScale
+                        [ scDomain (doNums [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ])
+                        , scRange (raNumLists [ d1, d2, d3, d4, d5, d6, d7, d8, d9, d10 ])
+                        ]
+                    ]
+
+        spec2 =
+            asSpec [ title "Ordinal" [], width 200, height 100, enc2 [], line [] ]
+
+        res =
+            resolve
+                << resolution (reScale [ ( chStrokeDash, reIndependent ) ])
+    in
+    toVegaLite [ data [], res [], concat [ spec1, spec2 ] ]
+
+
 sourceExample : Spec
 sourceExample =
-    rounded2
+    strokeDash4
 
 
 
@@ -274,6 +425,10 @@ mySpecs =
         , ( "gradient3", gradient3 )
         , ( "rounded1", rounded1 )
         , ( "rounded2", rounded2 )
+        , ( "strokeDash1", strokeDash1 )
+        , ( "strokeDash2", strokeDash2 )
+        , ( "strokeDash3", strokeDash3 )
+        , ( "strokeDash4", strokeDash4 )
         ]
 
 

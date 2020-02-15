@@ -393,6 +393,41 @@ line14 =
     toVegaLite [ des, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
 
 
+line15 : Spec
+line15 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
+                << strokeDash [ mName "symbol", mNominal ]
+    in
+    toVegaLite [ data, enc [], line [] ]
+
+
+line16 : Spec
+line16 =
+    let
+        data =
+            dataFromColumns []
+                -- Note the duplicate of the 4th data value to join dash to solid line.
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "D", "E", "F" ])
+                << dataColumn "b" (nums [ 28, 55, 91, 81, 81, 19, 87 ])
+                << dataColumn "predicted" (boos [ False, False, False, False, True, True, True ])
+
+        enc =
+            encoding
+                << position X [ pName "a", pOrdinal, pAxis [ axTitle "", axLabelAngle 0 ] ]
+                << position Y [ pName "b", pQuant, pTitle "" ]
+                << strokeDash [ mName "predicted", mNominal ]
+                << color [ mName "predicted", mNominal ]
+    in
+    toVegaLite [ width 200, data [], enc [], line [] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -414,6 +449,8 @@ mySpecs =
         , ( "line12", line12 )
         , ( "line13", line13 )
         , ( "line14", line14 )
+        , ( "line15", line15 )
+        , ( "line16", line16 )
         ]
 
 

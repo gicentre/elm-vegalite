@@ -4,11 +4,12 @@
 
 ### Additions
 
-- `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL4.1).
-- `maCornerRadiusEnd` for rounding upper or right corners of bar rectangles (VL4.1).
-- `scDomainMid` for setting midpoint in a diverging continuous scale (VL4.1).
+- `strokeDash` and associated `chStrokeDash` encoding channel (VL 4.2)
+- `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL 4.1).
+- `maCornerRadiusEnd` for rounding upper or right corners of bar rectangles (V L4.1).
+- `scDomainMid` for setting midpoint in a diverging continuous scale (VL 4.1).
 - `cAxLabelPadding` and `cAxTickSize` conditional axis formatting (VL 4.1)
-- `smCursor` for setting cursor over selection mark (VL4.1)
+- `smCursor` for setting cursor over selection mark (VL 4.1)
 - `vicoCursor` for setting default cursor over view.
 - `miLinearClosed` interpolation to form closed polygons (missed exposing this from earlier releases).
 - `fAlign`, `fCenter` and `fSpacing` for positioning of sub-plots in faceted views (VL 4).
