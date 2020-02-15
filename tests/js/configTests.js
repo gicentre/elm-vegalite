@@ -6143,33 +6143,33 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'autosize',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$autosizeProperty, aus)));
-		case 10:
+		case 12:
 			var bg = configProp.a;
 			return _Utils_Tuple2(
 				'background',
 				$elm$json$Json$Encode$string(bg));
-		case 14:
+		case 16:
 			var s = configProp.a;
 			return _Utils_Tuple2(
 				'countTitle',
 				$elm$json$Json$Encode$string(s));
-		case 15:
+		case 17:
 			var ftp = configProp.a;
 			return _Utils_Tuple2(
 				'fieldTitle',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$fieldTitleLabel(ftp)));
-		case 24:
+		case 26:
 			var fmt = configProp.a;
 			return _Utils_Tuple2(
 				'numberFormat',
 				$elm$json$Json$Encode$string(fmt));
-		case 25:
+		case 27:
 			var pad = configProp.a;
 			return _Utils_Tuple2(
 				'padding',
 				$author$project$VegaLite$paddingSpec(pad));
-		case 38:
+		case 40:
 			var fmt = configProp.a;
 			return _Utils_Tuple2(
 				'timeFormat',
@@ -6222,19 +6222,31 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'axisBand',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 17:
+		case 10:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisQuantitative',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
+		case 11:
+			var acs = configProp.a;
+			return _Utils_Tuple2(
+				'axisTemporal',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
+		case 19:
 			var lcs = configProp.a;
 			return _Utils_Tuple2(
 				'legend',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$legendConfigProperty, lcs)));
-		case 21:
+		case 23:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'mark',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 27:
+		case 29:
 			var pps = configProp.a;
 			return _Utils_Tuple2(
 				'projection',
@@ -6246,91 +6258,91 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'area',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 11:
+		case 13:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'bar',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 12:
+		case 14:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'circle',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 19:
+		case 21:
 			var fps = configProp.a;
 			return _Utils_Tuple2(
 				'facet',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$facetConfigProperty, fps)));
-		case 13:
+		case 15:
 			var cps = configProp.a;
 			return _Utils_Tuple2(
 				'concat',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$concatConfigProperty, cps)));
-		case 16:
+		case 18:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'geoshape',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 20:
+		case 22:
 			var hps = configProp.a;
 			return _Utils_Tuple2(
 				'header',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$headerProperty, hps)));
-		case 18:
+		case 20:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'line',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 26:
+		case 28:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'point',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 29:
+		case 31:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'rect',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 30:
+		case 32:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'rule',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 33:
+		case 35:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'square',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 35:
+		case 37:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'text',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 36:
+		case 38:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'tick',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 37:
+		case 39:
 			var tcs = configProp.a;
 			return _Utils_Tuple2(
 				'title',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tcs)));
-		case 22:
+		case 24:
 			var styleName = configProp.a;
 			var mps = configProp.b;
 			return _Utils_Tuple2(
@@ -6343,7 +6355,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 							$elm$json$Json$Encode$object(
 								A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)))
 						])));
-		case 23:
+		case 25:
 			var styles = configProp.a;
 			return _Utils_Tuple2(
 				'style',
@@ -6359,22 +6371,22 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 									A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
 						},
 						styles)));
-		case 31:
+		case 33:
 			var scs = configProp.a;
 			return _Utils_Tuple2(
 				'scale',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$scaleConfigProperty, scs)));
-		case 34:
+		case 36:
 			var so = configProp.a;
 			return $author$project$VegaLite$stackOffsetProperty(so);
-		case 28:
+		case 30:
 			var rcs = configProp.a;
 			return _Utils_Tuple2(
 				'range',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$rangeConfigProperty, rcs)));
-		case 32:
+		case 34:
 			var selConfig = configProp.a;
 			var selProp = function (_v2) {
 				var sel = _v2.a;
@@ -6388,7 +6400,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'selection',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, selProp, selConfig)));
-		case 40:
+		case 42:
 			var vcs = configProp.a;
 			return _Utils_Tuple2(
 				'view',
@@ -9208,15 +9220,15 @@ var $author$project$VegaLite$TitleColor = function (a) {
 };
 var $author$project$VegaLite$axcoTitleColor = $author$project$VegaLite$TitleColor;
 var $author$project$VegaLite$Background = function (a) {
-	return {$: 10, a: a};
+	return {$: 12, a: a};
 };
 var $author$project$VegaLite$coBackground = $author$project$VegaLite$Background;
 var $author$project$VegaLite$Legend = function (a) {
-	return {$: 17, a: a};
+	return {$: 19, a: a};
 };
 var $author$project$VegaLite$coLegend = $author$project$VegaLite$Legend;
 var $author$project$VegaLite$TitleStyle = function (a) {
-	return {$: 37, a: a};
+	return {$: 39, a: a};
 };
 var $author$project$VegaLite$coTitle = $author$project$VegaLite$TitleStyle;
 var $author$project$VegaLite$Area = 0;
@@ -9600,7 +9612,7 @@ var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeV
 					])))));
 var $author$project$ConfigTests$defaultCfg = $author$project$ConfigTests$compositeVis($author$project$VegaLite$configure);
 var $author$project$VegaLite$MarkStyle = function (a) {
-	return {$: 21, a: a};
+	return {$: 23, a: a};
 };
 var $author$project$VegaLite$coMark = $author$project$VegaLite$MarkStyle;
 var $author$project$VegaLite$MFilled = function (a) {
@@ -9622,11 +9634,11 @@ var $author$project$VegaLite$AreaStyle = function (a) {
 };
 var $author$project$VegaLite$coArea = $author$project$VegaLite$AreaStyle;
 var $author$project$VegaLite$BarStyle = function (a) {
-	return {$: 11, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$coBar = $author$project$VegaLite$BarStyle;
 var $author$project$VegaLite$PointStyle = function (a) {
-	return {$: 26, a: a};
+	return {$: 28, a: a};
 };
 var $author$project$VegaLite$coPoint = $author$project$VegaLite$PointStyle;
 var $author$project$VegaLite$MFill = function (a) {
@@ -9690,7 +9702,7 @@ var $author$project$VegaLite$Autosize = function (a) {
 };
 var $author$project$VegaLite$coAutosize = $author$project$VegaLite$Autosize;
 var $author$project$VegaLite$Padding = function (a) {
-	return {$: 25, a: a};
+	return {$: 27, a: a};
 };
 var $author$project$VegaLite$coPadding = $author$project$VegaLite$Padding;
 var $author$project$VegaLite$PEdges = F4(
@@ -9912,11 +9924,11 @@ var $author$project$VegaLite$background = function (colour) {
 var $author$project$VegaLite$CRound = 1;
 var $author$project$VegaLite$caRound = 1;
 var $author$project$VegaLite$NamedStyles = function (a) {
-	return {$: 23, a: a};
+	return {$: 25, a: a};
 };
 var $author$project$VegaLite$coNamedStyles = $author$project$VegaLite$NamedStyles;
 var $author$project$VegaLite$View = function (a) {
-	return {$: 40, a: a};
+	return {$: 42, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$JBevel = 2;
