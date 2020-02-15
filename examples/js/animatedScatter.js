@@ -5602,16 +5602,21 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				'titleLimit',
 				$elm$json$Json$Encode$float(x));
 		case 50:
+			var x = axisCfg.a;
+			return _Utils_Tuple2(
+				'titleLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 51:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleOpacity',
 				$elm$json$Json$Encode$float(n));
-		case 51:
+		case 52:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				$elm$json$Json$Encode$float(x));
-		case 52:
+		case 53:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleX',
@@ -6147,6 +6152,11 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 			var x = legendConfig.a;
 			return _Utils_Tuple2(
 				'titleLimit',
+				$elm$json$Json$Encode$float(x));
+		case 47:
+			var x = legendConfig.a;
+			return _Utils_Tuple2(
+				'titleLineHeight',
 				$elm$json$Json$Encode$float(x));
 		default:
 			var x = legendConfig.a;
@@ -8088,63 +8098,68 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 			return _Utils_Tuple2(
 				'fontWeight',
 				$author$project$VegaLite$fontWeightSpec(w));
-		case 9:
+		case 10:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'limit',
 				$elm$json$Json$Encode$float(x));
-		case 10:
+		case 9:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'lineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 11:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'offset',
 				$elm$json$Json$Encode$float(x));
-		case 11:
+		case 12:
 			var sd = titleCfg.a;
 			return _Utils_Tuple2(
 				'orient',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$sideLabel(sd)));
-		case 12:
+		case 13:
 			var styles = titleCfg.a;
 			return _Utils_Tuple2(
 				'style',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles));
-		case 13:
+		case 14:
 			var s = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitle',
 				$author$project$VegaLite$multilineTextSpec(s));
-		case 14:
+		case 15:
 			var s = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitleColor',
 				$elm$json$Json$Encode$string(s));
-		case 15:
+		case 16:
 			var s = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitleFont',
 				$elm$json$Json$Encode$string(s));
-		case 16:
+		case 17:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitleFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 17:
+		case 18:
 			var s = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitleFontStyle',
 				$elm$json$Json$Encode$string(s));
-		case 18:
+		case 19:
 			var w = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitleFontWeight',
 				$author$project$VegaLite$fontWeightSpec(w));
-		case 19:
+		case 20:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitleLineHeight',
 				$elm$json$Json$Encode$float(x));
-		case 20:
+		case 21:
 			var x = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitlePadding',
