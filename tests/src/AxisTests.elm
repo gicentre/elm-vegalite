@@ -9,7 +9,7 @@ data =
     dataFromColumns []
         << dataColumn "x" (List.range 1 100 |> List.map toFloat |> nums)
         << dataColumn "catX" (List.range 1 100 |> List.map String.fromInt |> strs)
-        << dataColumn "y" (List.range 1 100 |> List.map toFloat |> nums)
+        << dataColumn "y" (List.range 1 10 |> List.map toFloat |> nums)
 
 
 temporalData : List DataColumn -> Data
@@ -34,15 +34,34 @@ temporalData =
         << dataColumn "y" (nums [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ])
 
 
-axis1 : Spec
-axis1 =
+qAxisBase : Maybe ConfigurationProperty -> Spec
+qAxisBase maybeCfg =
     let
+        cfg =
+            case maybeCfg of
+                Just axCfg ->
+                    configure
+                        << configuration axCfg
+
+                Nothing ->
+                    configure
+
         enc =
             encoding
                 << position X [ pName "x", pQuant ]
-                << position Y [ pName "y", pQuant ]
+                << position Y [ pName "y", pOrdinal ]
     in
-    toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
+    toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis1 : Spec
+axis1 =
+    qAxisBase Nothing
+
+
+axis1a : Spec
+axis1a =
+    qAxisBase (Just (coAxisQuant [ axcoGridColor "red" ]))
 
 
 axis2 : Spec
@@ -67,15 +86,34 @@ axis3 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-axis4 : Spec
-axis4 =
+tAxisBase : Maybe ConfigurationProperty -> Spec
+tAxisBase maybeCfg =
     let
+        cfg =
+            case maybeCfg of
+                Just axCfg ->
+                    configure
+                        << configuration axCfg
+
+                Nothing ->
+                    configure
+
         enc =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "y", pQuant ]
     in
-    toVegaLite [ temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
+    toVegaLite [ cfg [], temporalData [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis4 : Spec
+axis4 =
+    tAxisBase Nothing
+
+
+axis4a : Spec
+axis4a =
+    tAxisBase (Just (coAxisTemporal [ axcoGridColor "red" ]))
 
 
 axis5 : Spec
@@ -169,9 +207,11 @@ mySpecs : Spec
 mySpecs =
     combineSpecs
         [ ( "axis1", axis1 )
+        , ( "axis1a", axis1a )
         , ( "axis2", axis2 )
         , ( "axis3", axis3 )
         , ( "axis4", axis4 )
+        , ( "axis4a", axis4a )
         , ( "axis5", axis5 )
         , ( "axis6", axis6 )
         , ( "axis7", axis7 )

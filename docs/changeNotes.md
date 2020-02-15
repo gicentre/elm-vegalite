@@ -5,6 +5,7 @@
 ### Additions
 
 - `strokeDash` and associated `chStrokeDash` encoding channel (VL 4.2)
+- `coAxisQuant` and `coAxisTemporal` for configuring quantitative and temporal axes (VL 4.2)
 - `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL 4.1).
 - `maCornerRadiusEnd` for rounding upper or right corners of bar rectangles (V L4.1).
 - `scDomainMid` for setting midpoint in a diverging continuous scale (VL 4.1).
