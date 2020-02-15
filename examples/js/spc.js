@@ -5762,19 +5762,7 @@ var $author$project$VegaLite$fieldTitleLabel = function (ftp) {
 			return 'plain';
 	}
 };
-var $author$project$VegaLite$sideLabel = function (side) {
-	switch (side) {
-		case 0:
-			return 'top';
-		case 1:
-			return 'bottom';
-		case 2:
-			return 'left';
-		default:
-			return 'right';
-	}
-};
-var $author$project$VegaLite$titleSpec = function (tText) {
+var $author$project$VegaLite$multilineTextSpec = function (tText) {
 	var _v0 = A2($elm$core$String$split, '\n', tText);
 	if (!_v0.b) {
 		return $elm$json$Json$Encode$string('');
@@ -5786,6 +5774,18 @@ var $author$project$VegaLite$titleSpec = function (tText) {
 			var ss = _v0;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
 		}
+	}
+};
+var $author$project$VegaLite$sideLabel = function (side) {
+	switch (side) {
+		case 0:
+			return 'top';
+		case 1:
+			return 'bottom';
+		case 2:
+			return 'left';
+		default:
+			return 'right';
 	}
 };
 var $author$project$VegaLite$headerProperty = function (hProp) {
@@ -5855,7 +5855,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'title',
-				$author$project$VegaLite$titleSpec(s));
+				$author$project$VegaLite$multilineTextSpec(s));
 		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(
@@ -8200,7 +8200,7 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 			var s = titleCfg.a;
 			return _Utils_Tuple2(
 				'subtitle',
-				$author$project$VegaLite$titleSpec(s));
+				$author$project$VegaLite$multilineTextSpec(s));
 		case 14:
 			var s = titleCfg.a;
 			return _Utils_Tuple2(
@@ -9773,7 +9773,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			var s = legendProp.a;
 			return (s === '') ? _Utils_Tuple2('title', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'title',
-				$author$project$VegaLite$titleSpec(s));
+				$author$project$VegaLite$multilineTextSpec(s));
 		case 35:
 			var ha = legendProp.a;
 			return _Utils_Tuple2(
@@ -10651,7 +10651,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 				[
 					_Utils_Tuple2(
 					'title',
-					$author$project$VegaLite$titleSpec(t))
+					$author$project$VegaLite$multilineTextSpec(t))
 				]);
 		case 9:
 			var op = field.a;
@@ -11150,7 +11150,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			var s = axisProp.a;
 			return _Utils_Tuple2(
 				'title',
-				$author$project$VegaLite$titleSpec(s));
+				$author$project$VegaLite$multilineTextSpec(s));
 		case 44:
 			var al = axisProp.a;
 			return _Utils_Tuple2(
@@ -11365,7 +11365,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			var t = pDef.a;
 			return _Utils_Tuple2(
 				'title',
-				$author$project$VegaLite$titleSpec(t));
+				$author$project$VegaLite$multilineTextSpec(t));
 		case 13:
 			var sps = pDef.a;
 			_v1$4:
