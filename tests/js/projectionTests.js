@@ -7308,8 +7308,10 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 			return 'opacity';
 		case 6:
 			return 'shape';
-		default:
+		case 7:
 			return 'size';
+		default:
+			return 'strokeDash';
 	}
 };
 var $author$project$VegaLite$bindLegendProperty = function (blProp) {

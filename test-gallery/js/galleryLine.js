@@ -4317,6 +4317,14 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					return _Utils_Tuple2(
 						'range',
 						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+				case 2:
+					var xss = range.a;
+					return _Utils_Tuple2(
+						'range',
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
+							xss));
 				case 1:
 					var ss = range.a;
 					return _Utils_Tuple2(
@@ -4430,8 +4438,10 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 			return 'opacity';
 		case 6:
 			return 'shape';
-		default:
+		case 7:
 			return 'size';
+		default:
+			return 'strokeDash';
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -10479,6 +10489,142 @@ var $author$project$GalleryLine$line14 = function () {
 					[specSin, specCos]))
 			]));
 }();
+var $author$project$VegaLite$strokeDash = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'strokeDash',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$GalleryLine$line15 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('date'),
+							$author$project$VegaLite$pTemporal
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('price'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$strokeDash(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('symbol'),
+					$author$project$VegaLite$mNominal
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$AxLabelAngle = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$positiveAngle = function (a) {
+	return (a < 0) ? (a + 360) : a;
+};
+var $author$project$VegaLite$axLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$AxLabelAngle, $author$project$VegaLite$positiveAngle);
+var $author$project$VegaLite$Booleans = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$boos = $author$project$VegaLite$Booleans;
+var $author$project$GalleryLine$line16 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('a'),
+								$author$project$VegaLite$pOrdinal,
+								$author$project$VegaLite$pAxis(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$axTitle(''),
+										$author$project$VegaLite$axLabelAngle(0)
+									]))
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('b'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pTitle('')
+						]))),
+			$author$project$VegaLite$strokeDash(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mName('predicted'),
+						$author$project$VegaLite$mNominal
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('predicted'),
+					$author$project$VegaLite$mNominal
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'a',
+					$author$project$VegaLite$strs(
+						_List_fromArray(
+							['A', 'B', 'C', 'D', 'D', 'E', 'F'])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'b',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[28, 55, 91, 81, 81, 19, 87])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'predicted',
+			$author$project$VegaLite$boos(
+				_List_fromArray(
+					[false, false, false, false, true, true, true]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(200),
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$Mean = {$: 7};
 var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
 var $author$project$VegaLite$PAggregate = function (a) {
@@ -11115,7 +11261,9 @@ var $author$project$GalleryLine$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('line11', $author$project$GalleryLine$line11),
 			_Utils_Tuple2('line12', $author$project$GalleryLine$line12),
 			_Utils_Tuple2('line13', $author$project$GalleryLine$line13),
-			_Utils_Tuple2('line14', $author$project$GalleryLine$line14)
+			_Utils_Tuple2('line14', $author$project$GalleryLine$line14),
+			_Utils_Tuple2('line15', $author$project$GalleryLine$line15),
+			_Utils_Tuple2('line16', $author$project$GalleryLine$line16)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

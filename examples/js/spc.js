@@ -7401,8 +7401,10 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 			return 'opacity';
 		case 6:
 			return 'shape';
-		default:
+		case 7:
 			return 'size';
+		default:
+			return 'strokeDash';
 	}
 };
 var $author$project$VegaLite$bindLegendProperty = function (blProp) {
@@ -10257,6 +10259,14 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					return _Utils_Tuple2(
 						'range',
 						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+				case 2:
+					var xss = range.a;
+					return _Utils_Tuple2(
+						'range',
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
+							xss));
 				case 1:
 					var ss = range.a;
 					return _Utils_Tuple2(
