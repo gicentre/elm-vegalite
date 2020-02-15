@@ -135,9 +135,61 @@ textAlign1 =
         ]
 
 
+multiline1 : Spec
+multiline1 =
+    let
+        data1 =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 8, 12 ])
+                << dataColumn "y" (nums [ 5, 15 ])
+                << dataColumn "label" (strs [ "data on\ntwo lines", "data on\nthree\nlines" ])
+                << dataColumn "cat" (strs [ "A", "B" ])
+
+        data2 =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 15 ])
+                << dataColumn "y" (nums [ 10 ])
+                << dataColumn "cat" (strs [ "C" ])
+
+        encBase =
+            encoding
+                << position X
+                    [ pName "x"
+                    , pQuant
+                    , pScale [ scDomain (doNums [ 0, 20 ]) ]
+                    , pTitle "Axis title on\ntwo lines"
+                    ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pScale [ scDomain (doNums [ 0, 20 ]) ]
+                    , pAxis [ axTitle "Axis title on\ntwo lines" ]
+                    ]
+                << color [ mName "cat", mNominal, mTitle "Legend title on\ntwo lines" ]
+
+        enc1 =
+            encBase
+                << text [ tName "label", tNominal ]
+
+        spec1 =
+            asSpec [ data1 [], enc1 [], textMark [] ]
+
+        enc2 =
+            encBase
+                << text [ tStr "literal\non\nthree lines" ]
+
+        spec2 =
+            asSpec [ data2 [], enc2 [], textMark [] ]
+    in
+    toVegaLite
+        [ title "Main title on\ntwo lines" [ tiSubtitle "Subtitle on\ntwo lines" ]
+        , layer [ spec1, spec2 ]
+        ]
+
+
 sourceExample : Spec
 sourceExample =
-    textAlign1
+    multiline1
 
 
 
@@ -150,6 +202,7 @@ mySpecs =
         [ ( "textFormat1", textFormat1 )
         , ( "textFormat2", textFormat2 )
         , ( "textAlign1", textAlign1 )
+        , ( "multiline1", multiline1 )
         ]
 
 

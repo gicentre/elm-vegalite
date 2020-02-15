@@ -15859,7 +15859,7 @@ title : String -> List TitleProperty -> ( VLProperty, Spec )
 title txt tps =
     ( VLTitle
     , JE.object
-        (( "text", titleSpec txt )
+        (( "text", multilineTextSpec txt )
             :: List.map titleConfigProperty tps
         )
     )
@@ -16050,12 +16050,13 @@ tSelectionCondition =
 
 
 {-| Literal string value when encoding with a text property channel. Can be useful
-for quick text annotation. For example
+for quick text annotation. Text can be multi-line by inserting a `\n` at line breaks
+or by using `"""` multi-line strings. For example,
 
     encoding
         << position X [ pNum 300 ]
         << position Y [ pNum 300 ]
-        << text [ tStr "Upper limit of range" ]
+        << text [ tStr "Upper limit\nof range" ]
 
 -}
 tStr : String -> TextChannel
@@ -17241,7 +17242,7 @@ axisProperty axisProp =
             ( "values", JE.list (\ds -> JE.object (List.map dateTimeProperty ds)) dtss )
 
         AxTitle s ->
-            ( "title", titleSpec s )
+            ( "title", multilineTextSpec s )
 
         AxTitleAlign al ->
             ( "titleAlign", JE.string (hAlignLabel al) )
@@ -18404,7 +18405,7 @@ headerProperty hProp =
             ( "labelPadding", JE.float x )
 
         HTitle s ->
-            ( "title", titleSpec s )
+            ( "title", multilineTextSpec s )
 
         HTitleAnchor a ->
             ( "titleAnchor", JE.string (anchorLabel a) )
@@ -18824,7 +18825,7 @@ legendProperty legendProp =
                 ( "title", JE.null )
 
             else
-                ( "title", titleSpec s )
+                ( "title", multilineTextSpec s )
 
         LTitleAlign ha ->
             ( "titleAlign", JE.string (hAlignLabel ha) )
@@ -18992,7 +18993,7 @@ markChannelProperties field =
             [ ( "timeUnit", timeUnitSpec tu ) ]
 
         MTitle t ->
-            [ ( "title", titleSpec t ) ]
+            [ ( "title", multilineTextSpec t ) ]
 
         MAggregate op ->
             [ ( "aggregate", operationSpec op ) ]
@@ -19796,7 +19797,7 @@ positionChannelProperty pDef =
             ( "timeUnit", timeUnitSpec tu )
 
         PTitle t ->
-            ( "title", titleSpec t )
+            ( "title", multilineTextSpec t )
 
         PSort sps ->
             case sps of
@@ -20630,7 +20631,7 @@ textChannelProperties tDef =
             [ ( "timeUnit", timeUnitSpec tu ) ]
 
         TTitle t ->
-            [ ( "title", titleSpec t ) ]
+            [ ( "title", multilineTextSpec t ) ]
 
         TFormat fmt ->
             [ ( "format", JE.string fmt ) ]
@@ -20662,7 +20663,7 @@ textChannelProperties tDef =
                 :: List.concatMap textChannelProperties elseClause
 
         TString s ->
-            [ ( "value", JE.string s ) ]
+            [ ( "value", multilineTextSpec s ) ]
 
 
 textDirectionLabel : TextDirection -> String
@@ -20826,7 +20827,7 @@ titleConfigProperty titleCfg =
             ( "style", JE.list JE.string styles )
 
         TSubtitle s ->
-            ( "subtitle", titleSpec s )
+            ( "subtitle", multilineTextSpec s )
 
         TSubtitleColor s ->
             ( "subtitleColor", JE.string s )
@@ -20853,8 +20854,8 @@ titleConfigProperty titleCfg =
             ( "zindex", JE.int n )
 
 
-titleSpec : String -> Spec
-titleSpec tText =
+multilineTextSpec : String -> Spec
+multilineTextSpec tText =
     case String.split "\n" tText of
         [] ->
             JE.string ""
