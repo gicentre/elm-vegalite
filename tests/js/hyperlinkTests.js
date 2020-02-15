@@ -6970,8 +6970,17 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'selection',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		default:
+		case 5:
 			return $elm$json$Json$Encode$string('unaggregated');
+		default:
+			var scDo = sdType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'unionWith',
+						$author$project$VegaLite$scaleDomainSpec(scDo))
+					]));
 	}
 };
 var $author$project$VegaLite$scaleLabel = function (sc) {
