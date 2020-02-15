@@ -138,6 +138,12 @@ textAlign1 =
 multiline1 : Spec
 multiline1 =
     let
+        cfg =
+            configure
+                << configuration (coTitle [ ticoLineHeight 24, ticoSubtitleLineHeight 24 ])
+                << configuration (coAxis [ axcoTitleLineHeight 24 ])
+                << configuration (coLegend [ lecoTitleLineHeight 24 ])
+
         data1 =
             dataFromColumns []
                 << dataColumn "x" (nums [ 8, 12 ])
@@ -182,7 +188,8 @@ multiline1 =
             asSpec [ data2 [], enc2 [], textMark [] ]
     in
     toVegaLite
-        [ title "Main title on\ntwo lines" [ tiSubtitle "Subtitle on\ntwo lines" ]
+        [ cfg []
+        , title "Main title on\ntwo lines" [ tiSubtitle "Subtitle on\ntwo lines" ]
         , layer [ spec1, spec2 ]
         ]
 
