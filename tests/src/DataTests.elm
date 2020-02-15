@@ -316,6 +316,53 @@ pivot1 =
     toVegaLite [ repeatFlow [ "gold", "silver" ], specification spec ]
 
 
+doData =
+    dataFromColumns []
+        << dataColumn "x" (nums [ 1, 2, 3, 4 ])
+        << dataColumn "y" (nums [ 95, 97, 100, 105 ])
+
+
+domain1 : Spec
+domain1 =
+    let
+        enc =
+            encoding
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant, pScale [ scZero False ] ]
+    in
+    toVegaLite [ doData [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+domain2 : Spec
+domain2 =
+    let
+        enc =
+            encoding
+                << position X [ pName "x", pQuant ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pScale [ scZero False, scDomain (doNums [ 90, 100 ]) ]
+                    ]
+    in
+    toVegaLite [ doData [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+domain3 : Spec
+domain3 =
+    let
+        enc =
+            encoding
+                << position X [ pName "x", pQuant ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pScale [ scZero False, scDomain (doNums [ 90, 100 ] |> doUnionWith) ]
+                    ]
+    in
+    toVegaLite [ doData [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
 imputeData : List DataColumn -> Data
 imputeData =
     dataFromColumns []
@@ -611,7 +658,7 @@ annotate1 =
 
 sourceExample : Spec
 sourceExample =
-    annotate1
+    domain1
 
 
 
@@ -640,6 +687,9 @@ mySpecs =
         , ( "flatten1", flatten1 )
         , ( "fold1", fold1 )
         , ( "pivot1", pivot1 )
+        , ( "domain1", domain1 )
+        , ( "domain2", domain2 )
+        , ( "domain3", domain3 )
         , ( "impute1", impute1 )
         , ( "impute2", impute2 )
         , ( "impute3", impute3 )

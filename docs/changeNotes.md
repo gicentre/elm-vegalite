@@ -4,6 +4,7 @@
 
 ### Additions
 
+- `doUnionWith` for combining fixed and data-driven domains (VL 4.3)
 - `strokeDash` and associated `chStrokeDash` encoding channel (VL 4.2)
 - `coAxisQuant` and `coAxisTemporal` for configuring quantitative and temporal axes (VL 4.2)
 - `timeUnit` can now create objects parameterised with `tuMAxBins` and `tuStep` (VL 4.1).
