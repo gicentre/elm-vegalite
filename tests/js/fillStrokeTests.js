@@ -10382,6 +10382,26 @@ var $author$project$FillStrokeTests$strokeDash3 = function () {
 					[spec1, spec2]))
 			]));
 }();
+var $author$project$FillStrokeTests$d0 = _List_fromArray(
+	[1, 0]);
+var $author$project$FillStrokeTests$d1 = _List_fromArray(
+	[16, 4]);
+var $author$project$FillStrokeTests$d2 = _List_fromArray(
+	[10, 4]);
+var $author$project$FillStrokeTests$d3 = _List_fromArray(
+	[8, 4]);
+var $author$project$FillStrokeTests$d4 = _List_fromArray(
+	[8, 4, 4, 4]);
+var $author$project$FillStrokeTests$d5 = _List_fromArray(
+	[6, 4]);
+var $author$project$FillStrokeTests$d6 = _List_fromArray(
+	[5, 4]);
+var $author$project$FillStrokeTests$d7 = _List_fromArray(
+	[4, 6]);
+var $author$project$FillStrokeTests$d8 = _List_fromArray(
+	[2, 4]);
+var $author$project$FillStrokeTests$d9 = _List_fromArray(
+	[1, 3]);
 var $author$project$VegaLite$DNumbers = function (a) {
 	return {$: 0, a: a};
 };
@@ -10429,6 +10449,66 @@ var $author$project$FillStrokeTests$strokeDash4 = function () {
 							$author$project$VegaLite$axGrid(false)
 						]))
 				])));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		encBase,
+		$author$project$VegaLite$strokeDash(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('cat'),
+					$author$project$VegaLite$mOrdinal,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))),
+							$author$project$VegaLite$scRange(
+							$author$project$VegaLite$raNumLists(
+								_List_fromArray(
+									[$author$project$FillStrokeTests$d0, $author$project$FillStrokeTests$d1, $author$project$FillStrokeTests$d2, $author$project$FillStrokeTests$d3, $author$project$FillStrokeTests$d4, $author$project$FillStrokeTests$d5, $author$project$FillStrokeTests$d6, $author$project$FillStrokeTests$d7, $author$project$FillStrokeTests$d8, $author$project$FillStrokeTests$d9])))
+						]))
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2($author$project$VegaLite$title, 'Ordinal', _List_Nil),
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$height(100),
+				enc2(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		encBase,
+		$author$project$VegaLite$strokeDash(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('cat'),
+					$author$project$VegaLite$mNominal,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))),
+							$author$project$VegaLite$scRange(
+							$author$project$VegaLite$raNumLists(
+								_List_fromArray(
+									[$author$project$FillStrokeTests$d0, $author$project$FillStrokeTests$d6, $author$project$FillStrokeTests$d8, $author$project$FillStrokeTests$d4, $author$project$FillStrokeTests$d9, $author$project$FillStrokeTests$d1, $author$project$FillStrokeTests$d5, $author$project$FillStrokeTests$d3, $author$project$FillStrokeTests$d7, $author$project$FillStrokeTests$d2])))
+						]))
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2($author$project$VegaLite$title, 'Nominal', _List_Nil),
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$height(100),
+				enc1(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10454,59 +10534,138 @@ var $author$project$FillStrokeTests$strokeDash4 = function () {
 			$author$project$VegaLite$nums(
 				_List_fromArray(
 					[1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]))));
-	var d9 = _List_fromArray(
-		[2, 4]);
-	var d8 = _List_fromArray(
-		[4, 6]);
-	var d7 = _List_fromArray(
-		[5, 4]);
-	var d6 = _List_fromArray(
-		[6, 4]);
-	var d5 = _List_fromArray(
-		[8, 4, 4, 4]);
-	var d4 = _List_fromArray(
-		[8, 4]);
-	var d3 = _List_fromArray(
-		[10, 4]);
-	var d2 = _List_fromArray(
-		[16, 4]);
-	var d10 = _List_fromArray(
-		[1, 3]);
-	var d1 = _List_fromArray(
-		[1, 0]);
-	var enc1 = A2(
-		$elm$core$Basics$composeL,
-		encBase,
-		$author$project$VegaLite$strokeDash(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal,
-					$author$project$VegaLite$mScale(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$scDomain(
-							$author$project$VegaLite$doNums(
-								_List_fromArray(
-									[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))),
-							$author$project$VegaLite$scRange(
-							$author$project$VegaLite$raNumLists(
-								_List_fromArray(
-									[d1, d7, d9, d5, d10, d2, d6, d4, d8, d3])))
-						]))
-				])));
-	var spec1 = $author$project$VegaLite$asSpec(
+	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$title, 'Nominal', _List_Nil),
-				$author$project$VegaLite$width(200),
-				$author$project$VegaLite$height(100),
-				enc1(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil)
+				data(_List_Nil),
+				res(_List_Nil),
+				$author$project$VegaLite$concat(
+				_List_fromArray(
+					[spec1, spec2]))
 			]));
-	var enc2 = A2(
+}();
+var $author$project$VegaLite$calculateAs = F2(
+	function (ex, label) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'calculate',
+							$elm$json$Json$Encode$string(ex)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
+						]))));
+	});
+var $author$project$VegaLite$dataSequenceAs = F4(
+	function (start, stop, step, outName) {
+		return _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'sequence',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'start',
+									$elm$json$Json$Encode$float(start)),
+									_Utils_Tuple2(
+									'stop',
+									$elm$json$Json$Encode$float(stop)),
+									_Utils_Tuple2(
+									'step',
+									$elm$json$Json$Encode$float(step)),
+									_Utils_Tuple2(
+									'as',
+									$elm$json$Json$Encode$string(outName))
+								])))
+					])));
+	});
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $author$project$VegaLite$VLTransform = 13;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		13,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$FillStrokeTests$scaledStrokeDash = function (dashScale) {
+	var trans = A2(
 		$elm$core$Basics$composeL,
-		encBase,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$transform,
+					A2($author$project$VegaLite$calculateAs, 'abs(sin(datum.x0+random()))', 'y0')),
+				A2($author$project$VegaLite$calculateAs, 'datum.x0 %10', 'x')),
+			A2($author$project$VegaLite$calculateAs, 'floor(datum.x0 / 10)', 'cat')),
+		A2($author$project$VegaLite$calculateAs, 'datum.y0 + datum.cat', 'y'));
+	var scaleDash = function (sc) {
+		return $elm$core$List$map(
+			$elm$core$List$map(
+				$elm$core$Basics$mul(sc)));
+	};
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('x'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pAxis(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$axGrid(false)
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('y'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axGrid(false)
+							]))
+					]))),
 		$author$project$VegaLite$strokeDash(
 			_List_fromArray(
 				[
@@ -10518,32 +10677,37 @@ var $author$project$FillStrokeTests$strokeDash4 = function () {
 							$author$project$VegaLite$scDomain(
 							$author$project$VegaLite$doNums(
 								_List_fromArray(
-									[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))),
+									[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))),
 							$author$project$VegaLite$scRange(
 							$author$project$VegaLite$raNumLists(
-								_List_fromArray(
-									[d1, d2, d3, d4, d5, d6, d7, d8, d9, d10])))
+								A2(
+									scaleDash,
+									dashScale,
+									_List_fromArray(
+										[$author$project$FillStrokeTests$d0, $author$project$FillStrokeTests$d1, $author$project$FillStrokeTests$d2, $author$project$FillStrokeTests$d3, $author$project$FillStrokeTests$d4, $author$project$FillStrokeTests$d5, $author$project$FillStrokeTests$d6, $author$project$FillStrokeTests$d7, $author$project$FillStrokeTests$d8, $author$project$FillStrokeTests$d9]))))
 						]))
 				])));
-	var spec2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				A2($author$project$VegaLite$title, 'Ordinal', _List_Nil),
-				$author$project$VegaLite$width(200),
-				$author$project$VegaLite$height(100),
-				enc2(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil)
-			]));
+	var data = A4($author$project$VegaLite$dataSequenceAs, 0, 100, 0.1, 'x0');
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
-				res(_List_Nil),
-				$author$project$VegaLite$concat(
-				_List_fromArray(
-					[spec1, spec2]))
+				A2(
+				$author$project$VegaLite$title,
+				'Dash scale ' + $elm$core$String$fromFloat(dashScale),
+				_List_Nil),
+				$author$project$VegaLite$width(300),
+				$author$project$VegaLite$height(300),
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
-}();
+};
+var $author$project$FillStrokeTests$strokeDash5 = $author$project$FillStrokeTests$scaledStrokeDash(0.2);
+var $author$project$FillStrokeTests$strokeDash6 = $author$project$FillStrokeTests$scaledStrokeDash(0.5);
+var $author$project$FillStrokeTests$strokeDash7 = $author$project$FillStrokeTests$scaledStrokeDash(1);
+var $author$project$FillStrokeTests$strokeDash8 = $author$project$FillStrokeTests$scaledStrokeDash(2);
+var $author$project$FillStrokeTests$strokeDash9 = $author$project$FillStrokeTests$scaledStrokeDash(4);
 var $author$project$FillStrokeTests$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -10567,7 +10731,12 @@ var $author$project$FillStrokeTests$mySpecs = $author$project$VegaLite$combineSp
 			_Utils_Tuple2('strokeDash1', $author$project$FillStrokeTests$strokeDash1),
 			_Utils_Tuple2('strokeDash2', $author$project$FillStrokeTests$strokeDash2),
 			_Utils_Tuple2('strokeDash3', $author$project$FillStrokeTests$strokeDash3),
-			_Utils_Tuple2('strokeDash4', $author$project$FillStrokeTests$strokeDash4)
+			_Utils_Tuple2('strokeDash4', $author$project$FillStrokeTests$strokeDash4),
+			_Utils_Tuple2('strokeDash5', $author$project$FillStrokeTests$strokeDash5),
+			_Utils_Tuple2('strokeDash6', $author$project$FillStrokeTests$strokeDash6),
+			_Utils_Tuple2('strokeDash7', $author$project$FillStrokeTests$strokeDash7),
+			_Utils_Tuple2('strokeDash8', $author$project$FillStrokeTests$strokeDash8),
+			_Utils_Tuple2('strokeDash9', $author$project$FillStrokeTests$strokeDash9)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -10583,7 +10752,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$FillStrokeTests$sourceExample = $author$project$FillStrokeTests$strokeDash4;
+var $author$project$FillStrokeTests$sourceExample = $author$project$FillStrokeTests$strokeDash1;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$FillStrokeTests$view = function (spec) {
