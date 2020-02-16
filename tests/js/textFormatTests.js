@@ -7784,11 +7784,16 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 			return _Utils_Tuple2(
 				'titleLineHeight',
 				$elm$json$Json$Encode$float(x));
-		default:
+		case 48:
 			var x = legendConfig.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				$elm$json$Json$Encode$float(x));
+		default:
+			var o = legendConfig.a;
+			return _Utils_Tuple2(
+				'unselectedOpacity',
+				$elm$json$Json$Encode$float(o));
 	}
 };
 var $author$project$VegaLite$TTNone = 2;

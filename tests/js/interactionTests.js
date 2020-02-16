@@ -9709,872 +9709,10 @@ var $author$project$VegaLite$BLField = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$blField = $author$project$VegaLite$BLField;
-var $author$project$VegaLite$BindLegend = function (a) {
-	return {$: 2, a: a};
+var $author$project$VegaLite$Legend = function (a) {
+	return {$: 20, a: a};
 };
-var $author$project$VegaLite$seBindLegend = $author$project$VegaLite$BindLegend;
-var $author$project$InteractionTests$interaction11 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seBindLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$blField('crimeType')
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$BLChannel = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$blChannel = $author$project$VegaLite$BLChannel;
-var $author$project$VegaLite$BLEvent = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$blEvent = $author$project$VegaLite$BLEvent;
-var $author$project$VegaLite$ChColor = 4;
-var $author$project$VegaLite$chColor = 4;
-var $author$project$InteractionTests$interaction12 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seBindLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$blChannel($author$project$VegaLite$chColor),
-							$author$project$VegaLite$blEvent('dblclick')
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$SeMulti = 1;
-var $author$project$VegaLite$seMulti = 1;
-var $author$project$VegaLite$On = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$seOn = $author$project$VegaLite$On;
-var $author$project$InteractionTests$interaction13 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seMulti,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seOn('click'),
-					$author$project$VegaLite$seBindLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$blField('crimeType'),
-							$author$project$VegaLite$blEvent('dblclick')
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$IRadio = F2(
-	function (a, b) {
-		return {$: 2, a: a, b: b};
-	});
-var $author$project$VegaLite$iRadio = function (f) {
-	return $author$project$VegaLite$IRadio(f);
-};
-var $author$project$VegaLite$InName = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
-var $author$project$VegaLite$InOptions = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
-var $author$project$VegaLite$Bind = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$seBind = $author$project$VegaLite$Bind;
-var $author$project$VegaLite$Fields = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
-var $author$project$VegaLite$Nearest = function (a) {
-	return {$: 14, a: a};
-};
-var $author$project$VegaLite$seNearest = $author$project$VegaLite$Nearest;
-var $author$project$InteractionTests$interaction14 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seFields(
-					_List_fromArray(
-						['crimeType'])),
-					$author$project$VegaLite$seNearest(true),
-					$author$project$VegaLite$seBind(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$VegaLite$iRadio,
-							'crimeType',
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName(' '),
-									$author$project$VegaLite$inOptions(
-									_List_fromArray(
-										['Anti-social behaviour', 'Criminal damage and arson', 'Drugs', 'Robbery', 'Vehicle crime']))
-								]))
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$InteractionTests$enc = A2(
-	$elm$core$Basics$composeL,
-	A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('month'),
-						$author$project$VegaLite$pMType(3),
-						$author$project$VegaLite$pTitle('')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('reportedCrimes'),
-					$author$project$VegaLite$pMType(2),
-					$author$project$VegaLite$pTitle('Reported crimes')
-				]))),
-	$author$project$VegaLite$color(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$mName('crimeType'),
-				$author$project$VegaLite$mMType(0),
-				$author$project$VegaLite$mScale($author$project$InteractionTests$cScale)
-			])));
-var $author$project$VegaLite$FExpr = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
-var $author$project$VegaLite$filter = function (f) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'filter',
-			$author$project$VegaLite$filterSpec(f)));
-};
-var $author$project$VegaLite$IRange = F2(
-	function (a, b) {
-		return {$: 0, a: a, b: b};
-	});
-var $author$project$VegaLite$iRange = function (f) {
-	return $author$project$VegaLite$IRange(f);
-};
-var $author$project$VegaLite$InMax = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$inMax = $author$project$VegaLite$InMax;
-var $author$project$VegaLite$InMin = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
-var $author$project$VegaLite$SInit = function (a) {
-	return {$: 9, a: a};
-};
-var $author$project$VegaLite$seInit = $author$project$VegaLite$SInit;
-var $author$project$VegaLite$VLTransform = 13;
-var $elm$core$List$isEmpty = function (xs) {
-	if (!xs.b) {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v1) {
-		var trName = _v1.a;
-		var val = _v1.b;
-		if (trName === 'multiSpecs') {
-			return val;
-		} else {
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(trName, val)
-					]));
-		}
-	};
-	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(
-		13,
-		A2($elm$json$Json$Encode$list, assemble, transforms));
-};
-var $author$project$InteractionTests$interaction15 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('datum.reportedCrimes >= minSlider_minReported && maxSlider_maxReported >= datum.reportedCrimes')));
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$selection,
-			A3(
-				$author$project$VegaLite$select,
-				'maxSlider',
-				$author$project$VegaLite$seSingle,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$seInit(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'maxReported',
-								$author$project$VegaLite$num(14000))
-							])),
-						$author$project$VegaLite$seBind(
-						_List_fromArray(
-							[
-								A2(
-								$author$project$VegaLite$iRange,
-								'maxReported',
-								_List_fromArray(
-									[
-										$author$project$VegaLite$inName('Max'),
-										$author$project$VegaLite$inMin(400),
-										$author$project$VegaLite$inMax(14000)
-									]))
-							]))
-					]))),
-		A3(
-			$author$project$VegaLite$select,
-			'minSlider',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seInit(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'minReported',
-							$author$project$VegaLite$num(0))
-						])),
-					$author$project$VegaLite$seBind(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$VegaLite$iRange,
-							'minReported',
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('Min'),
-									$author$project$VegaLite$inMax(12800)
-								]))
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				trans(_List_Nil),
-				sel(_List_Nil),
-				$author$project$InteractionTests$enc(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$Jan = 0;
-var $author$project$VegaLite$W100 = 4;
-var $author$project$VegaLite$asSpec = function (specs) {
-	return $elm$json$Json$Encode$object(
-		A2(
-			$elm$core$List$map,
-			function (_v0) {
-				var s = _v0.a;
-				var v = _v0.b;
-				return _Utils_Tuple2(
-					$author$project$VegaLite$vlPropertyLabel(s),
-					v);
-			},
-			specs));
-};
-var $author$project$VegaLite$AxFormat = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$axFormat = $author$project$VegaLite$AxFormat;
-var $author$project$VegaLite$calculateAs = F2(
-	function (ex, label) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'calculate',
-							$elm$json$Json$Encode$string(ex)),
-							_Utils_Tuple2(
-							'as',
-							$elm$json$Json$Encode$string(label))
-						]))));
-	});
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
-var $author$project$VegaLite$CSV = {$: 1};
-var $author$project$VegaLite$csv = $author$project$VegaLite$CSV;
-var $author$project$VegaLite$DateTime = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$dt = $author$project$VegaLite$DateTime;
-var $author$project$VegaLite$DTDate = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$dtDate = $author$project$VegaLite$DTDate;
-var $author$project$VegaLite$DTMonthNum = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$dtMonthNum = function (mon) {
-	switch (mon) {
-		case 0:
-			return $author$project$VegaLite$DTMonthNum(1);
-		case 1:
-			return $author$project$VegaLite$DTMonthNum(2);
-		case 2:
-			return $author$project$VegaLite$DTMonthNum(3);
-		case 3:
-			return $author$project$VegaLite$DTMonthNum(4);
-		case 4:
-			return $author$project$VegaLite$DTMonthNum(5);
-		case 5:
-			return $author$project$VegaLite$DTMonthNum(6);
-		case 6:
-			return $author$project$VegaLite$DTMonthNum(7);
-		case 7:
-			return $author$project$VegaLite$DTMonthNum(8);
-		case 8:
-			return $author$project$VegaLite$DTMonthNum(9);
-		case 9:
-			return $author$project$VegaLite$DTMonthNum(10);
-		case 10:
-			return $author$project$VegaLite$DTMonthNum(11);
-		default:
-			return $author$project$VegaLite$DTMonthNum(12);
-	}
-};
-var $author$project$VegaLite$DTYear = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$dtYear = $author$project$VegaLite$DTYear;
-var $author$project$VegaLite$FSelection = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$fiSelection = $author$project$VegaLite$FSelection;
-var $author$project$VegaLite$FoDate = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
-var $author$project$VegaLite$AlignCenter = 0;
-var $author$project$VegaLite$haCenter = 0;
-var $author$project$VegaLite$VLHeight = 4;
-var $author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		4,
-		$elm$json$Json$Encode$float(h));
-};
-var $author$project$VegaLite$VLLayer = 16;
-var $author$project$VegaLite$layer = function (specs) {
-	return _Utils_Tuple2(
-		16,
-		$author$project$VegaLite$toList(specs));
-};
-var $author$project$VegaLite$lookupSelection = F3(
-	function (key1, selName, key2) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'lookup',
-							$elm$json$Json$Encode$string(key1)),
-							_Utils_Tuple2(
-							'from',
-							$elm$json$Json$Encode$object(
-								_List_fromArray(
-									[
-										_Utils_Tuple2(
-										'selection',
-										$elm$json$Json$Encode$string(selName)),
-										_Utils_Tuple2(
-										'key',
-										$elm$json$Json$Encode$string(key2))
-									])))
-						]))));
-	});
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
-var $author$project$VegaLite$MAlign = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$maAlign = $author$project$VegaLite$MAlign;
-var $author$project$VegaLite$MFontWeight = function (a) {
-	return {$: 33, a: a};
-};
-var $author$project$VegaLite$maFontWeight = $author$project$VegaLite$MFontWeight;
-var $author$project$VegaLite$MOpacity = function (a) {
-	return {$: 38, a: a};
-};
-var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
-var $author$project$VegaLite$MStrokeWidth = function (a) {
-	return {$: 57, a: a};
-};
-var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
-var $author$project$VegaLite$PAxis = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$VegaLite$PNumber = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
-var $author$project$VegaLite$Parse = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
-var $author$project$VegaLite$Point = 9;
-var $author$project$VegaLite$point = $author$project$VegaLite$mark(9);
-var $author$project$VegaLite$Rule = 11;
-var $author$project$VegaLite$rule = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$Encodings = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
-var $author$project$VegaLite$TName = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tTemporal = $author$project$VegaLite$TmType(3);
-var $author$project$VegaLite$TTimeUnit = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$tTimeUnit = $author$project$VegaLite$TTimeUnit;
-var $author$project$VegaLite$textChannelProperties = function (tDef) {
-	switch (tDef.$) {
-		case 0:
-			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$string(s))
-				]);
-		case 1:
-			var arr = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'repeat',
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$arrangementLabel(arr)))
-							])))
-				]);
-		case 2:
-			var measure = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$measurementLabel(measure)))
-				]);
-		case 3:
-			var bps = tDef.a;
-			return _List_fromArray(
-				[
-					$author$project$VegaLite$bin(bps)
-				]);
-		case 4:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'bin',
-					$elm$json$Json$Encode$string('binned'))
-				]);
-		case 5:
-			var op = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aggregate',
-					$author$project$VegaLite$operationSpec(op))
-				]);
-		case 6:
-			var tu = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'timeUnit',
-					$author$project$VegaLite$timeUnitSpec(tu))
-				]);
-		case 7:
-			var t = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'title',
-					$author$project$VegaLite$multilineTextSpec(t))
-				]);
-		case 10:
-			var fmt = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'format',
-					$elm$json$Json$Encode$string(fmt))
-				]);
-		case 11:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string('number'))
-				]);
-		case 12:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string('time'))
-				]);
-		case 8:
-			var selName = tDef.a;
-			var ifClause = tDef.b;
-			var elseClause = tDef.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 9:
-			var tests = tDef.a;
-			var elseClause = tDef.b;
-			var testClause = function (_v1) {
-				var predicate = _v1.a;
-				var ifClause = _v1.b;
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					A2($elm$json$Json$Encode$list, testClause, tests)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		default:
-			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$author$project$VegaLite$multilineTextSpec(s))
-				]);
-	}
-};
-var $author$project$VegaLite$text = function (tDefs) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'text',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
-};
-var $author$project$VegaLite$Text = 13;
-var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(13);
-var $author$project$VegaLite$YearMonth = {$: 3};
-var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
-var $author$project$InteractionTests$interaction16 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$transform,
-			A3($author$project$VegaLite$lookupSelection, 'symbol', 'index', 'symbol')),
-		A2($author$project$VegaLite$calculateAs, 'datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0', 'indexed_price'));
-	var textEnc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pNum(310)
-					]))),
-		$author$project$VegaLite$text(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$tName('date'),
-					$author$project$VegaLite$tTemporal,
-					$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonth)
-				])));
-	var stockData = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$csv,
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate(''))
-					]))
-			]));
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'index',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seEncodings(
-					_List_fromArray(
-						[$author$project$VegaLite$chX])),
-					$author$project$VegaLite$seNearest(true),
-					$author$project$VegaLite$seInit(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'x',
-							$author$project$VegaLite$dt(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$dtYear(2005),
-										$author$project$VegaLite$dtMonthNum(0),
-										$author$project$VegaLite$dtDate(1)
-									])))
-						]))
-				])));
-	var ruleTrans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiSelection('index')));
-	var ruleEnc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
-						$author$project$VegaLite$pAxis(_List_Nil)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('firebrick')
-				])));
-	var pointEnc = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			0,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('date'),
-					$author$project$VegaLite$pTemporal,
-					$author$project$VegaLite$pAxis(_List_Nil)
-				])));
-	var pointSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				sel(_List_Nil),
-				pointEnc(_List_Nil),
-				$author$project$VegaLite$point(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maOpacity(0)
-					]))
-			]));
-	var lineEnc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal,
-							$author$project$VegaLite$pAxis(_List_Nil)
-						]))),
-			A2(
-				$author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('indexed_price'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axFormat('%')
-							]))
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
-				])));
-	var lineSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				trans(_List_Nil),
-				lineEnc(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil)
-			]));
-	var labelledRuleSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				ruleTrans(_List_Nil),
-				ruleEnc(_List_Nil),
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$asSpec(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$rule(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$maStrokeWidth(0.5)
-									]))
-							])),
-						$author$project$VegaLite$asSpec(
-						_List_fromArray(
-							[
-								textEnc(_List_Nil),
-								$author$project$VegaLite$textMark(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$maAlign($author$project$VegaLite$haCenter),
-										$author$project$VegaLite$maFontWeight(4)
-									]))
-							]))
-					]))
-			]));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(650),
-				$author$project$VegaLite$height(300),
-				stockData,
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[pointSpec, lineSpec, labelledRuleSpec]))
-			]));
-}();
-var $author$project$VegaLite$View = function (a) {
-	return {$: 43, a: a};
-};
-var $author$project$VegaLite$coView = $author$project$VegaLite$View;
+var $author$project$VegaLite$coLegend = $author$project$VegaLite$Legend;
 var $author$project$VegaLite$autosizeProperty = function (asCfg) {
 	switch (asCfg) {
 		case 5:
@@ -11330,11 +10468,16 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 			return _Utils_Tuple2(
 				'titleLineHeight',
 				$elm$json$Json$Encode$float(x));
-		default:
+		case 48:
 			var x = legendConfig.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				$elm$json$Json$Encode$float(x));
+		default:
+			var o = legendConfig.a;
+			return _Utils_Tuple2(
+				'unselectedOpacity',
+				$elm$json$Json$Encode$float(o));
 	}
 };
 var $author$project$VegaLite$paddingSpec = function (pad) {
@@ -12407,6 +11550,886 @@ var $author$project$VegaLite$configure = function (configs) {
 		29,
 		$elm$json$Json$Encode$object(configs));
 };
+var $author$project$VegaLite$LeUnselectedOpacity = function (a) {
+	return {$: 49, a: a};
+};
+var $author$project$VegaLite$lecoUnselectedOpacity = $author$project$VegaLite$LeUnselectedOpacity;
+var $author$project$VegaLite$BindLegend = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$seBindLegend = $author$project$VegaLite$BindLegend;
+var $author$project$InteractionTests$interaction11 = function () {
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'mySelection',
+			$author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seBindLegend(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$blField('crimeType')
+						]))
+				])));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coLegend(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$lecoUnselectedOpacity(0.1)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				sel(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$BLChannel = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$blChannel = $author$project$VegaLite$BLChannel;
+var $author$project$VegaLite$BLEvent = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$blEvent = $author$project$VegaLite$BLEvent;
+var $author$project$VegaLite$ChColor = 4;
+var $author$project$VegaLite$chColor = 4;
+var $author$project$InteractionTests$interaction12 = function () {
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'mySelection',
+			$author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seBindLegend(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$blChannel($author$project$VegaLite$chColor),
+							$author$project$VegaLite$blEvent('dblclick')
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				sel(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$SeMulti = 1;
+var $author$project$VegaLite$seMulti = 1;
+var $author$project$VegaLite$On = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$seOn = $author$project$VegaLite$On;
+var $author$project$InteractionTests$interaction13 = function () {
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'mySelection',
+			$author$project$VegaLite$seMulti,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seOn('click'),
+					$author$project$VegaLite$seBindLegend(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$blField('crimeType'),
+							$author$project$VegaLite$blEvent('dblclick')
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				sel(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$IRadio = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var $author$project$VegaLite$iRadio = function (f) {
+	return $author$project$VegaLite$IRadio(f);
+};
+var $author$project$VegaLite$InName = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
+var $author$project$VegaLite$InOptions = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
+var $author$project$VegaLite$Bind = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$seBind = $author$project$VegaLite$Bind;
+var $author$project$VegaLite$Fields = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
+var $author$project$VegaLite$Nearest = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$seNearest = $author$project$VegaLite$Nearest;
+var $author$project$InteractionTests$interaction14 = function () {
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'mySelection',
+			$author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seFields(
+					_List_fromArray(
+						['crimeType'])),
+					$author$project$VegaLite$seNearest(true),
+					$author$project$VegaLite$seBind(
+					_List_fromArray(
+						[
+							A2(
+							$author$project$VegaLite$iRadio,
+							'crimeType',
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inName(' '),
+									$author$project$VegaLite$inOptions(
+									_List_fromArray(
+										['Anti-social behaviour', 'Criminal damage and arson', 'Drugs', 'Robbery', 'Vehicle crime']))
+								]))
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				sel(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$InteractionTests$enc = A2(
+	$elm$core$Basics$composeL,
+	A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('month'),
+						$author$project$VegaLite$pMType(3),
+						$author$project$VegaLite$pTitle('')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('reportedCrimes'),
+					$author$project$VegaLite$pMType(2),
+					$author$project$VegaLite$pTitle('Reported crimes')
+				]))),
+	$author$project$VegaLite$color(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$mName('crimeType'),
+				$author$project$VegaLite$mMType(0),
+				$author$project$VegaLite$mScale($author$project$InteractionTests$cScale)
+			])));
+var $author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$VegaLite$IRange = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var $author$project$VegaLite$iRange = function (f) {
+	return $author$project$VegaLite$IRange(f);
+};
+var $author$project$VegaLite$InMax = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$inMax = $author$project$VegaLite$InMax;
+var $author$project$VegaLite$InMin = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
+var $author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$SInit = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$seInit = $author$project$VegaLite$SInit;
+var $author$project$VegaLite$VLTransform = 13;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		13,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$InteractionTests$interaction15 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum.reportedCrimes >= minSlider_minReported && maxSlider_maxReported >= datum.reportedCrimes')));
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$selection,
+			A3(
+				$author$project$VegaLite$select,
+				'maxSlider',
+				$author$project$VegaLite$seSingle,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$seInit(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'maxReported',
+								$author$project$VegaLite$num(14000))
+							])),
+						$author$project$VegaLite$seBind(
+						_List_fromArray(
+							[
+								A2(
+								$author$project$VegaLite$iRange,
+								'maxReported',
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inName('Max'),
+										$author$project$VegaLite$inMin(400),
+										$author$project$VegaLite$inMax(14000)
+									]))
+							]))
+					]))),
+		A3(
+			$author$project$VegaLite$select,
+			'minSlider',
+			$author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seInit(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'minReported',
+							$author$project$VegaLite$num(0))
+						])),
+					$author$project$VegaLite$seBind(
+					_List_fromArray(
+						[
+							A2(
+							$author$project$VegaLite$iRange,
+							'minReported',
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inName('Min'),
+									$author$project$VegaLite$inMax(12800)
+								]))
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				trans(_List_Nil),
+				sel(_List_Nil),
+				$author$project$InteractionTests$enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$Jan = 0;
+var $author$project$VegaLite$W100 = 4;
+var $author$project$VegaLite$asSpec = function (specs) {
+	return $elm$json$Json$Encode$object(
+		A2(
+			$elm$core$List$map,
+			function (_v0) {
+				var s = _v0.a;
+				var v = _v0.b;
+				return _Utils_Tuple2(
+					$author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var $author$project$VegaLite$AxFormat = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$axFormat = $author$project$VegaLite$AxFormat;
+var $author$project$VegaLite$calculateAs = F2(
+	function (ex, label) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'calculate',
+							$elm$json$Json$Encode$string(ex)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
+						]))));
+	});
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$CSV = {$: 1};
+var $author$project$VegaLite$csv = $author$project$VegaLite$CSV;
+var $author$project$VegaLite$DateTime = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$dt = $author$project$VegaLite$DateTime;
+var $author$project$VegaLite$DTDate = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$dtDate = $author$project$VegaLite$DTDate;
+var $author$project$VegaLite$DTMonthNum = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$dtMonthNum = function (mon) {
+	switch (mon) {
+		case 0:
+			return $author$project$VegaLite$DTMonthNum(1);
+		case 1:
+			return $author$project$VegaLite$DTMonthNum(2);
+		case 2:
+			return $author$project$VegaLite$DTMonthNum(3);
+		case 3:
+			return $author$project$VegaLite$DTMonthNum(4);
+		case 4:
+			return $author$project$VegaLite$DTMonthNum(5);
+		case 5:
+			return $author$project$VegaLite$DTMonthNum(6);
+		case 6:
+			return $author$project$VegaLite$DTMonthNum(7);
+		case 7:
+			return $author$project$VegaLite$DTMonthNum(8);
+		case 8:
+			return $author$project$VegaLite$DTMonthNum(9);
+		case 9:
+			return $author$project$VegaLite$DTMonthNum(10);
+		case 10:
+			return $author$project$VegaLite$DTMonthNum(11);
+		default:
+			return $author$project$VegaLite$DTMonthNum(12);
+	}
+};
+var $author$project$VegaLite$DTYear = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dtYear = $author$project$VegaLite$DTYear;
+var $author$project$VegaLite$FSelection = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$fiSelection = $author$project$VegaLite$FSelection;
+var $author$project$VegaLite$FoDate = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
+var $author$project$VegaLite$AlignCenter = 0;
+var $author$project$VegaLite$haCenter = 0;
+var $author$project$VegaLite$VLHeight = 4;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$VLLayer = 16;
+var $author$project$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		16,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$lookupSelection = F3(
+	function (key1, selName, key2) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'lookup',
+							$elm$json$Json$Encode$string(key1)),
+							_Utils_Tuple2(
+							'from',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'selection',
+										$elm$json$Json$Encode$string(selName)),
+										_Utils_Tuple2(
+										'key',
+										$elm$json$Json$Encode$string(key2))
+									])))
+						]))));
+	});
+var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
+var $author$project$VegaLite$MAlign = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$maAlign = $author$project$VegaLite$MAlign;
+var $author$project$VegaLite$MFontWeight = function (a) {
+	return {$: 33, a: a};
+};
+var $author$project$VegaLite$maFontWeight = $author$project$VegaLite$MFontWeight;
+var $author$project$VegaLite$MOpacity = function (a) {
+	return {$: 38, a: a};
+};
+var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 57, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$PAxis = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
+var $author$project$VegaLite$PNumber = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$VegaLite$Parse = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
+var $author$project$VegaLite$Point = 9;
+var $author$project$VegaLite$point = $author$project$VegaLite$mark(9);
+var $author$project$VegaLite$Rule = 11;
+var $author$project$VegaLite$rule = $author$project$VegaLite$mark(11);
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$VegaLite$TName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
+var $author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$tTemporal = $author$project$VegaLite$TmType(3);
+var $author$project$VegaLite$TTimeUnit = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$tTimeUnit = $author$project$VegaLite$TTimeUnit;
+var $author$project$VegaLite$textChannelProperties = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					$elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					$elm$json$Json$Encode$string(fmt))
+				]);
+		case 11:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('number'))
+				]);
+		case 12:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('time'))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		case 9:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_v1) {
+				var predicate = _v1.a;
+				var ifClause = _v1.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2($elm$json$Json$Encode$list, testClause, tests)),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		default:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$author$project$VegaLite$multilineTextSpec(s))
+				]);
+	}
+};
+var $author$project$VegaLite$text = function (tDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
+};
+var $author$project$VegaLite$Text = 13;
+var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(13);
+var $author$project$VegaLite$YearMonth = {$: 3};
+var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
+var $author$project$InteractionTests$interaction16 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$transform,
+			A3($author$project$VegaLite$lookupSelection, 'symbol', 'index', 'symbol')),
+		A2($author$project$VegaLite$calculateAs, 'datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0', 'indexed_price'));
+	var textEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pNum(310)
+					]))),
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tName('date'),
+					$author$project$VegaLite$tTemporal,
+					$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonth)
+				])));
+	var stockData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/stocks.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$csv,
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'index',
+			$author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seOn('mouseover'),
+					$author$project$VegaLite$seEncodings(
+					_List_fromArray(
+						[$author$project$VegaLite$chX])),
+					$author$project$VegaLite$seNearest(true),
+					$author$project$VegaLite$seInit(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'x',
+							$author$project$VegaLite$dt(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$dtYear(2005),
+										$author$project$VegaLite$dtMonthNum(0),
+										$author$project$VegaLite$dtDate(1)
+									])))
+						]))
+				])));
+	var ruleTrans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiSelection('index')));
+	var ruleEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('firebrick')
+				])));
+	var pointEnc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('date'),
+					$author$project$VegaLite$pTemporal,
+					$author$project$VegaLite$pAxis(_List_Nil)
+				])));
+	var pointSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				sel(_List_Nil),
+				pointEnc(_List_Nil),
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maOpacity(0)
+					]))
+			]));
+	var lineEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('date'),
+							$author$project$VegaLite$pTemporal,
+							$author$project$VegaLite$pAxis(_List_Nil)
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('indexed_price'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axFormat('%')
+							]))
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('symbol'),
+					$author$project$VegaLite$mNominal
+				])));
+	var lineSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				trans(_List_Nil),
+				lineEnc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
+	var labelledRuleSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				ruleTrans(_List_Nil),
+				ruleEnc(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$rule(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$maStrokeWidth(0.5)
+									]))
+							])),
+						$author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								textEnc(_List_Nil),
+								$author$project$VegaLite$textMark(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$maAlign($author$project$VegaLite$haCenter),
+										$author$project$VegaLite$maFontWeight(4)
+									]))
+							]))
+					]))
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(650),
+				$author$project$VegaLite$height(300),
+				stockData,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[pointSpec, lineSpec, labelledRuleSpec]))
+			]));
+}();
+var $author$project$VegaLite$View = function (a) {
+	return {$: 43, a: a};
+};
+var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$CPointer = 5;
 var $author$project$VegaLite$cuPointer = 5;
 var $author$project$VegaLite$CText = 10;
