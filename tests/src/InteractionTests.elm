@@ -165,8 +165,12 @@ interaction11 =
         sel =
             selection
                 << select "mySelection" seSingle [ seBindLegend [ blField "crimeType" ] ]
+
+        cfg =
+            configure
+                << configuration (coLegend [ lecoUnselectedOpacity 0.1 ])
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ cfg [], width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction12 : Spec
