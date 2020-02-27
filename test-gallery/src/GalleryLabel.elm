@@ -437,15 +437,10 @@ label9 =
         cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
-                << configuration
-                    (coNamedStyles
-                        [ ( "arrow-label", [ maDy 12, maFontSize 9.5 ] )
-                        , ( "arrow-label2", [ maDy 24, maFontSize 9.5 ] )
-                        ]
-                    )
+                << configuration (coNamedStyles [ ( "arrow-label", [ maDy 12, maFontSize 9.5 ] ) ])
                 << configuration (coTitle [ ticoFontSize 12 ])
 
-        lickertData =
+        likertData =
             dataFromColumns []
                 << dataColumn "measure" (strs [ "Open Exploration", "Focused Question Answering", "Open Exploration", "Focused Question Answering" ])
                 << dataColumn "mean" (nums [ 1.81, -1.69, 2.19, -0.06 ])
@@ -459,7 +454,7 @@ label9 =
                 << dataColumn "to" (nums [ -2.9, 2.9 ])
                 << dataColumn "label" (strs [ "PoleStar", "Voyager / Voyager 2" ])
 
-        encLickert =
+        encLikert =
             encoding
                 << position Y
                     [ pName "study"
@@ -467,7 +462,7 @@ label9 =
                     , pAxis [ axTitle "", axLabelPadding 5, axDomain False, axTicks False, axGrid False ]
                     ]
 
-        encLickertWhiskers =
+        encLikertWhiskers =
             encoding
                 << position X
                     [ pName "lo"
@@ -481,22 +476,22 @@ label9 =
                     ]
                 << position X2 [ pName "hi" ]
 
-        specLickertWhiskers =
-            asSpec [ encLickertWhiskers [], rule [] ]
+        specLikertWhiskers =
+            asSpec [ encLikertWhiskers [], rule [] ]
 
-        encLickertMeans =
+        encLikertMeans =
             encoding
                 << position X [ pName "mean", pQuant ]
                 << color [ mName "measure", mNominal, mScale [ scRange (raStrs [ "black", "white" ]) ], mLegend [] ]
 
-        specLickertMeans =
-            asSpec [ encLickertMeans [], circle [ maStroke "black", maOpacity 1 ] ]
+        specLikertMeans =
+            asSpec [ encLikertMeans [], circle [ maStroke "black", maOpacity 1 ] ]
 
-        specLickert =
+        specLikert =
             asSpec
                 [ title "Mean of Subject Ratings (95% CIs)" [ tiFrame tfBounds ]
-                , encLickert []
-                , layer [ specLickertWhiskers, specLickertMeans ]
+                , encLikert []
+                , layer [ specLikertWhiskers, specLikertMeans ]
                 ]
 
         encLabel1 =
@@ -525,10 +520,17 @@ label9 =
         encLabel3 =
             encoding
                 << position X [ pName "from", pQuant, pAxis [] ]
-                << text [ tName "label", tNominal ]
 
         specLabel3 =
-            asSpec [ transLabel3 [], encLabel3 [], textMark [ maAlign haRight, maStyle [ "arrow-label" ] ] ]
+            asSpec
+                [ transLabel3 []
+                , encLabel3 []
+                , textMark
+                    [ maText "PoleStar\nmore valuable"
+                    , maAlign haRight
+                    , maStyle [ "arrow-label" ]
+                    ]
+                ]
 
         transLabel4 =
             transform
@@ -537,39 +539,26 @@ label9 =
         encLabel4 =
             encoding
                 << position X [ pName "from", pQuant, pAxis [] ]
-                << text [ tName "label", tNominal ]
 
         specLabel4 =
-            asSpec [ transLabel4 [], encLabel4 [], textMark [ maAlign haLeft, maStyle [ "arrow-label" ] ] ]
-
-        transLabel5 =
-            transform
-                << filter (fiExpr "datum.label === 'PoleStar'")
-
-        encLabel5 =
-            encoding
-                << position X [ pName "from", pQuant, pAxis [] ]
-                << text [ tStr "more valuable" ]
-
-        specLabel5 =
-            asSpec [ transLabel5 [], encLabel5 [], textMark [ maAlign haRight, maStyle [ "arrow-label2" ] ] ]
+            asSpec
+                [ transLabel4 []
+                , encLabel4 []
+                , textMark
+                    [ maText "Voyager / Voyager 2\nmore valuable"
+                    , maAlign haLeft
+                    , maStyle [ "arrow-label" ]
+                    ]
+                ]
 
         transLabel6 =
             transform
                 << filter (fiExpr "datum.label !== 'PoleStar'")
 
-        encLabel6 =
-            encoding
-                << position X [ pName "from", pQuant, pAxis [] ]
-                << text [ tStr "more valuable" ]
-
-        specLabel6 =
-            asSpec [ transLabel6 [], encLabel6 [], textMark [ maAlign haLeft, maStyle [ "arrow-label2" ] ] ]
-
         specLabels =
-            asSpec [ labelData [], layer [ specLabel1, specLabel2, specLabel3, specLabel4, specLabel5, specLabel6 ] ]
+            asSpec [ labelData [], layer [ specLabel1, specLabel2, specLabel3, specLabel4 ] ]
     in
-    toVegaLite [ des, cfg [], lickertData [], spacing 10, vConcat [ specLickert, specLabels ] ]
+    toVegaLite [ des, cfg [], likertData [], spacing 10, vConcat [ specLikert, specLabels ] ]
 
 
 
