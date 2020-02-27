@@ -4323,7 +4323,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var txt = mProp.a;
 			return _Utils_Tuple2(
 				'text',
-				$elm$json$Json$Encode$string(txt));
+				$author$project$VegaLite$multilineTextSpec(txt));
 		case 36:
 			var x = mProp.a;
 			return _Utils_Tuple2(

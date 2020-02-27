@@ -3227,6 +3227,20 @@ var $author$project$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
+var $author$project$VegaLite$multilineTextSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
 var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$strokeCapLabel = function (cap) {
 	switch (cap) {
@@ -3571,7 +3585,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var txt = mProp.a;
 			return _Utils_Tuple2(
 				'text',
-				$elm$json$Json$Encode$string(txt));
+				$author$project$VegaLite$multilineTextSpec(txt));
 		case 36:
 			var x = mProp.a;
 			return _Utils_Tuple2(
@@ -4224,20 +4238,6 @@ var $author$project$VegaLite$fieldTitleLabel = function (ftp) {
 			return 'functional';
 		default:
 			return 'plain';
-	}
-};
-var $author$project$VegaLite$multilineTextSpec = function (tText) {
-	var _v0 = A2($elm$core$String$split, '\n', tText);
-	if (!_v0.b) {
-		return $elm$json$Json$Encode$string('');
-	} else {
-		if (!_v0.b.b) {
-			var s = _v0.a;
-			return $elm$json$Json$Encode$string(s);
-		} else {
-			var ss = _v0;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-		}
 	}
 };
 var $author$project$VegaLite$sideLabel = function (side) {
@@ -11236,6 +11236,10 @@ var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 49, a: a};
 };
 var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$MText = function (a) {
+	return {$: 60, a: a};
+};
+var $author$project$VegaLite$maText = $author$project$VegaLite$MText;
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
@@ -11261,10 +11265,6 @@ var $author$project$VegaLite$SymTriangleLeft = {$: 6};
 var $author$project$VegaLite$symTriangleLeft = $author$project$VegaLite$SymTriangleLeft;
 var $author$project$VegaLite$SymTriangleRight = {$: 7};
 var $author$project$VegaLite$symTriangleRight = $author$project$VegaLite$SymTriangleRight;
-var $author$project$VegaLite$TString = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$tStr = $author$project$VegaLite$TString;
 var $author$project$VegaLite$FrBounds = 0;
 var $author$project$VegaLite$tfBounds = 0;
 var $author$project$VegaLite$TFrame = function (a) {
@@ -11287,11 +11287,6 @@ var $author$project$GalleryLabel$label9 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiExpr('datum.label !== \'PoleStar\'')));
-	var transLabel5 = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('datum.label === \'PoleStar\'')));
 	var transLabel4 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11302,7 +11297,7 @@ var $author$project$GalleryLabel$label9 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiExpr('datum.label === \'PoleStar\'')));
-	var lickertData = A2(
+	var likertData = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11368,7 +11363,7 @@ var $author$project$GalleryLabel$label9 = function () {
 			$author$project$VegaLite$strs(
 				_List_fromArray(
 					['PoleStar', 'Voyager / Voyager 2']))));
-	var encLickertWhiskers = A2(
+	var encLikertWhiskers = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11408,13 +11403,13 @@ var $author$project$GalleryLabel$label9 = function () {
 				[
 					$author$project$VegaLite$pName('hi')
 				])));
-	var specLickertWhiskers = $author$project$VegaLite$asSpec(
+	var specLikertWhiskers = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				encLickertWhiskers(_List_Nil),
+				encLikertWhiskers(_List_Nil),
 				$author$project$VegaLite$rule(_List_Nil)
 			]));
-	var encLickertMeans = A2(
+	var encLikertMeans = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11442,10 +11437,10 @@ var $author$project$GalleryLabel$label9 = function () {
 						])),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
-	var specLickertMeans = $author$project$VegaLite$asSpec(
+	var specLikertMeans = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				encLickertMeans(_List_Nil),
+				encLikertMeans(_List_Nil),
 				$author$project$VegaLite$circle(
 				_List_fromArray(
 					[
@@ -11453,7 +11448,7 @@ var $author$project$GalleryLabel$label9 = function () {
 						$author$project$VegaLite$maOpacity(1)
 					]))
 			]));
-	var encLickert = A2(
+	var encLikert = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
 		A2(
@@ -11473,7 +11468,7 @@ var $author$project$GalleryLabel$label9 = function () {
 							$author$project$VegaLite$axGrid(false)
 						]))
 				])));
-	var specLickert = $author$project$VegaLite$asSpec(
+	var specLikert = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
 				A2(
@@ -11483,96 +11478,22 @@ var $author$project$GalleryLabel$label9 = function () {
 					[
 						$author$project$VegaLite$tiFrame($author$project$VegaLite$tfBounds)
 					])),
-				encLickert(_List_Nil),
+				encLikert(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[specLickertWhiskers, specLickertMeans]))
-			]));
-	var encLabel6 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('from'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(_List_Nil)
-					]))),
-		$author$project$VegaLite$text(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$tStr('more valuable')
-				])));
-	var specLabel6 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				transLabel6(_List_Nil),
-				encLabel6(_List_Nil),
-				$author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['arrow-label2']))
-					]))
-			]));
-	var encLabel5 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('from'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(_List_Nil)
-					]))),
-		$author$project$VegaLite$text(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$tStr('more valuable')
-				])));
-	var specLabel5 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				transLabel5(_List_Nil),
-				encLabel5(_List_Nil),
-				$author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maAlign($author$project$VegaLite$haRight),
-						$author$project$VegaLite$maStyle(
-						_List_fromArray(
-							['arrow-label2']))
-					]))
+					[specLikertWhiskers, specLikertMeans]))
 			]));
 	var encLabel4 = A2(
 		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
 		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('from'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(_List_Nil)
-					]))),
-		$author$project$VegaLite$text(
+			$author$project$VegaLite$position,
+			0,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('label'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$pName('from'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specLabel4 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11582,6 +11503,7 @@ var $author$project$GalleryLabel$label9 = function () {
 				$author$project$VegaLite$textMark(
 				_List_fromArray(
 					[
+						$author$project$VegaLite$maText('Voyager / Voyager 2\nmore valuable'),
 						$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
 						$author$project$VegaLite$maStyle(
 						_List_fromArray(
@@ -11590,23 +11512,15 @@ var $author$project$GalleryLabel$label9 = function () {
 			]));
 	var encLabel3 = A2(
 		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
 		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('from'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(_List_Nil)
-					]))),
-		$author$project$VegaLite$text(
+			$author$project$VegaLite$position,
+			0,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('label'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$pName('from'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specLabel3 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11616,6 +11530,7 @@ var $author$project$GalleryLabel$label9 = function () {
 				$author$project$VegaLite$textMark(
 				_List_fromArray(
 					[
+						$author$project$VegaLite$maText('PoleStar\nmore valuable'),
 						$author$project$VegaLite$maAlign($author$project$VegaLite$haRight),
 						$author$project$VegaLite$maStyle(
 						_List_fromArray(
@@ -11705,7 +11620,7 @@ var $author$project$GalleryLabel$label9 = function () {
 				labelData(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[specLabel1, specLabel2, specLabel3, specLabel4, specLabel5, specLabel6]))
+					[specLabel1, specLabel2, specLabel3, specLabel4]))
 			]));
 	var des = $author$project$VegaLite$description('Comparing Likert scale ratings between two conditions.');
 	var cfg = A2(
@@ -11731,13 +11646,6 @@ var $author$project$GalleryLabel$label9 = function () {
 								[
 									$author$project$VegaLite$maDy(12),
 									$author$project$VegaLite$maFontSize(9.5)
-								])),
-							_Utils_Tuple2(
-							'arrow-label2',
-							_List_fromArray(
-								[
-									$author$project$VegaLite$maDy(24),
-									$author$project$VegaLite$maFontSize(9.5)
 								]))
 						])))),
 		$author$project$VegaLite$configuration(
@@ -11751,11 +11659,11 @@ var $author$project$GalleryLabel$label9 = function () {
 			[
 				des,
 				cfg(_List_Nil),
-				lickertData(_List_Nil),
+				likertData(_List_Nil),
 				$author$project$VegaLite$spacing(10),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
-					[specLickert, specLabels]))
+					[specLikert, specLabels]))
 			]));
 }();
 var $author$project$GalleryLabel$mySpecs = $author$project$VegaLite$combineSpecs(

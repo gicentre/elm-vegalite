@@ -3145,6 +3145,20 @@ var $author$project$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
+var $author$project$VegaLite$multilineTextSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
 var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$strokeCapLabel = function (cap) {
 	switch (cap) {
@@ -3489,7 +3503,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var txt = mProp.a;
 			return _Utils_Tuple2(
 				'text',
-				$elm$json$Json$Encode$string(txt));
+				$author$project$VegaLite$multilineTextSpec(txt));
 		case 36:
 			var x = mProp.a;
 			return _Utils_Tuple2(
@@ -4174,20 +4188,6 @@ var $author$project$VegaLite$legendOrientLabel = function (orient) {
 			return 'bottom-left';
 		default:
 			return 'none';
-	}
-};
-var $author$project$VegaLite$multilineTextSpec = function (tText) {
-	var _v0 = A2($elm$core$String$split, '\n', tText);
-	if (!_v0.b) {
-		return $elm$json$Json$Encode$string('');
-	} else {
-		if (!_v0.b.b) {
-			var s = _v0.a;
-			return $elm$json$Json$Encode$string(s);
-		} else {
-			var ss = _v0;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-		}
 	}
 };
 var $author$project$VegaLite$overlapStrategySpec = function (strat) {
