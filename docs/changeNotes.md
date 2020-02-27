@@ -4,6 +4,17 @@
 
 ### Additions
 
+### Other Changes
+
+- `maText` now respects multi-line strings.
+- Simplified Likert gallery example to use multi-line text literals.
+
+---
+
+## V2.1.0 ➡ V2.2.0
+
+### Additions
+
 - `doUnionWith` for combining fixed and data-driven domains (VL 4.3)
 - `coFont` for configuring global font (VL 4.3).
 - `strokeDash` and associated `chStrokeDash` encoding channel (VL 4.2)

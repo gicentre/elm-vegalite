@@ -6712,8 +6712,8 @@ axTickSize =
 
 
 {-| Title to display as part of an axis. An empty string can be used to prevent
-a title being displayed. Multi-line titles can be specified by adding a `\n` at
-line breaks.
+a title being displayed. For multi-line titles, insert `\n` at each line break or
+use a `"""` multi-line string.
 -}
 axTitle : String -> AxisProperty
 axTitle =
@@ -9958,8 +9958,8 @@ hdLabelPadding =
 
 
 {-| Header title in a faceted view. A 'title' is the overall title describing the
-collection of faceted plots. Multi-line titles can be specified by adding a `\n`
-at line breaks.
+collection of faceted plots. For multi-line titles, insert `\n` at each line break
+or use a `"""` multi-line string.
 -}
 hdTitle : String -> HeaderProperty
 hdTitle =
@@ -11280,8 +11280,8 @@ leTickCount =
     LTickCount
 
 
-{-| Title of a legend. Multi-line titles can be specified by adding a `\n` at
-line breaks.
+{-| Title of a legend. For multi-line titles, insert `\n` at each line break or
+use a `"""` multi-line string.
 -}
 leTitle : String -> LegendProperty
 leTitle =
@@ -12297,6 +12297,8 @@ maTension =
 
 
 {-| Placeholder text for a text mark for when a text channel is not specified.
+Multi-line text can be specified by adding a `\n` at each line break or by using
+a `"""` multi-line string.
 -}
 maText : String -> MarkProperty
 maText =
@@ -12735,8 +12737,8 @@ mTimeUnit =
     MTimeUnit
 
 
-{-| Title of a field when encoding with a mark property channel. Multi-line titles
-can be specified by adding a `\n` at line breaks.
+{-| Title of a field when encoding with a mark property channel. For multi-line titles,
+insert `\n` at each line break or use a `"""` multi-line string.
 -}
 mTitle : String -> MarkChannel
 mTitle =
@@ -13815,8 +13817,8 @@ pTimeUnit =
     PTimeUnit
 
 
-{-| Title of a field when encoding with a position channel. Multi-line titles can
-be specified by adding a `\n` at line breaks.
+{-| Title of a field when encoding with a position channel. For multi-line titles,
+insert `\n` at each line break or use a `"""` multi-line string.
 -}
 pTitle : String -> PositionChannel
 pTitle =
@@ -15718,8 +15720,8 @@ tiStyle =
     TStyle
 
 
-{-| Subtitle text, placed beneath the primary title. For subtitles that span multiple
-lines, insert `\n` at line breaks or use a `"""` multi-line string.
+{-| Subtitle text, placed beneath the primary title. For multi-line subtitles,
+insert `\n` at each line break or use a `"""` multi-line string.
 -}
 tiSubtitle : String -> TitleProperty
 tiSubtitle =
@@ -15998,8 +16000,8 @@ tuStep =
 
 {-| Title to be displayed for a plot. The first parameter is the text of the title,
 the second a list of any title properties to configure its appearance. To display
-a title over more than one line, insert line breaks with `\n` or use a multi-line
-string. For example,
+a title over more than one line, insert `\n` at each line break or use a `"""`
+multi-line string. For example,
 
     title "First line\nSecond line" []
 
@@ -16203,9 +16205,9 @@ tSelectionCondition =
     TSelectionCondition
 
 
-{-| Literal string value when encoding with a text property channel. Can be useful
-for quick text annotation. Text can be multi-line by inserting a `\n` at line breaks
-or by using `"""` multi-line strings. For example,
+{-| Literal string value when encoding with a text channel. Can be useful for
+quick text annotation. For multi-line text, insert `\n` at each line break or use
+a `"""` multi-line string. For example,
 
     encoding
         << position X [ pNum 300 ]
@@ -16261,8 +16263,8 @@ tTimeUnit =
     TTimeUnit
 
 
-{-| Title of a field when encoding with a text or tooltip channel. Multi-line
-titles can be specified by adding a `\n` at line breaks.
+{-| Title of a field when encoding with a text or tooltip channel. For multi-line
+titles, insert `\n` at each line break or use a `"""` multi-line string.
 -}
 tTitle : String -> TextChannel
 tTitle =
@@ -19458,7 +19460,7 @@ markProperty mProp =
             ( "radius", JE.float x )
 
         MText txt ->
-            ( "text", JE.string txt )
+            ( "text", multilineTextSpec txt )
 
         MLineHeight x ->
             ( "lineHeight", JE.float x )
