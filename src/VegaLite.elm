@@ -1042,6 +1042,7 @@ module VegaLite exposing
     , axcoLabelBaseline
     , axcoLabelBound
     , axcoLabelColor
+    , axcoLabelExpr
     , axcoLabelFlush
     , axcoLabelFlushOffset
     , axcoLabelFont
@@ -1055,6 +1056,7 @@ module VegaLite exposing
     , axcoLabelSeparation
     , axcoTicks
     , axcoTickColor
+    , axcoTickCount
     , axcoTickExtra
     , axcoTickOffset
     , axcoTickOpacity
@@ -3049,6 +3051,7 @@ See the
 @docs axcoLabelBaseline
 @docs axcoLabelBound
 @docs axcoLabelColor
+@docs axcoLabelExpr
 @docs axcoLabelFlush
 @docs axcoLabelFlushOffset
 @docs axcoLabelFont
@@ -3062,6 +3065,7 @@ See the
 @docs axcoLabelSeparation
 @docs axcoTicks
 @docs axcoTickColor
+@docs axcoTickCount
 @docs axcoTickExtra
 @docs axcoTickOffset
 @docs axcoTickOpacity
@@ -3508,23 +3512,24 @@ type Autosize
 [axcoGridWidth](#axcoGridWidth), [axcoLabels](#axcoLabels), [axcoLabelAlign](#axcoLabelAlign),
 [axcoLabelAngle](#axcoLabelAngle), [axcoLabelBaseline](#axcoLabelBaseline),
 [axcoLabelBound](#axcoLabelBound), [axcoLabelColor](#axcoLabelColor),
-[axcoLabelFlush](#axcoLabelFlush), [axcoLabelFlushOffset](#axcoLabelFlushOffset),
-[axcoLabelFont](#axcoLabelFont), [axcoLabelFontSize](#axcoLabelFontSize),
-[axcoLabelFontStyle](#axcoLabelFontStyle), [axcoLabelFontWeight](#axcoLabelFontWeight),
-[axcoLabelLimit](#axcoLabelLimit), [axcoLabelOpacity](#axcoLabelOpacity),
-[axcoLabelOverlap](#axcoLabelOverlap), [axcoLabelPadding](#axcoLabelPadding),
-[axcoLabelSeparation](#axcoLabelSeparation),[axcoTicks](#axcoTicks),
-[axcoTickColor](#axcoTickColor), [axcoTickExtra](#axcoTickExtra),
-[axcoTickOffset](#axcoTickOffset), [axcoTickOpacity](#axcoTickOpacity),
-[axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize),
-[axcoTickMinStep](#axcoTickMinStep), [axcoTickWidth](#axcoTickWidth),
-[axcoTitleAlign](#axcoTitleAlign), [axcoTitleAnchor](#axcoTitleAnchor),
-[axcoTitleAngle](#axcoTitleAngle), [axcoTitleBaseline](#axcoTitleBaseline),
-[axcoTitleColor](#axcoTitleColor), [axcoTitleFont](#axcoTitleFont),
-[axcoTitleFontSize](#axcoTitleFontSize), [axcoTitleFontStyle](#axcoTitleFontStyle),
-[axcoTitleFontWeight](#axcoTitleFontWeight), [axcoTitleLimit](#axcoTitleLimit),
-[axcoTitleLineHeight](#axcoTitleLineHeight), [axcoTitleOpacity](#axcoTitleOpacity),
-[axcoTitlePadding](#axcoTitlePadding), [axcoTitleX](#axcoTitleX) and [axcoTitleY](#axcoTitleY).
+[axcoLabelExpr](#axcoLabelExpr), [axcoLabelFlush](#axcoLabelFlush),
+[axcoLabelFlushOffset](#axcoLabelFlushOffset), [axcoLabelFont](#axcoLabelFont),
+[axcoLabelFontSize](#axcoLabelFontSize), [axcoLabelFontStyle](#axcoLabelFontStyle),
+[axcoLabelFontWeight](#axcoLabelFontWeight), [axcoLabelLimit](#axcoLabelLimit),
+[axcoLabelOpacity](#axcoLabelOpacity), [axcoLabelOverlap](#axcoLabelOverlap),
+[axcoLabelPadding](#axcoLabelPadding), [axcoLabelSeparation](#axcoLabelSeparation),
+[axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor), [axcoTickCount](#axcoTickCount),
+[axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset),
+[axcoTickOpacity](#axcoTickOpacity), [axcoTickRound](#axcoTickRound),
+[axcoTickSize](#axcoTickSize), [axcoTickMinStep](#axcoTickMinStep),
+[axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign),
+[axcoTitleAnchor](#axcoTitleAnchor), [axcoTitleAngle](#axcoTitleAngle),
+[axcoTitleBaseline](#axcoTitleBaseline), [axcoTitleColor](#axcoTitleColor),
+[axcoTitleFont](#axcoTitleFont), [axcoTitleFontSize](#axcoTitleFontSize),
+[axcoTitleFontStyle](#axcoTitleFontStyle), [axcoTitleFontWeight](#axcoTitleFontWeight),
+[axcoTitleLimit](#axcoTitleLimit), [axcoTitleLineHeight](#axcoTitleLineHeight),
+[axcoTitleOpacity](#axcoTitleOpacity), [axcoTitlePadding](#axcoTitlePadding),
+[axcoTitleX](#axcoTitleX) and [axcoTitleY](#axcoTitleY).
 -}
 type AxisConfig
     = BandPosition Float
@@ -3560,6 +3565,7 @@ type AxisConfig
     | ShortTimeLabels Bool
     | Ticks Bool
     | TickColor String
+    | TickCount Int
     | TickExtra Bool
     | TickOffset Float
     | TickOpacity Float
@@ -6000,6 +6006,16 @@ axcoLabelColor =
     LabelColor
 
 
+{-| Default expression to generate axis labels. The parameter is a valid
+[Vega expression](https://vega.github.io/vega/docs/expressions/). Can reference
+`datum.value` and `datum.label` for access to the underlying data values and
+default label text respectively.
+-}
+axcoLabelExpr : String -> AxisConfig
+axcoLabelExpr =
+    LabelExpr
+
+
 {-| Default label alignment at beginning or end of the axis. Specifies the distance
 threshold from an end-point within which labels are flush-adjusted or if `Nothing`,
 no flush-adjustment made.
@@ -6107,6 +6123,14 @@ axcoShortTimeLabels =
 axcoTickColor : String -> AxisConfig
 axcoTickColor =
     TickColor
+
+
+{-| Default number of quantitative axis ticks. The resulting number may be
+different so that values are “nice” (multiples of 2, 5, 10).
+-}
+axcoTickCount : Int -> AxisConfig
+axcoTickCount =
+    TickCount
 
 
 {-| Whether or not by default an extra axis tick should be added for the initial
@@ -17093,6 +17117,9 @@ axisConfigProperty axisCfg =
 
         TickColor c ->
             ( "tickColor", JE.string c )
+
+        TickCount n ->
+            ( "tickCount", JE.int n )
 
         TickExtra b ->
             ( "tickExtra", JE.bool b )

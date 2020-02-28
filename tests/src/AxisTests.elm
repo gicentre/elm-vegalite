@@ -199,6 +199,37 @@ axis9 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
+axis10 : Spec
+axis10 =
+    let
+        cfg =
+            configure
+                << configuration (coAxisX [ axcoLabelExpr "'number '+ datum.label" ])
+
+        enc =
+            encoding
+                << position X [ pName "catX", pOrdinal ]
+                << position Y [ pName "y", pQuant ]
+    in
+    toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis11 : Spec
+axis11 =
+    let
+        cfg =
+            configure
+                << configuration (coAxisX [ axcoLabelExpr "'number '+ datum.label" ])
+                << configuration (coAxisY [ axcoTickCount 10 ])
+
+        enc =
+            encoding
+                << position X [ pName "catX", pOrdinal ]
+                << position Y [ pName "y", pQuant ]
+    in
+    toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -217,6 +248,8 @@ mySpecs =
         , ( "axis7", axis7 )
         , ( "axis8", axis8 )
         , ( "axis9", axis9 )
+        , ( "axis10", axis10 )
+        , ( "axis11", axis11 )
         ]
 
 

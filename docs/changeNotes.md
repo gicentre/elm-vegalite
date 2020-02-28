@@ -4,6 +4,8 @@
 
 ### Additions
 
+- `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
+
 ### Other Changes
 
 - `maText` now respects multi-line strings.

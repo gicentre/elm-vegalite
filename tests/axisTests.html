@@ -125,6 +125,23 @@
 
     <div style="clear:left"></div>
 
+    <h2>Axis Configuration</h2>
+
+    <figure class="cell">
+      <div id="axis10"></div>
+      <figcaption>
+        Should be identical to previous, but defined via an axis configuration.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="axis11"></div>
+      <figcaption>
+        Should be identical to previous, but configured to show 10 axis ticks on
+        y axis
+      </figcaption>
+    </figure>
+
     <script>
       Elm.AxisTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
