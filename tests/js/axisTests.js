@@ -2874,6 +2874,7 @@ var $author$project$VegaLite$hAlignLabel = function (al) {
 			return 'right';
 	}
 };
+var $elm$json$Json$Encode$int = _Json_wrap;
 var $elm$json$Json$Encode$list = F2(
 	function (func, entries) {
 		return _Json_wrap(
@@ -3094,109 +3095,114 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				'tickColor',
 				$elm$json$Json$Encode$string(c));
 		case 33:
+			var n = axisCfg.a;
+			return _Utils_Tuple2(
+				'tickCount',
+				$elm$json$Json$Encode$int(n));
+		case 34:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickExtra',
 				$elm$json$Json$Encode$bool(b));
-		case 34:
+		case 35:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickOffset',
 				$elm$json$Json$Encode$float(n));
-		case 35:
+		case 36:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickOpacity',
 				$elm$json$Json$Encode$float(n));
-		case 38:
+		case 39:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickMinStep',
 				$elm$json$Json$Encode$float(n));
-		case 36:
+		case 37:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickRound',
 				$elm$json$Json$Encode$bool(b));
-		case 37:
+		case 38:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickSize',
 				$elm$json$Json$Encode$float(x));
-		case 39:
+		case 40:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickWidth',
 				$elm$json$Json$Encode$float(x));
-		case 40:
+		case 41:
 			var al = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(al)));
-		case 42:
+		case 43:
 			var angle = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAngle',
 				$elm$json$Json$Encode$float(angle));
-		case 41:
+		case 42:
 			var an = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAnchor',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$anchorLabel(an)));
-		case 43:
+		case 44:
 			var va = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$vAlignLabel(va)));
-		case 44:
+		case 45:
 			var c = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				$elm$json$Json$Encode$string(c));
-		case 45:
+		case 46:
 			var f = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				$elm$json$Json$Encode$string(f));
-		case 47:
+		case 48:
 			var s = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFontStyle',
 				$elm$json$Json$Encode$string(s));
-		case 48:
+		case 49:
 			var w = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
 				$author$project$VegaLite$fontWeightSpec(w));
-		case 46:
+		case 47:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 49:
+		case 50:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				$elm$json$Json$Encode$float(x));
-		case 50:
+		case 51:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleLineHeight',
 				$elm$json$Json$Encode$float(x));
-		case 51:
+		case 52:
 			var n = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleOpacity',
 				$elm$json$Json$Encode$float(n));
-		case 52:
+		case 53:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				$elm$json$Json$Encode$float(x));
-		case 53:
+		case 54:
 			var x = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleX',
@@ -3208,7 +3214,6 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				$elm$json$Json$Encode$float(y));
 	}
 };
-var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$VegaLite$concatConfigProperty = function (ccp) {
 	if (!ccp.$) {
 		var n = ccp.a;
@@ -9270,6 +9275,120 @@ var $author$project$AxisTests$qAxisBase = function (maybeCfg) {
 			]));
 };
 var $author$project$AxisTests$axis1 = $author$project$AxisTests$qAxisBase($elm$core$Maybe$Nothing);
+var $author$project$VegaLite$LabelExpr = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$axcoLabelExpr = $author$project$VegaLite$LabelExpr;
+var $author$project$VegaLite$AxisX = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$coAxisX = $author$project$VegaLite$AxisX;
+var $author$project$AxisTests$axis10 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('catX'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coAxisX(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$axcoLabelExpr('\'number \'+ datum.label')
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				$author$project$AxisTests$data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(_List_Nil))
+					]))
+			]));
+}();
+var $author$project$VegaLite$TickCount = function (a) {
+	return {$: 33, a: a};
+};
+var $author$project$VegaLite$axcoTickCount = $author$project$VegaLite$TickCount;
+var $author$project$VegaLite$AxisY = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$coAxisY = $author$project$VegaLite$AxisY;
+var $author$project$AxisTests$axis11 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('catX'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coAxisX(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axcoLabelExpr('\'number \'+ datum.label')
+						])))),
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coAxisY(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$axcoTickCount(10)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				$author$project$AxisTests$data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(_List_Nil))
+					]))
+			]));
+}();
 var $author$project$VegaLite$GridColor = function (a) {
 	return {$: 6, a: a};
 };
@@ -9711,7 +9830,9 @@ var $author$project$AxisTests$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('axis6', $author$project$AxisTests$axis6),
 			_Utils_Tuple2('axis7', $author$project$AxisTests$axis7),
 			_Utils_Tuple2('axis8', $author$project$AxisTests$axis8),
-			_Utils_Tuple2('axis9', $author$project$AxisTests$axis9)
+			_Utils_Tuple2('axis9', $author$project$AxisTests$axis9),
+			_Utils_Tuple2('axis10', $author$project$AxisTests$axis10),
+			_Utils_Tuple2('axis11', $author$project$AxisTests$axis11)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
