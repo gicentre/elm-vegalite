@@ -230,7 +230,50 @@ axis11 =
     toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
+axis12 : Spec
+axis12 =
+    let
+        cfg =
+            configure
+                << configuration
+                    (coAxisStyles
+                        [ ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red", axTickCount 10 ] )
+                        , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue", axTickCount 10 ] )
+                        ]
+                    )
 
+        enc =
+            encoding
+                << position X [ pName "catX", pOrdinal, pAxis [ axStyle [ "redStyle" ] ] ]
+                << position Y [ pName "y", pQuant, pAxis [ axStyle [ "blueStyle" ] ] ]
+    in
+    toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+
+-- Unlike titles, it would appear Vega-Lite does not allow axis styles to reference other named styles.
+-- axis13 : Spec
+-- axis13 =
+--     let
+--         cfg =
+--             configure
+--                 << configuration
+--                     (coAxisStyles
+--                         [ ( "tickStyle", [ axTickCount 10 ] )
+--                         , ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red" ] )
+--                         , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue" ] )
+--                         ]
+--                     )
+--                 << configuration (coAxis [ axcoStyle [ "tickStyle" ] ])
+--                 << configuration (coAxisX [ axcoStyle [ "redStyle" ] ])
+--                 << configuration (coAxisY [ axcoStyle [ "blueStyle" ] ])
+--
+--         enc =
+--             encoding
+--                 << position X [ pName "catX", pOrdinal ]
+--                 << position Y [ pName "y", pQuant ]
+--     in
+--     toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
 
@@ -250,6 +293,9 @@ mySpecs =
         , ( "axis9", axis9 )
         , ( "axis10", axis10 )
         , ( "axis11", axis11 )
+        , ( "axis12", axis12 )
+
+        -- , ( "axis13", axis13 )
         ]
 
 

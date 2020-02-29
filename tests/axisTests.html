@@ -142,6 +142,25 @@
       </figcaption>
     </figure>
 
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="axis12"></div>
+      <figcaption>
+        Red X axis and blue Y axis each with 10 tick marks, configured via
+        axStyle.
+      </figcaption>
+    </figure>
+
+    <!-- <figure class="cell">
+      <div id="axis13"></div>
+      <figcaption>
+        Identical to previous but created via axcoStyle.
+      </figcaption>
+    </figure> -->
+
+    <div style="clear:left"></div>
+
     <script>
       Elm.AxisTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {

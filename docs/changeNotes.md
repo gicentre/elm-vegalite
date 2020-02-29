@@ -5,11 +5,23 @@
 ### Additions
 
 - `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
+- `axLabelOffset` for offsetting axis labels from their tick marks.
+
+* `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+
+- `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
+
+### Deprecations
+
+- `coNamedStyle` and `coNamedStyles` both deprecated in favour of `coMarkStyles`. Provides greater naming consistency with the addition of (VL 4.4) `coAxisStyles`.
 
 ### Other Changes
 
 - `maText` now respects multi-line strings.
-- Simplified Likert gallery example to use multi-line text literals.
+
+* Simplified Likert gallery example to use multi-line text literals.
+
+- Replaced now deprecated `coNamedStyle` and `coNamedStyles` with `coMarkStyles` in gallery examples and test.
 
 ---
 

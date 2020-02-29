@@ -142,7 +142,7 @@ vbTest =
         cfg =
             configure
                 << configuration
-                    (coNamedStyles
+                    (coMarkStyles
                         [ ( "myStyle", [ maFill "red", maFillOpacity 0.1, maStrokeOpacity 1 ] )
                         , ( "mySecondStyle", [ maFill "black", maStroke "blue" ] )
                         ]

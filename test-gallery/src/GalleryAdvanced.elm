@@ -514,7 +514,7 @@ advanced14 =
                 << configuration (coView [ vicoStroke Nothing ])
                 << configuration (coAxisX [ axcoDomain False, axcoLabelAngle 0, axcoTickColor "#ccc" ])
                 << configuration
-                    (coNamedStyles
+                    (coMarkStyles
                         [ ( "label", [ maBaseline vaMiddle, maAlign haRight, maDx -5, maTooltip ttNone ] )
                         , ( "tick", [ maOrient moHorizontal, maTooltip ttNone ] )
                         ]

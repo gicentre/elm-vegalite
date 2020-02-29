@@ -466,7 +466,7 @@ bar16 =
 
         cfg =
             configure
-                << configuration (coNamedStyle "label" [ maAlign haLeft, maBaseline vaMiddle, maDx 3 ])
+                << configuration (coMarkStyles [ ( "label", [ maAlign haLeft, maBaseline vaMiddle, maDx 3 ] ) ])
     in
     toVegaLite [ des, cfg [], data [], enc [], layer [ specBar, specText ] ]
 

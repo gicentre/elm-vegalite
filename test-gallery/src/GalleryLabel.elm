@@ -16,6 +16,10 @@ label1 =
         des =
             description "A simple bar chart with embedded data labels"
 
+        cfg =
+            configure
+                << configuration (coMarkStyles [ ( "label", [ maAlign haLeft, maBaseline vaMiddle, maDx 3 ] ) ])
+
         data =
             dataFromColumns []
                 << dataColumn "a" (strs [ "A", "B", "C" ])
@@ -30,12 +34,9 @@ label1 =
             asSpec [ bar [] ]
 
         specText =
-            asSpec [ textMark [ maStyle [ "label" ] ], encoding (text [ tName "b", tQuant ] []) ]
-
-        config =
-            configure << configuration (coNamedStyle "label" [ maAlign haLeft, maBaseline vaMiddle, maDx 3 ])
+            asSpec [ encoding (text [ tName "b", tQuant ] []), textMark [ maStyle [ "label" ] ] ]
     in
-    toVegaLite [ des, data [], enc [], layer [ specBar, specText ], config [] ]
+    toVegaLite [ des, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
 label2 : Spec
@@ -437,7 +438,7 @@ label9 =
         cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
-                << configuration (coNamedStyles [ ( "arrow-label", [ maDy 12, maFontSize 9.5 ] ) ])
+                << configuration (coMarkStyles [ ( "arrow-label", [ maDy 12, maFontSize 9.5 ] ) ])
                 << configuration (coTitle [ ticoFontSize 12 ])
 
         likertData =

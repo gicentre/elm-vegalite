@@ -459,6 +459,7 @@ module VegaLite exposing
     , axPosition
     , axZIndex
     , axDataCondition
+    , axStyle
     , axDomain
     , axDomainColor
     , axDomainOpacity
@@ -487,6 +488,7 @@ module VegaLite exposing
     , axLabelFontWeight
     , cAxLabelFontWeight
     , axLabelLimit
+    , axLabelOffset
     , axLabelOpacity
     , cAxLabelOpacity
     , axLabelOverlap
@@ -993,6 +995,7 @@ module VegaLite exposing
     , coAxisBand
     , coAxisQuant
     , coAxisTemporal
+    , coAxisStyles
     , coBackground
     , coBar
     , coCircle
@@ -1006,8 +1009,7 @@ module VegaLite exposing
     , coLegend
     , coLine
     , coMark
-    , coNamedStyle
-    , coNamedStyles
+    , coMarkStyles
     , coNumberFormat
     , coPadding
     , coPoint
@@ -1361,6 +1363,8 @@ module VegaLite exposing
     , axcoTickStep
     , axDates
     , axTickStep
+    , coNamedStyle
+    , coNamedStyles
     , coStack
     , lookupAs
     , sacoRangeStep
@@ -1370,6 +1374,7 @@ module VegaLite exposing
     , scSequential
     , vicoWidth
     , vicoHeight
+    -- , axcoStyle
     --, leUnselectedOpacity
     )
 
@@ -2127,6 +2132,7 @@ See the
 @docs axPosition
 @docs axZIndex
 @docs axDataCondition
+@docs axStyle
 
 
 #### Axis Domain
@@ -2163,6 +2169,7 @@ See the
 @docs axLabelFontWeight
 @docs cAxLabelFontWeight
 @docs axLabelLimit
+@docs axLabelOffset
 @docs axLabelOpacity
 @docs cAxLabelOpacity
 @docs axLabelOverlap
@@ -2995,6 +3002,7 @@ Allows default properties for most marks and guides to be set. See the
 @docs coAxisBand
 @docs coAxisQuant
 @docs coAxisTemporal
+@docs coAxisStyles
 @docs coBackground
 @docs coBar
 @docs coCircle
@@ -3008,8 +3016,7 @@ Allows default properties for most marks and guides to be set. See the
 @docs coLegend
 @docs coLine
 @docs coMark
-@docs coNamedStyle
-@docs coNamedStyles
+@docs coMarkStyles
 @docs coNumberFormat
 @docs coPadding
 @docs coPoint
@@ -3457,6 +3464,8 @@ to the functions that generate them.
 @docs axcoTickStep
 @docs axDates
 @docs axTickStep
+@docs coNamedStyle
+@docs coNamedStyles
 @docs coStack
 @docs lookupAs
 @docs sacoRangeStep
@@ -3519,17 +3528,15 @@ type Autosize
 [axcoLabelOpacity](#axcoLabelOpacity), [axcoLabelOverlap](#axcoLabelOverlap),
 [axcoLabelPadding](#axcoLabelPadding), [axcoLabelSeparation](#axcoLabelSeparation),
 [axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor), [axcoTickCount](#axcoTickCount),
-[axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset),
-[axcoTickOpacity](#axcoTickOpacity), [axcoTickRound](#axcoTickRound),
-[axcoTickSize](#axcoTickSize), [axcoTickMinStep](#axcoTickMinStep),
-[axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign),
-[axcoTitleAnchor](#axcoTitleAnchor), [axcoTitleAngle](#axcoTitleAngle),
-[axcoTitleBaseline](#axcoTitleBaseline), [axcoTitleColor](#axcoTitleColor),
-[axcoTitleFont](#axcoTitleFont), [axcoTitleFontSize](#axcoTitleFontSize),
-[axcoTitleFontStyle](#axcoTitleFontStyle), [axcoTitleFontWeight](#axcoTitleFontWeight),
-[axcoTitleLimit](#axcoTitleLimit), [axcoTitleLineHeight](#axcoTitleLineHeight),
-[axcoTitleOpacity](#axcoTitleOpacity), [axcoTitlePadding](#axcoTitlePadding),
-[axcoTitleX](#axcoTitleX) and [axcoTitleY](#axcoTitleY).
+[axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset), [axcoTickOpacity](#axcoTickOpacity),
+[axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize), [axcoTickMinStep](#axcoTickMinStep),
+[axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign), [axcoTitleAnchor](#axcoTitleAnchor),
+[axcoTitleAngle](#axcoTitleAngle), [axcoTitleBaseline](#axcoTitleBaseline),
+[axcoTitleColor](#axcoTitleColor), [axcoTitleFont](#axcoTitleFont),
+[axcoTitleFontSize](#axcoTitleFontSize), [axcoTitleFontStyle](#axcoTitleFontStyle),
+[axcoTitleFontWeight](#axcoTitleFontWeight), [axcoTitleLimit](#axcoTitleLimit),
+[axcoTitleLineHeight](#axcoTitleLineHeight), [axcoTitleOpacity](#axcoTitleOpacity),
+[axcoTitlePadding](#axcoTitlePadding), [axcoTitleX](#axcoTitleX) and [axcoTitleY](#axcoTitleY).
 -}
 type AxisConfig
     = BandPosition Float
@@ -3601,8 +3608,8 @@ type AxisConfig
 [axLabelFlushOffset](#axLabelFlushOffset), [axLabelFont](#axLabelFont),
 [axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
 [axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit),
-[axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap),
-[axLabelPadding](#axLabelPadding), [axLabelSeparation](#axLabelSeparation),
+[axLabelOffset](#axLabelOffset), [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap),
+[axLabelPadding](#axLabelPadding), [axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle),
 [axTicks](#axTicks), [axTickColor](#axTickColor), [axTickCount](#axTickCount),
 [axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset), [axTickOpacity](#axTickOpacity),
 [axTickRound](#axTickRound), [axTickSize](#axTickSize), [axTickMinStep](#axTickMinStep),
@@ -3643,10 +3650,12 @@ type AxisProperty
     | AxLabelFontStyle String
     | AxLabelFontWeight FontWeight
     | AxLabelLimit Float
+    | AxLabelOffset Float
     | AxLabelOpacity Float
     | AxLabelOverlap OverlapStrategy
     | AxLabelPadding Float
     | AxLabelSeparation Float
+    | AxStyle (List String)
     | AxTickColor String
     | AxTickCount Int
     | AxTickExtra Bool
@@ -3838,16 +3847,16 @@ type ConditionalAxisProperty
 
 
 {-| Generated by [coArea](#coArea), [coAutosize](#coAutosize), [coAxis](#coAxis),
-[coAxisX](#coAxisX), [coAxisY](#coAxisY), [coAxisLeft](#coAxisLeft),
-[coAxisRight](#coAxisRight), [coAxisTop](#coAxisTop), [coAxisBottom](#coAxisBottom),
-[coAxisBand](#coAxisBand), [coAxisTemporal](#coAxisTemporal), [coAxisQuant](#coAxisQuant),
-[coBackground](#coBackground), [coBar](#coBar), [coCircle](#coCircle), [coConcat](#coConcat),
-[coCountTitle](#coCountTitle), [coFieldTitle](#coFieldTitle), [coGeoshape](#coGeoshape),
-[coFacet](#coFacet), [coHeader](#coHeader), [coLegend](#coLegend), [coLine](#coLine),
-[coMark](#coMark), [coNamedStyle](#coNamedStyle), [coNamedStyles](#coNamedStyles),
-[coNumberFormat](#coNumberFormat), [coPadding](#coPadding), [coPoint](#coPoint),
-[coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect), [coRule](#coRule),
-[coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
+[coAxisStyles](#coAxisStyles), [coAxisX](#coAxisX), [coAxisY](#coAxisY),
+[coAxisLeft](#coAxisLeft), [coAxisRight](#coAxisRight), [coAxisTop](#coAxisTop),
+[coAxisBottom](#coAxisBottom), [coAxisBand](#coAxisBand), [coAxisTemporal](#coAxisTemporal),
+[coAxisQuant](#coAxisQuant), [coBackground](#coBackground), [coBar](#coBar),
+[coCircle](#coCircle), [coConcat](#coConcat), [coCountTitle](#coCountTitle),
+[coFieldTitle](#coFieldTitle), [coGeoshape](#coGeoshape), [coFacet](#coFacet),
+[coHeader](#coHeader), [coLegend](#coLegend), [coLine](#coLine), [coMark](#coMark),
+[coMarkStyles](#coMarkStyles), [coNumberFormat](#coNumberFormat), [coPadding](#coPadding),
+[coPoint](#coPoint), [coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
+[coRule](#coRule), [coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
 [coText](#coText), [coFont](#coFont), [coTick](#coTick), [coTitle](#coTitle),
 [coTimeFormat](#coTimeFormat), [coTrail](#coTrail) and [coView](#coView).
 -}
@@ -3855,6 +3864,7 @@ type ConfigurationProperty
     = AreaStyle (List MarkProperty)
     | Autosize (List Autosize)
     | Axis (List AxisConfig)
+    | AxisStyles (List ( String, List AxisProperty ))
     | AxisX (List AxisConfig)
     | AxisY (List AxisConfig)
     | AxisLeft (List AxisConfig)
@@ -3877,8 +3887,7 @@ type ConfigurationProperty
     | FacetStyle (List FacetConfig)
     | HeaderStyle (List HeaderProperty)
     | MarkStyle (List MarkProperty)
-    | NamedStyle String (List MarkProperty)
-    | NamedStyles (List ( String, List MarkProperty ))
+    | MarkStyles (List ( String, List MarkProperty ))
     | NumberFormat String
     | Padding Padding
     | PointStyle (List MarkProperty)
@@ -6118,6 +6127,15 @@ axcoShortTimeLabels =
     ShortTimeLabels
 
 
+
+{- | A list of named styles to apply as defaults to axes.
+
+   axcoStyle : List String -> AxisConfig
+   axcoStyle =
+       AStyle
+-}
+
+
 {-| Default axis tick mark color.
 -}
 axcoTickColor : String -> AxisConfig
@@ -6502,11 +6520,32 @@ axLabelLimit =
     AxLabelLimit
 
 
+{-| Offset in pixels of an axis's labels relative to its ticks.
+-}
+axLabelOffset : Float -> AxisProperty
+axLabelOffset =
+    AxLabelOffset
+
+
 {-| Opacity of an axis label.
 -}
 axLabelOpacity : Float -> AxisProperty
 axLabelOpacity =
     AxLabelOpacity
+
+
+{-| A list of named styles to apply to an axis. Named styles can be specified via
+[coAxisStyles](#coAxisStyles). Later styles in the list will override earlier
+styles if there is a conflict in any of the properties specified.
+
+While this is provided for compatibility with Vega-Lite style specification, for
+greater type safety in elm-vegalite, instead create functions that generate
+[AxisProperties](#AxisProperty).
+
+-}
+axStyle : List String -> AxisProperty
+axStyle =
+    AxStyle
 
 
 {-| Color of axis ticks.
@@ -7423,6 +7462,16 @@ coAxisLeft =
     AxisLeft
 
 
+{-| Specify a list of named styles that each define a list of axis properties.
+Provided for compatibility with Vega-Lite, but generally greater type safety is
+achieved in elm-vegalite by creating elm functions that generate lists of
+[AxisProperties](#AxisProperty).
+-}
+coAxisStyles : List ( String, List AxisProperty ) -> ConfigurationProperty
+coAxisStyles =
+    AxisStyles
+
+
 {-| Configure the default appearance of any quantitatice axes.
 -}
 coAxisQuant : List AxisConfig -> ConfigurationProperty
@@ -7640,9 +7689,18 @@ coMark =
     MarkStyle
 
 
-{-| Combines a list of labelled specifications that may be passed to JavaScript
-for rendering. Useful when you wish to create a single page with multiple
-visualizations.
+{-| Specify a list of named styles that each define a list of mark properties.
+Can be used when configuring views, titles etc. Provided for compatibility with
+Vega-Lite, but generally greater type safety is achieved in elm-vegalite by creating
+elm functions that generate lists of [MarkProperties](#MarkProperty).
+-}
+coMarkStyles : List ( String, List MarkProperty ) -> ConfigurationProperty
+coMarkStyles =
+    MarkStyles
+
+
+{-| Combine a list of labelled specifications to be passed to JavaScript for rendering.
+Useful when you wish to create a single page with multiple visualizations.
 
     combineSpecs
         [ ( "vis1", myFirstVis )
@@ -7656,18 +7714,18 @@ combineSpecs specs =
     JE.object specs
 
 
-{-| Configure the default appearance of a single named style.
+{-| Deprecated in favour of [coMarkStyles](#coMarkStyles].
 -}
 coNamedStyle : String -> List MarkProperty -> ConfigurationProperty
-coNamedStyle =
-    NamedStyle
+coNamedStyle s mps =
+    coMarkStyles [ ( s, mps ) ]
 
 
-{-| Configure the default appearance of a list of named styles.
+{-| Deprecated in favour of [coMarkStyles](#coMarkStyles].
 -}
 coNamedStyles : List ( String, List MarkProperty ) -> ConfigurationProperty
 coNamedStyles =
-    NamedStyles
+    coMarkStyles
 
 
 {-| Specifications to be juxtaposed in a flow layout of views. The number of columns
@@ -12306,7 +12364,10 @@ maStrokeWidth =
 
 
 {-| Names of custom styles to apply to a mark. Each should refer to a named style
-defined in a separate style configuration.
+defined in a separate style configuration with [coMarkStyles](#coMarkStyles).
+While this is provided for compatibility with Vega-Lite style specification, for
+greater type safety in elm-vegalite, instead create functions that generate
+[MarkProperties](#MarkProperty).
 -}
 maStyle : List String -> MarkProperty
 maStyle =
@@ -15735,9 +15796,14 @@ tiOrient =
 
 
 {-| A list of named styles to apply to title. A named style can be specified via
-[coNamedStyle](#coNamedStyle) or [coNamedStyles](#coNamedStyles) if more than one
-style is required. Later styles in the list will override earlier styles if there
-is a conflict in any of the mark properties specified.
+[coMarkStyles](#coMarkStyles) if more than one style is required. Later styles
+in the list will override earlier styles if there is a conflict in any of the mark
+properties specified.
+
+While this is provided for compatibility with Vega-Lite style specification, for
+greater type safety in elm-vegalite, instead create functions that generate
+[TitleProperties](#TitleProperty).
+
 -}
 tiStyle : List String -> TitleProperty
 tiStyle =
@@ -15911,9 +15977,9 @@ ticoOrient =
 
 
 {-| A list of named styles to apply to titles. A named style can be specified via
-[coNamedStyle](#coNamedStyle) or [coNamedStyles](#coNamedStyles) if more than one
-style is required. Later styles in the list will override earlier
-styles if there is a conflict in any of the mark properties specified.
+[coMarkStyles](#coMarkStyles) if more than one style is required. Later styles
+in the list will override earlier styles if there is a conflict in any of the
+mark properties specified.
 -}
 ticoStyle : List String -> TitleConfig
 ticoStyle =
@@ -16635,9 +16701,9 @@ viewStrokeWidth =
 
 
 {-| A list of named styles to apply to a single view background. A named style
-can be specified via [coNamedStyle](#coNamedStyle) or [coNamedStyles](#coNamedStyles)
-if more than one style is required. Later styles in the list will override earlier
-styles if there is a conflict in any of the mark properties specified.
+can be specified via [coMarkStyles](#coMarkStyles) if more than one style is required.
+Later styles in the list will override earlier styles if there is a conflict in
+any of the mark properties specified.
 -}
 viewStyle : List String -> ViewBackground
 viewStyle =
@@ -16997,6 +17063,13 @@ autosizeProperty asCfg =
 axisConfigProperty : AxisConfig -> LabelledSpec
 axisConfigProperty axisCfg =
     case axisCfg of
+        -- AStyle ss ->
+        --     case ss of
+        --         [ s ] ->
+        --             ( "style", JE.string s )
+        --
+        --         _ ->
+        --             ( "style", JE.list JE.string ss )
         BandPosition x ->
             ( "bandPosition", JE.float x )
 
@@ -17343,11 +17416,14 @@ axisProperty axisProp =
         AxLabelFontWeight fw ->
             ( "labelFontWeight", fontWeightSpec fw )
 
-        AxLabelLimit n ->
-            ( "labelLimit", JE.float n )
+        AxLabelLimit x ->
+            ( "labelLimit", JE.float x )
 
-        AxLabelOpacity n ->
-            ( "labelOpacity", JE.float n )
+        AxLabelOffset x ->
+            ( "labelOffset", JE.float x )
+
+        AxLabelOpacity x ->
+            ( "labelOpacity", JE.float x )
 
         AxLabelOverlap strat ->
             ( "labelOverlap", overlapStrategySpec strat )
@@ -17364,29 +17440,37 @@ axisProperty axisProp =
         AxDomainColor c ->
             ( "domainColor", JE.string c )
 
-        AxDomainOpacity n ->
-            ( "domainOpacity", JE.float n )
+        AxDomainOpacity x ->
+            ( "domainOpacity", JE.float x )
 
-        AxDomainWidth n ->
-            ( "domainWidth", JE.float n )
+        AxDomainWidth x ->
+            ( "domainWidth", JE.float x )
 
         AxGrid b ->
             ( "grid", JE.bool b )
 
-        AxMaxExtent n ->
-            ( "maxExtent", JE.float n )
+        AxMaxExtent x ->
+            ( "maxExtent", JE.float x )
 
-        AxMinExtent n ->
-            ( "minExtent", JE.float n )
+        AxMinExtent x ->
+            ( "minExtent", JE.float x )
 
         AxOrient side ->
             ( "orient", JE.string (sideLabel side) )
 
-        AxOffset n ->
-            ( "offset", JE.float n )
+        AxOffset x ->
+            ( "offset", JE.float x )
 
-        AxPosition n ->
-            ( "position", JE.float n )
+        AxPosition x ->
+            ( "position", JE.float x )
+
+        AxStyle ss ->
+            case ss of
+                [ s ] ->
+                    ( "style", JE.string s )
+
+                _ ->
+                    ( "style", JE.list JE.string ss )
 
         AxZIndex n ->
             ( "zindex", JE.int n )
@@ -17403,23 +17487,23 @@ axisProperty axisProp =
         AxTickExtra b ->
             ( "tickExtra", JE.bool b )
 
-        AxTickOffset n ->
-            ( "tickOffset", JE.float n )
+        AxTickOffset x ->
+            ( "tickOffset", JE.float x )
 
-        AxTickOpacity n ->
-            ( "tickOpacity", JE.float n )
+        AxTickOpacity x ->
+            ( "tickOpacity", JE.float x )
 
         AxTickRound b ->
             ( "tickRound", JE.bool b )
 
-        AxTickMinStep n ->
-            ( "tickMinStep", JE.float n )
+        AxTickMinStep x ->
+            ( "tickMinStep", JE.float x )
 
         AxTickSize sz ->
             ( "tickSize", JE.float sz )
 
-        AxTickWidth n ->
-            ( "tickWidth", JE.float n )
+        AxTickWidth x ->
+            ( "tickWidth", JE.float x )
 
         AxValues vals ->
             ( "values", toList (dataValuesSpecs vals) )
@@ -17448,8 +17532,8 @@ axisProperty axisProp =
         AxTitleFont s ->
             ( "titleFont", JE.string s )
 
-        AxTitleFontSize n ->
-            ( "titleFontSize", JE.float n )
+        AxTitleFontSize x ->
+            ( "titleFontSize", JE.float x )
 
         AxTitleFontStyle s ->
             ( "titleFontStyle", JE.string s )
@@ -17457,20 +17541,20 @@ axisProperty axisProp =
         AxTitleFontWeight fw ->
             ( "titleFontWeight", fontWeightSpec fw )
 
-        AxTitleLimit n ->
-            ( "titleLimit", JE.float n )
+        AxTitleLimit x ->
+            ( "titleLimit", JE.float x )
 
-        AxTitleOpacity n ->
-            ( "titleOpacity", JE.float n )
+        AxTitleOpacity x ->
+            ( "titleOpacity", JE.float x )
 
         AxTitlePadding pad ->
             ( "titlePadding", JE.float pad )
 
-        AxTitleX n ->
-            ( "titleX", JE.float n )
+        AxTitleX x ->
+            ( "titleX", JE.float x )
 
-        AxTitleY n ->
-            ( "titleY", JE.float n )
+        AxTitleY x ->
+            ( "titleY", JE.float x )
 
 
 bin : List BinProperty -> LabelledSpec
@@ -17813,14 +17897,20 @@ configProperty configProp =
         TitleStyle tcs ->
             ( "title", JE.object (List.map titleConfigProperty tcs) )
 
-        NamedStyle styleName mps ->
-            ( "style", JE.object [ ( styleName, JE.object (List.map markProperty mps) ) ] )
-
-        NamedStyles styles ->
+        MarkStyles styles ->
             ( "style"
             , JE.object
                 (List.map
                     (\( sName, mps ) -> ( sName, JE.object (List.map markProperty mps) ))
+                    styles
+                )
+            )
+
+        AxisStyles styles ->
+            ( "style"
+            , JE.object
+                (List.map
+                    (\( sName, mps ) -> ( sName, JE.object (List.map axisProperty mps) ))
                     styles
                 )
             )
@@ -21042,8 +21132,13 @@ titleConfigProperty titleCfg =
         TOrient sd ->
             ( "orient", JE.string (sideLabel sd) )
 
-        TStyle styles ->
-            ( "style", JE.list JE.string styles )
+        TStyle ss ->
+            case ss of
+                [ s ] ->
+                    ( "style", JE.string s )
+
+                _ ->
+                    ( "style", JE.list JE.string ss )
 
         TSubtitle s ->
             ( "subtitle", multilineTextSpec s )
