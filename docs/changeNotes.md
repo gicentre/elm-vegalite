@@ -5,11 +5,12 @@
 ### Additions
 
 - `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
-- `axLabelOffset` for offsetting axis labels from their tick marks.
 
-* `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+* `axLabelOffset` for offsetting axis labels from their tick marks (VL 4.4).
 
-- `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
+- `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+
+* `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
 
 ### Deprecations
 
