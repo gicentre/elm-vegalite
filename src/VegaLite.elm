@@ -6941,7 +6941,7 @@ biNice =
 
 {-| Binning transformation that may be referenced in other transformations or
 encodings. The first parameter is a list of customisation optiona ([biBase](#biBase),
-[biDivide](#biDivide) etc.) or an empty list to use the default binning. Sthe second
+[biDivide](#biDivide) etc.) or an empty list to use the default binning. The second
 is the field to bin and the third the name to give the output binned data.
 
     trans =
@@ -18693,7 +18693,12 @@ headerProperty hProp =
             ( "labelPadding", JE.float x )
 
         HTitle s ->
-            ( "title", multilineTextSpec s )
+            case s of
+                "" ->
+                    ( "title", JE.null )
+
+                _ ->
+                    ( "title", multilineTextSpec s )
 
         HTitleAnchor a ->
             ( "titleAnchor", JE.string (anchorLabel a) )

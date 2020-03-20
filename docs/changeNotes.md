@@ -22,6 +22,8 @@
 
 * Simplified Likert gallery example to use multi-line text literals.
 
+- Providing `hdTitle` with an empty string now generates a JSON null value rather than empty string, to be compatible with schema.
+
 - Replaced now deprecated `coNamedStyle` and `coNamedStyles` with `coMarkStyles` in gallery examples and test.
 
 ---
