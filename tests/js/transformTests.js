@@ -9448,9 +9448,13 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				$elm$json$Json$Encode$float(x));
 		case 3:
 			var s = hProp.a;
-			return _Utils_Tuple2(
-				'title',
-				$author$project$VegaLite$multilineTextSpec(s));
+			if (s === '') {
+				return _Utils_Tuple2('title', $elm$json$Json$Encode$null);
+			} else {
+				return _Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(s));
+			}
 		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(

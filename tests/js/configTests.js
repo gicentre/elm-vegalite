@@ -5744,9 +5744,13 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				$elm$json$Json$Encode$float(x));
 		case 3:
 			var s = hProp.a;
-			return _Utils_Tuple2(
-				'title',
-				$author$project$VegaLite$multilineTextSpec(s));
+			if (s === '') {
+				return _Utils_Tuple2('title', $elm$json$Json$Encode$null);
+			} else {
+				return _Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(s));
+			}
 		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(
@@ -7137,10 +7141,15 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 			return _Utils_Tuple2(
 				'textXRangeStep',
 				$elm$json$Json$Encode$float(x));
-		default:
+		case 21:
 			var b = scaleCfg.a;
 			return _Utils_Tuple2(
 				'useUnaggregatedDomain',
+				$elm$json$Json$Encode$bool(b));
+		default:
+			var b = scaleCfg.a;
+			return _Utils_Tuple2(
+				'xReverse',
 				$elm$json$Json$Encode$bool(b));
 	}
 };
@@ -9754,6 +9763,24 @@ var $author$project$ConfigTests$paddingCfg = $author$project$ConfigTests$singleV
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coPadding(
 				A4($author$project$VegaLite$paEdges, 90, 60, 30, 0)))));
+var $author$project$VegaLite$Scale = function (a) {
+	return {$: 34, a: a};
+};
+var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
+var $author$project$VegaLite$SCXReverse = function (a) {
+	return {$: 22, a: a};
+};
+var $author$project$VegaLite$sacoXReverse = $author$project$VegaLite$SCXReverse;
+var $author$project$ConfigTests$scaleCfg1 = $author$project$ConfigTests$singleVis(
+	A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coScale(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$sacoXReverse(true)
+					])))));
 var $author$project$VegaLite$Circle = 5;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(5);
 var $author$project$VegaLite$TSubtitle = function (a) {
@@ -10234,7 +10261,8 @@ var $author$project$ConfigTests$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('axisCfg1', $author$project$ConfigTests$axisCfg1),
 			_Utils_Tuple2('titleCfg1', $author$project$ConfigTests$titleCfg1),
 			_Utils_Tuple2('titleCfg2', $author$project$ConfigTests$titleCfg2),
-			_Utils_Tuple2('titleCfg3', $author$project$ConfigTests$titleCfg3)
+			_Utils_Tuple2('titleCfg3', $author$project$ConfigTests$titleCfg3),
+			_Utils_Tuple2('scaleCfg1', $author$project$ConfigTests$scaleCfg1)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

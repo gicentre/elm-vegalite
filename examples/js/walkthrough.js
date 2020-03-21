@@ -6483,9 +6483,13 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				$elm$json$Json$Encode$float(x));
 		case 3:
 			var s = hProp.a;
-			return _Utils_Tuple2(
-				'title',
-				$author$project$VegaLite$multilineTextSpec(s));
+			if (s === '') {
+				return _Utils_Tuple2('title', $elm$json$Json$Encode$null);
+			} else {
+				return _Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(s));
+			}
 		case 14:
 			var a = hProp.a;
 			return _Utils_Tuple2(
@@ -7180,10 +7184,15 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 			return _Utils_Tuple2(
 				'textXRangeStep',
 				$elm$json$Json$Encode$float(x));
-		default:
+		case 21:
 			var b = scaleCfg.a;
 			return _Utils_Tuple2(
 				'useUnaggregatedDomain',
+				$elm$json$Json$Encode$bool(b));
+		default:
+			var b = scaleCfg.a;
+			return _Utils_Tuple2(
+				'xReverse',
 				$elm$json$Json$Encode$bool(b));
 	}
 };
