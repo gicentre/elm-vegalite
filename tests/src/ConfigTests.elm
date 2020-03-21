@@ -318,6 +318,13 @@ titleCfg3 =
         ]
 
 
+scaleCfg1 : Spec
+scaleCfg1 =
+    configure
+        << configuration (coScale [ sacoXReverse True ])
+        |> singleVis
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -335,6 +342,7 @@ mySpecs =
         , ( "titleCfg1", titleCfg1 )
         , ( "titleCfg2", titleCfg2 )
         , ( "titleCfg3", titleCfg3 )
+        , ( "scaleCfg1", scaleCfg1 )
         ]
 
 

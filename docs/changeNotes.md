@@ -4,13 +4,15 @@
 
 ### Additions
 
-- `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
+- `sacoXReverse` for configuring right-to-left charts and undeprecated `scReverse` (VL 4.5)
 
-* `axLabelOffset` for offsetting axis labels from their tick marks (VL 4.4).
+* `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
 
-- `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+- `axLabelOffset` for offsetting axis labels from their tick marks (VL 4.4).
 
-* `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
+* `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+
+- `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
 
 ### Deprecations
 
