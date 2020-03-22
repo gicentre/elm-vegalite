@@ -28,6 +28,66 @@ singleVis config =
         ]
 
 
+histoVis : (List a -> ( VLProperty, Spec )) -> Spec
+histoVis config =
+    let
+        data =
+            dataFromColumns [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+                << dataColumn "rating" (nums [ 4, 5, 4, 2, 6, 4, 5, 8, 4, 9, 3, 7 ])
+                << dataColumn "date"
+                    (strs
+                        [ "2020/01/31"
+                        , "2020/02/29"
+                        , "2020/03/31"
+                        , "2020/04/30"
+                        , "2020/05/31"
+                        , "2020/06/30"
+                        , "2020/07/31"
+                        , "2020/08/31"
+                        , "2020/09/30"
+                        , "2020/10/31"
+                        , "2020/11/30"
+                        , "2020/12/31"
+                        ]
+                    )
+                << dataColumn "preference" (List.range 1 12 |> List.map toFloat |> nums)
+
+        -- Use a variety of axis scale types for axis config testing
+        barEnc =
+            encoding
+                << position X [ pName "rating", pBin [], pOrdinal ]
+                << position Y [ pAggregate opCount, pQuant ]
+
+        barSpec =
+            asSpec [ barEnc [], bar [ maOpacity 0.3 ] ]
+
+        dotEnc =
+            encoding
+                << position X [ pName "preference", pOrdinal ]
+                << position Y [ pName "rating", pQuant, pAxis [ axOrient siRight ] ]
+
+        dotSpec =
+            asSpec [ dotEnc [], circle [ maFilled True ] ]
+
+        lineEnc1 =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "preference", pOrdinal, pAxis [ axOrient siRight ] ]
+
+        lineSpec1 =
+            asSpec [ lineEnc1 [], line [] ]
+
+        lineEnc2 =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [ axOrient siTop ] ]
+                << position Y [ pName "preference", pOrdinal ]
+
+        lineSpec2 =
+            asSpec [ lineEnc2 [], line [] ]
+    in
+    toVegaLite [ config [], data [], hConcat [ barSpec, dotSpec, lineSpec1, lineSpec2 ] ]
+
+
 compositeVis : (List a -> ( VLProperty, Spec )) -> Spec
 compositeVis config =
     let
@@ -229,6 +289,95 @@ axisCfg1 =
         |> singleVis
 
 
+redAxis : List AxisConfig
+redAxis =
+    [ axcoDomainColor "red", axcoTitleColor "red", axcoLabelColor "red", axcoTickColor "red" ]
+
+
+axisCfg2 : Spec
+axisCfg2 =
+    configure
+        << configuration (coAxis redAxis)
+        |> histoVis
+
+
+axisCfg3 : Spec
+axisCfg3 =
+    configure
+        << configuration (coAxisX redAxis)
+        |> histoVis
+
+
+axisCfg4 : Spec
+axisCfg4 =
+    configure
+        << configuration (coAxisY redAxis)
+        |> histoVis
+
+
+axisCfg5 : Spec
+axisCfg5 =
+    configure
+        << configuration (coAxisBottom redAxis)
+        |> histoVis
+
+
+axisCfg6 : Spec
+axisCfg6 =
+    configure
+        << configuration (coAxisLeft redAxis)
+        |> histoVis
+
+
+axisCfg7 : Spec
+axisCfg7 =
+    configure
+        << configuration (coAxisTop redAxis)
+        |> histoVis
+
+
+axisCfg8 : Spec
+axisCfg8 =
+    configure
+        << configuration (coAxisRight redAxis)
+        |> histoVis
+
+
+axisCfg9 : Spec
+axisCfg9 =
+    configure
+        << configuration (coAxisBand redAxis)
+        |> histoVis
+
+
+axisCfg10 : Spec
+axisCfg10 =
+    configure
+        << configuration (coAxisQuant redAxis)
+        |> histoVis
+
+
+axisCfg11 : Spec
+axisCfg11 =
+    configure
+        << configuration (coAxisTemporal redAxis)
+        |> histoVis
+
+
+axisCfg12 : Spec
+axisCfg12 =
+    configure
+        << configuration (coAxisDiscrete redAxis)
+        |> histoVis
+
+
+axisCfg13 : Spec
+axisCfg13 =
+    configure
+        << configuration (coAxisPoint redAxis)
+        |> histoVis
+
+
 titleCfg1 : Spec
 titleCfg1 =
     let
@@ -339,6 +488,18 @@ mySpecs =
         , ( "padding", paddingCfg )
         , ( "vbTest", vbTest )
         , ( "axisCfg1", axisCfg1 )
+        , ( "axisCfg2", axisCfg2 )
+        , ( "axisCfg3", axisCfg3 )
+        , ( "axisCfg4", axisCfg4 )
+        , ( "axisCfg5", axisCfg5 )
+        , ( "axisCfg6", axisCfg6 )
+        , ( "axisCfg7", axisCfg7 )
+        , ( "axisCfg8", axisCfg8 )
+        , ( "axisCfg9", axisCfg9 )
+        , ( "axisCfg10", axisCfg10 )
+        , ( "axisCfg11", axisCfg11 )
+        , ( "axisCfg12", axisCfg12 )
+        , ( "axisCfg13", axisCfg13 )
         , ( "titleCfg1", titleCfg1 )
         , ( "titleCfg2", titleCfg2 )
         , ( "titleCfg3", titleCfg3 )
