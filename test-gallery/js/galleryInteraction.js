@@ -4982,20 +4982,22 @@ var $author$project$VegaLite$operationSpec = function (op) {
 		case 10:
 			return $elm$json$Json$Encode$string('missing');
 		case 11:
-			return $elm$json$Json$Encode$string('q1');
+			return $elm$json$Json$Encode$string('product');
 		case 12:
-			return $elm$json$Json$Encode$string('q3');
-		case 14:
-			return $elm$json$Json$Encode$string('stdev');
-		case 15:
-			return $elm$json$Json$Encode$string('stdevp');
-		case 16:
-			return $elm$json$Json$Encode$string('sum');
+			return $elm$json$Json$Encode$string('q1');
 		case 13:
-			return $elm$json$Json$Encode$string('stderr');
+			return $elm$json$Json$Encode$string('q3');
+		case 15:
+			return $elm$json$Json$Encode$string('stdev');
+		case 16:
+			return $elm$json$Json$Encode$string('stdevp');
 		case 17:
-			return $elm$json$Json$Encode$string('valid');
+			return $elm$json$Json$Encode$string('sum');
+		case 14:
+			return $elm$json$Json$Encode$string('stderr');
 		case 18:
+			return $elm$json$Json$Encode$string('valid');
+		case 19:
 			return $elm$json$Json$Encode$string('variance');
 		default:
 			return $elm$json$Json$Encode$string('variancep');
@@ -11610,7 +11612,7 @@ var $author$project$GalleryInteraction$interaction3 = function () {
 }();
 var $author$project$VegaLite$Area = 0;
 var $author$project$VegaLite$area = $author$project$VegaLite$mark(0);
-var $author$project$VegaLite$Sum = {$: 16};
+var $author$project$VegaLite$Sum = {$: 17};
 var $author$project$VegaLite$opSum = $author$project$VegaLite$Sum;
 var $author$project$GalleryInteraction$interaction4 = function () {
 	var trans = A2(
