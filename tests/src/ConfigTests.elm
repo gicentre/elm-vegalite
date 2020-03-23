@@ -84,8 +84,20 @@ histoVis config =
 
         lineSpec2 =
             asSpec [ lineEnc2 [], line [] ]
+
+        lineEnc3 =
+            encoding
+                << position X [ pName "preference", pOrdinal ]
+                << position Y [ pName "date", pTemporal ]
+
+        lineSpec3 =
+            asSpec [ lineEnc3 [], line [] ]
     in
-    toVegaLite [ config [], data [], hConcat [ barSpec, dotSpec, lineSpec1, lineSpec2 ] ]
+    toVegaLite
+        [ config []
+        , data []
+        , hConcat [ barSpec, dotSpec, lineSpec1, lineSpec2, lineSpec3 ]
+        ]
 
 
 compositeVis : (List a -> ( VLProperty, Spec )) -> Spec
@@ -304,14 +316,14 @@ axisCfg2 =
 axisCfg3 : Spec
 axisCfg3 =
     configure
-        << configuration (coAxisX redAxis)
+        << configuration (coAxis redAxis |> coAxisXFilter)
         |> histoVis
 
 
 axisCfg4 : Spec
 axisCfg4 =
     configure
-        << configuration (coAxisY redAxis)
+        << configuration (coAxis redAxis |> coAxisYFilter)
         |> histoVis
 
 
