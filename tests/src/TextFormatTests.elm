@@ -195,9 +195,29 @@ multiline1 =
         ]
 
 
+customFormatter1 : Spec
+customFormatter1 =
+    let
+        data =
+            dataFromUrl "https://gicentre.github.io/data/westMidlands/westMidsCrimesAggregated.tsv"
+
+        trans =
+            transform
+                << filter (fiExpr "datum.month >= '2016'")
+
+        enc =
+            encoding
+                << position X [ pName "crimeType", pNominal, pAxis [ axFormatAsCustom "axTest" ] ]
+                << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
+                << color [ mName "crimeType", mNominal, mLegend [ leFormatAsCustom "leTest" ] ]
+                << column [ fName "month", fTemporal, fHeader [ hdFormatAsCustom "hdTest", hdFormat "%b %y" ] ]
+    in
+    toVegaLite [ width 100, data [], trans [], bar [], enc [] ]
+
+
 sourceExample : Spec
 sourceExample =
-    multiline1
+    customFormatter1
 
 
 
@@ -211,6 +231,7 @@ mySpecs =
         , ( "textFormat2", textFormat2 )
         , ( "textAlign1", textAlign1 )
         , ( "multiline1", multiline1 )
+        , ( "customFormatter1", customFormatter1 )
         ]
 
 

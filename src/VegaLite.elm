@@ -467,6 +467,7 @@ module VegaLite exposing
     , axFormat
     , axFormatAsNum
     , axFormatAsTemporal
+    , axFormatAsCustom
     , axLabels
     , axLabelAlign
     , cAxLabelAlign
@@ -593,6 +594,7 @@ module VegaLite exposing
     , leFormat
     , leFormatAsNum
     , leFormatAsTemporal
+    , leFormatAsCustom
     , leGradientLength
     , leGradientThickness
     , leGradientStrokeColor
@@ -664,6 +666,7 @@ module VegaLite exposing
     , tFormat
     , tFormatAsNum
     , tFormatAsTemporal
+    , tFormatAsCustom
     , FontWeight(..)
     , hyperlink
     , hName
@@ -857,6 +860,7 @@ module VegaLite exposing
     , hdFormat
     , hdFormatAsNum
     , hdFormatAsTemporal
+    , hdFormatAsCustom
     , selection
     , select
     , seSingle
@@ -2159,6 +2163,7 @@ See the
 @docs axFormat
 @docs axFormatAsNum
 @docs axFormatAsTemporal
+@docs axFormatAsCustom
 @docs axLabels
 @docs axLabelAlign
 @docs cAxLabelAlign
@@ -2330,6 +2335,7 @@ See the
 @docs leFormat
 @docs leFormatAsNum
 @docs leFormatAsTemporal
+@docs leFormatAsCustom
 @docs leGradientLength
 @docs leGradientThickness
 @docs leGradientStrokeColor
@@ -2417,6 +2423,7 @@ See the
 @docs tFormat
 @docs tFormatAsNum
 @docs tFormatAsTemporal
+@docs tFormatAsCustom
 @docs FontWeight
 
 
@@ -2744,6 +2751,7 @@ See
 @docs hdFormat
 @docs hdFormatAsNum
 @docs hdFormatAsTemporal
+@docs hdFormatAsCustom
 
 ---
 
@@ -3632,25 +3640,24 @@ type AxisConfig
 [axPosition](#axPosition), [axZIndex](#axZIndex), [axDataCondition](#axDataCondition),
 [axDomain](#axDomain), [axDomainColor](#axDomainColor), [axDomainOpacity](#axDomainOpacity),
 [axDomainWidth](#axDomainWidth), [axFormat](#axFormat), [axFormatAsNum](#axFormatAsNum),
-[axFormatAsTemporal](#axFormatAsTemporal), [axLabels](#axLabels), [axLabelAlign](#axLabelAlign),
-[axLabelAngle](#axLabelAngle), [axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound),
-[axLabelColor](#axLabelColor), [axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush),
-[axLabelFlushOffset](#axLabelFlushOffset), [axLabelFont](#axLabelFont),
-[axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
-[axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit),
-[axLabelOffset](#axLabelOffset), [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap),
-[axLabelPadding](#axLabelPadding), [axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle),
-[axTicks](#axTicks), [axTickColor](#axTickColor), [axTickCount](#axTickCount),
-[axTickDash](#axTickDash), [axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset),
-[axTickOpacity](#axTickOpacity), [axTickRound](#axTickRound), [axTickSize](#axTickSize),
-[axTickMinStep](#axTickMinStep), [axTickWidth](#axTickWidth), [axValues](#axValues),
-[axTitle](#axTitle), [axTitleAlign](#axTitleAlign), [axTitleAnchor](#axTitleAnchor),
-[axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline), [axTitleColor](#axTitleColor),
-[axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize), [axTitleFontStyle](#axTitleFontStyle),
-[axTitleFontWeight](#axTitleFontWeight), [axTitleLimit](#axTitleLimit), [axTitleOpacity](#axTitleOpacity),
-[axTitlePadding](#axTitlePadding), [axTitleX](#axTitleX), [axTitleY](#axTitleY), [axGrid](#axGrid),
-[axGridColor](#axGridColor), [axGridDash](#axGridDash), [axGridOpacity](#axGridOpacity)
-and [axGridWidth](#axGridWidth).
+[axFormatAsTemporal](#axFormatAsTemporal), [axFormatAsCustom](#axFormatAsCustom),
+[axLabels](#axLabels), [axLabelAlign](#axLabelAlign), [axLabelAngle](#axLabelAngle),
+[axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound), [axLabelColor](#axLabelColor),
+[axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush), [axLabelFlushOffset](#axLabelFlushOffset),
+[axLabelFont](#axLabelFont), [axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
+[axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit), [axLabelOffset](#axLabelOffset),
+[axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap), [axLabelPadding](#axLabelPadding),
+[axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle), [axTicks](#axTicks),
+[axTickColor](#axTickColor), [axTickCount](#axTickCount), [axTickDash](#axTickDash),
+[axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset), [axTickOpacity](#axTickOpacity),
+[axTickRound](#axTickRound), [axTickSize](#axTickSize), [axTickMinStep](#axTickMinStep),
+[axTickWidth](#axTickWidth), [axValues](#axValues), [axTitle](#axTitle), [axTitleAlign](#axTitleAlign),
+[axTitleAnchor](#axTitleAnchor), [axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline),
+[axTitleColor](#axTitleColor), [axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize),
+[axTitleFontStyle](#axTitleFontStyle), [axTitleFontWeight](#axTitleFontWeight),
+[axTitleLimit](#axTitleLimit), [axTitleOpacity](#axTitleOpacity), [axTitlePadding](#axTitlePadding),
+[axTitleX](#axTitleX), [axTitleY](#axTitleY), [axGrid](#axGrid), [axGridColor](#axGridColor),
+[axGridDash](#axGridDash), [axGridOpacity](#axGridOpacity) and [axGridWidth](#axGridWidth).
 -}
 type AxisProperty
     = AxBandPosition Float
@@ -3667,6 +3674,7 @@ type AxisProperty
     | AxFormat String
     | AxFormatAsNum
     | AxFormatAsTemporal
+    | AxFormatAsCustom String
     | AxLabels Bool
     | AxLabelAlign HAlign
     | AxLabelAngle Float
@@ -4280,19 +4288,20 @@ type HAlign
 
 
 {-| Generated by [hdFormat](#hdFormat), [hdFormatAsNum](#hdFormatAsNum),
-[hdFormatAsTemporal](#hdFormatAsTemporal), [hdLabelAlign](#hdLabelAlign),
-[hdLabelAnchor](#hdLabelAnchor), [hdLabelAngle](#hdLabelAngle), [hdLabelColor](#hdLabelColor),
-[hdLabelFont](#hdLabelFont), [hdLabelFontSize](#hdLabelFontSize), [hdLabelLimit](#hdLabelLimit),
-[hdLabelOrient](#hdLabelOrient), [hdLabelPadding](#hdLabelPadding), [hdTitle](#hdTitle),
-[hdTitleAlign](#hdTitleAlign), [hdTitleAnchor](#hdTitleAnchor), [hdTitleAngle](#hdTitleAngle),
-[hdTitleBaseline](#hdTitleBaseline), [hdTitleColor](#hdTitleColor), [hdTitleFont](#hdTitleFont),
-[hdTitleFontWeight](#hdTitleFontWeight), [hdTitleFontSize](#hdTitleFontSize),
+[hdFormatAsTemporal](#hdFormatAsTemporal), [hdFormatAsCustom](#hdFormatAsCustom),
+[hdLabelAlign](#hdLabelAlign), [hdLabelAnchor](#hdLabelAnchor), [hdLabelAngle](#hdLabelAngle),
+[hdLabelColor](#hdLabelColor), [hdLabelFont](#hdLabelFont), [hdLabelFontSize](#hdLabelFontSize),
+[hdLabelLimit](#hdLabelLimit), [hdLabelOrient](#hdLabelOrient), [hdLabelPadding](#hdLabelPadding),
+[hdTitle](#hdTitle), [hdTitleAlign](#hdTitleAlign), [hdTitleAnchor](#hdTitleAnchor),
+[hdTitleAngle](#hdTitleAngle), [hdTitleBaseline](#hdTitleBaseline), [hdTitleColor](#hdTitleColor),
+[hdTitleFont](#hdTitleFont), [hdTitleFontWeight](#hdTitleFontWeight), [hdTitleFontSize](#hdTitleFontSize),
 [hdTitleLimit](#hdTitleLimit), [hdTitleOrient](#hdTitleOrient), and [hdTitlePadding](#hdTitlePadding).
 -}
 type HeaderProperty
     = HFormat String
     | HFormatAsNum
     | HFormatAsTemporal
+    | HFormatAsCustom String
     | HTitle String
     | HLabelAlign HAlign
     | HLabelAnchor Anchor
@@ -4485,9 +4494,10 @@ type LegendOrientation
 [leColumnPadding](#leColumnPadding), [leColumns](#leColumns), [leCornerRadius](#leCornerRadius),
 [leDirection](#leDirection), [leFillColor](#leFillColor), [leFormat](#leFormat),
 [leFormatAsNum](#leFormatAsNum), [leFormatAsTemporal](#leFormatAsTemporal),
-[leGradientLength](#leGradientLength), [leGradientThickness](#leGradientThickness),
-[leGradientStrokeColor](#leGradientStrokeColor), [leGradientStrokeWidth](#leGradientStrokeWidth),
-[leGridAlign](#leGridAlign), [leLabelAlign](#leLabelAlign), [leLabelBaseline](#leLabelBaseline),
+[leFormatAsCustom](#leFormatAsCustom) [leGradientLength](#leGradientLength),
+[leGradientThickness](#leGradientThickness), [leGradientStrokeColor](#leGradientStrokeColor),
+[leGradientStrokeWidth](#leGradientStrokeWidth), [leGridAlign](#leGridAlign),
+[leLabelAlign](#leLabelAlign), [leLabelBaseline](#leLabelBaseline),
 [leLabelColor](#leLabelColor), [leLabelFont](#leLabelFont), [leLabelFontSize](#leLabelFontSize),
 [leLabelLimit](#leLabelLimit), [leLabelOffset](#leLabelOffset), [leLabelOverlap](#leLabelOverlap),
 [leOffset](#leOffset), [leOrient](#leOrient), [lePadding](#lePadding),
@@ -4511,6 +4521,7 @@ type LegendProperty
     | LFormat String
     | LFormatAsNum
     | LFormatAsTemporal
+    | LFormatAsCustom String
     | LGradientLength Float
     | LGradientThickness Float
     | LGradientStrokeColor String
@@ -5355,7 +5366,8 @@ type SummaryExtent
 [tBin](#tBin), [tBinned](#tBinned), [tAggregate](#tAggregate), [tTimeUnit](#tTimeUnit),
 [tTitle](#tTitle), [tSelectionCondition](#tSelectionCondition),
 [tDataCondition](#tDataCondition), [tFormat](#tFormat), [tFormatAsNum](#tFormatAsNum),
-[tFormatAsTemporal](#tFormatAsTemporal) and [tStr](#tStr).
+[tFormatAsTemporal](#tFormatAsTemporal), [tFormatAsCustom](#tFormatAsCustom) and
+[tStr](#tStr).
 -}
 type TextChannel
     = TName String
@@ -5371,6 +5383,7 @@ type TextChannel
     | TFormat String
     | TFormatAsNum
     | TFormatAsTemporal
+    | TFormatAsCustom String
     | TString String
 
 
@@ -6397,7 +6410,8 @@ axDomainWidth =
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html) for
 axis labels. To distinguish between formatting as numeric values and data/time values,
-additionally use [axFormatAsNum](#axFormatAsNum) or [axFormatAsTemporal](#axFormatAsTemporal).
+additionally use [axFormatAsNum](#axFormatAsNum), [axFormatAsTemporal](#axFormatAsTemporal)
+or [axFormatAsCustom](#axFormatAsCustom).
 -}
 axFormat : String -> AxisProperty
 axFormat =
@@ -6420,6 +6434,14 @@ precise temporal format, additionally use [axFormat](#axFormat) providing a
 axFormatAsTemporal : AxisProperty
 axFormatAsTemporal =
     AxFormatAsTemporal
+
+
+{-| Indicate that axis labels should be formatted with a registered custom formatter
+with the given name. See [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+-}
+axFormatAsCustom : String -> AxisProperty
+axFormatAsCustom =
+    AxFormatAsCustom
 
 
 {-| Whether or not grid lines should be included as part of an axis.
@@ -10098,12 +10120,20 @@ hDataCondition op tCh fCh =
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html) for
 facet header (title) values. To distinguish between formatting as numeric values
-and data/time values, additionally use [hdFormatAsNum](#hdFormatAsNum) or
-[hdFormatAsTemporal](#hdFormatAsTemporal).
+and data/time values, additionally use [hdFormatAsNum](#hdFormatAsNum),
+[hdFormatAsTemporal](#hdFormatAsTemporal) or [hdFormatAsCustom](#hdFormatAsCustom).
 -}
 hdFormat : String -> HeaderProperty
 hdFormat =
     HFormat
+
+
+{-| Indicate that facet headers should be formatted with a registered custom formatter
+with the given name. See [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+-}
+hdFormatAsCustom : String -> HeaderProperty
+hdFormatAsCustom =
+    HFormatAsCustom
 
 
 {-| Indicate that facet headers should be formatted as numbers. To control the
@@ -11282,11 +11312,20 @@ leFillColor =
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html) for
 legend values. To distinguish between formatting as numeric values and data/time values,
-additionally use [leFormatAsNum](#leFormatAsNum) or [leFormatAsTemporal](#leFormatAsTemporal).
+additionally use [leFormatAsNum](#leFormatAsNum), [leFormatAsTemporal](#leFormatAsTemporal)
+or [leFormatAsCustom](#leFormatAsCustom).
 -}
 leFormat : String -> LegendProperty
 leFormat =
     LFormat
+
+
+{-| Indicate that legend labels should be formatted with a registered custom formatter
+with the given name. See [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+-}
+leFormatAsCustom : String -> LegendProperty
+leFormatAsCustom =
+    LFormatAsCustom
 
 
 {-| Indicate that legend labels should be formatted as numbers. To control the precise
@@ -15835,11 +15874,21 @@ tfGroup =
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html)
 for text marks. To distinguish between formatting as numeric values and data/time
-values, additionally use [tFormatAsNum](#tFormatAsNum) or [tFormatAsTemporal](#tFormatAsTemporal).
+values, additionally use [tFormatAsNum](#tFormatAsNum), [tFormatAsTemporal](#tFormatAsTemporal)
+or [tFormatAsCustom](#tFormatAsCustom).
 -}
 tFormat : String -> TextChannel
 tFormat =
     TFormat
+
+
+{-| Indicate that values encoded with a text channel should be formatted with a
+registered custom formatter with the given name. See
+[how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+-}
+tFormatAsCustom : String -> TextChannel
+tFormatAsCustom =
+    TFormatAsCustom
 
 
 {-| Indicate that values encoded with a text channel should be formatted as numbers.
@@ -17521,6 +17570,9 @@ axisProperty axisProp =
         AxFormatAsTemporal ->
             ( "formatType", JE.string "time" )
 
+        AxFormatAsCustom formatter ->
+            ( "formatType", JE.string formatter )
+
         AxGridColor c ->
             ( "gridColor", JE.string c )
 
@@ -18850,6 +18902,9 @@ headerProperty hProp =
         HFormatAsTemporal ->
             ( "formatType", JE.string "time" )
 
+        HFormatAsCustom formatter ->
+            ( "formatType", JE.string formatter )
+
         HLabelAlign ha ->
             ( "labelAlign", JE.string (hAlignLabel ha) )
 
@@ -19231,6 +19286,9 @@ legendProperty legendProp =
 
         LFormatAsTemporal ->
             ( "formatType", JE.string "time" )
+
+        LFormatAsCustom formatter ->
+            ( "formatType", JE.string formatter )
 
         LGradientLength n ->
             ( "gradientLength", JE.float n )
@@ -21140,6 +21198,9 @@ textChannelProperties tDef =
 
         TFormatAsTemporal ->
             [ ( "formatType", JE.string "time" ) ]
+
+        TFormatAsCustom formatter ->
+            [ ( "formatType", JE.string formatter ) ]
 
         TSelectionCondition selName ifClause elseClause ->
             ( "condition"
