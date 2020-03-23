@@ -7318,6 +7318,9 @@ var $author$project$VegaLite$AxLabelFontStyle = function (a) {
 var $author$project$VegaLite$AxLabelFontWeight = function (a) {
 	return {$: 26, a: a};
 };
+var $author$project$VegaLite$AxLabelOffset = function (a) {
+	return {$: 28, a: a};
+};
 var $author$project$VegaLite$AxLabelOpacity = function (a) {
 	return {$: 29, a: a};
 };
@@ -7425,10 +7428,18 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 						var o2 = cap.b;
 						return _Utils_Tuple2(
 							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxLabelOffset(o1)),
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxLabelOffset(o2)));
+					case 8:
+						var o1 = cap.a;
+						var o2 = cap.b;
+						return _Utils_Tuple2(
+							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxLabelOpacity(o1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxLabelOpacity(o2)));
-					case 8:
+					case 9:
 						var p1 = cap.a;
 						var p2 = cap.b;
 						return _Utils_Tuple2(
@@ -7436,7 +7447,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxLabelPadding(p1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxLabelPadding(p2)));
-					case 9:
+					case 10:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -7444,7 +7455,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickColor(c2)));
-					case 10:
+					case 11:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
@@ -7452,7 +7463,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickOpacity(o1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickOpacity(o2)));
-					case 15:
+					case 16:
 						var s1 = cap.a;
 						var s2 = cap.b;
 						return _Utils_Tuple2(
@@ -7460,7 +7471,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickSize(s1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickSize(s2)));
-					case 11:
+					case 12:
 						var w1 = cap.a;
 						var w2 = cap.b;
 						return _Utils_Tuple2(
@@ -7468,7 +7479,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickWidth(w1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickWidth(w2)));
-					case 12:
+					case 13:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -7476,7 +7487,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridColor(c2)));
-					case 13:
+					case 14:
 						var d1 = cap.a;
 						var d2 = cap.b;
 						return _Utils_Tuple2(
@@ -7484,7 +7495,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridDash(d1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridDash(d2)));
-					case 14:
+					case 15:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
