@@ -183,6 +183,53 @@ line9 : Spec
 line9 =
     let
         des =
+            description "Line chart with conditional axis ticks, labels, and grid."
+
+        cfg =
+            configure
+                << configuration (coAxis [ axcoDomainColor "#ddd", axcoTickColor "#ddd" ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol === 'GOOG'")
+                << filter
+                    (fiRange "date" (dtRange [ dtYear 2006 ] [ dtYear 2008 ])
+                        |> fiOpTrans (mTimeUnit year)
+                        |> fiCompose
+                    )
+
+        enc =
+            encoding
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pAxis
+                        [ axTickCount 8
+                        , axLabelAlign haLeft
+                        , axLabelExpr "[timeFormat(datum.value, '%b'), timeFormat(datum.value, '%m') == '01' ? timeFormat(datum.value, '%Y') : '']"
+                        , axLabelOffset 4
+                        , axLabelPadding -24
+                        , axTickSize 30
+                        , axDataCondition
+                            (fiEqual "value" (dt [ dtMonth Jan ]) |> fiOpTrans (mTimeUnit monthDate))
+                            (cAxGridDash [] [ 2, 2 ])
+                        , axDataCondition
+                            (fiEqual "value" (dt [ dtMonth Jan ]) |> fiOpTrans (mTimeUnit monthDate))
+                            (cAxTickDash [] [ 2, 2 ])
+                        ]
+                    ]
+                << position Y [ pName "price", pQuant ]
+    in
+    toVegaLite [ des, cfg [], width 400, data, trans [], enc [], line [] ]
+
+
+line10 : Spec
+line10 =
+    let
+        des =
             description "A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition."
 
         data =
@@ -197,8 +244,8 @@ line9 =
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line10 : Spec
-line10 =
+line11 : Spec
+line11 =
     let
         des =
             description "Stock prices of five tech companies over time double encoding price with vertical position and line thickness."
@@ -216,8 +263,8 @@ line10 =
     toVegaLite [ des, data, enc [], trail [] ]
 
 
-line11 : Spec
-line11 =
+line12 : Spec
+line12 =
     let
         des =
             description "Line chart with markers and invalid values."
@@ -240,8 +287,8 @@ line11 =
     toVegaLite [ des, data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line12 : Spec
-line12 =
+line13 : Spec
+line13 =
     let
         des =
             description "Carbon dioxide in the atmosphere."
@@ -325,8 +372,8 @@ line12 =
         ]
 
 
-line13 : Spec
-line13 =
+line14 : Spec
+line14 =
     let
         des =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
@@ -360,8 +407,8 @@ line13 =
     toVegaLite [ des, data [], trans [], enc [], line [ maOrient moVertical ] ]
 
 
-line14 : Spec
-line14 =
+line15 : Spec
+line15 =
     let
         des =
             description "Plots a function using a generated sequence"
@@ -393,8 +440,8 @@ line14 =
     toVegaLite [ des, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
 
 
-line15 : Spec
-line15 =
+line16 : Spec
+line16 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
@@ -408,8 +455,8 @@ line15 =
     toVegaLite [ data, enc [], line [] ]
 
 
-line16 : Spec
-line16 =
+line17 : Spec
+line17 =
     let
         data =
             dataFromColumns []
@@ -451,6 +498,7 @@ mySpecs =
         , ( "line14", line14 )
         , ( "line15", line15 )
         , ( "line16", line16 )
+        , ( "line17", line17 )
         ]
 
 

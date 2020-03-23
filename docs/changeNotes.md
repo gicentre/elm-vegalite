@@ -6,19 +6,21 @@
 
 - `coAxisXFilter` and `coAxisYFilter` to modify axis configurations to apply only to the X or Y axes (supports changes in VL 4.7)
 
-* `cAxLabelOffset` for conditional axis label offsetting (VL 4.5)
+* `axTickDash` and `cAxTickDash` for conditional tick dash styles (VL 4.6)
 
-- `coAxisDiscrete` and `coAxisPoint` axis configuration options (VL 4.5)
+- `cAxLabelOffset` for conditional axis label offsetting (VL 4.5)
 
-* `sacoXReverse` for configuring right-to-left charts and undeprecated `scReverse` (VL 4.5)
+* `coAxisDiscrete` and `coAxisPoint` axis configuration options (VL 4.5)
 
-- `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
+- `sacoXReverse` for configuring right-to-left charts and undeprecated `scReverse` (VL 4.5)
 
-* `axLabelOffset` for offsetting axis labels from their tick marks (VL 4.4).
+* `axcoLabelExpr` and `axcoTickCount` for configuring default label transformations and tick counts (VL 4.4)
 
-- `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+- `axLabelOffset` for offsetting axis labels from their tick marks (VL 4.4).
 
-* `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
+* `axStyle` and `coAxisStyles` for named style configuration of axis properties (VL 4.4).
+
+- `coMarkStyles` in place of previous `coNamedStyles` for greater naming consistency.
 
 ### Deprecations
 
@@ -34,7 +36,7 @@
 
 - Providing `hdTitle` with an empty string now generates a JSON null value rather than empty string, to be compatible with schema.
 
-- Replaced now deprecated `coNamedStyle` and `coNamedStyles` with `coMarkStyles` in gallery examples and test.
+* Replaced now deprecated `coNamedStyle` and `coNamedStyles` with `coMarkStyles` in gallery examples and test.
 
 ---
 

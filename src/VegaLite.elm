@@ -500,6 +500,8 @@ module VegaLite exposing
     , axTickColor
     , cAxTickColor
     , axTickCount
+    , axTickDash
+    , cAxTickDash
     , axTickExtra
     , axTickOffset
     , axTickOpacity
@@ -2194,6 +2196,8 @@ See the
 @docs axTickColor
 @docs cAxTickColor
 @docs axTickCount
+@docs axTickDash
+@docs cAxTickDash
 @docs axTickExtra
 @docs axTickOffset
 @docs axTickOpacity
@@ -3637,15 +3641,16 @@ type AxisConfig
 [axLabelOffset](#axLabelOffset), [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap),
 [axLabelPadding](#axLabelPadding), [axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle),
 [axTicks](#axTicks), [axTickColor](#axTickColor), [axTickCount](#axTickCount),
-[axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset), [axTickOpacity](#axTickOpacity),
-[axTickRound](#axTickRound), [axTickSize](#axTickSize), [axTickMinStep](#axTickMinStep),
-[axTickWidth](#axTickWidth), [axValues](#axValues), [axTitle](#axTitle), [axTitleAlign](#axTitleAlign),
-[axTitleAnchor](#axTitleAnchor), [axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline),
-[axTitleColor](#axTitleColor), [axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize),
-[axTitleFontStyle](#axTitleFontStyle), [axTitleFontWeight](#axTitleFontWeight),
-[axTitleLimit](#axTitleLimit), [axTitleOpacity](#axTitleOpacity), [axTitlePadding](#axTitlePadding),
-[axTitleX](#axTitleX), [axTitleY](#axTitleY), [axGrid](#axGrid), [axGridColor](#axGridColor),
-[axGridDash](#axGridDash), [axGridOpacity](#axGridOpacity) and [axGridWidth](#axGridWidth).
+[axTickDash](#axTickDash), [axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset),
+[axTickOpacity](#axTickOpacity), [axTickRound](#axTickRound), [axTickSize](#axTickSize),
+[axTickMinStep](#axTickMinStep), [axTickWidth](#axTickWidth), [axValues](#axValues),
+[axTitle](#axTitle), [axTitleAlign](#axTitleAlign), [axTitleAnchor](#axTitleAnchor),
+[axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline), [axTitleColor](#axTitleColor),
+[axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize), [axTitleFontStyle](#axTitleFontStyle),
+[axTitleFontWeight](#axTitleFontWeight), [axTitleLimit](#axTitleLimit), [axTitleOpacity](#axTitleOpacity),
+[axTitlePadding](#axTitlePadding), [axTitleX](#axTitleX), [axTitleY](#axTitleY), [axGrid](#axGrid),
+[axGridColor](#axGridColor), [axGridDash](#axGridDash), [axGridOpacity](#axGridOpacity)
+and [axGridWidth](#axGridWidth).
 -}
 type AxisProperty
     = AxBandPosition Float
@@ -3684,6 +3689,7 @@ type AxisProperty
     | AxStyle (List String)
     | AxTickColor String
     | AxTickCount Int
+    | AxTickDash (List Float)
     | AxTickExtra Bool
     | AxTickOffset Float
     | AxTickOpacity Float
@@ -3848,9 +3854,9 @@ type ConcatConfig
 [cAxLabelColor](#cAxLabelColor), [cAxLabelFont](#cAxLabelFont), [cAxLabelFontSize](#cAxLabelFontSize),
 [cAxLabelFontStyle](#cAxLabelFontStyle), [cAxLabelFontWeight](#cAxLabelFontWeight),
 [cAxLabelOffset](#cAxLabelOffset), [cAxLabelOpacity](#cAxLabelOpacity), [cAxLabelPadding](#cAxLabelPadding),
-[cAxTickColor](#cAxTickColor), [cAxTickOpacity](#cAxOpacity), [cAxTickSize](#cAxTickSize),
-[cAxTickWidth](#cAxTickWidth), [cAxGridColor](#cAxGridColor), [cAxGridDash](#cAxGridDash),
-[cAxGridOpacity](#cAxGridOpacity) and [cAxGridWidth](#cAxGridWidth)
+[cAxTickColor](#cAxTickColor), [cAxTickDash](#cAxTickDash), [cAxTickOpacity](#cAxOpacity),
+[cAxTickSize](#cAxTickSize), [cAxTickWidth](#cAxTickWidth), [cAxGridColor](#cAxGridColor),
+[cAxGridDash](#cAxGridDash), [cAxGridOpacity](#cAxGridOpacity) and [cAxGridWidth](#cAxGridWidth)
 -}
 type ConditionalAxisProperty
     = CAxLabelAlign HAlign HAlign
@@ -3864,6 +3870,7 @@ type ConditionalAxisProperty
     | CAxLabelOpacity Float Float
     | CAxLabelPadding Float Float
     | CAxTickColor String String
+    | CAxTickDash (List Float) (List Float)
     | CAxTickOpacity Float Float
     | CAxTickWidth Float Float
     | CAxGridColor String String
@@ -6585,6 +6592,14 @@ axTickColor =
     AxTickColor
 
 
+{-| Axis tick dash style. The parameter is a list of alternating 'on' and 'off'
+lengths in pixels representing the dashed line.
+-}
+axTickDash : List Float -> AxisProperty
+axTickDash =
+    AxTickDash
+
+
 {-| Whether or not an extra axis tick should be added for the initial position
 of an axis.
 -}
@@ -7319,6 +7334,15 @@ predicate is true, the second when it is false.
 cAxTickColor : String -> String -> ConditionalAxisProperty
 cAxTickColor =
     CAxTickColor
+
+
+{-| Conditional axis tick dash style. The first parameter is a list of alternating
+'on' and 'off' lengths in pixels representing the dashed line when a predicate
+is true, the second when it is false.
+-}
+cAxTickDash : List Float -> List Float -> ConditionalAxisProperty
+cAxTickDash =
+    CAxTickDash
 
 
 {-| Conditional axis tick opacity. The first parameter provides the opacity when
@@ -17452,6 +17476,9 @@ axisProperty axisProp =
                         CAxTickColor c1 c2 ->
                             ( axisProperty (AxTickColor c1), axisProperty (AxTickColor c2) )
 
+                        CAxTickDash d1 d2 ->
+                            ( axisProperty (AxTickDash d1), axisProperty (AxTickDash d2) )
+
                         CAxTickOpacity o1 o2 ->
                             ( axisProperty (AxTickOpacity o1), axisProperty (AxTickOpacity o2) )
 
@@ -17634,6 +17661,13 @@ axisProperty axisProp =
 
         AxTickCount n ->
             ( "tickCount", JE.int n )
+
+        AxTickDash ds ->
+            if ds == [] then
+                ( "tickDash", JE.null )
+
+            else
+                ( "tickDash", JE.list JE.float ds )
 
         AxTickExtra b ->
             ( "tickExtra", JE.bool b )
