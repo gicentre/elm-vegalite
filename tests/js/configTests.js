@@ -2409,15 +2409,18 @@ var $author$project$VegaLite$TitleFontStyle = function (a) {
 	return {$: 48, a: a};
 };
 var $author$project$VegaLite$axcoTitleFontStyle = $author$project$VegaLite$TitleFontStyle;
-var $author$project$VegaLite$Axis = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis;
+var $author$project$VegaLite$AxBoth = 0;
+var $author$project$VegaLite$Axis = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
 			f(x));
 	});
+var $elm$core$Basics$append = _Utils_append;
 var $elm$core$Basics$True = 0;
 var $elm$core$Result$Err = function (a) {
 	return {$: 1, a: a};
@@ -2448,7 +2451,6 @@ var $elm$core$Maybe$Just = function (a) {
 var $elm$core$Maybe$Nothing = {$: 1};
 var $elm$core$String$all = _String_all;
 var $elm$core$Basics$and = _Basics_and;
-var $elm$core$Basics$append = _Utils_append;
 var $elm$json$Json$Encode$encode = _Json_encode;
 var $elm$core$String$fromInt = _String_fromNumber;
 var $elm$core$String$join = F2(
@@ -3236,6 +3238,16 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			return _Utils_Tuple2(
 				'titleY',
 				$elm$json$Json$Encode$float(y));
+	}
+};
+var $author$project$VegaLite$axisLabel = function (axChoice) {
+	switch (axChoice) {
+		case 1:
+			return 'axisX';
+		case 2:
+			return 'axisY';
+		default:
+			return 'axis';
 	}
 };
 var $author$project$VegaLite$AxGridColor = function (a) {
@@ -8185,127 +8197,121 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'autosize',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$autosizeProperty, aus)));
-		case 15:
+		case 13:
 			var bg = configProp.a;
 			return _Utils_Tuple2(
 				'background',
 				$elm$json$Json$Encode$string(bg));
-		case 19:
+		case 17:
 			var s = configProp.a;
 			return _Utils_Tuple2(
 				'countTitle',
 				$elm$json$Json$Encode$string(s));
-		case 20:
+		case 18:
 			var ftp = configProp.a;
 			return _Utils_Tuple2(
 				'fieldTitle',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$fieldTitleLabel(ftp)));
-		case 29:
+		case 27:
 			var fmt = configProp.a;
 			return _Utils_Tuple2(
 				'numberFormat',
 				$elm$json$Json$Encode$string(fmt));
-		case 30:
+		case 28:
 			var pad = configProp.a;
 			return _Utils_Tuple2(
 				'padding',
 				$author$project$VegaLite$paddingSpec(pad));
-		case 43:
+		case 41:
 			var fmt = configProp.a;
 			return _Utils_Tuple2(
 				'timeFormat',
 				$elm$json$Json$Encode$string(fmt));
 		case 2:
-			var acs = configProp.a;
+			var axType = configProp.a;
+			var acs = configProp.b;
 			return _Utils_Tuple2(
-				'axis',
+				$author$project$VegaLite$axisLabel(axType),
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
 		case 4:
 			var acs = configProp.a;
 			return _Utils_Tuple2(
-				'axisX',
+				'axisLeft',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
 		case 5:
 			var acs = configProp.a;
 			return _Utils_Tuple2(
-				'axisY',
+				'axisRight',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
 		case 6:
 			var acs = configProp.a;
 			return _Utils_Tuple2(
-				'axisLeft',
+				'axisTop',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
 		case 7:
 			var acs = configProp.a;
 			return _Utils_Tuple2(
-				'axisRight',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 8:
-			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisTop',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 9:
-			var acs = configProp.a;
-			return _Utils_Tuple2(
 				'axisBottom',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 10:
-			var acs = configProp.a;
+		case 8:
+			var axType = configProp.a;
+			var acs = configProp.b;
 			return _Utils_Tuple2(
-				'axisBand',
+				$author$project$VegaLite$axisLabel(axType) + 'Band',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
+		case 9:
+			var axType = configProp.a;
+			var acs = configProp.b;
+			return _Utils_Tuple2(
+				$author$project$VegaLite$axisLabel(axType) + 'Discrete',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
+		case 10:
+			var axType = configProp.a;
+			var acs = configProp.b;
+			return _Utils_Tuple2(
+				$author$project$VegaLite$axisLabel(axType) + 'Point',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
 		case 11:
-			var acs = configProp.a;
+			var axType = configProp.a;
+			var acs = configProp.b;
 			return _Utils_Tuple2(
-				'axisDiscrete',
+				$author$project$VegaLite$axisLabel(axType) + 'Quantitative',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
 		case 12:
-			var acs = configProp.a;
+			var axType = configProp.a;
+			var acs = configProp.b;
 			return _Utils_Tuple2(
-				'axisPoint',
+				$author$project$VegaLite$axisLabel(axType) + 'Temporal',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 13:
-			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisQuantitative',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 14:
-			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisTemporal',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$axisConfigProperty, acs)));
-		case 23:
+		case 21:
 			var lcs = configProp.a;
 			return _Utils_Tuple2(
 				'legend',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$legendConfigProperty, lcs)));
-		case 21:
+		case 19:
 			var fnt = configProp.a;
 			return _Utils_Tuple2(
 				'font',
 				$elm$json$Json$Encode$string(fnt));
-		case 27:
+		case 25:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'mark',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 32:
+		case 30:
 			var pps = configProp.a;
 			return _Utils_Tuple2(
 				'projection',
@@ -8317,91 +8323,91 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'area',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 16:
+		case 14:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'bar',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 17:
+		case 15:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'circle',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 25:
+		case 23:
 			var fps = configProp.a;
 			return _Utils_Tuple2(
 				'facet',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$facetConfigProperty, fps)));
-		case 18:
+		case 16:
 			var cps = configProp.a;
 			return _Utils_Tuple2(
 				'concat',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$concatConfigProperty, cps)));
-		case 22:
+		case 20:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'geoshape',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 26:
+		case 24:
 			var hps = configProp.a;
 			return _Utils_Tuple2(
 				'header',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$headerProperty, hps)));
-		case 24:
+		case 22:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'line',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 31:
+		case 29:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'point',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 34:
+		case 32:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'rect',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 35:
+		case 33:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'rule',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 38:
+		case 36:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'square',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 40:
+		case 38:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'text',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 41:
+		case 39:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'tick',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
-		case 42:
+		case 40:
 			var tcs = configProp.a;
 			return _Utils_Tuple2(
 				'title',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tcs)));
-		case 28:
+		case 26:
 			var styles = configProp.a;
 			return _Utils_Tuple2(
 				'style',
@@ -8433,22 +8439,22 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 									A2($elm$core$List$map, $author$project$VegaLite$axisProperty, mps)));
 						},
 						styles)));
-		case 36:
+		case 34:
 			var scs = configProp.a;
 			return _Utils_Tuple2(
 				'scale',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$scaleConfigProperty, scs)));
-		case 39:
+		case 37:
 			var so = configProp.a;
 			return $author$project$VegaLite$stackOffsetProperty(so);
-		case 33:
+		case 31:
 			var rcs = configProp.a;
 			return _Utils_Tuple2(
 				'range',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$rangeConfigProperty, rcs)));
-		case 37:
+		case 35:
 			var selConfig = configProp.a;
 			var selProp = function (_v3) {
 				var sel = _v3.a;
@@ -8462,7 +8468,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				'selection',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, selProp, selConfig)));
-		case 45:
+		case 43:
 			var vcs = configProp.a;
 			return _Utils_Tuple2(
 				'view',
@@ -9264,10 +9270,11 @@ var $author$project$ConfigTests$axisCfg1 = $author$project$ConfigTests$singleVis
 						$author$project$VegaLite$axcoLabelFont('serif'),
 						$author$project$VegaLite$axcoTitleAnchor($author$project$VegaLite$anEnd)
 					])))));
-var $author$project$VegaLite$AxisQuant = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$coAxisQuant = $author$project$VegaLite$AxisQuant;
+var $author$project$VegaLite$AxisQuant = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxisQuant = $author$project$VegaLite$AxisQuant(0);
 var $author$project$VegaLite$asSpec = function (specs) {
 	return $elm$json$Json$Encode$object(
 		A2(
@@ -9478,6 +9485,33 @@ var $author$project$VegaLite$Strings = function (a) {
 };
 var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
 var $author$project$ConfigTests$histoVis = function (config) {
+	var lineEnc3 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('preference'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('date'),
+					$author$project$VegaLite$pTemporal
+				])));
+	var lineSpec3 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				lineEnc3(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
 	var lineEnc2 = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -9654,7 +9688,7 @@ var $author$project$ConfigTests$histoVis = function (config) {
 				data(_List_Nil),
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
-					[barSpec, dotSpec, lineSpec1, lineSpec2]))
+					[barSpec, dotSpec, lineSpec1, lineSpec2, lineSpec3]))
 			]));
 };
 var $author$project$VegaLite$DomainColor = function (a) {
@@ -9686,30 +9720,33 @@ var $author$project$ConfigTests$axisCfg10 = $author$project$ConfigTests$histoVis
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisQuant($author$project$ConfigTests$redAxis))));
-var $author$project$VegaLite$AxisTemporal = function (a) {
-	return {$: 14, a: a};
-};
-var $author$project$VegaLite$coAxisTemporal = $author$project$VegaLite$AxisTemporal;
+var $author$project$VegaLite$AxisTemporal = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxisTemporal = $author$project$VegaLite$AxisTemporal(0);
 var $author$project$ConfigTests$axisCfg11 = $author$project$ConfigTests$histoVis(
 	A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisTemporal($author$project$ConfigTests$redAxis))));
-var $author$project$VegaLite$AxisDiscrete = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$coAxisDiscrete = $author$project$VegaLite$AxisDiscrete;
+var $author$project$VegaLite$AxisDiscrete = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxisDiscrete = $author$project$VegaLite$AxisDiscrete(0);
 var $author$project$ConfigTests$axisCfg12 = $author$project$ConfigTests$histoVis(
 	A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisDiscrete($author$project$ConfigTests$redAxis))));
-var $author$project$VegaLite$AxisPoint = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$coAxisPoint = $author$project$VegaLite$AxisPoint;
+var $author$project$VegaLite$AxisPoint = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxisPoint = $author$project$VegaLite$AxisPoint(0);
 var $author$project$ConfigTests$axisCfg13 = $author$project$ConfigTests$histoVis(
 	A2(
 		$elm$core$Basics$composeL,
@@ -9722,28 +9759,78 @@ var $author$project$ConfigTests$axisCfg2 = $author$project$ConfigTests$histoVis(
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxis($author$project$ConfigTests$redAxis))));
-var $author$project$VegaLite$AxisX = function (a) {
-	return {$: 4, a: a};
+var $author$project$VegaLite$AxisBand = F2(
+	function (a, b) {
+		return {$: 8, a: a, b: b};
+	});
+var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$axX = 1;
+var $author$project$VegaLite$coAxisXFilter = function (cp) {
+	switch (cp.$) {
+		case 2:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axX, acs);
+		case 8:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axX, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axX, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axX, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axX, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axX, acs);
+		default:
+			return cp;
+	}
 };
-var $author$project$VegaLite$coAxisX = $author$project$VegaLite$AxisX;
 var $author$project$ConfigTests$axisCfg3 = $author$project$ConfigTests$histoVis(
 	A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coAxisX($author$project$ConfigTests$redAxis))));
-var $author$project$VegaLite$AxisY = function (a) {
-	return {$: 5, a: a};
+			$author$project$VegaLite$coAxisXFilter(
+				$author$project$VegaLite$coAxis($author$project$ConfigTests$redAxis)))));
+var $author$project$VegaLite$AxY = 2;
+var $author$project$VegaLite$axY = 2;
+var $author$project$VegaLite$coAxisYFilter = function (cp) {
+	switch (cp.$) {
+		case 2:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axY, acs);
+		case 8:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axY, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axY, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axY, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axY, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axY, acs);
+		default:
+			return cp;
+	}
 };
-var $author$project$VegaLite$coAxisY = $author$project$VegaLite$AxisY;
 var $author$project$ConfigTests$axisCfg4 = $author$project$ConfigTests$histoVis(
 	A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coAxisY($author$project$ConfigTests$redAxis))));
+			$author$project$VegaLite$coAxisYFilter(
+				$author$project$VegaLite$coAxis($author$project$ConfigTests$redAxis)))));
 var $author$project$VegaLite$AxisBottom = function (a) {
-	return {$: 9, a: a};
+	return {$: 7, a: a};
 };
 var $author$project$VegaLite$coAxisBottom = $author$project$VegaLite$AxisBottom;
 var $author$project$ConfigTests$axisCfg5 = $author$project$ConfigTests$histoVis(
@@ -9753,7 +9840,7 @@ var $author$project$ConfigTests$axisCfg5 = $author$project$ConfigTests$histoVis(
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisBottom($author$project$ConfigTests$redAxis))));
 var $author$project$VegaLite$AxisLeft = function (a) {
-	return {$: 6, a: a};
+	return {$: 4, a: a};
 };
 var $author$project$VegaLite$coAxisLeft = $author$project$VegaLite$AxisLeft;
 var $author$project$ConfigTests$axisCfg6 = $author$project$ConfigTests$histoVis(
@@ -9763,7 +9850,7 @@ var $author$project$ConfigTests$axisCfg6 = $author$project$ConfigTests$histoVis(
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisLeft($author$project$ConfigTests$redAxis))));
 var $author$project$VegaLite$AxisTop = function (a) {
-	return {$: 8, a: a};
+	return {$: 6, a: a};
 };
 var $author$project$VegaLite$coAxisTop = $author$project$VegaLite$AxisTop;
 var $author$project$ConfigTests$axisCfg7 = $author$project$ConfigTests$histoVis(
@@ -9773,7 +9860,7 @@ var $author$project$ConfigTests$axisCfg7 = $author$project$ConfigTests$histoVis(
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisTop($author$project$ConfigTests$redAxis))));
 var $author$project$VegaLite$AxisRight = function (a) {
-	return {$: 7, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$coAxisRight = $author$project$VegaLite$AxisRight;
 var $author$project$ConfigTests$axisCfg8 = $author$project$ConfigTests$histoVis(
@@ -9782,10 +9869,7 @@ var $author$project$ConfigTests$axisCfg8 = $author$project$ConfigTests$histoVis(
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAxisRight($author$project$ConfigTests$redAxis))));
-var $author$project$VegaLite$AxisBand = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$coAxisBand = $author$project$VegaLite$AxisBand;
+var $author$project$VegaLite$coAxisBand = $author$project$VegaLite$AxisBand(0);
 var $author$project$ConfigTests$axisCfg9 = $author$project$ConfigTests$histoVis(
 	A2(
 		$elm$core$Basics$composeL,
@@ -9804,19 +9888,19 @@ var $author$project$VegaLite$GridOpacity = function (a) {
 };
 var $author$project$VegaLite$axcoGridOpacity = $author$project$VegaLite$GridOpacity;
 var $author$project$VegaLite$Background = function (a) {
-	return {$: 15, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$coBackground = $author$project$VegaLite$Background;
 var $author$project$VegaLite$Font = function (a) {
-	return {$: 21, a: a};
+	return {$: 19, a: a};
 };
 var $author$project$VegaLite$coFont = $author$project$VegaLite$Font;
 var $author$project$VegaLite$Legend = function (a) {
-	return {$: 23, a: a};
+	return {$: 21, a: a};
 };
 var $author$project$VegaLite$coLegend = $author$project$VegaLite$Legend;
 var $author$project$VegaLite$TitleStyle = function (a) {
-	return {$: 42, a: a};
+	return {$: 40, a: a};
 };
 var $author$project$VegaLite$coTitle = $author$project$VegaLite$TitleStyle;
 var $author$project$VegaLite$Area = 0;
@@ -10143,7 +10227,7 @@ var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeV
 					])))));
 var $author$project$ConfigTests$defaultCfg = $author$project$ConfigTests$compositeVis($author$project$VegaLite$configure);
 var $author$project$VegaLite$MarkStyle = function (a) {
-	return {$: 27, a: a};
+	return {$: 25, a: a};
 };
 var $author$project$VegaLite$coMark = $author$project$VegaLite$MarkStyle;
 var $author$project$ConfigTests$markCfg1 = $author$project$ConfigTests$compositeVis(
@@ -10161,11 +10245,11 @@ var $author$project$VegaLite$AreaStyle = function (a) {
 };
 var $author$project$VegaLite$coArea = $author$project$VegaLite$AreaStyle;
 var $author$project$VegaLite$BarStyle = function (a) {
-	return {$: 16, a: a};
+	return {$: 14, a: a};
 };
 var $author$project$VegaLite$coBar = $author$project$VegaLite$BarStyle;
 var $author$project$VegaLite$PointStyle = function (a) {
-	return {$: 31, a: a};
+	return {$: 29, a: a};
 };
 var $author$project$VegaLite$coPoint = $author$project$VegaLite$PointStyle;
 var $author$project$VegaLite$MFill = function (a) {
@@ -10225,7 +10309,7 @@ var $author$project$VegaLite$Autosize = function (a) {
 };
 var $author$project$VegaLite$coAutosize = $author$project$VegaLite$Autosize;
 var $author$project$VegaLite$Padding = function (a) {
-	return {$: 30, a: a};
+	return {$: 28, a: a};
 };
 var $author$project$VegaLite$coPadding = $author$project$VegaLite$Padding;
 var $author$project$VegaLite$PEdges = F4(
@@ -10247,7 +10331,7 @@ var $author$project$ConfigTests$paddingCfg = $author$project$ConfigTests$singleV
 			$author$project$VegaLite$coPadding(
 				A4($author$project$VegaLite$paEdges, 90, 60, 30, 0)))));
 var $author$project$VegaLite$Scale = function (a) {
-	return {$: 36, a: a};
+	return {$: 34, a: a};
 };
 var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
 var $author$project$VegaLite$SCXReverse = function (a) {
@@ -10463,11 +10547,11 @@ var $author$project$VegaLite$background = function (colour) {
 var $author$project$VegaLite$CRound = 1;
 var $author$project$VegaLite$caRound = 1;
 var $author$project$VegaLite$MarkStyles = function (a) {
-	return {$: 28, a: a};
+	return {$: 26, a: a};
 };
 var $author$project$VegaLite$coMarkStyles = $author$project$VegaLite$MarkStyles;
 var $author$project$VegaLite$View = function (a) {
-	return {$: 45, a: a};
+	return {$: 43, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$JBevel = 2;
