@@ -274,6 +274,27 @@ axis12 =
 --                 << position Y [ pName "y", pQuant ]
 --     in
 --     toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis14 : Spec
+axis14 =
+    let
+        enc =
+            encoding
+                << position X
+                    [ pName "catX"
+                    , pOrdinal
+                    , pAxis
+                        [ axLabelAngle 0
+                        , axDataCondition (expr "datum.label < 10") (cAxLabelOffset 0 -4)
+                        ]
+                    ]
+                << position Y [ pName "y", pQuant ]
+    in
+    toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
 
@@ -296,6 +317,7 @@ mySpecs =
         , ( "axis12", axis12 )
 
         -- , ( "axis13", axis13 )
+        , ( "axis14", axis14 )
         ]
 
 

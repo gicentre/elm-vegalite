@@ -161,6 +161,18 @@
 
     <div style="clear:left"></div>
 
+    <h2>Conditional Axis Properties</h2>
+
+    <figure class="cell">
+      <div id="axis14"></div>
+      <figcaption>
+        The '0' in the catX 10 label should be aligned with tick (conditional
+        axis offset)
+      </figcaption>
+    </figure>
+
+    <div style="clear:left"></div>
+
     <script>
       Elm.AxisTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
