@@ -5617,16 +5617,16 @@ var $author$project$VegaLite$Y2 = 3;
 var $author$project$VegaLite$YError = 9;
 var $author$project$VegaLite$YError2 = 11;
 var $author$project$VegaLite$AxGridColor = function (a) {
-	return {$: 61, a: a};
-};
-var $author$project$VegaLite$AxGridDash = function (a) {
 	return {$: 62, a: a};
 };
-var $author$project$VegaLite$AxGridOpacity = function (a) {
+var $author$project$VegaLite$AxGridDash = function (a) {
 	return {$: 63, a: a};
 };
-var $author$project$VegaLite$AxGridWidth = function (a) {
+var $author$project$VegaLite$AxGridOpacity = function (a) {
 	return {$: 64, a: a};
+};
+var $author$project$VegaLite$AxGridWidth = function (a) {
+	return {$: 65, a: a};
 };
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 15, a: a};
@@ -5661,14 +5661,17 @@ var $author$project$VegaLite$AxLabelPadding = function (a) {
 var $author$project$VegaLite$AxTickColor = function (a) {
 	return {$: 34, a: a};
 };
+var $author$project$VegaLite$AxTickDash = function (a) {
+	return {$: 36, a: a};
+};
 var $author$project$VegaLite$AxTickOpacity = function (a) {
-	return {$: 38, a: a};
+	return {$: 39, a: a};
 };
 var $author$project$VegaLite$AxTickSize = function (a) {
-	return {$: 41, a: a};
+	return {$: 42, a: a};
 };
 var $author$project$VegaLite$AxTickWidth = function (a) {
-	return {$: 42, a: a};
+	return {$: 43, a: a};
 };
 var $author$project$VegaLite$anchorLabel = function (an) {
 	switch (an) {
@@ -5703,7 +5706,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return _Utils_Tuple2(
 				'bandPosition',
 				$elm$json$Json$Encode$float(n));
-		case 66:
+		case 67:
 			var predicate = axisProp.a;
 			var cap = axisProp.b;
 			var _v1 = function () {
@@ -5797,6 +5800,14 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickColor(c2)));
 					case 11:
+						var d1 = cap.a;
+						var d2 = cap.b;
+						return _Utils_Tuple2(
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxTickDash(d1)),
+							$author$project$VegaLite$axisProperty(
+								$author$project$VegaLite$AxTickDash(d2)));
+					case 12:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
@@ -5804,7 +5815,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickOpacity(o1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickOpacity(o2)));
-					case 16:
+					case 17:
 						var s1 = cap.a;
 						var s2 = cap.b;
 						return _Utils_Tuple2(
@@ -5812,7 +5823,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickSize(s1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickSize(s2)));
-					case 12:
+					case 13:
 						var w1 = cap.a;
 						var w2 = cap.b;
 						return _Utils_Tuple2(
@@ -5820,7 +5831,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxTickWidth(w1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxTickWidth(w2)));
-					case 13:
+					case 14:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
@@ -5828,7 +5839,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridColor(c1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridColor(c2)));
-					case 14:
+					case 15:
 						var d1 = cap.a;
 						var d2 = cap.b;
 						return _Utils_Tuple2(
@@ -5836,7 +5847,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 								$author$project$VegaLite$AxGridDash(d1)),
 							$author$project$VegaLite$axisProperty(
 								$author$project$VegaLite$AxGridDash(d2)));
-					case 15:
+					case 16:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
@@ -5886,22 +5897,22 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return _Utils_Tuple2(
 				'formatType',
 				$elm$json$Json$Encode$string('time'));
-		case 61:
+		case 62:
 			var c = axisProp.a;
 			return _Utils_Tuple2(
 				'gridColor',
 				$elm$json$Json$Encode$string(c));
-		case 62:
+		case 63:
 			var ds = axisProp.a;
 			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('gridDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'gridDash',
 				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ds));
-		case 63:
+		case 64:
 			var o = axisProp.a;
 			return _Utils_Tuple2(
 				'gridOpacity',
 				$elm$json$Json$Encode$float(o));
-		case 64:
+		case 65:
 			var w = axisProp.a;
 			return _Utils_Tuple2(
 				'gridWidth',
@@ -6041,7 +6052,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return _Utils_Tuple2(
 				'domainWidth',
 				$elm$json$Json$Encode$float(x));
-		case 60:
+		case 61:
 			var b = axisProp.a;
 			return _Utils_Tuple2(
 				'grid',
@@ -6089,7 +6100,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return _Utils_Tuple2(
 				'zindex',
 				$elm$json$Json$Encode$int(n));
-		case 40:
+		case 41:
 			var b = axisProp.a;
 			return _Utils_Tuple2(
 				'ticks',
@@ -6105,47 +6116,52 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				'tickCount',
 				$elm$json$Json$Encode$int(n));
 		case 36:
+			var ds = axisProp.a;
+			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('tickDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
+				'tickDash',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ds));
+		case 37:
 			var b = axisProp.a;
 			return _Utils_Tuple2(
 				'tickExtra',
 				$elm$json$Json$Encode$bool(b));
-		case 37:
+		case 38:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'tickOffset',
 				$elm$json$Json$Encode$float(x));
-		case 38:
+		case 39:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'tickOpacity',
 				$elm$json$Json$Encode$float(x));
-		case 39:
+		case 40:
 			var b = axisProp.a;
 			return _Utils_Tuple2(
 				'tickRound',
 				$elm$json$Json$Encode$bool(b));
-		case 65:
+		case 66:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'tickMinStep',
 				$elm$json$Json$Encode$float(x));
-		case 41:
+		case 42:
 			var sz = axisProp.a;
 			return _Utils_Tuple2(
 				'tickSize',
 				$elm$json$Json$Encode$float(sz));
-		case 42:
+		case 43:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'tickWidth',
 				$elm$json$Json$Encode$float(x));
-		case 44:
+		case 45:
 			var vals = axisProp.a;
 			return _Utils_Tuple2(
 				'values',
 				$author$project$VegaLite$toList(
 					$author$project$VegaLite$dataValuesSpecs(vals)));
-		case 43:
+		case 44:
 			var dtss = axisProp.a;
 			return _Utils_Tuple2(
 				'values',
@@ -6156,75 +6172,75 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds));
 					},
 					dtss));
-		case 45:
+		case 46:
 			var s = axisProp.a;
 			return _Utils_Tuple2(
 				'title',
 				$author$project$VegaLite$multilineTextSpec(s));
-		case 46:
+		case 47:
 			var al = axisProp.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(al)));
-		case 48:
+		case 49:
 			var angle = axisProp.a;
 			return _Utils_Tuple2(
 				'titleAngle',
 				$elm$json$Json$Encode$float(angle));
-		case 47:
+		case 48:
 			var an = axisProp.a;
 			return _Utils_Tuple2(
 				'titleAnchor',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$anchorLabel(an)));
-		case 49:
+		case 50:
 			var va = axisProp.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$vAlignLabel(va)));
-		case 50:
+		case 51:
 			var s = axisProp.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				$elm$json$Json$Encode$string(s));
-		case 51:
+		case 52:
 			var s = axisProp.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				$elm$json$Json$Encode$string(s));
-		case 52:
+		case 53:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 53:
+		case 54:
 			var s = axisProp.a;
 			return _Utils_Tuple2(
 				'titleFontStyle',
 				$elm$json$Json$Encode$string(s));
-		case 54:
+		case 55:
 			var fw = axisProp.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
 				$author$project$VegaLite$fontWeightSpec(fw));
-		case 55:
+		case 56:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				$elm$json$Json$Encode$float(x));
-		case 56:
+		case 57:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'titleOpacity',
 				$elm$json$Json$Encode$float(x));
-		case 57:
+		case 58:
 			var pad = axisProp.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				$elm$json$Json$Encode$float(pad));
-		case 58:
+		case 59:
 			var x = axisProp.a;
 			return _Utils_Tuple2(
 				'titleX',
@@ -6752,6 +6768,170 @@ var $author$project$GalleryLine$line1 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$MPoint = function (a) {
+	return {$: 42, a: a};
+};
+var $author$project$VegaLite$maPoint = $author$project$VegaLite$MPoint;
+var $author$project$VegaLite$OName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
+var $author$project$VegaLite$OmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$oTemporal = $author$project$VegaLite$OmType(3);
+var $author$project$VegaLite$orderChannelProperty = function (oDef) {
+	switch (oDef.$) {
+		case 0:
+			var s = oDef.a;
+			return _Utils_Tuple2(
+				'field',
+				$elm$json$Json$Encode$string(s));
+		case 1:
+			var arr = oDef.a;
+			return _Utils_Tuple2(
+				'field',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'repeat',
+							$elm$json$Json$Encode$string(
+								$author$project$VegaLite$arrangementLabel(arr)))
+						])));
+		case 2:
+			var measure = oDef.a;
+			return _Utils_Tuple2(
+				'type',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$measurementLabel(measure)));
+		case 3:
+			var bps = oDef.a;
+			return $author$project$VegaLite$bin(bps);
+		case 4:
+			var op = oDef.a;
+			return _Utils_Tuple2(
+				'aggregate',
+				$author$project$VegaLite$operationSpec(op));
+		case 5:
+			var tu = oDef.a;
+			return _Utils_Tuple2(
+				'timeUnit',
+				$author$project$VegaLite$timeUnitSpec(tu));
+		default:
+			var sps = oDef.a;
+			_v1$4:
+			while (true) {
+				if (!sps.b) {
+					return _Utils_Tuple2('sort', $elm$json$Json$Encode$null);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 0:
+								var _v2 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									$elm$json$Json$Encode$string('ascending'));
+							case 1:
+								var _v3 = sps.a;
+								return _Utils_Tuple2(
+									'sort',
+									$elm$json$Json$Encode$string('descending'));
+							case 2:
+								var dvs = sps.a.a;
+								return _Utils_Tuple2(
+									'sort',
+									$author$project$VegaLite$toList(
+										$author$project$VegaLite$dataValuesSpecs(dvs)));
+							default:
+								break _v1$4;
+						}
+					} else {
+						break _v1$4;
+					}
+				}
+			}
+			return _Utils_Tuple2(
+				'sort',
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)));
+	}
+};
+var $author$project$VegaLite$order = function (oDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'order',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $author$project$VegaLite$orderChannelProperty, oDefs))));
+};
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$PMMarker = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
+var $author$project$VegaLite$SZero = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
+var $author$project$GalleryLine$line10 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('miles'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scZero(false)
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('gas'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scZero(false)
+							]))
+					]))),
+		$author$project$VegaLite$order(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$oName('year'),
+					$author$project$VegaLite$oTemporal
+				])));
+	var des = $author$project$VegaLite$description('A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/driving.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(_List_Nil))
+					]))
+			]));
+}();
 var $author$project$VegaLite$color = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -6778,7 +6958,7 @@ var $author$project$VegaLite$size = function (markProps) {
 };
 var $author$project$VegaLite$Trail = 15;
 var $author$project$VegaLite$trail = $author$project$VegaLite$mark(15);
-var $author$project$GalleryLine$line10 = function () {
+var $author$project$GalleryLine$line11 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -6870,21 +7050,13 @@ var $author$project$VegaLite$dataRow = function (r) {
 				},
 				r)));
 };
-var $author$project$VegaLite$MPoint = function (a) {
-	return {$: 42, a: a};
-};
-var $author$project$VegaLite$maPoint = $author$project$VegaLite$MPoint;
 var $author$project$VegaLite$NullValue = {$: 4};
 var $author$project$VegaLite$nullValue = $author$project$VegaLite$NullValue;
 var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$num = $author$project$VegaLite$Number;
-var $author$project$VegaLite$PMMarker = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
-var $author$project$GalleryLine$line11 = function () {
+var $author$project$GalleryLine$line12 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7020,7 +7192,7 @@ var $author$project$VegaLite$AxTickCount = function (a) {
 };
 var $author$project$VegaLite$axTickCount = $author$project$VegaLite$AxTickCount;
 var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 45, a: a};
+	return {$: 46, a: a};
 };
 var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$calculateAs = F2(
@@ -9568,10 +9740,6 @@ var $author$project$VegaLite$MdY = function (a) {
 	return {$: 24, a: a};
 };
 var $author$project$VegaLite$maDy = $author$project$VegaLite$MdY;
-var $author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 9, a: a};
 };
@@ -9585,10 +9753,6 @@ var $author$project$VegaLite$SScheme = F2(
 		return {$: 3, a: a, b: b};
 	});
 var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
-var $author$project$VegaLite$SZero = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
 var $author$project$VegaLite$Str = function (a) {
 	return {$: 3, a: a};
 };
@@ -9967,7 +10131,7 @@ var $author$project$VegaLite$FirstValue = 8;
 var $author$project$VegaLite$woFirstValue = 8;
 var $author$project$VegaLite$LastValue = 9;
 var $author$project$VegaLite$woLastValue = 9;
-var $author$project$GalleryLine$line12 = function () {
+var $author$project$GalleryLine$line13 = function () {
 	var transTextMin = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -10359,7 +10523,7 @@ var $author$project$VegaLite$WDescending = function (a) {
 var $author$project$VegaLite$wiDescending = $author$project$VegaLite$WDescending;
 var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
-var $author$project$GalleryLine$line13 = function () {
+var $author$project$GalleryLine$line14 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -10503,7 +10667,7 @@ var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 49, a: a};
 };
 var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
-var $author$project$GalleryLine$line14 = function () {
+var $author$project$GalleryLine$line15 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10595,7 +10759,7 @@ var $author$project$VegaLite$strokeDash = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$GalleryLine$line15 = function () {
+var $author$project$GalleryLine$line16 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10645,7 +10809,7 @@ var $author$project$VegaLite$Booleans = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$boos = $author$project$VegaLite$Booleans;
-var $author$project$GalleryLine$line16 = function () {
+var $author$project$GalleryLine$line17 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11064,12 +11228,12 @@ var $author$project$GalleryLine$line7 = function () {
 var $author$project$VegaLite$Jan = 0;
 var $author$project$VegaLite$AxDataCondition = F2(
 	function (a, b) {
-		return {$: 66, a: a, b: b};
+		return {$: 67, a: a, b: b};
 	});
 var $author$project$VegaLite$axDataCondition = $author$project$VegaLite$AxDataCondition;
 var $author$project$VegaLite$CAxGridDash = F2(
 	function (a, b) {
-		return {$: 14, a: a, b: b};
+		return {$: 15, a: a, b: b};
 	});
 var $author$project$VegaLite$cAxGridDash = $author$project$VegaLite$CAxGridDash;
 var $author$project$VegaLite$DateTime = function (a) {
@@ -11196,152 +11360,148 @@ var $author$project$GalleryLine$line8 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$OName = function (a) {
-	return {$: 0, a: a};
+var $author$project$VegaLite$axLabelAlign = $author$project$VegaLite$AxLabelAlign;
+var $author$project$VegaLite$AxLabelExpr = function (a) {
+	return {$: 20, a: a};
 };
-var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
+var $author$project$VegaLite$axLabelExpr = $author$project$VegaLite$AxLabelExpr;
+var $author$project$VegaLite$axLabelOffset = $author$project$VegaLite$AxLabelOffset;
+var $author$project$VegaLite$axLabelPadding = $author$project$VegaLite$AxLabelPadding;
+var $author$project$VegaLite$axTickSize = $author$project$VegaLite$AxTickSize;
+var $author$project$VegaLite$DomainColor = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$oTemporal = $author$project$VegaLite$OmType(3);
-var $author$project$VegaLite$orderChannelProperty = function (oDef) {
-	switch (oDef.$) {
-		case 0:
-			var s = oDef.a;
-			return _Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$string(s));
-		case 1:
-			var arr = oDef.a;
-			return _Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'repeat',
-							$elm$json$Json$Encode$string(
-								$author$project$VegaLite$arrangementLabel(arr)))
-						])));
-		case 2:
-			var measure = oDef.a;
-			return _Utils_Tuple2(
-				'type',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$measurementLabel(measure)));
-		case 3:
-			var bps = oDef.a;
-			return $author$project$VegaLite$bin(bps);
-		case 4:
-			var op = oDef.a;
-			return _Utils_Tuple2(
-				'aggregate',
-				$author$project$VegaLite$operationSpec(op));
-		case 5:
-			var tu = oDef.a;
-			return _Utils_Tuple2(
-				'timeUnit',
-				$author$project$VegaLite$timeUnitSpec(tu));
-		default:
-			var sps = oDef.a;
-			_v1$4:
-			while (true) {
-				if (!sps.b) {
-					return _Utils_Tuple2('sort', $elm$json$Json$Encode$null);
-				} else {
-					if (!sps.b.b) {
-						switch (sps.a.$) {
-							case 0:
-								var _v2 = sps.a;
-								return _Utils_Tuple2(
-									'sort',
-									$elm$json$Json$Encode$string('ascending'));
-							case 1:
-								var _v3 = sps.a;
-								return _Utils_Tuple2(
-									'sort',
-									$elm$json$Json$Encode$string('descending'));
-							case 2:
-								var dvs = sps.a.a;
-								return _Utils_Tuple2(
-									'sort',
-									$author$project$VegaLite$toList(
-										$author$project$VegaLite$dataValuesSpecs(dvs)));
-							default:
-								break _v1$4;
-						}
-					} else {
-						break _v1$4;
-					}
-				}
-			}
-			return _Utils_Tuple2(
-				'sort',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)));
-	}
+var $author$project$VegaLite$axcoDomainColor = $author$project$VegaLite$DomainColor;
+var $author$project$VegaLite$TickColor = function (a) {
+	return {$: 32, a: a};
 };
-var $author$project$VegaLite$order = function (oDefs) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'order',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$orderChannelProperty, oDefs))));
-};
+var $author$project$VegaLite$axcoTickColor = $author$project$VegaLite$TickColor;
+var $author$project$VegaLite$CAxTickDash = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$cAxTickDash = $author$project$VegaLite$CAxTickDash;
+var $author$project$VegaLite$AxBoth = 0;
+var $author$project$VegaLite$Axis = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
 var $author$project$GalleryLine$line9 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$transform,
+			$author$project$VegaLite$filter(
+				$author$project$VegaLite$fiExpr('datum.symbol === \'GOOG\''))),
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiCompose(
+				A2(
+					$author$project$VegaLite$fiOpTrans,
+					$author$project$VegaLite$mTimeUnit($author$project$VegaLite$year),
+					A2(
+						$author$project$VegaLite$fiRange,
+						'date',
+						A2(
+							$author$project$VegaLite$dtRange,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$dtYear(2006)
+								]),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$dtYear(2008)
+								])))))));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('miles'),
-							$author$project$VegaLite$pQuant,
-							$author$project$VegaLite$pScale(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$scZero(false)
-								]))
-						]))),
+			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				1,
+				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('gas'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pScale(
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$scZero(false)
+								$author$project$VegaLite$axTickCount(8),
+								$author$project$VegaLite$axLabelAlign($author$project$VegaLite$haLeft),
+								$author$project$VegaLite$axLabelExpr('[timeFormat(datum.value, \'%b\'), timeFormat(datum.value, \'%m\') == \'01\' ? timeFormat(datum.value, \'%Y\') : \'\']'),
+								$author$project$VegaLite$axLabelOffset(4),
+								$author$project$VegaLite$axLabelPadding(-24),
+								$author$project$VegaLite$axTickSize(30),
+								A2(
+								$author$project$VegaLite$axDataCondition,
+								A2(
+									$author$project$VegaLite$fiOpTrans,
+									$author$project$VegaLite$mTimeUnit($author$project$VegaLite$monthDate),
+									A2(
+										$author$project$VegaLite$fiEqual,
+										'value',
+										$author$project$VegaLite$dt(
+											_List_fromArray(
+												[
+													$author$project$VegaLite$dtMonth(0)
+												])))),
+								A2(
+									$author$project$VegaLite$cAxGridDash,
+									_List_Nil,
+									_List_fromArray(
+										[2, 2]))),
+								A2(
+								$author$project$VegaLite$axDataCondition,
+								A2(
+									$author$project$VegaLite$fiOpTrans,
+									$author$project$VegaLite$mTimeUnit($author$project$VegaLite$monthDate),
+									A2(
+										$author$project$VegaLite$fiEqual,
+										'value',
+										$author$project$VegaLite$dt(
+											_List_fromArray(
+												[
+													$author$project$VegaLite$dtMonth(0)
+												])))),
+								A2(
+									$author$project$VegaLite$cAxTickDash,
+									_List_Nil,
+									_List_fromArray(
+										[2, 2])))
 							]))
 					]))),
-		$author$project$VegaLite$order(
+		A2(
+			$author$project$VegaLite$position,
+			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$oName('year'),
-					$author$project$VegaLite$oTemporal
+					$author$project$VegaLite$pName('price'),
+					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/driving.json', _List_Nil);
+	var des = $author$project$VegaLite$description('Line chart with conditional axis ticks, labels, and grid.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coAxis(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$axcoDomainColor('#ddd'),
+						$author$project$VegaLite$axcoTickColor('#ddd')
+					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
+				cfg(_List_Nil),
+				$author$project$VegaLite$width(400),
 				data,
+				trans(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$line(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maPoint(
-						$author$project$VegaLite$pmMarker(_List_Nil))
-					]))
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$GalleryLine$mySpecs = $author$project$VegaLite$combineSpecs(
@@ -11362,7 +11522,8 @@ var $author$project$GalleryLine$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('line13', $author$project$GalleryLine$line13),
 			_Utils_Tuple2('line14', $author$project$GalleryLine$line14),
 			_Utils_Tuple2('line15', $author$project$GalleryLine$line15),
-			_Utils_Tuple2('line16', $author$project$GalleryLine$line16)
+			_Utils_Tuple2('line16', $author$project$GalleryLine$line16),
+			_Utils_Tuple2('line17', $author$project$GalleryLine$line17)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
