@@ -490,6 +490,7 @@ module VegaLite exposing
     , axLabelFontWeight
     , cAxLabelFontWeight
     , axLabelLimit
+    , axLabelLineHeight
     , axLabelOffset
     , cAxLabelOffset
     , axLabelOpacity
@@ -1068,6 +1069,7 @@ module VegaLite exposing
     , axcoLabelFontStyle
     , axcoLabelFontWeight
     , axcoLabelLimit
+    , axcoLabelLineHeight
     , axcoLabelOpacity
     , axcoLabelOverlap
     , axcoLabelPadding
@@ -2190,6 +2192,7 @@ See the
 @docs axLabelFontWeight
 @docs cAxLabelFontWeight
 @docs axLabelLimit
+@docs axLabelLineHeight
 @docs axLabelOffset
 @docs cAxLabelOffset
 @docs axLabelOpacity
@@ -3101,6 +3104,7 @@ See the
 @docs axcoLabelFontStyle
 @docs axcoLabelFontWeight
 @docs axcoLabelLimit
+@docs axcoLabelLineHeight
 @docs axcoLabelOpacity
 @docs axcoLabelOverlap
 @docs axcoLabelPadding
@@ -3571,13 +3575,13 @@ type AxisChoice
 [axcoLabelFlushOffset](#axcoLabelFlushOffset), [axcoLabelFont](#axcoLabelFont),
 [axcoLabelFontSize](#axcoLabelFontSize), [axcoLabelFontStyle](#axcoLabelFontStyle),
 [axcoLabelFontWeight](#axcoLabelFontWeight), [axcoLabelLimit](#axcoLabelLimit),
-[axcoLabelOpacity](#axcoLabelOpacity), [axcoLabelOverlap](#axcoLabelOverlap),
-[axcoLabelPadding](#axcoLabelPadding), [axcoLabelSeparation](#axcoLabelSeparation),
-[axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor), [axcoTickCount](#axcoTickCount),
-[axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset), [axcoTickOpacity](#axcoTickOpacity),
-[axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize), [axcoTickMinStep](#axcoTickMinStep),
-[axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign), [axcoTitleAnchor](#axcoTitleAnchor),
-[axcoTitleAngle](#axcoTitleAngle), [axcoTitleBaseline](#axcoTitleBaseline),
+[axcoLabelLineHeight](#axcoLabelLineHeight), [axcoLabelOpacity](#axcoLabelOpacity),
+[axcoLabelOverlap](#axcoLabelOverlap), [axcoLabelPadding](#axcoLabelPadding),
+[axcoLabelSeparation](#axcoLabelSeparation), [axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor),
+[axcoTickCount](#axcoTickCount), [axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset),
+[axcoTickOpacity](#axcoTickOpacity), [axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize),
+[axcoTickMinStep](#axcoTickMinStep), [axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign),
+[axcoTitleAnchor](#axcoTitleAnchor), [axcoTitleAngle](#axcoTitleAngle), [axcoTitleBaseline](#axcoTitleBaseline),
 [axcoTitleColor](#axcoTitleColor), [axcoTitleFont](#axcoTitleFont),
 [axcoTitleFontSize](#axcoTitleFontSize), [axcoTitleFontStyle](#axcoTitleFontStyle),
 [axcoTitleFontWeight](#axcoTitleFontWeight), [axcoTitleLimit](#axcoTitleLimit),
@@ -3609,6 +3613,7 @@ type AxisConfig
     | LabelFontStyle String
     | LabelFontWeight FontWeight
     | LabelLimit Float
+    | LabelLineHeight Float
     | LabelOpacity Float
     | LabelOverlap OverlapStrategy
     | LabelPadding Float
@@ -3653,7 +3658,8 @@ type AxisConfig
 [axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound), [axLabelColor](#axLabelColor),
 [axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush), [axLabelFlushOffset](#axLabelFlushOffset),
 [axLabelFont](#axLabelFont), [axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
-[axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit), [axLabelOffset](#axLabelOffset),
+[axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit),
+[axLabelLineHeight](#axLabelLineHeight), [axLabelOffset](#axLabelOffset),
 [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap), [axLabelPadding](#axLabelPadding),
 [axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle), [axTicks](#axTicks),
 [axTickColor](#axTickColor), [axTickCount](#axTickCount), [axTickDash](#axTickDash),
@@ -3696,6 +3702,7 @@ type AxisProperty
     | AxLabelFontSize Float
     | AxLabelFontStyle String
     | AxLabelFontWeight FontWeight
+    | AxLabelLineHeight Float
     | AxLabelLimit Float
     | AxLabelOffset Float
     | AxLabelOpacity Float
@@ -6139,6 +6146,13 @@ axcoLabelLimit =
     LabelLimit
 
 
+{-| Default axis label line height (useful for multi-line labels).
+-}
+axcoLabelLineHeight : Float -> AxisConfig
+axcoLabelLineHeight =
+    LabelLineHeight
+
+
 {-| Default axis label overlap strategy for cases where labels cannot
 fit within the allotted space.
 -}
@@ -6589,6 +6603,13 @@ axLabelFontWeight =
 axLabelLimit : Float -> AxisProperty
 axLabelLimit =
     AxLabelLimit
+
+
+{-| Axis label line height (useful for multi-line labels).
+-}
+axLabelLineHeight : Float -> AxisProperty
+axLabelLineHeight =
+    AxLabelLineHeight
 
 
 {-| Offset in pixels of an axis's labels relative to its ticks.
@@ -17420,6 +17441,9 @@ axisConfigProperty axisCfg =
         LabelLimit x ->
             ( "labelLimit", JE.float x )
 
+        LabelLineHeight x ->
+            ( "labelLineHeight", JE.float x )
+
         LabelOpacity n ->
             ( "labelOpacity", JE.float n )
 
@@ -17690,6 +17714,9 @@ axisProperty axisProp =
 
         AxLabelLimit x ->
             ( "labelLimit", JE.float x )
+
+        AxLabelLineHeight x ->
+            ( "labelLineHeight", JE.float x )
 
         AxLabelOffset x ->
             ( "labelOffset", JE.float x )

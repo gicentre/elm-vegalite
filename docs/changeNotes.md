@@ -8,6 +8,8 @@
 
 * `vaLineTop` and `vaLineBottom` for vertical alignment of text marks based on line height (VL 4.6).
 
+* `axLabelLineHeight` and `axcoLabelLineHeight` for setting axis label line height (VL 4.6).
+
 - `opProduct` for aggregation of numeric values by their product (VL 4.6).
 
 * `axFormatAsCustom`, `leFormatAsCustom`, `hdFormatAsCustom` and `tFormatAsCustom` for using registered text formatters (VL 4.6).

@@ -103,6 +103,7 @@ textAlign1 =
                     , pQuant
                     , pTitle ""
                     , pScale [ scDomain (doNums [ 5, 25 ]), scNice niFalse ]
+                    , pAxis [ axLabelLineHeight 40, axLabelBaseline vaLineTop ]
                     ]
                 << position Y
                     [ pName "y"
