@@ -89,6 +89,7 @@ textAlign1 =
         cfg =
             configure
                 << configuration (coMark [ maFontSize 20 ])
+                << configuration (coText [ maLineHeight 40 ])
 
         data =
             dataFromColumns []
@@ -116,6 +117,9 @@ textAlign1 =
                 "top" ->
                     asSpec [ title va [], data [], enc [], textMark [ maBaseline vaTop ] ]
 
+                "lineTop" ->
+                    asSpec [ title va [], data [], enc [], textMark [ maBaseline vaLineTop ] ]
+
                 "middle" ->
                     asSpec [ title va [], data [], enc [], textMark [ maBaseline vaMiddle ] ]
 
@@ -125,13 +129,16 @@ textAlign1 =
                 "bottom" ->
                     asSpec [ title va [], data [], enc [], textMark [ maBaseline vaBottom ] ]
 
+                "lineBottom" ->
+                    asSpec [ title va [], data [], enc [], textMark [ maBaseline vaLineBottom ] ]
+
                 _ ->
                     asSpec []
     in
     toVegaLite
         [ cfg []
         , columns 2
-        , concat (List.map mk [ "top", "middle", "alphabetic", "bottom" ])
+        , concat (List.map mk [ "top", "lineTop", "middle", "alphabetic", "bottom", "lineBottom" ])
         ]
 
 
@@ -140,7 +147,7 @@ multiline1 =
     let
         cfg =
             configure
-                << configuration (coTitle [ ticoLineHeight 24, ticoSubtitleLineHeight 24 ])
+                << configuration (coTitle [ ticoSubtitleLineHeight 24 ])
                 << configuration (coAxis [ axcoTitleLineHeight 24 ])
                 << configuration (coLegend [ lecoTitleLineHeight 24 ])
                 << configuration (coMark [ maLineHeight 16 ])
@@ -190,7 +197,7 @@ multiline1 =
     in
     toVegaLite
         [ cfg []
-        , title "Main title on\ntwo lines" [ tiSubtitle "Subtitle on\ntwo lines" ]
+        , title "Main title on\ntwo lines" [ tiLineHeight 24, tiSubtitle "Subtitle on\ntwo lines" ]
         , layer [ spec1, spec2 ]
         ]
 
