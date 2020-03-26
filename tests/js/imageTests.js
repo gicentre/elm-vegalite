@@ -5847,9 +5847,13 @@ var $author$project$VegaLite$vAlignLabel = function (al) {
 		case 0:
 			return 'top';
 		case 1:
-			return 'middle';
+			return 'line-top';
 		case 2:
+			return 'middle';
+		case 3:
 			return 'bottom';
+		case 4:
+			return 'line-bottom';
 		default:
 			return 'alphabetic';
 	}
@@ -9346,8 +9350,8 @@ var $author$project$VegaLite$MBaseline = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$maBaseline = $author$project$VegaLite$MBaseline;
-var $author$project$VegaLite$AlignBottom = 2;
-var $author$project$VegaLite$vaBottom = 2;
+var $author$project$VegaLite$AlignBottom = 3;
+var $author$project$VegaLite$vaBottom = 3;
 var $author$project$ImageTests$image10 = $author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[
@@ -9514,8 +9518,8 @@ var $author$project$ImageTests$image8 = $author$project$ImageTests$lakeImage(
 			$author$project$VegaLite$maHeight(61),
 			$author$project$VegaLite$maBaseline($author$project$VegaLite$vaTop)
 		]));
-var $author$project$VegaLite$AlignMiddle = 1;
-var $author$project$VegaLite$vaMiddle = 1;
+var $author$project$VegaLite$AlignMiddle = 2;
+var $author$project$VegaLite$vaMiddle = 2;
 var $author$project$ImageTests$image9 = $author$project$ImageTests$lakeImage(
 	_List_fromArray(
 		[

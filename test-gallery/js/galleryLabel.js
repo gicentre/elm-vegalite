@@ -3316,9 +3316,13 @@ var $author$project$VegaLite$vAlignLabel = function (al) {
 		case 0:
 			return 'top';
 		case 1:
-			return 'middle';
+			return 'line-top';
 		case 2:
+			return 'middle';
+		case 3:
 			return 'bottom';
+		case 4:
+			return 'line-bottom';
 		default:
 			return 'alphabetic';
 	}
@@ -9498,8 +9502,8 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
-var $author$project$VegaLite$AlignMiddle = 1;
-var $author$project$VegaLite$vaMiddle = 1;
+var $author$project$VegaLite$AlignMiddle = 2;
+var $author$project$VegaLite$vaMiddle = 2;
 var $author$project$GalleryLabel$label1 = function () {
 	var specText = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -9873,8 +9877,8 @@ var $author$project$VegaLite$transform = function (transforms) {
 		13,
 		A2($elm$json$Json$Encode$list, assemble, transforms));
 };
-var $author$project$VegaLite$AlignBottom = 2;
-var $author$project$VegaLite$vaBottom = 2;
+var $author$project$VegaLite$AlignBottom = 3;
+var $author$project$VegaLite$vaBottom = 3;
 var $author$project$VegaLite$AlignTop = 0;
 var $author$project$VegaLite$vaTop = 0;
 var $author$project$VegaLite$WAscending = function (a) {

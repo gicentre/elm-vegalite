@@ -3438,9 +3438,13 @@ var $author$project$VegaLite$vAlignLabel = function (al) {
 		case 0:
 			return 'top';
 		case 1:
-			return 'middle';
+			return 'line-top';
 		case 2:
+			return 'middle';
+		case 3:
 			return 'bottom';
+		case 4:
+			return 'line-bottom';
 		default:
 			return 'alphabetic';
 	}
@@ -9817,8 +9821,8 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 13;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(13);
-var $author$project$VegaLite$AlignMiddle = 1;
-var $author$project$VegaLite$vaMiddle = 1;
+var $author$project$VegaLite$AlignMiddle = 2;
+var $author$project$VegaLite$vaMiddle = 2;
 var $author$project$GalleryTable$table5 = function () {
 	var encText = A2(
 		$elm$core$Basics$composeL,

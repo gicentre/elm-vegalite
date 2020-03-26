@@ -3232,9 +3232,13 @@ var $author$project$VegaLite$vAlignLabel = function (al) {
 		case 0:
 			return 'top';
 		case 1:
-			return 'middle';
+			return 'line-top';
 		case 2:
+			return 'middle';
+		case 3:
 			return 'bottom';
+		case 4:
+			return 'line-bottom';
 		default:
 			return 'alphabetic';
 	}
@@ -10477,8 +10481,8 @@ var $author$project$VegaLite$vConcat = function (specs) {
 		19,
 		$author$project$VegaLite$toList(specs));
 };
-var $author$project$VegaLite$AlignMiddle = 1;
-var $author$project$VegaLite$vaMiddle = 1;
+var $author$project$VegaLite$AlignMiddle = 2;
+var $author$project$VegaLite$vaMiddle = 2;
 var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };

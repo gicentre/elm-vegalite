@@ -5465,9 +5465,13 @@ var $author$project$VegaLite$vAlignLabel = function (al) {
 		case 0:
 			return 'top';
 		case 1:
-			return 'middle';
+			return 'line-top';
 		case 2:
+			return 'middle';
+		case 3:
 			return 'bottom';
+		case 4:
+			return 'line-bottom';
 		default:
 			return 'alphabetic';
 	}
@@ -12042,14 +12046,14 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 13;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(13);
+var $author$project$VegaLite$TLineHeight = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$tiLineHeight = $author$project$VegaLite$TLineHeight;
 var $author$project$VegaLite$TSubtitle = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = $author$project$VegaLite$TSubtitle;
-var $author$project$VegaLite$TLineHeight = function (a) {
-	return {$: 9, a: a};
-};
-var $author$project$VegaLite$ticoLineHeight = $author$project$VegaLite$TLineHeight;
 var $author$project$VegaLite$TSubtitleLineHeight = function (a) {
 	return {$: 20, a: a};
 };
@@ -12222,7 +12226,6 @@ var $author$project$TextFormatTests$multiline1 = function () {
 						$author$project$VegaLite$coTitle(
 							_List_fromArray(
 								[
-									$author$project$VegaLite$ticoLineHeight(24),
 									$author$project$VegaLite$ticoSubtitleLineHeight(24)
 								])))),
 				$author$project$VegaLite$configuration(
@@ -12252,6 +12255,7 @@ var $author$project$TextFormatTests$multiline1 = function () {
 				'Main title on\ntwo lines',
 				_List_fromArray(
 					[
+						$author$project$VegaLite$tiLineHeight(24),
 						$author$project$VegaLite$tiSubtitle('Subtitle on\ntwo lines')
 					])),
 				$author$project$VegaLite$layer(
@@ -12259,6 +12263,10 @@ var $author$project$TextFormatTests$multiline1 = function () {
 					[spec1, spec2]))
 			]));
 }();
+var $author$project$VegaLite$TextStyle = function (a) {
+	return {$: 38, a: a};
+};
+var $author$project$VegaLite$coText = $author$project$VegaLite$TextStyle;
 var $author$project$VegaLite$VLColumns = 20;
 var $author$project$VegaLite$columns = function (cols) {
 	return _Utils_Tuple2(
@@ -12286,12 +12294,16 @@ var $author$project$VegaLite$SNice = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
-var $author$project$VegaLite$AlignAlphabetic = 3;
-var $author$project$VegaLite$vaAlphabetic = 3;
-var $author$project$VegaLite$AlignBottom = 2;
-var $author$project$VegaLite$vaBottom = 2;
-var $author$project$VegaLite$AlignMiddle = 1;
-var $author$project$VegaLite$vaMiddle = 1;
+var $author$project$VegaLite$AlignAlphabetic = 5;
+var $author$project$VegaLite$vaAlphabetic = 5;
+var $author$project$VegaLite$AlignBottom = 3;
+var $author$project$VegaLite$vaBottom = 3;
+var $author$project$VegaLite$AlignLineBottom = 4;
+var $author$project$VegaLite$vaLineBottom = 4;
+var $author$project$VegaLite$AlignLineTop = 1;
+var $author$project$VegaLite$vaLineTop = 1;
+var $author$project$VegaLite$AlignMiddle = 2;
+var $author$project$VegaLite$vaMiddle = 2;
 var $author$project$VegaLite$AlignTop = 0;
 var $author$project$VegaLite$vaTop = 0;
 var $author$project$TextFormatTests$textAlign1 = function () {
@@ -12375,6 +12387,19 @@ var $author$project$TextFormatTests$textAlign1 = function () {
 									$author$project$VegaLite$maBaseline($author$project$VegaLite$vaTop)
 								]))
 						]));
+			case 'lineTop':
+				return $author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							A2($author$project$VegaLite$title, va, _List_Nil),
+							data(_List_Nil),
+							enc(_List_Nil),
+							$author$project$VegaLite$textMark(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$maBaseline($author$project$VegaLite$vaLineTop)
+								]))
+						]));
 			case 'middle':
 				return $author$project$VegaLite$asSpec(
 					_List_fromArray(
@@ -12414,18 +12439,39 @@ var $author$project$TextFormatTests$textAlign1 = function () {
 									$author$project$VegaLite$maBaseline($author$project$VegaLite$vaBottom)
 								]))
 						]));
+			case 'lineBottom':
+				return $author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							A2($author$project$VegaLite$title, va, _List_Nil),
+							data(_List_Nil),
+							enc(_List_Nil),
+							$author$project$VegaLite$textMark(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$maBaseline($author$project$VegaLite$vaLineBottom)
+								]))
+						]));
 			default:
 				return $author$project$VegaLite$asSpec(_List_Nil);
 		}
 	};
 	var cfg = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$configure,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coMark(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$maFontSize(20)
+						])))),
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coMark(
+			$author$project$VegaLite$coText(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maFontSize(20)
+						$author$project$VegaLite$maLineHeight(40)
 					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12437,7 +12483,7 @@ var $author$project$TextFormatTests$textAlign1 = function () {
 					$elm$core$List$map,
 					mk,
 					_List_fromArray(
-						['top', 'middle', 'alphabetic', 'bottom'])))
+						['top', 'lineTop', 'middle', 'alphabetic', 'bottom', 'lineBottom'])))
 			]));
 }();
 var $author$project$VegaLite$AxFormat = function (a) {
