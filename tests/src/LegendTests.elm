@@ -122,9 +122,14 @@ legend11 =
         ]
 
 
+legend12 : Spec
+legend12 =
+    legendCore [ leLabelBaseline vaLineTop ]
+
+
 sourceExample : Spec
 sourceExample =
-    legend11
+    legend12
 
 
 
@@ -145,6 +150,7 @@ mySpecs =
         , ( "legend9", legend9 )
         , ( "legend10", legend10 )
         , ( "legend11", legend11 )
+        , ( "legend12", legend12 )
         ]
 
 
