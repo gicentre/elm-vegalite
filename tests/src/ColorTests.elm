@@ -202,6 +202,138 @@ gamma5 =
         (color [ mName "Acceleration", mQuant, mScale [ scInterpolate (cubeHelixLong 10), scType scLinear, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
+blend1 : Spec
+blend1 =
+    -- Thanks to @dougburke for this blend mode test.
+    let
+        blendData =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 0 ])
+                << dataColumn "y" (nums [ 0 ])
+
+        ellipse ang =
+            let
+                rad =
+                    ang * pi / 180
+
+                cosRot =
+                    cos rad
+
+                sinRot =
+                    sin rad
+
+                rmajor =
+                    1.0
+
+                rminor =
+                    0.3
+
+                pair t =
+                    let
+                        x =
+                            rmajor * cos t * cosRot - rminor * sin t * sinRot
+
+                        y =
+                            rmajor * cos t * sinRot + rminor * sin t * cosRot
+                    in
+                    "L " ++ String.fromFloat x ++ " " ++ String.fromFloat y
+
+                thetas =
+                    List.range 0 25 |> List.map (\n -> (2 * pi / 25) * toFloat n)
+            in
+            List.intersperse " " (List.map pair thetas) |> String.concat |> symPath
+
+        ax t f =
+            position t [ pName f, pQuant, pScale [ scDomain (doNums [ -5, 5 ]) ], pAxis [] ]
+
+        props p =
+            case p of
+                0 ->
+                    [ grX1 0.5, grX2 0.5, grY1 1, grY2 0 ]
+
+                1 ->
+                    [ grX1 0.7, grX2 0.3, grY1 0.1, grY2 1 ]
+
+                _ ->
+                    [ grX1 1, grX2 0, grY1 1, grY2 0 ]
+
+        gradient f =
+            let
+                c =
+                    case f of
+                        0 ->
+                            "rgb(0,255,0)"
+
+                        1 ->
+                            "rgb(255,0,0)"
+
+                        _ ->
+                            "rgb(0,0,255)"
+            in
+            maFillGradient grLinear (grStops [ ( 0, "white" ), ( 1, c ) ] :: props f)
+
+        lyr bm f =
+            let
+                a =
+                    case f of
+                        0 ->
+                            0
+
+                        1 ->
+                            45
+
+                        _ ->
+                            -45
+            in
+            asSpec [ point [ maShape (ellipse a), maBlend bm, gradient f ] ]
+
+        createLayer ( bm, ttl ) =
+            let
+                enc =
+                    encoding
+                        << ax X "x"
+                        << ax Y "y"
+            in
+            asSpec
+                [ enc []
+                , layer (List.map (lyr bm) [ 1, 0, 2 ])
+                , title ttl []
+                ]
+
+        layers =
+            List.map createLayer
+                [ ( bmNormal, "Normal" )
+                , ( bmMultiply, "Multiply" )
+                , ( bmScreen, "Screen" )
+                , ( bmOverlay, "Overlay" )
+                , ( bmDarken, "Darken" )
+                , ( bmLighten, "Lighten" )
+                , ( bmColorDodge, "Color-Dodge" )
+                , ( bmColorBurn, "Color-Burn" )
+                , ( bmHardLight, "Hard-Light" )
+                , ( bmSoftLight, "Soft-Light" )
+                , ( bmDifference, "Difference" )
+                , ( bmExclusion, "Exclusion" )
+                , ( bmHue, "Hue" )
+                , ( bmSaturation, "Saturation" )
+                , ( bmColor, "Color" )
+                , ( bmLuminosity, "Luminosity" )
+                ]
+
+        cfg =
+            configure
+                -- << configuration (coAxis [ axcoDomain False, axcoLabels False, axcoTicks False, axcoTitl ])
+                << configuration (coPoint [ maOpacity 1, maSize 40000, maStroke "" ])
+                << configuration (coBackground "rgba(255,255,255,0)")
+    in
+    toVegaLite
+        [ cfg []
+        , blendData []
+        , columns 4
+        , vConcat layers
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -238,6 +370,7 @@ mySpecs =
         , ( "gamma3", gamma3 )
         , ( "gamma4", gamma4 )
         , ( "gamma5", gamma5 )
+        , ( "blend1", blend1 )
         ]
 
 

@@ -169,6 +169,20 @@
     </figure>
     <div style="clear:left"></div>
 
+    <h2>Blend Modes</h2>
+
+    <figure class="cell">
+      <div id="blend1"></div>
+      <figcaption>
+        Colour blending, that should approximate these
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode"
+          >CSS examples</a
+        >
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
     <script>
       Elm.ColorTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
