@@ -244,7 +244,7 @@ blend1 =
             List.intersperse " " (List.map pair thetas) |> String.concat |> symPath
 
         ax t f =
-            position t [ pName f, pQuant, pScale [ scDomain (doNums [ -5, 5 ]) ], pAxis [] ]
+            position t [ pName f, pQuant, pScale [ scDomain (doNums [ -5, 5 ]) ], pTitle "" ]
 
         props p =
             case p of
@@ -322,7 +322,7 @@ blend1 =
 
         cfg =
             configure
-                -- << configuration (coAxis [ axcoDomain False, axcoLabels False, axcoTicks False, axcoTitl ])
+                << configuration (coAxis [ axcoDomain False, axcoLabels False, axcoTicks False ])
                 << configuration (coPoint [ maOpacity 1, maSize 40000, maStroke "" ])
                 << configuration (coBackground "rgba(255,255,255,0)")
     in

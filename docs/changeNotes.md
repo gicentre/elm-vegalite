@@ -6,7 +6,9 @@
 
 - `coAxisXFilter` and `coAxisYFilter` to modify axis configurations to apply only to the X or Y axes (supports changes in VL 4.7)
 
-* `vaLineTop` and `vaLineBottom` for vertical alignment of text marks based on line height (VL 4.6).
+* `maBlend` and associated `bm` blend mode options for specifying how overlaid colours are combined (VL 4.6).
+
+- `vaLineTop` and `vaLineBottom` for vertical alignment of text marks based on line height (VL 4.6).
 
 * `axLabelLineHeight` and `axcoLabelLineHeight` for setting axis label line height (VL 4.6).
 
