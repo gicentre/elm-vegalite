@@ -343,36 +343,56 @@ interaction17 =
     toVegaLite [ width 400, cfg [], stockData, trans [], sel [], encLine [], line [] ]
 
 
+interaction18 : Spec
+interaction18 =
+    let
+        angleData =
+            dataSequenceAs 0 (2 * pi) 0.1 "theta"
 
--- "transform": [
---     {"filter": "datum.symbol==='GOOG'"}
---   ],
---   "mark": "line",
---   "width": 400,
---   "encoding": {
---     "x": {
---       "field": "date",
---       "type": "temporal"
---     },
---     "y": {
---       "field": "price",
---       "type": "quantitative"
---     }
---   },
---   "selection": {
---     "brush": {
---       "type": "interval",
---       "encodings": ["x"],
---       "mark": {"cursor": "pointer"}
---     }
---   },
---   "view": {"cursor": "text"}
--- }
+        trans =
+            transform
+                << calculateAs "cos(datum.theta)" "y"
+
+        sel =
+            selection
+                << select "myBrush"
+                    seInterval
+                    [ seEncodings [ chX, chY ]
+                    , seInitInterval
+                        (Just ( num 0.4, num 1 ))
+                        (Just ( num 0.6, num 0.8 ))
+                    ]
+
+        overviewEnc =
+            encoding
+                << position X [ pName "theta", pQuant, pAxis [] ]
+                << position Y [ pName "y", pQuant, pAxis [] ]
+
+        overviewSpec =
+            asSpec [ sel [], overviewEnc [], line [] ]
+
+        detailEnc =
+            encoding
+                << position X
+                    [ pName "theta"
+                    , pQuant
+                    , pScale [ scDomain (doSelectionChannel "myBrush" chX) ]
+                    ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pScale [ scDomain (doSelectionField "myBrush" "y") ]
+                    ]
+
+        detailSpec =
+            asSpec [ detailEnc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
+    in
+    toVegaLite [ angleData, trans [], hConcat [ overviewSpec, detailSpec ] ]
 
 
 sourceExample : Spec
 sourceExample =
-    interaction17
+    interaction18
 
 
 
@@ -399,6 +419,7 @@ mySpecs =
         , ( "interaction15", interaction15 )
         , ( "interaction16", interaction16 )
         , ( "interaction17", interaction17 )
+        , ( "interaction18", interaction18 )
         ]
 
 

@@ -36,6 +36,8 @@
 
 - `tiLineHeight` for setting title line height
 
+* `doSelectionChannel` and `doSelectionField` for projecting selection onto a specific field or channel when scaling a domain.
+
 ### Deprecations
 
 - `coNamedStyle` and `coNamedStyles` both deprecated in favour of `coMarkStyles`. Provides greater naming consistency with the addition of (VL 4.4) `coAxisStyles`.
