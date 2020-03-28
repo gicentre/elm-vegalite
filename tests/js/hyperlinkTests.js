@@ -6996,6 +6996,28 @@ var $author$project$VegaLite$cInterpolateSpec = function (iType) {
 					]));
 	}
 };
+var $author$project$VegaLite$channelLabel = function (ch) {
+	switch (ch) {
+		case 0:
+			return 'x';
+		case 1:
+			return 'y';
+		case 2:
+			return 'x2';
+		case 3:
+			return 'y2';
+		case 4:
+			return 'color';
+		case 5:
+			return 'opacity';
+		case 6:
+			return 'shape';
+		case 7:
+			return 'size';
+		default:
+			return 'strokeDash';
+	}
+};
 var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 	switch (sdType.$) {
 		case 0:
@@ -7023,6 +7045,33 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(selName))
 					]));
 		case 5:
+			var selName = sdType.a;
+			var ch = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'encoding',
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$channelLabel(ch)))
+					]));
+		case 4:
+			var selName = sdType.a;
+			var f = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'field',
+						$elm$json$Json$Encode$string(f))
+					]));
+		case 7:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -7376,28 +7425,6 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'reverse',
 				$elm$json$Json$Encode$bool(b));
-	}
-};
-var $author$project$VegaLite$channelLabel = function (ch) {
-	switch (ch) {
-		case 0:
-			return 'x';
-		case 1:
-			return 'y';
-		case 2:
-			return 'x2';
-		case 3:
-			return 'y2';
-		case 4:
-			return 'color';
-		case 5:
-			return 'opacity';
-		case 6:
-			return 'shape';
-		case 7:
-			return 'size';
-		default:
-			return 'strokeDash';
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {

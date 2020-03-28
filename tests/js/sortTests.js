@@ -7580,6 +7580,33 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(selName))
 					]));
 		case 5:
+			var selName = sdType.a;
+			var ch = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'encoding',
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$channelLabel(ch)))
+					]));
+		case 4:
+			var selName = sdType.a;
+			var f = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'field',
+						$elm$json$Json$Encode$string(f))
+					]));
+		case 7:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;

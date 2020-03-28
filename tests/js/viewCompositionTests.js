@@ -6026,6 +6026,10 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
+var $author$project$VegaLite$FacetStyle = function (a) {
+	return {$: 23, a: a};
+};
+var $author$project$VegaLite$coFacet = $author$project$VegaLite$FacetStyle;
 var $author$project$VegaLite$HeaderStyle = function (a) {
 	return {$: 24, a: a};
 };
@@ -6937,6 +6941,28 @@ var $author$project$VegaLite$cInterpolateSpec = function (iType) {
 					]));
 	}
 };
+var $author$project$VegaLite$channelLabel = function (ch) {
+	switch (ch) {
+		case 0:
+			return 'x';
+		case 1:
+			return 'y';
+		case 2:
+			return 'x2';
+		case 3:
+			return 'y2';
+		case 4:
+			return 'color';
+		case 5:
+			return 'opacity';
+		case 6:
+			return 'shape';
+		case 7:
+			return 'size';
+		default:
+			return 'strokeDash';
+	}
+};
 var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 	switch (sdType.$) {
 		case 0:
@@ -6964,6 +6990,33 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(selName))
 					]));
 		case 5:
+			var selName = sdType.a;
+			var ch = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'encoding',
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$channelLabel(ch)))
+					]));
+		case 4:
+			var selName = sdType.a;
+			var f = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'field',
+						$elm$json$Json$Encode$string(f))
+					]));
+		case 7:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -7317,28 +7370,6 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'reverse',
 				$elm$json$Json$Encode$bool(b));
-	}
-};
-var $author$project$VegaLite$channelLabel = function (ch) {
-	switch (ch) {
-		case 0:
-			return 'x';
-		case 1:
-			return 'y';
-		case 2:
-			return 'x2';
-		case 3:
-			return 'y2';
-		case 4:
-			return 'color';
-		case 5:
-			return 'opacity';
-		case 6:
-			return 'shape';
-		case 7:
-			return 'size';
-		default:
-			return 'strokeDash';
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -7785,36 +7816,73 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				'labelAngle',
 				$elm$json$Json$Encode$float(x));
 		case 8:
+			var va = hProp.a;
+			return _Utils_Tuple2(
+				'labelBaseline',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$vAlignLabel(va)));
+		case 9:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'labelColor',
 				$elm$json$Json$Encode$string(s));
-		case 9:
+		case 10:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'labelExpr',
+				$elm$json$Json$Encode$string(s));
+		case 11:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'labelFont',
 				$elm$json$Json$Encode$string(s));
-		case 10:
+		case 12:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'labelFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 14:
+			var fw = hProp.a;
+			return _Utils_Tuple2(
+				'labelFontWeight',
+				$author$project$VegaLite$fontWeightSpec(fw));
+		case 15:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelLimit',
 				$elm$json$Json$Encode$float(x));
-		case 12:
+		case 16:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'labelLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 17:
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'labelOrient',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$sideLabel(orient)));
-		case 13:
+		case 18:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelPadding',
 				$elm$json$Json$Encode$float(x));
+		case 19:
+			var b = hProp.a;
+			return _Utils_Tuple2(
+				'labels',
+				$elm$json$Json$Encode$bool(b));
+		case 20:
+			var orient = hProp.a;
+			return _Utils_Tuple2(
+				'orient',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$sideLabel(orient)));
 		case 4:
 			var s = hProp.a;
 			if (s === '') {
@@ -7824,55 +7892,65 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(s));
 			}
-		case 15:
+		case 22:
 			var a = hProp.a;
 			return _Utils_Tuple2(
 				'titleAnchor',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$anchorLabel(a)));
-		case 14:
+		case 21:
 			var ha = hProp.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(ha)));
-		case 16:
+		case 23:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleAngle',
 				$elm$json$Json$Encode$float(x));
-		case 17:
+		case 24:
 			var va = hProp.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$vAlignLabel(va)));
-		case 18:
+		case 25:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				$elm$json$Json$Encode$string(s));
-		case 19:
+		case 26:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				$elm$json$Json$Encode$string(s));
-		case 20:
-			var s = hProp.a;
+		case 29:
+			var fw = hProp.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
-				$elm$json$Json$Encode$string(s));
-		case 21:
+				$author$project$VegaLite$fontWeightSpec(fw));
+		case 27:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 22:
+		case 28:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'titleFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 30:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				$elm$json$Json$Encode$float(x));
-		case 23:
+		case 31:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'titleLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 32:
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'titleOrient',
@@ -11133,6 +11211,10 @@ var $author$project$VegaLite$FmType = function (a) {
 };
 var $author$project$VegaLite$Nominal = 0;
 var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
+var $author$project$VegaLite$FCSpacing = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$facoSpacing = $author$project$VegaLite$FCSpacing;
 var $author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -11726,9 +11808,17 @@ var $author$project$ViewCompositionTests$genderChart = F2(
 					])));
 		var conf = A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$configure,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$configure,
+				$author$project$VegaLite$configuration(
+					$author$project$VegaLite$coHeader(cProps))),
 			$author$project$VegaLite$configuration(
-				$author$project$VegaLite$coHeader(cProps)));
+				$author$project$VegaLite$coFacet(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$facoSpacing(80)
+						]))));
 		return $author$project$VegaLite$toVegaLite(
 			_List_fromArray(
 				[
@@ -11742,11 +11832,11 @@ var $author$project$ViewCompositionTests$genderChart = F2(
 	});
 var $author$project$ViewCompositionTests$columns1 = A2($author$project$ViewCompositionTests$genderChart, _List_Nil, _List_Nil);
 var $author$project$VegaLite$HLabelFontSize = function (a) {
-	return {$: 10, a: a};
+	return {$: 12, a: a};
 };
 var $author$project$VegaLite$hdLabelFontSize = $author$project$VegaLite$HLabelFontSize;
 var $author$project$VegaLite$HTitleFontSize = function (a) {
-	return {$: 21, a: a};
+	return {$: 27, a: a};
 };
 var $author$project$VegaLite$hdTitleFontSize = $author$project$VegaLite$HTitleFontSize;
 var $author$project$ViewCompositionTests$columns2 = A2(
@@ -11766,11 +11856,11 @@ var $author$project$ViewCompositionTests$columns3 = A2(
 			$author$project$VegaLite$hdLabelFontSize(15)
 		]));
 var $author$project$VegaLite$HLabelPadding = function (a) {
-	return {$: 13, a: a};
+	return {$: 18, a: a};
 };
 var $author$project$VegaLite$hdLabelPadding = $author$project$VegaLite$HLabelPadding;
 var $author$project$VegaLite$HTitlePadding = function (a) {
-	return {$: 24, a: a};
+	return {$: 33, a: a};
 };
 var $author$project$VegaLite$hdTitlePadding = $author$project$VegaLite$HTitlePadding;
 var $elm$core$Basics$negate = function (n) {
@@ -11786,6 +11876,120 @@ var $author$project$ViewCompositionTests$columns4 = A2(
 			$author$project$VegaLite$hdLabelPadding(40)
 		]),
 	_List_Nil);
+var $author$project$VegaLite$Bold = 0;
+var $author$project$VegaLite$HLabelBaseline = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$hdLabelBaseline = $author$project$VegaLite$HLabelBaseline;
+var $author$project$VegaLite$HLabelFontStyle = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$hdLabelFontStyle = $author$project$VegaLite$HLabelFontStyle;
+var $author$project$VegaLite$HLabelFontWeight = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$hdLabelFontWeight = $author$project$VegaLite$HLabelFontWeight;
+var $author$project$VegaLite$HLabelLineHeight = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$hdLabelLineHeight = $author$project$VegaLite$HLabelLineHeight;
+var $author$project$VegaLite$AlignLineTop = 1;
+var $author$project$VegaLite$vaLineTop = 1;
+var $author$project$ViewCompositionTests$columns5 = A2(
+	$author$project$ViewCompositionTests$genderChart,
+	_List_Nil,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$hdLabelBaseline($author$project$VegaLite$vaLineTop),
+			$author$project$VegaLite$hdLabelLineHeight(60),
+			$author$project$VegaLite$hdLabelFontStyle('italic'),
+			$author$project$VegaLite$hdLabelFontWeight(0)
+		]));
+var $author$project$VegaLite$HLabels = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$hdLabels = $author$project$VegaLite$HLabels;
+var $author$project$VegaLite$HTitleBaseline = function (a) {
+	return {$: 24, a: a};
+};
+var $author$project$VegaLite$hdTitleBaseline = $author$project$VegaLite$HTitleBaseline;
+var $author$project$VegaLite$HTitleFontStyle = function (a) {
+	return {$: 28, a: a};
+};
+var $author$project$VegaLite$hdTitleFontStyle = $author$project$VegaLite$HTitleFontStyle;
+var $author$project$VegaLite$Bolder = 1;
+var $author$project$VegaLite$HTitleFontWeight = function (a) {
+	return {$: 29, a: a};
+};
+var $author$project$VegaLite$Lighter = 2;
+var $author$project$VegaLite$Normal = 3;
+var $author$project$VegaLite$W100 = 4;
+var $author$project$VegaLite$W200 = 5;
+var $author$project$VegaLite$W300 = 6;
+var $author$project$VegaLite$W400 = 7;
+var $author$project$VegaLite$W500 = 8;
+var $author$project$VegaLite$W600 = 9;
+var $author$project$VegaLite$W700 = 10;
+var $author$project$VegaLite$W800 = 11;
+var $author$project$VegaLite$W900 = 12;
+var $elm$core$String$toLower = _String_toLower;
+var $author$project$VegaLite$hdTitleFontWeight = function (fwText) {
+	var fw = function () {
+		var _v0 = $elm$core$String$toLower(
+			$elm$core$String$trim(fwText));
+		switch (_v0) {
+			case 'bold':
+				return 0;
+			case 'bolder':
+				return 1;
+			case 'lighter':
+				return 2;
+			case '100':
+				return 4;
+			case '200':
+				return 5;
+			case '300':
+				return 6;
+			case '400':
+				return 7;
+			case '500':
+				return 8;
+			case '600':
+				return 9;
+			case '700':
+				return 10;
+			case '800':
+				return 11;
+			case '900':
+				return 12;
+			default:
+				return 3;
+		}
+	}();
+	return $author$project$VegaLite$HTitleFontWeight(fw);
+};
+var $author$project$VegaLite$HTitleLineHeight = function (a) {
+	return {$: 31, a: a};
+};
+var $author$project$VegaLite$hdTitleLineHeight = $author$project$VegaLite$HTitleLineHeight;
+var $author$project$ViewCompositionTests$columns6 = A2(
+	$author$project$ViewCompositionTests$genderChart,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$hdTitleFontStyle('italic'),
+			$author$project$VegaLite$hdTitleFontWeight('300'),
+			$author$project$VegaLite$hdTitleBaseline($author$project$VegaLite$vaLineTop),
+			$author$project$VegaLite$hdTitleLineHeight(60),
+			$author$project$VegaLite$hdLabels(false)
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$hdTitleFontStyle('italic'),
+			$author$project$VegaLite$hdTitleFontWeight('300'),
+			$author$project$VegaLite$hdTitleBaseline($author$project$VegaLite$vaLineTop),
+			$author$project$VegaLite$hdTitleLineHeight(60),
+			$author$project$VegaLite$hdLabels(false)
+		]));
 var $author$project$VegaLite$combineSpecs = function (specs) {
 	return $elm$json$Json$Encode$object(specs);
 };
@@ -11802,10 +12006,6 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$FacetStyle = function (a) {
-	return {$: 23, a: a};
-};
-var $author$project$VegaLite$coFacet = $author$project$VegaLite$FacetStyle;
 var $author$project$VegaLite$View = function (a) {
 	return {$: 43, a: a};
 };
@@ -11814,10 +12014,6 @@ var $author$project$VegaLite$FCColumns = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$facoColumns = $author$project$VegaLite$FCColumns;
-var $author$project$VegaLite$FCSpacing = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$facoSpacing = $author$project$VegaLite$FCSpacing;
 var $author$project$VegaLite$VContinuousHeight = function (a) {
 	return {$: 3, a: a};
 };
@@ -12489,6 +12685,8 @@ var $author$project$ViewCompositionTests$mySpecs = $author$project$VegaLite$comb
 			_Utils_Tuple2('columns2', $author$project$ViewCompositionTests$columns2),
 			_Utils_Tuple2('columns3', $author$project$ViewCompositionTests$columns3),
 			_Utils_Tuple2('columns4', $author$project$ViewCompositionTests$columns4),
+			_Utils_Tuple2('columns5', $author$project$ViewCompositionTests$columns5),
+			_Utils_Tuple2('columns6', $author$project$ViewCompositionTests$columns6),
 			_Utils_Tuple2('grid1', $author$project$ViewCompositionTests$grid1),
 			_Utils_Tuple2('grid2', $author$project$ViewCompositionTests$grid2),
 			_Utils_Tuple2('grid3', $author$project$ViewCompositionTests$grid3),
@@ -12509,7 +12707,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$ViewCompositionTests$sourceExample = $author$project$ViewCompositionTests$grid4;
+var $author$project$ViewCompositionTests$sourceExample = $author$project$ViewCompositionTests$columns6;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$ViewCompositionTests$view = function (spec) {

@@ -4060,6 +4060,28 @@ var $author$project$VegaLite$cInterpolateSpec = function (iType) {
 					]));
 	}
 };
+var $author$project$VegaLite$channelLabel = function (ch) {
+	switch (ch) {
+		case 0:
+			return 'x';
+		case 1:
+			return 'y';
+		case 2:
+			return 'x2';
+		case 3:
+			return 'y2';
+		case 4:
+			return 'color';
+		case 5:
+			return 'opacity';
+		case 6:
+			return 'shape';
+		case 7:
+			return 'size';
+		default:
+			return 'strokeDash';
+	}
+};
 var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 	switch (sdType.$) {
 		case 0:
@@ -4087,6 +4109,33 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(selName))
 					]));
 		case 5:
+			var selName = sdType.a;
+			var ch = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'encoding',
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$channelLabel(ch)))
+					]));
+		case 4:
+			var selName = sdType.a;
+			var f = sdType.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'selection',
+						$elm$json$Json$Encode$string(selName)),
+						_Utils_Tuple2(
+						'field',
+						$elm$json$Json$Encode$string(f))
+					]));
+		case 7:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -4440,28 +4489,6 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'reverse',
 				$elm$json$Json$Encode$bool(b));
-	}
-};
-var $author$project$VegaLite$channelLabel = function (ch) {
-	switch (ch) {
-		case 0:
-			return 'x';
-		case 1:
-			return 'y';
-		case 2:
-			return 'x2';
-		case 3:
-			return 'y2';
-		case 4:
-			return 'color';
-		case 5:
-			return 'opacity';
-		case 6:
-			return 'shape';
-		case 7:
-			return 'size';
-		default:
-			return 'strokeDash';
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -7709,36 +7736,73 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				'labelAngle',
 				$elm$json$Json$Encode$float(x));
 		case 8:
+			var va = hProp.a;
+			return _Utils_Tuple2(
+				'labelBaseline',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$vAlignLabel(va)));
+		case 9:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'labelColor',
 				$elm$json$Json$Encode$string(s));
-		case 9:
+		case 10:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'labelExpr',
+				$elm$json$Json$Encode$string(s));
+		case 11:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'labelFont',
 				$elm$json$Json$Encode$string(s));
-		case 10:
+		case 12:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 11:
+		case 13:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'labelFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 14:
+			var fw = hProp.a;
+			return _Utils_Tuple2(
+				'labelFontWeight',
+				$author$project$VegaLite$fontWeightSpec(fw));
+		case 15:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelLimit',
 				$elm$json$Json$Encode$float(x));
-		case 12:
+		case 16:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'labelLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 17:
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'labelOrient',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$sideLabel(orient)));
-		case 13:
+		case 18:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'labelPadding',
 				$elm$json$Json$Encode$float(x));
+		case 19:
+			var b = hProp.a;
+			return _Utils_Tuple2(
+				'labels',
+				$elm$json$Json$Encode$bool(b));
+		case 20:
+			var orient = hProp.a;
+			return _Utils_Tuple2(
+				'orient',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$sideLabel(orient)));
 		case 4:
 			var s = hProp.a;
 			if (s === '') {
@@ -7748,55 +7812,65 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(s));
 			}
-		case 15:
+		case 22:
 			var a = hProp.a;
 			return _Utils_Tuple2(
 				'titleAnchor',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$anchorLabel(a)));
-		case 14:
+		case 21:
 			var ha = hProp.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(ha)));
-		case 16:
+		case 23:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleAngle',
 				$elm$json$Json$Encode$float(x));
-		case 17:
+		case 24:
 			var va = hProp.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$vAlignLabel(va)));
-		case 18:
+		case 25:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				$elm$json$Json$Encode$string(s));
-		case 19:
+		case 26:
 			var s = hProp.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				$elm$json$Json$Encode$string(s));
-		case 20:
-			var s = hProp.a;
+		case 29:
+			var fw = hProp.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
-				$elm$json$Json$Encode$string(s));
-		case 21:
+				$author$project$VegaLite$fontWeightSpec(fw));
+		case 27:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 22:
+		case 28:
+			var s = hProp.a;
+			return _Utils_Tuple2(
+				'titleFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 30:
 			var x = hProp.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				$elm$json$Json$Encode$float(x));
-		case 23:
+		case 31:
+			var x = hProp.a;
+			return _Utils_Tuple2(
+				'titleLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 32:
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'titleOrient',
