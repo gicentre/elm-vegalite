@@ -11,7 +11,9 @@ genderChart : List HeaderProperty -> List HeaderProperty -> Spec
 genderChart hdProps cProps =
     let
         conf =
-            configure << configuration (coHeader cProps)
+            configure
+                << configuration (coHeader cProps)
+                << configuration (coFacet [ facoSpacing 80 ])
 
         pop =
             dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
@@ -71,6 +73,33 @@ columns4 =
         , hdLabelPadding 40
         ]
         []
+
+
+columns5 : Spec
+columns5 =
+    genderChart []
+        [ hdLabelBaseline vaLineTop
+        , hdLabelLineHeight 60
+        , hdLabelFontStyle "italic"
+        , hdLabelFontWeight Bold
+        ]
+
+
+columns6 : Spec
+columns6 =
+    genderChart
+        [ hdTitleFontStyle "italic"
+        , hdTitleFontWeight "300"
+        , hdTitleBaseline vaLineTop
+        , hdTitleLineHeight 60
+        , hdLabels False
+        ]
+        [ hdTitleFontStyle "italic"
+        , hdTitleFontWeight "300"
+        , hdTitleBaseline vaLineTop
+        , hdTitleLineHeight 60
+        , hdLabels False
+        ]
 
 
 data : List DataColumn -> Data
@@ -233,7 +262,7 @@ grid5 =
 
 sourceExample : Spec
 sourceExample =
-    grid4
+    columns6
 
 
 
@@ -247,6 +276,8 @@ mySpecs =
         , ( "columns2", columns2 )
         , ( "columns3", columns3 )
         , ( "columns4", columns4 )
+        , ( "columns5", columns5 )
+        , ( "columns6", columns6 )
         , ( "grid1", grid1 )
         , ( "grid2", grid2 )
         , ( "grid3", grid3 )
