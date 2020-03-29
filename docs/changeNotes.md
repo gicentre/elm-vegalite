@@ -44,6 +44,8 @@
 
 * `coAxisX` and `coAxisY` deprecated in favour of the more flexible `coAxisXFilter` and `coAxisYFilter` modifiers. For example, replace `coAxisX [ axcoTitleColor "red" ]` with `coAxis [ axcoTitleColor "red" ] |> coAxisXFilter)`
 
+- `scBinLinear` deprecated in favour of `scLinear` with binning aggregation.
+
 ### Other Changes
 
 - `maText` now respects multi-line strings.
