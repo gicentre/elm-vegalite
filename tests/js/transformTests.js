@@ -7316,12 +7316,10 @@ var $author$project$VegaLite$scaleLabel = function (sc) {
 		case 9:
 			return 'point';
 		case 10:
-			return 'bin-linear';
-		case 11:
 			return 'bin-ordinal';
-		case 12:
+		case 11:
 			return 'quantile';
-		case 13:
+		case 12:
 			return 'quantize';
 		default:
 			return 'threshold';
