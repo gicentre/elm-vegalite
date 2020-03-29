@@ -11,6 +11,11 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+base : String
+base =
+    "https://vega.github.io/vega-lite/data/"
+
+
 advanced1 : Spec
 advanced1 =
     let
@@ -45,7 +50,7 @@ advanced2 =
             description "Calculation of difference from average"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -78,7 +83,7 @@ advanced3 =
             description "Calculation of difference from annual average"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -114,7 +119,7 @@ advanced4 =
             description "A scatterplot showing each movie in the database and the difference from the average movie rating."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -126,9 +131,10 @@ advanced4 =
         enc =
             encoding
                 << position X [ pName "Release_Date", pTemporal ]
-                << position Y [ pName "RatingDelta", pQuant, pTitle "Residual" ]
+                << position Y [ pName "RatingDelta", pQuant, pTitle "Rating Delta" ]
+                << color [ mName "RatingDelta", mQuant, mScale [ scDomainMid 0 ], mTitle "Rating Delta" ]
     in
-    toVegaLite [ desc, data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
+    toVegaLite [ desc, data, trans [], enc [], point [ maStrokeWidth 0.7 ] ]
 
 
 advanced5 : Spec
@@ -326,7 +332,7 @@ advanced8 =
             description "Top-k items with 'others'"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -367,12 +373,12 @@ advanced9 =
             description "Using the lookup transform to combine data"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/lookup_groups.csv" []
+            dataFromUrl (base ++ "lookup_groups.csv") []
 
         trans =
             transform
                 << lookup "person"
-                    (dataFromUrl "https://vega.github.io/vega-lite/data/lookup_people.csv" [])
+                    (dataFromUrl (base ++ "lookup_people.csv") [])
                     "name"
                     (luFields [ "age", "height" ])
 
@@ -418,7 +424,7 @@ advanced11 =
             description "Layered Histogram and Cumulative Histogram"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -462,7 +468,7 @@ advanced12 : Spec
 advanced12 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
+            dataFromUrl (base ++ "iris.json") []
 
         trans =
             transform
@@ -482,7 +488,7 @@ advanced13 : Spec
 advanced13 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
+            dataFromUrl (base ++ "iris.json") []
 
         trans =
             transform
@@ -521,7 +527,7 @@ advanced14 =
                     )
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/iris.json" []
+            dataFromUrl (base ++ "iris.json") []
 
         trans =
             transform
@@ -600,7 +606,7 @@ advanced15 =
             description "Production budget of the film with highest US Gross in each major genre."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         enc =
             encoding
@@ -621,7 +627,7 @@ advanced16 =
             description "Plot showing average data with raw values in the background."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (base ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
@@ -652,7 +658,7 @@ advanced17 =
             description "Plot showing a 30 day rolling average with raw values in the background."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+            dataFromUrl (base ++ "seattle-weather.csv") []
 
         trans =
             transform

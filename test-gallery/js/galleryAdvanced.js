@@ -7349,6 +7349,7 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
+var $author$project$GalleryAdvanced$base = 'https://vega.github.io/vega-lite/data/';
 var $author$project$VegaLite$binAs = F3(
 	function (bProps, field, label) {
 		if (!bProps.b) {
@@ -7530,7 +7531,7 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 					$author$project$VegaLite$pName('binIMDB_Rating_end')
 				])));
 	var des = $author$project$VegaLite$description('Layered Histogram and Cumulative Histogram');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -8006,7 +8007,7 @@ var $author$project$GalleryAdvanced$advanced12 = function () {
 					$author$project$VegaLite$fName('measurement'),
 					$author$project$VegaLite$fNominal
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/iris.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -8103,7 +8104,7 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 					$author$project$VegaLite$mName('measurement'),
 					$author$project$VegaLite$mNominal
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/iris.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11072,7 +11073,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 					]))
 			]));
 	var des = $author$project$VegaLite$description('Parallel coordinates plot with manual generation of parallel axes');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/iris.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11163,7 +11164,7 @@ var $author$project$GalleryAdvanced$advanced15 = function () {
 					$author$project$VegaLite$pNominal
 				])));
 	var desc = $author$project$VegaLite$description('Production budget of the film with highest US Gross in each major genre.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11253,7 +11254,7 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Plot showing average data with raw values in the background.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11358,7 +11359,7 @@ var $author$project$GalleryAdvanced$advanced17 = function () {
 					]))
 			]));
 	var desc = $author$project$VegaLite$description('Plot showing a 30 day rolling average with raw values in the background.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11701,7 +11702,7 @@ var $author$project$GalleryAdvanced$advanced2 = function () {
 					]))
 			]));
 	var desc = $author$project$VegaLite$description('Calculation of difference from average');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11832,7 +11833,7 @@ var $author$project$GalleryAdvanced$advanced3 = function () {
 				$author$project$VegaLite$tick(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Calculation of difference from annual average');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11890,10 +11891,23 @@ var $author$project$VegaLite$FRange = F2(
 		return {$: 9, a: a, b: b};
 	});
 var $author$project$VegaLite$fiRange = $author$project$VegaLite$FRange;
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$VegaLite$MScale = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 58, a: a};
 };
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$SDomainMid = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$scDomainMid = $author$project$VegaLite$SDomainMid;
 var $author$project$GalleryAdvanced$advanced4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -11929,26 +11943,40 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Release_Date'),
+							$author$project$VegaLite$pTemporal
+						]))),
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Release_Date'),
-						$author$project$VegaLite$pTemporal
+						$author$project$VegaLite$pName('RatingDelta'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pTitle('Rating Delta')
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('RatingDelta'),
-					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pTitle('Residual')
+					$author$project$VegaLite$mName('RatingDelta'),
+					$author$project$VegaLite$mQuant,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomainMid(0)
+						])),
+					$author$project$VegaLite$mTitle('Rating Delta')
 				])));
 	var desc = $author$project$VegaLite$description('A scatterplot showing each movie in the database and the difference from the average movie rating.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11959,8 +11987,7 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 				$author$project$VegaLite$point(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maStrokeWidth(0.3),
-						$author$project$VegaLite$maOpacity(0.3)
+						$author$project$VegaLite$maStrokeWidth(0.7)
 					]))
 			]));
 }();
@@ -12005,10 +12032,6 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 			$author$project$VegaLite$RStrings(range))
 		]);
 };
-var $author$project$VegaLite$MScale = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
 var $author$project$VegaLite$MOVertical = 1;
 var $author$project$VegaLite$moVertical = 1;
 var $author$project$VegaLite$FrBounds = 0;
@@ -12656,7 +12679,7 @@ var $author$project$GalleryAdvanced$advanced8 = function () {
 					$author$project$VegaLite$pTitle('')
 				])));
 	var des = $author$project$VegaLite$description('Top-k items with \'others\'');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12865,7 +12888,7 @@ var $author$project$GalleryAdvanced$advanced9 = function () {
 		A4(
 			$author$project$VegaLite$lookup,
 			'person',
-			A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/lookup_people.csv', _List_Nil),
+			A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'lookup_people.csv', _List_Nil),
 			'name',
 			$author$project$VegaLite$luFields(
 				_List_fromArray(
@@ -12893,7 +12916,7 @@ var $author$project$GalleryAdvanced$advanced9 = function () {
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var des = $author$project$VegaLite$description('Using the lookup transform to combine data');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/lookup_groups.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'lookup_groups.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
