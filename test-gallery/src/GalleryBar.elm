@@ -189,8 +189,19 @@ bar7 =
     toVegaLite [ des, cfg [], widthStep 12, data, trans [], enc [], bar [] ]
 
 
-bar8 : Spec
-bar8 =
+weatherColors : List ScaleProperty
+weatherColors =
+    categoricalDomainMap
+        [ ( "sun", "#e7ba52" )
+        , ( "fog", "#c7c7c7" )
+        , ( "drizzle", "#aec7ea" )
+        , ( "rain", "#1f77b4" )
+        , ( "snow", "#9467bd" )
+        ]
+
+
+weatherBars : List MarkProperty -> Spec
+weatherBars mProps =
     let
         des =
             description "Seattle weather stacked bar chart"
@@ -198,36 +209,41 @@ bar8 =
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
 
-        weatherColors =
-            categoricalDomainMap
-                [ ( "sun", "#e7ba52" )
-                , ( "fog", "#c7c7c7" )
-                , ( "drizzle", "#aec7ea" )
-                , ( "rain", "#1f77b4" )
-                , ( "snow", "#9467bd" )
-                ]
-
         enc =
             encoding
                 << position X
                     [ pName "date"
                     , pOrdinal
                     , pTimeUnit month
-                    , pAxis [ axTitle "Month of the year" ]
+                    , pAxis [ axTitle "", axLabelAngle 0, axTicks False ]
                     ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y
+                    [ pQuant
+                    , pAggregate opCount
+                    , pAxis [ axGrid False, axTitle "Number of days" ]
+                    ]
                 << color
                     [ mName "weather"
                     , mNominal
                     , mScale weatherColors
-                    , mLegend [ leTitle "Weather type" ]
+                    , mTitle ""
                     ]
     in
-    toVegaLite [ des, data, enc [], bar [] ]
+    toVegaLite [ des, width 300, data, enc [], bar mProps ]
+
+
+bar8 : Spec
+bar8 =
+    weatherBars []
 
 
 bar9 : Spec
 bar9 =
+    weatherBars [ maCornerRadiusTopLeft 3, maCornerRadiusTopRight 3 ]
+
+
+bar10 : Spec
+bar10 =
     let
         des =
             description "Barley crop yields as a horizontal stacked bar chart"
@@ -244,8 +260,8 @@ bar9 =
     toVegaLite [ des, data, enc [], bar [] ]
 
 
-bar10 : Spec
-bar10 =
+bar11 : Spec
+bar11 =
     let
         des =
             description "Population structure as a normalised stacked bar chart."
@@ -277,8 +293,8 @@ bar10 =
     toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar11 : Spec
-bar11 =
+bar12 : Spec
+bar12 =
     let
         des =
             description "A simple bar chart with ranged data (aka Gantt Chart)."
@@ -298,8 +314,8 @@ bar11 =
     toVegaLite [ des, data [], enc [], bar [] ]
 
 
-bar12 : Spec
-bar12 =
+bar13 : Spec
+bar13 =
     let
         des =
             description "A bar chart that directly encodes color names in the data."
@@ -318,8 +334,8 @@ bar12 =
     toVegaLite [ des, data [], enc [], bar [] ]
 
 
-bar13 : Spec
-bar13 =
+bar14 : Spec
+bar14 =
     let
         des =
             description "Layered bar chart showing the US population distribution of age groups and gender in 2000."
@@ -352,8 +368,8 @@ bar13 =
     toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar14 : Spec
-bar14 =
+bar15 : Spec
+bar15 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
@@ -393,8 +409,8 @@ bar14 =
     toVegaLite [ width 300, height 200, cfg [], data, trans [], enc [], bar [] ]
 
 
-bar15 : Spec
-bar15 =
+bar16 : Spec
+bar16 =
     let
         des =
             description "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark."
@@ -439,8 +455,8 @@ bar15 =
     toVegaLite [ des, data [], enc [], bar [] ]
 
 
-bar16 : Spec
-bar16 =
+bar17 : Spec
+bar17 =
     let
         des =
             description "A simple bar chart with embedded data labels."
@@ -471,8 +487,8 @@ bar16 =
     toVegaLite [ des, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
-bar17 : Spec
-bar17 =
+bar18 : Spec
+bar18 =
     let
         des =
             description "Bar chart with label overlay"
@@ -543,8 +559,8 @@ bar17 =
         ]
 
 
-bar18 : Spec
-bar18 =
+bar19 : Spec
+bar19 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -595,8 +611,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar19 : Spec
-bar19 =
+bar20 : Spec
+bar20 =
     let
         isotypes =
             let
@@ -666,8 +682,8 @@ bar19 =
         ]
 
 
-bar20 : Spec
-bar20 =
+bar21 : Spec
+bar21 =
     let
         des =
             description "Isotype bar chart using emojis for symbols"
@@ -733,6 +749,7 @@ mySpecs =
         , ( "bar18", bar18 )
         , ( "bar19", bar19 )
         , ( "bar20", bar20 )
+        , ( "bar21", bar21 )
         ]
 
 
