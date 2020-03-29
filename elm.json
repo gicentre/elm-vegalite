@@ -3,7 +3,7 @@
     "name": "gicentre/elm-vegalite",
     "summary": "Declarative visualization with Elm and Vega-Lite",
     "license": "BSD-3-Clause",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "exposed-modules": [
         "VegaLite"
     ],
