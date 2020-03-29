@@ -2796,6 +2796,7 @@ var $author$project$VegaLite$combineSpecs = function (specs) {
 };
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
+var $author$project$GalleryScatter$base = 'https://vega.github.io/vega-lite/data/';
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -6794,17 +6795,18 @@ var $author$project$GalleryScatter$scatter1 = function () {
 					$author$project$VegaLite$pQuant
 				])));
 	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via point marks).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+				data,
+				enc(_List_Nil),
 				$author$project$VegaLite$point(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maTooltip($author$project$VegaLite$ttData)
-					])),
-				enc(_List_Nil)
+					]))
 			]));
 }();
 var $author$project$VegaLite$AxLabelAngle = function (a) {
@@ -6999,22 +7001,23 @@ var $author$project$GalleryScatter$scatter10 = function () {
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var des = $author$project$VegaLite$description('Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'disasters.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
 				$author$project$VegaLite$width(600),
 				$author$project$VegaLite$height(400),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/disasters.csv', _List_Nil),
+				data,
 				trans(_List_Nil),
+				enc(_List_Nil),
 				$author$project$VegaLite$circle(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maOpacity(0.8),
 						$author$project$VegaLite$maStroke('black'),
 						$author$project$VegaLite$maStrokeWidth(1)
-					])),
-				enc(_List_Nil)
+					]))
 			]));
 }();
 var $author$project$VegaLite$calculateAs = F2(
@@ -7240,15 +7243,15 @@ var $author$project$GalleryScatter$scatter11 = function () {
 					$author$project$VegaLite$tNominal
 				])));
 	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
 				data,
 				trans(_List_Nil),
-				$author$project$VegaLite$textMark(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$asSpec = function (specs) {
@@ -7389,10 +7392,12 @@ var $author$project$GalleryScatter$scatter12 = function () {
 					$author$project$VegaLite$pName('IMDB_Rating'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var des = $author$project$VegaLite$description('A scatterplot with a loess trendline overlaid.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				des,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				data,
@@ -7553,10 +7558,12 @@ var $author$project$GalleryScatter$scatter13 = function () {
 					$author$project$VegaLite$pName('IMDB_Rating'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var des = $author$project$VegaLite$description('A scatterplot with a cubic polynomial regression line overlaid limited to the range of 10% to 90% of Rotten Tomatoes ratings');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				des,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				data,
@@ -7564,6 +7571,349 @@ var $author$project$GalleryScatter$scatter13 = function () {
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[pointSpec, regSpec]))
+			]));
+}();
+var $author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$head,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Maybe$withDefault(_List_Nil),
+			$elm$core$List$length));
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$List$map2($elm$core$List$cons),
+		A2(
+			$elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var $author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			$elm$json$Json$Encode$list,
+			$elm$json$Json$Encode$object,
+			$author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$HName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$hName = $author$project$VegaLite$HName;
+var $author$project$VegaLite$HmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$hNominal = $author$project$VegaLite$HmType(0);
+var $author$project$VegaLite$Image = 7;
+var $author$project$VegaLite$image = $author$project$VegaLite$mark(7);
+var $author$project$VegaLite$MHeight = function (a) {
+	return {$: 67, a: a};
+};
+var $author$project$VegaLite$maHeight = $author$project$VegaLite$MHeight;
+var $author$project$VegaLite$MWidth = function (a) {
+	return {$: 66, a: a};
+};
+var $author$project$VegaLite$maWidth = $author$project$VegaLite$MWidth;
+var $author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$Strings = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
+var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
+	switch (field.$) {
+		case 0:
+			var s = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var t = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(t)))
+				]);
+		case 3:
+			var bps = field.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					$elm$json$Json$Encode$string('binned'))
+				]);
+		case 7:
+			var selName = field.a;
+			var ifClause = field.b;
+			var elseClause = field.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
+		case 8:
+			var predicate = field.a;
+			var ifClause = field.b;
+			var elseClause = field.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'test',
+								$author$project$VegaLite$booleanOpSpec(predicate)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
+		case 6:
+			var tu = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 5:
+			var op = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		default:
+			var s = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$string(s))
+				]);
+	}
+};
+var $author$project$VegaLite$url = function (hyperProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'url',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, hyperProps))));
+};
+var $author$project$GalleryScatter$scatter14 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('x'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('y'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$url(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$hName('img'),
+					$author$project$VegaLite$hNominal
+				])));
+	var des = $author$project$VegaLite$description('A simple scatterplot using images as point symbols');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'x',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[0.5, 1.5, 2.5])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'y',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[0.5, 1.5, 2.5])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'img',
+			$author$project$VegaLite$strs(
+				_List_fromArray(
+					[$author$project$GalleryScatter$base + 'ffox.png', $author$project$GalleryScatter$base + 'gimp.png', $author$project$GalleryScatter$base + '7zip.png']))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$image(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maWidth(25),
+						$author$project$VegaLite$maHeight(25)
+					]))
 			]));
 }();
 var $author$project$VegaLite$Tick = 14;
@@ -7581,13 +7931,14 @@ var $author$project$GalleryScatter$scatter2 = function () {
 					$author$project$VegaLite$pQuant
 				])));
 	var des = $author$project$VegaLite$description('Shows the distribution of a single variable (precipitation) using tick marks.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
-				$author$project$VegaLite$tick(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$tick(_List_Nil)
 			]));
 }();
 var $author$project$GalleryScatter$scatter3 = function () {
@@ -7613,13 +7964,14 @@ var $author$project$GalleryScatter$scatter3 = function () {
 					$author$project$VegaLite$pOrdinal
 				])));
 	var des = $author$project$VegaLite$description('Shows the relationship between horsepower and the number of cylinders using tick marks.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$tick(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$tick(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$shape = function (markProps) {
@@ -7668,13 +8020,14 @@ var $author$project$GalleryScatter$scatter4 = function () {
 					$author$project$VegaLite$mNominal
 				])));
 	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$MaxBins = function (a) {
@@ -7732,13 +8085,14 @@ var $author$project$GalleryScatter$scatter5 = function () {
 					$author$project$VegaLite$mQuant
 				])));
 	var des = $author$project$VegaLite$description('A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var $author$project$GalleryScatter$scatter6 = function () {
@@ -7772,13 +8126,14 @@ var $author$project$GalleryScatter$scatter6 = function () {
 					$author$project$VegaLite$mQuant
 				])));
 	var des = $author$project$VegaLite$description('A bubbleplot showing horsepower on x, miles per gallons on y, and acceleration on size.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$MarkStyle = function (a) {
@@ -10380,7 +10735,8 @@ var $author$project$GalleryScatter$scatter7 = function () {
 						]))
 				])));
 	var des = $author$project$VegaLite$description('Scatterplot with Null values in grey');
-	var config = A2(
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
@@ -10393,10 +10749,10 @@ var $author$project$GalleryScatter$scatter7 = function () {
 		_List_fromArray(
 			[
 				des,
-				config(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				cfg(_List_Nil),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$GalleryScatter$scatter8 = function () {
@@ -10422,13 +10778,14 @@ var $author$project$GalleryScatter$scatter8 = function () {
 					$author$project$VegaLite$pQuant
 				])));
 	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via circle marks).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$PScale = function (a) {
@@ -10449,11 +10806,6 @@ var $author$project$VegaLite$BindScales = {$: 1};
 var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
 var $author$project$VegaLite$SeInterval = 2;
 var $author$project$VegaLite$seInterval = 2;
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -10549,16 +10901,17 @@ var $author$project$GalleryScatter$scatter9 = function () {
 					$author$project$VegaLite$mStr('#000')
 				])));
 	var des = $author$project$VegaLite$description('A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost\'s blog post \'One Chart, Twelve Charting Libraries\' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'gapminder-health-income.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				des,
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/gapminder-health-income.csv', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
+				data,
 				enc(_List_Nil),
-				sel(_List_Nil)
+				sel(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var $author$project$GalleryScatter$mySpecs = $author$project$VegaLite$combineSpecs(
@@ -10576,7 +10929,8 @@ var $author$project$GalleryScatter$mySpecs = $author$project$VegaLite$combineSpe
 			_Utils_Tuple2('scatter10', $author$project$GalleryScatter$scatter10),
 			_Utils_Tuple2('scatter11', $author$project$GalleryScatter$scatter11),
 			_Utils_Tuple2('scatter12', $author$project$GalleryScatter$scatter12),
-			_Utils_Tuple2('scatter13', $author$project$GalleryScatter$scatter13)
+			_Utils_Tuple2('scatter13', $author$project$GalleryScatter$scatter13),
+			_Utils_Tuple2('scatter14', $author$project$GalleryScatter$scatter14)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

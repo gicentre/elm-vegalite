@@ -10,11 +10,19 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+base : String
+base =
+    "https://vega.github.io/vega-lite/data/"
+
+
 scatter1 : Spec
 scatter1 =
     let
         des =
             description "A scatterplot showing horsepower and miles per gallon for various cars (via point marks)."
+
+        data =
+            dataFromUrl (base ++ "cars.json") []
 
         enc =
             encoding
@@ -22,11 +30,7 @@ scatter1 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , point [ maTooltip ttData ]
-        , enc []
-        ]
+        [ des, data, enc [], point [ maTooltip ttData ] ]
 
 
 scatter2 : Spec
@@ -35,16 +39,15 @@ scatter2 =
         des =
             description "Shows the distribution of a single variable (precipitation) using tick marks."
 
+        data =
+            dataFromUrl (base ++ "seattle-weather.csv") []
+
         enc =
             encoding
                 << position X [ pName "precipitation", pQuant ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
-        , tick []
-        , enc []
-        ]
+        [ des, data, enc [], tick [] ]
 
 
 scatter3 : Spec
@@ -53,17 +56,16 @@ scatter3 =
         des =
             description "Shows the relationship between horsepower and the number of cylinders using tick marks."
 
+        data =
+            dataFromUrl (base ++ "cars.json") []
+
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Cylinders", pOrdinal ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , tick []
-        , enc []
-        ]
+        [ des, data, enc [], tick [] ]
 
 
 scatter4 : Spec
@@ -71,6 +73,9 @@ scatter4 =
     let
         des =
             description "A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape."
+
+        data =
+            dataFromUrl (base ++ "cars.json") []
 
         enc =
             encoding
@@ -80,11 +85,7 @@ scatter4 =
                 << shape [ mName "Origin", mNominal ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , point []
-        , enc []
-        ]
+        [ des, data, enc [], point [] ]
 
 
 scatter5 : Spec
@@ -93,6 +94,9 @@ scatter5 =
         des =
             description "A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews."
 
+        data =
+            dataFromUrl (base ++ "movies.json") []
+
         enc =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
@@ -100,11 +104,7 @@ scatter5 =
                 << size [ mAggregate opCount, mQuant ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-        , circle []
-        , enc []
-        ]
+        [ des, data, enc [], circle [] ]
 
 
 scatter6 : Spec
@@ -113,6 +113,9 @@ scatter6 =
         des =
             description "A bubbleplot showing horsepower on x, miles per gallons on y, and acceleration on size."
 
+        data =
+            dataFromUrl (base ++ "cars.json") []
+
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
@@ -120,11 +123,7 @@ scatter6 =
                 << size [ mName "Acceleration", mQuant ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , point []
-        , enc []
-        ]
+        [ des, data, enc [], point [] ]
 
 
 scatter7 : Spec
@@ -133,9 +132,12 @@ scatter7 =
         des =
             description "Scatterplot with Null values in grey"
 
-        config =
+        cfg =
             configure
                 << configuration (coMark [ maRemoveInvalid False ])
+
+        data =
+            dataFromUrl (base ++ "movies.json") []
 
         enc =
             encoding
@@ -151,12 +153,7 @@ scatter7 =
                     ]
     in
     toVegaLite
-        [ des
-        , config []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-        , point []
-        , enc []
-        ]
+        [ des, cfg [], data, enc [], point [] ]
 
 
 scatter8 : Spec
@@ -165,17 +162,16 @@ scatter8 =
         des =
             description "A scatterplot showing horsepower and miles per gallon for various cars (via circle marks)."
 
+        data =
+            dataFromUrl (base ++ "cars.json") []
+
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , circle []
-        , enc []
-        ]
+        [ des, data, enc [], circle [] ]
 
 
 scatter9 : Spec
@@ -183,6 +179,9 @@ scatter9 =
     let
         des =
             description "A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost's blog post 'One Chart, Twelve Charting Libraries' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/)."
+
+        data =
+            dataFromUrl (base ++ "gapminder-health-income.csv") []
 
         enc =
             encoding
@@ -194,15 +193,7 @@ scatter9 =
         sel =
             selection << select "view" seInterval [ seBindScales ]
     in
-    toVegaLite
-        [ des
-        , width 500
-        , height 300
-        , dataFromUrl "https://vega.github.io/vega-lite/data/gapminder-health-income.csv" []
-        , circle []
-        , enc []
-        , sel []
-        ]
+    toVegaLite [ des, width 500, height 300, data, enc [], sel [], circle [] ]
 
 
 scatter10 : Spec
@@ -210,6 +201,9 @@ scatter10 =
     let
         des =
             description "Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes"
+
+        data =
+            dataFromUrl (base ++ "disasters.csv") []
 
         trans =
             transform
@@ -231,10 +225,10 @@ scatter10 =
         [ des
         , width 600
         , height 400
-        , dataFromUrl "https://vega.github.io/vega-lite/data/disasters.csv" []
+        , data
         , trans []
-        , circle [ maOpacity 0.8, maStroke "black", maStrokeWidth 1 ]
         , enc []
+        , circle [ maOpacity 0.8, maStroke "black", maStrokeWidth 1 ]
         ]
 
 
@@ -245,7 +239,7 @@ scatter11 =
             description "A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (base ++ "cars.json") []
 
         trans =
             transform
@@ -258,14 +252,17 @@ scatter11 =
                 << color [ mName "Origin", mNominal ]
                 << text [ tName "OriginInitial", tNominal ]
     in
-    toVegaLite [ des, data, trans [], textMark [], enc [] ]
+    toVegaLite [ des, data, trans [], enc [], textMark [] ]
 
 
 scatter12 : Spec
 scatter12 =
     let
+        des =
+            description "A scatterplot with a loess trendline overlaid."
+
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -282,14 +279,17 @@ scatter12 =
         trendSpec =
             asSpec [ trans [], line [ maColor "firebrick" ] ]
     in
-    toVegaLite [ width 300, height 300, data, enc [], layer [ pointSpec, trendSpec ] ]
+    toVegaLite [ des, width 300, height 300, data, enc [], layer [ pointSpec, trendSpec ] ]
 
 
 scatter13 : Spec
 scatter13 =
     let
+        des =
+            description "A scatterplot with a cubic polynomial regression line overlaid limited to the range of 10% to 90% of Rotten Tomatoes ratings"
+
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (base ++ "movies.json") []
 
         trans =
             transform
@@ -308,7 +308,28 @@ scatter13 =
         regSpec =
             asSpec [ trans [], line [ maColor "firebrick" ] ]
     in
-    toVegaLite [ width 300, height 300, data, enc [], layer [ pointSpec, regSpec ] ]
+    toVegaLite [ des, width 300, height 300, data, enc [], layer [ pointSpec, regSpec ] ]
+
+
+scatter14 : Spec
+scatter14 =
+    let
+        des =
+            description "A simple scatterplot using images as point symbols"
+
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 0.5, 1.5, 2.5 ])
+                << dataColumn "y" (nums [ 0.5, 1.5, 2.5 ])
+                << dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
+
+        enc =
+            encoding
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant ]
+                << url [ hName "img", hNominal ]
+    in
+    toVegaLite [ des, data [], enc [], image [ maWidth 25, maHeight 25 ] ]
 
 
 
@@ -331,6 +352,7 @@ mySpecs =
         , ( "scatter11", scatter11 )
         , ( "scatter12", scatter12 )
         , ( "scatter13", scatter13 )
+        , ( "scatter14", scatter14 )
         ]
 
 
