@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elm-Vegalite Radial Tests</title>
+    <meta charset="utf-8" />
+
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <script src="js/radialTests.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      figcaption {
+        padding-top: 0.5em;
+      }
+      .cell {
+        float: left;
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Radial Tests</h1>
+
+    <figure class="cell">
+      <div id="radial1"></div>
+      <figcaption>Simple pie chart</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="radial2"></div>
+      <figcaption>Simple 'donut' chart</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="radial3"></div>
+      <figcaption>Pie chart with labels</figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="radial4"></div>
+      <figcaption>
+        Non-data-driven arc segment. Should be positioned in bottom-left with
+        segment pointing up-right with small inner radius.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="radial5"></div>
+      <figcaption>
+        Pie segments defined explicitly with theta and theta2 values. Should be
+        8 categories corresponding to direction label.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <figure class="cell">
+      <div id="radial6"></div>
+      <figcaption>
+        As above but with radius increasing from 1 to 8 from N clockwise.
+      </figcaption>
+    </figure>
+    <div style="clear:left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
+    <script>
+      Elm.RadialTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: true,
+            logLevel: vega.Warn
+          }).catch(console.warn);
+        }
+      });
+    </script>
+  </body>
+</html>

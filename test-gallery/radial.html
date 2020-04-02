@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vega-Lite Test Gallery: Geographic maps</title>
+    <title>Vega-Lite Test Gallery: Radial Charts</title>
     <meta charset="utf-8" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Fjalla+One"
@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
     <!-- This is the script generated from Elm -->
-    <script src="js/galleryGeo.js"></script>
+    <script src="js/galleryRadial.js"></script>
   </head>
 
   <body>
@@ -26,7 +26,7 @@
       <li><a href="scatter.html">scatter and strip plots</a></li>
       <li><a href="line.html">line charts</a></li>
       <li><a href="area.html">area charts and streamgraphs</a></li>
-      <li><a href="radial.html">radial charts</a></li>
+      <li>radial charts</li>
       <li><a href="table.html">table-based charts</a></li>
       <li><a href="dist.html">distribution charts</a></li>
       <li><a href="advanced.html">advanced calculations</a></li>
@@ -35,46 +35,40 @@
       <li><a href="layer.html">other layered charts</a></li>
       <li><a href="facet.html">faceted plots</a></li>
       <li><a href="repeat.html">repeats and concatenation</a></li>
-      <li>geographic maps</li>
+      <li><a href="geo.html">geographic maps</a></li>
       <li><a href="interaction.html">interactive charts</a></li>
       <li><a href="multi.html">interactive multi-view displays</a></li>
     </ul>
 
-    <h2>Geographic maps</h2>
-    <p>Choropleth of US unemployment rate by county.</p>
-    <div id="geo1" class="view"></div>
-
-    <p>US zip codes: One dot per zipcode colored by first digit.</p>
-    <div id="geo2" class="view"></div>
-
-    <p>One dot per airport in the US overlayed on geoshape.</p>
-    <div id="geo3" class="view"></div>
+    <h2>Radial Charts</h2>
+    <p>
+      Pie chart for showing part-to-whole relationships.
+    </p>
+    <div id="radial1" class="view"></div>
 
     <p>
-      Rules (line segments) connecting SEA to every airport reachable via direct
-      flight.
+      A so-called 'donut chart' showing part-to-whole relationships without
+      converging segments at origin.
     </p>
-    <div id="geo4" class="view"></div>
-
-    <p>Population per state, engineers per state, and hurricanes per state.</p>
-    <div id="geo5" class="view"></div>
-
-    <p>US state capitals overlayed on map of the US.</p>
-    <div id="geo6" class="view"></div>
+    <div id="radial2" class="view"></div>
 
     <p>
-      Line drawn between airports in the U.S. simulating a flight itinerary.
+      A labelled pie chart.
     </p>
-    <div id="geo7" class="view"></div>
+    <div id="radial3" class="view"></div>
 
-    <p>Income in the U.S. by state, faceted over income brackets.</p>
-    <div id="geo8" class="view"></div>
+    <p>
+      Radial plot with labels.
+    </p>
+    <div id="radial4" class="view"></div>
 
-    <p>Geographic position of London underground lines.</p>
-    <div id="geo9" class="view"></div>
+    <p>
+      Comedy pyramid pie chart.
+    </p>
+    <div id="radial5" class="view"></div>
 
     <script>
-      Elm.GalleryGeo.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.GalleryRadial.init().ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
