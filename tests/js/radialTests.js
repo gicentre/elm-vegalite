@@ -5072,7 +5072,7 @@ var $elm$core$Task$perform = F2(
 			A2($elm$core$Task$map, toMessage, task));
 	});
 var $elm$browser$Browser$element = _Browser_element;
-var $author$project$WindowTransformTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm$core$Basics$identity);
+var $author$project$RadialTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm$core$Basics$identity);
 var $elm$json$Json$Encode$object = function (pairs) {
 	return _Json_wrap(
 		A3(
@@ -5089,9 +5089,8 @@ var $elm$json$Json$Encode$object = function (pairs) {
 var $author$project$VegaLite$combineSpecs = function (specs) {
 	return $elm$json$Json$Encode$object(specs);
 };
-var $author$project$VegaLite$X = 0;
-var $author$project$VegaLite$Y = 1;
-var $author$project$VegaLite$Bar = 2;
+var $author$project$VegaLite$Theta = 4;
+var $author$project$VegaLite$Arc = 0;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
 	switch (m) {
@@ -6030,28 +6029,107 @@ var $author$project$VegaLite$mark = F2(
 						A2($elm$core$List$map, $author$project$VegaLite$markProperty, mProps))));
 		}
 	});
-var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
-var $author$project$VegaLite$calculateAs = F2(
-	function (ex, label) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
+var $author$project$VegaLite$arc = $author$project$VegaLite$mark(0);
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
+	});
+var $author$project$VegaLite$arrangementLabel = function (arrng) {
+	switch (arrng) {
+		case 1:
+			return 'row';
+		case 0:
+			return 'column';
+		default:
+			return 'repeat';
+	}
+};
+var $elm$json$Json$Encode$int = _Json_wrap;
+var $author$project$VegaLite$binProperty = function (binProp) {
+	switch (binProp.$) {
+		case 5:
+			var n = binProp.a;
+			return _Utils_Tuple2(
+				'maxbins',
+				$elm$json$Json$Encode$int(n));
+		case 0:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'anchor',
+				$elm$json$Json$Encode$float(x));
+		case 1:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'base',
+				$elm$json$Json$Encode$float(x));
+		case 8:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'step',
+				$elm$json$Json$Encode$float(x));
+		case 9:
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'steps',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 6:
+			var x = binProp.a;
+			return _Utils_Tuple2(
+				'minstep',
+				$elm$json$Json$Encode$float(x));
+		case 2:
+			var xs = binProp.a;
+			return _Utils_Tuple2(
+				'divide',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+		case 3:
+			var mn = binProp.a;
+			var mx = binProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[mn, mx])));
+		case 4:
+			var s = binProp.a;
+			return _Utils_Tuple2(
+				'extent',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
 							_Utils_Tuple2(
-							'calculate',
-							$elm$json$Json$Encode$string(ex)),
-							_Utils_Tuple2(
-							'as',
-							$elm$json$Json$Encode$string(label))
-						]))));
-	});
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
+							'selection',
+							$elm$json$Json$Encode$string(s))
+						])));
+		default:
+			var b = binProp.a;
+			return _Utils_Tuple2(
+				'nice',
+				$elm$json$Json$Encode$bool(b));
+	}
+};
+var $author$project$VegaLite$bin = function (bProps) {
+	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
+		'bin',
+		$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
+		'bin',
+		$elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $author$project$VegaLite$binProperty, bProps)));
+};
 var $author$project$VegaLite$dayLabel = function (dayName) {
 	switch (dayName) {
 		case 0:
@@ -6070,7 +6148,6 @@ var $author$project$VegaLite$dayLabel = function (dayName) {
 			return 'Sun';
 	}
 };
-var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$VegaLite$monthNameLabel = function (mon) {
 	switch (mon) {
 		case 0:
@@ -6155,657 +6232,6 @@ var $author$project$VegaLite$dateTimeProperty = function (dtp) {
 				$elm$json$Json$Encode$int(ms));
 	}
 };
-var $author$project$VegaLite$dataColumn = F2(
-	function (colName, data) {
-		switch (data.$) {
-			case 2:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (x) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$float(x));
-						},
-						col));
-			case 3:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (s) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$string(s));
-						},
-						col));
-			case 1:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (ds) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
-						},
-						col));
-			default:
-				var col = data.a;
-				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (b) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$bool(b));
-						},
-						col));
-		}
-	});
-var $author$project$VegaLite$VLData = 10;
-var $elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
-		}
-	});
-var $elm$core$List$concat = function (lists) {
-	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
-};
-var $elm$core$List$concatMap = F2(
-	function (f, list) {
-		return $elm$core$List$concat(
-			A2($elm$core$List$map, f, list));
-	});
-var $author$project$VegaLite$dataTypeLabel = function (dType) {
-	switch (dType.$) {
-		case 0:
-			return 'number';
-		case 1:
-			return 'boolean';
-		case 2:
-			var dateFmt = dType.a;
-			return (dateFmt === '') ? 'date' : ('date:\'' + (dateFmt + '\''));
-		default:
-			var dateFmt = dType.a;
-			return (dateFmt === '') ? 'utc' : ('utc:\'' + (dateFmt + '\''));
-	}
-};
-var $elm$core$String$cons = _String_cons;
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $author$project$VegaLite$formatProperties = function (fmt) {
-	switch (fmt.$) {
-		case 0:
-			var propertyName = fmt.a;
-			return ($elm$core$String$trim(propertyName) === '') ? _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('json'))
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('json')),
-					_Utils_Tuple2(
-					'property',
-					$elm$json$Json$Encode$string(propertyName))
-				]);
-		case 1:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('csv'))
-				]);
-		case 2:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('tsv'))
-				]);
-		case 3:
-			var delim = fmt.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('dsv')),
-					_Utils_Tuple2(
-					'delimiter',
-					$elm$json$Json$Encode$string(
-						$elm$core$String$fromChar(delim)))
-				]);
-		case 4:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('arrow'))
-				]);
-		case 5:
-			var objectSet = fmt.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('topojson')),
-					_Utils_Tuple2(
-					'feature',
-					$elm$json$Json$Encode$string(objectSet))
-				]);
-		case 6:
-			var objectSet = fmt.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string('topojson')),
-					_Utils_Tuple2(
-					'mesh',
-					$elm$json$Json$Encode$string(objectSet))
-				]);
-		default:
-			var fmts = fmt.a;
-			return _Utils_eq(fmts, _List_Nil) ? _List_fromArray(
-				[
-					_Utils_Tuple2('parse', $elm$json$Json$Encode$null)
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'parse',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$map,
-							function (_v1) {
-								var field = _v1.a;
-								var fFormat = _v1.b;
-								return _Utils_Tuple2(
-									field,
-									$elm$json$Json$Encode$string(
-										$author$project$VegaLite$dataTypeLabel(fFormat)));
-							},
-							fmts)))
-				]);
-	}
-};
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$List$repeatHelp = F3(
-	function (result, n, value) {
-		repeatHelp:
-		while (true) {
-			if (n <= 0) {
-				return result;
-			} else {
-				var $temp$result = A2($elm$core$List$cons, value, result),
-					$temp$n = n - 1,
-					$temp$value = value;
-				result = $temp$result;
-				n = $temp$n;
-				value = $temp$value;
-				continue repeatHelp;
-			}
-		}
-	});
-var $elm$core$List$repeat = F2(
-	function (n, value) {
-		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
-	});
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (!maybe.$) {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$VegaLite$transpose = function (xss) {
-	var numCols = A2(
-		$elm$core$Basics$composeR,
-		$elm$core$List$head,
-		A2(
-			$elm$core$Basics$composeR,
-			$elm$core$Maybe$withDefault(_List_Nil),
-			$elm$core$List$length));
-	return A3(
-		$elm$core$List$foldr,
-		$elm$core$List$map2($elm$core$List$cons),
-		A2(
-			$elm$core$List$repeat,
-			numCols(xss),
-			_List_Nil),
-		xss);
-};
-var $author$project$VegaLite$dataFromColumns = F2(
-	function (fmts, cols) {
-		var dataArray = A2(
-			$elm$json$Json$Encode$list,
-			$elm$json$Json$Encode$object,
-			$author$project$VegaLite$transpose(cols));
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray)
-					]))) : _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
-					])));
-	});
-var $author$project$VegaLite$VLEncoding = 15;
-var $author$project$VegaLite$encoding = function (channels) {
-	return _Utils_Tuple2(
-		15,
-		$elm$json$Json$Encode$object(channels));
-};
-var $author$project$VegaLite$VLHeightStep = 6;
-var $author$project$VegaLite$heightStep = function (hs) {
-	return _Utils_Tuple2(
-		6,
-		$elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'step',
-					$elm$json$Json$Encode$float(hs))
-				])));
-};
-var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
-var $author$project$VegaLite$sortFieldProperties = function (wsf) {
-	if (!wsf.$) {
-		var f = wsf.a;
-		return _List_fromArray(
-			[
-				_Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$string(f)),
-				_Utils_Tuple2(
-				'order',
-				$elm$json$Json$Encode$string('ascending'))
-			]);
-	} else {
-		var f = wsf.a;
-		return _List_fromArray(
-			[
-				_Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$string(f)),
-				_Utils_Tuple2(
-				'order',
-				$elm$json$Json$Encode$string('descending'))
-			]);
-	}
-};
-var $author$project$VegaLite$windowProperty = function (wProp) {
-	switch (wProp.$) {
-		case 0:
-			if (!wProp.a.$) {
-				if (!wProp.b.$) {
-					var n1 = wProp.a.a;
-					var n2 = wProp.b.a;
-					return _Utils_Tuple2(
-						'frame',
-						A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$int,
-							_List_fromArray(
-								[n1, n2])));
-				} else {
-					var n1 = wProp.a.a;
-					var _v2 = wProp.b;
-					return _Utils_Tuple2(
-						'frame',
-						$author$project$VegaLite$toList(
-							_List_fromArray(
-								[
-									$elm$json$Json$Encode$int(n1),
-									$elm$json$Json$Encode$null
-								])));
-				}
-			} else {
-				if (!wProp.b.$) {
-					var _v1 = wProp.a;
-					var n2 = wProp.b.a;
-					return _Utils_Tuple2(
-						'frame',
-						$author$project$VegaLite$toList(
-							_List_fromArray(
-								[
-									$elm$json$Json$Encode$null,
-									$elm$json$Json$Encode$int(n2)
-								])));
-				} else {
-					var _v3 = wProp.a;
-					var _v4 = wProp.b;
-					return _Utils_Tuple2(
-						'frame',
-						$author$project$VegaLite$toList(
-							_List_fromArray(
-								[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null])));
-				}
-			}
-		case 1:
-			var b = wProp.a;
-			return _Utils_Tuple2(
-				'ignorePeers',
-				$elm$json$Json$Encode$bool(b));
-		case 2:
-			var fs = wProp.a;
-			return _Utils_Tuple2(
-				'groupby',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs));
-		default:
-			var sfs = wProp.a;
-			return _Utils_Tuple2(
-				'sort',
-				A2(
-					$elm$json$Json$Encode$list,
-					A2($elm$core$Basics$composeR, $author$project$VegaLite$sortFieldProperties, $elm$json$Json$Encode$object),
-					sfs));
-	}
-};
-var $author$project$VegaLite$joinAggregate = F2(
-	function (ops, wProps) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'joinaggregate',
-							$author$project$VegaLite$toList(ops)),
-						A2($elm$core$List$map, $author$project$VegaLite$windowProperty, wProps)))));
-	});
-var $author$project$VegaLite$Numbers = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
-var $author$project$VegaLite$operationSpec = function (op) {
-	switch (op.$) {
-		case 0:
-			var maybeField = op.a;
-			if (maybeField.$ === 1) {
-				return $elm$json$Json$Encode$string('argmax');
-			} else {
-				var f = maybeField.a;
-				return (!$elm$core$String$length(
-					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmax') : $elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'argmax',
-							$elm$json$Json$Encode$string(f))
-						]));
-			}
-		case 1:
-			var maybeField = op.a;
-			if (maybeField.$ === 1) {
-				return $elm$json$Json$Encode$string('argmin');
-			} else {
-				var f = maybeField.a;
-				return (!$elm$core$String$length(
-					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmin') : $elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'argmin',
-							$elm$json$Json$Encode$string(f))
-						]));
-			}
-		case 4:
-			return $elm$json$Json$Encode$string('count');
-		case 2:
-			return $elm$json$Json$Encode$string('ci0');
-		case 3:
-			return $elm$json$Json$Encode$string('ci1');
-		case 5:
-			return $elm$json$Json$Encode$string('distinct');
-		case 6:
-			return $elm$json$Json$Encode$string('max');
-		case 7:
-			return $elm$json$Json$Encode$string('mean');
-		case 8:
-			return $elm$json$Json$Encode$string('median');
-		case 9:
-			return $elm$json$Json$Encode$string('min');
-		case 10:
-			return $elm$json$Json$Encode$string('missing');
-		case 11:
-			return $elm$json$Json$Encode$string('product');
-		case 12:
-			return $elm$json$Json$Encode$string('q1');
-		case 13:
-			return $elm$json$Json$Encode$string('q3');
-		case 15:
-			return $elm$json$Json$Encode$string('stdev');
-		case 16:
-			return $elm$json$Json$Encode$string('stdevp');
-		case 17:
-			return $elm$json$Json$Encode$string('sum');
-		case 14:
-			return $elm$json$Json$Encode$string('stderr');
-		case 18:
-			return $elm$json$Json$Encode$string('valid');
-		case 19:
-			return $elm$json$Json$Encode$string('variance');
-		default:
-			return $elm$json$Json$Encode$string('variancep');
-	}
-};
-var $author$project$VegaLite$opAs = F3(
-	function (op, field, label) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'op',
-					$author$project$VegaLite$operationSpec(op)),
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$string(field)),
-					_Utils_Tuple2(
-					'as',
-					$elm$json$Json$Encode$string(label))
-				]));
-	});
-var $author$project$VegaLite$Sum = {$: 17};
-var $author$project$VegaLite$opSum = $author$project$VegaLite$Sum;
-var $author$project$VegaLite$PName = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 9, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$VegaLite$arrangementLabel = function (arrng) {
-	switch (arrng) {
-		case 1:
-			return 'row';
-		case 0:
-			return 'column';
-		default:
-			return 'repeat';
-	}
-};
-var $author$project$VegaLite$AxGridColor = function (a) {
-	return {$: 64, a: a};
-};
-var $author$project$VegaLite$AxGridDash = function (a) {
-	return {$: 65, a: a};
-};
-var $author$project$VegaLite$AxGridOpacity = function (a) {
-	return {$: 66, a: a};
-};
-var $author$project$VegaLite$AxGridWidth = function (a) {
-	return {$: 67, a: a};
-};
-var $author$project$VegaLite$AxLabelAlign = function (a) {
-	return {$: 16, a: a};
-};
-var $author$project$VegaLite$AxLabelBaseline = function (a) {
-	return {$: 18, a: a};
-};
-var $author$project$VegaLite$AxLabelColor = function (a) {
-	return {$: 20, a: a};
-};
-var $author$project$VegaLite$AxLabelFont = function (a) {
-	return {$: 24, a: a};
-};
-var $author$project$VegaLite$AxLabelFontSize = function (a) {
-	return {$: 25, a: a};
-};
-var $author$project$VegaLite$AxLabelFontStyle = function (a) {
-	return {$: 26, a: a};
-};
-var $author$project$VegaLite$AxLabelFontWeight = function (a) {
-	return {$: 27, a: a};
-};
-var $author$project$VegaLite$AxLabelOffset = function (a) {
-	return {$: 30, a: a};
-};
-var $author$project$VegaLite$AxLabelOpacity = function (a) {
-	return {$: 31, a: a};
-};
-var $author$project$VegaLite$AxLabelPadding = function (a) {
-	return {$: 33, a: a};
-};
-var $author$project$VegaLite$AxTickColor = function (a) {
-	return {$: 36, a: a};
-};
-var $author$project$VegaLite$AxTickDash = function (a) {
-	return {$: 38, a: a};
-};
-var $author$project$VegaLite$AxTickOpacity = function (a) {
-	return {$: 41, a: a};
-};
-var $author$project$VegaLite$AxTickSize = function (a) {
-	return {$: 44, a: a};
-};
-var $author$project$VegaLite$AxTickWidth = function (a) {
-	return {$: 45, a: a};
-};
-var $author$project$VegaLite$anchorLabel = function (an) {
-	switch (an) {
-		case 0:
-			return 'start';
-		case 1:
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
-var $author$project$VegaLite$binProperty = function (binProp) {
-	switch (binProp.$) {
-		case 5:
-			var n = binProp.a;
-			return _Utils_Tuple2(
-				'maxbins',
-				$elm$json$Json$Encode$int(n));
-		case 0:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'anchor',
-				$elm$json$Json$Encode$float(x));
-		case 1:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'base',
-				$elm$json$Json$Encode$float(x));
-		case 8:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'step',
-				$elm$json$Json$Encode$float(x));
-		case 9:
-			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'steps',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 6:
-			var x = binProp.a;
-			return _Utils_Tuple2(
-				'minstep',
-				$elm$json$Json$Encode$float(x));
-		case 2:
-			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'divide',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 3:
-			var mn = binProp.a;
-			var mx = binProp.b;
-			return _Utils_Tuple2(
-				'extent',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[mn, mx])));
-		case 4:
-			var s = binProp.a;
-			return _Utils_Tuple2(
-				'extent',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'selection',
-							$elm$json$Json$Encode$string(s))
-						])));
-		default:
-			var b = binProp.a;
-			return _Utils_Tuple2(
-				'nice',
-				$elm$json$Json$Encode$bool(b));
-	}
-};
-var $author$project$VegaLite$bin = function (bProps) {
-	return _Utils_eq(bProps, _List_Nil) ? _Utils_Tuple2(
-		'bin',
-		$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
-		'bin',
-		$elm$json$Json$Encode$object(
-			A2($elm$core$List$map, $author$project$VegaLite$binProperty, bProps)));
-};
 var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 	switch (dvs.$) {
 		case 2:
@@ -6847,6 +6273,7 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 			return $elm$json$Json$Encode$null;
 	}
 };
+var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
 var $author$project$VegaLite$filterProperties = function (f) {
 	switch (f.$) {
 		case 0:
@@ -7356,6 +6783,78 @@ var $author$project$VegaLite$measurementLabel = function (mType) {
 			return 'temporal';
 		default:
 			return 'geojson';
+	}
+};
+var $author$project$VegaLite$operationSpec = function (op) {
+	switch (op.$) {
+		case 0:
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return $elm$json$Json$Encode$string('argmax');
+			} else {
+				var f = maybeField.a;
+				return (!$elm$core$String$length(
+					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmax') : $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmax',
+							$elm$json$Json$Encode$string(f))
+						]));
+			}
+		case 1:
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return $elm$json$Json$Encode$string('argmin');
+			} else {
+				var f = maybeField.a;
+				return (!$elm$core$String$length(
+					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmin') : $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmin',
+							$elm$json$Json$Encode$string(f))
+						]));
+			}
+		case 4:
+			return $elm$json$Json$Encode$string('count');
+		case 2:
+			return $elm$json$Json$Encode$string('ci0');
+		case 3:
+			return $elm$json$Json$Encode$string('ci1');
+		case 5:
+			return $elm$json$Json$Encode$string('distinct');
+		case 6:
+			return $elm$json$Json$Encode$string('max');
+		case 7:
+			return $elm$json$Json$Encode$string('mean');
+		case 8:
+			return $elm$json$Json$Encode$string('median');
+		case 9:
+			return $elm$json$Json$Encode$string('min');
+		case 10:
+			return $elm$json$Json$Encode$string('missing');
+		case 11:
+			return $elm$json$Json$Encode$string('product');
+		case 12:
+			return $elm$json$Json$Encode$string('q1');
+		case 13:
+			return $elm$json$Json$Encode$string('q3');
+		case 15:
+			return $elm$json$Json$Encode$string('stdev');
+		case 16:
+			return $elm$json$Json$Encode$string('stdevp');
+		case 17:
+			return $elm$json$Json$Encode$string('sum');
+		case 14:
+			return $elm$json$Json$Encode$string('stderr');
+		case 18:
+			return $elm$json$Json$Encode$string('valid');
+		case 19:
+			return $elm$json$Json$Encode$string('variance');
+		default:
+			return $elm$json$Json$Encode$string('variancep');
 	}
 };
 var $author$project$VegaLite$cInterpolateSpec = function (iType) {
@@ -8244,6 +7743,372 @@ var $author$project$VegaLite$trFilterSpec = F2(
 						$author$project$VegaLite$filterProperties(f)));
 		}
 	});
+var $author$project$VegaLite$color = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'color',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $author$project$VegaLite$dataColumn = F2(
+	function (colName, data) {
+		switch (data.$) {
+			case 2:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (x) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$float(x));
+						},
+						col));
+			case 3:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (s) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$string(s));
+						},
+						col));
+			case 1:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (b) {
+							return _Utils_Tuple2(
+								colName,
+								$elm$json$Json$Encode$bool(b));
+						},
+						col));
+		}
+	});
+var $author$project$VegaLite$VLData = 10;
+var $author$project$VegaLite$dataTypeLabel = function (dType) {
+	switch (dType.$) {
+		case 0:
+			return 'number';
+		case 1:
+			return 'boolean';
+		case 2:
+			var dateFmt = dType.a;
+			return (dateFmt === '') ? 'date' : ('date:\'' + (dateFmt + '\''));
+		default:
+			var dateFmt = dType.a;
+			return (dateFmt === '') ? 'utc' : ('utc:\'' + (dateFmt + '\''));
+	}
+};
+var $elm$core$String$cons = _String_cons;
+var $elm$core$String$fromChar = function (_char) {
+	return A2($elm$core$String$cons, _char, '');
+};
+var $author$project$VegaLite$formatProperties = function (fmt) {
+	switch (fmt.$) {
+		case 0:
+			var propertyName = fmt.a;
+			return ($elm$core$String$trim(propertyName) === '') ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('json'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('json')),
+					_Utils_Tuple2(
+					'property',
+					$elm$json$Json$Encode$string(propertyName))
+				]);
+		case 1:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('csv'))
+				]);
+		case 2:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('tsv'))
+				]);
+		case 3:
+			var delim = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('dsv')),
+					_Utils_Tuple2(
+					'delimiter',
+					$elm$json$Json$Encode$string(
+						$elm$core$String$fromChar(delim)))
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('arrow'))
+				]);
+		case 5:
+			var objectSet = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('topojson')),
+					_Utils_Tuple2(
+					'feature',
+					$elm$json$Json$Encode$string(objectSet))
+				]);
+		case 6:
+			var objectSet = fmt.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('topojson')),
+					_Utils_Tuple2(
+					'mesh',
+					$elm$json$Json$Encode$string(objectSet))
+				]);
+		default:
+			var fmts = fmt.a;
+			return _Utils_eq(fmts, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('parse', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'parse',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v1) {
+								var field = _v1.a;
+								var fFormat = _v1.b;
+								return _Utils_Tuple2(
+									field,
+									$elm$json$Json$Encode$string(
+										$author$project$VegaLite$dataTypeLabel(fFormat)));
+							},
+							fmts)))
+				]);
+	}
+};
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$VegaLite$transpose = function (xss) {
+	var numCols = A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$head,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Maybe$withDefault(_List_Nil),
+			$elm$core$List$length));
+	return A3(
+		$elm$core$List$foldr,
+		$elm$core$List$map2($elm$core$List$cons),
+		A2(
+			$elm$core$List$repeat,
+			numCols(xss),
+			_List_Nil),
+		xss);
+};
+var $author$project$VegaLite$dataFromColumns = F2(
+	function (fmts, cols) {
+		var dataArray = A2(
+			$elm$json$Json$Encode$list,
+			$elm$json$Json$Encode$object,
+			$author$project$VegaLite$transpose(cols));
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray)
+					]))) : _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', dataArray),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$VLEncoding = 15;
+var $author$project$VegaLite$encoding = function (channels) {
+	return _Utils_Tuple2(
+		15,
+		$elm$json$Json$Encode$object(channels));
+};
+var $author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$Nominal = 0;
+var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
+var $author$project$VegaLite$MInnerRadius = function (a) {
+	return {$: 35, a: a};
+};
+var $author$project$VegaLite$maInnerRadius = $author$project$VegaLite$MInnerRadius;
+var $author$project$VegaLite$MTooltip = function (a) {
+	return {$: 68, a: a};
+};
+var $author$project$VegaLite$maTooltip = $author$project$VegaLite$MTooltip;
+var $author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$PName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
+var $author$project$VegaLite$PmType = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$VegaLite$AxGridColor = function (a) {
+	return {$: 64, a: a};
+};
+var $author$project$VegaLite$AxGridDash = function (a) {
+	return {$: 65, a: a};
+};
+var $author$project$VegaLite$AxGridOpacity = function (a) {
+	return {$: 66, a: a};
+};
+var $author$project$VegaLite$AxGridWidth = function (a) {
+	return {$: 67, a: a};
+};
+var $author$project$VegaLite$AxLabelAlign = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$AxLabelBaseline = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$AxLabelColor = function (a) {
+	return {$: 20, a: a};
+};
+var $author$project$VegaLite$AxLabelFont = function (a) {
+	return {$: 24, a: a};
+};
+var $author$project$VegaLite$AxLabelFontSize = function (a) {
+	return {$: 25, a: a};
+};
+var $author$project$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 26, a: a};
+};
+var $author$project$VegaLite$AxLabelFontWeight = function (a) {
+	return {$: 27, a: a};
+};
+var $author$project$VegaLite$AxLabelOffset = function (a) {
+	return {$: 30, a: a};
+};
+var $author$project$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 31, a: a};
+};
+var $author$project$VegaLite$AxLabelPadding = function (a) {
+	return {$: 33, a: a};
+};
+var $author$project$VegaLite$AxTickColor = function (a) {
+	return {$: 36, a: a};
+};
+var $author$project$VegaLite$AxTickDash = function (a) {
+	return {$: 38, a: a};
+};
+var $author$project$VegaLite$AxTickOpacity = function (a) {
+	return {$: 41, a: a};
+};
+var $author$project$VegaLite$AxTickSize = function (a) {
+	return {$: 44, a: a};
+};
+var $author$project$VegaLite$AxTickWidth = function (a) {
+	return {$: 45, a: a};
+};
+var $author$project$VegaLite$anchorLabel = function (an) {
+	switch (an) {
+		case 0:
+			return 'start';
+		case 1:
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
 var $elm$core$Tuple$second = function (_v0) {
 	var y = _v0.b;
 	return y;
@@ -9204,46 +9069,9 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
-var $author$project$VegaLite$VLTransform = 13;
-var $elm$core$List$isEmpty = function (xs) {
-	if (!xs.b) {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v1) {
-		var trName = _v1.a;
-		var val = _v1.b;
-		if (trName === 'multiSpecs') {
-			return val;
-		} else {
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(trName, val)
-					]));
-		}
-	};
-	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(
-		13,
-		A2($elm$json$Json$Encode$list, assemble, transforms));
-};
-var $author$project$WindowTransformTests$joinAggregate1 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$transform,
-			A2(
-				$author$project$VegaLite$joinAggregate,
-				_List_fromArray(
-					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opSum, 'Time', 'TotalTime')
-					]),
-				_List_Nil)),
-		A2($author$project$VegaLite$calculateAs, 'datum.Time/datum.TotalTime * 100', 'PercentOfTotal'));
+var $author$project$VegaLite$TTEncoding = 0;
+var $author$project$VegaLite$ttEncoding = 0;
+var $author$project$RadialTests$radial = function (innerR) {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -9251,20 +9079,17 @@ var $author$project$WindowTransformTests$joinAggregate1 = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				4,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('PercentOfTotal'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('% of total Time')
+						$author$project$VegaLite$pName('value'),
+						$author$project$VegaLite$pQuant
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$mName('category'),
+					$author$project$VegaLite$mNominal
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -9273,389 +9098,31 @@ var $author$project$WindowTransformTests$joinAggregate1 = function () {
 			$author$project$VegaLite$dataFromColumns(_List_Nil),
 			A2(
 				$author$project$VegaLite$dataColumn,
-				'Activity',
+				'category',
 				$author$project$VegaLite$strs(
 					_List_fromArray(
-						['Sleeping', 'Eating', 'TV', 'Work', 'Exercise'])))),
+						['A', 'B', 'C', 'D', 'E', 'F'])))),
 		A2(
 			$author$project$VegaLite$dataColumn,
-			'Time',
+			'value',
 			$author$project$VegaLite$nums(
 				_List_fromArray(
-					[8, 2, 4, 8, 2]))));
+					[4, 6, 10, 3, 7, 8]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$heightStep(12),
 				data(_List_Nil),
-				trans(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
+				$author$project$VegaLite$arc(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTooltip($author$project$VegaLite$ttEncoding),
+						$author$project$VegaLite$maInnerRadius(innerR)
+					]))
 			]));
-}();
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
-var $author$project$VegaLite$dataFromUrl = F2(
-	function (u, fmts) {
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u))
-					]))) : _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u)),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
-					])));
-	});
-var $author$project$VegaLite$FExpr = function (a) {
-	return {$: 5, a: a};
 };
-var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
-var $author$project$VegaLite$filter = function (f) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'filter',
-			$author$project$VegaLite$filterSpec(f)));
-};
-var $author$project$VegaLite$Mean = {$: 7};
-var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
-var $author$project$VegaLite$PSort = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
-var $author$project$VegaLite$ByChannel = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
-var $author$project$VegaLite$Descending = {$: 1};
-var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
-var $author$project$WindowTransformTests$joinAggregate2 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$transform,
-				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-			A2(
-				$author$project$VegaLite$joinAggregate,
-				_List_fromArray(
-					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageRating')
-					]),
-				_List_Nil)),
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageRating) > 2.5')));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Title'),
-					$author$project$VegaLite$pNominal,
-					$author$project$VegaLite$pTitle(''),
-					$author$project$VegaLite$pSort(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$soByChannel($author$project$VegaLite$chX),
-							$author$project$VegaLite$soDescending
-						]))
-				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				data(_List_Nil),
-				trans(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$timeUnitAs = F3(
-	function (tu, field, label) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'timeUnit',
-							$author$project$VegaLite$timeUnitSpec(tu)),
-							_Utils_Tuple2(
-							'field',
-							$elm$json$Json$Encode$string(field)),
-							_Utils_Tuple2(
-							'as',
-							$elm$json$Json$Encode$string(label))
-						]))));
-	});
-var $author$project$VegaLite$WGroupBy = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$wiGroupBy = $author$project$VegaLite$WGroupBy;
-var $author$project$VegaLite$Year = {$: 0};
-var $author$project$VegaLite$year = $author$project$VegaLite$Year;
-var $author$project$WindowTransformTests$joinAggregate3 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$transform,
-					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release_Date', 'year')),
-			A2(
-				$author$project$VegaLite$joinAggregate,
-				_List_fromArray(
-					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageYearRating')
-					]),
-				_List_fromArray(
-					[
-						$author$project$VegaLite$wiGroupBy(
-						_List_fromArray(
-							['year']))
-					]))),
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageYearRating) > 2.5')));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Title'),
-					$author$project$VegaLite$pNominal,
-					$author$project$VegaLite$pTitle(''),
-					$author$project$VegaLite$pSort(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$soByChannel($author$project$VegaLite$chX),
-							$author$project$VegaLite$soDescending
-						]))
-				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				data(_List_Nil),
-				trans(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$WAggregateOp = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$wiAggregateOp = $author$project$VegaLite$WAggregateOp;
-var $author$project$VegaLite$WField = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$wiField = $author$project$VegaLite$WField;
-var $author$project$VegaLite$WFrame = F2(
-	function (a, b) {
-		return {$: 0, a: a, b: b};
-	});
-var $author$project$VegaLite$wiFrame = $author$project$VegaLite$WFrame;
-var $author$project$VegaLite$wOperationLabel = function (op) {
-	switch (op) {
-		case 0:
-			return 'row_number';
-		case 1:
-			return 'rank';
-		case 2:
-			return 'dense_rank';
-		case 3:
-			return 'percent_rank';
-		case 4:
-			return 'cume_dist';
-		case 5:
-			return 'ntile';
-		case 6:
-			return 'lag';
-		case 7:
-			return 'lead';
-		case 8:
-			return 'first_value';
-		case 9:
-			return 'last_value';
-		default:
-			return 'nth_value';
-	}
-};
-var $author$project$VegaLite$windowFieldProperty = function (w) {
-	switch (w.$) {
-		case 0:
-			var op = w.a;
-			return _Utils_Tuple2(
-				'op',
-				$author$project$VegaLite$operationSpec(op));
-		case 1:
-			var op = w.a;
-			return _Utils_Tuple2(
-				'op',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$wOperationLabel(op)));
-		case 2:
-			var n = w.a;
-			return _Utils_Tuple2(
-				'param',
-				$elm$json$Json$Encode$int(n));
-		default:
-			var f = w.a;
-			return _Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$string(f));
-	}
-};
-var $author$project$VegaLite$window = F2(
-	function (wss, wProps) {
-		var winFieldDef = F2(
-			function (ws, outName) {
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'as',
-							$elm$json$Json$Encode$string(outName)),
-						A2($elm$core$List$map, $author$project$VegaLite$windowFieldProperty, ws)));
-			});
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'window',
-							A2(
-								$elm$json$Json$Encode$list,
-								function (_v0) {
-									var ws = _v0.a;
-									var out = _v0.b;
-									return A2(winFieldDef, ws, out);
-								},
-								wss)),
-						A2($elm$core$List$map, $author$project$VegaLite$windowProperty, wProps)))));
-	});
-var $author$project$WindowTransformTests$window1 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$transform,
-			A2(
-				$author$project$VegaLite$window,
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opSum),
-								$author$project$VegaLite$wiField('Time')
-							]),
-						'TotalTime')
-					]),
-				_List_fromArray(
-					[
-						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
-					]))),
-		A2($author$project$VegaLite$calculateAs, 'datum.Time/datum.TotalTime * 100', 'PercentOfTotal'));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('PercentOfTotal'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('% of total time')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
-				])));
-	var data = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$dataFromColumns(_List_Nil),
-			A2(
-				$author$project$VegaLite$dataColumn,
-				'Activity',
-				$author$project$VegaLite$strs(
-					_List_fromArray(
-						['Sleeping', 'Eating', 'TV', 'Work', 'Exercise'])))),
-		A2(
-			$author$project$VegaLite$dataColumn,
-			'Time',
-			$author$project$VegaLite$nums(
-				_List_fromArray(
-					[8, 2, 4, 8, 2]))));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$heightStep(12),
-				data(_List_Nil),
-				trans(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
-			]));
-}();
+var $author$project$RadialTests$radial1 = $author$project$RadialTests$radial(0);
+var $author$project$RadialTests$radial2 = $author$project$RadialTests$radial(50);
 var $author$project$VegaLite$asSpec = function (specs) {
 	return $elm$json$Json$Encode$object(
 		A2(
@@ -9675,167 +9142,467 @@ var $author$project$VegaLite$layer = function (specs) {
 		16,
 		$author$project$VegaLite$toList(specs));
 };
-var $author$project$VegaLite$MColor = function (a) {
-	return {$: 9, a: a};
-};
-var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
-var $author$project$VegaLite$PAggregate = function (a) {
+var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
-var $author$project$VegaLite$Ordinal = 1;
-var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Rule = 12;
-var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
-var $author$project$WindowTransformTests$window2 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$transform,
-				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-			A2(
-				$author$project$VegaLite$window,
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$MOuterRadius = function (a) {
+	return {$: 41, a: a};
+};
+var $author$project$VegaLite$maOuterRadius = $author$project$VegaLite$MOuterRadius;
+var $author$project$VegaLite$MRadius = function (a) {
+	return {$: 46, a: a};
+};
+var $author$project$VegaLite$maRadius = $author$project$VegaLite$MRadius;
+var $author$project$VegaLite$PStack = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$pStack = $author$project$VegaLite$PStack;
+var $author$project$VegaLite$OfZero = 0;
+var $author$project$VegaLite$stZero = 0;
+var $author$project$VegaLite$TName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
+var $author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
+var $author$project$VegaLite$textChannelProperties = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-								$author$project$VegaLite$wiField('IMDB_Rating')
-							]),
-						'AverageRating')
-					]),
-				_List_fromArray(
-					[
-						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
-					]))),
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageRating) > 2.5')));
-	var ruleEnc = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			0,
-			_List_fromArray(
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
 				[
-					$author$project$VegaLite$pName('AverageRating'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant
-				])));
-	var ruleSpec = $author$project$VegaLite$asSpec(
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					$elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					$elm$json$Json$Encode$string(fmt))
+				]);
+		case 11:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('number'))
+				]);
+		case 12:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('time'))
+				]);
+		case 13:
+			var formatter = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string(formatter))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		case 9:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_v1) {
+				var predicate = _v1.a;
+				var ifClause = _v1.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2($elm$json$Json$Encode$list, testClause, tests)),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		default:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$author$project$VegaLite$multilineTextSpec(s))
+				]);
+	}
+};
+var $author$project$VegaLite$text = function (tDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
+};
+var $author$project$VegaLite$Text = 14;
+var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
+var $author$project$RadialTests$radial3 = function () {
+	var pieSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$rule(
+				$author$project$VegaLite$arc(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maColor('red')
-					])),
-				ruleEnc(_List_Nil)
+						$author$project$VegaLite$maOuterRadius(80)
+					]))
 			]));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
-	var barEnc = A2(
+	var labelEnc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tName('category'),
+					$author$project$VegaLite$tNominal
+				])));
+	var labelSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				labelEnc(_List_Nil),
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maRadius(90)
+					]))
+			]));
+	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				4,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('value'),
 						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
+						$author$project$VegaLite$pStack($author$project$VegaLite$stZero)
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Title'),
-					$author$project$VegaLite$pOrdinal
+					$author$project$VegaLite$mName('category'),
+					$author$project$VegaLite$mNominal,
+					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
-	var barSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				barEnc(_List_Nil)
-			]));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'category',
+				$author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'D', 'E', 'F'])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'value',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[4, 6, 10, 3, 7, 8]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				data(_List_Nil),
-				trans(_List_Nil),
+				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[barSpec, ruleSpec]))
+					[pieSpec, labelSpec]))
 			]));
 }();
-var $author$project$VegaLite$color = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'color',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+var $author$project$VegaLite$MTheta = function (a) {
+	return {$: 64, a: a};
 };
-var $author$project$VegaLite$FoDate = function (a) {
-	return {$: 2, a: a};
+var $author$project$VegaLite$maTheta = $author$project$VegaLite$MTheta;
+var $author$project$VegaLite$MTheta2 = function (a) {
+	return {$: 65, a: a};
 };
-var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
-var $author$project$VegaLite$MString = function (a) {
-	return {$: 15, a: a};
+var $author$project$VegaLite$maTheta2 = $author$project$VegaLite$MTheta2;
+var $author$project$VegaLite$MX = function (a) {
+	return {$: 71, a: a};
 };
-var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
-var $author$project$VegaLite$MClip = function (a) {
-	return {$: 8, a: a};
+var $author$project$VegaLite$maX = $author$project$VegaLite$MX;
+var $author$project$VegaLite$MY = function (a) {
+	return {$: 72, a: a};
 };
-var $author$project$VegaLite$maClip = $author$project$VegaLite$MClip;
-var $author$project$VegaLite$Parse = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
-var $author$project$VegaLite$Tick = 15;
-var $author$project$VegaLite$tick = $author$project$VegaLite$mark(15);
-var $author$project$WindowTransformTests$window3 = function () {
-	var trans = A2(
+var $author$project$VegaLite$maY = $author$project$VegaLite$MY;
+var $author$project$RadialTests$radial4 = function () {
+	var data = A2(
 		$elm$core$Basics$composeL,
+		$author$project$VegaLite$dataFromColumns(_List_Nil),
 		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$transform,
-					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release_Date', 'year')),
-			A2(
-				$author$project$VegaLite$window,
+			$author$project$VegaLite$dataColumn,
+			'x',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[0]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				$author$project$VegaLite$arc(
 				_List_fromArray(
 					[
-						_Utils_Tuple2(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-								$author$project$VegaLite$wiField('IMDB_Rating')
-							]),
-						'AverageYearRating')
-					]),
-				_List_fromArray(
-					[
-						$author$project$VegaLite$wiGroupBy(
-						_List_fromArray(
-							['year'])),
-						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
-					]))),
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageYearRating) > 2.5')));
-	var tickEnc = A2(
+						$author$project$VegaLite$maTheta(0.3),
+						$author$project$VegaLite$maTheta2(1.3),
+						$author$project$VegaLite$maInnerRadius(30),
+						$author$project$VegaLite$maOuterRadius(100),
+						$author$project$VegaLite$maX(0),
+						$author$project$VegaLite$maY(200)
+					]))
+			]));
+}();
+var $author$project$VegaLite$Theta2 = 5;
+var $elm$core$Basics$pi = _Basics_pi;
+var $elm$core$Basics$degrees = function (angleInDegrees) {
+	return (angleInDegrees * $elm$core$Basics$pi) / 180;
+};
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2($elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return $elm$core$List$reverse(
+			A3($elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var $elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _v0 = _Utils_Tuple2(n, list);
+			_v0$1:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if (!_v0.b.b) {
+						return list;
+					} else {
+						if (_v0.b.b.b) {
+							switch (_v0.a) {
+								case 1:
+									break _v0$1;
+								case 2:
+									var _v2 = _v0.b;
+									var x = _v2.a;
+									var _v3 = _v2.b;
+									var y = _v3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_v0.b.b.b.b) {
+										var _v4 = _v0.b;
+										var x = _v4.a;
+										var _v5 = _v4.b;
+										var y = _v5.a;
+										var _v6 = _v5.b;
+										var z = _v6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _v0$5;
+									}
+								default:
+									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
+										var _v7 = _v0.b;
+										var x = _v7.a;
+										var _v8 = _v7.b;
+										var y = _v8.a;
+										var _v9 = _v8.b;
+										var z = _v9.a;
+										var _v10 = _v9.b;
+										var w = _v10.a;
+										var tl = _v10.b;
+										return (ctr > 1000) ? A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _v0$5;
+									}
+							}
+						} else {
+							if (_v0.a === 1) {
+								break _v0$1;
+							} else {
+								break _v0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _v1 = _v0.b;
+			var x = _v1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var $elm$core$List$take = F2(
+	function (n, list) {
+		return A3($elm$core$List$takeFast, 0, n, list);
+	});
+var $author$project$RadialTests$radial5 = function () {
+	var thetas = A2(
+		$elm$core$List$map,
+		function (n) {
+			return $elm$core$Basics$degrees(n * 45);
+		},
+		A2($elm$core$List$range, 0, 8));
+	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -9844,339 +9611,24 @@ var $author$project$WindowTransformTests$window3 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					0,
+					4,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('AverageYearRating'),
+							$author$project$VegaLite$pName('t'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				1,
+				5,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Title'),
-						$author$project$VegaLite$pOrdinal
+						$author$project$VegaLite$pName('t2')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mStr('red')
-				])));
-	var tickSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$tick(_List_Nil),
-				tickEnc(_List_Nil)
-			]));
-	var data = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/movies.json',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'Release_Date',
-						$author$project$VegaLite$foDate('%b %d %Y'))
-					]))
-			]));
-	var barEnc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Title'),
-					$author$project$VegaLite$pOrdinal
-				])));
-	var barSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maClip(true)
-					])),
-				barEnc(_List_Nil)
-			]));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				data,
-				trans(_List_Nil),
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[barSpec, tickSpec]))
-			]));
-}();
-var $author$project$VegaLite$DateRange = F2(
-	function (a, b) {
-		return {$: 1, a: a, b: b};
-	});
-var $author$project$VegaLite$dtRange = $author$project$VegaLite$DateRange;
-var $author$project$VegaLite$DTYear = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$dtYear = $author$project$VegaLite$DTYear;
-var $author$project$VegaLite$FRange = F2(
-	function (a, b) {
-		return {$: 9, a: a, b: b};
-	});
-var $author$project$VegaLite$fiRange = $author$project$VegaLite$FRange;
-var $author$project$VegaLite$MOpacity = function (a) {
-	return {$: 40, a: a};
-};
-var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
-var $author$project$VegaLite$MStrokeWidth = function (a) {
-	return {$: 60, a: a};
-};
-var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
-var $author$project$VegaLite$Point = 10;
-var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
-var $author$project$WindowTransformTests$window4 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$transform,
-					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-				$author$project$VegaLite$filter(
-					A2(
-						$author$project$VegaLite$fiRange,
-						'Release_Date',
-						A2(
-							$author$project$VegaLite$dtRange,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$dtYear(2019)
-								]))))),
-			A2(
-				$author$project$VegaLite$window,
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-								$author$project$VegaLite$wiField('IMDB_Rating')
-							]),
-						'AverageRating')
-					]),
-				_List_fromArray(
-					[
-						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
-					]))),
-		A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating - datum.AverageRating', 'RatingDelta'));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('Release_Date'),
-						$author$project$VegaLite$pTemporal
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('RatingDelta'),
-					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pTitle('Residual')
-				])));
-	var data = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/movies.json',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'Release_Date',
-						$author$project$VegaLite$foDate('%b %d %Y'))
-					]))
-			]));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				data,
-				trans(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$point(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStrokeWidth(0.3),
-						$author$project$VegaLite$maOpacity(0.3)
-					]))
-			]));
-}();
-var $author$project$VegaLite$DStrings = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$RStrings = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$SDomain = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$SRange = function (a) {
-	return {$: 2, a: a};
-};
-var $elm$core$List$unzip = function (pairs) {
-	var step = F2(
-		function (_v0, _v1) {
-			var x = _v0.a;
-			var y = _v0.b;
-			var xs = _v1.a;
-			var ys = _v1.b;
-			return _Utils_Tuple2(
-				A2($elm$core$List$cons, x, xs),
-				A2($elm$core$List$cons, y, ys));
-		});
-	return A3(
-		$elm$core$List$foldr,
-		step,
-		_Utils_Tuple2(_List_Nil, _List_Nil),
-		pairs);
-};
-var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) {
-	var _v0 = $elm$core$List$unzip(scaleDomainPairs);
-	var domain = _v0.a;
-	var range = _v0.b;
-	return _List_fromArray(
-		[
-			$author$project$VegaLite$SDomain(
-			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
-			$author$project$VegaLite$RStrings(range))
-		]);
-};
-var $author$project$VegaLite$Line = 9;
-var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
-var $author$project$VegaLite$MName = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
-var $author$project$VegaLite$MScale = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$MOrient = function (a) {
-	return {$: 44, a: a};
-};
-var $author$project$VegaLite$maOrient = $author$project$VegaLite$MOrient;
-var $author$project$VegaLite$MOVertical = 1;
-var $author$project$VegaLite$moVertical = 1;
-var $author$project$VegaLite$WDescending = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$wiDescending = $author$project$VegaLite$WDescending;
-var $author$project$VegaLite$WOp = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$wiOp = $author$project$VegaLite$WOp;
-var $author$project$VegaLite$WSort = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$wiSort = $author$project$VegaLite$WSort;
-var $author$project$VegaLite$Rank = 1;
-var $author$project$VegaLite$woRank = 1;
-var $author$project$WindowTransformTests$window5 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		A2(
-			$author$project$VegaLite$window,
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$wiOp($author$project$VegaLite$woRank)
-						]),
-					'rank')
-				]),
-			_List_fromArray(
-				[
-					$author$project$VegaLite$wiSort(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$wiDescending('point')
-						])),
-					$author$project$VegaLite$wiGroupBy(
-					_List_fromArray(
-						['matchday']))
-				])));
-	var teamColours = $author$project$VegaLite$categoricalDomainMap(
-		_List_fromArray(
-			[
-				_Utils_Tuple2('Man Utd', '#cc2613'),
-				_Utils_Tuple2('Chelsea', '#125dc7'),
-				_Utils_Tuple2('Man City', '#8bcdfc'),
-				_Utils_Tuple2('Spurs', '#d1d1d1')
-			]));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('matchday'),
-							$author$project$VegaLite$pOrdinal
-						]))),
-			A2(
-				$author$project$VegaLite$position,
-				1,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('rank'),
-						$author$project$VegaLite$pOrdinal
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mName('team'),
-					$author$project$VegaLite$mNominal,
-					$author$project$VegaLite$mScale(teamColours)
+					$author$project$VegaLite$mName('dir'),
+					$author$project$VegaLite$mNominal
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10187,255 +9639,149 @@ var $author$project$WindowTransformTests$window5 = function () {
 				$author$project$VegaLite$dataFromColumns(_List_Nil),
 				A2(
 					$author$project$VegaLite$dataColumn,
-					'team',
+					'dir',
 					$author$project$VegaLite$strs(
 						_List_fromArray(
-							['Man Utd', 'Chelsea', 'Man City', 'Spurs', 'Man Utd', 'Chelsea', 'Man City', 'Spurs', 'Man Utd', 'Chelsea', 'Man City', 'Spurs'])))),
+							['1N', '2NE', '3E', '4SE', '5S', '6SW', '7W', '8NW'])))),
 			A2(
 				$author$project$VegaLite$dataColumn,
-				'matchday',
+				't',
 				$author$project$VegaLite$nums(
-					_List_fromArray(
-						[1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3])))),
+					A2($elm$core$List$take, 8, thetas)))),
 		A2(
 			$author$project$VegaLite$dataColumn,
-			'point',
+			't2',
 			$author$project$VegaLite$nums(
-				_List_fromArray(
-					[3, 1, 1, 0, 6, 1, 0, 3, 9, 1, 0, 6]))));
+				A2($elm$core$List$drop, 1, thetas))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				data(_List_Nil),
-				trans(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$line(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maOrient($author$project$VegaLite$moVertical)
-					]))
+				$author$project$VegaLite$arc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$ByFieldOp = F2(
-	function (a, b) {
-		return {$: 4, a: a, b: b};
-	});
-var $author$project$VegaLite$soByField = $author$project$VegaLite$ByFieldOp;
-var $author$project$WindowTransformTests$window6 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$transform,
-			A2(
-				$author$project$VegaLite$window,
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$wiOp($author$project$VegaLite$woRank)
-							]),
-						'rank')
-					]),
-				_List_fromArray(
-					[
-						$author$project$VegaLite$wiSort(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$wiDescending('score')
-							]))
-					]))),
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('datum.rank <= 5')));
+var $author$project$VegaLite$InnerRadius = 7;
+var $author$project$VegaLite$OuterRadius = 6;
+var $author$project$VegaLite$PNumber = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$SZero = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
+var $author$project$RadialTests$radial6 = function () {
+	var thetas = A2(
+		$elm$core$List$map,
+		function (n) {
+			return $elm$core$Basics$degrees(n * 45);
+		},
+		A2($elm$core$List$range, 0, 8));
 	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('score'),
-						$author$project$VegaLite$pQuant
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('student'),
-					$author$project$VegaLite$pNominal,
-					$author$project$VegaLite$pSort(
-					_List_fromArray(
-						[
-							A2($author$project$VegaLite$soByField, 'score', $author$project$VegaLite$opMean),
-							$author$project$VegaLite$soDescending
-						]))
-				])));
-	var data = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$dataFromColumns(_List_Nil),
-			A2(
-				$author$project$VegaLite$dataColumn,
-				'student',
-				$author$project$VegaLite$strs(
-					_List_fromArray(
-						['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'])))),
-		A2(
-			$author$project$VegaLite$dataColumn,
-			'score',
-			$author$project$VegaLite$nums(
-				_List_fromArray(
-					[100, 56, 88, 65, 45, 23, 66, 67, 13, 12, 50, 78, 66, 30, 97, 75, 24, 42, 76, 78, 21, 46]))));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				data(_List_Nil),
-				trans(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$Circle = 6;
-var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$PTimeUnit = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
-var $author$project$VegaLite$WAscending = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$wiAscending = $author$project$VegaLite$WAscending;
-var $author$project$VegaLite$WIgnorePeers = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$wiIgnorePeers = $author$project$VegaLite$WIgnorePeers;
-var $author$project$WindowTransformTests$window7 = function () {
-	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				$author$project$VegaLite$transform,
-				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiExpr('datum.Miles_per_Gallon !== null'))),
-			A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Year', 'year')),
-		A2(
-			$author$project$VegaLite$window,
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-							$author$project$VegaLite$wiField('Miles_per_Gallon')
-						]),
-					'Average_MPG')
-				]),
-			_List_fromArray(
-				[
-					$author$project$VegaLite$wiSort(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$wiAscending('year')
-						])),
-					$author$project$VegaLite$wiIgnorePeers(false),
+				A2(
+					$elm$core$Basics$composeL,
 					A2(
-					$author$project$VegaLite$wiFrame,
-					$elm$core$Maybe$Nothing,
-					$elm$core$Maybe$Just(0))
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$encoding,
+						A2(
+							$author$project$VegaLite$position,
+							4,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('t'),
+									$author$project$VegaLite$pQuant
+								]))),
+					A2(
+						$author$project$VegaLite$position,
+						5,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('t2')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					6,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('strength'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scZero(true)
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				7,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pNum(10)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('dir'),
+					$author$project$VegaLite$mNominal
 				])));
-	var lineEnc = A2(
+	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
 			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('Year'),
-						$author$project$VegaLite$pTemporal,
-						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Average_MPG'),
-					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pTitle('Miles per gallon')
-				])));
-	var lineSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$line(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maColor('red')
-					])),
-				lineEnc(_List_Nil)
-			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
-	var circleEnc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						$author$project$VegaLite$dataColumn,
+						'dir',
+						$author$project$VegaLite$strs(
+							_List_fromArray(
+								['1N', '2NE', '3E', '4SE', '5S', '6SW', '7W', '8NW'])))),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'strength',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[1, 2, 3, 4, 5, 6, 7, 8])))),
 			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('Year'),
-						$author$project$VegaLite$pTemporal,
-						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
-					]))),
+				$author$project$VegaLite$dataColumn,
+				't',
+				$author$project$VegaLite$nums(
+					A2($elm$core$List$take, 8, thetas)))),
 		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Miles_per_Gallon'),
-					$author$project$VegaLite$pQuant
-				])));
-	var circleSpec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$circle(_List_Nil),
-				circleEnc(_List_Nil)
-			]));
+			$author$project$VegaLite$dataColumn,
+			't2',
+			$author$project$VegaLite$nums(
+				A2($elm$core$List$drop, 1, thetas))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data,
-				trans(_List_Nil),
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[circleSpec, lineSpec]))
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$arc(_List_Nil)
 			]));
 }();
-var $author$project$WindowTransformTests$mySpecs = $author$project$VegaLite$combineSpecs(
+var $author$project$RadialTests$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
-			_Utils_Tuple2('window1', $author$project$WindowTransformTests$window1),
-			_Utils_Tuple2('window2', $author$project$WindowTransformTests$window2),
-			_Utils_Tuple2('window3', $author$project$WindowTransformTests$window3),
-			_Utils_Tuple2('window4', $author$project$WindowTransformTests$window4),
-			_Utils_Tuple2('window5', $author$project$WindowTransformTests$window5),
-			_Utils_Tuple2('window6', $author$project$WindowTransformTests$window6),
-			_Utils_Tuple2('window7', $author$project$WindowTransformTests$window7),
-			_Utils_Tuple2('joinAggregate1', $author$project$WindowTransformTests$joinAggregate1),
-			_Utils_Tuple2('joinAggregate2', $author$project$WindowTransformTests$joinAggregate2),
-			_Utils_Tuple2('joinAggregate3', $author$project$WindowTransformTests$joinAggregate3)
+			_Utils_Tuple2('radial1', $author$project$RadialTests$radial1),
+			_Utils_Tuple2('radial2', $author$project$RadialTests$radial2),
+			_Utils_Tuple2('radial3', $author$project$RadialTests$radial3),
+			_Utils_Tuple2('radial4', $author$project$RadialTests$radial4),
+			_Utils_Tuple2('radial5', $author$project$RadialTests$radial5),
+			_Utils_Tuple2('radial6', $author$project$RadialTests$radial6)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -10451,10 +9797,10 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$WindowTransformTests$sourceExample = $author$project$WindowTransformTests$joinAggregate3;
+var $author$project$RadialTests$sourceExample = $author$project$RadialTests$radial6;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$WindowTransformTests$view = function (spec) {
+var $author$project$RadialTests$view = function (spec) {
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -10473,22 +9819,22 @@ var $author$project$WindowTransformTests$view = function (spec) {
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
-						A2($elm$json$Json$Encode$encode, 2, $author$project$WindowTransformTests$sourceExample))
+						A2($elm$json$Json$Encode$encode, 2, $author$project$RadialTests$sourceExample))
 					]))
 			]));
 };
-var $author$project$WindowTransformTests$main = $elm$browser$Browser$element(
+var $author$project$RadialTests$main = $elm$browser$Browser$element(
 	{
 		ar: $elm$core$Basics$always(
 			_Utils_Tuple2(
-				$author$project$WindowTransformTests$mySpecs,
-				$author$project$WindowTransformTests$elmToJS($author$project$WindowTransformTests$mySpecs))),
+				$author$project$RadialTests$mySpecs,
+				$author$project$RadialTests$elmToJS($author$project$RadialTests$mySpecs))),
 		ax: $elm$core$Basics$always($elm$core$Platform$Sub$none),
 		az: F2(
 			function (_v0, model) {
 				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 			}),
-		aA: $author$project$WindowTransformTests$view
+		aA: $author$project$RadialTests$view
 	});
-_Platform_export({'WindowTransformTests':{'init':$author$project$WindowTransformTests$main(
+_Platform_export({'RadialTests':{'init':$author$project$RadialTests$main(
 	$elm$json$Json$Decode$succeed(0))(0)}});}(this));
