@@ -1,5 +1,25 @@
 # Vega Lite Changes
 
+# Pending changes
+
+## Breaking Changes
+
+- New position channels `Theta`, `Theta2`, `OuterRadius` and `InnerRadius` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this is won't to break any existing specifications unless the pattern match against all `Position` variants (VL4.9).
+
+## Additions
+
+- `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+
+* `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `OuterRadius`.
+
+### Other Changes
+
+- Minor improvements to the API documentation.
+- Additions to tests for new VL4.9 features
+- New gallery examples.
+
+---
+
 ## V2.2.0 ➡ V2.3.0
 
 ### Additions
