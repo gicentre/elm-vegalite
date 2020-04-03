@@ -9661,8 +9661,8 @@ var $author$project$RadialTests$radial5 = function () {
 				$author$project$VegaLite$arc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$InnerRadius = 7;
-var $author$project$VegaLite$OuterRadius = 6;
+var $author$project$VegaLite$R = 6;
+var $author$project$VegaLite$R2 = 7;
 var $author$project$VegaLite$PNumber = function (a) {
 	return {$: 3, a: a};
 };
@@ -9695,31 +9695,31 @@ var $author$project$RadialTests$radial6 = function () {
 						$author$project$VegaLite$encoding,
 						A2(
 							$author$project$VegaLite$position,
-							4,
+							6,
 							_List_fromArray(
 								[
-									$author$project$VegaLite$pName('t'),
-									$author$project$VegaLite$pQuant
+									$author$project$VegaLite$pName('strength'),
+									$author$project$VegaLite$pQuant,
+									$author$project$VegaLite$pScale(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$scZero(true)
+										]))
 								]))),
 					A2(
 						$author$project$VegaLite$position,
-						5,
+						4,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('t2')
+								$author$project$VegaLite$pName('t'),
+								$author$project$VegaLite$pQuant
 							]))),
 				A2(
 					$author$project$VegaLite$position,
-					6,
+					5,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('strength'),
-							$author$project$VegaLite$pQuant,
-							$author$project$VegaLite$pScale(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$scZero(true)
-								]))
+							$author$project$VegaLite$pName('t2')
 						]))),
 			A2(
 				$author$project$VegaLite$position,

@@ -94,7 +94,7 @@ radial4 =
         enc =
             encoding
                 << position Theta [ pName "strength", pQuant, pStack stZero ]
-                << position OuterRadius
+                << position R
                     [ pName "strength"
                     , pQuant
                     , pScale [ scZero True, scType scSqrt, scRange (raNums [ 20, 100 ]) ]

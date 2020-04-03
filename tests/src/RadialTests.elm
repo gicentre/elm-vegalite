@@ -115,10 +115,10 @@ radial6 =
 
         enc =
             encoding
+                << position R [ pName "strength", pQuant, pScale [ scZero True ] ]
                 << position Theta [ pName "t", pQuant ]
                 << position Theta2 [ pName "t2" ]
-                << position OuterRadius [ pName "strength", pQuant, pScale [ scZero True ] ]
-                << position InnerRadius [ pNum 10 ]
+                << position R2 [ pNum 10 ]
                 << color [ mName "dir", mNominal ]
     in
     toVegaLite [ data [], enc [], arc [] ]

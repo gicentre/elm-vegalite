@@ -5039,8 +5039,8 @@ boundaries of a mark need to be specified (e.g. a [rule](#rule) mark).
 chart segments to be specified. `Theta2` allows an end angle to be specified in
 radians (where 0 is 'north'), useful for individual 'pie' segments.
 
-`OuterRadius` and `InnerRadius` position the inner and outer radial edges of an
-arc segment. Useful for rose diagrams.
+`R` and `R2` position the outer and inner radial edges of an arc segment. Useful
+for rose diagrams where arc radii are data-driven.
 
 `Longitude`/`Longitude2` and `Latitude`/`Latitude2` are the equivalent for
 geographic positioning subject to [projection](#prejection).
@@ -5056,8 +5056,8 @@ type Position
     | Y2
     | Theta
     | Theta2
-    | OuterRadius
-    | InnerRadius
+    | R
+    | R2
     | Longitude
     | Latitude
     | Longitude2
@@ -12771,8 +12771,8 @@ maHRef =
     MHRef
 
 
-{-| Fix the inner radius of a radial plot. Can be used for creating 'holes' in
-pie chart.
+{-| Fix the inner radius (R2) of a radial plot. Can be used for creating 'holes'
+in pie chart.
 -}
 maInnerRadius : Float -> MarkProperty
 maInnerRadius =
@@ -12850,7 +12850,7 @@ maOrient =
     MOrient
 
 
-{-| Fix the outer radius of a radial plot.
+{-| Fix the outer radius (R) of a radial plot.
 -}
 maOuterRadius : Float -> MarkProperty
 maOuterRadius =
@@ -20991,10 +20991,10 @@ positionLabel pChannel =
         Theta2 ->
             "theta2"
 
-        OuterRadius ->
+        R ->
             "radius"
 
-        InnerRadius ->
+        R2 ->
             "radius2"
 
         XError ->

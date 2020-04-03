@@ -4,7 +4,7 @@
 
 ## Breaking Changes
 
-- New position channels `Theta`, `Theta2`, `OuterRadius` and `InnerRadius` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this is won't to break any existing specifications unless the pattern match against all `Position` variants (VL4.9).
+- New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't to break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
 
 ## Additions
 

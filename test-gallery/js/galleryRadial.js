@@ -9742,7 +9742,7 @@ var $author$project$GalleryRadial$radial3 = function () {
 					[pieSpec, labelSpec]))
 			]));
 }();
-var $author$project$VegaLite$OuterRadius = 6;
+var $author$project$VegaLite$R = 6;
 var $author$project$VegaLite$MRadiusOffset = function (a) {
 	return {$: 79, a: a};
 };
