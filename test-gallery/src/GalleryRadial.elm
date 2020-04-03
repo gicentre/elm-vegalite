@@ -166,6 +166,30 @@ radial5 =
 
 
 
+-- TODO: Add when https://github.com/vega/vega-lite/issues/6238 resolves
+-- radial6 : Spec
+-- radial6 =
+--     let
+--         des =
+--             description "Nightingale rose diagram"
+--
+--         cfg =
+--             configure
+--                 << configuration (coView [ vicoStroke Nothing ])
+--
+--         data =
+--             dataFromColumns []
+--                 << dataColumn "month" (nums [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ])
+--                 << dataColumn "days" (nums [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ])
+--                 << dataColumn "value" (nums [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ])
+--
+--         enc =
+--             encoding
+--                 << position Theta [ pName "days", pQuant, pStack stZero ]
+--                 << position R [ pName "value", pQuant ]
+--                 << color [ mName "month", mNominal ]
+--     in
+--     toVegaLite [ des, data [], enc [], arc [] ]
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
 
@@ -177,6 +201,8 @@ mySpecs =
         , ( "radial3", radial3 )
         , ( "radial4", radial4 )
         , ( "radial5", radial5 )
+
+        -- , ( "radial6", radial6 )
         ]
 
 
