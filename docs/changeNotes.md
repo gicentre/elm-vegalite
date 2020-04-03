@@ -12,7 +12,9 @@
 
 * `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
 
-- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R`.
+- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+
+* `leTitleOrient` for positioning a title relative to legend content.
 
 ### Other Changes
 

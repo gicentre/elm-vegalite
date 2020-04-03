@@ -637,6 +637,7 @@ module VegaLite exposing
     , leLabelOverlap
     , leOffset
     , leOrient
+    , leTitleOrient
     , lePadding
     , leRowPadding
     , leStrokeColor
@@ -2424,6 +2425,7 @@ See the
 @docs leLabelOverlap
 @docs leOffset
 @docs leOrient
+@docs leTitleOrient
 @docs lePadding
 @docs leRowPadding
 @docs leStrokeColor
@@ -4667,6 +4669,7 @@ type LegendProperty
     | LLabelOverlap OverlapStrategy
     | LOffset Float
     | LOrient LegendOrientation
+    | LTitleOrient LegendOrientation
     | LPadding Float
     | LRowPadding Float
     | LStrokeColor String
@@ -12049,6 +12052,13 @@ leTitleFontWeight =
 leTitleLimit : Float -> LegendProperty
 leTitleLimit =
     LTitleLimit
+
+
+{-| Position of a legend's title relative to the main legend content.
+-}
+leTitleOrient : LegendOrientation -> LegendProperty
+leTitleOrient =
+    LTitleOrient
 
 
 {-| Spacing in pixel units between title and legend.
@@ -19948,6 +19958,9 @@ legendProperty legendProp =
 
         LTitleLimit x ->
             ( "titleLimit", JE.float x )
+
+        LTitleOrient orient ->
+            ( "titleOrient", JE.string (legendOrientLabel orient) )
 
         LTitlePadding x ->
             ( "titlePadding", JE.float x )
