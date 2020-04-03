@@ -12,7 +12,7 @@
 
 * `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
 
-- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `OuterRadius`.
+- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R`.
 
 ### Other Changes
 

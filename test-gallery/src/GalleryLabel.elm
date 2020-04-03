@@ -43,6 +43,56 @@ label2 : Spec
 label2 =
     let
         des =
+            description "Version of bar chart from https://observablehq.com/@d3/learn-d3-scales."
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromColumns []
+                << dataColumn "fruit" (strs [ "🍊", "🍇", "🍏", "🍌", "🍐", "🍋", "🍎", "🍉" ])
+                << dataColumn "count" (nums [ 21, 13, 8, 5, 3, 2, 1, 1 ])
+
+        enc =
+            encoding
+                << position X
+                    [ pName "count"
+                    , pQuant
+                    , pAxis [ axGrid False, axTitle "" ]
+                    ]
+                << position Y
+                    [ pName "fruit"
+                    , pOrdinal
+                    , pSort [ soByChannel chX, soDescending ]
+                    , pAxis [ axTitle "", axTicks False ]
+                    ]
+
+        barEnc =
+            encoding
+                << color [ mName "count", mQuant, mLegend [] ]
+
+        specBar =
+            asSpec [ barEnc [], bar [] ]
+
+        labelEnc =
+            encoding
+                << text [ tName "count", tQuant ]
+                << color
+                    [ mDataCondition [ ( expr "datum.count > 10", [ mStr "white" ] ) ]
+                        [ mStr "black" ]
+                    ]
+
+        specText =
+            asSpec [ labelEnc [], textMark [ maAlign haRight, maXOffset -4 ] ]
+    in
+    toVegaLite [ des, cfg [], width 400, data [], enc [], layer [ specBar, specText ] ]
+
+
+label3 : Spec
+label3 =
+    let
+        des =
             description "Layering text over 'heatmap'"
 
         encPosition =
@@ -79,8 +129,8 @@ label2 =
         ]
 
 
-label3 : Spec
-label3 =
+label4 : Spec
+label4 =
     let
         des =
             description "Carbon dioxide in the atmosphere."
@@ -164,8 +214,8 @@ label3 =
         ]
 
 
-label4 : Spec
-label4 =
+label5 : Spec
+label5 =
     let
         des =
             description "Bar chart that highlights values beyond a threshold. The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html"
@@ -227,8 +277,8 @@ label4 =
     toVegaLite [ des, layer [ layer0, layer1 ] ]
 
 
-label5 : Spec
-label5 =
+label6 : Spec
+label6 =
     let
         des =
             description "Monthly precipitation with mean value overlay"
@@ -257,8 +307,8 @@ label5 =
         ]
 
 
-label6 : Spec
-label6 =
+label7 : Spec
+label7 =
     let
         des =
             description "Histogram with global mean overlay"
@@ -287,8 +337,8 @@ label6 =
         ]
 
 
-label7 : Spec
-label7 =
+label8 : Spec
+label8 =
     let
         des =
             description "The population of the German city of Falkensee over time with annotated time periods highlighted"
@@ -328,8 +378,8 @@ label7 =
     toVegaLite [ des, width 500, data [], layer [ specRects, specLine, specPoints ] ]
 
 
-label8 : Spec
-label8 =
+label9 : Spec
+label9 =
     let
         medians =
             dataFromColumns []
@@ -429,8 +479,8 @@ label8 =
         ]
 
 
-label9 : Spec
-label9 =
+label10 : Spec
+label10 =
     let
         des =
             description "Comparing Likert scale ratings between two conditions."
@@ -578,6 +628,7 @@ mySpecs =
         , ( "label7", label7 )
         , ( "label8", label8 )
         , ( "label9", label9 )
+        , ( "label10", label10 )
         ]
 
 
