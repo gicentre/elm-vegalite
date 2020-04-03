@@ -8,9 +8,11 @@
 
 ## Additions
 
-- `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+- `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
-* `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `OuterRadius`.
+* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+
+- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `OuterRadius`.
 
 ### Other Changes
 

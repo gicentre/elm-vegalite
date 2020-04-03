@@ -182,6 +182,59 @@ table6 =
     toVegaLite [ des, width 300, height 100, cfg [], data, trans [], enc [], rect [] ]
 
 
+table7 : Spec
+table7 =
+    let
+        des =
+            description "Vector array map showing wind speed and direction."
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStep 10, vicoFill (Just "black") ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/windvectors.csv" []
+
+        geoData =
+            dataFromUrl "https://gicentre.github.io/data/europe/nwEuropeLand.json"
+                [ topojsonFeature "ne_10m_land" ]
+
+        proj =
+            projection [ prType equalEarth ]
+
+        geoSpec =
+            asSpec [ geoData, geoshape [ maStroke "white", maStrokeWidth 0.4, maFilled False ] ]
+
+        enc =
+            encoding
+                << position Longitude [ pName "longitude", pQuant ]
+                << position Latitude [ pName "latitude", pQuant ]
+                << color
+                    [ mName "dir"
+                    , mQuant
+                    , mLegend []
+                    , mScale [ scDomain (doNums [ 0, 360 ]), scScheme "rainbow" [] ]
+                    ]
+                << angle
+                    [ mName "dir"
+                    , mQuant
+                    , mScale [ scDomain (doNums [ 0, 360 ]), scRange (raNums [ 180, 540 ]) ]
+                    ]
+                << size [ mName "speed", mQuant ]
+
+        windSpec =
+            asSpec [ data, enc [], point [ maShape symWedge ] ]
+    in
+    toVegaLite
+        [ des
+        , cfg []
+        , width 600
+        , height 560
+        , proj
+        , layer [ geoSpec, windSpec ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -195,6 +248,7 @@ mySpecs =
         , ( "table4", table4 )
         , ( "table5", table5 )
         , ( "table6", table6 )
+        , ( "table7", table7 )
         ]
 
 

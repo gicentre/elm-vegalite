@@ -579,6 +579,7 @@ module VegaLite exposing
     , siLeft
     , siRight
     , size
+    , angle
     , color
     , fill
     , stroke
@@ -2354,6 +2355,7 @@ See the
 Appearance of the visual marks in the visualization such as their color or size.
 
 @docs size
+@docs angle
 @docs color
 @docs fill
 @docs stroke
@@ -5911,6 +5913,14 @@ and op1 op2 =
 anEnd : Anchor
 anEnd =
     AnEnd
+
+
+{-| Encode an angle (orientation) channel. This allows data-driven rotation of
+text and point symbols.
+-}
+angle : List MarkChannel -> List LabelledSpec -> List LabelledSpec
+angle markProps =
+    (::) ( "angle", List.concatMap markChannelProperties markProps |> JE.object )
 
 
 {-| Anchor some text in its start.
@@ -17786,8 +17796,8 @@ axisConfigProperty axisCfg =
         LabelAlign ha ->
             ( "labelAlign", JE.string (hAlignLabel ha) )
 
-        LabelAngle angle ->
-            ( "labelAngle", JE.float angle )
+        LabelAngle a ->
+            ( "labelAngle", JE.float a )
 
         LabelBaseline va ->
             ( "labelBaseline", JE.string (vAlignLabel va) )
@@ -17891,8 +17901,8 @@ axisConfigProperty axisCfg =
         TitleAlign al ->
             ( "titleAlign", JE.string (hAlignLabel al) )
 
-        TitleAngle angle ->
-            ( "titleAngle", JE.float angle )
+        TitleAngle a ->
+            ( "titleAngle", JE.float a )
 
         TitleAnchor an ->
             ( "titleAnchor", JE.string (anchorLabel an) )
@@ -18075,8 +18085,8 @@ axisProperty axisProp =
                 Nothing ->
                     ( "labelBound", JE.bool False )
 
-        AxLabelAngle angle ->
-            ( "labelAngle", JE.float angle )
+        AxLabelAngle a ->
+            ( "labelAngle", JE.float a )
 
         AxLabelColor s ->
             ( "labelColor", JE.string s )
@@ -18222,8 +18232,8 @@ axisProperty axisProp =
         AxTitleAlign al ->
             ( "titleAlign", JE.string (hAlignLabel al) )
 
-        AxTitleAngle angle ->
-            ( "titleAngle", JE.float angle )
+        AxTitleAngle a ->
+            ( "titleAngle", JE.float a )
 
         AxTitleAnchor an ->
             ( "titleAnchor", JE.string (anchorLabel an) )
