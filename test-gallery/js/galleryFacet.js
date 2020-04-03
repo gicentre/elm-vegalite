@@ -7331,84 +7331,6 @@ var $author$project$GalleryFacet$facet4 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$Circle = 6;
-var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$MNumber = function (a) {
-	return {$: 14, a: a};
-};
-var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
-var $author$project$VegaLite$opacity = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'opacity',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
-};
-var $author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$SZero = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
-var $author$project$GalleryFacet$facet5 = function () {
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$encoding,
-					A2(
-						$author$project$VegaLite$position,
-						0,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('X'),
-								$author$project$VegaLite$pQuant,
-								$author$project$VegaLite$pScale(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$scZero(false)
-									]))
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					1,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('Y'),
-							$author$project$VegaLite$pQuant,
-							$author$project$VegaLite$pScale(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$scZero(false)
-								]))
-						]))),
-			$author$project$VegaLite$opacity(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(1)
-					]))),
-		$author$project$VegaLite$column(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$fName('Series'),
-					$author$project$VegaLite$fOrdinal
-				])));
-	var des = $author$project$VegaLite$description('Anscombe\'s Quartet');
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/anscombe.json', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
-			]));
-}();
 var $author$project$VegaLite$asSpec = function (specs) {
 	return $elm$json$Json$Encode$object(
 		A2(
@@ -7422,8 +7344,12 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$AxGrid = function (a) {
+	return {$: 63, a: a};
+};
+var $author$project$VegaLite$axGrid = $author$project$VegaLite$AxGrid;
+var $author$project$VegaLite$Circle = 6;
+var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$VLColumns = 20;
 var $author$project$VegaLite$columns = function (cols) {
 	return _Utils_Tuple2(
@@ -7435,10 +7361,6 @@ var $author$project$VegaLite$FHeader = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$fHeader = $author$project$VegaLite$FHeader;
-var $author$project$VegaLite$FSort = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$fSort = $author$project$VegaLite$FSort;
 var $author$project$VegaLite$VLFacet = 22;
 var $author$project$VegaLite$facetFlow = function (fFields) {
 	return _Utils_Tuple2(
@@ -7450,6 +7372,245 @@ var $author$project$VegaLite$HTitle = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$hdTitle = $author$project$VegaLite$HTitle;
+var $author$project$VegaLite$VLLayer = 16;
+var $author$project$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		16,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$Line = 9;
+var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
+var $author$project$VegaLite$MColor = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
+var $author$project$VegaLite$MOpacity = function (a) {
+	return {$: 40, a: a};
+};
+var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 60, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$regMethodLabel = function (rm) {
+	switch (rm) {
+		case 0:
+			return 'linear';
+		case 1:
+			return 'log';
+		case 2:
+			return 'exp';
+		case 3:
+			return 'pow';
+		case 4:
+			return 'quad';
+		default:
+			return 'poly';
+	}
+};
+var $author$project$VegaLite$regressionProperty = function (regProp) {
+	switch (regProp.$) {
+		case 0:
+			var fields = regProp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var m = regProp.a;
+			return _Utils_Tuple2(
+				'method',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$regMethodLabel(m)));
+		case 2:
+			var n = regProp.a;
+			return _Utils_Tuple2(
+				'order',
+				$elm$json$Json$Encode$int(n));
+		case 3:
+			var mn = regProp.a;
+			var mx = regProp.b;
+			return _Utils_Tuple2(
+				'extent',
+				A2(
+					$elm$json$Json$Encode$list,
+					$author$project$VegaLite$dataValueSpec,
+					_List_fromArray(
+						[mn, mx])));
+		default:
+			var iField = regProp.a;
+			var dField = regProp.b;
+			return _Utils_Tuple2(
+				'as',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$string,
+					_List_fromArray(
+						[iField, dField])));
+	}
+};
+var $author$project$VegaLite$regression = F3(
+	function (fDep, fInd, rgProps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'regression',
+								$elm$json$Json$Encode$string(fDep)),
+								_Utils_Tuple2(
+								'on',
+								$elm$json$Json$Encode$string(fInd))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$regressionProperty, rgProps)))));
+	});
+var $author$project$VegaLite$RgAs = F2(
+	function (a, b) {
+		return {$: 4, a: a, b: b};
+	});
+var $author$project$VegaLite$rgAs = $author$project$VegaLite$RgAs;
+var $author$project$VegaLite$RgExtent = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $author$project$VegaLite$rgExtent = $author$project$VegaLite$RgExtent;
+var $author$project$VegaLite$VLSpec = 23;
+var $author$project$VegaLite$specification = function (spec) {
+	return _Utils_Tuple2(23, spec);
+};
+var $author$project$GalleryFacet$facet5 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A3(
+			$author$project$VegaLite$regression,
+			'Y',
+			'X',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$rgExtent,
+					$author$project$VegaLite$num(0),
+					$author$project$VegaLite$num(20)),
+					A2($author$project$VegaLite$rgAs, 'rx', 'ry')
+				])));
+	var encScatter = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('X'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axTitle(''),
+								$author$project$VegaLite$axGrid(false)
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Y'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axTitle(''),
+							$author$project$VegaLite$axGrid(false)
+						]))
+				])));
+	var scatter = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encScatter(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maOpacity(1),
+						$author$project$VegaLite$maColor('black')
+					]))
+			]));
+	var encLine = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('rx'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('ry'),
+					$author$project$VegaLite$pQuant
+				])));
+	var rLine = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				trans(_List_Nil),
+				encLine(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStrokeWidth(1)
+					]))
+			]));
+	var des = $author$project$VegaLite$description('Anscombe\'s Quartet');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/anscombe.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				data,
+				$author$project$VegaLite$columns(2),
+				$author$project$VegaLite$facetFlow(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$fName('Series'),
+						$author$project$VegaLite$fOrdinal,
+						$author$project$VegaLite$fHeader(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$hdTitle('')
+							]))
+					])),
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$layer(
+							_List_fromArray(
+								[scatter, rLine]))
+						])))
+			]));
+}();
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$FSort = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$fSort = $author$project$VegaLite$FSort;
 var $author$project$VegaLite$VLHeightStep = 6;
 var $author$project$VegaLite$heightStep = function (hs) {
 	return _Utils_Tuple2(
@@ -7464,10 +7625,18 @@ var $author$project$VegaLite$heightStep = function (hs) {
 };
 var $author$project$VegaLite$Median = {$: 8};
 var $author$project$VegaLite$opMedian = $author$project$VegaLite$Median;
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$PSort = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
+var $author$project$VegaLite$SZero = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
 var $author$project$VegaLite$ByChannel = function (a) {
 	return {$: 5, a: a};
 };
@@ -7479,10 +7648,6 @@ var $author$project$VegaLite$ByFieldOp = F2(
 var $author$project$VegaLite$soByField = $author$project$VegaLite$ByFieldOp;
 var $author$project$VegaLite$Descending = {$: 1};
 var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
-var $author$project$VegaLite$VLSpec = 23;
-var $author$project$VegaLite$specification = function (spec) {
-	return _Utils_Tuple2(23, spec);
-};
 var $author$project$GalleryFacet$facet6 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -7564,10 +7729,6 @@ var $author$project$VegaLite$AxFormat = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$axFormat = $author$project$VegaLite$AxFormat;
-var $author$project$VegaLite$AxGrid = function (a) {
-	return {$: 63, a: a};
-};
-var $author$project$VegaLite$axGrid = $author$project$VegaLite$AxGrid;
 var $author$project$VegaLite$ChY = 1;
 var $author$project$VegaLite$chY = 1;
 var $author$project$VegaLite$View = function (a) {

@@ -110,14 +110,36 @@ facet5 =
         des =
             description "Anscombe's Quartet"
 
-        enc =
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/anscombe.json" []
+
+        trans =
+            transform
+                << regression "Y" "X" [ rgExtent (num 0) (num 20), rgAs "rx" "ry" ]
+
+        encScatter =
             encoding
-                << position X [ pName "X", pQuant, pScale [ scZero False ] ]
-                << position Y [ pName "Y", pQuant, pScale [ scZero False ] ]
-                << opacity [ mNum 1 ]
-                << column [ fName "Series", fOrdinal ]
+                << position X [ pName "X", pQuant, pAxis [ axTitle "", axGrid False ] ]
+                << position Y [ pName "Y", pQuant, pAxis [ axTitle "", axGrid False ] ]
+
+        encLine =
+            encoding
+                << position X [ pName "rx", pQuant ]
+                << position Y [ pName "ry", pQuant ]
+
+        scatter =
+            asSpec [ encScatter [], circle [ maOpacity 1, maColor "black" ] ]
+
+        rLine =
+            asSpec [ trans [], encLine [], line [ maStrokeWidth 1 ] ]
     in
-    toVegaLite [ des, dataFromUrl "https://vega.github.io/vega-lite/data/anscombe.json" [], circle [], enc [] ]
+    toVegaLite
+        [ des
+        , data
+        , columns 2
+        , facetFlow [ fName "Series", fOrdinal, fHeader [ hdTitle "" ] ]
+        , specification (asSpec [ layer [ scatter, rLine ] ])
+        ]
 
 
 facet6 : Spec
