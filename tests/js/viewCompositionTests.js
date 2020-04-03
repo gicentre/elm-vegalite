@@ -6531,7 +6531,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			return _Utils_Tuple2(
 				'columnPadding',
 				$elm$json$Json$Encode$float(n));
-		case 26:
+		case 27:
 			var n = legendProp.a;
 			return _Utils_Tuple2(
 				'rowPadding',
@@ -6557,7 +6557,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				'direction',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$markOrientationLabel(d)));
-		case 44:
+		case 45:
 			var lType = legendProp.a;
 			if (!lType) {
 				return _Utils_Tuple2(
@@ -6665,100 +6665,106 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				'orient',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$legendOrientLabel(orient)));
-		case 25:
+		case 26:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'padding',
 				$elm$json$Json$Encode$float(x));
-		case 27:
+		case 28:
 			var s = legendProp.a;
 			return _Utils_Tuple2(
 				'strokeColor',
 				$elm$json$Json$Encode$string(s));
-		case 28:
+		case 29:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'strokeWidth',
 				$elm$json$Json$Encode$float(x));
-		case 29:
+		case 30:
 			var s = legendProp.a;
 			return _Utils_Tuple2(
 				'symbolFillColor',
 				$elm$json$Json$Encode$string(s));
-		case 33:
+		case 34:
 			var s = legendProp.a;
 			return _Utils_Tuple2(
 				'symbolStrokeColor',
 				$elm$json$Json$Encode$string(s));
-		case 30:
+		case 31:
 			var s = legendProp.a;
 			return _Utils_Tuple2(
 				'symbolType',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$symbolLabel(s)));
-		case 31:
+		case 32:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'symbolSize',
 				$elm$json$Json$Encode$float(x));
-		case 32:
+		case 33:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'symbolStrokeWidth',
 				$elm$json$Json$Encode$float(x));
-		case 34:
+		case 35:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'tickCount',
 				$elm$json$Json$Encode$float(x));
-		case 35:
+		case 36:
 			var s = legendProp.a;
 			return (s === '') ? _Utils_Tuple2('title', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'title',
 				$author$project$VegaLite$multilineTextSpec(s));
-		case 36:
+		case 37:
 			var ha = legendProp.a;
 			return _Utils_Tuple2(
 				'titleAlign',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(ha)));
-		case 37:
+		case 38:
 			var va = legendProp.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$vAlignLabel(va)));
-		case 38:
+		case 39:
 			var s = legendProp.a;
 			return _Utils_Tuple2(
 				'titleColor',
 				$elm$json$Json$Encode$string(s));
-		case 39:
+		case 40:
 			var s = legendProp.a;
 			return _Utils_Tuple2(
 				'titleFont',
 				$elm$json$Json$Encode$string(s));
-		case 40:
+		case 41:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'titleFontSize',
 				$elm$json$Json$Encode$float(x));
-		case 41:
+		case 42:
 			var fw = legendProp.a;
 			return _Utils_Tuple2(
 				'titleFontWeight',
 				$author$project$VegaLite$fontWeightSpec(fw));
-		case 42:
+		case 43:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'titleLimit',
 				$elm$json$Json$Encode$float(x));
-		case 43:
+		case 25:
+			var orient = legendProp.a;
+			return _Utils_Tuple2(
+				'titleOrient',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$legendOrientLabel(orient)));
+		case 44:
 			var x = legendProp.a;
 			return _Utils_Tuple2(
 				'titlePadding',
 				$elm$json$Json$Encode$float(x));
-		case 45:
+		case 46:
 			var vals = legendProp.a;
 			var list = function () {
 				switch (vals.$) {
@@ -6780,12 +6786,12 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				}
 			}();
 			return _Utils_Tuple2('values', list);
-		case 46:
+		case 47:
 			var n = legendProp.a;
 			return _Utils_Tuple2(
 				'legendX',
 				$elm$json$Json$Encode$float(n));
-		case 47:
+		case 48:
 			var n = legendProp.a;
 			return _Utils_Tuple2(
 				'legendY',
