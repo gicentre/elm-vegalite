@@ -5229,10 +5229,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$elm$json$Json$Encode$bool(false));
 			}
 		case 17:
-			var angle = axisProp.a;
+			var a = axisProp.a;
 			return _Utils_Tuple2(
 				'labelAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 20:
 			var s = axisProp.a;
 			return _Utils_Tuple2(
@@ -5469,10 +5469,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(al)));
 		case 51:
-			var angle = axisProp.a;
+			var a = axisProp.a;
 			return _Utils_Tuple2(
 				'titleAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 50:
 			var an = axisProp.a;
 			return _Utils_Tuple2(
@@ -6913,10 +6913,10 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(ha)));
 		case 12:
-			var angle = axisCfg.a;
+			var a = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 13:
 			var va = axisCfg.a;
 			return _Utils_Tuple2(
@@ -7078,10 +7078,10 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(al)));
 		case 44:
-			var angle = axisCfg.a;
+			var a = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 43:
 			var an = axisCfg.a;
 			return _Utils_Tuple2(
@@ -10156,6 +10156,212 @@ var $author$project$GalleryTable$table6 = function () {
 				$author$project$VegaLite$rect(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Latitude = 9;
+var $author$project$VegaLite$Longitude = 8;
+var $author$project$VegaLite$angle = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'angle',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doNums = $author$project$VegaLite$DNumbers;
+var $author$project$VegaLite$EqualEarth = {$: 9};
+var $author$project$VegaLite$equalEarth = $author$project$VegaLite$EqualEarth;
+var $author$project$VegaLite$Geoshape = 7;
+var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
+var $author$project$VegaLite$MScale = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$MFilled = function (a) {
+	return {$: 29, a: a};
+};
+var $author$project$VegaLite$maFilled = $author$project$VegaLite$MFilled;
+var $author$project$VegaLite$MShape = function (a) {
+	return {$: 49, a: a};
+};
+var $author$project$VegaLite$maShape = $author$project$VegaLite$MShape;
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 52, a: a};
+};
+var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 60, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$Point = 10;
+var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
+var $author$project$VegaLite$PType = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$prType = $author$project$VegaLite$PType;
+var $author$project$VegaLite$VLProjection = 14;
+var $author$project$VegaLite$projection = function (pProps) {
+	return _Utils_Tuple2(
+		14,
+		$elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pProps)));
+};
+var $author$project$VegaLite$RNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$SRange = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$SScheme = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
+var $author$project$VegaLite$SymWedge = {$: 11};
+var $author$project$VegaLite$symWedge = $author$project$VegaLite$SymWedge;
+var $author$project$VegaLite$TopojsonFeature = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$topojsonFeature = $author$project$VegaLite$TopojsonFeature;
+var $author$project$VegaLite$VFill = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$vicoFill = $author$project$VegaLite$VFill;
+var $author$project$GalleryTable$table7 = function () {
+	var proj = $author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$prType($author$project$VegaLite$equalEarth)
+			]));
+	var geoData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://gicentre.github.io/data/europe/nwEuropeLand.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('ne_10m_land')
+			]));
+	var geoSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				geoData,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('white'),
+						$author$project$VegaLite$maStrokeWidth(0.4),
+						$author$project$VegaLite$maFilled(false)
+					]))
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$encoding,
+						A2(
+							$author$project$VegaLite$position,
+							8,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('longitude'),
+									$author$project$VegaLite$pQuant
+								]))),
+					A2(
+						$author$project$VegaLite$position,
+						9,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('latitude'),
+								$author$project$VegaLite$pQuant
+							]))),
+				$author$project$VegaLite$color(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mName('dir'),
+							$author$project$VegaLite$mQuant,
+							$author$project$VegaLite$mLegend(_List_Nil),
+							$author$project$VegaLite$mScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scDomain(
+									$author$project$VegaLite$doNums(
+										_List_fromArray(
+											[0, 360]))),
+									A2($author$project$VegaLite$scScheme, 'rainbow', _List_Nil)
+								]))
+						]))),
+			$author$project$VegaLite$angle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mName('dir'),
+						$author$project$VegaLite$mQuant,
+						$author$project$VegaLite$mScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scDomain(
+								$author$project$VegaLite$doNums(
+									_List_fromArray(
+										[0, 360]))),
+								$author$project$VegaLite$scRange(
+								$author$project$VegaLite$raNums(
+									_List_fromArray(
+										[180, 540])))
+							]))
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('speed'),
+					$author$project$VegaLite$mQuant
+				])));
+	var des = $author$project$VegaLite$description('Vector array map showing wind speed and direction.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/windvectors.csv', _List_Nil);
+	var windSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maShape($author$project$VegaLite$symWedge)
+					]))
+			]));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStep(10),
+						$author$project$VegaLite$vicoFill(
+						$elm$core$Maybe$Just('black'))
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				cfg(_List_Nil),
+				$author$project$VegaLite$width(600),
+				$author$project$VegaLite$height(560),
+				proj,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[geoSpec, windSpec]))
+			]));
+}();
 var $author$project$GalleryTable$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -10164,7 +10370,8 @@ var $author$project$GalleryTable$mySpecs = $author$project$VegaLite$combineSpecs
 			_Utils_Tuple2('table3', $author$project$GalleryTable$table3),
 			_Utils_Tuple2('table4', $author$project$GalleryTable$table4),
 			_Utils_Tuple2('table5', $author$project$GalleryTable$table5),
-			_Utils_Tuple2('table6', $author$project$GalleryTable$table6)
+			_Utils_Tuple2('table6', $author$project$GalleryTable$table6),
+			_Utils_Tuple2('table7', $author$project$GalleryTable$table7)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

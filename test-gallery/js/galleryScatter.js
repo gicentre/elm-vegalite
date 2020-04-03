@@ -6028,10 +6028,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$elm$json$Json$Encode$bool(false));
 			}
 		case 17:
-			var angle = axisProp.a;
+			var a = axisProp.a;
 			return _Utils_Tuple2(
 				'labelAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 20:
 			var s = axisProp.a;
 			return _Utils_Tuple2(
@@ -6268,10 +6268,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(al)));
 		case 51:
-			var angle = axisProp.a;
+			var a = axisProp.a;
 			return _Utils_Tuple2(
 				'titleAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 50:
 			var an = axisProp.a;
 			return _Utils_Tuple2(
@@ -8193,10 +8193,10 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(ha)));
 		case 12:
-			var angle = axisCfg.a;
+			var a = axisCfg.a;
 			return _Utils_Tuple2(
 				'labelAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 13:
 			var va = axisCfg.a;
 			return _Utils_Tuple2(
@@ -8358,10 +8358,10 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$hAlignLabel(al)));
 		case 44:
-			var angle = axisCfg.a;
+			var a = axisCfg.a;
 			return _Utils_Tuple2(
 				'titleAngle',
-				$elm$json$Json$Encode$float(angle));
+				$elm$json$Json$Encode$float(a));
 		case 43:
 			var an = axisCfg.a;
 			return _Utils_Tuple2(
