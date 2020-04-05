@@ -22,6 +22,7 @@
 
 ### Other Changes
 
+- Calling `dataFromRows` or `dataFromColumns` without `dataRow` / `dataColumn` now generates an empty dataset that can be useful for creating annotation layers with literals.
 - Minor improvements to the API documentation.
 - Additions to tests for new VL4.9 features
 - New gallery examples.

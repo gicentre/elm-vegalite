@@ -8767,20 +8767,24 @@ using [dataFromJson](#dataFromJson).
 -}
 dataFromColumns : List Format -> List DataColumn -> Data
 dataFromColumns fmts cols =
-    let
-        dataArray =
-            cols |> transpose |> JE.list JE.object
-    in
-    if fmts == [] then
-        ( VLData, JE.object [ ( "values", dataArray ) ] )
+    if cols == [] then
+        ( VLData, JE.object [ ( "values", toList [ JE.object [] ] ) ] )
 
     else
-        ( VLData
-        , JE.object
-            [ ( "values", dataArray )
-            , ( "format", JE.object (List.concatMap formatProperties fmts) )
-            ]
-        )
+        let
+            dataArray =
+                cols |> transpose |> JE.list JE.object
+        in
+        if fmts == [] then
+            ( VLData, JE.object [ ( "values", dataArray ) ] )
+
+        else
+            ( VLData
+            , JE.object
+                [ ( "values", dataArray )
+                , ( "format", JE.object (List.concatMap formatProperties fmts) )
+                ]
+            )
 
 
 {-| Declare a data source from a json specification. The most likely use-case is
@@ -8857,7 +8861,10 @@ complex inline data tables, such as mixtures of arrays and objects, consider usi
 -}
 dataFromRows : List Format -> List DataRow -> Data
 dataFromRows fmts rows =
-    if fmts == [] then
+    if rows == [] then
+        ( VLData, JE.object [ ( "values", toList [ JE.object [] ] ) ] )
+
+    else if fmts == [] then
         ( VLData, JE.object [ ( "values", toList rows ) ] )
 
     else
