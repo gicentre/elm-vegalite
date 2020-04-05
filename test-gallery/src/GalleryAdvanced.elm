@@ -496,7 +496,7 @@ advanced13 =
                 << density "value"
                     [ dnBandwidth 0.3
                     , dnGroupBy [ "measurement" ]
-                    , dnExtent (num 0) (num 8)
+                    , dnExtent 0 8
                     , dnSteps 200
                     ]
 

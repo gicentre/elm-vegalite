@@ -233,7 +233,7 @@ transform10 =
                 -- calculateAs transform first to test that order of transforms is preserved.
                 << calculateAs "datum.IMDB_Rating" "imdbRating"
                 << calculateAs "datum.Rotten_Tomatoes_Rating" "rtRating"
-                << regression "imdbRating" "rtRating" [ rgMethod rgPoly, rgOrder 3, rgExtent (num 10) (num 90) ]
+                << regression "imdbRating" "rtRating" [ rgMethod rgPoly, rgOrder 3, rgExtent 10 90 ]
 
         enc1 =
             encoding

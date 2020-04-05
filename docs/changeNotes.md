@@ -8,6 +8,8 @@
 
 * `hdTitleFontWeight` now correctly uses a `FontWeight` parameter (`Bold`, `W300` etc.) rather than a string. The string version inadvertently slipped through in earlier versions. Any specifications that use a String for the weight can use the equivalent `FontWeight` variant.
 
+- `rgExtent` and `dnExtent` now take two floats as the extent values rather than `DataValue` types. To update previous code replace `(num x0) (num x1)` with `x0 x1` where `x0` and `x1` are the minimum and maximum numeric values of the extent.
+
 ## Additions
 
 - `pDatum` for specifying a literal data-driven positioning (VL.4.9).

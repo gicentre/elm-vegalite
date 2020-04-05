@@ -4226,7 +4226,7 @@ type DensityProperty
     | DnCumulative Bool
     | DnCounts Bool
     | DnBandwidth Float
-    | DnExtent DataValue DataValue
+    | DnExtent Float Float
     | DnMinSteps Int
     | DnMaxSteps Int
     | DnSteps Int
@@ -5215,7 +5215,7 @@ type RegressionProperty
     = RgGroupBy (List String)
     | RgMethod RegressionMethod
     | RgOrder Int
-    | RgExtent DataValue DataValue
+    | RgExtent Float Float
     | RgAs String String
 
 
@@ -9188,7 +9188,7 @@ dnCumulative =
 a distribution for density estimation. If unspecified, the full extent of input
 values will be sampled.
 -}
-dnExtent : DataValue -> DataValue -> DensityProperty
+dnExtent : Float -> Float -> DensityProperty
 dnExtent =
     DnExtent
 
@@ -14911,7 +14911,7 @@ rgExp =
 the dependent variable in a regression. If unspecified, the full extent of input
 values will be used.
 -}
-rgExtent : DataValue -> DataValue -> RegressionProperty
+rgExtent : Float -> Float -> RegressionProperty
 rgExtent =
     RgExtent
 
@@ -18983,7 +18983,7 @@ densityProperty denProp =
             ( "bandwidth", JE.float x )
 
         DnExtent mn mx ->
-            ( "extent", JE.list dataValueSpec [ mn, mx ] )
+            ( "extent", JE.list JE.float [ mn, mx ] )
 
         DnMinSteps n ->
             ( "minsteps", JE.int n )
@@ -21149,7 +21149,7 @@ regressionProperty regProp =
             ( "order", JE.int n )
 
         RgExtent mn mx ->
-            ( "extent", JE.list dataValueSpec [ mn, mx ] )
+            ( "extent", JE.list JE.float [ mn, mx ] )
 
         RgAs iField dField ->
             ( "as", JE.list JE.string [ iField, dField ] )

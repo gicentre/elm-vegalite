@@ -295,7 +295,7 @@ scatter13 =
             transform
                 << regression "IMDB_Rating"
                     "Rotten_Tomatoes_Rating"
-                    [ rgMethod rgPoly, rgOrder 3, rgExtent (num 10) (num 90) ]
+                    [ rgMethod rgPoly, rgOrder 3, rgExtent 10 90 ]
 
         enc =
             encoding

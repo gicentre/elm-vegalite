@@ -115,7 +115,7 @@ facet5 =
 
         trans =
             transform
-                << regression "Y" "X" [ rgExtent (num 0) (num 20), rgAs "rx" "ry" ]
+                << regression "Y" "X" [ rgExtent 0 20, rgAs "rx" "ry" ]
 
         encScatter =
             encoding

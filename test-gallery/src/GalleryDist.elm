@@ -108,7 +108,7 @@ dist5 =
                 << density "IMDB_Rating"
                     [ dnBandwidth 0.3
                     , dnGroupBy [ "Major_Genre" ]
-                    , dnExtent (num 0) (num 10)
+                    , dnExtent 0 10
                     , dnCounts True
                     , dnSteps 50
                     ]
