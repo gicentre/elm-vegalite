@@ -88,6 +88,71 @@ line5 : Spec
 line5 =
     let
         des =
+            description "Repeated layers to show different weather measures."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+
+        enc =
+            encoding
+                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position Y [ pRepeat arLayer, pQuant, pAggregate opMean, pTitle "Mean of US and Worldwide Gross" ]
+                << color [ mRepeatDatum arLayer, mNominal ]
+
+        spec =
+            asSpec [ data, enc [], line [] ]
+    in
+    toVegaLite
+        [ des
+        , repeat [ layerFields [ "US_Gross", "Worldwide_Gross" ] ]
+        , specification spec
+        ]
+
+
+line6 : Spec
+line6 =
+    let
+        des =
+            description "Multi-series line chart with halo. Uses pivot and repeat-layer as a workaround to facet groups of lines and their halo strokes."
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        trans =
+            transform
+                << pivot "symbol" "price" [ piGroupBy [ "date" ] ]
+
+        encHalo =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pRepeat arLayer, pQuant, pTitle "price" ]
+                << color [ mRepeatDatum arLayer, mNominal ]
+
+        specHalo =
+            asSpec [ encHalo [], line [ maStroke "white", maStrokeWidth 4 ] ]
+
+        encLine =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pRepeat arLayer, pQuant, pTitle "price" ]
+                << stroke [ mRepeatDatum arLayer, mNominal ]
+
+        specLine =
+            asSpec [ encLine [], line [] ]
+    in
+    toVegaLite
+        [ des
+        , data
+        , trans []
+        , repeat [ layerFields [ "AAPL", "AMZN", "GOOG", "IBM", "MSFT" ] ]
+        , specification (asSpec [ layer [ specHalo, specLine ] ])
+        ]
+
+
+line7 : Spec
+line7 =
+    let
+        des =
             description "Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site."
 
         data =
@@ -102,8 +167,8 @@ line5 =
     toVegaLite [ des, widthStep 50, data, enc [], line [] ]
 
 
-line6 : Spec
-line6 =
+line8 : Spec
+line8 =
     let
         des =
             description "Google's stock price over time (quantized as a step-chart)."
@@ -122,8 +187,8 @@ line6 =
     toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miStepAfter ] ]
 
 
-line7 : Spec
-line7 =
+line9 : Spec
+line9 =
     let
         des =
             description "Google's stock price over time (smoothed with monotonic interpolation)."
@@ -142,8 +207,8 @@ line7 =
     toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miMonotone ] ]
 
 
-line8 : Spec
-line8 =
+line10 : Spec
+line10 =
     let
         des =
             description "Line chart with conditional grid dash."
@@ -179,8 +244,8 @@ line8 =
     toVegaLite [ des, data, trans [], enc [], line [] ]
 
 
-line9 : Spec
-line9 =
+line11 : Spec
+line11 =
     let
         des =
             description "Line chart with conditional axis ticks, labels, and grid."
@@ -226,8 +291,8 @@ line9 =
     toVegaLite [ des, cfg [], width 400, data, trans [], enc [], line [] ]
 
 
-line10 : Spec
-line10 =
+line12 : Spec
+line12 =
     let
         des =
             description "A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition."
@@ -244,8 +309,8 @@ line10 =
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line11 : Spec
-line11 =
+line13 : Spec
+line13 =
     let
         des =
             description "Stock prices of five tech companies over time double encoding price with vertical position and line thickness."
@@ -263,8 +328,8 @@ line11 =
     toVegaLite [ des, data, enc [], trail [] ]
 
 
-line12 : Spec
-line12 =
+line14 : Spec
+line14 =
     let
         des =
             description "Line chart with markers and invalid values."
@@ -287,8 +352,8 @@ line12 =
     toVegaLite [ des, data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line13 : Spec
-line13 =
+line15 : Spec
+line15 =
     let
         des =
             description "Carbon dioxide in the atmosphere."
@@ -372,8 +437,8 @@ line13 =
         ]
 
 
-line14 : Spec
-line14 =
+line16 : Spec
+line16 =
     let
         des =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
@@ -407,8 +472,8 @@ line14 =
     toVegaLite [ des, data [], trans [], enc [], line [ maOrient moVertical ] ]
 
 
-line15 : Spec
-line15 =
+line17 : Spec
+line17 =
     let
         des =
             description "Plots a function using a generated sequence"
@@ -440,8 +505,8 @@ line15 =
     toVegaLite [ des, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
 
 
-line16 : Spec
-line16 =
+line18 : Spec
+line18 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
@@ -455,8 +520,8 @@ line16 =
     toVegaLite [ data, enc [], line [] ]
 
 
-line17 : Spec
-line17 =
+line19 : Spec
+line19 =
     let
         data =
             dataFromColumns []
@@ -499,6 +564,8 @@ mySpecs =
         , ( "line15", line15 )
         , ( "line16", line16 )
         , ( "line17", line17 )
+        , ( "line18", line18 )
+        , ( "line18", line19 )
         ]
 
 

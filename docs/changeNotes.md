@@ -4,9 +4,13 @@
 
 ## Breaking Changes
 
-- New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't to break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
+- New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
 
 ## Additions
+
+- `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
+
+* `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
 
 - `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
