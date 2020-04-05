@@ -4088,7 +4088,7 @@ var $author$project$VegaLite$height = function (h) {
 		$elm$json$Json$Encode$float(h));
 };
 var $author$project$VegaLite$PAxis = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
 var $author$project$VegaLite$PName = function (a) {
@@ -4096,12 +4096,12 @@ var $author$project$VegaLite$PName = function (a) {
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
 var $author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
+	return {$: 6, a: a};
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PScale = function (a) {
-	return {$: 11, a: a};
+	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$Temporal = 3;
@@ -6602,35 +6602,40 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			return _Utils_Tuple2(
 				'field',
 				$elm$json$Json$Encode$string(s));
-		case 5:
+		case 1:
+			var d = pDef.a;
+			return _Utils_Tuple2(
+				'datum',
+				$author$project$VegaLite$dataValueSpec(d));
+		case 6:
 			var measure = pDef.a;
 			return _Utils_Tuple2(
 				'type',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$measurementLabel(measure)));
-		case 6:
+		case 7:
 			var bps = pDef.a;
 			return $author$project$VegaLite$bin(bps);
-		case 7:
+		case 8:
 			return _Utils_Tuple2(
 				'bin',
 				$elm$json$Json$Encode$string('binned'));
-		case 10:
+		case 11:
 			var op = pDef.a;
 			return _Utils_Tuple2(
 				'aggregate',
 				$author$project$VegaLite$operationSpec(op));
-		case 8:
+		case 9:
 			var tu = pDef.a;
 			return _Utils_Tuple2(
 				'timeUnit',
 				$author$project$VegaLite$timeUnitSpec(tu));
-		case 9:
+		case 10:
 			var t = pDef.a;
 			return _Utils_Tuple2(
 				'title',
 				$author$project$VegaLite$multilineTextSpec(t));
-		case 13:
+		case 14:
 			var sps = pDef.a;
 			_v1$4:
 			while (true) {
@@ -6667,27 +6672,27 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 				'sort',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)));
-		case 14:
+		case 15:
 			var x = pDef.a;
 			return _Utils_Tuple2(
 				'band',
 				$elm$json$Json$Encode$float(x));
-		case 11:
+		case 12:
 			var sps = pDef.a;
 			return _Utils_eq(sps, _List_Nil) ? _Utils_Tuple2('scale', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'scale',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$scaleProperty, sps)));
-		case 12:
+		case 13:
 			var aps = pDef.a;
 			return _Utils_eq(aps, _List_Nil) ? _Utils_Tuple2('axis', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'axis',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisProperty, aps)));
-		case 15:
+		case 16:
 			var so = pDef.a;
 			return $author$project$VegaLite$stackOffsetProperty(so);
-		case 4:
+		case 5:
 			var arr = pDef.a;
 			return _Utils_Tuple2(
 				'field',
@@ -6699,15 +6704,15 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 							$elm$json$Json$Encode$string(
 								$author$project$VegaLite$arrangementLabel(arr)))
 						])));
-		case 1:
-			return _Utils_Tuple2(
-				'value',
-				$elm$json$Json$Encode$string('width'));
 		case 2:
 			return _Utils_Tuple2(
 				'value',
-				$elm$json$Json$Encode$string('height'));
+				$elm$json$Json$Encode$string('width'));
 		case 3:
+			return _Utils_Tuple2(
+				'value',
+				$elm$json$Json$Encode$string('height'));
+		case 4:
 			var x = pDef.a;
 			return _Utils_Tuple2(
 				'value',
@@ -7614,15 +7619,15 @@ var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
 var $author$project$VegaLite$PAggregate = function (a) {
-	return {$: 10, a: a};
+	return {$: 11, a: a};
 };
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
 var $author$project$VegaLite$PBin = function (a) {
-	return {$: 6, a: a};
+	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
 var $author$project$VegaLite$PRepeat = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$pRepeat = $author$project$VegaLite$PRepeat;
 var $author$project$VegaLite$Parse = function (a) {
@@ -9936,7 +9941,7 @@ var $elm$core$Basics$negate = function (n) {
 };
 var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 9, a: a};
+	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RHeatmap = function (a) {
@@ -10289,7 +10294,7 @@ var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
 var $author$project$VegaLite$MonthDate = {$: 11};
 var $author$project$VegaLite$monthDate = $author$project$VegaLite$MonthDate;
 var $author$project$VegaLite$PTimeUnit = function (a) {
-	return {$: 8, a: a};
+	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
 var $author$project$VegaLite$SeMulti = 1;

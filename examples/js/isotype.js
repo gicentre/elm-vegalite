@@ -8857,7 +8857,19 @@ var $author$project$VegaLite$formatProperties = function (fmt) {
 };
 var $author$project$VegaLite$dataFromRows = F2(
 	function (fmts, rows) {
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+		return _Utils_eq(rows, _List_Nil) ? _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						$author$project$VegaLite$toList(
+							_List_fromArray(
+								[
+									$elm$json$Json$Encode$object(_List_Nil)
+								])))
+					]))) : (_Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
 			10,
 			$elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -8877,7 +8889,7 @@ var $author$project$VegaLite$dataFromRows = F2(
 						'format',
 						$elm$json$Json$Encode$object(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
-					])));
+					]))));
 	});
 var $author$project$VegaLite$VLEncoding = 15;
 var $author$project$VegaLite$encoding = function (channels) {
@@ -9108,7 +9120,7 @@ var $author$project$VegaLite$opacity = function (markProps) {
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
 var $author$project$VegaLite$PAxis = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
 var $author$project$VegaLite$PName = function (a) {
@@ -9117,7 +9129,7 @@ var $author$project$VegaLite$PName = function (a) {
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$PmType = function (a) {
-	return {$: 5, a: a};
+	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$Point = 10;
@@ -9293,35 +9305,40 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			return _Utils_Tuple2(
 				'field',
 				$elm$json$Json$Encode$string(s));
-		case 5:
+		case 1:
+			var d = pDef.a;
+			return _Utils_Tuple2(
+				'datum',
+				$author$project$VegaLite$dataValueSpec(d));
+		case 6:
 			var measure = pDef.a;
 			return _Utils_Tuple2(
 				'type',
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$measurementLabel(measure)));
-		case 6:
+		case 7:
 			var bps = pDef.a;
 			return $author$project$VegaLite$bin(bps);
-		case 7:
+		case 8:
 			return _Utils_Tuple2(
 				'bin',
 				$elm$json$Json$Encode$string('binned'));
-		case 10:
+		case 11:
 			var op = pDef.a;
 			return _Utils_Tuple2(
 				'aggregate',
 				$author$project$VegaLite$operationSpec(op));
-		case 8:
+		case 9:
 			var tu = pDef.a;
 			return _Utils_Tuple2(
 				'timeUnit',
 				$author$project$VegaLite$timeUnitSpec(tu));
-		case 9:
+		case 10:
 			var t = pDef.a;
 			return _Utils_Tuple2(
 				'title',
 				$author$project$VegaLite$multilineTextSpec(t));
-		case 13:
+		case 14:
 			var sps = pDef.a;
 			_v1$4:
 			while (true) {
@@ -9358,27 +9375,27 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 				'sort',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)));
-		case 14:
+		case 15:
 			var x = pDef.a;
 			return _Utils_Tuple2(
 				'band',
 				$elm$json$Json$Encode$float(x));
-		case 11:
+		case 12:
 			var sps = pDef.a;
 			return _Utils_eq(sps, _List_Nil) ? _Utils_Tuple2('scale', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'scale',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$scaleProperty, sps)));
-		case 12:
+		case 13:
 			var aps = pDef.a;
 			return _Utils_eq(aps, _List_Nil) ? _Utils_Tuple2('axis', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'axis',
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$axisProperty, aps)));
-		case 15:
+		case 16:
 			var so = pDef.a;
 			return $author$project$VegaLite$stackOffsetProperty(so);
-		case 4:
+		case 5:
 			var arr = pDef.a;
 			return _Utils_Tuple2(
 				'field',
@@ -9390,15 +9407,15 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 							$elm$json$Json$Encode$string(
 								$author$project$VegaLite$arrangementLabel(arr)))
 						])));
-		case 1:
-			return _Utils_Tuple2(
-				'value',
-				$elm$json$Json$Encode$string('width'));
 		case 2:
 			return _Utils_Tuple2(
 				'value',
-				$elm$json$Json$Encode$string('height'));
+				$elm$json$Json$Encode$string('width'));
 		case 3:
+			return _Utils_Tuple2(
+				'value',
+				$elm$json$Json$Encode$string('height'));
+		case 4:
 			var x = pDef.a;
 			return _Utils_Tuple2(
 				'value',
@@ -10000,27 +10017,43 @@ var $author$project$VegaLite$transpose = function (xss) {
 };
 var $author$project$VegaLite$dataFromColumns = F2(
 	function (fmts, cols) {
-		var dataArray = A2(
-			$elm$json$Json$Encode$list,
-			$elm$json$Json$Encode$object,
-			$author$project$VegaLite$transpose(cols));
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray)
-					]))) : _Utils_Tuple2(
-			10,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2('values', dataArray),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
-					])));
+		if (_Utils_eq(cols, _List_Nil)) {
+			return _Utils_Tuple2(
+				10,
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'values',
+							$author$project$VegaLite$toList(
+								_List_fromArray(
+									[
+										$elm$json$Json$Encode$object(_List_Nil)
+									])))
+						])));
+		} else {
+			var dataArray = A2(
+				$elm$json$Json$Encode$list,
+				$elm$json$Json$Encode$object,
+				$author$project$VegaLite$transpose(cols));
+			return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+				10,
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('values', dataArray)
+						]))) : _Utils_Tuple2(
+				10,
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('values', dataArray),
+							_Utils_Tuple2(
+							'format',
+							$elm$json$Json$Encode$object(
+								A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+						])));
+		}
 	});
 var $author$project$VegaLite$MPath = function (a) {
 	return {$: 14, a: a};
