@@ -8,17 +8,19 @@
 
 ## Additions
 
-- `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
+- `pDatum` for literal data-driven positioning (VL.4.9).
 
-* `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
+* `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
 
-- `angle` channel for data-driven rotation of point and text symbols (VL4.9).
+- `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
 
-* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+* `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
-- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+- `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
 
-* `leTitleOrient` for positioning a title relative to legend content.
+* `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+
+- `leTitleOrient` for positioning a title relative to legend content.
 
 ### Other Changes
 

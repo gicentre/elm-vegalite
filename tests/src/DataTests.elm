@@ -656,9 +656,65 @@ annotate1 =
     toVegaLite [ data [], layer [ specBars, specText ] ]
 
 
+datum1 : Spec
+datum1 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        enc1 =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [ axGrid False ] ]
+                << position Y [ pName "price", pQuant, pAxis [ axGrid False ] ]
+                << color [ mName "symbol", mNominal ]
+
+        spec1 =
+            asSpec [ data, enc1 [], line [] ]
+
+        emptyData =
+            dataFromColumns []
+
+        enc2 =
+            encoding
+                << position Y [ pDatum (num 200) ]
+
+        spec2 =
+            asSpec [ emptyData [], enc2 [], rule [ maStrokeDash [ 2, 2 ] ] ]
+    in
+    toVegaLite [ layer [ spec1, spec2 ] ]
+
+
+datum2 : Spec
+datum2 =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
+        enc1 =
+            encoding
+                << position X [ pName "date", pTemporal, pAxis [ axGrid False ] ]
+                << position Y [ pName "price", pQuant, pAxis [ axGrid False ] ]
+                << color [ mName "symbol", mNominal ]
+
+        spec1 =
+            asSpec [ data, enc1 [], line [] ]
+
+        emptyData =
+            dataFromColumns []
+
+        enc2 =
+            encoding
+                << position X [ pDatum (dt [ dtYear 2006 ]) ]
+
+        spec2 =
+            asSpec [ emptyData [], enc2 [], rule [ maStrokeDash [ 2, 2 ] ] ]
+    in
+    toVegaLite [ layer [ spec1, spec2 ] ]
+
+
 sourceExample : Spec
 sourceExample =
-    domain1
+    datum2
 
 
 
@@ -707,6 +763,8 @@ mySpecs =
         , ( "filter1", filter1 )
         , ( "filter2", filter2 )
         , ( "annotate1", annotate1 )
+        , ( "datum1", datum1 )
+        , ( "datum2", datum2 )
         ]
 
 
