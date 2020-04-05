@@ -11882,6 +11882,7 @@ var $author$project$ViewCompositionTests$columns5 = A2(
 			$author$project$VegaLite$hdLabelFontStyle('italic'),
 			$author$project$VegaLite$hdLabelFontWeight(0)
 		]));
+var $author$project$VegaLite$W300 = 6;
 var $author$project$VegaLite$HLabels = function (a) {
 	return {$: 19, a: a};
 };
@@ -11894,57 +11895,10 @@ var $author$project$VegaLite$HTitleFontStyle = function (a) {
 	return {$: 28, a: a};
 };
 var $author$project$VegaLite$hdTitleFontStyle = $author$project$VegaLite$HTitleFontStyle;
-var $author$project$VegaLite$Bolder = 1;
 var $author$project$VegaLite$HTitleFontWeight = function (a) {
 	return {$: 29, a: a};
 };
-var $author$project$VegaLite$Lighter = 2;
-var $author$project$VegaLite$Normal = 3;
-var $author$project$VegaLite$W100 = 4;
-var $author$project$VegaLite$W200 = 5;
-var $author$project$VegaLite$W300 = 6;
-var $author$project$VegaLite$W400 = 7;
-var $author$project$VegaLite$W500 = 8;
-var $author$project$VegaLite$W600 = 9;
-var $author$project$VegaLite$W700 = 10;
-var $author$project$VegaLite$W800 = 11;
-var $author$project$VegaLite$W900 = 12;
-var $elm$core$String$toLower = _String_toLower;
-var $author$project$VegaLite$hdTitleFontWeight = function (fwText) {
-	var fw = function () {
-		var _v0 = $elm$core$String$toLower(
-			$elm$core$String$trim(fwText));
-		switch (_v0) {
-			case 'bold':
-				return 0;
-			case 'bolder':
-				return 1;
-			case 'lighter':
-				return 2;
-			case '100':
-				return 4;
-			case '200':
-				return 5;
-			case '300':
-				return 6;
-			case '400':
-				return 7;
-			case '500':
-				return 8;
-			case '600':
-				return 9;
-			case '700':
-				return 10;
-			case '800':
-				return 11;
-			case '900':
-				return 12;
-			default:
-				return 3;
-		}
-	}();
-	return $author$project$VegaLite$HTitleFontWeight(fw);
-};
+var $author$project$VegaLite$hdTitleFontWeight = $author$project$VegaLite$HTitleFontWeight;
 var $author$project$VegaLite$HTitleLineHeight = function (a) {
 	return {$: 31, a: a};
 };
@@ -11954,7 +11908,7 @@ var $author$project$ViewCompositionTests$columns6 = A2(
 	_List_fromArray(
 		[
 			$author$project$VegaLite$hdTitleFontStyle('italic'),
-			$author$project$VegaLite$hdTitleFontWeight('300'),
+			$author$project$VegaLite$hdTitleFontWeight(6),
 			$author$project$VegaLite$hdTitleBaseline($author$project$VegaLite$vaLineTop),
 			$author$project$VegaLite$hdTitleLineHeight(60),
 			$author$project$VegaLite$hdLabels(false)
@@ -11962,7 +11916,7 @@ var $author$project$ViewCompositionTests$columns6 = A2(
 	_List_fromArray(
 		[
 			$author$project$VegaLite$hdTitleFontStyle('italic'),
-			$author$project$VegaLite$hdTitleFontWeight('300'),
+			$author$project$VegaLite$hdTitleFontWeight(6),
 			$author$project$VegaLite$hdTitleBaseline($author$project$VegaLite$vaLineTop),
 			$author$project$VegaLite$hdTitleLineHeight(60),
 			$author$project$VegaLite$hdLabels(false)

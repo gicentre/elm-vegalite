@@ -6,6 +6,8 @@
 
 - New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
 
+* `hdTitleFontWeight` now correctly uses a `FontWeight` parameter (`Bold`, `W300` etc.) rather than a string. The string version inadvertently slipped through in earlier versions. Any specifications that use a String for the weight can use the equivalent `FontWeight` variant.
+
 ## Additions
 
 - `pDatum` for specifying a literal data-driven positioning (VL.4.9).

@@ -89,13 +89,13 @@ columns6 : Spec
 columns6 =
     genderChart
         [ hdTitleFontStyle "italic"
-        , hdTitleFontWeight "300"
+        , hdTitleFontWeight W300
         , hdTitleBaseline vaLineTop
         , hdTitleLineHeight 60
         , hdLabels False
         ]
         [ hdTitleFontStyle "italic"
-        , hdTitleFontWeight "300"
+        , hdTitleFontWeight W300
         , hdTitleBaseline vaLineTop
         , hdTitleLineHeight 60
         , hdLabels False

@@ -10691,60 +10691,11 @@ hdTitleFontStyle =
     HTitleFontStyle
 
 
-{-| Title font weight in a faceted view. NOTE: In future versions, the parameter
-will be replaced with the [FontWeight](#FontWeight) type. Currently any string
-representation such as `"bold"`, `"lighter"`, `"600"` may be used. Unrecognised
-weight will assumed to be `Normal`.
+{-| Title font weight in a faceted view.
 -}
-hdTitleFontWeight : String -> HeaderProperty
-hdTitleFontWeight fwText =
-    -- TODO: XXX This was mistakenly given a String type signature in a previous
-    -- release but should be FontWeight as with all other fontWeight functions.
-    -- In the next breaking change release - make the parameter FontWeight.
-    -- In the meantime - we can parse the string input directly.
-    let
-        fw =
-            case fwText |> String.trim |> String.toLower of
-                "bold" ->
-                    Bold
-
-                "bolder" ->
-                    Bolder
-
-                "lighter" ->
-                    Lighter
-
-                "100" ->
-                    W100
-
-                "200" ->
-                    W200
-
-                "300" ->
-                    W300
-
-                "400" ->
-                    W400
-
-                "500" ->
-                    W500
-
-                "600" ->
-                    W600
-
-                "700" ->
-                    W700
-
-                "800" ->
-                    W800
-
-                "900" ->
-                    W900
-
-                _ ->
-                    Normal
-    in
-    HTitleFontWeight fw
+hdTitleFontWeight : FontWeight -> HeaderProperty
+hdTitleFontWeight =
+    HTitleFontWeight
 
 
 {-| Maximum length of a header title in a faceted view.
