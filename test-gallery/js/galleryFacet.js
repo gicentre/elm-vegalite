@@ -7428,10 +7428,6 @@ var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 60, a: a};
 };
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$VegaLite$regMethodLabel = function (rm) {
 	switch (rm) {
 		case 0:
@@ -7473,7 +7469,7 @@ var $author$project$VegaLite$regressionProperty = function (regProp) {
 				'extent',
 				A2(
 					$elm$json$Json$Encode$list,
-					$author$project$VegaLite$dataValueSpec,
+					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
 		default:
@@ -7530,10 +7526,7 @@ var $author$project$GalleryFacet$facet5 = function () {
 			'X',
 			_List_fromArray(
 				[
-					A2(
-					$author$project$VegaLite$rgExtent,
-					$author$project$VegaLite$num(0),
-					$author$project$VegaLite$num(20)),
+					A2($author$project$VegaLite$rgExtent, 0, 20),
 					A2($author$project$VegaLite$rgAs, 'rx', 'ry')
 				])));
 	var encScatter = A2(

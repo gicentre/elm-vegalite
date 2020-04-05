@@ -9126,10 +9126,6 @@ var $author$project$VegaLite$MOpacity = function (a) {
 	return {$: 40, a: a};
 };
 var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$regMethodLabel = function (rm) {
@@ -9173,7 +9169,7 @@ var $author$project$VegaLite$regressionProperty = function (regProp) {
 				'extent',
 				A2(
 					$elm$json$Json$Encode$list,
-					$author$project$VegaLite$dataValueSpec,
+					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
 		default:
@@ -9245,10 +9241,7 @@ var $author$project$TransformTests$transform10 = function () {
 				[
 					$author$project$VegaLite$rgMethod($author$project$VegaLite$rgPoly),
 					$author$project$VegaLite$rgOrder(3),
-					A2(
-					$author$project$VegaLite$rgExtent,
-					$author$project$VegaLite$num(10),
-					$author$project$VegaLite$num(90))
+					A2($author$project$VegaLite$rgExtent, 10, 90)
 				])));
 	var enc2 = A2(
 		$elm$core$Basics$composeL,
@@ -11394,7 +11387,7 @@ var $author$project$VegaLite$densityProperty = function (denProp) {
 				'extent',
 				A2(
 					$elm$json$Json$Encode$list,
-					$author$project$VegaLite$dataValueSpec,
+					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
 		case 5:

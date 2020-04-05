@@ -7587,7 +7587,7 @@ var $author$project$VegaLite$densityProperty = function (denProp) {
 				'extent',
 				A2(
 					$elm$json$Json$Encode$list,
-					$author$project$VegaLite$dataValueSpec,
+					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
 		case 5:
@@ -8039,10 +8039,6 @@ var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$GalleryAdvanced$advanced13 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -8064,10 +8060,7 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
 						['measurement'])),
-					A2(
-					$author$project$VegaLite$dnExtent,
-					$author$project$VegaLite$num(0),
-					$author$project$VegaLite$num(8)),
+					A2($author$project$VegaLite$dnExtent, 0, 8),
 					$author$project$VegaLite$dnSteps(200)
 				])));
 	var enc = A2(

@@ -7386,10 +7386,6 @@ var $author$project$GalleryScatter$scatter12 = function () {
 					[pointSpec, trendSpec]))
 			]));
 }();
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$VegaLite$regMethodLabel = function (rm) {
 	switch (rm) {
 		case 0:
@@ -7431,7 +7427,7 @@ var $author$project$VegaLite$regressionProperty = function (regProp) {
 				'extent',
 				A2(
 					$elm$json$Json$Encode$list,
-					$author$project$VegaLite$dataValueSpec,
+					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
 		default:
@@ -7491,10 +7487,7 @@ var $author$project$GalleryScatter$scatter13 = function () {
 				[
 					$author$project$VegaLite$rgMethod($author$project$VegaLite$rgPoly),
 					$author$project$VegaLite$rgOrder(3),
-					A2(
-					$author$project$VegaLite$rgExtent,
-					$author$project$VegaLite$num(10),
-					$author$project$VegaLite$num(90))
+					A2($author$project$VegaLite$rgExtent, 10, 90)
 				])));
 	var regSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(

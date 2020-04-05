@@ -7310,7 +7310,7 @@ var $author$project$VegaLite$densityProperty = function (denProp) {
 				'extent',
 				A2(
 					$elm$json$Json$Encode$list,
-					$author$project$VegaLite$dataValueSpec,
+					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
 		case 5:
@@ -7451,10 +7451,6 @@ var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$VegaLite$PStack = function (a) {
 	return {$: 16, a: a};
 };
@@ -7479,10 +7475,7 @@ var $author$project$GalleryDist$dist5 = function () {
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
 						['Major_Genre'])),
-					A2(
-					$author$project$VegaLite$dnExtent,
-					$author$project$VegaLite$num(0),
-					$author$project$VegaLite$num(10)),
+					A2($author$project$VegaLite$dnExtent, 0, 10),
 					$author$project$VegaLite$dnCounts(true),
 					$author$project$VegaLite$dnSteps(50)
 				])));
