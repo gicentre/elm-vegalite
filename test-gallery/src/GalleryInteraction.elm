@@ -298,6 +298,86 @@ interaction9 : Spec
 interaction9 =
     let
         desc =
+            description "Multi-series line chart with positioned labels and interactive highlight on hover."
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        stockData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+                [ parse [ ( "date", foDate "" ) ] ]
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol !== 'IBM'")
+
+        enc =
+            encoding
+                << color
+                    [ mSelectionCondition (selectionName "myHover")
+                        [ mName "symbol", mNominal, mLegend [] ]
+                        [ mStr "grey" ]
+                    ]
+                << opacity
+                    [ mSelectionCondition (selectionName "myHover")
+                        [ mNum 1 ]
+                        [ mNum 0.2 ]
+                    ]
+
+        enc1 =
+            encoding
+                << position X [ pName "date", pTemporal, pTitle "" ]
+                << position Y [ pName "price", pQuant, pTitle "Price" ]
+
+        sel1 =
+            selection
+                << select "myHover"
+                    seSingle
+                    [ seOn "mouseover"
+                    , seEmpty
+                    , seFields [ "symbol" ]
+                    , seInit [ ( "symbol", str "AAPL" ) ]
+                    ]
+
+        spec1 =
+            asSpec
+                [ enc1 []
+                , layer
+                    [ asSpec
+                        [ description "Transparent layer to make it easier to trigger selection"
+                        , sel1 []
+                        , line [ maStrokeWidth 8, maStroke "transparent" ]
+                        ]
+                    , asSpec [ line [] ]
+                    ]
+                ]
+
+        enc2 =
+            encoding
+                << position X [ pName "date", pTemporal, pAggregate opMax ]
+                << position Y [ pName "price", pQuant, pAggregate (opArgMax (Just "date")) ]
+
+        enc2_1 =
+            encoding
+                << text [ tName "symbol", tNominal ]
+
+        spec2 =
+            asSpec
+                [ enc2 []
+                , layer
+                    [ asSpec [ circle [] ]
+                    , asSpec [ enc2_1 [], textMark [ maAlign haLeft, maDx 4 ] ]
+                    ]
+                ]
+    in
+    toVegaLite [ cfg [], stockData, trans [], enc [], layer [ spec1, spec2 ] ]
+
+
+interaction10 : Spec
+interaction10 =
+    let
+        desc =
             description "Displays labels for all stock prices of the hovered time"
 
         stockData =
@@ -358,8 +438,8 @@ interaction9 =
     toVegaLite [ width 400, height 300, stockData, layer [ spec1, spec2 ] ]
 
 
-interaction10 : Spec
-interaction10 =
+interaction11 : Spec
+interaction11 =
     let
         desc =
             description "Displays tooltips for all stock prices of the hovered time"
@@ -422,8 +502,8 @@ interaction10 =
     toVegaLite [ width 400, height 300, stockData, enc [], layer [ spec1, spec2 ] ]
 
 
-interaction11 : Spec
-interaction11 =
+interaction12 : Spec
+interaction12 =
     let
         stockData =
             dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
@@ -488,8 +568,8 @@ interaction11 =
     toVegaLite [ width 650, height 300, stockData, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
 
 
-interaction12 : Spec
-interaction12 =
+interaction13 : Spec
+interaction13 =
     let
         desc =
             description "Multi Series Line Chart with Tooltip"
@@ -544,8 +624,8 @@ interaction12 =
         ]
 
 
-interaction13 : Spec
-interaction13 =
+interaction14 : Spec
+interaction14 =
     let
         desc =
             description "Drag a rectangular brush to show (first 20) selected points in a table."
@@ -636,8 +716,8 @@ interaction13 =
         ]
 
 
-interaction14 : Spec
-interaction14 =
+interaction15 : Spec
+interaction15 =
     let
         data =
             dataFromColumns []
@@ -669,8 +749,8 @@ interaction14 =
     toVegaLite [ cfg [], data [], sel [], enc [], bar [] ]
 
 
-interaction15 : Spec
-interaction15 =
+interaction16 : Spec
+interaction16 =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
@@ -736,6 +816,7 @@ mySpecs =
         , ( "interaction13", interaction13 )
         , ( "interaction14", interaction14 )
         , ( "interaction15", interaction15 )
+        , ( "interaction16", interaction16 )
         ]
 
 

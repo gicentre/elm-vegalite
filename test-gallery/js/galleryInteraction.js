@@ -9674,6 +9674,8 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$color = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -9719,6 +9721,8 @@ var $author$project$VegaLite$FoDate = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
+var $author$project$VegaLite$AlignLeft = 1;
+var $author$project$VegaLite$haLeft = 1;
 var $author$project$VegaLite$VLHeight = 4;
 var $author$project$VegaLite$height = function (h) {
 	return _Utils_Tuple2(
@@ -9742,6 +9746,25 @@ var $author$project$VegaLite$MmType = function (a) {
 };
 var $author$project$VegaLite$Nominal = 0;
 var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
+var $author$project$VegaLite$MAlign = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$maAlign = $author$project$VegaLite$MAlign;
+var $author$project$VegaLite$MColor = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
+var $author$project$VegaLite$MdX = function (a) {
+	return {$: 24, a: a};
+};
+var $author$project$VegaLite$maDx = $author$project$VegaLite$MdX;
+var $author$project$VegaLite$MdY = function (a) {
+	return {$: 25, a: a};
+};
+var $author$project$VegaLite$maDy = $author$project$VegaLite$MdY;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
 var $author$project$VegaLite$opacity = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -9755,59 +9778,14 @@ var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
-var $author$project$VegaLite$PiGroupBy = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$piGroupBy = $author$project$VegaLite$PiGroupBy;
-var $author$project$VegaLite$pivotProperty = function (pp) {
-	switch (pp.$) {
-		case 0:
-			var fields = pp.a;
-			return _Utils_Tuple2(
-				'groupby',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
-		case 1:
-			var n = pp.a;
-			return _Utils_Tuple2(
-				'limit',
-				$elm$json$Json$Encode$int(n));
-		default:
-			var op = pp.a;
-			return _Utils_Tuple2(
-				'op',
-				$author$project$VegaLite$operationSpec(op));
-	}
-};
-var $author$project$VegaLite$pivot = F3(
-	function (field, valField, pProps) {
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				'multiSpecs',
-				$elm$json$Json$Encode$object(
-					_Utils_ap(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'pivot',
-								$elm$json$Json$Encode$string(field)),
-								_Utils_Tuple2(
-								'value',
-								$elm$json$Json$Encode$string(valField))
-							]),
-						A2($elm$core$List$map, $author$project$VegaLite$pivotProperty, pProps)))));
-	});
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
-var $author$project$VegaLite$Clear = function (a) {
-	return {$: 4, a: a};
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 8, a: a};
 };
-var $author$project$VegaLite$seClear = $author$project$VegaLite$Clear;
-var $author$project$VegaLite$Fields = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
 var $author$project$VegaLite$Nearest = function (a) {
 	return {$: 14, a: a};
 };
@@ -9967,18 +9945,15 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 				]);
 	}
 };
-var $author$project$VegaLite$tooltips = function (tDefss) {
+var $author$project$VegaLite$text = function (tDefs) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
-			'tooltip',
-			A2(
-				$elm$json$Json$Encode$list,
-				function (tDefs) {
-					return $elm$json$Json$Encode$object(
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs));
-				},
-				tDefss)));
+			'text',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
 };
+var $author$project$VegaLite$Text = 14;
+var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
 var $author$project$VegaLite$VLTransform = 13;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -10012,6 +9987,260 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$GalleryInteraction$interaction10 = function () {
+	var trans2 = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiSelection('myTooltip')));
+	var stockData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/stocks.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
+	var sel1_2 = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3(
+			$author$project$VegaLite$select,
+			'myTooltip',
+			$author$project$VegaLite$seSingle,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$seNearest(true),
+					$author$project$VegaLite$seOn('mouseover'),
+					$author$project$VegaLite$seEncodings(
+					_List_fromArray(
+						[$author$project$VegaLite$chX])),
+					$author$project$VegaLite$seEmpty
+				])));
+	var enc2_2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('date'),
+								$author$project$VegaLite$pTemporal
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('price'),
+							$author$project$VegaLite$pQuant
+						]))),
+			$author$project$VegaLite$text(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tName('price'),
+						$author$project$VegaLite$tQuant
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('symbol'),
+					$author$project$VegaLite$mNominal
+				])));
+	var spec2_2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
+						$author$project$VegaLite$maDx(5),
+						$author$project$VegaLite$maDy(-5)
+					])),
+				enc2_2(_List_Nil)
+			]));
+	var enc2_1 = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('date'),
+					$author$project$VegaLite$pTemporal
+				])));
+	var spec2_1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$rule(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maColor('gray')
+					])),
+				enc2_1(_List_Nil)
+			]));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				trans2(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[spec2_1, spec2_2]))
+			]));
+	var enc1_2 = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$opacity(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mSelectionCondition,
+					$author$project$VegaLite$expr('myTooltip'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(1)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(0)
+						]))
+				])));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('date'),
+							$author$project$VegaLite$pTemporal
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('price'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('symbol'),
+					$author$project$VegaLite$mNominal
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc1(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$line(_List_Nil)
+							])),
+						$author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$point(_List_Nil),
+								sel1_2(_List_Nil),
+								enc1_2(_List_Nil)
+							]))
+					]))
+			]));
+	var desc = $author$project$VegaLite$description('Displays labels for all stock prices of the hovered time');
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(400),
+				$author$project$VegaLite$height(300),
+				stockData,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
+var $author$project$VegaLite$PiGroupBy = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$piGroupBy = $author$project$VegaLite$PiGroupBy;
+var $author$project$VegaLite$pivotProperty = function (pp) {
+	switch (pp.$) {
+		case 0:
+			var fields = pp.a;
+			return _Utils_Tuple2(
+				'groupby',
+				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+		case 1:
+			var n = pp.a;
+			return _Utils_Tuple2(
+				'limit',
+				$elm$json$Json$Encode$int(n));
+		default:
+			var op = pp.a;
+			return _Utils_Tuple2(
+				'op',
+				$author$project$VegaLite$operationSpec(op));
+	}
+};
+var $author$project$VegaLite$pivot = F3(
+	function (field, valField, pProps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'pivot',
+								$elm$json$Json$Encode$string(field)),
+								_Utils_Tuple2(
+								'value',
+								$elm$json$Json$Encode$string(valField))
+							]),
+						A2($elm$core$List$map, $author$project$VegaLite$pivotProperty, pProps)))));
+	});
+var $author$project$VegaLite$Clear = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$seClear = $author$project$VegaLite$Clear;
+var $author$project$VegaLite$Fields = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
+var $author$project$VegaLite$tooltips = function (tDefss) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'tooltip',
+			A2(
+				$elm$json$Json$Encode$list,
+				function (tDefs) {
+					return $elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs));
+				},
+				tDefss)));
+};
+var $author$project$GalleryInteraction$interaction11 = function () {
 	var transSelFilter = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -10202,8 +10431,6 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$CSV = {$: 1};
 var $author$project$VegaLite$csv = $author$project$VegaLite$CSV;
 var $author$project$VegaLite$DateTime = function (a) {
@@ -10280,10 +10507,6 @@ var $author$project$VegaLite$MString = function (a) {
 	return {$: 17, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
-var $author$project$VegaLite$MAlign = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$maAlign = $author$project$VegaLite$MAlign;
 var $author$project$VegaLite$MFontWeight = function (a) {
 	return {$: 34, a: a};
 };
@@ -10304,10 +10527,6 @@ var $author$project$VegaLite$PNumber = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
-var $author$project$VegaLite$Encodings = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
 var $author$project$VegaLite$SInit = function (a) {
 	return {$: 9, a: a};
 };
@@ -10317,18 +10536,9 @@ var $author$project$VegaLite$TTimeUnit = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$tTimeUnit = $author$project$VegaLite$TTimeUnit;
-var $author$project$VegaLite$text = function (tDefs) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'text',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
-};
-var $author$project$VegaLite$Text = 14;
-var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
 var $author$project$VegaLite$YearMonth = {$: 3};
 var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
-var $author$project$GalleryInteraction$interaction11 = function () {
+var $author$project$GalleryInteraction$interaction12 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10537,10 +10747,6 @@ var $author$project$VegaLite$Axis = F2(
 		return {$: 2, a: a, b: b};
 	});
 var $author$project$VegaLite$coAxisY = $author$project$VegaLite$Axis(2);
-var $author$project$VegaLite$MColor = function (a) {
-	return {$: 9, a: a};
-};
-var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
 var $author$project$VegaLite$Not = function (a) {
 	return {$: 7, a: a};
 };
@@ -10551,7 +10757,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
 var $author$project$VegaLite$YearMonthDate = {$: 4};
 var $author$project$VegaLite$yearMonthDate = $author$project$VegaLite$YearMonthDate;
-var $author$project$GalleryInteraction$interaction12 = function () {
+var $author$project$GalleryInteraction$interaction13 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -10983,7 +11189,7 @@ var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
 var $author$project$VegaLite$RowNumber = 0;
 var $author$project$VegaLite$woRowNumber = 0;
-var $author$project$GalleryInteraction$interaction13 = function () {
+var $author$project$GalleryInteraction$interaction14 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11209,7 +11415,7 @@ var $author$project$VegaLite$VStep = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$vicoStep = $author$project$VegaLite$VStep;
-var $author$project$GalleryInteraction$interaction14 = function () {
+var $author$project$GalleryInteraction$interaction15 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -11369,7 +11575,7 @@ var $author$project$VegaLite$ByChannel = function (a) {
 var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
 var $author$project$VegaLite$Descending = {$: 1};
 var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
-var $author$project$GalleryInteraction$interaction15 = function () {
+var $author$project$GalleryInteraction$interaction16 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -12217,25 +12423,34 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 					[spec1, spec2]))
 			]));
 }();
-var $author$project$VegaLite$AlignLeft = 1;
-var $author$project$VegaLite$haLeft = 1;
-var $author$project$VegaLite$MdX = function (a) {
-	return {$: 24, a: a};
+var $author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
 };
-var $author$project$VegaLite$maDx = $author$project$VegaLite$MdX;
-var $author$project$VegaLite$MdY = function (a) {
-	return {$: 25, a: a};
+var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
+var $author$project$VegaLite$MLegend = function (a) {
+	return {$: 12, a: a};
 };
-var $author$project$VegaLite$maDy = $author$project$VegaLite$MdY;
-var $elm$core$Basics$negate = function (n) {
-	return -n;
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$ArgMax = function (a) {
+	return {$: 0, a: a};
 };
+var $author$project$VegaLite$opArgMax = $author$project$VegaLite$ArgMax;
+var $author$project$VegaLite$Max = {$: 6};
+var $author$project$VegaLite$opMax = $author$project$VegaLite$Max;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$VegaLite$Str = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$str = $author$project$VegaLite$Str;
 var $author$project$GalleryInteraction$interaction9 = function () {
-	var trans2 = A2(
+	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiSelection('myTooltip')));
+			$author$project$VegaLite$fiExpr('datum.symbol !== \'IBM\'')));
 	var stockData = A2(
 		$author$project$VegaLite$dataFromUrl,
 		'https://vega.github.io/vega-lite/data/stocks.csv',
@@ -12249,146 +12464,109 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 						$author$project$VegaLite$foDate(''))
 					]))
 			]));
-	var sel1_2 = A2(
+	var sel1 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
 		A3(
 			$author$project$VegaLite$select,
-			'myTooltip',
+			'myHover',
 			$author$project$VegaLite$seSingle,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seNearest(true),
 					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seEncodings(
+					$author$project$VegaLite$seEmpty,
+					$author$project$VegaLite$seFields(
 					_List_fromArray(
-						[$author$project$VegaLite$chX])),
-					$author$project$VegaLite$seEmpty
-				])));
-	var enc2_2 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					$author$project$VegaLite$encoding,
-					A2(
-						$author$project$VegaLite$position,
-						0,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('date'),
-								$author$project$VegaLite$pTemporal
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					1,
+						['symbol'])),
+					$author$project$VegaLite$seInit(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('price'),
-							$author$project$VegaLite$pQuant
-						]))),
-			$author$project$VegaLite$text(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$tName('price'),
-						$author$project$VegaLite$tQuant
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+							_Utils_Tuple2(
+							'symbol',
+							$author$project$VegaLite$str('AAPL'))
+						]))
 				])));
-	var spec2_2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
-						$author$project$VegaLite$maDx(5),
-						$author$project$VegaLite$maDy(-5)
-					])),
-				enc2_2(_List_Nil)
-			]));
 	var enc2_1 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			0,
+		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('date'),
-					$author$project$VegaLite$pTemporal
+					$author$project$VegaLite$tName('symbol'),
+					$author$project$VegaLite$tNominal
 				])));
-	var spec2_1 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$rule(
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maColor('gray')
-					])),
-				enc2_1(_List_Nil)
-			]));
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('price'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAggregate(
+					$author$project$VegaLite$opArgMax(
+						$elm$core$Maybe$Just('date')))
+				])));
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				trans2(_List_Nil),
+				enc2(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[spec2_1, spec2_2]))
+					[
+						$author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$circle(_List_Nil)
+							])),
+						$author$project$VegaLite$asSpec(
+						_List_fromArray(
+							[
+								enc2_1(_List_Nil),
+								$author$project$VegaLite$textMark(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
+										$author$project$VegaLite$maDx(4)
+									]))
+							]))
+					]))
 			]));
-	var enc1_2 = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		$author$project$VegaLite$opacity(
-			_List_fromArray(
-				[
-					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$expr('myTooltip'),
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mNum(1)
-						]),
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mNum(0)
-						]))
-				])));
 	var enc1 = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal
-						]))),
+			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				1,
+				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('price'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pTitle('')
 					]))),
-		$author$project$VegaLite$color(
+		A2(
+			$author$project$VegaLite$position,
+			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$pName('price'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pTitle('Price')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12400,24 +12578,76 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 						$author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$line(_List_Nil)
+								$author$project$VegaLite$description('Transparent layer to make it easier to trigger selection'),
+								sel1(_List_Nil),
+								$author$project$VegaLite$line(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$maStrokeWidth(8),
+										$author$project$VegaLite$maStroke('transparent')
+									]))
 							])),
 						$author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$point(_List_Nil),
-								sel1_2(_List_Nil),
-								enc1_2(_List_Nil)
+								$author$project$VegaLite$line(_List_Nil)
 							]))
 					]))
 			]));
-	var desc = $author$project$VegaLite$description('Displays labels for all stock prices of the hovered time');
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						A3(
+						$author$project$VegaLite$mSelectionCondition,
+						$author$project$VegaLite$selectionName('myHover'),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mName('symbol'),
+								$author$project$VegaLite$mNominal,
+								$author$project$VegaLite$mLegend(_List_Nil)
+							]),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mStr('grey')
+							]))
+					]))),
+		$author$project$VegaLite$opacity(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mSelectionCondition,
+					$author$project$VegaLite$selectionName('myHover'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(1)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(0.2)
+						]))
+				])));
+	var desc = $author$project$VegaLite$description('Multi-series line chart with positioned labels and interactive highlight on hover.');
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$width(400),
-				$author$project$VegaLite$height(300),
+				cfg(_List_Nil),
 				stockData,
+				trans(_List_Nil),
+				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -12440,7 +12670,8 @@ var $author$project$GalleryInteraction$mySpecs = $author$project$VegaLite$combin
 			_Utils_Tuple2('interaction12', $author$project$GalleryInteraction$interaction12),
 			_Utils_Tuple2('interaction13', $author$project$GalleryInteraction$interaction13),
 			_Utils_Tuple2('interaction14', $author$project$GalleryInteraction$interaction14),
-			_Utils_Tuple2('interaction15', $author$project$GalleryInteraction$interaction15)
+			_Utils_Tuple2('interaction15', $author$project$GalleryInteraction$interaction15),
+			_Utils_Tuple2('interaction16', $author$project$GalleryInteraction$interaction16)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
