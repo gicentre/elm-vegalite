@@ -15717,7 +15717,7 @@ selected =
 
     sel =
         selection
-            << select "view" seInterval [ seBindScales ] []
+            << select "view" seInterval [ seBindScales ]
             << select "myBrush" seInterval []
             << select "myPaintbrush" seMulti [ seOn "mouseover", seNearest True ]
 
