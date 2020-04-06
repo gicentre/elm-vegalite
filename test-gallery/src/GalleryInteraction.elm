@@ -734,12 +734,23 @@ interaction15 =
                 << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
                 << configuration (coRange [ racoRamp "yellowgreenblue" ])
                 << configuration (coView [ vicoStep 40 ])
+                << configuration (coAxis [ axcoDomain False ])
+                << configuration (coAxis [ axcoLabelAngle 0 ] |> coAxisXFilter)
 
         enc =
             encoding
                 << position X [ pName "predicted", pNominal ]
                 << position Y [ pName "actual", pNominal ]
-                << color [ mName "count", mQuant ]
+                << fill [ mName "count", mQuant ]
+                << stroke
+                    [ mDataCondition
+                        [ ( and (selected "highlight")
+                                (expr "length(data(\"highlight_store\"))")
+                          , [ mStr "black" ]
+                          )
+                        ]
+                        [ mStr "" ]
+                    ]
                 << opacity
                     [ mSelectionCondition (selectionName "highlight")
                         [ mNum 1 ]

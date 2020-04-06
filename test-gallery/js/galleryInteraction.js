@@ -11397,10 +11397,76 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 					[specPoint, specHPText, specMPGText, specOriginText]))
 			]));
 }();
+var $author$project$VegaLite$Domain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$axcoDomain = $author$project$VegaLite$Domain;
+var $author$project$VegaLite$LabelAngle = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$positiveAngle = function (a) {
+	return (a < 0) ? (a + 360) : a;
+};
+var $author$project$VegaLite$axcoLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$LabelAngle, $author$project$VegaLite$positiveAngle);
+var $author$project$VegaLite$AxBoth = 0;
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
+var $author$project$VegaLite$AxisBand = F2(
+	function (a, b) {
+		return {$: 8, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisDiscrete = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisPoint = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisQuant = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisTemporal = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$axX = 1;
+var $author$project$VegaLite$coAxisXFilter = function (cp) {
+	switch (cp.$) {
+		case 2:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axX, acs);
+		case 8:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axX, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axX, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axX, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axX, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axX, acs);
+		default:
+			return cp;
+	}
+};
 var $author$project$VegaLite$Range = function (a) {
 	return {$: 31, a: a};
 };
 var $author$project$VegaLite$coRange = $author$project$VegaLite$Range;
+var $author$project$VegaLite$fill = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'fill',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$RRamp = function (a) {
@@ -11411,6 +11477,13 @@ var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = $author$project$VegaLite$SCBandPaddingOuter;
+var $author$project$VegaLite$stroke = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'stroke',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
 var $author$project$VegaLite$VStep = function (a) {
 	return {$: 11, a: a};
 };
@@ -11428,28 +11501,52 @@ var $author$project$GalleryInteraction$interaction15 = function () {
 				$elm$core$Basics$composeL,
 				A2(
 					$elm$core$Basics$composeL,
-					$author$project$VegaLite$encoding,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$encoding,
+						A2(
+							$author$project$VegaLite$position,
+							0,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('predicted'),
+									$author$project$VegaLite$pNominal
+								]))),
 					A2(
 						$author$project$VegaLite$position,
-						0,
+						1,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('predicted'),
+								$author$project$VegaLite$pName('actual'),
 								$author$project$VegaLite$pNominal
 							]))),
-				A2(
-					$author$project$VegaLite$position,
-					1,
+				$author$project$VegaLite$fill(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('actual'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$mName('count'),
+							$author$project$VegaLite$mQuant
 						]))),
-			$author$project$VegaLite$color(
+			$author$project$VegaLite$stroke(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('count'),
-						$author$project$VegaLite$mQuant
+						A2(
+						$author$project$VegaLite$mDataCondition,
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								A2(
+									$author$project$VegaLite$and,
+									$author$project$VegaLite$selected('highlight'),
+									$author$project$VegaLite$expr('length(data(\"highlight_store\"))')),
+								_List_fromArray(
+									[
+										$author$project$VegaLite$mStr('black')
+									]))
+							]),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mStr('')
+							]))
 					]))),
 		$author$project$VegaLite$opacity(
 			_List_fromArray(
@@ -11497,26 +11594,43 @@ var $author$project$GalleryInteraction$interaction15 = function () {
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				$author$project$VegaLite$configure,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$configure,
+						$author$project$VegaLite$configuration(
+							$author$project$VegaLite$coScale(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$sacoBandPaddingInner(0),
+										$author$project$VegaLite$sacoBandPaddingOuter(0)
+									])))),
+					$author$project$VegaLite$configuration(
+						$author$project$VegaLite$coRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$racoRamp('yellowgreenblue')
+								])))),
 				$author$project$VegaLite$configuration(
-					$author$project$VegaLite$coScale(
+					$author$project$VegaLite$coView(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$sacoBandPaddingInner(0),
-								$author$project$VegaLite$sacoBandPaddingOuter(0)
+								$author$project$VegaLite$vicoStep(40)
 							])))),
 			$author$project$VegaLite$configuration(
-				$author$project$VegaLite$coRange(
+				$author$project$VegaLite$coAxis(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$racoRamp('yellowgreenblue')
+							$author$project$VegaLite$axcoDomain(false)
 						])))),
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coView(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$vicoStep(40)
-					]))));
+			$author$project$VegaLite$coAxisXFilter(
+				$author$project$VegaLite$coAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axcoLabelAngle(0)
+						])))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
