@@ -165,31 +165,87 @@ radial5 =
     toVegaLite [ des, cfg [], data [], enc [], arc [ maOuterRadius 80 ] ]
 
 
+radial6 : Spec
+radial6 =
+    let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
 
--- TODO: Add when https://github.com/vega/vega-lite/issues/6238 resolves
--- radial6 : Spec
--- radial6 =
---     let
---         des =
---             description "Nightingale rose diagram"
---
---         cfg =
---             configure
---                 << configuration (coView [ vicoStroke Nothing ])
---
---         data =
---             dataFromColumns []
---                 << dataColumn "month" (nums [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ])
---                 << dataColumn "days" (nums [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ])
---                 << dataColumn "value" (nums [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ])
---
---         enc =
---             encoding
---                 << position Theta [ pName "days", pQuant, pStack stZero ]
---                 << position R [ pName "value", pQuant ]
---                 << color [ mName "month", mNominal ]
---     in
---     toVegaLite [ des, data [], enc [], arc [] ]
+        data =
+            dataFromColumns []
+                << dataColumn "month" (strs [ "1854/04", "1854/05", "1854/06", "1854/07", "1854/08", "1854/09", "1854/10", "1854/11", "1854/12", "1855/01", "1855/02", "1855/03" ])
+                << dataColumn "disease" (nums [ 1, 12, 11, 359, 828, 788, 503, 844, 1725, 2761, 2120, 1205 ])
+                << dataColumn "wounds" (nums [ 0, 0, 0, 0, 1, 81, 132, 287, 114, 83, 42, 32 ])
+                << dataColumn "other" (nums [ 5, 9, 6, 23, 30, 70, 128, 106, 131, 324, 361, 172 ])
+
+        trans =
+            transform
+                << foldAs [ "disease", "wounds", "other" ] "cause" "deaths"
+
+        transLabels =
+            transform
+                << filter (fiExpr "datum.cause == 'disease'")
+                << calculateAs "upper(monthFormat((substring(datum.month,length(datum.month)-2))-1))" "monthLabel"
+                << calculateAs "max(datum.disease,150)" "labelRadius"
+
+        colours =
+            categoricalDomainMap
+                [ ( "disease", "rgb(120,160,180)" )
+                , ( "wounds", "rgb(255,190,180)" )
+                , ( "other", "rgb(80,80,80)" )
+                ]
+
+        enc =
+            encoding
+                << position Theta
+                    [ pName "month"
+                    , pOrdinal
+                    , pScale [ scRange (raNums [ degrees -90, degrees 270 ]) ]
+                    ]
+
+        encSector =
+            encoding
+                << position R [ pName "deaths", pQuant, pScale [ scType scSqrt ], pStack stNone ]
+                << order [ oName "cause", oOrdinal ]
+                << color
+                    [ mName "cause"
+                    , mNominal
+                    , mScale colours
+                    , mLegend [ leTitle "", leLabelFont "Girassol", leOrient loNone, leX 80, leY 190 ]
+                    ]
+
+        specSector =
+            asSpec [ encSector [], arc [ maStroke "black", maStrokeWidth 0.2, maOpacity 0.6 ] ]
+
+        encLabels =
+            encoding
+                << angle [ mName "month", mOrdinal, mScale [ scRange (raNums [ -75, 255 ]) ] ]
+                << position R [ pName "labelRadius", pQuant ]
+                << text [ tName "monthLabel", tNominal ]
+
+        specLabels =
+            asSpec [ transLabels [], encLabels [], textMark [ maFont "Girassol", maDy -10 ] ]
+    in
+    toVegaLite
+        [ cfg []
+        , title "DIAGRAM of the CAUSES of MORTALITY"
+            [ tiFont "Girassol"
+            , tiFontSize 20
+            , tiSubtitle "IN THE ARMY OF THE EAST\nAPRIL 1854 to MARCH 1855"
+            , tiSubtitleFont "Girassol"
+            , tiOffset -110
+            ]
+        , width 500
+        , height 560
+        , data []
+        , trans []
+        , enc []
+        , layer [ specSector, specLabels ]
+        ]
+
+
+
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
 
@@ -201,8 +257,7 @@ mySpecs =
         , ( "radial3", radial3 )
         , ( "radial4", radial4 )
         , ( "radial5", radial5 )
-
-        -- , ( "radial6", radial6 )
+        , ( "radial6", radial6 )
         ]
 
 

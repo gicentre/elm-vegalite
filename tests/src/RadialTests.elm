@@ -82,6 +82,23 @@ radial4 =
 radial5 : Spec
 radial5 =
     let
+        data =
+            dataFromColumns []
+                << dataColumn "dir" (strs [ "1N", "2NE", "3E", "4SE", "5S", "6SW", "7W", "8NW" ])
+                << dataColumn "strength" (nums [ 1, 2, 3, 4, 5, 6, 7, 8 ])
+
+        enc =
+            encoding
+                << position Theta [ pName "dir", pOrdinal ]
+                << position R [ pName "strength", pQuant ]
+                << color [ mName "dir", mNominal ]
+    in
+    toVegaLite [ data [], enc [], arc [] ]
+
+
+radial6 : Spec
+radial6 =
+    let
         thetas =
             List.range 0 8 |> List.map (\n -> toFloat n * 45 |> degrees)
 
@@ -100,8 +117,8 @@ radial5 =
     toVegaLite [ data [], enc [], arc [] ]
 
 
-radial6 : Spec
-radial6 =
+radial7 : Spec
+radial7 =
     let
         thetas =
             List.range 0 8 |> List.map (\n -> toFloat n * 45 |> degrees)
@@ -124,9 +141,89 @@ radial6 =
     toVegaLite [ data [], enc [], arc [] ]
 
 
+radial8 : Spec
+radial8 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "month" (strs [ "1854/04", "1854/05", "1854/06", "1854/07", "1854/08", "1854/09", "1854/10", "1854/11", "1854/12", "1855/01", "1855/02", "1855/03" ])
+                << dataColumn "disease" (nums [ 1, 12, 11, 359, 828, 788, 503, 844, 1725, 2761, 2120, 1205 ])
+                << dataColumn "wounds" (nums [ 0, 0, 0, 0, 1, 81, 132, 287, 114, 83, 42, 32 ])
+                << dataColumn "other" (nums [ 5, 9, 6, 23, 30, 70, 128, 106, 131, 324, 361, 172 ])
+
+        colours =
+            categoricalDomainMap
+                [ ( "disease", "rgb(120,160,180)" )
+                , ( "wounds", "rgb(255,190,180)" )
+                , ( "other", "rgb(80,80,80)" )
+                ]
+
+        enc =
+            encoding
+                << position Theta [ pName "month", pOrdinal, pScale [ scRange (raNums [ -pi / 2, 3 * pi / 2 ]) ] ]
+                << position R [ pRepeat arLayer, pQuant, pScale [ scType scSqrt ] ]
+                << color [ mRepeatDatum arLayer, mNominal, mScale colours ]
+
+        encLabels =
+            encoding
+                << text [ tName "monthLabel", tNominal ]
+
+        spec =
+            asSpec
+                [ width 500
+                , height 500
+                , data []
+                , enc []
+                , arc [ maStroke "black", maStrokeWidth 0.5, maOpacity 0.6 ]
+                ]
+    in
+    toVegaLite
+        [ repeat [ layerFields [ "disease", "other", "wounds" ] ]
+        , specification spec
+        ]
+
+
+radial9 : Spec
+radial9 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "month" (strs [ "1854/04", "1854/05", "1854/06", "1854/07", "1854/08", "1854/09", "1854/10", "1854/11", "1854/12", "1855/01", "1855/02", "1855/03" ])
+                << dataColumn "disease" (nums [ 1, 12, 11, 359, 828, 788, 503, 844, 1725, 2761, 2120, 1205 ])
+                << dataColumn "wounds" (nums [ 0, 0, 0, 0, 1, 81, 132, 287, 114, 83, 42, 32 ])
+                << dataColumn "other" (nums [ 5, 9, 6, 23, 30, 70, 128, 106, 131, 324, 361, 172 ])
+
+        trans =
+            transform
+                << foldAs [ "disease", "wounds", "other" ] "cause" "deaths"
+
+        colours =
+            categoricalDomainMap
+                [ ( "disease", "rgb(120,160,180)" )
+                , ( "wounds", "rgb(255,190,180)" )
+                , ( "other", "rgb(80,80,80)" )
+                ]
+
+        enc =
+            encoding
+                << position Theta [ pName "month", pOrdinal, pScale [ scRange (raNums [ degrees -90, degrees 270 ]) ] ]
+                << position R [ pName "deaths", pQuant, pScale [ scType scSqrt ], pStack stNone ]
+                << order [ oName "cause", oOrdinal ]
+                << color [ mName "cause", mNominal, mScale colours, mTitle "" ]
+    in
+    toVegaLite
+        [ width 500
+        , height 500
+        , data []
+        , trans []
+        , enc []
+        , arc [ maStroke "black", maStrokeWidth 0.5, maOpacity 0.6 ]
+        ]
+
+
 sourceExample : Spec
 sourceExample =
-    radial6
+    radial9
 
 
 
@@ -142,6 +239,9 @@ mySpecs =
         , ( "radial4", radial4 )
         , ( "radial5", radial5 )
         , ( "radial6", radial6 )
+        , ( "radial7", radial7 )
+        , ( "radial8", radial8 )
+        , ( "radial9", radial9 )
         ]
 
 

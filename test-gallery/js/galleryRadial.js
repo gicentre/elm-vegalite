@@ -10190,6 +10190,382 @@ var $author$project$GalleryRadial$radial5 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$angle = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'angle',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$calculateAs = F2(
+	function (ex, label) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'calculate',
+							$elm$json$Json$Encode$string(ex)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
+						]))));
+	});
+var $elm$core$Basics$pi = _Basics_pi;
+var $elm$core$Basics$degrees = function (angleInDegrees) {
+	return (angleInDegrees * $elm$core$Basics$pi) / 180;
+};
+var $author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$VegaLite$foldAs = F3(
+	function (fields, keyName, valName) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'fold',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields)),
+							_Utils_Tuple2(
+							'as',
+							A2(
+								$elm$json$Json$Encode$list,
+								$elm$json$Json$Encode$string,
+								_List_fromArray(
+									[keyName, valName])))
+						]))));
+	});
+var $author$project$VegaLite$VLHeight = 4;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$LLabelFont = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$leLabelFont = $author$project$VegaLite$LLabelFont;
+var $author$project$VegaLite$Ordinal = 1;
+var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
+var $author$project$VegaLite$MdY = function (a) {
+	return {$: 25, a: a};
+};
+var $author$project$VegaLite$maDy = $author$project$VegaLite$MdY;
+var $author$project$VegaLite$MFont = function (a) {
+	return {$: 31, a: a};
+};
+var $author$project$VegaLite$maFont = $author$project$VegaLite$MFont;
+var $author$project$VegaLite$MOpacity = function (a) {
+	return {$: 40, a: a};
+};
+var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 60, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $author$project$VegaLite$oOrdinal = $author$project$VegaLite$OmType(1);
+var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$OfNone = 3;
+var $author$project$VegaLite$stNone = 3;
+var $author$project$VegaLite$TFont = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$tiFont = $author$project$VegaLite$TFont;
+var $author$project$VegaLite$TFontSize = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$tiFontSize = $author$project$VegaLite$TFontSize;
+var $author$project$VegaLite$TOffset = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$tiOffset = $author$project$VegaLite$TOffset;
+var $author$project$VegaLite$TSubtitle = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$tiSubtitle = $author$project$VegaLite$TSubtitle;
+var $author$project$VegaLite$TSubtitleFont = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$tiSubtitleFont = $author$project$VegaLite$TSubtitleFont;
+var $author$project$VegaLite$VLTitle = 2;
+var $author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			$elm$json$Json$Encode$object(
+				A2(
+					$elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						$author$project$VegaLite$multilineTextSpec(txt)),
+					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tps))));
+	});
+var $author$project$VegaLite$VLTransform = 13;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(13, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		13,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$VegaLite$VLWidth = 3;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$GalleryRadial$radial6 = function () {
+	var transLabels = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$transform,
+				$author$project$VegaLite$filter(
+					$author$project$VegaLite$fiExpr('datum.cause == \'disease\''))),
+			A2($author$project$VegaLite$calculateAs, 'upper(monthFormat((substring(datum.month,length(datum.month)-2))-1))', 'monthLabel')),
+		A2($author$project$VegaLite$calculateAs, 'max(datum.disease,150)', 'labelRadius'));
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A3(
+			$author$project$VegaLite$foldAs,
+			_List_fromArray(
+				['disease', 'wounds', 'other']),
+			'cause',
+			'deaths'));
+	var encLabels = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				$author$project$VegaLite$angle(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mName('month'),
+							$author$project$VegaLite$mOrdinal,
+							$author$project$VegaLite$mScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scRange(
+									$author$project$VegaLite$raNums(
+										_List_fromArray(
+											[-75, 255])))
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				6,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('labelRadius'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tName('monthLabel'),
+					$author$project$VegaLite$tNominal
+				])));
+	var specLabels = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				transLabels(_List_Nil),
+				encLabels(_List_Nil),
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFont('Girassol'),
+						$author$project$VegaLite$maDy(-10)
+					]))
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			4,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('month'),
+					$author$project$VegaLite$pOrdinal,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scRange(
+							$author$project$VegaLite$raNums(
+								_List_fromArray(
+									[
+										$elm$core$Basics$degrees(-90),
+										$elm$core$Basics$degrees(270)
+									])))
+						]))
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						$author$project$VegaLite$dataColumn,
+						'month',
+						$author$project$VegaLite$strs(
+							_List_fromArray(
+								['1854/04', '1854/05', '1854/06', '1854/07', '1854/08', '1854/09', '1854/10', '1854/11', '1854/12', '1855/01', '1855/02', '1855/03'])))),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'disease',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[1, 12, 11, 359, 828, 788, 503, 844, 1725, 2761, 2120, 1205])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'wounds',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[0, 0, 0, 0, 1, 81, 132, 287, 114, 83, 42, 32])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'other',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[5, 9, 6, 23, 30, 70, 128, 106, 131, 324, 361, 172]))));
+	var colours = $author$project$VegaLite$categoricalDomainMap(
+		_List_fromArray(
+			[
+				_Utils_Tuple2('disease', 'rgb(120,160,180)'),
+				_Utils_Tuple2('wounds', 'rgb(255,190,180)'),
+				_Utils_Tuple2('other', 'rgb(80,80,80)')
+			]));
+	var encSector = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					6,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('deaths'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scType($author$project$VegaLite$scSqrt)
+								])),
+							$author$project$VegaLite$pStack($author$project$VegaLite$stNone)
+						]))),
+			$author$project$VegaLite$order(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$oName('cause'),
+						$author$project$VegaLite$oOrdinal
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('cause'),
+					$author$project$VegaLite$mNominal,
+					$author$project$VegaLite$mScale(colours),
+					$author$project$VegaLite$mLegend(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$leTitle(''),
+							$author$project$VegaLite$leLabelFont('Girassol'),
+							$author$project$VegaLite$leOrient($author$project$VegaLite$loNone),
+							$author$project$VegaLite$leX(80),
+							$author$project$VegaLite$leY(190)
+						]))
+				])));
+	var specSector = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encSector(_List_Nil),
+				$author$project$VegaLite$arc(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('black'),
+						$author$project$VegaLite$maStrokeWidth(0.2),
+						$author$project$VegaLite$maOpacity(0.6)
+					]))
+			]));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				A2(
+				$author$project$VegaLite$title,
+				'DIAGRAM of the CAUSES of MORTALITY',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tiFont('Girassol'),
+						$author$project$VegaLite$tiFontSize(20),
+						$author$project$VegaLite$tiSubtitle('IN THE ARMY OF THE EAST\nAPRIL 1854 to MARCH 1855'),
+						$author$project$VegaLite$tiSubtitleFont('Girassol'),
+						$author$project$VegaLite$tiOffset(-110)
+					])),
+				$author$project$VegaLite$width(500),
+				$author$project$VegaLite$height(560),
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specSector, specLabels]))
+			]));
+}();
 var $author$project$GalleryRadial$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -10197,7 +10573,8 @@ var $author$project$GalleryRadial$mySpecs = $author$project$VegaLite$combineSpec
 			_Utils_Tuple2('radial2', $author$project$GalleryRadial$radial2),
 			_Utils_Tuple2('radial3', $author$project$GalleryRadial$radial3),
 			_Utils_Tuple2('radial4', $author$project$GalleryRadial$radial4),
-			_Utils_Tuple2('radial5', $author$project$GalleryRadial$radial5)
+			_Utils_Tuple2('radial5', $author$project$GalleryRadial$radial5),
+			_Utils_Tuple2('radial6', $author$project$GalleryRadial$radial6)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
