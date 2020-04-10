@@ -622,7 +622,49 @@ bar20 =
 bar21 : Spec
 bar21 =
     let
-        desc =
+        des =
+            description "Bar Chart with a spacing-saving y-axis"
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        enc =
+            encoding
+                << position X [ pAggregate opCount, pQuant, pAxis [ axGrid False ] ]
+                << position Y
+                    [ pName "Origin"
+                    , pNominal
+                    , pScale [ scPaddingInner 0.2 ]
+                    , pAxis
+                        [ axTitle ""
+                        , axDomain False
+                        , axTicks False
+                        , axLabelAlign haLeft
+                        , axLabelBaseline vaTop
+                        , axLabelPadding -5
+                        , axLabelColor "white"
+                        , axZIndex 1
+                        ]
+                    ]
+    in
+    toVegaLite
+        [ des
+        , cfg []
+        , heightStep 30
+        , data
+        , enc []
+        , bar [ maYOffset 5, maCornerRadiusEnd 2 ]
+        ]
+
+
+bar22 : Spec
+bar22 =
+    let
+        des =
             description "A Wilkinson dot plot"
 
         cfg =
@@ -648,7 +690,7 @@ bar21 =
                     ]
     in
     toVegaLite
-        [ desc
+        [ des
         , cfg []
         , height 100
         , data []
@@ -671,8 +713,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar22 : Spec
-bar22 =
+bar23 : Spec
+bar23 =
     let
         isotypes =
             let
@@ -742,8 +784,8 @@ bar22 =
         ]
 
 
-bar23 : Spec
-bar23 =
+bar24 : Spec
+bar24 =
     let
         des =
             description "Isotype bar chart using emojis for symbols"
@@ -812,6 +854,7 @@ mySpecs =
         , ( "bar21", bar21 )
         , ( "bar22", bar22 )
         , ( "bar23", bar23 )
+        , ( "bar24", bar24 )
         ]
 
 

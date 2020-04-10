@@ -10940,6 +10940,98 @@ var $author$project$GalleryBar$bar20 = function () {
 					[specBar, specText]))
 			]));
 }();
+var $author$project$VegaLite$axLabelAlign = $author$project$VegaLite$AxLabelAlign;
+var $author$project$VegaLite$axLabelBaseline = $author$project$VegaLite$AxLabelBaseline;
+var $author$project$VegaLite$axLabelColor = $author$project$VegaLite$AxLabelColor;
+var $author$project$VegaLite$AxZIndex = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$axZIndex = $author$project$VegaLite$AxZIndex;
+var $author$project$VegaLite$MCornerRadiusEnd = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$maCornerRadiusEnd = $author$project$VegaLite$MCornerRadiusEnd;
+var $author$project$VegaLite$MYOffset = function (a) {
+	return {$: 76, a: a};
+};
+var $author$project$VegaLite$maYOffset = $author$project$VegaLite$MYOffset;
+var $author$project$VegaLite$SPaddingInner = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$scPaddingInner = $author$project$VegaLite$SPaddingInner;
+var $author$project$VegaLite$AlignTop = 0;
+var $author$project$VegaLite$vaTop = 0;
+var $author$project$GalleryBar$bar21 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axGrid(false)
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Origin'),
+					$author$project$VegaLite$pNominal,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scPaddingInner(0.2)
+						])),
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axTitle(''),
+							$author$project$VegaLite$axDomain(false),
+							$author$project$VegaLite$axTicks(false),
+							$author$project$VegaLite$axLabelAlign($author$project$VegaLite$haLeft),
+							$author$project$VegaLite$axLabelBaseline($author$project$VegaLite$vaTop),
+							$author$project$VegaLite$axLabelPadding(-5),
+							$author$project$VegaLite$axLabelColor('white'),
+							$author$project$VegaLite$axZIndex(1)
+						]))
+				])));
+	var des = $author$project$VegaLite$description('Bar Chart with a spacing-saving y-axis');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				des,
+				cfg(_List_Nil),
+				$author$project$VegaLite$heightStep(30),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maYOffset(5),
+						$author$project$VegaLite$maCornerRadiusEnd(2)
+					]))
+			]));
+}();
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$MOpacity = function (a) {
@@ -11134,7 +11226,7 @@ var $author$project$VegaLite$window = F2(
 	});
 var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
-var $author$project$GalleryBar$bar21 = function () {
+var $author$project$GalleryBar$bar22 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11181,7 +11273,7 @@ var $author$project$GalleryBar$bar21 = function () {
 					_List_fromArray(
 						[$author$project$VegaLite$soDescending]))
 				])));
-	var desc = $author$project$VegaLite$description('A Wilkinson dot plot');
+	var des = $author$project$VegaLite$description('A Wilkinson dot plot');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$dataFromColumns(_List_Nil),
@@ -11203,7 +11295,7 @@ var $author$project$GalleryBar$bar21 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				desc,
+				des,
 				cfg(_List_Nil),
 				$author$project$VegaLite$height(100),
 				data(_List_Nil),
@@ -11590,7 +11682,7 @@ var $author$project$GalleryBar$toRows = F2(
 		return $elm$core$Basics$append(
 			A2($elm$core$List$concatMap, fToCol, animalFreqs));
 	});
-var $author$project$GalleryBar$bar22 = function () {
+var $author$project$GalleryBar$bar23 = function () {
 	var isotypes = function () {
 		var sheep = 'M-4.1 -0.5c0.2 0 0.2 0.2 0.5 0.2c0.3 0 0.3 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.4 -0.2c0.1 0 0.2 0.2 0.4 0.1c0.2 0 0.2 -0.2 0.4 -0.3c0.1 0 0.1 -0.1 0.4 0c0.3 0 0.3 -0.4 0.6 -0.4c0.3 0 0.6 -0.3 0.7 -0.2c0.1 0.1 1.4 1 1.3 1.4c-0.1 0.4 -0.3 0.3 -0.4 0.3c-0.1 0 -0.5 -0.4 -0.7 -0.2c-0.3 0.2 -0.1 0.4 -0.2 0.6c-0.1 0.1 -0.2 0.2 -0.3 0.4c0 0.2 0.1 0.3 0 0.5c-0.1 0.2 -0.3 0.2 -0.3 0.5c0 0.3 -0.2 0.3 -0.3 0.6c-0.1 0.2 0 0.3 -0.1 0.5c-0.1 0.2 -0.1 0.2 -0.2 0.3c-0.1 0.1 0.3 1.1 0.3 1.1l-0.3 0c0 0 -0.3 -0.9 -0.3 -1c0 -0.1 -0.1 -0.2 -0.3 -0.2c-0.2 0 -0.3 0.1 -0.4 0.4c0 0.3 -0.2 0.8 -0.2 0.8l-0.3 0l0.3 -1c0 0 0.1 -0.6 -0.2 -0.5c-0.3 0.1 -0.2 -0.1 -0.4 -0.1c-0.2 -0.1 -0.3 0.1 -0.4 0c-0.2 -0.1 -0.3 0.1 -0.5 0c-0.2 -0.1 -0.1 0 -0.3 0.3c-0.2 0.3 -0.4 0.3 -0.4 0.3l0.2 1.1l-0.3 0l-0.2 -1.1c0 0 -0.4 -0.6 -0.5 -0.4c-0.1 0.3 -0.1 0.4 -0.3 0.4c-0.1 -0.1 -0.2 1.1 -0.2 1.1l-0.3 0l0.2 -1.1c0 0 -0.3 -0.1 -0.3 -0.5c0 -0.3 0.1 -0.5 0.1 -0.7c0.1 -0.2 -0.1 -1 -0.2 -1.1c-0.1 -0.2 -0.2 -0.8 -0.2 -0.8c0 0 -0.1 -0.5 0.4 -0.8z';
 		var pig = 'M1.2 -2c0 0 0.7 0 1.2 0.5c0.5 0.5 0.4 0.6 0.5 0.6c0.1 0 0.7 0 0.8 0.1c0.1 0 0.2 0.2 0.2 0.2c0 0 -0.6 0.2 -0.6 0.3c0 0.1 0.4 0.9 0.6 0.9c0.1 0 0.6 0 0.6 0.1c0 0.1 0 0.7 -0.1 0.7c-0.1 0 -1.2 0.4 -1.5 0.5c-0.3 0.1 -1.1 0.5 -1.1 0.7c-0.1 0.2 0.4 1.2 0.4 1.2l-0.4 0c0 0 -0.4 -0.8 -0.4 -0.9c0 -0.1 -0.1 -0.3 -0.1 -0.3l-0.2 0l-0.5 1.3l-0.4 0c0 0 -0.1 -0.4 0 -0.6c0.1 -0.1 0.3 -0.6 0.3 -0.7c0 0 -0.8 0 -1.5 -0.1c-0.7 -0.1 -1.2 -0.3 -1.2 -0.2c0 0.1 -0.4 0.6 -0.5 0.6c0 0 0.3 0.9 0.3 0.9l-0.4 0c0 0 -0.4 -0.5 -0.4 -0.6c0 -0.1 -0.2 -0.6 -0.2 -0.5c0 0 -0.4 0.4 -0.6 0.4c-0.2 0.1 -0.4 0.1 -0.4 0.1c0 0 -0.1 0.6 -0.1 0.6l-0.5 0l0 -1c0 0 0.5 -0.4 0.5 -0.5c0 -0.1 -0.7 -1.2 -0.6 -1.4c0.1 -0.1 0.1 -1.1 0.1 -1.1c0 0 -0.2 0.1 -0.2 0.1c0 0 0 0.9 0 1c0 0.1 -0.2 0.3 -0.3 0.3c-0.1 0 0 -0.5 0 -0.9c0 -0.4 0 -0.4 0.2 -0.6c0.2 -0.2 0.6 -0.3 0.8 -0.8c0.3 -0.5 1 -0.6 1 -0.6z';
@@ -11758,7 +11850,7 @@ var $author$project$GalleryBar$bar22 = function () {
 					]))
 			]));
 }();
-var $author$project$GalleryBar$bar23 = function () {
+var $author$project$GalleryBar$bar24 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12401,7 +12493,8 @@ var $author$project$GalleryBar$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('bar20', $author$project$GalleryBar$bar20),
 			_Utils_Tuple2('bar21', $author$project$GalleryBar$bar21),
 			_Utils_Tuple2('bar22', $author$project$GalleryBar$bar22),
-			_Utils_Tuple2('bar23', $author$project$GalleryBar$bar23)
+			_Utils_Tuple2('bar23', $author$project$GalleryBar$bar23),
+			_Utils_Tuple2('bar24', $author$project$GalleryBar$bar24)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
