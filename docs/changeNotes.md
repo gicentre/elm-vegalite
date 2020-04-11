@@ -10,6 +10,8 @@
 
 - `rgExtent` and `dnExtent` now take two floats as the extent values rather than `DataValue` types. To update previous code replace `(num x0) (num x1)` with `x0 x1` where `x0` and `x1` are the minimum and maximum numeric values of the extent.
 
+* `key` now creates a field/type object. Previously this incorrectly generated a string rather than object, so while this is a breaking change, there should be no working specs with the old key type. Field name can be specified with `kName` and type with `kQuant`, `kNominal` etc.
+
 ## Additions
 
 - `pDatum` for specifying a literal data-driven positioning (VL.4.9).
