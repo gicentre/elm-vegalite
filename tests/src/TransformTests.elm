@@ -1,8 +1,10 @@
 port module TransformTests exposing (elmToJS)
 
 import Browser
-import Html exposing (Html, div, pre)
-import Html.Attributes exposing (id)
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
 import Json.Encode
 import VegaLite exposing (..)
 
@@ -485,69 +487,85 @@ transform19 =
     toVegaLite [ heightStep 12, data [], trans [], enc [], bar [] ]
 
 
-sourceExample : Spec
-sourceExample =
-    transform17
+
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
 
-
-{- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
-
-
-mySpecs : Spec
-mySpecs =
-    combineSpecs
-        [ ( "transform1", transform1 )
-        , ( "transform2", transform2 )
-        , ( "transform3", transform3 )
-        , ( "transform4", transform4 )
-        , ( "transform5", transform5 )
-        , ( "transform6", transform6 )
-        , ( "transform7", transform7 )
-        , ( "transform8", transform8 )
-        , ( "transform9", transform9 )
-        , ( "transform10", transform10 )
-        , ( "transform11", transform11 )
-        , ( "transform12", transform12 )
-        , ( "transform13", transform13 )
-        , ( "transform14", transform14 )
-        , ( "transform15", transform15 )
-        , ( "transform16", transform16 )
-        , ( "transform17", transform17 )
-        , ( "transform18", transform18 )
-        , ( "transform19", transform19 )
-        ]
+specs : List ( String, Spec )
+specs =
+    [ ( "transform1", transform1 )
+    , ( "transform2", transform2 )
+    , ( "transform3", transform3 )
+    , ( "transform4", transform4 )
+    , ( "transform5", transform5 )
+    , ( "transform6", transform6 )
+    , ( "transform7", transform7 )
+    , ( "transform8", transform8 )
+    , ( "transform9", transform9 )
+    , ( "transform10", transform10 )
+    , ( "transform11", transform11 )
+    , ( "transform12", transform12 )
+    , ( "transform13", transform13 )
+    , ( "transform14", transform14 )
+    , ( "transform15", transform15 )
+    , ( "transform16", transform16 )
+    , ( "transform17", transform17 )
+    , ( "transform18", transform18 )
+    , ( "transform19", transform19 )
+    ]
 
 
 
 {- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
    The code below creates an Elm module that opens an outgoing port to Javascript
    and sends both the specs and DOM node to it.
-   This is used to display the generated Vega specs for testing purposes.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
 -}
 
 
-main : Program () Spec msg
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
 main =
     Browser.element
-        { init = always ( mySpecs, elmToJS mySpecs )
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
         , view = view
-        , update = \_ model -> ( model, Cmd.none )
+        , update = update
         , subscriptions = always Sub.none
         }
 
 
-
--- View
-
-
-view : Spec -> Html msg
+view : Spec -> Html Msg
 view spec =
-    div []
-        [ div [ id "specSource" ] []
-        , pre []
-            [ Html.text (Json.Encode.encode 2 sourceExample) ]
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", Json.Encode.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == Json.Encode.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
         ]
+
+
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
+
+        NoSource ->
+            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

@@ -46,11 +46,16 @@
 
     <div id="streaming1"></div>
 
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
     <script>
-      Elm.StreamingTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.StreamingTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: false,
+            actions: true,
             logLevel: vega.Warn
           }).then(function(res) {
             /**

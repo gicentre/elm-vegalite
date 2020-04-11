@@ -1,8 +1,10 @@
 port module DataTests exposing (elmToJS)
 
 import Browser
-import Html exposing (Html, div, pre)
-import Html.Attributes exposing (id)
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
 import Json.Encode as JE
 import VegaLite exposing (..)
 
@@ -712,91 +714,107 @@ datum2 =
     toVegaLite [ layer [ spec1, spec2 ] ]
 
 
-sourceExample : Spec
-sourceExample =
-    datum2
+
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
 
-
-{- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
-
-
-mySpecs : Spec
-mySpecs =
-    combineSpecs
-        [ ( "data1", data1 )
-        , ( "data2", data2 )
-        , ( "data3", data3 )
-        , ( "data4", data4 )
-        , ( "data5", data5 )
-        , ( "data6", data6 )
-        , ( "data7", data7 )
-        , ( "data8", data8 )
-        , ( "data9", data9 )
-        , ( "data10", data10 )
-        , ( "data11", data11 )
-        , ( "namedData1", namedData1 )
-        , ( "namedData2", namedData2 )
-        , ( "namedData3", namedData3 )
-        , ( "geodata1", geodata1 )
-        , ( "geodata2", geodata2 )
-        , ( "flatten1", flatten1 )
-        , ( "fold1", fold1 )
-        , ( "pivot1", pivot1 )
-        , ( "domain1", domain1 )
-        , ( "domain2", domain2 )
-        , ( "domain3", domain3 )
-        , ( "impute1", impute1 )
-        , ( "impute2", impute2 )
-        , ( "impute3", impute3 )
-        , ( "impute4", impute4 )
-        , ( "impute5", impute5 )
-        , ( "impute6", impute6 )
-        , ( "impute7", impute7 )
-        , ( "impute8", impute8 )
-        , ( "sample1", sample1 )
-        , ( "bin1", bin1 )
-        , ( "bin2", bin2 )
-        , ( "bin3", bin3 )
-        , ( "sequence1", sequence1 )
-        , ( "sequence2", sequence2 )
-        , ( "filter1", filter1 )
-        , ( "filter2", filter2 )
-        , ( "annotate1", annotate1 )
-        , ( "datum1", datum1 )
-        , ( "datum2", datum2 )
-        ]
+specs : List ( String, Spec )
+specs =
+    [ ( "data1", data1 )
+    , ( "data2", data2 )
+    , ( "data3", data3 )
+    , ( "data4", data4 )
+    , ( "data5", data5 )
+    , ( "data6", data6 )
+    , ( "data7", data7 )
+    , ( "data8", data8 )
+    , ( "data9", data9 )
+    , ( "data10", data10 )
+    , ( "data11", data11 )
+    , ( "namedData1", namedData1 )
+    , ( "namedData2", namedData2 )
+    , ( "namedData3", namedData3 )
+    , ( "geodata1", geodata1 )
+    , ( "geodata2", geodata2 )
+    , ( "flatten1", flatten1 )
+    , ( "fold1", fold1 )
+    , ( "pivot1", pivot1 )
+    , ( "domain1", domain1 )
+    , ( "domain2", domain2 )
+    , ( "domain3", domain3 )
+    , ( "impute1", impute1 )
+    , ( "impute2", impute2 )
+    , ( "impute3", impute3 )
+    , ( "impute4", impute4 )
+    , ( "impute5", impute5 )
+    , ( "impute6", impute6 )
+    , ( "impute7", impute7 )
+    , ( "impute8", impute8 )
+    , ( "sample1", sample1 )
+    , ( "bin1", bin1 )
+    , ( "bin2", bin2 )
+    , ( "bin3", bin3 )
+    , ( "sequence1", sequence1 )
+    , ( "sequence2", sequence2 )
+    , ( "filter1", filter1 )
+    , ( "filter2", filter2 )
+    , ( "annotate1", annotate1 )
+    , ( "datum1", datum1 )
+    , ( "datum2", datum2 )
+    ]
 
 
 
 {- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
    The code below creates an Elm module that opens an outgoing port to Javascript
    and sends both the specs and DOM node to it.
-   This is used to display the generated Vega specs for testing purposes.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
 -}
 
 
-main : Program () Spec msg
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
 main =
     Browser.element
-        { init = always ( mySpecs, elmToJS mySpecs )
+        { init = always ( JE.null, specs |> combineSpecs |> elmToJS )
         , view = view
-        , update = \_ model -> ( model, Cmd.none )
+        , update = update
         , subscriptions = always Sub.none
         }
 
 
-
--- View
-
-
-view : Spec -> Html msg
+view : Spec -> Html Msg
 view spec =
-    div []
-        [ div [ id "specSource" ] []
-        , pre []
-            [ Html.text (JE.encode 2 sourceExample) ]
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", JE.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == JE.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (JE.encode 2 spec) ]
         ]
+
+
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault JE.null, Cmd.none )
+
+        NoSource ->
+            ( JE.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

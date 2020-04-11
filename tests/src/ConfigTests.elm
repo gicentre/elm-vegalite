@@ -1,6 +1,11 @@
 port module ConfigTests exposing (elmToJS)
 
-import Platform
+import Browser
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
+import Json.Encode
 import VegaLite exposing (..)
 
 
@@ -487,51 +492,88 @@ scaleCfg1 =
 
 
 
-{- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
 
-mySpecs : Spec
-mySpecs =
-    combineSpecs
-        [ ( "default", defaultCfg )
-        , ( "dark", darkCfg )
-        , ( "mark1", markCfg1 )
-        , ( "mark2", markCfg2 )
-        , ( "padding", paddingCfg )
-        , ( "vbTest", vbTest )
-        , ( "axisCfg1", axisCfg1 )
-        , ( "axisCfg2", axisCfg2 )
-        , ( "axisCfg3", axisCfg3 )
-        , ( "axisCfg4", axisCfg4 )
-        , ( "axisCfg5", axisCfg5 )
-        , ( "axisCfg6", axisCfg6 )
-        , ( "axisCfg7", axisCfg7 )
-        , ( "axisCfg8", axisCfg8 )
-        , ( "axisCfg9", axisCfg9 )
-        , ( "axisCfg10", axisCfg10 )
-        , ( "axisCfg11", axisCfg11 )
-        , ( "axisCfg12", axisCfg12 )
-        , ( "axisCfg13", axisCfg13 )
-        , ( "titleCfg1", titleCfg1 )
-        , ( "titleCfg2", titleCfg2 )
-        , ( "titleCfg3", titleCfg3 )
-        , ( "scaleCfg1", scaleCfg1 )
-        ]
+specs : List ( String, Spec )
+specs =
+    [ ( "default", defaultCfg )
+    , ( "dark", darkCfg )
+    , ( "mark1", markCfg1 )
+    , ( "mark2", markCfg2 )
+    , ( "padding", paddingCfg )
+    , ( "vbTest", vbTest )
+    , ( "axisCfg1", axisCfg1 )
+    , ( "axisCfg2", axisCfg2 )
+    , ( "axisCfg3", axisCfg3 )
+    , ( "axisCfg4", axisCfg4 )
+    , ( "axisCfg5", axisCfg5 )
+    , ( "axisCfg6", axisCfg6 )
+    , ( "axisCfg7", axisCfg7 )
+    , ( "axisCfg8", axisCfg8 )
+    , ( "axisCfg9", axisCfg9 )
+    , ( "axisCfg10", axisCfg10 )
+    , ( "axisCfg11", axisCfg11 )
+    , ( "axisCfg12", axisCfg12 )
+    , ( "axisCfg13", axisCfg13 )
+    , ( "titleCfg1", titleCfg1 )
+    , ( "titleCfg2", titleCfg2 )
+    , ( "titleCfg3", titleCfg3 )
+    , ( "scaleCfg1", scaleCfg1 )
+    ]
 
 
 
-{- The code below is boilerplate for creating a headless Elm module that opens
-   an outgoing port to Javascript and sends the specs to it.
+{- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
+   The code below creates an Elm module that opens an outgoing port to Javascript
+   and sends both the specs and DOM node to it.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
 -}
 
 
-main : Program () Spec msg
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
 main =
-    Platform.worker
-        { init = always ( mySpecs, elmToJS mySpecs )
-        , update = \_ model -> ( model, Cmd.none )
+    Browser.element
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
+        , view = view
+        , update = update
         , subscriptions = always Sub.none
         }
+
+
+view : Spec -> Html Msg
+view spec =
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", Json.Encode.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == Json.Encode.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
+        ]
+
+
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
+
+        NoSource ->
+            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

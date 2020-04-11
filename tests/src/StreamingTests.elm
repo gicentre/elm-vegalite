@@ -1,6 +1,11 @@
 port module StreamingTests exposing (elmToJS)
 
-import Platform
+import Browser
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
+import Json.Encode
 import VegaLite exposing (..)
 
 
@@ -20,32 +25,65 @@ streaming1 =
 
 
 
-{- This list comprises tuples of the label for each embedded visualization and
-   corresponding Vega-Lite specification. It assembles all the listed specs into
-   a single JSON object.
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
+
+
+specs : List ( String, Spec )
+specs =
+    [ ( "streaming1", streaming1 ) ]
+
+
+
+{- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
+   The code below creates an Elm module that opens an outgoing port to Javascript
+   and sends both the specs and DOM node to it.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
 -}
 
 
-mySpecs : Spec
-mySpecs =
-    combineSpecs
-        [ ( "streaming1", streaming1 )
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
+main =
+    Browser.element
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
+        , view = view
+        , update = update
+        , subscriptions = always Sub.none
+        }
+
+
+view : Spec -> Html Msg
+view spec =
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", Json.Encode.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == Json.Encode.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
         ]
 
 
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
 
-{- The code below is boilerplate for creating a headless Elm module that opens
-   an outgoing port to Javascript and sends the specs to it.
--}
-
-
-main : Program () Spec msg
-main =
-    Platform.worker
-        { init = always ( mySpecs, elmToJS mySpecs )
-        , update = \_ model -> ( model, Cmd.none )
-        , subscriptions = always Sub.none
-        }
+        NoSource ->
+            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

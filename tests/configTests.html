@@ -226,8 +226,13 @@
     </figure>
     <div style="clear:left"></div>
 
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
     <script>
-      Elm.ConfigTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.ConfigTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,

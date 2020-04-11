@@ -4369,6 +4369,10 @@ var $elm$core$Basics$always = F2(
 	function (a, _v0) {
 		return a;
 	});
+var $elm$core$Basics$apR = F2(
+	function (x, f) {
+		return f(x);
+	});
 var $elm$core$Result$Err = function (a) {
 	return {$: 1, a: a};
 };
@@ -4634,10 +4638,6 @@ var $elm$core$Basics$apL = F2(
 	function (f, x) {
 		return f(x);
 	});
-var $elm$core$Basics$apR = F2(
-	function (x, f) {
-		return f(x);
-	});
 var $elm$core$Basics$eq = _Utils_equal;
 var $elm$core$Basics$floor = _Basics_floor;
 var $elm$core$Elm$JsArray$length = _JsArray_length;
@@ -4763,6 +4763,22 @@ var $elm$core$Result$isOk = function (result) {
 	} else {
 		return false;
 	}
+};
+var $elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v0, obj) {
+					var k = _v0.a;
+					var v = _v0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(0),
+			pairs));
+};
+var $author$project$VegaLite$combineSpecs = function (specs) {
+	return $elm$json$Json$Encode$object(specs);
 };
 var $elm$json$Json$Decode$map = _Json_map1;
 var $elm$json$Json$Decode$map2 = _Json_map2;
@@ -5073,22 +5089,9 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$element = _Browser_element;
 var $author$project$ShapeTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm$core$Basics$identity);
-var $elm$json$Json$Encode$object = function (pairs) {
-	return _Json_wrap(
-		A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v0, obj) {
-					var k = _v0.a;
-					var v = _v0.b;
-					return A3(_Json_addField, k, v, obj);
-				}),
-			_Json_emptyObject(0),
-			pairs));
-};
-var $author$project$VegaLite$combineSpecs = function (specs) {
-	return $elm$json$Json$Encode$object(specs);
-};
+var $elm$core$Platform$Sub$batch = _Platform_batch;
+var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
 var $elm$json$Json$Encode$string = _Json_wrap;
@@ -5327,7 +5330,6 @@ var $author$project$VegaLite$dateTimeProperty = function (dtp) {
 				$elm$json$Json$Encode$int(ms));
 	}
 };
-var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$dataValueSpec = function (val) {
 	switch (val.$) {
 		case 2:
@@ -12711,38 +12713,55 @@ var $author$project$ShapeTests$symbols2 = A2(
 						$author$project$VegaLite$leSymbolStrokeWidth(0.5)
 					]))
 			])));
-var $author$project$ShapeTests$mySpecs = $author$project$VegaLite$combineSpecs(
-	_List_fromArray(
-		[
-			_Utils_Tuple2('defNominal', $author$project$ShapeTests$scatter1),
-			_Utils_Tuple2('defOrdinal', $author$project$ShapeTests$scatter2),
-			_Utils_Tuple2('rounded1', $author$project$ShapeTests$rounded1),
-			_Utils_Tuple2('rounded2', $author$project$ShapeTests$rounded2),
-			_Utils_Tuple2('rounded3', $author$project$ShapeTests$rounded3),
-			_Utils_Tuple2('rounded4', $author$project$ShapeTests$rounded4),
-			_Utils_Tuple2('rounded5', $author$project$ShapeTests$rounded5),
-			_Utils_Tuple2('rounded6', $author$project$ShapeTests$rounded6),
-			_Utils_Tuple2('size1', $author$project$ShapeTests$scatter3),
-			_Utils_Tuple2('size2', $author$project$ShapeTests$scatter4),
-			_Utils_Tuple2('size3', $author$project$ShapeTests$scatter5),
-			_Utils_Tuple2('multi1', $author$project$ShapeTests$scatter6),
-			_Utils_Tuple2('multi2', $author$project$ShapeTests$scatter7),
-			_Utils_Tuple2('multi3', $author$project$ShapeTests$scatter8),
-			_Utils_Tuple2('multi4', $author$project$ShapeTests$scatter9),
-			_Utils_Tuple2('multi5', $author$project$ShapeTests$scatter10),
-			_Utils_Tuple2('multi6', $author$project$ShapeTests$scatter11),
-			_Utils_Tuple2('custom1', $author$project$ShapeTests$scatter12),
-			_Utils_Tuple2('custom2', $author$project$ShapeTests$scatter13),
-			_Utils_Tuple2('custom3', $author$project$ShapeTests$scatter14),
-			_Utils_Tuple2('custom4', $author$project$ShapeTests$scatter15),
-			_Utils_Tuple2('isotype1', $author$project$ShapeTests$personGrid),
-			_Utils_Tuple2('symbols1', $author$project$ShapeTests$symbols1),
-			_Utils_Tuple2('symbols2', $author$project$ShapeTests$symbols2)
-		]));
+var $author$project$ShapeTests$specs = _List_fromArray(
+	[
+		_Utils_Tuple2('defNominal', $author$project$ShapeTests$scatter1),
+		_Utils_Tuple2('defOrdinal', $author$project$ShapeTests$scatter2),
+		_Utils_Tuple2('rounded1', $author$project$ShapeTests$rounded1),
+		_Utils_Tuple2('rounded2', $author$project$ShapeTests$rounded2),
+		_Utils_Tuple2('rounded3', $author$project$ShapeTests$rounded3),
+		_Utils_Tuple2('rounded4', $author$project$ShapeTests$rounded4),
+		_Utils_Tuple2('rounded5', $author$project$ShapeTests$rounded5),
+		_Utils_Tuple2('rounded6', $author$project$ShapeTests$rounded6),
+		_Utils_Tuple2('size1', $author$project$ShapeTests$scatter3),
+		_Utils_Tuple2('size2', $author$project$ShapeTests$scatter4),
+		_Utils_Tuple2('size3', $author$project$ShapeTests$scatter5),
+		_Utils_Tuple2('multi1', $author$project$ShapeTests$scatter6),
+		_Utils_Tuple2('multi2', $author$project$ShapeTests$scatter7),
+		_Utils_Tuple2('multi3', $author$project$ShapeTests$scatter8),
+		_Utils_Tuple2('multi4', $author$project$ShapeTests$scatter9),
+		_Utils_Tuple2('multi5', $author$project$ShapeTests$scatter10),
+		_Utils_Tuple2('multi6', $author$project$ShapeTests$scatter11),
+		_Utils_Tuple2('custom1', $author$project$ShapeTests$scatter12),
+		_Utils_Tuple2('custom2', $author$project$ShapeTests$scatter13),
+		_Utils_Tuple2('custom3', $author$project$ShapeTests$scatter14),
+		_Utils_Tuple2('custom4', $author$project$ShapeTests$scatter15),
+		_Utils_Tuple2('isotype1', $author$project$ShapeTests$personGrid),
+		_Utils_Tuple2('symbols1', $author$project$ShapeTests$symbols1),
+		_Utils_Tuple2('symbols2', $author$project$ShapeTests$symbols2)
+	]);
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $elm$core$Platform$Sub$batch = _Platform_batch;
-var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$ShapeTests$update = F2(
+	function (msg, model) {
+		if (!msg.$) {
+			var srcName = msg.a;
+			return _Utils_Tuple2(
+				A2(
+					$elm$core$Maybe$withDefault,
+					$elm$json$Json$Encode$null,
+					A2(
+						$elm$core$Dict$get,
+						srcName,
+						$elm$core$Dict$fromList($author$project$ShapeTests$specs))),
+				$elm$core$Platform$Cmd$none);
+		} else {
+			return _Utils_Tuple2($elm$json$Json$Encode$null, $elm$core$Platform$Cmd$none);
+		}
+	});
+var $author$project$ShapeTests$NewSource = function (a) {
+	return {$: 0, a: a};
+};
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -12752,10 +12771,46 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 1, a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$at = F2(
+	function (fields, decoder) {
+		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
+	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $elm$html$Html$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$elm$html$Html$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
+};
+var $elm$html$Html$option = _VirtualDom_node('option');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$ShapeTests$sourceExample = $author$project$ShapeTests$symbols1;
+var $elm$html$Html$select = _VirtualDom_node('select');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$ShapeTests$view = function (spec) {
 	return A2(
 		$elm$html$Html$div,
@@ -12763,19 +12818,44 @@ var $author$project$ShapeTests$view = function (spec) {
 		_List_fromArray(
 			[
 				A2(
+				$elm$html$Html$select,
+				_List_fromArray(
+					[
+						$elm$html$Html$Events$onInput($author$project$ShapeTests$NewSource)
+					]),
+				A2(
+					$elm$core$List$map,
+					function (_v0) {
+						var s = _v0.a;
+						return A2(
+							$elm$html$Html$option,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$value(s)
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text(s)
+								]));
+					},
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2('Select source', $elm$json$Json$Encode$null),
+						$author$project$ShapeTests$specs))),
+				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
 						$elm$html$Html$Attributes$id('specSource')
 					]),
 				_List_Nil),
-				A2(
+				_Utils_eq(spec, $elm$json$Json$Encode$null) ? A2($elm$html$Html$div, _List_Nil, _List_Nil) : A2(
 				$elm$html$Html$pre,
 				_List_Nil,
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
-						A2($elm$json$Json$Encode$encode, 2, $author$project$ShapeTests$sourceExample))
+						A2($elm$json$Json$Encode$encode, 2, spec))
 					]))
 			]));
 };
@@ -12783,13 +12863,11 @@ var $author$project$ShapeTests$main = $elm$browser$Browser$element(
 	{
 		ar: $elm$core$Basics$always(
 			_Utils_Tuple2(
-				$author$project$ShapeTests$mySpecs,
-				$author$project$ShapeTests$elmToJS($author$project$ShapeTests$mySpecs))),
+				$elm$json$Json$Encode$null,
+				$author$project$ShapeTests$elmToJS(
+					$author$project$VegaLite$combineSpecs($author$project$ShapeTests$specs)))),
 		ax: $elm$core$Basics$always($elm$core$Platform$Sub$none),
-		az: F2(
-			function (_v0, model) {
-				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-			}),
+		az: $author$project$ShapeTests$update,
 		aA: $author$project$ShapeTests$view
 	});
 _Platform_export({'ShapeTests':{'init':$author$project$ShapeTests$main(

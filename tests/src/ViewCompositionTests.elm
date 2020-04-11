@@ -1,8 +1,10 @@
 port module ViewCompositionTests exposing (elmToJS)
 
 import Browser
-import Html exposing (Html, div, pre)
-import Html.Attributes exposing (id)
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
 import Json.Encode
 import VegaLite exposing (..)
 
@@ -43,7 +45,7 @@ genderChart hdProps cProps =
                 << color
                     [ mName "gender"
                     , mNominal
-                    , mScale [ scRange (raStrs [ "#EA98D2", "#659CCA" ]) ]
+                    , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
     in
     toVegaLite [ widthStep 17, conf [], pop, trans [], enc [], bar [] ]
@@ -260,61 +262,77 @@ grid5 =
         ]
 
 
-sourceExample : Spec
-sourceExample =
-    columns6
+
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
 
-
-{- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
-
-
-mySpecs : Spec
-mySpecs =
-    combineSpecs
-        [ ( "columns1", columns1 )
-        , ( "columns2", columns2 )
-        , ( "columns3", columns3 )
-        , ( "columns4", columns4 )
-        , ( "columns5", columns5 )
-        , ( "columns6", columns6 )
-        , ( "grid1", grid1 )
-        , ( "grid2", grid2 )
-        , ( "grid3", grid3 )
-        , ( "grid4", grid4 )
-        , ( "grid5", grid5 )
-        ]
+specs : List ( String, Spec )
+specs =
+    [ ( "columns1", columns1 )
+    , ( "columns2", columns2 )
+    , ( "columns3", columns3 )
+    , ( "columns4", columns4 )
+    , ( "columns5", columns5 )
+    , ( "columns6", columns6 )
+    , ( "grid1", grid1 )
+    , ( "grid2", grid2 )
+    , ( "grid3", grid3 )
+    , ( "grid4", grid4 )
+    , ( "grid5", grid5 )
+    ]
 
 
 
 {- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
    The code below creates an Elm module that opens an outgoing port to Javascript
    and sends both the specs and DOM node to it.
-   This is used to display the generated Vega specs for testing purposes.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
 -}
 
 
-main : Program () Spec msg
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
 main =
     Browser.element
-        { init = always ( mySpecs, elmToJS mySpecs )
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
         , view = view
-        , update = \_ model -> ( model, Cmd.none )
+        , update = update
         , subscriptions = always Sub.none
         }
 
 
-
--- View
-
-
-view : Spec -> Html msg
+view : Spec -> Html Msg
 view spec =
-    div []
-        [ div [ id "specSource" ] []
-        , pre []
-            [ Html.text (Json.Encode.encode 2 sourceExample) ]
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", Json.Encode.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == Json.Encode.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
         ]
+
+
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
+
+        NoSource ->
+            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

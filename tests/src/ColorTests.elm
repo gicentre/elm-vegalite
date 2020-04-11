@@ -1,6 +1,11 @@
 port module ColorTests exposing (elmToJS)
 
-import Platform
+import Browser
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
+import Json.Encode
 import VegaLite exposing (..)
 
 
@@ -335,58 +340,95 @@ blend1 =
 
 
 
-{- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
 
-mySpecs : Spec
-mySpecs =
-    combineSpecs
-        [ ( "defContinuous", defContinuous )
-        , ( "defOrdinal", defOrdinal )
-        , ( "defNominal", defNominal )
-        , ( "namedContinuous1", namedContinuous1 )
-        , ( "namedContinuous2", namedContinuous2 )
-        , ( "namedContinuous3", namedContinuous3 )
-        , ( "namedContinuous4", namedContinuous4 )
-        , ( "customContinuous", customContinuous )
-        , ( "customDiscrete", customDiscrete )
-        , ( "scale1", scale1 )
-        , ( "scale2", scale2 )
-        , ( "scale3", scale3 )
-        , ( "scale4", scale4 )
-        , ( "scale5", scale5 )
-        , ( "scale6", scale6 )
-        , ( "scale7", scale7 )
-        , ( "scale8", scale8 )
-        , ( "interp1", interp1 )
-        , ( "interp2", interp2 )
-        , ( "interp3", interp3 )
-        , ( "interp4", interp4 )
-        , ( "interp5", interp5 )
-        , ( "interp6", interp6 )
-        , ( "interp7", interp7 )
-        , ( "gamma1", gamma1 )
-        , ( "gamma2", gamma2 )
-        , ( "gamma3", gamma3 )
-        , ( "gamma4", gamma4 )
-        , ( "gamma5", gamma5 )
-        , ( "blend1", blend1 )
-        ]
+specs : List ( String, Spec )
+specs =
+    [ ( "defContinuous", defContinuous )
+    , ( "defOrdinal", defOrdinal )
+    , ( "defNominal", defNominal )
+    , ( "namedContinuous1", namedContinuous1 )
+    , ( "namedContinuous2", namedContinuous2 )
+    , ( "namedContinuous3", namedContinuous3 )
+    , ( "namedContinuous4", namedContinuous4 )
+    , ( "customContinuous", customContinuous )
+    , ( "customDiscrete", customDiscrete )
+    , ( "scale1", scale1 )
+    , ( "scale2", scale2 )
+    , ( "scale3", scale3 )
+    , ( "scale4", scale4 )
+    , ( "scale5", scale5 )
+    , ( "scale6", scale6 )
+    , ( "scale7", scale7 )
+    , ( "scale8", scale8 )
+    , ( "interp1", interp1 )
+    , ( "interp2", interp2 )
+    , ( "interp3", interp3 )
+    , ( "interp4", interp4 )
+    , ( "interp5", interp5 )
+    , ( "interp6", interp6 )
+    , ( "interp7", interp7 )
+    , ( "gamma1", gamma1 )
+    , ( "gamma2", gamma2 )
+    , ( "gamma3", gamma3 )
+    , ( "gamma4", gamma4 )
+    , ( "gamma5", gamma5 )
+    , ( "blend1", blend1 )
+    ]
 
 
 
-{- The code below is boilerplate for creating a headless Elm module that opens
-   an outgoing port to Javascript and sends the specs to it.
+{- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
+   The code below creates an Elm module that opens an outgoing port to Javascript
+   and sends both the specs and DOM node to it.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
 -}
 
 
-main : Program () Spec msg
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
 main =
-    Platform.worker
-        { init = always ( mySpecs, elmToJS mySpecs )
-        , update = \_ model -> ( model, Cmd.none )
+    Browser.element
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
+        , view = view
+        , update = update
         , subscriptions = always Sub.none
         }
+
+
+view : Spec -> Html Msg
+view spec =
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", Json.Encode.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == Json.Encode.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
+        ]
+
+
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
+
+        NoSource ->
+            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

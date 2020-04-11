@@ -4369,6 +4369,10 @@ var $elm$core$Basics$always = F2(
 	function (a, _v0) {
 		return a;
 	});
+var $elm$core$Basics$apR = F2(
+	function (x, f) {
+		return f(x);
+	});
 var $elm$core$Result$Err = function (a) {
 	return {$: 1, a: a};
 };
@@ -4634,10 +4638,6 @@ var $elm$core$Basics$apL = F2(
 	function (f, x) {
 		return f(x);
 	});
-var $elm$core$Basics$apR = F2(
-	function (x, f) {
-		return f(x);
-	});
 var $elm$core$Basics$eq = _Utils_equal;
 var $elm$core$Basics$floor = _Basics_floor;
 var $elm$core$Elm$JsArray$length = _JsArray_length;
@@ -4763,6 +4763,22 @@ var $elm$core$Result$isOk = function (result) {
 	} else {
 		return false;
 	}
+};
+var $elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v0, obj) {
+					var k = _v0.a;
+					var v = _v0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(0),
+			pairs));
+};
+var $author$project$VegaLite$combineSpecs = function (specs) {
+	return $elm$json$Json$Encode$object(specs);
 };
 var $elm$json$Json$Decode$map = _Json_map1;
 var $elm$json$Json$Decode$map2 = _Json_map2;
@@ -5073,21 +5089,11 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$element = _Browser_element;
 var $author$project$DataTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm$core$Basics$identity);
+var $elm$core$Platform$Sub$batch = _Platform_batch;
+var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
-var $elm$json$Json$Encode$object = function (pairs) {
-	return _Json_wrap(
-		A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v0, obj) {
-					var k = _v0.a;
-					var v = _v0.b;
-					return A3(_Json_addField, k, v, obj);
-				}),
-			_Json_emptyObject(0),
-			pairs));
-};
 var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -5210,7 +5216,6 @@ var $author$project$VegaLite$markLabel = function (m) {
 	}
 };
 var $author$project$VegaLite$TTNone = 2;
-var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$blendModeSpec = function (bm) {
 	switch (bm) {
@@ -9375,9 +9380,6 @@ var $author$project$DataTests$bin3 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$combineSpecs = function (specs) {
-	return $elm$json$Json$Encode$object(specs);
-};
 var $author$project$VegaLite$Nominal = 0;
 var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$DataTests$showData = function (data) {
@@ -14592,55 +14594,226 @@ var $author$project$DataTests$sequence2 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
-var $author$project$DataTests$mySpecs = $author$project$VegaLite$combineSpecs(
-	_List_fromArray(
-		[
-			_Utils_Tuple2('data1', $author$project$DataTests$data1),
-			_Utils_Tuple2('data2', $author$project$DataTests$data2),
-			_Utils_Tuple2('data3', $author$project$DataTests$data3),
-			_Utils_Tuple2('data4', $author$project$DataTests$data4),
-			_Utils_Tuple2('data5', $author$project$DataTests$data5),
-			_Utils_Tuple2('data6', $author$project$DataTests$data6),
-			_Utils_Tuple2('data7', $author$project$DataTests$data7),
-			_Utils_Tuple2('data8', $author$project$DataTests$data8),
-			_Utils_Tuple2('data9', $author$project$DataTests$data9),
-			_Utils_Tuple2('data10', $author$project$DataTests$data10),
-			_Utils_Tuple2('data11', $author$project$DataTests$data11),
-			_Utils_Tuple2('namedData1', $author$project$DataTests$namedData1),
-			_Utils_Tuple2('namedData2', $author$project$DataTests$namedData2),
-			_Utils_Tuple2('namedData3', $author$project$DataTests$namedData3),
-			_Utils_Tuple2('geodata1', $author$project$DataTests$geodata1),
-			_Utils_Tuple2('geodata2', $author$project$DataTests$geodata2),
-			_Utils_Tuple2('flatten1', $author$project$DataTests$flatten1),
-			_Utils_Tuple2('fold1', $author$project$DataTests$fold1),
-			_Utils_Tuple2('pivot1', $author$project$DataTests$pivot1),
-			_Utils_Tuple2('domain1', $author$project$DataTests$domain1),
-			_Utils_Tuple2('domain2', $author$project$DataTests$domain2),
-			_Utils_Tuple2('domain3', $author$project$DataTests$domain3),
-			_Utils_Tuple2('impute1', $author$project$DataTests$impute1),
-			_Utils_Tuple2('impute2', $author$project$DataTests$impute2),
-			_Utils_Tuple2('impute3', $author$project$DataTests$impute3),
-			_Utils_Tuple2('impute4', $author$project$DataTests$impute4),
-			_Utils_Tuple2('impute5', $author$project$DataTests$impute5),
-			_Utils_Tuple2('impute6', $author$project$DataTests$impute6),
-			_Utils_Tuple2('impute7', $author$project$DataTests$impute7),
-			_Utils_Tuple2('impute8', $author$project$DataTests$impute8),
-			_Utils_Tuple2('sample1', $author$project$DataTests$sample1),
-			_Utils_Tuple2('bin1', $author$project$DataTests$bin1),
-			_Utils_Tuple2('bin2', $author$project$DataTests$bin2),
-			_Utils_Tuple2('bin3', $author$project$DataTests$bin3),
-			_Utils_Tuple2('sequence1', $author$project$DataTests$sequence1),
-			_Utils_Tuple2('sequence2', $author$project$DataTests$sequence2),
-			_Utils_Tuple2('filter1', $author$project$DataTests$filter1),
-			_Utils_Tuple2('filter2', $author$project$DataTests$filter2),
-			_Utils_Tuple2('annotate1', $author$project$DataTests$annotate1),
-			_Utils_Tuple2('datum1', $author$project$DataTests$datum1),
-			_Utils_Tuple2('datum2', $author$project$DataTests$datum2)
-		]));
+var $author$project$DataTests$specs = _List_fromArray(
+	[
+		_Utils_Tuple2('data1', $author$project$DataTests$data1),
+		_Utils_Tuple2('data2', $author$project$DataTests$data2),
+		_Utils_Tuple2('data3', $author$project$DataTests$data3),
+		_Utils_Tuple2('data4', $author$project$DataTests$data4),
+		_Utils_Tuple2('data5', $author$project$DataTests$data5),
+		_Utils_Tuple2('data6', $author$project$DataTests$data6),
+		_Utils_Tuple2('data7', $author$project$DataTests$data7),
+		_Utils_Tuple2('data8', $author$project$DataTests$data8),
+		_Utils_Tuple2('data9', $author$project$DataTests$data9),
+		_Utils_Tuple2('data10', $author$project$DataTests$data10),
+		_Utils_Tuple2('data11', $author$project$DataTests$data11),
+		_Utils_Tuple2('namedData1', $author$project$DataTests$namedData1),
+		_Utils_Tuple2('namedData2', $author$project$DataTests$namedData2),
+		_Utils_Tuple2('namedData3', $author$project$DataTests$namedData3),
+		_Utils_Tuple2('geodata1', $author$project$DataTests$geodata1),
+		_Utils_Tuple2('geodata2', $author$project$DataTests$geodata2),
+		_Utils_Tuple2('flatten1', $author$project$DataTests$flatten1),
+		_Utils_Tuple2('fold1', $author$project$DataTests$fold1),
+		_Utils_Tuple2('pivot1', $author$project$DataTests$pivot1),
+		_Utils_Tuple2('domain1', $author$project$DataTests$domain1),
+		_Utils_Tuple2('domain2', $author$project$DataTests$domain2),
+		_Utils_Tuple2('domain3', $author$project$DataTests$domain3),
+		_Utils_Tuple2('impute1', $author$project$DataTests$impute1),
+		_Utils_Tuple2('impute2', $author$project$DataTests$impute2),
+		_Utils_Tuple2('impute3', $author$project$DataTests$impute3),
+		_Utils_Tuple2('impute4', $author$project$DataTests$impute4),
+		_Utils_Tuple2('impute5', $author$project$DataTests$impute5),
+		_Utils_Tuple2('impute6', $author$project$DataTests$impute6),
+		_Utils_Tuple2('impute7', $author$project$DataTests$impute7),
+		_Utils_Tuple2('impute8', $author$project$DataTests$impute8),
+		_Utils_Tuple2('sample1', $author$project$DataTests$sample1),
+		_Utils_Tuple2('bin1', $author$project$DataTests$bin1),
+		_Utils_Tuple2('bin2', $author$project$DataTests$bin2),
+		_Utils_Tuple2('bin3', $author$project$DataTests$bin3),
+		_Utils_Tuple2('sequence1', $author$project$DataTests$sequence1),
+		_Utils_Tuple2('sequence2', $author$project$DataTests$sequence2),
+		_Utils_Tuple2('filter1', $author$project$DataTests$filter1),
+		_Utils_Tuple2('filter2', $author$project$DataTests$filter2),
+		_Utils_Tuple2('annotate1', $author$project$DataTests$annotate1),
+		_Utils_Tuple2('datum1', $author$project$DataTests$datum1),
+		_Utils_Tuple2('datum2', $author$project$DataTests$datum2)
+	]);
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
+var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
+var $elm$core$Dict$Black = 1;
+var $elm$core$Dict$RBNode_elm_builtin = F5(
+	function (a, b, c, d, e) {
+		return {$: -1, a: a, b: b, c: c, d: d, e: e};
+	});
+var $elm$core$Dict$Red = 0;
+var $elm$core$Dict$balance = F5(
+	function (color, key, value, left, right) {
+		if ((right.$ === -1) && (!right.a)) {
+			var _v1 = right.a;
+			var rK = right.b;
+			var rV = right.c;
+			var rLeft = right.d;
+			var rRight = right.e;
+			if ((left.$ === -1) && (!left.a)) {
+				var _v3 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var lLeft = left.d;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					0,
+					key,
+					value,
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					color,
+					rK,
+					rV,
+					A5($elm$core$Dict$RBNode_elm_builtin, 0, key, value, left, rLeft),
+					rRight);
+			}
+		} else {
+			if ((((left.$ === -1) && (!left.a)) && (left.d.$ === -1)) && (!left.d.a)) {
+				var _v5 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var _v6 = left.d;
+				var _v7 = _v6.a;
+				var llK = _v6.b;
+				var llV = _v6.c;
+				var llLeft = _v6.d;
+				var llRight = _v6.e;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					0,
+					lK,
+					lV,
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, 1, key, value, lRight, right));
+			} else {
+				return A5($elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
+			}
+		}
+	});
+var $elm$core$Basics$compare = _Utils_compare;
+var $elm$core$Dict$insertHelp = F3(
+	function (key, value, dict) {
+		if (dict.$ === -2) {
+			return A5($elm$core$Dict$RBNode_elm_builtin, 0, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+		} else {
+			var nColor = dict.a;
+			var nKey = dict.b;
+			var nValue = dict.c;
+			var nLeft = dict.d;
+			var nRight = dict.e;
+			var _v1 = A2($elm$core$Basics$compare, key, nKey);
+			switch (_v1) {
+				case 0:
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						A3($elm$core$Dict$insertHelp, key, value, nLeft),
+						nRight);
+				case 1:
+					return A5($elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
+				default:
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						nLeft,
+						A3($elm$core$Dict$insertHelp, key, value, nRight));
+			}
+		}
+	});
+var $elm$core$Dict$insert = F3(
+	function (key, value, dict) {
+		var _v0 = A3($elm$core$Dict$insertHelp, key, value, dict);
+		if ((_v0.$ === -1) && (!_v0.a)) {
+			var _v1 = _v0.a;
+			var k = _v0.b;
+			var v = _v0.c;
+			var l = _v0.d;
+			var r = _v0.e;
+			return A5($elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
+		} else {
+			var x = _v0;
+			return x;
+		}
+	});
+var $elm$core$Dict$fromList = function (assocs) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (_v0, dict) {
+				var key = _v0.a;
+				var value = _v0.b;
+				return A3($elm$core$Dict$insert, key, value, dict);
+			}),
+		$elm$core$Dict$empty,
+		assocs);
+};
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === -2) {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1) {
+					case 0:
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 1:
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $elm$core$Platform$Sub$batch = _Platform_batch;
-var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$DataTests$update = F2(
+	function (msg, model) {
+		if (!msg.$) {
+			var srcName = msg.a;
+			return _Utils_Tuple2(
+				A2(
+					$elm$core$Maybe$withDefault,
+					$elm$json$Json$Encode$null,
+					A2(
+						$elm$core$Dict$get,
+						srcName,
+						$elm$core$Dict$fromList($author$project$DataTests$specs))),
+				$elm$core$Platform$Cmd$none);
+		} else {
+			return _Utils_Tuple2($elm$json$Json$Encode$null, $elm$core$Platform$Cmd$none);
+		}
+	});
+var $author$project$DataTests$NewSource = function (a) {
+	return {$: 0, a: a};
+};
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -14650,10 +14823,46 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 1, a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$at = F2(
+	function (fields, decoder) {
+		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
+	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $elm$html$Html$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$elm$html$Html$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
+};
+var $elm$html$Html$option = _VirtualDom_node('option');
 var $elm$html$Html$pre = _VirtualDom_node('pre');
-var $author$project$DataTests$sourceExample = $author$project$DataTests$datum2;
+var $elm$html$Html$select = _VirtualDom_node('select');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$DataTests$view = function (spec) {
 	return A2(
 		$elm$html$Html$div,
@@ -14661,19 +14870,44 @@ var $author$project$DataTests$view = function (spec) {
 		_List_fromArray(
 			[
 				A2(
+				$elm$html$Html$select,
+				_List_fromArray(
+					[
+						$elm$html$Html$Events$onInput($author$project$DataTests$NewSource)
+					]),
+				A2(
+					$elm$core$List$map,
+					function (_v0) {
+						var s = _v0.a;
+						return A2(
+							$elm$html$Html$option,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$value(s)
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text(s)
+								]));
+					},
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2('Select source', $elm$json$Json$Encode$null),
+						$author$project$DataTests$specs))),
+				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
 						$elm$html$Html$Attributes$id('specSource')
 					]),
 				_List_Nil),
-				A2(
+				_Utils_eq(spec, $elm$json$Json$Encode$null) ? A2($elm$html$Html$div, _List_Nil, _List_Nil) : A2(
 				$elm$html$Html$pre,
 				_List_Nil,
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
-						A2($elm$json$Json$Encode$encode, 2, $author$project$DataTests$sourceExample))
+						A2($elm$json$Json$Encode$encode, 2, spec))
 					]))
 			]));
 };
@@ -14681,13 +14915,11 @@ var $author$project$DataTests$main = $elm$browser$Browser$element(
 	{
 		ar: $elm$core$Basics$always(
 			_Utils_Tuple2(
-				$author$project$DataTests$mySpecs,
-				$author$project$DataTests$elmToJS($author$project$DataTests$mySpecs))),
+				$elm$json$Json$Encode$null,
+				$author$project$DataTests$elmToJS(
+					$author$project$VegaLite$combineSpecs($author$project$DataTests$specs)))),
 		ax: $elm$core$Basics$always($elm$core$Platform$Sub$none),
-		az: F2(
-			function (_v0, model) {
-				return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
-			}),
+		az: $author$project$DataTests$update,
 		aA: $author$project$DataTests$view
 	});
 _Platform_export({'DataTests':{'init':$author$project$DataTests$main(

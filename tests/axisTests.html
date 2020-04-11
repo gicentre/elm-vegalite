@@ -12,12 +12,12 @@
     <script src="js/axisTests.js"></script>
 
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
       rel="stylesheet"
     />
     <style>
       body {
-        font-family: "Roboto", sans-serif;
+        font-family: "Roboto Condensed";
       }
       figcaption {
         padding-top: 0.5em;
@@ -37,12 +37,12 @@
 
     <h2>Default Axes</h2>
     <figure class="cell">
-      <div id="axis1"></div>
+      <div id="axis01"></div>
       <figcaption>Default quantitative axis on x and ordinal on y</figcaption>
     </figure>
 
     <figure class="cell">
-      <div id="axis1a"></div>
+      <div id="axis01a"></div>
       <figcaption>
         Quantitative axis configured to show red grid lines.
       </figcaption>
@@ -51,7 +51,7 @@
     <div style="clear:left"></div>
 
     <figure class="cell" width="350">
-      <div id="axis2"></div>
+      <div id="axis02"></div>
       <figcaption>
         Responsive width with associated responsive x axis
       </figcaption>
@@ -60,7 +60,7 @@
     <div style="clear:left"></div>
 
     <figure class="cell">
-      <div id="axis3"></div>
+      <div id="axis03"></div>
       <figcaption>
         Default ordinal x-axis (numbers as strings in alphabetical order)
       </figcaption>
@@ -69,14 +69,14 @@
     <div style="clear:left"></div>
 
     <figure class="cell">
-      <div id="axis4"></div>
+      <div id="axis04"></div>
       <figcaption>
         Default temporal x-axis
       </figcaption>
     </figure>
 
     <figure class="cell">
-      <div id="axis4a"></div>
+      <div id="axis04a"></div>
       <figcaption>
         Temporal axis configured to show red grid lines.
       </figcaption>
@@ -86,12 +86,12 @@
 
     <h2>Explicit Axis Values</h2>
     <figure class="cell">
-      <div id="axis5"></div>
+      <div id="axis05"></div>
       <figcaption>Explicit x-axis values at 1, 25, 39 and 90</figcaption>
     </figure>
 
     <figure class="cell">
-      <div id="axis6"></div>
+      <div id="axis06"></div>
       <figcaption>
         Explicit x-axis values at "1", "25", "39", "dummy" (should be ignored)
         and "90"
@@ -99,7 +99,7 @@
     </figure>
 
     <figure class="cell">
-      <div id="axis7"></div>
+      <div id="axis07"></div>
       <figcaption>
         Explicit x-axis values at 4th Jan, 8th Jan and 20th Jan (should be
         ignored as outside of domain).
@@ -110,14 +110,14 @@
 
     <h2>Axis label expressions</h2>
     <figure class="cell">
-      <div id="axis8"></div>
+      <div id="axis08"></div>
       <figcaption>
         Should recalculate label to be 0.01 of data value.
       </figcaption>
     </figure>
 
     <figure class="cell">
-      <div id="axis9"></div>
+      <div id="axis09"></div>
       <figcaption>
         Preface each label with the word 'number'
       </figcaption>
@@ -173,8 +173,13 @@
 
     <div style="clear:left"></div>
 
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
     <script>
-      Elm.AxisTests.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.AxisTests.init({
+        node: document.getElementById("elmContainer")
+      }).ports.elmToJS.subscribe(function(namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
