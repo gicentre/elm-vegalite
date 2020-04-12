@@ -9844,18 +9844,7 @@ var $author$project$RadialTests$radial11 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('month'),
-								$author$project$VegaLite$pOrdinal,
-								$author$project$VegaLite$pScale(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$scRange(
-										$author$project$VegaLite$raNums(
-											_List_fromArray(
-												[
-													$elm$core$Basics$degrees(-90),
-													$elm$core$Basics$degrees(270)
-												])))
-									]))
+								$author$project$VegaLite$pOrdinal
 							]))),
 				A2(
 					$author$project$VegaLite$position,
@@ -9896,6 +9885,8 @@ var $author$project$RadialTests$radial11 = function () {
 				$author$project$VegaLite$arc(
 				_List_fromArray(
 					[
+						$author$project$VegaLite$maThetaOffset(
+						$elm$core$Basics$degrees(-90)),
 						$author$project$VegaLite$maStroke('black'),
 						$author$project$VegaLite$maStrokeWidth(0.5),
 						$author$project$VegaLite$maOpacity(0.6)

@@ -241,7 +241,7 @@ radial11 =
 
         enc =
             encoding
-                << position Theta [ pName "month", pOrdinal, pScale [ scRange (raNums [ degrees -90, degrees 270 ]) ] ]
+                << position Theta [ pName "month", pOrdinal ]
                 << position R [ pName "deaths", pQuant, pScale [ scType scSqrt ], pStack stNone ]
                 << order [ oName "cause", oOrdinal ]
                 << color [ mName "cause", mNominal, mScale colours, mTitle "" ]
@@ -252,7 +252,7 @@ radial11 =
         , data []
         , trans []
         , enc []
-        , arc [ maStroke "black", maStrokeWidth 0.5, maOpacity 0.6 ]
+        , arc [ maThetaOffset (degrees -90), maStroke "black", maStrokeWidth 0.5, maOpacity 0.6 ]
         ]
 
 

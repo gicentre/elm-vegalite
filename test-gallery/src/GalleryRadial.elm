@@ -198,11 +198,7 @@ radial6 =
 
         enc =
             encoding
-                << position Theta
-                    [ pName "month"
-                    , pOrdinal
-                    , pScale [ scRange (raNums [ degrees -90, degrees 270 ]) ]
-                    ]
+                << position Theta [ pName "month", pOrdinal ]
 
         encSector =
             encoding
@@ -216,7 +212,15 @@ radial6 =
                     ]
 
         specSector =
-            asSpec [ encSector [], arc [ maStroke "black", maStrokeWidth 0.2, maOpacity 0.6 ] ]
+            asSpec
+                [ encSector []
+                , arc
+                    [ maThetaOffset (degrees -90)
+                    , maStroke "black"
+                    , maStrokeWidth 0.2
+                    , maOpacity 0.6
+                    ]
+                ]
 
         encLabels =
             encoding
@@ -225,7 +229,11 @@ radial6 =
                 << text [ tName "monthLabel", tNominal ]
 
         specLabels =
-            asSpec [ transLabels [], encLabels [], textMark [ maFont "Girassol", maDy -10 ] ]
+            asSpec
+                [ transLabels []
+                , encLabels []
+                , textMark [ maFont "Girassol", maThetaOffset (degrees -90), maDy -10 ]
+                ]
     in
     toVegaLite
         [ cfg []

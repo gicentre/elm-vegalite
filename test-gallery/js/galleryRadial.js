@@ -10285,6 +10285,10 @@ var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 60, a: a};
 };
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$MThetaOffset = function (a) {
+	return {$: 79, a: a};
+};
+var $author$project$VegaLite$maThetaOffset = $author$project$VegaLite$MThetaOffset;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -10422,6 +10426,8 @@ var $author$project$GalleryRadial$radial6 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maFont('Girassol'),
+						$author$project$VegaLite$maThetaOffset(
+						$elm$core$Basics$degrees(-90)),
 						$author$project$VegaLite$maDy(-10)
 					]))
 			]));
@@ -10434,18 +10440,7 @@ var $author$project$GalleryRadial$radial6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('month'),
-					$author$project$VegaLite$pOrdinal,
-					$author$project$VegaLite$pScale(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$scRange(
-							$author$project$VegaLite$raNums(
-								_List_fromArray(
-									[
-										$elm$core$Basics$degrees(-90),
-										$elm$core$Basics$degrees(270)
-									])))
-						]))
+					$author$project$VegaLite$pOrdinal
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10537,6 +10532,8 @@ var $author$project$GalleryRadial$radial6 = function () {
 				$author$project$VegaLite$arc(
 				_List_fromArray(
 					[
+						$author$project$VegaLite$maThetaOffset(
+						$elm$core$Basics$degrees(-90)),
 						$author$project$VegaLite$maStroke('black'),
 						$author$project$VegaLite$maStrokeWidth(0.2),
 						$author$project$VegaLite$maOpacity(0.6)
