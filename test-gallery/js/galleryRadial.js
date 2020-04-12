@@ -3592,6 +3592,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'theta2',
 				$elm$json$Json$Encode$float(x));
+		case 79:
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'thetaOffset',
+				$elm$json$Json$Encode$float(x));
+		case 80:
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'theta2Offset',
+				$elm$json$Json$Encode$float(x));
 		case 4:
 			var x = mProp.a;
 			return _Utils_Tuple2(
@@ -3759,7 +3769,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'y2Offset',
 				$elm$json$Json$Encode$float(o));
-		case 79:
+		case 81:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'radiusOffset',
@@ -9796,7 +9806,7 @@ var $author$project$GalleryRadial$radial3 = function () {
 }();
 var $author$project$VegaLite$R = 6;
 var $author$project$VegaLite$MRadiusOffset = function (a) {
-	return {$: 79, a: a};
+	return {$: 81, a: a};
 };
 var $author$project$VegaLite$maRadiusOffset = $author$project$VegaLite$MRadiusOffset;
 var $author$project$VegaLite$MStroke = function (a) {

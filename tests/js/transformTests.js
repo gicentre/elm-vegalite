@@ -5838,6 +5838,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'theta2',
 				$elm$json$Json$Encode$float(x));
+		case 79:
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'thetaOffset',
+				$elm$json$Json$Encode$float(x));
+		case 80:
+			var x = mProp.a;
+			return _Utils_Tuple2(
+				'theta2Offset',
+				$elm$json$Json$Encode$float(x));
 		case 4:
 			var x = mProp.a;
 			return _Utils_Tuple2(
@@ -6005,7 +6015,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'y2Offset',
 				$elm$json$Json$Encode$float(o));
-		case 79:
+		case 81:
 			var o = mProp.a;
 			return _Utils_Tuple2(
 				'radiusOffset',
