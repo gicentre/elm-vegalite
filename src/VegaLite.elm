@@ -331,6 +331,8 @@ module VegaLite exposing
     , maY
     , maXOffset
     , maYOffset
+    , maThetaOffset
+    , maTheta2Offset
     , maX2
     , maY2
     , maX2Offset
@@ -2009,6 +2011,8 @@ property documentation.
 @docs maY
 @docs maXOffset
 @docs maYOffset
+@docs maThetaOffset
+@docs maTheta2Offset
 @docs maX2
 @docs maY2
 @docs maX2Offset
@@ -4877,10 +4881,11 @@ type MarkOrientation
 [maStrokeDash](#maStrokeDash), [maStrokeDashOffset](#maStrokeDashOffset), [maStrokeJoin](#maStrokeJoin),
 [maStrokeMiterLimit](#maStrokeMiterLimit), [maStrokeOpacity](#maStrokeOpacity),
 [maStrokeWidth](#maStrokeWidth), [maStyle](#maStyle), [maTension](#maTension),
-[maText](#maText), [maTheta](#maTheta), [maTheta2](#maTheta2), [maThickness](#maThickness),
-[maTicks](#maTicks), [maTooltip](#maTooltip), [maX](#maX), [maWidth](#maWidth),
-[maHeight](#maHeight), [maY](#maY), [maXOffset](#maXOffset), [maYOffset](#maYOffset),
-[maX2](#maX2), [maY2](#maY2), [maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
+[maText](#maText), [maTheta](#maTheta), [maTheta2](#maTheta2), [maThetaOffset](#maThetaOffset),
+[maTheta2Offset](#maTheta2Offset),[maThickness](#maThickness), [maTicks](#maTicks),
+[maTooltip](#maTooltip), [maX](#maX), [maWidth](#maWidth), [maHeight](#maHeight),
+[maY](#maY), [maXOffset](#maXOffset), [maYOffset](#maYOffset), [maX2](#maX2), [maY2](#maY2),
+[maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
 -}
 type
     MarkProperty
@@ -4966,6 +4971,8 @@ type
     | MYOffset Float
     | MX2Offset Float
     | MY2Offset Float
+    | MThetaOffset Float
+    | MTheta2Offset Float
     | MRadiusOffset Float
     | MAspect Bool
 
@@ -13159,6 +13166,22 @@ maTheta2 =
     MTheta2
 
 
+{-| Clockwise angular offset (in radians) of a radially positioned mark.
+-}
+maThetaOffset : Float -> MarkProperty
+maThetaOffset =
+    MThetaOffset
+
+
+{-| Clockwise angular offset (in radians) of the second theta value of a radially
+positioned mark. Useful when the offsets to apply to the start and end angle of
+an arc need to be set independently.
+-}
+maTheta2Offset : Float -> MarkProperty
+maTheta2Offset =
+    MTheta2Offset
+
+
 {-| Thickness of a tick mark.
 -}
 maThickness : Float -> MarkProperty
@@ -20548,6 +20571,12 @@ markProperty mProp =
 
         MTheta2 x ->
             ( "theta2", JE.float x )
+
+        MThetaOffset x ->
+            ( "thetaOffset", JE.float x )
+
+        MTheta2Offset x ->
+            ( "theta2Offset", JE.float x )
 
         MBinSpacing x ->
             ( "binSpacing", JE.float x )

@@ -24,7 +24,7 @@
 
 - `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
-* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta`, `maTheta2`, `maThetaOffset` and `maTheta2Offset` (VL4.9).
 
 - `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
 

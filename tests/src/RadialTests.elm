@@ -9,34 +9,67 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
-radial : Float -> Spec
-radial innerR =
+vals =
+    [ 4, 6, 10, 3, 7, 8 ]
+
+
+radial : Float -> Float -> Float -> Spec
+radial innerR off1 off2 =
     let
         data =
             dataFromColumns []
                 << dataColumn "category" (strs [ "A", "B", "C", "D", "E", "F" ])
-                << dataColumn "value" (nums [ 4, 6, 10, 3, 7, 8 ])
+                << dataColumn "value" (nums vals)
 
         enc =
             encoding
                 << position Theta [ pName "value", pQuant ]
                 << color [ mName "category", mNominal ]
+
+        offset1 =
+            if off1 /= 0 then
+                [ maThetaOffset off1 ]
+
+            else
+                []
+
+        offset2 =
+            if off2 /= 0 then
+                [ maTheta2Offset off2 ]
+
+            else
+                []
     in
-    toVegaLite [ data [], enc [], arc [ maTooltip ttEncoding, maInnerRadius innerR ] ]
+    toVegaLite [ data [], enc [], arc (maInnerRadius innerR :: offset1 ++ offset2) ]
 
 
 radial1 : Spec
 radial1 =
-    radial 0
+    radial 0 0 0
 
 
 radial2 : Spec
 radial2 =
-    radial 50
+    radial 50 0 0
+
+
+firstCentreOffset : Float
+firstCentreOffset =
+    degrees (-180 * (List.head vals |> Maybe.withDefault 0) / List.sum vals)
 
 
 radial3 : Spec
 radial3 =
+    radial 0 firstCentreOffset 0
+
+
+radial4 : Spec
+radial4 =
+    radial 0 firstCentreOffset firstCentreOffset
+
+
+radial5 : Spec
+radial5 =
     let
         data =
             dataFromColumns []
@@ -61,8 +94,8 @@ radial3 =
     toVegaLite [ data [], enc [], layer [ pieSpec, labelSpec ] ]
 
 
-radial4 : Spec
-radial4 =
+radial6 : Spec
+radial6 =
     let
         data =
             dataFromColumns []
@@ -81,8 +114,8 @@ radial4 =
         ]
 
 
-radial5 : Spec
-radial5 =
+radial7 : Spec
+radial7 =
     let
         data =
             dataFromColumns []
@@ -95,11 +128,11 @@ radial5 =
                 << position R [ pName "strength", pQuant ]
                 << color [ mName "dir", mNominal ]
     in
-    toVegaLite [ data [], enc [], arc [] ]
+    toVegaLite [ data [], enc [], arc [ maThetaOffset (degrees -22.5) ] ]
 
 
-radial6 : Spec
-radial6 =
+radial8 : Spec
+radial8 =
     let
         thetas =
             List.range 0 8 |> List.map (\n -> toFloat n * 45 |> degrees)
@@ -116,11 +149,11 @@ radial6 =
                 << position Theta2 [ pName "t2" ]
                 << color [ mName "dir", mNominal ]
     in
-    toVegaLite [ data [], enc [], arc [] ]
+    toVegaLite [ data [], enc [], arc [ maThetaOffset (degrees -22.5) ] ]
 
 
-radial7 : Spec
-radial7 =
+radial9 : Spec
+radial9 =
     let
         thetas =
             List.range 0 8 |> List.map (\n -> toFloat n * 45 |> degrees)
@@ -140,11 +173,11 @@ radial7 =
                 << position R2 [ pNum 10 ]
                 << color [ mName "dir", mNominal ]
     in
-    toVegaLite [ data [], enc [], arc [] ]
+    toVegaLite [ data [], enc [], arc [ maThetaOffset (degrees -22.5), maTheta2Offset (degrees -22.5) ] ]
 
 
-radial8 : Spec
-radial8 =
+radial10 : Spec
+radial10 =
     let
         data =
             dataFromColumns []
@@ -185,8 +218,8 @@ radial8 =
         ]
 
 
-radial9 : Spec
-radial9 =
+radial11 : Spec
+radial11 =
     let
         data =
             dataFromColumns []
@@ -238,6 +271,8 @@ specs =
     , ( "radial7", radial7 )
     , ( "radial8", radial8 )
     , ( "radial9", radial9 )
+    , ( "radial10", radial10 )
+    , ( "radial10", radial11 )
     ]
 
 

@@ -39,57 +39,74 @@
       <div id="radial1"></div>
       <figcaption>Simple pie chart</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="radial2"></div>
       <figcaption>Simple 'donut' chart</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="radial3"></div>
-      <figcaption>Pie chart with labels</figcaption>
+      <figcaption>
+        Should be pie chart offset so north segment is centred at 12 o'clock
+        using thetaOffset. Gaps are erroneous.
+      </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="radial4"></div>
+      <figcaption>
+        As above above but specified with both thetaOffset and theta2Offset
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="radial5"></div>
+      <figcaption>Pie chart with labels</figcaption>
+    </figure>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="radial6"></div>
       <figcaption>
         Non-data-driven arc segment. Should be positioned in bottom-left with
         segment pointing up-right with small inner radius.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
-      <div id="radial5"></div>
+      <div id="radial7"></div>
       <figcaption>
         Rose diagram segments whose angle is implicit in ordinal band scaling
         and whose radius is data-driven.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
-      <div id="radial6"></div>
+      <div id="radial8"></div>
       <figcaption>
         Pie segments defined explicitly with theta and theta2 values. Should be
         8 categories corresponding to direction label.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
-      <div id="radial7"></div>
+      <div id="radial9"></div>
       <figcaption>
         As above but with radius increasing from 1 to 8 from N clockwise.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
-      <div id="radial8"></div>
+      <div id="radial10"></div>
       <figcaption>
         Nightingale's "Causes of Mortality in the Army in the East" coxcomb,
         using repeat layerFields to each of the three mortality causes. See this
@@ -100,28 +117,28 @@
         >.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
-      <div id="radial9"></div>
+      <div id="radial11"></div>
       <figcaption>
         As above, but using colour encoding and null stacking so that it may be
         placed in a layer (cannot use layers with repeat function).
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.RadialTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
