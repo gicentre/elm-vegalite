@@ -491,6 +491,14 @@ scaleCfg1 =
         |> singleVis
 
 
+axisLegendCfg1 : Spec
+axisLegendCfg1 =
+    configure
+        << configuration (coLegend [ lecoDisable True ])
+        << configuration (coAxis [ axcoDisable True ])
+        |> singleVis
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -520,6 +528,7 @@ specs =
     , ( "titleCfg2", titleCfg2 )
     , ( "titleCfg3", titleCfg3 )
     , ( "scaleCfg1", scaleCfg1 )
+    , ( "axisLegendCfg1", axisLegendCfg1 )
     ]
 
 

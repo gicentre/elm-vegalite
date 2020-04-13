@@ -39,7 +39,7 @@
       <div id="default"></div>
       <figcaption>Default configuration</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Colour and Font Configuration</h2>
 
@@ -47,7 +47,7 @@
       <div id="dark"></div>
       <figcaption>Dark background, light axis and serif text</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Mark Configuration</h2>
 
@@ -59,7 +59,7 @@
       <div id="mark2"></div>
       <figcaption>Solid scatter and bar, outline stream</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Autosize</h2>
 
@@ -69,7 +69,7 @@
         Autosize to fit with different padding on each side
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>View Backgrounds</h2>
 
@@ -81,7 +81,7 @@
         having their own custom plot area backgrounds.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Axis Configuration</h2>
 
@@ -91,7 +91,7 @@
         Italic serif axis title and labels flushed to end of axis.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg2"></div>
@@ -99,7 +99,7 @@
         Both axes red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg3"></div>
@@ -107,7 +107,7 @@
         x axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg4"></div>
@@ -115,7 +115,7 @@
         y axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg5"></div>
@@ -123,7 +123,7 @@
         bottom axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg6"></div>
@@ -131,7 +131,7 @@
         left axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg7"></div>
@@ -139,7 +139,7 @@
         top axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg8"></div>
@@ -147,7 +147,7 @@
         right axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg9"></div>
@@ -155,7 +155,7 @@
         band axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg10"></div>
@@ -163,7 +163,7 @@
         quantitative axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg11"></div>
@@ -171,7 +171,7 @@
         temporal axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg12"></div>
@@ -179,7 +179,7 @@
         discrete axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCfg13"></div>
@@ -187,7 +187,7 @@
         point axis red
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Title Configuration</h2>
 
@@ -197,7 +197,7 @@
         Multi-line title and multi-line subtitle with default configurations.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="titleCfg2"></div>
@@ -205,7 +205,7 @@
         Title and subtitle appearance controlled directly with title parameters.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="titleCfg3"></div>
@@ -214,7 +214,7 @@
         previous chart.).
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Scale Configuration</h2>
 
@@ -224,19 +224,29 @@
         Configure x-scale to reverse (right to left).
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Axis and Legend Disabling</h2>
+
+    <figure class="cell">
+      <div id="axisLegendCfg1"></div>
+      <figcaption>
+        Remove axis and legends by default.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ConfigTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

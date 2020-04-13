@@ -14,25 +14,27 @@
 
 ## Additions
 
-- `mBand` for non-positional band encoding (VL4.10)
+- `axcoDisable` and `lecoDisable` to disable axes and legends by default in configuration (VL4.10).
 
-* `arc` and `text` mark offset functions `maThetaOffset`, `maTheta2Offset`, `maRadiusOffset` and `maRadius2Offset` (VL4.10).
+* `mBand` for non-positional band encoding (VL4.10)
 
-- `pDatum` for specifying a literal data-driven positioning (VL.4.9).
+- `arc` and `text` mark offset functions `maThetaOffset`, `maTheta2Offset`, `maRadiusOffset` and `maRadius2Offset` (VL4.10).
 
-* `mDatum` for specifying a literal data-driven mark property (VL.4.9).
+* `pDatum` for specifying a literal data-driven positioning (VL.4.9).
 
-- `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
+- `mDatum` for specifying a literal data-driven mark property (VL.4.9).
 
-* `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
+* `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
 
-- `angle` channel for data-driven rotation of point and text symbols (VL4.9).
+- `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
 
-* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+* `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
-- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+- `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
 
-* `leTitleOrient` for positioning a title relative to legend content.
+* `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+
+- `leTitleOrient` for positioning a title relative to legend content.
 
 ### Other Changes
 
