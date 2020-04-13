@@ -338,6 +338,7 @@ module VegaLite exposing
     , maX2Offset
     , maY2Offset
     , maRadiusOffset
+    , maRadius2Offset
     , maAspect
     , grLinear
     , grRadial
@@ -2018,6 +2019,7 @@ property documentation.
 @docs maX2Offset
 @docs maY2Offset
 @docs maRadiusOffset
+@docs maRadius2Offset
 @docs maAspect
 
 
@@ -4875,8 +4877,8 @@ type MarkOrientation
 [maOuterRadius](#maOuterRadius), [maInterpolate](#maInterpolate), [maLimit](#maLimit),
 [maLine](#maLine), [maLineHeight](#maLineHeight), [maMedian](#maMedian), [maOpacity](#maOpacity),
 [maOutliers](#maOutliers), [maOrient](#maOrient), [maPoint](#maPoint), [maRadius](#maRadius),
-[maRadiusOffset](#maRadiusOffset), [maRemoveInvalid](#maRemoveInvalid), [maRule](#maRule),
-[maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
+[maRadiusOffset](#maRadiusOffset), [maRadius2Offset](#maRadius2Offset), [maRemoveInvalid](#maRemoveInvalid),
+[maRule](#maRule), [maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
 [maStroke](#maStroke), [maStrokeGradient](#maStrokeGradient), [maStrokeCap](#maStrokeCap),
 [maStrokeDash](#maStrokeDash), [maStrokeDashOffset](#maStrokeDashOffset), [maStrokeJoin](#maStrokeJoin),
 [maStrokeMiterLimit](#maStrokeMiterLimit), [maStrokeOpacity](#maStrokeOpacity),
@@ -4974,6 +4976,7 @@ type
     | MThetaOffset Float
     | MTheta2Offset Float
     | MRadiusOffset Float
+    | MRadius2Offset Float
     | MAspect Bool
 
 
@@ -12984,12 +12987,20 @@ maRadius =
     MRadius
 
 
-{-| Polar coordinate radial offset of a text mark from a polar origin specified
-with `Theta` and `OuterRadius`.
+{-| Polar coordinate radial offset of a text or arc mark from a polar origin
+specified with `Theta` and `R`.
 -}
 maRadiusOffset : Float -> MarkProperty
 maRadiusOffset =
     MRadiusOffset
+
+
+{-| Polar coordinate inner radial offset of an arc mark from a polar origin
+specified with `Theta`, `R` and `R2`.
+-}
+maRadius2Offset : Float -> MarkProperty
+maRadius2Offset =
+    MRadius2Offset
 
 
 {-| Determine whether or not invalid (`null` and `NaN`) values are considered for
@@ -20682,6 +20693,9 @@ markProperty mProp =
 
         MRadiusOffset o ->
             ( "radiusOffset", JE.float o )
+
+        MRadius2Offset o ->
+            ( "radius2Offset", JE.float o )
 
         MAspect b ->
             ( "aspect", JE.bool b )

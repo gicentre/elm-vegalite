@@ -256,6 +256,29 @@ radial11 =
         ]
 
 
+radial12 : Spec
+radial12 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91 ])
+
+        sel =
+            selection
+                << select "highlight" seSingle [ seOn "mouseover", seEmpty ]
+                << select "select" seMulti []
+
+        enc =
+            encoding
+                << position Theta [ pName "b", pQuant ]
+                << color [ mName "a", mNominal, mLegend [] ]
+                << fillOpacity [ mDataCondition [ ( selected "highlight", [ mNum 1 ] ) ] [ mNum 0.6 ] ]
+                << strokeWidth [ mDataCondition [ ( selected "highlight", [ mNum 0 ] ) ] [ mNum 8 ] ]
+    in
+    toVegaLite [ data [], sel [], enc [], arc [ maStroke "white" ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -272,7 +295,8 @@ specs =
     , ( "radial8", radial8 )
     , ( "radial9", radial9 )
     , ( "radial10", radial10 )
-    , ( "radial10", radial11 )
+    , ( "radial11", radial11 )
+    , ( "radial12", radial12 )
     ]
 
 
