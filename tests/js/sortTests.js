@@ -7730,7 +7730,8 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 					[
 						_Utils_Tuple2(
 						'interval',
-						$author$project$VegaLite$timeUnitSpec(tu)),
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$timeUnitLabel(tu))),
 						_Utils_Tuple2(
 						'step',
 						$elm$json$Json$Encode$int(step))
@@ -8705,10 +8706,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				'tickColor',
 				$elm$json$Json$Encode$string(s));
 		case 37:
-			var n = axisProp.a;
+			var tc = axisProp.a;
 			return _Utils_Tuple2(
 				'tickCount',
-				$elm$json$Json$Encode$int(n));
+				$author$project$VegaLite$scaleNiceSpec(tc));
 		case 38:
 			var ds = axisProp.a;
 			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('tickDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(

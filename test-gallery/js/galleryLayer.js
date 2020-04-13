@@ -4990,47 +4990,6 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 			return '';
 	}
 };
-var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
-	switch (tUnit.$) {
-		case 23:
-			var tu = tUnit.a;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'utc',
-					$elm$json$Json$Encode$bool(true)),
-				$author$project$VegaLite$timeUnitProperties(tu));
-		case 24:
-			var n = tUnit.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'maxbins',
-					$elm$json$Json$Encode$int(n))
-				]);
-		case 25:
-			var x = tUnit.a;
-			var tu = tUnit.b;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'step',
-					$elm$json$Json$Encode$float(x)),
-				$author$project$VegaLite$timeUnitProperties(tu));
-		default:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'unit',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$timeUnitLabel(tUnit)))
-				]);
-	}
-};
-var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
-	return $elm$json$Json$Encode$object(
-		$author$project$VegaLite$timeUnitProperties(tUnit));
-};
 var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 	switch (ni.$) {
 		case 0:
@@ -5057,7 +5016,8 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 					[
 						_Utils_Tuple2(
 						'interval',
-						$author$project$VegaLite$timeUnitSpec(tu)),
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$timeUnitLabel(tu))),
 						_Utils_Tuple2(
 						'step',
 						$elm$json$Json$Encode$int(step))
@@ -5307,6 +5267,47 @@ var $author$project$VegaLite$sortProperties = function (sp) {
 			var dvs = sp.a;
 			return _List_Nil;
 	}
+};
+var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
+	switch (tUnit.$) {
+		case 23:
+			var tu = tUnit.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'utc',
+					$elm$json$Json$Encode$bool(true)),
+				$author$project$VegaLite$timeUnitProperties(tu));
+		case 24:
+			var n = tUnit.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'maxbins',
+					$elm$json$Json$Encode$int(n))
+				]);
+		case 25:
+			var x = tUnit.a;
+			var tu = tUnit.b;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(x)),
+				$author$project$VegaLite$timeUnitProperties(tu));
+		default:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'unit',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$timeUnitLabel(tUnit)))
+				]);
+	}
+};
+var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
+	return $elm$json$Json$Encode$object(
+		$author$project$VegaLite$timeUnitProperties(tUnit));
 };
 var $author$project$VegaLite$booleanOpSpec = function (bo) {
 	switch (bo.$) {
@@ -6500,10 +6501,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				'tickColor',
 				$elm$json$Json$Encode$string(s));
 		case 37:
-			var n = axisProp.a;
+			var tc = axisProp.a;
 			return _Utils_Tuple2(
 				'tickCount',
-				$elm$json$Json$Encode$int(n));
+				$author$project$VegaLite$scaleNiceSpec(tc));
 		case 38:
 			var ds = axisProp.a;
 			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('tickDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
@@ -7740,10 +7741,10 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				'tickColor',
 				$elm$json$Json$Encode$string(c));
 		case 35:
-			var n = axisCfg.a;
+			var tc = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickCount',
-				$elm$json$Json$Encode$int(n));
+				$author$project$VegaLite$scaleNiceSpec(tc));
 		case 36:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
@@ -12451,6 +12452,7 @@ var $author$project$VegaLite$AxLabelExpr = function (a) {
 	return {$: 21, a: a};
 };
 var $author$project$VegaLite$axLabelExpr = $author$project$VegaLite$AxLabelExpr;
+var $author$project$VegaLite$axLabelPadding = $author$project$VegaLite$AxLabelPadding;
 var $author$project$VegaLite$AxTickCount = function (a) {
 	return {$: 37, a: a};
 };
@@ -12533,6 +12535,15 @@ var $author$project$VegaLite$MYOffset = function (a) {
 var $author$project$VegaLite$maYOffset = $author$project$VegaLite$MYOffset;
 var $author$project$VegaLite$StepAfter = 10;
 var $author$project$VegaLite$miStepAfter = 10;
+var $author$project$VegaLite$NInterval = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$niInterval = $author$project$VegaLite$NInterval;
+var $author$project$VegaLite$NTickCount = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
 var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
@@ -12546,6 +12557,8 @@ var $author$project$VegaLite$shape = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
+var $author$project$VegaLite$Year = {$: 0};
+var $author$project$VegaLite$year = $author$project$VegaLite$Year;
 var $author$project$GalleryLayer$layer8 = function () {
 	var transWages = A2(
 		$elm$core$Basics$composeL,
@@ -12584,7 +12597,8 @@ var $author$project$GalleryLayer$layer8 = function () {
 								$author$project$VegaLite$axDomainWidth(2),
 								$author$project$VegaLite$axDomainColor('rgb(46,41,43)'),
 								$author$project$VegaLite$axTicks(false),
-								$author$project$VegaLite$axTickCount(54),
+								$author$project$VegaLite$axTickCount(
+								A2($author$project$VegaLite$niInterval, $author$project$VegaLite$year, 5)),
 								$author$project$VegaLite$axGridColor('black'),
 								$author$project$VegaLite$axGridOpacity(0.6),
 								A2(
@@ -12606,7 +12620,10 @@ var $author$project$GalleryLayer$layer8 = function () {
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$axTickCount(20),
+							$author$project$VegaLite$axTickCount(
+							$author$project$VegaLite$niTickCount(20)),
+							$author$project$VegaLite$axTicks(false),
+							$author$project$VegaLite$axLabelPadding(4),
 							$author$project$VegaLite$axGridColor('black'),
 							A2(
 							$author$project$VegaLite$axDataCondition,

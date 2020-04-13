@@ -3956,7 +3956,6 @@ var $author$project$VegaLite$anchorLabel = function (an) {
 			return 'end';
 	}
 };
-var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$VegaLite$overlapStrategySpec = function (strat) {
 	switch (strat) {
 		case 0:
@@ -3965,6 +3964,100 @@ var $author$project$VegaLite$overlapStrategySpec = function (strat) {
 			return $elm$json$Json$Encode$string('parity');
 		default:
 			return $elm$json$Json$Encode$string('greedy');
+	}
+};
+var $elm$json$Json$Encode$int = _Json_wrap;
+var $author$project$VegaLite$timeUnitLabel = function (tu) {
+	switch (tu.$) {
+		case 0:
+			return 'year';
+		case 1:
+			return 'yearquarter';
+		case 2:
+			return 'yearquartermonth';
+		case 3:
+			return 'yearmonth';
+		case 4:
+			return 'yearmonthdate';
+		case 5:
+			return 'yearmonthdatehours';
+		case 6:
+			return 'yearmonthdatehoursminutes';
+		case 7:
+			return 'yearmonthdatehoursminutesseconds';
+		case 8:
+			return 'quarter';
+		case 9:
+			return 'quartermonth';
+		case 10:
+			return 'month';
+		case 11:
+			return 'monthdate';
+		case 12:
+			return 'monthdatehours';
+		case 13:
+			return 'date';
+		case 14:
+			return 'day';
+		case 15:
+			return 'hours';
+		case 16:
+			return 'hoursminutes';
+		case 17:
+			return 'hoursminutesseconds';
+		case 18:
+			return 'minutes';
+		case 19:
+			return 'minutesseconds';
+		case 20:
+			return 'seconds';
+		case 21:
+			return 'secondsmilliseconds';
+		case 22:
+			return 'milliseconds';
+		default:
+			return '';
+	}
+};
+var $author$project$VegaLite$scaleNiceSpec = function (ni) {
+	switch (ni.$) {
+		case 0:
+			return $elm$json$Json$Encode$string('millisecond');
+		case 1:
+			return $elm$json$Json$Encode$string('second');
+		case 2:
+			return $elm$json$Json$Encode$string('minute');
+		case 3:
+			return $elm$json$Json$Encode$string('hour');
+		case 4:
+			return $elm$json$Json$Encode$string('day');
+		case 5:
+			return $elm$json$Json$Encode$string('week');
+		case 6:
+			return $elm$json$Json$Encode$string('month');
+		case 7:
+			return $elm$json$Json$Encode$string('year');
+		case 10:
+			var tu = ni.a;
+			var step = ni.b;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'interval',
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$timeUnitLabel(tu))),
+						_Utils_Tuple2(
+						'step',
+						$elm$json$Json$Encode$int(step))
+					]));
+		case 8:
+			return $elm$json$Json$Encode$bool(true);
+		case 9:
+			return $elm$json$Json$Encode$bool(false);
+		default:
+			var n = ni.a;
+			return $elm$json$Json$Encode$int(n);
 	}
 };
 var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
@@ -4165,10 +4258,10 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				'tickColor',
 				$elm$json$Json$Encode$string(c));
 		case 35:
-			var n = axisCfg.a;
+			var tc = axisCfg.a;
 			return _Utils_Tuple2(
 				'tickCount',
-				$elm$json$Json$Encode$int(n));
+				$author$project$VegaLite$scaleNiceSpec(tc));
 		case 36:
 			var b = axisCfg.a;
 			return _Utils_Tuple2(
@@ -5376,139 +5469,6 @@ var $author$project$VegaLite$scaleLabel = function (sc) {
 			return 'threshold';
 	}
 };
-var $author$project$VegaLite$timeUnitLabel = function (tu) {
-	switch (tu.$) {
-		case 0:
-			return 'year';
-		case 1:
-			return 'yearquarter';
-		case 2:
-			return 'yearquartermonth';
-		case 3:
-			return 'yearmonth';
-		case 4:
-			return 'yearmonthdate';
-		case 5:
-			return 'yearmonthdatehours';
-		case 6:
-			return 'yearmonthdatehoursminutes';
-		case 7:
-			return 'yearmonthdatehoursminutesseconds';
-		case 8:
-			return 'quarter';
-		case 9:
-			return 'quartermonth';
-		case 10:
-			return 'month';
-		case 11:
-			return 'monthdate';
-		case 12:
-			return 'monthdatehours';
-		case 13:
-			return 'date';
-		case 14:
-			return 'day';
-		case 15:
-			return 'hours';
-		case 16:
-			return 'hoursminutes';
-		case 17:
-			return 'hoursminutesseconds';
-		case 18:
-			return 'minutes';
-		case 19:
-			return 'minutesseconds';
-		case 20:
-			return 'seconds';
-		case 21:
-			return 'secondsmilliseconds';
-		case 22:
-			return 'milliseconds';
-		default:
-			return '';
-	}
-};
-var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
-	switch (tUnit.$) {
-		case 23:
-			var tu = tUnit.a;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'utc',
-					$elm$json$Json$Encode$bool(true)),
-				$author$project$VegaLite$timeUnitProperties(tu));
-		case 24:
-			var n = tUnit.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'maxbins',
-					$elm$json$Json$Encode$int(n))
-				]);
-		case 25:
-			var x = tUnit.a;
-			var tu = tUnit.b;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'step',
-					$elm$json$Json$Encode$float(x)),
-				$author$project$VegaLite$timeUnitProperties(tu));
-		default:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'unit',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$timeUnitLabel(tUnit)))
-				]);
-	}
-};
-var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
-	return $elm$json$Json$Encode$object(
-		$author$project$VegaLite$timeUnitProperties(tUnit));
-};
-var $author$project$VegaLite$scaleNiceSpec = function (ni) {
-	switch (ni.$) {
-		case 0:
-			return $elm$json$Json$Encode$string('millisecond');
-		case 1:
-			return $elm$json$Json$Encode$string('second');
-		case 2:
-			return $elm$json$Json$Encode$string('minute');
-		case 3:
-			return $elm$json$Json$Encode$string('hour');
-		case 4:
-			return $elm$json$Json$Encode$string('day');
-		case 5:
-			return $elm$json$Json$Encode$string('week');
-		case 6:
-			return $elm$json$Json$Encode$string('month');
-		case 7:
-			return $elm$json$Json$Encode$string('year');
-		case 10:
-			var tu = ni.a;
-			var step = ni.b;
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'interval',
-						$author$project$VegaLite$timeUnitSpec(tu)),
-						_Utils_Tuple2(
-						'step',
-						$elm$json$Json$Encode$int(step))
-					]));
-		case 8:
-			return $elm$json$Json$Encode$bool(true);
-		case 9:
-			return $elm$json$Json$Encode$bool(false);
-		default:
-			var n = ni.a;
-			return $elm$json$Json$Encode$int(n);
-	}
-};
 var $author$project$VegaLite$schemeProperty = F2(
 	function (schName, extent) {
 		if (!extent.b) {
@@ -5745,6 +5705,47 @@ var $author$project$VegaLite$sortProperties = function (sp) {
 			var dvs = sp.a;
 			return _List_Nil;
 	}
+};
+var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
+	switch (tUnit.$) {
+		case 23:
+			var tu = tUnit.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'utc',
+					$elm$json$Json$Encode$bool(true)),
+				$author$project$VegaLite$timeUnitProperties(tu));
+		case 24:
+			var n = tUnit.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'maxbins',
+					$elm$json$Json$Encode$int(n))
+				]);
+		case 25:
+			var x = tUnit.a;
+			var tu = tUnit.b;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(x)),
+				$author$project$VegaLite$timeUnitProperties(tu));
+		default:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'unit',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$timeUnitLabel(tUnit)))
+				]);
+	}
+};
+var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
+	return $elm$json$Json$Encode$object(
+		$author$project$VegaLite$timeUnitProperties(tUnit));
 };
 var $author$project$VegaLite$booleanOpSpec = function (bo) {
 	switch (bo.$) {
@@ -6531,10 +6532,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				'tickColor',
 				$elm$json$Json$Encode$string(s));
 		case 37:
-			var n = axisProp.a;
+			var tc = axisProp.a;
 			return _Utils_Tuple2(
 				'tickCount',
-				$elm$json$Json$Encode$int(n));
+				$author$project$VegaLite$scaleNiceSpec(tc));
 		case 38:
 			var ds = axisProp.a;
 			return _Utils_eq(ds, _List_Nil) ? _Utils_Tuple2('tickDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
@@ -10711,6 +10712,10 @@ var $author$project$VegaLite$height = function (h) {
 var $author$project$VegaLite$Line = 9;
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
+var $author$project$VegaLite$NTickCount = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
@@ -11055,7 +11060,8 @@ var $author$project$GalleryLabel$label4 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$axTitle('Year into decade'),
-								$author$project$VegaLite$axTickCount(11)
+								$author$project$VegaLite$axTickCount(
+								$author$project$VegaLite$niTickCount(11))
 							]))
 					]))),
 		A2(
