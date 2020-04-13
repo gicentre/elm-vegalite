@@ -143,7 +143,7 @@ bar6 =
                     [ pName "x1"
                     , pQuant
                     , pScale [ scType scLog, scBase 10 ]
-                    , pAxis [ axTickCount 5 ]
+                    , pAxis [ axTickCount (niTickCount 5) ]
                     ]
                 << position X2 [ pName "x2" ]
                 << position Y [ pAggregate opCount, pQuant ]

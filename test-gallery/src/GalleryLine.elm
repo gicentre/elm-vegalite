@@ -231,7 +231,7 @@ line10 =
                     [ pName "date"
                     , pTemporal
                     , pAxis
-                        [ axTickCount 20
+                        [ axTickCount (niTickCount 20)
                         , axDataCondition
                             (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ])
                                 |> fiOpTrans (mTimeUnit monthDate)
@@ -272,7 +272,7 @@ line11 =
                     [ pName "date"
                     , pTemporal
                     , pAxis
-                        [ axTickCount 8
+                        [ axTickCount (niTickCount 8)
                         , axLabelAlign haLeft
                         , axLabelExpr "[timeFormat(datum.value, '%b'), timeFormat(datum.value, '%m') == '01' ? timeFormat(datum.value, '%Y') : '']"
                         , axLabelOffset 4
@@ -379,7 +379,7 @@ line15 =
                 << position X
                     [ pName "scaled_date"
                     , pQuant
-                    , pAxis [ axTitle "Year into decade", axTickCount 11 ]
+                    , pAxis [ axTitle "Year into decade", axTickCount (niTickCount 11) ]
                     ]
                 << position Y
                     [ pName "CO2"

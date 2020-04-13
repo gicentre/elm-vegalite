@@ -764,7 +764,7 @@ layer8 =
                         [ axDomainWidth 2
                         , axDomainColor "rgb(46,41,43)"
                         , axTicks False
-                        , axTickCount 54
+                        , axTickCount (niInterval year 5)
                         , axGridColor "black"
                         , axGridOpacity 0.6
                         , axDataCondition (expr "year(datum.value) % 50 == 0") (cAxGridWidth 2 0.5)
@@ -777,7 +777,9 @@ layer8 =
                     [ pName "wheat"
                     , pQuant
                     , pAxis
-                        [ axTickCount 20
+                        [ axTickCount (niTickCount 20)
+                        , axTicks False
+                        , axLabelPadding 4
                         , axGridColor "black"
                         , axDataCondition (expr "datum.value % 10 == 0") (cAxGridWidth 2 0.5)
                         , axLabelExpr "if (datum.value % 10 == 5, '5', datum.value)"

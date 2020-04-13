@@ -70,7 +70,7 @@ axisCondition1 =
                     [ pName "IMDB_Rating"
                     , pQuant
                     , pAxis
-                        [ axTickCount 20
+                        [ axTickCount (niTickCount 20)
                         , axDataCondition (expr "datum.value <= 5") (cAxGridDash [ 2, 2 ] [])
                         ]
                     ]
@@ -91,7 +91,7 @@ axisCondition2 =
                     [ pName "IMDB_Rating"
                     , pQuant
                     , pAxis
-                        [ axTickCount 20
+                        [ axTickCount (niTickCount 20)
                         , axDataCondition (expr "datum.value <= 2") (cAxTickColor "red" "blue")
                         , axDataCondition (expr "datum.value >=5") (cAxTickSize 12 6)
                         , axDataCondition (expr "datum.value >=8") (cAxTickOpacity 0.3 0.8)
@@ -119,7 +119,7 @@ axisCondition3 =
                     [ pName "IMDB_Rating"
                     , pQuant
                     , pAxis
-                        [ axTickCount 20
+                        [ axTickCount (niTickCount 20)
                         , axDataCondition (expr "datum.value <= 1") (cAxLabelAlign haRight haLeft)
                         , axDataCondition (expr "datum.value <= 2") (cAxLabelColor "red" "blue")
                         , axDataCondition (expr "datum.value <= 3") (cAxLabelBaseline vaTop vaBottom)

@@ -225,7 +225,7 @@ axis11 =
         cfg =
             configure
                 << configuration (coAxisX [ axcoLabelExpr "'number '+ datum.label" ])
-                << configuration (coAxisY [ axcoTickCount 10 ])
+                << configuration (coAxisY [ axcoTickCount (niTickCount 10) ])
 
         enc =
             encoding
@@ -242,8 +242,8 @@ axis12 =
             configure
                 << configuration
                     (coAxisStyles
-                        [ ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red", axTickCount 10 ] )
-                        , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue", axTickCount 10 ] )
+                        [ ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red", axTickCount (niTickCount 10) ] )
+                        , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue", axTickCount (niTickCount 10) ] )
                         ]
                     )
 
@@ -264,7 +264,7 @@ axis12 =
 --             configure
 --                 << configuration
 --                     (coAxisStyles
---                         [ ( "tickStyle", [ axTickCount 10 ] )
+--                         [ ( "tickStyle", [ axTickCount (niTickCount 10) ] )
 --                         , ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red" ] )
 --                         , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue" ] )
 --                         ]

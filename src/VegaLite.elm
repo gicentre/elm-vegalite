@@ -3741,7 +3741,7 @@ type AxisConfig
     | ShortTimeLabels Bool
     | Ticks Bool
     | TickColor String
-    | TickCount Int
+    | TickCount ScaleNice
     | TickExtra Bool
     | TickOffset Float
     | TickOpacity Float
@@ -3829,7 +3829,7 @@ type AxisProperty
     | AxLabelSeparation Float
     | AxStyle (List String)
     | AxTickColor String
-    | AxTickCount Int
+    | AxTickCount ScaleNice
     | AxTickDash (List Float)
     | AxTickExtra Bool
     | AxTickOffset Float
@@ -6452,10 +6452,10 @@ axcoTickColor =
     TickColor
 
 
-{-| Default number of quantitative axis ticks. The resulting number may be
-different so that values are “nice” (multiples of 2, 5, 10).
+{-| Default number of, or interval between, axis ticks. The resulting number of
+ticks may be different so that values are “nice” (multiples of 2, 5, 10).
 -}
-axcoTickCount : Int -> AxisConfig
+axcoTickCount : ScaleNice -> AxisConfig
 axcoTickCount =
     TickCount
 
@@ -7092,10 +7092,10 @@ axTicks =
     AxTicks
 
 
-{-| Desired number of ticks for axes visualizing quantitative scales.
-The resulting number may be different so that values are “nice” (multiples of 2, 5, 10).
+{-| Desired number of, or interval between, axis ticks. The resulting number of
+ticks may be different so that values are “nice” (multiples of 2, 5, 10).
 -}
-axTickCount : Int -> AxisProperty
+axTickCount : ScaleNice -> AxisProperty
 axTickCount =
     AxTickCount
 
@@ -18044,8 +18044,8 @@ axisConfigProperty axisCfg =
         TickColor c ->
             ( "tickColor", JE.string c )
 
-        TickCount n ->
-            ( "tickCount", JE.int n )
+        TickCount tc ->
+            ( "tickCount", scaleNiceSpec tc )
 
         TickExtra b ->
             ( "tickExtra", JE.bool b )
@@ -18359,8 +18359,8 @@ axisProperty axisProp =
         AxTickColor s ->
             ( "tickColor", JE.string s )
 
-        AxTickCount n ->
-            ( "tickCount", JE.int n )
+        AxTickCount tc ->
+            ( "tickCount", scaleNiceSpec tc )
 
         AxTickDash ds ->
             if ds == [] then
@@ -21541,7 +21541,7 @@ scaleNiceSpec ni =
             JE.string "year"
 
         NInterval tu step ->
-            JE.object [ ( "interval", timeUnitSpec tu ), ( "step", JE.int step ) ]
+            JE.object [ ( "interval", JE.string (timeUnitLabel tu) ), ( "step", JE.int step ) ]
 
         NTrue ->
             JE.bool True

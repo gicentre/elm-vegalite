@@ -4,13 +4,15 @@
 
 ## Breaking Changes
 
-- New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
+- `axTickCount` and `axcoTickCount` now take a `ScaleNice` parameter rather than `Float` so that time intervals may be supplied. Previous code that used `axTickCount 123` should now use `axTickCount (niTickCount 123)` (VL.4.10).
 
-* `hdTitleFontWeight` now correctly uses a `FontWeight` parameter (`Bold`, `W300` etc.) rather than a string. The string version inadvertently slipped through in earlier versions. Any specifications that use a String for the weight can use the equivalent `FontWeight` variant.
+* New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
 
-- `rgExtent` and `dnExtent` now take two floats as the extent values rather than `DataValue` types. To update previous code replace `(num x0) (num x1)` with `x0 x1` where `x0` and `x1` are the minimum and maximum numeric values of the extent.
+- `hdTitleFontWeight` now correctly uses a `FontWeight` parameter (`Bold`, `W300` etc.) rather than a string. The string version inadvertently slipped through in earlier versions. Any specifications that use a String for the weight can use the equivalent `FontWeight` variant.
 
-* `key` now creates a field/type object. Previously this incorrectly generated a string rather than object, so while this is a breaking change, there should be no working specs with the old key type. Field name can be specified with `kName` and type with `kQuant`, `kNominal` etc.
+* `rgExtent` and `dnExtent` now take two floats as the extent values rather than `DataValue` types. To update previous code replace `(num x0) (num x1)` with `x0 x1` where `x0` and `x1` are the minimum and maximum numeric values of the extent.
+
+- `key` now creates a field/type object. Previously this incorrectly generated a string rather than object, so while this is a breaking change, there should be no working specs with the old key type. Field name can be specified with `kName` and type with `kQuant`, `kNominal` etc.
 
 ## Additions
 
@@ -36,11 +38,15 @@
 
 - `leTitleOrient` for positioning a title relative to legend content.
 
+### Bug Fixes
+
+- `niInterval` now correctly generates a time unit string rather than `"unit":XXX`.
+
 ### Other Changes
 
 - Calling `dataFromRows` or `dataFromColumns` without `dataRow` / `dataColumn` now generates an empty dataset that can be useful for creating annotation layers with literals.
 - Minor improvements to the API documentation.
-- Additions to tests for new VL4.9 features
+- Additions to tests for new VL4.9 and VL4.10 features.
 - New gallery examples.
 
 ---
@@ -144,7 +150,8 @@
 ### Bug Fixes
 
 - Correct `maxsteps` parameter output of `density` transform (thanks @dougburke for spotting this).
-- Correct but in `density` that was incorrectly using value of `dnCounts` for the `dnCumulative` setting (thanks @dougburke for spotting this).
+
+* Correct but in `density` that was incorrectly using value of `dnCounts` for the `dnCumulative` setting (thanks @dougburke for spotting this).
 
 ---
 

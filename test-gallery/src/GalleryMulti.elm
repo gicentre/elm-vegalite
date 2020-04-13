@@ -38,7 +38,7 @@ multi1 =
                 << position Y
                     [ pName "price"
                     , pQuant
-                    , pAxis [ axTickCount 3, axGrid False ]
+                    , pAxis [ axTickCount (niTickCount 3), axGrid False ]
                     ]
 
         spec2 =

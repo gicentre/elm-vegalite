@@ -526,7 +526,7 @@ contextAndFocus =
                 << position Y
                     [ pName "price"
                     , pQuant
-                    , pAxis [ axTickCount 3, axGrid False ]
+                    , pAxis [ axTickCount (niTickCount 3), axGrid False ]
                     ]
 
         specContext =

@@ -156,7 +156,7 @@ label4 =
                 << position X
                     [ pName "scaled_date"
                     , pQuant
-                    , pAxis [ axTitle "Year into decade", axTickCount 11 ]
+                    , pAxis [ axTitle "Year into decade", axTickCount (niTickCount 11) ]
                     ]
                 << position Y
                     [ pName "CO2"
