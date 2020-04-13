@@ -6406,6 +6406,11 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'radiusOffset',
 				$elm$json$Json$Encode$float(o));
+		case 82:
+			var o = mProp.a;
+			return _Utils_Tuple2(
+				'radius2Offset',
+				$elm$json$Json$Encode$float(o));
 		default:
 			var b = mProp.a;
 			return _Utils_Tuple2(
@@ -9540,7 +9545,7 @@ var $author$project$ImageTests$image2 = A2(
 				$author$project$VegaLite$hNominal
 			])));
 var $author$project$VegaLite$MAspect = function (a) {
-	return {$: 82, a: a};
+	return {$: 83, a: a};
 };
 var $author$project$VegaLite$maAspect = $author$project$VegaLite$MAspect;
 var $author$project$ImageTests$image3 = $author$project$ImageTests$lakeImage(

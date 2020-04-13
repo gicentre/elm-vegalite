@@ -6205,6 +6205,11 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return _Utils_Tuple2(
 				'radiusOffset',
 				$elm$json$Json$Encode$float(o));
+		case 82:
+			var o = mProp.a;
+			return _Utils_Tuple2(
+				'radius2Offset',
+				$elm$json$Json$Encode$float(o));
 		default:
 			var b = mProp.a;
 			return _Utils_Tuple2(
