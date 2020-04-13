@@ -5886,7 +5886,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, $author$project$VegaLite$scaleProperty, sps)))
 				]);
-		case 12:
+		case 13:
 			var lps = field.a;
 			return _Utils_eq(lps, _List_Nil) ? _List_fromArray(
 				[
@@ -5898,13 +5898,21 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, $author$project$VegaLite$legendProperty, lps)))
 				]);
-		case 6:
+		case 7:
 			var bps = field.a;
 			return _List_fromArray(
 				[
 					$author$project$VegaLite$bin(bps)
 				]);
-		case 8:
+		case 6:
+			var x = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'band',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 9:
 			var sps = field.a;
 			_v2$4:
 			while (true) {
@@ -5956,14 +5964,14 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
 				]);
-		case 7:
+		case 8:
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'bin',
 					$elm$json$Json$Encode$string('binned'))
 				]);
-		case 13:
+		case 14:
 			var selName = field.a;
 			var ifClause = field.b;
 			var elseClause = field.c;
@@ -5979,7 +5987,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 								$author$project$VegaLite$booleanOpSpec(selName)),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 14:
+		case 15:
 			var tests = field.a;
 			var elseClause = field.b;
 			var testClause = function (_v6) {
@@ -6006,7 +6014,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 						}
 					}()),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 9:
+		case 10:
 			var tu = field.a;
 			return _List_fromArray(
 				[
@@ -6014,7 +6022,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'timeUnit',
 					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
-		case 10:
+		case 11:
 			var t = field.a;
 			return _List_fromArray(
 				[
@@ -6022,7 +6030,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(t))
 				]);
-		case 11:
+		case 12:
 			var op = field.a;
 			return _List_fromArray(
 				[
@@ -6030,7 +6038,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'aggregate',
 					$author$project$VegaLite$operationSpec(op))
 				]);
-		case 15:
+		case 16:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -6038,7 +6046,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'value',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 16:
+		case 17:
 			var x = field.a;
 			return _List_fromArray(
 				[
@@ -6046,7 +6054,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'value',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 17:
+		case 18:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -9798,11 +9806,11 @@ var $author$project$VegaLite$AlignRight = 2;
 var $author$project$VegaLite$haRight = 2;
 var $author$project$VegaLite$MDataCondition = F2(
 	function (a, b) {
-		return {$: 14, a: a, b: b};
+		return {$: 15, a: a, b: b};
 	});
 var $author$project$VegaLite$mDataCondition = $author$project$VegaLite$MDataCondition;
 var $author$project$VegaLite$MLegend = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$MName = function (a) {
@@ -9819,7 +9827,7 @@ var $author$project$VegaLite$MScale = function (a) {
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
 var $author$project$VegaLite$MString = function (a) {
-	return {$: 17, a: a};
+	return {$: 18, a: a};
 };
 var $author$project$VegaLite$mSymbol = function (sym) {
 	return $author$project$VegaLite$MString(
@@ -10544,7 +10552,7 @@ var $author$project$VegaLite$dataFromUrl = F2(
 					])));
 	});
 var $author$project$VegaLite$MAggregate = function (a) {
-	return {$: 11, a: a};
+	return {$: 12, a: a};
 };
 var $author$project$VegaLite$mAggregate = $author$project$VegaLite$MAggregate;
 var $author$project$VegaLite$Count = {$: 4};
@@ -11389,7 +11397,7 @@ var $author$project$GalleryLabel$label5 = function () {
 			]));
 }();
 var $author$project$VegaLite$MNumber = function (a) {
-	return {$: 16, a: a};
+	return {$: 17, a: a};
 };
 var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
 var $author$project$VegaLite$Month = {$: 10};

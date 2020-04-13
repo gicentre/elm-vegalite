@@ -6767,7 +6767,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, $author$project$VegaLite$scaleProperty, sps)))
 				]);
-		case 12:
+		case 13:
 			var lps = field.a;
 			return _Utils_eq(lps, _List_Nil) ? _List_fromArray(
 				[
@@ -6779,13 +6779,21 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, $author$project$VegaLite$legendProperty, lps)))
 				]);
-		case 6:
+		case 7:
 			var bps = field.a;
 			return _List_fromArray(
 				[
 					$author$project$VegaLite$bin(bps)
 				]);
-		case 8:
+		case 6:
+			var x = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'band',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 9:
 			var sps = field.a;
 			_v2$4:
 			while (true) {
@@ -6837,14 +6845,14 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
 				]);
-		case 7:
+		case 8:
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'bin',
 					$elm$json$Json$Encode$string('binned'))
 				]);
-		case 13:
+		case 14:
 			var selName = field.a;
 			var ifClause = field.b;
 			var elseClause = field.c;
@@ -6860,7 +6868,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 								$author$project$VegaLite$booleanOpSpec(selName)),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 14:
+		case 15:
 			var tests = field.a;
 			var elseClause = field.b;
 			var testClause = function (_v6) {
@@ -6887,7 +6895,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 						}
 					}()),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 9:
+		case 10:
 			var tu = field.a;
 			return _List_fromArray(
 				[
@@ -6895,7 +6903,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'timeUnit',
 					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
-		case 10:
+		case 11:
 			var t = field.a;
 			return _List_fromArray(
 				[
@@ -6903,7 +6911,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(t))
 				]);
-		case 11:
+		case 12:
 			var op = field.a;
 			return _List_fromArray(
 				[
@@ -6911,7 +6919,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'aggregate',
 					$author$project$VegaLite$operationSpec(op))
 				]);
-		case 15:
+		case 16:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -6919,7 +6927,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'value',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 16:
+		case 17:
 			var x = field.a;
 			return _List_fromArray(
 				[
@@ -6927,7 +6935,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'value',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 17:
+		case 18:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -11420,11 +11428,11 @@ var $author$project$VegaLite$layer = function (specs) {
 		$author$project$VegaLite$toList(specs));
 };
 var $author$project$VegaLite$MLegend = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$MNumber = function (a) {
-	return {$: 16, a: a};
+	return {$: 17, a: a};
 };
 var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
 var $author$project$VegaLite$MScale = function (a) {
@@ -12030,7 +12038,7 @@ var $author$project$VegaLite$description = function (s) {
 		$elm$json$Json$Encode$string(s));
 };
 var $author$project$VegaLite$MString = function (a) {
-	return {$: 17, a: a};
+	return {$: 18, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
 var $author$project$VegaLite$PType = function (a) {
