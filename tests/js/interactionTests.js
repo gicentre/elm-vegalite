@@ -12962,6 +12962,110 @@ var $author$project$InteractionTests$interaction18 = function () {
 					[overviewSpec, detailSpec]))
 			]));
 }();
+var $author$project$VegaLite$AlbersUsa = {$: 1};
+var $author$project$VegaLite$albersUsa = $author$project$VegaLite$AlbersUsa;
+var $author$project$VegaLite$fill = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'fill',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$Geoshape = 7;
+var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
+var $author$project$VegaLite$MLegend = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 52, a: a};
+};
+var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$MTooltip = function (a) {
+	return {$: 68, a: a};
+};
+var $author$project$VegaLite$maTooltip = $author$project$VegaLite$MTooltip;
+var $author$project$VegaLite$PType = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$prType = $author$project$VegaLite$PType;
+var $author$project$VegaLite$VLProjection = 14;
+var $author$project$VegaLite$projection = function (pProps) {
+	return _Utils_Tuple2(
+		14,
+		$elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pProps)));
+};
+var $author$project$VegaLite$TopojsonFeature = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$topojsonFeature = $author$project$VegaLite$TopojsonFeature;
+var $author$project$VegaLite$TTEncoding = 0;
+var $author$project$VegaLite$ttEncoding = 0;
+var $author$project$InteractionTests$interaction19 = function () {
+	var stateData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
+	var stateSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				stateData,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFill(''),
+						$author$project$VegaLite$maStroke('white'),
+						$author$project$VegaLite$maStrokeWidth(1)
+					]))
+			]));
+	var proj = $author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
+			]));
+	var countyEnc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$fill(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('id'),
+					$author$project$VegaLite$mNominal,
+					$author$project$VegaLite$mLegend(_List_Nil)
+				])));
+	var countyData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('counties')
+			]));
+	var countySpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				countyData,
+				countyEnc(_List_Nil),
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTooltip($author$project$VegaLite$ttEncoding)
+					]))
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(600),
+				$author$project$VegaLite$height(400),
+				proj,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[countySpec, stateSpec]))
+			]));
+}();
 var $author$project$InteractionTests$interaction2 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
@@ -13201,7 +13305,8 @@ var $author$project$InteractionTests$specs = _List_fromArray(
 		_Utils_Tuple2('interaction15', $author$project$InteractionTests$interaction15),
 		_Utils_Tuple2('interaction16', $author$project$InteractionTests$interaction16),
 		_Utils_Tuple2('interaction17', $author$project$InteractionTests$interaction17),
-		_Utils_Tuple2('interaction18', $author$project$InteractionTests$interaction18)
+		_Utils_Tuple2('interaction18', $author$project$InteractionTests$interaction18),
+		_Utils_Tuple2('interaction19', $author$project$InteractionTests$interaction19)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

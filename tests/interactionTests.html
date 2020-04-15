@@ -40,7 +40,7 @@
       <div id="interaction1"></div>
       <figcaption>Single selection: Click on line to highlight.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="interaction2"></div>
@@ -48,7 +48,7 @@
         Multiple selection: Shift-click on lines to highlight.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="interaction3"></div>
@@ -110,7 +110,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Legend Selection</h2>
 
@@ -121,7 +121,7 @@
         unselected legend items.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="interaction12"></div>
@@ -129,7 +129,7 @@
         Selection of items via double clicking on its legend
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="interaction13"></div>
@@ -138,7 +138,7 @@
         on chart
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Indirect Selection</h2>
 
@@ -146,13 +146,13 @@
       <div id="interaction14"></div>
       <figcaption>Selection of crime type by radio button.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="interaction15"></div>
       <figcaption>Filtering by crime rate via min and max sliders</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Lookup Selection</h2>
 
@@ -160,7 +160,7 @@
       <div id="interaction16"></div>
       <figcaption>Lookup selection to add to primary data source.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Selection Cursor</h2>
 
@@ -172,7 +172,7 @@
         drop.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Selection Cursor</h2>
 
@@ -182,19 +182,30 @@
         2d selection projection to provide overview-detail linked views.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Tooltipsr</h2>
+
+    <figure class="cell">
+      <div id="interaction19"></div>
+      <figcaption>
+        Tooltips in 'lower' layer (counties) that overlap with upper layer
+        (states). Should show 4-5 digit county IDs.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.InteractionTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

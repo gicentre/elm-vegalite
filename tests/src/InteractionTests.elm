@@ -392,9 +392,43 @@ interaction18 =
     toVegaLite [ angleData, trans [], hConcat [ overviewSpec, detailSpec ] ]
 
 
-sourceExample : Spec
-sourceExample =
-    interaction18
+interaction19 : Spec
+interaction19 =
+    let
+        stateData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "states" ]
+
+        countyData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "counties" ]
+
+        proj =
+            projection [ prType albersUsa ]
+
+        countyEnc =
+            encoding
+                << fill [ mName "id", mNominal, mLegend [] ]
+
+        countySpec =
+            asSpec
+                [ countyData
+                , countyEnc []
+                , geoshape [ maTooltip ttEncoding ]
+                ]
+
+        stateSpec =
+            asSpec
+                [ stateData
+                , geoshape [ maFill "", maStroke "white", maStrokeWidth 1 ]
+                ]
+    in
+    toVegaLite
+        [ width 600
+        , height 400
+        , proj
+        , layer [ countySpec, stateSpec ]
+        ]
 
 
 
@@ -421,6 +455,7 @@ specs =
     , ( "interaction16", interaction16 )
     , ( "interaction17", interaction17 )
     , ( "interaction18", interaction18 )
+    , ( "interaction19", interaction19 )
     ]
 
 

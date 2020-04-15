@@ -12793,10 +12793,13 @@ specification. For example,
 
     maFill "rgb(255,204,210)"
 
+    maFill "rgba(255,50,80,0.3)"
+
     maFill "hsl(180, 50%, 50%)"
 
-An empty string (`""`) indicates that no filling should be provided (but for clearer
-semantics, better to use `maFilled False`).
+Usually, to avoid filling the interior of a mark, use [maFilled False](#maFilled),
+but `maFill ""` can instread be used for cases where an interactive tooltip needs
+to 'see through' a stroked mark to one underneath it in a layered specification.
 
 -}
 maFill : String -> MarkProperty
