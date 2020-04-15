@@ -714,6 +714,117 @@ datum2 =
     toVegaLite [ layer [ spec1, spec2 ] ]
 
 
+datum3 : Spec
+datum3 =
+    let
+        cfg =
+            configure
+                << configuration (coAxis [ axcoDomain False ])
+
+        data =
+            dataSequenceAs -10 11 0.1 "x"
+
+        trans =
+            transform
+                << calculateAs "-1 + pow((datum.x-1),2)/4" "y"
+
+        enc1 =
+            encoding
+                << position X [ pName "x", pQuant, pTitle "x" ]
+                << position Y [ pName "y", pQuant, pTitle "y" ]
+
+        spec1 =
+            asSpec [ enc1 [], line [] ]
+
+        emptyData =
+            dataFromColumns []
+
+        enc2 =
+            encoding
+                << position X [ pDatum (num 0), pQuant ]
+
+        spec2 =
+            asSpec [ emptyData [], enc2 [], rule [] ]
+
+        enc3 =
+            encoding
+                << position Y [ pDatum (num 0), pQuant ]
+
+        spec3 =
+            asSpec [ emptyData [], enc3 [], rule [] ]
+    in
+    toVegaLite
+        [ cfg []
+        , width 300
+        , height 400
+        , data
+        , trans []
+        , layer [ spec1, spec2, spec3 ]
+        ]
+
+
+datum4 : Spec
+datum4 =
+    let
+        w =
+            300
+
+        minX =
+            -10
+
+        maxX =
+            12
+
+        minY =
+            -5
+
+        maxY =
+            30
+
+        yAxisShift =
+            w * minX / (maxX - minX)
+
+        xAxisShift =
+            h * minY / (maxY - minY)
+
+        h =
+            300
+
+        data =
+            dataSequenceAs -10 11 0.1 "x"
+
+        trans =
+            transform
+                << calculateAs "-1 + pow((datum.x-1),2)/4" "y"
+
+        enc =
+            encoding
+                << position X
+                    [ pName "x"
+                    , pQuant
+                    , pTitle ""
+                    , pAxis [ axLabelExpr "datum.value === 0 ? '' : datum.label", axOffset xAxisShift ]
+                    , pScale [ scDomain (doNums [ minX, maxX ]) ]
+                    ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pTitle ""
+                    , pAxis [ axLabelExpr "datum.value === 0 ? '' : datum.label", axOffset yAxisShift ]
+                    , pScale [ scDomain (doNums [ minY, maxY ]) ]
+                    ]
+    in
+    toVegaLite
+        [ width w
+        , height h
+        , padding (paSize 0)
+        , data
+        , trans []
+        , enc []
+        , line []
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -761,6 +872,8 @@ specs =
     , ( "annotate1", annotate1 )
     , ( "datum1", datum1 )
     , ( "datum2", datum2 )
+    , ( "datum3", datum3 )
+    , ( "datum4", datum4 )
     ]
 
 
