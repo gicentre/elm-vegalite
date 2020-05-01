@@ -11973,53 +11973,12 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
+var $author$project$VegaLite$Circle = 6;
+var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$View = function (a) {
 	return {$: 43, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
-var $author$project$VegaLite$FCColumns = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$facoColumns = $author$project$VegaLite$FCColumns;
-var $author$project$VegaLite$VContinuousHeight = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$vicoContinuousHeight = $author$project$VegaLite$VContinuousHeight;
-var $author$project$VegaLite$VStroke = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
-var $author$project$ViewCompositionTests$cfg = A2(
-	$elm$core$Basics$composeL,
-	A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$configure,
-			$author$project$VegaLite$configuration(
-				$author$project$VegaLite$coHeader(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$hdLabelFontSize(0.1)
-						])))),
-		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coView(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing),
-						$author$project$VegaLite$vicoContinuousHeight(120)
-					])))),
-	$author$project$VegaLite$configuration(
-		$author$project$VegaLite$coFacet(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$facoSpacing(80),
-					$author$project$VegaLite$facoColumns(5)
-				]))));
-var $author$project$VegaLite$ColumnBy = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$columnBy = $author$project$VegaLite$ColumnBy;
 var $author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -12171,10 +12130,336 @@ var $author$project$VegaLite$dataFromColumns = F2(
 						])));
 		}
 	});
+var $author$project$VegaLite$dataFromJson = F2(
+	function (json, fmts) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', json)
+					]))) : _Utils_Tuple2(
+			10,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('values', json),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$GeoPolygon = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$geoPolygon = $author$project$VegaLite$GeoPolygon;
+var $author$project$VegaLite$geometryTypeProperties = function (gType) {
+	var toCoords = function (pairs) {
+		return A2(
+			$elm$json$Json$Encode$list,
+			function (_v1) {
+				var x = _v1.a;
+				var y = _v1.b;
+				return A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[x, y]));
+			},
+			pairs);
+	};
+	switch (gType.$) {
+		case 0:
+			var x = gType.a;
+			var y = gType.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Point')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[x, y])))
+				]);
+		case 1:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('MultiPoint')),
+					_Utils_Tuple2(
+					'coordinates',
+					toCoords(coords))
+				]);
+		case 2:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('LineString')),
+					_Utils_Tuple2(
+					'coordinates',
+					toCoords(coords))
+				]);
+		case 3:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('MultiLineString')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2($elm$json$Json$Encode$list, toCoords, coords))
+				]);
+		case 4:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Polygon')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2($elm$json$Json$Encode$list, toCoords, coords))
+				]);
+		default:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('MultiPolygon')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2(
+						$elm$json$Json$Encode$list,
+						function (cs) {
+							return $author$project$VegaLite$toList(
+								A2($elm$core$List$map, toCoords, cs));
+						},
+						coords))
+				]);
+	}
+};
+var $author$project$VegaLite$geometry = F2(
+	function (gType, properties) {
+		return _Utils_eq(properties, _List_Nil) ? $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Feature')),
+					_Utils_Tuple2(
+					'geometry',
+					$elm$json$Json$Encode$object(
+						$author$project$VegaLite$geometryTypeProperties(gType)))
+				])) : $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Feature')),
+					_Utils_Tuple2(
+					'geometry',
+					$elm$json$Json$Encode$object(
+						$author$project$VegaLite$geometryTypeProperties(gType))),
+					_Utils_Tuple2(
+					'properties',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v0) {
+								var k = _v0.a;
+								var val = _v0.b;
+								return _Utils_Tuple2(
+									k,
+									$author$project$VegaLite$dataValueSpec(val));
+							},
+							properties)))
+				]));
+	});
+var $author$project$VegaLite$Geoshape = 7;
+var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
+var $author$project$VegaLite$VLHConcat = 18;
+var $author$project$VegaLite$hConcat = function (specs) {
+	return _Utils_Tuple2(
+		18,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$VLHeight = 4;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(h));
+};
 var $author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$VLVConcat = 19;
+var $author$project$VegaLite$vConcat = function (specs) {
+	return _Utils_Tuple2(
+		19,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$VStroke = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
+var $author$project$VegaLite$VStrokeWidth = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$vicoStrokeWidth = $author$project$VegaLite$VStrokeWidth;
+var $author$project$VegaLite$VLWidth = 3;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$ViewCompositionTests$concat1 = function () {
+	var geojson = A2(
+		$author$project$VegaLite$geometry,
+		$author$project$VegaLite$geoPolygon(
+			_List_fromArray(
+				[
+					_List_fromArray(
+					[
+						_Utils_Tuple2(-3, 60),
+						_Utils_Tuple2(4, 60),
+						_Utils_Tuple2(4, 40),
+						_Utils_Tuple2(-3, 40),
+						_Utils_Tuple2(-3, 60)
+					])
+				])),
+		_List_Nil);
+	var mapSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(400),
+				A2($author$project$VegaLite$dataFromJson, geojson, _List_Nil),
+				$author$project$VegaLite$geoshape(_List_Nil)
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	var chartData = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'x',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[1, 2])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'y',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[30, 20]))));
+	var chart1Spec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				chartData(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+	var chartSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$vConcat(
+				_List_fromArray(
+					[chart1Spec]))
+			]));
+	var cfgBorder = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStrokeWidth(2),
+						$author$project$VegaLite$vicoStroke(
+						$elm$core$Maybe$Just('black'))
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfgBorder(_List_Nil),
+				$author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[chartSpec, mapSpec]))
+			]));
+}();
+var $author$project$VegaLite$FCColumns = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$facoColumns = $author$project$VegaLite$FCColumns;
+var $author$project$VegaLite$VContinuousHeight = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$vicoContinuousHeight = $author$project$VegaLite$VContinuousHeight;
+var $author$project$ViewCompositionTests$cfg = A2(
+	$elm$core$Basics$composeL,
+	A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coHeader(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$hdLabelFontSize(0.1)
+						])))),
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing),
+						$author$project$VegaLite$vicoContinuousHeight(120)
+					])))),
+	$author$project$VegaLite$configuration(
+		$author$project$VegaLite$coFacet(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$facoSpacing(80),
+					$author$project$VegaLite$facoColumns(5)
+				]))));
+var $author$project$VegaLite$ColumnBy = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$columnBy = $author$project$VegaLite$ColumnBy;
 var $author$project$ViewCompositionTests$data = function () {
 	var vals = $author$project$VegaLite$nums(
 		_Utils_ap(
@@ -12256,12 +12541,6 @@ var $author$project$VegaLite$HTitle = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$hdTitle = $author$project$VegaLite$HTitle;
-var $author$project$VegaLite$VLHeight = 4;
-var $author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		4,
-		$elm$json$Json$Encode$float(h));
-};
 var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 13, a: a};
 };
@@ -12289,12 +12568,6 @@ var $author$project$VegaLite$spacingRC = F2(
 var $author$project$VegaLite$VLSpec = 23;
 var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(23, spec);
-};
-var $author$project$VegaLite$VLWidth = 3;
-var $author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		3,
-		$elm$json$Json$Encode$float(w));
 };
 var $author$project$ViewCompositionTests$grid1 = function () {
 	var encByCatVal = A2(
@@ -12679,7 +12952,8 @@ var $author$project$ViewCompositionTests$specs = _List_fromArray(
 		_Utils_Tuple2('grid2', $author$project$ViewCompositionTests$grid2),
 		_Utils_Tuple2('grid3', $author$project$ViewCompositionTests$grid3),
 		_Utils_Tuple2('grid4', $author$project$ViewCompositionTests$grid4),
-		_Utils_Tuple2('grid5', $author$project$ViewCompositionTests$grid5)
+		_Utils_Tuple2('grid5', $author$project$ViewCompositionTests$grid5),
+		_Utils_Tuple2('concat1', $author$project$ViewCompositionTests$concat1)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

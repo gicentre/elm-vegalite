@@ -262,6 +262,41 @@ grid5 =
         ]
 
 
+concat1 : Spec
+concat1 =
+    let
+        cfgBorder =
+            configure
+                << configuration (coView [ vicoStrokeWidth 2, vicoStroke (Just "black") ])
+
+        geojson =
+            geometry (geoPolygon [ [ ( -3, 60 ), ( 4, 60 ), ( 4, 40 ), ( -3, 40 ), ( -3, 60 ) ] ]) []
+
+        chartData =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 1, 2 ])
+                << dataColumn "y" (nums [ 30, 20 ])
+
+        enc =
+            encoding
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "y", pQuant ]
+
+        chart1Spec =
+            asSpec [ width 300, chartData [], enc [], circle [] ]
+
+        chartSpec =
+            asSpec [ vConcat [ chart1Spec ] ]
+
+        mapSpec =
+            asSpec [ width 100, height 400, dataFromJson geojson [], geoshape [] ]
+    in
+    toVegaLite
+        [ cfgBorder []
+        , hConcat [ chartSpec, mapSpec ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -279,6 +314,7 @@ specs =
     , ( "grid3", grid3 )
     , ( "grid4", grid4 )
     , ( "grid5", grid5 )
+    , ( "concat1", concat1 )
     ]
 
 

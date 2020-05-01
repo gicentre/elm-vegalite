@@ -40,13 +40,13 @@
       <div id="columns1"></div>
       <figcaption>Repeating columns with default header</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="columns2"></div>
       <figcaption>Repeating columns with font-styled header</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="columns3"></div>
@@ -55,7 +55,7 @@
         configuration style
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="columns4"></div>
@@ -64,7 +64,7 @@
         spaced from main plot areas
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="columns5"></div>
@@ -72,7 +72,7 @@
         Labels aligned to bottom of 60 pixel line height, in bold italic.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="columns6"></div>
@@ -81,7 +81,7 @@
         pixel line height.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Facet grids</h2>
 
@@ -94,7 +94,7 @@
         charts should have no axes or other decoration.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="grid2"></div>
@@ -103,7 +103,7 @@
         example above except row and column spacing should be equal.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="grid3"></div>
@@ -112,7 +112,7 @@
         long row of small multiples.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Repeat layouts</h2>
 
@@ -120,7 +120,7 @@
       <div id="grid4"></div>
       <figcaption>Repeated flow layout in three columns.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="grid5"></div>
@@ -129,19 +129,31 @@
         multiples.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Concatenation</h2>
+
+    <figure class="cell">
+      <div id="concat1"></div>
+      <figcaption>
+        Nested concatenation mixing Cartesian and geoshape views. Map rectangle
+        should be 100px wide, narrower than the 300 pixel wide chart to its
+        left.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ViewCompositionTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
