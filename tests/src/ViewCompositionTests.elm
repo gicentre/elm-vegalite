@@ -297,6 +297,40 @@ concat1 =
         ]
 
 
+concat2 : Spec
+concat2 =
+    let
+        geoData =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "counties" ]
+
+        attData =
+            dataFromColumns []
+                << dataColumn "id" (nums [ 1001, 1003, 1005 ])
+                << dataColumn "rate" (nums [ 0.9, 0.7, 0.5 ])
+
+        trans =
+            transform
+                << lookup "id" (attData []) "id" (luFields [ "rate" ])
+
+        geoEnc =
+            encoding
+                << color [ mName "rate", mQuant ]
+
+        mapSpec =
+            asSpec [ geoData, trans [], geoEnc [], geoshape [] ]
+
+        enc =
+            encoding
+                << position X [ pName "rate", pBin [], pQuant ]
+                << position Y [ pAggregate opCount, pQuant ]
+
+        chartSpec =
+            asSpec [ attData [], enc [], bar [] ]
+    in
+    toVegaLite [ hConcat [ mapSpec, chartSpec ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -315,6 +349,7 @@ specs =
     , ( "grid4", grid4 )
     , ( "grid5", grid5 )
     , ( "concat1", concat1 )
+    , ( "concat2", concat2 )
     ]
 
 

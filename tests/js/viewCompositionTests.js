@@ -12421,6 +12421,297 @@ var $author$project$ViewCompositionTests$concat1 = function () {
 					[chartSpec, mapSpec]))
 			]));
 }();
+var $author$project$VegaLite$lookup = F4(
+	function (key1, _v0, key2, lufs) {
+		var vlProp = _v0.a;
+		var spec = _v0.b;
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				function () {
+					switch (lufs.$) {
+						case 0:
+							var fs = lufs.a;
+							return $elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs))
+												])))
+									]));
+						case 1:
+							var fas = lufs.a;
+							return $elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2(
+														$elm$json$Json$Encode$list,
+														function (_v2) {
+															var f = _v2.a;
+															return $elm$json$Json$Encode$string(f);
+														},
+														fas))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										A2(
+											$elm$json$Json$Encode$list,
+											function (_v3) {
+												var a = _v3.b;
+												return $elm$json$Json$Encode$string(a);
+											},
+											fas))
+									]));
+						case 2:
+							var s = lufs.a;
+							return $elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										$elm$json$Json$Encode$string(s))
+									]));
+						case 3:
+							var fs = lufs.a;
+							var def = lufs.b;
+							return $elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs))
+												]))),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
+									]));
+						case 4:
+							var fas = lufs.a;
+							var def = lufs.b;
+							return $elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2)),
+													_Utils_Tuple2(
+													'fields',
+													A2(
+														$elm$json$Json$Encode$list,
+														function (_v4) {
+															var f = _v4.a;
+															return $elm$json$Json$Encode$string(f);
+														},
+														fas))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										A2(
+											$elm$json$Json$Encode$list,
+											function (_v5) {
+												var a = _v5.b;
+												return $elm$json$Json$Encode$string(a);
+											},
+											fas)),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
+									]));
+						default:
+							var s = lufs.a;
+							var def = lufs.b;
+							return $elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'lookup',
+										$elm$json$Json$Encode$string(key1)),
+										_Utils_Tuple2(
+										'from',
+										$elm$json$Json$Encode$object(
+											_List_fromArray(
+												[
+													_Utils_Tuple2('data', spec),
+													_Utils_Tuple2(
+													'key',
+													$elm$json$Json$Encode$string(key2))
+												]))),
+										_Utils_Tuple2(
+										'as',
+										$elm$json$Json$Encode$string(s)),
+										_Utils_Tuple2(
+										'default',
+										$elm$json$Json$Encode$string(def))
+									]));
+					}
+				}()));
+	});
+var $author$project$VegaLite$LUFields = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$luFields = $author$project$VegaLite$LUFields;
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$VegaLite$Count = {$: 4};
+var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
+var $author$project$VegaLite$PBin = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
+var $author$project$VegaLite$TopojsonFeature = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$topojsonFeature = $author$project$VegaLite$TopojsonFeature;
+var $author$project$ViewCompositionTests$concat2 = function () {
+	var geoEnc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('rate'),
+					$author$project$VegaLite$mQuant
+				])));
+	var geoData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('counties')
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('rate'),
+						$author$project$VegaLite$pBin(_List_Nil),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
+					$author$project$VegaLite$pQuant
+				])));
+	var attData = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'id',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[1001, 1003, 1005])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'rate',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[0.9, 0.7, 0.5]))));
+	var chartSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				attData(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A4(
+			$author$project$VegaLite$lookup,
+			'id',
+			attData(_List_Nil),
+			'id',
+			$author$project$VegaLite$luFields(
+				_List_fromArray(
+					['rate']))));
+	var mapSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				geoData,
+				trans(_List_Nil),
+				geoEnc(_List_Nil),
+				$author$project$VegaLite$geoshape(_List_Nil)
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[mapSpec, chartSpec]))
+			]));
+}();
 var $author$project$VegaLite$FCColumns = function (a) {
 	return {$: 0, a: a};
 };
@@ -12792,12 +13083,6 @@ var $author$project$ViewCompositionTests$grid3 = function () {
 }();
 var $author$project$VegaLite$Flow = 2;
 var $author$project$VegaLite$arFlow = 2;
-var $author$project$VegaLite$Count = {$: 4};
-var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
-var $author$project$VegaLite$PBin = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
 var $author$project$VegaLite$PRepeat = function (a) {
 	return {$: 5, a: a};
 };
@@ -12953,7 +13238,8 @@ var $author$project$ViewCompositionTests$specs = _List_fromArray(
 		_Utils_Tuple2('grid3', $author$project$ViewCompositionTests$grid3),
 		_Utils_Tuple2('grid4', $author$project$ViewCompositionTests$grid4),
 		_Utils_Tuple2('grid5', $author$project$ViewCompositionTests$grid5),
-		_Utils_Tuple2('concat1', $author$project$ViewCompositionTests$concat1)
+		_Utils_Tuple2('concat1', $author$project$ViewCompositionTests$concat1),
+		_Utils_Tuple2('concat2', $author$project$ViewCompositionTests$concat2)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
