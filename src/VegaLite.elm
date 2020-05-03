@@ -1068,6 +1068,7 @@ module VegaLite exposing
     , coCircle
     , coConcat
     , coCountTitle
+    , coCustomFormatTypes
     , coFieldTitle
     , coFont
     , coGeoshape
@@ -3156,6 +3157,7 @@ Allows default properties for most marks and guides to be set. See the
 @docs coCircle
 @docs coConcat
 @docs coCountTitle
+@docs coCustomFormatTypes
 @docs coFieldTitle
 @docs coFont
 @docs coGeoshape
@@ -4052,14 +4054,14 @@ type ConditionalAxisProperty
 [coAxisBottom](#coAxisBottom), [coAxisBand](#coAxisBand),[coAxisDiscrete](#coAxisDiscrete),
 [coAxisPoint](#coAxisPoint), [coAxisTemporal](#coAxisTemporal), [coAxisQuant](#coAxisQuant),
 [coBackground](#coBackground), [coBar](#coBar), [coCircle](#coCircle), [coConcat](#coConcat),
-[coCountTitle](#coCountTitle), [coFieldTitle](#coFieldTitle), [coGeoshape](#coGeoshape),
-[coFacet](#coFacet), [coHeader](#coHeader), [coLegend](#coLegend), [coLine](#coLine),
-[coMark](#coMark), [coMarkStyles](#coMarkStyles), [coNumberFormat](#coNumberFormat),
-[coPadding](#coPadding), [coPoint](#coPoint), [coProjection](#coProjection),
-[coRange](#coRange), [coRect](#coRect), [coRule](#coRule), [coScale](#coScale),
-[coSelection](#coSelection), [coSquare](#coSquare), [coText](#coText), [coFont](#coFont),
-[coTick](#coTick), [coTitle](#coTitle), [coTimeFormat](#coTimeFormat), [coTrail](#coTrail)
-and [coView](#coView).
+[coCountTitle](#coCountTitle), [coCustomFormatTypes](#coCustomFormatTypes),
+[coFieldTitle](#coFieldTitle), [coGeoshape](#coGeoshape), [coFacet](#coFacet),
+[coHeader](#coHeader), [coLegend](#coLegend), [coLine](#coLine), [coMark](#coMark),
+[coMarkStyles](#coMarkStyles), [coNumberFormat](#coNumberFormat), [coPadding](#coPadding),
+[coPoint](#coPoint), [coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
+[coRule](#coRule), [coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
+[coText](#coText), [coFont](#coFont), [coTick](#coTick), [coTitle](#coTitle),
+[coTimeFormat](#coTimeFormat), [coTrail](#coTrail) and [coView](#coView).
 -}
 type ConfigurationProperty
     = AreaStyle (List MarkProperty)
@@ -4080,6 +4082,7 @@ type ConfigurationProperty
     | CircleStyle (List MarkProperty)
     | ConcatStyle (List ConcatConfig)
     | CountTitle String
+    | CustomFormatTypes Bool
     | FieldTitle FieldTitleProperty
     | Font String
     | GeoshapeStyle (List MarkProperty)
@@ -8115,6 +8118,15 @@ cocoSpacing =
 coCountTitle : String -> ConfigurationProperty
 coCountTitle =
     CountTitle
+
+
+{-| Allow formatting of text marks and guides (e.g. [axFormatAsCustom](#axFormatAsCustom))
+to accept a custom formatter function registered as a Vega expression. See
+[how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+-}
+coCustomFormatTypes : Bool -> ConfigurationProperty
+coCustomFormatTypes =
+    CustomFormatTypes
 
 
 {-| Configure the default appearance of facet layouts.
@@ -18806,6 +18818,9 @@ configProperty configProp =
 
         ConcatStyle cps ->
             ( "concat", JE.object (List.map concatConfigProperty cps) )
+
+        CustomFormatTypes b ->
+            ( "customFormatTypes", JE.bool b )
 
         GeoshapeStyle mps ->
             ( "geoshape", JE.object (List.map markProperty mps) )
