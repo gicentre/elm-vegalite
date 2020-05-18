@@ -2853,6 +2853,17 @@ var $elm$core$List$foldr = F3(
 	function (fn, acc, ls) {
 		return A4($elm$core$List$foldrHelper, fn, acc, 0, ls);
 	});
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
 var $elm$core$List$map = F2(
 	function (f, xs) {
 		return A3(
@@ -2866,6 +2877,11 @@ var $elm$core$List$map = F2(
 				}),
 			_List_Nil,
 			xs);
+	});
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
 	});
 var $author$project$VegaLite$markLabel = function (m) {
 	switch (m) {
@@ -2906,8 +2922,22 @@ var $author$project$VegaLite$markLabel = function (m) {
 	}
 };
 var $author$project$VegaLite$TTNone = 2;
-var $elm$json$Json$Encode$null = _Json_encodeNull;
+var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
+var $author$project$VegaLite$ariaProperty = function (arProp) {
+	if (!arProp.$) {
+		var b = arProp.a;
+		return _Utils_Tuple2(
+			'aria',
+			$elm$json$Json$Encode$bool(b));
+	} else {
+		var d = arProp.a;
+		return _Utils_Tuple2(
+			'description',
+			$elm$json$Json$Encode$string(d));
+	}
+};
+var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$blendModeSpec = function (bm) {
 	switch (bm) {
 		case 0:
@@ -2944,7 +2974,6 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 			return $elm$json$Json$Encode$string('luminosity');
 	}
 };
-var $elm$json$Json$Encode$bool = _Json_wrap;
 var $author$project$VegaLite$colorGradientLabel = function (gr) {
 	if (!gr) {
 		return 'linear';
@@ -3290,501 +3319,792 @@ var $author$project$VegaLite$lineMarkerSpec = function (pm) {
 	} else {
 		var mps = pm.a;
 		return $elm$json$Json$Encode$object(
-			A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps));
+			A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps));
 	}
 };
 var $author$project$VegaLite$markProperty = function (mProp) {
 	switch (mProp.$) {
-		case 29:
+		case 2:
+			var aps = mProp.a;
+			if (!aps.b) {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'aria',
+						$elm$json$Json$Encode$bool(false))
+					]);
+			} else {
+				return A2($elm$core$List$map, $author$project$VegaLite$ariaProperty, aps);
+			}
+		case 30:
 			var b = mProp.a;
-			return _Utils_Tuple2(
-				'filled',
-				$elm$json$Json$Encode$bool(b));
-		case 5:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'filled',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 6:
 			var bm = mProp.a;
-			return _Utils_Tuple2(
-				'blend',
-				$author$project$VegaLite$blendModeSpec(bm));
-		case 8:
-			var b = mProp.a;
-			return _Utils_Tuple2(
-				'clip',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'blend',
+					$author$project$VegaLite$blendModeSpec(bm))
+				]);
 		case 9:
+			var b = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'clip',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 10:
 			var col = mProp.a;
-			return _Utils_Tuple2(
-				'color',
-				$elm$json$Json$Encode$string(col));
-		case 11:
-			var r = mProp.a;
-			return _Utils_Tuple2(
-				'cornerRadius',
-				$elm$json$Json$Encode$float(r));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'color',
+					$elm$json$Json$Encode$string(col))
+				]);
 		case 12:
 			var r = mProp.a;
-			return _Utils_Tuple2(
-				'cornerRadiusEnd',
-				$elm$json$Json$Encode$float(r));
-		case 15:
-			var r = mProp.a;
-			return _Utils_Tuple2(
-				'cornerRadiusBottomLeft',
-				$elm$json$Json$Encode$float(r));
-		case 16:
-			var r = mProp.a;
-			return _Utils_Tuple2(
-				'cornerRadiusBottomRight',
-				$elm$json$Json$Encode$float(r));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadius',
+					$elm$json$Json$Encode$float(r))
+				]);
 		case 13:
 			var r = mProp.a;
-			return _Utils_Tuple2(
-				'cornerRadiusTopLeft',
-				$elm$json$Json$Encode$float(r));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadiusEnd',
+					$elm$json$Json$Encode$float(r))
+				]);
+		case 16:
+			var r = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadiusBottomLeft',
+					$elm$json$Json$Encode$float(r))
+				]);
+		case 17:
+			var r = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadiusBottomRight',
+					$elm$json$Json$Encode$float(r))
+				]);
 		case 14:
 			var r = mProp.a;
-			return _Utils_Tuple2(
-				'cornerRadiusTopRight',
-				$elm$json$Json$Encode$float(r));
-		case 17:
-			var cur = mProp.a;
-			return _Utils_Tuple2(
-				'cursor',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$cursorLabel(cur)));
-		case 26:
-			var ext = mProp.a;
-			return _Utils_Tuple2(
-				'extent',
-				$author$project$VegaLite$extentSpec(ext));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadiusTopLeft',
+					$elm$json$Json$Encode$float(r))
+				]);
+		case 15:
+			var r = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cornerRadiusTopRight',
+					$elm$json$Json$Encode$float(r))
+				]);
 		case 18:
-			var s = mProp.a;
-			return _Utils_Tuple2(
-				'href',
-				$elm$json$Json$Encode$string(s));
-		case 47:
-			var b = mProp.a;
-			return b ? _Utils_Tuple2(
-				'invalid',
-				$elm$json$Json$Encode$string('filter')) : _Utils_Tuple2('invalid', $elm$json$Json$Encode$null);
+			var cur = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'cursor',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$cursorLabel(cur)))
+				]);
 		case 27:
-			var col = mProp.a;
-			return ($elm$core$String$trim(col) === '') ? _Utils_Tuple2('fill', $elm$json$Json$Encode$null) : _Utils_Tuple2(
-				'fill',
-				$elm$json$Json$Encode$string(col));
+			var ext = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'extent',
+					$author$project$VegaLite$extentSpec(ext))
+				]);
+		case 19:
+			var s = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'href',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 48:
+			var b = mProp.a;
+			return b ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('filter'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
+				]);
 		case 28:
-			var cGrad = mProp.a;
-			var props = mProp.b;
-			return _Utils_Tuple2(
-				'fill',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'gradient',
-							$elm$json$Json$Encode$string(
-								$author$project$VegaLite$colorGradientLabel(cGrad))),
-						A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))));
-		case 10:
-			var cGrad = mProp.a;
-			var props = mProp.b;
-			return _Utils_Tuple2(
-				'color',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'gradient',
-							$elm$json$Json$Encode$string(
-								$author$project$VegaLite$colorGradientLabel(cGrad))),
-						A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))));
-		case 53:
-			var cGrad = mProp.a;
-			var props = mProp.b;
-			return _Utils_Tuple2(
-				'stroke',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'gradient',
-							$elm$json$Json$Encode$string(
-								$author$project$VegaLite$colorGradientLabel(cGrad))),
-						A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))));
-		case 52:
 			var col = mProp.a;
-			return ($elm$core$String$trim(col) === '') ? _Utils_Tuple2('stroke', $elm$json$Json$Encode$null) : _Utils_Tuple2(
-				'stroke',
-				$elm$json$Json$Encode$string(col));
+			return ($elm$core$String$trim(col) === '') ? _List_fromArray(
+				[
+					_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fill',
+					$elm$json$Json$Encode$string(col))
+				]);
+		case 29:
+			var cGrad = mProp.a;
+			var props = mProp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fill',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'gradient',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$colorGradientLabel(cGrad))),
+							A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))))
+				]);
+		case 11:
+			var cGrad = mProp.a;
+			var props = mProp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'color',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'gradient',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$colorGradientLabel(cGrad))),
+							A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))))
+				]);
 		case 54:
-			var sc = mProp.a;
-			return _Utils_Tuple2(
-				'strokeCap',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$strokeCapLabel(sc)));
-		case 57:
-			var sj = mProp.a;
-			return _Utils_Tuple2(
-				'strokeJoin',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$strokeJoinLabel(sj)));
-		case 58:
-			var ml = mProp.a;
-			return _Utils_Tuple2(
-				'strokeMiterLimit',
-				$elm$json$Json$Encode$float(ml));
-		case 40:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'opacity',
-				$elm$json$Json$Encode$float(x));
-		case 30:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'fillOpacity',
-				$elm$json$Json$Encode$float(x));
-		case 59:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'strokeOpacity',
-				$elm$json$Json$Encode$float(x));
-		case 60:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'strokeWidth',
-				$elm$json$Json$Encode$float(x));
+			var cGrad = mProp.a;
+			var props = mProp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'stroke',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'gradient',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$colorGradientLabel(cGrad))),
+							A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))))
+				]);
+		case 53:
+			var col = mProp.a;
+			return ($elm$core$String$trim(col) === '') ? _List_fromArray(
+				[
+					_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'stroke',
+					$elm$json$Json$Encode$string(col))
+				]);
 		case 55:
-			var xs = mProp.a;
-			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
-				'strokeDash',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
-		case 56:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'strokeDashOffset',
-				$elm$json$Json$Encode$float(x));
-		case 61:
-			var styles = mProp.a;
-			return _Utils_Tuple2(
-				'style',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles));
-		case 36:
-			var interp = mProp.a;
-			return _Utils_Tuple2(
-				'interpolate',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$markInterpolationLabel(interp)));
-		case 62:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'tension',
-				$elm$json$Json$Encode$float(x));
-		case 44:
-			var orient = mProp.a;
-			return _Utils_Tuple2(
-				'orient',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$markOrientationLabel(orient)));
-		case 49:
-			var sym = mProp.a;
-			return _Utils_Tuple2(
-				'shape',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$symbolLabel(sym)));
-		case 51:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'size',
-				$elm$json$Json$Encode$float(x));
-		case 1:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'angle',
-				$elm$json$Json$Encode$float(x));
-		case 0:
-			var al = mProp.a;
-			return _Utils_Tuple2(
-				'align',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$hAlignLabel(al)));
-		case 3:
-			var va = mProp.a;
-			return _Utils_Tuple2(
-				'baseline',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$vAlignLabel(va)));
-		case 24:
-			var dx = mProp.a;
-			return _Utils_Tuple2(
-				'dx',
-				$elm$json$Json$Encode$float(dx));
-		case 25:
-			var dy = mProp.a;
-			return _Utils_Tuple2(
-				'dy',
-				$elm$json$Json$Encode$float(dy));
-		case 31:
-			var fnt = mProp.a;
-			return _Utils_Tuple2(
-				'font',
-				$elm$json$Json$Encode$string(fnt));
-		case 32:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'fontSize',
-				$elm$json$Json$Encode$float(x));
-		case 33:
-			var fSty = mProp.a;
-			return _Utils_Tuple2(
-				'fontStyle',
-				$elm$json$Json$Encode$string(fSty));
-		case 34:
-			var w = mProp.a;
-			return _Utils_Tuple2(
-				'fontWeight',
-				$author$project$VegaLite$fontWeightSpec(w));
-		case 46:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'radius',
-				$elm$json$Json$Encode$float(x));
-		case 35:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'innerRadius',
-				$elm$json$Json$Encode$float(x));
+			var sc = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeCap',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$strokeCapLabel(sc)))
+				]);
+		case 58:
+			var sj = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeJoin',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$strokeJoinLabel(sj)))
+				]);
+		case 59:
+			var ml = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeMiterLimit',
+					$elm$json$Json$Encode$float(ml))
+				]);
 		case 41:
 			var x = mProp.a;
-			return _Utils_Tuple2(
-				'outerRadius',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'opacity',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 31:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fillOpacity',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 60:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeOpacity',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 61:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeWidth',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 56:
+			var xs = mProp.a;
+			return _Utils_eq(xs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeDash',
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
+				]);
+		case 57:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeDashOffset',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 62:
+			var styles = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'style',
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles))
+				]);
+		case 37:
+			var interp = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'interpolate',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$markInterpolationLabel(interp)))
+				]);
 		case 63:
-			var txt = mProp.a;
-			return _Utils_Tuple2(
-				'text',
-				$author$project$VegaLite$multilineTextSpec(txt));
-		case 38:
 			var x = mProp.a;
-			return _Utils_Tuple2(
-				'lineHeight',
-				$elm$json$Json$Encode$float(x));
-		case 20:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tension',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 45:
+			var orient = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'orient',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$markOrientationLabel(orient)))
+				]);
+		case 50:
+			var sym = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'shape',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$symbolLabel(sym)))
+				]);
+		case 52:
 			var x = mProp.a;
-			return _Utils_Tuple2(
-				'limit',
-				$elm$json$Json$Encode$float(x));
-		case 21:
-			var s = mProp.a;
-			return _Utils_Tuple2(
-				'ellipsis',
-				$elm$json$Json$Encode$string(s));
-		case 22:
-			var td = mProp.a;
-			return _Utils_Tuple2(
-				'dir',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$textDirectionLabel(td)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'size',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 1:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'angle',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 0:
+			var al = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'align',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$hAlignLabel(al)))
+				]);
+		case 4:
+			var va = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'baseline',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$vAlignLabel(va)))
+				]);
+		case 25:
+			var dx = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'dx',
+					$elm$json$Json$Encode$float(dx))
+				]);
+		case 26:
+			var dy = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'dy',
+					$elm$json$Json$Encode$float(dy))
+				]);
+		case 32:
+			var fnt = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'font',
+					$elm$json$Json$Encode$string(fnt))
+				]);
+		case 33:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fontSize',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 34:
+			var fSty = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fontStyle',
+					$elm$json$Json$Encode$string(fSty))
+				]);
+		case 35:
+			var w = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fontWeight',
+					$author$project$VegaLite$fontWeightSpec(w))
+				]);
+		case 47:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'radius',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 36:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'innerRadius',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 42:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'outerRadius',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 64:
+			var txt = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'text',
+					$author$project$VegaLite$multilineTextSpec(txt))
+				]);
+		case 39:
 			var x = mProp.a;
-			return _Utils_Tuple2(
-				'theta',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'lineHeight',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 21:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'limit',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 22:
+			var s = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'ellipsis',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 23:
+			var td = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'dir',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$textDirectionLabel(td)))
+				]);
 		case 65:
 			var x = mProp.a;
-			return _Utils_Tuple2(
-				'theta2',
-				$elm$json$Json$Encode$float(x));
-		case 79:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'thetaOffset',
-				$elm$json$Json$Encode$float(x));
-		case 80:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'theta2Offset',
-				$elm$json$Json$Encode$float(x));
-		case 4:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'binSpacing',
-				$elm$json$Json$Encode$float(x));
-		case 19:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'continuousBandSize',
-				$elm$json$Json$Encode$float(x));
-		case 23:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'discreteBandSize',
-				$elm$json$Json$Encode$float(x));
-		case 50:
-			var b = mProp.a;
-			return _Utils_Tuple2(
-				'shortTimeLabels',
-				$elm$json$Json$Encode$bool(b));
-		case 2:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'bandSize',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'theta',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 66:
 			var x = mProp.a;
-			return _Utils_Tuple2(
-				'thickness',
-				$elm$json$Json$Encode$float(x));
-		case 48:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'theta2',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 80:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'thetaOffset',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 81:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'theta2Offset',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 5:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'binSpacing',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 20:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'continuousBandSize',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 24:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'discreteBandSize',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 51:
+			var b = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'shortTimeLabels',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 3:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bandSize',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 67:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'thickness',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 49:
 			var props = mProp.a;
 			if (!props.b) {
-				return _Utils_Tuple2(
-					'rule',
-					$elm$json$Json$Encode$bool(false));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'rule',
+						$elm$json$Json$Encode$bool(false))
+					]);
 			} else {
-				return _Utils_Tuple2(
-					'rule',
-					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
-			}
-		case 6:
-			var props = mProp.a;
-			return _Utils_Tuple2(
-				'borders',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
-		case 39:
-			var props = mProp.a;
-			if (!props.b) {
-				return _Utils_Tuple2(
-					'median',
-					$elm$json$Json$Encode$bool(false));
-			} else {
-				return _Utils_Tuple2(
-					'median',
-					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'rule',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, props)))
+					]);
 			}
 		case 7:
 			var props = mProp.a;
-			if (!props.b) {
-				return _Utils_Tuple2(
-					'box',
-					$elm$json$Json$Encode$bool(false));
-			} else {
-				return _Utils_Tuple2(
-					'box',
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'borders',
 					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
-			}
-		case 42:
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, props)))
+				]);
+		case 40:
 			var props = mProp.a;
 			if (!props.b) {
-				return _Utils_Tuple2(
-					'outliers',
-					$elm$json$Json$Encode$bool(false));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'median',
+						$elm$json$Json$Encode$bool(false))
+					]);
 			} else {
-				return _Utils_Tuple2(
-					'outliers',
-					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'median',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, props)))
+					]);
 			}
-		case 67:
+		case 8:
 			var props = mProp.a;
-			return _Utils_Tuple2(
-				'ticks',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, props)));
-		case 68:
-			var ttContent = mProp.a;
-			return (ttContent === 2) ? _Utils_Tuple2('tooltip', $elm$json$Json$Encode$null) : _Utils_Tuple2(
-				'tooltip',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'content',
-							$elm$json$Json$Encode$string(
-								$author$project$VegaLite$ttContentLabel(ttContent)))
-						])));
-		case 45:
-			var pm = mProp.a;
-			return _Utils_Tuple2(
-				'point',
-				$author$project$VegaLite$pointMarkerSpec(pm));
-		case 37:
-			var lm = mProp.a;
-			return _Utils_Tuple2(
-				'line',
-				$author$project$VegaLite$lineMarkerSpec(lm));
-		case 69:
-			var w = mProp.a;
-			return _Utils_Tuple2(
-				'width',
-				$elm$json$Json$Encode$float(w));
-		case 70:
-			var h = mProp.a;
-			return _Utils_Tuple2(
-				'height',
-				$elm$json$Json$Encode$float(h));
-		case 71:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'x',
-				$elm$json$Json$Encode$float(x));
-		case 72:
-			var y = mProp.a;
-			return _Utils_Tuple2(
-				'y',
-				$elm$json$Json$Encode$float(y));
-		case 73:
-			var x = mProp.a;
-			return _Utils_Tuple2(
-				'x2',
-				$elm$json$Json$Encode$float(x));
-		case 74:
-			var y = mProp.a;
-			return _Utils_Tuple2(
-				'y2',
-				$elm$json$Json$Encode$float(y));
+			if (!props.b) {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'box',
+						$elm$json$Json$Encode$bool(false))
+					]);
+			} else {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'box',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, props)))
+					]);
+			}
 		case 43:
-			var b = mProp.a;
-			return _Utils_Tuple2(
-				'order',
-				$elm$json$Json$Encode$bool(b));
+			var props = mProp.a;
+			if (!props.b) {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'outliers',
+						$elm$json$Json$Encode$bool(false))
+					]);
+			} else {
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'outliers',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, props)))
+					]);
+			}
+		case 68:
+			var props = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'ticks',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, props)))
+				]);
+		case 69:
+			var ttContent = mProp.a;
+			return (ttContent === 2) ? _List_fromArray(
+				[
+					_Utils_Tuple2('tooltip', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tooltip',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'content',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$ttContentLabel(ttContent)))
+							])))
+				]);
+		case 46:
+			var pm = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'point',
+					$author$project$VegaLite$pointMarkerSpec(pm))
+				]);
+		case 38:
+			var lm = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'line',
+					$author$project$VegaLite$lineMarkerSpec(lm))
+				]);
+		case 70:
+			var w = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'width',
+					$elm$json$Json$Encode$float(w))
+				]);
+		case 71:
+			var h = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'height',
+					$elm$json$Json$Encode$float(h))
+				]);
+		case 72:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'x',
+					$elm$json$Json$Encode$float(x))
+				]);
+		case 73:
+			var y = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'y',
+					$elm$json$Json$Encode$float(y))
+				]);
+		case 74:
+			var x = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'x2',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 75:
-			var o = mProp.a;
-			return _Utils_Tuple2(
-				'xOffset',
-				$elm$json$Json$Encode$float(o));
-		case 77:
-			var o = mProp.a;
-			return _Utils_Tuple2(
-				'x2Offset',
-				$elm$json$Json$Encode$float(o));
+			var y = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'y2',
+					$elm$json$Json$Encode$float(y))
+				]);
+		case 44:
+			var b = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'order',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		case 76:
 			var o = mProp.a;
-			return _Utils_Tuple2(
-				'yOffset',
-				$elm$json$Json$Encode$float(o));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'xOffset',
+					$elm$json$Json$Encode$float(o))
+				]);
 		case 78:
 			var o = mProp.a;
-			return _Utils_Tuple2(
-				'y2Offset',
-				$elm$json$Json$Encode$float(o));
-		case 81:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'x2Offset',
+					$elm$json$Json$Encode$float(o))
+				]);
+		case 77:
 			var o = mProp.a;
-			return _Utils_Tuple2(
-				'radiusOffset',
-				$elm$json$Json$Encode$float(o));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'yOffset',
+					$elm$json$Json$Encode$float(o))
+				]);
+		case 79:
+			var o = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'y2Offset',
+					$elm$json$Json$Encode$float(o))
+				]);
 		case 82:
 			var o = mProp.a;
-			return _Utils_Tuple2(
-				'radius2Offset',
-				$elm$json$Json$Encode$float(o));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'radiusOffset',
+					$elm$json$Json$Encode$float(o))
+				]);
+		case 83:
+			var o = mProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'radius2Offset',
+					$elm$json$Json$Encode$float(o))
+				]);
 		default:
 			var b = mProp.a;
-			return _Utils_Tuple2(
-				'aspect',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aspect',
+					$elm$json$Json$Encode$bool(b))
+				]);
 	}
 };
 var $author$project$VegaLite$pointMarkerSpec = function (pm) {
@@ -3796,7 +4116,7 @@ var $author$project$VegaLite$pointMarkerSpec = function (pm) {
 		default:
 			var mps = pm.a;
 			return _Utils_eq(mps, _List_Nil) ? $elm$json$Json$Encode$bool(true) : $elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps));
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps));
 	}
 };
 var $author$project$VegaLite$mark = F2(
@@ -3816,7 +4136,7 @@ var $author$project$VegaLite$mark = F2(
 							'type',
 							$elm$json$Json$Encode$string(
 								$author$project$VegaLite$markLabel(m))),
-						A2($elm$core$List$map, $author$project$VegaLite$markProperty, mProps))));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mProps))));
 		}
 	});
 var $author$project$VegaLite$area = $author$project$VegaLite$mark(1);
@@ -3925,22 +4245,6 @@ var $elm$core$Basics$composeL = F3(
 			f(x));
 	});
 var $author$project$VegaLite$VLData = 10;
-var $elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
-		}
-	});
-var $elm$core$List$concat = function (lists) {
-	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
-};
-var $elm$core$List$concatMap = F2(
-	function (f, list) {
-		return $elm$core$List$concat(
-			A2($elm$core$List$map, f, list));
-	});
 var $author$project$VegaLite$dataTypeLabel = function (dType) {
 	switch (dType.$) {
 		case 0:
@@ -9775,7 +10079,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'mark',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 32:
 			var pps = configProp.a;
 			return _Utils_Tuple2(
@@ -9787,19 +10091,19 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'area',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 15:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'bar',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 16:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'circle',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 25:
 			var fps = configProp.a;
 			return _Utils_Tuple2(
@@ -9822,7 +10126,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'geoshape',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 26:
 			var hps = configProp.a;
 			return _Utils_Tuple2(
@@ -9834,43 +10138,43 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'line',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 31:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'point',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 34:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'rect',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 35:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'rule',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 38:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'square',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 40:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'text',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 41:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
 				'tick',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 		case 42:
 			var tcs = configProp.a;
 			return _Utils_Tuple2(
@@ -9890,7 +10194,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 							return _Utils_Tuple2(
 								sName,
 								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+									A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 						},
 						styles)));
 		case 4:
@@ -9949,7 +10253,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'trail',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$markProperty, mps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
 	}
 };
 var $author$project$VegaLite$configuration = function (cfg) {
@@ -11356,19 +11660,19 @@ var $author$project$VegaLite$LUFields = function (a) {
 };
 var $author$project$VegaLite$luFields = $author$project$VegaLite$LUFields;
 var $author$project$VegaLite$MColor = function (a) {
-	return {$: 9, a: a};
+	return {$: 10, a: a};
 };
 var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
 var $author$project$VegaLite$MFill = function (a) {
-	return {$: 27, a: a};
+	return {$: 28, a: a};
 };
 var $author$project$VegaLite$maFill = $author$project$VegaLite$MFill;
 var $author$project$VegaLite$MOpacity = function (a) {
-	return {$: 40, a: a};
+	return {$: 41, a: a};
 };
 var $author$project$VegaLite$maOpacity = $author$project$VegaLite$MOpacity;
 var $author$project$VegaLite$MStroke = function (a) {
-	return {$: 52, a: a};
+	return {$: 53, a: a};
 };
 var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
 var $author$project$VegaLite$OName = function (a) {
