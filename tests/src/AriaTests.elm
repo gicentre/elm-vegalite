@@ -1,0 +1,124 @@
+port module AriaTests exposing (elmToJS)
+
+import Browser
+import Dict exposing (Dict)
+import Html exposing (Html)
+import Html.Attributes
+import Html.Events
+import Json.Encode
+import VegaLite exposing (..)
+
+
+defaultVis : List MarkProperty -> (List a -> ( VLProperty, Spec )) -> Spec
+defaultVis mProps cfg =
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mName "Cylinders", mOrdinal ]
+                << shape [ mName "Origin", mNominal ]
+    in
+    toVegaLite
+        [ title "Car Scatter" []
+        , cfg []
+        , width 200
+        , height 200
+        , data
+        , enc []
+        , point (maSize 100 :: mProps)
+        ]
+
+
+aria1 : Spec
+aria1 =
+    configure
+        << configuration (coAria False)
+        |> defaultVis []
+
+
+aria2 : Spec
+aria2 =
+    configure |> defaultVis [ maAria [] ]
+
+
+aria3 : Spec
+aria3 =
+    configure |> defaultVis [ maAria [ arDescription "Point marks" ] ]
+
+
+aria4 : Spec
+aria4 =
+    configure |> defaultVis [ maAria [ arAria True, arDescription "Point marks" ] ]
+
+
+
+{- Ids and specifications to be provided to the Vega-Lite runtime. -}
+
+
+specs : List ( String, Spec )
+specs =
+    [ ( "aria1", aria1 )
+    , ( "aria2", aria2 )
+    , ( "aria3", aria3 )
+    , ( "aria4", aria4 )
+    ]
+
+
+
+{- ---------------------------------------------------------------------------
+   BOILERPLATE: NO NEED TO EDIT
+
+   The code below creates an Elm module that opens an outgoing port to Javascript
+   and sends both the specs and DOM node to it.
+   It allows the source code of any of the generated specs to be selected from
+   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
+-}
+
+
+type Msg
+    = NewSource String
+    | NoSource
+
+
+main : Program () Spec Msg
+main =
+    Browser.element
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
+        , view = view
+        , update = update
+        , subscriptions = always Sub.none
+        }
+
+
+view : Spec -> Html Msg
+view spec =
+    Html.div []
+        [ Html.select [ Html.Events.onInput NewSource ]
+            (( "Select source", Json.Encode.null )
+                :: specs
+                |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
+            )
+        , Html.div [ Html.Attributes.id "specSource" ] []
+        , if spec == Json.Encode.null then
+            Html.div [] []
+
+          else
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
+        ]
+
+
+update : Msg -> Spec -> ( Spec, Cmd Msg )
+update msg model =
+    case msg of
+        NewSource srcName ->
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
+
+        NoSource ->
+            ( Json.Encode.null, Cmd.none )
+
+
+port elmToJS : Spec -> Cmd msg

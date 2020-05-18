@@ -4,7 +4,7 @@
 
 ## Breaking Changes
 
-- `coAria` for enabling/disabling ARIA suppoert in SVG output.
+- `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arAria` and `arDescription` for setting ARIA support on a per mark basis.
 
 - `axTickCount` and `axcoTickCount` now take a `ScaleNice` parameter rather than `Float` so that time intervals may be supplied. Previous code that used `axTickCount 123` should now use `axTickCount (niTickCount 123)` (VL.4.10).
 
