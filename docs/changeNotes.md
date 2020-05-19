@@ -4,8 +4,6 @@
 
 ## Breaking Changes
 
-- `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arAria` and `arDescription` for setting ARIA support on a per mark basis.
-
 - `axTickCount` and `axcoTickCount` now take a `ScaleNice` parameter rather than `Float` so that time intervals may be supplied. Previous code that used `axTickCount 123` should now use `axTickCount (niTickCount 123)` (VL.4.10).
 
 * New position channels `Theta`, `Theta2`, `R` and `R2` for radial positioning (e.g. pie charts). This is technically a breaking change as they are new variants in the exposed `Position` type, although in practice this won't break any existing specifications unless pattern matching against all `Position` variants (VL4.9).
@@ -18,29 +16,31 @@
 
 ## Additions
 
-- `coCustomFormatTypes` for enabling/disabling use of registered custom formatters (VL4.11).
+- `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arAria` and `arDescription` for setting ARIA support on a per mark basis. `axAria` and associated properties for setting ARIA support on a per axis basis (VL4.12).
 
-* `axcoDisable` and `lecoDisable` to disable axes and legends by default in configuration (VL4.10).
+* `coCustomFormatTypes` for enabling/disabling use of registered custom formatters (VL4.11).
 
-- `mBand` for non-positional band encoding (VL4.10)
+- `axcoDisable` and `lecoDisable` to disable axes and legends by default in configuration (VL4.10).
 
-* `arc` and `text` mark offset functions `maThetaOffset`, `maTheta2Offset`, `maRadiusOffset` and `maRadius2Offset` (VL4.10).
+* `mBand` for non-positional band encoding (VL4.10)
 
-- `pDatum` for specifying a literal data-driven positioning (VL.4.9).
+- `arc` and `text` mark offset functions `maThetaOffset`, `maTheta2Offset`, `maRadiusOffset` and `maRadius2Offset` (VL4.10).
 
-* `mDatum` for specifying a literal data-driven mark property (VL.4.9).
+* `pDatum` for specifying a literal data-driven positioning (VL.4.9).
 
-- `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
+- `mDatum` for specifying a literal data-driven mark property (VL.4.9).
 
-* `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
+* `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
 
-- `angle` channel for data-driven rotation of point and text symbols (VL4.9).
+- `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
 
-* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+* `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
-- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+- `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
 
-* `leTitleOrient` for positioning a title relative to legend content.
+* `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+
+- `leTitleOrient` for positioning a title relative to legend content.
 
 ### Bug Fixes
 

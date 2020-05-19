@@ -9,16 +9,23 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
-defaultVis : List MarkProperty -> (List a -> ( VLProperty, Spec )) -> Spec
-defaultVis mProps cfg =
+defaultVis : List MarkProperty -> List AxisProperty -> (List a -> ( VLProperty, Spec )) -> Spec
+defaultVis mProps axProps cfg =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
 
+        axp =
+            if axProps == [] then
+                [ axDomain True ]
+
+            else
+                axProps
+
         enc =
             encoding
-                << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << position X [ pName "Horsepower", pQuant, pAxis axp ]
+                << position Y [ pName "Miles_per_Gallon", pQuant, pAxis axp ]
                 << color [ mName "Cylinders", mOrdinal ]
                 << shape [ mName "Origin", mNominal ]
     in
@@ -37,22 +44,45 @@ aria1 : Spec
 aria1 =
     configure
         << configuration (coAria False)
-        |> defaultVis []
+        |> defaultVis [] []
 
 
 aria2 : Spec
 aria2 =
-    configure |> defaultVis [ maAria [] ]
+    configure |> defaultVis [ maAria [] ] []
 
 
 aria3 : Spec
 aria3 =
-    configure |> defaultVis [ maAria [ arDescription "Point marks" ] ]
+    configure |> defaultVis [ maAria [ arDescription "Point mark description here" ] ] []
 
 
 aria4 : Spec
 aria4 =
-    configure |> defaultVis [ maAria [ arAria True, arDescription "Point marks" ] ]
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            []
+
+
+aria5 : Spec
+aria5 =
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            [ axAria [] ]
+
+
+aria6 : Spec
+aria6 =
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            [ axAria [ arDescription "Axis description here" ] ]
+
+
+aria7 : Spec
+aria7 =
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            [ axAria [ arAria True, arDescription "Axis description here" ] ]
 
 
 
@@ -65,6 +95,9 @@ specs =
     , ( "aria2", aria2 )
     , ( "aria3", aria3 )
     , ( "aria4", aria4 )
+    , ( "aria5", aria5 )
+    , ( "aria6", aria6 )
+    , ( "aria7", aria7 )
     ]
 
 
