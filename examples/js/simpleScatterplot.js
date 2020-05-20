@@ -2921,6 +2921,9 @@ var $author$project$VegaLite$markLabel = function (m) {
 			return 'trail';
 	}
 };
+var $author$project$VegaLite$ArAria = function (a) {
+	return {$: 0, a: a};
+};
 var $author$project$VegaLite$TTNone = 2;
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
@@ -3329,9 +3332,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			if (!aps.b) {
 				return _List_fromArray(
 					[
-						_Utils_Tuple2(
-						'aria',
-						$elm$json$Json$Encode$bool(false))
+						$author$project$VegaLite$ariaProperty(
+						$author$project$VegaLite$ArAria(false))
 					]);
 			} else {
 				return A2($elm$core$List$map, $author$project$VegaLite$ariaProperty, aps);
@@ -6167,9 +6169,8 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			if (!aps.b) {
 				return _List_fromArray(
 					[
-						_Utils_Tuple2(
-						'aria',
-						$elm$json$Json$Encode$bool(false))
+						$author$project$VegaLite$ariaProperty(
+						$author$project$VegaLite$ArAria(false))
 					]);
 			} else {
 				return A2($elm$core$List$map, $author$project$VegaLite$ariaProperty, aps);
