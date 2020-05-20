@@ -16,7 +16,7 @@
 
 ## Additions
 
-- `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arAria` and `arDescription` for setting ARIA support on a per mark basis. `axAria` and associated properties for setting ARIA support on a per axis basis (VL4.12).
+- `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arAria` and `arDescription` for setting ARIA support on a per mark basis. `axAria` / `axcoAria` and associated properties for setting ARIA support on a per axis basis (VL4.12).
 
 * `coCustomFormatTypes` for enabling/disabling use of registered custom formatters (VL4.11).
 

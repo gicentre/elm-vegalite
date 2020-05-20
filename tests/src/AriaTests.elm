@@ -85,6 +85,14 @@ aria7 =
             [ axAria [ arAria True, arDescription "Axis description here" ] ]
 
 
+aria8 : Spec
+aria8 =
+    configure
+        << configuration (coAria False)
+        << configuration (coAxis [ axcoAria [ arAria True, arDescription "Axis description here" ] ])
+        |> defaultVis [] []
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -98,6 +106,7 @@ specs =
     , ( "aria5", aria5 )
     , ( "aria6", aria6 )
     , ( "aria7", aria7 )
+    , ( "aria8", aria8 )
     ]
 
 
