@@ -129,9 +129,19 @@ legend12 =
     legendCore [ leLabelBaseline vaLineTop ]
 
 
+legend13 : Spec
+legend13 =
+    legendCore [ leSymbolLimit 4 ]
+
+
+legend14 : Spec
+legend14 =
+    legendCoreCfg [ lecoSymbolLimit 4 ]
+
+
 sourceExample : Spec
 sourceExample =
-    legend12
+    legend14
 
 
 
@@ -152,6 +162,8 @@ specs =
     , ( "legend10", legend10 )
     , ( "legend11", legend11 )
     , ( "legend12", legend12 )
+    , ( "legend13", legend13 )
+    , ( "legend14", legend14 )
     ]
 
 

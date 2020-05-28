@@ -44,6 +44,8 @@
 
 * `leTitleOrient` for positioning a title relative to legend content.
 
+- `leSymbolLimit` and `lecoSymbolLimit` for limiting the number of entries in a discrete legend (VL 4.8).
+
 ### Bug Fixes
 
 - `niInterval` now correctly generates a time unit string rather than `"unit":XXX`.

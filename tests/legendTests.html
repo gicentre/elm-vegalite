@@ -40,55 +40,55 @@
       <div id="legend1"></div>
       <figcaption>Default legend layout (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend2"></div>
       <figcaption>Legend orient top (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend3"></div>
       <figcaption>Legend orient top-right (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend4"></div>
       <figcaption>Legend orient right (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend5"></div>
       <figcaption>Legend orient bottom-right (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend6"></div>
       <figcaption>Legend orient bottom (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend7"></div>
       <figcaption>Legend orient bottom-left (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend8"></div>
       <figcaption>Legend orient left (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend9"></div>
       <figcaption>Legend orient top-left (3 legends)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend10"></div>
@@ -97,7 +97,7 @@
         area.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend11"></div>
@@ -105,7 +105,7 @@
         3 legends, cusomtised via style configuration
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="legend12"></div>
@@ -113,19 +113,35 @@
         Legend label baseline set to line-top.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="legend13"></div>
+      <figcaption>
+        With symbol limit set to 4.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="legend14"></div>
+      <figcaption>
+        As above but set via config.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.LegendTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
