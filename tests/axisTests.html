@@ -48,7 +48,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell" width="350">
       <div id="axis02"></div>
@@ -57,7 +57,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axis03"></div>
@@ -66,7 +66,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axis04"></div>
@@ -82,7 +82,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Explicit Axis Values</h2>
     <figure class="cell">
@@ -106,7 +106,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Axis label expressions</h2>
     <figure class="cell">
@@ -123,7 +123,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Axis Configuration</h2>
 
@@ -142,7 +142,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axis12"></div>
@@ -159,7 +159,7 @@
       </figcaption>
     </figure> -->
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Conditional Axis Properties</h2>
 
@@ -171,19 +171,28 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="axis15"></div>
+      <figcaption>
+        Square caps for domain and rounded caps for grid lines.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.AxisTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

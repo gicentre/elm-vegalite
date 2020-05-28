@@ -299,6 +299,25 @@ axis14 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
+axis15 : Spec
+axis15 =
+    let
+        enc =
+            encoding
+                << position X
+                    [ pName "catX"
+                    , pOrdinal
+                    , pAxis [ axDomainCap caSquare, axDomainWidth 6 ]
+                    ]
+                << position Y
+                    [ pName "y"
+                    , pQuant
+                    , pAxis [ axGridCap caRound, axGridWidth 4 ]
+                    ]
+    in
+    toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -322,6 +341,7 @@ specs =
 
     -- , ( "axis13", axis13 )
     , ( "axis14", axis14 )
+    , ( "axis15", axis15 )
     ]
 
 
