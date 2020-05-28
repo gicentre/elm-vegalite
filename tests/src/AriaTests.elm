@@ -67,7 +67,7 @@ aria3 =
 aria4 : Spec
 aria4 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
             []
             []
 
@@ -75,7 +75,7 @@ aria4 =
 aria5 : Spec
 aria5 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
             [ axAria [] ]
             []
 
@@ -83,7 +83,7 @@ aria5 =
 aria6 : Spec
 aria6 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
             [ axAria [ arDescription "Axis description here" ] ]
             []
 
@@ -91,8 +91,8 @@ aria6 =
 aria7 : Spec
 aria7 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
-            [ axAria [ arAria True, arDescription "Axis description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
+            [ axAria [ arEnable, arDescription "Axis description here" ] ]
             []
 
 
@@ -100,14 +100,14 @@ aria8 : Spec
 aria8 =
     configure
         << configuration (coAria False)
-        << configuration (coAxis [ axcoAria [ arAria True, arDescription "Axis description here" ] ])
+        << configuration (coAxis [ axcoAria [ arEnable, arDescription "Axis description here" ] ])
         |> defaultVis [] [] []
 
 
 aria9 : Spec
 aria9 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
             []
             [ leAria [] ]
 
@@ -115,7 +115,7 @@ aria9 =
 aria10 : Spec
 aria10 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
             []
             [ leAria [ arDescription "Legend description here" ] ]
 
@@ -123,16 +123,16 @@ aria10 =
 aria11 : Spec
 aria11 =
     configure
-        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+        |> defaultVis [ maAria [ arEnable, arDescription "Point mark description here" ] ]
             []
-            [ leAria [ arAria True, arDescription "Legend description here" ] ]
+            [ leAria [ arEnable, arDescription "Legend description here" ] ]
 
 
 aria12 : Spec
 aria12 =
     configure
         << configuration (coAria False)
-        << configuration (coLegend [ lecoAria [ arAria True, arDescription "Legend description here" ] ])
+        << configuration (coLegend [ lecoAria [ arEnable, arDescription "Legend description here" ] ])
         |> defaultVis [] [] []
 
 

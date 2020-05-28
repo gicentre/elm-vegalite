@@ -12842,11 +12842,11 @@ var $author$project$AriaTests$aria1 = A4(
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coAria(false))));
-var $author$project$VegaLite$arAria = $author$project$VegaLite$ArAria;
 var $author$project$VegaLite$ArDescription = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$arDescription = $author$project$VegaLite$ArDescription;
+var $author$project$VegaLite$arEnable = $author$project$VegaLite$ArAria(true);
 var $author$project$VegaLite$LAria = function (a) {
 	return {$: 0, a: a};
 };
@@ -12862,7 +12862,7 @@ var $author$project$AriaTests$aria10 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
@@ -12883,7 +12883,7 @@ var $author$project$AriaTests$aria11 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
@@ -12893,7 +12893,7 @@ var $author$project$AriaTests$aria11 = A4(
 			$author$project$VegaLite$leAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Legend description here')
 				]))
 		]),
@@ -12925,7 +12925,7 @@ var $author$project$AriaTests$aria12 = A4(
 						$author$project$VegaLite$lecoAria(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$arAria(true),
+								$author$project$VegaLite$arEnable,
 								$author$project$VegaLite$arDescription('Legend description here')
 							]))
 					])))));
@@ -12958,7 +12958,7 @@ var $author$project$AriaTests$aria4 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
@@ -12976,7 +12976,7 @@ var $author$project$AriaTests$aria5 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
@@ -12993,7 +12993,7 @@ var $author$project$AriaTests$aria6 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
@@ -13014,7 +13014,7 @@ var $author$project$AriaTests$aria7 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
@@ -13023,7 +13023,7 @@ var $author$project$AriaTests$aria7 = A4(
 			$author$project$VegaLite$axAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Axis description here')
 				]))
 		]),
@@ -13058,7 +13058,7 @@ var $author$project$AriaTests$aria8 = A4(
 						$author$project$VegaLite$axcoAria(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$arAria(true),
+								$author$project$VegaLite$arEnable,
 								$author$project$VegaLite$arDescription('Axis description here')
 							]))
 					])))));
@@ -13069,7 +13069,7 @@ var $author$project$AriaTests$aria9 = A4(
 			$author$project$VegaLite$maAria(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$arAria(true),
+					$author$project$VegaLite$arEnable,
 					$author$project$VegaLite$arDescription('Point mark description here')
 				]))
 		]),
