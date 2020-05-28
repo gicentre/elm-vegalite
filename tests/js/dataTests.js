@@ -14240,6 +14240,311 @@ var $author$project$DataTests$datum4 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$TDatum = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$tDatum = $author$project$VegaLite$TDatum;
+var $author$project$VegaLite$TFormat = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$tFormat = $author$project$VegaLite$TFormat;
+var $author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
+var $author$project$VegaLite$textChannelProperties = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					$elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					$elm$json$Json$Encode$string(fmt))
+				]);
+		case 11:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('number'))
+				]);
+		case 12:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('time'))
+				]);
+		case 13:
+			var formatter = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string(formatter))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		case 9:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_v1) {
+				var predicate = _v1.a;
+				var ifClause = _v1.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2($elm$json$Json$Encode$list, testClause, tests)),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		case 14:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$author$project$VegaLite$multilineTextSpec(s))
+				]);
+		default:
+			var d = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'datum',
+					$author$project$VegaLite$dataValueSpec(d))
+				]);
+	}
+};
+var $author$project$VegaLite$text = function (tDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
+};
+var $author$project$DataTests$datum5 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tDatum(
+					$author$project$VegaLite$num(0.11987)),
+					$author$project$VegaLite$tQuant,
+					$author$project$VegaLite$tFormat('.2f')
+				])));
+	var data = $author$project$VegaLite$dataFromColumns(_List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$Boolean = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
+var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
+var $author$project$DataTests$datum6 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tDatum(
+					$author$project$VegaLite$boo(true)),
+					$author$project$VegaLite$tNominal
+				])));
+	var data = $author$project$VegaLite$dataFromColumns(_List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
+			]));
+}();
+var $author$project$DataTests$datum7 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tDatum(
+					$author$project$VegaLite$str('Hello, world!')),
+					$author$project$VegaLite$tNominal
+				])));
+	var data = $author$project$VegaLite$dataFromColumns(_List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$Expr = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$expr = $author$project$VegaLite$Expr;
+var $author$project$VegaLite$TDataCondition = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$tDataCondition = $author$project$VegaLite$TDataCondition;
+var $author$project$VegaLite$TString = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$tStr = $author$project$VegaLite$TString;
+var $author$project$DataTests$datum8 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('i'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$tDataCondition,
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							$author$project$VegaLite$expr('datum.i %2 == 0'),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$tStr('even')
+								]))
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$tStr('odd')
+						]))
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'i',
+			$author$project$VegaLite$nums(
+				A2(
+					$elm$core$List$map,
+					$elm$core$Basics$toFloat,
+					A2($elm$core$List$range, 1, 10)))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
+			]));
+}();
 var $author$project$DataTests$doData = A2(
 	$elm$core$Basics$composeL,
 	A2(
@@ -16065,7 +16370,11 @@ var $author$project$DataTests$specs = _List_fromArray(
 		_Utils_Tuple2('datum1', $author$project$DataTests$datum1),
 		_Utils_Tuple2('datum2', $author$project$DataTests$datum2),
 		_Utils_Tuple2('datum3', $author$project$DataTests$datum3),
-		_Utils_Tuple2('datum4', $author$project$DataTests$datum4)
+		_Utils_Tuple2('datum4', $author$project$DataTests$datum4),
+		_Utils_Tuple2('datum5', $author$project$DataTests$datum5),
+		_Utils_Tuple2('datum6', $author$project$DataTests$datum6),
+		_Utils_Tuple2('datum7', $author$project$DataTests$datum7),
+		_Utils_Tuple2('datum8', $author$project$DataTests$datum8)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

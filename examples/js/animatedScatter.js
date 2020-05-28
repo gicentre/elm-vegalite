@@ -13468,13 +13468,21 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					'condition',
 					A2($elm$json$Json$Encode$list, testClause, tests)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		default:
+		case 14:
 			var s = tDef.a;
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'value',
 					$author$project$VegaLite$multilineTextSpec(s))
+				]);
+		default:
+			var d = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'datum',
+					$author$project$VegaLite$dataValueSpec(d))
 				]);
 	}
 };
