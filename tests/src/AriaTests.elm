@@ -9,8 +9,8 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
-defaultVis : List MarkProperty -> List AxisProperty -> (List a -> ( VLProperty, Spec )) -> Spec
-defaultVis mProps axProps cfg =
+defaultVis : List MarkProperty -> List AxisProperty -> List LegendProperty -> (List a -> ( VLProperty, Spec )) -> Spec
+defaultVis mProps axProps leProps cfg =
     let
         data =
             dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
@@ -22,11 +22,18 @@ defaultVis mProps axProps cfg =
             else
                 axProps
 
+        lep =
+            if leProps == [] then
+                [ leColumns 1 ]
+
+            else
+                leProps
+
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant, pAxis axp ]
                 << position Y [ pName "Miles_per_Gallon", pQuant, pAxis axp ]
-                << color [ mName "Cylinders", mOrdinal ]
+                << color [ mName "Cylinders", mOrdinal, mLegend lep ]
                 << shape [ mName "Origin", mNominal ]
     in
     toVegaLite
@@ -44,23 +51,24 @@ aria1 : Spec
 aria1 =
     configure
         << configuration (coAria False)
-        |> defaultVis [] []
+        |> defaultVis [] [] []
 
 
 aria2 : Spec
 aria2 =
-    configure |> defaultVis [ maAria [] ] []
+    configure |> defaultVis [ maAria [] ] [] []
 
 
 aria3 : Spec
 aria3 =
-    configure |> defaultVis [ maAria [ arDescription "Point mark description here" ] ] []
+    configure |> defaultVis [ maAria [ arDescription "Point mark description here" ] ] [] []
 
 
 aria4 : Spec
 aria4 =
     configure
         |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            []
             []
 
 
@@ -69,6 +77,7 @@ aria5 =
     configure
         |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
             [ axAria [] ]
+            []
 
 
 aria6 : Spec
@@ -76,6 +85,7 @@ aria6 =
     configure
         |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
             [ axAria [ arDescription "Axis description here" ] ]
+            []
 
 
 aria7 : Spec
@@ -83,6 +93,7 @@ aria7 =
     configure
         |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
             [ axAria [ arAria True, arDescription "Axis description here" ] ]
+            []
 
 
 aria8 : Spec
@@ -90,7 +101,39 @@ aria8 =
     configure
         << configuration (coAria False)
         << configuration (coAxis [ axcoAria [ arAria True, arDescription "Axis description here" ] ])
-        |> defaultVis [] []
+        |> defaultVis [] [] []
+
+
+aria9 : Spec
+aria9 =
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            []
+            [ leAria [] ]
+
+
+aria10 : Spec
+aria10 =
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            []
+            [ leAria [ arDescription "Legend description here" ] ]
+
+
+aria11 : Spec
+aria11 =
+    configure
+        |> defaultVis [ maAria [ arAria True, arDescription "Point mark description here" ] ]
+            []
+            [ leAria [ arAria True, arDescription "Legend description here" ] ]
+
+
+aria12 : Spec
+aria12 =
+    configure
+        << configuration (coAria False)
+        << configuration (coLegend [ lecoAria [ arAria True, arDescription "Legend description here" ] ])
+        |> defaultVis [] [] []
 
 
 
@@ -107,6 +150,10 @@ specs =
     , ( "aria6", aria6 )
     , ( "aria7", aria7 )
     , ( "aria8", aria8 )
+    , ( "aria9", aria9 )
+    , ( "aria10", aria10 )
+    , ( "aria11", aria11 )
+    , ( "aria12", aria12 )
     ]
 
 
