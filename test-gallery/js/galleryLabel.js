@@ -5492,7 +5492,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$markOrientationLabel(d)))
 				]);
-		case 46:
+		case 47:
 			var lType = legendProp.a;
 			if (!lType) {
 				return _List_fromArray(
@@ -5695,6 +5695,14 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'symbolFillColor',
 					$elm$json$Json$Encode$string(s))
 				]);
+		case 32:
+			var n = legendProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'symbolLimit',
+					$elm$json$Json$Encode$int(n))
+				]);
 		case 35:
 			var s = legendProp.a;
 			return _List_fromArray(
@@ -5703,7 +5711,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'symbolStrokeColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 32:
+		case 36:
 			var s = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5728,7 +5736,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'symbolStrokeWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 36:
+		case 37:
 			var x = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5736,7 +5744,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'tickCount',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 37:
+		case 38:
 			var s = legendProp.a;
 			return (s === '') ? _List_fromArray(
 				[
@@ -5747,7 +5755,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(s))
 				]);
-		case 38:
+		case 39:
 			var ha = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5756,7 +5764,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$hAlignLabel(ha)))
 				]);
-		case 39:
+		case 40:
 			var va = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5765,7 +5773,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$vAlignLabel(va)))
 				]);
-		case 40:
+		case 41:
 			var s = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5773,7 +5781,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 41:
+		case 42:
 			var s = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5781,7 +5789,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleFont',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 42:
+		case 43:
 			var x = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5789,7 +5797,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleFontSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 43:
+		case 44:
 			var fw = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5797,7 +5805,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 44:
+		case 45:
 			var x = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5814,7 +5822,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$legendOrientLabel(orient)))
 				]);
-		case 45:
+		case 46:
 			var x = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5822,7 +5830,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titlePadding',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 47:
+		case 48:
 			var vals = legendProp.a;
 			var list = function () {
 				switch (vals.$) {
@@ -5847,7 +5855,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2('values', list)
 				]);
-		case 48:
+		case 49:
 			var n = legendProp.a;
 			return _List_fromArray(
 				[
@@ -5855,7 +5863,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'legendX',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 49:
+		case 50:
 			var n = legendProp.a;
 			return _List_fromArray(
 				[
@@ -8198,6 +8206,14 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$markOrientationLabel(d)))
 				]);
+		case 37:
+			var n = legendConfig.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'symbolLimit',
+					$elm$json$Json$Encode$int(n))
+				]);
 		case 36:
 			var s = legendConfig.a;
 			return _List_fromArray(
@@ -8214,7 +8230,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'symbolBaseFillColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 41:
+		case 42:
 			var s = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8230,7 +8246,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'symbolBaseStrokeColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 37:
+		case 38:
 			var o = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8238,7 +8254,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'symbolOffset',
 					$elm$json$Json$Encode$float(o))
 				]);
-		case 38:
+		case 39:
 			var s = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8247,7 +8263,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$symbolLabel(s)))
 				]);
-		case 39:
+		case 40:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8255,7 +8271,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'symbolSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 40:
+		case 41:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8263,7 +8279,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'symbolStrokeWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 42:
+		case 43:
 			var ha = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8272,7 +8288,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$hAlignLabel(ha)))
 				]);
-		case 43:
+		case 44:
 			var va = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8281,7 +8297,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$vAlignLabel(va)))
 				]);
-		case 44:
+		case 45:
 			var s = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8289,7 +8305,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 45:
+		case 46:
 			var s = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8297,7 +8313,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleFont',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 46:
+		case 47:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8305,7 +8321,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleFontSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 47:
+		case 48:
 			var fw = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8313,7 +8329,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 48:
+		case 49:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8321,7 +8337,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleLimit',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 49:
+		case 50:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -8329,7 +8345,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleLineHeight',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 50:
+		case 51:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -13000,7 +13016,7 @@ var $author$project$VegaLite$LOffset = function (a) {
 };
 var $author$project$VegaLite$leOffset = $author$project$VegaLite$LOffset;
 var $author$project$VegaLite$LTitle = function (a) {
-	return {$: 37, a: a};
+	return {$: 38, a: a};
 };
 var $author$project$VegaLite$leTitle = $author$project$VegaLite$LTitle;
 var $author$project$VegaLite$MColor = function (a) {
