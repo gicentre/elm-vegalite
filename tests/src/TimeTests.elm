@@ -23,87 +23,6 @@ timeByUnit tu =
     toVegaLite [ width 800, data, enc [], line [ maStrokeWidth 0.2 ] ]
 
 
-timeYear : Spec
-timeYear =
-    timeByUnit year
-
-
-timeQuarter : Spec
-timeQuarter =
-    timeByUnit quarter
-
-
-timeQuarterMonth : Spec
-timeQuarterMonth =
-    timeByUnit quarterMonth
-
-
-timeMonth : Spec
-timeMonth =
-    timeByUnit month
-
-
-timeMonthDate : Spec
-timeMonthDate =
-    timeByUnit monthDate
-
-
-timeDate : Spec
-timeDate =
-    timeByUnit date
-
-
-timeYearMonthDateHours : Spec
-timeYearMonthDateHours =
-    timeByUnit yearMonthDateHours
-
-
-timeYearMonthDateHoursMinutes : Spec
-timeYearMonthDateHoursMinutes =
-    timeByUnit yearMonthDateHoursMinutes
-
-
-timeYearMonthDateHoursMinutesSeconds : Spec
-timeYearMonthDateHoursMinutesSeconds =
-    timeByUnit yearMonthDateHoursMinutesSeconds
-
-
-timeDay : Spec
-timeDay =
-    timeByUnit day
-
-
-timeHours : Spec
-timeHours =
-    timeByUnit hours
-
-
-timeHoursMinutes : Spec
-timeHoursMinutes =
-    timeByUnit hoursMinutes
-
-
-timeHoursMinutesSeconds : Spec
-timeHoursMinutesSeconds =
-    timeByUnit hoursMinutesSeconds
-
-
-timeMinutes : Spec
-timeMinutes =
-    timeByUnit minutes
-
-
-timeMinutesSeconds : Spec
-timeMinutesSeconds =
-    timeByUnit minutesSeconds
-
-
-
--- TODO: Add milliseconds example
--- | SecondsMilliseconds
--- | Milliseconds
-
-
 type Date
     = Local
     | UTC
@@ -185,21 +104,34 @@ timeBand =
 
 specs : List ( String, Spec )
 specs =
-    [ ( "timeYear", timeYear )
-    , ( "timeQuarter", timeQuarter )
-    , ( "timeQuarterMonth", timeQuarterMonth )
-    , ( "timeMonth", timeMonth )
-    , ( "timeMonthDate", timeMonthDate )
-    , ( "timeDate", timeDate )
-    , ( "timeYearMonthDateHours", timeYearMonthDateHours )
-    , ( "timeYearMonthDateHoursMinutes", timeYearMonthDateHoursMinutes )
-    , ( "timeYearMonthDateHoursMinutesSeconds", timeYearMonthDateHoursMinutesSeconds )
-    , ( "timeDay", timeDay )
-    , ( "timeHours", timeHours )
-    , ( "timeHoursMinutes", timeHoursMinutes )
-    , ( "timeHoursMinutesSeconds", timeHoursMinutesSeconds )
-    , ( "timeMinutes", timeMinutes )
-    , ( "timeMinutesSeconds", timeMinutesSeconds )
+    [ ( "timeYear", timeByUnit year )
+    , ( "timeYearQuarter", timeByUnit yearQuarter )
+    , ( "timeYearQuarterMonth", timeByUnit yearQuarterMonth )
+    , ( "timeYearMonth", timeByUnit yearMonth )
+    , ( "timeYearMonthDate", timeByUnit yearMonthDate )
+    , ( "timeYearMonthDateHours", timeByUnit yearMonthDateHours )
+    , ( "timeYearMonthDateHoursMinutes", timeByUnit yearMonthDateHoursMinutes )
+    , ( "timeYearMonthDateHoursMinutesSeconds", timeByUnit yearMonthDateHoursMinutesSeconds )
+    , ( "timeQuarter", timeByUnit quarter )
+    , ( "timeQuarterMonth", timeByUnit quarterMonth )
+    , ( "timeMonth", timeByUnit month )
+    , ( "timeMonthDate", timeByUnit monthDate )
+    , ( "timeMonthDateHours", timeByUnit monthDateHours )
+    , ( "timeMonthDateHoursMinutes", timeByUnit monthDateHoursMinutes )
+    , ( "timeMonthDateHoursMinutesSeconds", timeByUnit monthDateHoursMinutesSeconds )
+    , ( "timeDay", timeByUnit day )
+    , ( "timeDayHours", timeByUnit dayHours )
+    , ( "timeDayHoursMinutes", timeByUnit dayHoursMinutes )
+    , ( "timeDayHoursMinutesSeconds", timeByUnit dayHoursMinutesSeconds )
+    , ( "timeDate", timeByUnit date )
+    , ( "timeHours", timeByUnit hours )
+    , ( "timeHoursMinutes", timeByUnit hoursMinutes )
+    , ( "timeHoursMinutesSeconds", timeByUnit hoursMinutesSeconds )
+    , ( "timeMinutes", timeByUnit minutes )
+    , ( "timeMinutesSeconds", timeByUnit minutesSeconds )
+    , ( "timeSeconds", timeByUnit seconds )
+    , ( "timeSecondsMilliseconds", timeByUnit secondsMilliseconds )
+    , ( "timeMilliseconds", timeByUnit milliseconds )
     , ( "localTime", localTime )
     , ( "utcTime", utcTime )
     , ( "timeBand", timeBand )
