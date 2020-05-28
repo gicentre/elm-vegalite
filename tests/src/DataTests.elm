@@ -825,6 +825,63 @@ datum4 =
         ]
 
 
+datum5 : Spec
+datum5 =
+    let
+        data =
+            dataFromColumns []
+
+        enc =
+            encoding
+                << text [ tDatum (num 0.11987), tQuant, tFormat ".2f" ]
+    in
+    toVegaLite [ data [], enc [], textMark [] ]
+
+
+datum6 : Spec
+datum6 =
+    let
+        data =
+            dataFromColumns []
+
+        enc =
+            encoding
+                << text [ tDatum (boo True), tNominal ]
+    in
+    toVegaLite [ data [], enc [], textMark [] ]
+
+
+datum7 : Spec
+datum7 =
+    let
+        data =
+            dataFromColumns []
+
+        enc =
+            encoding
+                << text [ tDatum (str "Hello, world!"), tNominal ]
+    in
+    toVegaLite [ data [], enc [], textMark [] ]
+
+
+datum8 : Spec
+datum8 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "i" (List.range 1 10 |> List.map toFloat |> nums)
+
+        enc =
+            encoding
+                << position Y [ pName "i", pOrdinal ]
+                << text
+                    [ tDataCondition [ ( expr "datum.i %2 == 0", [ tStr "even" ] ) ]
+                        [ tStr "odd" ]
+                    ]
+    in
+    toVegaLite [ data [], enc [], textMark [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -874,6 +931,10 @@ specs =
     , ( "datum2", datum2 )
     , ( "datum3", datum3 )
     , ( "datum4", datum4 )
+    , ( "datum5", datum5 )
+    , ( "datum6", datum6 )
+    , ( "datum7", datum7 )
+    , ( "datum8", datum8 )
     ]
 
 
