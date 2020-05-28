@@ -4243,24 +4243,34 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 12:
 			return 'monthdatehours';
 		case 13:
-			return 'date';
+			return 'monthdatehoursminutes';
 		case 14:
-			return 'day';
+			return 'monthdatehoursminutesseconds';
 		case 15:
-			return 'hours';
+			return 'date';
 		case 16:
-			return 'hoursminutes';
+			return 'day';
 		case 17:
-			return 'hoursminutesseconds';
+			return 'dayhours';
 		case 18:
-			return 'minutes';
+			return 'dayhoursminutes';
 		case 19:
-			return 'minutesseconds';
+			return 'dayhoursminutesseconds';
 		case 20:
-			return 'seconds';
+			return 'hours';
 		case 21:
-			return 'secondsmilliseconds';
+			return 'hoursminutes';
 		case 22:
+			return 'hoursminutesseconds';
+		case 23:
+			return 'minutes';
+		case 24:
+			return 'minutesseconds';
+		case 25:
+			return 'seconds';
+		case 26:
+			return 'secondsmilliseconds';
+		case 27:
 			return 'milliseconds';
 		default:
 			return '';
@@ -4546,7 +4556,7 @@ var $author$project$VegaLite$sortProperties = function (sp) {
 };
 var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 	switch (tUnit.$) {
-		case 23:
+		case 28:
 			var tu = tUnit.a;
 			return A2(
 				$elm$core$List$cons,
@@ -4554,7 +4564,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'utc',
 					$elm$json$Json$Encode$bool(true)),
 				$author$project$VegaLite$timeUnitProperties(tu));
-		case 24:
+		case 29:
 			var n = tUnit.a;
 			return _List_fromArray(
 				[
@@ -4562,7 +4572,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'maxbins',
 					$elm$json$Json$Encode$int(n))
 				]);
-		case 25:
+		case 30:
 			var x = tUnit.a;
 			var tu = tUnit.b;
 			return A2(
@@ -10617,7 +10627,7 @@ var $author$project$VegaLite$configure = function (configs) {
 		29,
 		$elm$json$Json$Encode$object(configs));
 };
-var $author$project$VegaLite$Date = {$: 13};
+var $author$project$VegaLite$Date = {$: 15};
 var $author$project$VegaLite$date = $author$project$VegaLite$Date;
 var $author$project$VegaLite$LTitle = function (a) {
 	return {$: 38, a: a};
@@ -10899,9 +10909,9 @@ var $author$project$GalleryTable$table3 = function () {
 }();
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$Day = {$: 14};
+var $author$project$VegaLite$Day = {$: 16};
 var $author$project$VegaLite$day = $author$project$VegaLite$Day;
-var $author$project$VegaLite$Hours = {$: 15};
+var $author$project$VegaLite$Hours = {$: 20};
 var $author$project$VegaLite$hours = $author$project$VegaLite$Hours;
 var $author$project$VegaLite$Sum = {$: 17};
 var $author$project$VegaLite$opSum = $author$project$VegaLite$Sum;
