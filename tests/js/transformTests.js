@@ -7847,6 +7847,8 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 	switch (tu.$) {
 		case 0:
 			return 'year';
+		case 13:
+			return 'yeardayofyear';
 		case 1:
 			return 'yearquarter';
 		case 2:
@@ -7862,45 +7864,71 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 7:
 			return 'yearmonthdatehoursminutesseconds';
 		case 8:
-			return 'quarter';
+			return 'yearweek';
 		case 9:
-			return 'quartermonth';
+			return 'yearweekday';
 		case 10:
-			return 'month';
+			return 'yearweekdayhours';
 		case 11:
-			return 'monthdate';
+			return 'yearweekdayhoursminutes';
 		case 12:
-			return 'monthdatehours';
-		case 13:
-			return 'monthdatehoursminutes';
+			return 'yearweekdayhoursminutesseconds';
 		case 14:
-			return 'monthdatehoursminutesseconds';
+			return 'quarter';
 		case 15:
-			return 'date';
+			return 'quartermonth';
 		case 16:
-			return 'day';
+			return 'month';
 		case 17:
-			return 'dayhours';
+			return 'monthdate';
 		case 18:
-			return 'dayhoursminutes';
+			return 'monthdatehours';
 		case 19:
-			return 'dayhoursminutesseconds';
+			return 'monthdatehoursminutes';
 		case 20:
-			return 'hours';
+			return 'monthdatehoursminutesseconds';
 		case 21:
-			return 'hoursminutes';
+			return 'week';
 		case 22:
-			return 'hoursminutesseconds';
+			return 'weekday';
 		case 23:
-			return 'minutes';
+			return 'weekdayhours';
 		case 24:
-			return 'minutesseconds';
+			return 'weekdayhoursminutes';
 		case 25:
-			return 'seconds';
+			return 'weekdayhoursminutesseconds';
 		case 26:
-			return 'secondsmilliseconds';
+			return 'date';
 		case 27:
+			return 'day';
+		case 28:
+			return 'dayofyear';
+		case 29:
+			return 'dayhours';
+		case 30:
+			return 'dayhoursminutes';
+		case 31:
+			return 'dayhoursminutesseconds';
+		case 32:
+			return 'hours';
+		case 33:
+			return 'hoursminutes';
+		case 34:
+			return 'hoursminutesseconds';
+		case 35:
+			return 'minutes';
+		case 36:
+			return 'minutesseconds';
+		case 37:
+			return 'seconds';
+		case 38:
+			return 'secondsmilliseconds';
+		case 39:
 			return 'milliseconds';
+		case 40:
+			return '';
+		case 41:
+			return '';
 		default:
 			return '';
 	}
@@ -8185,7 +8213,7 @@ var $author$project$VegaLite$sortProperties = function (sp) {
 };
 var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 	switch (tUnit.$) {
-		case 28:
+		case 40:
 			var tu = tUnit.a;
 			return A2(
 				$elm$core$List$cons,
@@ -8193,7 +8221,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'utc',
 					$elm$json$Json$Encode$bool(true)),
 				$author$project$VegaLite$timeUnitProperties(tu));
-		case 29:
+		case 41:
 			var n = tUnit.a;
 			return _List_fromArray(
 				[
@@ -8201,7 +8229,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'maxbins',
 					$elm$json$Json$Encode$int(n))
 				]);
-		case 30:
+		case 42:
 			var x = tUnit.a;
 			var tu = tUnit.b;
 			return A2(
@@ -11472,7 +11500,7 @@ var $author$project$VegaLite$MPoint = function (a) {
 	return {$: 46, a: a};
 };
 var $author$project$VegaLite$maPoint = $author$project$VegaLite$MPoint;
-var $author$project$VegaLite$Month = {$: 10};
+var $author$project$VegaLite$Month = {$: 16};
 var $author$project$VegaLite$month = $author$project$VegaLite$Month;
 var $author$project$VegaLite$PAggregate = function (a) {
 	return {$: 11, a: a};
@@ -11579,7 +11607,7 @@ var $author$project$TransformTests$transform14 = function () {
 }();
 var $author$project$VegaLite$TUStep = F2(
 	function (a, b) {
-		return {$: 30, a: a, b: b};
+		return {$: 42, a: a, b: b};
 	});
 var $author$project$VegaLite$tuStep = $author$project$VegaLite$TUStep;
 var $author$project$TransformTests$transform15 = function () {
@@ -11657,7 +11685,7 @@ var $author$project$TransformTests$transform15 = function () {
 			]));
 }();
 var $author$project$VegaLite$TUMaxBins = function (a) {
-	return {$: 29, a: a};
+	return {$: 41, a: a};
 };
 var $author$project$VegaLite$tuMaxBins = $author$project$VegaLite$TUMaxBins;
 var $author$project$TransformTests$transform16 = function () {

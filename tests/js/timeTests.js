@@ -5092,21 +5092,21 @@ var $author$project$TimeTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm$c
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $elm$json$Json$Encode$null = _Json_encodeNull;
-var $author$project$VegaLite$Date = {$: 15};
+var $author$project$VegaLite$Date = {$: 26};
 var $author$project$VegaLite$date = $author$project$VegaLite$Date;
-var $author$project$VegaLite$Day = {$: 16};
+var $author$project$VegaLite$Day = {$: 27};
 var $author$project$VegaLite$day = $author$project$VegaLite$Day;
-var $author$project$VegaLite$DayHours = {$: 17};
+var $author$project$VegaLite$DayHours = {$: 29};
 var $author$project$VegaLite$dayHours = $author$project$VegaLite$DayHours;
-var $author$project$VegaLite$DayHoursMinutes = {$: 18};
+var $author$project$VegaLite$DayHoursMinutes = {$: 30};
 var $author$project$VegaLite$dayHoursMinutes = $author$project$VegaLite$DayHoursMinutes;
-var $author$project$VegaLite$DayHoursMinutesSeconds = {$: 19};
+var $author$project$VegaLite$DayHoursMinutesSeconds = {$: 31};
 var $author$project$VegaLite$dayHoursMinutesSeconds = $author$project$VegaLite$DayHoursMinutesSeconds;
-var $author$project$VegaLite$Hours = {$: 20};
+var $author$project$VegaLite$Hours = {$: 32};
 var $author$project$VegaLite$hours = $author$project$VegaLite$Hours;
-var $author$project$VegaLite$HoursMinutes = {$: 21};
+var $author$project$VegaLite$HoursMinutes = {$: 33};
 var $author$project$VegaLite$hoursMinutes = $author$project$VegaLite$HoursMinutes;
-var $author$project$VegaLite$HoursMinutesSeconds = {$: 22};
+var $author$project$VegaLite$HoursMinutesSeconds = {$: 34};
 var $author$project$VegaLite$hoursMinutesSeconds = $author$project$VegaLite$HoursMinutesSeconds;
 var $author$project$TimeTests$Local = 0;
 var $author$project$VegaLite$X = 0;
@@ -7977,6 +7977,8 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 	switch (tu.$) {
 		case 0:
 			return 'year';
+		case 13:
+			return 'yeardayofyear';
 		case 1:
 			return 'yearquarter';
 		case 2:
@@ -7992,45 +7994,71 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 		case 7:
 			return 'yearmonthdatehoursminutesseconds';
 		case 8:
-			return 'quarter';
+			return 'yearweek';
 		case 9:
-			return 'quartermonth';
+			return 'yearweekday';
 		case 10:
-			return 'month';
+			return 'yearweekdayhours';
 		case 11:
-			return 'monthdate';
+			return 'yearweekdayhoursminutes';
 		case 12:
-			return 'monthdatehours';
-		case 13:
-			return 'monthdatehoursminutes';
+			return 'yearweekdayhoursminutesseconds';
 		case 14:
-			return 'monthdatehoursminutesseconds';
+			return 'quarter';
 		case 15:
-			return 'date';
+			return 'quartermonth';
 		case 16:
-			return 'day';
+			return 'month';
 		case 17:
-			return 'dayhours';
+			return 'monthdate';
 		case 18:
-			return 'dayhoursminutes';
+			return 'monthdatehours';
 		case 19:
-			return 'dayhoursminutesseconds';
+			return 'monthdatehoursminutes';
 		case 20:
-			return 'hours';
+			return 'monthdatehoursminutesseconds';
 		case 21:
-			return 'hoursminutes';
+			return 'week';
 		case 22:
-			return 'hoursminutesseconds';
+			return 'weekday';
 		case 23:
-			return 'minutes';
+			return 'weekdayhours';
 		case 24:
-			return 'minutesseconds';
+			return 'weekdayhoursminutes';
 		case 25:
-			return 'seconds';
+			return 'weekdayhoursminutesseconds';
 		case 26:
-			return 'secondsmilliseconds';
+			return 'date';
 		case 27:
+			return 'day';
+		case 28:
+			return 'dayofyear';
+		case 29:
+			return 'dayhours';
+		case 30:
+			return 'dayhoursminutes';
+		case 31:
+			return 'dayhoursminutesseconds';
+		case 32:
+			return 'hours';
+		case 33:
+			return 'hoursminutes';
+		case 34:
+			return 'hoursminutesseconds';
+		case 35:
+			return 'minutes';
+		case 36:
+			return 'minutesseconds';
+		case 37:
+			return 'seconds';
+		case 38:
+			return 'secondsmilliseconds';
+		case 39:
 			return 'milliseconds';
+		case 40:
+			return '';
+		case 41:
+			return '';
 		default:
 			return '';
 	}
@@ -8315,7 +8343,7 @@ var $author$project$VegaLite$sortProperties = function (sp) {
 };
 var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 	switch (tUnit.$) {
-		case 28:
+		case 40:
 			var tu = tUnit.a;
 			return A2(
 				$elm$core$List$cons,
@@ -8323,7 +8351,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'utc',
 					$elm$json$Json$Encode$bool(true)),
 				$author$project$VegaLite$timeUnitProperties(tu));
-		case 29:
+		case 41:
 			var n = tUnit.a;
 			return _List_fromArray(
 				[
@@ -8331,7 +8359,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'maxbins',
 					$elm$json$Json$Encode$int(n))
 				]);
-		case 30:
+		case 42:
 			var x = tUnit.a;
 			var tu = tUnit.b;
 			return A2(
@@ -9985,7 +10013,7 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				spec)));
 };
 var $author$project$VegaLite$Utc = function (a) {
-	return {$: 28, a: a};
+	return {$: 40, a: a};
 };
 var $author$project$VegaLite$utc = function (tu) {
 	return $author$project$VegaLite$Utc(tu);
@@ -10099,29 +10127,29 @@ var $author$project$TimeTests$parseTime = function (dType) {
 			]));
 };
 var $author$project$TimeTests$localTime = $author$project$TimeTests$parseTime(0);
-var $author$project$VegaLite$Milliseconds = {$: 27};
+var $author$project$VegaLite$Milliseconds = {$: 39};
 var $author$project$VegaLite$milliseconds = $author$project$VegaLite$Milliseconds;
-var $author$project$VegaLite$Minutes = {$: 23};
+var $author$project$VegaLite$Minutes = {$: 35};
 var $author$project$VegaLite$minutes = $author$project$VegaLite$Minutes;
-var $author$project$VegaLite$MinutesSeconds = {$: 24};
+var $author$project$VegaLite$MinutesSeconds = {$: 36};
 var $author$project$VegaLite$minutesSeconds = $author$project$VegaLite$MinutesSeconds;
-var $author$project$VegaLite$Month = {$: 10};
+var $author$project$VegaLite$Month = {$: 16};
 var $author$project$VegaLite$month = $author$project$VegaLite$Month;
-var $author$project$VegaLite$MonthDate = {$: 11};
+var $author$project$VegaLite$MonthDate = {$: 17};
 var $author$project$VegaLite$monthDate = $author$project$VegaLite$MonthDate;
-var $author$project$VegaLite$MonthDateHours = {$: 12};
+var $author$project$VegaLite$MonthDateHours = {$: 18};
 var $author$project$VegaLite$monthDateHours = $author$project$VegaLite$MonthDateHours;
-var $author$project$VegaLite$MonthDateHoursMinutes = {$: 13};
+var $author$project$VegaLite$MonthDateHoursMinutes = {$: 19};
 var $author$project$VegaLite$monthDateHoursMinutes = $author$project$VegaLite$MonthDateHoursMinutes;
-var $author$project$VegaLite$MonthDateHoursMinutesSeconds = {$: 14};
+var $author$project$VegaLite$MonthDateHoursMinutesSeconds = {$: 20};
 var $author$project$VegaLite$monthDateHoursMinutesSeconds = $author$project$VegaLite$MonthDateHoursMinutesSeconds;
-var $author$project$VegaLite$Quarter = {$: 8};
+var $author$project$VegaLite$Quarter = {$: 14};
 var $author$project$VegaLite$quarter = $author$project$VegaLite$Quarter;
-var $author$project$VegaLite$QuarterMonth = {$: 9};
+var $author$project$VegaLite$QuarterMonth = {$: 15};
 var $author$project$VegaLite$quarterMonth = $author$project$VegaLite$QuarterMonth;
-var $author$project$VegaLite$Seconds = {$: 25};
+var $author$project$VegaLite$Seconds = {$: 37};
 var $author$project$VegaLite$seconds = $author$project$VegaLite$Seconds;
-var $author$project$VegaLite$SecondsMilliseconds = {$: 26};
+var $author$project$VegaLite$SecondsMilliseconds = {$: 38};
 var $author$project$VegaLite$secondsMilliseconds = $author$project$VegaLite$SecondsMilliseconds;
 var $author$project$VegaLite$dataFromUrl = F2(
 	function (u, fmts) {
