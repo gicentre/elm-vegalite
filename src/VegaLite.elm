@@ -17874,7 +17874,9 @@ viewStyle =
 
 
 {-| Indicate temporal binning by week of year, so a 10 year sequence would have
-up to 52 bins.
+up to 53 bins. Weeks are Sunday-based and days before the first Sunday of the year
+are considered to be in week 0, the first Sunday of the year is the start of week 1,
+the second Sunday week 2, _etc._
 -}
 week : TimeUnit
 week =
@@ -17882,7 +17884,7 @@ week =
 
 
 {-| Indicate temporal binning by day of week though the year, so a 10 year sequence
-would have up to 52\*7 bins.
+would have up to 53\*7 bins.
 -}
 weekDay : TimeUnit
 weekDay =
