@@ -16,7 +16,7 @@
 
 ## Additions
 
-- Added _week_ and _dayOfYear_ temporal binning options in preparation for next VL release.
+- Added _week_ and _dayOfYear_ temporal binning options (VL4.13).
 
 * `dayHours`, `dayHoursMinutes`, `dayHoursMinutesSeconds`, `monthDateHoursMinutes` and `monthDateHoursMinutesSeconds` added as temporal binning options (VL4.12).
 
