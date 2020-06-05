@@ -118,7 +118,15 @@ axis4 =
 
 axis4a : Spec
 axis4a =
-    tAxisBase (Just (coAxisTemporal [ axcoGridColor "red" ]))
+    tAxisBase
+        (Just
+            (coAxisTemporal
+                [ axcoGridColor "red"
+                , axcoDomainDash [ 6, 6 ]
+                , axcoGridDash [ 3, 3 ]
+                ]
+            )
+        )
 
 
 axis5 : Spec
@@ -129,7 +137,7 @@ axis5 =
                 << position X
                     [ pName "x"
                     , pQuant
-                    , pAxis [ axValues (nums [ 1, 25, 39, 90 ]) ]
+                    , pAxis [ axValues (nums [ 1, 2, 4.5, 9, 11 ]) ]
                     ]
                 << position Y [ pName "y", pQuant ]
     in
@@ -144,7 +152,7 @@ axis6 =
                 << position X
                     [ pName "catX"
                     , pOrdinal
-                    , pAxis [ axValues (strs [ "1", "25", "39", "dummy", "90" ]) ]
+                    , pAxis [ axValues (strs [ "1", "2", "4", "dummy", "9", "11" ]) ]
                     ]
                 << position Y [ pName "y", pQuant ]
     in
@@ -242,8 +250,21 @@ axis12 =
             configure
                 << configuration
                     (coAxisStyles
-                        [ ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red", axTickCount (niTickCount 10) ] )
-                        , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue", axTickCount (niTickCount 10) ] )
+                        [ ( "redStyle"
+                          , [ axDomainColor "red"
+                            , axLabelColor "red"
+                            , axTitleColor "red"
+                            , axTickCount (niTickCount 10)
+                            , axDomainDash [ 4, 2, 8, 4 ]
+                            ]
+                          )
+                        , ( "blueStyle"
+                          , [ axDomainColor "blue"
+                            , axLabelColor "blue"
+                            , axTitleColor "blue"
+                            , axTickCount (niTickCount 10)
+                            ]
+                          )
                         ]
                     )
 
@@ -307,7 +328,7 @@ axis15 =
                 << position X
                     [ pName "catX"
                     , pOrdinal
-                    , pAxis [ axDomainCap caSquare, axDomainWidth 6 ]
+                    , pAxis [ axDomainCap caSquare, axDomainWidth 6, axDomainDash [ 12, 12 ] ]
                     ]
                 << position Y
                     [ pName "y"
