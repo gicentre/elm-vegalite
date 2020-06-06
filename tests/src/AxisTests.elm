@@ -19,7 +19,7 @@ data =
 
 temporalData : List DataColumn -> Data
 temporalData =
-    dataFromColumns []
+    dataFromColumns [ parse [ ( "date", foDate "%Y-%m-%d %H:%M:%S" ) ] ]
         << dataColumn "date"
             (strs
                 [ "2019-01-01 09:00:00"
@@ -123,7 +123,12 @@ axis4a =
             (coAxisTemporal
                 [ axcoGridColor "red"
                 , axcoDomainDash [ 6, 6 ]
+                , axcoDomainDashOffset 6
                 , axcoGridDash [ 3, 3 ]
+                , axcoGridDashOffset 3
+                , axcoTickSize 10
+                , axcoTickDash [ 2, 2 ]
+                , axcoTickDashOffset 2
                 ]
             )
         )
@@ -328,12 +333,23 @@ axis15 =
                 << position X
                     [ pName "catX"
                     , pOrdinal
-                    , pAxis [ axDomainCap caSquare, axDomainWidth 6, axDomainDash [ 12, 12 ] ]
+                    , pAxis
+                        [ axDomainCap caSquare
+                        , axDomainWidth 6
+                        , axDomainDash [ 12, 12 ]
+                        , axDataCondition (expr "datum.label < '5'") (cAxTickDash [ 2, 2 ] [ 20, 20 ])
+                        , axDataCondition (expr "datum.label < '3'") (cAxTickDashOffset 0 8)
+                        ]
                     ]
                 << position Y
                     [ pName "y"
                     , pQuant
-                    , pAxis [ axGridCap caRound, axGridWidth 4 ]
+                    , pAxis
+                        [ axGridCap caRound
+                        , axGridWidth 3
+                        , axDataCondition (expr "datum.value < 5") (cAxGridDash [ 2, 2 ] [ 20, 20 ])
+                        , axDataCondition (expr "datum.value < 3") (cAxGridDashOffset 0 8)
+                        ]
                     ]
     in
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
