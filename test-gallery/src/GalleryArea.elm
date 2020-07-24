@@ -10,42 +10,47 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 area1 : Spec
 area1 =
     let
-        des =
+        desc =
             description "Unemployment over time (area chart)"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment-across-industries.json" []
+            dataFromUrl (path ++ "unemployment-across-industries.json") []
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [ axTitle "Count" ] ]
+                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axTitle "", axFormat "%Y" ] ]
+                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [ axTitle "Number of unemployed" ] ]
     in
-    toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
+    toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
 
 
 area2 : Spec
 area2 =
     let
-        des =
+        desc =
             description "Area chart with linear gradient"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
     toVegaLite
-        [ des
+        [ desc
         , data
         , trans []
         , enc []
@@ -59,81 +64,96 @@ area2 =
 area3 : Spec
 area3 =
     let
-        des =
+        desc =
             description "Area chart with overlaid lines and point markers"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ des, data, trans [], enc [], area [ maPoint (pmMarker []), maLine (lmMarker []) ] ]
+    toVegaLite [ desc, data, trans [], enc [], area [ maPoint (pmMarker []), maLine (lmMarker []) ] ]
 
 
 area4 : Spec
 area4 =
     let
-        des =
+        desc =
             description "Unemployment across industries as a stacked area chart."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment-across-industries.json" []
+            dataFromUrl (path ++ "unemployment-across-industries.json") []
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
-                << position Y [ pName "count", pQuant, pAggregate opSum ]
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pTimeUnit yearMonth
+                    , pAxis [ axTitle "", axFormat "%Y" ]
+                    ]
+                << position Y [ pName "count", pQuant, pAggregate opSum, pTitle "Number unemployed" ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
-    toVegaLite [ des, data, enc [], area [] ]
+    toVegaLite [ desc, data, enc [], area [] ]
 
 
 area5 : Spec
 area5 =
     let
-        des =
+        desc =
             description "Unemployment across industries as a normalised area chart."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment-across-industries.json" []
+            dataFromUrl (path ++ "unemployment-across-industries.json") []
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pTimeUnit yearMonth
+                    , pAxis [ axTitle "", axDomain False, axFormat "%Y" ]
+                    ]
                 << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stNormalize ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
-    toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
+    toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
 
 
 area6 : Spec
 area6 =
     let
-        des =
+        desc =
             description "Unemployment across industries as a streamgraph (centred, stacked area chart)."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment-across-industries.json" []
+            dataFromUrl (path ++ "unemployment-across-industries.json") []
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pTimeUnit yearMonth
+                    , pAxis [ axTitle "", axDomain False, axFormat "%Y" ]
+                    ]
                 << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stCenter ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
-    toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
+    toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
 
 
 area7 : Spec
 area7 =
     let
-        des =
+        desc =
             description "Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)"
 
         data =
@@ -181,14 +201,14 @@ area7 =
             configure
                 << configuration (coArea [ maInterpolate miMonotone, maOrient moVertical ])
     in
-    toVegaLite [ des, width 300, height 50, data [], encX [], layer [ specLower, specUpper ], config [] ]
+    toVegaLite [ desc, width 300, height 50, data [], encX [], layer [ specLower, specUpper ], config [] ]
 
 
 area8 : Spec
 area8 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
