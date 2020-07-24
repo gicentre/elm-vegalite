@@ -2385,6 +2385,7 @@ var $elm$core$Basics$identity = function (x) {
 var $author$project$GalleryArea$elmToJS = _Platform_outgoingPort('elmToJS', $elm$core$Basics$identity);
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
+var $elm$core$Basics$append = _Utils_append;
 var $author$project$VegaLite$Area = 1;
 var $author$project$VegaLite$VLMark = 12;
 var $elm$core$Basics$apR = F2(
@@ -2571,7 +2572,6 @@ var $elm$core$Maybe$Just = function (a) {
 var $elm$core$Maybe$Nothing = {$: 1};
 var $elm$core$String$all = _String_all;
 var $elm$core$Basics$and = _Basics_and;
-var $elm$core$Basics$append = _Utils_append;
 var $elm$json$Json$Encode$encode = _Json_encode;
 var $elm$core$String$fromInt = _String_fromNumber;
 var $elm$core$String$join = F2(
@@ -4335,6 +4335,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$GalleryArea$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -7726,6 +7727,7 @@ var $author$project$GalleryArea$area1 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
@@ -7740,15 +7742,15 @@ var $author$project$GalleryArea$area1 = function () {
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$axTitle('Count')
+							$author$project$VegaLite$axTitle('Number of unemployed')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Unemployment over time (area chart)');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment-across-industries.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Unemployment over time (area chart)');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'unemployment-across-industries.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(200),
 				data,
@@ -7856,6 +7858,7 @@ var $author$project$GalleryArea$area2 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
@@ -7867,12 +7870,12 @@ var $author$project$GalleryArea$area2 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Area chart with linear gradient');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Area chart with linear gradient');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -7933,6 +7936,7 @@ var $author$project$GalleryArea$area3 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
@@ -7944,12 +7948,12 @@ var $author$project$GalleryArea$area3 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Area chart with overlaid lines and point markers');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Area chart with overlaid lines and point markers');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -7978,6 +7982,10 @@ var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$SScheme = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
@@ -8002,6 +8010,7 @@ var $author$project$GalleryArea$area4 = function () {
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
+									$author$project$VegaLite$axTitle(''),
 									$author$project$VegaLite$axFormat('%Y')
 								]))
 						]))),
@@ -8012,7 +8021,8 @@ var $author$project$GalleryArea$area4 = function () {
 					[
 						$author$project$VegaLite$pName('count'),
 						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
+						$author$project$VegaLite$pTitle('Number unemployed')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -8024,12 +8034,12 @@ var $author$project$GalleryArea$area4 = function () {
 							A2($author$project$VegaLite$scScheme, 'category20b', _List_Nil)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Unemployment across industries as a stacked area chart.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment-across-industries.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Unemployment across industries as a stacked area chart.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'unemployment-across-industries.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$area(_List_Nil)
@@ -8064,6 +8074,7 @@ var $author$project$GalleryArea$area5 = function () {
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
+									$author$project$VegaLite$axTitle(''),
 									$author$project$VegaLite$axDomain(false),
 									$author$project$VegaLite$axFormat('%Y')
 								]))
@@ -8089,12 +8100,12 @@ var $author$project$GalleryArea$area5 = function () {
 							A2($author$project$VegaLite$scScheme, 'category20b', _List_Nil)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Unemployment across industries as a normalised area chart.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment-across-industries.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Unemployment across industries as a normalised area chart.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'unemployment-across-industries.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(200),
 				data,
@@ -8123,6 +8134,7 @@ var $author$project$GalleryArea$area6 = function () {
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
+									$author$project$VegaLite$axTitle(''),
 									$author$project$VegaLite$axDomain(false),
 									$author$project$VegaLite$axFormat('%Y')
 								]))
@@ -8148,12 +8160,12 @@ var $author$project$GalleryArea$area6 = function () {
 							A2($author$project$VegaLite$scScheme, 'category20b', _List_Nil)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Unemployment across industries as a streamgraph (centred, stacked area chart).');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment-across-industries.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Unemployment across industries as a streamgraph (centred, stacked area chart).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'unemployment-across-industries.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(200),
 				data,
@@ -11474,7 +11486,7 @@ var $author$project$GalleryArea$area7 = function () {
 					])),
 				encLower(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)');
+	var desc = $author$project$VegaLite$description('Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11507,7 +11519,7 @@ var $author$project$GalleryArea$area7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(50),
 				data(_List_Nil),
@@ -11618,10 +11630,6 @@ var $author$project$VegaLite$Max = {$: 6};
 var $author$project$VegaLite$opMax = $author$project$VegaLite$Max;
 var $author$project$VegaLite$Min = {$: 9};
 var $author$project$VegaLite$opMin = $author$project$VegaLite$Min;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RScale = function (a) {
 	return {$: 2, a: a};
 };
@@ -12461,7 +12469,7 @@ var $author$project$GalleryArea$area8 = function () {
 					])),
 				enc1(_List_Nil)
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
