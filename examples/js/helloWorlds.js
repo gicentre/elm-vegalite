@@ -7990,6 +7990,7 @@ var $author$project$VegaLite$PAggregate = function (a) {
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$HelloWorlds$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$HelloWorlds$myOtherVis = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -8013,11 +8014,11 @@ var $author$project$HelloWorlds$myOtherVis = function () {
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
@@ -8044,11 +8045,11 @@ var $author$project$HelloWorlds$mySecondVis = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
 			]));

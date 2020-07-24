@@ -11245,7 +11245,7 @@ var $author$project$Isotype$livestock = function () {
 					_Utils_Tuple2('pigs', 6),
 					_Utils_Tuple2('sheep', 7)
 				])));
-	var config = A2(
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11261,7 +11261,7 @@ var $author$project$Isotype$livestock = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				config(_List_Nil),
+				cfg(_List_Nil),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(200),
 				data(_List_Nil),
@@ -11585,7 +11585,7 @@ var $author$project$Isotype$personGrid = function () {
 					$elm$core$List$map,
 					$elm$core$Basics$toFloat,
 					A2($elm$core$List$range, 1, 100)))));
-	var config = A2(
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11601,7 +11601,7 @@ var $author$project$Isotype$personGrid = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				config(_List_Nil),
+				cfg(_List_Nil),
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(400),
 				data(_List_Nil),

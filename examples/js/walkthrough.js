@@ -2385,6 +2385,7 @@ var $elm$core$Basics$identity = function (x) {
 var $author$project$Walkthrough$elmToJS = _Platform_outgoingPort('elmToJS', $elm$core$Basics$identity);
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
+var $elm$core$Basics$append = _Utils_append;
 var $author$project$VegaLite$Bar = 2;
 var $author$project$VegaLite$VLMark = 12;
 var $elm$core$Basics$apR = F2(
@@ -2571,7 +2572,6 @@ var $elm$core$Maybe$Just = function (a) {
 var $elm$core$Maybe$Nothing = {$: 1};
 var $elm$core$String$all = _String_all;
 var $elm$core$Basics$and = _Basics_and;
-var $elm$core$Basics$append = _Utils_append;
 var $elm$json$Json$Encode$encode = _Json_encode;
 var $elm$core$String$fromInt = _String_fromNumber;
 var $elm$core$String$join = F2(
@@ -10332,6 +10332,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$Walkthrough$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:
@@ -10725,7 +10726,7 @@ var $author$project$Walkthrough$barChart = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -10800,7 +10801,7 @@ var $author$project$Walkthrough$barChartPair = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[
@@ -10886,7 +10887,7 @@ var $author$project$Walkthrough$barChartTriplet = function () {
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -10941,7 +10942,7 @@ var $author$project$Walkthrough$barChartWithAverage = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				precipEnc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -11160,7 +11161,7 @@ var $author$project$Walkthrough$contextAndFocus = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/sp500.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'sp500.csv', _List_Nil),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[specContext, specDetail]))
@@ -11253,10 +11254,10 @@ var $author$project$Walkthrough$coordinatedScatter1 = function () {
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'cars.json', _List_Nil),
 				enc(_List_Nil),
-				sel(_List_Nil)
+				sel(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -11318,7 +11319,7 @@ var $author$project$Walkthrough$coordinatedScatter2 = function () {
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'cars.json', _List_Nil),
 				$author$project$VegaLite$circle(_List_Nil),
 				enc(_List_Nil),
 				sel(_List_Nil)
@@ -11491,7 +11492,7 @@ var $author$project$Walkthrough$crossFilter = function () {
 						[
 							A2(
 							$author$project$VegaLite$dataFromUrl,
-							'https://vega.github.io/vega-lite/data/flights-2k.json',
+							$author$project$Walkthrough$path + 'flights-2k.json',
 							_List_fromArray(
 								[
 									$author$project$VegaLite$parse(
@@ -11673,7 +11674,7 @@ var $author$project$Walkthrough$dashboard1 = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
 					[histoSpec, scatterSpec, barSpec, annotationSpec]))
@@ -11990,7 +11991,7 @@ var $author$project$Walkthrough$dashboard2 = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[
@@ -12032,7 +12033,7 @@ var $author$project$Walkthrough$histogram = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -12083,7 +12084,7 @@ var $author$project$Walkthrough$scatterProps = function () {
 	return _List_fromArray(
 		[
 			$author$project$Walkthrough$cfg(_List_Nil),
-			A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+			A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'cars.json', _List_Nil),
 			trans(_List_Nil),
 			$author$project$VegaLite$circle(_List_Nil),
 			enc(_List_Nil)
@@ -12351,7 +12352,7 @@ var $author$project$Walkthrough$lineChart = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$line(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -12399,7 +12400,7 @@ var $author$project$Walkthrough$multiBar = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -12429,7 +12430,7 @@ var $author$project$Walkthrough$splom = function () {
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$point(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -12484,7 +12485,7 @@ var $author$project$Walkthrough$stackedHistogram = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -12524,7 +12525,7 @@ var $author$project$Walkthrough$stackedHistogram2 = function () {
 		_List_fromArray(
 			[
 				$author$project$Walkthrough$cfg(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 				$author$project$VegaLite$bar(_List_Nil),
 				enc(_List_Nil)
 			]));
@@ -12535,7 +12536,7 @@ var $author$project$Walkthrough$stripPlot = $author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[
 			$author$project$Walkthrough$cfg(_List_Nil),
-			A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+			A2($author$project$VegaLite$dataFromUrl, $author$project$Walkthrough$path + 'seattle-weather.csv', _List_Nil),
 			$author$project$VegaLite$tick(_List_Nil),
 			$author$project$VegaLite$encoding(
 			A3(

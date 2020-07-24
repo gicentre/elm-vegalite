@@ -5266,11 +5266,6 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
 var $author$project$VegaLite$LabelFont = function (a) {
 	return {$: 26, a: a};
 };
@@ -5293,6 +5288,11 @@ var $author$project$VegaLite$View = function (a) {
 	return {$: 45, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$autosizeProperty = function (asCfg) {
@@ -12510,7 +12510,7 @@ var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
-var $author$project$Spc$config = A2(
+var $author$project$Spc$cfg = A2(
 	$elm$core$Basics$composeL,
 	A2(
 		$elm$core$Basics$composeL,
@@ -13392,7 +13392,7 @@ var $author$project$Spc$cusum1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$Spc$config,
+				$author$project$Spc$cfg,
 				$author$project$Spc$cusumData(-1),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -13435,7 +13435,7 @@ var $author$project$Spc$cusum2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$Spc$config,
+				$author$project$Spc$cfg,
 				$author$project$Spc$cusumData(21),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -13495,7 +13495,7 @@ var $author$project$Spc$cusumInteractive = function (baseline) {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$Spc$config,
+				$author$project$Spc$cfg,
 				$author$project$VegaLite$width(550),
 				$author$project$VegaLite$autosize(
 				_List_fromArray(
@@ -13869,7 +13869,7 @@ var $author$project$Spc$encLine = A2(
 var $author$project$Spc$spc2 = $author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[
-			$author$project$Spc$config,
+			$author$project$Spc$cfg,
 			$author$project$Spc$spcData,
 			$author$project$Spc$encLine,
 			$author$project$VegaLite$line(
@@ -14045,7 +14045,7 @@ var $author$project$Spc$sdLine = function (n) {
 var $author$project$Spc$spc3 = $author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[
-			$author$project$Spc$config,
+			$author$project$Spc$cfg,
 			$author$project$Spc$spcData,
 			$author$project$VegaLite$layer(
 			_Utils_ap(
@@ -14226,7 +14226,7 @@ var $author$project$Spc$spc4 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$Spc$config,
+				$author$project$Spc$cfg,
 				$author$project$Spc$spcData,
 				$author$project$VegaLite$layer(
 				_Utils_ap(
@@ -14446,7 +14446,7 @@ var $author$project$Spc$spc5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$Spc$config,
+				$author$project$Spc$cfg,
 				$author$project$Spc$spcData,
 				$author$project$VegaLite$layer(
 				_Utils_ap(
