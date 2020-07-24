@@ -10,19 +10,19 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
-base : String
-base =
-    "https://vega.github.io/vega-lite/data/"
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
 
 
 scatter1 : Spec
 scatter1 =
     let
-        des =
+        desc =
             description "A scatterplot showing horsepower and miles per gallon for various cars (via point marks)."
 
         data =
-            dataFromUrl (base ++ "cars.json") []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -30,34 +30,34 @@ scatter1 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ des, data, enc [], point [ maTooltip ttData ] ]
+        [ desc, data, enc [], point [ maTooltip ttData ] ]
 
 
 scatter2 : Spec
 scatter2 =
     let
-        des =
+        desc =
             description "Shows the distribution of a single variable (precipitation) using tick marks."
 
         data =
-            dataFromUrl (base ++ "seattle-weather.csv") []
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         enc =
             encoding
                 << position X [ pName "precipitation", pQuant ]
     in
     toVegaLite
-        [ des, data, enc [], tick [] ]
+        [ desc, data, enc [], tick [] ]
 
 
 scatter3 : Spec
 scatter3 =
     let
-        des =
+        desc =
             description "Shows the relationship between horsepower and the number of cylinders using tick marks."
 
         data =
-            dataFromUrl (base ++ "cars.json") []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -65,17 +65,17 @@ scatter3 =
                 << position Y [ pName "Cylinders", pOrdinal ]
     in
     toVegaLite
-        [ des, data, enc [], tick [] ]
+        [ desc, data, enc [], tick [] ]
 
 
 scatter4 : Spec
 scatter4 =
     let
-        des =
+        desc =
             description "A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape."
 
         data =
-            dataFromUrl (base ++ "cars.json") []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -85,36 +85,36 @@ scatter4 =
                 << shape [ mName "Origin" ]
     in
     toVegaLite
-        [ des, data, enc [], point [] ]
+        [ desc, data, enc [], point [] ]
 
 
 scatter5 : Spec
 scatter5 =
     let
-        des =
+        desc =
             description "A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews."
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [ biMaxBins 10 ] ]
                 << size [ mAggregate opCount, mQuant ]
     in
     toVegaLite
-        [ des, data, enc [], circle [] ]
+        [ desc, data, enc [], circle [] ]
 
 
 scatter6 : Spec
 scatter6 =
     let
-        des =
+        desc =
             description "A bubbleplot showing horsepower on x, miles per gallons on y, and acceleration on size."
 
         data =
-            dataFromUrl (base ++ "cars.json") []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -123,13 +123,13 @@ scatter6 =
                 << size [ mName "Acceleration", mQuant ]
     in
     toVegaLite
-        [ des, data, enc [], point [] ]
+        [ desc, data, enc [], point [] ]
 
 
 scatter7 : Spec
 scatter7 =
     let
-        des =
+        desc =
             description "Scatterplot with Null values in grey"
 
         cfg =
@@ -137,15 +137,15 @@ scatter7 =
                 << configuration (coMark [ maRemoveInvalid False ])
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
                     [ mDataCondition
-                        [ ( expr "datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null"
+                        [ ( expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"
                           , [ mStr "#ddd" ]
                           )
                         ]
@@ -153,17 +153,17 @@ scatter7 =
                     ]
     in
     toVegaLite
-        [ des, cfg [], data, enc [], point [] ]
+        [ desc, cfg [], data, enc [], point [] ]
 
 
 scatter8 : Spec
 scatter8 =
     let
-        des =
+        desc =
             description "A scatterplot showing horsepower and miles per gallon for various cars (via circle marks)."
 
         data =
-            dataFromUrl (base ++ "cars.json") []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -171,17 +171,17 @@ scatter8 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ des, data, enc [], circle [] ]
+        [ desc, data, enc [], circle [] ]
 
 
 scatter9 : Spec
 scatter9 =
     let
-        des =
+        desc =
             description "A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost's blog post 'One Chart, Twelve Charting Libraries' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/)."
 
         data =
-            dataFromUrl (base ++ "gapminder-health-income.csv") []
+            dataFromUrl (path ++ "gapminder-health-income.csv") []
 
         enc =
             encoding
@@ -193,17 +193,17 @@ scatter9 =
         sel =
             selection << select "view" seInterval [ seBindScales ]
     in
-    toVegaLite [ des, width 500, height 300, data, enc [], sel [], circle [] ]
+    toVegaLite [ desc, width 500, height 300, data, enc [], sel [], circle [] ]
 
 
 scatter10 : Spec
 scatter10 =
     let
-        des =
+        desc =
             description "Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes"
 
         data =
-            dataFromUrl (base ++ "disasters.csv") []
+            dataFromUrl (path ++ "disasters.csv") []
 
         trans =
             transform
@@ -222,7 +222,7 @@ scatter10 =
                 << color [ mName "Entity", mLegend [] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , width 600
         , height 400
         , data
@@ -235,11 +235,11 @@ scatter10 =
 scatter11 : Spec
 scatter11 =
     let
-        des =
+        desc =
             description "A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol."
 
         data =
-            dataFromUrl (base ++ "cars.json") []
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -252,26 +252,26 @@ scatter11 =
                 << color [ mName "Origin" ]
                 << text [ tName "OriginInitial" ]
     in
-    toVegaLite [ des, data, trans [], enc [], textMark [] ]
+    toVegaLite [ desc, data, trans [], enc [], textMark [] ]
 
 
 scatter12 : Spec
 scatter12 =
     let
-        des =
+        desc =
             description "A scatterplot with a loess trendline overlaid."
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << loess "IMDB_Rating" "Rotten_Tomatoes_Rating" [ lsBandwidth 0.1 ]
+                << loess "IMDB Rating" "Rotten Tomatoes Rating" [ lsBandwidth 0.1 ]
 
         enc =
             encoding
-                << position X [ pName "Rotten_Tomatoes_Rating", pQuant ]
-                << position Y [ pName "IMDB_Rating", pQuant ]
+                << position X [ pName "Rotten Tomatoes Rating", pQuant ]
+                << position Y [ pName "IMDB Rating", pQuant ]
 
         pointSpec =
             asSpec [ point [ maFilled True, maOpacity 0.3 ] ]
@@ -279,28 +279,28 @@ scatter12 =
         trendSpec =
             asSpec [ trans [], line [ maColor "firebrick" ] ]
     in
-    toVegaLite [ des, width 300, height 300, data, enc [], layer [ pointSpec, trendSpec ] ]
+    toVegaLite [ desc, width 300, height 300, data, enc [], layer [ pointSpec, trendSpec ] ]
 
 
 scatter13 : Spec
 scatter13 =
     let
-        des =
+        desc =
             description "A scatterplot with a cubic polynomial regression line overlaid limited to the range of 10% to 90% of Rotten Tomatoes ratings"
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << regression "IMDB_Rating"
-                    "Rotten_Tomatoes_Rating"
+                << regression "IMDB Rating"
+                    "Rotten Tomatoes Rating"
                     [ rgMethod rgPoly, rgOrder 3, rgExtent 10 90 ]
 
         enc =
             encoding
-                << position X [ pName "Rotten_Tomatoes_Rating", pQuant ]
-                << position Y [ pName "IMDB_Rating", pQuant ]
+                << position X [ pName "Rotten Tomatoes Rating", pQuant ]
+                << position Y [ pName "IMDB Rating", pQuant ]
 
         pointSpec =
             asSpec [ point [ maFilled True, maOpacity 0.3 ] ]
@@ -308,20 +308,20 @@ scatter13 =
         regSpec =
             asSpec [ trans [], line [ maColor "firebrick" ] ]
     in
-    toVegaLite [ des, width 300, height 300, data, enc [], layer [ pointSpec, regSpec ] ]
+    toVegaLite [ desc, width 300, height 300, data, enc [], layer [ pointSpec, regSpec ] ]
 
 
 scatter14 : Spec
 scatter14 =
     let
-        des =
+        desc =
             description "A simple scatterplot using images as point symbols"
 
         data =
             dataFromColumns []
                 << dataColumn "x" (nums [ 0.5, 1.5, 2.5 ])
                 << dataColumn "y" (nums [ 0.5, 1.5, 2.5 ])
-                << dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
+                << dataColumn "img" (strs [ path ++ "ffox.png", path ++ "gimp.png", path ++ "7zip.png" ])
 
         enc =
             encoding
@@ -329,7 +329,7 @@ scatter14 =
                 << position Y [ pName "y", pQuant ]
                 << url [ hName "img" ]
     in
-    toVegaLite [ des, data [], enc [], image [ maWidth 25, maHeight 25 ] ]
+    toVegaLite [ desc, data [], enc [], image [ maWidth 25, maHeight 25 ] ]
 
 
 
