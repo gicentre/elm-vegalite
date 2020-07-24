@@ -10,14 +10,23 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 error1 : Spec
 error1 =
     let
-        des =
+        desc =
             description "Error bars showing confidence intervals"
 
+        data =
+            dataFromUrl (path ++ "barley.json") []
+
         encVariety =
-            encoding << position Y [ pName "variety", pOrdinal ]
+            encoding
+                << position Y [ pName "variety", pOrdinal ]
 
         encPoints =
             encoding
@@ -26,7 +35,7 @@ error1 =
                     , pQuant
                     , pAggregate opMean
                     , pScale [ scZero False ]
-                    , pAxis [ axTitle "Barley Yield" ]
+                    , pTitle "Barley Yield"
                     ]
                 << color [ mStr "black" ]
 
@@ -43,21 +52,19 @@ error1 =
                 << position X2 [ pName "yield", pAggregate opCI1 ]
 
         specCIs =
-            asSpec [ rule [], encCIs [] ]
+            asSpec [ encCIs [], rule [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
-        , encVariety []
-        , layer [ specPoints, specCIs ]
-        ]
+    toVegaLite [ desc, data, encVariety [], layer [ specPoints, specCIs ] ]
 
 
 error2 : Spec
 error2 =
     let
-        des =
+        desc =
             description "Error bars showing standard deviations"
+
+        data =
+            dataFromUrl (path ++ "barley.json") []
 
         trans =
             transform
@@ -74,12 +81,12 @@ error2 =
                     [ pName "mean"
                     , pQuant
                     , pScale [ scZero False ]
-                    , pAxis [ axTitle "Barley Yield" ]
+                    , pTitle "Barley Yield"
                     ]
                 << color [ mStr "black" ]
 
         specMeans =
-            asSpec [ point [ maFilled True ], encMeans [] ]
+            asSpec [ encMeans [], point [ maFilled True ] ]
 
         encStdevs =
             encoding
@@ -87,25 +94,23 @@ error2 =
                 << position X2 [ pName "lower", pQuant ]
 
         specStdevs =
-            asSpec [ rule [], encStdevs [] ]
+            asSpec [ encStdevs [], rule [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
-        , trans []
-        , encVariety []
-        , layer [ specMeans, specStdevs ]
-        ]
+    toVegaLite [ desc, data, trans [], encVariety [], layer [ specMeans, specStdevs ] ]
 
 
 error3 : Spec
 error3 =
     let
-        des =
+        desc =
             description "Line chart with confidence interval band."
 
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
         encTime =
-            encoding << position X [ pName "Year", pTemporal, pTimeUnit year ]
+            encoding
+                << position X [ pName "Year", pTemporal, pTimeUnit year ]
 
         encBand =
             encoding
@@ -113,38 +118,32 @@ error3 =
                     [ pName "Miles_per_Gallon"
                     , pQuant
                     , pAggregate opCI0
-                    , pAxis [ axTitle "Miles/Gallon" ]
+                    , pTitle "Miles per gallon with 95% CIs"
                     ]
                 << position Y2 [ pName "Miles_per_Gallon", pAggregate opCI1 ]
                 << opacity [ mNum 0.3 ]
 
         specBand =
-            asSpec [ area [], encBand [] ]
+            asSpec [ encBand [], area [] ]
 
         encLine =
             encoding
-                << position Y
-                    [ pName "Miles_per_Gallon"
-                    , pQuant
-                    , pAggregate opMean
-                    ]
+                << position Y [ pName "Miles_per_Gallon", pQuant, pAggregate opMean ]
 
         specLine =
-            asSpec [ line [], encLine [] ]
+            asSpec [ encLine [], line [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , encTime []
-        , layer [ specBand, specLine ]
-        ]
+    toVegaLite [ desc, data, encTime [], layer [ specBand, specLine ] ]
 
 
 error4 : Spec
 error4 =
     let
-        des =
+        desc =
             description "A scatterplot showing horsepower and miles per gallon for various cars with a global mean and standard deviation overlay."
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         encPoints =
             encoding
@@ -165,10 +164,10 @@ error4 =
                 << calculateAs "datum.mean_MPG-datum.dev_MPG" "lower"
 
         encMean =
-            encoding << position Y [ pName "mean_MPG", pQuant ]
+            encoding << position Y [ pName "mean_MPG", pQuant, pTitle "Miles per gallon" ]
 
         specMean =
-            asSpec [ rule [], encMean [] ]
+            asSpec [ encMean [], rule [] ]
 
         encRect =
             encoding
@@ -177,16 +176,12 @@ error4 =
                 << opacity [ mNum 0.2 ]
 
         specRect =
-            asSpec [ rect [], encRect [] ]
+            asSpec [ encRect [], rect [] ]
 
         specSpread =
             asSpec [ trans [], layer [ specMean, specRect ] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , layer [ specPoints, specSpread ]
-        ]
+    toVegaLite [ desc, data, layer [ specPoints, specSpread ] ]
 
 
 
