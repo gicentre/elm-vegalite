@@ -10103,7 +10103,7 @@ var $author$project$VegaLite$X2 = 2;
 var $author$project$VegaLite$AxTickMinStep = function (a) {
 	return {$: 75, a: a};
 };
-var $author$project$VegaLite$axTickStep = $author$project$VegaLite$AxTickMinStep;
+var $author$project$VegaLite$axTickMinStep = $author$project$VegaLite$AxTickMinStep;
 var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
@@ -10129,7 +10129,7 @@ var $author$project$DataTests$bin1 = function () {
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
-									$author$project$VegaLite$axTickStep(2)
+									$author$project$VegaLite$axTickMinStep(2)
 								]))
 						]))),
 			A2(

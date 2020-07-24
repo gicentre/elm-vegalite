@@ -12115,12 +12115,58 @@ var $author$project$VegaLite$MinExtent = function (a) {
 	return {$: 37, a: a};
 };
 var $author$project$VegaLite$axcoMinExtent = $author$project$VegaLite$MinExtent;
-var $author$project$VegaLite$AxY = 2;
+var $author$project$VegaLite$AxBoth = 0;
 var $author$project$VegaLite$Axis = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
 	});
-var $author$project$VegaLite$coAxisY = $author$project$VegaLite$Axis(2);
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
+var $author$project$VegaLite$AxisBand = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisDiscrete = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisPoint = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisQuant = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisTemporal = F2(
+	function (a, b) {
+		return {$: 13, a: a, b: b};
+	});
+var $author$project$VegaLite$AxY = 2;
+var $author$project$VegaLite$axY = 2;
+var $author$project$VegaLite$coAxisYFilter = function (cp) {
+	switch (cp.$) {
+		case 3:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axY, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axY, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axY, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axY, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axY, acs);
+		case 13:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axY, acs);
+		default:
+			return cp;
+	}
+};
 var $author$project$VegaLite$Not = function (a) {
 	return {$: 7, a: a};
 };
@@ -12248,11 +12294,12 @@ var $author$project$GalleryInteraction$interaction13 = function () {
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coAxisY(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$axcoMinExtent(30)
-					]))));
+			$author$project$VegaLite$coAxisYFilter(
+				$author$project$VegaLite$coAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axcoMinExtent(30)
+						])))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12782,28 +12829,6 @@ var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$axcoLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$LabelAngle, $author$project$VegaLite$positiveAngle);
-var $author$project$VegaLite$AxBoth = 0;
-var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
-var $author$project$VegaLite$AxisBand = F2(
-	function (a, b) {
-		return {$: 9, a: a, b: b};
-	});
-var $author$project$VegaLite$AxisDiscrete = F2(
-	function (a, b) {
-		return {$: 10, a: a, b: b};
-	});
-var $author$project$VegaLite$AxisPoint = F2(
-	function (a, b) {
-		return {$: 11, a: a, b: b};
-	});
-var $author$project$VegaLite$AxisQuant = F2(
-	function (a, b) {
-		return {$: 12, a: a, b: b};
-	});
-var $author$project$VegaLite$AxisTemporal = F2(
-	function (a, b) {
-		return {$: 13, a: a, b: b};
-	});
 var $author$project$VegaLite$AxX = 1;
 var $author$project$VegaLite$axX = 1;
 var $author$project$VegaLite$coAxisXFilter = function (cp) {

@@ -14012,25 +14012,6 @@ var $author$project$ColorTests$scale1 = A2(
 								['yellow', 'red'])))
 					]))
 			])));
-var $author$project$VegaLite$scSequential = 0;
-var $author$project$ColorTests$scale2 = A2(
-	$author$project$ColorTests$chart,
-	'Sequential (deprecated) colour scale.',
-	$author$project$VegaLite$color(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
-				$author$project$VegaLite$mScale(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$scType($author$project$VegaLite$scSequential),
-						$author$project$VegaLite$scRange(
-						$author$project$VegaLite$raStrs(
-							_List_fromArray(
-								['yellow', 'red'])))
-					]))
-			])));
 var $author$project$VegaLite$ScPow = 1;
 var $author$project$VegaLite$scPow = 1;
 var $author$project$ColorTests$scale3 = A2(
@@ -14169,7 +14150,6 @@ var $author$project$ColorTests$specs = _List_fromArray(
 		_Utils_Tuple2('customContinuous', $author$project$ColorTests$customContinuous),
 		_Utils_Tuple2('customDiscrete', $author$project$ColorTests$customDiscrete),
 		_Utils_Tuple2('scale1', $author$project$ColorTests$scale1),
-		_Utils_Tuple2('scale2', $author$project$ColorTests$scale2),
 		_Utils_Tuple2('scale3', $author$project$ColorTests$scale3),
 		_Utils_Tuple2('scale4', $author$project$ColorTests$scale4),
 		_Utils_Tuple2('scale5', $author$project$ColorTests$scale5),

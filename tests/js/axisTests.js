@@ -13093,12 +13093,58 @@ var $author$project$VegaLite$LabelExpr = function (a) {
 	return {$: 25, a: a};
 };
 var $author$project$VegaLite$axcoLabelExpr = $author$project$VegaLite$LabelExpr;
-var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$AxBoth = 0;
 var $author$project$VegaLite$Axis = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
 	});
-var $author$project$VegaLite$coAxisX = $author$project$VegaLite$Axis(1);
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
+var $author$project$VegaLite$AxisBand = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisDiscrete = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisPoint = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisQuant = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisTemporal = F2(
+	function (a, b) {
+		return {$: 13, a: a, b: b};
+	});
+var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$axX = 1;
+var $author$project$VegaLite$coAxisXFilter = function (cp) {
+	switch (cp.$) {
+		case 3:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axX, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axX, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axX, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axX, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axX, acs);
+		case 13:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axX, acs);
+		default:
+			return cp;
+	}
+};
 var $author$project$AxisTests$axis10 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13125,11 +13171,12 @@ var $author$project$AxisTests$axis10 = function () {
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coAxisX(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$axcoLabelExpr('\'number \'+ datum.label')
-					]))));
+			$author$project$VegaLite$coAxisXFilter(
+				$author$project$VegaLite$coAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axcoLabelExpr('\'number \'+ datum.label')
+						])))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13149,7 +13196,31 @@ var $author$project$VegaLite$TickCount = function (a) {
 };
 var $author$project$VegaLite$axcoTickCount = $author$project$VegaLite$TickCount;
 var $author$project$VegaLite$AxY = 2;
-var $author$project$VegaLite$coAxisY = $author$project$VegaLite$Axis(2);
+var $author$project$VegaLite$axY = 2;
+var $author$project$VegaLite$coAxisYFilter = function (cp) {
+	switch (cp.$) {
+		case 3:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axY, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axY, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axY, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axY, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axY, acs);
+		case 13:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axY, acs);
+		default:
+			return cp;
+	}
+};
 var $author$project$VegaLite$NTickCount = function (a) {
 	return {$: 11, a: a};
 };
@@ -13182,18 +13253,20 @@ var $author$project$AxisTests$axis11 = function () {
 			$elm$core$Basics$composeL,
 			$author$project$VegaLite$configure,
 			$author$project$VegaLite$configuration(
-				$author$project$VegaLite$coAxisX(
+				$author$project$VegaLite$coAxisXFilter(
+					$author$project$VegaLite$coAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axcoLabelExpr('\'number \'+ datum.label')
+							]))))),
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coAxisYFilter(
+				$author$project$VegaLite$coAxis(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$axcoLabelExpr('\'number \'+ datum.label')
-						])))),
-		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coAxisY(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$axcoTickCount(
-						$author$project$VegaLite$niTickCount(10))
-					]))));
+							$author$project$VegaLite$axcoTickCount(
+							$author$project$VegaLite$niTickCount(10))
+						])))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13503,11 +13576,6 @@ var $author$project$VegaLite$GridColor = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$axcoGridColor = $author$project$VegaLite$GridColor;
-var $author$project$VegaLite$AxBoth = 0;
-var $author$project$VegaLite$AxisQuant = F2(
-	function (a, b) {
-		return {$: 12, a: a, b: b};
-	});
 var $author$project$VegaLite$coAxisQuant = $author$project$VegaLite$AxisQuant(0);
 var $author$project$AxisTests$axis1a = $author$project$AxisTests$qAxisBase(
 	$elm$core$Maybe$Just(
@@ -13704,10 +13772,6 @@ var $author$project$VegaLite$TickSize = function (a) {
 	return {$: 48, a: a};
 };
 var $author$project$VegaLite$axcoTickSize = $author$project$VegaLite$TickSize;
-var $author$project$VegaLite$AxisTemporal = F2(
-	function (a, b) {
-		return {$: 13, a: a, b: b};
-	});
 var $author$project$VegaLite$coAxisTemporal = $author$project$VegaLite$AxisTemporal(0);
 var $author$project$AxisTests$axis4a = $author$project$AxisTests$tAxisBase(
 	$elm$core$Maybe$Just(

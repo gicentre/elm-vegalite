@@ -9031,12 +9031,58 @@ var $author$project$VegaLite$TickColor = function (a) {
 	return {$: 40, a: a};
 };
 var $author$project$VegaLite$axcoTickColor = $author$project$VegaLite$TickColor;
-var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$AxBoth = 0;
 var $author$project$VegaLite$Axis = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
 	});
-var $author$project$VegaLite$coAxisX = $author$project$VegaLite$Axis(1);
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
+var $author$project$VegaLite$AxisBand = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisDiscrete = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisPoint = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisQuant = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisTemporal = F2(
+	function (a, b) {
+		return {$: 13, a: a, b: b};
+	});
+var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$axX = 1;
+var $author$project$VegaLite$coAxisXFilter = function (cp) {
+	switch (cp.$) {
+		case 3:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axX, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axX, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axX, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axX, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axX, acs);
+		case 13:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axX, acs);
+		default:
+			return cp;
+	}
+};
 var $author$project$VegaLite$MarkStyles = function (a) {
 	return {$: 28, a: a};
 };
@@ -12451,13 +12497,14 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 								$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
 							])))),
 			$author$project$VegaLite$configuration(
-				$author$project$VegaLite$coAxisX(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axcoDomain(false),
-							$author$project$VegaLite$axcoLabelAngle(0),
-							$author$project$VegaLite$axcoTickColor('#ccc')
-						])))),
+				$author$project$VegaLite$coAxisXFilter(
+					$author$project$VegaLite$coAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axcoDomain(false),
+								$author$project$VegaLite$axcoLabelAngle(0),
+								$author$project$VegaLite$axcoTickColor('#ccc')
+							]))))),
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coMarkStyles(
 				_List_fromArray(
