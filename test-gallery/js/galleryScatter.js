@@ -2796,7 +2796,6 @@ var $author$project$VegaLite$combineSpecs = function (specs) {
 };
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
-var $author$project$GalleryScatter$base = 'https://vega.github.io/vega-lite/data/';
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -3055,6 +3054,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$GalleryScatter$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
@@ -7703,12 +7703,12 @@ var $author$project$GalleryScatter$scatter1 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via point marks).');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via point marks).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$point(
@@ -7900,12 +7900,12 @@ var $author$project$GalleryScatter$scatter10 = function () {
 					$author$project$VegaLite$mName('Entity'),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
-	var des = $author$project$VegaLite$description('Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'disasters.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'disasters.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(600),
 				$author$project$VegaLite$height(400),
 				data,
@@ -8144,12 +8144,12 @@ var $author$project$GalleryScatter$scatter11 = function () {
 				[
 					$author$project$VegaLite$tName('OriginInitial')
 				])));
-	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -8247,8 +8247,8 @@ var $author$project$GalleryScatter$scatter12 = function () {
 		$author$project$VegaLite$transform,
 		A3(
 			$author$project$VegaLite$loess,
-			'IMDB_Rating',
-			'Rotten_Tomatoes_Rating',
+			'IMDB Rating',
+			'Rotten Tomatoes Rating',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$lsBandwidth(0.1)
@@ -8283,7 +8283,7 @@ var $author$project$GalleryScatter$scatter12 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		A2(
@@ -8291,15 +8291,15 @@ var $author$project$GalleryScatter$scatter12 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('IMDB_Rating'),
+					$author$project$VegaLite$pName('IMDB Rating'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('A scatterplot with a loess trendline overlaid.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot with a loess trendline overlaid.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				data,
@@ -8404,8 +8404,8 @@ var $author$project$GalleryScatter$scatter13 = function () {
 		$author$project$VegaLite$transform,
 		A3(
 			$author$project$VegaLite$regression,
-			'IMDB_Rating',
-			'Rotten_Tomatoes_Rating',
+			'IMDB Rating',
+			'Rotten Tomatoes Rating',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$rgMethod($author$project$VegaLite$rgPoly),
@@ -8442,7 +8442,7 @@ var $author$project$GalleryScatter$scatter13 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		A2(
@@ -8450,15 +8450,15 @@ var $author$project$GalleryScatter$scatter13 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('IMDB_Rating'),
+					$author$project$VegaLite$pName('IMDB Rating'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('A scatterplot with a cubic polynomial regression line overlaid limited to the range of 10% to 90% of Rotten Tomatoes ratings');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot with a cubic polynomial regression line overlaid limited to the range of 10% to 90% of Rotten Tomatoes ratings');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				data,
@@ -8759,7 +8759,7 @@ var $author$project$GalleryScatter$scatter14 = function () {
 				[
 					$author$project$VegaLite$hName('img')
 				])));
-	var des = $author$project$VegaLite$description('A simple scatterplot using images as point symbols');
+	var desc = $author$project$VegaLite$description('A simple scatterplot using images as point symbols');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -8784,11 +8784,11 @@ var $author$project$GalleryScatter$scatter14 = function () {
 			'img',
 			$author$project$VegaLite$strs(
 				_List_fromArray(
-					[$author$project$GalleryScatter$base + 'ffox.png', $author$project$GalleryScatter$base + 'gimp.png', $author$project$GalleryScatter$base + '7zip.png']))));
+					[$author$project$GalleryScatter$path + 'ffox.png', $author$project$GalleryScatter$path + 'gimp.png', $author$project$GalleryScatter$path + '7zip.png']))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$image(
@@ -8813,12 +8813,12 @@ var $author$project$GalleryScatter$scatter2 = function () {
 					$author$project$VegaLite$pName('precipitation'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Shows the distribution of a single variable (precipitation) using tick marks.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'seattle-weather.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Shows the distribution of a single variable (precipitation) using tick marks.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$tick(_List_Nil)
@@ -8846,12 +8846,12 @@ var $author$project$GalleryScatter$scatter3 = function () {
 					$author$project$VegaLite$pName('Cylinders'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var des = $author$project$VegaLite$description('Shows the relationship between horsepower and the number of cylinders using tick marks.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Shows the relationship between horsepower and the number of cylinders using tick marks.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$tick(_List_Nil)
@@ -8900,12 +8900,12 @@ var $author$project$GalleryScatter$scatter4 = function () {
 				[
 					$author$project$VegaLite$mName('Origin')
 				])));
-	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
@@ -8938,7 +8938,7 @@ var $author$project$GalleryScatter$scatter5 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(
 							_List_fromArray(
@@ -8951,7 +8951,7 @@ var $author$project$GalleryScatter$scatter5 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
@@ -8965,12 +8965,12 @@ var $author$project$GalleryScatter$scatter5 = function () {
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
 					$author$project$VegaLite$mQuant
 				])));
-	var des = $author$project$VegaLite$description('A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
@@ -9006,12 +9006,12 @@ var $author$project$GalleryScatter$scatter6 = function () {
 					$author$project$VegaLite$mName('Acceleration'),
 					$author$project$VegaLite$mQuant
 				])));
-	var des = $author$project$VegaLite$description('A bubbleplot showing horsepower on x, miles per gallons on y, and acceleration on size.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A bubbleplot showing horsepower on x, miles per gallons on y, and acceleration on size.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
@@ -12044,7 +12044,7 @@ var $author$project$GalleryScatter$scatter7 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -12052,7 +12052,7 @@ var $author$project$GalleryScatter$scatter7 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$color(
@@ -12063,7 +12063,7 @@ var $author$project$GalleryScatter$scatter7 = function () {
 					_List_fromArray(
 						[
 							_Utils_Tuple2(
-							$author$project$VegaLite$expr('datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null'),
+							$author$project$VegaLite$expr('datum[\'IMDB Rating\'] === null || datum[\'Rotten Tomatoes Rating\'] === null'),
 							_List_fromArray(
 								[
 									$author$project$VegaLite$mStr('#ddd')
@@ -12074,8 +12074,8 @@ var $author$project$GalleryScatter$scatter7 = function () {
 							$author$project$VegaLite$mStr('rgb(76,120,168)')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Scatterplot with Null values in grey');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Scatterplot with Null values in grey');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'movies.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -12088,7 +12088,7 @@ var $author$project$GalleryScatter$scatter7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data,
 				enc(_List_Nil),
@@ -12117,12 +12117,12 @@ var $author$project$GalleryScatter$scatter8 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via circle marks).');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars (via circle marks).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
@@ -12240,12 +12240,12 @@ var $author$project$GalleryScatter$scatter9 = function () {
 				[
 					$author$project$VegaLite$mStr('#000')
 				])));
-	var des = $author$project$VegaLite$description('A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost\'s blog post \'One Chart, Twelve Charting Libraries\' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/).');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'gapminder-health-income.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost\'s blog post \'One Chart, Twelve Charting Libraries\' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'gapminder-health-income.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
 				data,
