@@ -576,7 +576,7 @@ interaction13 =
 
         config =
             configure
-                << configuration (coAxisY [ axcoMinExtent 30 ])
+                << configuration (coAxis [ axcoMinExtent 30 ] |> coAxisYFilter)
 
         enc =
             encoding

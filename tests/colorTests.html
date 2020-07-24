@@ -48,7 +48,7 @@
       <div id="defNominal"></div>
       <figcaption>Default nominal colours</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Named Schemes</h2>
     <figure class="cell">
@@ -67,7 +67,7 @@
       <div id="namedContinuous4"></div>
       <figcaption>Upper range of reversed colour scheme</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Custom Schemes</h2>
     <figure class="cell">
@@ -78,16 +78,12 @@
       <div id="customDiscrete"></div>
       <figcaption>Custom discrete values (red, green, blue)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Colour Scales</h2>
     <figure class="cell">
       <div id="scale1"></div>
       <figcaption>Linear scale (default)</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale2"></div>
-      <figcaption>Sequential scale (deprecated)</figcaption>
     </figure>
     <figure class="cell">
       <div id="scale3"></div>
@@ -113,7 +109,7 @@
       <div id="scale8"></div>
       <figcaption>SymLog Scale with slope constant of 0.01</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Interpolation Type</h2>
     <figure class="cell">
@@ -144,7 +140,7 @@
       <div id="interp7"></div>
       <figcaption>Cubehelix-long interpolation</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Gamma Value</h2>
     <figure class="cell">
@@ -167,7 +163,7 @@
       <div id="gamma5"></div>
       <figcaption>Cubehelix-long, gamma = 10</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Blend Modes</h2>
 
@@ -181,19 +177,19 @@
         >
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ColorTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

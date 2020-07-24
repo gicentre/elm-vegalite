@@ -222,7 +222,7 @@ axis10 =
     let
         cfg =
             configure
-                << configuration (coAxisX [ axcoLabelExpr "'number '+ datum.label" ])
+                << configuration (coAxis [ axcoLabelExpr "'number '+ datum.label" ] |> coAxisXFilter)
 
         enc =
             encoding
@@ -237,8 +237,8 @@ axis11 =
     let
         cfg =
             configure
-                << configuration (coAxisX [ axcoLabelExpr "'number '+ datum.label" ])
-                << configuration (coAxisY [ axcoTickCount (niTickCount 10) ])
+                << configuration (coAxis [ axcoLabelExpr "'number '+ datum.label" ] |> coAxisXFilter)
+                << configuration (coAxis [ axcoTickCount (niTickCount 10) ] |> coAxisYFilter)
 
         enc =
             encoding
@@ -296,8 +296,8 @@ axis12 =
 --                         ]
 --                     )
 --                 << configuration (coAxis [ axcoStyle [ "tickStyle" ] ])
---                 << configuration (coAxisX [ axcoStyle [ "redStyle" ] ])
---                 << configuration (coAxisY [ axcoStyle [ "blueStyle" ] ])
+--                 << configuration (coAxis [ axcoStyle [ "redStyle" ] ]|> coAxisXFilter)
+--                 << configuration (coAxis [ axcoStyle [ "blueStyle" ] ]|> coAxisYFilter)
 --
 --         enc =
 --             encoding

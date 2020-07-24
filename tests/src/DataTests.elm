@@ -516,7 +516,7 @@ bin1 =
 
         enc =
             encoding
-                << position X [ pName "bin_start", pQuant, pBinned, pAxis [ axTickStep 2 ] ]
+                << position X [ pName "bin_start", pQuant, pBinned, pAxis [ axTickMinStep 2 ] ]
                 << position X2 [ pName "bin_end", pQuant ]
                 << position Y [ pName "count", pQuant ]
     in

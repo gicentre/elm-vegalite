@@ -518,7 +518,7 @@ advanced14 =
         cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
-                << configuration (coAxisX [ axcoDomain False, axcoLabelAngle 0, axcoTickColor "#ccc" ])
+                << configuration (coAxis [ axcoDomain False, axcoLabelAngle 0, axcoTickColor "#ccc" ] |> coAxisXFilter)
                 << configuration
                     (coMarkStyles
                         [ ( "label", [ maBaseline vaMiddle, maAlign haRight, maDx -5, maTooltip ttNone ] )

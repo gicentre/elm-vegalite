@@ -10,9 +10,11 @@
 
 - `hdTitleFontWeight` now correctly uses a `FontWeight` parameter (`Bold`, `W300` etc.) rather than a string. The string version inadvertently slipped through in earlier versions. Any specifications that use a String for the weight can use the equivalent `FontWeight` variant.
 
-* `rgExtent` and `dnExtent` now take two floats as the extent values rather than `DataValue` types. To update previous code replace `(num x0) (num x1)` with `x0 x1` where `x0` and `x1` are the minimum and maximum numeric values of the extent.
+* `rgExtent` and `dnExtent` now take two floats as the extent values rather than `DataValue` types. To update previous code replace `(num x0) (num x1)` with the simpler `x0 x1` where `x0` and `x1` are the minimum and maximum numeric values of the extent.
 
 - `key` now creates a field/type object. Previously this incorrectly generated a string rather than object, so while this is a breaking change, there should be no working specs with the old key type. Field name can be specified with `kName` and type with `kQuant`, `kNominal` etc.
+
+* Removed deprecated functions: `axcoShortTimeLabels`, `axcoTickStep`, `axDates`, `axTickStep`, `coAxisX`, `coAxisY`, `coNamedStyle`, `coNamedStyles`, `coStack`, `lookupAs`, `sacoRangeStep`, `sacoTextXRangeStep`, `scBinLinear`, `scRangeStep`, `scSequential`, `vicoWidth` and `vicoHeight`
 
 ## Additions
 

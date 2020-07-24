@@ -1479,23 +1479,6 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    , axcoShortTimeLabels
-    , axcoTickStep
-    , axDates
-    , axTickStep
-    , coAxisX
-    , coAxisY
-    , coNamedStyle
-    , coNamedStyles
-    , coStack
-    , lookupAs
-    , sacoRangeStep
-    , sacoTextXRangeStep
-    , scBinLinear
-    , scRangeStep
-    , scSequential
-    , vicoWidth
-    , vicoHeight
     -- , axcoStyle
     --, leUnselectedOpacity
     )
@@ -1516,7 +1499,6 @@ the Vega-Lite runtime, you can embed specifications directly in a
 8.  [Top-level Settings](#8-top-level-settings)
 9.  [General Data Functions](#9-general-data-functions)
 10. [Type Reference](#10-type-reference)
-11. [Deprecated Functions](#11-deprecated-functions)
 
 ---
 
@@ -3703,29 +3685,6 @@ to the functions that generate them.
 @docs Window
 @docs WOperation
 @docs WindowProperty
-
----
-
-
-# 11. Deprecated functions
-
-@docs axcoShortTimeLabels
-@docs axcoTickStep
-@docs axDates
-@docs axTickStep
-@docs coAxisX
-@docs coAxisY
-@docs coNamedStyle
-@docs coNamedStyles
-@docs coStack
-@docs lookupAs
-@docs sacoRangeStep
-@docs sacoTextXRangeStep
-@docs scBinLinear
-@docs scRangeStep
-@docs scSequential
-@docs vicoWidth
-@docs vicoHeight
 
 -}
 
@@ -6676,13 +6635,6 @@ axcoMinExtent =
     MinExtent
 
 
-{-| Deprecated since short time labels are used by default since VL4
--}
-axcoShortTimeLabels : Bool -> AxisConfig
-axcoShortTimeLabels =
-    ShortTimeLabels
-
-
 
 {- | A list of named styles to apply as defaults to axes.
 
@@ -6773,13 +6725,6 @@ axcoTicks =
 axcoTickSize : Float -> AxisConfig
 axcoTickSize =
     TickSize
-
-
-{-| Deprecated in favour of [axcoTickMinStep](#axcoTickMinStep).
--}
-axcoTickStep : Float -> AxisConfig
-axcoTickStep =
-    TickMinStep
 
 
 {-| Default axis tick mark width.
@@ -6892,13 +6837,6 @@ axcoTitleX =
 axcoTitleY : Float -> AxisConfig
 axcoTitleY =
     TitleY
-
-
-{-| Deprecated in favour of [axValues](#axValues).
--}
-axDates : List (List DateTime) -> AxisProperty
-axDates =
-    AxDates
 
 
 {-| Whether or not an axis baseline (domain) should be included as part of an axis.
@@ -7230,13 +7168,6 @@ axTickOpacity =
 axTickRound : Bool -> AxisProperty
 axTickRound =
     AxTickRound
-
-
-{-| Deprecated in favour of [axTickMinStep](#axTickMinStep).
--}
-axTickStep : Float -> AxisProperty
-axTickStep =
-    AxTickMinStep
 
 
 {-| Width of axis ticks.
@@ -8320,13 +8251,6 @@ coAxisTop =
     AxisTop
 
 
-{-| Deprecated in favour of [coAxisXFilter](#coAxisXFilter).
--}
-coAxisX : List AxisConfig -> ConfigurationProperty
-coAxisX =
-    Axis AxX
-
-
 {-| Filter an axis configuration so that it only applies to x-axes. For example,
 to configure all band X-axes to be red,
 
@@ -8356,13 +8280,6 @@ coAxisXFilter cp =
 
         _ ->
             cp
-
-
-{-| Deprecated in favour of [coAxisYFilter](#coAxisYFilter).
--}
-coAxisY : List AxisConfig -> ConfigurationProperty
-coAxisY =
-    Axis AxY
 
 
 {-| Filter an axis configuration so that it only applies to y-axes. For example,
@@ -8605,20 +8522,6 @@ combineSpecs specs =
     JE.object specs
 
 
-{-| Deprecated in favour of [coMarkStyles](#coMarkStyles].
--}
-coNamedStyle : String -> List MarkProperty -> ConfigurationProperty
-coNamedStyle s mps =
-    coMarkStyles [ ( s, mps ) ]
-
-
-{-| Deprecated in favour of [coMarkStyles](#coMarkStyles].
--}
-coNamedStyles : List ( String, List MarkProperty ) -> ConfigurationProperty
-coNamedStyles =
-    coMarkStyles
-
-
 {-| Specifications to be juxtaposed in a flow layout of views. The number of columns
 in the flow layout can be set with [columns](#columns) and if not specified will
 default to a single row of unlimited columns.
@@ -8778,13 +8681,6 @@ coSelection =
 coSquare : List MarkProperty -> ConfigurationProperty
 coSquare =
     SquareStyle
-
-
-{-| Deprecated as stack offset is not supported since Vega-Lite 4.
--}
-coStack : StackOffset -> ConfigurationProperty
-coStack =
-    Stack
 
 
 {-| Configure the default appearance of text marks.
@@ -12806,20 +12702,6 @@ lookup key1 ( vlProp, spec ) key2 lufs =
         )
 
 
-{-| Deprecated in favour of [lookup](#lookup). For example,
-
-    lookupAs "key1" secondaryData "key2" "matchedName"
-
-should be replaced with
-
-    lookup "key1" secondaryData "key2" (luAs "matchedName")
-
--}
-lookupAs : String -> Data -> String -> String -> List LabelledSpec -> List LabelledSpec
-lookupAs key1 sData key2 luAlias =
-    lookup key1 sData key2 (luAs luAlias)
-
-
 {-| Attach the results of an interactive selection to a primary data source.
 The first three parameters are the field in the primary data source to look up;
 the name of the interactive selection; and the name of the field in the selection
@@ -15731,26 +15613,12 @@ sacoPointPadding =
     SCPointPadding
 
 
-{-| Deprecated in favour of [vicoStep](#vicoStep).
--}
-sacoRangeStep : Maybe Float -> ScaleConfig
-sacoRangeStep =
-    SCRangeStep
-
-
 {-| Whether or not numeric values are rounded to integers when scaling. Useful
 for snapping to the pixel grid.
 -}
 sacoRound : Bool -> ScaleConfig
 sacoRound =
     SCRound
-
-
-{-| Deprecated in favour of [vicoStep](#vicoStep).
--}
-sacoTextXRangeStep : Float -> ScaleConfig
-sacoTextXRangeStep =
-    SCTextXRangeStep
 
 
 {-| Whether or not to use the source data range before aggregation.
@@ -15806,13 +15674,6 @@ scBand =
 scBase : Float -> ScaleProperty
 scBase =
     SBase
-
-
-{-| Deprecated in favour of [scLinear](#scLinear) with binning aggregation.
--}
-scBinLinear : Scale
-scBinLinear =
-    ScLinear
 
 
 {-| An ordinal band scale.
@@ -15964,13 +15825,6 @@ scRange =
     SRange
 
 
-{-| Deprecated in favour of [widthStep](#widthStep) and [heightStep](#heightStep).
--}
-scRangeStep : Maybe Float -> ScaleProperty
-scRangeStep =
-    SRangeStep
-
-
 {-| Whether or not to reverse sorting order of a scaling.
 -}
 scReverse : Bool -> ScaleProperty
@@ -16000,13 +15854,6 @@ range to use (list of two numbers between 0 and 1). For example
 scScheme : String -> List Float -> ScaleProperty
 scScheme =
     SScheme
-
-
-{-| Deprecated in favour of [scLinear](#scLinear).
--}
-scSequential : Scale
-scSequential =
-    ScLinear
 
 
 {-| A square root scale.
@@ -17871,27 +17718,11 @@ vicoStrokeWidth =
     VStrokeWidth
 
 
-{-| Depcrecated in favour of [vicoContinuousHeight](#vicoContinuousHeight) or
-[vicoDiscreteHeight](#vicoDiscreteHeight).
--}
-vicoHeight : Float -> ViewConfig
-vicoHeight =
-    VContinuousHeight
-
-
 {-| Configure the default single view style.
 -}
 vicoBackground : List ViewBackground -> ViewConfig
 vicoBackground =
     VBackground
-
-
-{-| Depcrecated in favour of [vicoContinuousWidth](#vicoContinuousWidth) or
-[vicoDiscreteWidth](#vicoDiscreteWidth).
--}
-vicoWidth : Float -> ViewConfig
-vicoWidth =
-    VContinuousWidth
 
 
 {-| The background style of a single view or layer in a view composition.

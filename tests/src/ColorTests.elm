@@ -93,12 +93,6 @@ scale1 =
         (color [ mName "Acceleration", mQuant, mScale [ scType scLinear, scRange (raStrs [ "yellow", "red" ]) ] ])
 
 
-scale2 : Spec
-scale2 =
-    chart "Sequential (deprecated) colour scale."
-        (color [ mName "Acceleration", mQuant, mScale [ scType scSequential, scRange (raStrs [ "yellow", "red" ]) ] ])
-
-
 scale3 : Spec
 scale3 =
     chart "Power colour scale with default (1) exponent."
@@ -355,7 +349,6 @@ specs =
     , ( "customContinuous", customContinuous )
     , ( "customDiscrete", customDiscrete )
     , ( "scale1", scale1 )
-    , ( "scale2", scale2 )
     , ( "scale3", scale3 )
     , ( "scale4", scale4 )
     , ( "scale5", scale5 )
