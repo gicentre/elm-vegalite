@@ -4318,6 +4318,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$GalleryDist$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -7695,7 +7696,7 @@ var $author$project$GalleryDist$dist1 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
@@ -7707,12 +7708,12 @@ var $author$project$GalleryDist$dist1 = function () {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
-	var des = $author$project$VegaLite$description('Simple histogram of IMDB ratings.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Simple histogram of IMDB ratings.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -8025,12 +8026,12 @@ var $author$project$GalleryDist$dist2 = function () {
 							$author$project$VegaLite$axFormat('.1~%')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Histogram with relative requency calculcated for the y scale and axis.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Histogram with relative requency calculcated for the y scale and axis.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -8166,7 +8167,7 @@ var $author$project$GalleryDist$dist3 = function () {
 					$author$project$VegaLite$wiSort(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$wiAscending('IMDB_Rating')
+							$author$project$VegaLite$wiAscending('IMDB Rating')
 						])),
 					A2(
 					$author$project$VegaLite$wiFrame,
@@ -8183,7 +8184,7 @@ var $author$project$GalleryDist$dist3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		A2(
@@ -8194,12 +8195,12 @@ var $author$project$GalleryDist$dist3 = function () {
 					$author$project$VegaLite$pName('cumulativeCount'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Cumulative frequency distribution');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Cumulative frequency distribution');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -8300,7 +8301,7 @@ var $author$project$GalleryDist$dist4 = function () {
 		$author$project$VegaLite$transform,
 		A2(
 			$author$project$VegaLite$density,
-			'IMDB_Rating',
+			'IMDB Rating',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$dnBandwidth(0.3)
@@ -8327,7 +8328,7 @@ var $author$project$GalleryDist$dist4 = function () {
 					$author$project$VegaLite$pName('density'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -8346,10 +8347,6 @@ var $author$project$VegaLite$color = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$DnCounts = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$dnCounts = $author$project$VegaLite$DnCounts;
 var $author$project$VegaLite$DnExtent = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
@@ -8359,45 +8356,192 @@ var $author$project$VegaLite$DnGroupBy = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$dnGroupBy = $author$project$VegaLite$DnGroupBy;
-var $author$project$VegaLite$DnSteps = function (a) {
-	return {$: 7, a: a};
+var $author$project$VegaLite$DnMinSteps = function (a) {
+	return {$: 5, a: a};
 };
-var $author$project$VegaLite$dnSteps = $author$project$VegaLite$DnSteps;
+var $author$project$VegaLite$dnMinSteps = $author$project$VegaLite$DnMinSteps;
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MScale = function (a) {
-	return {$: 5, a: a};
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 53, a: a};
 };
-var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 61, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
 var $author$project$VegaLite$PStack = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$pStack = $author$project$VegaLite$PStack;
-var $author$project$VegaLite$SScheme = F2(
-	function (a, b) {
-		return {$: 3, a: a, b: b};
-	});
-var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
 var $author$project$VegaLite$OfZero = 0;
 var $author$project$VegaLite$stZero = 0;
+var $author$project$VegaLite$VLTitle = 2;
+var $author$project$VegaLite$tfLabel = function (tf) {
+	if (tf === 1) {
+		return 'group';
+	} else {
+		return 'bounds';
+	}
+};
+var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
+	switch (titleCfg.$) {
+		case 0:
+			var an = titleCfg.a;
+			return _Utils_Tuple2(
+				'anchor',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$anchorLabel(an)));
+		case 1:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'angle',
+				$elm$json$Json$Encode$float(x));
+		case 2:
+			var va = titleCfg.a;
+			return _Utils_Tuple2(
+				'baseline',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$vAlignLabel(va)));
+		case 3:
+			var clr = titleCfg.a;
+			return _Utils_Tuple2(
+				'color',
+				$elm$json$Json$Encode$string(clr));
+		case 4:
+			var fnt = titleCfg.a;
+			return _Utils_Tuple2(
+				'font',
+				$elm$json$Json$Encode$string(fnt));
+		case 5:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontSize',
+				$elm$json$Json$Encode$float(x));
+		case 6:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 8:
+			var tf = titleCfg.a;
+			return _Utils_Tuple2(
+				'frame',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$tfLabel(tf)));
+		case 7:
+			var w = titleCfg.a;
+			return _Utils_Tuple2(
+				'fontWeight',
+				$author$project$VegaLite$fontWeightSpec(w));
+		case 10:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'limit',
+				$elm$json$Json$Encode$float(x));
+		case 9:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'lineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 11:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'offset',
+				$elm$json$Json$Encode$float(x));
+		case 12:
+			var sd = titleCfg.a;
+			return _Utils_Tuple2(
+				'orient',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$sideLabel(sd)));
+		case 13:
+			var ss = titleCfg.a;
+			if (ss.b && (!ss.b.b)) {
+				var s = ss.a;
+				return _Utils_Tuple2(
+					'style',
+					$elm$json$Json$Encode$string(s));
+			} else {
+				return _Utils_Tuple2(
+					'style',
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss));
+			}
+		case 14:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitle',
+				$author$project$VegaLite$multilineTextSpec(s));
+		case 15:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleColor',
+				$elm$json$Json$Encode$string(s));
+		case 16:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFont',
+				$elm$json$Json$Encode$string(s));
+		case 17:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFontSize',
+				$elm$json$Json$Encode$float(x));
+		case 18:
+			var s = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFontStyle',
+				$elm$json$Json$Encode$string(s));
+		case 19:
+			var w = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleFontWeight',
+				$author$project$VegaLite$fontWeightSpec(w));
+		case 20:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitleLineHeight',
+				$elm$json$Json$Encode$float(x));
+		case 21:
+			var x = titleCfg.a;
+			return _Utils_Tuple2(
+				'subtitlePadding',
+				$elm$json$Json$Encode$float(x));
+		default:
+			var n = titleCfg.a;
+			return _Utils_Tuple2(
+				'zindex',
+				$elm$json$Json$Encode$int(n));
+	}
+};
+var $author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			$elm$json$Json$Encode$object(
+				A2(
+					$elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						$author$project$VegaLite$multilineTextSpec(txt)),
+					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tps))));
+	});
 var $author$project$GalleryDist$dist5 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		A2(
 			$author$project$VegaLite$density,
-			'IMDB_Rating',
+			'Body Mass (g)',
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dnBandwidth(0.3),
+					$author$project$VegaLite$dnMinSteps(50),
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
-						['Major_Genre'])),
-					A2($author$project$VegaLite$dnExtent, 0, 10),
-					$author$project$VegaLite$dnCounts(true),
-					$author$project$VegaLite$dnSteps(50)
+						['Species'])),
+					A2($author$project$VegaLite$dnExtent, 2500, 6500)
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -8412,7 +8556,8 @@ var $author$project$GalleryDist$dist5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('value'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pTitle('Body mass (g)')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -8426,23 +8571,24 @@ var $author$project$GalleryDist$dist5 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Major_Genre'),
-					$author$project$VegaLite$mScale(
-					_List_fromArray(
-						[
-							A2($author$project$VegaLite$scScheme, 'category20', _List_Nil)
-						]))
+					$author$project$VegaLite$mName('Species')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				A2($author$project$VegaLite$title, 'Body Mass of Penguins', _List_Nil),
 				$author$project$VegaLite$width(400),
-				$author$project$VegaLite$height(100),
+				$author$project$VegaLite$height(120),
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$area(_List_Nil)
+				$author$project$VegaLite$area(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('white'),
+						$author$project$VegaLite$maStrokeWidth(0.5)
+					]))
 			]));
 }();
 var $author$project$VegaLite$asSpec = function (specs) {
@@ -8504,7 +8650,7 @@ var $author$project$GalleryDist$dist6 = function () {
 				A2(
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
-					A3($author$project$VegaLite$binAs, _List_Nil, 'IMDB_Rating', 'bin_IMDB_Rating')),
+					A3($author$project$VegaLite$binAs, _List_Nil, 'IMDB Rating', 'binIMDBRating')),
 				A2(
 					$author$project$VegaLite$aggregate,
 					_List_fromArray(
@@ -8512,9 +8658,9 @@ var $author$project$GalleryDist$dist6 = function () {
 							A3($author$project$VegaLite$opAs, $author$project$VegaLite$opCount, '', 'count')
 						]),
 					_List_fromArray(
-						['bin_IMDB_Rating', 'bin_IMDB_Rating_end']))),
+						['binIMDBRating', 'binIMDBRating_end']))),
 			$author$project$VegaLite$filter(
-				$author$project$VegaLite$fiExpr('datum.bin_IMDB_Rating !== null'))),
+				$author$project$VegaLite$fiExpr('datum.binIMDBRating !== null'))),
 		A2(
 			$author$project$VegaLite$window,
 			_List_fromArray(
@@ -8532,7 +8678,7 @@ var $author$project$GalleryDist$dist6 = function () {
 					$author$project$VegaLite$wiSort(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$wiAscending('bin_IMDB_Rating')
+							$author$project$VegaLite$wiAscending('binIMDBRating')
 						])),
 					A2(
 					$author$project$VegaLite$wiFrame,
@@ -8549,7 +8695,7 @@ var $author$project$GalleryDist$dist6 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('bin_IMDB_Rating'),
+						$author$project$VegaLite$pName('binIMDBRating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
@@ -8567,10 +8713,10 @@ var $author$project$GalleryDist$dist6 = function () {
 			2,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('bin_IMDB_Rating_end')
+					$author$project$VegaLite$pName('binIMDBRating_end')
 				])));
-	var des = $author$project$VegaLite$description('A layered histogram and cumulative histogram.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A layered histogram and cumulative histogram.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'movies.json', _List_Nil);
 	var dEnc = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -8602,7 +8748,8 @@ var $author$project$GalleryDist$dist6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('cumulativeCount'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pTitle('')
 				])));
 	var specCumulative = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8613,7 +8760,7 @@ var $author$project$GalleryDist$dist6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -8622,6 +8769,13 @@ var $author$project$GalleryDist$dist6 = function () {
 					[specCumulative, specDist]))
 			]));
 }();
+var $author$project$VegaLite$AxLabelAngle = function (a) {
+	return {$: 21, a: a};
+};
+var $author$project$VegaLite$positiveAngle = function (a) {
+	return (a < 0) ? (a + 360) : a;
+};
+var $author$project$VegaLite$axLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$AxLabelAngle, $author$project$VegaLite$positiveAngle);
 var $author$project$VegaLite$Boxplot = 3;
 var $author$project$VegaLite$boxplot = $author$project$VegaLite$mark(3);
 var $author$project$VegaLite$ExRange = {$: 4};
@@ -8644,7 +8798,12 @@ var $author$project$GalleryDist$dist7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('age'),
-						$author$project$VegaLite$pOrdinal
+						$author$project$VegaLite$pOrdinal,
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axLabelAngle(0)
+							]))
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -8655,12 +8814,12 @@ var $author$project$GalleryDist$dist7 = function () {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('population')
 				])));
-	var des = $author$project$VegaLite$description('A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$boxplot(
@@ -8699,7 +8858,12 @@ var $author$project$GalleryDist$dist8 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('age'),
-							$author$project$VegaLite$pOrdinal
+							$author$project$VegaLite$pOrdinal,
+							$author$project$VegaLite$pAxis(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$axLabelAngle(0)
+								]))
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -8715,12 +8879,12 @@ var $author$project$GalleryDist$dist8 = function () {
 				[
 					$author$project$VegaLite$mNum(5)
 				])));
-	var des = $author$project$VegaLite$description('Tukey box plot showing median, min, and max in the US population distribution of age groups in 2000.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Tukey box plot showing median, min, and max in the US population distribution of age groups in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$boxplot(
@@ -8850,7 +9014,7 @@ var $author$project$GalleryDist$dist9 = function () {
 					$author$project$VegaLite$pName('v'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/normal-2d.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'normal-2d.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
