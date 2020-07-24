@@ -1,6 +1,6 @@
 port module GalleryLayer exposing (elmToJS)
 
-import Json.Encode
+import Json.Encode as JE
 import Platform
 import VegaLite exposing (..)
 
@@ -11,10 +11,15 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 layer1 : Spec
 layer1 =
     let
-        des =
+        desc =
             description "A candlestick chart inspired by Protovis (http://mbostock.github.io/protovis/ex/candlestick.html)"
 
         data =
@@ -52,17 +57,17 @@ layer1 =
         specBar =
             asSpec [ bar [ maSize 8 ], encBar [] ]
     in
-    toVegaLite [ width 400, data [], enc [], layer [ specRule, specBar ] ]
+    toVegaLite [ desc, width 400, data [], enc [], layer [ specRule, specBar ] ]
 
 
 layer2 : Spec
 layer2 =
     let
-        des =
+        desc =
             description "A ranged dot plot that uses 'layer' to convey changing life expectancy for the five most populous countries (between 1955 and 2000)."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/countries.json" []
+            dataFromUrl (path ++ "countries.json") []
 
         trans =
             transform
@@ -110,29 +115,29 @@ layer2 =
         specPoints =
             asSpec [ encPoints [], point [ maFilled True ] ]
     in
-    toVegaLite [ des, data, trans [], encCountry [], layer [ specLine, specPoints ] ]
+    toVegaLite [ desc, data, trans [], encCountry [], layer [ specLine, specPoints ] ]
 
 
 layer3 : Spec
 layer3 =
     let
-        des =
+        desc =
             description "Bullet chart"
 
         cfg =
             configure << configuration (coTick [ maThickness 2 ])
 
         row title ranges measures marker =
-            Json.Encode.object
-                [ ( "title", Json.Encode.string title )
-                , ( "ranges", Json.Encode.list Json.Encode.float ranges )
-                , ( "measures", Json.Encode.list Json.Encode.float measures )
-                , ( "markers", Json.Encode.list Json.Encode.float [ marker ] )
+            JE.object
+                [ ( "title", JE.string title )
+                , ( "ranges", JE.list JE.float ranges )
+                , ( "measures", JE.list JE.float measures )
+                , ( "markers", JE.list JE.float [ marker ] )
                 ]
 
         data =
             dataFromJson
-                (Json.Encode.list identity
+                (JE.list identity
                     [ row "Revenue" [ 150, 225, 300 ] [ 220, 270 ] 250
                     , row "Profit" [ 20, 25, 30 ] [ 21, 23 ] 26
                     , row "Order size" [ 350, 500, 600 ] [ 100, 320 ] 550
@@ -193,7 +198,7 @@ layer3 =
             asSpec [ enc6 [], tick [ maColor "black" ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , data []
         , res []
@@ -215,11 +220,11 @@ layer3 =
 layer4 : Spec
 layer4 =
     let
-        des =
+        desc =
             description "A dual axis chart, created by setting y's scale resolution to independent."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/weather.csv" []
+            dataFromUrl (path ++ "weather.csv") []
 
         trans =
             transform
@@ -266,7 +271,7 @@ layer4 =
                 << resolution (reScale [ ( chY, reIndependent ) ])
     in
     toVegaLite
-        [ des
+        [ desc
         , width 400
         , height 300
         , data
@@ -280,7 +285,7 @@ layer4 =
 layer5 : Spec
 layer5 =
     let
-        des =
+        desc =
             description "Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)"
 
         cfg =
@@ -315,7 +320,7 @@ layer5 =
             asSpec [ encUpper [], trans [], area [ maClip True ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , width 300
         , height 50
         , cfg []
@@ -328,76 +333,13 @@ layer5 =
 layer6 : Spec
 layer6 =
     let
+        desc =
+            description "A layered bar chart with floating bars representing weekly weather data"
+
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/weather.json" []
+            dataFromUrl (path ++ "weather.json") []
 
-        enc1 =
-            encoding
-                << position Y [ pName "record.low", pQuant, pScale [ scDomain (doNums [ 10, 70 ]) ], pAxis [ axTitle "Temperature (F)" ] ]
-                << position Y2 [ pName "record.high", pQuant ]
-                << position X [ pName "id", pOrdinal, pAxis [ axTitle "Day" ] ]
-                << size [ mNum 20 ]
-                << color [ mStr "#ccc" ]
-
-        spec1 =
-            asSpec [ bar [], enc1 [] ]
-
-        enc2 =
-            encoding
-                << position Y [ pName "normal.low", pQuant ]
-                << position Y2 [ pName "normal.high", pQuant ]
-                << position X [ pName "id", pOrdinal ]
-                << size [ mNum 20 ]
-                << color [ mStr "#999" ]
-
-        spec2 =
-            asSpec [ bar [], enc2 [] ]
-
-        enc3 =
-            encoding
-                << position Y [ pName "actual.low", pQuant ]
-                << position Y2 [ pName "actual.high", pQuant ]
-                << position X [ pName "id", pOrdinal ]
-                << size [ mNum 12 ]
-                << color [ mStr "#000" ]
-
-        spec3 =
-            asSpec [ bar [], enc3 [] ]
-
-        enc4 =
-            encoding
-                << position Y [ pName "forecast.low.low", pQuant ]
-                << position Y2 [ pName "forecast.low.high", pQuant ]
-                << position X [ pName "id", pOrdinal ]
-                << size [ mNum 12 ]
-                << color [ mStr "#000" ]
-
-        spec4 =
-            asSpec [ bar [], enc4 [] ]
-
-        enc5 =
-            encoding
-                << position Y [ pName "forecast.low.high", pQuant ]
-                << position Y2 [ pName "forecast.high.low", pQuant ]
-                << position X [ pName "id", pOrdinal ]
-                << size [ mNum 3 ]
-                << color [ mStr "#000" ]
-
-        spec5 =
-            asSpec [ bar [], enc5 [] ]
-
-        enc6 =
-            encoding
-                << position Y [ pName "forecast.high.low", pQuant ]
-                << position Y2 [ pName "forecast.high.high", pQuant ]
-                << position X [ pName "id", pOrdinal ]
-                << size [ mNum 12 ]
-                << color [ mStr "#000" ]
-
-        spec6 =
-            asSpec [ bar [], enc6 [] ]
-
-        enc7 =
+        enc =
             encoding
                 << position X
                     [ pName "id"
@@ -406,22 +348,91 @@ layer6 =
                         [ axDomain False
                         , axTicks False
                         , axLabels False
-                        , axTitle "Day"
+                        , axTitle ""
                         , axTitlePadding 25
                         , axOrient siTop
                         ]
                     ]
+                << position Y
+                    [ pQuant
+                    , pScale [ scDomain (doNums [ 10, 70 ]) ]
+                    , pTitle "Temperature (F)"
+                    ]
+
+        enc1 =
+            encoding
+                << position Y [ pName "record.low" ]
+                << position Y2 [ pName "record.high" ]
+                << size [ mNum 20 ]
+                << color [ mStr "#ccc" ]
+
+        spec1 =
+            asSpec [ enc1 [], bar [ maStyle [ "box" ] ] ]
+
+        enc2 =
+            encoding
+                << position Y [ pName "normal.low" ]
+                << position Y2 [ pName "normal.high" ]
+                << size [ mNum 20 ]
+                << color [ mStr "#999" ]
+
+        spec2 =
+            asSpec [ enc2 [], bar [ maStyle [ "box" ] ] ]
+
+        enc3 =
+            encoding
+                << position Y [ pName "actual.low" ]
+                << position Y2 [ pName "actual.high" ]
+                << size [ mNum 12 ]
+                << color [ mStr "#000" ]
+
+        spec3 =
+            asSpec [ enc3 [], bar [ maStyle [ "box" ] ] ]
+
+        enc4 =
+            encoding
+                << position Y [ pName "forecast.low.low" ]
+                << position Y2 [ pName "forecast.low.high" ]
+                << size [ mNum 12 ]
+                << color [ mStr "#000" ]
+
+        spec4 =
+            asSpec [ enc4 [], bar [ maStyle [ "box" ] ] ]
+
+        enc5 =
+            encoding
+                << position Y [ pName "forecast.low.high", pQuant ]
+                << position Y2 [ pName "forecast.high.low" ]
+                << size [ mNum 3 ]
+                << color [ mStr "#000" ]
+
+        spec5 =
+            asSpec [ enc5 [], bar [ maStyle [ "box" ] ] ]
+
+        enc6 =
+            encoding
+                << position Y [ pName "forecast.high.low" ]
+                << position Y2 [ pName "forecast.high.high" ]
+                << size [ mNum 12 ]
+                << color [ mStr "#000" ]
+
+        spec6 =
+            asSpec [ enc6 [], bar [ maStyle [ "box" ] ] ]
+
+        enc7 =
+            encoding
                 << text [ tName "day" ]
 
         spec7 =
-            asSpec [ textMark [ maAlign haCenter, maDy -105 ], enc7 [] ]
+            asSpec [ enc7 [], textMark [ maAlign haCenter, maBaseline vaBottom, maY -5 ] ]
     in
     toVegaLite
-        [ description "A layered bar chart with floating bars representing weekly weather data"
-        , title "Weekly Weather Observations and Predictions" []
+        [ desc
+        , title "Weekly Weather" [ tiSubtitle "Observations and Predictions" ]
         , width 250
         , height 200
         , data
+        , enc []
         , layer [ spec1, spec2, spec3, spec4, spec5, spec6, spec7 ]
         ]
 
@@ -605,7 +616,7 @@ layer7 =
         encPartnerRange =
             encoding
                 << position X [ pName "start", pOrdinal ]
-                << position X2 [ pName "end", pOrdinal ]
+                << position X2 [ pName "end" ]
                 << position Y [ pNum 420 ]
 
         specPartnerRange =
@@ -678,8 +689,11 @@ layer7 =
 layer8 : Spec
 layer8 =
     let
+        desc =
+            description "William Playfair’s visualization of the price of wheat, the wages of a mechanic and the reigning British monarch"
+
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/wheat.json" []
+            dataFromUrl (path ++ "wheat.json") []
 
         dataAnnotation =
             dataFromRows []
@@ -887,7 +901,8 @@ layer8 =
                 ]
     in
     toVegaLite
-        [ cfg []
+        [ desc
+        , cfg []
         , width 900
         , height 450
         , data
