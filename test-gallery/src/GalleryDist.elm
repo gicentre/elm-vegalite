@@ -159,7 +159,7 @@ dist6 =
                     [ pName "binIMDBRating"
                     , pQuant
                     , pScale [ scZero False ]
-                    , pAxis [ axTitle "IMDB rating" ]
+                    , pTitle "IMDB rating"
                     ]
                 << position X2 [ pName "binIMDBRating_end" ]
 

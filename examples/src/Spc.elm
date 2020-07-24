@@ -285,7 +285,7 @@ encCusum =
         << position Y
             [ pName "cusum"
             , pQuant
-            , pAxis [ axTitle "Crimes above/below target (thousands)" ]
+            , pTitle "Crimes above/below target (thousands)"
             ]
     )
         []

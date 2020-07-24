@@ -18,7 +18,7 @@ bPlot ext =
         enc =
             encoding
                 << position X [ pName "age", pOrdinal ]
-                << position Y [ pName "people", pQuant, pAxis [ axTitle "Population" ] ]
+                << position Y [ pName "people", pQuant, pTitle "Population" ]
     in
     toVegaLite [ pop, boxplot [ maExtent ext ], enc [] ]
 
@@ -42,7 +42,7 @@ boxplot3 =
         enc =
             encoding
                 << position X [ pName "age", pOrdinal ]
-                << position Y [ pName "people", pQuant, pAxis [ axTitle "Population" ] ]
+                << position Y [ pName "people", pQuant, pTitle "Population" ]
     in
     toVegaLite
         [ pop
@@ -67,7 +67,7 @@ boxplot4 =
         enc =
             encoding
                 << position X [ pName "age", pOrdinal ]
-                << position Y [ pName "people", pQuant, pAxis [ axTitle "Population" ] ]
+                << position Y [ pName "people", pQuant, pTitle "Population" ]
     in
     toVegaLite
         [ pop

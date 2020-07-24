@@ -549,7 +549,7 @@ contextAndFocus =
                     [ pName "date"
                     , pTemporal
                     , pScale [ scDomain (doSelection "brush") ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
                 << position Y [ pName "price", pQuant ]
 

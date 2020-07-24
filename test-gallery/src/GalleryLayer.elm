@@ -98,11 +98,7 @@ layer2 =
 
         encPoints =
             encoding
-                << position X
-                    [ pName "life_expect"
-                    , pQuant
-                    , pAxis [ axTitle "Life Expectancy (years)" ]
-                    ]
+                << position X [ pName "life_expect", pQuant, pTitle "Life Expectancy (years)" ]
                 << color
                     [ mName "year"
                     , mOrdinal
@@ -161,7 +157,7 @@ layer3 =
                     [ pName "ranges[2]"
                     , pQuant
                     , pScale [ scNice niFalse ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
 
         spec1 =
@@ -311,7 +307,7 @@ layer5 =
 
         encUpper =
             encoding
-                << position Y [ pName "ny", pQuant, pScale [ scDomain (doNums [ 0, 50 ]) ], pAxis [ axTitle "y" ] ]
+                << position Y [ pName "ny", pQuant, pScale [ scDomain (doNums [ 0, 50 ]) ], pTitle "y" ]
                 << opacity [ mNum 0.3 ]
 
         specUpper =
@@ -531,12 +527,12 @@ layer7 =
         -- XKCD Creepiness range
         encBand =
             encoding
-                << position X [ pName "year", pOrdinal, pAxis [ axTitle "" ] ]
+                << position X [ pName "year", pOrdinal, pTitle "" ]
                 << position Y
                     [ pName "minAge"
                     , pQuant
                     , pScale [ scZero False, scDomain (doNums [ 16, 50 ]) ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
                 << position Y2 [ pName "maxAge" ]
 

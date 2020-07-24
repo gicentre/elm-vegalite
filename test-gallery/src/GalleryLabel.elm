@@ -270,7 +270,7 @@ label5 =
         encText =
             encoding
                 << position X [ pWidth ]
-                << position Y [ pName "ThresholdValue", pQuant, pAxis [ axTitle "PM2.5 Value" ] ]
+                << position Y [ pName "ThresholdValue", pQuant, pTitle "PM2.5 Value" ]
                 << text [ tName "Threshold", tOrdinal ]
 
         layer1 =
@@ -365,7 +365,7 @@ label8 =
 
         encPopulation =
             encoding
-                << position X [ pName "year", pTemporal, pTimeUnit year, pAxis [ axTitle "" ] ]
+                << position X [ pName "year", pTemporal, pTimeUnit year, pTitle "" ]
                 << position Y [ pName "population", pQuant ]
                 << color [ mStr "#333" ]
 
@@ -439,7 +439,7 @@ label9 =
                     [ pName "median"
                     , pQuant
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
 
         specTick1 =

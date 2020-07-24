@@ -27,7 +27,7 @@ area1 =
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axTitle "", axFormat "%Y" ] ]
-                << position Y [ pName "count", pAggregate opSum, pAxis [ axTitle "Number of unemployed" ] ]
+                << position Y [ pName "count", pAggregate opSum, pTitle "Number of unemployed" ]
     in
     toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
 
@@ -190,7 +190,7 @@ area7 =
                     [ pName "ny"
                     , pQuant
                     , pScale [ scDomain (doNums [ 0, 50 ]) ]
-                    , pAxis [ axTitle "y" ]
+                    , pTitle "y"
                     ]
                 << opacity [ mNum 0.3 ]
 
@@ -273,7 +273,7 @@ area8 =
         enc3 =
             encoding
                 << position X [ pName "xc", pQuant, pAxis [] ]
-                << position Y [ pName "yc", pQuant, pAxis [ axTitle "Cylinders" ] ]
+                << position Y [ pName "yc", pQuant, pTitle "Cylinders" ]
                 << text [ tName "Cylinders" ]
 
         spec3 =

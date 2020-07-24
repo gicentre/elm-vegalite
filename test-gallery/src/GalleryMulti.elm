@@ -276,7 +276,7 @@ multi5 =
                     [ pName "temp_max"
                     , pQuant
                     , pScale [ scDomain (doNums [ -5, 40 ]) ]
-                    , pAxis [ axTitle "Maximum Daily Temperature (C)" ]
+                    , pTitle "Maximum Daily Temperature (C)"
                     ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")

@@ -180,7 +180,7 @@ multiline1 =
                     [ pName "y"
                     , pQuant
                     , pScale [ scDomain (doNums [ 0, 20 ]) ]
-                    , pAxis [ axTitle "Axis title on\ntwo lines" ]
+                    , pTitle "Axis title on\ntwo lines"
                     ]
                 << color [ mName "cat", mTitle "Legend title on\ntwo lines" ]
 

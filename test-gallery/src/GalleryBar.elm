@@ -388,12 +388,7 @@ bar16 =
         enc =
             encoding
                 << position X [ pName "age", pOrdinal ]
-                << position Y
-                    [ pName "people"
-                    , pAggregate opSum
-                    , pAxis [ axTitle "Population" ]
-                    , pStack stNone
-                    ]
+                << position Y [ pName "people", pAggregate opSum, pTitle "Population", pStack stNone ]
                 << color
                     [ mName "gender"
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
@@ -459,11 +454,7 @@ bar18 =
 
         enc =
             encoding
-                << position X
-                    [ pName "percentage_start"
-                    , pQuant
-                    , pAxis [ axTitle "Percentage" ]
-                    ]
+                << position X [ pName "percentage_start", pQuant, pTitle "Percentage" ]
                 << position X2 [ pName "percentage_end" ]
                 << position Y
                     [ pName "question"
