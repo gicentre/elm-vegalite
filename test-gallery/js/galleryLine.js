@@ -6279,6 +6279,7 @@ var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$GalleryLine$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -7752,12 +7753,12 @@ var $author$project$GalleryLine$line1 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Google\'s stock price over time.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Google\'s stock price over time.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -7903,12 +7904,12 @@ var $author$project$GalleryLine$line10 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Line chart with conditional grid dash.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Line chart with conditional grid dash.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -7923,6 +7924,10 @@ var $author$project$VegaLite$axLabelExpr = $author$project$VegaLite$AxLabelExpr;
 var $author$project$VegaLite$axLabelOffset = $author$project$VegaLite$AxLabelOffset;
 var $author$project$VegaLite$axLabelPadding = $author$project$VegaLite$AxLabelPadding;
 var $author$project$VegaLite$axTickSize = $author$project$VegaLite$AxTickSize;
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$DomainColor = function (a) {
 	return {$: 5, a: a};
 };
@@ -10987,6 +10992,7 @@ var $author$project$GalleryLine$line11 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axTickCount(
 								$author$project$VegaLite$niTickCount(8)),
 								$author$project$VegaLite$axLabelAlign($author$project$VegaLite$haLeft),
@@ -11040,8 +11046,8 @@ var $author$project$GalleryLine$line11 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Line chart with conditional axis ticks, labels, and grid.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Line chart with conditional axis ticks, labels, and grid.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -11055,7 +11061,7 @@ var $author$project$GalleryLine$line11 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(400),
 				data,
@@ -11212,12 +11218,12 @@ var $author$project$GalleryLine$line12 = function () {
 					$author$project$VegaLite$oName('year'),
 					$author$project$VegaLite$oTemporal
 				])));
-	var des = $author$project$VegaLite$description('A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/driving.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'driving.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -11294,12 +11300,12 @@ var $author$project$GalleryLine$line13 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var des = $author$project$VegaLite$description('Stock prices of five tech companies over time double encoding price with vertical position and line thickness.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Stock prices of five tech companies over time double encoding price with vertical position and line thickness.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$trail(_List_Nil)
@@ -11382,7 +11388,7 @@ var $author$project$GalleryLine$line14 = function () {
 					$author$project$VegaLite$pName('y'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Line chart with markers and invalid values.');
+	var desc = $author$project$VegaLite$description('Line chart with markers and invalid values.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11467,7 +11473,7 @@ var $author$project$GalleryLine$line14 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -11491,10 +11497,6 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$calculateAs = F2(
 	function (ex, label) {
 		return $elm$core$List$cons(
@@ -12105,10 +12107,10 @@ var $author$project$GalleryLine$line15 = function () {
 				encLine(_List_Nil),
 				$author$project$VegaLite$line(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Carbon dioxide in the atmosphere.');
+	var desc = $author$project$VegaLite$description('Carbon dioxide in the atmosphere.');
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/co2-concentration.csv',
+		$author$project$GalleryLine$path + 'co2-concentration.csv',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$parse(
@@ -12133,7 +12135,7 @@ var $author$project$GalleryLine$line15 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(500),
@@ -12399,7 +12401,7 @@ var $author$project$GalleryLine$line16 = function () {
 					$author$project$VegaLite$mName('team'),
 					$author$project$VegaLite$mScale(teamColours)
 				])));
-	var des = $author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
+	var desc = $author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12436,7 +12438,7 @@ var $author$project$GalleryLine$line16 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -12548,12 +12550,12 @@ var $author$project$GalleryLine$line17 = function () {
 						$author$project$VegaLite$maStroke('firebrick')
 					]))
 			]));
-	var des = $author$project$VegaLite$description('Plots a function using a generated sequence');
+	var desc = $author$project$VegaLite$description('Plots a function using a generated sequence');
 	var data = A4($author$project$VegaLite$dataSequenceAs, 0, 12.7, 0.1, 'u');
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(150),
 				data,
@@ -12599,7 +12601,7 @@ var $author$project$GalleryLine$line18 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12737,12 +12739,12 @@ var $author$project$GalleryLine$line2 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var des = $author$project$VegaLite$description('Line chart with point markers.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Line chart with point markers.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -12792,12 +12794,12 @@ var $author$project$GalleryLine$line3 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var des = $author$project$VegaLite$description('Line chart with stroked point markers.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Line chart with stroked point markers.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -12847,12 +12849,12 @@ var $author$project$GalleryLine$line4 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var des = $author$project$VegaLite$description('Stock prices of 5 tech companies over time.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Stock prices of 5 tech companies over time.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$line(_List_Nil)
@@ -12919,7 +12921,7 @@ var $author$project$GalleryLine$line5 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
@@ -12938,8 +12940,8 @@ var $author$project$GalleryLine$line5 = function () {
 				[
 					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer)
 				])));
-	var des = $author$project$VegaLite$description('Repeated layers to show different weather measures.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Repeated layers to show different weather measures.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'movies.json', _List_Nil);
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -12950,13 +12952,13 @@ var $author$project$GalleryLine$line5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$layerFields(
 						_List_fromArray(
-							['US_Gross', 'Worldwide_Gross']))
+							['US Gross', 'Worldwide Gross']))
 					])),
 				$author$project$VegaLite$specification(spec)
 			]));
@@ -13102,12 +13104,12 @@ var $author$project$GalleryLine$line6 = function () {
 						$author$project$VegaLite$maStrokeWidth(4)
 					]))
 			]));
-	var des = $author$project$VegaLite$description('Multi-series line chart with halo. Uses pivot and repeat-layer as a workaround to facet groups of lines and their halo strokes.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Multi-series line chart with halo. Uses pivot and repeat-layer as a workaround to facet groups of lines and their halo strokes.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				$author$project$VegaLite$repeat(
@@ -13180,12 +13182,12 @@ var $author$project$GalleryLine$line7 = function () {
 				[
 					$author$project$VegaLite$mName('site')
 				])));
-	var des = $author$project$VegaLite$description('Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$widthStep(50),
 				data,
 				enc(_List_Nil),
@@ -13230,12 +13232,12 @@ var $author$project$GalleryLine$line8 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Google\'s stock price over time (quantized as a step-chart).');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Google\'s stock price over time (quantized as a step-chart).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -13280,12 +13282,12 @@ var $author$project$GalleryLine$line9 = function () {
 					$author$project$VegaLite$pName('price'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Google\'s stock price over time (smoothed with monotonic interpolation).');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Google\'s stock price over time (smoothed with monotonic interpolation).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -13317,7 +13319,7 @@ var $author$project$GalleryLine$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('line16', $author$project$GalleryLine$line16),
 			_Utils_Tuple2('line17', $author$project$GalleryLine$line17),
 			_Utils_Tuple2('line18', $author$project$GalleryLine$line18),
-			_Utils_Tuple2('line18', $author$project$GalleryLine$line19)
+			_Utils_Tuple2('line19', $author$project$GalleryLine$line19)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
