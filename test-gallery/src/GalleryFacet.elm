@@ -10,14 +10,19 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 facet1 : Spec
 facet1 =
     let
-        des =
+        desc =
             description "A trellis bar chart showing the US population distribution of age groups and gender in 2000"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json"
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform
@@ -26,27 +31,31 @@ facet1 =
 
         enc =
             encoding
-                << position X [ pName "age", pOrdinal ]
+                << position X [ pName "age", pOrdinal, pAxis [ axLabelAngle 0 ] ]
                 << position Y
                     [ pName "people"
                     , pQuant
                     , pAggregate opSum
-                    , pAxis [ axTitle "Population" ]
+                    , pTitle "population"
                     ]
                 << color
                     [ mName "gender"
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
+                    , mLegend []
                     ]
-                << row [ fName "gender" ]
+                << row [ fName "gender", fHeader [ hdTitle "" ] ]
     in
-    toVegaLite [ des, widthStep 17, data [], trans [], bar [], enc [] ]
+    toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
 facet2 : Spec
 facet2 =
     let
-        des =
+        desc =
             description "Barley crop yields in 1931 and 1932 shown as stacked bar charts"
+
+        data =
+            dataFromUrl (path ++ "barley.json") []
 
         enc =
             encoding
@@ -56,38 +65,35 @@ facet2 =
                 << column [ fName "year", fOrdinal ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
-        , bar []
-        , enc []
-        ]
+        [ desc, data, enc [], bar [] ]
 
 
 facet3 : Spec
 facet3 =
     let
-        des =
+        desc =
             description "Scatterplots of movie takings vs profits for different MPAA ratings"
+
+        data =
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "Worldwide_Gross", pQuant ]
-                << position Y [ pName "US_DVD_Sales", pQuant ]
-                << column [ fName "MPAA_Rating", fOrdinal ]
+                << position X [ pName "Worldwide Gross", pQuant ]
+                << position Y [ pName "US DVD Sales", pQuant ]
+                << column [ fName "MPAA Rating", fOrdinal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-        , point []
-        , enc []
-        ]
+    toVegaLite [ desc, data, enc [], point [] ]
 
 
 facet4 : Spec
 facet4 =
     let
-        des =
+        desc =
             description "Disitributions of car engine power for different countries of origin"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -95,22 +101,17 @@ facet4 =
                 << position Y [ pQuant, pAggregate opCount ]
                 << row [ fName "Origin", fOrdinal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , bar []
-        , enc []
-        ]
+    toVegaLite [ desc, data, enc [], bar [] ]
 
 
 facet5 : Spec
 facet5 =
     let
-        des =
+        desc =
             description "Anscombe's Quartet"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/anscombe.json" []
+            dataFromUrl (path ++ "anscombe.json") []
 
         trans =
             transform
@@ -133,7 +134,7 @@ facet5 =
             asSpec [ trans [], encLine [], line [ maStrokeWidth 1 ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , data
         , columns 2
         , facetFlow [ fName "Series", fOrdinal, fHeader [ hdTitle "" ] ]
@@ -144,11 +145,11 @@ facet5 =
 facet6 : Spec
 facet6 =
     let
-        des =
+        desc =
             description "The Trellis display by Becker et al. helped establish small multiples as a 'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables'"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/barley.json"
+            dataFromUrl (path ++ "barley.json") []
 
         enc =
             encoding
@@ -166,7 +167,7 @@ facet6 =
                 << color [ mName "year" ]
     in
     toVegaLite
-        [ data []
+        [ data
         , columns 2
         , facetFlow
             [ fName "site"
@@ -181,11 +182,15 @@ facet6 =
 facet7 : Spec
 facet7 =
     let
-        des =
+        desc =
             description "Stock prices of five large companies as a small multiples of area charts"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
+            dataFromUrl (path ++ "stocks.csv") []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol !== 'GOOG'")
 
         enc =
             encoding
@@ -205,24 +210,20 @@ facet7 =
                     ]
                 << row
                     [ fName "symbol"
-                    , fHeader [ hdTitle "Stock price", hdLabelAngle 0 ]
+                    , fHeader [ hdTitle "Stock price", hdLabelAngle 0, hdLabelAnchor anStart ]
                     ]
-
-        res =
-            resolve
-                << resolution (reScale [ ( chY, reIndependent ) ])
 
         cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite [ des, width 300, height 50, cfg [], res [], data [], area [], enc [] ]
+    toVegaLite [ desc, width 300, height 50, cfg [], data, trans [], area [], enc [] ]
 
 
 facet8 : Spec
 facet8 =
     let
-        des =
+        desc =
             description "A simple grid of bar charts to compare performance data."
 
         data =
@@ -247,7 +248,7 @@ facet8 =
             resolve
                 << resolution (reScale [ ( chY, reIndependent ) ])
     in
-    toVegaLite [ des, width 60, heightStep 8, spacing 5, data [], enc [], bar [] ]
+    toVegaLite [ desc, width 60, heightStep 8, spacing 5, data [], enc [], bar [] ]
 
 
 
