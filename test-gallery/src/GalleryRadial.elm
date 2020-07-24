@@ -11,10 +11,15 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 radial : String -> Float -> Spec
 radial dText innerR =
     let
-        des =
+        desc =
             description dText
 
         cfg =
@@ -31,7 +36,7 @@ radial dText innerR =
                 << position Theta [ pName "value", pQuant ]
                 << color [ mName "category" ]
     in
-    toVegaLite [ des, cfg [], data [], enc [], arc [ maInnerRadius innerR ] ]
+    toVegaLite [ desc, cfg [], data [], enc [], arc [ maInnerRadius innerR ] ]
 
 
 radial1 : Spec
@@ -47,7 +52,7 @@ radial2 =
 radial3 : Spec
 radial3 =
     let
-        des =
+        desc =
             description "Pie chart with labels"
 
         cfg =
@@ -74,13 +79,13 @@ radial3 =
         labelSpec =
             asSpec [ labelEnc [], textMark [ maRadius 90 ] ]
     in
-    toVegaLite [ des, cfg [], data [], enc [], layer [ pieSpec, labelSpec ] ]
+    toVegaLite [ desc, cfg [], data [], enc [], layer [ pieSpec, labelSpec ] ]
 
 
 radial4 : Spec
 radial4 =
     let
-        des =
+        desc =
             description "Radial plot with labels"
 
         cfg =
@@ -111,13 +116,13 @@ radial4 =
         labelSpec =
             asSpec [ labelEnc [], textMark [ maRadiusOffset 10 ] ]
     in
-    toVegaLite [ des, cfg [], data [], enc [], layer [ segSpec, labelSpec ] ]
+    toVegaLite [ desc, cfg [], data [], enc [], layer [ segSpec, labelSpec ] ]
 
 
 radial5 : Spec
 radial5 =
     let
-        des =
+        desc =
             description "Reproduction of http://robslink.com/SAS/democd91/pyramid_pie.htm"
 
         cfg =
@@ -161,7 +166,7 @@ radial5 =
                     ]
                 << order [ oName "order", oQuant ]
     in
-    toVegaLite [ des, cfg [], data [], enc [], arc [ maOuterRadius 80 ] ]
+    toVegaLite [ desc, cfg [], data [], enc [], arc [ maOuterRadius 80 ] ]
 
 
 radial6 : Spec

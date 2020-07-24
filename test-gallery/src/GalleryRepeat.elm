@@ -10,11 +10,19 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 repeat1 : Spec
 repeat1 =
     let
-        des =
+        desc =
             description "Monthly weather information for individual years and overall average for Seatle and New York"
+
+        data =
+            dataFromUrl (path ++ "weather.csv") []
 
         enc1 =
             encoding
@@ -40,8 +48,8 @@ repeat1 =
             asSpec [ layer [ spec1, spec2 ] ]
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/weather.csv" []
+        [ desc
+        , data
         , repeat [ columnFields [ "temp_max", "precipitation", "wind" ] ]
         , specification spec
         ]
@@ -52,6 +60,9 @@ repeat2 =
     let
         desc =
             description "Two vertically concatenated charts that show a histogram of precipitation in Seattle and the relationship between min and max temperature"
+
+        data =
+            dataFromUrl (path ++ "weather.csv") []
 
         trans =
             transform
@@ -74,45 +85,39 @@ repeat2 =
         spec2 =
             asSpec [ point [], enc2 [] ]
     in
-    toVegaLite
-        [ desc
-        , trans []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/weather.csv" []
-        , vConcat [ spec1, spec2 ]
-        ]
+    toVegaLite [ desc, data, trans [], vConcat [ spec1, spec2 ] ]
 
 
 repeat3 : Spec
 repeat3 =
     let
-        des =
+        desc =
             description "Horizontally repeated charts that show the histograms of different parameters of cars in different countries"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
                 << position X [ pRepeat arColumn, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
                 << color [ mName "Origin" ]
-
-        spec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-                , bar []
-                , enc []
-                ]
     in
     toVegaLite
-        [ des
+        [ desc
         , repeat [ columnFields [ "Horsepower", "Miles_per_Gallon", "Acceleration" ] ]
-        , specification spec
+        , specification (asSpec [ data, enc [], bar [] ])
         ]
 
 
 repeat4 : Spec
 repeat4 =
     let
-        des =
+        desc =
             description "Scatterplot matrix"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -140,35 +145,30 @@ repeat4 =
                         [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
-
-        spec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-                , point []
-                , sel []
-                , enc []
-                ]
     in
     toVegaLite
-        [ des
+        [ desc
         , repeat
             [ rowFields [ "Horsepower", "Acceleration", "Miles_per_Gallon" ]
             , columnFields [ "Miles_per_Gallon", "Acceleration", "Horsepower" ]
             ]
-        , specification spec
+        , specification (asSpec [ data, sel [], enc [], point [] ])
         ]
 
 
 repeat5 : Spec
 repeat5 =
     let
-        des =
+        desc =
             description "Marginal histograms show the counts along the x and y dimension"
+
+        data =
+            dataFromUrl (path ++ "movies.json") []
 
         encPosition =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [ biMaxBins 10 ] ]
 
         cfg =
             configure
@@ -177,7 +177,7 @@ repeat5 =
 
         enc1 =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAxis [], pBin [] ]
+                << position X [ pName "IMDB Rating", pQuant, pAxis [], pBin [] ]
                 << position Y
                     [ pAggregate opCount
                     , pQuant
@@ -193,8 +193,8 @@ repeat5 =
 
         enc2_1 =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [] ]
                 << color [ mAggregate opCount, mQuant ]
 
         spec2_1 =
@@ -203,7 +203,7 @@ repeat5 =
         enc2_2 =
             encoding
                 << position Y
-                    [ pName "Rotten_Tomatoes_Rating"
+                    [ pName "Rotten Tomatoes Rating"
                     , pQuant
                     , pBin []
                     , pAxis []
@@ -219,11 +219,11 @@ repeat5 =
             asSpec [ width 60, bar [], enc2_2 [] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , spacing 15
         , bounds boFlush
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+        , data
         , vConcat [ spec1, spec2 ]
         ]
 
@@ -232,7 +232,7 @@ repeat6 : Spec
 repeat6 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         cfg =
             configure
