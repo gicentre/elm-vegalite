@@ -93,16 +93,32 @@
     <div id="dist8" class="view"></div>
 
     <p>
-      A QQ (quantile-quantile) plot summarising two distributions.
+      Box plot showing median, minimum, and maximum body mass of penguins.
     </p>
     <div id="dist9" class="view"></div>
 
+    <p>
+      Tukey box plot showing median and lower and upper quartiles of the
+      distribution of body mass of penguins.
+    </p>
+    <div id="dist10" class="view"></div>
+
+    <p>
+      Box plot with pre-calculated values.
+    </p>
+    <div id="dist11" class="view"></div>
+
+    <p>
+      A QQ (quantile-quantile) plot summarising two distributions.
+    </p>
+    <div id="dist12" class="view"></div>
+
     <script>
-      Elm.GalleryDist.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.GalleryDist.init().ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

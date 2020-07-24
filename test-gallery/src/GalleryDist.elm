@@ -1,5 +1,6 @@
 port module GalleryDist exposing (elmToJS)
 
+import Json.Encode as JE
 import Platform
 import VegaLite exposing (..)
 
@@ -223,6 +224,112 @@ dist8 =
 dist9 : Spec
 dist9 =
     let
+        desc =
+            description "Box plot showing median and range of penguin body mass distributions."
+
+        data =
+            dataFromUrl (path ++ "penguins.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Species", pAxis [ axLabelAngle 0, axTitle "" ] ]
+                << position Y [ pName "Body Mass (g)", pQuant, pScale [ scZero False ] ]
+                << color [ mName "Species", mLegend [] ]
+    in
+    toVegaLite [ desc, width 130, data, enc [], boxplot [ maExtent exRange ] ]
+
+
+dist10 : Spec
+dist10 =
+    let
+        desc =
+            description "Tukey box plot showing median and lower and upper quartiles of penguin body mass distributions."
+
+        data =
+            dataFromUrl (path ++ "penguins.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Species", pAxis [ axLabelAngle 0, axTitle "" ] ]
+                << position Y [ pName "Body Mass (g)", pQuant, pScale [ scZero False ] ]
+                << color [ mName "Species", mLegend [] ]
+    in
+    toVegaLite [ desc, width 130, data, enc [], boxplot [] ]
+
+
+dist11 : Spec
+dist11 =
+    let
+        desc =
+            description "Box plot with pre-calculated summary statistics for penguin body mass distribution."
+
+        -- This example demonstrates how JSON data structure with arrays may be specified in a typesafe manner.
+        jRow sp l q1 m q3 u o =
+            JE.object
+                [ ( "Species", JE.string sp )
+                , ( "lower", JE.float l )
+                , ( "q1", JE.float q1 )
+                , ( "median", JE.float m )
+                , ( "q3", JE.float q3 )
+                , ( "upper", JE.float u )
+                , ( "outliers", JE.list JE.float o )
+                ]
+
+        data =
+            dataFromJson
+                (JE.list identity
+                    [ jRow "Adelie" 2850 3350 3700 4000 4775 []
+                    , jRow "Chinstrap" 2700 3487.5 3700 3950 4800 [ 2700, 4800 ]
+                    , jRow "Gentoo" 3950 4700 5000 5500 6300 []
+                    ]
+                )
+                []
+
+        enc =
+            encoding
+                << position Y [ pName "Species", pTitle "" ]
+
+        encRule =
+            encoding
+                << position X [ pName "lower", pQuant, pScale [ scZero False ], pTitle "" ]
+                << position X2 [ pName "upper" ]
+
+        specRule =
+            asSpec [ encRule [], rule [] ]
+
+        encBar =
+            encoding
+                << position X [ pName "q1", pQuant ]
+                << position X2 [ pName "q3" ]
+                << color [ mName "Species", mLegend [] ]
+
+        specBar =
+            asSpec [ encBar [], bar [ maSize 14 ] ]
+
+        encTick =
+            encoding
+                << position X [ pName "median", pQuant ]
+
+        specTick =
+            asSpec [ tick [ maColor "white", maSize 14 ] ]
+
+        encPoint =
+            encoding
+                << position X [ pName "outliers", pQuant ]
+
+        trans =
+            transform
+                << flatten [ "outliers" ]
+
+        specPoint =
+            asSpec [ trans [], encPoint [], point [ maStyle [ "boxplot-outliers" ] ] ]
+    in
+    toVegaLite [ desc, data, enc [], layer [ specRule, specBar, specTick, specPoint ] ]
+
+
+dist12 : Spec
+dist12 =
+    let
         data =
             dataFromUrl (path ++ "normal-2d.json") []
 
@@ -268,6 +375,9 @@ mySpecs =
         , ( "dist7", dist7 )
         , ( "dist8", dist8 )
         , ( "dist9", dist9 )
+        , ( "dist10", dist10 )
+        , ( "dist11", dist11 )
+        , ( "dist12", dist12 )
         ]
 
 
