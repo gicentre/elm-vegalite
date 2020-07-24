@@ -11043,7 +11043,7 @@ var $author$project$GalleryLabel$label1 = function () {
 					$author$project$VegaLite$pName('a'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var des = $author$project$VegaLite$description('A simple bar chart with embedded data labels');
+	var desc = $author$project$VegaLite$description('A simple bar chart with embedded data labels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11080,7 +11080,7 @@ var $author$project$GalleryLabel$label1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
@@ -11657,7 +11657,7 @@ var $author$project$GalleryLabel$label10 = function () {
 				_List_fromArray(
 					[specLabel1, specLabel2, specLabel3, specLabel4]))
 			]));
-	var des = $author$project$VegaLite$description('Comparing Likert scale ratings between two conditions.');
+	var desc = $author$project$VegaLite$description('Comparing Likert scale ratings between two conditions.');
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11692,7 +11692,7 @@ var $author$project$GalleryLabel$label10 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				likertData(_List_Nil),
 				$author$project$VegaLite$spacing(10),
@@ -11809,7 +11809,7 @@ var $author$project$GalleryLabel$label2 = function () {
 							$author$project$VegaLite$axTicks(false)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Version of bar chart from https://observablehq.com/@d3/learn-d3-scales.');
+	var desc = $author$project$VegaLite$description('Version of bar chart from https://observablehq.com/@d3/learn-d3-scales.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11855,7 +11855,7 @@ var $author$project$GalleryLabel$label2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(400),
 				data(_List_Nil),
@@ -11903,6 +11903,7 @@ var $author$project$VegaLite$MAggregate = function (a) {
 var $author$project$VegaLite$mAggregate = $author$project$VegaLite$MAggregate;
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
+var $author$project$GalleryLabel$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$SCBandPaddingInner = function (a) {
@@ -11957,7 +11958,7 @@ var $author$project$GalleryLabel$label3 = function () {
 				$author$project$VegaLite$rect(_List_Nil),
 				encRect(_List_Nil)
 			]));
-	var encPosition = A2(
+	var encPos = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11978,8 +11979,9 @@ var $author$project$GalleryLabel$label3 = function () {
 					$author$project$VegaLite$pName('Origin'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var des = $author$project$VegaLite$description('Layering text over \'heatmap\'');
-	var config = A2(
+	var desc = $author$project$VegaLite$description('Layering text over \'heatmap\'');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLabel$path + 'cars.json', _List_Nil);
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -12000,13 +12002,13 @@ var $author$project$GalleryLabel$label3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				encPosition(_List_Nil),
+				desc,
+				cfg(_List_Nil),
+				data,
+				encPos(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[specRect, specText])),
-				config(_List_Nil)
+					[specRect, specText]))
 			]));
 }();
 var $author$project$VegaLite$AxTickCount = function (a) {
@@ -12431,10 +12433,10 @@ var $author$project$GalleryLabel$label4 = function () {
 				encLine(_List_Nil),
 				$author$project$VegaLite$line(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Carbon dioxide in the atmosphere.');
+	var desc = $author$project$VegaLite$description('Carbon dioxide in the atmosphere.');
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/co2-concentration.csv',
+		$author$project$GalleryLabel$path + 'co2-concentration.csv',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$parse(
@@ -12459,7 +12461,7 @@ var $author$project$GalleryLabel$label4 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(500),
@@ -12707,7 +12709,7 @@ var $author$project$GalleryLabel$label5 = function () {
 				$author$project$VegaLite$bar(_List_Nil),
 				encBar(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Bar chart that highlights values beyond a threshold. The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html');
+	var desc = $author$project$VegaLite$description('Bar chart that highlights values beyond a threshold. The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12738,7 +12740,7 @@ var $author$project$GalleryLabel$label5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[layer0, layer1]))
@@ -12829,12 +12831,13 @@ var $author$project$GalleryLabel$label6 = function () {
 				$author$project$VegaLite$bar(_List_Nil),
 				encBar(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Monthly precipitation with mean value overlay');
+	var desc = $author$project$VegaLite$description('Monthly precipitation with mean value overlay');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLabel$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[specBar, specLine]))
@@ -12857,7 +12860,7 @@ var $author$project$GalleryLabel$label7 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 						]))),
@@ -12887,7 +12890,7 @@ var $author$project$GalleryLabel$label7 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil),
 						$author$project$VegaLite$pAxis(_List_Nil)
@@ -12906,12 +12909,13 @@ var $author$project$GalleryLabel$label7 = function () {
 				$author$project$VegaLite$bar(_List_Nil),
 				encBars(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Histogram with global mean overlay');
+	var desc = $author$project$VegaLite$description('Histogram with global mean overlay');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLabel$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[specBars, specMean]))
@@ -13046,7 +13050,7 @@ var $author$project$GalleryLabel$label8 = function () {
 				$author$project$VegaLite$point(_List_Nil),
 				encPopulation(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('The population of the German city of Falkensee over time with annotated time periods highlighted');
+	var desc = $author$project$VegaLite$description('The population of the German city of Falkensee over time with annotated time periods highlighted');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13077,7 +13081,7 @@ var $author$project$GalleryLabel$label8 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(500),
 				data(_List_Nil),
 				$author$project$VegaLite$layer(
