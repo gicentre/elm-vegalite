@@ -8196,7 +8196,7 @@ var $author$project$GalleryAdvanced$advanced10 = function () {
 					$author$project$VegaLite$pName('cumulativeCount'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Cumulative Frequency Distribution');
+	var desc = $author$project$VegaLite$description('Cumulative Frequency Distribution');
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
 		'https://gicentre.github.io/data/putneyAirQuality2018.csv',
@@ -8211,7 +8211,7 @@ var $author$project$GalleryAdvanced$advanced10 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(500),
 				data,
 				trans(_List_Nil),
@@ -8249,7 +8249,6 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$GalleryAdvanced$base = 'https://vega.github.io/vega-lite/data/';
 var $author$project$VegaLite$binAs = F3(
 	function (bProps, field, label) {
 		if (!bProps.b) {
@@ -8333,6 +8332,7 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$GalleryAdvanced$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 13, a: a};
 };
@@ -8347,7 +8347,7 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 				A2(
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
-					A3($author$project$VegaLite$binAs, _List_Nil, 'IMDB_Rating', 'binIMDB_Rating')),
+					A3($author$project$VegaLite$binAs, _List_Nil, 'IMDB Rating', 'binIMDBRating')),
 				A2(
 					$author$project$VegaLite$aggregate,
 					_List_fromArray(
@@ -8355,9 +8355,9 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 							A3($author$project$VegaLite$opAs, $author$project$VegaLite$opCount, '', 'count')
 						]),
 					_List_fromArray(
-						['binIMDB_Rating', 'binIMDB_Rating_end']))),
+						['binIMDBRating', 'binIMDBRating_end']))),
 			$author$project$VegaLite$filter(
-				$author$project$VegaLite$fiExpr('datum.binIMDB_Rating !== null'))),
+				$author$project$VegaLite$fiExpr('datum.binIMDBRating !== null'))),
 		A2(
 			$author$project$VegaLite$window,
 			_List_fromArray(
@@ -8375,7 +8375,7 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 					$author$project$VegaLite$wiSort(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$wiAscending('binIMDB_Rating')
+							$author$project$VegaLite$wiAscending('binIMDBRating')
 						])),
 					A2(
 					$author$project$VegaLite$wiFrame,
@@ -8414,7 +8414,7 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('binIMDB_Rating'),
+						$author$project$VegaLite$pName('binIMDBRating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
@@ -8428,14 +8428,14 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 			2,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('binIMDB_Rating_end')
+					$author$project$VegaLite$pName('binIMDBRating_end')
 				])));
-	var des = $author$project$VegaLite$description('Layered Histogram and Cumulative Histogram');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Layered Histogram and Cumulative Histogram');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -8860,7 +8860,7 @@ var $author$project$GalleryAdvanced$advanced12 = function () {
 			A3(
 				$author$project$VegaLite$foldAs,
 				_List_fromArray(
-					['petalWidth', 'petalLength', 'sepalWidth', 'sepalLength']),
+					['Beak Length (mm)', 'Beak Depth (mm)', 'Flipper Length (mm)']),
 				'measurement',
 				'value')),
 		A2(
@@ -8868,7 +8868,7 @@ var $author$project$GalleryAdvanced$advanced12 = function () {
 			'value',
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dnBandwidth(0.3),
+					$author$project$VegaLite$dnBandwidth(1),
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
 						['measurement']))
@@ -8887,7 +8887,7 @@ var $author$project$GalleryAdvanced$advanced12 = function () {
 						[
 							$author$project$VegaLite$pName('value'),
 							$author$project$VegaLite$pQuant,
-							$author$project$VegaLite$pTitle('width/length (cm)')
+							$author$project$VegaLite$pTitle('length')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -8902,12 +8902,14 @@ var $author$project$GalleryAdvanced$advanced12 = function () {
 				[
 					$author$project$VegaLite$fName('measurement')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Distributions of selected penguin morphologies');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$width(300),
-				$author$project$VegaLite$height(50),
+				desc,
+				$author$project$VegaLite$width(400),
+				$author$project$VegaLite$height(80),
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -8921,11 +8923,6 @@ var $author$project$VegaLite$color = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$DnExtent = F2(
-	function (a, b) {
-		return {$: 4, a: a, b: b};
-	});
-var $author$project$VegaLite$dnExtent = $author$project$VegaLite$DnExtent;
 var $author$project$VegaLite$DnSteps = function (a) {
 	return {$: 7, a: a};
 };
@@ -8934,6 +8931,10 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$GalleryAdvanced$advanced13 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -8943,7 +8944,7 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 			A3(
 				$author$project$VegaLite$foldAs,
 				_List_fromArray(
-					['petalWidth', 'petalLength', 'sepalWidth', 'sepalLength']),
+					['Beak Length (mm)', 'Beak Depth (mm)', 'Flipper Length (mm)']),
 				'measurement',
 				'value')),
 		A2(
@@ -8951,11 +8952,10 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 			'value',
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dnBandwidth(0.3),
+					$author$project$VegaLite$dnBandwidth(1),
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
 						['measurement'])),
-					A2($author$project$VegaLite$dnExtent, 0, 8),
 					$author$project$VegaLite$dnSteps(200)
 				])));
 	var enc = A2(
@@ -8972,7 +8972,7 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 						[
 							$author$project$VegaLite$pName('value'),
 							$author$project$VegaLite$pQuant,
-							$author$project$VegaLite$pTitle('width/length (cm)')
+							$author$project$VegaLite$pTitle('length')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -8985,12 +8985,15 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('measurement')
+					$author$project$VegaLite$mName('measurement'),
+					$author$project$VegaLite$mTitle('')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Distributions of selected penguin morphologies');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(100),
 				data,
@@ -12211,7 +12214,11 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 					$elm$core$Basics$composeL,
 					A2(
 						$elm$core$Basics$composeL,
-						$author$project$VegaLite$transform,
+						A2(
+							$elm$core$Basics$composeL,
+							$author$project$VegaLite$transform,
+							$author$project$VegaLite$filter(
+								$author$project$VegaLite$fiExpr('datum[\'Beak Length (mm)\']'))),
 						A2(
 							$author$project$VegaLite$window,
 							_List_fromArray(
@@ -12226,7 +12233,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 							_List_Nil)),
 					$author$project$VegaLite$fold(
 						_List_fromArray(
-							['petalLength', 'petalWidth', 'sepalLength', 'sepalWidth']))),
+							['Beak Length (mm)', 'Beak Depth (mm)', 'Flipper Length (mm)', 'Body Mass (g)']))),
 				A2(
 					$author$project$VegaLite$joinAggregate,
 					_List_fromArray(
@@ -12272,7 +12279,8 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('species')
+							$author$project$VegaLite$mName('Species'),
+							$author$project$VegaLite$mTitle('')
 						]))),
 			$author$project$VegaLite$detail(
 				_List_fromArray(
@@ -12284,22 +12292,22 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 				[
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('petalLength'),
+						$author$project$VegaLite$tName('Beak Length (mm)'),
 						$author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('petalWidth'),
+						$author$project$VegaLite$tName('Beak Depth (mm)'),
 						$author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('sepalLength'),
+						$author$project$VegaLite$tName('Flipper Length (mm)'),
 						$author$project$VegaLite$tQuant
 					]),
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('sepalWidth'),
+						$author$project$VegaLite$tName('Body Mass (g)'),
 						$author$project$VegaLite$tQuant
 					])
 				])));
@@ -12460,8 +12468,8 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 						$author$project$VegaLite$maColor('#ccc')
 					]))
 			]));
-	var des = $author$project$VegaLite$description('Parallel coordinates plot with manual generation of parallel axes');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Parallel coordinates plot with manual generation of parallel axes');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'penguins.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12508,7 +12516,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(600),
 				$author$project$VegaLite$height(300),
@@ -12516,7 +12524,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 				trans(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[specLine, specAxis, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot]))
+					[specAxis, specLine, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot]))
 			]));
 }();
 var $author$project$VegaLite$ArgMax = function (a) {
@@ -12528,6 +12536,11 @@ var $author$project$VegaLite$PAggregate = function (a) {
 };
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
 var $author$project$GalleryAdvanced$advanced15 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum[\'Major Genre\']')));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12538,26 +12551,27 @@ var $author$project$GalleryAdvanced$advanced15 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Production_Budget'),
+						$author$project$VegaLite$pName('Production Budget'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate(
 						$author$project$VegaLite$opArgMax(
-							$elm$core$Maybe$Just('US_Gross')))
+							$elm$core$Maybe$Just('US Gross')))
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Major_Genre')
+					$author$project$VegaLite$pName('Major Genre')
 				])));
 	var desc = $author$project$VegaLite$description('Production budget of the film with highest US Gross in each major genre.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				desc,
 				data,
+				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
@@ -12592,7 +12606,8 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 					[
 						$author$project$VegaLite$pName('date'),
 						$author$project$VegaLite$pTemporal,
-						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
+						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
+						$author$project$VegaLite$pTitle('')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -12600,7 +12615,8 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('price'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pTitle('Price')
 				])));
 	var specRaw = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12642,7 +12658,7 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Plot showing average data with raw values in the background.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12693,7 +12709,8 @@ var $author$project$GalleryAdvanced$advanced17 = function () {
 					[
 						$author$project$VegaLite$pName('date'),
 						$author$project$VegaLite$pTitle('Date'),
-						$author$project$VegaLite$pTemporal
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pTitle('')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -12747,7 +12764,7 @@ var $author$project$GalleryAdvanced$advanced17 = function () {
 					]))
 			]));
 	var desc = $author$project$VegaLite$description('Plot showing a 30 day rolling average with raw values in the background.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'seattle-weather.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13056,16 +13073,16 @@ var $author$project$GalleryAdvanced$advanced2 = function () {
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
 				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiExpr('isValid(datum.IMDB_Rating)'))),
+					$author$project$VegaLite$fiExpr('isValid(datum[\'IMDB Rating\'])'))),
 			A2(
 				$author$project$VegaLite$joinAggregate,
 				_List_fromArray(
 					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageRating')
+						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB Rating', 'AverageRating')
 					]),
 				_List_Nil)),
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageRating) > 2.5')));
+			$author$project$VegaLite$fiExpr('(datum[\'IMDB Rating\'] - datum.AverageRating) > 2.5')));
 	var ruleEnc = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -13089,7 +13106,7 @@ var $author$project$GalleryAdvanced$advanced2 = function () {
 					]))
 			]));
 	var desc = $author$project$VegaLite$description('Calculation of difference from average');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'movies.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13100,7 +13117,7 @@ var $author$project$GalleryAdvanced$advanced2 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pTitle('IMDB Rating')
 					]))),
@@ -13169,13 +13186,13 @@ var $author$project$GalleryAdvanced$advanced3 = function () {
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
 					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('isValid(datum.IMDB_Rating)'))),
-				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release_Date', 'year')),
+						$author$project$VegaLite$fiExpr('isValid(datum[\'IMDB Rating\'])'))),
+				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release Date', 'year')),
 			A2(
 				$author$project$VegaLite$joinAggregate,
 				_List_fromArray(
 					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageYearRating')
+						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB Rating', 'AverageYearRating')
 					]),
 				_List_fromArray(
 					[
@@ -13184,7 +13201,7 @@ var $author$project$GalleryAdvanced$advanced3 = function () {
 							['year']))
 					]))),
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageYearRating) > 2.5')));
+			$author$project$VegaLite$fiExpr('(datum[\'IMDB Rating\'] - datum.AverageYearRating) > 2.5')));
 	var tickEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13220,7 +13237,7 @@ var $author$project$GalleryAdvanced$advanced3 = function () {
 				$author$project$VegaLite$tick(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Calculation of difference from annual average');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'movies.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13231,7 +13248,7 @@ var $author$project$GalleryAdvanced$advanced3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pTitle('IMDB Rating')
 					]))),
@@ -13286,10 +13303,6 @@ var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$MTitle = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 61, a: a};
 };
@@ -13309,11 +13322,11 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
 					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('isValid(datum.IMDB_Rating)'))),
+						$author$project$VegaLite$fiExpr('isValid(datum[\'IMDB Rating\'])'))),
 				$author$project$VegaLite$filter(
 					A2(
 						$author$project$VegaLite$fiRange,
-						'Release_Date',
+						'Release Date',
 						A2(
 							$author$project$VegaLite$dtRange,
 							_List_Nil,
@@ -13325,10 +13338,10 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 				$author$project$VegaLite$joinAggregate,
 				_List_fromArray(
 					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageRating')
+						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB Rating', 'AverageRating')
 					]),
 				_List_Nil)),
-		A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating - datum.AverageRating', 'RatingDelta'));
+		A2($author$project$VegaLite$calculateAs, 'datum[\'IMDB Rating\'] - datum.AverageRating', 'RatingDelta'));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13341,7 +13354,7 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Release_Date'),
+							$author$project$VegaLite$pName('Release Date'),
 							$author$project$VegaLite$pTemporal
 						]))),
 			A2(
@@ -13366,7 +13379,7 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 					$author$project$VegaLite$mTitle('Rating Delta')
 				])));
 	var desc = $author$project$VegaLite$description('A scatterplot showing each movie in the database and the difference from the average movie rating.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13517,7 +13530,7 @@ var $author$project$GalleryAdvanced$advanced5 = function () {
 					$author$project$VegaLite$mName('team'),
 					$author$project$VegaLite$mScale(teamColours)
 				])));
-	var des = $author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
+	var desc = $author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13554,7 +13567,7 @@ var $author$project$GalleryAdvanced$advanced5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				A2(
 				$author$project$VegaLite$title,
 				'World Cup 2018: Group F Rankings',
@@ -13877,7 +13890,7 @@ var $author$project$GalleryAdvanced$advanced6 = function () {
 					$author$project$VegaLite$pSort(_List_Nil),
 					$author$project$VegaLite$pTitle('Months')
 				])));
-	var des = $author$project$VegaLite$description('Waterfall chart of monthly profit and loss');
+	var desc = $author$project$VegaLite$description('Waterfall chart of monthly profit and loss');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13898,7 +13911,7 @@ var $author$project$GalleryAdvanced$advanced6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(450),
 				data(_List_Nil),
@@ -13969,7 +13982,7 @@ var $author$project$GalleryAdvanced$advanced7 = function () {
 							$author$project$VegaLite$soDescending
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Filtering the top-k items');
+	var desc = $author$project$VegaLite$description('Filtering the top-k items');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13990,7 +14003,7 @@ var $author$project$GalleryAdvanced$advanced7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -14009,7 +14022,7 @@ var $author$project$GalleryAdvanced$advanced8 = function () {
 					$author$project$VegaLite$aggregate,
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'Worldwide_Gross', 'aggregateGross')
+							A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'Worldwide Gross', 'aggregateGross')
 						]),
 					_List_fromArray(
 						['Director']))),
@@ -14063,12 +14076,12 @@ var $author$project$GalleryAdvanced$advanced8 = function () {
 						])),
 					$author$project$VegaLite$pTitle('')
 				])));
-	var des = $author$project$VegaLite$description('Top-k items with \'others\'');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Top-k items with \'others\'');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				A2($author$project$VegaLite$title, 'Top Directors by Average Worldwide Gross', _List_Nil),
 				data,
 				trans(_List_Nil),
@@ -14273,7 +14286,7 @@ var $author$project$GalleryAdvanced$advanced9 = function () {
 		A4(
 			$author$project$VegaLite$lookup,
 			'person',
-			A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'lookup_people.csv', _List_Nil),
+			A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'lookup_people.csv', _List_Nil),
 			'name',
 			$author$project$VegaLite$luFields(
 				_List_fromArray(
@@ -14300,12 +14313,12 @@ var $author$project$GalleryAdvanced$advanced9 = function () {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
-	var des = $author$project$VegaLite$description('Using the lookup transform to combine data');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'lookup_groups.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Using the lookup transform to combine data');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$path + 'lookup_groups.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
