@@ -7950,7 +7950,7 @@ var $author$project$GalleryLayer$layer1 = function () {
 							$author$project$VegaLite$mStr('steelBlue')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('A candlestick chart inspired by Protovis (http://mbostock.github.io/protovis/ex/candlestick.html)');
+	var desc = $author$project$VegaLite$description('A candlestick chart inspired by Protovis (http://mbostock.github.io/protovis/ex/candlestick.html)');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -8011,6 +8011,7 @@ var $author$project$GalleryLayer$layer1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$VegaLite$width(400),
 				data(_List_Nil),
 				enc(_List_Nil),
@@ -8199,6 +8200,7 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
+var $author$project$GalleryLayer$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$size = function (markProps) {
@@ -8362,12 +8364,12 @@ var $author$project$GalleryLayer$layer2 = function () {
 							$author$project$VegaLite$axDomain(false)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('A ranged dot plot that uses \'layer\' to convey changing life expectancy for the five most populous countries (between 1955 and 2000).');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/countries.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A ranged dot plot that uses \'layer\' to convey changing life expectancy for the five most populous countries (between 1955 and 2000).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLayer$path + 'countries.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				encCountry(_List_Nil),
@@ -11829,7 +11831,7 @@ var $author$project$GalleryLayer$layer3 = function () {
 						$author$project$VegaLite$maColor('#eee')
 					]))
 			]));
-	var des = $author$project$VegaLite$description('Bullet chart');
+	var desc = $author$project$VegaLite$description('Bullet chart');
 	var data = $author$project$VegaLite$dataFromJson(
 		A2(
 			$elm$json$Json$Encode$list,
@@ -11889,7 +11891,7 @@ var $author$project$GalleryLayer$layer3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data(_List_Nil),
 				res(_List_Nil),
@@ -12098,12 +12100,12 @@ var $author$project$GalleryLayer$layer4 = function () {
 						$author$project$VegaLite$maColor('#85C5A6')
 					]))
 			]));
-	var des = $author$project$VegaLite$description('A dual axis chart, created by setting y\'s scale resolution to independent.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/weather.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('A dual axis chart, created by setting y\'s scale resolution to independent.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLayer$path + 'weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(300),
 				data,
@@ -12229,7 +12231,7 @@ var $author$project$GalleryLayer$layer5 = function () {
 						$author$project$VegaLite$maClip(true)
 					]))
 			]));
-	var des = $author$project$VegaLite$description('Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)');
+	var desc = $author$project$VegaLite$description('Horizon chart with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on horizon charts.)');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12262,7 +12264,7 @@ var $author$project$GalleryLayer$layer5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(50),
 				cfg(_List_Nil),
@@ -12291,10 +12293,18 @@ var $author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$maAlign = $author$project$VegaLite$MAlign;
-var $author$project$VegaLite$MdY = function (a) {
-	return {$: 26, a: a};
+var $author$project$VegaLite$MBaseline = function (a) {
+	return {$: 4, a: a};
 };
-var $author$project$VegaLite$maDy = $author$project$VegaLite$MdY;
+var $author$project$VegaLite$maBaseline = $author$project$VegaLite$MBaseline;
+var $author$project$VegaLite$MStyle = function (a) {
+	return {$: 62, a: a};
+};
+var $author$project$VegaLite$maStyle = $author$project$VegaLite$MStyle;
+var $author$project$VegaLite$MY = function (a) {
+	return {$: 73, a: a};
+};
+var $author$project$VegaLite$maY = $author$project$VegaLite$MY;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$STop = 0;
 var $author$project$VegaLite$siTop = 0;
@@ -12466,6 +12476,10 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 14;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
+var $author$project$VegaLite$TSubtitle = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$tiSubtitle = $author$project$VegaLite$TSubtitle;
 var $author$project$VegaLite$VLTitle = 2;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {
@@ -12479,8 +12493,301 @@ var $author$project$VegaLite$title = F2(
 						$author$project$VegaLite$multilineTextSpec(txt)),
 					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tps))));
 	});
+var $author$project$VegaLite$AlignBottom = 3;
+var $author$project$VegaLite$vaBottom = 3;
 var $author$project$GalleryLayer$layer6 = function () {
 	var enc7 = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tName('day')
+				])));
+	var spec7 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc7(_List_Nil),
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maAlign($author$project$VegaLite$haCenter),
+						$author$project$VegaLite$maBaseline($author$project$VegaLite$vaBottom),
+						$author$project$VegaLite$maY(-5)
+					]))
+			]));
+	var enc6 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('forecast.high.low')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					3,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('forecast.high.high')
+						]))),
+			$author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mNum(12)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#000')
+				])));
+	var spec6 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc6(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStyle(
+						_List_fromArray(
+							['box']))
+					]))
+			]));
+	var enc5 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('forecast.low.high'),
+								$author$project$VegaLite$pQuant
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					3,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('forecast.high.low')
+						]))),
+			$author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mNum(3)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#000')
+				])));
+	var spec5 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc5(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStyle(
+						_List_fromArray(
+							['box']))
+					]))
+			]));
+	var enc4 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('forecast.low.low')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					3,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('forecast.low.high')
+						]))),
+			$author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mNum(12)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#000')
+				])));
+	var spec4 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc4(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStyle(
+						_List_fromArray(
+							['box']))
+					]))
+			]));
+	var enc3 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('actual.low')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					3,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('actual.high')
+						]))),
+			$author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mNum(12)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#000')
+				])));
+	var spec3 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc3(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStyle(
+						_List_fromArray(
+							['box']))
+					]))
+			]));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('normal.low')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					3,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('normal.high')
+						]))),
+			$author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mNum(20)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#999')
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc2(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStyle(
+						_List_fromArray(
+							['box']))
+					]))
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('record.low')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					3,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('record.high')
+						]))),
+			$author$project$VegaLite$size(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mNum(20)
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mStr('#ccc')
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc1(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStyle(
+						_List_fromArray(
+							['box']))
+					]))
+			]));
+	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -12498,360 +12805,44 @@ var $author$project$GalleryLayer$layer6 = function () {
 								$author$project$VegaLite$axDomain(false),
 								$author$project$VegaLite$axTicks(false),
 								$author$project$VegaLite$axLabels(false),
-								$author$project$VegaLite$axTitle('Day'),
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axTitlePadding(25),
 								$author$project$VegaLite$axOrient($author$project$VegaLite$siTop)
 							]))
 					]))),
-		$author$project$VegaLite$text(
+		A2(
+			$author$project$VegaLite$position,
+			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('day')
-				])));
-	var spec7 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$textMark(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maAlign($author$project$VegaLite$haCenter),
-						$author$project$VegaLite$maDy(-105)
-					])),
-				enc7(_List_Nil)
-			]));
-	var enc6 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							1,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('forecast.high.low'),
-									$author$project$VegaLite$pQuant
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						3,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('forecast.high.high'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					0,
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('id'),
-							$author$project$VegaLite$pOrdinal
-						]))),
-			$author$project$VegaLite$size(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(12)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#000')
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[10, 70])))
+						])),
+					$author$project$VegaLite$pTitle('Temperature (F)')
 				])));
-	var spec6 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				enc6(_List_Nil)
-			]));
-	var enc5 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							1,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('forecast.low.high'),
-									$author$project$VegaLite$pQuant
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						3,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('forecast.high.low'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('id'),
-							$author$project$VegaLite$pOrdinal
-						]))),
-			$author$project$VegaLite$size(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(3)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#000')
-				])));
-	var spec5 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				enc5(_List_Nil)
-			]));
-	var enc4 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							1,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('forecast.low.low'),
-									$author$project$VegaLite$pQuant
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						3,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('forecast.low.high'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('id'),
-							$author$project$VegaLite$pOrdinal
-						]))),
-			$author$project$VegaLite$size(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(12)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#000')
-				])));
-	var spec4 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				enc4(_List_Nil)
-			]));
-	var enc3 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							1,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('actual.low'),
-									$author$project$VegaLite$pQuant
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						3,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('actual.high'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('id'),
-							$author$project$VegaLite$pOrdinal
-						]))),
-			$author$project$VegaLite$size(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(12)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#000')
-				])));
-	var spec3 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				enc3(_List_Nil)
-			]));
-	var enc2 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							1,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('normal.low'),
-									$author$project$VegaLite$pQuant
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						3,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('normal.high'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('id'),
-							$author$project$VegaLite$pOrdinal
-						]))),
-			$author$project$VegaLite$size(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(20)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#999')
-				])));
-	var spec2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				enc2(_List_Nil)
-			]));
-	var enc1 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				A2(
-					$elm$core$Basics$composeL,
-					A2(
-						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
-						A2(
-							$author$project$VegaLite$position,
-							1,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('record.low'),
-									$author$project$VegaLite$pQuant,
-									$author$project$VegaLite$pScale(
-									_List_fromArray(
-										[
-											$author$project$VegaLite$scDomain(
-											$author$project$VegaLite$doNums(
-												_List_fromArray(
-													[10, 70])))
-										])),
-									$author$project$VegaLite$pAxis(
-									_List_fromArray(
-										[
-											$author$project$VegaLite$axTitle('Temperature (F)')
-										]))
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						3,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('record.high'),
-								$author$project$VegaLite$pQuant
-							]))),
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('id'),
-							$author$project$VegaLite$pOrdinal,
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('Day')
-								]))
-						]))),
-			$author$project$VegaLite$size(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mNum(20)
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#ccc')
-				])));
-	var spec1 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$bar(_List_Nil),
-				enc1(_List_Nil)
-			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/weather.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A layered bar chart with floating bars representing weekly weather data');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLayer$path + 'weather.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$description('A layered bar chart with floating bars representing weekly weather data'),
-				A2($author$project$VegaLite$title, 'Weekly Weather Observations and Predictions', _List_Nil),
+				desc,
+				A2(
+				$author$project$VegaLite$title,
+				'Weekly Weather',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$tiSubtitle('Observations and Predictions')
+					])),
 				$author$project$VegaLite$width(250),
 				$author$project$VegaLite$height(200),
 				data,
+				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[spec1, spec2, spec3, spec4, spec5, spec6, spec7]))
@@ -12999,6 +12990,10 @@ var $author$project$VegaLite$MdX = function (a) {
 	return {$: 25, a: a};
 };
 var $author$project$VegaLite$maDx = $author$project$VegaLite$MdX;
+var $author$project$VegaLite$MdY = function (a) {
+	return {$: 26, a: a};
+};
+var $author$project$VegaLite$maDy = $author$project$VegaLite$MdY;
 var $author$project$VegaLite$MFill = function (a) {
 	return {$: 28, a: a};
 };
@@ -13194,8 +13189,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 				2,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('end'),
-						$author$project$VegaLite$pOrdinal
+						$author$project$VegaLite$pName('end')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -14172,6 +14166,7 @@ var $author$project$GalleryLayer$layer8 = function () {
 				[
 					$author$project$VegaLite$pName('y2')
 				])));
+	var desc = $author$project$VegaLite$description('William Playfair’s visualization of the price of wheat, the wages of a mechanic and the reigning British monarch');
 	var dataText4 = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14554,7 +14549,7 @@ var $author$project$GalleryLayer$layer8 = function () {
 						$author$project$VegaLite$maAngle(-2)
 					]))
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/wheat.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLayer$path + 'wheat.json', _List_Nil);
 	var curves = $author$project$VegaLite$categoricalDomainMap(
 		_List_fromArray(
 			[
@@ -14628,6 +14623,7 @@ var $author$project$GalleryLayer$layer8 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(900),
 				$author$project$VegaLite$height(450),
