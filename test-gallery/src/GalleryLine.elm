@@ -10,14 +10,19 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 line1 : Spec
 line1 =
     let
-        des =
+        desc =
             description "Google's stock price over time."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
@@ -27,17 +32,17 @@ line1 =
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ des, data, trans [], enc [], line [] ]
+    toVegaLite [ desc, data, trans [], enc [], line [] ]
 
 
 line2 : Spec
 line2 =
     let
-        des =
+        desc =
             description "Line chart with point markers."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -45,17 +50,17 @@ line2 =
                 << position Y [ pName "price", pQuant, pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
-    toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
+    toVegaLite [ desc, data, enc [], line [ maPoint (pmMarker []) ] ]
 
 
 line3 : Spec
 line3 =
     let
-        des =
+        desc =
             description "Line chart with stroked point markers."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -63,17 +68,17 @@ line3 =
                 << position Y [ pName "price", pQuant, pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
-    toVegaLite [ des, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
+    toVegaLite [ desc, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
 
 
 line4 : Spec
 line4 =
     let
-        des =
+        desc =
             description "Stock prices of 5 tech companies over time."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -81,21 +86,21 @@ line4 =
                 << position Y [ pName "price", pQuant ]
                 << color [ mName "symbol" ]
     in
-    toVegaLite [ des, data, enc [], line [] ]
+    toVegaLite [ desc, data, enc [], line [] ]
 
 
 line5 : Spec
 line5 =
     let
-        des =
+        desc =
             description "Repeated layers to show different weather measures."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
                 << position Y [ pRepeat arLayer, pQuant, pAggregate opMean, pTitle "Mean of US and Worldwide Gross" ]
                 << color [ mRepeatDatum arLayer ]
 
@@ -103,8 +108,8 @@ line5 =
             asSpec [ data, enc [], line [] ]
     in
     toVegaLite
-        [ des
-        , repeat [ layerFields [ "US_Gross", "Worldwide_Gross" ] ]
+        [ desc
+        , repeat [ layerFields [ "US Gross", "Worldwide Gross" ] ]
         , specification spec
         ]
 
@@ -112,11 +117,11 @@ line5 =
 line6 : Spec
 line6 =
     let
-        des =
+        desc =
             description "Multi-series line chart with halo. Uses pivot and repeat-layer as a workaround to facet groups of lines and their halo strokes."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform
@@ -141,7 +146,7 @@ line6 =
             asSpec [ encLine [], line [] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , data
         , trans []
         , repeat [ layerFields [ "AAPL", "AMZN", "GOOG", "IBM", "MSFT" ] ]
@@ -152,11 +157,11 @@ line6 =
 line7 : Spec
 line7 =
     let
-        des =
+        desc =
             description "Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
+            dataFromUrl (path ++ "barley.json") []
 
         enc =
             encoding
@@ -164,17 +169,17 @@ line7 =
                 << position Y [ pName "yield", pQuant, pAggregate opMedian ]
                 << color [ mName "site" ]
     in
-    toVegaLite [ des, widthStep 50, data, enc [], line [] ]
+    toVegaLite [ desc, widthStep 50, data, enc [], line [] ]
 
 
 line8 : Spec
 line8 =
     let
-        des =
+        desc =
             description "Google's stock price over time (quantized as a step-chart)."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
@@ -184,17 +189,17 @@ line8 =
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miStepAfter ] ]
+    toVegaLite [ desc, data, trans [], enc [], line [ maInterpolate miStepAfter ] ]
 
 
 line9 : Spec
 line9 =
     let
-        des =
+        desc =
             description "Google's stock price over time (smoothed with monotonic interpolation)."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
@@ -204,17 +209,17 @@ line9 =
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ des, data, trans [], enc [], line [ maInterpolate miMonotone ] ]
+    toVegaLite [ desc, data, trans [], enc [], line [ maInterpolate miMonotone ] ]
 
 
 line10 : Spec
 line10 =
     let
-        des =
+        desc =
             description "Line chart with conditional grid dash."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform
@@ -241,13 +246,13 @@ line10 =
                     ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ des, data, trans [], enc [], line [] ]
+    toVegaLite [ desc, data, trans [], enc [], line [] ]
 
 
 line11 : Spec
 line11 =
     let
-        des =
+        desc =
             description "Line chart with conditional axis ticks, labels, and grid."
 
         cfg =
@@ -255,7 +260,7 @@ line11 =
                 << configuration (coAxis [ axcoDomainColor "#ddd", axcoTickColor "#ddd" ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform
@@ -272,7 +277,8 @@ line11 =
                     [ pName "date"
                     , pTemporal
                     , pAxis
-                        [ axTickCount (niTickCount 8)
+                        [ axTitle ""
+                        , axTickCount (niTickCount 8)
                         , axLabelAlign haLeft
                         , axLabelExpr "[timeFormat(datum.value, '%b'), timeFormat(datum.value, '%m') == '01' ? timeFormat(datum.value, '%Y') : '']"
                         , axLabelOffset 4
@@ -288,17 +294,17 @@ line11 =
                     ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ des, cfg [], width 400, data, trans [], enc [], line [] ]
+    toVegaLite [ desc, cfg [], width 400, data, trans [], enc [], line [] ]
 
 
 line12 : Spec
 line12 =
     let
-        des =
+        desc =
             description "A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/driving.json" []
+            dataFromUrl (path ++ "driving.json") []
 
         enc =
             encoding
@@ -306,17 +312,17 @@ line12 =
                 << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
                 << order [ oName "year", oTemporal ]
     in
-    toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
+    toVegaLite [ desc, data, enc [], line [ maPoint (pmMarker []) ] ]
 
 
 line13 : Spec
 line13 =
     let
-        des =
+        desc =
             description "Stock prices of five tech companies over time double encoding price with vertical position and line thickness."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -325,13 +331,13 @@ line13 =
                 << size [ mName "price", mQuant ]
                 << color [ mName "symbol" ]
     in
-    toVegaLite [ des, data, enc [], trail [] ]
+    toVegaLite [ desc, data, enc [], trail [] ]
 
 
 line14 : Spec
 line14 =
     let
-        des =
+        desc =
             description "Line chart with markers and invalid values."
 
         data =
@@ -349,18 +355,17 @@ line14 =
                 << position X [ pName "x", pQuant ]
                 << position Y [ pName "y", pQuant ]
     in
-    toVegaLite [ des, data [], enc [], line [ maPoint (pmMarker []) ] ]
+    toVegaLite [ desc, data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
 line15 : Spec
 line15 =
     let
-        des =
+        desc =
             description "Carbon dioxide in the atmosphere."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/co2-concentration.csv"
-                [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
+            dataFromUrl (path ++ "co2-concentration.csv") [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
 
         trans =
             transform
@@ -426,7 +431,7 @@ line15 =
             configure << configuration (coText [ maAlign haLeft, maDx 3, maDy 1 ])
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 800
         , height 500
@@ -440,7 +445,7 @@ line15 =
 line16 : Spec
 line16 =
     let
-        des =
+        desc =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
 
         data =
@@ -469,13 +474,13 @@ line16 =
                 , ( "Sweden", "#0c71ab" )
                 ]
     in
-    toVegaLite [ des, data [], trans [], enc [], line [ maOrient moVertical ] ]
+    toVegaLite [ desc, data [], trans [], enc [], line [ maOrient moVertical ] ]
 
 
 line17 : Spec
 line17 =
     let
-        des =
+        desc =
             description "Plots a function using a generated sequence"
 
         data =
@@ -502,14 +507,14 @@ line17 =
         specCos =
             asSpec [ encCos [], line [ maStroke "firebrick" ] ]
     in
-    toVegaLite [ des, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
+    toVegaLite [ desc, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
 
 
 line18 : Spec
 line18 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -565,7 +570,7 @@ mySpecs =
         , ( "line16", line16 )
         , ( "line17", line17 )
         , ( "line18", line18 )
-        , ( "line18", line19 )
+        , ( "line19", line19 )
         ]
 
 
