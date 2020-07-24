@@ -49,12 +49,7 @@ bar2 =
 
         enc =
             encoding
-                << position X
-                    [ pName "people"
-                    , pQuant
-                    , pAggregate opSum
-                    , pAxis [ axTitle "population" ]
-                    ]
+                << position X [ pName "people", pAggregate opSum, pTitle "population" ]
                 << position Y [ pName "age", pOrdinal ]
     in
     toVegaLite [ desc, heightStep 17, data, trans [], enc [], bar [] ]
@@ -74,17 +69,8 @@ bar3 =
 
         enc =
             encoding
-                << position X
-                    [ pName "people"
-                    , pQuant
-                    , pAggregate opSum
-                    , pAxis [ axTitle "population" ]
-                    ]
-                << position Y
-                    [ pName "age"
-                    , pOrdinal
-                    , pSort [ soByChannel chX, soDescending ]
-                    ]
+                << position X [ pName "people", pAggregate opSum, pTitle "population" ]
+                << position Y [ pName "age", pOrdinal, pSort [ soByChannel chX, soDescending ] ]
     in
     toVegaLite [ desc, heightStep 17, data, trans [], enc [], bar [] ]
 
@@ -101,7 +87,7 @@ bar4 =
         enc =
             encoding
                 << position X [ pName "IMDB Rating", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
     in
     toVegaLite
         [ desc, data, enc [], bar [] ]
@@ -151,7 +137,7 @@ bar6 =
                     , pAxis [ axTickCount (niTickCount 5) ]
                     ]
                 << position X2 [ pName "x2" ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
     in
     toVegaLite [ desc, data [], trans [], enc [], bar [] ]
 
@@ -175,7 +161,6 @@ bar7 =
                 << position X [ pName "gender", pTitle "" ]
                 << position Y
                     [ pName "people"
-                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axGrid False ]
                     ]
@@ -223,8 +208,7 @@ weatherBars mProps =
                     , pAxis [ axTitle "", axLabelAngle 0, axTicks False ]
                     ]
                 << position Y
-                    [ pQuant
-                    , pAggregate opCount
+                    [ pAggregate opCount
                     , pAxis [ axGrid False, axTitle "Number of days" ]
                     ]
                 << color
@@ -271,7 +255,6 @@ bar10 =
                     ]
                 << position Y
                     [ pName "precipitation"
-                    , pQuant
                     , pAggregate opMean
                     , pAxis [ axGrid False, axTitle "Average number of days with rain" ]
                     ]
@@ -317,7 +300,7 @@ bar12 =
 
         enc =
             encoding
-                << position X [ pName "yield", pQuant, pAggregate opSum ]
+                << position X [ pName "yield", pAggregate opSum ]
                 << position Y [ pName "variety" ]
                 << color [ mName "site" ]
     in
@@ -341,17 +324,8 @@ bar13 =
         enc =
             encoding
                 << position X [ pName "age", pOrdinal ]
-                << position Y
-                    [ pName "people"
-                    , pQuant
-                    , pAggregate opSum
-                    , pAxis [ axTitle "Population" ]
-                    , pStack stNormalize
-                    ]
-                << color
-                    [ mName "gender"
-                    , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
-                    ]
+                << position Y [ pName "people", pAggregate opSum, pTitle "Population", pStack stNormalize ]
+                << color [ mName "gender", mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ] ]
     in
     toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
@@ -416,7 +390,6 @@ bar16 =
                 << position X [ pName "age", pOrdinal ]
                 << position Y
                     [ pName "people"
-                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "Population" ]
                     , pStack stNone
@@ -453,7 +426,6 @@ bar17 =
                 << position X
                     [ pName "signedPeople"
                     , pAggregate opSum
-                    , pQuant
                     , pAxis [ axTitle "Population", axFormat "s" ]
                     ]
                 << color
@@ -590,7 +562,6 @@ bar20 =
                 << position X
                     [ pName "IMDB Rating"
                     , pAggregate opMean
-                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 10 ]) ]
                     , pTitle "Mean IMDB Ratings"
                     ]
@@ -601,7 +572,7 @@ bar20 =
         encText =
             encoding
                 << text [ tName "genre" ]
-                << detail [ dAggregate opCount, dQuant ]
+                << detail [ dAggregate opCount ]
 
         specText =
             asSpec [ encText [], textMark [ maAlign haLeft, maX 5 ] ]
@@ -632,7 +603,7 @@ bar21 =
 
         enc =
             encoding
-                << position X [ pAggregate opCount, pQuant, pAxis [ axGrid False ] ]
+                << position X [ pAggregate opCount, pAxis [ axGrid False ] ]
                 << position Y
                     [ pName "Origin"
                     , pScale [ scPaddingInner 0.2 ]

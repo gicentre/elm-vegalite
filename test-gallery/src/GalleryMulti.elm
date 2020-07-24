@@ -71,7 +71,7 @@ multi2 =
         encPosition =
             encoding
                 << position X [ pRepeat arColumn, pQuant, pBin [ biMaxBins 20 ] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         encAll =
             encPosition
@@ -187,7 +187,6 @@ multi4 =
             encoding
                 << color
                     [ mAggregate opCount
-                    , mQuant
                     , mLegend
                         [ leTitle "Number of films"
                         , leDirection moHorizontal
@@ -200,7 +199,7 @@ multi4 =
 
         enc2 =
             encoding
-                << size [ mAggregate opCount, mQuant, mTitle "in selected genre" ]
+                << size [ mAggregate opCount, mTitle "in selected genre" ]
                 << color [ mStr "#666" ]
 
         spec2 =
@@ -218,7 +217,7 @@ multi4 =
         encBar =
             encoding
                 << position X [ pName "Major Genre", pAxis [ axTitle "", axLabelAngle -40 ] ]
-                << position Y [ pAggregate opCount, pQuant, pTitle "Number of films" ]
+                << position Y [ pAggregate opCount, pTitle "Number of films" ]
                 << color
                     [ mSelectionCondition (selectionName "myPts")
                         [ mStr "steelblue" ]
@@ -304,13 +303,11 @@ multi5 =
 
         enc2 =
             encoding
-                << position X [ pAggregate opCount, pQuant ]
+                << position X [ pAggregate opCount ]
                 << position Y [ pName "weather" ]
                 << color
                     [ mSelectionCondition (selectionName "myClick")
-                        [ mName "weather"
-                        , mScale weatherColors
-                        ]
+                        [ mName "weather", mScale weatherColors ]
                         [ mStr "#acbf98" ]
                     ]
     in
@@ -511,7 +508,7 @@ multi8 =
         enc1 =
             encoding
                 << position X [ pName "time", pBin [ biMaxBins 30 ], pQuant ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         spec1 =
             asSpec [ width 963, height 100, sel [], enc1 [], bar [] ]
@@ -523,7 +520,7 @@ multi8 =
                     , pBin [ biMaxBins 30, biSelectionExtent "brush" ]
                     , pQuant
                     ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         spec2 =
             asSpec [ width 963, height 100, enc2 [], bar [] ]

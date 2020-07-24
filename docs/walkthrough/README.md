@@ -86,7 +86,7 @@ let
     enc =
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
 in
 toVegaLite
     [ dataFromUrl (path ++ "seattle-weather.csv") []
@@ -95,7 +95,7 @@ toVegaLite
     ]
 ```
 
-The code now contains two chained `position` encodings: one for the x-position, which is now binned, and one for the y-position which is aggregated by providing `pAggregate Count` instead of a data field name.
+The code now contains two chained `position` encodings: one for the x-position, which is now binned, and one for the y-position which is aggregated by providing `pAggregate opCount` instead of a data field name. Because by definition a count will be numeric, we don't need to specify the measurement type, which is assumed to be `pQuant`.
 
 Notice again that sensible defaults are provided for the parts of the specification we didn't specify such as axis titles, colors and number of bins.
 
@@ -111,7 +111,7 @@ let
     enc =
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
             << color [ mName "weather" ]
 in
 toVegaLite
@@ -148,7 +148,7 @@ let
     enc =
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
             << color [ mName "weather", mScale weatherColors ]
     in
     toVegaLite
@@ -169,7 +169,7 @@ let
     enc =
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
             << color [ mName "weather", mScale weatherColors ]
 in
 toVegaLite
@@ -192,7 +192,7 @@ let
     enc =
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
             << color [ mName "weather", mLegend [], mScale weatherColors ]
             << column [ fName "weather" ]
 in
@@ -235,7 +235,7 @@ let
     enc =
         encoding
             << position X [ pName "date", pOrdinal, pTimeUnit month ]
-            << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+            << position Y [ pName "precipitation", pAggregate opMean ]
 in
 toVegaLite
     [ dataFromUrl (path ++ "seattle-weather.csv") []
@@ -255,7 +255,7 @@ We can annotate the chart by placing the bar chart specification in a _layer_ an
 ```elm
 let
     precipEnc =
-        encoding << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+        encoding << position Y [ pName "precipitation", pAggregate opMean ]
 
     barEnc =
         encoding << position X [ pName "date", pOrdinal, pTimeUnit month ]
@@ -280,12 +280,12 @@ let
     bar1Enc =
         encoding
             << position X [ pName "date", pOrdinal, pTimeUnit month ]
-            << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+            << position Y [ pName "precipitation", pAggregate opMean ]
 
     bar2Enc =
         encoding
             << position X [ pName "date", pOrdinal, pTimeUnit month ]
-            << position Y [ pName "temp_max", pQuant, pAggregate opMean ]
+            << position Y [ pName "temp_max", pAggregate opMean ]
 in
 toVegaLite
     [ dataFromUrl (path ++ "seattle-weather.csv") []
@@ -306,7 +306,7 @@ let
     enc =
         encoding
             << position X [ pName "date", pOrdinal, pTimeUnit month ]
-            << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
+            << position Y [ pRepeat arRow, pAggregate opMean ]
 
     spec =
         asSpec
@@ -362,7 +362,7 @@ let
     histoEnc =
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
             << color [ mName "weather", mLegend [], mScale weatherColors ]
             << column [ fName "weather" ]
 
@@ -380,11 +380,11 @@ let
     barEnc =
         encoding
             << position X [ pName "date", pOrdinal, pTimeUnit month ]
-            << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
+            << position Y [ pRepeat arRow, pAggregate opMean ]
 
     annotationEnc =
         encoding
-            << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
+            << position Y [ pRepeat arRow, pAggregate opMean ]
 
     layerSpec =
         asSpec
@@ -764,12 +764,12 @@ let
     totalEnc =
         encoding
             << position X [ pRepeat arColumn, pQuant ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
 
     selectedEnc =
         encoding
             << position X [ pRepeat arColumn, pQuant ]
-            << position Y [ pAggregate opCount, pQuant ]
+            << position Y [ pAggregate opCount ]
             << color [ mStr "goldenrod" ]
 in
 toVegaLite

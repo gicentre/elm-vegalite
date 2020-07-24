@@ -78,7 +78,7 @@ textFormat2 =
         enc =
             encoding
                 << position X [ pName "crimeType", pTitle "" ]
-                << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
+                << position Y [ pName "reportedCrimes", pAggregate opSum ]
                 << color [ mName "crimeType", mLegend [] ]
                 << column [ fName "month", fTemporal, fHeader [ hdFormatAsTemporal, hdFormat "%b %y" ] ]
     in
@@ -218,7 +218,7 @@ customFormatter1 =
         enc =
             encoding
                 << position X [ pName "crimeType", pAxis [ axFormatAsCustom "axTest" ] ]
-                << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
+                << position Y [ pName "reportedCrimes", pAggregate opSum ]
                 << color [ mName "crimeType", mLegend [ leFormatAsCustom "leTest" ] ]
                 << column [ fName "month", fTemporal, fHeader [ hdFormatAsCustom "hdTest" ] ]
     in

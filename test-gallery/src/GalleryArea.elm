@@ -27,7 +27,7 @@ area1 =
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axTitle "", axFormat "%Y" ] ]
-                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [ axTitle "Number of unemployed" ] ]
+                << position Y [ pName "count", pAggregate opSum, pAxis [ axTitle "Number of unemployed" ] ]
     in
     toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
 
@@ -98,7 +98,7 @@ area4 =
                     , pTimeUnit yearMonth
                     , pAxis [ axTitle "", axFormat "%Y" ]
                     ]
-                << position Y [ pName "count", pQuant, pAggregate opSum, pTitle "Number unemployed" ]
+                << position Y [ pName "count", pAggregate opSum, pTitle "Number unemployed" ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ desc, data, enc [], area [] ]
@@ -121,7 +121,7 @@ area5 =
                     , pTimeUnit yearMonth
                     , pAxis [ axTitle "", axDomain False, axFormat "%Y" ]
                     ]
-                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stNormalize ]
+                << position Y [ pName "count", pAggregate opSum, pAxis [], pStack stNormalize ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
@@ -144,7 +144,7 @@ area6 =
                     , pTimeUnit yearMonth
                     , pAxis [ axTitle "", axDomain False, axFormat "%Y" ]
                     ]
-                << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stCenter ]
+                << position Y [ pName "count", pAggregate opSum, pAxis [], pStack stCenter ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
@@ -244,7 +244,6 @@ area8 =
             encoding
                 << position X
                     [ pName "xc"
-                    , pQuant
                     , pAggregate opMin
                     , pTitle "Origin"
                     , pAxis [ axOrient siTop ]

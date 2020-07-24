@@ -27,7 +27,7 @@ repeat1 =
         enc1 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
+                << position Y [ pRepeat arColumn, pAggregate opMean ]
                 << detail [ dName "date", dTemporal, dTimeUnit year ]
                 << color [ mName "location" ]
                 << opacity [ mNum 0.2 ]
@@ -38,7 +38,7 @@ repeat1 =
         enc2 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
+                << position Y [ pRepeat arColumn, pAggregate opMean ]
                 << color [ mName "location" ]
 
         spec2 =
@@ -71,7 +71,7 @@ repeat2 =
         enc1 =
             encoding
                 << position X [ pName "date", pTimeUnit month, pOrdinal ]
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
 
         spec1 =
             asSpec [ bar [], enc1 [] ]
@@ -80,7 +80,7 @@ repeat2 =
             encoding
                 << position X [ pName "temp_min", pQuant, pBin [] ]
                 << position Y [ pName "temp_max", pQuant, pBin [] ]
-                << size [ mAggregate opCount, mQuant ]
+                << size [ mAggregate opCount ]
 
         spec2 =
             asSpec [ point [], enc2 [] ]
@@ -100,7 +100,7 @@ repeat3 =
         enc =
             encoding
                 << position X [ pRepeat arColumn, pQuant, pBin [] ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
     in
     toVegaLite
@@ -180,9 +180,8 @@ repeat5 =
                 << position X [ pName "IMDB Rating", pQuant, pAxis [], pBin [] ]
                 << position Y
                     [ pAggregate opCount
-                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 1000 ]) ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
 
         spec1 =
@@ -195,7 +194,7 @@ repeat5 =
             encoding
                 << position X [ pName "IMDB Rating", pQuant, pBin [] ]
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [] ]
-                << color [ mAggregate opCount, mQuant ]
+                << color [ mAggregate opCount ]
 
         spec2_1 =
             asSpec [ rect [], enc2_1 [] ]
@@ -210,9 +209,8 @@ repeat5 =
                     ]
                 << position X
                     [ pAggregate opCount
-                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 1000 ]) ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
 
         spec2_2 =
@@ -251,7 +249,6 @@ repeat6 =
                 << position Y [ pName "age", pOrdinal, pAxis [], pSort [ soDescending ] ]
                 << position X
                     [ pName "people"
-                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axFormat "s" ]
                     , pSort [ soDescending ]
@@ -276,7 +273,6 @@ repeat6 =
                 << position Y [ pName "age", pOrdinal, pAxis [], pSort [ soDescending ] ]
                 << position X
                     [ pName "people"
-                    , pQuant
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axFormat "s" ]
                     ]

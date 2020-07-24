@@ -18,7 +18,7 @@ timeByUnit tu =
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit tu ]
-                << position Y [ pName "temperature", pQuant, pAggregate opMean, pScale [ scZero False ] ]
+                << position Y [ pName "temperature", pAggregate opMean, pScale [ scZero False ] ]
     in
     toVegaLite [ width 800, data, enc [], line [ maStrokeWidth 0.2 ] ]
 
@@ -88,7 +88,7 @@ timeBand =
         enc =
             encoding
                 << position X [ pName "date", pTimeUnit month, pTemporal, pBand 0.5 ]
-                << position Y [ pName "temp", pAggregate opMean, pQuant ]
+                << position Y [ pName "temp", pAggregate opMean ]
     in
     toVegaLite
         [ width 400

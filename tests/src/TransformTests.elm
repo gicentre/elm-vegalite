@@ -46,7 +46,7 @@ binTransform bProps =
         enc =
             encoding
                 << position X [ pName "ratingGroup", pOrdinal ]
-                << position Y [ pAggregate opCount, pQuant, pTitle "Number of movies" ]
+                << position Y [ pAggregate opCount, pTitle "Number of movies" ]
     in
     toVegaLite [ width 400, data [], trans [], enc [], bar [] ]
 
@@ -372,7 +372,7 @@ transform14 =
         enc =
             encoding
                 << position X [ pName "month", pTemporal, pAxis [ axFormat "%b" ] ]
-                << position Y [ pName "maxTemp", pQuant, pAggregate opMax ]
+                << position Y [ pName "maxTemp", pAggregate opMax ]
     in
     toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
@@ -394,7 +394,7 @@ transform15 =
         enc =
             encoding
                 << position X [ pName "bimonth", pTemporal, pAxis [ axFormat "%b" ] ]
-                << position Y [ pName "maxTemp", pQuant, pAggregate opMax ]
+                << position Y [ pName "maxTemp", pAggregate opMax ]
     in
     toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
@@ -413,7 +413,7 @@ transform16 =
         enc =
             encoding
                 << position X [ pName "tBin", pTemporal, pAxis [ axFormat "%b" ] ]
-                << position Y [ pName "temp_max", pQuant, pAggregate opMax ]
+                << position Y [ pName "temp_max", pAggregate opMax ]
     in
     toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
@@ -433,7 +433,7 @@ transform17 =
             encoding
                 -- << position X [ pName "date", pTemporal, pTimeUnit (utc minutes |> tuStep 5) ]
                 << position X [ pName "date", pTemporal, pTimeUnit (tuMaxBins 15) ]
-                << position Y [ pName "distance", pQuant, pAggregate opSum ]
+                << position Y [ pName "distance", pAggregate opSum ]
     in
     toVegaLite [ data [], enc [], bar [] ]
 

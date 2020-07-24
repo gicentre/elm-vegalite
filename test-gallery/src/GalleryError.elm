@@ -32,7 +32,6 @@ error1 =
             encoding
                 << position X
                     [ pName "yield"
-                    , pQuant
                     , pAggregate opMean
                     , pScale [ scZero False ]
                     , pTitle "Barley Yield"
@@ -44,11 +43,7 @@ error1 =
 
         encCIs =
             encoding
-                << position X
-                    [ pName "yield"
-                    , pQuant
-                    , pAggregate opCI0
-                    ]
+                << position X [ pName "yield", pAggregate opCI0 ]
                 << position X2 [ pName "yield", pAggregate opCI1 ]
 
         specCIs =
@@ -116,7 +111,6 @@ error3 =
             encoding
                 << position Y
                     [ pName "Miles_per_Gallon"
-                    , pQuant
                     , pAggregate opCI0
                     , pTitle "Miles per gallon with 95% CIs"
                     ]
@@ -128,7 +122,7 @@ error3 =
 
         encLine =
             encoding
-                << position Y [ pName "Miles_per_Gallon", pQuant, pAggregate opMean ]
+                << position Y [ pName "Miles_per_Gallon", pAggregate opMean ]
 
         specLine =
             asSpec [ encLine [], line [] ]

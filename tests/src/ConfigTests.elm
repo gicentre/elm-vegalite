@@ -61,7 +61,7 @@ histoVis config =
         barEnc =
             encoding
                 << position X [ pName "rating", pBin [], pOrdinal ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         barSpec =
             asSpec [ barEnc [], bar [ maOpacity 0.3 ] ]
@@ -130,13 +130,13 @@ compositeVis config =
         barEnc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
 
         streamEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
-                << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
+                << position Y [ pAggregate opCount, pStack stCenter, pAxis [] ]
                 << color [ mName "Origin" ]
 
         barSpec =
@@ -180,13 +180,13 @@ vbTest =
         barEnc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
 
         streamEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
-                << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
+                << position Y [ pAggregate opCount, pStack stCenter, pAxis [] ]
                 << color [ mName "Origin" ]
 
         scatterSpec =

@@ -115,7 +115,7 @@ label3 =
 
         encRect =
             encoding
-                << color [ mName "*", mQuant, mAggregate opCount ]
+                << color [ mName "*", mAggregate opCount ]
 
         specRect =
             asSpec [ rect [], encRect [] ]
@@ -123,7 +123,7 @@ label3 =
         encText =
             encoding
                 << color [ mStr "white" ]
-                << text [ tName "*", tQuant, tAggregate opCount ]
+                << text [ tName "*", tAggregate opCount ]
 
         specText =
             asSpec [ textMark [], encText [] ]
@@ -291,14 +291,14 @@ label6 =
         encBar =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
 
         specBar =
             asSpec [ bar [], encBar [] ]
 
         encLine =
             encoding
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
                 << color [ mStr "red" ]
                 << size [ mNum 3 ]
 
@@ -320,14 +320,14 @@ label7 =
         encBars =
             encoding
                 << position X [ pName "IMDB Rating", pQuant, pBin [], pAxis [] ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y [ pAggregate opCount ]
 
         specBars =
             asSpec [ bar [], encBars [] ]
 
         encMean =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pAggregate opMean ]
+                << position X [ pName "IMDB Rating", pAggregate opMean ]
                 << color [ mStr "red" ]
                 << size [ mNum 5 ]
 
@@ -423,11 +423,7 @@ label9 =
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
                     , pAxis [ axGrid False, axValues (nums [ 1, 2, 3, 4, 5 ]) ]
                     ]
-                << size
-                    [ mAggregate opCount
-                    , mQuant
-                    , mLegend [ leTitle "Number of Ratings", leOffset 75 ]
-                    ]
+                << size [ mAggregate opCount, mLegend [ leTitle "Number of Ratings", leOffset 75 ] ]
 
         specCircle =
             asSpec

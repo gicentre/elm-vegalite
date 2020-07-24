@@ -244,7 +244,6 @@ layer4 =
             encoding
                 << position Y
                     [ pName "temp_max"
-                    , pQuant
                     , pAggregate opMean
                     , pScale [ scDomain (doNums [ 0, 30 ]) ]
                     , pAxis [ axTitle "Avgerage Temperature (°C)", axTitleColor "#85C5A6" ]
@@ -258,7 +257,6 @@ layer4 =
             encoding
                 << position Y
                     [ pName "precipitationmm"
-                    , pQuant
                     , pAggregate opMean
                     , pAxis [ axTitle "Precipitation (mm)", axTitleColor "#85A9C5" ]
                     ]

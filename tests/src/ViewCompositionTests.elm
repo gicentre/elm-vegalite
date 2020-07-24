@@ -29,7 +29,7 @@ genderChart hdProps cProps =
             encoding
                 << column [ fName "gender", fHeader hdProps ]
                 << position X [ pName "age", pOrdinal ]
-                << position Y [ pName "people", pQuant, pAggregate opSum, pTitle "Population" ]
+                << position Y [ pName "people", pAggregate opSum, pTitle "Population" ]
                 << color [ mName "gender", mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ] ]
     in
     toVegaLite [ widthStep 17, conf [], pop, trans [], enc [], bar [] ]
@@ -210,7 +210,7 @@ grid4 =
         enc =
             encoding
                 << position X [ pRepeat arFlow, pQuant, pBin [] ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
 
         spec =
@@ -232,7 +232,7 @@ grid5 =
         enc =
             encoding
                 << position X [ pRepeat arRow, pQuant, pBin [] ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
 
         spec =
@@ -305,7 +305,7 @@ concat2 =
         enc =
             encoding
                 << position X [ pName "rate", pBin [], pQuant ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         chartSpec =
             asSpec [ attData [], enc [], bar [] ]

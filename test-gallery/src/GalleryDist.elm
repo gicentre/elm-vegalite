@@ -28,7 +28,7 @@ dist1 =
         enc =
             encoding
                 << position X [ pName "IMDB Rating", pQuant, pBin [] ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y [ pAggregate opCount ]
     in
     toVegaLite [ desc, data, enc [], bar [] ]
 

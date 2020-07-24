@@ -197,7 +197,7 @@ errorbar3 =
 
         encPoints =
             encoding
-                << position X [ pName "yield", pQuant, pAggregate opMean ]
+                << position X [ pName "yield", pAggregate opMean ]
                 << position Y [ pName "variety", pOrdinal ]
     in
     toVegaLite

@@ -68,7 +68,7 @@ advanced2 =
 
         ruleEnc =
             encoding
-                << position X [ pName "AverageRating", pAggregate opMean, pQuant ]
+                << position X [ pName "AverageRating", pAggregate opMean ]
 
         ruleSpec =
             asSpec [ ruleEnc [], rule [ maColor "red" ] ]
@@ -344,7 +344,6 @@ advanced8 =
             encoding
                 << position X
                     [ pName "aggregateGross"
-                    , pQuant
                     , pAggregate opMean
                     , pTitle ""
                     ]
@@ -384,7 +383,7 @@ advanced9 =
         enc =
             encoding
                 << position X [ pName "group", pOrdinal ]
-                << position Y [ pName "age", pQuant, pAggregate opMean ]
+                << position Y [ pName "age", pAggregate opMean ]
     in
     toVegaLite [ desc, data, trans [], enc [], bar [] ]
 
@@ -561,7 +560,7 @@ advanced14 =
         encAxis =
             encoding
                 << position X [ pName "key", pTitle "" ]
-                << detail [ dAggregate opCount, dQuant ]
+                << detail [ dAggregate opCount ]
 
         specAxis =
             asSpec [ encAxis [], rule [ maColor "#ccc" ] ]
@@ -570,7 +569,7 @@ advanced14 =
             encoding
                 << position X [ pName "key" ]
                 << position Y [ pNum 0 ]
-                << text [ tName "max", tQuant, tAggregate opMax ]
+                << text [ tName "max", tAggregate opMax ]
 
         specAxisLabelsTop =
             asSpec [ encAxisLabelsTop [], textMark [ maStyle [ "label" ] ] ]
@@ -579,7 +578,7 @@ advanced14 =
             encoding
                 << position X [ pName "key" ]
                 << position Y [ pNum 150 ]
-                << text [ tName "mid", tQuant, tAggregate opMin ]
+                << text [ tName "mid", tAggregate opMin ]
 
         specAxisLabelsMid =
             asSpec [ encAxisLabelsMid [], textMark [ maStyle [ "label" ] ] ]
@@ -588,7 +587,7 @@ advanced14 =
             encoding
                 << position X [ pName "key" ]
                 << position Y [ pHeight ]
-                << text [ tName "min", tQuant, tAggregate opMin ]
+                << text [ tName "min", tAggregate opMin ]
 
         specAxisLabelsBot =
             asSpec [ encAxisLabelsBot [], textMark [ maStyle [ "label" ] ] ]
@@ -652,7 +651,7 @@ advanced16 =
         encAv =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
-                << position Y [ pName "price", pAggregate opMean, pQuant ]
+                << position Y [ pName "price", pAggregate opMean ]
 
         specAv =
             asSpec [ encAv [], line [] ]

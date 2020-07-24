@@ -32,12 +32,7 @@ facet1 =
         enc =
             encoding
                 << position X [ pName "age", pOrdinal, pAxis [ axLabelAngle 0 ] ]
-                << position Y
-                    [ pName "people"
-                    , pQuant
-                    , pAggregate opSum
-                    , pTitle "population"
-                    ]
+                << position Y [ pName "people", pAggregate opSum, pTitle "population" ]
                 << color
                     [ mName "gender"
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
@@ -59,13 +54,12 @@ facet2 =
 
         enc =
             encoding
-                << position X [ pName "yield", pQuant, pAggregate opSum ]
+                << position X [ pName "yield", pAggregate opSum ]
                 << position Y [ pName "variety" ]
                 << color [ mName "site" ]
                 << column [ fName "year", fOrdinal ]
     in
-    toVegaLite
-        [ desc, data, enc [], bar [] ]
+    toVegaLite [ desc, data, enc [], bar [] ]
 
 
 facet3 : Spec
@@ -98,7 +92,7 @@ facet4 =
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant, pBin [ biMaxBins 15 ] ]
-                << position Y [ pQuant, pAggregate opCount ]
+                << position Y [ pAggregate opCount ]
                 << row [ fName "Origin", fOrdinal ]
     in
     toVegaLite [ desc, data, enc [], bar [] ]
@@ -153,12 +147,7 @@ facet6 =
 
         enc =
             encoding
-                << position X
-                    [ pName "yield"
-                    , pQuant
-                    , pAggregate opMedian
-                    , pScale [ scZero False ]
-                    ]
+                << position X [ pName "yield", pAggregate opMedian, pScale [ scZero False ] ]
                 << position Y
                     [ pName "variety"
                     , pOrdinal

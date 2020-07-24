@@ -126,7 +126,7 @@ interaction4 =
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonth ]
-                << position Y [ pName "count", pQuant, pAggregate opSum ]
+                << position Y [ pName "count", pAggregate opSum ]
 
         specBackground =
             asSpec [ sel [], area [] ]
@@ -245,19 +245,17 @@ interaction8 =
             dataFromUrl (path ++ "seattle-weather.csv") []
 
         sel =
-            selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
+            selection
+                << select "myBrush" seInterval [ seEncodings [ chX ] ]
 
         encPos =
-            encoding << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+            encoding
+                << position Y [ pName "precipitation", pAggregate opMean ]
 
         enc1 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << opacity
-                    [ mSelectionCondition (selectionName "myBrush")
-                        [ mNum 1 ]
-                        [ mNum 0.7 ]
-                    ]
+                << opacity [ mSelectionCondition (selectionName "myBrush") [ mNum 1 ] [ mNum 0.7 ] ]
 
         spec1 =
             asSpec [ sel [], enc1 [], bar [] ]
@@ -757,7 +755,6 @@ interaction16 =
                     ]
                 << position X
                     [ pAggregate opCount
-                    , pQuant
                     , pScale [ scDomain (doNums [ 0, 6 ]) ]
                     , pAxis [ axOrient siTop ]
                     ]
@@ -772,7 +769,7 @@ interaction16 =
                     , pSort [ soByChannel chX, soDescending ]
                     , pAxis []
                     ]
-                << position X [ pAggregate opCount, pQuant, pAxis [] ]
+                << position X [ pAggregate opCount, pAxis [] ]
 
         specMini =
             asSpec [ width 50, height 200, sel [], encMini [], bar [] ]

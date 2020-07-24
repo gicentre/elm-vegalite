@@ -60,7 +60,7 @@ window2 =
 
         ruleEnc =
             encoding
-                << position X [ pName "AverageRating", pAggregate opMean, pQuant ]
+                << position X [ pName "AverageRating", pAggregate opMean ]
 
         ruleSpec =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]

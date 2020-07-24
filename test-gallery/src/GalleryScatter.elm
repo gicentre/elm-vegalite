@@ -101,7 +101,7 @@ scatter5 =
             encoding
                 << position X [ pName "IMDB Rating", pQuant, pBin [ biMaxBins 10 ] ]
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [ biMaxBins 10 ] ]
-                << size [ mAggregate opCount, mQuant ]
+                << size [ mAggregate opCount ]
     in
     toVegaLite
         [ desc, data, enc [], circle [] ]

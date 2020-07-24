@@ -31,7 +31,7 @@ histogram =
         enc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
     in
     toVegaLite
         [ cfg []
@@ -47,7 +47,7 @@ stackedHistogram =
         enc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "weather" ]
     in
     toVegaLite
@@ -75,7 +75,7 @@ stackedHistogram2 =
         enc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mScale weatherColors ]
     in
     toVegaLite
@@ -92,7 +92,7 @@ lineChart =
         enc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mScale weatherColors ]
     in
     toVegaLite
@@ -109,7 +109,7 @@ multiBar =
         enc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mLegend [], mScale weatherColors ]
                 << column [ fName "weather" ]
     in
@@ -127,7 +127,7 @@ barChart =
         enc =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
     in
     toVegaLite
         [ cfg []
@@ -141,10 +141,12 @@ barChartWithAverage : Spec
 barChartWithAverage =
     let
         precipEnc =
-            encoding << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+            encoding
+                << position Y [ pName "precipitation", pAggregate opMean ]
 
         barEnc =
-            encoding << position X [ pName "date", pOrdinal, pTimeUnit month ]
+            encoding
+                << position X [ pName "date", pOrdinal, pTimeUnit month ]
     in
     toVegaLite
         [ cfg []
@@ -160,12 +162,12 @@ barChartPair =
         bar1Enc =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
 
         bar2Enc =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pName "temp_max", pQuant, pAggregate opMean ]
+                << position Y [ pName "temp_max", pAggregate opMean ]
     in
     toVegaLite
         [ cfg []
@@ -180,7 +182,7 @@ barChartTriplet =
         enc =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
+                << position Y [ pRepeat arRow, pAggregate opMean ]
 
         spec =
             asSpec
@@ -227,7 +229,7 @@ dashboard1 =
         histoEnc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         histoSpec =
             asSpec [ title "Frequency histogram" [], bar [], histoEnc [] ]
@@ -243,14 +245,18 @@ dashboard1 =
         barEnc =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
 
         barSpec =
             asSpec [ title "Bar chart" [], bar [], barEnc [] ]
 
         annotationEnc =
             encoding
-                << position Y [ pName "precipitation", pQuant, pAggregate opMean, pScale [ scDomain (doNums [ 0, 5.5 ]) ] ]
+                << position Y
+                    [ pName "precipitation"
+                    , pAggregate opMean
+                    , pScale [ scDomain (doNums [ 0, 5.5 ]) ]
+                    ]
 
         annotationSpec =
             asSpec [ title "Annotation" [], width 200, rule [], annotationEnc [] ]
@@ -268,7 +274,7 @@ dashboard2 =
         histoEnc =
             encoding
                 << position X [ pName "temp_max", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mLegend [], mScale weatherColors ]
                 << column [ fName "weather" ]
 
@@ -286,11 +292,11 @@ dashboard2 =
         barEnc =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
+                << position Y [ pRepeat arRow, pAggregate opMean ]
 
         annotationEnc =
             encoding
-                << position Y [ pRepeat arRow, pQuant, pAggregate opMean ]
+                << position Y [ pRepeat arRow, pAggregate opMean ]
 
         layerSpec =
             asSpec
@@ -575,12 +581,12 @@ crossFilter =
         totalEnc =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
 
         selectedEnc =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
                 << color [ mStr "goldenrod" ]
     in
     toVegaLite

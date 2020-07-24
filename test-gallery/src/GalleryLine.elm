@@ -47,7 +47,7 @@ line2 =
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
-                << position Y [ pName "price", pQuant, pAggregate opMean ]
+                << position Y [ pName "price", pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
     toVegaLite [ desc, data, enc [], line [ maPoint (pmMarker []) ] ]
@@ -65,7 +65,7 @@ line3 =
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
-                << position Y [ pName "price", pQuant, pAggregate opMean ]
+                << position Y [ pName "price", pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
     toVegaLite [ desc, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
@@ -101,7 +101,7 @@ line5 =
         enc =
             encoding
                 << position X [ pName "IMDB Rating", pQuant, pBin [] ]
-                << position Y [ pRepeat arLayer, pQuant, pAggregate opMean, pTitle "Mean of US and Worldwide Gross" ]
+                << position Y [ pRepeat arLayer, pAggregate opMean, pTitle "Mean of US and Worldwide Gross" ]
                 << color [ mRepeatDatum arLayer ]
 
         spec =
@@ -166,7 +166,7 @@ line7 =
         enc =
             encoding
                 << position X [ pName "year", pOrdinal, pScale [ scPadding 0.5 ] ]
-                << position Y [ pName "yield", pQuant, pAggregate opMedian ]
+                << position Y [ pName "yield", pAggregate opMedian ]
                 << color [ mName "site" ]
     in
     toVegaLite [ desc, widthStep 50, data, enc [], line [] ]

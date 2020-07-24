@@ -138,7 +138,7 @@ data11 =
         enc =
             encoding
                 << position X [ pName "Answer" ]
-                << position Y [ pName "Percent", pQuant, pAggregate opMean ]
+                << position Y [ pName "Percent", pAggregate opMean ]
                 << color [ mName "Pollster" ]
                 << column [ fName "Pollster" ]
     in
@@ -548,7 +548,7 @@ bin2 =
         enc =
             encoding
                 << position X [ pName "x", pQuant, pBin [] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
     in
     toVegaLite [ width 300, data [], enc [], bar [] ]
 
@@ -563,7 +563,7 @@ bin3 =
         enc =
             encoding
                 << position X [ pName "x", pQuant, pBin [ biAnchor 0.5 ] ]
-                << position Y [ pAggregate opCount, pQuant ]
+                << position Y [ pAggregate opCount ]
     in
     toVegaLite [ width 300, data [], enc [], bar [] ]
 
