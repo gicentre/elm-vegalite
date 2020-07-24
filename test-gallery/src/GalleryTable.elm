@@ -22,7 +22,7 @@ table1 =
         enc =
             encoding
                 << position X [ pName "Cylinders", pOrdinal ]
-                << position Y [ pName "Origin", pNominal ]
+                << position Y [ pName "Origin" ]
                 << color [ mName "Horsepower", mQuant, mAggregate opMean ]
     in
     toVegaLite [ des, data, rect [], enc [] ]
@@ -171,7 +171,7 @@ table6 =
                             (cAxTickColor "black" "")
                         ]
                     ]
-                << position Y [ pName "symbol", pNominal, pTitle "" ]
+                << position Y [ pName "symbol", pTitle "" ]
                 << color [ mAggregate opSum, mName "price", mQuant, mTitle "Price" ]
 
         cfg =
@@ -207,8 +207,8 @@ table7 =
 
         enc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << color
                     [ mName "dir"
                     , mQuant

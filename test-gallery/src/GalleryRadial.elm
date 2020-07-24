@@ -29,7 +29,7 @@ radial dText innerR =
         enc =
             encoding
                 << position Theta [ pName "value", pQuant ]
-                << color [ mName "category", mNominal ]
+                << color [ mName "category" ]
     in
     toVegaLite [ des, cfg [], data [], enc [], arc [ maInnerRadius innerR ] ]
 
@@ -62,14 +62,14 @@ radial3 =
         enc =
             encoding
                 << position Theta [ pName "value", pQuant, pStack stZero ]
-                << color [ mName "category", mNominal, mLegend [] ]
+                << color [ mName "category", mLegend [] ]
 
         pieSpec =
             asSpec [ arc [ maOuterRadius 80 ] ]
 
         labelEnc =
             encoding
-                << text [ tName "category", tNominal ]
+                << text [ tName "category" ]
 
         labelSpec =
             asSpec [ labelEnc [], textMark [ maRadius 90 ] ]
@@ -99,7 +99,7 @@ radial4 =
                     , pQuant
                     , pScale [ scZero True, scType scSqrt, scRange (raNums [ 20, 100 ]) ]
                     ]
-                << color [ mName "strength", mNominal, mLegend [] ]
+                << color [ mName "strength", mLegend [] ]
 
         segSpec =
             asSpec [ arc [ maInnerRadius 20, maStroke "white" ] ]
@@ -156,7 +156,6 @@ radial5 =
                     ]
                 << color
                     [ mName "category"
-                    , mNominal
                     , mScale colours
                     , mLegend [ leOrient loNone, leTitle "", leColumns 1, leX 200, leY 80 ]
                     ]
@@ -206,7 +205,6 @@ radial6 =
                 << order [ oName "cause", oOrdinal ]
                 << color
                     [ mName "cause"
-                    , mNominal
                     , mScale colours
                     , mLegend [ leTitle "", leLabelFont "Girassol", leOrient loNone, leX 80, leY 190 ]
                     ]
@@ -226,7 +224,7 @@ radial6 =
             encoding
                 << angle [ mName "month", mOrdinal, mScale [ scRange (raNums [ -75, 255 ]) ] ]
                 << position R [ pName "labelRadius", pQuant ]
-                << text [ tName "monthLabel", tNominal ]
+                << text [ tName "monthLabel" ]
 
         specLabels =
             asSpec

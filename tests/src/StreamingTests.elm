@@ -19,7 +19,7 @@ streaming1 =
             encoding
                 << position X [ pName "x", pQuant, pScale [ scZero False ] ]
                 << position Y [ pName "y", pQuant ]
-                << color [ mName "category", mNominal ]
+                << color [ mName "category" ]
     in
     toVegaLite [ width 400, data, enc [], line [] ]
 

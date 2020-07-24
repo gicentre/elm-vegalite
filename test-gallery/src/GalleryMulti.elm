@@ -126,7 +126,7 @@ multi3 =
                 << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Origin", mNominal ]
+                        [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
 
@@ -214,11 +214,7 @@ multi4 =
 
         encBar =
             encoding
-                << position X
-                    [ pName "Major_Genre"
-                    , pNominal
-                    , pAxis [ axTitle "", axLabelAngle -40 ]
-                    ]
+                << position X [ pName "Major_Genre", pAxis [ axTitle "", axLabelAngle -40 ] ]
                 << position Y [ pAggregate opCount, pQuant, pTitle "Number of films" ]
                 << color
                     [ mSelectionCondition (selectionName "myPts")
@@ -293,7 +289,6 @@ multi5 =
                     [ mSelectionCondition (selectionName "myBrush")
                         [ mName "weather"
                         , mTitle "Weather"
-                        , mNominal
                         , mScale weatherColors
                         ]
                         [ mStr "#cfdebe" ]
@@ -316,11 +311,10 @@ multi5 =
         enc2 =
             encoding
                 << position X [ pAggregate opCount, pQuant ]
-                << position Y [ pName "weather", pNominal ]
+                << position Y [ pName "weather" ]
                 << color
                     [ mSelectionCondition (selectionName "myClick")
                         [ mName "weather"
-                        , mNominal
                         , mScale weatherColors
                         ]
                         [ mStr "#acbf98" ]
@@ -373,7 +367,7 @@ multi6 =
         encHPText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Horsepower", tNominal ]
+                << text [ tName "Horsepower" ]
 
         specHPText =
             asSpec
@@ -386,7 +380,7 @@ multi6 =
         encMPGText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Miles_per_Gallon", tNominal ]
+                << text [ tName "Miles_per_Gallon" ]
 
         specMPGText =
             asSpec
@@ -399,7 +393,7 @@ multi6 =
         encOriginText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Origin", tNominal ]
+                << text [ tName "Origin" ]
 
         specOriginText =
             asSpec
@@ -456,8 +450,8 @@ multi7 =
 
         lineEnc =
             encoding
-                << position Longitude [ pName "o.longitude", pQuant ]
-                << position Latitude [ pName "o.latitude", pQuant ]
+                << position Longitude [ pName "o.longitude" ]
+                << position Latitude [ pName "o.latitude" ]
                 << position Longitude2 [ pName "d.longitude" ]
                 << position Latitude2 [ pName "d.latitude" ]
 
@@ -480,8 +474,8 @@ multi7 =
 
         airportEnc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << size [ mName "routes", mQuant, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
                 << order [ oName "routes", oQuant, oSort [ soDescending ] ]
 

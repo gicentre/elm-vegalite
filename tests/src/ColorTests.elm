@@ -48,7 +48,7 @@ defOrdinal =
 defNominal : Spec
 defNominal =
     chart "Default nominal colour scales."
-        (color [ mName "Origin", mNominal ])
+        (color [ mName "Origin" ])
 
 
 namedContinuous1 : Spec
@@ -84,7 +84,7 @@ customContinuous =
 customDiscrete : Spec
 customDiscrete =
     chart "Custom discrete colours (red, green, blue)."
-        (color [ mName "Origin", mNominal, mScale [ scRange (raStrs [ "#e33", "#3a3", "#33d" ]) ] ])
+        (color [ mName "Origin", mScale [ scRange (raStrs [ "#e33", "#3a3", "#33d" ]) ] ])
 
 
 scale1 : Spec

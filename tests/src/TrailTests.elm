@@ -12,20 +12,17 @@ import VegaLite exposing (..)
 trail1 : Spec
 trail1 =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+
         enc =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
                 << size [ mName "price", mQuant ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
     in
-    toVegaLite
-        [ width 400
-        , height 400
-        , dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
-        , trail []
-        , enc []
-        ]
+    toVegaLite [ width 400, height 400, data, enc [], trail [] ]
 
 
 trail2 : Spec
@@ -40,7 +37,7 @@ trail2 =
                 << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
                 << size [ mName "year", mTemporal, mLegend [] ]
     in
-    toVegaLite [ data [], trail [ maOrder False ], enc [] ]
+    toVegaLite [ data [], enc [], trail [ maOrder False ] ]
 
 
 

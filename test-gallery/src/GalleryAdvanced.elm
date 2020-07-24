@@ -37,7 +37,7 @@ advanced1 =
         enc =
             encoding
                 << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total time" ]
-                << position Y [ pName "Activity", pNominal ]
+                << position Y [ pName "Activity" ]
     in
     toVegaLite
         [ desc, heightStep 12, data [], trans [], enc [], bar [] ]
@@ -159,7 +159,7 @@ advanced5 =
             encoding
                 << position X [ pName "matchday", pOrdinal ]
                 << position Y [ pName "rank", pOrdinal ]
-                << color [ mName "team", mNominal, mScale teamColours ]
+                << color [ mName "team", mScale teamColours ]
 
         teamColours =
             categoricalDomainMap
@@ -241,7 +241,7 @@ advanced6 =
         enc3 =
             encoding
                 << position Y [ pName "sum_inc", pQuant ]
-                << text [ tName "sum_inc", tNominal ]
+                << text [ tName "sum_inc" ]
 
         spec3 =
             asSpec
@@ -256,7 +256,7 @@ advanced6 =
         enc4 =
             encoding
                 << position Y [ pName "sum_dec", pQuant ]
-                << text [ tName "sum_dec", tNominal ]
+                << text [ tName "sum_dec" ]
 
         spec4 =
             asSpec
@@ -272,7 +272,7 @@ advanced6 =
         enc5 =
             encoding
                 << position Y [ pName "center", pQuant ]
-                << text [ tName "text_amount", tNominal ]
+                << text [ tName "text_amount" ]
                 << color
                     [ mDataCondition
                         [ ( expr "datum.label === 'Begin' || datum.label === 'End'"
@@ -318,7 +318,6 @@ advanced7 =
                 << position X [ pName "score", pQuant ]
                 << position Y
                     [ pName "student"
-                    , pNominal
                     , pSort [ soByField "score" opMean, soDescending ]
                     ]
     in
@@ -479,7 +478,7 @@ advanced12 =
             encoding
                 << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
                 << position Y [ pName "density", pQuant ]
-                << row [ fName "measurement", fNominal ]
+                << row [ fName "measurement" ]
     in
     toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
 
@@ -504,7 +503,7 @@ advanced13 =
             encoding
                 << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
                 << position Y [ pName "density", pQuant ]
-                << color [ mName "measurement", mNominal ]
+                << color [ mName "measurement" ]
     in
     toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
 
@@ -539,10 +538,10 @@ advanced14 =
 
         encLine =
             encoding
-                << position X [ pName "key", pNominal ]
+                << position X [ pName "key" ]
                 << position Y [ pName "normVal", pQuant, pAxis [] ]
-                << color [ mName "species", mNominal ]
-                << detail [ dName "index", dNominal ]
+                << color [ mName "species" ]
+                << detail [ dName "index" ]
                 << tooltips
                     [ [ tName "petalLength", tQuant ]
                     , [ tName "petalWidth", tQuant ]
@@ -555,7 +554,7 @@ advanced14 =
 
         encAxis =
             encoding
-                << position X [ pName "key", pNominal, pTitle "" ]
+                << position X [ pName "key", pTitle "" ]
                 << detail [ dAggregate opCount, dQuant ]
 
         specAxis =
@@ -563,7 +562,7 @@ advanced14 =
 
         encAxisLabelsTop =
             encoding
-                << position X [ pName "key", pNominal ]
+                << position X [ pName "key" ]
                 << position Y [ pNum 0 ]
                 << text [ tName "max", tQuant, tAggregate opMax ]
 
@@ -572,7 +571,7 @@ advanced14 =
 
         encAxisLabelsMid =
             encoding
-                << position X [ pName "key", pNominal ]
+                << position X [ pName "key" ]
                 << position Y [ pNum 150 ]
                 << text [ tName "mid", tQuant, tAggregate opMin ]
 
@@ -581,7 +580,7 @@ advanced14 =
 
         encAxisLabelsBot =
             encoding
-                << position X [ pName "key", pNominal ]
+                << position X [ pName "key" ]
                 << position Y [ pHeight ]
                 << text [ tName "min", tQuant, tAggregate opMin ]
 
@@ -615,7 +614,7 @@ advanced15 =
                     , pQuant
                     , pAggregate (opArgMax (Just "US_Gross"))
                     ]
-                << position Y [ pName "Major_Genre", pNominal ]
+                << position Y [ pName "Major_Genre" ]
     in
     toVegaLite [ desc, data, enc [], bar [] ]
 
@@ -712,7 +711,7 @@ advanced18 =
             encoding
                 << position X [ pName "row", pQuant, pAxis [ axGrid False, axTitle "Trial" ], pScale [ scNice niFalse ] ]
                 << position Y [ pName "fps", pQuant, pAxis [ axGrid False, axTitle "Frames per Second (fps)" ], pScale [ scType scLog ] ]
-                << color [ mName "system", mNominal, mLegend [ leOrient loBottomRight, leTitle "System" ] ]
+                << color [ mName "system", mLegend [ leOrient loBottomRight, leTitle "System" ] ]
                 << size [ mNum 1 ]
 
         specFalcon =

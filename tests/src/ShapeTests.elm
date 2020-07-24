@@ -38,7 +38,7 @@ rectTest mps =
 
         enc =
             encoding
-                << position X [ pName "Origin", pNominal ]
+                << position X [ pName "Origin" ]
                 << position Y [ pName "Cylinders", pOrdinal ]
     in
     toVegaLite [ width 200, height 200, data, enc [], rect (maSize 30 :: maOpacity 0.6 :: mps) ]
@@ -107,7 +107,7 @@ horizLine =
 scatter1 : Spec
 scatter1 =
     chart "Default nominal shapes."
-        (shape [ mName "Origin", mNominal ])
+        (shape [ mName "Origin" ])
 
 
 scatter2 : Spec
@@ -119,17 +119,13 @@ scatter2 =
 scatter3 : Spec
 scatter3 =
     chart "Enlarged shapes (but legend shapes should remain same size)"
-        (shape [ mName "Origin", mNominal ]
-            << size [ mNum 200 ]
-        )
+        (shape [ mName "Origin" ] << size [ mNum 200 ])
 
 
 scatter4 : Spec
 scatter4 =
     chart "Reduced shapes (but legend shapes should remain same size)"
-        (shape [ mName "Origin", mNominal ]
-            << size [ mNum 20 ]
-        )
+        (shape [ mName "Origin" ] << size [ mNum 20 ])
 
 
 scatter5 : Spec
@@ -141,17 +137,13 @@ scatter5 =
 scatter6 : Spec
 scatter6 =
     chart "Sized by number of cylinders, shape by origin"
-        (shape [ mName "Origin", mNominal ]
-            << size [ mName "Cylinders", mOrdinal ]
-        )
+        (shape [ mName "Origin" ] << size [ mName "Cylinders", mOrdinal ])
 
 
 scatter7 : Spec
 scatter7 =
     chart "Sized and shaped by number of cylinders (should only have a single set of legend items)"
-        (shape [ mName "Cylinders", mOrdinal ]
-            << size [ mName "Cylinders", mOrdinal ]
-        )
+        (shape [ mName "Cylinders", mOrdinal ] << size [ mName "Cylinders", mOrdinal ])
 
 
 scatter8 : Spec
@@ -166,9 +158,7 @@ scatter8 =
 scatter9 : Spec
 scatter9 =
     chart "Custom-shaped and coloured by origin (should only have a single set of legend items)"
-        (shape [ mName "Origin", mNominal ]
-            << color [ mName "Origin", mNominal ]
-        )
+        (shape [ mName "Origin" ] << color [ mName "Origin" ])
 
 
 scatter10 : Spec
@@ -176,7 +166,6 @@ scatter10 =
     chart "Custom-shaped and coloured by origin (should only have a single set of legend items)"
         (shape
             [ mName "Origin"
-            , mNominal
             , mScale <|
                 categoricalDomainMap
                     [ ( "Europe", square )
@@ -184,7 +173,7 @@ scatter10 =
                     , ( "USA", tri )
                     ]
             ]
-            << color [ mName "Origin", mNominal ]
+            << color [ mName "Origin" ]
         )
 
 
@@ -193,7 +182,7 @@ scatter11 =
     chart "Sized, shaped and coloured by number of cylinders (should have two sets of legend items)"
         (shape [ mName "Cylinders", mOrdinal ]
             << size [ mName "Cylinders", mOrdinal ]
-            << color [ mName "Origin", mNominal ]
+            << color [ mName "Origin" ]
         )
 
 
@@ -214,9 +203,7 @@ scatter13 =
 scatter14 : Spec
 scatter14 =
     chart "Custom nominal shape with area of 10x10 pixel units."
-        (shape [ mPath largeSquare ]
-            << color [ mName "Origin", mNominal ]
-        )
+        (shape [ mPath largeSquare ] << color [ mName "Origin" ])
 
 
 scatter15 : Spec
@@ -224,7 +211,6 @@ scatter15 =
     chart "Custom shape sets encoding origin."
         (shape
             [ mName "Origin"
-            , mNominal
             , mScale <|
                 categoricalDomainMap
                     [ ( "Europe", square )
@@ -347,7 +333,6 @@ symbols2 =
     chart "Legend using non-default bordered square symbols)"
         (color
             [ mName "Origin"
-            , mNominal
             , mLegend
                 [ leSymbolType symSquare
                 , leSymbolStrokeColor "black"

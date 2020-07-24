@@ -67,9 +67,9 @@ interaction2 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mNominal ]
-                << tooltip [ tName "Name", tNominal ]
-                << hyperlink [ hName "url", hNominal ]
+                << color [ mName "Origin" ]
+                << tooltip [ tName "Name" ]
+                << hyperlink [ hName "url" ]
     in
     toVegaLite
         [ des
@@ -223,7 +223,7 @@ interaction7 =
             encoding
                 << color
                     [ mSelectionCondition (selectionName "CylYr")
-                        [ mName "Origin", mNominal ]
+                        [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
 
@@ -236,7 +236,7 @@ interaction7 =
 
         enc2 =
             encoding
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
                 << size [ mNum 100 ]
 
         spec2 =
@@ -316,7 +316,7 @@ interaction9 =
             encoding
                 << color
                     [ mSelectionCondition (selectionName "myHover")
-                        [ mName "symbol", mNominal, mLegend [] ]
+                        [ mName "symbol", mLegend [] ]
                         [ mStr "grey" ]
                     ]
                 << opacity
@@ -360,7 +360,7 @@ interaction9 =
 
         enc2_1 =
             encoding
-                << text [ tName "symbol", tNominal ]
+                << text [ tName "symbol" ]
 
         spec2 =
             asSpec
@@ -388,7 +388,7 @@ interaction10 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
 
         spec1 =
             asSpec
@@ -433,7 +433,7 @@ interaction10 =
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
                 << text [ tName "price", tQuant ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
     in
     toVegaLite [ width 400, height 300, stockData, layer [ spec1, spec2 ] ]
 
@@ -459,7 +459,7 @@ interaction11 =
         enc1 =
             encoding
                 << position Y [ pName "price", pQuant ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
 
         spec1 =
             asSpec
@@ -536,7 +536,7 @@ interaction12 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [] ]
                 << position Y [ pName "indexed_price", pQuant, pAxis [ axFormat "%" ] ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
 
         lineSpec =
             asSpec [ trans [], lineEnc [], line [] ]
@@ -663,7 +663,7 @@ interaction14 =
         encHPText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Horsepower", tNominal ]
+                << text [ tName "Horsepower" ]
 
         specHPText =
             asSpec
@@ -676,7 +676,7 @@ interaction14 =
         encMPGText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Miles_per_Gallon", tNominal ]
+                << text [ tName "Miles_per_Gallon" ]
 
         specMPGText =
             asSpec
@@ -689,7 +689,7 @@ interaction14 =
         encOriginText =
             encoding
                 << position Y [ pName "rowNumber", pOrdinal, pAxis [] ]
-                << text [ tName "Origin", tNominal ]
+                << text [ tName "Origin" ]
 
         specOriginText =
             asSpec
@@ -739,8 +739,8 @@ interaction15 =
 
         enc =
             encoding
-                << position X [ pName "predicted", pNominal ]
-                << position Y [ pName "actual", pNominal ]
+                << position X [ pName "predicted" ]
+                << position Y [ pName "actual" ]
                 << fill [ mName "count", mQuant ]
                 << stroke
                     [ mDataCondition
@@ -774,7 +774,6 @@ interaction16 =
             encoding
                 << position Y
                     [ pName "Name"
-                    , pNominal
                     , pScale [ scDomain (doSelection "brush") ]
                     , pAxis [ axMinExtent 200, axTitle "" ]
                     , pSort [ soByChannel chX, soDescending ]
@@ -793,7 +792,6 @@ interaction16 =
             encoding
                 << position Y
                     [ pName "Name"
-                    , pNominal
                     , pSort [ soByChannel chX, soDescending ]
                     , pAxis []
                     ]

@@ -47,7 +47,7 @@ scale0 =
         << position Y [ pName "y", pQuant ]
         << color [ mName "val", mOrdinal ]
         << size [ mName "val", mQuant ]
-        << shape [ mName "cat", mNominal ]
+        << shape [ mName "cat" ]
     )
         []
         |> scaleEncode
@@ -60,7 +60,7 @@ scale1 =
         << position Y [ pName "y", pQuant ]
         << color [ mName "val", mOrdinal ]
         << size [ mName "val", mQuant ]
-        << shape [ mName "cat", mNominal ]
+        << shape [ mName "cat" ]
     )
         []
         |> scaleEncode
@@ -73,7 +73,7 @@ scale2 =
         << position Y [ pName "y", pQuant, pScale [] ]
         << color [ mName "val", mOrdinal ]
         << size [ mName "val", mQuant ]
-        << shape [ mName "cat", mNominal ]
+        << shape [ mName "cat" ]
     )
         []
         |> scaleEncode
@@ -86,7 +86,7 @@ scale3 =
         << position Y [ pName "y", pQuant ]
         << color [ mName "val", mOrdinal, mScale [] ]
         << size [ mName "val", mQuant ]
-        << shape [ mName "cat", mNominal ]
+        << shape [ mName "cat" ]
     )
         []
         |> scaleEncode
@@ -99,7 +99,7 @@ scale4 =
         << position Y [ pName "y", pQuant ]
         << color [ mName "val", mOrdinal ]
         << size [ mName "val", mQuant, mScale [] ]
-        << shape [ mName "cat", mNominal ]
+        << shape [ mName "cat" ]
     )
         []
         |> scaleEncode
@@ -112,7 +112,7 @@ scale5 =
         << position Y [ pName "y", pQuant ]
         << color [ mName "val", mOrdinal ]
         << size [ mName "val", mQuant ]
-        << shape [ mName "cat", mNominal, mScale [] ]
+        << shape [ mName "cat", mScale [] ]
     )
         []
         |> scaleEncode

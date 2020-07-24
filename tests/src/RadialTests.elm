@@ -24,7 +24,7 @@ radial innerR off1 off2 =
         enc =
             encoding
                 << position Theta [ pName "value", pQuant ]
-                << color [ mName "category", mNominal ]
+                << color [ mName "category" ]
 
         offset1 =
             if off1 /= 0 then
@@ -79,14 +79,14 @@ radial5 =
         enc =
             encoding
                 << position Theta [ pName "value", pQuant, pStack stZero ]
-                << color [ mName "category", mNominal, mLegend [] ]
+                << color [ mName "category", mLegend [] ]
 
         pieSpec =
             asSpec [ arc [ maOuterRadius 80 ] ]
 
         labelEnc =
             encoding
-                << text [ tName "category", tNominal ]
+                << text [ tName "category" ]
 
         labelSpec =
             asSpec [ labelEnc [], textMark [ maRadius 90 ] ]
@@ -126,7 +126,7 @@ radial7 =
             encoding
                 << position Theta [ pName "dir", pOrdinal ]
                 << position R [ pName "strength", pQuant ]
-                << color [ mName "dir", mNominal ]
+                << color [ mName "dir" ]
     in
     toVegaLite [ data [], enc [], arc [ maThetaOffset (degrees -22.5) ] ]
 
@@ -147,7 +147,7 @@ radial8 =
             encoding
                 << position Theta [ pName "t", pQuant ]
                 << position Theta2 [ pName "t2" ]
-                << color [ mName "dir", mNominal ]
+                << color [ mName "dir" ]
     in
     toVegaLite [ data [], enc [], arc [ maThetaOffset (degrees -22.5) ] ]
 
@@ -171,7 +171,7 @@ radial9 =
                 << position Theta [ pName "t", pQuant ]
                 << position Theta2 [ pName "t2" ]
                 << position R2 [ pNum 10 ]
-                << color [ mName "dir", mNominal ]
+                << color [ mName "dir" ]
     in
     toVegaLite [ data [], enc [], arc [ maThetaOffset (degrees -22.5), maTheta2Offset (degrees -22.5) ] ]
 
@@ -197,11 +197,11 @@ radial10 =
             encoding
                 << position Theta [ pName "month", pOrdinal, pScale [ scRange (raNums [ -pi / 2, 3 * pi / 2 ]) ] ]
                 << position R [ pRepeat arLayer, pQuant, pScale [ scType scSqrt ] ]
-                << color [ mRepeatDatum arLayer, mNominal, mScale colours ]
+                << color [ mRepeatDatum arLayer, mScale colours ]
 
         encLabels =
             encoding
-                << text [ tName "monthLabel", tNominal ]
+                << text [ tName "monthLabel" ]
 
         spec =
             asSpec
@@ -244,7 +244,7 @@ radial11 =
                 << position Theta [ pName "month", pOrdinal ]
                 << position R [ pName "deaths", pQuant, pScale [ scType scSqrt ], pStack stNone ]
                 << order [ oName "cause", oOrdinal ]
-                << color [ mName "cause", mNominal, mScale colours, mTitle "" ]
+                << color [ mName "cause", mScale colours, mTitle "" ]
     in
     toVegaLite
         [ width 500
@@ -272,7 +272,7 @@ radial12 =
         enc =
             encoding
                 << position Theta [ pName "b", pQuant ]
-                << color [ mName "a", mNominal, mLegend [] ]
+                << color [ mName "a", mLegend [] ]
                 << fillOpacity [ mDataCondition [ ( selected "highlight", [ mNum 1 ] ) ] [ mNum 0.6 ] ]
                 << strokeWidth [ mDataCondition [ ( selected "highlight", [ mNum 0 ] ) ] [ mNum 8 ] ]
     in

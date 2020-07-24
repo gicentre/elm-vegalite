@@ -74,7 +74,7 @@ animatedScatter1 =
 
         yearEnc =
             encoding
-                << text [ tName "year", tNominal ]
+                << text [ tName "year" ]
 
         yearSpec =
             asSpec [ transLatest [], yearEnc [], textMark [ maX 120, maY 42, maSize 100, maFill "#eee" ] ]
@@ -107,7 +107,7 @@ animatedScatter1 =
             encoding
                 << position X [ pName "x2", pQuant ]
                 << position Y [ pName "y2", pQuant ]
-                << text [ tName "annotation", tNominal ]
+                << text [ tName "annotation" ]
 
         guideAnnotationSpec =
             asSpec [ guideAnnotationEnc [], textMark [ maAlign haLeft, maDx 4 ] ]

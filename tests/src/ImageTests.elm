@@ -41,7 +41,7 @@ image2 : Spec
 image2 =
     imageEnc
         (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ]))
-        (url [ hName "img", hNominal ])
+        (url [ hName "img" ])
 
 
 lakeImage : List MarkProperty -> Spec
@@ -115,7 +115,7 @@ image11 =
         (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
             << dataColumn "mag" (nums [ 1, 1, 1 ])
         )
-        (url [ hName "img", hNominal ]
+        (url [ hName "img" ]
             << size [ mName "mag", mQuant ]
         )
 
@@ -126,7 +126,7 @@ image12 =
         (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
             << dataColumn "mag" (nums [ 1, 2, 1 ])
         )
-        (url [ hName "img", hNominal ]
+        (url [ hName "img" ]
             << size [ mName "mag", mQuant ]
         )
 

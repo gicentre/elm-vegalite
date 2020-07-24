@@ -93,12 +93,9 @@ stack1 =
                 << position X2 [ pName "x2" ]
                 << position Y [ pName "y", pQuant, pAxis [] ]
                 << position Y2 [ pName "y2" ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
                 << opacity [ mName "Cylinders", mQuant, mLegend [] ]
-                << tooltips
-                    [ [ tName "Origin", tNominal ]
-                    , [ tName "Cylinders", tQuant ]
-                    ]
+                << tooltips [ [ tName "Origin" ], [ tName "Cylinders", tQuant ] ]
     in
     toVegaLite [ cars, trans [], enc [], rect [] ]
 

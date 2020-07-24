@@ -183,7 +183,7 @@ label4 =
 
         encTextMin =
             encoding
-                << text [ tName "year", tNominal ]
+                << text [ tName "year" ]
 
         specTextMin =
             asSpec [ transTextMin [], encTextMin [], textMark [ maBaseline vaTop ] ]
@@ -194,7 +194,7 @@ label4 =
 
         encTextMax =
             encoding
-                << text [ tName "year", tNominal ]
+                << text [ tName "year" ]
 
         specTextMax =
             asSpec [ transTextMax [], encTextMax [], textMark [ maBaseline vaBottom ] ]
@@ -358,7 +358,7 @@ label8 =
             encoding
                 << position X [ pName "start", pTemporal, pTimeUnit year, pAxis [] ]
                 << position X2 [ pName "end" ]
-                << color [ mName "event", mNominal ]
+                << color [ mName "event" ]
 
         specRects =
             asSpec [ highlights [], rect [], encRects [] ]
@@ -398,7 +398,6 @@ label9 =
             encoding
                 << position Y
                     [ pName "name"
-                    , pNominal
                     , pSort []
                     , pAxis
                         [ axDomain False
@@ -452,14 +451,14 @@ label9 =
 
         encTextLo =
             encoding
-                << text [ tName "lo", tNominal ]
+                << text [ tName "lo" ]
 
         specTextLo =
             asSpec [ encTextLo [], textMark [ maX -5, maAlign haRight ] ]
 
         encTextHi =
             encoding
-                << text [ tName "hi", tNominal ]
+                << text [ tName "hi" ]
 
         specTextHi =
             asSpec [ encTextHi [], textMark [ maX 255, maAlign haLeft ] ]
@@ -509,7 +508,6 @@ label10 =
             encoding
                 << position Y
                     [ pName "study"
-                    , pNominal
                     , pAxis [ axTitle "", axLabelPadding 5, axDomain False, axTicks False, axGrid False ]
                     ]
 
@@ -533,7 +531,7 @@ label10 =
         encLikertMeans =
             encoding
                 << position X [ pName "mean", pQuant ]
-                << color [ mName "measure", mNominal, mScale [ scRange (raStrs [ "black", "white" ]) ], mLegend [] ]
+                << color [ mName "measure", mScale [ scRange (raStrs [ "black", "white" ]) ], mLegend [] ]
 
         specLikertMeans =
             asSpec [ encLikertMeans [], circle [ maStroke "black", maOpacity 1 ] ]

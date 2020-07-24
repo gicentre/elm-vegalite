@@ -19,7 +19,7 @@ legendCore legProps =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mNominal, mLegend legProps ]
+                << color [ mName "Origin", mLegend legProps ]
                 << size [ mName "Horsepower", mQuant, mLegend legProps ]
                 << opacity [ mName "Weight_in_lbs", mQuant, mLegend legProps ]
     in
@@ -36,7 +36,7 @@ legendCoreCfg cfg =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
                 << size [ mName "Horsepower", mQuant ]
                 << opacity [ mName "Weight_in_lbs", mQuant ]
     in
@@ -105,7 +105,7 @@ legend10 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mNominal, mLegend [ leOrient loNone, leX 232, leY 5 ] ]
+                << color [ mName "Origin", mLegend [ leOrient loNone, leX 232, leY 5 ] ]
     in
     toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
 

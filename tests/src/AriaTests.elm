@@ -34,7 +34,7 @@ defaultVis mProps axProps leProps cfg =
                 << position X [ pName "Horsepower", pQuant, pAxis axp ]
                 << position Y [ pName "Miles_per_Gallon", pQuant, pAxis axp ]
                 << color [ mName "Cylinders", mOrdinal, mLegend lep ]
-                << shape [ mName "Origin", mNominal ]
+                << shape [ mName "Origin" ]
     in
     toVegaLite
         [ title "Car Scatter" []

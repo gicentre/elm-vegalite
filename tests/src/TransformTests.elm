@@ -82,7 +82,7 @@ transform4 =
             encoding
                 << position X [ pName "a", pQuant ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
     toVegaLite [ imputeData [], trans [], enc [], line [] ]
 
@@ -187,7 +187,7 @@ transform8 =
             encoding
                 -- 2017 temperatures for the Bristol, Sheffield and Glasgow
                 << position X [ pName "2017", pQuant ]
-                << position Y [ pName "City", pNominal ]
+                << position Y [ pName "City" ]
     in
     toVegaLite [ data [], trans [], enc [], circle [] ]
 
@@ -280,8 +280,8 @@ transform11 =
         enc =
             encoding
                 << position X [ pName "quant", pQuant ]
-                << position Y [ pName "cat", pNominal ]
-                << color [ mName "key", mNominal ]
+                << position Y [ pName "cat" ]
+                << color [ mName "key" ]
     in
     toVegaLite [ data [], trans [], circle [], enc [] ]
 
@@ -306,10 +306,10 @@ transform12 =
 
         enc =
             encoding
-                << column [ fName "year", fNominal ]
-                << position X [ pName "country", pNominal ]
+                << column [ fName "year" ]
+                << position X [ pName "country" ]
                 << position Y [ pName "numberOfMedals", pQuant ]
-                << color [ mName "country", mNominal, mLegend [] ]
+                << color [ mName "country", mLegend [] ]
     in
     toVegaLite [ data [], trans [], bar [], enc [] ]
 
@@ -345,10 +345,10 @@ transform13 =
                 << position X2 [ pName "x2" ]
                 << position Y [ pName "y", pQuant, pAxis [] ]
                 << position Y2 [ pName "y2" ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
                 << opacity [ mName "Cylinders", mQuant, mLegend [] ]
                 << tooltips
-                    [ [ tName "Origin", tNominal ]
+                    [ [ tName "Origin" ]
                     , [ tName "Cylinders", tQuant ]
                     ]
     in
@@ -455,7 +455,7 @@ transform18 =
         enc =
             encoding
                 << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total time" ]
-                << position Y [ pName "Activity", pNominal ]
+                << position Y [ pName "Activity" ]
     in
     toVegaLite
         [ heightStep 12
@@ -482,7 +482,7 @@ transform19 =
         enc =
             encoding
                 << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total Time" ]
-                << position Y [ pName "Activity", pNominal ]
+                << position Y [ pName "Activity" ]
     in
     toVegaLite [ heightStep 12, data [], trans [], enc [], bar [] ]
 

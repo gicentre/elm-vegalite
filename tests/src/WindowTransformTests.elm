@@ -26,7 +26,7 @@ window1 =
         enc =
             encoding
                 << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total time" ]
-                << position Y [ pName "Activity", pNominal ]
+                << position Y [ pName "Activity" ]
     in
     toVegaLite
         [ heightStep 12
@@ -145,7 +145,7 @@ window5 =
             encoding
                 << position X [ pName "matchday", pOrdinal ]
                 << position Y [ pName "rank", pOrdinal ]
-                << color [ mName "team", mNominal, mScale teamColours ]
+                << color [ mName "team", mScale teamColours ]
 
         teamColours =
             categoricalDomainMap
@@ -176,7 +176,6 @@ window6 =
                 << position X [ pName "score", pQuant ]
                 << position Y
                     [ pName "student"
-                    , pNominal
                     , pSort [ soByField "score" opMean, soDescending ]
                     ]
     in
@@ -231,7 +230,7 @@ joinAggregate1 =
         enc =
             encoding
                 << position X [ pName "PercentOfTotal", pQuant, pTitle "% of total Time" ]
-                << position Y [ pName "Activity", pNominal ]
+                << position Y [ pName "Activity" ]
     in
     toVegaLite [ heightStep 12, data [], trans [], enc [], bar [] ]
 
@@ -251,12 +250,7 @@ joinAggregate2 =
         enc =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
-                << position Y
-                    [ pName "Title"
-                    , pNominal
-                    , pTitle ""
-                    , pSort [ soByChannel chX, soDescending ]
-                    ]
+                << position Y [ pName "Title", pTitle "", pSort [ soByChannel chX, soDescending ] ]
     in
     toVegaLite [ data [], trans [], enc [], bar [] ]
 
@@ -278,12 +272,7 @@ joinAggregate3 =
         enc =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
-                << position Y
-                    [ pName "Title"
-                    , pNominal
-                    , pTitle ""
-                    , pSort [ soByChannel chX, soDescending ]
-                    ]
+                << position Y [ pName "Title", pTitle "", pSort [ soByChannel chX, soDescending ] ]
     in
     toVegaLite [ data [], trans [], enc [], bar [] ]
 

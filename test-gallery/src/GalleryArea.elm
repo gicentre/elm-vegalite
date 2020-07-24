@@ -89,7 +89,7 @@ area4 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "count", pQuant, pAggregate opSum ]
-                << color [ mName "series", mNominal, mScale [ scScheme "category20b" [] ] ]
+                << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ des, data, enc [], area [] ]
 
@@ -107,7 +107,7 @@ area5 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
                 << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stNormalize ]
-                << color [ mName "series", mNominal, mScale [ scScheme "category20b" [] ] ]
+                << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
 
@@ -125,7 +125,7 @@ area6 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axDomain False, axFormat "%Y" ] ]
                 << position Y [ pName "count", pQuant, pAggregate opSum, pAxis [], pStack stCenter ]
-                << color [ mName "series", mNominal, mScale [ scScheme "category20b" [] ] ]
+                << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
     toVegaLite [ des, width 300, height 200, data, enc [], area [] ]
 
@@ -229,8 +229,8 @@ area8 =
                     , pTitle "Origin"
                     , pAxis [ axOrient siTop ]
                     ]
-                << color [ mName "Origin", mNominal, mLegend [] ]
-                << text [ tName "Origin", tNominal ]
+                << color [ mName "Origin", mLegend [] ]
+                << text [ tName "Origin" ]
 
         spec1 =
             asSpec [ textMark [ maBaseline vaMiddle, maAlign haCenter ], enc1 [] ]
@@ -241,10 +241,10 @@ area8 =
                 << position X2 [ pName "nx2" ]
                 << position Y [ pName "ny", pQuant, pAxis [] ]
                 << position Y2 [ pName "ny2" ]
-                << color [ mName "Origin", mNominal, mLegend [] ]
+                << color [ mName "Origin", mLegend [] ]
                 << opacity [ mName "Cylinders", mQuant, mLegend [] ]
                 << tooltips
-                    [ [ tName "Origin", tNominal ]
+                    [ [ tName "Origin" ]
                     , [ tName "Cylinders", tQuant ]
                     ]
 
@@ -255,7 +255,7 @@ area8 =
             encoding
                 << position X [ pName "xc", pQuant, pAxis [] ]
                 << position Y [ pName "yc", pQuant, pAxis [ axTitle "Cylinders" ] ]
-                << text [ tName "Cylinders", tNominal ]
+                << text [ tName "Cylinders" ]
 
         spec3 =
             asSpec [ textMark [ maBaseline vaMiddle ], enc3 [] ]

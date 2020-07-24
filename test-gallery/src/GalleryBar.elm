@@ -167,7 +167,7 @@ bar7 =
 
         enc =
             encoding
-                << position X [ pName "gender", pNominal, pTitle "" ]
+                << position X [ pName "gender", pTitle "" ]
                 << position Y
                     [ pName "people"
                     , pQuant
@@ -177,7 +177,6 @@ bar7 =
                 << column [ fName "age", fOrdinal, fSpacing 10 ]
                 << color
                     [ mName "gender"
-                    , mNominal
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
 
@@ -224,7 +223,6 @@ weatherBars mProps =
                     ]
                 << color
                     [ mName "weather"
-                    , mNominal
                     , mScale weatherColors
                     , mTitle ""
                     ]
@@ -314,8 +312,8 @@ bar12 =
         enc =
             encoding
                 << position X [ pName "yield", pQuant, pAggregate opSum ]
-                << position Y [ pName "variety", pNominal ]
-                << color [ mName "site", mNominal ]
+                << position Y [ pName "variety" ]
+                << color [ mName "site" ]
     in
     toVegaLite [ des, data, enc [], bar [] ]
 
@@ -346,7 +344,6 @@ bar13 =
                     ]
                 << color
                     [ mName "gender"
-                    , mNominal
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
     in
@@ -387,9 +384,9 @@ bar15 =
 
         enc =
             encoding
-                << position X [ pName "color", pNominal ]
+                << position X [ pName "color" ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "color", mNominal, mScale [] ]
+                << color [ mName "color", mScale [] ]
     in
     toVegaLite [ des, data [], enc [], bar [] ]
 
@@ -420,7 +417,6 @@ bar16 =
                     ]
                 << color
                     [ mName "gender"
-                    , mNominal
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
                 << opacity [ mNum 0.7 ]
@@ -456,7 +452,6 @@ bar17 =
                     ]
                 << color
                     [ mName "gender"
-                    , mNominal
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     , mLegend [ leOrient loTop, leTitle "" ]
                     ]
@@ -494,12 +489,10 @@ bar18 =
                 << position X2 [ pName "percentage_end" ]
                 << position Y
                     [ pName "question"
-                    , pNominal
                     , pAxis [ axTitle "Question", axOffset 5, axTicks False, axMinExtent 60, axDomain False ]
                     ]
                 << color
                     [ mName "type"
-                    , mNominal
                     , mLegend [ leTitle "Response" ]
                     , mScale <|
                         scType scOrdinal
@@ -564,7 +557,6 @@ bar20 =
             encoding
                 << position Y
                     [ pName "genre"
-                    , pNominal
                     , pSort
                         [ soCustom
                             (strs
@@ -602,7 +594,7 @@ bar20 =
 
         encText =
             encoding
-                << text [ tName "genre", tNominal ]
+                << text [ tName "genre" ]
                 << detail [ dAggregate opCount, dQuant ]
 
         specText =
@@ -637,7 +629,6 @@ bar21 =
                 << position X [ pAggregate opCount, pQuant, pAxis [ axGrid False ] ]
                 << position Y
                     [ pName "Origin"
-                    , pNominal
                     , pScale [ scPaddingInner 0.2 ]
                     , pAxis
                         [ axTitle ""
@@ -745,10 +736,9 @@ bar23 =
             encoding
                 << position X [ pName "col", pOrdinal, pAxis [] ]
                 << position Y [ pName "animal", pOrdinal, pAxis [] ]
-                << row [ fName "country", fNominal, fHeader [ hdTitle "" ] ]
+                << row [ fName "country", fHeader [ hdTitle "" ] ]
                 << shape
                     [ mName "animal"
-                    , mNominal
                     , mScale <|
                         categoricalDomainMap
                             [ ( "person", Dict.get "person" isotypes |> Maybe.withDefault "circle" )
@@ -760,7 +750,6 @@ bar23 =
                     ]
                 << color
                     [ mName "animal"
-                    , mNominal
                     , mLegend []
                     , mScale <|
                         categoricalDomainMap
@@ -807,9 +796,9 @@ bar24 =
         enc =
             encoding
                 << position X [ pName "rank", pOrdinal, pAxis [] ]
-                << position Y [ pName "animal", pNominal, pAxis [], pSort [] ]
-                << row [ fName "country", fNominal, fHeader [ hdTitle "" ] ]
-                << text [ tName "emoji", tNominal ]
+                << position Y [ pName "animal", pAxis [], pSort [] ]
+                << row [ fName "country", fHeader [ hdTitle "" ] ]
+                << text [ tName "emoji" ]
                 << size [ mNum 65 ]
     in
     toVegaLite

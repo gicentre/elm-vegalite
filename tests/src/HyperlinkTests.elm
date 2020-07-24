@@ -19,15 +19,15 @@ hyperlink1 =
 
         encCircle =
             encoding
-                << position X [ pName "label", pNominal, pAxis [] ]
+                << position X [ pName "label", pAxis [] ]
                 << size [ mNum 8000 ]
-                << color [ mName "label", mNominal, mLegend [] ]
-                << hyperlink [ hName "url", hNominal ]
+                << color [ mName "label", mLegend [] ]
+                << hyperlink [ hName "url" ]
 
         encLabel =
             encoding
-                << position X [ pName "label", pNominal, pAxis [] ]
-                << text [ tName "label", tNominal ]
+                << position X [ pName "label", pAxis [] ]
+                << text [ tName "label" ]
                 << color [ mStr "white" ]
                 << size [ mNum 16 ]
 

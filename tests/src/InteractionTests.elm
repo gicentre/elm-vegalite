@@ -29,19 +29,19 @@ cScale =
 enc : List LabelledSpec -> ( VLProperty, Spec )
 enc =
     encoding
-        << position X [ pName "month", pMType Temporal, pTitle "" ]
-        << position Y [ pName "reportedCrimes", pMType Quantitative, pTitle "Reported crimes" ]
-        << color [ mName "crimeType", mMType Nominal, mScale cScale ]
+        << position X [ pName "month", pTemporal, pTitle "" ]
+        << position Y [ pName "reportedCrimes", pQuant, pTitle "Reported crimes" ]
+        << color [ mName "crimeType", mScale cScale ]
 
 
 encHighlight : List LabelledSpec -> ( VLProperty, Spec )
 encHighlight =
     encoding
-        << position X [ pName "month", pMType Temporal, pTitle "" ]
-        << position Y [ pName "reportedCrimes", pMType Quantitative, pTitle "Reported crimes" ]
+        << position X [ pName "month", pTemporal, pTitle "" ]
+        << position Y [ pName "reportedCrimes", pQuant, pTitle "Reported crimes" ]
         << color
             [ mSelectionCondition (selectionName "mySelection")
-                [ mName "crimeType", mMType Nominal, mScale cScale ]
+                [ mName "crimeType", mScale cScale ]
                 [ mStr "black" ]
             ]
         << opacity
@@ -282,7 +282,7 @@ interaction16 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [] ]
                 << position Y [ pName "indexed_price", pQuant, pAxis [ axFormat "%" ] ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
 
         lineSpec =
             asSpec [ trans [], lineEnc [], line [] ]
@@ -408,7 +408,7 @@ interaction19 =
 
         countyEnc =
             encoding
-                << fill [ mName "id", mNominal, mLegend [] ]
+                << fill [ mName "id", mLegend [] ]
 
         countySpec =
             asSpec

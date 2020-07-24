@@ -43,7 +43,7 @@ line2 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
                 << position Y [ pName "price", pQuant, pAggregate opMean ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker []) ] ]
 
@@ -61,7 +61,7 @@ line3 =
             encoding
                 << position X [ pName "date", pTemporal, pTimeUnit year ]
                 << position Y [ pName "price", pQuant, pAggregate opMean ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
     in
     toVegaLite [ des, data, enc [], line [ maPoint (pmMarker [ maFilled False, maFill "white" ]) ] ]
 
@@ -79,7 +79,7 @@ line4 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
     in
     toVegaLite [ des, data, enc [], line [] ]
 
@@ -97,7 +97,7 @@ line5 =
             encoding
                 << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
                 << position Y [ pRepeat arLayer, pQuant, pAggregate opMean, pTitle "Mean of US and Worldwide Gross" ]
-                << color [ mRepeatDatum arLayer, mNominal ]
+                << color [ mRepeatDatum arLayer ]
 
         spec =
             asSpec [ data, enc [], line [] ]
@@ -126,7 +126,7 @@ line6 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pRepeat arLayer, pQuant, pTitle "price" ]
-                << color [ mRepeatDatum arLayer, mNominal ]
+                << color [ mRepeatDatum arLayer ]
 
         specHalo =
             asSpec [ encHalo [], line [ maStroke "white", maStrokeWidth 4 ] ]
@@ -135,7 +135,7 @@ line6 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pRepeat arLayer, pQuant, pTitle "price" ]
-                << stroke [ mRepeatDatum arLayer, mNominal ]
+                << stroke [ mRepeatDatum arLayer ]
 
         specLine =
             asSpec [ encLine [], line [] ]
@@ -162,7 +162,7 @@ line7 =
             encoding
                 << position X [ pName "year", pOrdinal, pScale [ scPadding 0.5 ] ]
                 << position Y [ pName "yield", pQuant, pAggregate opMedian ]
-                << color [ mName "site", mNominal ]
+                << color [ mName "site" ]
     in
     toVegaLite [ des, widthStep 50, data, enc [], line [] ]
 
@@ -323,7 +323,7 @@ line13 =
                 << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
                 << size [ mName "price", mQuant ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
     in
     toVegaLite [ des, data, enc [], trail [] ]
 
@@ -406,7 +406,7 @@ line15 =
 
         encTextMin =
             encoding
-                << text [ tName "year", tNominal ]
+                << text [ tName "year" ]
 
         specTextMin =
             asSpec [ transTextMin [], encTextMin [], textMark [ maBaseline vaTop ] ]
@@ -417,7 +417,7 @@ line15 =
 
         encTextMax =
             encoding
-                << text [ tName "year", tNominal ]
+                << text [ tName "year" ]
 
         specTextMax =
             asSpec [ transTextMax [], encTextMax [], textMark [ maBaseline vaBottom ] ]
@@ -459,7 +459,7 @@ line16 =
             encoding
                 << position X [ pName "matchday", pOrdinal ]
                 << position Y [ pName "rank", pOrdinal ]
-                << color [ mName "team", mNominal, mScale teamColours ]
+                << color [ mName "team", mScale teamColours ]
 
         teamColours =
             categoricalDomainMap
@@ -515,7 +515,7 @@ line18 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
-                << strokeDash [ mName "symbol", mNominal ]
+                << strokeDash [ mName "symbol" ]
     in
     toVegaLite [ data, enc [], line [] ]
 
@@ -534,8 +534,8 @@ line19 =
             encoding
                 << position X [ pName "a", pOrdinal, pAxis [ axTitle "", axLabelAngle 0 ] ]
                 << position Y [ pName "b", pQuant, pTitle "" ]
-                << strokeDash [ mName "predicted", mNominal ]
-                << color [ mName "predicted", mNominal ]
+                << strokeDash [ mName "predicted" ]
+                << color [ mName "predicted" ]
     in
     toVegaLite [ width 200, data [], enc [], line [] ]
 

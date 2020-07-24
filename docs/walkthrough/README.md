@@ -110,7 +110,7 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mNominal ]
+            << color [ mName "weather" ]
 in
 toVegaLite
     [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -119,10 +119,10 @@ toVegaLite
     ]
 ```
 
-The code to do this simply adds another channel encoding, this time `color` rather than `position`, and uses it to encode the `weather` data field. Unlike temperature, weather type is _nominal_, that is, categorical with no intrinsic order. And once again, simply by declaring the measurement type, Vega-Lite determines an appropriate color scheme and legend.
+The code to do this simply adds another channel encoding, this time `color` rather than `position`, and uses it to encode the `weather` data field. Unlike temperature, weather type is _nominal_, that is, categorical with no intrinsic order. By default fields are assumed to be nominal, so without any further specification, Vega-Lite determines an appropriate unordered categorical color scheme and legend.
 
 Specifications are assembled through functions prefixed with letters indicating the type of function.
-So the name of the data field use to encode _position_ is specified with `pName`, its measurement type with `pQuant` and its positional aggregation with `pAggregate`, whereas the name of the data field for encoding color is indicated by `mName` and its measurement type `mQuant`, `mNominal` etc. (where `m` is short for _mark_).
+So the name of the data field use to encode _position_ is specified with `pName`, its measurement type with `pQuant` and its positional aggregation with `pAggregate`, whereas the name of the data field for encoding color is indicated by `mName` and its measurement type `mQuant` etc. (where `m` is short for _mark_).
 
 ### Stacked Histogram with Customised Colors (7:20)
 
@@ -147,7 +147,7 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mNominal, mScale weatherColors ]
+            << color [ mName "weather", mScale weatherColors ]
     in
     toVegaLite
         [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -168,7 +168,7 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mNominal, mScale weatherColors ]
+            << color [ mName "weather", mScale weatherColors ]
 in
 toVegaLite
     [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -191,8 +191,8 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mNominal, mLegend [], mScale weatherColors ]
-            << column [ fName "weather", fNominal ]
+            << color [ mName "weather", mLegend [], mScale weatherColors ]
+            << column [ fName "weather" ]
 in
 toVegaLite
     [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
@@ -201,7 +201,7 @@ toVegaLite
     ]
 ```
 
-There are only two additions in order to create these small multiples. Firstly we have an extra encoding with the `column` function specifying the `weather` data field as the one to determine which column each data item gets mapped to. Note that the `f` prefix for `fName` and `fNominal` refers to _facet_ – a form of data selection and grouping standard in data visualization.
+There are only two additions in order to create these small multiples. Firstly we have an extra encoding with the `column` function specifying the `weather` data field as the one to determine which column each data item gets mapped to. Note that the `f` prefix for `fName` refers to _facet_ – a form of data selection and grouping standard in data visualization.
 
 The second, minor change, is to include an `mLegend` specification in the color encoding. The legend can be customised with its parameter list but here by providing an empty list, we declare we do not wish the default legend to appear (the arrangement into columns with color encoding and default column labels make the legend redundant).
 
@@ -368,8 +368,8 @@ let
         encoding
             << position X [ pName "temp_max", pQuant, pBin [] ]
             << position Y [ pAggregate opCount, pQuant ]
-            << color [ mName "weather", mNominal, mLegend [], mScale weatherColors ]
-            << column [ fName "weather", fNominal ]
+            << color [ mName "weather", mLegend [], mScale weatherColors ]
+            << column [ fName "weather" ]
 
     histoSpec =
         asSpec [ bar [], histoEnc [] ]
@@ -452,7 +452,7 @@ let
             << position Y [ pName "Miles_per_Gallon", pQuant ]
             << color
                 [ mSelectionCondition (selectionName "picked")
-                    [ mName "Origin", mNominal ]
+                    [ mName "Origin" ]
                     [ mStr "grey" ]
                 ]
 
@@ -486,7 +486,7 @@ scatterProps =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "picked")
-                        [ mName "Origin", mNominal ]
+                        [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
     in
@@ -646,7 +646,7 @@ let
             << position Y [ pRepeat arRow, pQuant ]
             << color
                 [ mSelectionCondition (selectionName "picked")
-                    [ mName "Origin", mNominal ]
+                    [ mName "Origin" ]
                     [ mStr "grey" ]
                 ]
 
@@ -683,7 +683,7 @@ let
         encoding
             << position X [ pRepeat arColumn, pQuant ]
             << position Y [ pRepeat arRow, pQuant ]
-            << color [ mName "Origin", mNominal ]
+            << color [ mName "Origin" ]
 
     sel =
         selection

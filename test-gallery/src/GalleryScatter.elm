@@ -81,8 +81,8 @@ scatter4 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mNominal ]
-                << shape [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
+                << shape [ mName "Origin" ]
     in
     toVegaLite
         [ des, data, enc [], point [] ]
@@ -212,14 +212,14 @@ scatter10 =
         enc =
             encoding
                 << position X [ pName "Year", pOrdinal, pAxis [ axLabelAngle 0 ] ]
-                << position Y [ pName "Entity", pNominal, pAxis [ axTitle "" ] ]
+                << position Y [ pName "Entity", pTitle "" ]
                 << size
                     [ mName "Deaths"
                     , mQuant
                     , mLegend [ leTitle "Annual Global Deaths" ]
                     , mScale [ scRange (raNums [ 0, 5000 ]) ]
                     ]
-                << color [ mName "Entity", mNominal, mLegend [] ]
+                << color [ mName "Entity", mLegend [] ]
     in
     toVegaLite
         [ des
@@ -249,8 +249,8 @@ scatter11 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mNominal ]
-                << text [ tName "OriginInitial", tNominal ]
+                << color [ mName "Origin" ]
+                << text [ tName "OriginInitial" ]
     in
     toVegaLite [ des, data, trans [], enc [], textMark [] ]
 
@@ -327,7 +327,7 @@ scatter14 =
             encoding
                 << position X [ pName "x", pQuant ]
                 << position Y [ pName "y", pQuant ]
-                << url [ hName "img", hNominal ]
+                << url [ hName "img" ]
     in
     toVegaLite [ des, data [], enc [], image [ maWidth 25, maHeight 25 ] ]
 

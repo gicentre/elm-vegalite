@@ -77,9 +77,9 @@ textFormat2 =
 
         enc =
             encoding
-                << position X [ pName "crimeType", pNominal, pAxis [ axTitle "" ] ]
+                << position X [ pName "crimeType", pTitle "" ]
                 << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
-                << color [ mName "crimeType", mNominal, mLegend [] ]
+                << color [ mName "crimeType", mLegend [] ]
                 << column [ fName "month", fTemporal, fHeader [ hdFormatAsTemporal, hdFormat "%b %y" ] ]
     in
     toVegaLite [ width 100, data [], trans [], bar [], enc [] ]
@@ -182,11 +182,11 @@ multiline1 =
                     , pScale [ scDomain (doNums [ 0, 20 ]) ]
                     , pAxis [ axTitle "Axis title on\ntwo lines" ]
                     ]
-                << color [ mName "cat", mNominal, mTitle "Legend title on\ntwo lines" ]
+                << color [ mName "cat", mTitle "Legend title on\ntwo lines" ]
 
         enc1 =
             encBase
-                << text [ tName "label", tNominal ]
+                << text [ tName "label" ]
 
         spec1 =
             asSpec [ data1 [], enc1 [], textMark [] ]
@@ -217,9 +217,9 @@ customFormatter1 =
 
         enc =
             encoding
-                << position X [ pName "crimeType", pNominal, pAxis [ axFormatAsCustom "axTest" ] ]
+                << position X [ pName "crimeType", pAxis [ axFormatAsCustom "axTest" ] ]
                 << position Y [ pName "reportedCrimes", pQuant, pAggregate opSum ]
-                << color [ mName "crimeType", mNominal, mLegend [ leFormatAsCustom "leTest" ] ]
+                << color [ mName "crimeType", mLegend [ leFormatAsCustom "leTest" ] ]
                 << column [ fName "month", fTemporal, fHeader [ hdFormatAsCustom "hdTest" ] ]
     in
     toVegaLite [ width 100, data [], trans [], bar [], enc [] ]

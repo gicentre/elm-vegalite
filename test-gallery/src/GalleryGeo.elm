@@ -63,8 +63,8 @@ geo2 =
 
         enc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << color [ mName "digit" ]
     in
     toVegaLite
@@ -102,8 +102,8 @@ geo3 =
 
         overlayEnc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << size [ mNum 5 ]
                 << color [ mStr "steelblue" ]
 
@@ -138,8 +138,8 @@ geo4 =
 
         airportsEnc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
 
         airportsSpec =
             asSpec [ airportData, airportsEnc [], circle [ maColor "gray", maSize 5 ] ]
@@ -152,8 +152,8 @@ geo4 =
 
         flightsEnc =
             encoding
-                << position Longitude [ pName "o.longitude", pQuant ]
-                << position Latitude [ pName "o.latitude", pQuant ]
+                << position Longitude [ pName "o.longitude" ]
+                << position Latitude [ pName "o.latitude" ]
                 << position Longitude2 [ pName "d.longitude" ]
                 << position Latitude2 [ pName "d.latitude" ]
 
@@ -229,8 +229,8 @@ geo6 =
 
         overlayEnc =
             encoding
-                << position Longitude [ pName "lon", pQuant ]
-                << position Latitude [ pName "lat", pQuant ]
+                << position Longitude [ pName "lon" ]
+                << position Latitude [ pName "lat" ]
                 << text [ tName "city" ]
 
         overlaySpec =
@@ -266,8 +266,8 @@ geo7 =
 
         airportsEnc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
 
         airportsSpec =
             asSpec [ airportData, airportsEnc [], circle [ maSize 5, maColor "grey" ] ]
@@ -278,8 +278,8 @@ geo7 =
 
         flightsEnc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << order [ oName "order", oOrdinal ]
 
         flightsSpec =
@@ -366,8 +366,8 @@ geo9 =
 
         labelEnc =
             encoding
-                << position Longitude [ pName "cx", pQuant ]
-                << position Latitude [ pName "cy", pQuant ]
+                << position Longitude [ pName "cx" ]
+                << position Latitude [ pName "cy" ]
                 << text [ tName "bLabel" ]
 
         trans =

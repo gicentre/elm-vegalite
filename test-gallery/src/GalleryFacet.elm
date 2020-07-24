@@ -35,10 +35,9 @@ facet1 =
                     ]
                 << color
                     [ mName "gender"
-                    , mNominal
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
-                << row [ fName "gender", fNominal ]
+                << row [ fName "gender" ]
     in
     toVegaLite [ des, widthStep 17, data [], trans [], bar [], enc [] ]
 
@@ -52,8 +51,8 @@ facet2 =
         enc =
             encoding
                 << position X [ pName "yield", pQuant, pAggregate opSum ]
-                << position Y [ pName "variety", pNominal ]
-                << color [ mName "site", mNominal ]
+                << position Y [ pName "variety" ]
+                << color [ mName "site" ]
                 << column [ fName "year", fOrdinal ]
     in
     toVegaLite
@@ -164,7 +163,7 @@ facet6 =
                     , pOrdinal
                     , pSort [ soByChannel chX, soDescending ]
                     ]
-                << color [ mName "year", mNominal ]
+                << color [ mName "year" ]
     in
     toVegaLite
         [ data []
@@ -202,12 +201,10 @@ facet7 =
                     ]
                 << color
                     [ mName "symbol"
-                    , mNominal
                     , mLegend []
                     ]
                 << row
                     [ fName "symbol"
-                    , fNominal
                     , fHeader [ hdTitle "Stock price", hdLabelAngle 0 ]
                     ]
 
@@ -238,14 +235,13 @@ facet8 =
         enc =
             encoding
                 << position X [ pName "p", pQuant, pAxis [ axFormat "%", axTitle "" ] ]
-                << position Y [ pName "c", pNominal, pAxis [] ]
+                << position Y [ pName "c", pAxis [] ]
                 << color
                     [ mName "c"
-                    , mNominal
                     , mLegend [ leOrient loBottom, leTitleOrient loLeft, leTitle "settings" ]
                     ]
-                << row [ fName "a", fNominal, fHeader [ hdTitle "Factor A", hdLabelAngle 0 ] ]
-                << column [ fName "b", fNominal, fHeader [ hdTitle "Factor B" ] ]
+                << row [ fName "a", fHeader [ hdTitle "Factor A", hdLabelAngle 0 ] ]
+                << column [ fName "b", fHeader [ hdTitle "Factor B" ] ]
 
         res =
             resolve

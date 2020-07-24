@@ -73,7 +73,6 @@ layer2 =
             encoding
                 << position Y
                     [ pName "country"
-                    , pNominal
                     , pAxis
                         [ axTitle "Country"
                         , axOffset 5
@@ -86,7 +85,7 @@ layer2 =
         encLine =
             encoding
                 << position X [ pName "life_expect", pQuant ]
-                << detail [ dName "country", dNominal ]
+                << detail [ dName "country" ]
                 << color [ mStr "#db646f" ]
 
         specLine =
@@ -148,7 +147,7 @@ layer3 =
         encLine =
             encoding
                 << position X [ pName "life_expect", pQuant ]
-                << detail [ dName "country", dNominal ]
+                << detail [ dName "country" ]
                 << color [ mStr "#db646f" ]
 
         enc1 =
@@ -412,7 +411,7 @@ layer6 =
                         , axOrient siTop
                         ]
                     ]
-                << text [ tName "day", tNominal ]
+                << text [ tName "day" ]
 
         spec7 =
             asSpec [ textMark [ maAlign haCenter, maDy -105 ], enc7 [] ]
@@ -564,7 +563,7 @@ layer7 =
             encoding
                 << position X [ pName "dcX", pOrdinal ]
                 << position Y [ pName "dcY", pQuant ]
-                << text [ tName "dcAnnotation", tNominal ]
+                << text [ tName "dcAnnotation" ]
 
         specDiCaprioLabel =
             asSpec
@@ -616,7 +615,7 @@ layer7 =
             encoding
                 << position X [ pName "start", pOrdinal ]
                 << position Y [ pNum 435 ]
-                << text [ tName "name", tNominal ]
+                << text [ tName "name" ]
 
         specPartnerNames =
             asSpec
@@ -629,7 +628,7 @@ layer7 =
             encoding
                 << position X [ pName "partnerX", pOrdinal ]
                 << position Y [ pName "partnerY", pQuant ]
-                << text [ tName "partnerAnnotation", tNominal ]
+                << text [ tName "partnerAnnotation" ]
 
         specPartnerLabel =
             asSpec
@@ -840,7 +839,6 @@ layer8 =
                 << position Y2 [ pName "x" ]
                 << fill
                     [ mName "commonwealth"
-                    , mNominal
                     , mScale [ scRange (raStrs [ "black", "white" ]) ]
                     , mLegend []
                     ]
@@ -852,13 +850,13 @@ layer8 =
             encoding
                 << position X [ pName "x", pTemporal ]
                 << position Y [ pName "y", pQuant ]
-                << text [ tName "name", tNominal ]
+                << text [ tName "name" ]
 
         encCurves =
             encoding
                 << position X [ pName "x", pTemporal ]
                 << position Y [ pName "y", pQuant ]
-                << shape [ mName "curve", mNominal, mScale curves, mLegend [] ]
+                << shape [ mName "curve", mScale curves, mLegend [] ]
 
         specCurves =
             asSpec [ dataCurves [], encCurves [], point [ maStroke "black", maOpacity 1 ] ]

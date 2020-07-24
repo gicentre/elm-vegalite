@@ -27,26 +27,10 @@ genderChart hdProps cProps =
 
         enc =
             encoding
-                << column
-                    [ fName "gender"
-                    , fNominal
-                    , fHeader hdProps
-                    ]
-                << position X
-                    [ pName "age"
-                    , pOrdinal
-                    ]
-                << position Y
-                    [ pName "people"
-                    , pQuant
-                    , pAggregate opSum
-                    , pAxis [ axTitle "Population" ]
-                    ]
-                << color
-                    [ mName "gender"
-                    , mNominal
-                    , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
-                    ]
+                << column [ fName "gender", fHeader hdProps ]
+                << position X [ pName "age", pOrdinal ]
+                << position Y [ pName "people", pQuant, pAggregate opSum, pTitle "Population" ]
+                << color [ mName "gender", mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ] ]
     in
     toVegaLite [ widthStep 17, conf [], pop, trans [], enc [], bar [] ]
 
@@ -148,7 +132,7 @@ grid1 =
             encoding
                 << position X [ pName "cat", pOrdinal, pAxis [] ]
                 << position Y [ pName "val", pQuant, pAxis [] ]
-                << color [ mName "cat", mNominal, mLegend [] ]
+                << color [ mName "cat", mLegend [] ]
 
         specByCatVal =
             asSpec [ width 120, height 120, bar [], encByCatVal [] ]
@@ -172,7 +156,7 @@ grid2 =
             encoding
                 << position X [ pName "cat", pOrdinal, pAxis [] ]
                 << position Y [ pName "val", pQuant, pAxis [] ]
-                << color [ mName "cat", mNominal, mLegend [] ]
+                << color [ mName "cat", mLegend [] ]
 
         specByCatVal =
             asSpec [ width 120, height 120, bar [], encByCatVal [] ]
@@ -198,7 +182,7 @@ grid3 =
             encoding
                 << position X [ pName "cat", pOrdinal, pAxis [] ]
                 << position Y [ pName "val", pQuant, pAxis [] ]
-                << color [ mName "cat", mNominal, mLegend [] ]
+                << color [ mName "cat", mLegend [] ]
 
         specByCatVal =
             asSpec [ width 120, height 120, bar [], encByCatVal [] ]
@@ -227,7 +211,7 @@ grid4 =
             encoding
                 << position X [ pRepeat arFlow, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         spec =
             asSpec [ carData [], bar [], enc [] ]
@@ -249,15 +233,13 @@ grid5 =
             encoding
                 << position X [ pRepeat arRow, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         spec =
             asSpec [ carData [], bar [], enc [] ]
     in
     toVegaLite
-        [ repeat
-            [ rowFields [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ]
-            ]
+        [ repeat [ rowFields [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ] ]
         , specification spec
         ]
 

@@ -21,7 +21,7 @@ repeat1 =
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
                 << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
                 << detail [ dName "date", dTemporal, dTimeUnit year ]
-                << color [ mName "location", mNominal ]
+                << color [ mName "location" ]
                 << opacity [ mNum 0.2 ]
 
         spec1 =
@@ -31,7 +31,7 @@ repeat1 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
                 << position Y [ pRepeat arColumn, pQuant, pAggregate opMean ]
-                << color [ mName "location", mNominal ]
+                << color [ mName "location" ]
 
         spec2 =
             asSpec [ line [], enc2 [] ]
@@ -92,7 +92,7 @@ repeat3 =
             encoding
                 << position X [ pRepeat arColumn, pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         spec =
             asSpec
@@ -137,7 +137,7 @@ repeat4 =
                 << position Y [ pRepeat arRow, pQuant ]
                 << color
                     [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Origin", mNominal ]
+                        [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
 

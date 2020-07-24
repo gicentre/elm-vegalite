@@ -117,7 +117,7 @@ dist5 =
             encoding
                 << position X [ pName "value", pQuant ]
                 << position Y [ pName "density", pQuant, pStack stZero ]
-                << color [ mName "Major_Genre", mScale [ scScheme "category20" [] ], mNominal ]
+                << color [ mName "Major_Genre", mScale [ scScheme "category20" [] ] ]
     in
     toVegaLite [ width 400, height 100, data, trans [], enc [], area [] ]
 

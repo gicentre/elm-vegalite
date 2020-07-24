@@ -56,7 +56,6 @@ scale3 =
             encoding
                 << position Y
                     [ pName "b"
-                    , pNominal
                     , pSort []
                     , pAxis [ axTicks False, axDomain False, axTitle "" ]
                     ]
@@ -69,7 +68,7 @@ scale3 =
                     [ mName "b"
                     , mQuant
                     , mScale [ scType scQuantile ]
-                    , mLegend [ leTitle "Quantile" ]
+                    , mTitle "Quantile"
                     ]
     in
     toVegaLite [ data [], enc [], circle [] ]
@@ -86,7 +85,6 @@ scale4 =
             encoding
                 << position Y
                     [ pName "b"
-                    , pNominal
                     , pSort []
                     , pAxis [ axTicks False, axDomain False, axTitle "" ]
                     ]
@@ -99,7 +97,7 @@ scale4 =
                     [ mName "b"
                     , mQuant
                     , mScale [ scType scQuantize, scZero True ]
-                    , mLegend [ leTitle "Quantize" ]
+                    , mTitle "Quantize"
                     ]
     in
     toVegaLite [ data [], enc [], circle [] ]
@@ -116,7 +114,6 @@ scale5 =
             encoding
                 << position Y
                     [ pName "b"
-                    , pNominal
                     , pSort []
                     , pAxis [ axTicks False, axDomain False, axTitle "" ]
                     ]
@@ -137,7 +134,7 @@ scale5 =
                         , scDomain (doNums [ 30, 70 ])
                         , scScheme "viridis" []
                         ]
-                    , mLegend [ leTitle "Threshold" ]
+                    , mTitle "Threshold"
                     ]
     in
     toVegaLite [ data [], enc [], circle [] ]

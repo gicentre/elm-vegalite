@@ -23,7 +23,7 @@ encChart extraEnc =
             encoding
                 << position X [ pName "x", pQuant ]
                 << position Y [ pName "y", pQuant ]
-                << color [ mName "cat", mNominal ]
+                << color [ mName "cat" ]
                 << size [ mNum 2000 ]
                 << extraEnc
     in
@@ -110,9 +110,9 @@ geo2 =
 
         enc =
             encoding
-                << stroke [ mName "geometry.type", mNominal ]
+                << stroke [ mName "geometry.type" ]
                 << fill
-                    [ mDataCondition [ ( expr "datum.geometry.type === 'Polygon'", [ mName "geometry.type", mNominal ] ) ]
+                    [ mDataCondition [ ( expr "datum.geometry.type === 'Polygon'", [ mName "geometry.type" ] ) ]
                         [ mStr "rgb(0,0,0,0)" ]
                     ]
     in
@@ -135,8 +135,8 @@ gradient1 =
 
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "value", pMType Quantitative ]
+                << position X [ pName "cat" ]
+                << position Y [ pName "value", pQuant ]
     in
     toVegaLite
         [ width 200
@@ -167,8 +167,8 @@ gradient2 =
 
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "value", pMType Quantitative ]
+                << position X [ pName "cat" ]
+                << position Y [ pName "value", pQuant ]
     in
     toVegaLite
         [ width 300
@@ -196,8 +196,8 @@ gradient3 =
 
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "value", pMType Quantitative ]
+                << position X [ pName "cat" ]
+                << position Y [ pName "value", pQuant ]
     in
     toVegaLite
         [ width 300
@@ -225,8 +225,8 @@ rounded1 =
 
         enc =
             encoding
-                << position X [ pName "cat", pMType Nominal ]
-                << position Y [ pName "value", pMType Quantitative ]
+                << position X [ pName "cat" ]
+                << position Y [ pName "value", pQuant ]
     in
     toVegaLite [ data [], enc [], bar [ maCornerRadiusEnd 4 ] ]
 
@@ -241,8 +241,8 @@ rounded2 =
 
         enc =
             encoding
-                << position X [ pName "value", pMType Quantitative ]
-                << position Y [ pName "cat", pMType Nominal ]
+                << position X [ pName "value", pQuant ]
+                << position Y [ pName "cat" ]
     in
     toVegaLite [ data [], enc [], bar [ maCornerRadiusEnd 4 ] ]
 
@@ -257,7 +257,7 @@ strokeDash1 =
             encoding
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
-                << strokeDash [ mName "symbol", mNominal ]
+                << strokeDash [ mName "symbol" ]
     in
     toVegaLite [ data, enc [], line [] ]
 
@@ -274,7 +274,6 @@ strokeDash2 =
                 << position Y [ pName "price", pQuant ]
                 << strokeDash
                     [ mName "symbol"
-                    , mNominal
                     , mScale
                         [ scDomain (doStrs [ "AAPL", "AMZN", "GOOG", "IBM", "MSFT" ])
                         , scRange (raNumLists [ [ 1, 0 ], [ 3, 1 ], [ 2, 3 ], [ 4, 4 ], [ 5, 6 ] ])
@@ -300,7 +299,7 @@ strokeDash3 =
 
         enc1 =
             encBase
-                << strokeDash [ mName "cat", mNominal ]
+                << strokeDash [ mName "cat" ]
 
         spec1 =
             asSpec [ title "Nominal" [], width 200, enc1 [], line [] ]
@@ -387,7 +386,6 @@ strokeDash4 =
             encBase
                 << strokeDash
                     [ mName "cat"
-                    , mNominal
                     , mScale
                         [ scDomain (doNums [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
                         , scRange (raNumLists [ d0, d6, d8, d4, d9, d1, d5, d3, d7, d2 ])

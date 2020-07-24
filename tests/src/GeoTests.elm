@@ -19,94 +19,129 @@ import VegaLite exposing (..)
 
 defaultSize1 : Spec
 defaultSize1 =
-    toVegaLite
-        [ description "Default map size"
-        , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "counties" ]
-        , geoshape []
-        , encoding <| color [ mStr "black" ] []
-        ]
+    let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "counties" ]
+
+        proj =
+            projection [ prType albersUsa ]
+    in
+    toVegaLite [ description "Default map size", data, proj, geoshape [ maColor "black" ] ]
 
 
 defaultSize2 : Spec
 defaultSize2 =
+    let
+        cfg =
+            configure
+                << configuration (coView [ vicoContinuousWidth 500, vicoContinuousHeight 300 ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
+                [ topojsonFeature "counties" ]
+
+        proj =
+            projection [ prType albersUsa ]
+    in
     toVegaLite
         [ description "Default map size with view width and height specified in config."
-        , configure <| configuration (coView [ vicoContinuousWidth 500, vicoContinuousHeight 300 ]) <| []
-        , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "counties" ]
-        , geoshape []
-        , encoding <| color [ mStr "black" ] []
+        , cfg []
+        , proj
+        , data
+        , geoshape [ maColor "black" ]
         ]
 
 
 choropleth1 : Spec
 choropleth1 =
-    toVegaLite
-        [ width 900
-        , height 500
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
-        , geoshape [ maStrokeOpacity 0 ]
-        , encoding <| color [ mName "id", mNominal ] []
-        ]
+    let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
+                [ topojsonFeature "boroughs" ]
+
+        enc =
+            encoding
+                << color [ mName "id" ]
+    in
+    toVegaLite [ width 900, height 500, cfg [], data, enc [], geoshape [ maStrokeOpacity 0 ] ]
 
 
 choropleth2 : Spec
 choropleth2 =
     let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        dataBoundaries =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
+                [ topojsonFeature "boroughs" ]
+
+        dataCentroids =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" []
+
         trans =
             transform
                 << calculateAs "indexof (datum.name,' ') > 0  ? substring(datum.name,0,indexof(datum.name, ' ')) : datum.name" "bLabel"
 
         polyEnc =
             encoding
-                << color [ mName "id", mNominal, mScale boroughColors, mLegend [] ]
+                << color [ mName "id", mScale boroughColors, mLegend [] ]
                 << opacity [ mNum 1 ]
 
         polySpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
+                [ dataBoundaries
                 , geoshape [ maStroke "rgb(251,247,238)", maStrokeWidth 2 ]
                 , polyEnc []
                 ]
 
         labelEnc =
             encoding
-                << position Longitude [ pName "cx", pQuant ]
-                << position Latitude [ pName "cy", pQuant ]
-                << text [ tName "bLabel", tNominal ]
+                << position Longitude [ pName "cx" ]
+                << position Latitude [ pName "cy" ]
+                << text [ tName "bLabel" ]
 
         labelSpec =
-            asSpec [ dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" [], trans [], textMark [], labelEnc [] ]
+            asSpec [ dataCentroids, trans [], labelEnc [], textMark [] ]
     in
-    toVegaLite
-        [ width 1200
-        , height 700
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
-        , layer [ polySpec, labelSpec ]
-        ]
+    toVegaLite [ width 1200, height 700, cfg [], layer [ polySpec, labelSpec ] ]
 
 
 tubeLines1 : Spec
 tubeLines1 =
-    toVegaLite
-        [ width 700
-        , height 500
-        , dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json" [ topojsonFeature "line" ]
-        , geoshape [ maFilled False ]
-        , encoding <| color [ mName "id", mNominal ] []
-        ]
+    let
+        dataTubes =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
+                [ topojsonFeature "line" ]
+
+        enc =
+            encoding
+                << color [ mName "id" ]
+    in
+    toVegaLite [ width 700, height 500, dataTubes, enc [], geoshape [ maFilled False ] ]
 
 
 tubeLines2 : Spec
 tubeLines2 =
     let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        dataTubes =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
+                [ topojsonFeature "line" ]
+
         enc =
             encoding
                 << color
                     [ mName "id"
-                    , mNominal
                     , mLegend [ leTitle "", leOrient loBottomRight ]
                     , mScale tubeLineColors
                     ]
@@ -114,28 +149,47 @@ tubeLines2 =
     toVegaLite
         [ width 700
         , height 500
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json" [ topojsonFeature "line" ]
-        , geoshape [ maFilled False, maStrokeWidth 2 ]
+        , cfg []
+        , dataTubes
         , enc []
+        , geoshape [ maFilled False, maStrokeWidth 2 ]
         ]
 
 
 tubeLines3 : Spec
 tubeLines3 =
     let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        dataCentroids =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" []
+
+        dataBoundaries =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
+                [ topojsonFeature "boroughs" ]
+
+        dataTubes =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
+                [ topojsonFeature "line" ]
+
+        enc =
+            encoding
+                << color [ mStr "#ddc" ]
+
         polySpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
+                [ dataBoundaries
+                , enc []
                 , geoshape [ maStroke "rgb(251,247,238)", maStrokeWidth 2 ]
-                , encoding <| color [ mStr "#ddc" ] []
                 ]
 
         labelEnc =
             encoding
-                << position Longitude [ pName "cx", pQuant ]
-                << position Latitude [ pName "cy", pQuant ]
-                << text [ tName "bLabel", tNominal ]
+                << position Longitude [ pName "cx" ]
+                << position Latitude [ pName "cy" ]
+                << text [ tName "bLabel" ]
                 << size [ mNum 8 ]
                 << opacity [ mNum 0.6 ]
 
@@ -144,20 +198,19 @@ tubeLines3 =
                 << calculateAs "indexof (datum.name,' ') > 0  ? substring(datum.name,0,indexof(datum.name, ' ')) : datum.name" "bLabel"
 
         labelSpec =
-            asSpec [ dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" [], trans [], textMark [], labelEnc [] ]
+            asSpec [ dataCentroids, trans [], labelEnc [], textMark [] ]
 
         tubeEnc =
             encoding
                 << color
                     [ mName "id"
-                    , mNominal
                     , mLegend [ leTitle "", leOrient loBottomRight, leOffset 0 ]
                     , mScale tubeLineColors
                     ]
 
         routeSpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json" [ topojsonFeature "line" ]
+                [ dataTubes
                 , geoshape [ maFilled False, maStrokeWidth 2 ]
                 , tubeEnc []
                 ]
@@ -165,7 +218,7 @@ tubeLines3 =
     toVegaLite
         [ width 700
         , height 500
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
+        , cfg []
         , layer [ polySpec, labelSpec, routeSpec ]
         ]
 
@@ -394,26 +447,34 @@ mapComp1 =
 mapComp2 : Spec
 mapComp2 =
     let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json"
+                [ topojsonFeature "land" ]
+
+        dataGraticule =
+            dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json"
+                [ topojsonFeature "graticule" ]
+
         globe =
             let
                 graticuleSpec =
-                    asSpec
-                        [ dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
-                        , geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ]
-                        ]
+                    asSpec [ dataGraticule, geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ] ]
 
                 countrySpec =
-                    asSpec
-                        [ dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "land" ]
-                        , geoshape [ maFill "black", maFillOpacity 0.7 ]
-                        ]
+                    asSpec [ data, geoshape [ maFill "black", maFillOpacity 0.7 ] ]
             in
-            asSpec [ width 300, height 300, projection [ prType orthographic ], layer [ graticuleSpec, countrySpec ] ]
+            asSpec
+                [ width 300
+                , height 300
+                , projection [ prType orthographic ]
+                , layer [ graticuleSpec, countrySpec ]
+                ]
     in
-    toVegaLite
-        [ configure <| configuration (coView [ vicoStroke Nothing ]) <| []
-        , hConcat [ globe, globe, globe ]
-        ]
+    toVegaLite [ cfg [], hConcat [ globe, globe, globe ] ]
 
 
 mapComp3 : Spec
@@ -456,6 +517,10 @@ mapComp3 =
 mapComp4 : Spec
 mapComp4 =
     let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
         dataGlobe =
             dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
 
@@ -491,10 +556,6 @@ mapComp4 =
                         ]
             in
             asSpec [ width 300, height 300, layer [ seaSpec, graticuleSpec, countrySpec ] ]
-
-        cfg =
-            configure
-                << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
         [ cfg [], hConcat [ rotatedSpec 0, rotatedSpec -40 ] ]
@@ -503,74 +564,93 @@ mapComp4 =
 dotMap1 : Spec
 dotMap1 =
     let
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+
+        trans =
+            transform
+                << calculateAs "substring(datum.zip_code, 0, 1)" "digit"
+
+        proj =
+            projection [ prType albersUsa ]
+
         enc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << size [ mNum 1 ]
-                << color [ mName "digit", mNominal ]
+                << color [ mName "digit" ]
     in
     toVegaLite
         [ description "US zip codes: One dot per zipcode colored by first digit"
         , width 500
         , height 300
-        , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
-        , transform <| calculateAs "substring(datum.zip_code, 0, 1)" "digit" <| []
-        , circle []
+        , data
+        , proj
+        , trans []
         , enc []
+        , circle []
         ]
 
 
 scribbleMap1 : Spec
 scribbleMap1 =
     let
-        stateCondition =
-            List.map (\s -> "&& datum.state !='" ++ s ++ "'") [ "AS", "FM", "PW", "MH", "GU", "MP", "VI", "PR" ]
-                |> String.concat
-
-        config =
+        cfg =
             configure
                 << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight W300, ticoFontSize 28 ])
                 << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+
+        stateCondition =
+            List.map (\s -> "&& datum.state !='" ++ s ++ "'") [ "AS", "FM", "PW", "MH", "GU", "MP", "VI", "PR" ]
+                |> String.concat
 
         trans =
             transform
                 << filter ("datum.latitude != '' && datum.county != 'Honolulu' " ++ stateCondition |> fiExpr)
                 << calculateAs "datum.state == 'HI' ? 'hi' : (datum.state == 'AK' ? 'ak' : 'continent')" "conterminous"
 
+        proj =
+            projection [ prType albersUsa ]
+
         enc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << order [ oName "zip_code", oQuant ]
                 << color [ mStr "#666" ]
-                << detail [ dName "conterminous", dNominal ]
+                << detail [ dName "conterminous" ]
     in
     toVegaLite
         [ title "US connected zip codes" []
-        , config []
+        , cfg []
         , width 1000
         , height 600
-        , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+        , data
+        , proj
         , trans []
-        , line [ maStrokeWidth 0.2, maInterpolate miMonotone ]
         , enc []
+        , line [ maStrokeWidth 0.2, maInterpolate miMonotone ]
         ]
 
 
 scribbleMap2 : Spec
 scribbleMap2 =
     let
-        stateCondition =
-            List.map (\s -> "&& datum.state !='" ++ s ++ "'") [ "AS", "FM", "PW", "MH", "GU", "MP", "VI", "PR" ]
-                |> String.concat
-
-        config =
+        cfg =
             configure
                 << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight W300, ticoFontSize 28 ])
                 << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+
+        stateCondition =
+            List.map (\s -> "&& datum.state !='" ++ s ++ "'") [ "AS", "FM", "PW", "MH", "GU", "MP", "VI", "PR" ]
+                |> String.concat
 
         trans =
             transform
@@ -578,24 +658,27 @@ scribbleMap2 =
                 << calculateAs "substring(datum.zip_code, 0, 3)" "digit3"
                 << calculateAs "length(datum.zip_code+' ')" "ziplen"
 
+        proj =
+            projection [ prType albersUsa ]
+
         enc =
             encoding
-                << position Longitude [ pName "longitude", pQuant ]
-                << position Latitude [ pName "latitude", pQuant ]
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
                 << order [ oName "zip_code", oQuant ]
-                << color [ mName "digit3", mNominal, mLegend [] ]
-                << detail [ dName "ziplen", dNominal ]
+                << color [ mName "digit3", mLegend [] ]
+                << detail [ dName "ziplen" ]
     in
     toVegaLite
         [ title "US connected zip codes, coloured by first three digits" []
-        , config []
+        , cfg []
         , width 1000
         , height 600
-        , projection [ prType albersUsa ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+        , data
         , trans []
-        , line [ maStrokeWidth 0.2, maInterpolate miMonotone ]
+        , proj
         , enc []
+        , line [ maStrokeWidth 0.2, maInterpolate miMonotone ]
         ]
 
 
@@ -614,18 +697,18 @@ map1d =
 
         cEnc =
             encoding
-                << position Longitude [ pName "cx", pQuant ]
-                << position Latitude [ pName "cy", pQuant ]
+                << position Longitude [ pName "cx" ]
+                << position Latitude [ pName "cy" ]
 
         hEnc =
             encoding
-                << position Longitude [ pName "cx", pQuant ]
+                << position Longitude [ pName "cx" ]
                 << position Latitude [ pDatum (num 51.28) ]
 
         vEnc =
             encoding
                 << position Longitude [ pDatum (num -0.52) ]
-                << position Latitude [ pName "cy", pQuant ]
+                << position Latitude [ pName "cy" ]
 
         cSpec =
             asSpec [ centroidData [], circle [], cEnc [] ]

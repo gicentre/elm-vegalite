@@ -20,7 +20,7 @@ singleVis config =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Cylinders", mOrdinal ]
-                << shape [ mName "Origin", mNominal ]
+                << shape [ mName "Origin" ]
     in
     toVegaLite
         [ title "Car Scatter" []
@@ -116,7 +116,7 @@ compositeVis config =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Cylinders", mOrdinal ]
-                << shape [ mName "Origin", mNominal ]
+                << shape [ mName "Origin" ]
 
         scatterSpec =
             asSpec
@@ -131,13 +131,13 @@ compositeVis config =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         streamEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
                 << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         barSpec =
             asSpec
@@ -175,19 +175,19 @@ vbTest =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Cylinders", mOrdinal ]
-                << shape [ mName "Origin", mNominal ]
+                << shape [ mName "Origin" ]
 
         barEnc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pAggregate opCount, pQuant ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         streamEnc =
             encoding
                 << position X [ pName "Year", pTemporal, pTimeUnit year ]
                 << position Y [ pAggregate opCount, pQuant, pStack stCenter, pAxis [] ]
-                << color [ mName "Origin", mNominal ]
+                << color [ mName "Origin" ]
 
         scatterSpec =
             asSpec
