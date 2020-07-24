@@ -4431,6 +4431,11 @@ var $author$project$VegaLite$PScale = function (a) {
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$GalleryMulti$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -8418,6 +8423,7 @@ var $author$project$GalleryMulti$multi1 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
@@ -8463,11 +8469,7 @@ var $author$project$GalleryMulti$multi1 = function () {
 								$author$project$VegaLite$scDomain(
 								$author$project$VegaLite$doSelection('myBrush'))
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('')
-							]))
+						$author$project$VegaLite$pTitle('')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -8484,12 +8486,13 @@ var $author$project$GalleryMulti$multi1 = function () {
 				$author$project$VegaLite$area(_List_Nil),
 				enc1(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Overview and detail.');
+	var desc = $author$project$VegaLite$description('Overview and detail.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'sp500.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/sp500.csv', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -8712,10 +8715,10 @@ var $author$project$GalleryMulti$multi2 = function () {
 				encAll(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Cross-filter.');
+	var desc = $author$project$VegaLite$description('Cross-filter.');
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/flights-2k.json',
+		$author$project$GalleryMulti$path + 'flights-2k.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$parse(
@@ -8729,7 +8732,7 @@ var $author$project$GalleryMulti$multi2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				trans(_List_Nil),
 				$author$project$VegaLite$repeat(
@@ -8858,19 +8861,12 @@ var $author$project$GalleryMulti$multi3 = function () {
 							$author$project$VegaLite$mStr('grey')
 						]))
 				])));
-	var spec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				sel(_List_Nil),
-				enc(_List_Nil)
-			]));
-	var des = $author$project$VegaLite$description('Scatterplot matrix');
+	var desc = $author$project$VegaLite$description('Scatterplot matrix');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
@@ -8881,7 +8877,15 @@ var $author$project$GalleryMulti$multi3 = function () {
 						_List_fromArray(
 							['Miles_per_Gallon', 'Acceleration', 'Horsepower']))
 					])),
-				$author$project$VegaLite$specification(spec)
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							data,
+							enc(_List_Nil),
+							sel(_List_Nil),
+							$author$project$VegaLite$point(_List_Nil)
+						])))
 			]));
 }();
 var $author$project$VegaLite$AxLabelAngle = function (a) {
@@ -11333,10 +11337,6 @@ var $author$project$VegaLite$moHorizontal = 0;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RHeatmap = function (a) {
 	return {$: 2, a: a};
 };
@@ -11436,7 +11436,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('isValid(datum.Major_Genre)')));
+			$author$project$VegaLite$fiExpr('isValid(datum[\'Major Genre\'])')));
 	var selTrans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11475,7 +11475,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pTitle('IMDB Rating'),
 						$author$project$VegaLite$pBin(
@@ -11489,7 +11489,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pBin(
@@ -11510,7 +11510,7 @@ var $author$project$GalleryMulti$multi4 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Major_Genre'),
+							$author$project$VegaLite$pName('Major Genre'),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
@@ -11596,9 +11596,9 @@ var $author$project$GalleryMulti$multi4 = function () {
 				_List_fromArray(
 					[spec1, spec2]))
 			]));
-	var des = $author$project$VegaLite$description('A dashboard with cross-highlighting');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
-	var config = A2(
+	var desc = $author$project$VegaLite$description('A dashboard with cross-highlighting');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'movies.json', _List_Nil);
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -11627,14 +11627,14 @@ var $author$project$GalleryMulti$multi4 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
+				cfg(_List_Nil),
 				data,
 				trans(_List_Nil),
+				res(_List_Nil),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
-					[heatSpec, barSpec])),
-				res(_List_Nil),
-				config(_List_Nil)
+					[heatSpec, barSpec]))
 			]));
 }();
 var $author$project$VegaLite$DStrings = function (a) {
@@ -11883,13 +11883,14 @@ var $author$project$GalleryMulti$multi5 = function () {
 				trans1(_List_Nil),
 				enc1(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('A dashboard with cross-highlighting');
+	var desc = $author$project$VegaLite$description('A dashboard with cross-highlighting');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				A2($author$project$VegaLite$title, 'Seattle Weather, 2012-2015', _List_Nil),
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -12446,7 +12447,7 @@ var $author$project$GalleryMulti$multi6 = function () {
 				encHPText(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Drag a rectangular brush to show (first 20) selected points in a table.');
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -12459,8 +12460,9 @@ var $author$project$GalleryMulti$multi6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				cfg(_List_Nil),
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				res(_List_Nil),
 				$author$project$VegaLite$hConcat(
@@ -12867,27 +12869,6 @@ var $author$project$GalleryMulti$multi7 = function () {
 					_List_fromArray(
 						['origin']))
 				])));
-	var lineTrans = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$transform,
-				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiSelection('mySelection'))),
-			A4(
-				$author$project$VegaLite$lookup,
-				'origin',
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-				'iata',
-				$author$project$VegaLite$luAs('o'))),
-		A4(
-			$author$project$VegaLite$lookup,
-			'destination',
-			A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
-			'iata',
-			$author$project$VegaLite$luAs('d')));
 	var lineEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12925,10 +12906,41 @@ var $author$project$GalleryMulti$multi7 = function () {
 				[
 					$author$project$VegaLite$pName('d.latitude')
 				])));
+	var desc = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
+	var dataFlights = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'flights-airport.csv', _List_Nil);
+	var dataBoundaries = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryMulti$path + 'us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
+	var dataAirports = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'airports.csv', _List_Nil);
+	var lineTrans = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$transform,
+				$author$project$VegaLite$filter(
+					$author$project$VegaLite$fiSelection('mySelection'))),
+			A4(
+				$author$project$VegaLite$lookup,
+				'origin',
+				dataAirports,
+				'iata',
+				$author$project$VegaLite$luAs('o'))),
+		A4(
+			$author$project$VegaLite$lookup,
+			'destination',
+			dataAirports,
+			'iata',
+			$author$project$VegaLite$luAs('d')));
 	var lineSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
+				dataFlights,
 				lineTrans(_List_Nil),
 				lineEnc(_List_Nil),
 				$author$project$VegaLite$rule(
@@ -12938,7 +12950,6 @@ var $author$project$GalleryMulti$multi7 = function () {
 						$author$project$VegaLite$maOpacity(0.35)
 					]))
 			]));
-	var des = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -12951,13 +12962,7 @@ var $author$project$GalleryMulti$multi7 = function () {
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/us-10m.json',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$topojsonFeature('states')
-					])),
+				dataBoundaries,
 				$author$project$VegaLite$geoshape(
 				_List_fromArray(
 					[
@@ -12983,7 +12988,7 @@ var $author$project$GalleryMulti$multi7 = function () {
 			A4(
 				$author$project$VegaLite$lookup,
 				'origin',
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil),
+				dataAirports,
 				'iata',
 				$author$project$VegaLite$luFields(
 					_List_fromArray(
@@ -13040,16 +13045,16 @@ var $author$project$GalleryMulti$multi7 = function () {
 	var airportSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil),
+				dataFlights,
 				airportTrans(_List_Nil),
 				sel(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				airportEnc(_List_Nil)
+				airportEnc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(900),
 				$author$project$VegaLite$height(500),
@@ -13157,7 +13162,7 @@ var $author$project$GalleryMulti$multi8 = function () {
 			]));
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/flights-5k.json',
+		$author$project$GalleryMulti$path + 'flights-5k.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$parse(
