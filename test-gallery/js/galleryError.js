@@ -2947,10 +2947,6 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $elm$core$List$append = F2(
 	function (xs, ys) {
 		if (!ys.b) {
@@ -5244,10 +5240,6 @@ var $author$project$VegaLite$PAggregate = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
-var $author$project$VegaLite$PAxis = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
 var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
@@ -5263,6 +5255,11 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$GalleryError$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
@@ -7769,11 +7766,7 @@ var $author$project$GalleryError$error1 = function () {
 							[
 								$author$project$VegaLite$scZero(false)
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Barley Yield')
-							]))
+						$author$project$VegaLite$pTitle('Barley Yield')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -7815,15 +7808,16 @@ var $author$project$GalleryError$error1 = function () {
 	var specCIs = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$rule(_List_Nil),
-				encCIs(_List_Nil)
+				encCIs(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Error bars showing confidence intervals');
+	var desc = $author$project$VegaLite$description('Error bars showing confidence intervals');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryError$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil),
+				desc,
+				data,
 				encVariety(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -7960,8 +7954,8 @@ var $author$project$GalleryError$error2 = function () {
 	var specStdevs = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$rule(_List_Nil),
-				encStdevs(_List_Nil)
+				encStdevs(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
 			]));
 	var encMeans = A2(
 		$elm$core$Basics$composeL,
@@ -7980,11 +7974,7 @@ var $author$project$GalleryError$error2 = function () {
 							[
 								$author$project$VegaLite$scZero(false)
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Barley Yield')
-							]))
+						$author$project$VegaLite$pTitle('Barley Yield')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -7994,19 +7984,20 @@ var $author$project$GalleryError$error2 = function () {
 	var specMeans = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				encMeans(_List_Nil),
 				$author$project$VegaLite$point(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maFilled(true)
-					])),
-				encMeans(_List_Nil)
+					]))
 			]));
-	var des = $author$project$VegaLite$description('Error bars showing standard deviations');
+	var desc = $author$project$VegaLite$description('Error bars showing standard deviations');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryError$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil),
+				desc,
+				data,
 				trans(_List_Nil),
 				encVariety(_List_Nil),
 				$author$project$VegaLite$layer(
@@ -8066,8 +8057,8 @@ var $author$project$GalleryError$error3 = function () {
 	var specLine = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$line(_List_Nil),
-				encLine(_List_Nil)
+				encLine(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 	var encBand = A2(
 		$elm$core$Basics$composeL,
@@ -8084,11 +8075,7 @@ var $author$project$GalleryError$error3 = function () {
 							$author$project$VegaLite$pName('Miles_per_Gallon'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCI0),
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('Miles/Gallon')
-								]))
+							$author$project$VegaLite$pTitle('Miles per gallon with 95% CIs')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -8106,15 +8093,16 @@ var $author$project$GalleryError$error3 = function () {
 	var specBand = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$area(_List_Nil),
-				encBand(_List_Nil)
+				encBand(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Line chart with confidence interval band.');
+	var desc = $author$project$VegaLite$description('Line chart with confidence interval band.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryError$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+				desc,
+				data,
 				encTime(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -8171,8 +8159,8 @@ var $author$project$GalleryError$error4 = function () {
 	var specRect = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$rect(_List_Nil),
-				encRect(_List_Nil)
+				encRect(_List_Nil),
+				$author$project$VegaLite$rect(_List_Nil)
 			]));
 	var encPoints = A2(
 		$elm$core$Basics$composeL,
@@ -8210,13 +8198,14 @@ var $author$project$GalleryError$error4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('mean_MPG'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pTitle('Miles per gallon')
 				])));
 	var specMean = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$rule(_List_Nil),
-				encMean(_List_Nil)
+				encMean(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
 			]));
 	var specSpread = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8226,12 +8215,13 @@ var $author$project$GalleryError$error4 = function () {
 				_List_fromArray(
 					[specMean, specRect]))
 			]));
-	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars with a global mean and standard deviation overlay.');
+	var desc = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon for various cars with a global mean and standard deviation overlay.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryError$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[specPoints, specSpread]))
