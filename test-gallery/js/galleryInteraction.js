@@ -10983,7 +10983,7 @@ var $author$project$GalleryInteraction$interaction1 = function () {
 							$author$project$VegaLite$mNum(0)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('A bar chart with highlighting on hover and selecting on click. Inspired by Tableau\'s interaction style.');
+	var desc = $author$project$VegaLite$description('A bar chart with highlighting on hover and selecting on click. Inspired by Tableau\'s interaction style.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11001,7 +11001,7 @@ var $author$project$GalleryInteraction$interaction1 = function () {
 			$author$project$VegaLite$nums(
 				_List_fromArray(
 					[28, 55, 43, 91, 81, 53, 19, 87, 52]))));
-	var config = A2(
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
@@ -11013,18 +11013,18 @@ var $author$project$GalleryInteraction$interaction1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				config(_List_Nil),
+				desc,
+				cfg(_List_Nil),
 				data(_List_Nil),
 				sel(_List_Nil),
+				enc(_List_Nil),
 				$author$project$VegaLite$bar(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maFill('#4C78A8'),
 						$author$project$VegaLite$maStroke('black'),
 						$author$project$VegaLite$maCursor($author$project$VegaLite$cuPointer)
-					])),
-				enc(_List_Nil)
+					]))
 			]));
 }();
 var $author$project$VegaLite$asSpec = function (specs) {
@@ -11139,6 +11139,7 @@ var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
+var $author$project$GalleryInteraction$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$Rule = 12;
@@ -11361,19 +11362,6 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiSelection('myTooltip')));
-	var stockData = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate(''))
-					]))
-			]));
 	var sel1_2 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -11429,14 +11417,14 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 	var spec2_2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				enc2_2(_List_Nil),
 				$author$project$VegaLite$textMark(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maAlign($author$project$VegaLite$haLeft),
 						$author$project$VegaLite$maDx(5),
 						$author$project$VegaLite$maDy(-5)
-					])),
-				enc2_2(_List_Nil)
+					]))
 			]));
 	var enc2_1 = A2(
 		$elm$core$Basics$composeL,
@@ -11452,12 +11440,12 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 	var spec2_1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				enc2_1(_List_Nil),
 				$author$project$VegaLite$rule(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maColor('gray')
-					])),
-				enc2_1(_List_Nil)
+					]))
 			]));
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11528,19 +11516,33 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 						$author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$point(_List_Nil),
 								sel1_2(_List_Nil),
-								enc1_2(_List_Nil)
+								enc1_2(_List_Nil),
+								$author$project$VegaLite$point(_List_Nil)
 							]))
 					]))
 			]));
 	var desc = $author$project$VegaLite$description('Displays labels for all stock prices of the hovered time');
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryInteraction$path + 'stocks.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(300),
-				stockData,
+				data,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -11626,19 +11628,6 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 					_List_fromArray(
 						['date']))
 				])));
-	var stockData = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate(''))
-					]))
-			]));
 	var sel = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -11763,12 +11752,26 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 					$author$project$VegaLite$pTemporal
 				])));
 	var desc = $author$project$VegaLite$description('Displays tooltips for all stock prices of the hovered time');
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryInteraction$path + 'stocks.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(300),
-				stockData,
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -11797,8 +11800,6 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
-var $author$project$VegaLite$CSV = {$: 1};
-var $author$project$VegaLite$csv = $author$project$VegaLite$CSV;
 var $author$project$VegaLite$DateTime = function (a) {
 	return {$: 1, a: a};
 };
@@ -11931,20 +11932,6 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 					$author$project$VegaLite$tTemporal,
 					$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonth)
 				])));
-	var stockData = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$csv,
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate(''))
-					]))
-			]));
 	var sel = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -12091,12 +12078,25 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 							]))
 					]))
 			]));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryInteraction$path + 'stocks.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(650),
 				$author$project$VegaLite$height(300),
-				stockData,
+				data,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[pointSpec, lineSpec, labelledRuleSpec]))
@@ -12281,7 +12281,8 @@ var $author$project$GalleryInteraction$interaction13 = function () {
 					])
 				])));
 	var desc = $author$project$VegaLite$description('Multi Series Line Chart with Tooltip');
-	var config = A2(
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'seattle-weather.csv', _List_Nil);
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
@@ -12294,8 +12295,9 @@ var $author$project$GalleryInteraction$interaction13 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				config(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
+				desc,
+				cfg(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -12728,8 +12730,8 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 			[
 				A2($author$project$VegaLite$title, 'Country of origin', _List_Nil),
 				tableTrans(_List_Nil),
-				$author$project$VegaLite$textMark(_List_Nil),
-				encOriginText(_List_Nil)
+				encOriginText(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
 			]));
 	var encMPGText = A2(
 		$elm$core$Basics$composeL,
@@ -12755,8 +12757,8 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 			[
 				A2($author$project$VegaLite$title, 'Efficiency (mpg)', _List_Nil),
 				tableTrans(_List_Nil),
-				$author$project$VegaLite$textMark(_List_Nil),
-				encMPGText(_List_Nil)
+				encMPGText(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
 			]));
 	var encHPText = A2(
 		$elm$core$Basics$composeL,
@@ -12786,7 +12788,7 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 				encHPText(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Drag a rectangular brush to show (first 20) selected points in a table.');
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -12800,7 +12802,7 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 		_List_fromArray(
 			[
 				cfg(_List_Nil),
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				res(_List_Nil),
 				$author$project$VegaLite$hConcat(
@@ -13183,11 +13185,11 @@ var $author$project$GalleryInteraction$interaction16 = function () {
 				encMain(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
 					[specMain, specMini]))
@@ -13363,15 +13365,16 @@ var $author$project$GalleryInteraction$interaction2 = function () {
 				[
 					$author$project$VegaLite$hName('url')
 				])));
-	var des = $author$project$VegaLite$description('Scatterplot with external links and tooltips');
+	var desc = $author$project$VegaLite$description('Scatterplot with external links and tooltips');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+				desc,
+				data,
 				trans(_List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$GalleryInteraction$interaction3 = function () {
@@ -13418,15 +13421,16 @@ var $author$project$GalleryInteraction$interaction3 = function () {
 							$author$project$VegaLite$mStr('grey')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Drag out a rectangular brush to highlight points');
+	var desc = $author$project$VegaLite$description('Drag out a rectangular brush to highlight points');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
+				desc,
+				data,
 				sel(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Area = 1;
@@ -13442,12 +13446,12 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 	var specHighlight = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
+				trans(_List_Nil),
 				$author$project$VegaLite$area(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maColor('goldenrod')
-					])),
-				trans(_List_Nil)
+					]))
 			]));
 	var sel = A2(
 		$elm$core$Basics$composeL,
@@ -13465,8 +13469,8 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 	var specBackground = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$area(_List_Nil),
-				sel(_List_Nil)
+				sel(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
 			]));
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13491,12 +13495,13 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 				])));
-	var des = $author$project$VegaLite$description('Area chart with rectangular brush');
+	var desc = $author$project$VegaLite$description('Area chart with rectangular brush');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'unemployment-across-industries.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment-across-industries.json', _List_Nil),
+				desc,
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -13561,15 +13566,16 @@ var $author$project$GalleryInteraction$interaction5 = function () {
 							$author$project$VegaLite$mNum(50)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Mouse over individual points or select multiple points with the shift key');
+	var desc = $author$project$VegaLite$description('Mouse over individual points or select multiple points with the shift key');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
+				desc,
+				data,
 				sel(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Circle = 6;
@@ -13631,15 +13637,16 @@ var $author$project$GalleryInteraction$interaction6 = function () {
 					$author$project$VegaLite$mName('Cylinders'),
 					$author$project$VegaLite$mQuant
 				])));
-	var des = $author$project$VegaLite$description('Drag to pan. Zoom in or out with mousewheel/zoom gesture.');
+	var desc = $author$project$VegaLite$description('Drag to pan. Zoom in or out with mousewheel/zoom gesture.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
+				desc,
+				data,
 				sel(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$IRange = F2(
@@ -13726,7 +13733,7 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 								]))
 						]))
 				])));
-	var encPosition = A2(
+	var encPos = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -13766,8 +13773,8 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 		_List_fromArray(
 			[
 				trans2(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc2(_List_Nil)
+				enc2(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 	var enc1 = A2(
 		$elm$core$Basics$composeL,
@@ -13791,17 +13798,18 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 		_List_fromArray(
 			[
 				sel1(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc1(_List_Nil)
+				enc1(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Drag the sliders to highlight points');
+	var desc = $author$project$VegaLite$description('Drag the sliders to highlight points');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+				desc,
+				data,
 				trans(_List_Nil),
-				encPosition(_List_Nil),
+				encPos(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -13830,7 +13838,7 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 					_List_fromArray(
 						[$author$project$VegaLite$chX]))
 				])));
-	var encPosition = A2(
+	var encPos = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
 		A2(
@@ -13857,6 +13865,13 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 				[
 					$author$project$VegaLite$mNum(3)
 				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				trans(_List_Nil),
+				enc2(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
+			]));
 	var enc1 = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13890,23 +13905,17 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 		_List_fromArray(
 			[
 				sel(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc1(_List_Nil)
+				enc1(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Drag over bars to update selection average');
-	var spec2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				des,
-				trans(_List_Nil),
-				$author$project$VegaLite$rule(_List_Nil),
-				enc2(_List_Nil)
-			]));
+	var desc = $author$project$VegaLite$description('Drag over bars to update selection average');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil),
-				encPosition(_List_Nil),
+				desc,
+				data,
+				encPos(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -13940,19 +13949,6 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiExpr('datum.symbol !== \'IBM\'')));
-	var stockData = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate(''))
-					]))
-			]));
 	var sel1 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$selection,
@@ -14119,6 +14115,19 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 						]))
 				])));
 	var desc = $author$project$VegaLite$description('Multi-series line chart with positioned labels and interactive highlight on hover.');
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryInteraction$path + 'stocks.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -14131,8 +14140,9 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				cfg(_List_Nil),
-				stockData,
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$layer(
