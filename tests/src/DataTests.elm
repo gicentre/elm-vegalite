@@ -14,7 +14,7 @@ showData data =
     let
         enc =
             encoding
-                << position X [ pName "cat", pNominal ]
+                << position X [ pName "cat" ]
                 << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ data, enc [], bar [] ]
@@ -99,7 +99,7 @@ dataSource name =
 
         enc =
             encoding
-                << position X [ pName "cat", pNominal ]
+                << position X [ pName "cat" ]
                 << position Y [ pName "val", pQuant ]
     in
     toVegaLite
@@ -137,10 +137,10 @@ data11 =
 
         enc =
             encoding
-                << position X [ pName "Answer", pNominal ]
+                << position X [ pName "Answer" ]
                 << position Y [ pName "Percent", pQuant, pAggregate opMean ]
-                << color [ mName "Pollster", mNominal ]
-                << column [ fName "Pollster", fNominal ]
+                << color [ mName "Pollster" ]
+                << column [ fName "Pollster" ]
     in
     toVegaLite [ pollData, enc [], bar [] ]
 
@@ -169,7 +169,7 @@ namedData2 =
 
         enc =
             encoding
-                << position X [ pName "cat", pNominal ]
+                << position X [ pName "cat" ]
                 << position Y [ pName "val", pQuant ]
     in
     toVegaLite [ data, enc [], bar [] ]
@@ -178,24 +178,33 @@ namedData2 =
 namedData3 : Spec
 namedData3 =
     let
+        data =
+            dataFromColumns [] [] |> dataName "source"
+
         enc =
             encoding
-                << position X [ pName "cat", pNominal ]
+                << position X [ pName "cat" ]
                 << position Y [ pName "val", pQuant ]
     in
-    toVegaLite [ dataFromColumns [] [] |> dataName "source", enc [], bar [] ]
+    toVegaLite [ data, enc [], bar [] ]
 
 
 geodata1 : Spec
 geodata1 =
-    toVegaLite
-        [ width 700
-        , height 500
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json" [ topojsonFeature "boroughs" ]
-        , geoshape []
-        , encoding <| color [ mName "id", mNominal ] []
-        ]
+    let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
+                [ topojsonFeature "boroughs" ]
+
+        enc =
+            encoding
+                << color [ mName "id" ]
+    in
+    toVegaLite [ width 700, height 500, cfg [], data, enc [], geoshape [] ]
 
 
 geodata2 : Spec
@@ -206,16 +215,22 @@ geodata2 =
                 [ geometry (geoPolygon [ [ ( -3, 52 ), ( 4, 52 ), ( 4, 45 ), ( -3, 45 ), ( -3, 52 ) ] ]) [ ( "Region", str "Southsville" ) ]
                 , geometry (geoPolygon [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 52 ), ( -3, 59 ) ] ]) [ ( "Region", str "Northerton" ) ]
                 ]
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromJson geojson [ jsonProperty "features" ]
+
+        proj =
+            projection [ prType orthographic ]
+
+        enc =
+            encoding
+                << color [ mName "properties.Region", mLegend [ leTitle "" ] ]
     in
-    toVegaLite
-        [ width 300
-        , height 400
-        , configure <| configuration (coView [ vicoStroke Nothing ]) []
-        , dataFromJson geojson [ jsonProperty "features" ]
-        , projection [ prType orthographic ]
-        , encoding (color [ mName "properties.Region", mNominal, mLegend [ leTitle "" ] ] [])
-        , geoshape []
-        ]
+    toVegaLite [ width 300, height 400, cfg [], data, proj, enc [], geoshape [] ]
 
 
 flatten1 : Spec
@@ -242,10 +257,10 @@ flatten1 =
         enc =
             encoding
                 << position X [ pName "quant", pQuant ]
-                << position Y [ pName "cat", pNominal ]
-                << color [ mName "key", mNominal ]
+                << position Y [ pName "cat" ]
+                << color [ mName "key" ]
     in
-    toVegaLite [ data [], trans [], circle [], enc [] ]
+    toVegaLite [ data [], trans [], enc [], circle [] ]
 
 
 fold1 : Spec
@@ -265,7 +280,7 @@ fold1 =
             encoding
                 -- 2017 temperatures for the Bristol, Sheffield and Glasgow
                 << position X [ pName "2017", pQuant ]
-                << position Y [ pName "city", pNominal ]
+                << position Y [ pName "city" ]
     in
     toVegaLite [ data [], trans [], enc [], circle [] ]
 
@@ -285,12 +300,12 @@ fold2 =
 
         enc =
             encoding
-                << column [ fName "k", fNominal ]
-                << position X [ pName "country", pNominal ]
+                << column [ fName "k" ]
+                << position X [ pName "country" ]
                 << position Y [ pName "v", pQuant ]
-                << color [ mName "country", mNominal ]
+                << color [ mName "country" ]
     in
-    toVegaLite [ data [], trans [], bar [], enc [] ]
+    toVegaLite [ data [], trans [], enc [], bar [] ]
 
 
 pivot1 : Spec
@@ -308,9 +323,9 @@ pivot1 =
 
         enc =
             encoding
-                << position X [ pName "country", pNominal ]
+                << position X [ pName "country" ]
                 << position Y [ pRepeat arFlow, pQuant ]
-                << color [ mName "country", mNominal ]
+                << color [ mName "country" ]
 
         spec =
             asSpec [ data [], trans [], enc [], bar [] ]
@@ -384,9 +399,9 @@ impute1 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], trans [], line [], enc [] ]
+    toVegaLite [ imputeData [], trans [], enc [], line [] ]
 
 
 impute2 : Spec
@@ -400,9 +415,9 @@ impute2 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], trans [], line [], enc [] ]
+    toVegaLite [ imputeData [], trans [], enc [], line [] ]
 
 
 impute3 : Spec
@@ -416,9 +431,9 @@ impute3 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], trans [], line [], enc [] ]
+    toVegaLite [ imputeData [], trans [], enc [], line [] ]
 
 
 impute4 : Spec
@@ -428,9 +443,9 @@ impute4 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 0) ] ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], line [], enc [] ]
+    toVegaLite [ imputeData [], enc [], line [] ]
 
 
 impute5 : Spec
@@ -440,9 +455,9 @@ impute5 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imMethod imMean ] ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], line [], enc [] ]
+    toVegaLite [ imputeData [], enc [], line [] ]
 
 
 impute6 : Spec
@@ -452,9 +467,9 @@ impute6 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imMethod imMean, imFrame (Just -2) (Just 2) ] ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], line [], enc [] ]
+    toVegaLite [ imputeData [], enc [], line [] ]
 
 
 impute7 : Spec
@@ -464,9 +479,9 @@ impute7 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 100), imKeyVals (nums [ 4 ]) ] ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], line [], enc [] ]
+    toVegaLite [ imputeData [], enc [], line [] ]
 
 
 impute8 : Spec
@@ -476,9 +491,9 @@ impute8 =
             encoding
                 << position X [ pName "a", pQuant, pScale [ scNice (niTickCount 1) ] ]
                 << position Y [ pName "b", pQuant, pImpute [ imNewValue (num 100), imKeyValSequence 4 6 1 ] ]
-                << color [ mName "c", mNominal ]
+                << color [ mName "c" ]
     in
-    toVegaLite [ imputeData [], line [], enc [] ]
+    toVegaLite [ imputeData [], enc [], line [] ]
 
 
 sample1 : Spec
@@ -497,10 +512,10 @@ sample1 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         spec1 =
-            asSpec [ point [], enc [] ]
+            asSpec [ enc [], point [] ]
 
         spec2 =
-            asSpec [ point [], trans [], enc [] ]
+            asSpec [ trans [], enc [], point [] ]
     in
     toVegaLite [ data, hConcat [ spec1, spec2 ] ]
 
@@ -668,7 +683,7 @@ datum1 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axGrid False ] ]
                 << position Y [ pName "price", pQuant, pAxis [ axGrid False ] ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
 
         spec1 =
             asSpec [ data, enc1 [], line [] ]
@@ -696,7 +711,7 @@ datum2 =
             encoding
                 << position X [ pName "date", pTemporal, pAxis [ axGrid False ] ]
                 << position Y [ pName "price", pQuant, pAxis [ axGrid False ] ]
-                << color [ mName "symbol", mNominal ]
+                << color [ mName "symbol" ]
 
         spec1 =
             asSpec [ data, enc1 [], line [] ]
@@ -833,7 +848,7 @@ datum5 =
 
         enc =
             encoding
-                << text [ tDatum (num 0.11987), tQuant, tFormat ".2f" ]
+                << text [ tDatum (num 0.11987), tFormat ".2f" ]
     in
     toVegaLite [ data [], enc [], textMark [] ]
 
@@ -846,7 +861,7 @@ datum6 =
 
         enc =
             encoding
-                << text [ tDatum (boo True), tNominal ]
+                << text [ tDatum (boo True) ]
     in
     toVegaLite [ data [], enc [], textMark [] ]
 
@@ -859,7 +874,7 @@ datum7 =
 
         enc =
             encoding
-                << text [ tDatum (str "Hello, world!"), tNominal ]
+                << text [ tDatum (str "Hello, world!") ]
     in
     toVegaLite [ data [], enc [], textMark [] ]
 
