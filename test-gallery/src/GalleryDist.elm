@@ -10,31 +10,36 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 dist1 : Spec
 dist1 =
     let
-        des =
+        desc =
             description "Simple histogram of IMDB ratings."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
                 << position Y [ pQuant, pAggregate opCount ]
     in
-    toVegaLite [ des, data, enc [], bar [] ]
+    toVegaLite [ desc, data, enc [], bar [] ]
 
 
 dist2 : Spec
 dist2 =
     let
-        des =
+        desc =
             description "Histogram with relative requency calculcated for the y scale and axis."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -54,40 +59,40 @@ dist2 =
                     , pAxis [ axFormat ".1~%" ]
                     ]
     in
-    toVegaLite [ des, data, trans [], enc [], bar [ maTooltip ttEncoding ] ]
+    toVegaLite [ desc, data, trans [], enc [], bar [ maTooltip ttEncoding ] ]
 
 
 dist3 : Spec
 dist3 =
     let
-        des =
+        desc =
             description "Cumulative frequency distribution"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
                 << window [ ( [ wiAggregateOp opCount, wiField "count" ], "cumulativeCount" ) ]
-                    [ wiSort [ wiAscending "IMDB_Rating" ], wiFrame Nothing (Just 0) ]
+                    [ wiSort [ wiAscending "IMDB Rating" ], wiFrame Nothing (Just 0) ]
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "cumulativeCount", pQuant ]
     in
-    toVegaLite [ des, data, trans [], enc [], area [] ]
+    toVegaLite [ desc, data, trans [], enc [], area [] ]
 
 
 dist4 : Spec
 dist4 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << density "IMDB_Rating" [ dnBandwidth 0.3 ]
+                << density "IMDB Rating" [ dnBandwidth 0.3 ]
 
         enc =
             encoding
@@ -101,59 +106,65 @@ dist5 : Spec
 dist5 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "penguins.json") []
 
         trans =
             transform
-                << density "IMDB_Rating"
-                    [ dnBandwidth 0.3
-                    , dnGroupBy [ "Major_Genre" ]
-                    , dnExtent 0 10
-                    , dnCounts True
-                    , dnSteps 50
+                << density "Body Mass (g)"
+                    [ dnMinSteps 50
+                    , dnGroupBy [ "Species" ]
+                    , dnExtent 2500 6500
                     ]
 
         enc =
             encoding
-                << position X [ pName "value", pQuant ]
+                << position X [ pName "value", pQuant, pTitle "Body mass (g)" ]
                 << position Y [ pName "density", pQuant, pStack stZero ]
-                << color [ mName "Major_Genre", mScale [ scScheme "category20" [] ] ]
+                << color [ mName "Species" ]
     in
-    toVegaLite [ width 400, height 100, data, trans [], enc [], area [] ]
+    toVegaLite
+        [ title "Body Mass of Penguins" []
+        , width 400
+        , height 120
+        , data
+        , trans []
+        , enc []
+        , area [ maStroke "white", maStrokeWidth 0.5 ]
+        ]
 
 
 dist6 : Spec
 dist6 =
     let
-        des =
+        desc =
             description "A layered histogram and cumulative histogram."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << binAs [] "IMDB_Rating" "bin_IMDB_Rating"
+                << binAs [] "IMDB Rating" "binIMDBRating"
                 << aggregate
                     [ opAs opCount "" "count" ]
-                    [ "bin_IMDB_Rating", "bin_IMDB_Rating_end" ]
-                << filter (fiExpr "datum.bin_IMDB_Rating !== null")
+                    [ "binIMDBRating", "binIMDBRating_end" ]
+                << filter (fiExpr "datum.binIMDBRating !== null")
                 << window [ ( [ wiAggregateOp opSum, wiField "count" ], "cumulativeCount" ) ]
-                    [ wiSort [ wiAscending "bin_IMDB_Rating" ], wiFrame Nothing (Just 0) ]
+                    [ wiSort [ wiAscending "binIMDBRating" ], wiFrame Nothing (Just 0) ]
 
         enc =
             encoding
                 << position X
-                    [ pName "bin_IMDB_Rating"
+                    [ pName "binIMDBRating"
                     , pQuant
                     , pScale [ scZero False ]
                     , pAxis [ axTitle "IMDB rating" ]
                     ]
-                << position X2 [ pName "bin_IMDB_Rating_end" ]
+                << position X2 [ pName "binIMDBRating_end" ]
 
         cdEnc =
             encoding
-                << position Y [ pName "cumulativeCount", pQuant ]
+                << position Y [ pName "cumulativeCount", pQuant, pTitle "" ]
 
         specCumulative =
             asSpec [ cdEnc [], bar [] ]
@@ -166,7 +177,7 @@ dist6 =
             asSpec [ dEnc [], bar [ maColor "yellow", maOpacity 0.5 ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , data
         , trans []
         , enc []
@@ -177,43 +188,43 @@ dist6 =
 dist7 : Spec
 dist7 =
     let
-        des =
+        desc =
             description "A vertical 2D box plot showing median, min, and max in the US population distribution of age groups in 2000."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         enc =
             encoding
-                << position X [ pName "age", pOrdinal ]
+                << position X [ pName "age", pOrdinal, pAxis [ axLabelAngle 0 ] ]
                 << position Y [ pName "people", pQuant, pTitle "population" ]
     in
-    toVegaLite [ des, data, enc [], boxplot [ maExtent exRange ] ]
+    toVegaLite [ desc, data, enc [], boxplot [ maExtent exRange ] ]
 
 
 dist8 : Spec
 dist8 =
     let
-        des =
+        desc =
             description "Tukey box plot showing median, min, and max in the US population distribution of age groups in 2000."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         enc =
             encoding
-                << position X [ pName "age", pOrdinal ]
+                << position X [ pName "age", pOrdinal, pAxis [ axLabelAngle 0 ] ]
                 << position Y [ pName "people", pQuant, pTitle "population" ]
                 << size [ mNum 5 ]
     in
-    toVegaLite [ des, data, enc [], boxplot [ maExtent (exIqrScale 1.5) ] ]
+    toVegaLite [ desc, data, enc [], boxplot [ maExtent (exIqrScale 1.5) ] ]
 
 
 dist9 : Spec
 dist9 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/normal-2d.json" []
+            dataFromUrl (path ++ "normal-2d.json") []
 
         trans =
             transform
