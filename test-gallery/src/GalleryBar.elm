@@ -11,10 +11,15 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 bar1 : Spec
 bar1 =
     let
-        des =
+        desc =
             description "A simple bar chart with embedded data."
 
         data =
@@ -27,17 +32,17 @@ bar1 =
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
     in
-    toVegaLite [ des, data [], enc [], bar [] ]
+    toVegaLite [ desc, data [], enc [], bar [] ]
 
 
 bar2 : Spec
 bar2 =
     let
-        des =
+        desc =
             description "A bar chart showing the US population distribution of age groups in 2000."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform << filter (fiExpr "datum.year == 2000")
@@ -52,17 +57,17 @@ bar2 =
                     ]
                 << position Y [ pName "age", pOrdinal ]
     in
-    toVegaLite [ des, heightStep 17, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, heightStep 17, data, trans [], enc [], bar [] ]
 
 
 bar3 : Spec
 bar3 =
     let
-        des =
+        desc =
             description "A bar chart showing the US population distribution of age groups in 2000, sorted by population"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform << filter (fiExpr "datum.year == 2000")
@@ -81,25 +86,25 @@ bar3 =
                     , pSort [ soByChannel chX, soDescending ]
                     ]
     in
-    toVegaLite [ des, heightStep 17, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, heightStep 17, data, trans [], enc [], bar [] ]
 
 
 bar4 : Spec
 bar4 =
     let
-        des =
+        desc =
             description "Simple histogram of IMDB ratings."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
                 << position Y [ pAggregate opCount, pQuant ]
     in
     toVegaLite
-        [ des, data, enc [], bar [] ]
+        [ desc, data, enc [], bar [] ]
 
 
 bar5 : Spec
@@ -123,8 +128,8 @@ bar5 =
 bar6 : Spec
 bar6 =
     let
-        des =
-            description "Log-scaled Histogram (may improve after https://github.com/vega/vega-lite/issues/4792)"
+        desc =
+            description "Log-scaled Histogram"
 
         data =
             dataFromColumns []
@@ -148,17 +153,17 @@ bar6 =
                 << position X2 [ pName "x2" ]
                 << position Y [ pAggregate opCount, pQuant ]
     in
-    toVegaLite [ des, data [], trans [], enc [], bar [] ]
+    toVegaLite [ desc, data [], trans [], enc [], bar [] ]
 
 
 bar7 : Spec
 bar7 =
     let
-        des =
+        desc =
             description "Grouped bar chart showing population structure by age and gender."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform
@@ -178,6 +183,7 @@ bar7 =
                 << color
                     [ mName "gender"
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
+                    , mTitle ""
                     ]
 
         cfg =
@@ -185,7 +191,7 @@ bar7 =
                 << configuration (coAxis [ axcoDomainWidth 1 ])
                 << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite [ des, cfg [], widthStep 12, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, cfg [], widthStep 12, data, trans [], enc [], bar [] ]
 
 
 weatherColors : List ScaleProperty
@@ -202,11 +208,11 @@ weatherColors =
 weatherBars : List MarkProperty -> Spec
 weatherBars mProps =
     let
-        des =
+        desc =
             description "Seattle weather stacked bar chart"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         enc =
             encoding
@@ -227,7 +233,7 @@ weatherBars mProps =
                     , mTitle ""
                     ]
     in
-    toVegaLite [ des, width 300, data, enc [], bar mProps ]
+    toVegaLite [ desc, width 300, data, enc [], bar mProps ]
 
 
 bar8 : Spec
@@ -243,11 +249,11 @@ bar9 =
 bar10 : Spec
 bar10 =
     let
-        des =
+        desc =
             description "Seattle precipitation bar chart with abbreviated labels"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         enc =
             encoding
@@ -270,13 +276,13 @@ bar10 =
                     , pAxis [ axGrid False, axTitle "Average number of days with rain" ]
                     ]
     in
-    toVegaLite [ des, width 300, data, enc [], bar [] ]
+    toVegaLite [ desc, width 300, data, enc [], bar [] ]
 
 
 bar11 : Spec
 bar11 =
     let
-        des =
+        desc =
             description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid colour to draw a zero baseline."
 
         data =
@@ -297,17 +303,17 @@ bar11 =
                     , pAxis [ axDataCondition (expr "datum.value == 0") (cAxGridColor "black" "#ddd") ]
                     ]
     in
-    toVegaLite [ des, data [], enc [], bar [] ]
+    toVegaLite [ desc, data [], enc [], bar [] ]
 
 
 bar12 : Spec
 bar12 =
     let
-        des =
+        desc =
             description "Barley crop yields as a horizontal stacked bar chart"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
+            dataFromUrl (path ++ "barley.json") []
 
         enc =
             encoding
@@ -315,17 +321,17 @@ bar12 =
                 << position Y [ pName "variety" ]
                 << color [ mName "site" ]
     in
-    toVegaLite [ des, data, enc [], bar [] ]
+    toVegaLite [ desc, data, enc [], bar [] ]
 
 
 bar13 : Spec
 bar13 =
     let
-        des =
+        desc =
             description "Population structure as a normalised stacked bar chart."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform
@@ -347,13 +353,13 @@ bar13 =
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
                     ]
     in
-    toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
 bar14 : Spec
 bar14 =
     let
-        des =
+        desc =
             description "A simple bar chart with ranged data (aka Gantt Chart)."
 
         data =
@@ -368,13 +374,13 @@ bar14 =
                 << position X [ pName "start", pQuant ]
                 << position X2 [ pName "end" ]
     in
-    toVegaLite [ des, data [], enc [], bar [] ]
+    toVegaLite [ desc, data [], enc [], bar [] ]
 
 
 bar15 : Spec
 bar15 =
     let
-        des =
+        desc =
             description "A bar chart that directly encodes color names in the data."
 
         data =
@@ -388,17 +394,17 @@ bar15 =
                 << position Y [ pName "b", pQuant ]
                 << color [ mName "color", mScale [] ]
     in
-    toVegaLite [ des, data [], enc [], bar [] ]
+    toVegaLite [ desc, data [], enc [], bar [] ]
 
 
 bar16 : Spec
 bar16 =
     let
-        des =
+        desc =
             description "Layered bar chart showing the US population distribution of age groups and gender in 2000."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform
@@ -421,14 +427,14 @@ bar16 =
                     ]
                 << opacity [ mNum 0.7 ]
     in
-    toVegaLite [ des, widthStep 17, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
 bar17 : Spec
 bar17 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform
@@ -467,7 +473,7 @@ bar17 =
 bar18 : Spec
 bar18 =
     let
-        des =
+        desc =
             description "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark."
 
         data =
@@ -505,13 +511,13 @@ bar18 =
                                 ]
                     ]
     in
-    toVegaLite [ des, data [], enc [], bar [] ]
+    toVegaLite [ desc, data [], enc [], bar [] ]
 
 
 bar19 : Spec
 bar19 =
     let
-        des =
+        desc =
             description "A simple bar chart with embedded data labels."
 
         data =
@@ -537,21 +543,21 @@ bar19 =
             configure
                 << configuration (coMarkStyles [ ( "label", [ maAlign haLeft, maBaseline vaMiddle, maDx 3 ] ) ])
     in
-    toVegaLite [ des, cfg [], data [], enc [], layer [ specBar, specText ] ]
+    toVegaLite [ desc, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
 bar20 : Spec
 bar20 =
     let
-        des =
+        desc =
             description "Bar chart with label overlay"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << calculateAs "isValid(datum.Major_Genre)? datum.Major_Genre : 'unclassified'" "genre"
+                << calculateAs "isValid(datum['Major Genre'])? datum['Major Genre'] : 'unclassified'" "genre"
 
         enc =
             encoding
@@ -582,7 +588,7 @@ bar20 =
         encBar =
             encoding
                 << position X
-                    [ pName "IMDB_Rating"
+                    [ pName "IMDB Rating"
                     , pAggregate opMean
                     , pQuant
                     , pScale [ scDomain (doNums [ 0, 10 ]) ]
@@ -601,7 +607,7 @@ bar20 =
             asSpec [ encText [], textMark [ maAlign haLeft, maX 5 ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , width 200
         , heightStep 16
         , data
@@ -614,7 +620,7 @@ bar20 =
 bar21 : Spec
 bar21 =
     let
-        des =
+        desc =
             description "Bar Chart with a spacing-saving y-axis"
 
         cfg =
@@ -622,7 +628,7 @@ bar21 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -643,7 +649,7 @@ bar21 =
                     ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , heightStep 30
         , data
@@ -655,7 +661,7 @@ bar21 =
 bar22 : Spec
 bar22 =
     let
-        des =
+        desc =
             description "A Wilkinson dot plot"
 
         cfg =
@@ -681,7 +687,7 @@ bar22 =
                     ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , height 100
         , data []
@@ -720,7 +726,7 @@ bar23 =
             in
             Dict.fromList [ ( "cow", cow ), ( "pig", pig ), ( "sheep", sheep ) ]
 
-        des =
+        desc =
             description "Isotype bar chart inspired by this Only An Ocean Between, 1943. Population Live Stock, p.13."
 
         cfg =
@@ -763,7 +769,7 @@ bar23 =
                 << size [ mNum 200 ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 800
         , height 200
@@ -776,7 +782,7 @@ bar23 =
 bar24 : Spec
 bar24 =
     let
-        des =
+        desc =
             description "Isotype bar chart using emojis for symbols"
 
         cfg =
@@ -802,7 +808,7 @@ bar24 =
                 << size [ mNum 65 ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 800
         , height 200
