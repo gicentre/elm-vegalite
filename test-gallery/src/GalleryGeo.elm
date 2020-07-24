@@ -65,7 +65,7 @@ geo2 =
             encoding
                 << position Longitude [ pName "longitude", pQuant ]
                 << position Latitude [ pName "latitude", pQuant ]
-                << color [ mName "digit", mNominal ]
+                << color [ mName "digit" ]
     in
     toVegaLite
         [ cfg []
@@ -231,7 +231,7 @@ geo6 =
             encoding
                 << position Longitude [ pName "lon", pQuant ]
                 << position Latitude [ pName "lat", pQuant ]
-                << text [ tName "city", tNominal ]
+                << text [ tName "city" ]
 
         overlaySpec =
             asSpec [ capitalData, overlayEnc [], textMark [] ]
@@ -313,7 +313,7 @@ geo8 =
             encoding
                 << shape [ mName "geo", mGeo ]
                 << color [ mName "pct", mQuant, mSort [ soDescending ] ]
-                << row [ fName "group", fNominal ]
+                << row [ fName "group" ]
     in
     toVegaLite
         [ cfg []
@@ -368,7 +368,7 @@ geo9 =
             encoding
                 << position Longitude [ pName "cx", pQuant ]
                 << position Latitude [ pName "cy", pQuant ]
-                << text [ tName "bLabel", tNominal ]
+                << text [ tName "bLabel" ]
 
         trans =
             transform
@@ -386,7 +386,6 @@ geo9 =
             encoding
                 << color
                     [ mName "id"
-                    , mNominal
                     , mLegend [ leTitle "", leOrient loBottomRight, leOffset 0 ]
                     , mScale tubeLineColors
                     ]
