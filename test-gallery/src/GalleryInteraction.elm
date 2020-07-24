@@ -10,13 +10,18 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 interaction1 : Spec
 interaction1 =
     let
-        des =
+        desc =
             description "A bar chart with highlighting on hover and selecting on click. Inspired by Tableau's interaction style."
 
-        config =
+        cfg =
             configure
                 << configuration (coScale [ sacoBandPaddingInner 0.2 ])
 
@@ -44,20 +49,23 @@ interaction1 =
                     ]
     in
     toVegaLite
-        [ des
-        , config []
+        [ desc
+        , cfg []
         , data []
         , sel []
-        , bar [ maFill "#4C78A8", maStroke "black", maCursor cuPointer ]
         , enc []
+        , bar [ maFill "#4C78A8", maStroke "black", maCursor cuPointer ]
         ]
 
 
 interaction2 : Spec
 interaction2 =
     let
-        des =
+        desc =
             description "Scatterplot with external links and tooltips"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -71,20 +79,17 @@ interaction2 =
                 << tooltip [ tName "Name" ]
                 << hyperlink [ hName "url" ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , trans []
-        , point []
-        , enc []
-        ]
+    toVegaLite [ desc, data, trans [], enc [], point [] ]
 
 
 interaction3 : Spec
 interaction3 =
     let
-        des =
+        desc =
             description "Drag out a rectangular brush to highlight points"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection << select "myBrush" seInterval []
@@ -99,20 +104,17 @@ interaction3 =
                         [ mStr "grey" ]
                     ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , point []
-        , sel []
-        , enc []
-        ]
+    toVegaLite [ desc, data, sel [], enc [], point [] ]
 
 
 interaction4 : Spec
 interaction4 =
     let
-        des =
+        desc =
             description "Area chart with rectangular brush"
+
+        data =
+            dataFromUrl (path ++ "unemployment-across-industries.json") []
 
         trans =
             transform
@@ -127,24 +129,22 @@ interaction4 =
                 << position Y [ pName "count", pQuant, pAggregate opSum ]
 
         specBackground =
-            asSpec [ area [], sel [] ]
+            asSpec [ sel [], area [] ]
 
         specHighlight =
-            asSpec [ area [ maColor "goldenrod" ], trans [] ]
+            asSpec [ trans [], area [ maColor "goldenrod" ] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/unemployment-across-industries.json" []
-        , enc []
-        , layer [ specBackground, specHighlight ]
-        ]
+    toVegaLite [ desc, data, enc [], layer [ specBackground, specHighlight ] ]
 
 
 interaction5 : Spec
 interaction5 =
     let
-        des =
+        desc =
             description "Mouse over individual points or select multiple points with the shift key"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection << select "myPaintbrush" seMulti [ seOn "mouseover", seNearest True ]
@@ -153,26 +153,19 @@ interaction5 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << size
-                    [ mSelectionCondition (selectionName "myPaintbrush")
-                        [ mNum 300 ]
-                        [ mNum 50 ]
-                    ]
+                << size [ mSelectionCondition (selectionName "myPaintbrush") [ mNum 300 ] [ mNum 50 ] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , point []
-        , sel []
-        , enc []
-        ]
+    toVegaLite [ desc, data, sel [], enc [], point [] ]
 
 
 interaction6 : Spec
 interaction6 =
     let
-        des =
+        desc =
             description "Drag to pan. Zoom in or out with mousewheel/zoom gesture."
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection << select "myGrid" seInterval [ seBindScales ]
@@ -183,20 +176,17 @@ interaction6 =
                 << position Y [ pName "Miles_per_Gallon", pQuant, pScale [ scDomain (doNums [ 20, 40 ]) ] ]
                 << size [ mName "Cylinders", mQuant ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , circle []
-        , sel []
-        , enc []
-        ]
+    toVegaLite [ desc, data, sel [], enc [], circle [] ]
 
 
 interaction7 : Spec
 interaction7 =
     let
-        des =
+        desc =
             description "Drag the sliders to highlight points"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -214,7 +204,7 @@ interaction7 =
                         ]
                     ]
 
-        encPosition =
+        encPos =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
@@ -228,7 +218,7 @@ interaction7 =
                     ]
 
         spec1 =
-            asSpec [ sel1 [], circle [], enc1 [] ]
+            asSpec [ sel1 [], enc1 [], circle [] ]
 
         trans2 =
             transform
@@ -240,27 +230,24 @@ interaction7 =
                 << size [ mNum 100 ]
 
         spec2 =
-            asSpec [ trans2 [], circle [], enc2 [] ]
+            asSpec [ trans2 [], enc2 [], circle [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , trans []
-        , encPosition []
-        , layer [ spec1, spec2 ]
-        ]
+    toVegaLite [ desc, data, trans [], encPos [], layer [ spec1, spec2 ] ]
 
 
 interaction8 : Spec
 interaction8 =
     let
-        des =
+        desc =
             description "Drag over bars to update selection average"
+
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         sel =
             selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
 
-        encPosition =
+        encPos =
             encoding << position Y [ pName "precipitation", pQuant, pAggregate opMean ]
 
         enc1 =
@@ -273,7 +260,7 @@ interaction8 =
                     ]
 
         spec1 =
-            asSpec [ sel [], bar [], enc1 [] ]
+            asSpec [ sel [], enc1 [], bar [] ]
 
         trans =
             transform
@@ -285,13 +272,9 @@ interaction8 =
                 << size [ mNum 3 ]
 
         spec2 =
-            asSpec [ des, trans [], rule [], enc2 [] ]
+            asSpec [ trans [], enc2 [], rule [] ]
     in
-    toVegaLite
-        [ dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
-        , encPosition []
-        , layer [ spec1, spec2 ]
-        ]
+    toVegaLite [ desc, data, encPos [], layer [ spec1, spec2 ] ]
 
 
 interaction9 : Spec
@@ -304,9 +287,8 @@ interaction9 =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
 
-        stockData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
-                [ parse [ ( "date", foDate "" ) ] ]
+        data =
+            dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
         trans =
             transform
@@ -371,7 +353,7 @@ interaction9 =
                     ]
                 ]
     in
-    toVegaLite [ cfg [], stockData, trans [], enc [], layer [ spec1, spec2 ] ]
+    toVegaLite [ desc, cfg [], data, trans [], enc [], layer [ spec1, spec2 ] ]
 
 
 interaction10 : Spec
@@ -380,9 +362,8 @@ interaction10 =
         desc =
             description "Displays labels for all stock prices of the hovered time"
 
-        stockData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
-                [ parse [ ( "date", foDate "" ) ] ]
+        data =
+            dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
         enc1 =
             encoding
@@ -395,7 +376,7 @@ interaction10 =
                 [ enc1 []
                 , layer
                     [ asSpec [ line [] ]
-                    , asSpec [ point [], sel1_2 [], enc1_2 [] ]
+                    , asSpec [ sel1_2 [], enc1_2 [], point [] ]
                     ]
                 ]
 
@@ -420,13 +401,13 @@ interaction10 =
             transform << filter (fiSelection "myTooltip")
 
         spec2_1 =
-            asSpec [ rule [ maColor "gray" ], enc2_1 [] ]
+            asSpec [ enc2_1 [], rule [ maColor "gray" ] ]
 
         enc2_1 =
             encoding << position X [ pName "date", pTemporal ]
 
         spec2_2 =
-            asSpec [ textMark [ maAlign haLeft, maDx 5, maDy -5 ], enc2_2 [] ]
+            asSpec [ enc2_2 [], textMark [ maAlign haLeft, maDx 5, maDy -5 ] ]
 
         enc2_2 =
             encoding
@@ -435,7 +416,7 @@ interaction10 =
                 << text [ tName "price", tQuant ]
                 << color [ mName "symbol" ]
     in
-    toVegaLite [ width 400, height 300, stockData, layer [ spec1, spec2 ] ]
+    toVegaLite [ desc, width 400, height 300, data, layer [ spec1, spec2 ] ]
 
 
 interaction11 : Spec
@@ -444,9 +425,8 @@ interaction11 =
         desc =
             description "Displays tooltips for all stock prices of the hovered time"
 
-        stockData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
-                [ parse [ ( "date", foDate "" ) ] ]
+        data =
+            dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
         enc =
             encoding
@@ -499,15 +479,14 @@ interaction11 =
         spec2 =
             asSpec [ sel [], transPivot [], enc2 [], rule [] ]
     in
-    toVegaLite [ width 400, height 300, stockData, enc [], layer [ spec1, spec2 ] ]
+    toVegaLite [ desc, width 400, height 300, data, enc [], layer [ spec1, spec2 ] ]
 
 
 interaction12 : Spec
 interaction12 =
     let
-        stockData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
-                [ csv, parse [ ( "date", foDate "" ) ] ]
+        data =
+            dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
         sel =
             selection
@@ -565,7 +544,7 @@ interaction12 =
                     ]
                 ]
     in
-    toVegaLite [ width 650, height 300, stockData, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
+    toVegaLite [ width 650, height 300, data, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
 
 
 interaction13 : Spec
@@ -574,7 +553,10 @@ interaction13 =
         desc =
             description "Multi Series Line Chart with Tooltip"
 
-        config =
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") []
+
+        cfg =
             configure
                 << configuration (coAxis [ axcoMinExtent 30 ] |> coAxisYFilter)
 
@@ -616,12 +598,7 @@ interaction13 =
         spec3 =
             asSpec [ sel [], rule [], enc3 [] ]
     in
-    toVegaLite
-        [ config []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
-        , enc []
-        , layer [ spec1, spec2, spec3 ]
-        ]
+    toVegaLite [ desc, cfg [], data, enc [], layer [ spec1, spec2, spec3 ] ]
 
 
 interaction14 : Spec
@@ -631,7 +608,7 @@ interaction14 =
             description "Drag a rectangular brush to show (first 20) selected points in a table."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -682,8 +659,8 @@ interaction14 =
             asSpec
                 [ title "Efficiency (mpg)" []
                 , tableTrans []
-                , textMark []
                 , encMPGText []
+                , textMark []
                 ]
 
         encOriginText =
@@ -695,8 +672,8 @@ interaction14 =
             asSpec
                 [ title "Country of origin" []
                 , tableTrans []
-                , textMark []
                 , encOriginText []
+                , textMark []
                 ]
 
         res =
@@ -709,7 +686,7 @@ interaction14 =
     in
     toVegaLite
         [ cfg []
-        , data []
+        , data
         , trans []
         , res []
         , hConcat [ specPoint, specHPText, specMPGText, specOriginText ]
@@ -764,7 +741,7 @@ interaction16 : Spec
 interaction16 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -800,7 +777,7 @@ interaction16 =
         specMini =
             asSpec [ width 50, height 200, sel [], encMini [], bar [] ]
     in
-    toVegaLite [ data [], hConcat [ specMain, specMini ] ]
+    toVegaLite [ data, hConcat [ specMain, specMini ] ]
 
 
 
