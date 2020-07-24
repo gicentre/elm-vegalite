@@ -86,7 +86,7 @@ error2 =
         encStdevs =
             encoding
                 << position X [ pName "upper", pQuant ]
-                << position X2 [ pName "lower", pQuant ]
+                << position X2 [ pName "lower" ]
 
         specStdevs =
             asSpec [ encStdevs [], rule [] ]
