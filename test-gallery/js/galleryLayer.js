@@ -8272,11 +8272,7 @@ var $author$project$GalleryLayer$layer2 = function () {
 							[
 								$author$project$VegaLite$pName('life_expect'),
 								$author$project$VegaLite$pQuant,
-								$author$project$VegaLite$pAxis(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$axTitle('Life Expectancy (years)')
-									]))
+								$author$project$VegaLite$pTitle('Life Expectancy (years)')
 							]))),
 				$author$project$VegaLite$color(
 					_List_fromArray(
@@ -11815,11 +11811,7 @@ var $author$project$GalleryLayer$layer3 = function () {
 						[
 							$author$project$VegaLite$scNice($author$project$VegaLite$niFalse)
 						])),
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('')
-						]))
+					$author$project$VegaLite$pTitle('')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12171,11 +12163,7 @@ var $author$project$GalleryLayer$layer5 = function () {
 									_List_fromArray(
 										[0, 50])))
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('y')
-							]))
+						$author$project$VegaLite$pTitle('y')
 					]))),
 		$author$project$VegaLite$opacity(
 			_List_fromArray(
@@ -13343,11 +13331,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 						[
 							$author$project$VegaLite$pName('year'),
 							$author$project$VegaLite$pOrdinal,
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('')
-								]))
+							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -13365,11 +13349,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 									_List_fromArray(
 										[16, 50])))
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('')
-							]))
+						$author$project$VegaLite$pTitle('')
 					]))),
 		A2(
 			$author$project$VegaLite$position,

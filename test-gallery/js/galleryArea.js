@@ -4333,6 +4333,10 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$GalleryArea$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
@@ -7736,11 +7740,7 @@ var $author$project$GalleryArea$area1 = function () {
 				[
 					$author$project$VegaLite$pName('count'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('Number of unemployed')
-						]))
+					$author$project$VegaLite$pTitle('Number of unemployed')
 				])));
 	var desc = $author$project$VegaLite$description('Unemployment over time (area chart)');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryArea$path + 'unemployment-across-industries.json', _List_Nil);
@@ -7981,10 +7981,6 @@ var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$SScheme = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
@@ -11424,11 +11420,7 @@ var $author$project$GalleryArea$area7 = function () {
 									_List_fromArray(
 										[0, 50])))
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('y')
-							]))
+						$author$project$VegaLite$pTitle('y')
 					]))),
 		$author$project$VegaLite$opacity(
 			_List_fromArray(
@@ -12321,11 +12313,7 @@ var $author$project$GalleryArea$area8 = function () {
 					[
 						$author$project$VegaLite$pName('yc'),
 						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Cylinders')
-							]))
+						$author$project$VegaLite$pTitle('Cylinders')
 					]))),
 		$author$project$VegaLite$text(
 			_List_fromArray(

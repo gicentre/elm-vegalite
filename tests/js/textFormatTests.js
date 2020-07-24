@@ -10341,10 +10341,6 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$TitleLineHeight = function (a) {
 	return {$: 61, a: a};
 };
@@ -13587,11 +13583,7 @@ var $author$project$TextFormatTests$multiline1 = function () {
 									_List_fromArray(
 										[0, 20])))
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Axis title on\ntwo lines')
-							]))
+						$author$project$VegaLite$pTitle('Axis title on\ntwo lines')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(

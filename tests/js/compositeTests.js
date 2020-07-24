@@ -5094,10 +5094,6 @@ var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $elm$json$Json$Encode$null = _Json_encodeNull;
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$Boxplot = 3;
 var $author$project$VegaLite$VLMark = 12;
 var $elm$core$List$append = F2(
@@ -6529,10 +6525,6 @@ var $author$project$VegaLite$MExtent = function (a) {
 	return {$: 27, a: a};
 };
 var $author$project$VegaLite$maExtent = $author$project$VegaLite$MExtent;
-var $author$project$VegaLite$PAxis = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
 var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
@@ -6544,6 +6536,10 @@ var $author$project$VegaLite$PmType = function (a) {
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -9931,11 +9927,7 @@ var $author$project$CompositeTests$bPlot = function (ext) {
 				[
 					$author$project$VegaLite$pName('people'),
 					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('Population')
-						]))
+					$author$project$VegaLite$pTitle('Population')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10016,11 +10008,7 @@ var $author$project$CompositeTests$boxplot3 = function () {
 				[
 					$author$project$VegaLite$pName('people'),
 					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('Population')
-						]))
+					$author$project$VegaLite$pTitle('Population')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10086,11 +10074,7 @@ var $author$project$CompositeTests$boxplot4 = function () {
 				[
 					$author$project$VegaLite$pName('people'),
 					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('Population')
-						]))
+					$author$project$VegaLite$pTitle('Population')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -10140,10 +10124,6 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 13, a: a};
 };

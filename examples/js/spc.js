@@ -12940,6 +12940,10 @@ var $author$project$VegaLite$PScale = function (a) {
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:
@@ -13256,11 +13260,7 @@ var $author$project$Spc$encCusum = A2(
 			[
 				$author$project$VegaLite$pName('cusum'),
 				$author$project$VegaLite$pQuant,
-				$author$project$VegaLite$pAxis(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$axTitle('Crimes above/below target (thousands)')
-					]))
+				$author$project$VegaLite$pTitle('Crimes above/below target (thousands)')
 			])))(_List_Nil);
 var $author$project$VegaLite$VLLayer = 16;
 var $author$project$VegaLite$layer = function (specs) {

@@ -10971,10 +10971,6 @@ var $author$project$VegaLite$AxTickCount = function (a) {
 	return {$: 41, a: a};
 };
 var $author$project$VegaLite$axTickCount = $author$project$VegaLite$AxTickCount;
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$ChX = 0;
 var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$DSelection = function (a) {
@@ -11003,6 +10999,10 @@ var $author$project$VegaLite$PScale = function (a) {
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$SDomain = function (a) {
 	return {$: 1, a: a};
 };
@@ -11089,11 +11089,7 @@ var $author$project$Walkthrough$contextAndFocus = function () {
 								$author$project$VegaLite$scDomain(
 								$author$project$VegaLite$doSelection('brush'))
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('')
-							]))
+						$author$project$VegaLite$pTitle('')
 					]))),
 		A2(
 			$author$project$VegaLite$position,

@@ -12626,11 +12626,7 @@ var $author$project$GalleryLabel$label5 = function () {
 					[
 						$author$project$VegaLite$pName('ThresholdValue'),
 						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('PM2.5 Value')
-							]))
+						$author$project$VegaLite$pTitle('PM2.5 Value')
 					]))),
 		$author$project$VegaLite$text(
 			_List_fromArray(
@@ -13013,11 +13009,7 @@ var $author$project$GalleryLabel$label8 = function () {
 							$author$project$VegaLite$pName('year'),
 							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('')
-								]))
+							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -13261,11 +13253,7 @@ var $author$project$GalleryLabel$label9 = function () {
 								_List_fromArray(
 									[0, 6])))
 						])),
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('')
-						]))
+					$author$project$VegaLite$pTitle('')
 				])));
 	var specTick1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(

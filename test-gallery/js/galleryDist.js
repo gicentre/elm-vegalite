@@ -9141,11 +9141,7 @@ var $author$project$GalleryDist$dist6 = function () {
 							[
 								$author$project$VegaLite$scZero(false)
 							])),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('IMDB rating')
-							]))
+						$author$project$VegaLite$pTitle('IMDB rating')
 					]))),
 		A2(
 			$author$project$VegaLite$position,

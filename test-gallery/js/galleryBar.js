@@ -8408,11 +8408,7 @@ var $author$project$GalleryBar$bar16 = function () {
 						[
 							$author$project$VegaLite$pName('people'),
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('Population')
-								])),
+							$author$project$VegaLite$pTitle('Population'),
 							$author$project$VegaLite$pStack($author$project$VegaLite$stNone)
 						]))),
 			$author$project$VegaLite$color(
@@ -11647,11 +11643,7 @@ var $author$project$GalleryBar$bar18 = function () {
 							[
 								$author$project$VegaLite$pName('percentage_start'),
 								$author$project$VegaLite$pQuant,
-								$author$project$VegaLite$pAxis(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$axTitle('Percentage')
-									]))
+								$author$project$VegaLite$pTitle('Percentage')
 							]))),
 				A2(
 					$author$project$VegaLite$position,

@@ -11831,11 +11831,7 @@ var $author$project$GalleryMulti$multi5 = function () {
 										_List_fromArray(
 											[-5, 40])))
 								])),
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('Maximum Daily Temperature (C)')
-								]))
+							$author$project$VegaLite$pTitle('Maximum Daily Temperature (C)')
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
