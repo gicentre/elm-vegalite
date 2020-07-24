@@ -10,6 +10,11 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 {-| No borders around maps
 -}
 cfg : List LabelledSpec -> ( VLProperty, Spec )
@@ -18,44 +23,39 @@ cfg =
         << configuration (coView [ vicoStroke Nothing ])
 
 
+proj : ( VLProperty, Spec )
+proj =
+    projection [ prType albersUsa ]
+
+
 geo1 : Spec
 geo1 =
     let
         countyData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "counties" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
         unemploymentData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment.tsv" []
+            dataFromUrl (path ++ "unemployment.tsv") []
 
         trans =
             transform
                 << lookup "id" unemploymentData "id" (luFields [ "rate" ])
 
-        proj =
-            projection [ prType albersUsa ]
-
         enc =
             encoding
                 << color [ mName "rate", mQuant ]
     in
-    toVegaLite
-        [ cfg []
-        , width 500
-        , height 300
-        , countyData
-        , proj
-        , trans []
-        , enc []
-        , geoshape []
-        ]
+    toVegaLite [ cfg [], width 500, height 300, countyData, proj, trans [], enc [], geoshape [] ]
 
 
 geo2 : Spec
 geo2 =
     let
+        desc =
+            description "US zip codes: One dot per zipcode colored by first digit"
+
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+            dataFromUrl (path ++ "zipcodes.csv") []
 
         trans =
             transform
@@ -67,31 +67,20 @@ geo2 =
                 << position Latitude [ pName "latitude" ]
                 << color [ mName "digit" ]
     in
-    toVegaLite
-        [ cfg []
-        , description "US zip codes: One dot per zipcode colored by first digit"
-        , width 500
-        , height 300
-        , data
-        , projection [ prType albersUsa ]
-        , trans []
-        , enc []
-        , circle [ maSize 1 ]
-        ]
+    toVegaLite [ desc, cfg [], width 500, height 300, data, proj, trans [], enc [], circle [ maSize 1 ] ]
 
 
 geo3 : Spec
 geo3 =
     let
-        des =
+        desc =
             description "One dot per airport in the US overlayed on geoshape"
 
         mapData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         airportData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
+            dataFromUrl (path ++ "airports.csv") []
 
         enc =
             encoding
@@ -110,28 +99,23 @@ geo3 =
         overlaySpec =
             asSpec [ airportData, overlayEnc [], circle [] ]
     in
-    toVegaLite
-        [ cfg []
-        , des
-        , width 500
-        , height 300
-        , projection [ prType albersUsa ]
-        , layer [ backdropSpec, overlaySpec ]
-        ]
+    toVegaLite [ desc, cfg [], width 500, height 300, proj, layer [ backdropSpec, overlaySpec ] ]
 
 
 geo4 : Spec
 geo4 =
     let
+        desc =
+            description "Rules (line segments) connecting SEA to every airport reachable via direct flight"
+
         mapData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         airportData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
+            dataFromUrl (path ++ "airports.csv") []
 
         flightData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
+            dataFromUrl (path ++ "flights-airport.csv") []
 
         backdropSpec =
             asSpec [ mapData, geoshape [ maColor "#eee" ] ]
@@ -161,11 +145,11 @@ geo4 =
             asSpec [ flightData, trans [], flightsEnc [], rule [] ]
     in
     toVegaLite
-        [ cfg []
-        , description "Rules (line segments) connecting SEA to every airport reachable via direct flight"
+        [ desc
+        , cfg []
         , width 800
         , height 500
-        , projection [ prType albersUsa ]
+        , proj
         , layer [ backdropSpec, airportsSpec, flightsSpec ]
         ]
 
@@ -173,11 +157,14 @@ geo4 =
 geo5 : Spec
 geo5 =
     let
+        desc =
+            description "Population per state, engineers per state, and hurricanes per state"
+
         geoData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv" []
+            dataFromUrl (path ++ "population_engineers_hurricanes.csv") []
 
         trans =
             transform
@@ -194,35 +181,25 @@ geo5 =
     in
     toVegaLite
         [ cfg []
-        , description "Population per state, engineers per state, and hurricanes per state"
+        , desc
         , repeat [ rowFields [ "population", "engineers", "hurricanes" ] ]
         , res []
         , specification
-            (asSpec
-                [ width 500
-                , height 300
-                , data
-                , trans []
-                , projection [ prType albersUsa ]
-                , enc []
-                , geoshape []
-                ]
-            )
+            (asSpec [ width 500, height 300, data, trans [], proj, enc [], geoshape [] ])
         ]
 
 
 geo6 : Spec
 geo6 =
     let
-        des =
+        desc =
             description "US state capitals overlayed on map of the US"
 
         mapData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         capitalData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-state-capitals.json" []
+            dataFromUrl (path ++ "us-state-capitals.json") []
 
         backdropSpec =
             asSpec [ mapData, geoshape [ maColor "#ccc" ] ]
@@ -236,25 +213,20 @@ geo6 =
         overlaySpec =
             asSpec [ capitalData, overlayEnc [], textMark [] ]
     in
-    toVegaLite
-        [ cfg []
-        , des
-        , width 800
-        , height 500
-        , projection [ prType albersUsa ]
-        , layer [ backdropSpec, overlaySpec ]
-        ]
+    toVegaLite [ desc, cfg [], width 800, height 500, proj, layer [ backdropSpec, overlaySpec ] ]
 
 
 geo7 : Spec
 geo7 =
     let
+        desc =
+            description "Line drawn between airports in the U.S. simulating a flight itinerary"
+
         airportData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" []
+            dataFromUrl (path ++ "airports.csv") []
 
         mapData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         itineraryData =
             dataFromColumns []
@@ -286,11 +258,11 @@ geo7 =
             asSpec [ itineraryData [], trans [], flightsEnc [], line [] ]
     in
     toVegaLite
-        [ cfg []
-        , description "Line drawn between airports in the U.S. simulating a flight itinerary"
+        [ desc
+        , cfg []
         , width 800
         , height 500
-        , projection [ prType albersUsa ]
+        , proj
         , layer [ backdropSpec, airportsSpec, flightsSpec ]
         ]
 
@@ -298,12 +270,14 @@ geo7 =
 geo8 : Spec
 geo8 =
     let
+        desc =
+            description "Income in the U.S. by state, faceted over income brackets"
+
         geoData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         incomeData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/income.json" []
+            dataFromUrl (path ++ "income.json") []
 
         trans =
             transform
@@ -315,32 +289,23 @@ geo8 =
                 << color [ mName "pct", mQuant, mSort [ soDescending ] ]
                 << row [ fName "group" ]
     in
-    toVegaLite
-        [ cfg []
-        , description "Income in the U.S. by state, faceted over income brackets"
-        , width 500
-        , height 300
-        , incomeData
-        , trans []
-        , projection [ prType albersUsa ]
-        , enc []
-        , geoshape []
-        ]
+    toVegaLite [ desc, cfg [], width 500, height 300, incomeData, trans [], proj, enc [], geoshape [] ]
 
 
 geo9 : Spec
 geo9 =
     let
+        desc =
+            description "Geographic position of London underground lines"
+
         boroughData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
-                [ topojsonFeature "boroughs" ]
+            dataFromUrl (path ++ "londonBoroughs.json") [ topojsonFeature "boroughs" ]
 
         centroidData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" []
+            dataFromUrl (path ++ "londonCentroids.json") []
 
         tubeData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
-                [ topojsonFeature "line" ]
+            dataFromUrl (path ++ "londonTubeLines.json") [ topojsonFeature "line" ]
 
         tubeLineColors =
             categoricalDomainMap
@@ -398,8 +363,8 @@ geo9 =
                 ]
     in
     toVegaLite
-        [ cfg []
-        , description "Geographic position of London underground lines"
+        [ desc
+        , cfg []
         , width 700
         , height 500
         , layer [ polySpec, labelSpec, routeSpec ]
