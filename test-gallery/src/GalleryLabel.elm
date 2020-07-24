@@ -10,10 +10,15 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 label1 : Spec
 label1 =
     let
-        des =
+        desc =
             description "A simple bar chart with embedded data labels"
 
         cfg =
@@ -36,13 +41,13 @@ label1 =
         specText =
             asSpec [ encoding (text [ tName "b", tQuant ] []), textMark [ maStyle [ "label" ] ] ]
     in
-    toVegaLite [ des, cfg [], data [], enc [], layer [ specBar, specText ] ]
+    toVegaLite [ desc, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
 label2 : Spec
 label2 =
     let
-        des =
+        desc =
             description "Version of bar chart from https://observablehq.com/@d3/learn-d3-scales."
 
         cfg =
@@ -86,16 +91,24 @@ label2 =
         specText =
             asSpec [ labelEnc [], textMark [ maAlign haRight, maXOffset -4 ] ]
     in
-    toVegaLite [ des, cfg [], width 400, data [], enc [], layer [ specBar, specText ] ]
+    toVegaLite [ desc, cfg [], width 400, data [], enc [], layer [ specBar, specText ] ]
 
 
 label3 : Spec
 label3 =
     let
-        des =
+        desc =
             description "Layering text over 'heatmap'"
 
-        encPosition =
+        cfg =
+            configure
+                << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
+                << configuration (coText [ maBaseline vaMiddle ])
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        encPos =
             encoding
                 << position X [ pName "Cylinders", pOrdinal ]
                 << position Y [ pName "Origin", pOrdinal ]
@@ -114,30 +127,19 @@ label3 =
 
         specText =
             asSpec [ textMark [], encText [] ]
-
-        config =
-            configure
-                << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
-                << configuration (coText [ maBaseline vaMiddle ])
     in
     toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-        , encPosition []
-        , layer [ specRect, specText ]
-        , config []
-        ]
+        [ desc, cfg [], data, encPos [], layer [ specRect, specText ] ]
 
 
 label4 : Spec
 label4 =
     let
-        des =
+        desc =
             description "Carbon dioxide in the atmosphere."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/co2-concentration.csv"
-                [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
+            dataFromUrl (path ++ "co2-concentration.csv") [ parse [ ( "Date", foUtc "%Y-%m-%d" ) ] ]
 
         trans =
             transform
@@ -203,7 +205,7 @@ label4 =
             configure << configuration (coText [ maAlign haLeft, maDx 3, maDy 1 ])
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 800
         , height 500
@@ -217,7 +219,7 @@ label4 =
 label5 : Spec
 label5 =
     let
-        des =
+        desc =
             description "Bar chart that highlights values beyond a threshold. The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html"
 
         data =
@@ -274,14 +276,17 @@ label5 =
         layer1 =
             asSpec [ thresholdData [], layer [ specRule, specText ] ]
     in
-    toVegaLite [ des, layer [ layer0, layer1 ] ]
+    toVegaLite [ desc, layer [ layer0, layer1 ] ]
 
 
 label6 : Spec
 label6 =
     let
-        des =
+        desc =
             description "Monthly precipitation with mean value overlay"
+
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         encBar =
             encoding
@@ -300,22 +305,21 @@ label6 =
         specLine =
             asSpec [ rule [], encLine [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
-        , layer [ specBar, specLine ]
-        ]
+    toVegaLite [ desc, data, layer [ specBar, specLine ] ]
 
 
 label7 : Spec
 label7 =
     let
-        des =
+        desc =
             description "Histogram with global mean overlay"
+
+        data =
+            dataFromUrl (path ++ "movies.json") []
 
         encBars =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [], pAxis [] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [], pAxis [] ]
                 << position Y [ pQuant, pAggregate opCount ]
 
         specBars =
@@ -323,24 +327,20 @@ label7 =
 
         encMean =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pAggregate opMean ]
+                << position X [ pName "IMDB Rating", pQuant, pAggregate opMean ]
                 << color [ mStr "red" ]
                 << size [ mNum 5 ]
 
         specMean =
             asSpec [ rule [], encMean [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-        , layer [ specBars, specMean ]
-        ]
+    toVegaLite [ desc, data, layer [ specBars, specMean ] ]
 
 
 label8 : Spec
 label8 =
     let
-        des =
+        desc =
             description "The population of the German city of Falkensee over time with annotated time periods highlighted"
 
         data =
@@ -375,7 +375,7 @@ label8 =
         specPoints =
             asSpec [ point [], encPopulation [] ]
     in
-    toVegaLite [ des, width 500, data [], layer [ specRects, specLine, specPoints ] ]
+    toVegaLite [ desc, width 500, data [], layer [ specRects, specLine, specPoints ] ]
 
 
 label9 : Spec
@@ -481,7 +481,7 @@ label9 =
 label10 : Spec
 label10 =
     let
-        des =
+        desc =
             description "Comparing Likert scale ratings between two conditions."
 
         cfg =
@@ -607,7 +607,7 @@ label10 =
         specLabels =
             asSpec [ labelData [], layer [ specLabel1, specLabel2, specLabel3, specLabel4 ] ]
     in
-    toVegaLite [ des, cfg [], likertData [], spacing 10, vConcat [ specLikert, specLabels ] ]
+    toVegaLite [ desc, cfg [], likertData [], spacing 10, vConcat [ specLikert, specLabels ] ]
 
 
 
