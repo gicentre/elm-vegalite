@@ -5142,11 +5142,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$Mean = {$: 7};
 var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
 var $author$project$VegaLite$PName = function (a) {
@@ -7724,7 +7719,6 @@ var $author$project$GalleryTable$table1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('Horsepower'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opMean)
 				])));
 	var desc = $author$project$VegaLite$description('\'Table heatmap\' showing engine size/power for three countries.');
@@ -10762,14 +10756,10 @@ var $author$project$VegaLite$configure = function (configs) {
 };
 var $author$project$VegaLite$Date = {$: 26};
 var $author$project$VegaLite$date = $author$project$VegaLite$Date;
-var $author$project$VegaLite$LTitle = function (a) {
-	return {$: 38, a: a};
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 11, a: a};
 };
-var $author$project$VegaLite$leTitle = $author$project$VegaLite$LTitle;
-var $author$project$VegaLite$MLegend = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$Month = {$: 16};
 var $author$project$VegaLite$month = $author$project$VegaLite$Month;
 var $author$project$VegaLite$Max = {$: 6};
@@ -10782,6 +10772,10 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$VLTitle = 2;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {
@@ -10835,23 +10829,14 @@ var $author$project$GalleryTable$table2 = function () {
 						$author$project$VegaLite$pName('date'),
 						$author$project$VegaLite$pOrdinal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Month')
-							]))
+						$author$project$VegaLite$pTitle('Month')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('temp_max'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opMax),
-					$author$project$VegaLite$mLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$leTitle('')
-						]))
+					$author$project$VegaLite$mTitle('')
 				])));
 	var desc = $author$project$VegaLite$description('Annual temperature \'heatmap\'');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'seattle-weather.csv', _List_Nil);
@@ -10930,6 +10915,7 @@ var $author$project$VegaLite$PBin = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
+var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$RHeatmap = function (a) {
 	return {$: 2, a: a};
@@ -11019,7 +11005,6 @@ var $author$project$GalleryTable$table3 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
 	var desc = $author$project$VegaLite$description('\'Binned heatmap\' comparing movie ratings.');
@@ -11099,7 +11084,6 @@ var $author$project$GalleryTable$table4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('count'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opSum)
 				])));
 	var desc = $author$project$VegaLite$description('Table bubble plot in the style of a Github punched card.');
@@ -11164,10 +11148,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -11349,7 +11329,6 @@ var $author$project$GalleryTable$table5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('*'),
-					$author$project$VegaLite$tQuant,
 					$author$project$VegaLite$tAggregate($author$project$VegaLite$opCount)
 				])));
 	var specText = $author$project$VegaLite$asSpec(
@@ -11365,7 +11344,6 @@ var $author$project$GalleryTable$table5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('*'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
 	var specRect = $author$project$VegaLite$asSpec(
@@ -11477,18 +11455,10 @@ var $author$project$VegaLite$MTimeUnit = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$mTimeUnit = $author$project$VegaLite$MTimeUnit;
-var $author$project$VegaLite$MTitle = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$MonthDate = {$: 17};
 var $author$project$VegaLite$monthDate = $author$project$VegaLite$MonthDate;
 var $author$project$VegaLite$ONone = 0;
 var $author$project$VegaLite$osNone = 0;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$YearMonthDate = {$: 4};
 var $author$project$VegaLite$yearMonthDate = $author$project$VegaLite$YearMonthDate;
 var $author$project$GalleryTable$table6 = function () {
@@ -11564,7 +11534,6 @@ var $author$project$GalleryTable$table6 = function () {
 				[
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opSum),
 					$author$project$VegaLite$mName('price'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mTitle('Price')
 				])));
 	var desc = $author$project$VegaLite$description('Lasagna Plot (Dense Time-Series Heatmap).');
@@ -11618,6 +11587,14 @@ var $author$project$VegaLite$equalEarth = $author$project$VegaLite$EqualEarth;
 var $author$project$VegaLite$Geoshape = 7;
 var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
 var $author$project$GalleryTable$giCentrePath = 'https://gicentre.github.io/data/';
+var $author$project$VegaLite$MLegend = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };

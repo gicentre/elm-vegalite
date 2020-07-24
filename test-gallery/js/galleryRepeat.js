@@ -6430,8 +6430,6 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PRepeat = function (a) {
 	return {$: 5, a: a};
 };
@@ -7843,7 +7841,6 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pRepeat($author$project$VegaLite$arColumn),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 					]))),
 		$author$project$VegaLite$color(
@@ -7883,7 +7880,6 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pRepeat($author$project$VegaLite$arColumn),
-								$author$project$VegaLite$pQuant,
 								$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 							]))),
 				$author$project$VegaLite$detail(
@@ -7949,16 +7945,14 @@ var $author$project$VegaLite$MAggregate = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$mAggregate = $author$project$VegaLite$MAggregate;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
 var $author$project$VegaLite$PBin = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$size = function (markProps) {
@@ -8034,8 +8028,7 @@ var $author$project$GalleryRepeat$repeat2 = function () {
 		$author$project$VegaLite$size(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$mQuant
+					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8063,7 +8056,6 @@ var $author$project$GalleryRepeat$repeat2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
@@ -8107,7 +8099,6 @@ var $author$project$GalleryRepeat$repeat3 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
@@ -8912,10 +8903,6 @@ var $author$project$GalleryRepeat$repeat4 = function () {
 						])))
 			]));
 }();
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$MaxBins = function (a) {
 	return {$: 5, a: a};
 };
@@ -11360,6 +11347,10 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RHeatmap = function (a) {
 	return {$: 2, a: a};
 };
@@ -11439,7 +11430,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -11448,11 +11438,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 								_List_fromArray(
 									[0, 1000])))
 						])),
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('')
-						]))
+					$author$project$VegaLite$pTitle('')
 				])));
 	var spec2_2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11489,8 +11475,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$mQuant
+					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
 	var spec2_1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11528,7 +11513,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -11537,11 +11521,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 								_List_fromArray(
 									[0, 1000])))
 						])),
-					$author$project$VegaLite$pAxis(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$axTitle('')
-						]))
+					$author$project$VegaLite$pTitle('')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11586,6 +11566,10 @@ var $author$project$VegaLite$AxFormat = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$axFormat = $author$project$VegaLite$AxFormat;
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$Grid = function (a) {
 	return {$: 10, a: a};
 };
@@ -11853,7 +11837,6 @@ var $author$project$GalleryRepeat$repeat6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('people'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
@@ -11931,7 +11914,6 @@ var $author$project$GalleryRepeat$repeat6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('people'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(

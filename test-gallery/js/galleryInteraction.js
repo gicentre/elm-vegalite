@@ -13116,7 +13116,6 @@ var $author$project$GalleryInteraction$interaction16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAxis(_List_Nil)
 				])));
 	var specMini = $author$project$VegaLite$asSpec(
@@ -13164,7 +13163,6 @@ var $author$project$GalleryInteraction$interaction16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -13492,7 +13490,6 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('count'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 				])));
 	var desc = $author$project$VegaLite$description('Area chart with rectangular brush');
@@ -13847,7 +13844,6 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var enc2 = A2(

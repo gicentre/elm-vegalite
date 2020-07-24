@@ -11897,10 +11897,6 @@ var $author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$dName = $author$project$VegaLite$DName;
-var $author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$dQuant = $author$project$VegaLite$DmType(2);
 var $author$project$VegaLite$detailChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -12346,7 +12342,6 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('max'),
-					$author$project$VegaLite$tQuant,
 					$author$project$VegaLite$tAggregate($author$project$VegaLite$opMax)
 				])));
 	var specAxisLabelsTop = $author$project$VegaLite$asSpec(
@@ -12386,7 +12381,6 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('mid'),
-					$author$project$VegaLite$tQuant,
 					$author$project$VegaLite$tAggregate($author$project$VegaLite$opMin)
 				])));
 	var specAxisLabelsMid = $author$project$VegaLite$asSpec(
@@ -12424,7 +12418,6 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('min'),
-					$author$project$VegaLite$tQuant,
 					$author$project$VegaLite$tAggregate($author$project$VegaLite$opMin)
 				])));
 	var specAxisLabelsBot = $author$project$VegaLite$asSpec(
@@ -12455,8 +12448,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 		$author$project$VegaLite$detail(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$dQuant
+					$author$project$VegaLite$dAggregate($author$project$VegaLite$opCount)
 				])));
 	var specAxis = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12648,8 +12640,7 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('price'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var specAv = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13092,8 +13083,7 @@ var $author$project$GalleryAdvanced$advanced2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('AverageRating'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var ruleSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -14057,7 +14047,6 @@ var $author$project$GalleryAdvanced$advanced8 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('aggregateGross'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 						$author$project$VegaLite$pTitle('')
 					]))),
@@ -14310,7 +14299,6 @@ var $author$project$GalleryAdvanced$advanced9 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('age'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var desc = $author$project$VegaLite$description('Using the lookup transform to combine data');

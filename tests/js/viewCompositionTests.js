@@ -12684,8 +12684,6 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
@@ -13141,7 +13139,6 @@ var $author$project$ViewCompositionTests$genderChart = F2(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('people'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 							$author$project$VegaLite$pTitle('Population')
 						]))),
@@ -13617,6 +13614,8 @@ var $author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$VLVConcat = 19;
 var $author$project$VegaLite$vConcat = function (specs) {
 	return _Utils_Tuple2(
@@ -13974,8 +13973,7 @@ var $author$project$ViewCompositionTests$concat2 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var attData = A2(
 		$elm$core$Basics$composeL,
@@ -14435,7 +14433,6 @@ var $author$project$ViewCompositionTests$grid4 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
@@ -14514,7 +14511,6 @@ var $author$project$ViewCompositionTests$grid5 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(

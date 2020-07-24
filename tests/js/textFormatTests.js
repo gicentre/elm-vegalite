@@ -8836,11 +8836,6 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -10299,7 +10294,6 @@ var $author$project$TextFormatTests$customFormatter1 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('reportedCrimes'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 						]))),
 			$author$project$VegaLite$color(
@@ -13335,6 +13329,11 @@ var $author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$PmType = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
@@ -14210,7 +14209,6 @@ var $author$project$TextFormatTests$textFormat2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('reportedCrimes'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 						]))),
 			$author$project$VegaLite$color(

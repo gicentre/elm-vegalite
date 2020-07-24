@@ -8962,8 +8962,7 @@ var $author$project$GalleryScatter$scatter5 = function () {
 		$author$project$VegaLite$size(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$mQuant
+					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
 	var desc = $author$project$VegaLite$description('A binned scatterplot comparing IMDB and Rotten Tomatoes rating with marks sized by number of reviews.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'movies.json', _List_Nil);

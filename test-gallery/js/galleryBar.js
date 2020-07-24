@@ -7934,7 +7934,6 @@ var $author$project$GalleryBar$bar10 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
@@ -8069,7 +8068,6 @@ var $author$project$GalleryBar$bar12 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('yield'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 						]))),
 			A2(
@@ -8129,6 +8127,10 @@ var $author$project$VegaLite$PStack = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$pStack = $author$project$VegaLite$PStack;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
@@ -8207,13 +8209,8 @@ var $author$project$GalleryBar$bar13 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('people'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('Population')
-							])),
+						$author$project$VegaLite$pTitle('Population'),
 						$author$project$VegaLite$pStack($author$project$VegaLite$stNormalize)
 					]))),
 		$author$project$VegaLite$color(
@@ -8410,7 +8407,6 @@ var $author$project$GalleryBar$bar16 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('people'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -11529,7 +11525,6 @@ var $author$project$GalleryBar$bar17 = function () {
 					[
 						$author$project$VegaLite$pName('signedPeople'),
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -12100,13 +12095,8 @@ var $author$project$GalleryBar$bar2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('people'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('population')
-							]))
+						$author$project$VegaLite$pTitle('population')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -12133,10 +12123,6 @@ var $author$project$VegaLite$DAggregate = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$dAggregate = $author$project$VegaLite$DAggregate;
-var $author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$dQuant = $author$project$VegaLite$DmType(2);
 var $author$project$VegaLite$detailChannelProperty = function (field) {
 	switch (field.$) {
 		case 0:
@@ -12190,10 +12176,6 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
 var $author$project$VegaLite$CustomSort = function (a) {
 	return {$: 2, a: a};
@@ -12217,8 +12199,7 @@ var $author$project$GalleryBar$bar20 = function () {
 		$author$project$VegaLite$detail(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$dQuant
+					$author$project$VegaLite$dAggregate($author$project$VegaLite$opCount)
 				])));
 	var specText = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12241,7 +12222,6 @@ var $author$project$GalleryBar$bar20 = function () {
 				[
 					$author$project$VegaLite$pName('IMDB Rating'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pScale(
 					_List_fromArray(
 						[
@@ -12330,7 +12310,6 @@ var $author$project$GalleryBar$bar21 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
@@ -13345,13 +13324,8 @@ var $author$project$GalleryBar$bar3 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('people'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-						$author$project$VegaLite$pAxis(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$axTitle('population')
-							]))
+						$author$project$VegaLite$pTitle('population')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -13404,8 +13378,7 @@ var $author$project$GalleryBar$bar4 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var desc = $author$project$VegaLite$description('Simple histogram of IMDB ratings.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'movies.json', _List_Nil);
@@ -13597,8 +13570,7 @@ var $author$project$GalleryBar$bar6 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var desc = $author$project$VegaLite$description('Log-scaled Histogram');
 	var data = A2(
@@ -13675,7 +13647,6 @@ var $author$project$GalleryBar$bar7 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('people'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -13774,7 +13745,6 @@ var $author$project$GalleryBar$weatherBars = function (mProps) {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(

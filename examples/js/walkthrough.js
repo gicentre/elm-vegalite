@@ -10326,8 +10326,6 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
@@ -10719,7 +10717,6 @@ var $author$project$Walkthrough$barChart = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -10771,7 +10768,6 @@ var $author$project$Walkthrough$barChartPair = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('temp_max'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var bar1Enc = A2(
@@ -10794,7 +10790,6 @@ var $author$project$Walkthrough$barChartPair = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -10881,7 +10876,6 @@ var $author$project$Walkthrough$barChartTriplet = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pRepeat($author$project$VegaLite$arRow),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var spec = $author$project$VegaLite$asSpec(
@@ -10923,7 +10917,6 @@ var $author$project$Walkthrough$barChartWithAverage = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var barEnc = A2(
@@ -11002,6 +10995,8 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
@@ -11422,8 +11417,7 @@ var $author$project$Walkthrough$crossFilter = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var selectedEnc = A2(
 		$elm$core$Basics$composeL,
@@ -11445,8 +11439,7 @@ var $author$project$Walkthrough$crossFilter = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -11602,8 +11595,7 @@ var $author$project$Walkthrough$dashboard1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var histoSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11632,7 +11624,6 @@ var $author$project$Walkthrough$dashboard1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var barSpec = $author$project$VegaLite$asSpec(
@@ -11651,7 +11642,6 @@ var $author$project$Walkthrough$dashboard1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 					$author$project$VegaLite$pScale(
 					_List_fromArray(
@@ -11899,8 +11889,7 @@ var $author$project$Walkthrough$dashboard2 = function () {
 					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
@@ -11940,7 +11929,6 @@ var $author$project$Walkthrough$dashboard2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pRepeat($author$project$VegaLite$arRow),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var annotationEnc = A2(
@@ -11952,7 +11940,6 @@ var $author$project$Walkthrough$dashboard2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pRepeat($author$project$VegaLite$arRow),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var layerSpec = $author$project$VegaLite$asSpec(
@@ -12026,8 +12013,7 @@ var $author$project$Walkthrough$histogram = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12339,8 +12325,7 @@ var $author$project$Walkthrough$lineChart = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -12381,8 +12366,7 @@ var $author$project$Walkthrough$multiBar = function () {
 					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
@@ -12473,8 +12457,7 @@ var $author$project$Walkthrough$stackedHistogram = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -12512,8 +12495,7 @@ var $author$project$Walkthrough$stackedHistogram2 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(

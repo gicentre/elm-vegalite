@@ -13643,10 +13643,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MCursor = function (a) {
 	return {$: 18, a: a};
 };
@@ -13737,8 +13733,7 @@ var $author$project$ConditionalTests$selectionCondition1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$mName('*'),
-					$author$project$VegaLite$mQuant
+					$author$project$VegaLite$mName('*')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -13837,8 +13832,7 @@ var $author$project$ConditionalTests$selectionCondition2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-							$author$project$VegaLite$mName('*'),
-							$author$project$VegaLite$mQuant
+							$author$project$VegaLite$mName('*')
 						]),
 					_List_fromArray(
 						[
@@ -14072,8 +14066,7 @@ var $author$project$ConditionalTests$selectionCondition4 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-							$author$project$VegaLite$mName('*'),
-							$author$project$VegaLite$mQuant
+							$author$project$VegaLite$mName('*')
 						]),
 					_List_fromArray(
 						[
@@ -14143,8 +14136,7 @@ var $author$project$ConditionalTests$selectionCondition5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-							$author$project$VegaLite$mName('*'),
-							$author$project$VegaLite$mQuant
+							$author$project$VegaLite$mName('*')
 						]),
 					_List_fromArray(
 						[

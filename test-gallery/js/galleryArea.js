@@ -4327,8 +4327,6 @@ var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
 var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTimeUnit = function (a) {
@@ -7737,7 +7735,6 @@ var $author$project$GalleryArea$area1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('count'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
@@ -7811,6 +7808,8 @@ var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 53, a: a};
 };
 var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$VLTransform = 13;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -8020,7 +8019,6 @@ var $author$project$GalleryArea$area4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('count'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 						$author$project$VegaLite$pTitle('Number unemployed')
 					]))),
@@ -8085,7 +8083,6 @@ var $author$project$GalleryArea$area5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('count'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 						$author$project$VegaLite$pAxis(_List_Nil),
 						$author$project$VegaLite$pStack($author$project$VegaLite$stNormalize)
@@ -8145,7 +8142,6 @@ var $author$project$GalleryArea$area6 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('count'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 						$author$project$VegaLite$pAxis(_List_Nil),
 						$author$project$VegaLite$pStack($author$project$VegaLite$stCenter)
@@ -12438,7 +12434,6 @@ var $author$project$GalleryArea$area8 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('xc'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opMin),
 							$author$project$VegaLite$pTitle('Origin'),
 							$author$project$VegaLite$pAxis(

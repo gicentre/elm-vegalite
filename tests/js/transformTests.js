@@ -11629,7 +11629,6 @@ var $author$project$TransformTests$transform14 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('maxTemp'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -11708,7 +11707,6 @@ var $author$project$TransformTests$transform15 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('maxTemp'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -11780,7 +11778,6 @@ var $author$project$TransformTests$transform16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('temp_max'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -11830,7 +11827,6 @@ var $author$project$TransformTests$transform17 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('distance'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 				])));
 	var dateTime = function (mnt) {
@@ -12105,7 +12101,6 @@ var $author$project$TransformTests$binTransform = function (bProps) {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Number of movies')
 				])));
 	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');

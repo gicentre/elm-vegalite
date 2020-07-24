@@ -10679,8 +10679,7 @@ var $author$project$WindowTransformTests$window2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('AverageRating'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var ruleSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(

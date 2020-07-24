@@ -11933,7 +11933,6 @@ var $author$project$GalleryLabel$label3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('*'),
-					$author$project$VegaLite$tQuant,
 					$author$project$VegaLite$tAggregate($author$project$VegaLite$opCount)
 				])));
 	var specText = $author$project$VegaLite$asSpec(
@@ -11949,7 +11948,6 @@ var $author$project$GalleryLabel$label3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('*'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
 	var specRect = $author$project$VegaLite$asSpec(
@@ -12783,7 +12781,6 @@ var $author$project$GalleryLabel$label6 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('precipitation'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 						]))),
 			$author$project$VegaLite$color(
@@ -12822,7 +12819,6 @@ var $author$project$GalleryLabel$label6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var specBar = $author$project$VegaLite$asSpec(
@@ -12861,7 +12857,6 @@ var $author$project$GalleryLabel$label7 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('IMDB Rating'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 						]))),
 			$author$project$VegaLite$color(
@@ -12900,7 +12895,6 @@ var $author$project$GalleryLabel$label7 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var specBars = $author$project$VegaLite$asSpec(
@@ -13355,7 +13349,6 @@ var $author$project$GalleryLabel$label9 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[

@@ -8690,8 +8690,7 @@ var $author$project$GalleryMulti$multi2 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var specSelection = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11324,10 +11323,6 @@ var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MTitle = function (a) {
 	return {$: 11, a: a};
 };
@@ -11524,7 +11519,6 @@ var $author$project$GalleryMulti$multi4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pTitle('Number of films')
 					]))),
 		$author$project$VegaLite$color(
@@ -11551,7 +11545,6 @@ var $author$project$GalleryMulti$multi4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$mQuant,
 						$author$project$VegaLite$mTitle('in selected genre')
 					]))),
 		$author$project$VegaLite$color(
@@ -11573,7 +11566,6 @@ var $author$project$GalleryMulti$multi4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -11679,6 +11671,10 @@ var $author$project$VegaLite$DNumbers = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$doNums = $author$project$VegaLite$DNumbers;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -11762,8 +11758,7 @@ var $author$project$GalleryMulti$multi5 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -13114,8 +13109,7 @@ var $author$project$GalleryMulti$multi8 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13148,8 +13142,7 @@ var $author$project$GalleryMulti$multi8 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(

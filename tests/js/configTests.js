@@ -13427,8 +13427,7 @@ var $author$project$ConfigTests$histoVis = function (config) {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var barSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13801,7 +13800,6 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pStack($author$project$VegaLite$stCenter),
 						$author$project$VegaLite$pAxis(_List_Nil)
 					]))),
@@ -13899,8 +13897,7 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -14405,7 +14402,6 @@ var $author$project$ConfigTests$vbTest = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pStack($author$project$VegaLite$stCenter),
 						$author$project$VegaLite$pAxis(_List_Nil)
 					]))),
@@ -14546,8 +14542,7 @@ var $author$project$ConfigTests$vbTest = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(

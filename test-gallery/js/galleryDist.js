@@ -7705,7 +7705,6 @@ var $author$project$GalleryDist$dist1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var desc = $author$project$VegaLite$description('Simple histogram of IMDB ratings.');

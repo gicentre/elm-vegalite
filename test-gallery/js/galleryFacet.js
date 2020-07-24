@@ -6333,8 +6333,6 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
@@ -8117,7 +8115,6 @@ var $author$project$GalleryFacet$facet1 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('people'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
 							$author$project$VegaLite$pTitle('population')
 						]))),
@@ -8185,7 +8182,6 @@ var $author$project$GalleryFacet$facet2 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('yield'),
-								$author$project$VegaLite$pQuant,
 								$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum)
 							]))),
 				A2(
@@ -8217,6 +8213,8 @@ var $author$project$GalleryFacet$facet2 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$GalleryFacet$facet3 = function () {
@@ -8296,7 +8294,6 @@ var $author$project$GalleryFacet$facet4 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 					]))),
 		$author$project$VegaLite$row(
@@ -8636,7 +8633,6 @@ var $author$project$GalleryFacet$facet6 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('yield'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opMedian),
 							$author$project$VegaLite$pScale(
 							_List_fromArray(

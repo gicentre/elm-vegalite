@@ -10337,7 +10337,6 @@ var $author$project$CompositeTests$errorbar3 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('yield'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 					]))),
 		A2(

@@ -5249,8 +5249,6 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
@@ -7759,7 +7757,6 @@ var $author$project$GalleryError$error1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('yield'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
@@ -7794,7 +7791,6 @@ var $author$project$GalleryError$error1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('yield'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCI0)
 					]))),
 		A2(
@@ -7874,6 +7870,8 @@ var $author$project$VegaLite$opAs = F3(
 	});
 var $author$project$VegaLite$Stdev = {$: 15};
 var $author$project$VegaLite$opStdev = $author$project$VegaLite$Stdev;
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$VLTransform = 13;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -8051,7 +8049,6 @@ var $author$project$GalleryError$error3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var specLine = $author$project$VegaLite$asSpec(
@@ -8073,7 +8070,6 @@ var $author$project$GalleryError$error3 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('Miles_per_Gallon'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opCI0),
 							$author$project$VegaLite$pTitle('Miles per gallon with 95% CIs')
 						]))),

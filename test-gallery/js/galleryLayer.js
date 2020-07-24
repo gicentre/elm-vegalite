@@ -12033,7 +12033,6 @@ var $author$project$GalleryLayer$layer4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('precipitationmm'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
@@ -12064,7 +12063,6 @@ var $author$project$GalleryLayer$layer4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('temp_max'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 						$author$project$VegaLite$pScale(
 						_List_fromArray(

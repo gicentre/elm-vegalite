@@ -8011,8 +8011,7 @@ var $author$project$HelloWorlds$myOtherVis = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(

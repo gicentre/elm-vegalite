@@ -12731,7 +12731,6 @@ var $author$project$GalleryLine$line2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('price'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 					]))),
 		$author$project$VegaLite$color(
@@ -12786,7 +12785,6 @@ var $author$project$GalleryLine$line3 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('price'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 					]))),
 		$author$project$VegaLite$color(
@@ -12931,7 +12929,6 @@ var $author$project$GalleryLine$line5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pRepeat($author$project$VegaLite$arLayer),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 						$author$project$VegaLite$pTitle('Mean of US and Worldwide Gross')
 					]))),
@@ -13174,7 +13171,6 @@ var $author$project$GalleryLine$line7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('yield'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMedian)
 					]))),
 		$author$project$VegaLite$color(

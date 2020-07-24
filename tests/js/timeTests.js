@@ -10282,8 +10282,7 @@ var $author$project$TimeTests$timeBand = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('temp'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-temps.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -10333,7 +10332,6 @@ var $author$project$TimeTests$timeByUnit = function (tu) {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('temperature'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 					$author$project$VegaLite$pScale(
 					_List_fromArray(

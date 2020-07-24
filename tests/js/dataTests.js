@@ -10217,8 +10217,7 @@ var $author$project$DataTests$bin2 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10266,8 +10265,7 @@ var $author$project$DataTests$bin3 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10955,7 +10953,6 @@ var $author$project$DataTests$data11 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('Percent'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 						]))),
 			$author$project$VegaLite$color(
