@@ -4,6 +4,11 @@ import Platform
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 myFirstVis : Spec
 myFirstVis =
     let
@@ -22,28 +27,28 @@ mySecondVis : Spec
 mySecondVis =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
                 << position X [ pName "Cylinders", pOrdinal ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
-    toVegaLite [ data [], enc [], circle [] ]
+    toVegaLite [ data, enc [], circle [] ]
 
 
 myOtherVis : Spec
 myOtherVis =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
                 << position X [ pName "Cylinders", pOrdinal ]
                 << position Y [ pName "Miles_per_Gallon", pAggregate opMean, pQuant ]
     in
-    toVegaLite [ data [], enc [], bar [] ]
+    toVegaLite [ data, enc [], bar [] ]
 
 
 

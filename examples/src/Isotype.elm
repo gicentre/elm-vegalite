@@ -37,7 +37,7 @@ isotypes =
 personGrid : Spec
 personGrid =
     let
-        config =
+        cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
                 << configuration (coBackground "rgba(0,0,0,0)")
@@ -68,7 +68,7 @@ personGrid =
                 << size [ mNum 90 ]
     in
     toVegaLite
-        [ config []
+        [ cfg []
         , width 400
         , height 400
         , data []
@@ -102,7 +102,7 @@ toRows country animalFreqs =
 livestock : Spec
 livestock =
     let
-        config =
+        cfg =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
                 << configuration (coBackground "rgba(0,0,0,0)")
@@ -143,7 +143,7 @@ livestock =
                 << size [ mNum 200 ]
     in
     toVegaLite
-        [ config []
+        [ cfg []
         , width 800
         , height 200
         , data []

@@ -65,6 +65,11 @@ import Platform
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 myFirstVis : Spec
 myFirstVis =
     let
@@ -83,7 +88,7 @@ mySecondVis : Spec
 mySecondVis =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -97,7 +102,7 @@ myOtherVis : Spec
 myOtherVis =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -143,8 +148,9 @@ port elmToJS : Spec -> Cmd msg
 
 The boilerplate code is the same as previously but here using the name `mySpecs` to refer to the collection of named vega-lite specifications.
 
-In this example, the main body of code comprises three functions (`myFirstVis`, `mySecondVis` and `myOtherVis`) each detailing a separate Vega-Lite specification.
-These are then combined (with `combineSpecs`) into a single JSON object in the function `mySpecs` pairing each spec with an ID we can refer to in the HTML `<div>` containers.
+In this example, the main body of code comprises three functions (`myFirstVis`, `mySecondVis` and `myOtherVis`) each detailing a separate Vega-Lite specification. Because two of the examples share the same source for their data, we can create a `path` function that stores the base URL of all remote data. This would make it easier should we wish to change the source of the data at some future date.
+
+The three specifications are then combined (with `combineSpecs`) into a single JSON object in the function `mySpecs` pairing each spec with an ID we can refer to in the HTML `<div>` containers.
 
 ## 3. Compile the Elm-Vega into JavaScript
 
@@ -154,9 +160,7 @@ The final task, as before, is to convert the Elm file into JavaScript:
 
 This should create the `helloWorlds.js` file required by the HTML.
 
-Because some of the visualizations in this example load an external file containing the data ([cars.json](../../vlExamples/data/cars.json)), the file `helloWorlds.html` can only be viewed when served from a web server.
-Running a local web server such as `elm-reactor` provides a convenient way to test the code.
-The result should look similar to this:
+Because some of the visualizations in this example load an external file containing the data ([cars.json](https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/cars.json)), the file `helloWorlds.html` can only be viewed when served from a web server. Running a local web server such as `elm-reactor` provides a convenient way to test the code. The result should look similar to this:
 
 ![Hello, Worlds! output](images/helloWorlds.png)
 

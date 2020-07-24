@@ -24,13 +24,13 @@ spc1 =
 spc2 : Spec
 spc2 =
     toVegaLite
-        [ config, spcData, encLine, line [ maColor "#777" ] ]
+        [ cfg, spcData, encLine, line [ maColor "#777" ] ]
 
 
 spc3 : Spec
 spc3 =
     toVegaLite
-        [ config
+        [ cfg
         , spcData
         , layer
             (List.map sdLine [ 0, 1.5, -1.5, 2, -2, 3, -3 ]
@@ -56,7 +56,7 @@ spc4 =
             asSpec [ enc [], point [ maFilled True, maSize 60 ] ]
     in
     toVegaLite
-        [ config
+        [ cfg
         , spcData
         , layer
             (List.map sdLine [ 0, 1.5, -1.5, 2, -2, 3, -3 ]
@@ -86,7 +86,7 @@ spc5 =
             asSpec [ trans [], enc [], line [] ]
     in
     toVegaLite
-        [ config
+        [ cfg
         , spcData
         , layer (List.map sdRegion [ 3.5, 3, 2, 1.5 ] ++ [ sdLine 0, specLine, specShifts ])
         ]
@@ -106,7 +106,7 @@ cusum1 =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
-        [ config, cusumData -1, layer [ specZeroLine, specCusum ] ]
+        [ cfg, cusumData -1, layer [ specZeroLine, specCusum ] ]
 
 
 cusum2 : Spec
@@ -123,7 +123,7 @@ cusum2 =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
-        [ config, cusumData 21, layer [ specZeroLine, specCusum ] ]
+        [ cfg, cusumData 21, layer [ specZeroLine, specCusum ] ]
 
 
 cusum3 : Spec
@@ -140,7 +140,7 @@ cusum3 =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
-        [ config, cusumData 24, layer [ specZeroLine, specCusum ] ]
+        [ cfg, cusumData 24, layer [ specZeroLine, specCusum ] ]
 
 
 cusumInteractive : Float -> Spec
@@ -157,7 +157,7 @@ cusumInteractive baseline =
             asSpec [ enc [], rule [ maColor "rgb(62,156,167)" ] ]
     in
     toVegaLite
-        [ config
+        [ cfg
         , width 550
         , autosize [ asFit, asContent ]
         , cusumData baseline
@@ -245,8 +245,8 @@ cusumData x =
         []
 
 
-config : ( VLProperty, Spec )
-config =
+cfg : ( VLProperty, Spec )
+cfg =
     (configure
         << configuration (coView [ vicoStroke Nothing, vicoContinuousWidth 500, vicoContinuousHeight 220 ])
         << configuration (coBackground "#fffff8")
