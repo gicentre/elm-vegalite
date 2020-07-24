@@ -10915,8 +10915,6 @@ var $author$project$VegaLite$PBin = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$RHeatmap = function (a) {
 	return {$: 2, a: a};
 };
@@ -10982,7 +10980,6 @@ var $author$project$GalleryTable$table3 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('IMDB Rating'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(
 							_List_fromArray(
 								[
@@ -10995,7 +10992,6 @@ var $author$project$GalleryTable$table3 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -11594,6 +11590,7 @@ var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
+var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};

@@ -8282,7 +8282,6 @@ var $author$project$GalleryFacet$facet4 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('Horsepower'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(
 							_List_fromArray(
 								[

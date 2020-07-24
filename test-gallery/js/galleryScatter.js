@@ -8939,7 +8939,6 @@ var $author$project$GalleryScatter$scatter5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('IMDB Rating'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(
 							_List_fromArray(
 								[
@@ -8952,7 +8951,6 @@ var $author$project$GalleryScatter$scatter5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
 							[

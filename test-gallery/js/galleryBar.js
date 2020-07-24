@@ -13362,7 +13362,6 @@ var $author$project$GalleryBar$bar4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -13401,7 +13400,6 @@ var $author$project$GalleryBar$bar5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('binStart'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(
 							_List_fromArray(
 								[

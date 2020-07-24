@@ -12920,7 +12920,6 @@ var $author$project$GalleryLine$line5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('IMDB Rating'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(

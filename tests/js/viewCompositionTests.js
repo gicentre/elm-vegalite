@@ -13965,8 +13965,7 @@ var $author$project$ViewCompositionTests$concat2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('rate'),
-						$author$project$VegaLite$pBin(_List_Nil),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -14425,7 +14424,6 @@ var $author$project$ViewCompositionTests$grid4 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pRepeat($author$project$VegaLite$arFlow),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -14503,7 +14501,6 @@ var $author$project$ViewCompositionTests$grid5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pRepeat($author$project$VegaLite$arRow),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(

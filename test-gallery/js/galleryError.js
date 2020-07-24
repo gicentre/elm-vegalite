@@ -7946,8 +7946,7 @@ var $author$project$GalleryError$error2 = function () {
 			2,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('lower'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pName('lower')
 				])));
 	var specStdevs = $author$project$VegaLite$asSpec(
 		_List_fromArray(

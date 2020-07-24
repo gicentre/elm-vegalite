@@ -10124,7 +10124,6 @@ var $author$project$DataTests$bin1 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('bin_start'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBinned,
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -10137,8 +10136,7 @@ var $author$project$DataTests$bin1 = function () {
 				2,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('bin_end'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('bin_end')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10209,7 +10207,6 @@ var $author$project$DataTests$bin2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('x'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -10253,7 +10250,6 @@ var $author$project$DataTests$bin3 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('x'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
 							[

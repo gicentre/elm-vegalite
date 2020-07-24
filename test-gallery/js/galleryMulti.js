@@ -8678,7 +8678,6 @@ var $author$project$GalleryMulti$multi2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pRepeat($author$project$VegaLite$arColumn),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -11471,7 +11470,6 @@ var $author$project$GalleryMulti$multi4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pTitle('IMDB Rating'),
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
@@ -11485,7 +11483,6 @@ var $author$project$GalleryMulti$multi4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pBin(
 					_List_fromArray(
@@ -13097,8 +13094,7 @@ var $author$project$GalleryMulti$multi8 = function () {
 							[
 								$author$project$VegaLite$biMaxBins(30),
 								$author$project$VegaLite$biSelectionExtent('brush')
-							])),
-						$author$project$VegaLite$pQuant
+							]))
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -13130,8 +13126,7 @@ var $author$project$GalleryMulti$multi8 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$biMaxBins(30)
-							])),
-						$author$project$VegaLite$pQuant
+							]))
 					]))),
 		A2(
 			$author$project$VegaLite$position,

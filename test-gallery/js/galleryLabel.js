@@ -12882,7 +12882,6 @@ var $author$project$GalleryLabel$label7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil),
 						$author$project$VegaLite$pAxis(_List_Nil)
 					]))),

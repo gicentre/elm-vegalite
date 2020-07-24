@@ -4313,11 +4313,6 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$GalleryDist$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
@@ -7697,7 +7692,6 @@ var $author$project$GalleryDist$dist1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -7750,6 +7744,11 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
+var $author$project$VegaLite$PmType = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
@@ -8492,7 +8491,6 @@ var $author$project$GalleryDist$dist2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('bin_Horsepower'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBinned,
 							$author$project$VegaLite$pTitle('Horsepower')
 						]))),

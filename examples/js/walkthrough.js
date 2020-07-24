@@ -11583,7 +11583,6 @@ var $author$project$Walkthrough$dashboard1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('temp_max'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -11877,7 +11876,6 @@ var $author$project$Walkthrough$dashboard2 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('temp_max'),
-								$author$project$VegaLite$pQuant,
 								$author$project$VegaLite$pBin(_List_Nil)
 							]))),
 				A2(
@@ -12001,7 +11999,6 @@ var $author$project$Walkthrough$histogram = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('temp_max'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		A2(
@@ -12313,7 +12310,6 @@ var $author$project$Walkthrough$lineChart = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('temp_max'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -12354,7 +12350,6 @@ var $author$project$Walkthrough$multiBar = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('temp_max'),
-								$author$project$VegaLite$pQuant,
 								$author$project$VegaLite$pBin(_List_Nil)
 							]))),
 				A2(
@@ -12445,7 +12440,6 @@ var $author$project$Walkthrough$stackedHistogram = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('temp_max'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -12483,7 +12477,6 @@ var $author$project$Walkthrough$stackedHistogram2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('temp_max'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
