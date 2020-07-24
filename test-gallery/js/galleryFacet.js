@@ -2796,10 +2796,18 @@ var $author$project$VegaLite$combineSpecs = function (specs) {
 };
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
+var $author$project$VegaLite$AxLabelAngle = function (a) {
+	return {$: 21, a: a};
 };
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $author$project$VegaLite$positiveAngle = function (a) {
+	return (a < 0) ? (a + 360) : a;
+};
+var $author$project$VegaLite$axLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$AxLabelAngle, $author$project$VegaLite$positiveAngle);
 var $author$project$VegaLite$Bar = 2;
 var $author$project$VegaLite$VLMark = 12;
 var $elm$core$List$foldrHelper = F4(
@@ -6120,11 +6128,6 @@ var $author$project$VegaLite$color = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
 var $author$project$VegaLite$VLData = 10;
 var $author$project$VegaLite$dataTypeLabel = function (dType) {
 	switch (dType.$) {
@@ -6277,6 +6280,10 @@ var $author$project$VegaLite$encoding = function (channels) {
 		15,
 		$elm$json$Json$Encode$object(channels));
 };
+var $author$project$VegaLite$FHeader = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$fHeader = $author$project$VegaLite$FHeader;
 var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
@@ -6291,6 +6298,14 @@ var $author$project$VegaLite$filter = function (f) {
 			'filter',
 			$author$project$VegaLite$filterSpec(f)));
 };
+var $author$project$VegaLite$HTitle = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$hdTitle = $author$project$VegaLite$HTitle;
+var $author$project$VegaLite$MLegend = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
@@ -6320,6 +6335,11 @@ var $author$project$VegaLite$PmType = function (a) {
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$GalleryFacet$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -8084,7 +8104,12 @@ var $author$project$GalleryFacet$facet1 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('age'),
-								$author$project$VegaLite$pOrdinal
+								$author$project$VegaLite$pOrdinal,
+								$author$project$VegaLite$pAxis(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$axLabelAngle(0)
+									]))
 							]))),
 				A2(
 					$author$project$VegaLite$position,
@@ -8094,11 +8119,7 @@ var $author$project$GalleryFacet$facet1 = function () {
 							$author$project$VegaLite$pName('people'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('Population')
-								]))
+							$author$project$VegaLite$pTitle('population')
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
@@ -8111,24 +8132,30 @@ var $author$project$GalleryFacet$facet1 = function () {
 								$author$project$VegaLite$raStrs(
 									_List_fromArray(
 										['#675193', '#ca8861'])))
-							]))
+							])),
+						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		$author$project$VegaLite$row(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('gender')
+					$author$project$VegaLite$fName('gender'),
+					$author$project$VegaLite$fHeader(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$hdTitle('')
+						]))
 				])));
-	var des = $author$project$VegaLite$description('A trellis bar chart showing the US population distribution of age groups and gender in 2000');
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/population.json');
+	var desc = $author$project$VegaLite$description('A trellis bar chart showing the US population distribution of age groups and gender in 2000');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$widthStep(17),
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$column = function (fFields) {
@@ -8179,14 +8206,15 @@ var $author$project$GalleryFacet$facet2 = function () {
 					$author$project$VegaLite$fName('year'),
 					$author$project$VegaLite$fOrdinal
 				])));
-	var des = $author$project$VegaLite$description('Barley crop yields in 1931 and 1932 shown as stacked bar charts');
+	var desc = $author$project$VegaLite$description('Barley crop yields in 1931 and 1932 shown as stacked bar charts');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
+				desc,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Point = 10;
@@ -8204,7 +8232,7 @@ var $author$project$GalleryFacet$facet3 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Worldwide_Gross'),
+							$author$project$VegaLite$pName('Worldwide Gross'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -8212,23 +8240,24 @@ var $author$project$GalleryFacet$facet3 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('US_DVD_Sales'),
+						$author$project$VegaLite$pName('US DVD Sales'),
 						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$column(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('MPAA_Rating'),
+					$author$project$VegaLite$fName('MPAA Rating'),
 					$author$project$VegaLite$fOrdinal
 				])));
-	var des = $author$project$VegaLite$description('Scatterplots of movie takings vs profits for different MPAA ratings');
+	var desc = $author$project$VegaLite$description('Scatterplots of movie takings vs profits for different MPAA ratings');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				desc,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$MaxBins = function (a) {
@@ -8276,14 +8305,15 @@ var $author$project$GalleryFacet$facet4 = function () {
 					$author$project$VegaLite$fName('Origin'),
 					$author$project$VegaLite$fOrdinal
 				])));
-	var des = $author$project$VegaLite$description('Disitributions of car engine power for different countries of origin');
+	var desc = $author$project$VegaLite$description('Disitributions of car engine power for different countries of origin');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
+				desc,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$asSpec = function (specs) {
@@ -8303,6 +8333,10 @@ var $author$project$VegaLite$AxGrid = function (a) {
 	return {$: 68, a: a};
 };
 var $author$project$VegaLite$axGrid = $author$project$VegaLite$AxGrid;
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$VLColumns = 20;
@@ -8312,10 +8346,6 @@ var $author$project$VegaLite$columns = function (cols) {
 		$elm$json$Json$Encode$int(
 			A2($elm$core$Basics$max, 0, cols)));
 };
-var $author$project$VegaLite$FHeader = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$fHeader = $author$project$VegaLite$FHeader;
 var $author$project$VegaLite$VLFacet = 22;
 var $author$project$VegaLite$facetFlow = function (fFields) {
 	return _Utils_Tuple2(
@@ -8323,10 +8353,6 @@ var $author$project$VegaLite$facetFlow = function (fFields) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields)));
 };
-var $author$project$VegaLite$HTitle = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$hdTitle = $author$project$VegaLite$HTitle;
 var $author$project$VegaLite$VLLayer = 16;
 var $author$project$VegaLite$layer = function (specs) {
 	return _Utils_Tuple2(
@@ -8524,12 +8550,12 @@ var $author$project$GalleryFacet$facet5 = function () {
 						$author$project$VegaLite$maStrokeWidth(1)
 					]))
 			]));
-	var des = $author$project$VegaLite$description('Anscombe\'s Quartet');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/anscombe.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Anscombe\'s Quartet');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'anscombe.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				$author$project$VegaLite$columns(2),
 				$author$project$VegaLite$facetFlow(
@@ -8637,12 +8663,12 @@ var $author$project$GalleryFacet$facet6 = function () {
 				[
 					$author$project$VegaLite$mName('year')
 				])));
-	var des = $author$project$VegaLite$description('The Trellis display by Becker et al. helped establish small multiples as a \'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables\'');
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/barley.json');
+	var desc = $author$project$VegaLite$description('The Trellis display by Becker et al. helped establish small multiples as a \'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables\'');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				$author$project$VegaLite$columns(2),
 				$author$project$VegaLite$facetFlow(
 				_List_fromArray(
@@ -8670,14 +8696,14 @@ var $author$project$GalleryFacet$facet6 = function () {
 						])))
 			]));
 }();
+var $author$project$VegaLite$AnStart = 0;
+var $author$project$VegaLite$anStart = 0;
 var $author$project$VegaLite$Area = 1;
 var $author$project$VegaLite$area = $author$project$VegaLite$mark(1);
 var $author$project$VegaLite$AxFormat = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$axFormat = $author$project$VegaLite$AxFormat;
-var $author$project$VegaLite$ChY = 1;
-var $author$project$VegaLite$chY = 1;
 var $author$project$VegaLite$View = function (a) {
 	return {$: 45, a: a};
 };
@@ -11490,11 +11516,12 @@ var $author$project$VegaLite$configure = function (configs) {
 		29,
 		$elm$json$Json$Encode$object(configs));
 };
+var $author$project$VegaLite$HLabelAnchor = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$hdLabelAnchor = $author$project$VegaLite$HLabelAnchor;
 var $author$project$VegaLite$HLabelAngle = function (a) {
 	return {$: 7, a: a};
-};
-var $author$project$VegaLite$positiveAngle = function (a) {
-	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$hdLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$HLabelAngle, $author$project$VegaLite$positiveAngle);
 var $author$project$VegaLite$VLHeight = 4;
@@ -11503,87 +11530,8 @@ var $author$project$VegaLite$height = function (h) {
 		4,
 		$elm$json$Json$Encode$float(h));
 };
-var $author$project$VegaLite$MLegend = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
-var $author$project$VegaLite$RIndependent = 1;
-var $author$project$VegaLite$reIndependent = 1;
-var $author$project$VegaLite$RScale = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$reScale = $author$project$VegaLite$RScale;
-var $author$project$VegaLite$resolutionLabel = function (res) {
-	if (!res) {
-		return 'shared';
-	} else {
-		return 'independent';
-	}
-};
-var $author$project$VegaLite$resolveProperty = function (res) {
-	switch (res.$) {
-		case 0:
-			var chRules = res.a;
-			return _Utils_Tuple2(
-				'axis',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v1) {
-							var ch = _v1.a;
-							var chRule = _v1.b;
-							return _Utils_Tuple2(
-								$author$project$VegaLite$channelLabel(ch),
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$resolutionLabel(chRule)));
-						},
-						chRules)));
-		case 1:
-			var chRules = res.a;
-			return _Utils_Tuple2(
-				'legend',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v2) {
-							var ch = _v2.a;
-							var chRule = _v2.b;
-							return _Utils_Tuple2(
-								$author$project$VegaLite$channelLabel(ch),
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$resolutionLabel(chRule)));
-						},
-						chRules)));
-		default:
-			var chRules = res.a;
-			return _Utils_Tuple2(
-				'scale',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v3) {
-							var ch = _v3.a;
-							var chRule = _v3.b;
-							return _Utils_Tuple2(
-								$author$project$VegaLite$channelLabel(ch),
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$resolutionLabel(chRule)));
-						},
-						chRules)));
-	}
-};
-var $author$project$VegaLite$resolution = function (res) {
-	return $elm$core$List$cons(
-		$author$project$VegaLite$resolveProperty(res));
-};
-var $author$project$VegaLite$VLResolve = 24;
-var $author$project$VegaLite$resolve = function (res) {
-	return _Utils_Tuple2(
-		24,
-		$elm$json$Json$Encode$object(res));
-};
 var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
@@ -11595,15 +11543,11 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$GalleryFacet$facet7 = function () {
-	var res = A2(
+	var trans = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$resolve,
-		$author$project$VegaLite$resolution(
-			$author$project$VegaLite$reScale(
-				_List_fromArray(
-					[
-						_Utils_Tuple2($author$project$VegaLite$chY, $author$project$VegaLite$reIndependent)
-					]))));
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum.symbol !== \'GOOG\'')));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11656,11 +11600,12 @@ var $author$project$GalleryFacet$facet7 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$hdTitle('Stock price'),
-							$author$project$VegaLite$hdLabelAngle(0)
+							$author$project$VegaLite$hdLabelAngle(0),
+							$author$project$VegaLite$hdLabelAnchor($author$project$VegaLite$anStart)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Stock prices of five large companies as a small multiples of area charts');
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/stocks.csv');
+	var desc = $author$project$VegaLite$description('Stock prices of five large companies as a small multiples of area charts');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'stocks.csv', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -11673,16 +11618,18 @@ var $author$project$GalleryFacet$facet7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(50),
 				cfg(_List_Nil),
-				res(_List_Nil),
-				data(_List_Nil),
+				data,
+				trans(_List_Nil),
 				$author$project$VegaLite$area(_List_Nil),
 				enc(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$ChY = 1;
+var $author$project$VegaLite$chY = 1;
 var $author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -11831,6 +11778,81 @@ var $author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
+var $author$project$VegaLite$RIndependent = 1;
+var $author$project$VegaLite$reIndependent = 1;
+var $author$project$VegaLite$RScale = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$reScale = $author$project$VegaLite$RScale;
+var $author$project$VegaLite$resolutionLabel = function (res) {
+	if (!res) {
+		return 'shared';
+	} else {
+		return 'independent';
+	}
+};
+var $author$project$VegaLite$resolveProperty = function (res) {
+	switch (res.$) {
+		case 0:
+			var chRules = res.a;
+			return _Utils_Tuple2(
+				'axis',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$map,
+						function (_v1) {
+							var ch = _v1.a;
+							var chRule = _v1.b;
+							return _Utils_Tuple2(
+								$author$project$VegaLite$channelLabel(ch),
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$resolutionLabel(chRule)));
+						},
+						chRules)));
+		case 1:
+			var chRules = res.a;
+			return _Utils_Tuple2(
+				'legend',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$map,
+						function (_v2) {
+							var ch = _v2.a;
+							var chRule = _v2.b;
+							return _Utils_Tuple2(
+								$author$project$VegaLite$channelLabel(ch),
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$resolutionLabel(chRule)));
+						},
+						chRules)));
+		default:
+			var chRules = res.a;
+			return _Utils_Tuple2(
+				'scale',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$map,
+						function (_v3) {
+							var ch = _v3.a;
+							var chRule = _v3.b;
+							return _Utils_Tuple2(
+								$author$project$VegaLite$channelLabel(ch),
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$resolutionLabel(chRule)));
+						},
+						chRules)));
+	}
+};
+var $author$project$VegaLite$resolution = function (res) {
+	return $elm$core$List$cons(
+		$author$project$VegaLite$resolveProperty(res));
+};
+var $author$project$VegaLite$VLResolve = 24;
+var $author$project$VegaLite$resolve = function (res) {
+	return _Utils_Tuple2(
+		24,
+		$elm$json$Json$Encode$object(res));
+};
 var $author$project$VegaLite$VLSpacing = 25;
 var $author$project$VegaLite$spacing = function (sp) {
 	return _Utils_Tuple2(
@@ -11917,7 +11939,7 @@ var $author$project$GalleryFacet$facet8 = function () {
 							$author$project$VegaLite$hdTitle('Factor B')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('A simple grid of bar charts to compare performance data.');
+	var desc = $author$project$VegaLite$description('A simple grid of bar charts to compare performance data.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11968,7 +11990,7 @@ var $author$project$GalleryFacet$facet8 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(60),
 				$author$project$VegaLite$heightStep(8),
 				$author$project$VegaLite$spacing(5),
