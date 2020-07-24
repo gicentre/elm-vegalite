@@ -2794,8 +2794,6 @@ var $elm$json$Json$Encode$object = function (pairs) {
 var $author$project$VegaLite$combineSpecs = function (specs) {
 	return $elm$json$Json$Encode$object(specs);
 };
-var $author$project$VegaLite$AlbersUsa = {$: 1};
-var $author$project$VegaLite$albersUsa = $author$project$VegaLite$AlbersUsa;
 var $author$project$VegaLite$View = function (a) {
 	return {$: 45, a: a};
 };
@@ -10516,6 +10514,9 @@ var $author$project$VegaLite$MmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$GalleryGeo$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$VegaLite$AlbersUsa = {$: 1};
+var $author$project$VegaLite$albersUsa = $author$project$VegaLite$AlbersUsa;
 var $author$project$VegaLite$PType = function (a) {
 	return {$: 0, a: a};
 };
@@ -10527,6 +10528,11 @@ var $author$project$VegaLite$projection = function (pProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pProps)));
 };
+var $author$project$GalleryGeo$proj = $author$project$VegaLite$projection(
+	_List_fromArray(
+		[
+			$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
+		]));
 var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -10650,7 +10656,7 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$GalleryGeo$geo1 = function () {
-	var unemploymentData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment.tsv', _List_Nil);
+	var unemploymentData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'unemployment.tsv', _List_Nil);
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -10662,11 +10668,6 @@ var $author$project$GalleryGeo$geo1 = function () {
 			$author$project$VegaLite$luFields(
 				_List_fromArray(
 					['rate']))));
-	var proj = $author$project$VegaLite$projection(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-			]));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -10678,7 +10679,7 @@ var $author$project$GalleryGeo$geo1 = function () {
 				])));
 	var countyData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('counties')
@@ -10690,7 +10691,7 @@ var $author$project$GalleryGeo$geo1 = function () {
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
 				countyData,
-				proj,
+				$author$project$GalleryGeo$proj,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$geoshape(_List_Nil)
@@ -11040,20 +11041,17 @@ var $author$project$GalleryGeo$geo2 = function () {
 				[
 					$author$project$VegaLite$mName('digit')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/zipcodes.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('US zip codes: One dot per zipcode colored by first digit');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'zipcodes.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				$author$project$VegaLite$description('US zip codes: One dot per zipcode colored by first digit'),
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
 				data,
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
+				$author$project$GalleryGeo$proj,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(
@@ -11133,7 +11131,7 @@ var $author$project$GalleryGeo$geo3 = function () {
 				])));
 	var mapData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
@@ -11146,7 +11144,7 @@ var $author$project$GalleryGeo$geo3 = function () {
 				[
 					$author$project$VegaLite$mStr('#eee')
 				])));
-	var des = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
+	var desc = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11154,7 +11152,7 @@ var $author$project$GalleryGeo$geo3 = function () {
 				enc(_List_Nil),
 				$author$project$VegaLite$geoshape(_List_Nil)
 			]));
-	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
+	var airportData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'airports.csv', _List_Nil);
 	var overlaySpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11165,15 +11163,11 @@ var $author$project$GalleryGeo$geo3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				des,
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
+				$author$project$GalleryGeo$proj,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[backdropSpec, overlaySpec]))
@@ -11209,7 +11203,7 @@ var $author$project$VegaLite$str = $author$project$VegaLite$Str;
 var $author$project$GalleryGeo$geo4 = function () {
 	var mapData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
@@ -11251,7 +11245,8 @@ var $author$project$GalleryGeo$geo4 = function () {
 				[
 					$author$project$VegaLite$pName('d.latitude')
 				])));
-	var flightData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/flights-airport.csv', _List_Nil);
+	var flightData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'flights-airport.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Rules (line segments) connecting SEA to every airport reachable via direct flight');
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11281,7 +11276,7 @@ var $author$project$GalleryGeo$geo4 = function () {
 				[
 					$author$project$VegaLite$pName('latitude')
 				])));
-	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
+	var airportData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11329,15 +11324,11 @@ var $author$project$GalleryGeo$geo4 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				$author$project$VegaLite$description('Rules (line segments) connecting SEA to every airport reachable via direct flight'),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(500),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
+				$author$project$GalleryGeo$proj,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[backdropSpec, airportsSpec, flightsSpec]))
@@ -11481,7 +11472,7 @@ var $author$project$GalleryGeo$geo5 = function () {
 					]))));
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
@@ -11512,12 +11503,13 @@ var $author$project$GalleryGeo$geo5 = function () {
 					$author$project$VegaLite$mRepeat($author$project$VegaLite$arRow),
 					$author$project$VegaLite$mQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population_engineers_hurricanes.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Population per state, engineers per state, and hurricanes per state');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'population_engineers_hurricanes.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				$author$project$VegaLite$description('Population per state, engineers per state, and hurricanes per state'),
+				desc,
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
@@ -11534,11 +11526,7 @@ var $author$project$GalleryGeo$geo5 = function () {
 							$author$project$VegaLite$height(300),
 							data,
 							trans(_List_Nil),
-							$author$project$VegaLite$projection(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-								])),
+							$author$project$GalleryGeo$proj,
 							enc(_List_Nil),
 							$author$project$VegaLite$geoshape(_List_Nil)
 						])))
@@ -11741,13 +11729,13 @@ var $author$project$GalleryGeo$geo6 = function () {
 				])));
 	var mapData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
 			]));
-	var des = $author$project$VegaLite$description('US state capitals overlayed on map of the US');
-	var capitalData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/us-state-capitals.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('US state capitals overlayed on map of the US');
+	var capitalData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'us-state-capitals.json', _List_Nil);
 	var overlaySpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11768,15 +11756,11 @@ var $author$project$GalleryGeo$geo6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				des,
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(500),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
+				$author$project$GalleryGeo$proj,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[backdropSpec, overlaySpec]))
@@ -12016,7 +12000,7 @@ var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
 var $author$project$GalleryGeo$geo7 = function () {
 	var mapData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
@@ -12065,6 +12049,7 @@ var $author$project$GalleryGeo$geo7 = function () {
 					$author$project$VegaLite$oName('order'),
 					$author$project$VegaLite$oOrdinal
 				])));
+	var desc = $author$project$VegaLite$description('Line drawn between airports in the U.S. simulating a flight itinerary');
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -12094,7 +12079,7 @@ var $author$project$GalleryGeo$geo7 = function () {
 				[
 					$author$project$VegaLite$pName('latitude')
 				])));
-	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
+	var airportData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -12129,15 +12114,11 @@ var $author$project$GalleryGeo$geo7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				$author$project$VegaLite$description('Line drawn between airports in the U.S. simulating a flight itinerary'),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(500),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
+				$author$project$GalleryGeo$proj,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[backdropSpec, airportsSpec, flightsSpec]))
@@ -12248,10 +12229,10 @@ var $author$project$VegaLite$row = function (fFields) {
 var $author$project$VegaLite$Descending = {$: 1};
 var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
 var $author$project$GalleryGeo$geo8 = function () {
-	var incomeData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/income.json', _List_Nil);
+	var incomeData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'income.json', _List_Nil);
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$GalleryGeo$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
@@ -12292,20 +12273,17 @@ var $author$project$GalleryGeo$geo8 = function () {
 				[
 					$author$project$VegaLite$fName('group')
 				])));
+	var desc = $author$project$VegaLite$description('Income in the U.S. by state, faceted over income brackets');
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				$author$project$VegaLite$description('Income in the U.S. by state, faceted over income brackets'),
 				$author$project$VegaLite$width(500),
 				$author$project$VegaLite$height(300),
 				incomeData,
 				trans(_List_Nil),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
-					])),
+				$author$project$GalleryGeo$proj,
 				enc(_List_Nil),
 				$author$project$VegaLite$geoshape(_List_Nil)
 			]));
@@ -12424,7 +12402,7 @@ var $author$project$GalleryGeo$geo9 = function () {
 				])));
 	var tubeData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/londonTubeLines.json',
+		$author$project$GalleryGeo$path + 'londonTubeLines.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('line')
@@ -12471,7 +12449,8 @@ var $author$project$GalleryGeo$geo9 = function () {
 				[
 					$author$project$VegaLite$tName('bLabel')
 				])));
-	var centroidData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/londonCentroids.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Geographic position of London underground lines');
+	var centroidData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'londonCentroids.json', _List_Nil);
 	var labelSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -12487,7 +12466,7 @@ var $author$project$GalleryGeo$geo9 = function () {
 			]));
 	var boroughData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/londonBoroughs.json',
+		$author$project$GalleryGeo$path + 'londonBoroughs.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('boroughs')
@@ -12507,8 +12486,8 @@ var $author$project$GalleryGeo$geo9 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				$author$project$GalleryGeo$cfg(_List_Nil),
-				$author$project$VegaLite$description('Geographic position of London underground lines'),
 				$author$project$VegaLite$width(700),
 				$author$project$VegaLite$height(500),
 				$author$project$VegaLite$layer(
