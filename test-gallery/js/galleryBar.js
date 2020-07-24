@@ -7807,7 +7807,7 @@ var $author$project$GalleryBar$bar1 = function () {
 					$author$project$VegaLite$pName('b'),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('A simple bar chart with embedded data.');
+	var desc = $author$project$VegaLite$description('A simple bar chart with embedded data.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -7828,7 +7828,7 @@ var $author$project$GalleryBar$bar1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -7897,6 +7897,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$GalleryBar$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$VLWidth = 3;
 var $author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(
@@ -7942,12 +7943,12 @@ var $author$project$GalleryBar$bar10 = function () {
 							$author$project$VegaLite$axTitle('Average number of days with rain')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Seattle precipitation bar chart with abbreviated labels');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Seattle precipitation bar chart with abbreviated labels');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				data,
 				enc(_List_Nil),
@@ -8014,7 +8015,7 @@ var $author$project$GalleryBar$bar11 = function () {
 							A2($author$project$VegaLite$cAxGridColor, 'black', '#ddd'))
 						]))
 				])));
-	var des = $author$project$VegaLite$description('A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid colour to draw a zero baseline.');
+	var desc = $author$project$VegaLite$description('A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid colour to draw a zero baseline.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -8035,7 +8036,7 @@ var $author$project$GalleryBar$bar11 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -8083,12 +8084,12 @@ var $author$project$GalleryBar$bar12 = function () {
 				[
 					$author$project$VegaLite$mName('site')
 				])));
-	var des = $author$project$VegaLite$description('Barley crop yields as a horizontal stacked bar chart');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Barley crop yields as a horizontal stacked bar chart');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -8228,12 +8229,12 @@ var $author$project$GalleryBar$bar13 = function () {
 									['#675193', '#ca8861'])))
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Population structure as a normalised stacked bar chart.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Population structure as a normalised stacked bar chart.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$widthStep(17),
 				data,
 				trans(_List_Nil),
@@ -8273,7 +8274,7 @@ var $author$project$GalleryBar$bar14 = function () {
 				[
 					$author$project$VegaLite$pName('end')
 				])));
-	var des = $author$project$VegaLite$description('A simple bar chart with ranged data (aka Gantt Chart).');
+	var desc = $author$project$VegaLite$description('A simple bar chart with ranged data (aka Gantt Chart).');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -8302,7 +8303,7 @@ var $author$project$GalleryBar$bar14 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -8337,7 +8338,7 @@ var $author$project$GalleryBar$bar15 = function () {
 					$author$project$VegaLite$mName('color'),
 					$author$project$VegaLite$mScale(_List_Nil)
 				])));
-	var des = $author$project$VegaLite$description('A bar chart that directly encodes color names in the data.');
+	var desc = $author$project$VegaLite$description('A bar chart that directly encodes color names in the data.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -8358,7 +8359,7 @@ var $author$project$GalleryBar$bar15 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -8436,12 +8437,12 @@ var $author$project$GalleryBar$bar16 = function () {
 				[
 					$author$project$VegaLite$mNum(0.7)
 				])));
-	var des = $author$project$VegaLite$description('Layered bar chart showing the US population distribution of age groups and gender in 2000.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Layered bar chart showing the US population distribution of age groups and gender in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$widthStep(17),
 				data,
 				trans(_List_Nil),
@@ -11555,7 +11556,7 @@ var $author$project$GalleryBar$bar17 = function () {
 							$author$project$VegaLite$leTitle('')
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11703,7 +11704,7 @@ var $author$project$GalleryBar$bar18 = function () {
 									_Utils_Tuple2('Strongly agree', '#1770ab')
 								]))))
 				])));
-	var des = $author$project$VegaLite$description('A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark.');
+	var desc = $author$project$VegaLite$description('A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11756,7 +11757,7 @@ var $author$project$GalleryBar$bar18 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -12024,7 +12025,7 @@ var $author$project$GalleryBar$bar19 = function () {
 					$author$project$VegaLite$pName('a'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var des = $author$project$VegaLite$description('A simple bar chart with embedded data labels.');
+	var desc = $author$project$VegaLite$description('A simple bar chart with embedded data labels.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12061,7 +12062,7 @@ var $author$project$GalleryBar$bar19 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
@@ -12115,12 +12116,12 @@ var $author$project$GalleryBar$bar2 = function () {
 					$author$project$VegaLite$pName('age'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var des = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$heightStep(17),
 				data,
 				trans(_List_Nil),
@@ -12202,7 +12203,7 @@ var $author$project$GalleryBar$bar20 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
-		A2($author$project$VegaLite$calculateAs, 'isValid(datum.Major_Genre)? datum.Major_Genre : \'unclassified\'', 'genre'));
+		A2($author$project$VegaLite$calculateAs, 'isValid(datum[\'Major Genre\'])? datum[\'Major Genre\'] : \'unclassified\'', 'genre'));
 	var encText = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12238,7 +12239,7 @@ var $author$project$GalleryBar$bar20 = function () {
 			0,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('IMDB_Rating'),
+					$author$project$VegaLite$pName('IMDB Rating'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pScale(
@@ -12280,12 +12281,12 @@ var $author$project$GalleryBar$bar20 = function () {
 						])),
 					$author$project$VegaLite$pAxis(_List_Nil)
 				])));
-	var des = $author$project$VegaLite$description('Bar chart with label overlay');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Bar chart with label overlay');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(200),
 				$author$project$VegaLite$heightStep(16),
 				data,
@@ -12360,8 +12361,8 @@ var $author$project$GalleryBar$bar21 = function () {
 							$author$project$VegaLite$axZIndex(1)
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Bar Chart with a spacing-saving y-axis');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Bar Chart with a spacing-saving y-axis');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -12374,7 +12375,7 @@ var $author$project$GalleryBar$bar21 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$heightStep(30),
 				data,
@@ -12628,7 +12629,7 @@ var $author$project$GalleryBar$bar22 = function () {
 					_List_fromArray(
 						[$author$project$VegaLite$soDescending]))
 				])));
-	var des = $author$project$VegaLite$description('A Wilkinson dot plot');
+	var desc = $author$project$VegaLite$description('A Wilkinson dot plot');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$dataFromColumns(_List_Nil),
@@ -12650,7 +12651,7 @@ var $author$project$GalleryBar$bar22 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$height(100),
 				data(_List_Nil),
@@ -13149,7 +13150,7 @@ var $author$project$GalleryBar$bar23 = function () {
 				[
 					$author$project$VegaLite$mNum(200)
 				])));
-	var des = $author$project$VegaLite$description('Isotype bar chart inspired by this Only An Ocean Between, 1943. Population Live Stock, p.13.');
+	var desc = $author$project$VegaLite$description('Isotype bar chart inspired by this Only An Ocean Between, 1943. Population Live Stock, p.13.');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13185,7 +13186,7 @@ var $author$project$GalleryBar$bar23 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(200),
@@ -13271,7 +13272,7 @@ var $author$project$GalleryBar$bar24 = function () {
 				[
 					$author$project$VegaLite$mNum(65)
 				])));
-	var des = $author$project$VegaLite$description('Isotype bar chart using emojis for symbols');
+	var desc = $author$project$VegaLite$description('Isotype bar chart using emojis for symbols');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13307,7 +13308,7 @@ var $author$project$GalleryBar$bar24 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(800),
 				$author$project$VegaLite$height(200),
@@ -13366,12 +13367,12 @@ var $author$project$GalleryBar$bar3 = function () {
 							$author$project$VegaLite$soDescending
 						]))
 				])));
-	var des = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000, sorted by population');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000, sorted by population');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$heightStep(17),
 				data,
 				trans(_List_Nil),
@@ -13394,7 +13395,7 @@ var $author$project$GalleryBar$bar4 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
@@ -13406,12 +13407,12 @@ var $author$project$GalleryBar$bar4 = function () {
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Simple histogram of IMDB ratings.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Simple histogram of IMDB ratings.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -13599,7 +13600,7 @@ var $author$project$GalleryBar$bar6 = function () {
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
 					$author$project$VegaLite$pQuant
 				])));
-	var des = $author$project$VegaLite$description('Log-scaled Histogram (may improve after https://github.com/vega/vega-lite/issues/4792)');
+	var desc = $author$project$VegaLite$description('Log-scaled Histogram');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$dataFromColumns(_List_Nil),
@@ -13612,7 +13613,7 @@ var $author$project$GalleryBar$bar6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				trans(_List_Nil),
 				enc(_List_Nil),
@@ -13638,6 +13639,10 @@ var $author$project$VegaLite$FSpacing = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$fSpacing = $author$project$VegaLite$FSpacing;
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$GalleryBar$bar7 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -13697,10 +13702,11 @@ var $author$project$GalleryBar$bar7 = function () {
 							$author$project$VegaLite$raStrs(
 								_List_fromArray(
 									['#675193', '#ca8861'])))
-						]))
+						])),
+					$author$project$VegaLite$mTitle('')
 				])));
-	var des = $author$project$VegaLite$description('Grouped bar chart showing population structure by age and gender.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Grouped bar chart showing population structure by age and gender.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13721,7 +13727,7 @@ var $author$project$GalleryBar$bar7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$widthStep(12),
 				data,
@@ -13730,10 +13736,6 @@ var $author$project$GalleryBar$bar7 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$MTitle = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$GalleryBar$weatherColors = $author$project$VegaLite$categoricalDomainMap(
 	_List_fromArray(
 		[
@@ -13788,12 +13790,12 @@ var $author$project$GalleryBar$weatherBars = function (mProps) {
 					$author$project$VegaLite$mScale($author$project$GalleryBar$weatherColors),
 					$author$project$VegaLite$mTitle('')
 				])));
-	var des = $author$project$VegaLite$description('Seattle weather stacked bar chart');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-weather.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Seattle weather stacked bar chart');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				data,
 				enc(_List_Nil),
