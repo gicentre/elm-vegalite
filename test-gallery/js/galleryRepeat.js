@@ -6402,11 +6402,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 17, a: a};
 };
@@ -7853,8 +7848,7 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('location'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('location')
 				])));
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -7901,8 +7895,7 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('location'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('location')
 					]))),
 		$author$project$VegaLite$opacity(
 			_List_fromArray(
@@ -7954,6 +7947,9 @@ var $author$project$VegaLite$MAggregate = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$mAggregate = $author$project$VegaLite$MAggregate;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
@@ -8114,8 +8110,7 @@ var $author$project$GalleryRepeat$repeat3 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -8879,8 +8874,7 @@ var $author$project$GalleryRepeat$repeat4 = function () {
 					$author$project$VegaLite$selectionName('myBrush'),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]),
 					_List_fromArray(
 						[

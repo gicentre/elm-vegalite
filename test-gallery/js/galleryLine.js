@@ -11242,8 +11242,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
@@ -11294,8 +11292,7 @@ var $author$project$GalleryLine$line13 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var des = $author$project$VegaLite$description('Stock prices of five tech companies over time double encoding price with vertical position and line thickness.');
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -11581,10 +11578,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -12025,8 +12018,7 @@ var $author$project$GalleryLine$line15 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('year'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('year')
 				])));
 	var specTextMin = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12045,8 +12037,7 @@ var $author$project$GalleryLine$line15 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('year'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('year')
 				])));
 	var specTextMax = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12406,7 +12397,6 @@ var $author$project$GalleryLine$line16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('team'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(teamColours)
 				])));
 	var des = $author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
@@ -12607,8 +12597,7 @@ var $author$project$GalleryLine$line18 = function () {
 		$author$project$VegaLite$strokeDash(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -12666,14 +12655,12 @@ var $author$project$GalleryLine$line19 = function () {
 			$author$project$VegaLite$strokeDash(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('predicted'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('predicted')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('predicted'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('predicted')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -12748,8 +12735,7 @@ var $author$project$GalleryLine$line2 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var des = $author$project$VegaLite$description('Line chart with point markers.');
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -12804,8 +12790,7 @@ var $author$project$GalleryLine$line3 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var des = $author$project$VegaLite$description('Line chart with stroked point markers.');
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -12860,8 +12845,7 @@ var $author$project$GalleryLine$line4 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var des = $author$project$VegaLite$description('Stock prices of 5 tech companies over time.');
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
@@ -12952,8 +12936,7 @@ var $author$project$GalleryLine$line5 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer)
 				])));
 	var des = $author$project$VegaLite$description('Repeated layers to show different weather measures.');
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
@@ -13071,8 +13054,7 @@ var $author$project$GalleryLine$line6 = function () {
 		$author$project$VegaLite$stroke(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer)
 				])));
 	var specLine = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13107,8 +13089,7 @@ var $author$project$GalleryLine$line6 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer)
 				])));
 	var specHalo = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13197,8 +13178,7 @@ var $author$project$GalleryLine$line7 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('site'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('site')
 				])));
 	var des = $author$project$VegaLite$description('Slope graph showing the change in yield for different barley sites. It shows the error in the year labels for the Morris site.');
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil);

@@ -10326,8 +10326,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$opAs = F3(
 	function (op, field, label) {
@@ -10451,7 +10449,6 @@ var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
 var $author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
@@ -10937,8 +10934,7 @@ var $author$project$SortTests$stack1 = function () {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]))),
 			$author$project$VegaLite$opacity(
 				_List_fromArray(
@@ -10952,8 +10948,7 @@ var $author$project$SortTests$stack1 = function () {
 				[
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('Origin'),
-						$author$project$VegaLite$tNominal
+						$author$project$VegaLite$tName('Origin')
 					]),
 					_List_fromArray(
 					[

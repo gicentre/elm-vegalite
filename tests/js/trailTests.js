@@ -7372,8 +7372,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$PAxis = function (a) {
@@ -9981,17 +9979,17 @@ var $author$project$TrailTests$trail1 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(400),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil),
-				$author$project$VegaLite$trail(_List_Nil),
-				enc(_List_Nil)
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$trail(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$MLegend = function (a) {
@@ -10057,12 +10055,12 @@ var $author$project$TrailTests$trail2 = function () {
 		_List_fromArray(
 			[
 				data(_List_Nil),
+				enc(_List_Nil),
 				$author$project$VegaLite$trail(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$maOrder(false)
-					])),
-				enc(_List_Nil)
+					]))
 			]));
 }();
 var $author$project$TrailTests$specs = _List_fromArray(

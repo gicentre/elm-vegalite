@@ -11185,11 +11185,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MSelectionCondition = F3(
 	function (a, b, c) {
 		return {$: 14, a: a, b: b, c: c};
@@ -11248,8 +11243,7 @@ var $author$project$Walkthrough$coordinatedScatter1 = function () {
 					$author$project$VegaLite$selectionName('picked'),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]),
 					_List_fromArray(
 						[
@@ -11319,8 +11313,7 @@ var $author$project$Walkthrough$coordinatedScatter2 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11784,10 +11777,6 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 13, a: a};
 };
@@ -11916,15 +11905,13 @@ var $author$project$Walkthrough$dashboard2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('weather'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(_List_Nil),
 						$author$project$VegaLite$mScale($author$project$Walkthrough$weatherColors)
 					]))),
 		$author$project$VegaLite$column(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('weather'),
-					$author$project$VegaLite$fNominal
+					$author$project$VegaLite$fName('weather')
 				])));
 	var histoSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12086,8 +12073,7 @@ var $author$project$Walkthrough$scatterProps = function () {
 					$author$project$VegaLite$selectionName('picked'),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]),
 					_List_fromArray(
 						[
@@ -12359,7 +12345,6 @@ var $author$project$Walkthrough$lineChart = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('weather'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale($author$project$Walkthrough$weatherColors)
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -12402,15 +12387,13 @@ var $author$project$Walkthrough$multiBar = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('weather'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(_List_Nil),
 						$author$project$VegaLite$mScale($author$project$Walkthrough$weatherColors)
 					]))),
 		$author$project$VegaLite$column(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('weather'),
-					$author$project$VegaLite$fNominal
+					$author$project$VegaLite$fName('weather')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12495,8 +12478,7 @@ var $author$project$Walkthrough$stackedHistogram = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('weather'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('weather')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12536,7 +12518,6 @@ var $author$project$Walkthrough$stackedHistogram2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('weather'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale($author$project$Walkthrough$weatherColors)
 				])));
 	return $author$project$VegaLite$toVegaLite(

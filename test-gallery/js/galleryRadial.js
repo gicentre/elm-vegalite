@@ -10411,11 +10411,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MInnerRadius = function (a) {
 	return {$: 36, a: a};
 };
@@ -10824,8 +10819,7 @@ var $author$project$GalleryRadial$radial = F2(
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('category'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('category')
 					])));
 		var des = $author$project$VegaLite$description(dText);
 		var data = A2(
@@ -10911,10 +10905,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -11095,8 +11085,7 @@ var $author$project$GalleryRadial$radial3 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('category'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('category')
 				])));
 	var labelSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11126,7 +11115,6 @@ var $author$project$GalleryRadial$radial3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('category'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var des = $author$project$VegaLite$description('Pie chart with labels');
@@ -11199,6 +11187,9 @@ var $author$project$VegaLite$SZero = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
+var $author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$GalleryRadial$radial4 = function () {
 	var segSpec = $author$project$VegaLite$asSpec(
@@ -11268,7 +11259,6 @@ var $author$project$GalleryRadial$radial4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('strength'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var des = $author$project$VegaLite$description('Radial plot with labels');
@@ -11523,7 +11513,6 @@ var $author$project$GalleryRadial$radial5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('category'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mScale(colours),
 						$author$project$VegaLite$mLegend(
 						_List_fromArray(
@@ -11631,6 +11620,9 @@ var $author$project$VegaLite$LLabelFont = function (a) {
 	return {$: 19, a: a};
 };
 var $author$project$VegaLite$leLabelFont = $author$project$VegaLite$LLabelFont;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$MdY = function (a) {
@@ -11778,8 +11770,7 @@ var $author$project$GalleryRadial$radial6 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('monthLabel'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('monthLabel')
 				])));
 	var specLabels = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11877,7 +11868,6 @@ var $author$project$GalleryRadial$radial6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('cause'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(colours),
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(

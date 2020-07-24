@@ -8822,11 +8822,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$Sum = {$: 17};
 var $author$project$VegaLite$opSum = $author$project$VegaLite$Sum;
 var $author$project$VegaLite$PAggregate = function (a) {
@@ -8844,7 +8839,6 @@ var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
 var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$AxGridColor = function (a) {
@@ -10293,7 +10287,6 @@ var $author$project$TextFormatTests$customFormatter1 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('crimeType'),
-								$author$project$VegaLite$pNominal,
 								$author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
@@ -10313,7 +10306,6 @@ var $author$project$TextFormatTests$customFormatter1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('crimeType'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(
 						_List_fromArray(
 							[
@@ -13363,10 +13355,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$TString = function (a) {
 	return {$: 14, a: a};
 };
@@ -13610,7 +13598,6 @@ var $author$project$TextFormatTests$multiline1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mTitle('Legend title on\ntwo lines')
 				])));
 	var enc2 = A2(
@@ -13627,8 +13614,7 @@ var $author$project$TextFormatTests$multiline1 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('label'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('label')
 				])));
 	var data2 = A2(
 		$elm$core$Basics$composeL,
@@ -14008,6 +13994,9 @@ var $author$project$VegaLite$LFormat = function (a) {
 var $author$project$VegaLite$leFormat = $author$project$VegaLite$LFormat;
 var $author$project$VegaLite$LFormatAsTemporal = {$: 9};
 var $author$project$VegaLite$leFormatAsTemporal = $author$project$VegaLite$LFormatAsTemporal;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mTemporal = $author$project$VegaLite$MmType(3);
 var $author$project$VegaLite$MDir = function (a) {
 	return {$: 23, a: a};
@@ -14040,6 +14029,9 @@ var $author$project$VegaLite$TFormat = function (a) {
 var $author$project$VegaLite$tFormat = $author$project$VegaLite$TFormat;
 var $author$project$VegaLite$TFormatAsTemporal = {$: 12};
 var $author$project$VegaLite$tFormatAsTemporal = $author$project$VegaLite$TFormatAsTemporal;
+var $author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
 var $author$project$VegaLite$tTemporal = $author$project$VegaLite$TmType(3);
 var $author$project$VegaLite$RightToLeft = 1;
 var $author$project$VegaLite$tdRightToLeft = 1;
@@ -14210,12 +14202,7 @@ var $author$project$TextFormatTests$textFormat2 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('crimeType'),
-								$author$project$VegaLite$pNominal,
-								$author$project$VegaLite$pAxis(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$axTitle('')
-									]))
+								$author$project$VegaLite$pTitle('')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
@@ -14230,7 +14217,6 @@ var $author$project$TextFormatTests$textFormat2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('crimeType'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		$author$project$VegaLite$column(

@@ -6255,11 +6255,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
@@ -7711,8 +7706,7 @@ var $author$project$SimpleScatterplot$scatter = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(

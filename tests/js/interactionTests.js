@@ -5256,9 +5256,6 @@ var $author$project$VegaLite$dataFromUrl = F2(
 					])));
 	});
 var $author$project$InteractionTests$data = A2($author$project$VegaLite$dataFromUrl, 'https://gicentre.github.io/data/westMidlands/westMidsCrimesAggregated.tsv', _List_Nil);
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$X = 0;
 var $author$project$VegaLite$Y = 1;
 var $author$project$VegaLite$DStrings = function (a) {
@@ -7410,10 +7407,6 @@ var $author$project$VegaLite$encoding = function (channels) {
 		15,
 		$elm$json$Json$Encode$object(channels));
 };
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mMType = $author$project$VegaLite$MmType;
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
@@ -7442,14 +7435,17 @@ var $author$project$VegaLite$opacity = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$pMType = $author$project$VegaLite$PmType;
 var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
+var $author$project$VegaLite$PmType = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
@@ -8812,7 +8808,7 @@ var $author$project$InteractionTests$encHighlight = A2(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('month'),
-							$author$project$VegaLite$pMType(3),
+							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
@@ -8821,7 +8817,7 @@ var $author$project$InteractionTests$encHighlight = A2(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('reportedCrimes'),
-						$author$project$VegaLite$pMType(2),
+						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pTitle('Reported crimes')
 					]))),
 		$author$project$VegaLite$color(
@@ -8833,7 +8829,6 @@ var $author$project$InteractionTests$encHighlight = A2(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('crimeType'),
-							$author$project$VegaLite$mMType(0),
 							$author$project$VegaLite$mScale($author$project$InteractionTests$cScale)
 						]),
 					_List_fromArray(
@@ -13337,7 +13332,7 @@ var $author$project$InteractionTests$enc = A2(
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('month'),
-						$author$project$VegaLite$pMType(3),
+						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTitle('')
 					]))),
 		A2(
@@ -13346,14 +13341,13 @@ var $author$project$InteractionTests$enc = A2(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('reportedCrimes'),
-					$author$project$VegaLite$pMType(2),
+					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Reported crimes')
 				]))),
 	$author$project$VegaLite$color(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('crimeType'),
-				$author$project$VegaLite$mMType(0),
 				$author$project$VegaLite$mScale($author$project$InteractionTests$cScale)
 			])));
 var $author$project$VegaLite$FExpr = function (a) {
@@ -13619,7 +13613,6 @@ var $author$project$VegaLite$lookupSelection = F3(
 									])))
 						]))));
 	});
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
 };
@@ -13644,8 +13637,6 @@ var $author$project$VegaLite$PNumber = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
@@ -13984,8 +13975,7 @@ var $author$project$InteractionTests$interaction16 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var lineSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -14392,7 +14382,6 @@ var $author$project$InteractionTests$interaction19 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('id'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var countyData = A2(

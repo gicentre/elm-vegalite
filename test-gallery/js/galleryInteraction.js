@@ -11107,11 +11107,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
 };
@@ -11429,8 +11424,7 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var spec2_2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11517,8 +11511,7 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11736,8 +11729,7 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12060,8 +12052,7 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var lineSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12328,6 +12319,9 @@ var $author$project$VegaLite$hConcat = function (specs) {
 		18,
 		$author$project$VegaLite$toList(specs));
 };
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
@@ -12410,7 +12404,6 @@ var $author$project$VegaLite$resolve = function (res) {
 };
 var $author$project$VegaLite$SeInterval = 2;
 var $author$project$VegaLite$seInterval = 2;
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$VLTitle = 2;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {
@@ -12728,8 +12721,7 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('Origin'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('Origin')
 				])));
 	var specOriginText = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12756,8 +12748,7 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('Miles_per_Gallon'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('Miles_per_Gallon')
 				])));
 	var specMPGText = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12784,8 +12775,7 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('Horsepower'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('Horsepower')
 				])));
 	var specHPText = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12867,7 +12857,6 @@ var $author$project$VegaLite$fill = function (markProps) {
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$RRamp = function (a) {
 	return {$: 4, a: a};
 };
@@ -12908,16 +12897,14 @@ var $author$project$GalleryInteraction$interaction15 = function () {
 							0,
 							_List_fromArray(
 								[
-									$author$project$VegaLite$pName('predicted'),
-									$author$project$VegaLite$pNominal
+									$author$project$VegaLite$pName('predicted')
 								]))),
 					A2(
 						$author$project$VegaLite$position,
 						1,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('actual'),
-								$author$project$VegaLite$pNominal
+								$author$project$VegaLite$pName('actual')
 							]))),
 				$author$project$VegaLite$fill(
 					_List_fromArray(
@@ -13113,7 +13100,6 @@ var $author$project$GalleryInteraction$interaction16 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Name'),
-						$author$project$VegaLite$pNominal,
 						$author$project$VegaLite$pSort(
 						_List_fromArray(
 							[
@@ -13151,7 +13137,6 @@ var $author$project$GalleryInteraction$interaction16 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Name'),
-						$author$project$VegaLite$pNominal,
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -13212,10 +13197,6 @@ var $author$project$VegaLite$HName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$hName = $author$project$VegaLite$HName;
-var $author$project$VegaLite$HmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$hNominal = $author$project$VegaLite$HmType(0);
 var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:
@@ -13370,20 +13351,17 @@ var $author$project$GalleryInteraction$interaction2 = function () {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]))),
 			$author$project$VegaLite$tooltip(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$tName('Name'),
-						$author$project$VegaLite$tNominal
+						$author$project$VegaLite$tName('Name')
 					]))),
 		$author$project$VegaLite$hyperlink(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$hName('url'),
-					$author$project$VegaLite$hNominal
+					$author$project$VegaLite$hName('url')
 				])));
 	var des = $author$project$VegaLite$description('Scatterplot with external links and tooltips');
 	return $author$project$VegaLite$toVegaLite(
@@ -13777,8 +13755,7 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('Origin'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('Origin')
 					]))),
 		$author$project$VegaLite$size(
 			_List_fromArray(
@@ -13803,8 +13780,7 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 					$author$project$VegaLite$selectionName('CylYr'),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]),
 					_List_fromArray(
 						[
@@ -14005,8 +13981,7 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('symbol'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('symbol')
 				])));
 	var enc2 = A2(
 		$elm$core$Basics$composeL,
@@ -14121,7 +14096,6 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$mName('symbol'),
-								$author$project$VegaLite$mNominal,
 								$author$project$VegaLite$mLegend(_List_Nil)
 							]),
 						_List_fromArray(

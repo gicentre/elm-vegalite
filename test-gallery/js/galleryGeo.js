@@ -10722,8 +10722,6 @@ var $author$project$VegaLite$description = function (s) {
 		1,
 		$elm$json$Json$Encode$string(s));
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MSize = function (a) {
 	return {$: 52, a: a};
 };
@@ -10732,10 +10730,6 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:
@@ -11032,22 +11026,19 @@ var $author$project$GalleryGeo$geo2 = function () {
 					8,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('longitude'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('longitude')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
 				9,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('latitude'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('latitude')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('digit'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('digit')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/zipcodes.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -11121,16 +11112,14 @@ var $author$project$GalleryGeo$geo3 = function () {
 						8,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('longitude'),
-								$author$project$VegaLite$pQuant
+								$author$project$VegaLite$pName('longitude')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
 					9,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('latitude'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('latitude')
 						]))),
 			$author$project$VegaLite$size(
 				_List_fromArray(
@@ -11239,16 +11228,14 @@ var $author$project$GalleryGeo$geo4 = function () {
 						8,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('o.longitude'),
-								$author$project$VegaLite$pQuant
+								$author$project$VegaLite$pName('o.longitude')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
 					9,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('o.latitude'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('o.latitude')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -11285,16 +11272,14 @@ var $author$project$GalleryGeo$geo4 = function () {
 				8,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('longitude'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			9,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('latitude'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pName('latitude')
 				])));
 	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
@@ -11563,10 +11548,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -11744,22 +11725,19 @@ var $author$project$GalleryGeo$geo6 = function () {
 					8,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('lon'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('lon')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
 				9,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('lat'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('lat')
 					]))),
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('city'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('city')
 				])));
 	var mapData = A2(
 		$author$project$VegaLite$dataFromUrl,
@@ -12072,16 +12050,14 @@ var $author$project$GalleryGeo$geo7 = function () {
 					8,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('longitude'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('longitude')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
 				9,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('latitude'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('latitude')
 					]))),
 		$author$project$VegaLite$order(
 			_List_fromArray(
@@ -12109,16 +12085,14 @@ var $author$project$GalleryGeo$geo7 = function () {
 				8,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('longitude'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			9,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('latitude'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pName('latitude')
 				])));
 	var airportData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/airports.csv', _List_Nil);
 	var airportsSpec = $author$project$VegaLite$asSpec(
@@ -12173,10 +12147,6 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $author$project$VegaLite$MSort = function (a) {
 	return {$: 9, a: a};
 };
@@ -12320,8 +12290,7 @@ var $author$project$GalleryGeo$geo8 = function () {
 		$author$project$VegaLite$row(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('group'),
-					$author$project$VegaLite$fNominal
+					$author$project$VegaLite$fName('group')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -12444,7 +12413,6 @@ var $author$project$GalleryGeo$geo9 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('id'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -12489,22 +12457,19 @@ var $author$project$GalleryGeo$geo9 = function () {
 					8,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('cx'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('cx')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
 				9,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cy'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$pName('cy')
 					]))),
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('bLabel'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('bLabel')
 				])));
 	var centroidData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/londonCentroids.json', _List_Nil);
 	var labelSpec = $author$project$VegaLite$asSpec(

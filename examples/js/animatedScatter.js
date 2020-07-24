@@ -13471,11 +13471,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -13714,8 +13709,7 @@ var $author$project$AnimatedScatter$animatedScatter1 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('year'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('year')
 				])));
 	var transLatest = A2(
 		$elm$core$Basics$composeL,
@@ -13965,8 +13959,7 @@ var $author$project$AnimatedScatter$animatedScatter1 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('annotation'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('annotation')
 				])));
 	var guideAnnotationSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(

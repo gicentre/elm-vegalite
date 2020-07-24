@@ -12501,8 +12501,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$MSize = function (a) {
@@ -13005,8 +13003,7 @@ var $author$project$ConfigTests$singleVis = function (config) {
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -13811,8 +13808,7 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var streamSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13857,8 +13853,7 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var scatterSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13910,8 +13905,7 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var barSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -14418,8 +14412,7 @@ var $author$project$ConfigTests$vbTest = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var streamSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -14471,8 +14464,7 @@ var $author$project$ConfigTests$vbTest = function () {
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var scatterSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -14560,8 +14552,7 @@ var $author$project$ConfigTests$vbTest = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var barSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(

@@ -6281,11 +6281,6 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
@@ -6300,10 +6295,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -8113,7 +8104,6 @@ var $author$project$GalleryFacet$facet1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('gender'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
@@ -8126,8 +8116,7 @@ var $author$project$GalleryFacet$facet1 = function () {
 		$author$project$VegaLite$row(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('gender'),
-					$author$project$VegaLite$fNominal
+					$author$project$VegaLite$fName('gender')
 				])));
 	var des = $author$project$VegaLite$description('A trellis bar chart showing the US population distribution of age groups and gender in 2000');
 	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/population.json');
@@ -8149,8 +8138,10 @@ var $author$project$VegaLite$column = function (fFields) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields))));
 };
+var $author$project$VegaLite$FmType = function (a) {
+	return {$: 1, a: a};
+};
 var $author$project$VegaLite$fOrdinal = $author$project$VegaLite$FmType(1);
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$GalleryFacet$facet2 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -8175,14 +8166,12 @@ var $author$project$GalleryFacet$facet2 = function () {
 					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('variety'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$pName('variety')
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('site'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('site')
 					]))),
 		$author$project$VegaLite$column(
 			_List_fromArray(
@@ -8646,8 +8635,7 @@ var $author$project$GalleryFacet$facet6 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('year'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('year')
 				])));
 	var des = $author$project$VegaLite$description('The Trellis display by Becker et al. helped establish small multiples as a \'powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables\'');
 	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/barley.json');
@@ -11658,14 +11646,12 @@ var $author$project$GalleryFacet$facet7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('symbol'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		$author$project$VegaLite$row(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$fName('symbol'),
-					$author$project$VegaLite$fNominal,
 					$author$project$VegaLite$fHeader(
 					_List_fromArray(
 						[
@@ -11896,14 +11882,12 @@ var $author$project$GalleryFacet$facet8 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('c'),
-								$author$project$VegaLite$pNominal,
 								$author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('c'),
-							$author$project$VegaLite$mNominal,
 							$author$project$VegaLite$mLegend(
 							_List_fromArray(
 								[
@@ -11916,7 +11900,6 @@ var $author$project$GalleryFacet$facet8 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$fName('a'),
-						$author$project$VegaLite$fNominal,
 						$author$project$VegaLite$fHeader(
 						_List_fromArray(
 							[
@@ -11928,7 +11911,6 @@ var $author$project$GalleryFacet$facet8 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$fName('b'),
-					$author$project$VegaLite$fNominal,
 					$author$project$VegaLite$fHeader(
 					_List_fromArray(
 						[

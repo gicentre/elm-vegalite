@@ -12489,8 +12489,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$MSize = function (a) {
@@ -13010,8 +13008,7 @@ var $author$project$AriaTests$defaultVis = F4(
 			$author$project$VegaLite$shape(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('Origin'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('Origin')
 					])));
 		return $author$project$VegaLite$toVegaLite(
 			_List_fromArray(

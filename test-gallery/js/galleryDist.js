@@ -8367,11 +8367,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -8436,8 +8431,7 @@ var $author$project$GalleryDist$dist5 = function () {
 					_List_fromArray(
 						[
 							A2($author$project$VegaLite$scScheme, 'category20', _List_Nil)
-						])),
-					$author$project$VegaLite$mNominal
+						]))
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(

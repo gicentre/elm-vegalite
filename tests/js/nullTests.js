@@ -13389,8 +13389,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$VLHeight = 4;
@@ -13510,8 +13508,7 @@ var $author$project$NullTests$scale0 = $author$project$NullTests$scaleEncode(
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('cat')
 				])))(_List_Nil));
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
@@ -13561,8 +13558,7 @@ var $author$project$NullTests$scale1 = $author$project$NullTests$scaleEncode(
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('cat')
 				])))(_List_Nil));
 var $author$project$NullTests$scale2 = $author$project$NullTests$scaleEncode(
 	A2(
@@ -13608,8 +13604,7 @@ var $author$project$NullTests$scale2 = $author$project$NullTests$scaleEncode(
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('cat')
 				])))(_List_Nil));
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
@@ -13659,8 +13654,7 @@ var $author$project$NullTests$scale3 = $author$project$NullTests$scaleEncode(
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('cat')
 				])))(_List_Nil));
 var $author$project$NullTests$scale4 = $author$project$NullTests$scaleEncode(
 	A2(
@@ -13706,8 +13700,7 @@ var $author$project$NullTests$scale4 = $author$project$NullTests$scaleEncode(
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('cat')
 				])))(_List_Nil));
 var $author$project$NullTests$scale5 = $author$project$NullTests$scaleEncode(
 	A2(
@@ -13753,7 +13746,6 @@ var $author$project$NullTests$scale5 = $author$project$NullTests$scaleEncode(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(_List_Nil)
 				])))(_List_Nil));
 var $author$project$NullTests$specs = _List_fromArray(

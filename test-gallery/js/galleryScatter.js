@@ -7725,10 +7725,6 @@ var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$axLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$AxLabelAngle, $author$project$VegaLite$positiveAngle);
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$color = function (markProps) {
@@ -7769,8 +7765,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
@@ -7792,9 +7786,12 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$RNumbers = function (a) {
 	return {$: 0, a: a};
 };
@@ -7876,12 +7873,7 @@ var $author$project$GalleryScatter$scatter10 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('Entity'),
-							$author$project$VegaLite$pNominal,
-							$author$project$VegaLite$pAxis(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$axTitle('')
-								]))
+							$author$project$VegaLite$pTitle('')
 						]))),
 			$author$project$VegaLite$size(
 				_List_fromArray(
@@ -7906,7 +7898,6 @@ var $author$project$GalleryScatter$scatter10 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('Entity'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var des = $author$project$VegaLite$description('Visualization of global deaths from natural disasters. Copy of chart from https://ourworldindata.org/natural-catastrophes');
@@ -7949,10 +7940,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -8150,14 +8137,12 @@ var $author$project$GalleryScatter$scatter11 = function () {
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('Origin'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('Origin')
 					]))),
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('OriginInitial'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('OriginInitial')
 				])));
 	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and text symbol.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);
@@ -8615,10 +8600,6 @@ var $author$project$VegaLite$HName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$hName = $author$project$VegaLite$HName;
-var $author$project$VegaLite$HmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$hNominal = $author$project$VegaLite$HmType(0);
 var $author$project$VegaLite$Image = 8;
 var $author$project$VegaLite$image = $author$project$VegaLite$mark(8);
 var $author$project$VegaLite$MHeight = function (a) {
@@ -8776,8 +8757,7 @@ var $author$project$GalleryScatter$scatter14 = function () {
 		$author$project$VegaLite$url(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$hName('img'),
-					$author$project$VegaLite$hNominal
+					$author$project$VegaLite$hName('img')
 				])));
 	var des = $author$project$VegaLite$description('A simple scatterplot using images as point symbols');
 	var data = A2(
@@ -8913,14 +8893,12 @@ var $author$project$GalleryScatter$scatter4 = function () {
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('Origin'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('Origin')
 					]))),
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var des = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$base + 'cars.json', _List_Nil);

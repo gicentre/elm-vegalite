@@ -7974,11 +7974,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -8023,7 +8018,6 @@ var $author$project$GalleryArea$area4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('series'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -8089,7 +8083,6 @@ var $author$project$GalleryArea$area5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('series'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -8149,7 +8142,6 @@ var $author$project$GalleryArea$area6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('series'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -11590,6 +11582,9 @@ var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
@@ -11791,7 +11786,6 @@ var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
 var $author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
@@ -12332,8 +12326,7 @@ var $author$project$GalleryArea$area8 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('Cylinders'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('Cylinders')
 				])));
 	var spec3 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12396,7 +12389,6 @@ var $author$project$GalleryArea$area8 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal,
 							$author$project$VegaLite$mLegend(_List_Nil)
 						]))),
 			$author$project$VegaLite$opacity(
@@ -12411,8 +12403,7 @@ var $author$project$GalleryArea$area8 = function () {
 				[
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('Origin'),
-						$author$project$VegaLite$tNominal
+						$author$project$VegaLite$tName('Origin')
 					]),
 					_List_fromArray(
 					[
@@ -12452,14 +12443,12 @@ var $author$project$GalleryArea$area8 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('Origin'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('Origin'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('Origin')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(

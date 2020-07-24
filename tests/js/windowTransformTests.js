@@ -6984,11 +6984,9 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$Nominal = 0;
 var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PTitle = function (a) {
@@ -10224,8 +10222,7 @@ var $author$project$WindowTransformTests$joinAggregate1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('Activity')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10341,7 +10338,6 @@ var $author$project$WindowTransformTests$joinAggregate2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Title'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pTitle(''),
 					$author$project$VegaLite$pSort(
 					_List_fromArray(
@@ -10432,7 +10428,6 @@ var $author$project$WindowTransformTests$joinAggregate3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Title'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pTitle(''),
 					$author$project$VegaLite$pSort(
 					_List_fromArray(
@@ -10587,8 +10582,7 @@ var $author$project$WindowTransformTests$window1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('Activity')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -11047,10 +11041,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -11136,7 +11126,6 @@ var $author$project$WindowTransformTests$window5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('team'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(teamColours)
 				])));
 	var data = A2(
@@ -11228,7 +11217,6 @@ var $author$project$WindowTransformTests$window6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('student'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pSort(
 					_List_fromArray(
 						[

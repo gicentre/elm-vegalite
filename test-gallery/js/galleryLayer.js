@@ -8043,11 +8043,6 @@ var $author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$dName = $author$project$VegaLite$DName;
-var $author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$dNominal = $author$project$VegaLite$DmType(0);
 var $author$project$VegaLite$dataFromUrl = F2(
 	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -8204,7 +8199,6 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$size = function (markProps) {
@@ -8336,8 +8330,7 @@ var $author$project$GalleryLayer$layer2 = function () {
 			$author$project$VegaLite$detail(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$dName('country'),
-						$author$project$VegaLite$dNominal
+						$author$project$VegaLite$dName('country')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -8359,7 +8352,6 @@ var $author$project$GalleryLayer$layer2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('country'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -11691,8 +11683,7 @@ var $author$project$GalleryLayer$layer3 = function () {
 			$author$project$VegaLite$detail(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$dName('country'),
-						$author$project$VegaLite$dNominal
+						$author$project$VegaLite$dName('country')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -12311,10 +12302,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -12519,8 +12506,7 @@ var $author$project$GalleryLayer$layer6 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('day'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('day')
 				])));
 	var spec7 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13053,6 +13039,9 @@ var $author$project$VegaLite$Str = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$str = $author$project$VegaLite$Str;
+var $author$project$VegaLite$TmType = function (a) {
+	return {$: 2, a: a};
+};
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$VegaLite$TAnchor = function (a) {
 	return {$: 0, a: a};
@@ -13240,8 +13229,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('name'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('name')
 				])));
 	var encPartnerLabel = A2(
 		$elm$core$Basics$composeL,
@@ -13269,8 +13257,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('partnerAnnotation'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('partnerAnnotation')
 				])));
 	var encDiCaprioText = A2(
 		$elm$core$Basics$composeL,
@@ -13327,8 +13314,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('dcAnnotation'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('dcAnnotation')
 				])));
 	var encDiCaprio = A2(
 		$elm$core$Basics$composeL,
@@ -13856,7 +13842,6 @@ var $author$project$VegaLite$LMMarker = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$lmMarker = $author$project$VegaLite$LMMarker;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MFontSize = function (a) {
 	return {$: 33, a: a};
 };
@@ -14100,8 +14085,7 @@ var $author$project$GalleryLayer$layer8 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('name'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('name')
 				])));
 	var encMonarchBar = A2(
 		$elm$core$Basics$composeL,
@@ -14148,7 +14132,6 @@ var $author$project$GalleryLayer$layer8 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('commonwealth'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -14604,7 +14587,6 @@ var $author$project$GalleryLayer$layer8 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('curve'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(curves),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));

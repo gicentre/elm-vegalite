@@ -14083,11 +14083,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -14207,7 +14202,6 @@ var $author$project$Spc$spc4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('shiftDirection'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mScale($author$project$Spc$shiftColours),
 						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),
@@ -14215,7 +14209,6 @@ var $author$project$Spc$spc4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('shifts'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale($author$project$Spc$shiftShapes),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
@@ -14434,7 +14427,6 @@ var $author$project$Spc$spc5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('shiftDirection'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mScale($author$project$Spc$shiftColours),
 						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),

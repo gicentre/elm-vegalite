@@ -13331,20 +13331,14 @@ var $author$project$VegaLite$AxTitle = function (a) {
 var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$LTitle = function (a) {
-	return {$: 38, a: a};
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 11, a: a};
 };
-var $author$project$VegaLite$leTitle = $author$project$VegaLite$LTitle;
-var $author$project$VegaLite$MLegend = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
@@ -13369,7 +13363,6 @@ var $author$project$ScaleTests$scale3 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('b'),
-							$author$project$VegaLite$pNominal,
 							$author$project$VegaLite$pSort(_List_Nil),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -13400,11 +13393,7 @@ var $author$project$ScaleTests$scale3 = function () {
 						[
 							$author$project$VegaLite$scType($author$project$VegaLite$scQuantile)
 						])),
-					$author$project$VegaLite$mLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$leTitle('Quantile')
-						]))
+					$author$project$VegaLite$mTitle('Quantile')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -13443,7 +13432,6 @@ var $author$project$ScaleTests$scale4 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('b'),
-							$author$project$VegaLite$pNominal,
 							$author$project$VegaLite$pSort(_List_Nil),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -13475,11 +13463,7 @@ var $author$project$ScaleTests$scale4 = function () {
 							$author$project$VegaLite$scType($author$project$VegaLite$scQuantize),
 							$author$project$VegaLite$scZero(true)
 						])),
-					$author$project$VegaLite$mLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$leTitle('Quantize')
-						]))
+					$author$project$VegaLite$mTitle('Quantize')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -13530,7 +13514,6 @@ var $author$project$ScaleTests$scale5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('b'),
-							$author$project$VegaLite$pNominal,
 							$author$project$VegaLite$pSort(_List_Nil),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -13574,11 +13557,7 @@ var $author$project$ScaleTests$scale5 = function () {
 									[30, 70]))),
 							A2($author$project$VegaLite$scScheme, 'viridis', _List_Nil)
 						])),
-					$author$project$VegaLite$mLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$leTitle('Threshold')
-						]))
+					$author$project$VegaLite$mTitle('Threshold')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -13597,6 +13576,10 @@ var $author$project$ScaleTests$scale5 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$MLegend = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$ScaleTests$scale6 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,

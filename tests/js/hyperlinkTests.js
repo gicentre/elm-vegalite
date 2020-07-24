@@ -8691,11 +8691,6 @@ var $author$project$VegaLite$HName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$hName = $author$project$VegaLite$HName;
-var $author$project$VegaLite$HmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$hNominal = $author$project$VegaLite$HmType(0);
 var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:
@@ -8822,10 +8817,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 17, a: a};
 };
@@ -8846,10 +8837,6 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -10171,10 +10158,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -10373,14 +10356,12 @@ var $author$project$HyperlinkTests$hyperlink1 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('label'),
-								$author$project$VegaLite$pNominal,
 								$author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				$author$project$VegaLite$text(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$tName('label'),
-							$author$project$VegaLite$tNominal
+							$author$project$VegaLite$tName('label')
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
@@ -10413,7 +10394,6 @@ var $author$project$HyperlinkTests$hyperlink1 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('label'),
-								$author$project$VegaLite$pNominal,
 								$author$project$VegaLite$pAxis(_List_Nil)
 							]))),
 				$author$project$VegaLite$size(
@@ -10425,14 +10405,12 @@ var $author$project$HyperlinkTests$hyperlink1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('label'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(_List_Nil)
 					]))),
 		$author$project$VegaLite$hyperlink(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$hName('url'),
-					$author$project$VegaLite$hNominal
+					$author$project$VegaLite$hName('url')
 				])));
 	var symbolSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -10499,6 +10477,9 @@ var $author$project$VegaLite$HString = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$hStr = $author$project$VegaLite$HString;
+var $author$project$VegaLite$PmType = function (a) {
+	return {$: 6, a: a};
+};
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Point = 10;

@@ -10302,11 +10302,6 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $elm$core$Basics$compare = _Utils_compare;
 var $elm$core$Dict$get = F2(
 	function (targetKey, dict) {
@@ -10493,10 +10488,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 17, a: a};
 };
@@ -11165,7 +11156,6 @@ var $author$project$Isotype$livestock = function () {
 							_List_fromArray(
 								[
 									$author$project$VegaLite$fName('country'),
-									$author$project$VegaLite$fNominal,
 									$author$project$VegaLite$fHeader(
 									_List_fromArray(
 										[
@@ -11176,7 +11166,6 @@ var $author$project$Isotype$livestock = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$mName('animal'),
-								$author$project$VegaLite$mNominal,
 								$author$project$VegaLite$mScale(
 								$author$project$VegaLite$categoricalDomainMap(
 									_List_fromArray(
@@ -11212,7 +11201,6 @@ var $author$project$Isotype$livestock = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('animal'),
-							$author$project$VegaLite$mNominal,
 							$author$project$VegaLite$mLegend(_List_Nil),
 							$author$project$VegaLite$mScale(
 							$author$project$VegaLite$categoricalDomainMap(

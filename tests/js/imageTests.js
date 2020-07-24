@@ -10338,11 +10338,6 @@ var $author$project$VegaLite$HName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$hName = $author$project$VegaLite$HName;
-var $author$project$VegaLite$HmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$hNominal = $author$project$VegaLite$HmType(0);
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
@@ -10383,8 +10378,7 @@ var $author$project$ImageTests$image11 = A2(
 		$author$project$VegaLite$url(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$hName('img'),
-					$author$project$VegaLite$hNominal
+					$author$project$VegaLite$hName('img')
 				])),
 		$author$project$VegaLite$size(
 			_List_fromArray(
@@ -10413,8 +10407,7 @@ var $author$project$ImageTests$image12 = A2(
 		$author$project$VegaLite$url(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$hName('img'),
-					$author$project$VegaLite$hNominal
+					$author$project$VegaLite$hName('img')
 				])),
 		$author$project$VegaLite$size(
 			_List_fromArray(
@@ -10433,8 +10426,7 @@ var $author$project$ImageTests$image2 = A2(
 	$author$project$VegaLite$url(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$hName('img'),
-				$author$project$VegaLite$hNominal
+				$author$project$VegaLite$hName('img')
 			])));
 var $author$project$VegaLite$MAspect = function (a) {
 	return {$: 84, a: a};

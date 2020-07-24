@@ -5153,12 +5153,10 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$Nominal = 0;
+var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
-var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
@@ -7719,8 +7717,7 @@ var $author$project$GalleryTable$table1 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Origin'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('Origin')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -11545,7 +11542,6 @@ var $author$project$GalleryTable$table6 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('symbol'),
-						$author$project$VegaLite$pNominal,
 						$author$project$VegaLite$pTitle('')
 					]))),
 		$author$project$VegaLite$color(
@@ -11707,16 +11703,14 @@ var $author$project$GalleryTable$table7 = function () {
 							8,
 							_List_fromArray(
 								[
-									$author$project$VegaLite$pName('longitude'),
-									$author$project$VegaLite$pQuant
+									$author$project$VegaLite$pName('longitude')
 								]))),
 					A2(
 						$author$project$VegaLite$position,
 						9,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('latitude'),
-								$author$project$VegaLite$pQuant
+								$author$project$VegaLite$pName('latitude')
 							]))),
 				$author$project$VegaLite$color(
 					_List_fromArray(

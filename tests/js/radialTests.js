@@ -8608,11 +8608,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MInnerRadius = function (a) {
 	return {$: 36, a: a};
 };
@@ -10063,8 +10058,7 @@ var $author$project$RadialTests$radial = F3(
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('category'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('category')
 					])));
 		var data = A2(
 			$elm$core$Basics$composeL,
@@ -10240,10 +10234,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -10419,8 +10409,7 @@ var $author$project$RadialTests$radial10 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('monthLabel'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('monthLabel')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10502,7 +10491,6 @@ var $author$project$RadialTests$radial10 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mRepeatDatum($author$project$VegaLite$arLayer),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(colours)
 				])));
 	var spec = $author$project$VegaLite$asSpec(
@@ -10775,7 +10763,6 @@ var $author$project$RadialTests$radial11 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('cause'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(colours),
 					$author$project$VegaLite$mTitle('')
 				])));
@@ -11513,7 +11500,6 @@ var $author$project$RadialTests$radial12 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('a'),
-							$author$project$VegaLite$mNominal,
 							$author$project$VegaLite$mLegend(_List_Nil)
 						]))),
 			$author$project$VegaLite$fillOpacity(
@@ -11629,8 +11615,7 @@ var $author$project$RadialTests$radial5 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('category'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('category')
 				])));
 	var labelSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11660,7 +11645,6 @@ var $author$project$RadialTests$radial5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('category'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var data = A2(
@@ -11759,8 +11743,7 @@ var $author$project$RadialTests$radial7 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('dir'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('dir')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -11972,8 +11955,7 @@ var $author$project$RadialTests$radial8 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('dir'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('dir')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -12076,8 +12058,7 @@ var $author$project$RadialTests$radial9 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('dir'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('dir')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,

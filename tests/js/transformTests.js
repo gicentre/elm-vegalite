@@ -10300,12 +10300,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$TransformTests$transform11 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -10336,14 +10330,12 @@ var $author$project$TransformTests$transform11 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('cat')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('key'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('key')
 				])));
 	var data = $author$project$VegaLite$dataFromJson(
 		A2(
@@ -10812,10 +10804,6 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $author$project$VegaLite$foldAs = F3(
 	function (fields, keyName, valName) {
 		return $elm$core$List$cons(
@@ -10882,16 +10870,14 @@ var $author$project$TransformTests$transform12 = function () {
 					$author$project$VegaLite$column(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$fName('year'),
-								$author$project$VegaLite$fNominal
+								$author$project$VegaLite$fName('year')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('country'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$pName('country')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -10905,7 +10891,6 @@ var $author$project$TransformTests$transform12 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('country'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var data = A2(
@@ -10944,6 +10929,9 @@ var $author$project$TransformTests$transform12 = function () {
 }();
 var $author$project$VegaLite$X2 = 2;
 var $author$project$VegaLite$Y2 = 3;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
@@ -11051,7 +11039,6 @@ var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
 var $author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
@@ -11511,8 +11498,7 @@ var $author$project$TransformTests$transform13 = function () {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]))),
 			$author$project$VegaLite$opacity(
 				_List_fromArray(
@@ -11526,8 +11512,7 @@ var $author$project$TransformTests$transform13 = function () {
 				[
 					_List_fromArray(
 					[
-						$author$project$VegaLite$tName('Origin'),
-						$author$project$VegaLite$tNominal
+						$author$project$VegaLite$tName('Origin')
 					]),
 					_List_fromArray(
 					[
@@ -11936,8 +11921,7 @@ var $author$project$TransformTests$transform18 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('Activity')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -12012,8 +11996,7 @@ var $author$project$TransformTests$transform19 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('Activity')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -12261,8 +12244,7 @@ var $author$project$TransformTests$transform4 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -13071,8 +13053,7 @@ var $author$project$TransformTests$transform8 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('City'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('City')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,

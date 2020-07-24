@@ -8615,11 +8615,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 17, a: a};
 };
@@ -10081,8 +10076,7 @@ var $author$project$FillStrokeTests$encChart = function (extraEnc) {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('cat'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('cat')
 						]))),
 			$author$project$VegaLite$size(
 				_List_fromArray(
@@ -10156,6 +10150,9 @@ var $author$project$FillStrokeTests$combined1 = $author$project$FillStrokeTests$
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$stroke(_List_Nil),
 		$author$project$VegaLite$fill(_List_Nil)));
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$MString = function (a) {
@@ -10497,8 +10494,7 @@ var $author$project$FillStrokeTests$geo2 = function () {
 			$author$project$VegaLite$stroke(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('geometry.type'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('geometry.type')
 					]))),
 		$author$project$VegaLite$fill(
 			_List_fromArray(
@@ -10511,8 +10507,7 @@ var $author$project$FillStrokeTests$geo2 = function () {
 							$author$project$VegaLite$expr('datum.geometry.type === \'Polygon\''),
 							_List_fromArray(
 								[
-									$author$project$VegaLite$mName('geometry.type'),
-									$author$project$VegaLite$mNominal
+									$author$project$VegaLite$mName('geometry.type')
 								]))
 						]),
 					_List_fromArray(
@@ -10573,7 +10568,6 @@ var $author$project$VegaLite$MColorGradient = F2(
 		return {$: 11, a: a, b: b};
 	});
 var $author$project$VegaLite$maColorGradient = $author$project$VegaLite$MColorGradient;
-var $author$project$VegaLite$pMType = $author$project$VegaLite$PmType;
 var $author$project$FillStrokeTests$gradient1 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -10585,8 +10579,7 @@ var $author$project$FillStrokeTests$gradient1 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pMType(0)
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10594,7 +10587,7 @@ var $author$project$FillStrokeTests$gradient1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('value'),
-					$author$project$VegaLite$pMType(2)
+					$author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10654,8 +10647,7 @@ var $author$project$FillStrokeTests$gradient2 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pMType(0)
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10663,7 +10655,7 @@ var $author$project$FillStrokeTests$gradient2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('value'),
-					$author$project$VegaLite$pMType(2)
+					$author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10721,8 +10713,7 @@ var $author$project$FillStrokeTests$gradient3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pMType(0)
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10730,7 +10721,7 @@ var $author$project$FillStrokeTests$gradient3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('value'),
-					$author$project$VegaLite$pMType(2)
+					$author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10792,8 +10783,7 @@ var $author$project$FillStrokeTests$rounded1 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pMType(0)
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10801,7 +10791,7 @@ var $author$project$FillStrokeTests$rounded1 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('value'),
-					$author$project$VegaLite$pMType(2)
+					$author$project$VegaLite$pQuant
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10844,15 +10834,14 @@ var $author$project$FillStrokeTests$rounded2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('value'),
-						$author$project$VegaLite$pMType(2)
+						$author$project$VegaLite$pQuant
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('cat'),
-					$author$project$VegaLite$pMType(0)
+					$author$project$VegaLite$pName('cat')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -10960,8 +10949,7 @@ var $author$project$FillStrokeTests$strokeDash1 = function () {
 		$author$project$VegaLite$strokeDash(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -11020,7 +11008,6 @@ var $author$project$FillStrokeTests$strokeDash2 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -11378,8 +11365,7 @@ var $author$project$FillStrokeTests$strokeDash3 = function () {
 		$author$project$VegaLite$strokeDash(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('cat')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -11528,7 +11514,6 @@ var $author$project$FillStrokeTests$strokeDash4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('cat'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[

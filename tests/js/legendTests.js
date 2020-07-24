@@ -12538,8 +12538,6 @@ var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$opacity = function (markProps) {
@@ -12966,8 +12964,7 @@ var $author$project$LegendTests$legendCoreCfg = function (cfg) {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('Origin')
 						]))),
 			$author$project$VegaLite$size(
 				_List_fromArray(
@@ -13044,7 +13041,6 @@ var $author$project$LegendTests$legend10 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mLegend(
 					_List_fromArray(
 						[
@@ -13146,7 +13142,6 @@ var $author$project$LegendTests$legendCore = function (legProps) {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('Origin'),
-							$author$project$VegaLite$mNominal,
 							$author$project$VegaLite$mLegend(legProps)
 						]))),
 			$author$project$VegaLite$size(

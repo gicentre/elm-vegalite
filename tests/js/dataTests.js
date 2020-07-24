@@ -10287,8 +10287,6 @@ var $author$project$DataTests$bin3 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$DataTests$showData = function (data) {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -10300,8 +10298,7 @@ var $author$project$DataTests$showData = function (data) {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10522,8 +10519,7 @@ var $author$project$DataTests$dataSource = function (name) {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10925,18 +10921,10 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$Mean = {$: 7};
 var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
 var $author$project$DataTests$data11 = function () {
@@ -10959,8 +10947,7 @@ var $author$project$DataTests$data11 = function () {
 						0,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('Answer'),
-								$author$project$VegaLite$pNominal
+								$author$project$VegaLite$pName('Answer')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
@@ -10974,14 +10961,12 @@ var $author$project$DataTests$data11 = function () {
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('Pollster'),
-						$author$project$VegaLite$mNominal
+						$author$project$VegaLite$mName('Pollster')
 					]))),
 		$author$project$VegaLite$column(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('Pollster'),
-					$author$project$VegaLite$fNominal
+					$author$project$VegaLite$fName('Pollster')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -11155,8 +11140,7 @@ var $author$project$DataTests$datum1 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var emptyData = $author$project$VegaLite$dataFromColumns(_List_Nil);
 	var spec2 = $author$project$VegaLite$asSpec(
@@ -11248,8 +11232,7 @@ var $author$project$DataTests$datum2 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('symbol'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('symbol')
 				])));
 	var emptyData = $author$project$VegaLite$dataFromColumns(_List_Nil);
 	var spec2 = $author$project$VegaLite$asSpec(
@@ -14393,10 +14376,6 @@ var $author$project$VegaLite$TFormat = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$tFormat = $author$project$VegaLite$TFormat;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
@@ -14568,7 +14547,6 @@ var $author$project$DataTests$datum5 = function () {
 				[
 					$author$project$VegaLite$tDatum(
 					$author$project$VegaLite$num(0.11987)),
-					$author$project$VegaLite$tQuant,
 					$author$project$VegaLite$tFormat('.2f')
 				])));
 	var data = $author$project$VegaLite$dataFromColumns(_List_Nil);
@@ -14584,7 +14562,6 @@ var $author$project$VegaLite$Boolean = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$DataTests$datum6 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -14593,8 +14570,7 @@ var $author$project$DataTests$datum6 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tDatum(
-					$author$project$VegaLite$boo(true)),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$boo(true))
 				])));
 	var data = $author$project$VegaLite$dataFromColumns(_List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -14613,8 +14589,7 @@ var $author$project$DataTests$datum7 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tDatum(
-					$author$project$VegaLite$str('Hello, world!')),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$str('Hello, world!'))
 				])));
 	var data = $author$project$VegaLite$dataFromColumns(_List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -15056,14 +15031,12 @@ var $author$project$DataTests$flatten1 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('cat')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('key'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('key')
 				])));
 	var data = $author$project$VegaLite$dataFromJson(
 		A2(
@@ -15117,8 +15090,8 @@ var $author$project$DataTests$flatten1 = function () {
 			[
 				data(_List_Nil),
 				trans(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$PiGroupBy = function (a) {
@@ -15194,8 +15167,7 @@ var $author$project$DataTests$fold1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('city'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('city')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -15245,38 +15217,42 @@ var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
-var $author$project$DataTests$geodata1 = $author$project$VegaLite$toVegaLite(
-	_List_fromArray(
-		[
-			$author$project$VegaLite$width(700),
-			$author$project$VegaLite$height(500),
-			$author$project$VegaLite$configure(
-			A2(
-				$author$project$VegaLite$configuration,
-				$author$project$VegaLite$coView(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
-						])),
-				_List_Nil)),
-			A2(
-			$author$project$VegaLite$dataFromUrl,
-			'https://vega.github.io/vega-lite/data/londonBoroughs.json',
+var $author$project$DataTests$geodata1 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$topojsonFeature('boroughs')
-				])),
-			$author$project$VegaLite$geoshape(_List_Nil),
-			$author$project$VegaLite$encoding(
-			A2(
-				$author$project$VegaLite$color,
+					$author$project$VegaLite$mName('id')
+				])));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		'https://vega.github.io/vega-lite/data/londonBoroughs.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('boroughs')
+			]));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('id'),
-						$author$project$VegaLite$mNominal
-					]),
-				_List_Nil))
-		]));
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(700),
+				$author$project$VegaLite$height(500),
+				cfg(_List_Nil),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$geoshape(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$geoFeatureCollection = function (geoms) {
 	return $elm$json$Json$Encode$object(
 		_List_fromArray(
@@ -15451,6 +15427,11 @@ var $author$project$VegaLite$projection = function (pProps) {
 			A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pProps)));
 };
 var $author$project$DataTests$geodata2 = function () {
+	var proj = $author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$prType($author$project$VegaLite$orthographic)
+			]));
 	var geojson = $author$project$VegaLite$geoFeatureCollection(
 		_List_fromArray(
 			[
@@ -15495,46 +15476,44 @@ var $author$project$DataTests$geodata2 = function () {
 						$author$project$VegaLite$str('Northerton'))
 					]))
 			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('properties.Region'),
+					$author$project$VegaLite$mLegend(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$leTitle('')
+						]))
+				])));
+	var data = A2(
+		$author$project$VegaLite$dataFromJson,
+		geojson,
+		_List_fromArray(
+			[
+				$author$project$VegaLite$jsonProperty('features')
+			]));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coView(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
+					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(400),
-				$author$project$VegaLite$configure(
-				A2(
-					$author$project$VegaLite$configuration,
-					$author$project$VegaLite$coView(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$vicoStroke($elm$core$Maybe$Nothing)
-							])),
-					_List_Nil)),
-				A2(
-				$author$project$VegaLite$dataFromJson,
-				geojson,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$jsonProperty('features')
-					])),
-				$author$project$VegaLite$projection(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$prType($author$project$VegaLite$orthographic)
-					])),
-				$author$project$VegaLite$encoding(
-				A2(
-					$author$project$VegaLite$color,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mName('properties.Region'),
-							$author$project$VegaLite$mNominal,
-							$author$project$VegaLite$mLegend(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$leTitle('')
-								]))
-						]),
-					_List_Nil)),
+				cfg(_List_Nil),
+				data,
+				proj,
+				enc(_List_Nil),
 				$author$project$VegaLite$geoshape(_List_Nil)
 			]));
 }();
@@ -15645,16 +15624,15 @@ var $author$project$DataTests$impute1 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
 				trans(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$ImFrame = F2(
@@ -15719,16 +15697,15 @@ var $author$project$DataTests$impute2 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
 				trans(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$ImKeyValSequence = F3(
@@ -15785,16 +15762,15 @@ var $author$project$DataTests$impute3 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
 				trans(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$PImpute = function (a) {
@@ -15840,15 +15816,14 @@ var $author$project$DataTests$impute4 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$DataTests$impute5 = function () {
@@ -15889,15 +15864,14 @@ var $author$project$DataTests$impute5 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$DataTests$impute6 = function () {
@@ -15942,15 +15916,14 @@ var $author$project$DataTests$impute6 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$ImKeyVals = function (a) {
@@ -16000,15 +15973,14 @@ var $author$project$DataTests$impute7 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$DataTests$impute8 = function () {
@@ -16051,15 +16023,14 @@ var $author$project$DataTests$impute8 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('c'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('c')
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$DataTests$imputeData(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$dataName = F2(
@@ -16155,8 +16126,7 @@ var $author$project$DataTests$namedData2 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -16189,8 +16159,7 @@ var $author$project$DataTests$namedData3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('cat'),
-						$author$project$VegaLite$pNominal
+						$author$project$VegaLite$pName('cat')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -16200,13 +16169,14 @@ var $author$project$DataTests$namedData3 = function () {
 					$author$project$VegaLite$pName('val'),
 					$author$project$VegaLite$pQuant
 				])));
+	var data = A2(
+		$author$project$VegaLite$dataName,
+		'source',
+		A2($author$project$VegaLite$dataFromColumns, _List_Nil, _List_Nil));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataName,
-				'source',
-				A2($author$project$VegaLite$dataFromColumns, _List_Nil, _List_Nil)),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
@@ -16253,8 +16223,7 @@ var $author$project$DataTests$pivot1 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('country'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$pName('country')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -16267,8 +16236,7 @@ var $author$project$DataTests$pivot1 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('country'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('country')
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -16355,15 +16323,15 @@ var $author$project$DataTests$sample1 = function () {
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$point(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$point(_List_Nil),
 				trans(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(

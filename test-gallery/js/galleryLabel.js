@@ -11168,11 +11168,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -11223,7 +11218,6 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
@@ -11469,7 +11463,6 @@ var $author$project$GalleryLabel$label10 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('measure'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -11500,7 +11493,6 @@ var $author$project$GalleryLabel$label10 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('study'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
 						[
@@ -11711,6 +11703,9 @@ var $author$project$GalleryLabel$label10 = function () {
 }();
 var $author$project$VegaLite$ChX = 0;
 var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
 var $author$project$VegaLite$MXOffset = function (a) {
@@ -12073,7 +12068,6 @@ var $author$project$VegaLite$Str = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$str = $author$project$VegaLite$Str;
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$AlignBottom = 3;
 var $author$project$VegaLite$vaBottom = 3;
 var $author$project$VegaLite$AlignTop = 0;
@@ -12350,8 +12344,7 @@ var $author$project$GalleryLabel$label4 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('year'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('year')
 				])));
 	var specTextMin = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12370,8 +12363,7 @@ var $author$project$GalleryLabel$label4 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('year'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('year')
 				])));
 	var specTextMax = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -12999,8 +12991,7 @@ var $author$project$GalleryLabel$label8 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('event'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('event')
 				])));
 	var specRects = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13294,8 +13285,7 @@ var $author$project$GalleryLabel$label9 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('lo'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('lo')
 				])));
 	var specTextLo = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13314,8 +13304,7 @@ var $author$project$GalleryLabel$label9 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('hi'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('hi')
 				])));
 	var specTextHi = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13391,7 +13380,6 @@ var $author$project$GalleryLabel$label9 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('name'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pSort(_List_Nil),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(

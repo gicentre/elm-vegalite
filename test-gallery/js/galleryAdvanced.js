@@ -4565,11 +4565,9 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$Nominal = 0;
 var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$pNominal = $author$project$VegaLite$PmType(0);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PTitle = function (a) {
@@ -8074,8 +8072,7 @@ var $author$project$GalleryAdvanced$advanced1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Activity'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('Activity')
 				])));
 	var desc = $author$project$VegaLite$description('Calculation of percentage of total');
 	var data = A2(
@@ -8549,10 +8546,6 @@ var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$fName = $author$project$VegaLite$FName;
-var $author$project$VegaLite$FmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$fNominal = $author$project$VegaLite$FmType(0);
 var $author$project$VegaLite$foldAs = F3(
 	function (fields, keyName, valName) {
 		return $elm$core$List$cons(
@@ -8907,8 +8900,7 @@ var $author$project$GalleryAdvanced$advanced12 = function () {
 		$author$project$VegaLite$row(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$fName('measurement'),
-					$author$project$VegaLite$fNominal
+					$author$project$VegaLite$fName('measurement')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -8942,10 +8934,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$GalleryAdvanced$advanced13 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -8997,8 +8985,7 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('measurement'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('measurement')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'iris.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
@@ -11910,7 +11897,6 @@ var $author$project$VegaLite$dName = $author$project$VegaLite$DName;
 var $author$project$VegaLite$DmType = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$dNominal = $author$project$VegaLite$DmType(0);
 var $author$project$VegaLite$dQuant = $author$project$VegaLite$DmType(2);
 var $author$project$VegaLite$detailChannelProperty = function (field) {
 	switch (field.$) {
@@ -12272,8 +12258,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 							0,
 							_List_fromArray(
 								[
-									$author$project$VegaLite$pName('key'),
-									$author$project$VegaLite$pNominal
+									$author$project$VegaLite$pName('key')
 								]))),
 					A2(
 						$author$project$VegaLite$position,
@@ -12287,14 +12272,12 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 				$author$project$VegaLite$color(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mName('species'),
-							$author$project$VegaLite$mNominal
+							$author$project$VegaLite$mName('species')
 						]))),
 			$author$project$VegaLite$detail(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$dName('index'),
-						$author$project$VegaLite$dNominal
+						$author$project$VegaLite$dName('index')
 					]))),
 		$author$project$VegaLite$tooltips(
 			_List_fromArray(
@@ -12342,8 +12325,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('key'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$pName('key')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -12383,8 +12365,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('key'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$pName('key')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -12424,8 +12405,7 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('key'),
-							$author$project$VegaLite$pNominal
+							$author$project$VegaLite$pName('key')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -12462,7 +12442,6 @@ var $author$project$GalleryAdvanced$advanced14 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('key'),
-						$author$project$VegaLite$pNominal,
 						$author$project$VegaLite$pTitle('')
 					]))),
 		$author$project$VegaLite$detail(
@@ -12570,8 +12549,7 @@ var $author$project$GalleryAdvanced$advanced15 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Major_Genre'),
-					$author$project$VegaLite$pNominal
+					$author$project$VegaLite$pName('Major_Genre')
 				])));
 	var desc = $author$project$VegaLite$description('Production budget of the film with highest US Gross in each major genre.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryAdvanced$base + 'movies.json', _List_Nil);
@@ -13032,7 +13010,6 @@ var $author$project$GalleryAdvanced$advanced18 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$mName('system'),
-						$author$project$VegaLite$mNominal,
 						$author$project$VegaLite$mLegend(
 						_List_fromArray(
 							[
@@ -13301,6 +13278,9 @@ var $author$project$VegaLite$FRange = F2(
 		return {$: 9, a: a, b: b};
 	});
 var $author$project$VegaLite$fiRange = $author$project$VegaLite$FRange;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
@@ -13535,7 +13515,6 @@ var $author$project$GalleryAdvanced$advanced5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('team'),
-					$author$project$VegaLite$mNominal,
 					$author$project$VegaLite$mScale(teamColours)
 				])));
 	var des = $author$project$VegaLite$description('Line chart showing ranks over time for thw World Cup 2018 Group F teams');
@@ -13625,7 +13604,6 @@ var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
-var $author$project$VegaLite$tNominal = $author$project$VegaLite$TmType(0);
 var $author$project$VegaLite$AlignTop = 0;
 var $author$project$VegaLite$vaTop = 0;
 var $author$project$VegaLite$Lead = 7;
@@ -13701,8 +13679,7 @@ var $author$project$GalleryAdvanced$advanced6 = function () {
 			$author$project$VegaLite$text(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$tName('text_amount'),
-						$author$project$VegaLite$tNominal
+						$author$project$VegaLite$tName('text_amount')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
@@ -13750,8 +13727,7 @@ var $author$project$GalleryAdvanced$advanced6 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('sum_dec'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('sum_dec')
 				])));
 	var spec4 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13782,8 +13758,7 @@ var $author$project$GalleryAdvanced$advanced6 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('sum_inc'),
-					$author$project$VegaLite$tNominal
+					$author$project$VegaLite$tName('sum_inc')
 				])));
 	var spec3 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13987,7 +13962,6 @@ var $author$project$GalleryAdvanced$advanced7 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('student'),
-					$author$project$VegaLite$pNominal,
 					$author$project$VegaLite$pSort(
 					_List_fromArray(
 						[

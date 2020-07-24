@@ -8482,11 +8482,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MmType = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
@@ -9957,8 +9952,7 @@ var $author$project$StreamingTests$streaming1 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('category'),
-					$author$project$VegaLite$mNominal
+					$author$project$VegaLite$mName('category')
 				])));
 	var data = A2($author$project$VegaLite$dataFromSource, 'table', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(

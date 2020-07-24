@@ -13608,8 +13608,6 @@ var $author$project$ColorTests$customContinuous = A2(
 								['#f33', '#33f'])))
 					]))
 			])));
-var $author$project$VegaLite$Nominal = 0;
-var $author$project$VegaLite$mNominal = $author$project$VegaLite$MmType(0);
 var $author$project$ColorTests$customDiscrete = A2(
 	$author$project$ColorTests$chart,
 	'Custom discrete colours (red, green, blue).',
@@ -13617,7 +13615,6 @@ var $author$project$ColorTests$customDiscrete = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Origin'),
-				$author$project$VegaLite$mNominal,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13642,8 +13639,7 @@ var $author$project$ColorTests$defNominal = A2(
 	$author$project$VegaLite$color(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$mName('Origin'),
-				$author$project$VegaLite$mNominal
+				$author$project$VegaLite$mName('Origin')
 			])));
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
