@@ -5158,6 +5158,7 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$GalleryTable$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -7726,15 +7727,15 @@ var $author$project$GalleryTable$table1 = function () {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opMean)
 				])));
-	var des = $author$project$VegaLite$description('\'Table heatmap\' showing engine size/power for three countries.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('\'Table heatmap\' showing engine size/power for three countries.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
-				$author$project$VegaLite$rect(_List_Nil),
-				enc(_List_Nil)
+				enc(_List_Nil),
+				$author$project$VegaLite$rect(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$AxFormat = function (a) {
@@ -10781,6 +10782,19 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$VegaLite$VLTitle = 2;
+var $author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			2,
+			$elm$json$Json$Encode$object(
+				A2(
+					$elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						$author$project$VegaLite$multilineTextSpec(txt)),
+					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tps))));
+	});
 var $author$project$VegaLite$VStep = function (a) {
 	return {$: 11, a: a};
 };
@@ -10830,7 +10844,7 @@ var $author$project$GalleryTable$table2 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('temp'),
+					$author$project$VegaLite$mName('temp_max'),
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opMax),
 					$author$project$VegaLite$mLegend(
@@ -10839,8 +10853,8 @@ var $author$project$GalleryTable$table2 = function () {
 							$author$project$VegaLite$leTitle('')
 						]))
 				])));
-	var des = $author$project$VegaLite$description('Annual weather \'heatmap\'');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-temps.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Annual temperature \'heatmap\'');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'seattle-weather.csv', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10862,7 +10876,8 @@ var $author$project$GalleryTable$table2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
+				A2($author$project$VegaLite$title, 'Daily Max Temperatures (C) in Seattle, WA', _List_Nil),
 				cfg(_List_Nil),
 				data,
 				enc(_List_Nil),
@@ -10965,9 +10980,9 @@ var $author$project$GalleryTable$table3 = function () {
 				A2(
 					$author$project$VegaLite$and,
 					$author$project$VegaLite$fiOp(
-						$author$project$VegaLite$fiValid('IMDB_Rating')),
+						$author$project$VegaLite$fiValid('IMDB Rating')),
 					$author$project$VegaLite$fiOp(
-						$author$project$VegaLite$fiValid('Rotten_Tomatoes_Rating'))))));
+						$author$project$VegaLite$fiValid('Rotten Tomatoes Rating'))))));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10980,7 +10995,7 @@ var $author$project$GalleryTable$table3 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(
 							_List_fromArray(
@@ -10993,7 +11008,7 @@ var $author$project$GalleryTable$table3 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
@@ -11007,8 +11022,8 @@ var $author$project$GalleryTable$table3 = function () {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount)
 				])));
-	var des = $author$project$VegaLite$description('\'Binned heatmap\' comparing movie ratings.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('\'Binned heatmap\' comparing movie ratings.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'movies.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11029,7 +11044,7 @@ var $author$project$GalleryTable$table3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(200),
@@ -11087,12 +11102,12 @@ var $author$project$GalleryTable$table4 = function () {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opSum)
 				])));
-	var des = $author$project$VegaLite$description('Table bubble plot in the style of a Github punched card.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/github.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Table bubble plot in the style of a Github punched card.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'github.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
@@ -11380,8 +11395,8 @@ var $author$project$GalleryTable$table5 = function () {
 					$author$project$VegaLite$pName('Origin'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var des = $author$project$VegaLite$description('Layering text over \'heatmap\'.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('Layering text over \'heatmap\'.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11403,7 +11418,7 @@ var $author$project$GalleryTable$table5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data,
 				encPosition(_List_Nil),
@@ -11552,8 +11567,8 @@ var $author$project$GalleryTable$table6 = function () {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mTitle('Price')
 				])));
-	var des = $author$project$VegaLite$description('Lasagna Plot (Dense Time-Series Heatmap).');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Lasagna Plot (Dense Time-Series Heatmap).');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'stocks.csv', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11575,7 +11590,7 @@ var $author$project$GalleryTable$table6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(100),
 				cfg(_List_Nil),
@@ -11602,6 +11617,7 @@ var $author$project$VegaLite$EqualEarth = {$: 9};
 var $author$project$VegaLite$equalEarth = $author$project$VegaLite$EqualEarth;
 var $author$project$VegaLite$Geoshape = 7;
 var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
+var $author$project$GalleryTable$giCentrePath = 'https://gicentre.github.io/data/';
 var $author$project$VegaLite$MScale = function (a) {
 	return {$: 5, a: a};
 };
@@ -11670,7 +11686,7 @@ var $author$project$GalleryTable$table7 = function () {
 			]));
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://gicentre.github.io/data/europe/nwEuropeLand.json',
+		$author$project$GalleryTable$giCentrePath + 'europe/nwEuropeLand.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('ne_10m_land')
@@ -11752,8 +11768,8 @@ var $author$project$GalleryTable$table7 = function () {
 					$author$project$VegaLite$mName('speed'),
 					$author$project$VegaLite$mQuant
 				])));
-	var des = $author$project$VegaLite$description('Vector array map showing wind speed and direction.');
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/windvectors.csv', _List_Nil);
+	var desc = $author$project$VegaLite$description('Vector array map showing wind speed and direction.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryTable$path + 'windvectors.csv', _List_Nil);
 	var windSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11779,7 +11795,7 @@ var $author$project$GalleryTable$table7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$width(600),
 				$author$project$VegaLite$height(560),
