@@ -10,11 +10,19 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 multi1 : Spec
 multi1 =
     let
-        des =
+        desc =
             description "Overview and detail."
+
+        data =
+            dataFromUrl (path ++ "sp500.csv") []
 
         sel =
             selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
@@ -25,7 +33,7 @@ multi1 =
                     [ pName "date"
                     , pTemporal
                     , pScale [ scDomain (doSelection "myBrush") ]
-                    , pAxis [ axTitle "" ]
+                    , pTitle ""
                     ]
                 << position Y [ pName "price", pQuant ]
 
@@ -34,7 +42,7 @@ multi1 =
 
         enc2 =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y
                     [ pName "price"
                     , pQuant
@@ -44,22 +52,17 @@ multi1 =
         spec2 =
             asSpec [ width 480, height 60, sel [], area [], enc2 [] ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/sp500.csv" []
-        , vConcat [ spec1, spec2 ]
-        ]
+    toVegaLite [ desc, data, vConcat [ spec1, spec2 ] ]
 
 
 multi2 : Spec
 multi2 =
     let
-        des =
+        desc =
             description "Cross-filter."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/flights-2k.json"
-                [ parse [ ( "date", foDate "" ) ] ]
+            dataFromUrl (path ++ "flights-2k.json") [ parse [ ( "date", foDate "" ) ] ]
 
         trans =
             transform
@@ -89,7 +92,7 @@ multi2 =
             asSpec [ sel [], selTrans [], encPosition [], bar [] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , data
         , trans []
         , repeat [ columnFields [ "distance", "delay", "time" ] ]
@@ -100,8 +103,11 @@ multi2 =
 multi3 : Spec
 multi3 =
     let
-        des =
+        desc =
             description "Scatterplot matrix"
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -129,37 +135,34 @@ multi3 =
                         [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
-
-        spec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
-                , point []
-                , sel []
-                , enc []
-                ]
     in
     toVegaLite
-        [ des
+        [ desc
         , repeat
             [ rowFields [ "Horsepower", "Acceleration", "Miles_per_Gallon" ]
             , columnFields [ "Miles_per_Gallon", "Acceleration", "Horsepower" ]
             ]
-        , specification spec
+        , specification (asSpec [ data, enc [], sel [], point [] ])
         ]
 
 
 multi4 : Spec
 multi4 =
     let
-        des =
+        desc =
             description "A dashboard with cross-highlighting"
 
+        cfg =
+            configure
+                << configuration (coRange [ racoHeatmap "greenblue" ])
+                << configuration (coView [ vicoStroke Nothing ])
+
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "isValid(datum.Major_Genre)")
+                << filter (fiExpr "isValid(datum['Major Genre'])")
 
         selTrans =
             transform
@@ -168,13 +171,13 @@ multi4 =
         encPosition =
             encoding
                 << position X
-                    [ pName "IMDB_Rating"
+                    [ pName "IMDB Rating"
                     , pQuant
                     , pTitle "IMDB Rating"
                     , pBin [ biMaxBins 10 ]
                     ]
                 << position Y
-                    [ pName "Rotten_Tomatoes_Rating"
+                    [ pName "Rotten Tomatoes Rating"
                     , pQuant
                     , pTitle "Rotten Tomatoes Rating"
                     , pBin [ biMaxBins 10 ]
@@ -214,18 +217,13 @@ multi4 =
 
         encBar =
             encoding
-                << position X [ pName "Major_Genre", pAxis [ axTitle "", axLabelAngle -40 ] ]
+                << position X [ pName "Major Genre", pAxis [ axTitle "", axLabelAngle -40 ] ]
                 << position Y [ pAggregate opCount, pQuant, pTitle "Number of films" ]
                 << color
                     [ mSelectionCondition (selectionName "myPts")
                         [ mStr "steelblue" ]
                         [ mStr "grey" ]
                     ]
-
-        config =
-            configure
-                << configuration (coRange [ racoHeatmap "greenblue" ])
-                << configuration (coView [ vicoStroke Nothing ])
 
         res =
             resolve
@@ -236,21 +234,17 @@ multi4 =
                         ]
                     )
     in
-    toVegaLite
-        [ des
-        , data
-        , trans []
-        , vConcat [ heatSpec, barSpec ]
-        , res []
-        , config []
-        ]
+    toVegaLite [ desc, cfg [], data, trans [], res [], vConcat [ heatSpec, barSpec ] ]
 
 
 multi5 : Spec
 multi5 =
     let
-        des =
+        desc =
             description "A dashboard with cross-highlighting"
+
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         spec1 =
             asSpec
@@ -322,8 +316,8 @@ multi5 =
     in
     toVegaLite
         [ title "Seattle Weather, 2012-2015" []
-        , des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv" []
+        , desc
+        , data
         , vConcat [ spec1, spec2 ]
         ]
 
@@ -335,7 +329,7 @@ multi6 =
             description "Drag a rectangular brush to show (first 20) selected points in a table."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -412,8 +406,9 @@ multi6 =
                 << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
-        [ cfg []
-        , data []
+        [ desc
+        , cfg []
+        , data
         , trans []
         , res []
         , hConcat [ specPoint, specHPText, specMPGText, specOriginText ]
@@ -423,8 +418,17 @@ multi6 =
 multi7 : Spec
 multi7 =
     let
-        des =
+        desc =
             description "One dot per airport in the US overlayed on geoshape"
+
+        dataBoundaries =
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
+
+        dataAirports =
+            dataFromUrl (path ++ "airports.csv") []
+
+        dataFlights =
+            dataFromUrl (path ++ "flights-airport.csv") []
 
         cfg =
             configure
@@ -432,21 +436,15 @@ multi7 =
 
         backdropSpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json" [ topojsonFeature "states" ]
+                [ dataBoundaries
                 , geoshape [ maFill "#ddd", maStroke "#fff" ]
                 ]
 
         lineTrans =
             transform
                 << filter (fiSelection "mySelection")
-                << lookup "origin"
-                    (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
-                    "iata"
-                    (luAs "o")
-                << lookup "destination"
-                    (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
-                    "iata"
-                    (luAs "d")
+                << lookup "origin" dataAirports "iata" (luAs "o")
+                << lookup "destination" dataAirports "iata" (luAs "d")
 
         lineEnc =
             encoding
@@ -457,7 +455,7 @@ multi7 =
 
         lineSpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
+                [ dataFlights
                 , lineTrans []
                 , lineEnc []
                 , rule [ maColor "black", maOpacity 0.35 ]
@@ -467,7 +465,7 @@ multi7 =
             transform
                 << aggregate [ opAs opCount "" "routes" ] [ "origin" ]
                 << lookup "origin"
-                    (dataFromUrl "https://vega.github.io/vega-lite/data/airports.csv" [])
+                    dataAirports
                     "iata"
                     (luFields [ "state", "latitude", "longitude" ])
                 << filter (fiExpr "datum.state !== 'PR' && datum.state !== 'VI'")
@@ -484,16 +482,10 @@ multi7 =
                 << select "mySelection" seSingle [ seOn "mouseover", seNearest True, seEmpty, seFields [ "origin" ] ]
 
         airportSpec =
-            asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/flights-airport.csv" []
-                , airportTrans []
-                , sel []
-                , circle []
-                , airportEnc []
-                ]
+            asSpec [ dataFlights, airportTrans [], sel [], airportEnc [], circle [] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 900
         , height 500
@@ -506,8 +498,7 @@ multi8 : Spec
 multi8 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/flights-5k.json"
-                [ parse [ ( "date", foDate "" ) ] ]
+            dataFromUrl (path ++ "flights-5k.json") [ parse [ ( "date", foDate "" ) ] ]
 
         trans =
             transform
