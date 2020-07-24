@@ -11,9 +11,9 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
-base : String
-base =
-    "https://vega.github.io/vega-lite/data/"
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
 
 
 advanced1 : Spec
@@ -50,17 +50,17 @@ advanced2 =
             description "Calculation of difference from average"
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "isValid(datum.IMDB_Rating)")
-                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageRating" ] []
-                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageRating) > 2.5")
+                << filter (fiExpr "isValid(datum['IMDB Rating'])")
+                << joinAggregate [ opAs opMean "IMDB Rating" "AverageRating" ] []
+                << filter (fiExpr "(datum['IMDB Rating'] - datum.AverageRating) > 2.5")
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
+                << position X [ pName "IMDB Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -83,18 +83,18 @@ advanced3 =
             description "Calculation of difference from annual average"
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "isValid(datum.IMDB_Rating)")
-                << timeUnitAs year "Release_Date" "year"
-                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageYearRating" ] [ wiGroupBy [ "year" ] ]
-                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageYearRating) > 2.5")
+                << filter (fiExpr "isValid(datum['IMDB Rating'])")
+                << timeUnitAs year "Release Date" "year"
+                << joinAggregate [ opAs opMean "IMDB Rating" "AverageYearRating" ] [ wiGroupBy [ "year" ] ]
+                << filter (fiExpr "(datum['IMDB Rating'] - datum.AverageYearRating) > 2.5")
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
+                << position X [ pName "IMDB Rating", pQuant, pTitle "IMDB Rating" ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -119,18 +119,18 @@ advanced4 =
             description "A scatterplot showing each movie in the database and the difference from the average movie rating."
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "isValid(datum.IMDB_Rating)")
-                << filter (fiRange "Release_Date" (dtRange [] [ dtYear 2019 ]))
-                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageRating" ] []
-                << calculateAs "datum.IMDB_Rating - datum.AverageRating" "RatingDelta"
+                << filter (fiExpr "isValid(datum['IMDB Rating'])")
+                << filter (fiRange "Release Date" (dtRange [] [ dtYear 2019 ]))
+                << joinAggregate [ opAs opMean "IMDB Rating" "AverageRating" ] []
+                << calculateAs "datum['IMDB Rating'] - datum.AverageRating" "RatingDelta"
 
         enc =
             encoding
-                << position X [ pName "Release_Date", pTemporal ]
+                << position X [ pName "Release Date", pTemporal ]
                 << position Y [ pName "RatingDelta", pQuant, pTitle "Rating Delta" ]
                 << color [ mName "RatingDelta", mQuant, mScale [ scDomainMid 0 ], mTitle "Rating Delta" ]
     in
@@ -140,7 +140,7 @@ advanced4 =
 advanced5 : Spec
 advanced5 =
     let
-        des =
+        desc =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
 
         data =
@@ -170,7 +170,7 @@ advanced5 =
                 ]
     in
     toVegaLite
-        [ des
+        [ desc
         , title "World Cup 2018: Group F Rankings" [ tiFrame tfBounds, tiFontStyle "italic" ]
         , data []
         , trans []
@@ -182,7 +182,7 @@ advanced5 =
 advanced6 : Spec
 advanced6 =
     let
-        des =
+        desc =
             description "Waterfall chart of monthly profit and loss"
 
         data =
@@ -286,7 +286,7 @@ advanced6 =
             asSpec [ enc5 [], textMark [ maBaseline vaMiddle, maFontWeight Bold ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , width 800
         , height 450
         , data []
@@ -299,7 +299,7 @@ advanced6 =
 advanced7 : Spec
 advanced7 =
     let
-        des =
+        desc =
             description "Filtering the top-k items"
 
         data =
@@ -321,21 +321,21 @@ advanced7 =
                     , pSort [ soByField "score" opMean, soDescending ]
                     ]
     in
-    toVegaLite [ des, data [], trans [], enc [], bar [] ]
+    toVegaLite [ desc, data [], trans [], enc [], bar [] ]
 
 
 advanced8 : Spec
 advanced8 =
     let
-        des =
+        desc =
             description "Top-k items with 'others'"
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << aggregate [ opAs opMean "Worldwide_Gross" "aggregateGross" ] [ "Director" ]
+                << aggregate [ opAs opMean "Worldwide Gross" "aggregateGross" ] [ "Director" ]
                 << window [ ( [ wiOp woRowNumber ], "rank" ) ]
                     [ wiSort [ wiDescending "aggregateGross" ] ]
                 << calculateAs "datum.rank < 10 ? datum.Director : 'All Others'" "rankedDirector"
@@ -356,7 +356,7 @@ advanced8 =
                     ]
     in
     toVegaLite
-        [ des
+        [ desc
         , title "Top Directors by Average Worldwide Gross" []
         , data
         , trans []
@@ -368,16 +368,16 @@ advanced8 =
 advanced9 : Spec
 advanced9 =
     let
-        des =
+        desc =
             description "Using the lookup transform to combine data"
 
         data =
-            dataFromUrl (base ++ "lookup_groups.csv") []
+            dataFromUrl (path ++ "lookup_groups.csv") []
 
         trans =
             transform
                 << lookup "person"
-                    (dataFromUrl (base ++ "lookup_people.csv") [])
+                    (dataFromUrl (path ++ "lookup_people.csv") [])
                     "name"
                     (luFields [ "age", "height" ])
 
@@ -386,13 +386,13 @@ advanced9 =
                 << position X [ pName "group", pOrdinal ]
                 << position Y [ pName "age", pQuant, pAggregate opMean ]
     in
-    toVegaLite [ des, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, data, trans [], enc [], bar [] ]
 
 
 advanced10 : Spec
 advanced10 =
     let
-        des =
+        desc =
             description "Cumulative Frequency Distribution"
 
         data =
@@ -413,35 +413,35 @@ advanced10 =
                     ]
                 << position Y [ pName "cumulativeCount", pQuant ]
     in
-    toVegaLite [ des, width 500, data, trans [], enc [], area [] ]
+    toVegaLite [ desc, width 500, data, trans [], enc [], area [] ]
 
 
 advanced11 : Spec
 advanced11 =
     let
-        des =
+        desc =
             description "Layered Histogram and Cumulative Histogram"
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << binAs [] "IMDB_Rating" "binIMDB_Rating"
-                << aggregate [ opAs opCount "" "count" ] [ "binIMDB_Rating", "binIMDB_Rating_end" ]
-                << filter (fiExpr "datum.binIMDB_Rating !== null")
+                << binAs [] "IMDB Rating" "binIMDBRating"
+                << aggregate [ opAs opCount "" "count" ] [ "binIMDBRating", "binIMDBRating_end" ]
+                << filter (fiExpr "datum.binIMDBRating !== null")
                 << window [ ( [ wiAggregateOp opSum, wiField "count" ], "cumulativeCount" ) ]
-                    [ wiSort [ wiAscending "binIMDB_Rating" ], wiFrame Nothing (Just 0) ]
+                    [ wiSort [ wiAscending "binIMDBRating" ], wiFrame Nothing (Just 0) ]
 
         enc =
             encoding
                 << position X
-                    [ pName "binIMDB_Rating"
+                    [ pName "binIMDBRating"
                     , pQuant
                     , pScale [ scZero False ]
                     , pTitle "IMDB Rating"
                     ]
-                << position X2 [ pName "binIMDB_Rating_end" ]
+                << position X2 [ pName "binIMDBRating_end" ]
 
         enc1 =
             encoding
@@ -452,7 +452,7 @@ advanced11 =
                 << position Y [ pName "count", pQuant ]
     in
     toVegaLite
-        [ des
+        [ desc
         , data
         , trans []
         , enc []
@@ -466,52 +466,57 @@ advanced11 =
 advanced12 : Spec
 advanced12 =
     let
+        desc =
+            description "Distributions of selected penguin morphologies"
+
         data =
-            dataFromUrl (base ++ "iris.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         trans =
             transform
-                << foldAs [ "petalWidth", "petalLength", "sepalWidth", "sepalLength" ] "measurement" "value"
-                << density "value" [ dnBandwidth 0.3, dnGroupBy [ "measurement" ] ]
+                << foldAs [ "Beak Length (mm)", "Beak Depth (mm)", "Flipper Length (mm)" ] "measurement" "value"
+                << density "value" [ dnBandwidth 1, dnGroupBy [ "measurement" ] ]
 
         enc =
             encoding
-                << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
+                << position X [ pName "value", pQuant, pTitle "length" ]
                 << position Y [ pName "density", pQuant ]
                 << row [ fName "measurement" ]
     in
-    toVegaLite [ width 300, height 50, data, trans [], enc [], area [] ]
+    toVegaLite [ desc, width 400, height 80, data, trans [], enc [], area [] ]
 
 
 advanced13 : Spec
 advanced13 =
     let
+        desc =
+            description "Distributions of selected penguin morphologies"
+
         data =
-            dataFromUrl (base ++ "iris.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         trans =
             transform
-                << foldAs [ "petalWidth", "petalLength", "sepalWidth", "sepalLength" ] "measurement" "value"
+                << foldAs [ "Beak Length (mm)", "Beak Depth (mm)", "Flipper Length (mm)" ] "measurement" "value"
                 << density "value"
-                    [ dnBandwidth 0.3
+                    [ dnBandwidth 1
                     , dnGroupBy [ "measurement" ]
-                    , dnExtent 0 8
                     , dnSteps 200
                     ]
 
         enc =
             encoding
-                << position X [ pName "value", pQuant, pTitle "width/length (cm)" ]
+                << position X [ pName "value", pQuant, pTitle "length" ]
                 << position Y [ pName "density", pQuant ]
-                << color [ mName "measurement" ]
+                << color [ mName "measurement", mTitle "" ]
     in
-    toVegaLite [ width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
+    toVegaLite [ desc, width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
 
 
 advanced14 : Spec
 advanced14 =
     let
-        des =
+        desc =
             description "Parallel coordinates plot with manual generation of parallel axes"
 
         cfg =
@@ -526,12 +531,13 @@ advanced14 =
                     )
 
         data =
-            dataFromUrl (base ++ "iris.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         trans =
             transform
+                << filter (fiExpr "datum['Beak Length (mm)']")
                 << window [ ( [ wiAggregateOp opCount ], "index" ) ] []
-                << fold [ "petalLength", "petalWidth", "sepalLength", "sepalWidth" ]
+                << fold [ "Beak Length (mm)", "Beak Depth (mm)", "Flipper Length (mm)", "Body Mass (g)" ]
                 << joinAggregate [ opAs opMin "value" "min", opAs opMax "value" "max" ] [ wiGroupBy [ "key" ] ]
                 << calculateAs "(datum.value - datum.min) / (datum.max-datum.min)" "normVal"
                 << calculateAs "(datum.min + datum.max) / 2" "mid"
@@ -540,13 +546,13 @@ advanced14 =
             encoding
                 << position X [ pName "key" ]
                 << position Y [ pName "normVal", pQuant, pAxis [] ]
-                << color [ mName "species" ]
+                << color [ mName "Species", mTitle "" ]
                 << detail [ dName "index" ]
                 << tooltips
-                    [ [ tName "petalLength", tQuant ]
-                    , [ tName "petalWidth", tQuant ]
-                    , [ tName "sepalLength", tQuant ]
-                    , [ tName "sepalWidth", tQuant ]
+                    [ [ tName "Beak Length (mm)", tQuant ]
+                    , [ tName "Beak Depth (mm)", tQuant ]
+                    , [ tName "Flipper Length (mm)", tQuant ]
+                    , [ tName "Body Mass (g)", tQuant ]
                     ]
 
         specLine =
@@ -588,13 +594,13 @@ advanced14 =
             asSpec [ encAxisLabelsBot [], textMark [ maStyle [ "label" ] ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 600
         , height 300
         , data
         , trans []
-        , layer [ specLine, specAxis, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot ]
+        , layer [ specAxis, specLine, specAxisLabelsTop, specAxisLabelsMid, specAxisLabelsBot ]
         ]
 
 
@@ -605,18 +611,22 @@ advanced15 =
             description "Production budget of the film with highest US Gross in each major genre."
 
         data =
-            dataFromUrl (base ++ "movies.json") []
+            dataFromUrl (path ++ "movies.json") []
+
+        trans =
+            transform
+                << filter (fiExpr "datum['Major Genre']")
 
         enc =
             encoding
                 << position X
-                    [ pName "Production_Budget"
+                    [ pName "Production Budget"
                     , pQuant
-                    , pAggregate (opArgMax (Just "US_Gross"))
+                    , pAggregate (opArgMax (Just "US Gross"))
                     ]
-                << position Y [ pName "Major_Genre" ]
+                << position Y [ pName "Major Genre" ]
     in
-    toVegaLite [ desc, data, enc [], bar [] ]
+    toVegaLite [ desc, data, trans [], enc [], bar [] ]
 
 
 advanced16 : Spec
@@ -626,15 +636,15 @@ advanced16 =
             description "Plot showing average data with raw values in the background."
 
         data =
-            dataFromUrl (base ++ "stocks.csv") []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform << filter (fiExpr "datum.symbol === 'GOOG'")
 
         encRaw =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit year ]
-                << position Y [ pName "price", pQuant ]
+                << position X [ pName "date", pTemporal, pTimeUnit year, pTitle "" ]
+                << position Y [ pName "price", pQuant, pTitle "Price" ]
 
         specRaw =
             asSpec [ encRaw [], point [ maOpacity 0.3 ] ]
@@ -657,7 +667,7 @@ advanced17 =
             description "Plot showing a 30 day rolling average with raw values in the background."
 
         data =
-            dataFromUrl (base ++ "seattle-weather.csv") []
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         trans =
             transform
@@ -666,7 +676,7 @@ advanced17 =
 
         encRaw =
             encoding
-                << position X [ pName "date", pTitle "Date", pTemporal ]
+                << position X [ pName "date", pTitle "Date", pTemporal, pTitle "" ]
                 << position Y [ pName "temp_max", pTitle "Maximum temperature", pQuant ]
 
         specRaw =

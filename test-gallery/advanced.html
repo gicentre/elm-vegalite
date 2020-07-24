@@ -102,12 +102,12 @@
     <div id="advanced11" class="view"></div>
 
     <p>
-      Faceted density estimates of Iris morphology measures.
+      Faceted density estimates of penguin morphology measures.
     </p>
     <div id="advanced12" class="view"></div>
 
     <p>
-      Stacked density estimates of Iris morphology measures.
+      Stacked density estimates of penguin morphology measures.
     </p>
     <div id="advanced13" class="view"></div>
 
@@ -141,11 +141,11 @@
     <div id="advanced18" class="view"></div>
 
     <script>
-      Elm.GalleryAdvanced.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.GalleryAdvanced.init().ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

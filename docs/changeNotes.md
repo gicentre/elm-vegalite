@@ -65,8 +65,10 @@
 ### Other Changes
 
 - Calling `dataFromRows` or `dataFromColumns` without `dataRow` / `dataColumn` now generates an empty dataset that can be useful for creating annotation layers with literals.
+- Removed now redundant measurement type specifications that can instead rely on default measurement types (VL 4.14).
 - Minor improvements to the API documentation.
-- Additions to tests for new VL4.9 and VL4.10 features.
+- Additions to tests for new features added since VL 4.8.
+- Tests and examples use vega data V2.
 - New gallery examples.
 
 ---
