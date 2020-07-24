@@ -85,7 +85,7 @@ While the strip plot shows the range of temperatures, it is hard to see how many
 let
     enc =
         encoding
-            << position X [ pName "temp_max", pQuant, pBin [] ]
+            << position X [ pName "temp_max", pBin [] ]
             << position Y [ pAggregate opCount ]
 in
 toVegaLite
@@ -95,7 +95,7 @@ toVegaLite
     ]
 ```
 
-The code now contains two chained `position` encodings: one for the x-position, which is now binned, and one for the y-position which is aggregated by providing `pAggregate opCount` instead of a data field name. Because by definition a count will be numeric, we don't need to specify the measurement type, which is assumed to be `pQuant`.
+The code now contains two chained `position` encodings: one for the x-position, which is now binned, and one for the y-position which is aggregated by providing `pAggregate opCount` instead of a data field name. Because by definition both binned values and counts will be numeric, we don't need to specify the measurement type, which is assumed to be `pQuant` for both.
 
 Notice again that sensible defaults are provided for the parts of the specification we didn't specify such as axis titles, colors and number of bins.
 
@@ -110,7 +110,7 @@ Color is an important channel in many visualizations, so we can use it here to e
 let
     enc =
         encoding
-            << position X [ pName "temp_max", pQuant, pBin [] ]
+            << position X [ pName "temp_max", pBin [] ]
             << position Y [ pAggregate opCount ]
             << color [ mName "weather" ]
 in
@@ -147,7 +147,7 @@ let
 
     enc =
         encoding
-            << position X [ pName "temp_max", pQuant, pBin [] ]
+            << position X [ pName "temp_max", pBin [] ]
             << position Y [ pAggregate opCount ]
             << color [ mName "weather", mScale weatherColors ]
     in
@@ -168,7 +168,7 @@ Notice how we never needed to state explicitly that we wished our bars to be sta
 let
     enc =
         encoding
-            << position X [ pName "temp_max", pQuant, pBin [] ]
+            << position X [ pName "temp_max", pBin [] ]
             << position Y [ pAggregate opCount ]
             << color [ mName "weather", mScale weatherColors ]
 in
@@ -191,7 +191,7 @@ To show our weather distributions next to each other rather than stacked on top 
 let
     enc =
         encoding
-            << position X [ pName "temp_max", pQuant, pBin [] ]
+            << position X [ pName "temp_max", pBin [] ]
             << position Y [ pAggregate opCount ]
             << color [ mName "weather", mLegend [], mScale weatherColors ]
             << column [ fName "weather" ]
@@ -361,7 +361,7 @@ This allows us to create a nested dashboard of views:
 let
     histoEnc =
         encoding
-            << position X [ pName "temp_max", pQuant, pBin [] ]
+            << position X [ pName "temp_max", pBin [] ]
             << position Y [ pAggregate opCount ]
             << color [ mName "weather", mLegend [], mScale weatherColors ]
             << column [ fName "weather" ]

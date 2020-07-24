@@ -209,7 +209,7 @@ grid4 =
 
         enc =
             encoding
-                << position X [ pRepeat arFlow, pQuant, pBin [] ]
+                << position X [ pRepeat arFlow, pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
 
@@ -231,7 +231,7 @@ grid5 =
 
         enc =
             encoding
-                << position X [ pRepeat arRow, pQuant, pBin [] ]
+                << position X [ pRepeat arRow, pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
 
@@ -304,7 +304,7 @@ concat2 =
 
         enc =
             encoding
-                << position X [ pName "rate", pBin [], pQuant ]
+                << position X [ pName "rate", pBin [] ]
                 << position Y [ pAggregate opCount ]
 
         chartSpec =

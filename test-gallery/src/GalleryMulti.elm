@@ -70,7 +70,7 @@ multi2 =
 
         encPosition =
             encoding
-                << position X [ pRepeat arColumn, pQuant, pBin [ biMaxBins 20 ] ]
+                << position X [ pRepeat arColumn, pBin [ biMaxBins 20 ] ]
                 << position Y [ pAggregate opCount ]
 
         encAll =
@@ -172,13 +172,11 @@ multi4 =
             encoding
                 << position X
                     [ pName "IMDB Rating"
-                    , pQuant
                     , pTitle "IMDB Rating"
                     , pBin [ biMaxBins 10 ]
                     ]
                 << position Y
                     [ pName "Rotten Tomatoes Rating"
-                    , pQuant
                     , pTitle "Rotten Tomatoes Rating"
                     , pBin [ biMaxBins 10 ]
                     ]
@@ -507,7 +505,7 @@ multi8 =
 
         enc1 =
             encoding
-                << position X [ pName "time", pBin [ biMaxBins 30 ], pQuant ]
+                << position X [ pName "time", pBin [ biMaxBins 30 ] ]
                 << position Y [ pAggregate opCount ]
 
         spec1 =
@@ -518,7 +516,6 @@ multi8 =
                 << position X
                     [ pName "time"
                     , pBin [ biMaxBins 30, biSelectionExtent "brush" ]
-                    , pQuant
                     ]
                 << position Y [ pAggregate opCount ]
 

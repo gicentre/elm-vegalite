@@ -319,7 +319,7 @@ label7 =
 
         encBars =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pBin [], pAxis [] ]
+                << position X [ pName "IMDB Rating", pBin [], pAxis [] ]
                 << position Y [ pAggregate opCount ]
 
         specBars =

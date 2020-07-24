@@ -86,7 +86,7 @@ bar4 =
 
         enc =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pBin [] ]
                 << position Y [ pAggregate opCount ]
     in
     toVegaLite
@@ -104,7 +104,7 @@ bar5 =
 
         enc =
             encoding
-                << position X [ pName "binStart", pQuant, pBin [ biStep 2 ] ]
+                << position X [ pName "binStart", pBin [ biStep 2 ] ]
                 << position X2 [ pName "binEnd" ]
                 << position Y [ pName "count", pQuant ]
     in

@@ -94,8 +94,8 @@ table3 =
 
         enc =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pBin [ biMaxBins 60 ] ]
-                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [ biMaxBins 40 ] ]
+                << position X [ pName "IMDB Rating", pBin [ biMaxBins 60 ] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pBin [ biMaxBins 40 ] ]
                 << color [ mAggregate opCount ]
 
         cfg =

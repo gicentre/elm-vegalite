@@ -91,7 +91,7 @@ facet4 =
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pQuant, pBin [ biMaxBins 15 ] ]
+                << position X [ pName "Horsepower", pBin [ biMaxBins 15 ] ]
                 << position Y [ pAggregate opCount ]
                 << row [ fName "Origin", fOrdinal ]
     in

@@ -531,8 +531,8 @@ bin1 =
 
         enc =
             encoding
-                << position X [ pName "bin_start", pQuant, pBinned, pAxis [ axTickMinStep 2 ] ]
-                << position X2 [ pName "bin_end", pQuant ]
+                << position X [ pName "bin_start", pBinned, pAxis [ axTickMinStep 2 ] ]
+                << position X2 [ pName "bin_end" ]
                 << position Y [ pName "count", pQuant ]
     in
     toVegaLite [ data [], enc [], bar [] ]
@@ -547,7 +547,7 @@ bin2 =
 
         enc =
             encoding
-                << position X [ pName "x", pQuant, pBin [] ]
+                << position X [ pName "x", pBin [] ]
                 << position Y [ pAggregate opCount ]
     in
     toVegaLite [ width 300, data [], enc [], bar [] ]
@@ -562,7 +562,7 @@ bin3 =
 
         enc =
             encoding
-                << position X [ pName "x", pQuant, pBin [ biAnchor 0.5 ] ]
+                << position X [ pName "x", pBin [ biAnchor 0.5 ] ]
                 << position Y [ pAggregate opCount ]
     in
     toVegaLite [ width 300, data [], enc [], bar [] ]

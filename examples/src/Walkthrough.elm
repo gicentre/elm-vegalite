@@ -30,7 +30,7 @@ histogram =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
     in
     toVegaLite
@@ -46,7 +46,7 @@ stackedHistogram =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "weather" ]
     in
@@ -74,7 +74,7 @@ stackedHistogram2 =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mScale weatherColors ]
     in
@@ -91,7 +91,7 @@ lineChart =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mScale weatherColors ]
     in
@@ -108,7 +108,7 @@ multiBar =
     let
         enc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mLegend [], mScale weatherColors ]
                 << column [ fName "weather" ]
@@ -228,7 +228,7 @@ dashboard1 =
     let
         histoEnc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
 
         histoSpec =
@@ -273,7 +273,7 @@ dashboard2 =
     let
         histoEnc =
             encoding
-                << position X [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_max", pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "weather", mLegend [], mScale weatherColors ]
                 << column [ fName "weather" ]

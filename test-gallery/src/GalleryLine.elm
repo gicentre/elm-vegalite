@@ -100,7 +100,7 @@ line5 =
 
         enc =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pBin [] ]
                 << position Y [ pRepeat arLayer, pAggregate opMean, pTitle "Mean of US and Worldwide Gross" ]
                 << color [ mRepeatDatum arLayer ]
 

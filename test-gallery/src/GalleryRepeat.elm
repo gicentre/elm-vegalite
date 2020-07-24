@@ -78,8 +78,8 @@ repeat2 =
 
         enc2 =
             encoding
-                << position X [ pName "temp_min", pQuant, pBin [] ]
-                << position Y [ pName "temp_max", pQuant, pBin [] ]
+                << position X [ pName "temp_min", pBin [] ]
+                << position Y [ pName "temp_max", pBin [] ]
                 << size [ mAggregate opCount ]
 
         spec2 =
@@ -99,7 +99,7 @@ repeat3 =
 
         enc =
             encoding
-                << position X [ pRepeat arColumn, pQuant, pBin [] ]
+                << position X [ pRepeat arColumn, pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
     in
@@ -167,8 +167,8 @@ repeat5 =
 
         encPosition =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB Rating" ant, pBin [ biMaxBins 10 ] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pBin [ biMaxBins 10 ] ]
 
         cfg =
             configure
@@ -177,7 +177,7 @@ repeat5 =
 
         enc1 =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pAxis [], pBin [] ]
+                << position X [ pName "IMDB Rating", pAxis [], pBin [] ]
                 << position Y
                     [ pAggregate opCount
                     , pScale [ scDomain (doNums [ 0, 1000 ]) ]
@@ -192,8 +192,8 @@ repeat5 =
 
         enc2_1 =
             encoding
-                << position X [ pName "IMDB Rating", pQuant, pBin [] ]
-                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [] ]
+                << position X [ pName "IMDB Rating", pBin [] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pBin [] ]
                 << color [ mAggregate opCount ]
 
         spec2_1 =
@@ -203,7 +203,6 @@ repeat5 =
             encoding
                 << position Y
                     [ pName "Rotten Tomatoes Rating"
-                    , pQuant
                     , pBin []
                     , pAxis []
                     ]
