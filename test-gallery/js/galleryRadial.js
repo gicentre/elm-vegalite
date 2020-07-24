@@ -10821,7 +10821,7 @@ var $author$project$GalleryRadial$radial = F2(
 					[
 						$author$project$VegaLite$mName('category')
 					])));
-		var des = $author$project$VegaLite$description(dText);
+		var desc = $author$project$VegaLite$description(dText);
 		var data = A2(
 			$elm$core$Basics$composeL,
 			A2(
@@ -10851,7 +10851,7 @@ var $author$project$GalleryRadial$radial = F2(
 		return $author$project$VegaLite$toVegaLite(
 			_List_fromArray(
 				[
-					des,
+					desc,
 					cfg(_List_Nil),
 					data(_List_Nil),
 					enc(_List_Nil),
@@ -11117,7 +11117,7 @@ var $author$project$GalleryRadial$radial3 = function () {
 					$author$project$VegaLite$mName('category'),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
-	var des = $author$project$VegaLite$description('Pie chart with labels');
+	var desc = $author$project$VegaLite$description('Pie chart with labels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11147,7 +11147,7 @@ var $author$project$GalleryRadial$radial3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
@@ -11261,7 +11261,7 @@ var $author$project$GalleryRadial$radial4 = function () {
 					$author$project$VegaLite$mName('strength'),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
-	var des = $author$project$VegaLite$description('Radial plot with labels');
+	var desc = $author$project$VegaLite$description('Radial plot with labels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$dataFromColumns(_List_Nil),
@@ -11283,7 +11283,7 @@ var $author$project$GalleryRadial$radial4 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
@@ -11452,7 +11452,7 @@ var $author$project$GalleryRadial$radial5 = function () {
 	var sun = 'Sunny side of a pyramid';
 	var sky = 'Sky';
 	var shade = 'Shady side of a pyramid';
-	var des = $author$project$VegaLite$description('Reproduction of http://robslink.com/SAS/democd91/pyramid_pie.htm');
+	var desc = $author$project$VegaLite$description('Reproduction of http://robslink.com/SAS/democd91/pyramid_pie.htm');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11542,7 +11542,7 @@ var $author$project$GalleryRadial$radial5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),

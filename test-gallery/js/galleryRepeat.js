@@ -6440,6 +6440,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$GalleryRepeat$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -7915,12 +7916,13 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 				_List_fromArray(
 					[spec1, spec2]))
 			]));
-	var des = $author$project$VegaLite$description('Monthly weather information for individual years and overall average for Seatle and New York');
+	var desc = $author$project$VegaLite$description('Monthly weather information for individual years and overall average for Seatle and New York');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/weather.csv', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
@@ -8071,12 +8073,13 @@ var $author$project$GalleryRepeat$repeat2 = function () {
 				enc1(_List_Nil)
 			]));
 	var desc = $author$project$VegaLite$description('Two vertically concatenated charts that show a histogram of precipitation in Seattle and the relationship between min and max temperature');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				desc,
+				data,
 				trans(_List_Nil),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/weather.csv', _List_Nil),
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -8112,18 +8115,12 @@ var $author$project$GalleryRepeat$repeat3 = function () {
 				[
 					$author$project$VegaLite$mName('Origin')
 				])));
-	var spec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
-			]));
-	var des = $author$project$VegaLite$description('Horizontally repeated charts that show the histograms of different parameters of cars in different countries');
+	var desc = $author$project$VegaLite$description('Horizontally repeated charts that show the histograms of different parameters of cars in different countries');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
@@ -8131,7 +8128,14 @@ var $author$project$GalleryRepeat$repeat3 = function () {
 						_List_fromArray(
 							['Horsepower', 'Miles_per_Gallon', 'Acceleration']))
 					])),
-				$author$project$VegaLite$specification(spec)
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							data,
+							enc(_List_Nil),
+							$author$project$VegaLite$bar(_List_Nil)
+						])))
 			]));
 }();
 var $author$project$VegaLite$Row = 1;
@@ -8881,19 +8885,12 @@ var $author$project$GalleryRepeat$repeat4 = function () {
 							$author$project$VegaLite$mStr('grey')
 						]))
 				])));
-	var spec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				sel(_List_Nil),
-				enc(_List_Nil)
-			]));
-	var des = $author$project$VegaLite$description('Scatterplot matrix');
+	var desc = $author$project$VegaLite$description('Scatterplot matrix');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				$author$project$VegaLite$repeat(
 				_List_fromArray(
 					[
@@ -8904,7 +8901,15 @@ var $author$project$GalleryRepeat$repeat4 = function () {
 						_List_fromArray(
 							['Miles_per_Gallon', 'Acceleration', 'Horsepower']))
 					])),
-				$author$project$VegaLite$specification(spec)
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							data,
+							sel(_List_Nil),
+							enc(_List_Nil),
+							$author$project$VegaLite$point(_List_Nil)
+						])))
 			]));
 }();
 var $author$project$VegaLite$AxTitle = function (a) {
@@ -11392,7 +11397,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
@@ -11405,7 +11410,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pBin(
 					_List_fromArray(
@@ -11423,7 +11428,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil),
 						$author$project$VegaLite$pAxis(_List_Nil)
@@ -11468,7 +11473,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
@@ -11477,7 +11482,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
@@ -11512,7 +11517,7 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(_List_Nil),
 						$author$project$VegaLite$pBin(_List_Nil)
@@ -11545,7 +11550,8 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				$author$project$VegaLite$bar(_List_Nil),
 				enc1(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Marginal histograms show the counts along the x and y dimension');
+	var desc = $author$project$VegaLite$description('Marginal histograms show the counts along the x and y dimension');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'movies.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11566,11 +11572,11 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				cfg(_List_Nil),
 				$author$project$VegaLite$spacing(15),
 				$author$project$VegaLite$bounds($author$project$VegaLite$boFlush),
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil),
+				data,
 				$author$project$VegaLite$vConcat(
 				_List_fromArray(
 					[spec1, spec2]))
@@ -11949,7 +11955,7 @@ var $author$project$GalleryRepeat$repeat6 = function () {
 						$author$project$VegaLite$maColor('#675193')
 					]))
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'population.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
