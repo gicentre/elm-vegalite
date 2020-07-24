@@ -10,14 +10,24 @@ import VegaLite exposing (..)
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
+giCentrePath : String
+giCentrePath =
+    "https://gicentre.github.io/data/"
+
+
 table1 : Spec
 table1 =
     let
-        des =
+        desc =
             description "'Table heatmap' showing engine size/power for three countries."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -25,17 +35,17 @@ table1 =
                 << position Y [ pName "Origin" ]
                 << color [ mName "Horsepower", mQuant, mAggregate opMean ]
     in
-    toVegaLite [ des, data, rect [], enc [] ]
+    toVegaLite [ desc, data, enc [], rect [] ]
 
 
 table2 : Spec
 table2 =
     let
-        des =
-            description "Annual weather 'heatmap'"
+        desc =
+            description "Annual temperature 'heatmap'"
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-temps.csv" []
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         cfg =
             configure
@@ -46,34 +56,41 @@ table2 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit date, pAxis [ axTitle "Day", axLabelAngle 0, axFormat "%e" ] ]
                 << position Y [ pName "date", pOrdinal, pTimeUnit month, pAxis [ axTitle "Month" ] ]
-                << color [ mName "temp", mQuant, mAggregate opMax, mLegend [ leTitle "" ] ]
+                << color [ mName "temp_max", mQuant, mAggregate opMax, mLegend [ leTitle "" ] ]
     in
-    toVegaLite [ des, cfg [], data, enc [], rect [] ]
+    toVegaLite
+        [ desc
+        , title "Daily Max Temperatures (C) in Seattle, WA" []
+        , cfg []
+        , data
+        , enc []
+        , rect []
+        ]
 
 
 table3 : Spec
 table3 =
     let
-        des =
+        desc =
             description "'Binned heatmap' comparing movie ratings."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
                 << filter
                     (fiCompose
                         (and
-                            (fiValid "IMDB_Rating" |> fiOp)
-                            (fiValid "Rotten_Tomatoes_Rating" |> fiOp)
+                            (fiValid "IMDB Rating" |> fiOp)
+                            (fiValid "Rotten Tomatoes Rating" |> fiOp)
                         )
                     )
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pBin [ biMaxBins 60 ] ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant, pBin [ biMaxBins 40 ] ]
+                << position X [ pName "IMDB Rating", pQuant, pBin [ biMaxBins 60 ] ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant, pBin [ biMaxBins 40 ] ]
                 << color [ mQuant, mAggregate opCount ]
 
         cfg =
@@ -81,17 +98,17 @@ table3 =
                 << configuration (coRange [ racoHeatmap "greenblue" ])
                 << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite [ des, cfg [], width 300, height 200, data, trans [], enc [], rect [] ]
+    toVegaLite [ desc, cfg [], width 300, height 200, data, trans [], enc [], rect [] ]
 
 
 table4 : Spec
 table4 =
     let
-        des =
+        desc =
             description "Table bubble plot in the style of a Github punched card."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/github.csv" []
+            dataFromUrl (path ++ "github.csv") []
 
         enc =
             encoding
@@ -99,17 +116,17 @@ table4 =
                 << position Y [ pName "time", pOrdinal, pTimeUnit day ]
                 << size [ mName "count", mQuant, mAggregate opSum ]
     in
-    toVegaLite [ des, data, enc [], circle [] ]
+    toVegaLite [ desc, data, enc [], circle [] ]
 
 
 table5 : Spec
 table5 =
     let
-        des =
+        desc =
             description "Layering text over 'heatmap'."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         encPosition =
             encoding
@@ -136,17 +153,17 @@ table5 =
                 << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
                 << configuration (coText [ maBaseline vaMiddle ])
     in
-    toVegaLite [ des, cfg [], data, encPosition [], layer [ specRect, specText ] ]
+    toVegaLite [ desc, cfg [], data, encPosition [], layer [ specRect, specText ] ]
 
 
 table6 : Spec
 table6 =
     let
-        des =
+        desc =
             description "Lasagna Plot (Dense Time-Series Heatmap)."
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         trans =
             transform
@@ -179,13 +196,13 @@ table6 =
                 << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
                 << configuration (coText [ maBaseline vaMiddle ])
     in
-    toVegaLite [ des, width 300, height 100, cfg [], data, trans [], enc [], rect [] ]
+    toVegaLite [ desc, width 300, height 100, cfg [], data, trans [], enc [], rect [] ]
 
 
 table7 : Spec
 table7 =
     let
-        des =
+        desc =
             description "Vector array map showing wind speed and direction."
 
         cfg =
@@ -193,11 +210,10 @@ table7 =
                 << configuration (coView [ vicoStep 10, vicoFill (Just "black") ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/windvectors.csv" []
+            dataFromUrl (path ++ "windvectors.csv") []
 
         geoData =
-            dataFromUrl "https://gicentre.github.io/data/europe/nwEuropeLand.json"
-                [ topojsonFeature "ne_10m_land" ]
+            dataFromUrl (giCentrePath ++ "europe/nwEuropeLand.json") [ topojsonFeature "ne_10m_land" ]
 
         proj =
             projection [ prType equalEarth ]
@@ -226,7 +242,7 @@ table7 =
             asSpec [ data, enc [], point [ maShape symWedge ] ]
     in
     toVegaLite
-        [ des
+        [ desc
         , cfg []
         , width 600
         , height 560
