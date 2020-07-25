@@ -14171,8 +14171,7 @@ var $author$project$DataTests$datum3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pDatum(
-					$author$project$VegaLite$num(0)),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$num(0))
 				])));
 	var enc2 = A2(
 		$elm$core$Basics$composeL,
@@ -14183,8 +14182,7 @@ var $author$project$DataTests$datum3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pDatum(
-					$author$project$VegaLite$num(0)),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$num(0))
 				])));
 	var enc1 = A2(
 		$elm$core$Basics$composeL,
