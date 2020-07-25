@@ -12634,6 +12634,7 @@ var $author$project$VegaLite$MStrokeWidth = function (a) {
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
 var $author$project$VegaLite$Orthographic = {$: 14};
 var $author$project$VegaLite$orthographic = $author$project$VegaLite$Orthographic;
+var $author$project$ProjectionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
 		return {$: 6, a: a, b: b, c: c};
@@ -12708,7 +12709,7 @@ var $author$project$ProjectionTests$configExample = function () {
 			[
 				A2(
 				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/graticule.json',
+				$author$project$ProjectionTests$path + 'graticule.json',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$topojsonFeature('graticule')
@@ -12742,7 +12743,7 @@ var $author$project$ProjectionTests$configExample = function () {
 			[
 				A2(
 				$author$project$VegaLite$dataFromUrl,
-				'https://vega.github.io/vega-lite/data/world-110m.json',
+				$author$project$ProjectionTests$path + 'world-110m.json',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$topojsonFeature('countries')
@@ -12859,7 +12860,7 @@ var $author$project$ProjectionTests$worldMapTemplate = F2(
 						$author$project$VegaLite$projection(projProps),
 						A2(
 						$author$project$VegaLite$dataFromUrl,
-						'https://vega.github.io/vega-lite/data/graticule.json',
+						$author$project$ProjectionTests$path + 'graticule.json',
 						_List_fromArray(
 							[
 								$author$project$VegaLite$topojsonFeature('graticule')
@@ -12913,7 +12914,7 @@ var $author$project$ProjectionTests$reflectExample = F2(
 				[
 					A2(
 					$author$project$VegaLite$dataFromUrl,
-					'https://vega.github.io/vega-lite/data/graticule.json',
+					$author$project$ProjectionTests$path + 'graticule.json',
 					_List_fromArray(
 						[
 							$author$project$VegaLite$topojsonFeature('graticule')
@@ -12961,7 +12962,7 @@ var $author$project$ProjectionTests$reflectExample = F2(
 				[
 					A2(
 					$author$project$VegaLite$dataFromUrl,
-					'https://vega.github.io/vega-lite/data/world-110m.json',
+					$author$project$ProjectionTests$path + 'world-110m.json',
 					_List_fromArray(
 						[
 							$author$project$VegaLite$topojsonFeature('countries')

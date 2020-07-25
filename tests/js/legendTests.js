@@ -12555,6 +12555,7 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$LegendTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:
@@ -12978,7 +12979,7 @@ var $author$project$LegendTests$legendCoreCfg = function (cfg) {
 					$author$project$VegaLite$mName('Weight_in_lbs'),
 					$author$project$VegaLite$mQuant
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$LegendTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12989,7 +12990,7 @@ var $author$project$LegendTests$legendCoreCfg = function (cfg) {
 					$author$project$VegaLite$coLegend(cfg)))(_List_Nil),
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
-				data(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
@@ -13049,13 +13050,13 @@ var $author$project$LegendTests$legend10 = function () {
 							$author$project$VegaLite$leY(5)
 						]))
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$LegendTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
-				data(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
@@ -13158,13 +13159,13 @@ var $author$project$LegendTests$legendCore = function (legProps) {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mLegend(legProps)
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$LegendTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
-				data(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
 			]));

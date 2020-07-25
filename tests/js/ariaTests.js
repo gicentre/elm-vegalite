@@ -12508,6 +12508,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$AriaTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
@@ -12966,7 +12967,7 @@ var $author$project$AriaTests$defaultVis = F4(
 			[
 				$author$project$VegaLite$leColumns(1)
 			]) : leProps;
-		var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+		var data = A2($author$project$VegaLite$dataFromUrl, $author$project$AriaTests$path + 'cars.json', _List_Nil);
 		var axp = _Utils_eq(axProps, _List_Nil) ? _List_fromArray(
 			[
 				$author$project$VegaLite$axDomain(true)

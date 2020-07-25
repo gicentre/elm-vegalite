@@ -10482,6 +10482,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$HyperlinkTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$HyperlinkTests$hyperlink2 = function () {
@@ -10497,7 +10498,7 @@ var $author$project$HyperlinkTests$hyperlink2 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -10505,7 +10506,7 @@ var $author$project$HyperlinkTests$hyperlink2 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$hyperlink(
@@ -10513,7 +10514,7 @@ var $author$project$HyperlinkTests$hyperlink2 = function () {
 				[
 					$author$project$VegaLite$hStr('http://www.imdb.com')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HyperlinkTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -10558,7 +10559,7 @@ var $author$project$HyperlinkTests$hyperlink3 = function () {
 						0,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('IMDB_Rating'),
+								$author$project$VegaLite$pName('IMDB Rating'),
 								$author$project$VegaLite$pQuant
 							]))),
 				A2(
@@ -10566,7 +10567,7 @@ var $author$project$HyperlinkTests$hyperlink3 = function () {
 					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+							$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 							$author$project$VegaLite$pQuant
 						]))),
 			$author$project$VegaLite$color(
@@ -10577,7 +10578,7 @@ var $author$project$HyperlinkTests$hyperlink3 = function () {
 						_List_fromArray(
 							[
 								_Utils_Tuple2(
-								$author$project$VegaLite$expr('datum.IMDB_Rating*10 > datum.Rotten_Tomatoes_Rating'),
+								$author$project$VegaLite$expr('datum[\'IMDB Rating\']*10 > datum.[\'Rotten Tomatoes Rating\']'),
 								_List_fromArray(
 									[
 										$author$project$VegaLite$mStr('steelblue')
@@ -10593,7 +10594,7 @@ var $author$project$HyperlinkTests$hyperlink3 = function () {
 				[
 					A3(
 					$author$project$VegaLite$hDataCondition,
-					$author$project$VegaLite$expr('datum.IMDB_Rating*10 > datum.Rotten_Tomatoes_Rating'),
+					$author$project$VegaLite$expr('datum[\'IMDB Rating\']*10 > datum[\'Rotten Tomatoes Rating\']'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$hStr('http://www.imdb.com')
@@ -10603,7 +10604,7 @@ var $author$project$HyperlinkTests$hyperlink3 = function () {
 							$author$project$VegaLite$hStr('https://www.rottentomatoes.com')
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HyperlinkTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

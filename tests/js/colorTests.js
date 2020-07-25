@@ -13475,6 +13475,7 @@ var $author$project$VegaLite$opacity = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
+var $author$project$ColorTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -13553,12 +13554,12 @@ var $author$project$ColorTests$chart = F2(
 						]))),
 			enc);
 		var des = $author$project$VegaLite$description(desText);
-		var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+		var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ColorTests$path + 'cars.json', _List_Nil);
 		return $author$project$VegaLite$toVegaLite(
 			_List_fromArray(
 				[
 					des,
-					data(_List_Nil),
+					data,
 					trans(_List_Nil),
 					$author$project$VegaLite$circle(_List_Nil),
 					fullEnc(_List_Nil)

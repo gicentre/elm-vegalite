@@ -10256,6 +10256,7 @@ var $author$project$VegaLite$PBand = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$pBand = $author$project$VegaLite$PBand;
+var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
@@ -10283,7 +10284,7 @@ var $author$project$TimeTests$timeBand = function () {
 					$author$project$VegaLite$pName('temp'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/seattle-temps.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TimeTests$path + 'seattle-temps.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

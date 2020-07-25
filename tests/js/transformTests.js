@@ -6655,6 +6655,7 @@ var $author$project$VegaLite$PmType = function (a) {
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$TransformTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -10009,11 +10010,11 @@ var $author$project$TransformTests$transform1 = function () {
 					$author$project$VegaLite$pName('mean_acceleration'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -10163,8 +10164,8 @@ var $author$project$TransformTests$transform10 = function () {
 			A2(
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
-				A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating', 'imdbRating')),
-			A2($author$project$VegaLite$calculateAs, 'datum.Rotten_Tomatoes_Rating', 'rtRating')),
+				A2($author$project$VegaLite$calculateAs, 'datum[\'IMDB Rating\']', 'imdbRating')),
+			A2($author$project$VegaLite$calculateAs, 'datum[\'Rotten Tomatoes Rating\']', 'rtRating')),
 		A3(
 			$author$project$VegaLite$regression,
 			'imdbRating',
@@ -10217,7 +10218,7 @@ var $author$project$TransformTests$transform10 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		A2(
@@ -10225,7 +10226,7 @@ var $author$project$TransformTests$transform10 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('IMDB_Rating'),
+					$author$project$VegaLite$pName('IMDB Rating'),
 					$author$project$VegaLite$pQuant
 				])));
 	var pointSpec = $author$project$VegaLite$asSpec(
@@ -10239,7 +10240,7 @@ var $author$project$TransformTests$transform10 = function () {
 						$author$project$VegaLite$maOpacity(0.3)
 					]))
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11520,11 +11521,11 @@ var $author$project$TransformTests$transform13 = function () {
 						$author$project$VegaLite$tQuant
 					])
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				cars,
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$rect(_List_Nil)
@@ -11582,19 +11583,6 @@ var $author$project$VegaLite$timeUnitAs = F3(
 						]))));
 	});
 var $author$project$TransformTests$transform14 = function () {
-	var weather = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/seattle-weather.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate('%Y/%m/%d'))
-					]))
-			]));
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11631,11 +11619,24 @@ var $author$project$TransformTests$transform14 = function () {
 					$author$project$VegaLite$pName('maxTemp'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
 				])));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$TransformTests$path + 'seattle-weather.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate('%Y/%m/%d'))
+					]))
+			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(400),
-				weather,
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -11656,19 +11657,6 @@ var $author$project$VegaLite$TUStep = F2(
 	});
 var $author$project$VegaLite$tuStep = $author$project$VegaLite$TUStep;
 var $author$project$TransformTests$transform15 = function () {
-	var weather = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/seattle-weather.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate('%Y/%m/%d'))
-					]))
-			]));
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11709,11 +11697,24 @@ var $author$project$TransformTests$transform15 = function () {
 					$author$project$VegaLite$pName('maxTemp'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
 				])));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$TransformTests$path + 'seattle-weather.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate('%Y/%m/%d'))
+					]))
+			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(400),
-				weather,
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -11733,19 +11734,6 @@ var $author$project$VegaLite$TUMaxBins = function (a) {
 };
 var $author$project$VegaLite$tuMaxBins = $author$project$VegaLite$TUMaxBins;
 var $author$project$TransformTests$transform16 = function () {
-	var weather = A2(
-		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/seattle-weather.csv',
-		_List_fromArray(
-			[
-				$author$project$VegaLite$parse(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'date',
-						$author$project$VegaLite$foDate('%Y/%m/%d'))
-					]))
-			]));
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11780,11 +11768,24 @@ var $author$project$TransformTests$transform16 = function () {
 					$author$project$VegaLite$pName('temp_max'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMax)
 				])));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$TransformTests$path + 'seattle-weather.csv',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate('%Y/%m/%d'))
+					]))
+			]));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(400),
-				weather,
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$line(
@@ -12077,7 +12078,7 @@ var $author$project$TransformTests$binTransform = function (bProps) {
 			A2(
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
-				A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating', 'rating')),
+				A2($author$project$VegaLite$calculateAs, 'datum[\'IMDB Rating\']', 'rating')),
 			$author$project$VegaLite$filter(
 				$author$project$VegaLite$fiExpr('datum.rating != null'))),
 		A3($author$project$VegaLite$binAs, bProps, 'rating', 'ratingGroup'));
@@ -12102,12 +12103,12 @@ var $author$project$TransformTests$binTransform = function (bProps) {
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
 					$author$project$VegaLite$pTitle('Number of movies')
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(400),
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -12335,7 +12336,7 @@ var $author$project$TransformTests$transform5 = function () {
 			A2(
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
-				A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating', 'rating')),
+				A2($author$project$VegaLite$calculateAs, 'datum[\'IMDB Rating\']', 'rating')),
 			$author$project$VegaLite$filter(
 				$author$project$VegaLite$fiExpr('datum.rating != null'))),
 		A2(
@@ -12367,7 +12368,7 @@ var $author$project$TransformTests$transform5 = function () {
 					$author$project$VegaLite$pName('density'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12448,8 +12449,8 @@ var $author$project$TransformTests$transform6 = function () {
 			A2(
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
-				A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating', 'imdbRating')),
-			A2($author$project$VegaLite$calculateAs, 'datum.Rotten_Tomatoes_Rating', 'rtRating')),
+				A2($author$project$VegaLite$calculateAs, 'datum[\'IMDB Rating\']', 'imdbRating')),
+			A2($author$project$VegaLite$calculateAs, 'datum[\'Rotten Tomatoes Rating\']', 'rtRating')),
 		A3(
 			$author$project$VegaLite$loess,
 			'imdbRating',
@@ -12501,7 +12502,7 @@ var $author$project$TransformTests$transform6 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		A2(
@@ -12509,7 +12510,7 @@ var $author$project$TransformTests$transform6 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('IMDB_Rating'),
+					$author$project$VegaLite$pName('IMDB Rating'),
 					$author$project$VegaLite$pQuant
 				])));
 	var pointSpec = $author$project$VegaLite$asSpec(
@@ -12523,7 +12524,7 @@ var $author$project$TransformTests$transform6 = function () {
 						$author$project$VegaLite$maOpacity(0.3)
 					]))
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12917,7 +12918,7 @@ var $author$project$VegaLite$TopojsonFeature = function (a) {
 };
 var $author$project$VegaLite$topojsonFeature = $author$project$VegaLite$TopojsonFeature;
 var $author$project$TransformTests$transform7 = function () {
-	var unemploymentData = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/unemployment.tsv', _List_Nil);
+	var unemploymentData = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'unemployment.tsv', _List_Nil);
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12948,7 +12949,7 @@ var $author$project$TransformTests$transform7 = function () {
 				])));
 	var countyData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$TransformTests$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('counties')
@@ -13200,7 +13201,7 @@ var $author$project$TransformTests$transform9 = function () {
 					$author$project$VegaLite$pName('v'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/normal-2d.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TransformTests$path + 'normal-2d.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

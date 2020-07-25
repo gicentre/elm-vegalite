@@ -5092,7 +5092,6 @@ var $author$project$ImageTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm$
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $elm$json$Json$Encode$null = _Json_encodeNull;
-var $author$project$ImageTests$base = 'https://vega.github.io/vega-lite/data/';
 var $author$project$VegaLite$HString = function (a) {
 	return {$: 9, a: a};
 };
@@ -10075,6 +10074,7 @@ var $author$project$ImageTests$imageEnc = F2(
 						]))
 				]));
 	});
+var $author$project$ImageTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:
@@ -10193,7 +10193,7 @@ var $author$project$ImageTests$image1 = A2(
 	$author$project$VegaLite$url(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$hStr($author$project$ImageTests$base + 'ffox.png')
+				$author$project$VegaLite$hStr($author$project$ImageTests$path + 'ffox.png')
 			])));
 var $author$project$VegaLite$asSpec = function (specs) {
 	return $elm$json$Json$Encode$object(
@@ -10366,7 +10366,7 @@ var $author$project$ImageTests$image11 = A2(
 			'img',
 			$author$project$VegaLite$strs(
 				_List_fromArray(
-					[$author$project$ImageTests$base + 'ffox.png', $author$project$ImageTests$base + 'gimp.png', $author$project$ImageTests$base + '7zip.png']))),
+					[$author$project$ImageTests$path + 'ffox.png', $author$project$ImageTests$path + 'gimp.png', $author$project$ImageTests$path + '7zip.png']))),
 		A2(
 			$author$project$VegaLite$dataColumn,
 			'mag',
@@ -10395,7 +10395,7 @@ var $author$project$ImageTests$image12 = A2(
 			'img',
 			$author$project$VegaLite$strs(
 				_List_fromArray(
-					[$author$project$ImageTests$base + 'ffox.png', $author$project$ImageTests$base + 'gimp.png', $author$project$ImageTests$base + '7zip.png']))),
+					[$author$project$ImageTests$path + 'ffox.png', $author$project$ImageTests$path + 'gimp.png', $author$project$ImageTests$path + '7zip.png']))),
 		A2(
 			$author$project$VegaLite$dataColumn,
 			'mag',
@@ -10422,7 +10422,7 @@ var $author$project$ImageTests$image2 = A2(
 		'img',
 		$author$project$VegaLite$strs(
 			_List_fromArray(
-				[$author$project$ImageTests$base + 'ffox.png', $author$project$ImageTests$base + 'gimp.png', $author$project$ImageTests$base + '7zip.png']))),
+				[$author$project$ImageTests$path + 'ffox.png', $author$project$ImageTests$path + 'gimp.png', $author$project$ImageTests$path + '7zip.png']))),
 	$author$project$VegaLite$url(
 		_List_fromArray(
 			[

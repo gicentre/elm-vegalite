@@ -12688,6 +12688,7 @@ var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$ViewCompositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:
@@ -13109,7 +13110,7 @@ var $author$project$ViewCompositionTests$genderChart = F2(
 				$author$project$VegaLite$filter(
 					$author$project$VegaLite$fiExpr('datum.year == 2000'))),
 			A2($author$project$VegaLite$calculateAs, 'datum.sex == 2 ? \'Female\' : \'Male\'', 'gender'));
-		var pop = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
+		var popData = A2($author$project$VegaLite$dataFromUrl, $author$project$ViewCompositionTests$path + 'population.json', _List_Nil);
 		var enc = A2(
 			$elm$core$Basics$composeL,
 			A2(
@@ -13155,7 +13156,7 @@ var $author$project$ViewCompositionTests$genderChart = F2(
 										['#675193', '#ca8861'])))
 							]))
 					])));
-		var conf = A2(
+		var cfg2 = A2(
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
@@ -13172,8 +13173,8 @@ var $author$project$ViewCompositionTests$genderChart = F2(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$widthStep(17),
-					conf(_List_Nil),
-					pop,
+					cfg2(_List_Nil),
+					popData,
 					trans(_List_Nil),
 					enc(_List_Nil),
 					$author$project$VegaLite$bar(_List_Nil)
@@ -13949,7 +13950,7 @@ var $author$project$ViewCompositionTests$concat2 = function () {
 				])));
 	var geoData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$ViewCompositionTests$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('counties')
@@ -14438,14 +14439,7 @@ var $author$project$ViewCompositionTests$grid4 = function () {
 				[
 					$author$project$VegaLite$mName('Origin')
 				])));
-	var carData = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
-	var spec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				carData(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
-			]));
+	var carData = A2($author$project$VegaLite$dataFromUrl, $author$project$ViewCompositionTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14453,7 +14447,14 @@ var $author$project$ViewCompositionTests$grid4 = function () {
 				$author$project$VegaLite$repeatFlow(
 				_List_fromArray(
 					['Horsepower', 'Miles_per_Gallon', 'Acceleration', 'Displacement', 'Weight_in_lbs'])),
-				$author$project$VegaLite$specification(spec)
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							carData,
+							enc(_List_Nil),
+							$author$project$VegaLite$bar(_List_Nil)
+						])))
 			]));
 }();
 var $author$project$VegaLite$Row = 1;
@@ -14515,14 +14516,7 @@ var $author$project$ViewCompositionTests$grid5 = function () {
 				[
 					$author$project$VegaLite$mName('Origin')
 				])));
-	var carData = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
-	var spec = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				carData(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil),
-				enc(_List_Nil)
-			]));
+	var carData = A2($author$project$VegaLite$dataFromUrl, $author$project$ViewCompositionTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14533,7 +14527,14 @@ var $author$project$ViewCompositionTests$grid5 = function () {
 						_List_fromArray(
 							['Horsepower', 'Miles_per_Gallon', 'Acceleration', 'Displacement', 'Weight_in_lbs']))
 					])),
-				$author$project$VegaLite$specification(spec)
+				$author$project$VegaLite$specification(
+				$author$project$VegaLite$asSpec(
+					_List_fromArray(
+						[
+							carData,
+							enc(_List_Nil),
+							$author$project$VegaLite$bar(_List_Nil)
+						])))
 			]));
 }();
 var $author$project$ViewCompositionTests$specs = _List_fromArray(

@@ -13459,6 +13459,7 @@ var $author$project$VegaLite$MSize = function (a) {
 	return {$: 52, a: a};
 };
 var $author$project$VegaLite$maSize = $author$project$VegaLite$MSize;
+var $author$project$ShapeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$ShapeTests$rectTest = function (mps) {
@@ -13482,7 +13483,7 @@ var $author$project$ShapeTests$rectTest = function (mps) {
 					$author$project$VegaLite$pName('Cylinders'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ShapeTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13579,7 +13580,7 @@ var $author$project$ShapeTests$chart = F2(
 			_List_fromArray(
 				[
 					$author$project$VegaLite$description(des),
-					A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil),
+					A2($author$project$VegaLite$dataFromUrl, $author$project$ShapeTests$path + 'cars.json', _List_Nil),
 					A2(
 					$elm$core$Basics$composeL,
 					A2(

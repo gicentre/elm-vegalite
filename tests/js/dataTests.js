@@ -11083,6 +11083,7 @@ var $author$project$VegaLite$PDatum = function (a) {
 var $author$project$VegaLite$pDatum = $author$project$VegaLite$PDatum;
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$DataTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
 var $author$project$DataTests$datum1 = function () {
@@ -11149,7 +11150,7 @@ var $author$project$DataTests$datum1 = function () {
 							[2, 2]))
 					]))
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$DataTests$path + 'stocks.csv', _List_Nil);
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11241,7 +11242,7 @@ var $author$project$DataTests$datum2 = function () {
 							[2, 2]))
 					]))
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$DataTests$path + 'stocks.csv', _List_Nil);
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -15219,7 +15220,7 @@ var $author$project$DataTests$geodata1 = function () {
 				])));
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/londonBoroughs.json',
+		$author$project$DataTests$path + 'londonBoroughs.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('boroughs')
@@ -16324,7 +16325,7 @@ var $author$project$DataTests$sample1 = function () {
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$DataTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

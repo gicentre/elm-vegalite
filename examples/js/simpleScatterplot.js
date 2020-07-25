@@ -7709,11 +7709,11 @@ var $author$project$SimpleScatterplot$scatter = function () {
 				[
 					$author$project$VegaLite$mName('Origin')
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, $author$project$SimpleScatterplot$path + 'cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$SimpleScatterplot$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				cars,
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
 			]));

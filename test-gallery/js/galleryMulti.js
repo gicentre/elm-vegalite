@@ -12721,69 +12721,99 @@ var $author$project$VegaLite$opAs = F3(
 					$elm$json$Json$Encode$string(label))
 				]));
 	});
-var $author$project$VegaLite$orderChannelProperty = function (oDef) {
+var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
 			var s = oDef.a;
-			return _Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$string(s));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
 		case 1:
 			var arr = oDef.a;
-			return _Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'repeat',
-							$elm$json$Json$Encode$string(
-								$author$project$VegaLite$arrangementLabel(arr)))
-						])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
 		case 2:
 			var measure = oDef.a;
-			return _Utils_Tuple2(
-				'type',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$measurementLabel(measure)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
 		case 3:
 			var bps = oDef.a;
-			return $author$project$VegaLite$bin(bps);
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
 		case 4:
 			var op = oDef.a;
-			return _Utils_Tuple2(
-				'aggregate',
-				$author$project$VegaLite$operationSpec(op));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
 		case 5:
 			var tu = oDef.a;
-			return _Utils_Tuple2(
-				'timeUnit',
-				$author$project$VegaLite$timeUnitSpec(tu));
-		default:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 6:
 			var sps = oDef.a;
 			_v1$4:
 			while (true) {
 				if (!sps.b) {
-					return _Utils_Tuple2('sort', $elm$json$Json$Encode$null);
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('sort', $elm$json$Json$Encode$null)
+						]);
 				} else {
 					if (!sps.b.b) {
 						switch (sps.a.$) {
 							case 0:
 								var _v2 = sps.a;
-								return _Utils_Tuple2(
-									'sort',
-									$elm$json$Json$Encode$string('ascending'));
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('ascending'))
+									]);
 							case 1:
 								var _v3 = sps.a;
-								return _Utils_Tuple2(
-									'sort',
-									$elm$json$Json$Encode$string('descending'));
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('descending'))
+									]);
 							case 2:
 								var dvs = sps.a.a;
-								return _Utils_Tuple2(
-									'sort',
-									$author$project$VegaLite$toList(
-										$author$project$VegaLite$dataValuesSpecs(dvs)));
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$author$project$VegaLite$toList(
+											$author$project$VegaLite$dataValuesSpecs(dvs)))
+									]);
 							default:
 								break _v1$4;
 						}
@@ -12792,10 +12822,64 @@ var $author$project$VegaLite$orderChannelProperty = function (oDef) {
 					}
 				}
 			}
-			return _Utils_Tuple2(
-				'sort',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'sort',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
+				]);
+		case 9:
+			var n = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$float(n))
+				]);
+		case 7:
+			var selName = oDef.a;
+			var ifClause = oDef.b;
+			var elseClause = oDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
+		default:
+			var tests = oDef.a;
+			var elseClause = oDef.b;
+			var testClause = function (_v5) {
+				var predicate = _v5.a;
+				var ifClause = _v5.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					function () {
+						if (tests.b && (!tests.b.b)) {
+							var test = tests.a;
+							return testClause(test);
+						} else {
+							return A2($elm$json$Json$Encode$list, testClause, tests);
+						}
+					}()),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
 	}
 };
 var $author$project$VegaLite$order = function (oDefs) {
@@ -12803,7 +12887,7 @@ var $author$project$VegaLite$order = function (oDefs) {
 		_Utils_Tuple2(
 			'order',
 			$elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$orderChannelProperty, oDefs))));
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, oDefs))));
 };
 var $author$project$VegaLite$PType = function (a) {
 	return {$: 0, a: a};

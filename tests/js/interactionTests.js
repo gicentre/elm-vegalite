@@ -13641,6 +13641,7 @@ var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
+var $author$project$InteractionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$Rule = 12;
@@ -13851,7 +13852,7 @@ var $author$project$InteractionTests$interaction16 = function () {
 				])));
 	var stockData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
+		$author$project$InteractionTests$path + 'stocks.csv',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$csv,
@@ -14048,7 +14049,7 @@ var $author$project$InteractionTests$interaction17 = function () {
 			$author$project$VegaLite$fiExpr('datum.symbol===\'GOOG\'')));
 	var stockData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/stocks.csv',
+		$author$project$InteractionTests$path + 'stocks.csv',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$csv,
@@ -14348,7 +14349,7 @@ var $author$project$VegaLite$ttEncoding = 0;
 var $author$project$InteractionTests$interaction19 = function () {
 	var stateData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$InteractionTests$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('states')
@@ -14381,7 +14382,7 @@ var $author$project$InteractionTests$interaction19 = function () {
 				])));
 	var countyData = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/us-10m.json',
+		$author$project$InteractionTests$path + 'us-10m.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$topojsonFeature('counties')

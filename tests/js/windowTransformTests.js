@@ -10293,6 +10293,7 @@ var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
+var $author$project$WindowTransformTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$ByChannel = function (a) {
 	return {$: 5, a: a};
 };
@@ -10308,16 +10309,16 @@ var $author$project$WindowTransformTests$joinAggregate2 = function () {
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
 				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
+					$author$project$VegaLite$fiExpr('datum[\'IMDB Rating\'] != null'))),
 			A2(
 				$author$project$VegaLite$joinAggregate,
 				_List_fromArray(
 					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageRating')
+						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB Rating', 'AverageRating')
 					]),
 				_List_Nil)),
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageRating) > 2.5')));
+			$author$project$VegaLite$fiExpr('(datum[\'IMDB Rating\'] - datum.AverageRating) > 2.5')));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10328,9 +10329,8 @@ var $author$project$WindowTransformTests$joinAggregate2 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
+						$author$project$VegaLite$pName('IMDB Rating'),
+						$author$project$VegaLite$pQuant
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10346,11 +10346,11 @@ var $author$project$WindowTransformTests$joinAggregate2 = function () {
 							$author$project$VegaLite$soDescending
 						]))
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$WindowTransformTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -10392,13 +10392,13 @@ var $author$project$WindowTransformTests$joinAggregate3 = function () {
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
 					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release_Date', 'year')),
+						$author$project$VegaLite$fiExpr('datum[\'IMDB Rating\'] != null'))),
+				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release Date', 'year')),
 			A2(
 				$author$project$VegaLite$joinAggregate,
 				_List_fromArray(
 					[
-						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB_Rating', 'AverageYearRating')
+						A3($author$project$VegaLite$opAs, $author$project$VegaLite$opMean, 'IMDB Rating', 'AverageYearRating')
 					]),
 				_List_fromArray(
 					[
@@ -10407,7 +10407,7 @@ var $author$project$WindowTransformTests$joinAggregate3 = function () {
 							['year']))
 					]))),
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageYearRating) > 2.5')));
+			$author$project$VegaLite$fiExpr('(datum[\'IMDB Rating\'] - datum.AverageYearRating) > 2.5')));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10418,9 +10418,8 @@ var $author$project$WindowTransformTests$joinAggregate3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
+						$author$project$VegaLite$pName('IMDB Rating'),
+						$author$project$VegaLite$pQuant
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10436,11 +10435,11 @@ var $author$project$WindowTransformTests$joinAggregate3 = function () {
 							$author$project$VegaLite$soDescending
 						]))
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$WindowTransformTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
@@ -10651,7 +10650,7 @@ var $author$project$WindowTransformTests$window2 = function () {
 				$elm$core$Basics$composeL,
 				$author$project$VegaLite$transform,
 				$author$project$VegaLite$filter(
-					$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
+					$author$project$VegaLite$fiExpr('datum[\'IMDB Rating\'] != null'))),
 			A2(
 				$author$project$VegaLite$window,
 				_List_fromArray(
@@ -10660,7 +10659,7 @@ var $author$project$WindowTransformTests$window2 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-								$author$project$VegaLite$wiField('IMDB_Rating')
+								$author$project$VegaLite$wiField('IMDB Rating')
 							]),
 						'AverageRating')
 					]),
@@ -10669,7 +10668,7 @@ var $author$project$WindowTransformTests$window2 = function () {
 						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
 					]))),
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageRating) > 2.5')));
+			$author$project$VegaLite$fiExpr('(datum[\'IMDB Rating\'] - datum.AverageRating) > 2.5')));
 	var ruleEnc = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -10691,7 +10690,7 @@ var $author$project$WindowTransformTests$window2 = function () {
 					])),
 				ruleEnc(_List_Nil)
 			]));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/movies.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$WindowTransformTests$path + 'movies.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10702,9 +10701,8 @@ var $author$project$WindowTransformTests$window2 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
+						$author$project$VegaLite$pName('IMDB Rating'),
+						$author$project$VegaLite$pQuant
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10723,7 +10721,7 @@ var $author$project$WindowTransformTests$window2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				trans(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -10766,8 +10764,8 @@ var $author$project$WindowTransformTests$window3 = function () {
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
 					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
-				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release_Date', 'year')),
+						$author$project$VegaLite$fiExpr('datum[\'IMDB Rating\'] != null'))),
+				A3($author$project$VegaLite$timeUnitAs, $author$project$VegaLite$year, 'Release Date', 'year')),
 			A2(
 				$author$project$VegaLite$window,
 				_List_fromArray(
@@ -10776,7 +10774,7 @@ var $author$project$WindowTransformTests$window3 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-								$author$project$VegaLite$wiField('IMDB_Rating')
+								$author$project$VegaLite$wiField('IMDB Rating')
 							]),
 						'AverageYearRating')
 					]),
@@ -10788,7 +10786,7 @@ var $author$project$WindowTransformTests$window3 = function () {
 						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
 					]))),
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('(datum.IMDB_Rating - datum.AverageYearRating) > 2.5')));
+			$author$project$VegaLite$fiExpr('(datum[\'IMDB Rating\'] - datum.AverageYearRating) > 2.5')));
 	var tickEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10825,7 +10823,7 @@ var $author$project$WindowTransformTests$window3 = function () {
 			]));
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/movies.json',
+		$author$project$WindowTransformTests$path + 'movies.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$parse(
@@ -10846,9 +10844,8 @@ var $author$project$WindowTransformTests$window3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('IMDB Rating')
+						$author$project$VegaLite$pName('IMDB Rating'),
+						$author$project$VegaLite$pQuant
 					]))),
 		A2(
 			$author$project$VegaLite$position,
@@ -10915,11 +10912,11 @@ var $author$project$WindowTransformTests$window4 = function () {
 					$elm$core$Basics$composeL,
 					$author$project$VegaLite$transform,
 					$author$project$VegaLite$filter(
-						$author$project$VegaLite$fiExpr('datum.IMDB_Rating != null'))),
+						$author$project$VegaLite$fiExpr('datum[\'IMDB Rating\'] != null'))),
 				$author$project$VegaLite$filter(
 					A2(
 						$author$project$VegaLite$fiRange,
-						'Release_Date',
+						'Release Date',
 						A2(
 							$author$project$VegaLite$dtRange,
 							_List_Nil,
@@ -10935,7 +10932,7 @@ var $author$project$WindowTransformTests$window4 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$wiAggregateOp($author$project$VegaLite$opMean),
-								$author$project$VegaLite$wiField('IMDB_Rating')
+								$author$project$VegaLite$wiField('IMDB Rating')
 							]),
 						'AverageRating')
 					]),
@@ -10943,7 +10940,7 @@ var $author$project$WindowTransformTests$window4 = function () {
 					[
 						A2($author$project$VegaLite$wiFrame, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing)
 					]))),
-		A2($author$project$VegaLite$calculateAs, 'datum.IMDB_Rating - datum.AverageRating', 'RatingDelta'));
+		A2($author$project$VegaLite$calculateAs, 'datum[\'IMDB Rating\'] - datum.AverageRating', 'RatingDelta'));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10954,7 +10951,7 @@ var $author$project$WindowTransformTests$window4 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Release_Date'),
+						$author$project$VegaLite$pName('Release Date'),
 						$author$project$VegaLite$pTemporal
 					]))),
 		A2(
@@ -10968,7 +10965,7 @@ var $author$project$WindowTransformTests$window4 = function () {
 				])));
 	var data = A2(
 		$author$project$VegaLite$dataFromUrl,
-		'https://vega.github.io/vega-lite/data/movies.json',
+		$author$project$WindowTransformTests$path + 'movies.json',
 		_List_fromArray(
 			[
 				$author$project$VegaLite$parse(
@@ -11331,7 +11328,7 @@ var $author$project$WindowTransformTests$window7 = function () {
 					])),
 				lineEnc(_List_Nil)
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$WindowTransformTests$path + 'cars.json', _List_Nil);
 	var circleEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(

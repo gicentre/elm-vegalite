@@ -12516,6 +12516,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$ConfigTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
@@ -13005,13 +13006,13 @@ var $author$project$ConfigTests$singleVis = function (config) {
 				[
 					$author$project$VegaLite$mName('Origin')
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				A2($author$project$VegaLite$title, 'Car Scatter', _List_Nil),
 				config(_List_Nil),
-				cars,
+				data,
 				$author$project$VegaLite$width(200),
 				$author$project$VegaLite$height(200),
 				$author$project$VegaLite$point(
@@ -13777,7 +13778,7 @@ var $author$project$VegaLite$OfCenter = 2;
 var $author$project$VegaLite$stCenter = 2;
 var $author$project$VegaLite$Year = {$: 0};
 var $author$project$VegaLite$year = $author$project$VegaLite$Year;
-var $author$project$ConfigTests$compositeVis = function (config) {
+var $author$project$ConfigTests$compositeVis = function (cfg) {
 	var streamEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13875,7 +13876,7 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 						_Utils_Tuple2($author$project$VegaLite$chColor, $author$project$VegaLite$reIndependent),
 						_Utils_Tuple2($author$project$VegaLite$chShape, $author$project$VegaLite$reIndependent)
 					]))));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13915,8 +13916,8 @@ var $author$project$ConfigTests$compositeVis = function (config) {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				config(_List_Nil),
-				cars,
+				cfg(_List_Nil),
+				data,
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
 					[scatterSpec, barSpec, streamSpec])),
@@ -14149,7 +14150,7 @@ var $author$project$ConfigTests$titleCfg1 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14160,7 +14161,7 @@ var $author$project$ConfigTests$titleCfg1 = function () {
 					[
 						$author$project$VegaLite$tiSubtitle('A subtitle\nalso over two lines')
 					])),
-				cars,
+				data,
 				$author$project$VegaLite$width(200),
 				$author$project$VegaLite$height(200),
 				enc(_List_Nil),
@@ -14222,7 +14223,7 @@ var $author$project$ConfigTests$titleCfg2 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14241,7 +14242,7 @@ var $author$project$ConfigTests$titleCfg2 = function () {
 						$author$project$VegaLite$tiSubtitleLineHeight(18),
 						$author$project$VegaLite$tiSubtitlePadding(60)
 					])),
-				cars,
+				data,
 				$author$project$VegaLite$width(200),
 				$author$project$VegaLite$height(200),
 				enc(_List_Nil),
@@ -14278,6 +14279,7 @@ var $author$project$ConfigTests$titleCfg3 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -14294,7 +14296,6 @@ var $author$project$ConfigTests$titleCfg3 = function () {
 						$author$project$VegaLite$ticoSubtitleLineHeight(18),
 						$author$project$VegaLite$ticoSubtitlePadding(60)
 					]))));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14306,7 +14307,7 @@ var $author$project$ConfigTests$titleCfg3 = function () {
 					[
 						$author$project$VegaLite$tiSubtitle('A subtitle\nalso over two lines')
 					])),
-				cars,
+				data,
 				$author$project$VegaLite$width(200),
 				$author$project$VegaLite$height(200),
 				enc(_List_Nil),
@@ -14483,6 +14484,7 @@ var $author$project$ConfigTests$vbTest = function () {
 						_Utils_Tuple2($author$project$VegaLite$chColor, $author$project$VegaLite$reIndependent),
 						_Utils_Tuple2($author$project$VegaLite$chShape, $author$project$VegaLite$reIndependent)
 					]))));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14519,7 +14521,6 @@ var $author$project$ConfigTests$vbTest = function () {
 								$elm$core$Maybe$Just('#feb'))
 							]))
 					]))));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	var barEnc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14576,7 +14577,7 @@ var $author$project$ConfigTests$vbTest = function () {
 			[
 				cfg(_List_Nil),
 				$author$project$VegaLite$background('yellow'),
-				cars,
+				data,
 				$author$project$VegaLite$hConcat(
 				_List_fromArray(
 					[scatterSpec, barSpec, streamSpec])),

@@ -10915,6 +10915,7 @@ var $author$project$VegaLite$Line = 9;
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$FillStrokeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$strokeDash = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -10951,7 +10952,7 @@ var $author$project$FillStrokeTests$strokeDash1 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$FillStrokeTests$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -11032,7 +11033,7 @@ var $author$project$FillStrokeTests$strokeDash2 = function () {
 									])))
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$FillStrokeTests$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

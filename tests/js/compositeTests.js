@@ -6540,6 +6540,7 @@ var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$CompositeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -9906,7 +9907,6 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				spec)));
 };
 var $author$project$CompositeTests$bPlot = function (ext) {
-	var pop = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -9929,10 +9929,11 @@ var $author$project$CompositeTests$bPlot = function (ext) {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Population')
 				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$CompositeTests$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				pop,
+				data,
 				$author$project$VegaLite$boxplot(
 				_List_fromArray(
 					[
@@ -9987,7 +9988,6 @@ var $author$project$VegaLite$MTicks = function (a) {
 };
 var $author$project$VegaLite$maTicks = $author$project$VegaLite$MTicks;
 var $author$project$CompositeTests$boxplot3 = function () {
-	var pop = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10010,10 +10010,11 @@ var $author$project$CompositeTests$boxplot3 = function () {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Population')
 				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$CompositeTests$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				pop,
+				data,
 				$author$project$VegaLite$boxplot(
 				_List_fromArray(
 					[
@@ -10053,7 +10054,6 @@ var $author$project$CompositeTests$boxplot3 = function () {
 			]));
 }();
 var $author$project$CompositeTests$boxplot4 = function () {
-	var pop = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/population.json', _List_Nil);
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10076,10 +10076,11 @@ var $author$project$CompositeTests$boxplot4 = function () {
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pTitle('Population')
 				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$CompositeTests$path + 'population.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				pop,
+				data,
 				$author$project$VegaLite$boxplot(
 				_List_fromArray(
 					[
@@ -10184,11 +10185,11 @@ var $author$project$CompositeTests$eBand = function (ext) {
 						])),
 					$author$project$VegaLite$pTitle('Miles per Gallon ' + label)
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$CompositeTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				cars,
+				data,
 				$author$project$VegaLite$errorband(
 				_List_fromArray(
 					[
@@ -10234,11 +10235,11 @@ var $author$project$CompositeTests$eBar = function (ext) {
 					$author$project$VegaLite$pName('variety'),
 					$author$project$VegaLite$pOrdinal
 				])));
-	var barley = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$CompositeTests$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				barley,
+				data,
 				$author$project$VegaLite$errorbar(
 				_List_fromArray(
 					[
@@ -10378,12 +10379,13 @@ var $author$project$CompositeTests$errorbar3 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Error bars with color encoding');
+	var desc = $author$project$VegaLite$description('Error bars with color encoding');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$CompositeTests$path + 'barley.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
-				A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/barley.json', _List_Nil),
+				desc,
+				data,
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[specErrorBars, specPoints]))
@@ -10604,7 +10606,7 @@ var $author$project$CompositeTests$errorbar4 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Symetric error bars encoded with xError channel');
+	var desc = $author$project$VegaLite$description('Symetric error bars encoded with xError channel');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10633,7 +10635,7 @@ var $author$project$CompositeTests$errorbar4 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -10731,7 +10733,7 @@ var $author$project$CompositeTests$errorbar5 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Asymetric error bars encoded with xError and xError2 channels');
+	var desc = $author$project$VegaLite$description('Asymetric error bars encoded with xError and xError2 channels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10768,7 +10770,7 @@ var $author$project$CompositeTests$errorbar5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -10854,7 +10856,7 @@ var $author$project$CompositeTests$errorbar6 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Symetric error bars encoded with yError channel');
+	var desc = $author$project$VegaLite$description('Symetric error bars encoded with yError channel');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10883,7 +10885,7 @@ var $author$project$CompositeTests$errorbar6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
@@ -10978,7 +10980,7 @@ var $author$project$CompositeTests$errorbar7 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var des = $author$project$VegaLite$description('Asymetric error bars encoded with yError and yError2 channels');
+	var desc = $author$project$VegaLite$description('Asymetric error bars encoded with yError and yError2 channels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11015,7 +11017,7 @@ var $author$project$CompositeTests$errorbar7 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				des,
+				desc,
 				data(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(

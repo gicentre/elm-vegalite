@@ -7388,6 +7388,7 @@ var $author$project$VegaLite$PmType = function (a) {
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$TrailTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$AxGridColor = function (a) {
 	return {$: 70, a: a};
 };
@@ -9981,7 +9982,7 @@ var $author$project$TrailTests$trail1 = function () {
 				[
 					$author$project$VegaLite$mName('symbol')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/stocks.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TrailTests$path + 'stocks.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -10050,11 +10051,11 @@ var $author$project$TrailTests$trail2 = function () {
 					$author$project$VegaLite$mTemporal,
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/driving.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TrailTests$path + 'driving.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				data(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$trail(
 				_List_fromArray(

@@ -5302,6 +5302,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$ConditionalTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
@@ -9936,7 +9937,7 @@ var $author$project$ConditionalTests$axisCondition1 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
@@ -9958,10 +9959,10 @@ var $author$project$ConditionalTests$axisCondition1 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -10016,7 +10017,7 @@ var $author$project$ConditionalTests$axisCondition2 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
@@ -10046,7 +10047,7 @@ var $author$project$ConditionalTests$axisCondition2 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(
@@ -10057,7 +10058,7 @@ var $author$project$ConditionalTests$axisCondition2 = function () {
 							A2($author$project$VegaLite$cAxLabelPadding, 12, 8))
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -10132,7 +10133,7 @@ var $author$project$ConditionalTests$axisCondition3 = function () {
 				0,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('IMDB_Rating'),
+						$author$project$VegaLite$pName('IMDB Rating'),
 						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
@@ -10178,10 +10179,10 @@ var $author$project$ConditionalTests$axisCondition3 = function () {
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'movies.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -10876,13 +10877,13 @@ var $author$project$ConditionalTests$bindScales1 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
-				data(_List_Nil),
+				data,
 				sel(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil),
 				enc(_List_Nil)
@@ -10926,13 +10927,13 @@ var $author$project$ConditionalTests$bindScales2 = function () {
 					$author$project$VegaLite$pName('Miles_per_Gallon'),
 					$author$project$VegaLite$pQuant
 				])));
-	var data = $author$project$VegaLite$dataFromUrl('https://vega.github.io/vega-lite/data/cars.json');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
-				data(_List_Nil),
+				data,
 				sel(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil),
 				enc(_List_Nil)
@@ -13376,7 +13377,7 @@ var $author$project$ConditionalTests$markCondition1 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('IMDB_Rating'),
+							$author$project$VegaLite$pName('IMDB Rating'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -13384,7 +13385,7 @@ var $author$project$ConditionalTests$markCondition1 = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Rotten_Tomatoes_Rating'),
+						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
 						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$color(
@@ -13397,8 +13398,8 @@ var $author$project$ConditionalTests$markCondition1 = function () {
 							_Utils_Tuple2(
 							A2(
 								$author$project$VegaLite$or,
-								$author$project$VegaLite$expr('datum.IMDB_Rating === null'),
-								$author$project$VegaLite$expr('datum.Rotten_Tomatoes_Rating === null')),
+								$author$project$VegaLite$expr('datum[\'IMDB Rating\'] === null'),
+								$author$project$VegaLite$expr('datum[\'Rotten Tomatoes Rating\'] === null')),
 							_List_fromArray(
 								[
 									$author$project$VegaLite$mStr('#ddd')
@@ -13409,7 +13410,7 @@ var $author$project$ConditionalTests$markCondition1 = function () {
 							$author$project$VegaLite$mStr('#0099ee')
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/movies.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'movies.json', _List_Nil);
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -13633,24 +13634,566 @@ var $author$project$ConditionalTests$markCondition2 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$And = F2(
+	function (a, b) {
+		return {$: 5, a: a, b: b};
+	});
+var $author$project$VegaLite$and = F2(
+	function (op1, op2) {
+		return A2($author$project$VegaLite$And, op1, op2);
+	});
+var $author$project$VegaLite$Domain = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$axcoDomain = $author$project$VegaLite$Domain;
+var $author$project$VegaLite$LabelAngle = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$positiveAngle = function (a) {
+	return (a < 0) ? (a + 360) : a;
+};
+var $author$project$VegaLite$axcoLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$LabelAngle, $author$project$VegaLite$positiveAngle);
+var $author$project$VegaLite$AxBoth = 0;
+var $author$project$VegaLite$Axis = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $author$project$VegaLite$coAxis = $author$project$VegaLite$Axis(0);
+var $author$project$VegaLite$AxisBand = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisDiscrete = F2(
+	function (a, b) {
+		return {$: 10, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisPoint = F2(
+	function (a, b) {
+		return {$: 11, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisQuant = F2(
+	function (a, b) {
+		return {$: 12, a: a, b: b};
+	});
+var $author$project$VegaLite$AxisTemporal = F2(
+	function (a, b) {
+		return {$: 13, a: a, b: b};
+	});
+var $author$project$VegaLite$AxX = 1;
+var $author$project$VegaLite$axX = 1;
+var $author$project$VegaLite$coAxisXFilter = function (cp) {
+	switch (cp.$) {
+		case 3:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$Axis, $author$project$VegaLite$axX, acs);
+		case 9:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisBand, $author$project$VegaLite$axX, acs);
+		case 10:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisDiscrete, $author$project$VegaLite$axX, acs);
+		case 11:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisPoint, $author$project$VegaLite$axX, acs);
+		case 12:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisQuant, $author$project$VegaLite$axX, acs);
+		case 13:
+			var acs = cp.b;
+			return A2($author$project$VegaLite$AxisTemporal, $author$project$VegaLite$axX, acs);
+		default:
+			return cp;
+	}
+};
+var $author$project$VegaLite$Range = function (a) {
+	return {$: 33, a: a};
+};
+var $author$project$VegaLite$coRange = $author$project$VegaLite$Range;
+var $author$project$VegaLite$Scale = function (a) {
+	return {$: 36, a: a};
+};
+var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
+var $author$project$VegaLite$View = function (a) {
+	return {$: 45, a: a};
+};
+var $author$project$VegaLite$coView = $author$project$VegaLite$View;
+var $author$project$VegaLite$fill = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'fill',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 61, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
+var $author$project$VegaLite$ONumber = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$oNum = $author$project$VegaLite$ONumber;
+var $author$project$VegaLite$OSelectionCondition = F3(
+	function (a, b, c) {
+		return {$: 7, a: a, b: b, c: c};
+	});
+var $author$project$VegaLite$oSelectionCondition = $author$project$VegaLite$OSelectionCondition;
+var $author$project$VegaLite$orderChannelProperties = function (oDef) {
+	switch (oDef.$) {
+		case 0:
+			var s = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = oDef.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			var op = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		case 5:
+			var tu = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 6:
+			var sps = oDef.a;
+			_v1$4:
+			while (true) {
+				if (!sps.b) {
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('sort', $elm$json$Json$Encode$null)
+						]);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 0:
+								var _v2 = sps.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('ascending'))
+									]);
+							case 1:
+								var _v3 = sps.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('descending'))
+									]);
+							case 2:
+								var dvs = sps.a.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$author$project$VegaLite$toList(
+											$author$project$VegaLite$dataValuesSpecs(dvs)))
+									]);
+							default:
+								break _v1$4;
+						}
+					} else {
+						break _v1$4;
+					}
+				}
+			}
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'sort',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
+				]);
+		case 9:
+			var n = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$float(n))
+				]);
+		case 7:
+			var selName = oDef.a;
+			var ifClause = oDef.b;
+			var elseClause = oDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
+		default:
+			var tests = oDef.a;
+			var elseClause = oDef.b;
+			var testClause = function (_v5) {
+				var predicate = _v5.a;
+				var ifClause = _v5.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					function () {
+						if (tests.b && (!tests.b.b)) {
+							var test = tests.a;
+							return testClause(test);
+						} else {
+							return A2($elm$json$Json$Encode$list, testClause, tests);
+						}
+					}()),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
+	}
+};
+var $author$project$VegaLite$order = function (oDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'order',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, oDefs))));
+};
+var $author$project$VegaLite$RRamp = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$racoRamp = $author$project$VegaLite$RRamp;
+var $author$project$VegaLite$Rect = 11;
+var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
+var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$sacoBandPaddingInner = $author$project$VegaLite$SCBandPaddingInner;
+var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$sacoBandPaddingOuter = $author$project$VegaLite$SCBandPaddingOuter;
+var $author$project$VegaLite$SeSingle = 0;
+var $author$project$VegaLite$seSingle = 0;
+var $author$project$VegaLite$Selection = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$selected = $author$project$VegaLite$Selection;
+var $author$project$VegaLite$SelectionName = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$selectionName = $author$project$VegaLite$SelectionName;
+var $author$project$VegaLite$stroke = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'stroke',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$Strings = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
+var $author$project$VegaLite$VStep = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$vicoStep = $author$project$VegaLite$VStep;
+var $author$project$ConditionalTests$orderCondition1 = function () {
+	var sel = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$selection,
+		A3($author$project$VegaLite$select, 'highlight', $author$project$VegaLite$seSingle, _List_Nil));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$encoding,
+						A2(
+							$author$project$VegaLite$position,
+							0,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('predicted')
+								]))),
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('actual')
+							]))),
+				$author$project$VegaLite$fill(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mName('count'),
+							$author$project$VegaLite$mQuant
+						]))),
+			$author$project$VegaLite$stroke(
+				_List_fromArray(
+					[
+						A2(
+						$author$project$VegaLite$mDataCondition,
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								A2(
+									$author$project$VegaLite$and,
+									$author$project$VegaLite$selected('highlight'),
+									$author$project$VegaLite$expr('length(data(\"highlight_store\"))')),
+								_List_fromArray(
+									[
+										$author$project$VegaLite$mStr('black')
+									]))
+							]),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mStr('')
+							]))
+					]))),
+		$author$project$VegaLite$order(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$oSelectionCondition,
+					$author$project$VegaLite$selectionName('highlight'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$oNum(1)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$oNum(0)
+						]))
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'actual',
+					$author$project$VegaLite$strs(
+						_List_fromArray(
+							['A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C'])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'predicted',
+				$author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C'])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'count',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[13, 0, 0, 0, 10, 6, 0, 0, 9]))));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$configure,
+						$author$project$VegaLite$configuration(
+							$author$project$VegaLite$coScale(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$sacoBandPaddingInner(0),
+										$author$project$VegaLite$sacoBandPaddingOuter(0)
+									])))),
+					$author$project$VegaLite$configuration(
+						$author$project$VegaLite$coRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$racoRamp('yellowgreenblue')
+								])))),
+				$author$project$VegaLite$configuration(
+					$author$project$VegaLite$coView(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$vicoStep(40)
+							])))),
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axcoDomain(false)
+						])))),
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coAxisXFilter(
+				$author$project$VegaLite$coAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axcoLabelAngle(0)
+						])))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data(_List_Nil),
+				sel(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$rect(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStrokeWidth(8)
+					]))
+			]));
+}();
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$ODataCondition = F2(
+	function (a, b) {
+		return {$: 8, a: a, b: b};
+	});
+var $author$project$VegaLite$oDataCondition = $author$project$VegaLite$ODataCondition;
+var $author$project$ConditionalTests$orderCondition2 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('Horsepower'),
+								$author$project$VegaLite$pQuant
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Miles_per_Gallon'),
+							$author$project$VegaLite$pQuant
+						]))),
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mName('Origin')
+					]))),
+		$author$project$VegaLite$order(
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$oDataCondition,
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							$author$project$VegaLite$expr('datum.Origin == \'Europe\''),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$oNum(1)
+								]))
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$oNum(0)
+						]))
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(200),
+						$author$project$VegaLite$maStroke('white'),
+						$author$project$VegaLite$maStrokeWidth(0.5),
+						$author$project$VegaLite$maOpacity(1)
+					]))
+			]));
+}();
 var $author$project$VegaLite$CGrab = 34;
 var $author$project$VegaLite$cuGrab = 34;
 var $author$project$VegaLite$MAggregate = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$mAggregate = $author$project$VegaLite$MAggregate;
-var $author$project$VegaLite$MName = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
 var $author$project$VegaLite$MCursor = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$maCursor = $author$project$VegaLite$MCursor;
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
-var $author$project$VegaLite$Rect = 11;
-var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$On = function (a) {
 	return {$: 3, a: a};
 };
@@ -13735,7 +14278,7 @@ var $author$project$ConditionalTests$selectionCondition1 = function () {
 					$author$project$VegaLite$mAggregate($author$project$VegaLite$opCount),
 					$author$project$VegaLite$mName('*')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13749,23 +14292,11 @@ var $author$project$ConditionalTests$selectionCondition1 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$And = F2(
-	function (a, b) {
-		return {$: 5, a: a, b: b};
-	});
-var $author$project$VegaLite$and = F2(
-	function (op1, op2) {
-		return A2($author$project$VegaLite$And, op1, op2);
-	});
 var $author$project$VegaLite$MSelectionCondition = F3(
 	function (a, b, c) {
 		return {$: 14, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$mSelectionCondition = $author$project$VegaLite$MSelectionCondition;
-var $author$project$VegaLite$SelectionName = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$selectionName = $author$project$VegaLite$SelectionName;
 var $author$project$ConditionalTests$selectionCondition2 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
@@ -13839,7 +14370,7 @@ var $author$project$ConditionalTests$selectionCondition2 = function () {
 							$author$project$VegaLite$mStr('gray')
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -13888,10 +14419,6 @@ var $author$project$VegaLite$SDomain = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$Selection = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$selected = $author$project$VegaLite$Selection;
 var $author$project$VegaLite$VLTransform = 13;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -14010,7 +14537,7 @@ var $author$project$ConditionalTests$selectionCondition3 = function () {
 				$author$project$VegaLite$point(_List_Nil),
 				enc1(_List_Nil)
 			]));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14073,7 +14600,7 @@ var $author$project$ConditionalTests$selectionCondition4 = function () {
 							$author$project$VegaLite$mStr('gray')
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14143,7 +14670,7 @@ var $author$project$ConditionalTests$selectionCondition5 = function () {
 							$author$project$VegaLite$mStr('gray')
 						]))
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -14170,7 +14697,9 @@ var $author$project$ConditionalTests$specs = _List_fromArray(
 		_Utils_Tuple2('selectionCondition4', $author$project$ConditionalTests$selectionCondition4),
 		_Utils_Tuple2('selectionCondition5', $author$project$ConditionalTests$selectionCondition5),
 		_Utils_Tuple2('bindScales1', $author$project$ConditionalTests$bindScales1),
-		_Utils_Tuple2('bindScales2', $author$project$ConditionalTests$bindScales2)
+		_Utils_Tuple2('bindScales2', $author$project$ConditionalTests$bindScales2),
+		_Utils_Tuple2('orderCondition1', $author$project$ConditionalTests$orderCondition1),
+		_Utils_Tuple2('orderCondition2', $author$project$ConditionalTests$orderCondition2)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

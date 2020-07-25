@@ -7399,6 +7399,7 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$ScaleTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 12;
 var $author$project$VegaLite$markLabel = function (m) {
@@ -9991,11 +9992,11 @@ var $author$project$ScaleTests$scale1 = function () {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mBin(_List_Nil)
 				])));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ScaleTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				cars,
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$point(
 				_List_fromArray(
@@ -13298,7 +13299,8 @@ var $author$project$ScaleTests$scale2 = function () {
 					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mBin(_List_Nil)
 				])));
-	var conf = A2(
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ScaleTests$path + 'cars.json', _List_Nil);
+	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
 		$author$project$VegaLite$configuration(
@@ -13307,12 +13309,11 @@ var $author$project$ScaleTests$scale2 = function () {
 					[
 						$author$project$VegaLite$racoRamp('reds')
 					]))));
-	var cars = A2($author$project$VegaLite$dataFromUrl, 'https://vega.github.io/vega-lite/data/cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				conf(_List_Nil),
-				cars,
+				cfg(_List_Nil),
+				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
 			]));
