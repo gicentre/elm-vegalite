@@ -6348,7 +6348,16 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 		case 0:
 			var ns = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ns);
+		case 1:
+			var n = sdType.a;
+			return $elm$json$Json$Encode$float(n);
 		case 2:
+			var n = sdType.a;
+			return $elm$json$Json$Encode$float(n);
+		case 3:
+			var n = sdType.a;
+			return $elm$json$Json$Encode$float(n);
+		case 7:
 			var ds = sdType.a;
 			return A2(
 				$elm$json$Json$Encode$list,
@@ -6357,10 +6366,18 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
-		case 1:
+		case 4:
+			var d = sdType.a;
+			return $elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+		case 5:
+			var d = sdType.a;
+			return $elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+		case 6:
 			var cats = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
-		case 3:
+		case 8:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -6369,7 +6386,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'selection',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		case 5:
+		case 10:
 			var selName = sdType.a;
 			var ch = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -6383,7 +6400,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(
 							$author$project$VegaLite$channelLabel(ch)))
 					]));
-		case 4:
+		case 9:
 			var selName = sdType.a;
 			var f = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -6396,7 +6413,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'field',
 						$elm$json$Json$Encode$string(f))
 					]));
-		case 7:
+		case 12:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -6632,9 +6649,37 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					$author$project$VegaLite$scaleLabel(sType)));
 		case 1:
 			var sdType = scaleProp.a;
-			return _Utils_Tuple2(
-				'domain',
-				$author$project$VegaLite$scaleDomainSpec(sdType));
+			switch (sdType.$) {
+				case 1:
+					var n = sdType.a;
+					return _Utils_Tuple2(
+						'domainMin',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 2:
+					var n = sdType.a;
+					return _Utils_Tuple2(
+						'domainMid',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 3:
+					var n = sdType.a;
+					return _Utils_Tuple2(
+						'domainMax',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 4:
+					var d = sdType.a;
+					return _Utils_Tuple2(
+						'domainMin',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 5:
+					var d = sdType.a;
+					return _Utils_Tuple2(
+						'domainMax',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				default:
+					return _Utils_Tuple2(
+						'domain',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+			}
 		case 2:
 			var range = scaleProp.a;
 			switch (range.$) {
@@ -10219,10 +10264,14 @@ var $author$project$ScaleTests$scale10 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$SDomainMid = function (a) {
-	return {$: 15, a: a};
+var $author$project$VegaLite$DMidNumber = function (a) {
+	return {$: 2, a: a};
 };
-var $author$project$VegaLite$scDomainMid = $author$project$VegaLite$SDomainMid;
+var $author$project$VegaLite$doMid = $author$project$VegaLite$DMidNumber;
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
 var $author$project$ScaleTests$scale11 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -10256,7 +10305,8 @@ var $author$project$ScaleTests$scale11 = function () {
 					_List_fromArray(
 						[
 							A2($author$project$VegaLite$scScheme, 'redblue', _List_Nil),
-							$author$project$VegaLite$scDomainMid(0)
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doMid(0))
 						]))
 				])));
 	return $author$project$VegaLite$toVegaLite(
@@ -10267,6 +10317,161 @@ var $author$project$ScaleTests$scale11 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Line = 9;
+var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
+var $author$project$VegaLite$Mean = {$: 7};
+var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$PAggregate = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$PTimeUnit = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$VegaLite$Year = {$: 0};
+var $author$project$VegaLite$year = $author$project$VegaLite$Year;
+var $author$project$ScaleTests$lineChart = F2(
+	function (xScale, yScale) {
+		var pyProp = _Utils_eq(yScale, _List_Nil) ? _List_Nil : _List_fromArray(
+			[
+				$author$project$VegaLite$pScale(yScale)
+			]);
+		var pxProp = _Utils_eq(xScale, _List_Nil) ? _List_Nil : _List_fromArray(
+			[
+				$author$project$VegaLite$pScale(xScale)
+			]);
+		var enc = A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_Utils_ap(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('date'),
+									$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
+								]),
+							pxProp))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_Utils_ap(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('price'),
+								$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+							]),
+						pyProp))),
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mName('symbol')
+					])));
+		var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ScaleTests$path + 'stocks.csv', _List_Nil);
+		return $author$project$VegaLite$toVegaLite(
+			_List_fromArray(
+				[
+					data,
+					enc(_List_Nil),
+					$author$project$VegaLite$line(_List_Nil)
+				]));
+	});
+var $author$project$ScaleTests$scale12 = A2($author$project$ScaleTests$lineChart, _List_Nil, _List_Nil);
+var $author$project$VegaLite$DDateTimes = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$doDts = $author$project$VegaLite$DDateTimes;
+var $author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doNums = $author$project$VegaLite$DNumbers;
+var $author$project$VegaLite$DTYear = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dtYear = $author$project$VegaLite$DTYear;
+var $author$project$ScaleTests$scale13 = A2(
+	$author$project$ScaleTests$lineChart,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scDomain(
+			$author$project$VegaLite$doDts(
+				_List_fromArray(
+					[
+						_List_fromArray(
+						[
+							$author$project$VegaLite$dtYear(1990)
+						]),
+						_List_fromArray(
+						[
+							$author$project$VegaLite$dtYear(2020)
+						])
+					])))
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scDomain(
+			$author$project$VegaLite$doNums(
+				_List_fromArray(
+					[-100, 700])))
+		]));
+var $author$project$VegaLite$DMinNumber = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$doMin = $author$project$VegaLite$DMinNumber;
+var $author$project$VegaLite$DMinDateTime = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$doMinDt = $author$project$VegaLite$DMinDateTime;
+var $author$project$ScaleTests$scale14 = A2(
+	$author$project$ScaleTests$lineChart,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scDomain(
+			$author$project$VegaLite$doMinDt(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$dtYear(1990)
+					])))
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scDomain(
+			$author$project$VegaLite$doMin(-100))
+		]));
+var $author$project$VegaLite$DMaxNumber = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$doMax = $author$project$VegaLite$DMaxNumber;
+var $author$project$VegaLite$DMaxDateTime = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$doMaxDt = $author$project$VegaLite$DMaxDateTime;
+var $author$project$ScaleTests$scale15 = A2(
+	$author$project$ScaleTests$lineChart,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scDomain(
+			$author$project$VegaLite$doMaxDt(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$dtYear(2020)
+					])))
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scDomain(
+			$author$project$VegaLite$doMax(700))
+		]));
 var $author$project$VegaLite$Range = function (a) {
 	return {$: 33, a: a};
 };
@@ -13483,18 +13688,10 @@ var $author$project$ScaleTests$scale4 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$DNumbers = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$doNums = $author$project$VegaLite$DNumbers;
 var $author$project$VegaLite$RNumbers = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
-var $author$project$VegaLite$SDomain = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
 var $author$project$VegaLite$SRange = function (a) {
 	return {$: 2, a: a};
 };
@@ -13753,7 +13950,11 @@ var $author$project$ScaleTests$specs = _List_fromArray(
 		_Utils_Tuple2('scale8', $author$project$ScaleTests$scale8),
 		_Utils_Tuple2('scale9', $author$project$ScaleTests$scale9),
 		_Utils_Tuple2('scale10', $author$project$ScaleTests$scale10),
-		_Utils_Tuple2('scale11', $author$project$ScaleTests$scale11)
+		_Utils_Tuple2('scale11', $author$project$ScaleTests$scale11),
+		_Utils_Tuple2('scale12', $author$project$ScaleTests$scale12),
+		_Utils_Tuple2('scale13', $author$project$ScaleTests$scale13),
+		_Utils_Tuple2('scale14', $author$project$ScaleTests$scale14),
+		_Utils_Tuple2('scale15', $author$project$ScaleTests$scale15)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

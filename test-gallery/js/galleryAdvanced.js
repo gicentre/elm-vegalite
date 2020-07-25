@@ -5645,7 +5645,16 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 		case 0:
 			var ns = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ns);
+		case 1:
+			var n = sdType.a;
+			return $elm$json$Json$Encode$float(n);
 		case 2:
+			var n = sdType.a;
+			return $elm$json$Json$Encode$float(n);
+		case 3:
+			var n = sdType.a;
+			return $elm$json$Json$Encode$float(n);
+		case 7:
 			var ds = sdType.a;
 			return A2(
 				$elm$json$Json$Encode$list,
@@ -5654,10 +5663,18 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
-		case 1:
+		case 4:
+			var d = sdType.a;
+			return $elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+		case 5:
+			var d = sdType.a;
+			return $elm$json$Json$Encode$object(
+				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+		case 6:
 			var cats = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
-		case 3:
+		case 8:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -5666,7 +5683,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'selection',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		case 5:
+		case 10:
 			var selName = sdType.a;
 			var ch = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -5680,7 +5697,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(
 							$author$project$VegaLite$channelLabel(ch)))
 					]));
-		case 4:
+		case 9:
 			var selName = sdType.a;
 			var f = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -5693,7 +5710,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'field',
 						$elm$json$Json$Encode$string(f))
 					]));
-		case 7:
+		case 12:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -5929,9 +5946,37 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					$author$project$VegaLite$scaleLabel(sType)));
 		case 1:
 			var sdType = scaleProp.a;
-			return _Utils_Tuple2(
-				'domain',
-				$author$project$VegaLite$scaleDomainSpec(sdType));
+			switch (sdType.$) {
+				case 1:
+					var n = sdType.a;
+					return _Utils_Tuple2(
+						'domainMin',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 2:
+					var n = sdType.a;
+					return _Utils_Tuple2(
+						'domainMid',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 3:
+					var n = sdType.a;
+					return _Utils_Tuple2(
+						'domainMax',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 4:
+					var d = sdType.a;
+					return _Utils_Tuple2(
+						'domainMin',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				case 5:
+					var d = sdType.a;
+					return _Utils_Tuple2(
+						'domainMax',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+				default:
+					return _Utils_Tuple2(
+						'domain',
+						$author$project$VegaLite$scaleDomainSpec(sdType));
+			}
 		case 2:
 			var range = scaleProp.a;
 			switch (range.$) {
@@ -13268,6 +13313,10 @@ var $author$project$GalleryAdvanced$advanced3 = function () {
 					[barSpec, tickSpec]))
 			]));
 }();
+var $author$project$VegaLite$DMidNumber = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$doMid = $author$project$VegaLite$DMidNumber;
 var $author$project$VegaLite$DateRange = F2(
 	function (a, b) {
 		return {$: 1, a: a, b: b};
@@ -13294,10 +13343,10 @@ var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 61, a: a};
 };
 var $author$project$VegaLite$maStrokeWidth = $author$project$VegaLite$MStrokeWidth;
-var $author$project$VegaLite$SDomainMid = function (a) {
-	return {$: 15, a: a};
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomainMid = $author$project$VegaLite$SDomainMid;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
 var $author$project$GalleryAdvanced$advanced4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -13361,7 +13410,8 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$scDomainMid(0)
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doMid(0))
 						])),
 					$author$project$VegaLite$mTitle('Rating Delta')
 				])));
@@ -13382,12 +13432,9 @@ var $author$project$GalleryAdvanced$advanced4 = function () {
 			]));
 }();
 var $author$project$VegaLite$DStrings = function (a) {
-	return {$: 1, a: a};
+	return {$: 6, a: a};
 };
 var $author$project$VegaLite$RStrings = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$SDomain = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$SRange = function (a) {
