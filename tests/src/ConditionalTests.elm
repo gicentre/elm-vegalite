@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 markCondition1 : Spec
 markCondition1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         cfg =
             configure
@@ -21,12 +26,12 @@ markCondition1 =
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
                     [ mDataCondition
-                        [ ( or (expr "datum.IMDB_Rating === null")
-                                (expr "datum.Rotten_Tomatoes_Rating === null")
+                        [ ( or (expr "datum['IMDB Rating'] === null")
+                                (expr "datum['Rotten Tomatoes Rating'] === null")
                           , [ mStr "#ddd" ]
                           )
                         ]
@@ -62,19 +67,19 @@ axisCondition1 : Spec
 axisCondition1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
                 << position X
-                    [ pName "IMDB_Rating"
+                    [ pName "IMDB Rating"
                     , pQuant
                     , pAxis
                         [ axTickCount (niTickCount 20)
                         , axDataCondition (expr "datum.value <= 5") (cAxGridDash [ 2, 2 ] [])
                         ]
                     ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
     in
     toVegaLite [ data, point [ maOpacity 0.1 ], enc [] ]
 
@@ -83,12 +88,12 @@ axisCondition2 : Spec
 axisCondition2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
                 << position X
-                    [ pName "IMDB_Rating"
+                    [ pName "IMDB Rating"
                     , pQuant
                     , pAxis
                         [ axTickCount (niTickCount 20)
@@ -99,7 +104,7 @@ axisCondition2 =
                         ]
                     ]
                 << position Y
-                    [ pName "Rotten_Tomatoes_Rating"
+                    [ pName "Rotten Tomatoes Rating"
                     , pQuant
                     , pAxis [ axDataCondition (expr "datum.value <= 99") (cAxLabelPadding 12 8) ]
                     ]
@@ -111,12 +116,12 @@ axisCondition3 : Spec
 axisCondition3 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
                 << position X
-                    [ pName "IMDB_Rating"
+                    [ pName "IMDB Rating"
                     , pQuant
                     , pAxis
                         [ axTickCount (niTickCount 20)
@@ -130,7 +135,7 @@ axisCondition3 =
                         , axDataCondition (expr "datum.value >=9") (cAxLabelOpacity 0.3 0.8)
                         ]
                     ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
     in
     toVegaLite [ width 600, data, point [ maOpacity 0.1 ], enc [] ]
 
@@ -139,7 +144,7 @@ selectionCondition1 : Spec
 selectionCondition1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -169,7 +174,7 @@ selectionCondition2 : Spec
 selectionCondition2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -204,7 +209,7 @@ selectionCondition3 : Spec
 selectionCondition3 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -243,7 +248,7 @@ selectionCondition4 : Spec
 selectionCondition4 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -273,7 +278,7 @@ selectionCondition5 : Spec
 selectionCondition5 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -304,7 +309,7 @@ bindScales1 : Spec
 bindScales1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -316,14 +321,14 @@ bindScales1 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ width 300, height 300, data [], sel [], circle [], enc [] ]
+        [ width 300, height 300, data, sel [], circle [], enc [] ]
 
 
 bindScales2 : Spec
 bindScales2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         sel =
             selection
@@ -337,7 +342,7 @@ bindScales2 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ width 300, height 300, data [], sel [], circle [], enc [] ]
+        [ width 300, height 300, data, sel [], circle [], enc [] ]
 
 
 

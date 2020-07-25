@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 trail1 : Spec
 trail1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -29,7 +34,7 @@ trail2 : Spec
 trail2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/driving.json"
+            dataFromUrl (path ++ "driving.json") []
 
         enc =
             encoding
@@ -37,7 +42,7 @@ trail2 =
                 << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
                 << size [ mName "year", mTemporal, mLegend [] ]
     in
-    toVegaLite [ data [], enc [], trail [ maOrder False ] ]
+    toVegaLite [ data, enc [], trail [ maOrder False ] ]
 
 
 

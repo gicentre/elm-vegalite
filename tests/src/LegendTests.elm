@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 legendCore : List LegendProperty -> Spec
 legendCore legProps =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -23,14 +28,14 @@ legendCore legProps =
                 << size [ mName "Horsepower", mQuant, mLegend legProps ]
                 << opacity [ mName "Weight_in_lbs", mQuant, mLegend legProps ]
     in
-    toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
+    toVegaLite [ width 300, height 300, data, enc [], circle [] ]
 
 
 legendCoreCfg : List LegendConfig -> Spec
 legendCoreCfg cfg =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -44,7 +49,7 @@ legendCoreCfg cfg =
         [ (configure << configuration (coLegend cfg)) []
         , width 300
         , height 300
-        , data []
+        , data
         , enc []
         , circle []
         ]
@@ -99,7 +104,7 @@ legend10 : Spec
 legend10 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -107,7 +112,7 @@ legend10 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin", mLegend [ leOrient loNone, leX 232, leY 5 ] ]
     in
-    toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
+    toVegaLite [ width 300, height 300, data, enc [], circle [] ]
 
 
 legend11 : Spec

@@ -20,6 +20,11 @@ import VegaLite exposing (..)
 -}
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 worldMapTemplate : String -> List ProjectionProperty -> ( String, Spec )
 worldMapTemplate tText projProps =
     ( tText
@@ -30,8 +35,8 @@ worldMapTemplate tText projProps =
         , background "#c1e7f5"
         , projection projProps
 
-        --, dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
-        , dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
+        --, dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
+        , dataFromUrl (path ++ "graticule.json") [ topojsonFeature "graticule" ]
         , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.5 ]
         ]
     )
@@ -86,13 +91,13 @@ configExample =
 
         graticuleSpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
+                [ dataFromUrl (path ++ "graticule.json") [ topojsonFeature "graticule" ]
                 , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
                 ]
 
         countrySpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
+                [ dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
                 , geoshape [ maColor "#708E71" ]
                 ]
     in
@@ -133,14 +138,14 @@ reflectExample rx ry =
 
         graticuleSpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
+                [ dataFromUrl (path ++ "graticule.json") [ topojsonFeature "graticule" ]
                 , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
                 , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
                 ]
 
         countrySpec =
             asSpec
-                [ dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json" [ topojsonFeature "countries" ]
+                [ dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
                 , geoshape [ maColor "#708E71" ]
                 , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
                 ]

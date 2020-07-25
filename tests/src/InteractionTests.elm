@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 data : Data
 data =
     dataFromUrl "https://gicentre.github.io/data/westMidlands/westMidsCrimesAggregated.tsv" []
@@ -252,8 +257,7 @@ interaction16 : Spec
 interaction16 =
     let
         stockData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
-                [ csv, parse [ ( "date", foDate "" ) ] ]
+            dataFromUrl (path ++ "stocks.csv") [ csv, parse [ ( "date", foDate "" ) ] ]
 
         sel =
             selection
@@ -318,8 +322,7 @@ interaction17 : Spec
 interaction17 =
     let
         stockData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv"
-                [ csv, parse [ ( "date", foDate "" ) ] ]
+            dataFromUrl (path ++ "stocks.csv") [ csv, parse [ ( "date", foDate "" ) ] ]
 
         cfg =
             configure
@@ -396,12 +399,10 @@ interaction19 : Spec
 interaction19 =
     let
         stateData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "states" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
         countyData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "counties" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
         proj =
             projection [ prType albersUsa ]

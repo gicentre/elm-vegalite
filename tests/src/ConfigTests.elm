@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 singleVis : (List a -> ( VLProperty, Spec )) -> Spec
 singleVis config =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         scatterEnc =
             encoding
@@ -25,7 +30,7 @@ singleVis config =
     toVegaLite
         [ title "Car Scatter" []
         , config []
-        , cars
+        , data
         , width 200
         , height 200
         , point [ maSize 100 ]
@@ -106,10 +111,10 @@ histoVis config =
 
 
 compositeVis : (List a -> ( VLProperty, Spec )) -> Spec
-compositeVis config =
+compositeVis cfg =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         scatterEnc =
             encoding
@@ -161,14 +166,14 @@ compositeVis config =
             resolve
                 << resolution (reScale [ ( chColor, reIndependent ), ( chShape, reIndependent ) ])
     in
-    toVegaLite [ config [], cars, hConcat [ scatterSpec, barSpec, streamSpec ], res [] ]
+    toVegaLite [ cfg [], data, hConcat [ scatterSpec, barSpec, streamSpec ], res [] ]
 
 
 vbTest : Spec
 vbTest =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         scatterEnc =
             encoding
@@ -243,7 +248,7 @@ vbTest =
     toVegaLite
         [ cfg []
         , background "yellow"
-        , cars
+        , data
         , hConcat [ scatterSpec, barSpec, streamSpec ]
         , res []
         ]
@@ -398,8 +403,8 @@ axisCfg13 =
 titleCfg1 : Spec
 titleCfg1 =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -408,7 +413,7 @@ titleCfg1 =
     in
     toVegaLite
         [ title "Car\nScatter" [ tiSubtitle "A subtitle\nalso over two lines" ]
-        , cars
+        , data
         , width 200
         , height 200
         , enc []
@@ -419,8 +424,8 @@ titleCfg1 =
 titleCfg2 : Spec
 titleCfg2 =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -439,7 +444,7 @@ titleCfg2 =
             , tiSubtitleLineHeight 18
             , tiSubtitlePadding 60
             ]
-        , cars
+        , data
         , width 200
         , height 200
         , enc []
@@ -450,8 +455,8 @@ titleCfg2 =
 titleCfg3 : Spec
 titleCfg3 =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -476,7 +481,7 @@ titleCfg3 =
     toVegaLite
         [ cfg []
         , title "Car\nScatter" [ tiSubtitle "A subtitle\nalso over two lines" ]
-        , cars
+        , data
         , width 200
         , height 200
         , enc []

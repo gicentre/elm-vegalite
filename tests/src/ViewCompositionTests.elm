@@ -9,16 +9,21 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 genderChart : List HeaderProperty -> List HeaderProperty -> Spec
 genderChart hdProps cProps =
     let
-        conf =
+        cfg2 =
             configure
                 << configuration (coHeader cProps)
                 << configuration (coFacet [ facoSpacing 80 ])
 
-        pop =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+        popData =
+            dataFromUrl (path ++ "population.json") []
 
         trans =
             transform
@@ -32,7 +37,7 @@ genderChart hdProps cProps =
                 << position Y [ pName "people", pAggregate opSum, pTitle "Population" ]
                 << color [ mName "gender", mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ] ]
     in
-    toVegaLite [ widthStep 17, conf [], pop, trans [], enc [], bar [] ]
+    toVegaLite [ widthStep 17, cfg2 [], popData, trans [], enc [], bar [] ]
 
 
 columns1 : Spec
@@ -205,21 +210,18 @@ grid4 : Spec
 grid4 =
     let
         carData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
                 << position X [ pRepeat arFlow, pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
-
-        spec =
-            asSpec [ carData [], bar [], enc [] ]
     in
     toVegaLite
         [ columns 3
         , repeatFlow [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ]
-        , specification spec
+        , specification (asSpec [ carData, enc [], bar [] ])
         ]
 
 
@@ -227,20 +229,17 @@ grid5 : Spec
 grid5 =
     let
         carData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
                 << position X [ pRepeat arRow, pBin [] ]
                 << position Y [ pAggregate opCount ]
                 << color [ mName "Origin" ]
-
-        spec =
-            asSpec [ carData [], bar [], enc [] ]
     in
     toVegaLite
         [ repeat [ rowFields [ "Horsepower", "Miles_per_Gallon", "Acceleration", "Displacement", "Weight_in_lbs" ] ]
-        , specification spec
+        , specification (asSpec [ carData, enc [], bar [] ])
         ]
 
 
@@ -283,8 +282,7 @@ concat2 : Spec
 concat2 =
     let
         geoData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "counties" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
         attData =
             dataFromColumns []

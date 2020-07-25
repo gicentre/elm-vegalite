@@ -9,6 +9,11 @@ import Json.Encode as JE
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 showData : Data -> Spec
 showData data =
     let
@@ -197,8 +202,7 @@ geodata1 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
-                [ topojsonFeature "boroughs" ]
+            dataFromUrl (path ++ "londonBoroughs.json") [ topojsonFeature "boroughs" ]
 
         enc =
             encoding
@@ -500,7 +504,7 @@ sample1 : Spec
 sample1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -677,7 +681,7 @@ datum1 : Spec
 datum1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc1 =
             encoding
@@ -705,7 +709,7 @@ datum2 : Spec
 datum2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc1 =
             encoding

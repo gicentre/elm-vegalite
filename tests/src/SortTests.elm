@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 sortQuant : String -> List SortProperty -> Spec
 sortQuant yField sps =
     let
         data =
-            -- dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            -- dataFromUrl (path ++ "cars.json")
             dataFromColumns []
                 << dataColumn "Horsepower" (nums [ 1, 5, 2, 3, 4 ])
                 << dataColumn "Weight_in_lbs" (nums [ 19, 21, 58, 12, 13 ])
@@ -61,8 +66,8 @@ sortCustom =
 stack1 : Spec
 stack1 =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -93,7 +98,7 @@ stack1 =
                 << opacity [ mName "Cylinders", mQuant, mLegend [] ]
                 << tooltips [ [ tName "Origin" ], [ tName "Cylinders", tQuant ] ]
     in
-    toVegaLite [ cars, trans [], enc [], rect [] ]
+    toVegaLite [ data, trans [], enc [], rect [] ]
 
 
 

@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 scale1 : Spec
 scale1 =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -23,18 +28,18 @@ scale1 =
                 << size [ mName "Acceleration", mQuant, mBin [] ]
                 << opacity [ mName "Acceleration", mQuant, mBin [] ]
     in
-    toVegaLite [ cars, enc [], point [ maFilled True, maStroke "white", maStrokeWidth 0.4 ] ]
+    toVegaLite [ data, enc [], point [ maFilled True, maStroke "white", maStrokeWidth 0.4 ] ]
 
 
 scale2 : Spec
 scale2 =
     let
-        conf =
+        cfg =
             configure
                 << configuration (coRange [ racoRamp "reds" ])
 
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding
@@ -42,7 +47,7 @@ scale2 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Acceleration", mQuant, mBin [] ]
     in
-    toVegaLite [ conf [], cars, enc [], point [] ]
+    toVegaLite [ cfg [], data, enc [], point [] ]
 
 
 scale3 : Spec

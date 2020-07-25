@@ -9,9 +9,9 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
-base : String
-base =
-    "https://vega.github.io/vega-lite/data/"
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
 
 
 imageEnc : (List DataColumn -> List DataColumn) -> (List LabelledSpec -> List LabelledSpec) -> Spec
@@ -34,13 +34,13 @@ imageEnc dataSupp encSupp =
 
 image1 : Spec
 image1 =
-    imageEnc (always []) (url [ hStr (base ++ "ffox.png") ])
+    imageEnc (always []) (url [ hStr (path ++ "ffox.png") ])
 
 
 image2 : Spec
 image2 =
     imageEnc
-        (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ]))
+        (dataColumn "img" (strs [ path ++ "ffox.png", path ++ "gimp.png", path ++ "7zip.png" ]))
         (url [ hName "img" ])
 
 
@@ -112,7 +112,7 @@ image10 =
 image11 : Spec
 image11 =
     imageEnc
-        (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
+        (dataColumn "img" (strs [ path ++ "ffox.png", path ++ "gimp.png", path ++ "7zip.png" ])
             << dataColumn "mag" (nums [ 1, 1, 1 ])
         )
         (url [ hName "img" ]
@@ -123,7 +123,7 @@ image11 =
 image12 : Spec
 image12 =
     imageEnc
-        (dataColumn "img" (strs [ base ++ "ffox.png", base ++ "gimp.png", base ++ "7zip.png" ])
+        (dataColumn "img" (strs [ path ++ "ffox.png", path ++ "gimp.png", path ++ "7zip.png" ])
             << dataColumn "mag" (nums [ 1, 2, 1 ])
         )
         (url [ hName "img" ]

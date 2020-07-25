@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 window1 : Spec
 window1 =
     let
@@ -41,18 +46,18 @@ window2 : Spec
 window2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
-                << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageRating" ) ]
+                << filter (fiExpr "datum['IMDB Rating'] != null")
+                << window [ ( [ wiAggregateOp opMean, wiField "IMDB Rating" ], "AverageRating" ) ]
                     [ wiFrame Nothing Nothing ]
-                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageRating) > 2.5")
+                << filter (fiExpr "(datum['IMDB Rating'] - datum.AverageRating) > 2.5")
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
+                << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -65,27 +70,26 @@ window2 =
         ruleSpec =
             asSpec [ rule [ maColor "red" ], ruleEnc [] ]
     in
-    toVegaLite [ data [], trans [], layer [ barSpec, ruleSpec ] ]
+    toVegaLite [ data, trans [], layer [ barSpec, ruleSpec ] ]
 
 
 window3 : Spec
 window3 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
-                [ parse [ ( "Release_Date", foDate "%b %d %Y" ) ] ]
+            dataFromUrl (path ++ "movies.json") [ parse [ ( "Release_Date", foDate "%b %d %Y" ) ] ]
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
-                << timeUnitAs year "Release_Date" "year"
-                << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageYearRating" ) ]
+                << filter (fiExpr "datum['IMDB Rating'] != null")
+                << timeUnitAs year "Release Date" "year"
+                << window [ ( [ wiAggregateOp opMean, wiField "IMDB Rating" ], "AverageYearRating" ) ]
                     [ wiGroupBy [ "year" ], wiFrame Nothing Nothing ]
-                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageYearRating) > 2.5")
+                << filter (fiExpr "(datum['IMDB Rating'] - datum.AverageYearRating) > 2.5")
 
         barEnc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
+                << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Title", pOrdinal ]
 
         barSpec =
@@ -107,20 +111,19 @@ window4 : Spec
 window4 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
-                [ parse [ ( "Release_Date", foDate "%b %d %Y" ) ] ]
+            dataFromUrl (path ++ "movies.json") [ parse [ ( "Release_Date", foDate "%b %d %Y" ) ] ]
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
-                << filter (fiRange "Release_Date" (dtRange [] [ dtYear 2019 ]))
-                << window [ ( [ wiAggregateOp opMean, wiField "IMDB_Rating" ], "AverageRating" ) ]
+                << filter (fiExpr "datum['IMDB Rating'] != null")
+                << filter (fiRange "Release Date" (dtRange [] [ dtYear 2019 ]))
+                << window [ ( [ wiAggregateOp opMean, wiField "IMDB Rating" ], "AverageRating" ) ]
                     [ wiFrame Nothing Nothing ]
-                << calculateAs "datum.IMDB_Rating - datum.AverageRating" "RatingDelta"
+                << calculateAs "datum['IMDB Rating'] - datum.AverageRating" "RatingDelta"
 
         enc =
             encoding
-                << position X [ pName "Release_Date", pTemporal ]
+                << position X [ pName "Release Date", pTemporal ]
                 << position Y [ pName "RatingDelta", pQuant, pTitle "Residual" ]
     in
     toVegaLite [ data, trans [], enc [], point [ maStrokeWidth 0.3, maOpacity 0.3 ] ]
@@ -186,7 +189,7 @@ window7 : Spec
 window7 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -239,42 +242,42 @@ joinAggregate2 : Spec
 joinAggregate2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
-                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageRating" ] []
-                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageRating) > 2.5")
+                << filter (fiExpr "datum['IMDB Rating'] != null")
+                << joinAggregate [ opAs opMean "IMDB Rating" "AverageRating" ] []
+                << filter (fiExpr "(datum['IMDB Rating'] - datum.AverageRating) > 2.5")
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
+                << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Title", pTitle "", pSort [ soByChannel chX, soDescending ] ]
     in
-    toVegaLite [ data [], trans [], enc [], bar [] ]
+    toVegaLite [ data, trans [], enc [], bar [] ]
 
 
 joinAggregate3 : Spec
 joinAggregate3 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
-                << filter (fiExpr "datum.IMDB_Rating != null")
-                << timeUnitAs year "Release_Date" "year"
-                << joinAggregate [ opAs opMean "IMDB_Rating" "AverageYearRating" ]
+                << filter (fiExpr "datum['IMDB Rating'] != null")
+                << timeUnitAs year "Release Date" "year"
+                << joinAggregate [ opAs opMean "IMDB Rating" "AverageYearRating" ]
                     [ wiGroupBy [ "year" ] ]
-                << filter (fiExpr "(datum.IMDB_Rating - datum.AverageYearRating) > 2.5")
+                << filter (fiExpr "(datum['IMDB Rating'] - datum.AverageYearRating) > 2.5")
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant, pTitle "IMDB Rating" ]
+                << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Title", pTitle "", pSort [ soByChannel chX, soDescending ] ]
     in
-    toVegaLite [ data [], trans [], enc [], bar [] ]
+    toVegaLite [ data, trans [], enc [], bar [] ]
 
 
 

@@ -17,12 +17,16 @@ import VegaLite exposing (..)
 -}
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 defaultSize1 : Spec
 defaultSize1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "counties" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
         proj =
             projection [ prType albersUsa ]
@@ -38,8 +42,7 @@ defaultSize2 =
                 << configuration (coView [ vicoContinuousWidth 500, vicoContinuousHeight 300 ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "counties" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
         proj =
             projection [ prType albersUsa ]
@@ -61,8 +64,7 @@ choropleth1 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
-                [ topojsonFeature "boroughs" ]
+            dataFromUrl (path ++ "londonBoroughs.json") [ topojsonFeature "boroughs" ]
 
         enc =
             encoding
@@ -79,11 +81,10 @@ choropleth2 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         dataBoundaries =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
-                [ topojsonFeature "boroughs" ]
+            dataFromUrl (path ++ "londonBoroughs.json") [ topojsonFeature "boroughs" ]
 
         dataCentroids =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" []
+            dataFromUrl (path ++ "londonCentroids.json") []
 
         trans =
             transform
@@ -117,8 +118,7 @@ tubeLines1 : Spec
 tubeLines1 =
     let
         dataTubes =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
-                [ topojsonFeature "line" ]
+            dataFromUrl (path ++ "londonTubeLines.json") [ topojsonFeature "line" ]
 
         enc =
             encoding
@@ -135,8 +135,7 @@ tubeLines2 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         dataTubes =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
-                [ topojsonFeature "line" ]
+            dataFromUrl (path ++ "londonTubeLines.json") [ topojsonFeature "line" ]
 
         enc =
             encoding
@@ -164,15 +163,13 @@ tubeLines3 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         dataCentroids =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonCentroids.json" []
+            dataFromUrl (path ++ "londonCentroids.json") []
 
         dataBoundaries =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonBoroughs.json"
-                [ topojsonFeature "boroughs" ]
+            dataFromUrl (path ++ "londonBoroughs.json") [ topojsonFeature "boroughs" ]
 
         dataTubes =
-            dataFromUrl "https://vega.github.io/vega-lite/data/londonTubeLines.json"
-                [ topojsonFeature "line" ]
+            dataFromUrl (path ++ "londonTubeLines.json") [ topojsonFeature "line" ]
 
         enc =
             encoding
@@ -284,8 +281,7 @@ sphere1 : Spec
 sphere1 =
     let
         data =
-            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
-                [ topojsonFeature "countries1" ]
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "land" ]
 
         proj =
             projection [ prType orthographic ]
@@ -297,8 +293,7 @@ sphere2 : Spec
 sphere2 =
     let
         countryData =
-            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
-                [ topojsonFeature "countries1" ]
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "land" ]
 
         proj =
             projection [ prType orthographic ]
@@ -389,8 +384,7 @@ scale1 : Spec
 scale1 =
     let
         data =
-            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
-                [ topojsonFeature "countries1" ]
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "land" ]
 
         proj =
             projection [ prType orthographic, prScale 470 ]
@@ -411,8 +405,7 @@ translate1 : Spec
 translate1 =
     let
         data =
-            dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
-                [ topojsonFeature "countries1" ]
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "land" ]
 
         proj =
             projection [ prType orthographic, prTranslate 0 100 ]
@@ -436,7 +429,7 @@ mapComp1 =
             asSpec
                 [ width 300
                 , height 300
-                , dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json" [ topojsonFeature "graticule" ]
+                , graticule []
                 , projection [ prType orthographic ]
                 , geoshape [ maFilled False ]
                 ]
@@ -452,17 +445,12 @@ mapComp2 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json"
-                [ topojsonFeature "land" ]
-
-        dataGraticule =
-            dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json"
-                [ topojsonFeature "graticule" ]
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "land" ]
 
         globe =
             let
                 graticuleSpec =
-                    asSpec [ dataGraticule, geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ] ]
+                    asSpec [ graticule [], geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ] ]
 
                 countrySpec =
                     asSpec [ data, geoshape [ maFill "black", maFillOpacity 0.7 ] ]
@@ -480,26 +468,21 @@ mapComp2 =
 mapComp3 : Spec
 mapComp3 =
     let
-        dataGrat =
-            dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json"
-                [ topojsonFeature "graticule" ]
-
-        dataCountries =
-            dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json"
-                [ topojsonFeature "countries" ]
+        data =
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
 
         rotatedSpec rot =
             let
                 graticuleSpec =
                     asSpec
-                        [ dataGrat
+                        [ graticule []
                         , projection [ prType orthographic, prRotate rot 0 0 ]
                         , geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ]
                         ]
 
                 countrySpec =
                     asSpec
-                        [ dataCountries
+                        [ data
                         , projection [ prType orthographic, prRotate rot 0 0 ]
                         , geoshape [ maStroke "white", maFill "black", maStrokeWidth 0.5 ]
                         ]
@@ -524,13 +507,8 @@ mapComp4 =
         dataGlobe =
             dataFromUrl "data/globe.json" [ topojsonFeature "globe" ]
 
-        dataGrat =
-            dataFromUrl "https://vega.github.io/vega-lite/data/graticule.json"
-                [ topojsonFeature "graticule" ]
-
         dataCountries =
-            dataFromUrl "https://vega.github.io/vega-lite/data/world-110m.json"
-                [ topojsonFeature "countries" ]
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
 
         rotatedSpec rot =
             let
@@ -543,7 +521,7 @@ mapComp4 =
 
                 graticuleSpec =
                     asSpec
-                        [ dataGrat
+                        [ graticule []
                         , projection [ prType orthographic, prRotate rot 0 0 ]
                         , geoshape [ maFilled False, maStroke "#411", maStrokeWidth 0.1 ]
                         ]
@@ -565,7 +543,7 @@ dotMap1 : Spec
 dotMap1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+            dataFromUrl (path ++ "zipcodes.csv") []
 
         trans =
             transform
@@ -602,7 +580,7 @@ scribbleMap1 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+            dataFromUrl (path ++ "zipcodes.csv") []
 
         stateCondition =
             List.map (\s -> "&& datum.state !='" ++ s ++ "'") [ "AS", "FM", "PW", "MH", "GU", "MP", "VI", "PR" ]
@@ -646,7 +624,7 @@ scribbleMap2 =
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/zipcodes.csv" []
+            dataFromUrl (path ++ "zipcodes.csv") []
 
         stateCondition =
             List.map (\s -> "&& datum.state !='" ++ s ++ "'") [ "AS", "FM", "PW", "MH", "GU", "MP", "VI", "PR" ]

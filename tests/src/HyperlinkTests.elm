@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 hyperlink1 : Spec
 hyperlink1 =
     let
@@ -45,12 +50,12 @@ hyperlink2 : Spec
 hyperlink2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << hyperlink [ hStr "http://www.imdb.com" ]
     in
     toVegaLite [ data, point [ maCursor cuPointer ], enc [] ]
@@ -60,22 +65,22 @@ hyperlink3 : Spec
 hyperlink3 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
                     [ mDataCondition
-                        [ ( expr "datum.IMDB_Rating*10 > datum.Rotten_Tomatoes_Rating"
+                        [ ( expr "datum['IMDB Rating']*10 > datum.['Rotten Tomatoes Rating']"
                           , [ mStr "steelblue" ]
                           )
                         ]
                         [ mStr "red" ]
                     ]
                 << hyperlink
-                    [ hDataCondition (expr "datum.IMDB_Rating*10 > datum.Rotten_Tomatoes_Rating")
+                    [ hDataCondition (expr "datum['IMDB Rating']*10 > datum['Rotten Tomatoes Rating']")
                         [ hStr "http://www.imdb.com" ]
                         [ hStr "https://www.rottentomatoes.com" ]
                     ]

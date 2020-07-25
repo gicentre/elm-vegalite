@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 chart : String -> (List a -> List ( String, Spec )) -> Spec
 chart desText enc =
     let
@@ -16,7 +21,7 @@ chart desText enc =
             description desText
 
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -30,7 +35,7 @@ chart desText enc =
                 << opacity [ mNum 1 ]
                 << enc
     in
-    toVegaLite [ des, data [], trans [], circle [], fullEnc [] ]
+    toVegaLite [ des, data, trans [], circle [], fullEnc [] ]
 
 
 defContinuous : Spec

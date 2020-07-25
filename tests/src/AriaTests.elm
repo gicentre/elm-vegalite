@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 defaultVis : List MarkProperty -> List AxisProperty -> List LegendProperty -> (List a -> ( VLProperty, Spec )) -> Spec
 defaultVis mProps axProps leProps cfg =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         axp =
             if axProps == [] then

@@ -9,18 +9,23 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 bPlot : SummaryExtent -> Spec
 bPlot ext =
     let
-        pop =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+        data =
+            dataFromUrl (path ++ "population.json") []
 
         enc =
             encoding
                 << position X [ pName "age", pOrdinal ]
                 << position Y [ pName "people", pQuant, pTitle "Population" ]
     in
-    toVegaLite [ pop, boxplot [ maExtent ext ], enc [] ]
+    toVegaLite [ data, boxplot [ maExtent ext ], enc [] ]
 
 
 boxplot1 : Spec
@@ -36,8 +41,8 @@ boxplot2 =
 boxplot3 : Spec
 boxplot3 =
     let
-        pop =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+        data =
+            dataFromUrl (path ++ "population.json") []
 
         enc =
             encoding
@@ -45,7 +50,7 @@ boxplot3 =
                 << position Y [ pName "people", pQuant, pTitle "Population" ]
     in
     toVegaLite
-        [ pop
+        [ data
         , boxplot
             [ maExtent (exIqrScale 0.5)
             , maBox [ maColor "firebrick" ]
@@ -61,8 +66,8 @@ boxplot3 =
 boxplot4 : Spec
 boxplot4 =
     let
-        pop =
-            dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+        data =
+            dataFromUrl (path ++ "population.json") []
 
         enc =
             encoding
@@ -70,7 +75,7 @@ boxplot4 =
                 << position Y [ pName "people", pQuant, pTitle "Population" ]
     in
     toVegaLite
-        [ pop
+        [ data
         , boxplot
             [ maExtent (exIqrScale 0.5)
 
@@ -90,8 +95,8 @@ boxplot4 =
 eBand : String -> Spec
 eBand ext =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         label =
             case ext of
@@ -137,7 +142,7 @@ eBand ext =
                     , pTitle ("Miles per Gallon " ++ label)
                     ]
     in
-    toVegaLite [ cars, errorband [ maExtent summary, maInterpolate miMonotone, maBorders [] ], enc [] ]
+    toVegaLite [ data, errorband [ maExtent summary, maInterpolate miMonotone, maBorders [] ], enc [] ]
 
 
 errorband1 : Spec
@@ -153,8 +158,8 @@ errorband2 =
 eBar : SummaryExtent -> Spec
 eBar ext =
     let
-        barley =
-            dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
+        data =
+            dataFromUrl (path ++ "barley.json") []
 
         enc =
             encoding
@@ -164,7 +169,7 @@ eBar ext =
                     , pOrdinal
                     ]
     in
-    toVegaLite [ barley, errorbar [ maExtent ext, maTicks [ maStroke "blue" ] ], enc [] ]
+    toVegaLite [ data, errorbar [ maExtent ext, maTicks [ maStroke "blue" ] ], enc [] ]
 
 
 errorbar1 : Spec
@@ -180,8 +185,11 @@ errorbar2 =
 errorbar3 : Spec
 errorbar3 =
     let
-        des =
+        desc =
             description "Error bars with color encoding"
+
+        data =
+            dataFromUrl (path ++ "barley.json") []
 
         specErrorBars =
             asSpec [ errorbar [ maTicks [] ], encErrorBars [] ]
@@ -200,17 +208,13 @@ errorbar3 =
                 << position X [ pName "yield", pAggregate opMean ]
                 << position Y [ pName "variety", pOrdinal ]
     in
-    toVegaLite
-        [ des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/barley.json" []
-        , layer [ specErrorBars, specPoints ]
-        ]
+    toVegaLite [ desc, data, layer [ specErrorBars, specPoints ] ]
 
 
 errorbar4 : Spec
 errorbar4 =
     let
-        des =
+        desc =
             description "Symetric error bars encoded with xError channel"
 
         data =
@@ -236,17 +240,13 @@ errorbar4 =
                 << position X [ pName "yield", pQuant ]
                 << position Y [ pName "variety", pOrdinal ]
     in
-    toVegaLite
-        [ des
-        , data []
-        , layer [ specErrorBars, specPoints ]
-        ]
+    toVegaLite [ desc, data [], layer [ specErrorBars, specPoints ] ]
 
 
 errorbar5 : Spec
 errorbar5 =
     let
-        des =
+        desc =
             description "Asymetric error bars encoded with xError and xError2 channels"
 
         data =
@@ -274,17 +274,13 @@ errorbar5 =
                 << position X [ pName "yield", pQuant ]
                 << position Y [ pName "variety", pOrdinal ]
     in
-    toVegaLite
-        [ des
-        , data []
-        , layer [ specErrorBars, specPoints ]
-        ]
+    toVegaLite [ desc, data [], layer [ specErrorBars, specPoints ] ]
 
 
 errorbar6 : Spec
 errorbar6 =
     let
-        des =
+        desc =
             description "Symetric error bars encoded with yError channel"
 
         data =
@@ -310,17 +306,13 @@ errorbar6 =
                 << position Y [ pName "yield", pQuant ]
                 << position X [ pName "variety", pOrdinal ]
     in
-    toVegaLite
-        [ des
-        , data []
-        , layer [ specErrorBars, specPoints ]
-        ]
+    toVegaLite [ desc, data [], layer [ specErrorBars, specPoints ] ]
 
 
 errorbar7 : Spec
 errorbar7 =
     let
-        des =
+        desc =
             description "Asymetric error bars encoded with yError and yError2 channels"
 
         data =
@@ -348,11 +340,7 @@ errorbar7 =
                 << position Y [ pName "yield", pQuant ]
                 << position X [ pName "variety", pOrdinal ]
     in
-    toVegaLite
-        [ des
-        , data []
-        , layer [ specErrorBars, specPoints ]
-        ]
+    toVegaLite [ desc, data [], layer [ specErrorBars, specPoints ] ]
 
 
 

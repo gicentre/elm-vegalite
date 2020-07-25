@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 axis1 : Spec
 axis1 =
     let
@@ -121,17 +126,20 @@ scale5 =
 filter1 : Spec
 filter1 =
     let
-        config =
+        cfg =
             configure
                 << configuration (coMark [ maRemoveInvalid False ])
 
+        data =
+            dataFromUrl (path ++ "movies.json") []
+
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
                     [ mDataCondition
-                        [ ( expr "datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null"
+                        [ ( expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"
                           , [ mStr "#ddd" ]
                           )
                         ]
@@ -139,45 +147,38 @@ filter1 =
                     ]
     in
     toVegaLite
-        [ config []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-        , point []
-        , enc []
-        ]
+        [ cfg [], data, enc [], point [] ]
 
 
 filter2 : Spec
 filter2 =
     let
-        config =
+        cfg =
             configure
                 << configuration (coMark [ maRemoveInvalid False ])
 
+        data =
+            dataFromUrl (path ++ "movies.json") []
+
         trans =
             transform
-                << filter (fiValid "IMDB_Rating")
-                << filter (fiValid "Rotten_Tomatoes_Rating")
+                << filter (fiValid "IMDB Rating")
+                << filter (fiValid "Rotten Tomatoes Rating")
 
         enc =
             encoding
-                << position X [ pName "IMDB_Rating", pQuant ]
-                << position Y [ pName "Rotten_Tomatoes_Rating", pQuant ]
+                << position X [ pName "IMDB Rating", pQuant ]
+                << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
                     [ mDataCondition
-                        [ ( expr "datum.IMDB_Rating === null || datum.Rotten_Tomatoes_Rating === null"
+                        [ ( expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"
                           , [ mStr "#ddd" ]
                           )
                         ]
                         [ mStr "rgb(76,120,168)" ]
                     ]
     in
-    toVegaLite
-        [ config []
-        , trans []
-        , dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
-        , point []
-        , enc []
-        ]
+    toVegaLite [ cfg [], data, trans [], enc [], point [] ]
 
 
 

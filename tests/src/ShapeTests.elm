@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 chart : String -> (List a -> List ( String, Spec )) -> Spec
 chart des enc =
     toVegaLite
         [ description des
-        , dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        , dataFromUrl (path ++ "cars.json") []
         , (transform
             << calculateAs "year(datum.Year)" "YearOfManufacture"
             << filter (fiExpr "datum.YearOfManufacture == 1970")
@@ -34,7 +39,7 @@ rectTest : List MarkProperty -> Spec
 rectTest mps =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+            dataFromUrl (path ++ "cars.json") []
 
         enc =
             encoding

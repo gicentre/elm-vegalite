@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 timeByUnit : TimeUnit -> Spec
 timeByUnit tu =
     let
@@ -83,7 +88,7 @@ timeBand : Spec
 timeBand =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-temps.csv" []
+            dataFromUrl (path ++ "seattle-temps.csv") []
 
         enc =
             encoding

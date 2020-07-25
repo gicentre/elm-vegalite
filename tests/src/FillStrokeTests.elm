@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 encChart : (List a -> List LabelledSpec) -> Spec
 encChart extraEnc =
     let
@@ -251,7 +256,7 @@ strokeDash1 : Spec
 strokeDash1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding
@@ -266,7 +271,7 @@ strokeDash2 : Spec
 strokeDash2 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/stocks.csv" []
+            dataFromUrl (path ++ "stocks.csv") []
 
         enc =
             encoding

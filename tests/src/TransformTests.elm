@@ -9,11 +9,16 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 transform1 : Spec
 transform1 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json"
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -27,19 +32,19 @@ transform1 =
                 << position X [ pName "Cylinders", pOrdinal ]
                 << position Y [ pName "mean_acceleration", pQuant ]
     in
-    toVegaLite [ data [], trans [], enc [], bar [] ]
+    toVegaLite [ data, trans [], enc [], bar [] ]
 
 
 binTransform : List BinProperty -> Spec
 binTransform bProps =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json"
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
                 -- calculateAs transform first to test that order of transforms is preserved.
-                << calculateAs "datum.IMDB_Rating" "rating"
+                << calculateAs "datum['IMDB Rating']" "rating"
                 << filter (fiExpr "datum.rating != null")
                 << binAs bProps "rating" "ratingGroup"
 
@@ -48,7 +53,7 @@ binTransform bProps =
                 << position X [ pName "ratingGroup", pOrdinal ]
                 << position Y [ pAggregate opCount, pTitle "Number of movies" ]
     in
-    toVegaLite [ width 400, data [], trans [], enc [], bar [] ]
+    toVegaLite [ width 400, data, trans [], enc [], bar [] ]
 
 
 transform2 : Spec
@@ -91,12 +96,12 @@ transform5 : Spec
 transform5 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
                 -- calculateAs transform first to test that order of transforms is preserved.
-                << calculateAs "datum.IMDB_Rating" "rating"
+                << calculateAs "datum['IMDB Rating']" "rating"
                 << filter (fiExpr "datum.rating != null")
                 << density "rating" [ dnBandwidth 0.3 ]
 
@@ -112,19 +117,19 @@ transform6 : Spec
 transform6 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
                 -- calculateAs transform first to test that order of transforms is preserved.
-                << calculateAs "datum.IMDB_Rating" "imdbRating"
-                << calculateAs "datum.Rotten_Tomatoes_Rating" "rtRating"
+                << calculateAs "datum['IMDB Rating']" "imdbRating"
+                << calculateAs "datum['Rotten Tomatoes Rating']" "rtRating"
                 << loess "imdbRating" "rtRating" [ lsBandwidth 0.1, lsAs "tx" "ty" ]
 
         enc1 =
             encoding
-                << position X [ pName "Rotten_Tomatoes_Rating", pQuant ]
-                << position Y [ pName "IMDB_Rating", pQuant ]
+                << position X [ pName "Rotten Tomatoes Rating", pQuant ]
+                << position Y [ pName "IMDB Rating", pQuant ]
 
         enc2 =
             encoding
@@ -144,11 +149,10 @@ transform7 : Spec
 transform7 =
     let
         countyData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/us-10m.json"
-                [ topojsonFeature "counties" ]
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
         unemploymentData =
-            dataFromUrl "https://vega.github.io/vega-lite/data/unemployment.tsv" []
+            dataFromUrl (path ++ "unemployment.tsv") []
 
         trans =
             transform
@@ -196,7 +200,7 @@ transform9 : Spec
 transform9 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/normal-2d.json" []
+            dataFromUrl (path ++ "normal-2d.json") []
 
         trans =
             transform
@@ -228,19 +232,19 @@ transform10 : Spec
 transform10 =
     let
         data =
-            dataFromUrl "https://vega.github.io/vega-lite/data/movies.json" []
+            dataFromUrl (path ++ "movies.json") []
 
         trans =
             transform
                 -- calculateAs transform first to test that order of transforms is preserved.
-                << calculateAs "datum.IMDB_Rating" "imdbRating"
-                << calculateAs "datum.Rotten_Tomatoes_Rating" "rtRating"
+                << calculateAs "datum['IMDB Rating']" "imdbRating"
+                << calculateAs "datum['Rotten Tomatoes Rating']" "rtRating"
                 << regression "imdbRating" "rtRating" [ rgMethod rgPoly, rgOrder 3, rgExtent 10 90 ]
 
         enc1 =
             encoding
-                << position X [ pName "Rotten_Tomatoes_Rating", pQuant ]
-                << position Y [ pName "IMDB_Rating", pQuant ]
+                << position X [ pName "Rotten Tomatoes Rating", pQuant ]
+                << position Y [ pName "IMDB Rating", pQuant ]
 
         enc2 =
             encoding
@@ -317,8 +321,8 @@ transform12 =
 transform13 : Spec
 transform13 =
     let
-        cars =
-            dataFromUrl "https://vega.github.io/vega-lite/data/cars.json" []
+        data =
+            dataFromUrl (path ++ "cars.json") []
 
         trans =
             transform
@@ -352,15 +356,14 @@ transform13 =
                     , [ tName "Cylinders", tQuant ]
                     ]
     in
-    toVegaLite [ cars, trans [], enc [], rect [] ]
+    toVegaLite [ data, trans [], enc [], rect [] ]
 
 
 transform14 : Spec
 transform14 =
     let
-        weather =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
-                [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
 
         trans =
             transform
@@ -374,15 +377,14 @@ transform14 =
                 << position X [ pName "month", pTemporal, pAxis [ axFormat "%b" ] ]
                 << position Y [ pName "maxTemp", pAggregate opMax ]
     in
-    toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
+    toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
 
 transform15 : Spec
 transform15 =
     let
-        weather =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
-                [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
 
         trans =
             transform
@@ -396,15 +398,14 @@ transform15 =
                 << position X [ pName "bimonth", pTemporal, pAxis [ axFormat "%b" ] ]
                 << position Y [ pName "maxTemp", pAggregate opMax ]
     in
-    toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
+    toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
 
 transform16 : Spec
 transform16 =
     let
-        weather =
-            dataFromUrl "https://vega.github.io/vega-lite/data/seattle-weather.csv"
-                [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
 
         trans =
             transform
@@ -415,7 +416,7 @@ transform16 =
                 << position X [ pName "tBin", pTemporal, pAxis [ axFormat "%b" ] ]
                 << position Y [ pName "temp_max", pAggregate opMax ]
     in
-    toVegaLite [ width 400, weather, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
+    toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
 
 transform17 : Spec
