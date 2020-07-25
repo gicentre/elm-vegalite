@@ -185,7 +185,7 @@ scatter9 =
 
         enc =
             encoding
-                << position X [ pName "income", pQuant, pScale [ scType scLog ] ]
+                << position X [ pName "income", pScale [ scType scLog ] ]
                 << position Y [ pName "health", pQuant, pScale [ scZero False ] ]
                 << size [ mName "population", mQuant ]
                 << color [ mStr "#000" ]

@@ -101,7 +101,6 @@ radial4 =
                 << position Theta [ pName "strength", pQuant, pStack stZero ]
                 << position R
                     [ pName "strength"
-                    , pQuant
                     , pScale [ scZero True, scType scSqrt, scRange (raNums [ 20, 100 ]) ]
                     ]
                 << color [ mName "strength", mLegend [] ]
@@ -206,7 +205,7 @@ radial6 =
 
         encSector =
             encoding
-                << position R [ pName "deaths", pQuant, pScale [ scType scSqrt ], pStack stNone ]
+                << position R [ pName "deaths", pScale [ scType scSqrt ], pStack stNone ]
                 << order [ oName "cause", oOrdinal ]
                 << color
                     [ mName "cause"

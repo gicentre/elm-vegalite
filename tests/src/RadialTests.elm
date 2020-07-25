@@ -196,7 +196,7 @@ radial10 =
         enc =
             encoding
                 << position Theta [ pName "month", pOrdinal, pScale [ scRange (raNums [ -pi / 2, 3 * pi / 2 ]) ] ]
-                << position R [ pRepeat arLayer, pQuant, pScale [ scType scSqrt ] ]
+                << position R [ pRepeat arLayer, pScale [ scType scSqrt ] ]
                 << color [ mRepeatDatum arLayer, mScale colours ]
 
         encLabels =
@@ -242,7 +242,7 @@ radial11 =
         enc =
             encoding
                 << position Theta [ pName "month", pOrdinal ]
-                << position R [ pName "deaths", pQuant, pScale [ scType scSqrt ], pStack stNone ]
+                << position R [ pName "deaths", pScale [ scType scSqrt ], pStack stNone ]
                 << order [ oName "cause", oOrdinal ]
                 << color [ mName "cause", mScale colours, mTitle "" ]
     in

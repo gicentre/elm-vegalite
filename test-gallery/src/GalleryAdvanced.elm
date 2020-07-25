@@ -719,7 +719,7 @@ advanced18 =
         enc =
             encoding
                 << position X [ pName "row", pQuant, pAxis [ axGrid False, axTitle "Trial" ], pScale [ scNice niFalse ] ]
-                << position Y [ pName "fps", pQuant, pAxis [ axGrid False, axTitle "Frames per Second (fps)" ], pScale [ scType scLog ] ]
+                << position Y [ pName "fps", pAxis [ axGrid False, axTitle "Frames per Second (fps)" ], pScale [ scType scLog ] ]
                 << color [ mName "system", mLegend [ leOrient loBottomRight, leTitle "System" ] ]
                 << size [ mNum 1 ]
 

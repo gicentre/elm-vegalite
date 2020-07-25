@@ -170,7 +170,6 @@ scale7 =
             encoding
                 << size
                     [ mName "r"
-                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]), scType scPow, scExponent 2 ]
                     , mLegend []
                     ]
@@ -189,7 +188,6 @@ scale8 =
             encoding
                 << size
                     [ mName "r"
-                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]), scType scPow, scExponent 1.2 ]
                     , mLegend []
                     ]
@@ -208,7 +206,6 @@ scale9 =
             encoding
                 << size
                     [ mName "r"
-                    , mQuant
                     , mScale [ scRange (raNums [ 0, 80000 ]), scType scLog, scBase e ]
                     , mLegend []
                     ]
