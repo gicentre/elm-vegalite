@@ -12,7 +12,7 @@ path =
 scatter : Spec
 scatter =
     let
-        cars =
+        data =
             dataFromUrl (path ++ "cars.json") []
 
         enc =
@@ -21,7 +21,7 @@ scatter =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin" ]
     in
-    toVegaLite [ cars, enc [], circle [] ]
+    toVegaLite [ data, enc [], circle [] ]
 
 
 
