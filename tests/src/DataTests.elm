@@ -756,14 +756,14 @@ datum3 =
 
         enc2 =
             encoding
-                << position X [ pDatum (num 0), pQuant ]
+                << position X [ pDatum (num 0) ]
 
         spec2 =
             asSpec [ emptyData [], enc2 [], rule [] ]
 
         enc3 =
             encoding
-                << position Y [ pDatum (num 0), pQuant ]
+                << position Y [ pDatum (num 0) ]
 
         spec3 =
             asSpec [ emptyData [], enc3 [], rule [] ]
