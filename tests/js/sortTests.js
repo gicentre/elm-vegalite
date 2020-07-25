@@ -10181,7 +10181,6 @@ var $author$project$SortTests$sortAsc = A2(
 		[$author$project$VegaLite$soAscending]));
 var $author$project$VegaLite$Bar = 2;
 var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
-var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$CustomSort = function (a) {
 	return {$: 2, a: a};
 };
@@ -10202,7 +10201,6 @@ var $author$project$SortTests$sortCustom = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('a'),
-						$author$project$VegaLite$pOrdinal,
 						$author$project$VegaLite$pSort(
 						_List_fromArray(
 							[
