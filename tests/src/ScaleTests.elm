@@ -250,10 +250,65 @@ scale11 =
                 << color
                     [ mName "value"
                     , mQuant
-                    , mScale [ scScheme "redblue" [], scDomainMid 0 ]
+                    , mScale [ scScheme "redblue" [], scDomain (doMid 0) ]
                     ]
     in
     toVegaLite [ divergingData [], enc [], bar [] ]
+
+
+lineChart : List ScaleProperty -> List ScaleProperty -> Spec
+lineChart xScale yScale =
+    let
+        data =
+            dataFromUrl (path ++ "stocks.csv") []
+
+        pxProp =
+            if xScale == [] then
+                []
+
+            else
+                [ pScale xScale ]
+
+        pyProp =
+            if yScale == [] then
+                []
+
+            else
+                [ pScale yScale ]
+
+        enc =
+            encoding
+                << position X ([ pName "date", pTimeUnit year ] ++ pxProp)
+                << position Y ([ pName "price", pAggregate opMean ] ++ pyProp)
+                << color [ mName "symbol" ]
+    in
+    toVegaLite [ data, enc [], line [] ]
+
+
+scale12 : Spec
+scale12 =
+    lineChart [] []
+
+
+scale13 : Spec
+scale13 =
+    lineChart
+        [ scDomain (doDts [ [ dtYear 1990 ], [ dtYear 2020 ] ]) ]
+        [ scDomain (doNums [ -100, 700 ]) ]
+
+
+scale14 : Spec
+scale14 =
+    lineChart
+        [ scDomain (doMinDt [ dtYear 1990 ]) ]
+        [ scDomain (doMin -100) ]
+
+
+scale15 : Spec
+scale15 =
+    lineChart
+        [ scDomain (doMaxDt [ dtYear 2020 ]) ]
+        [ scDomain (doMax 700) ]
 
 
 
@@ -273,6 +328,10 @@ specs =
     , ( "scale9", scale9 )
     , ( "scale10", scale10 )
     , ( "scale11", scale11 )
+    , ( "scale12", scale12 )
+    , ( "scale13", scale13 )
+    , ( "scale14", scale14 )
+    , ( "scale15", scale15 )
     ]
 
 

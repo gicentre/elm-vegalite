@@ -132,7 +132,7 @@ advanced4 =
             encoding
                 << position X [ pName "Release Date", pTemporal ]
                 << position Y [ pName "RatingDelta", pQuant, pTitle "Rating Delta" ]
-                << color [ mName "RatingDelta", mQuant, mScale [ scDomainMid 0 ], mTitle "Rating Delta" ]
+                << color [ mName "RatingDelta", mQuant, mScale [ scDomain (doMid 0) ], mTitle "Rating Delta" ]
     in
     toVegaLite [ desc, data, trans [], enc [], point [ maStrokeWidth 0.7 ] ]
 

@@ -36,13 +36,14 @@
     <h1>Elm-Vega Scale Tests</h1>
 
     <h2>Discretizing Scales</h2>
+
     <figure class="cell">
       <div id="scale1"></div>
       <figcaption>
         Default 'bin-linear' scale for binned size and opacity channels.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="scale2"></div>
@@ -50,7 +51,7 @@
         Default 'bin-ordinal' scale for discretized legend
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="scale3"></div>
@@ -59,7 +60,7 @@
         >=81.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="scale4"></div>
@@ -68,7 +69,7 @@
         >=73.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="scale5"></div>
@@ -76,7 +77,9 @@
         Threshold scale. Legend categories should be &lt;30, 30-70 and >=70.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Size Scaling</h2>
 
     <figure class="cell">
       <div id="scale6"></div>
@@ -89,7 +92,7 @@
         Size scaled by with exponent of 2 (by square of radius)
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="scale8"></div>
@@ -102,7 +105,9 @@
       <div id="scale9"></div>
       <figcaption>Log to base e scale</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Midpoint Scaling</h2>
 
     <figure class="cell">
       <div id="scale10"></div>
@@ -116,19 +121,53 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Domain Scaling</h2>
+
+    <figure class="cell">
+      <div id="scale12"></div>
+      <figcaption>
+        Default data-driven domain
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="scale13"></div>
+      <figcaption>
+        Domain set outside of data bounds
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="scale14"></div>
+      <figcaption>
+        Just min values of domain set outside data bounds.
+      </figcaption>
+    </figure>
+
+    <figure class="cell">
+      <div id="scale15"></div>
+      <figcaption>
+        Just max values of domain set outside data bounds.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ScaleTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
