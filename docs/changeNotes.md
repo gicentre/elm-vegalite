@@ -18,45 +18,47 @@
 
 ## Additions
 
-- Added _week_ and _dayOfYear_ temporal binning options (VL4.13).
+- `oDataCondition`, `oSelectionCondition` and `oNum` for conditional ordering (VL4.14).
 
-* `axDomainDashOffset`, `axGridDashOffset`, `cAxGridDashOffset`, `axTickDashOffset` and `cAxTickDashOffset` dash offset parameters along with their _axco_ configuration equivalents (VL4.13 and VL4.12).
+* Added _week_ and _dayOfYear_ temporal binning options (VL4.13).
 
-- `dayHours`, `dayHoursMinutes`, `dayHoursMinutesSeconds`, `monthDateHoursMinutes` and `monthDateHoursMinutesSeconds` added as temporal binning options (VL4.12).
+- `axDomainDashOffset`, `axGridDashOffset`, `cAxGridDashOffset`, `axTickDashOffset` and `cAxTickDashOffset` dash offset parameters along with their _axco_ configuration equivalents (VL4.13 and VL4.12).
 
-* `tDatum` for data-space constants to be encoded with a text channel (VL4.12).
+* `dayHours`, `dayHoursMinutes`, `dayHoursMinutesSeconds`, `monthDateHoursMinutes` and `monthDateHoursMinutesSeconds` added as temporal binning options (VL4.12).
 
-- `axDomainCap` and `axGridCap` for controlling axis baseline and gridline end caps (VL4.12).
+- `tDatum` for data-space constants to be encoded with a text channel (VL4.12).
 
-* `axDomainDash` and `axcoDomainDash` for controlling axis baseline dash style (VL4.12).
+* `axDomainCap` and `axGridCap` for controlling axis baseline and gridline end caps (VL4.12).
 
-- `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arEnable`, `arDisable` and `arDescription` for setting ARIA support on a per mark basis. `axAria` / `axcoAria`, `leAria` / `lecoAria` and associated properties for setting ARIA support on a per axis and legend basis (VL4.12).
+- `axDomainDash` and `axcoDomainDash` for controlling axis baseline dash style (VL4.12).
 
-* `coCustomFormatTypes` for enabling/disabling use of registered custom formatters (VL4.11).
+* `coAria` to configure the enabling/disabling ARIA support in SVG output; `maAria` and associated properties `arEnable`, `arDisable` and `arDescription` for setting ARIA support on a per mark basis. `axAria` / `axcoAria`, `leAria` / `lecoAria` and associated properties for setting ARIA support on a per axis and legend basis (VL4.12).
 
-- `axcoDisable` and `lecoDisable` to disable axes and legends by default in configuration (VL4.10).
+- `coCustomFormatTypes` for enabling/disabling use of registered custom formatters (VL4.11).
 
-* `mBand` for non-positional band encoding (VL4.10)
+* `axcoDisable` and `lecoDisable` to disable axes and legends by default in configuration (VL4.10).
 
-- `arc` and `text` mark offset functions `maThetaOffset`, `maTheta2Offset`, `maRadiusOffset` and `maRadius2Offset` (VL4.10).
+- `mBand` for non-positional band encoding (VL4.10)
 
-* `pDatum` for specifying a literal data-driven positioning (VL.4.9).
+* `arc` and `text` mark offset functions `maThetaOffset`, `maTheta2Offset`, `maRadiusOffset` and `maRadius2Offset` (VL4.10).
 
-- `mDatum` for specifying a literal data-driven mark property (VL.4.9).
+- `pDatum` for specifying a literal data-driven positioning (VL.4.9).
 
-* `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
+* `mDatum` for specifying a literal data-driven mark property (VL.4.9).
 
-- `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
+- `layerFields` and `arLayer` for arranging views in layers using a repeat list of fields (VL4.9).
 
-* `angle` channel for data-driven rotation of point and text symbols (VL4.9).
+* `mRepeatDatum` for specifying a set of literal datum values in a repeated view (VL4.9).
 
-- `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
+- `angle` channel for data-driven rotation of point and text symbols (VL4.9).
 
-* `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
+* `arc` mark and associated radial mark properties `maInnerRadius`, `maOuterRadius`, `maTheta` and `maTheta2` (VL4.9).
 
-- `leTitleOrient` for positioning a title relative to legend content.
+- `maRadiusOffset` for polar offsetting of text marks that have been positioned via `Theta` and `R` (VL 4.9).
 
-* `leSymbolLimit` and `lecoSymbolLimit` for limiting the number of entries in a discrete legend (VL 4.8).
+* `leTitleOrient` for positioning a title relative to legend content.
+
+- `leSymbolLimit` and `lecoSymbolLimit` for limiting the number of entries in a discrete legend (VL 4.8).
 
 ### Bug Fixes
 

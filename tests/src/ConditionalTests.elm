@@ -345,6 +345,63 @@ bindScales2 =
         [ width 300, height 300, data, sel [], circle [], enc [] ]
 
 
+orderCondition1 : Spec
+orderCondition1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "actual" (strs [ "A", "A", "A", "B", "B", "B", "C", "C", "C" ])
+                << dataColumn "predicted" (strs [ "A", "B", "C", "A", "B", "C", "A", "B", "C" ])
+                << dataColumn "count" (nums [ 13, 0, 0, 0, 10, 6, 0, 0, 9 ])
+
+        sel =
+            selection
+                << select "highlight" seSingle []
+
+        cfg =
+            configure
+                << configuration (coScale [ sacoBandPaddingInner 0, sacoBandPaddingOuter 0 ])
+                << configuration (coRange [ racoRamp "yellowgreenblue" ])
+                << configuration (coView [ vicoStep 40 ])
+                << configuration (coAxis [ axcoDomain False ])
+                << configuration (coAxis [ axcoLabelAngle 0 ] |> coAxisXFilter)
+
+        enc =
+            encoding
+                << position X [ pName "predicted" ]
+                << position Y [ pName "actual" ]
+                << fill [ mName "count", mQuant ]
+                << stroke
+                    [ mDataCondition
+                        [ ( and (selected "highlight")
+                                (expr "length(data(\"highlight_store\"))")
+                          , [ mStr "black" ]
+                          )
+                        ]
+                        [ mStr "" ]
+                    ]
+                << order
+                    [ oSelectionCondition (selectionName "highlight") [ oNum 1 ] [ oNum 0 ] ]
+    in
+    toVegaLite [ cfg [], data [], sel [], enc [], rect [ maStrokeWidth 8 ] ]
+
+
+orderCondition2 : Spec
+orderCondition2 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mName "Origin" ]
+                << order [ oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ] ]
+    in
+    toVegaLite [ data, enc [], circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -363,6 +420,8 @@ specs =
     , ( "selectionCondition5", selectionCondition5 )
     , ( "bindScales1", bindScales1 )
     , ( "bindScales2", bindScales2 )
+    , ( "orderCondition1", orderCondition1 )
+    , ( "orderCondition2", orderCondition2 )
     ]
 
 

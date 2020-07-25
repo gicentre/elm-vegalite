@@ -40,7 +40,7 @@
       <div id="markCondition1"></div>
       <figcaption>Null values in grey.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="markCondition2"></div>
@@ -49,14 +49,14 @@
         blue-blue-blue-red-yellow-black
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Conditional Axis Properties (VL 4)</h2>
     <figure class="cell">
       <div id="axisCondition1"></div>
       <figcaption>Dashed gridlines left of centre.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCondition2"></div>
@@ -66,7 +66,7 @@
         100.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="axisCondition3"></div>
@@ -75,7 +75,7 @@
         at 4.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Conditional Selection Properties</h2>
     <figure class="cell">
@@ -90,7 +90,7 @@
         Two selection styles (drag and shift-drag; only intersections select).
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="selectionCondition4"></div>
@@ -105,13 +105,13 @@
         Initially no selection. Selection clears once mouse released.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="selectionCondition3"></div>
       <figcaption>Combined data and selection condition.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="bindScales1"></div>
@@ -125,19 +125,38 @@
         Zooming selection that resets on any shift-mouse click
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <h2>Conditional Ordering</h2>
+    <figure class="cell">
+      <div id="orderCondition1"></div>
+      <figcaption>
+        Ensures selected cell with thick borders is drawn on top.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="orderCondition2"></div>
+      <figcaption>
+        Use oDataCondition to ensure that European data are shown on top.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ConditionalTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
