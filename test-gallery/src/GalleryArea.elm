@@ -26,7 +26,7 @@ area1 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonth, pAxis [ axTitle "", axFormat "%Y" ] ]
+                << position X [ pName "date", pTimeUnit yearMonth, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "count", pAggregate opSum, pTitle "Number of unemployed" ]
     in
     toVegaLite [ desc, width 300, height 200, data, enc [], area [] ]
@@ -92,12 +92,7 @@ area4 =
 
         enc =
             encoding
-                << position X
-                    [ pName "date"
-                    , pTemporal
-                    , pTimeUnit yearMonth
-                    , pAxis [ axTitle "", axFormat "%Y" ]
-                    ]
+                << position X [ pName "date", pTimeUnit yearMonth, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "count", pAggregate opSum, pTitle "Number unemployed" ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
@@ -115,12 +110,7 @@ area5 =
 
         enc =
             encoding
-                << position X
-                    [ pName "date"
-                    , pTemporal
-                    , pTimeUnit yearMonth
-                    , pAxis [ axTitle "", axDomain False, axFormat "%Y" ]
-                    ]
+                << position X [ pName "date", pTimeUnit yearMonth, pAxis [ axTitle "", axDomain False, axFormat "%Y" ] ]
                 << position Y [ pName "count", pAggregate opSum, pAxis [], pStack stNormalize ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in
@@ -138,12 +128,7 @@ area6 =
 
         enc =
             encoding
-                << position X
-                    [ pName "date"
-                    , pTemporal
-                    , pTimeUnit yearMonth
-                    , pAxis [ axTitle "", axDomain False, axFormat "%Y" ]
-                    ]
+                << position X [ pName "date", pTimeUnit yearMonth, pAxis [ axTitle "", axDomain False, axFormat "%Y" ] ]
                 << position Y [ pName "count", pAggregate opSum, pAxis [], pStack stCenter ]
                 << color [ mName "series", mScale [ scScheme "category20b" [] ] ]
     in

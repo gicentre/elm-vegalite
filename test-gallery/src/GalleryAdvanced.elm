@@ -642,7 +642,7 @@ advanced16 =
 
         encRaw =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit year, pTitle "" ]
+                << position X [ pName "date", pTimeUnit year, pTitle "" ]
                 << position Y [ pName "price", pQuant, pTitle "Price" ]
 
         specRaw =
@@ -650,7 +650,7 @@ advanced16 =
 
         encAv =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position X [ pName "date", pTimeUnit year ]
                 << position Y [ pName "price", pAggregate opMean ]
 
         specAv =

@@ -197,7 +197,7 @@ window7 =
 
         circleEnc =
             encoding
-                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position X [ pName "Year", pTimeUnit year ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         circleSpec =
@@ -205,7 +205,7 @@ window7 =
 
         lineEnc =
             encoding
-                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position X [ pName "Year", pTimeUnit year ]
                 << position Y [ pName "Average_MPG", pQuant, pTitle "Miles per gallon" ]
 
         lineSpec =

@@ -46,7 +46,7 @@ line2 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position X [ pName "date", pTimeUnit year ]
                 << position Y [ pName "price", pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
@@ -64,7 +64,7 @@ line3 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit year ]
+                << position X [ pName "date", pTimeUnit year ]
                 << position Y [ pName "price", pAggregate opMean ]
                 << color [ mName "symbol" ]
     in

@@ -125,7 +125,7 @@ interaction4 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonth ]
+                << position X [ pName "date", pTimeUnit yearMonth ]
                 << position Y [ pName "count", pAggregate opSum ]
 
         specBackground =
@@ -530,7 +530,7 @@ interaction12 =
         textEnc =
             encoding
                 << position Y [ pNum 310 ]
-                << text [ tName "date", tTemporal, tTimeUnit yearMonth ]
+                << text [ tName "date", tTimeUnit yearMonth ]
 
         labelledRuleSpec =
             asSpec
@@ -560,9 +560,9 @@ interaction13 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pTimeUnit yearMonthDate ]
+                << position X [ pName "date", pTimeUnit yearMonthDate ]
                 << tooltips
-                    [ [ tName "date", tTemporal, tTimeUnit yearMonthDate ]
+                    [ [ tName "date", tTimeUnit yearMonthDate ]
                     , [ tName "temp_max", tQuant ]
                     , [ tName "temp_min", tQuant ]
                     ]

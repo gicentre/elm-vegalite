@@ -299,7 +299,7 @@ interaction16 =
         textEnc =
             encoding
                 << position Y [ pNum 310 ]
-                << text [ tName "date", tTemporal, tTimeUnit yearMonth ]
+                << text [ tName "date", tTimeUnit yearMonth ]
 
         labelledRuleSpec =
             asSpec

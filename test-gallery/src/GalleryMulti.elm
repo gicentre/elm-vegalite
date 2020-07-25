@@ -266,7 +266,6 @@ multi5 =
             encoding
                 << position X
                     [ pName "date"
-                    , pTemporal
                     , pTimeUnit monthDate
                     , pAxis [ axTitle "Date", axFormat "%b" ]
                     ]

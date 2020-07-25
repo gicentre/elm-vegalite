@@ -229,12 +229,7 @@ layer4 =
 
         encTime =
             encoding
-                << position X
-                    [ pName "date"
-                    , pTemporal
-                    , pTimeUnit month
-                    , pAxis [ axFormat "%b", axTitle "" ]
-                    ]
+                << position X [ pName "date", pTimeUnit month, pAxis [ axFormat "%b", axTitle "" ] ]
 
         encArea =
             encoding

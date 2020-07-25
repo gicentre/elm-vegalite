@@ -129,7 +129,7 @@ eBand ext =
 
         enc =
             encoding
-                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position X [ pName "Year", pTimeUnit year ]
                 << position Y
                     [ pName "Miles_per_Gallon"
                     , pQuant

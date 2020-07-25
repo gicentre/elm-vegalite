@@ -356,7 +356,7 @@ label8 =
 
         encRects =
             encoding
-                << position X [ pName "start", pTemporal, pTimeUnit year, pAxis [] ]
+                << position X [ pName "start", pTimeUnit year, pAxis [] ]
                 << position X2 [ pName "end" ]
                 << color [ mName "event" ]
 
@@ -365,7 +365,7 @@ label8 =
 
         encPopulation =
             encoding
-                << position X [ pName "year", pTemporal, pTimeUnit year, pTitle "" ]
+                << position X [ pName "year", pTimeUnit year, pTitle "" ]
                 << position Y [ pName "population", pQuant ]
                 << color [ mStr "#333" ]
 

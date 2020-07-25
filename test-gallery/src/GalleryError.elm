@@ -105,7 +105,7 @@ error3 =
 
         encTime =
             encoding
-                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position X [ pName "Year", pTimeUnit year ]
 
         encBand =
             encoding

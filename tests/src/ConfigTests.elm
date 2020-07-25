@@ -135,7 +135,7 @@ compositeVis config =
 
         streamEnc =
             encoding
-                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position X [ pName "Year", pTimeUnit year ]
                 << position Y [ pAggregate opCount, pStack stCenter, pAxis [] ]
                 << color [ mName "Origin" ]
 
@@ -185,7 +185,7 @@ vbTest =
 
         streamEnc =
             encoding
-                << position X [ pName "Year", pTemporal, pTimeUnit year ]
+                << position X [ pName "Year", pTimeUnit year ]
                 << position Y [ pAggregate opCount, pStack stCenter, pAxis [] ]
                 << color [ mName "Origin" ]
 

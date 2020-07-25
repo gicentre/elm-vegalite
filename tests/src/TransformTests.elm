@@ -431,8 +431,8 @@ transform17 =
 
         enc =
             encoding
-                -- << position X [ pName "date", pTemporal, pTimeUnit (utc minutes |> tuStep 5) ]
-                << position X [ pName "date", pTemporal, pTimeUnit (tuMaxBins 15) ]
+                -- << position X [ pName "date", pTimeUnit (utc minutes |> tuStep 5) ]
+                << position X [ pName "date", pTimeUnit (tuMaxBins 15) ]
                 << position Y [ pName "distance", pAggregate opSum ]
     in
     toVegaLite [ data [], enc [], bar [] ]

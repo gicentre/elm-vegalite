@@ -26,9 +26,9 @@ repeat1 =
 
         enc1 =
             encoding
-                << position X [ pName "date", pOrdinal, pTimeUnit month ]
+                << position X [ pName "date", pTimeUnit month ]
                 << position Y [ pRepeat arColumn, pAggregate opMean ]
-                << detail [ dName "date", dTemporal, dTimeUnit year ]
+                << detail [ dName "date", dTimeUnit year ]
                 << color [ mName "location" ]
                 << opacity [ mNum 0.2 ]
 
@@ -167,7 +167,7 @@ repeat5 =
 
         encPosition =
             encoding
-                << position X [ pName "IMDB Rating" ant, pBin [ biMaxBins 10 ] ]
+                << position X [ pName "IMDB Rating", pBin [ biMaxBins 10 ] ]
                 << position Y [ pName "Rotten Tomatoes Rating", pBin [ biMaxBins 10 ] ]
 
         cfg =
