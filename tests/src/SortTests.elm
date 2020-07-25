@@ -52,11 +52,7 @@ sortCustom =
 
         enc =
             encoding
-                << position X
-                    [ pName "a"
-                    , pOrdinal
-                    , pSort [ soCustom (strs [ "B", "A", "C" ]) ]
-                    ]
+                << position X [ pName "a", pSort [ soCustom (strs [ "B", "A", "C" ]) ] ]
                 << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ data [], enc [], bar [] ]
