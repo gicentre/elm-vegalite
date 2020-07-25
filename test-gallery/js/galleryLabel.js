@@ -12914,8 +12914,6 @@ var $author$project$VegaLite$FoDate = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$Year = {$: 0};
 var $author$project$VegaLite$year = $author$project$VegaLite$Year;
 var $author$project$GalleryLabel$label8 = function () {
@@ -12970,7 +12968,6 @@ var $author$project$GalleryLabel$label8 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('start'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
 							$author$project$VegaLite$pAxis(_List_Nil)
 						]))),
@@ -13006,7 +13003,6 @@ var $author$project$GalleryLabel$label8 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('year'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
 							$author$project$VegaLite$pTitle('')
 						]))),

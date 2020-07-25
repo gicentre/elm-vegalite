@@ -12007,7 +12007,6 @@ var $author$project$GalleryLayer$layer4 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('date'),
-					$author$project$VegaLite$pTemporal,
 					$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
 					$author$project$VegaLite$pAxis(
 					_List_fromArray(

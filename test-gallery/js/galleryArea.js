@@ -4324,11 +4324,6 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$VegaLite$PmType = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
@@ -7724,7 +7719,6 @@ var $author$project$GalleryArea$area1 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$yearMonth),
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
@@ -7808,8 +7802,13 @@ var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 53, a: a};
 };
 var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$PmType = function (a) {
+	return {$: 6, a: a};
+};
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$VLTransform = 13;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -8000,7 +7999,6 @@ var $author$project$GalleryArea$area4 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$yearMonth),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -8063,7 +8061,6 @@ var $author$project$GalleryArea$area5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$yearMonth),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
@@ -8122,7 +8119,6 @@ var $author$project$GalleryArea$area6 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$yearMonth),
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(

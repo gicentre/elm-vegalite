@@ -11804,7 +11804,6 @@ var $author$project$GalleryMulti$multi5 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('date'),
-								$author$project$VegaLite$pTemporal,
 								$author$project$VegaLite$pTimeUnit($author$project$VegaLite$monthDate),
 								$author$project$VegaLite$pAxis(
 								_List_fromArray(

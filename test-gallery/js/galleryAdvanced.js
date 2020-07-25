@@ -12570,8 +12570,6 @@ var $author$project$GalleryAdvanced$advanced15 = function () {
 }();
 var $author$project$VegaLite$Mean = {$: 7};
 var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
@@ -12597,7 +12595,6 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
 						$author$project$VegaLite$pTitle('')
 					]))),
@@ -12631,7 +12628,6 @@ var $author$project$GalleryAdvanced$advanced16 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 					]))),
 		A2(
@@ -12665,6 +12661,8 @@ var $author$project$VegaLite$MSize = function (a) {
 	return {$: 52, a: a};
 };
 var $author$project$VegaLite$maSize = $author$project$VegaLite$MSize;
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$GalleryAdvanced$advanced17 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,

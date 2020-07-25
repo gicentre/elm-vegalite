@@ -10118,8 +10118,6 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
@@ -10170,7 +10168,6 @@ var $author$project$CompositeTests$eBand = function (ext) {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Year'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 					]))),
 		A2(

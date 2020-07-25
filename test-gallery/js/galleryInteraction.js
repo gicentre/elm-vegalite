@@ -11898,7 +11898,6 @@ var $author$project$VegaLite$SInit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$seInit = $author$project$VegaLite$SInit;
-var $author$project$VegaLite$tTemporal = $author$project$VegaLite$TmType(3);
 var $author$project$VegaLite$TTimeUnit = function (a) {
 	return {$: 6, a: a};
 };
@@ -11929,7 +11928,6 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('date'),
-					$author$project$VegaLite$tTemporal,
 					$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonth)
 				])));
 	var sel = A2(
@@ -12257,7 +12255,6 @@ var $author$project$GalleryInteraction$interaction13 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$yearMonthDate)
 					]))),
 		$author$project$VegaLite$tooltips(
@@ -12266,7 +12263,6 @@ var $author$project$GalleryInteraction$interaction13 = function () {
 					_List_fromArray(
 					[
 						$author$project$VegaLite$tName('date'),
-						$author$project$VegaLite$tTemporal,
 						$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonthDate)
 					]),
 					_List_fromArray(
@@ -13481,7 +13477,6 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$yearMonth)
 					]))),
 		A2(

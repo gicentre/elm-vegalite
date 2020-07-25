@@ -12722,7 +12722,6 @@ var $author$project$GalleryLine$line2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 						]))),
 			A2(
@@ -12776,7 +12775,6 @@ var $author$project$GalleryLine$line3 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal,
 							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 						]))),
 			A2(

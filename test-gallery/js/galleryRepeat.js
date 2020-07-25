@@ -5073,11 +5073,6 @@ var $author$project$VegaLite$DName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$dName = $author$project$VegaLite$DName;
-var $author$project$VegaLite$DmType = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$dTemporal = $author$project$VegaLite$DmType(3);
 var $author$project$VegaLite$DTimeUnit = function (a) {
 	return {$: 3, a: a};
 };
@@ -7871,7 +7866,6 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 							_List_fromArray(
 								[
 									$author$project$VegaLite$pName('date'),
-									$author$project$VegaLite$pOrdinal,
 									$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month)
 								]))),
 					A2(
@@ -7886,7 +7880,6 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$dName('date'),
-							$author$project$VegaLite$dTemporal,
 							$author$project$VegaLite$dTimeUnit($author$project$VegaLite$year)
 						]))),
 			$author$project$VegaLite$color(
@@ -7951,8 +7944,6 @@ var $author$project$VegaLite$PBin = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$size = function (markProps) {
@@ -8013,7 +8004,6 @@ var $author$project$GalleryRepeat$repeat2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('temp_min'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -8022,7 +8012,6 @@ var $author$project$GalleryRepeat$repeat2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('temp_max'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		$author$project$VegaLite$size(
@@ -8091,7 +8080,6 @@ var $author$project$GalleryRepeat$repeat3 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pRepeat($author$project$VegaLite$arColumn),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -8140,6 +8128,8 @@ var $author$project$VegaLite$MString = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
+var $author$project$VegaLite$Quantitative = 2;
+var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$RowFields = function (a) {
 	return {$: 0, a: a};
 };
@@ -11389,7 +11379,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(
 						_List_fromArray(
 							[
@@ -11402,7 +11391,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-					$author$project$VegaLite$pQuant,
 					$author$project$VegaLite$pBin(
 					_List_fromArray(
 						[
@@ -11420,7 +11408,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil),
 						$author$project$VegaLite$pAxis(_List_Nil)
 					]))),
@@ -11460,7 +11447,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('IMDB Rating'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pBin(_List_Nil)
 						]))),
 			A2(
@@ -11469,7 +11455,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),
 		$author$project$VegaLite$color(
@@ -11503,7 +11488,6 @@ var $author$project$GalleryRepeat$repeat5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pAxis(_List_Nil),
 						$author$project$VegaLite$pBin(_List_Nil)
 					]))),

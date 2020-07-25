@@ -11310,7 +11310,6 @@ var $author$project$WindowTransformTests$window7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Year'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 					]))),
 		A2(
@@ -11344,7 +11343,6 @@ var $author$project$WindowTransformTests$window7 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('Year'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 					]))),
 		A2(

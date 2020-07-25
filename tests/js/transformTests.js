@@ -11817,7 +11817,6 @@ var $author$project$TransformTests$transform17 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit(
 						$author$project$VegaLite$tuMaxBins(15))
 					]))),

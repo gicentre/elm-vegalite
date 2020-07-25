@@ -13653,10 +13653,6 @@ var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$TmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$tTemporal = $author$project$VegaLite$TmType(3);
 var $author$project$VegaLite$TTimeUnit = function (a) {
 	return {$: 6, a: a};
 };
@@ -13851,7 +13847,6 @@ var $author$project$InteractionTests$interaction16 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$tName('date'),
-					$author$project$VegaLite$tTemporal,
 					$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonth)
 				])));
 	var stockData = A2(

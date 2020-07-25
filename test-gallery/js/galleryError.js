@@ -8018,8 +8018,6 @@ var $author$project$VegaLite$opacity = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
@@ -8036,7 +8034,6 @@ var $author$project$GalleryError$error3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('Year'),
-					$author$project$VegaLite$pTemporal,
 					$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
 				])));
 	var encLine = A2(

@@ -10273,7 +10273,6 @@ var $author$project$TimeTests$timeBand = function () {
 					[
 						$author$project$VegaLite$pName('date'),
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pBand(0.5)
 					]))),
 		A2(
@@ -10323,7 +10322,6 @@ var $author$project$TimeTests$timeByUnit = function (tu) {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pTemporal,
 						$author$project$VegaLite$pTimeUnit(tu)
 					]))),
 		A2(
