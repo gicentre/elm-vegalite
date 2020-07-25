@@ -13001,7 +13001,6 @@ var $author$project$GalleryAdvanced$advanced18 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('fps'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[

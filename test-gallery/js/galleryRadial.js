@@ -11243,7 +11243,6 @@ var $author$project$GalleryRadial$radial4 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('strength'),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -11850,7 +11849,6 @@ var $author$project$GalleryRadial$radial6 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('deaths'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pScale(
 							_List_fromArray(
 								[

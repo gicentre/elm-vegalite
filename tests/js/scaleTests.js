@@ -13630,7 +13630,6 @@ var $author$project$ScaleTests$scale7 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('r'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -13668,7 +13667,6 @@ var $author$project$ScaleTests$scale8 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('r'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[
@@ -13713,7 +13711,6 @@ var $author$project$ScaleTests$scale9 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('r'),
-					$author$project$VegaLite$mQuant,
 					$author$project$VegaLite$mScale(
 					_List_fromArray(
 						[

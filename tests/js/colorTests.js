@@ -13673,7 +13673,6 @@ var $author$project$ColorTests$gamma1 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13693,7 +13692,6 @@ var $author$project$ColorTests$gamma2 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13713,7 +13711,6 @@ var $author$project$ColorTests$gamma3 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13733,7 +13730,6 @@ var $author$project$ColorTests$gamma4 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13753,7 +13749,6 @@ var $author$project$ColorTests$gamma5 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13775,7 +13770,6 @@ var $author$project$ColorTests$interp1 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13796,7 +13790,6 @@ var $author$project$ColorTests$interp2 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13817,7 +13810,6 @@ var $author$project$ColorTests$interp3 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13838,7 +13830,6 @@ var $author$project$ColorTests$interp4 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13859,7 +13850,6 @@ var $author$project$ColorTests$interp5 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13882,7 +13872,6 @@ var $author$project$ColorTests$interp6 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13902,7 +13891,6 @@ var $author$project$ColorTests$interp7 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -13997,7 +13985,6 @@ var $author$project$ColorTests$scale1 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -14017,7 +14004,6 @@ var $author$project$ColorTests$scale3 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -14039,7 +14025,6 @@ var $author$project$ColorTests$scale4 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -14060,7 +14045,6 @@ var $author$project$ColorTests$scale5 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -14080,7 +14064,6 @@ var $author$project$ColorTests$scale6 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('Acceleration'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -14100,7 +14083,6 @@ var $author$project$ColorTests$scale7 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('accelerationZScore'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[
@@ -14122,7 +14104,6 @@ var $author$project$ColorTests$scale8 = A2(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$mName('accelerationZScore'),
-				$author$project$VegaLite$mQuant,
 				$author$project$VegaLite$mScale(
 				_List_fromArray(
 					[

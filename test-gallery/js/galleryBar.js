@@ -13534,7 +13534,6 @@ var $author$project$GalleryBar$bar6 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('x1'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pScale(
 							_List_fromArray(
 								[

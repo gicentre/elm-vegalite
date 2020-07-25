@@ -12206,7 +12206,6 @@ var $author$project$GalleryScatter$scatter9 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('income'),
-								$author$project$VegaLite$pQuant,
 								$author$project$VegaLite$pScale(
 								_List_fromArray(
 									[

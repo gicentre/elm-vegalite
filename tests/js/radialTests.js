@@ -10480,7 +10480,6 @@ var $author$project$RadialTests$radial10 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pRepeat($author$project$VegaLite$arLayer),
-						$author$project$VegaLite$pQuant,
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
@@ -10745,7 +10744,6 @@ var $author$project$RadialTests$radial11 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('deaths'),
-							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
