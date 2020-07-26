@@ -7835,11 +7835,22 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					return _Utils_Tuple2(
 						'range',
 						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss));
-				default:
+				case 3:
 					var s = range.a;
 					return _Utils_Tuple2(
 						'range',
 						$elm$json$Json$Encode$string(s));
+				default:
+					var s = range.a;
+					return _Utils_Tuple2(
+						'range',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'field',
+									$elm$json$Json$Encode$string(s))
+								])));
 			}
 		case 3:
 			var schName = scaleProp.a;

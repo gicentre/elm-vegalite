@@ -6713,11 +6713,22 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					return _Utils_Tuple2(
 						'range',
 						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss));
-				default:
+				case 3:
 					var s = range.a;
 					return _Utils_Tuple2(
 						'range',
 						$elm$json$Json$Encode$string(s));
+				default:
+					var s = range.a;
+					return _Utils_Tuple2(
+						'range',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'field',
+									$elm$json$Json$Encode$string(s))
+								])));
 			}
 		case 3:
 			var schName = scaleProp.a;
@@ -10501,6 +10512,10 @@ var $author$project$ScaleTests$scale15 = A2(
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
+var $author$project$VegaLite$MTitle = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
@@ -10547,7 +10562,8 @@ var $author$project$ScaleTests$scatterplot = F2(
 						_List_fromArray(
 							[
 								$author$project$VegaLite$mName('x'),
-								$author$project$VegaLite$mOrdinal
+								$author$project$VegaLite$mOrdinal,
+								$author$project$VegaLite$mTitle('')
 							]),
 						mcProp))),
 			$author$project$VegaLite$size(
@@ -10555,18 +10571,27 @@ var $author$project$ScaleTests$scatterplot = F2(
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('x'),
-							$author$project$VegaLite$mQuant
+							$author$project$VegaLite$mQuant,
+							$author$project$VegaLite$mTitle('')
 						]),
 					msProp)));
 		var data = A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'x',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[1, 2, 3, 4])))),
 			A2(
 				$author$project$VegaLite$dataColumn,
-				'x',
-				$author$project$VegaLite$nums(
+				'c',
+				$author$project$VegaLite$strs(
 					_List_fromArray(
-						[1, 2, 3, 4]))));
+						['#000', '#666', '#999', '#ccc']))));
 		return $author$project$VegaLite$toVegaLite(
 			_List_fromArray(
 				[
@@ -10604,7 +10629,7 @@ var $author$project$ScaleTests$scale17 = A2(
 			$author$project$VegaLite$scRange(
 			$author$project$VegaLite$raNums(
 				_List_fromArray(
-					[100, 800])))
+					[100, 1200])))
 		]));
 var $author$project$VegaLite$RMinNumber = function (a) {
 	return {$: 4, a: a};
@@ -10640,7 +10665,7 @@ var $author$project$ScaleTests$scale19 = A2(
 	_List_fromArray(
 		[
 			$author$project$VegaLite$scRange(
-			$author$project$VegaLite$raMax(800))
+			$author$project$VegaLite$raMax(1200))
 		]));
 var $author$project$VegaLite$Range = function (a) {
 	return {$: 33, a: a};
@@ -13693,6 +13718,18 @@ var $author$project$ScaleTests$scale2 = function () {
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$RField = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$raField = $author$project$VegaLite$RField;
+var $author$project$ScaleTests$scale20 = A2(
+	$author$project$ScaleTests$scatterplot,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raField('c'))
+		]),
+	_List_Nil);
 var $author$project$VegaLite$AxDomain = function (a) {
 	return {$: 8, a: a};
 };
@@ -13705,10 +13742,6 @@ var $author$project$VegaLite$AxTitle = function (a) {
 	return {$: 53, a: a};
 };
 var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
-var $author$project$VegaLite$MTitle = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$mTitle = $author$project$VegaLite$MTitle;
 var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
@@ -14118,7 +14151,8 @@ var $author$project$ScaleTests$specs = _List_fromArray(
 		_Utils_Tuple2('scale16', $author$project$ScaleTests$scale16),
 		_Utils_Tuple2('scale17', $author$project$ScaleTests$scale17),
 		_Utils_Tuple2('scale18', $author$project$ScaleTests$scale18),
-		_Utils_Tuple2('scale19', $author$project$ScaleTests$scale19)
+		_Utils_Tuple2('scale19', $author$project$ScaleTests$scale19),
+		_Utils_Tuple2('scale20', $author$project$ScaleTests$scale20)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
