@@ -211,13 +211,13 @@ scatter10 =
 
         enc =
             encoding
-                << position X [ pName "Year", pOrdinal, pAxis [ axLabelAngle 0 ] ]
+                << position X [ pName "Year", pTemporal, pAxis [ axGrid False ] ]
                 << position Y [ pName "Entity", pTitle "" ]
                 << size
                     [ mName "Deaths"
                     , mQuant
-                    , mLegend [ leTitle "Annual Global Deaths" ]
-                    , mScale [ scRange (raNums [ 0, 5000 ]) ]
+                    , mLegend [ leTitle "Annual Global Deaths", leClipHeight 30 ]
+                    , mScale [ scRange (raMax 5000) ]
                     ]
                 << color [ mName "Entity", mLegend [] ]
     in
