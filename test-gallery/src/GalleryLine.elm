@@ -29,7 +29,7 @@ line1 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ desc, data, trans [], enc [], line [] ]
@@ -46,7 +46,7 @@ line2 =
 
         enc =
             encoding
-                << position X [ pName "date", pTimeUnit year ]
+                << position X [ pName "date", pTimeUnit year, pTitle "" ]
                 << position Y [ pName "price", pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
@@ -64,7 +64,7 @@ line3 =
 
         enc =
             encoding
-                << position X [ pName "date", pTimeUnit year ]
+                << position X [ pName "date", pTimeUnit year, pTitle "" ]
                 << position Y [ pName "price", pAggregate opMean ]
                 << color [ mName "symbol" ]
     in
@@ -82,7 +82,7 @@ line4 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
                 << color [ mName "symbol" ]
     in
@@ -129,7 +129,7 @@ line6 =
 
         encHalo =
             encoding
-                << position X [ pName "date", pTemporal ]
+                << position X [ pName "date", pTemporal, pTitle "" ]
                 << position Y [ pRepeat arLayer, pQuant, pTitle "price" ]
                 << color [ mRepeatDatum arLayer ]
 
@@ -139,7 +139,7 @@ line6 =
         encLine =
             encoding
                 << position X [ pName "date", pTemporal ]
-                << position Y [ pRepeat arLayer, pQuant, pTitle "price" ]
+                << position Y [ pRepeat arLayer, pQuant ]
                 << stroke [ mRepeatDatum arLayer ]
 
         specLine =
@@ -165,7 +165,12 @@ line7 =
 
         enc =
             encoding
-                << position X [ pName "year", pOrdinal, pScale [ scPadding 0.5 ] ]
+                << position X
+                    [ pName "year"
+                    , pOrdinal
+                    , pScale [ scPadding 0.5 ]
+                    , pAxis [ axTitle "", axLabelAngle 0 ]
+                    ]
                 << position Y [ pName "yield", pAggregate opMedian ]
                 << color [ mName "site" ]
     in
@@ -186,7 +191,7 @@ line8 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ desc, data, trans [], enc [], line [ maInterpolate miStepAfter ] ]
@@ -206,7 +211,7 @@ line9 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
     in
     toVegaLite [ desc, data, trans [], enc [], line [ maInterpolate miMonotone ] ]
@@ -236,7 +241,8 @@ line10 =
                     [ pName "date"
                     , pTemporal
                     , pAxis
-                        [ axTickCount (niTickCount 20)
+                        [ axTitle ""
+                        , axTickCount (niTickCount 20)
                         , axDataCondition
                             (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ])
                                 |> fiOpTrans (mTimeUnit monthDate)
@@ -326,7 +332,7 @@ line13 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal, pAxis [ axFormat "%Y" ] ]
+                << position X [ pName "date", pTemporal, pAxis [ axTitle "", axFormat "%Y" ] ]
                 << position Y [ pName "price", pQuant ]
                 << size [ mName "price", mQuant ]
                 << color [ mName "symbol" ]
@@ -518,7 +524,7 @@ line18 =
 
         enc =
             encoding
-                << position X [ pName "date", pTemporal ]
+                << position X [ pName "date", pTemporal, pTitle "" ]
                 << position Y [ pName "price", pQuant ]
                 << strokeDash [ mName "symbol" ]
     in
