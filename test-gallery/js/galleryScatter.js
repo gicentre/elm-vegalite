@@ -7786,13 +7786,10 @@ var $author$project$GalleryScatter$scatter1 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$AxLabelAngle = function (a) {
-	return {$: 21, a: a};
+var $author$project$VegaLite$AxGrid = function (a) {
+	return {$: 68, a: a};
 };
-var $author$project$VegaLite$positiveAngle = function (a) {
-	return (a < 0) ? (a + 360) : a;
-};
-var $author$project$VegaLite$axLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$AxLabelAngle, $author$project$VegaLite$positiveAngle);
+var $author$project$VegaLite$axGrid = $author$project$VegaLite$AxGrid;
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$color = function (markProps) {
@@ -7818,6 +7815,10 @@ var $author$project$VegaLite$height = function (h) {
 		4,
 		$elm$json$Json$Encode$float(h));
 };
+var $author$project$VegaLite$LClipHeight = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$leClipHeight = $author$project$VegaLite$LClipHeight;
 var $author$project$VegaLite$LTitle = function (a) {
 	return {$: 38, a: a};
 };
@@ -7854,16 +7855,16 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$VegaLite$Ordinal = 1;
-var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$VegaLite$RNumbers = function (a) {
-	return {$: 0, a: a};
+var $author$project$VegaLite$RMaxNumber = function (a) {
+	return {$: 5, a: a};
 };
-var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
+var $author$project$VegaLite$raMax = $author$project$VegaLite$RMaxNumber;
 var $author$project$VegaLite$SRange = function (a) {
 	return {$: 2, a: a};
 };
@@ -7928,11 +7929,11 @@ var $author$project$GalleryScatter$scatter10 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('Year'),
-								$author$project$VegaLite$pOrdinal,
+								$author$project$VegaLite$pTemporal,
 								$author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
-										$author$project$VegaLite$axLabelAngle(0)
+										$author$project$VegaLite$axGrid(false)
 									]))
 							]))),
 				A2(
@@ -7951,15 +7952,14 @@ var $author$project$GalleryScatter$scatter10 = function () {
 						$author$project$VegaLite$mLegend(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$leTitle('Annual Global Deaths')
+								$author$project$VegaLite$leTitle('Annual Global Deaths'),
+								$author$project$VegaLite$leClipHeight(30)
 							])),
 						$author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
 								$author$project$VegaLite$scRange(
-								$author$project$VegaLite$raNums(
-									_List_fromArray(
-										[0, 5000])))
+								$author$project$VegaLite$raMax(5000))
 							]))
 					]))),
 		$author$project$VegaLite$color(
@@ -8892,6 +8892,8 @@ var $author$project$GalleryScatter$scatter2 = function () {
 				$author$project$VegaLite$tick(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Ordinal = 1;
+var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$GalleryScatter$scatter3 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
