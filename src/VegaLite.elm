@@ -9589,7 +9589,7 @@ dnMinSteps =
 
 
 {-| Indicate a data field encoded with a detail channel is nominal. Equivalent to
-`dMType Nominal`.
+`dMType Nominal`. This is the default data type.
 -}
 dNominal : DetailChannel
 dNominal =
@@ -10342,7 +10342,7 @@ fName =
 
 
 {-| Indicate a data field encoded as a facet property is nominal. Equivalent to
-`fMType Nominal`.
+`fMType Nominal`. This is the default data type.
 -}
 fNominal : FacetChannel
 fNominal =
@@ -11194,7 +11194,7 @@ hName =
 
 
 {-| Indicate a data field encoded as a hyperlink or url property is nominal.
-Equivalent to `hMType Nominal`.
+Equivalent to `hMType Nominal`. This is the default data type.
 -}
 hNominal : HyperlinkChannel
 hNominal =
@@ -11724,7 +11724,7 @@ kName =
 
 
 {-| Indicate a data field encoded as a key channel property is nominal. Equivalent
-to `kMType Nominal`.
+to `kMType Nominal`. This is the default data type.
 -}
 kNominal : KeyChannel
 kNominal =
@@ -13891,7 +13891,7 @@ mName =
 
 
 {-| Indicate a data field encoded as a mark property is nominal. Equivalent to
-`mMType Nominal`.
+`mMType Nominal`. This is the default data type.
 -}
 mNominal : MarkChannel
 mNominal =
@@ -14868,7 +14868,7 @@ pName =
 
 
 {-| Indicate a data field encoded as a position is nominal. Equivalent to
-`pMType Nominal`.
+`pMType Nominal`. This is the default data type.
 -}
 pNominal : PositionChannel
 pNominal =
@@ -14901,7 +14901,9 @@ pOrdinal =
 
 
 {-| Indicate a data field encoded as a position is quantitative. Equivalent to
-`pMType Quantitative`.
+`pMType Quantitative`. This is not necessary when field is aggreggated by a numeric
+operator (e.g. [opSum](#opSum)), scaled with a numeric operator (e.g. [scLog](#scLog)),
+a position field is longitude/latitude or it is binned numerically.
 -}
 pQuant : PositionChannel
 pQuant =
@@ -15139,7 +15141,8 @@ pStack =
 
 
 {-| Indicate a data field encoded as a position is temporal. Equivalent to
-`pMType Temporal`.
+`pMType Temporal`. This is not necessary if the field is aggregated with a time unit
+(e.g. [pTimeUnit](#pTimeUnit)) or scaled with [scTime](#scTime) or [scUtc](#scUtc).
 -}
 pTemporal : PositionChannel
 pTemporal =
@@ -17419,7 +17422,7 @@ tName =
 
 
 {-| Indicate a data field encoded as a text property is nominal. Equivalent to
-`tMType Nominal`.
+`tMType Nominal`. This is the default data type.
 -}
 tNominal : TextChannel
 tNominal =
