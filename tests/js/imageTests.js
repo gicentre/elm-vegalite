@@ -7848,14 +7848,14 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			var ns = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ns);
 		case 1:
-			var n = sdType.a;
-			return $elm$json$Json$Encode$float(n);
+			var x = sdType.a;
+			return $elm$json$Json$Encode$float(x);
 		case 2:
-			var n = sdType.a;
-			return $elm$json$Json$Encode$float(n);
+			var x = sdType.a;
+			return $elm$json$Json$Encode$float(x);
 		case 3:
-			var n = sdType.a;
-			return $elm$json$Json$Encode$float(n);
+			var x = sdType.a;
+			return $elm$json$Json$Encode$float(x);
 		case 7:
 			var ds = sdType.a;
 			return A2(
@@ -8150,30 +8150,32 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var sdType = scaleProp.a;
 			switch (sdType.$) {
 				case 1:
-					var n = sdType.a;
+					var x = sdType.a;
 					return _Utils_Tuple2(
 						'domainMin',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$float(x));
 				case 2:
-					var n = sdType.a;
+					var x = sdType.a;
 					return _Utils_Tuple2(
 						'domainMid',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$float(x));
 				case 3:
-					var n = sdType.a;
+					var x = sdType.a;
 					return _Utils_Tuple2(
 						'domainMax',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$float(x));
 				case 4:
 					var d = sdType.a;
 					return _Utils_Tuple2(
 						'domainMin',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)));
 				case 5:
 					var d = sdType.a;
 					return _Utils_Tuple2(
 						'domainMax',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)));
 				default:
 					return _Utils_Tuple2(
 						'domain',
@@ -8182,6 +8184,16 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 		case 2:
 			var range = scaleProp.a;
 			switch (range.$) {
+				case 4:
+					var x = range.a;
+					return _Utils_Tuple2(
+						'rangeMin',
+						$elm$json$Json$Encode$float(x));
+				case 5:
+					var x = range.a;
+					return _Utils_Tuple2(
+						'rangeMax',
+						$elm$json$Json$Encode$float(x));
 				case 0:
 					var xs = range.a;
 					return _Utils_Tuple2(

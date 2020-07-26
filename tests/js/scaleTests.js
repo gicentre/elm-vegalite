@@ -6349,14 +6349,14 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			var ns = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ns);
 		case 1:
-			var n = sdType.a;
-			return $elm$json$Json$Encode$float(n);
+			var x = sdType.a;
+			return $elm$json$Json$Encode$float(x);
 		case 2:
-			var n = sdType.a;
-			return $elm$json$Json$Encode$float(n);
+			var x = sdType.a;
+			return $elm$json$Json$Encode$float(x);
 		case 3:
-			var n = sdType.a;
-			return $elm$json$Json$Encode$float(n);
+			var x = sdType.a;
+			return $elm$json$Json$Encode$float(x);
 		case 7:
 			var ds = sdType.a;
 			return A2(
@@ -6651,30 +6651,32 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var sdType = scaleProp.a;
 			switch (sdType.$) {
 				case 1:
-					var n = sdType.a;
+					var x = sdType.a;
 					return _Utils_Tuple2(
 						'domainMin',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$float(x));
 				case 2:
-					var n = sdType.a;
+					var x = sdType.a;
 					return _Utils_Tuple2(
 						'domainMid',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$float(x));
 				case 3:
-					var n = sdType.a;
+					var x = sdType.a;
 					return _Utils_Tuple2(
 						'domainMax',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$float(x));
 				case 4:
 					var d = sdType.a;
 					return _Utils_Tuple2(
 						'domainMin',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)));
 				case 5:
 					var d = sdType.a;
 					return _Utils_Tuple2(
 						'domainMax',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)));
 				default:
 					return _Utils_Tuple2(
 						'domain',
@@ -6683,6 +6685,16 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 		case 2:
 			var range = scaleProp.a;
 			switch (range.$) {
+				case 4:
+					var x = range.a;
+					return _Utils_Tuple2(
+						'rangeMin',
+						$elm$json$Json$Encode$float(x));
+				case 5:
+					var x = range.a;
+					return _Utils_Tuple2(
+						'rangeMax',
+						$elm$json$Json$Encode$float(x));
 				case 0:
 					var xs = range.a;
 					return _Utils_Tuple2(
@@ -10317,6 +10329,12 @@ var $author$project$ScaleTests$scale11 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$VLHeight = 4;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(h));
+};
 var $author$project$VegaLite$Line = 9;
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$Mean = {$: 7};
@@ -10333,6 +10351,12 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$VegaLite$VLWidth = 3;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		3,
+		$elm$json$Json$Encode$float(w));
+};
 var $author$project$VegaLite$Year = {$: 0};
 var $author$project$VegaLite$year = $author$project$VegaLite$Year;
 var $author$project$ScaleTests$lineChart = F2(
@@ -10381,6 +10405,8 @@ var $author$project$ScaleTests$lineChart = F2(
 		return $author$project$VegaLite$toVegaLite(
 			_List_fromArray(
 				[
+					$author$project$VegaLite$width(200),
+					$author$project$VegaLite$height(200),
 					data,
 					enc(_List_Nil),
 					$author$project$VegaLite$line(_List_Nil)
@@ -10471,6 +10497,150 @@ var $author$project$ScaleTests$scale15 = A2(
 		[
 			$author$project$VegaLite$scDomain(
 			$author$project$VegaLite$doMax(700))
+		]));
+var $author$project$VegaLite$Circle = 6;
+var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
+var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$ScaleTests$scatterplot = F2(
+	function (cScale, sScale) {
+		var msProp = _Utils_eq(sScale, _List_Nil) ? _List_Nil : _List_fromArray(
+			[
+				$author$project$VegaLite$mScale(sScale)
+			]);
+		var mcProp = _Utils_eq(cScale, _List_Nil) ? _List_Nil : _List_fromArray(
+			[
+				$author$project$VegaLite$mScale(cScale)
+			]);
+		var enc = A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$encoding,
+						A2(
+							$author$project$VegaLite$position,
+							0,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('x'),
+									$author$project$VegaLite$pQuant,
+									$author$project$VegaLite$pTitle('')
+								]))),
+					A2(
+						$author$project$VegaLite$position,
+						1,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('x'),
+								$author$project$VegaLite$pQuant,
+								$author$project$VegaLite$pTitle('')
+							]))),
+				$author$project$VegaLite$color(
+					_Utils_ap(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mName('x'),
+								$author$project$VegaLite$mOrdinal
+							]),
+						mcProp))),
+			$author$project$VegaLite$size(
+				_Utils_ap(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mName('x'),
+							$author$project$VegaLite$mQuant
+						]),
+					msProp)));
+		var data = A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'x',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[1, 2, 3, 4]))));
+		return $author$project$VegaLite$toVegaLite(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$width(200),
+					$author$project$VegaLite$height(200),
+					data(_List_Nil),
+					enc(_List_Nil),
+					$author$project$VegaLite$circle(_List_Nil)
+				]));
+	});
+var $author$project$ScaleTests$scale16 = A2($author$project$ScaleTests$scatterplot, _List_Nil, _List_Nil);
+var $author$project$VegaLite$RNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
+var $author$project$VegaLite$RStrings = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$raStrs = $author$project$VegaLite$RStrings;
+var $author$project$VegaLite$SRange = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$ScaleTests$scale17 = A2(
+	$author$project$ScaleTests$scatterplot,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raStrs(
+				_List_fromArray(
+					['orange', 'red', 'purple', 'blue'])))
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raNums(
+				_List_fromArray(
+					[100, 800])))
+		]));
+var $author$project$VegaLite$RMinNumber = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$raMin = $author$project$VegaLite$RMinNumber;
+var $author$project$ScaleTests$scale18 = A2(
+	$author$project$ScaleTests$scatterplot,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raStrs(
+				_List_fromArray(
+					['orange', 'red', 'purple', 'blue'])))
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raMin(400))
+		]));
+var $author$project$VegaLite$RMaxNumber = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$raMax = $author$project$VegaLite$RMaxNumber;
+var $author$project$ScaleTests$scale19 = A2(
+	$author$project$ScaleTests$scatterplot,
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raStrs(
+				_List_fromArray(
+					['orange', 'red', 'purple', 'blue'])))
+		]),
+	_List_fromArray(
+		[
+			$author$project$VegaLite$scRange(
+			$author$project$VegaLite$raMax(800))
 		]));
 var $author$project$VegaLite$Range = function (a) {
 	return {$: 33, a: a};
@@ -13535,8 +13705,6 @@ var $author$project$VegaLite$AxTitle = function (a) {
 	return {$: 53, a: a};
 };
 var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
-var $author$project$VegaLite$Circle = 6;
-var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$MTitle = function (a) {
 	return {$: 11, a: a};
 };
@@ -13688,14 +13856,6 @@ var $author$project$ScaleTests$scale4 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$RNumbers = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
-var $author$project$VegaLite$SRange = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
 var $author$project$VegaLite$ScThreshold = 13;
 var $author$project$VegaLite$scThreshold = 13;
 var $author$project$ScaleTests$scale5 = function () {
@@ -13954,7 +14114,11 @@ var $author$project$ScaleTests$specs = _List_fromArray(
 		_Utils_Tuple2('scale12', $author$project$ScaleTests$scale12),
 		_Utils_Tuple2('scale13', $author$project$ScaleTests$scale13),
 		_Utils_Tuple2('scale14', $author$project$ScaleTests$scale14),
-		_Utils_Tuple2('scale15', $author$project$ScaleTests$scale15)
+		_Utils_Tuple2('scale15', $author$project$ScaleTests$scale15),
+		_Utils_Tuple2('scale16', $author$project$ScaleTests$scale16),
+		_Utils_Tuple2('scale17', $author$project$ScaleTests$scale17),
+		_Utils_Tuple2('scale18', $author$project$ScaleTests$scale18),
+		_Utils_Tuple2('scale19', $author$project$ScaleTests$scale19)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
