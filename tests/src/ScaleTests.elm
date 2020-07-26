@@ -311,6 +311,7 @@ scatterplot cScale sScale =
         data =
             dataFromColumns []
                 << dataColumn "x" (nums [ 1, 2, 3, 4 ])
+                << dataColumn "c" (strs [ "#000", "#666", "#999", "#ccc" ])
 
         mcProp =
             if cScale == [] then
@@ -330,8 +331,8 @@ scatterplot cScale sScale =
             encoding
                 << position X [ pName "x", pQuant, pTitle "" ]
                 << position Y [ pName "x", pQuant, pTitle "" ]
-                << color ([ mName "x", mOrdinal ] ++ mcProp)
-                << size ([ mName "x", mQuant ] ++ msProp)
+                << color ([ mName "x", mOrdinal, mTitle "" ] ++ mcProp)
+                << size ([ mName "x", mQuant, mTitle "" ] ++ msProp)
     in
     toVegaLite [ width 200, height 200, data [], enc [], circle [] ]
 
@@ -344,7 +345,7 @@ scale16 =
 scale17 : Spec
 scale17 =
     scatterplot [ scRange (raStrs [ "orange", "red", "purple", "blue" ]) ]
-        [ scRange (raNums [ 100, 800 ]) ]
+        [ scRange (raNums [ 100, 1200 ]) ]
 
 
 scale18 : Spec
@@ -358,7 +359,12 @@ scale19 : Spec
 scale19 =
     scatterplot
         [ scRange (raStrs [ "orange", "red", "purple", "blue" ]) ]
-        [ scRange (raMax 800) ]
+        [ scRange (raMax 1200) ]
+
+
+scale20 : Spec
+scale20 =
+    scatterplot [ scRange (raField "c") ] []
 
 
 
@@ -386,6 +392,7 @@ specs =
     , ( "scale17", scale17 )
     , ( "scale18", scale18 )
     , ( "scale19", scale19 )
+    , ( "scale20", scale20 )
     ]
 
 

@@ -18,6 +18,8 @@
 
 ## Additions
 
+- `raField` for setting range values explicitly from a data source (VL4.14).
+
 - `raMin` and `raMax` for setting selected range bounds (VL4.14)
 
 - `doMin`, `doMid`, `doMax`, `doMinDt` and `doMaxDt` for setting selected bounds of a numeric or date-time domain (VL4.14)
