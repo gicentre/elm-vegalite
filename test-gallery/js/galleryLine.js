@@ -2800,6 +2800,10 @@ var $author$project$VegaLite$AxFormat = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$axFormat = $author$project$VegaLite$AxFormat;
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -7810,6 +7814,7 @@ var $author$project$GalleryLine$line1 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
@@ -7941,6 +7946,7 @@ var $author$project$GalleryLine$line10 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axTickCount(
 								$author$project$VegaLite$niTickCount(20)),
 								A2(
@@ -7992,10 +7998,6 @@ var $author$project$VegaLite$axLabelExpr = $author$project$VegaLite$AxLabelExpr;
 var $author$project$VegaLite$axLabelOffset = $author$project$VegaLite$AxLabelOffset;
 var $author$project$VegaLite$axLabelPadding = $author$project$VegaLite$AxLabelPadding;
 var $author$project$VegaLite$axTickSize = $author$project$VegaLite$AxTickSize;
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTitle = $author$project$VegaLite$AxTitle;
 var $author$project$VegaLite$DomainColor = function (a) {
 	return {$: 5, a: a};
 };
@@ -11430,6 +11432,7 @@ var $author$project$GalleryLine$line13 = function () {
 								$author$project$VegaLite$pAxis(
 								_List_fromArray(
 									[
+										$author$project$VegaLite$axTitle(''),
 										$author$project$VegaLite$axFormat('%Y')
 									]))
 							]))),
@@ -12738,7 +12741,8 @@ var $author$project$GalleryLine$line18 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal
+							$author$project$VegaLite$pTemporal,
+							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -12874,7 +12878,8 @@ var $author$project$GalleryLine$line2 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
+							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
+							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -12927,7 +12932,8 @@ var $author$project$GalleryLine$line3 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year)
+							$author$project$VegaLite$pTimeUnit($author$project$VegaLite$year),
+							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -12981,6 +12987,7 @@ var $author$project$GalleryLine$line4 = function () {
 							$author$project$VegaLite$pAxis(
 							_List_fromArray(
 								[
+									$author$project$VegaLite$axTitle(''),
 									$author$project$VegaLite$axFormat('%Y')
 								]))
 						]))),
@@ -13196,8 +13203,7 @@ var $author$project$GalleryLine$line6 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pRepeat($author$project$VegaLite$arLayer),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pTitle('price')
+						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$stroke(
 			_List_fromArray(
@@ -13223,7 +13229,8 @@ var $author$project$GalleryLine$line6 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('date'),
-							$author$project$VegaLite$pTemporal
+							$author$project$VegaLite$pTemporal,
+							$author$project$VegaLite$pTitle('')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -13312,6 +13319,12 @@ var $author$project$GalleryLine$line7 = function () {
 							_List_fromArray(
 								[
 									$author$project$VegaLite$scPadding(0.5)
+								])),
+							$author$project$VegaLite$pAxis(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$axTitle(''),
+									$author$project$VegaLite$axLabelAngle(0)
 								]))
 						]))),
 			A2(
@@ -13366,6 +13379,7 @@ var $author$project$GalleryLine$line8 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
@@ -13416,6 +13430,7 @@ var $author$project$GalleryLine$line9 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
+								$author$project$VegaLite$axTitle(''),
 								$author$project$VegaLite$axFormat('%Y')
 							]))
 					]))),
