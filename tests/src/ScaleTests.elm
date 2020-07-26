@@ -282,7 +282,7 @@ lineChart xScale yScale =
                 << position Y ([ pName "price", pAggregate opMean ] ++ pyProp)
                 << color [ mName "symbol" ]
     in
-    toVegaLite [ data, enc [], line [] ]
+    toVegaLite [ width 200, height 200, data, enc [], line [] ]
 
 
 scale12 : Spec
@@ -292,23 +292,73 @@ scale12 =
 
 scale13 : Spec
 scale13 =
-    lineChart
-        [ scDomain (doDts [ [ dtYear 1990 ], [ dtYear 2020 ] ]) ]
-        [ scDomain (doNums [ -100, 700 ]) ]
+    lineChart [ scDomain (doDts [ [ dtYear 1990 ], [ dtYear 2020 ] ]) ] [ scDomain (doNums [ -100, 700 ]) ]
 
 
 scale14 : Spec
 scale14 =
-    lineChart
-        [ scDomain (doMinDt [ dtYear 1990 ]) ]
-        [ scDomain (doMin -100) ]
+    lineChart [ scDomain (doMinDt [ dtYear 1990 ]) ] [ scDomain (doMin -100) ]
 
 
 scale15 : Spec
 scale15 =
-    lineChart
-        [ scDomain (doMaxDt [ dtYear 2020 ]) ]
-        [ scDomain (doMax 700) ]
+    lineChart [ scDomain (doMaxDt [ dtYear 2020 ]) ] [ scDomain (doMax 700) ]
+
+
+scatterplot : List ScaleProperty -> List ScaleProperty -> Spec
+scatterplot cScale sScale =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 1, 2, 3, 4 ])
+
+        mcProp =
+            if cScale == [] then
+                []
+
+            else
+                [ mScale cScale ]
+
+        msProp =
+            if sScale == [] then
+                []
+
+            else
+                [ mScale sScale ]
+
+        enc =
+            encoding
+                << position X [ pName "x", pQuant, pTitle "" ]
+                << position Y [ pName "x", pQuant, pTitle "" ]
+                << color ([ mName "x", mOrdinal ] ++ mcProp)
+                << size ([ mName "x", mQuant ] ++ msProp)
+    in
+    toVegaLite [ width 200, height 200, data [], enc [], circle [] ]
+
+
+scale16 : Spec
+scale16 =
+    scatterplot [] []
+
+
+scale17 : Spec
+scale17 =
+    scatterplot [ scRange (raStrs [ "orange", "red", "purple", "blue" ]) ]
+        [ scRange (raNums [ 100, 800 ]) ]
+
+
+scale18 : Spec
+scale18 =
+    scatterplot
+        [ scRange (raStrs [ "orange", "red", "purple", "blue" ]) ]
+        [ scRange (raMin 400) ]
+
+
+scale19 : Spec
+scale19 =
+    scatterplot
+        [ scRange (raStrs [ "orange", "red", "purple", "blue" ]) ]
+        [ scRange (raMax 800) ]
 
 
 
@@ -332,6 +382,10 @@ specs =
     , ( "scale13", scale13 )
     , ( "scale14", scale14 )
     , ( "scale15", scale15 )
+    , ( "scale16", scale16 )
+    , ( "scale17", scale17 )
+    , ( "scale18", scale18 )
+    , ( "scale19", scale19 )
     ]
 
 
