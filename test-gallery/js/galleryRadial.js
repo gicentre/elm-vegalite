@@ -11237,10 +11237,10 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$RNumbers = function (a) {
-	return {$: 0, a: a};
+var $author$project$VegaLite$RMinNumber = function (a) {
+	return {$: 4, a: a};
 };
-var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
+var $author$project$VegaLite$raMin = $author$project$VegaLite$RMinNumber;
 var $author$project$VegaLite$SRange = function (a) {
 	return {$: 2, a: a};
 };
@@ -11276,7 +11276,7 @@ var $author$project$GalleryRadial$radial4 = function () {
 		$author$project$VegaLite$text(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$tName('strength'),
+					$author$project$VegaLite$tName('mag'),
 					$author$project$VegaLite$tQuant
 				])));
 	var labelSpec = $author$project$VegaLite$asSpec(
@@ -11301,7 +11301,7 @@ var $author$project$GalleryRadial$radial4 = function () {
 					4,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('strength'),
+							$author$project$VegaLite$pName('mag'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pStack($author$project$VegaLite$stZero)
 						]))),
@@ -11310,22 +11310,20 @@ var $author$project$GalleryRadial$radial4 = function () {
 				6,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('strength'),
+						$author$project$VegaLite$pName('mag'),
 						$author$project$VegaLite$pScale(
 						_List_fromArray(
 							[
 								$author$project$VegaLite$scZero(true),
 								$author$project$VegaLite$scType($author$project$VegaLite$scSqrt),
 								$author$project$VegaLite$scRange(
-								$author$project$VegaLite$raNums(
-									_List_fromArray(
-										[20, 100])))
+								$author$project$VegaLite$raMin(20))
 							]))
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('strength'),
+					$author$project$VegaLite$mName('mag'),
 					$author$project$VegaLite$mLegend(_List_Nil)
 				])));
 	var desc = $author$project$VegaLite$description('Radial plot with labels');
@@ -11334,7 +11332,7 @@ var $author$project$GalleryRadial$radial4 = function () {
 		$author$project$VegaLite$dataFromColumns(_List_Nil),
 		A2(
 			$author$project$VegaLite$dataColumn,
-			'strength',
+			'mag',
 			$author$project$VegaLite$nums(
 				_List_fromArray(
 					[12, 23, 47, 6, 52, 19]))));
@@ -11599,6 +11597,10 @@ var $author$project$VegaLite$order = function (oDefs) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, oDefs))));
 };
+var $author$project$VegaLite$RNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$raNums = $author$project$VegaLite$RNumbers;
 var $author$project$GalleryRadial$radial5 = function () {
 	var sun = 'Sunny side of a pyramid';
 	var sky = 'Sky';
