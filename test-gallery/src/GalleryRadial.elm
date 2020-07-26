@@ -94,23 +94,20 @@ radial4 =
 
         data =
             dataFromColumns []
-                << dataColumn "strength" (nums [ 12, 23, 47, 6, 52, 19 ])
+                << dataColumn "mag" (nums [ 12, 23, 47, 6, 52, 19 ])
 
         enc =
             encoding
-                << position Theta [ pName "strength", pQuant, pStack stZero ]
-                << position R
-                    [ pName "strength"
-                    , pScale [ scZero True, scType scSqrt, scRange (raNums [ 20, 100 ]) ]
-                    ]
-                << color [ mName "strength", mLegend [] ]
+                << position Theta [ pName "mag", pQuant, pStack stZero ]
+                << position R [ pName "mag", pScale [ scZero True, scType scSqrt, scRange (raMin 20) ] ]
+                << color [ mName "mag", mLegend [] ]
 
         segSpec =
             asSpec [ arc [ maInnerRadius 20, maStroke "white" ] ]
 
         labelEnc =
             encoding
-                << text [ tName "strength", tQuant ]
+                << text [ tName "mag", tQuant ]
 
         labelSpec =
             asSpec [ labelEnc [], textMark [ maRadiusOffset 10 ] ]
