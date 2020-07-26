@@ -8374,6 +8374,10 @@ var $author$project$GalleryBar$bar14 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$RField = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$raField = $author$project$VegaLite$RField;
 var $author$project$GalleryBar$bar15 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -8387,7 +8391,13 @@ var $author$project$GalleryBar$bar15 = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('color')
+							$author$project$VegaLite$pName('color'),
+							$author$project$VegaLite$pAxis(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$axTitle(''),
+									$author$project$VegaLite$axLabelAngle(0)
+								]))
 						]))),
 			A2(
 				$author$project$VegaLite$position,
@@ -8401,7 +8411,12 @@ var $author$project$GalleryBar$bar15 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$mName('color'),
-					$author$project$VegaLite$mScale(_List_Nil)
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scRange(
+							$author$project$VegaLite$raField('color'))
+						]))
 				])));
 	var desc = $author$project$VegaLite$description('A bar chart that directly encodes color names in the data.');
 	var data = A2(
@@ -8425,6 +8440,7 @@ var $author$project$GalleryBar$bar15 = function () {
 		_List_fromArray(
 			[
 				desc,
+				$author$project$VegaLite$width(100),
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
