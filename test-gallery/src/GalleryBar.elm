@@ -359,11 +359,11 @@ bar15 =
 
         enc =
             encoding
-                << position X [ pName "color" ]
+                << position X [ pName "color", pAxis [ axTitle "", axLabelAngle 0 ] ]
                 << position Y [ pName "b", pQuant ]
-                << color [ mName "color", mScale [] ]
+                << color [ mName "color", mScale [ scRange (raField "color") ] ]
     in
-    toVegaLite [ desc, data [], enc [], bar [] ]
+    toVegaLite [ desc, width 100, data [], enc [], bar [] ]
 
 
 bar16 : Spec
