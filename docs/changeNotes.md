@@ -20,7 +20,7 @@
 
 - `raField` for setting range values explicitly from a data source (VL4.14).
 
-- `raMin` and `raMax` for setting selected range bounds (VL4.14)
+* `raMin` and `raMax` for setting selected range bounds (VL4.14)
 
 - `doMin`, `doMid`, `doMax`, `doMinDt` and `doMaxDt` for setting selected bounds of a numeric or date-time domain (VL4.14)
 
@@ -77,11 +77,16 @@
 ### Other Changes
 
 - Calling `dataFromRows` or `dataFromColumns` without `dataRow` / `dataColumn` now generates an empty dataset that can be useful for creating annotation layers with literals.
-- Removed now redundant measurement type specifications that can instead rely on default measurement types (VL 4.14).
+
+* Removed now redundant measurement type specifications that can instead rely on default measurement types (VL 4.14).
+
 - Minor improvements to the API documentation.
-- Additions to tests for new features added since VL 4.8.
-- Tests and examples use vega data V2.
-- New gallery examples.
+
+* Additions to tests for new features added since VL 4.8.
+
+- Tests and examples now use vega data V2 with single path to explicit data version.
+
+* New gallery examples.
 
 ---
 
