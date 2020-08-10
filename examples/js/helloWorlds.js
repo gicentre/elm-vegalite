@@ -8026,6 +8026,13 @@ var $author$project$HelloWorlds$myFirstVis = function () {
 var $author$project$VegaLite$Y = 1;
 var $author$project$VegaLite$Bar = 2;
 var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
+var $author$project$VegaLite$color = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'color',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
 var $author$project$VegaLite$dataFromUrl = F2(
 	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -8050,38 +8057,51 @@ var $author$project$VegaLite$dataFromUrl = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
-var $author$project$VegaLite$Mean = {$: 7};
-var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$Count = {$: 4};
+var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
 var $author$project$VegaLite$PAggregate = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
-var $author$project$VegaLite$Ordinal = 1;
-var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$PBin = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
 var $author$project$HelloWorlds$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
 var $author$project$HelloWorlds$myOtherVis = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Beak Length (mm)'),
+							$author$project$VegaLite$pBin(_List_Nil)
+						]))),
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Cylinders'),
-						$author$project$VegaLite$pOrdinal
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
+						$author$project$VegaLite$pQuant
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Miles_per_Gallon'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+					$author$project$VegaLite$mName('Species')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -8095,24 +8115,31 @@ var $author$project$HelloWorlds$mySecondVis = function () {
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Beak Length (mm)'),
+							$author$project$VegaLite$pQuant
+						]))),
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Cylinders'),
-						$author$project$VegaLite$pOrdinal
+						$author$project$VegaLite$pName('Body Mass (g)'),
+						$author$project$VegaLite$pQuant
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('Miles_per_Gallon'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$mName('Species')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$HelloWorlds$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

@@ -7761,7 +7761,7 @@ var $author$project$SimpleScatterplot$scatter = function () {
 					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Horsepower'),
+							$author$project$VegaLite$pName('Beak Length (mm)'),
 							$author$project$VegaLite$pQuant
 						]))),
 			A2(
@@ -7769,15 +7769,15 @@ var $author$project$SimpleScatterplot$scatter = function () {
 				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Miles_per_Gallon'),
+						$author$project$VegaLite$pName('Body Mass (g)'),
 						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin')
+					$author$project$VegaLite$mName('Species')
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$SimpleScatterplot$path + 'cars.json', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$SimpleScatterplot$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

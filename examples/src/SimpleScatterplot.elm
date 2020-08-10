@@ -13,13 +13,13 @@ scatter : Spec
 scatter =
     let
         data =
-            dataFromUrl (path ++ "cars.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin" ]
+                << position X [ pName "Beak Length (mm)", pQuant ]
+                << position Y [ pName "Body Mass (g)", pQuant ]
+                << color [ mName "Species" ]
     in
     toVegaLite [ data, enc [], circle [] ]
 

@@ -27,12 +27,13 @@ mySecondVis : Spec
 mySecondVis =
     let
         data =
-            dataFromUrl (path ++ "cars.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         enc =
             encoding
-                << position X [ pName "Cylinders", pOrdinal ]
-                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << position X [ pName "Beak Length (mm)", pQuant ]
+                << position Y [ pName "Body Mass (g)", pQuant ]
+                << color [ mName "Species" ]
     in
     toVegaLite [ data, enc [], circle [] ]
 
@@ -41,12 +42,13 @@ myOtherVis : Spec
 myOtherVis =
     let
         data =
-            dataFromUrl (path ++ "cars.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         enc =
             encoding
-                << position X [ pName "Cylinders", pOrdinal ]
-                << position Y [ pName "Miles_per_Gallon", pAggregate opMean ]
+                << position X [ pName "Beak Length (mm)", pBin [] ]
+                << position Y [ pAggregate opCount, pQuant ]
+                << color [ mName "Species" ]
     in
     toVegaLite [ data, enc [], bar [] ]
 
