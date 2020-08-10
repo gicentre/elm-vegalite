@@ -2,6 +2,12 @@
 
 # Pending changes
 
+None.
+
+---
+
+## V2.3.0 ➡ V3.0.0
+
 ## Breaking Changes
 
 - `axTickCount` and `axcoTickCount` now take a `ScaleNice` parameter rather than `Float` so that time intervals may be supplied. Previous code that used `axTickCount 123` should now use `axTickCount (niTickCount 123)` (VL.4.10).
