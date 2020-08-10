@@ -15,12 +15,15 @@ _If you wish to create Vega (as opposed to Vega-Lite) output, see the sister pac
 
 ## Example
 
-A simple scatterplot encoding penguin morpholology with position and species with colour:
+A simple scatterplot encoding penguin morphology with position and species with colour:
 
 ```elm
 let
+    path =
+        "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/"
+
     data =
-        dataFromUrl "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/penguins.json" []
+        dataFromUrl (path ++ "penguins.json") []
 
     enc =
         encoding
