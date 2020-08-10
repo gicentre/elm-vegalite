@@ -11731,31 +11731,6 @@ var $author$project$GalleryLayer$layer3 = function () {
 					[
 						_Utils_Tuple2($author$project$VegaLite$chX, $author$project$VegaLite$reIndependent)
 					]))));
-	var encLine = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			A2(
-				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
-				A2(
-					$author$project$VegaLite$position,
-					0,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$pName('life_expect'),
-							$author$project$VegaLite$pQuant
-						]))),
-			$author$project$VegaLite$detail(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$dName('country')
-					]))),
-		$author$project$VegaLite$color(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mStr('#db646f')
-				])));
 	var enc6 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,

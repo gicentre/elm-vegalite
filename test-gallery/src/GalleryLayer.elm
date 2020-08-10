@@ -145,12 +145,6 @@ layer3 =
         res =
             resolve << resolution (reScale [ ( chX, reIndependent ) ])
 
-        encLine =
-            encoding
-                << position X [ pName "life_expect", pQuant ]
-                << detail [ dName "country" ]
-                << color [ mStr "#db646f" ]
-
         enc1 =
             encoding
                 << position X
