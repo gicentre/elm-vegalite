@@ -8481,6 +8481,11 @@ var $author$project$VegaLite$regressionProperty = function (regProp) {
 					$elm$json$Json$Encode$float,
 					_List_fromArray(
 						[mn, mx])));
+		case 4:
+			var b = regProp.a;
+			return _Utils_Tuple2(
+				'params',
+				$elm$json$Json$Encode$bool(b));
 		default:
 			var iField = regProp.a;
 			var dField = regProp.b;
@@ -8513,7 +8518,7 @@ var $author$project$VegaLite$regression = F3(
 	});
 var $author$project$VegaLite$RgAs = F2(
 	function (a, b) {
-		return {$: 4, a: a, b: b};
+		return {$: 5, a: a, b: b};
 	});
 var $author$project$VegaLite$rgAs = $author$project$VegaLite$RgAs;
 var $author$project$VegaLite$RgExtent = F2(
