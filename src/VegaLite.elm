@@ -1218,7 +1218,6 @@ module VegaLite exposing
     , lecoLabelLimit
     , lecoLabelOffset
     , lecoLabelOverlap
-    , lecoShortTimeLabels
     , lecoEntryPadding
     , lecoSymbolBaseFillColor
     , lecoSymbolBaseStrokeColor
@@ -1490,6 +1489,7 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
+    , lecoShortTimeLabels
     , scDomainMid
     -- , axcoStyle
     --, leUnselectedOpacity
@@ -3366,7 +3366,6 @@ See the
 @docs lecoLabelLimit
 @docs lecoLabelOffset
 @docs lecoLabelOverlap
-@docs lecoShortTimeLabels
 @docs lecoEntryPadding
 @docs lecoSymbolBaseFillColor
 @docs lecoSymbolBaseStrokeColor
@@ -3716,6 +3715,7 @@ to the functions that generate them.
 
 # 11. Deprecated Functions
 
+@docs lecoShortTimeLabels
 @docs scDomainMid
 
 -}
@@ -3844,7 +3844,6 @@ type AxisConfig
     | LabelSeparation Float
     | MaxExtent Float
     | MinExtent Float
-    | ShortTimeLabels Bool
     | Ticks Bool
     | TickColor String
     | TickCount ScaleNice
@@ -3955,7 +3954,6 @@ type AxisProperty
     | AxTicks Bool
     | AxTickSize Float
     | AxTickWidth Float
-    | AxDates (List (List DateTime))
     | AxValues DataValues
     | AxTitle String
     | AxTitleAlign HAlign
@@ -4225,7 +4223,6 @@ type ConfigurationProperty
     | Scale (List ScaleConfig)
     | SelectionStyle (List ( Selection, List SelectionProperty ))
     | SquareStyle (List MarkProperty)
-    | Stack StackOffset
     | TextStyle (List MarkProperty)
     | TickStyle (List MarkProperty)
     | TitleStyle (List TitleConfig)
@@ -4711,21 +4708,19 @@ type Legend
 [lecoGradientLabelBaseline](#lecoGradientLabelBaseline), [lecoGradientLabelLimit](#lecoGradientLabelLimit),
 [lecoGradientLabelOffset](#lecoGradientLabelOffset), [lecoGradientStrokeColor](#lecoGradientStrokeColor),
 [lecoGradientStrokeWidth](#lecoGradientStrokeWidth), [lecoGradientHeight](#lecoGradientHeight),
-[lecoGradientWidth](#lecoGradientWidth), [lecoGridAlign](#lecoGridAlign),
-[lecoLabelAlign](#lecoLabelAlign), [lecoLabelBaseline](#lecoLabelBaseline),
-[lecoLabelColor](#lecoLabelColor), [lecoLabelFont](#lecoLabelFont),
-[lecoLabelFontSize](#lecoLabelFontSize), [lecoLabelLimit](#lecoLabelLimit),
-[lecoLabelOffset](#lecoLabelOffset), [lecoLabelOverlap](#lecoLabelOverlap),
-[lecoShortTimeLabels](#lecoShortTimeLabels), [lecoEntryPadding](#lecoEntryPadding),
+[lecoGradientWidth](#lecoGradientWidth), [lecoGridAlign](#lecoGridAlign), [lecoLabelAlign](#lecoLabelAlign),
+[lecoLabelBaseline](#lecoLabelBaseline), [lecoLabelColor](#lecoLabelColor), [lecoLabelFont](#lecoLabelFont),
+[lecoLabelFontSize](#lecoLabelFontSize), [lecoLabelLimit](#lecoLabelLimit), [lecoLabelOffset](#lecoLabelOffset),
+[lecoLabelOverlap](#lecoLabelOverlap), [lecoEntryPadding](#lecoEntryPadding),
 [lecoSymbolBaseFillColor](#lecoSymbolBaseFillColor), [lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor),
 [lecoSymbolDirection](#lecoSymbolDirection), [lecoSymbolFillColor](#lecoSymbolFillColor),
 [lecoSymbolLimit](#lecoSymbolLimit), [lecoSymbolOffset](#lecoSymbolOffset),[lecoSymbolSize](#lecoSymbolSize),
 [lecoSymbolStrokeColor](#lecoSymbolStrokeColor), [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth),
 [lecoSymbolType](#lecoSymbolType), [lecoTitleAlign](#lecoTitleAlign), [lecoTitleBaseline](#lecoTitleBaseline),
-[lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont),
-[lecoTitleFontSize](#lecoTitleFontSize), [lecoTitleFontWeight](#lecoTitleFontWeight),
-[lecoTitleLimit](#lecoTitleLimit), [lecoTitleLineHeight](#lecoTitleLineHeight),
-[lecoTitlePadding](#lecoTitlePadding) and [lecoUnselectedOpacity](#lecoUnselectedOpacity).
+[lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont), [lecoTitleFontSize](#lecoTitleFontSize),
+[lecoTitleFontWeight](#lecoTitleFontWeight), [lecoTitleLimit](#lecoTitleLimit),
+[lecoTitleLineHeight](#lecoTitleLineHeight), [lecoTitlePadding](#lecoTitlePadding) and
+[lecoUnselectedOpacity](#lecoUnselectedOpacity).
 -}
 type LegendConfig
     = LeAria (List Aria)
@@ -5478,9 +5473,7 @@ type ScaleConfig
     | SCMaxStrokeWidth Float
     | SCMinStrokeWidth Float
     | SCPointPadding Float
-    | SCRangeStep (Maybe Float)
     | SCRound Bool
-    | SCTextXRangeStep Float
     | SCUseUnaggregatedDomain Bool
     | SCXReverse Bool
 
@@ -5543,7 +5536,6 @@ type ScaleProperty
     | SPadding Float
     | SPaddingInner Float
     | SPaddingOuter Float
-    | SRangeStep (Maybe Float)
     | SRound Bool
     | SClamp Bool
       -- TODO:  Need to restrict set of valid scale types that work with color interpolation.
@@ -8962,7 +8954,7 @@ cuNWResize =
 -}
 cuNWSEResize : Cursor
 cuNWSEResize =
-    CNESWResize
+    CNWSEResize
 
 
 {-| Pointer cursor.
@@ -12006,7 +11998,7 @@ lecoRowPadding =
     LeRowPadding
 
 
-{-| Whether or not time labels are abbreviated by default in a legend.
+{-| Deprecated as time labels are already abbreviated by default in a legend.
 -}
 lecoShortTimeLabels : Bool -> LegendConfig
 lecoShortTimeLabels =
@@ -12708,7 +12700,7 @@ values identifying a borough (`id` and `borough`) that is used to join the data 
 
 -}
 lookup : String -> Data -> String -> LookupFields -> List LabelledSpec -> List LabelledSpec
-lookup key1 ( vlProp, spec ) key2 lufs =
+lookup key1 ( _, spec ) key2 lufs =
     (::)
         ( "multiSpecs"
         , case lufs of
@@ -18628,9 +18620,6 @@ axisConfigProperty axisCfg =
         LabelSeparation x ->
             [ ( "labelSeparation", JE.float x ) ]
 
-        ShortTimeLabels b ->
-            [ ( "shortTimeLabels", JE.bool b ) ]
-
         Ticks b ->
             [ ( "ticks", JE.bool b ) ]
 
@@ -19035,9 +19024,6 @@ axisProperty axisProp =
 
         AxValues vals ->
             [ ( "values", toList (dataValuesSpecs vals) ) ]
-
-        AxDates dtss ->
-            [ ( "values", JE.list (\ds -> JE.object (List.map dateTimeProperty ds)) dtss ) ]
 
         AxTitle s ->
             [ ( "title", multilineTextSpec s ) ]
@@ -19503,9 +19489,6 @@ configProperty configProp =
 
         Scale scs ->
             ( "scale", JE.object (List.map scaleConfigProperty scs) )
-
-        Stack so ->
-            stackOffsetProperty so
 
         Range rcs ->
             ( "range", JE.object (List.map rangeConfigProperty rcs) )
@@ -22127,19 +22110,8 @@ scaleConfigProperty scaleCfg =
         SCPointPadding x ->
             ( "pointPadding", JE.float x )
 
-        SCRangeStep numOrNull ->
-            case numOrNull of
-                Just x ->
-                    ( "rangeStep", JE.float x )
-
-                Nothing ->
-                    ( "rangeStep", JE.null )
-
         SCRound b ->
             ( "round", JE.bool b )
-
-        SCTextXRangeStep x ->
-            ( "textXRangeStep", JE.float x )
 
         SCUseUnaggregatedDomain b ->
             ( "useUnaggregatedDomain", JE.bool b )
@@ -22364,14 +22336,6 @@ scaleProperty scaleProp =
 
         SPaddingOuter x ->
             ( "paddingOuter", JE.float x )
-
-        SRangeStep numOrNull ->
-            case numOrNull of
-                Just x ->
-                    ( "rangeStep", JE.float x )
-
-                Nothing ->
-                    ( "rangeStep", JE.null )
 
         SRound b ->
             ( "round", JE.bool b )
@@ -22624,7 +22588,7 @@ sortProperties sp =
             , ( "op", operationSpec op )
             ]
 
-        CustomSort dvs ->
+        CustomSort _ ->
             -- |> Debug.log "Warning: Unexpected custom sorting provided to sortProperty"
             []
 

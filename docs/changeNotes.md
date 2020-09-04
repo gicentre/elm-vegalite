@@ -1,16 +1,24 @@
 # Vega Lite Changes
 
-# Pending changes
+## Pending changes
 
-## Additions
+### Additions
 
 - `rgParams` for extracting regression parameters in the `regression` transform (missed in earlier releases).
+
+### Bug Fixes
+
+- `cuNWSEResize` now specifies the correct resizing cursor.
+
+### Deprecations
+
+- `lecoShortTimeLabels` deprecated as short time labels are now already the default.
 
 ---
 
 ## V2.3.0 ➡ V3.0.0
 
-## Breaking Changes
+### Breaking Changes
 
 - `axTickCount` and `axcoTickCount` now take a `ScaleNice` parameter rather than `Float` so that time intervals may be supplied. Previous code that used `axTickCount 123` should now use `axTickCount (niTickCount 123)` (VL.4.10).
 
@@ -24,7 +32,7 @@
 
 * Removed deprecated functions: `axcoShortTimeLabels`, `axcoTickStep`, `axDates`, `axTickStep`, `coAxisX`, `coAxisY`, `coNamedStyle`, `coNamedStyles`, `coStack`, `lookupAs`, `sacoRangeStep`, `sacoTextXRangeStep`, `scBinLinear`, `scRangeStep`, `scSequential`, `vicoWidth` and `vicoHeight`
 
-## Additions
+### Additions
 
 - `raField` for setting range values explicitly from a data source (VL4.14).
 
