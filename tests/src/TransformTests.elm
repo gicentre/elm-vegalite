@@ -264,6 +264,52 @@ transform11 : Spec
 transform11 =
     let
         data =
+            dataFromUrl (path ++ "movies.json") []
+
+        transReg =
+            transform
+                << regression "IMDB Rating" "Rotten Tomatoes Rating" [ rgMethod rgLinear ]
+
+        transCoeff =
+            transform
+                << regression "IMDB Rating" "Rotten Tomatoes Rating" [ rgMethod rgLinear, rgParams True ]
+                << calculateAs "'y = '+format(datum.coef[0],'.2f')+' + '+format(datum.coef[1],'.2f')+'x'+'   R²: '+format(datum.rSquared, '.2f')" "coef"
+
+        encScatter =
+            encoding
+                << position X [ pName "Rotten Tomatoes Rating", pQuant ]
+                << position Y [ pName "IMDB Rating", pQuant ]
+
+        encCoeff =
+            encoding
+                << text [ tName "coef" ]
+
+        specScatter =
+            asSpec [ encScatter [], point [ maFilled True, maOpacity 0.3 ] ]
+
+        specReg =
+            asSpec [ transReg [], encScatter [], line [ maColor "firebrick" ] ]
+
+        specCoeff =
+            asSpec
+                [ transCoeff []
+                , encCoeff []
+                , textMark
+                    [ maX 4
+                    , maY 4
+                    , maAlign haLeft
+                    , maBaseline vaTop
+                    , maColor "firebrick"
+                    ]
+                ]
+    in
+    toVegaLite [ width 300, height 300, data, layer [ specScatter, specReg, specCoeff ] ]
+
+
+transform12 : Spec
+transform12 =
+    let
+        data =
             dataFromJson
                 (Json.Encode.list Json.Encode.object
                     [ [ ( "key", Json.Encode.string "alpha" )
@@ -290,8 +336,8 @@ transform11 =
     toVegaLite [ data [], trans [], circle [], enc [] ]
 
 
-transform12 : Spec
-transform12 =
+transform13 : Spec
+transform13 =
     let
         data =
             dataFromColumns []
@@ -318,8 +364,8 @@ transform12 =
     toVegaLite [ data [], trans [], bar [], enc [] ]
 
 
-transform13 : Spec
-transform13 =
+transform14 : Spec
+transform14 =
     let
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -359,8 +405,8 @@ transform13 =
     toVegaLite [ data, trans [], enc [], rect [] ]
 
 
-transform14 : Spec
-transform14 =
+transform15 : Spec
+transform15 =
     let
         data =
             dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y-%m-%d" ) ] ]
@@ -380,8 +426,8 @@ transform14 =
     toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
 
-transform15 : Spec
-transform15 =
+transform16 : Spec
+transform16 =
     let
         data =
             dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y-%m-%d" ) ] ]
@@ -401,8 +447,8 @@ transform15 =
     toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
 
-transform16 : Spec
-transform16 =
+transform17 : Spec
+transform17 =
     let
         data =
             dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y-%m-%d" ) ] ]
@@ -420,8 +466,8 @@ transform16 =
     toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
 
-transform17 : Spec
-transform17 =
+transform18 : Spec
+transform18 =
     let
         dateTime mnt =
             "Sun, 01 Jan 2012 00:0" ++ String.fromInt mnt ++ ":00"
@@ -439,8 +485,8 @@ transform17 =
     toVegaLite [ data [], enc [], bar [] ]
 
 
-transform18 : Spec
-transform18 =
+transform19 : Spec
+transform19 =
     let
         data =
             dataFromColumns []
@@ -467,8 +513,8 @@ transform18 =
         ]
 
 
-transform19 : Spec
-transform19 =
+transform20 : Spec
+transform20 =
     let
         data =
             dataFromColumns []
@@ -513,6 +559,7 @@ specs =
     , ( "transform17", transform17 )
     , ( "transform18", transform18 )
     , ( "transform19", transform19 )
+    , ( "transform20", transform20 )
     ]
 
 

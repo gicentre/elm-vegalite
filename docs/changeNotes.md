@@ -2,7 +2,9 @@
 
 # Pending changes
 
-None.
+## Additions
+
+- `rgParams` for extracting regression parameters in the `regression` transform (missed in earlier releases).
 
 ---
 
