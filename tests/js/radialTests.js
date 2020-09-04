@@ -10273,172 +10273,6 @@ var $author$project$VegaLite$VLSpec = 23;
 var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(23, spec);
 };
-var $author$project$VegaLite$TName = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
-var $author$project$VegaLite$textChannelProperties = function (tDef) {
-	switch (tDef.$) {
-		case 0:
-			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$string(s))
-				]);
-		case 1:
-			var arr = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'repeat',
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$arrangementLabel(arr)))
-							])))
-				]);
-		case 2:
-			var measure = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$measurementLabel(measure)))
-				]);
-		case 3:
-			var bps = tDef.a;
-			return _List_fromArray(
-				[
-					$author$project$VegaLite$bin(bps)
-				]);
-		case 4:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'bin',
-					$elm$json$Json$Encode$string('binned'))
-				]);
-		case 5:
-			var op = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aggregate',
-					$author$project$VegaLite$operationSpec(op))
-				]);
-		case 6:
-			var tu = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'timeUnit',
-					$author$project$VegaLite$timeUnitSpec(tu))
-				]);
-		case 7:
-			var t = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'title',
-					$author$project$VegaLite$multilineTextSpec(t))
-				]);
-		case 10:
-			var fmt = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'format',
-					$elm$json$Json$Encode$string(fmt))
-				]);
-		case 11:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string('number'))
-				]);
-		case 12:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string('time'))
-				]);
-		case 13:
-			var formatter = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string(formatter))
-				]);
-		case 8:
-			var selName = tDef.a;
-			var ifClause = tDef.b;
-			var elseClause = tDef.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 9:
-			var tests = tDef.a;
-			var elseClause = tDef.b;
-			var testClause = function (_v1) {
-				var predicate = _v1.a;
-				var ifClause = _v1.b;
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					A2($elm$json$Json$Encode$list, testClause, tests)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 14:
-			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$author$project$VegaLite$multilineTextSpec(s))
-				]);
-		default:
-			var d = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'datum',
-					$author$project$VegaLite$dataValueSpec(d))
-				]);
-	}
-};
-var $author$project$VegaLite$text = function (tDefs) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'text',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
-};
 var $author$project$VegaLite$VLWidth = 3;
 var $author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(
@@ -10446,14 +10280,6 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$RadialTests$radial10 = function () {
-	var encLabels = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		$author$project$VegaLite$text(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$tName('monthLabel')
-				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -11717,6 +11543,172 @@ var $author$project$VegaLite$MRadius = function (a) {
 var $author$project$VegaLite$maRadius = $author$project$VegaLite$MRadius;
 var $author$project$VegaLite$OfZero = 0;
 var $author$project$VegaLite$stZero = 0;
+var $author$project$VegaLite$TName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
+var $author$project$VegaLite$textChannelProperties = function (tDef) {
+	switch (tDef.$) {
+		case 0:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 1:
+			var arr = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 2:
+			var measure = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 3:
+			var bps = tDef.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 4:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bin',
+					$elm$json$Json$Encode$string('binned'))
+				]);
+		case 5:
+			var op = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		case 6:
+			var tu = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 7:
+			var t = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					$author$project$VegaLite$multilineTextSpec(t))
+				]);
+		case 10:
+			var fmt = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'format',
+					$elm$json$Json$Encode$string(fmt))
+				]);
+		case 11:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('number'))
+				]);
+		case 12:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('time'))
+				]);
+		case 13:
+			var formatter = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string(formatter))
+				]);
+		case 8:
+			var selName = tDef.a;
+			var ifClause = tDef.b;
+			var elseClause = tDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'selection',
+								$author$project$VegaLite$booleanOpSpec(selName)),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		case 9:
+			var tests = tDef.a;
+			var elseClause = tDef.b;
+			var testClause = function (_v1) {
+				var predicate = _v1.a;
+				var ifClause = _v1.b;
+				return $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					A2($elm$json$Json$Encode$list, testClause, tests)),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
+		case 14:
+			var s = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$author$project$VegaLite$multilineTextSpec(s))
+				]);
+		default:
+			var d = tDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'datum',
+					$author$project$VegaLite$dataValueSpec(d))
+				]);
+	}
+};
+var $author$project$VegaLite$text = function (tDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'text',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
+};
 var $author$project$VegaLite$Text = 14;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
 var $author$project$RadialTests$radial5 = function () {
@@ -12398,25 +12390,19 @@ var $elm$core$Dict$get = F2(
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$RadialTests$update = F2(
-	function (msg, model) {
-		if (!msg.$) {
-			var srcName = msg.a;
-			return _Utils_Tuple2(
+	function (msg, _v0) {
+		var srcName = msg;
+		return _Utils_Tuple2(
+			A2(
+				$elm$core$Maybe$withDefault,
+				$elm$json$Json$Encode$null,
 				A2(
-					$elm$core$Maybe$withDefault,
-					$elm$json$Json$Encode$null,
-					A2(
-						$elm$core$Dict$get,
-						srcName,
-						$elm$core$Dict$fromList($author$project$RadialTests$specs))),
-				$elm$core$Platform$Cmd$none);
-		} else {
-			return _Utils_Tuple2($elm$json$Json$Encode$null, $elm$core$Platform$Cmd$none);
-		}
+					$elm$core$Dict$get,
+					srcName,
+					$elm$core$Dict$fromList($author$project$RadialTests$specs))),
+			$elm$core$Platform$Cmd$none);
 	});
-var $author$project$RadialTests$NewSource = function (a) {
-	return {$: 0, a: a};
-};
+var $author$project$RadialTests$NewSource = $elm$core$Basics$identity;
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -12476,7 +12462,7 @@ var $author$project$RadialTests$view = function (spec) {
 				$elm$html$Html$select,
 				_List_fromArray(
 					[
-						$elm$html$Html$Events$onInput($author$project$RadialTests$NewSource)
+						$elm$html$Html$Events$onInput($elm$core$Basics$identity)
 					]),
 				A2(
 					$elm$core$List$map,

@@ -12610,6 +12610,141 @@ var $author$project$VegaLite$mark = F2(
 		}
 	});
 var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
+var $author$project$VegaLite$GrStep = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$grStep = $author$project$VegaLite$GrStep;
+var $author$project$VegaLite$graticuleProperty = function (prop) {
+	switch (prop.$) {
+		case 0:
+			var _v1 = prop.a;
+			var lng1 = _v1.a;
+			var lat1 = _v1.b;
+			var _v2 = prop.b;
+			var lng2 = _v2.a;
+			var lat2 = _v2.b;
+			return _Utils_Tuple2(
+				'extent',
+				$author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng1, lat1])),
+							A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng2, lat2]))
+						])));
+		case 1:
+			var _v3 = prop.a;
+			var lng1 = _v3.a;
+			var lat1 = _v3.b;
+			var _v4 = prop.b;
+			var lng2 = _v4.a;
+			var lat2 = _v4.b;
+			return _Utils_Tuple2(
+				'extentMajor',
+				$author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng1, lat1])),
+							A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng2, lat2]))
+						])));
+		case 2:
+			var _v5 = prop.a;
+			var lng1 = _v5.a;
+			var lat1 = _v5.b;
+			var _v6 = prop.b;
+			var lng2 = _v6.a;
+			var lat2 = _v6.b;
+			return _Utils_Tuple2(
+				'extentMinor',
+				$author$project$VegaLite$toList(
+					_List_fromArray(
+						[
+							A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng1, lat1])),
+							A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[lng2, lat2]))
+						])));
+		case 3:
+			var _v7 = prop.a;
+			var lng = _v7.a;
+			var lat = _v7.b;
+			return _Utils_Tuple2(
+				'step',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lng, lat])));
+		case 4:
+			var _v8 = prop.a;
+			var lng = _v8.a;
+			var lat = _v8.b;
+			return _Utils_Tuple2(
+				'stepMajor',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lng, lat])));
+		case 5:
+			var _v9 = prop.a;
+			var lng = _v9.a;
+			var lat = _v9.b;
+			return _Utils_Tuple2(
+				'stepMinor',
+				A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[lng, lat])));
+		default:
+			var x = prop.a;
+			return _Utils_Tuple2(
+				'precision',
+				$elm$json$Json$Encode$float(x));
+	}
+};
+var $author$project$VegaLite$graticule = function (grProps) {
+	return _Utils_eq(grProps, _List_Nil) ? _Utils_Tuple2(
+		10,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'graticule',
+					$elm$json$Json$Encode$bool(true))
+				]))) : _Utils_Tuple2(
+		10,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'graticule',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$graticuleProperty, grProps)))
+				])));
+};
 var $author$project$VegaLite$VLLayer = 16;
 var $author$project$VegaLite$layer = function (specs) {
 	return _Utils_Tuple2(
@@ -12707,12 +12842,11 @@ var $author$project$ProjectionTests$configExample = function () {
 	var graticuleSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				A2(
-				$author$project$VegaLite$dataFromUrl,
-				$author$project$ProjectionTests$path + 'graticule.json',
+				$author$project$VegaLite$graticule(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$topojsonFeature('graticule')
+						$author$project$VegaLite$grStep(
+						_Utils_Tuple2(5, 5))
 					])),
 				$author$project$VegaLite$geoshape(
 				_List_fromArray(
@@ -12858,12 +12992,11 @@ var $author$project$ProjectionTests$worldMapTemplate = F2(
 						A2($author$project$VegaLite$title, tText, _List_Nil),
 						$author$project$VegaLite$background('#c1e7f5'),
 						$author$project$VegaLite$projection(projProps),
-						A2(
-						$author$project$VegaLite$dataFromUrl,
-						$author$project$ProjectionTests$path + 'graticule.json',
+						$author$project$VegaLite$graticule(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$topojsonFeature('graticule')
+								$author$project$VegaLite$grStep(
+								_Utils_Tuple2(5, 5))
 							])),
 						$author$project$VegaLite$geoshape(
 						_List_fromArray(
@@ -12912,12 +13045,11 @@ var $author$project$ProjectionTests$reflectExample = F2(
 		var graticuleSpec = $author$project$VegaLite$asSpec(
 			_List_fromArray(
 				[
-					A2(
-					$author$project$VegaLite$dataFromUrl,
-					$author$project$ProjectionTests$path + 'graticule.json',
+					$author$project$VegaLite$graticule(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$topojsonFeature('graticule')
+							$author$project$VegaLite$grStep(
+							_Utils_Tuple2(15, 15))
 						])),
 					$author$project$VegaLite$geoshape(
 					_List_fromArray(
@@ -13297,25 +13429,19 @@ var $elm$core$Dict$get = F2(
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$ProjectionTests$update = F2(
-	function (msg, model) {
-		if (!msg.$) {
-			var srcName = msg.a;
-			return _Utils_Tuple2(
+	function (msg, _v0) {
+		var srcName = msg;
+		return _Utils_Tuple2(
+			A2(
+				$elm$core$Maybe$withDefault,
+				$elm$json$Json$Encode$null,
 				A2(
-					$elm$core$Maybe$withDefault,
-					$elm$json$Json$Encode$null,
-					A2(
-						$elm$core$Dict$get,
-						srcName,
-						$elm$core$Dict$fromList($author$project$ProjectionTests$specs))),
-				$elm$core$Platform$Cmd$none);
-		} else {
-			return _Utils_Tuple2($elm$json$Json$Encode$null, $elm$core$Platform$Cmd$none);
-		}
+					$elm$core$Dict$get,
+					srcName,
+					$elm$core$Dict$fromList($author$project$ProjectionTests$specs))),
+			$elm$core$Platform$Cmd$none);
 	});
-var $author$project$ProjectionTests$NewSource = function (a) {
-	return {$: 0, a: a};
-};
+var $author$project$ProjectionTests$NewSource = $elm$core$Basics$identity;
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -13375,7 +13501,7 @@ var $author$project$ProjectionTests$view = function (spec) {
 				$elm$html$Html$select,
 				_List_fromArray(
 					[
-						$elm$html$Html$Events$onInput($author$project$ProjectionTests$NewSource)
+						$elm$html$Html$Events$onInput($elm$core$Basics$identity)
 					]),
 				A2(
 					$elm$core$List$map,

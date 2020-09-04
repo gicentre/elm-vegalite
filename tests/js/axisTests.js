@@ -14239,25 +14239,19 @@ var $elm$core$Dict$get = F2(
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$AxisTests$update = F2(
-	function (msg, model) {
-		if (!msg.$) {
-			var srcName = msg.a;
-			return _Utils_Tuple2(
+	function (msg, _v0) {
+		var srcName = msg;
+		return _Utils_Tuple2(
+			A2(
+				$elm$core$Maybe$withDefault,
+				$elm$json$Json$Encode$null,
 				A2(
-					$elm$core$Maybe$withDefault,
-					$elm$json$Json$Encode$null,
-					A2(
-						$elm$core$Dict$get,
-						srcName,
-						$elm$core$Dict$fromList($author$project$AxisTests$specs))),
-				$elm$core$Platform$Cmd$none);
-		} else {
-			return _Utils_Tuple2($elm$json$Json$Encode$null, $elm$core$Platform$Cmd$none);
-		}
+					$elm$core$Dict$get,
+					srcName,
+					$elm$core$Dict$fromList($author$project$AxisTests$specs))),
+			$elm$core$Platform$Cmd$none);
 	});
-var $author$project$AxisTests$NewSource = function (a) {
-	return {$: 0, a: a};
-};
+var $author$project$AxisTests$NewSource = $elm$core$Basics$identity;
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -14317,7 +14311,7 @@ var $author$project$AxisTests$view = function (spec) {
 				$elm$html$Html$select,
 				_List_fromArray(
 					[
-						$elm$html$Html$Events$onInput($author$project$AxisTests$NewSource)
+						$elm$html$Html$Events$onInput($elm$core$Basics$identity)
 					]),
 				A2(
 					$elm$core$List$map,
