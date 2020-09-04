@@ -10594,10 +10594,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$oOrdinal = $author$project$VegaLite$OmType(1);
 var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -10881,8 +10877,7 @@ var $author$project$RadialTests$radial11 = function () {
 			$author$project$VegaLite$order(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$oName('cause'),
-						$author$project$VegaLite$oOrdinal
+						$author$project$VegaLite$oName('cause')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(

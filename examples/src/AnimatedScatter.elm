@@ -56,7 +56,7 @@ animatedScatter1 =
                     , pAxis [ axTitle "Richest 5% (£)", axGrid False ]
                     , pScale [ scZero True ]
                     ]
-                << order [ oName "Year", oTemporal ]
+                << order [ oName "Year" ]
 
         scatterSpec =
             asSpec

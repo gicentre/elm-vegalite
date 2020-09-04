@@ -11097,10 +11097,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$oTemporal = $author$project$VegaLite$OmType(3);
 var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -11318,8 +11314,7 @@ var $author$project$GalleryLine$line12 = function () {
 		$author$project$VegaLite$order(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$oName('year'),
-					$author$project$VegaLite$oTemporal
+					$author$project$VegaLite$oName('year')
 				])));
 	var desc = $author$project$VegaLite$description('A connected scatterplot can be created by customizing line order and adding point marker in the line mark definition.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryLine$path + 'driving.json', _List_Nil);

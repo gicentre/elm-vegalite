@@ -469,7 +469,7 @@ multi7 =
                 << position Longitude [ pName "longitude" ]
                 << position Latitude [ pName "latitude" ]
                 << size [ mName "routes", mQuant, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
-                << order [ oName "routes", oQuant, oSort [ soDescending ] ]
+                << order [ oName "routes", oSort [ soDescending ] ]
 
         sel =
             selection

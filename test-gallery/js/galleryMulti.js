@@ -12713,10 +12713,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$oQuant = $author$project$VegaLite$OmType(2);
 var $author$project$VegaLite$OSort = function (a) {
 	return {$: 6, a: a};
 };
@@ -13124,7 +13120,6 @@ var $author$project$GalleryMulti$multi7 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$oName('routes'),
-					$author$project$VegaLite$oQuant,
 					$author$project$VegaLite$oSort(
 					_List_fromArray(
 						[$author$project$VegaLite$soDescending]))

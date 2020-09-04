@@ -27,7 +27,7 @@ sortQuant yField sps =
             encoding
                 << position X [ pName "Horsepower", pQuant, pSort sps ]
                 << position Y [ pName yField, pQuant ]
-                << order [ oName yField, oOrdinal ]
+                << order [ oName yField ]
     in
     toVegaLite [ height 300, data [], enc [], line [ maStrokeWidth 0.5 ] ]
 

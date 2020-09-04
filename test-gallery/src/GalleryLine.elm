@@ -316,7 +316,7 @@ line12 =
             encoding
                 << position X [ pName "miles", pQuant, pScale [ scZero False ] ]
                 << position Y [ pName "gas", pQuant, pScale [ scZero False ] ]
-                << order [ oName "year", oTemporal ]
+                << order [ oName "year" ]
     in
     toVegaLite [ desc, data, enc [], line [ maPoint (pmMarker []) ] ]
 

@@ -252,7 +252,7 @@ geo7 =
             encoding
                 << position Longitude [ pName "longitude" ]
                 << position Latitude [ pName "latitude" ]
-                << order [ oName "order", oOrdinal ]
+                << order [ oName "order" ]
 
         flightsSpec =
             asSpec [ itineraryData [], trans [], flightsEnc [], line [] ]

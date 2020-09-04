@@ -14463,11 +14463,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$Quantitative = 2;
-var $author$project$VegaLite$oQuant = $author$project$VegaLite$OmType(2);
 var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -14711,8 +14706,7 @@ var $author$project$GeoTests$scribbleMap1 = function () {
 				$author$project$VegaLite$order(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$oName('zip_code'),
-							$author$project$VegaLite$oQuant
+							$author$project$VegaLite$oName('zip_code')
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
@@ -14816,8 +14810,7 @@ var $author$project$GeoTests$scribbleMap2 = function () {
 				$author$project$VegaLite$order(
 					_List_fromArray(
 						[
-							$author$project$VegaLite$oName('zip_code'),
-							$author$project$VegaLite$oQuant
+							$author$project$VegaLite$oName('zip_code')
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(

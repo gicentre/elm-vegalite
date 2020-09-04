@@ -598,7 +598,7 @@ scribbleMap1 =
             encoding
                 << position Longitude [ pName "longitude" ]
                 << position Latitude [ pName "latitude" ]
-                << order [ oName "zip_code", oQuant ]
+                << order [ oName "zip_code" ]
                 << color [ mStr "#666" ]
                 << detail [ dName "conterminous" ]
     in
@@ -643,7 +643,7 @@ scribbleMap2 =
             encoding
                 << position Longitude [ pName "longitude" ]
                 << position Latitude [ pName "latitude" ]
-                << order [ oName "zip_code", oQuant ]
+                << order [ oName "zip_code" ]
                 << color [ mName "digit3", mLegend [] ]
                 << detail [ dName "ziplen" ]
     in

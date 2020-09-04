@@ -160,7 +160,7 @@ radial5 =
                     , mScale colours
                     , mLegend [ leOrient loNone, leTitle "", leColumns 1, leX 200, leY 80 ]
                     ]
-                << order [ oName "order", oQuant ]
+                << order [ oName "order" ]
     in
     toVegaLite [ desc, cfg [], data [], enc [], arc [ maOuterRadius 80 ] ]
 
@@ -203,7 +203,7 @@ radial6 =
         encSector =
             encoding
                 << position R [ pName "deaths", pScale [ scType scSqrt ], pStack stNone ]
-                << order [ oName "cause", oOrdinal ]
+                << order [ oName "cause" ]
                 << color
                     [ mName "cause"
                     , mScale colours

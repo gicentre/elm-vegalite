@@ -243,7 +243,7 @@ radial11 =
             encoding
                 << position Theta [ pName "month", pOrdinal ]
                 << position R [ pName "deaths", pScale [ scType scSqrt ], pStack stNone ]
-                << order [ oName "cause", oOrdinal ]
+                << order [ oName "cause" ]
                 << color [ mName "cause", mScale colours, mTitle "" ]
     in
     toVegaLite

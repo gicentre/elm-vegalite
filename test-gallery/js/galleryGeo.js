@@ -11920,11 +11920,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$Ordinal = 1;
-var $author$project$VegaLite$oOrdinal = $author$project$VegaLite$OmType(1);
 var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -12146,8 +12141,7 @@ var $author$project$GalleryGeo$geo7 = function () {
 		$author$project$VegaLite$order(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$oName('order'),
-					$author$project$VegaLite$oOrdinal
+					$author$project$VegaLite$oName('order')
 				])));
 	var desc = $author$project$VegaLite$description('Line drawn between airports in the U.S. simulating a flight itinerary');
 	var backdropSpec = $author$project$VegaLite$asSpec(

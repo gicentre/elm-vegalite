@@ -11374,10 +11374,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$oQuant = $author$project$VegaLite$OmType(2);
 var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -11629,8 +11625,7 @@ var $author$project$GalleryRadial$radial5 = function () {
 		$author$project$VegaLite$order(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$oName('order'),
-					$author$project$VegaLite$oQuant
+					$author$project$VegaLite$oName('order')
 				])));
 	var cfg = A2(
 		$elm$core$Basics$composeL,
@@ -11750,7 +11745,6 @@ var $author$project$VegaLite$maThetaOffset = $author$project$VegaLite$MThetaOffs
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
-var $author$project$VegaLite$oOrdinal = $author$project$VegaLite$OmType(1);
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$OfNone = 3;
 var $author$project$VegaLite$stNone = 3;
@@ -11962,8 +11956,7 @@ var $author$project$GalleryRadial$radial6 = function () {
 			$author$project$VegaLite$order(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$oName('cause'),
-						$author$project$VegaLite$oOrdinal
+						$author$project$VegaLite$oName('cause')
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(

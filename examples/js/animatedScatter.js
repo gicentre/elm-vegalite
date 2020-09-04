@@ -13045,11 +13045,6 @@ var $author$project$VegaLite$OName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$oName = $author$project$VegaLite$OName;
-var $author$project$VegaLite$OmType = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$oTemporal = $author$project$VegaLite$OmType(3);
 var $author$project$VegaLite$opAs = F3(
 	function (op, field, label) {
 		return $elm$json$Json$Encode$object(
@@ -13888,8 +13883,7 @@ var $author$project$AnimatedScatter$animatedScatter1 = function () {
 		$author$project$VegaLite$order(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$oName('Year'),
-					$author$project$VegaLite$oTemporal
+					$author$project$VegaLite$oName('Year')
 				])));
 	var incomeData = A2($author$project$VegaLite$dataFromUrl, 'https://gicentre.github.io/data/incomeInequality2018.csv', _List_Nil);
 	var transJoin = A2(
