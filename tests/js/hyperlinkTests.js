@@ -7947,22 +7947,22 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _Utils_Tuple2(
 				'padding',
 				$elm$json$Json$Encode$float(x));
-		case 17:
+		case 16:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'base',
 				$elm$json$Json$Encode$float(x));
-		case 14:
+		case 13:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'exponent',
 				$elm$json$Json$Encode$float(x));
-		case 15:
+		case 14:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'domainMid',
 				$elm$json$Json$Encode$float(x));
-		case 16:
+		case 15:
 			var x = scaleProp.a;
 			return _Utils_Tuple2(
 				'constant',
@@ -7978,36 +7978,26 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				'paddingOuter',
 				$elm$json$Json$Encode$float(x));
 		case 8:
-			var numOrNull = scaleProp.a;
-			if (!numOrNull.$) {
-				var x = numOrNull.a;
-				return _Utils_Tuple2(
-					'rangeStep',
-					$elm$json$Json$Encode$float(x));
-			} else {
-				return _Utils_Tuple2('rangeStep', $elm$json$Json$Encode$null);
-			}
-		case 9:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'round',
 				$elm$json$Json$Encode$bool(b));
-		case 10:
+		case 9:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'clamp',
 				$elm$json$Json$Encode$bool(b));
-		case 11:
+		case 10:
 			var interp = scaleProp.a;
 			return _Utils_Tuple2(
 				'interpolate',
 				$author$project$VegaLite$cInterpolateSpec(interp));
-		case 12:
+		case 11:
 			var ni = scaleProp.a;
 			return _Utils_Tuple2(
 				'nice',
 				$author$project$VegaLite$scaleNiceSpec(ni));
-		case 13:
+		case 12:
 			var b = scaleProp.a;
 			return _Utils_Tuple2(
 				'zero',
@@ -8076,7 +8066,6 @@ var $author$project$VegaLite$sortProperties = function (sp) {
 					$author$project$VegaLite$operationSpec(op))
 				]);
 		default:
-			var dvs = sp.a;
 			return _List_Nil;
 	}
 };
@@ -8906,19 +8895,19 @@ var $author$project$VegaLite$PName = function (a) {
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
 var $author$project$VegaLite$AxGridColor = function (a) {
-	return {$: 70, a: a};
+	return {$: 69, a: a};
 };
 var $author$project$VegaLite$AxGridDash = function (a) {
-	return {$: 71, a: a};
+	return {$: 70, a: a};
 };
 var $author$project$VegaLite$AxGridDashOffset = function (a) {
-	return {$: 72, a: a};
+	return {$: 71, a: a};
 };
 var $author$project$VegaLite$AxGridOpacity = function (a) {
-	return {$: 73, a: a};
+	return {$: 72, a: a};
 };
 var $author$project$VegaLite$AxGridWidth = function (a) {
-	return {$: 74, a: a};
+	return {$: 73, a: a};
 };
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
@@ -9015,7 +9004,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'bandPosition',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 76:
+		case 75:
 			var predicate = axisProp.a;
 			var cap = axisProp.b;
 			var firstProp = A2(
@@ -9289,7 +9278,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'formatType',
 					$elm$json$Json$Encode$string(formatter))
 				]);
-		case 69:
+		case 68:
 			var c = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9298,7 +9287,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$strokeCapLabel(c)))
 				]);
-		case 70:
+		case 69:
 			var c = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9306,7 +9295,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'gridColor',
 					$elm$json$Json$Encode$string(c))
 				]);
-		case 71:
+		case 70:
 			var ds = axisProp.a;
 			return _Utils_eq(ds, _List_Nil) ? _List_fromArray(
 				[
@@ -9317,7 +9306,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'gridDash',
 					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ds))
 				]);
-		case 72:
+		case 71:
 			var x = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9325,7 +9314,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'gridDashOffset',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 73:
+		case 72:
 			var o = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9333,7 +9322,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'gridOpacity',
 					$elm$json$Json$Encode$float(o))
 				]);
-		case 74:
+		case 73:
 			var w = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9593,7 +9582,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'domainWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 68:
+		case 67:
 			var b = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9743,7 +9732,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickRound',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 75:
+		case 74:
 			var x = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9767,7 +9756,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 52:
+		case 51:
 			var vals = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9776,21 +9765,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$author$project$VegaLite$toList(
 						$author$project$VegaLite$dataValuesSpecs(vals)))
 				]);
-		case 51:
-			var dtss = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'values',
-					A2(
-						$elm$json$Json$Encode$list,
-						function (ds) {
-							return $elm$json$Json$Encode$object(
-								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds));
-						},
-						dtss))
-				]);
-		case 53:
+		case 52:
 			var s = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9798,7 +9773,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(s))
 				]);
-		case 54:
+		case 53:
 			var al = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9807,7 +9782,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$hAlignLabel(al)))
 				]);
-		case 56:
+		case 55:
 			var a = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9815,7 +9790,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleAngle',
 					$elm$json$Json$Encode$float(a))
 				]);
-		case 55:
+		case 54:
 			var an = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9824,7 +9799,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$anchorLabel(an)))
 				]);
-		case 57:
+		case 56:
 			var va = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9833,7 +9808,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$vAlignLabel(va)))
 				]);
-		case 58:
+		case 57:
 			var s = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9841,7 +9816,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 59:
+		case 58:
 			var s = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9849,7 +9824,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleFont',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 60:
+		case 59:
 			var x = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9857,7 +9832,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleFontSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 61:
+		case 60:
 			var s = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9865,7 +9840,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleFontStyle',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 62:
+		case 61:
 			var fw = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9873,7 +9848,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 63:
+		case 62:
 			var x = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9881,7 +9856,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleLimit',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 64:
+		case 63:
 			var x = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9889,7 +9864,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleOpacity',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 65:
+		case 64:
 			var pad = axisProp.a;
 			return _List_fromArray(
 				[
@@ -9897,7 +9872,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titlePadding',
 					$elm$json$Json$Encode$float(pad))
 				]);
-		case 66:
+		case 65:
 			var x = axisProp.a;
 			return _List_fromArray(
 				[
