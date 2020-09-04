@@ -1,11 +1,11 @@
-port module DataTests exposing (elmToJS)
+port module DataTests exposing (Msg, elmToJS)
 
 import Browser
-import Dict exposing (Dict)
+import Dict
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
-import Json.Encode as JE
+import Json.Encode
 import VegaLite exposing (..)
 
 
@@ -52,10 +52,10 @@ data3 : Spec
 data3 =
     let
         json =
-            JE.list JE.object
-                [ [ ( "cat", JE.string "a" ), ( "val", JE.float 10 ) ]
-                , [ ( "cat", JE.string "b" ), ( "val", JE.float 18 ) ]
-                , [ ( "cat", JE.string "c" ), ( "val", JE.float 12 ) ]
+            Json.Encode.list Json.Encode.object
+                [ [ ( "cat", Json.Encode.string "a" ), ( "val", Json.Encode.float 10 ) ]
+                , [ ( "cat", Json.Encode.string "b" ), ( "val", Json.Encode.float 18 ) ]
+                , [ ( "cat", Json.Encode.string "c" ), ( "val", Json.Encode.float 12 ) ]
                 ]
     in
     showData (dataFromJson json [])
@@ -96,10 +96,10 @@ dataSource name =
                 << dataRow [ ( "cat", str "c" ), ( "val", num 12 ) ]
 
         json =
-            JE.list JE.object
-                [ [ ( "cat", JE.string "a" ), ( "val", JE.float 10 ) ]
-                , [ ( "cat", JE.string "b" ), ( "val", JE.float 18 ) ]
-                , [ ( "cat", JE.string "c" ), ( "val", JE.float 12 ) ]
+            Json.Encode.list Json.Encode.object
+                [ [ ( "cat", Json.Encode.string "a" ), ( "val", Json.Encode.float 10 ) ]
+                , [ ( "cat", Json.Encode.string "b" ), ( "val", Json.Encode.float 18 ) ]
+                , [ ( "cat", Json.Encode.string "c" ), ( "val", Json.Encode.float 12 ) ]
                 ]
 
         enc =
@@ -242,14 +242,14 @@ flatten1 =
     let
         data =
             dataFromJson
-                (JE.list JE.object
-                    [ [ ( "key", JE.string "alpha" )
-                      , ( "foo", JE.list JE.float [ 1, 2 ] )
-                      , ( "bar", JE.list JE.string [ "A", "B" ] )
+                (Json.Encode.list Json.Encode.object
+                    [ [ ( "key", Json.Encode.string "alpha" )
+                      , ( "foo", Json.Encode.list Json.Encode.float [ 1, 2 ] )
+                      , ( "bar", Json.Encode.list Json.Encode.string [ "A", "B" ] )
                       ]
-                    , [ ( "key", JE.string "beta" )
-                      , ( "foo", JE.list JE.float [ 3, 4, 5 ] )
-                      , ( "bar", JE.list JE.string [ "C", "D" ] )
+                    , [ ( "key", Json.Encode.string "beta" )
+                      , ( "foo", Json.Encode.list Json.Encode.float [ 3, 4, 5 ] )
+                      , ( "bar", Json.Encode.list Json.Encode.string [ "C", "D" ] )
                       ]
                     ]
                 )
@@ -289,29 +289,6 @@ fold1 =
     toVegaLite [ data [], trans [], enc [], circle [] ]
 
 
-fold2 : Spec
-fold2 =
-    let
-        data =
-            dataFromColumns []
-                << dataColumn "country" (strs [ "USA", "Canada" ])
-                << dataColumn "gold" (nums [ 10, 7 ])
-                << dataColumn "silver" (nums [ 20, 26 ])
-
-        trans =
-            transform
-                << foldAs [ "gold", "silver" ] "k" "v"
-
-        enc =
-            encoding
-                << column [ fName "k" ]
-                << position X [ pName "country" ]
-                << position Y [ pName "v", pQuant ]
-                << color [ mName "country" ]
-    in
-    toVegaLite [ data [], trans [], enc [], bar [] ]
-
-
 pivot1 : Spec
 pivot1 =
     let
@@ -337,6 +314,7 @@ pivot1 =
     toVegaLite [ repeatFlow [ "gold", "silver" ], specification spec ]
 
 
+doData : List DataColumn -> Data
 doData =
     dataFromColumns []
         << dataColumn "x" (nums [ 1, 2, 3, 4 ])
@@ -970,13 +948,12 @@ specs =
 
 type Msg
     = NewSource String
-    | NoSource
 
 
 main : Program () Spec Msg
 main =
     Browser.element
-        { init = always ( JE.null, specs |> combineSpecs |> elmToJS )
+        { init = always ( Json.Encode.null, specs |> combineSpecs |> elmToJS )
         , view = view
         , update = update
         , subscriptions = always Sub.none
@@ -987,27 +964,24 @@ view : Spec -> Html Msg
 view spec =
     Html.div []
         [ Html.select [ Html.Events.onInput NewSource ]
-            (( "Select source", JE.null )
+            (( "Select source", Json.Encode.null )
                 :: specs
                 |> List.map (\( s, _ ) -> Html.option [ Html.Attributes.value s ] [ Html.text s ])
             )
         , Html.div [ Html.Attributes.id "specSource" ] []
-        , if spec == JE.null then
+        , if spec == Json.Encode.null then
             Html.div [] []
 
           else
-            Html.pre [] [ Html.text (JE.encode 2 spec) ]
+            Html.pre [] [ Html.text (Json.Encode.encode 2 spec) ]
         ]
 
 
 update : Msg -> Spec -> ( Spec, Cmd Msg )
-update msg model =
+update msg _ =
     case msg of
         NewSource srcName ->
-            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault JE.null, Cmd.none )
-
-        NoSource ->
-            ( JE.null, Cmd.none )
+            ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg

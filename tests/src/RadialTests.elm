@@ -1,7 +1,7 @@
 port module RadialTests exposing (elmToJS)
 
 import Browser
-import Dict exposing (Dict)
+import Dict
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
@@ -9,6 +9,7 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+vals : List Float
 vals =
     [ 4, 6, 10, 3, 7, 8 ]
 
@@ -199,10 +200,6 @@ radial10 =
                 << position R [ pRepeat arLayer, pScale [ scType scSqrt ] ]
                 << color [ mRepeatDatum arLayer, mScale colours ]
 
-        encLabels =
-            encoding
-                << text [ tName "monthLabel" ]
-
         spec =
             asSpec
                 [ width 500
@@ -313,7 +310,6 @@ specs =
 
 type Msg
     = NewSource String
-    | NoSource
 
 
 main : Program () Spec Msg
@@ -344,13 +340,10 @@ view spec =
 
 
 update : Msg -> Spec -> ( Spec, Cmd Msg )
-update msg model =
+update msg _ =
     case msg of
         NewSource srcName ->
             ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
-
-        NoSource ->
-            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg
