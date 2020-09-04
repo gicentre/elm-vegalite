@@ -363,7 +363,7 @@ transform14 : Spec
 transform14 =
     let
         data =
-            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y-%m-%d" ) ] ]
 
         trans =
             transform
@@ -384,14 +384,14 @@ transform15 : Spec
 transform15 =
     let
         data =
-            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y-%m-%d" ) ] ]
 
         trans =
             transform
                 -- calculateAs transforms to test that order of transforms is preserved.
                 << calculateAs "datum.date" "sampleDate"
                 << calculateAs "datum.temp_max" "maxTemp"
-                << timeUnitAs (month |> tuStep 2) "sampleDate" "bimonth"
+                << timeUnitAs (tuStep 2 month) "sampleDate" "bimonth"
 
         enc =
             encoding
@@ -405,16 +405,17 @@ transform16 : Spec
 transform16 =
     let
         data =
-            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y/%m/%d" ) ] ]
+            dataFromUrl (path ++ "seattle-weather.csv") [ parse [ ( "date", foDate "%Y-%m-%d" ) ] ]
 
         trans =
             transform
+                << calculateAs "datum.temp_max" "maxTemp"
                 << timeUnitAs (tuMaxBins 3) "date" "tBin"
 
         enc =
             encoding
                 << position X [ pName "tBin", pTemporal, pAxis [ axFormat "%b" ] ]
-                << position Y [ pName "temp_max", pAggregate opMax ]
+                << position Y [ pName "maxTemp", pAggregate opMax ]
     in
     toVegaLite [ width 400, data, trans [], enc [], line [ maPoint (pmMarker [ maFill "black" ]) ] ]
 
@@ -432,8 +433,7 @@ transform17 =
 
         enc =
             encoding
-                -- << position X [ pName "date", pTimeUnit (utc minutes |> tuStep 5) ]
-                << position X [ pName "date", pTimeUnit (tuMaxBins 15) ]
+                << position X [ pName "date", pTimeUnit (utc minutes |> tuStep 5) ]
                 << position Y [ pName "distance", pAggregate opSum ]
     in
     toVegaLite [ data [], enc [], bar [] ]

@@ -44,7 +44,7 @@
         cyclinder count)
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform2"></div>
@@ -59,7 +59,7 @@
         Similar but with bin steps of 0.25.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform4"></div>
@@ -68,13 +68,13 @@
         non-missing b values when c=1.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform5"></div>
       <figcaption><b>density</b> transform of IMDB ratings.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform6"></div>
@@ -82,7 +82,7 @@
         <b>loess</b> transform to show trend overlaid on IMDB scatterplot
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform7"></div>
@@ -91,7 +91,7 @@
         choropleth.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform8"></div>
@@ -100,7 +100,7 @@
         for three cities.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform9"></div>
@@ -108,7 +108,7 @@
         <b>quantile</b> transform for uniform and nornal distributions.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform10"></div>
@@ -117,7 +117,7 @@
         on IMDB scatterplot
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform11"></div>
@@ -125,7 +125,7 @@
         <b>flatten</b> transform to flatten nested objects.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform12"></div>
@@ -134,7 +134,7 @@
         each showing US and Canada gold and silver medal totals.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform13"></div>
@@ -143,7 +143,7 @@
         right and dark to light top to bottom.)
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform14"></div>
@@ -160,25 +160,26 @@
     <figure class="cell">
       <div id="transform16"></div>
       <figcaption>
-        <b>timeUnit</b> transform to aggregate temporal data into month bins
-        with by specifying maximum number of bins as 12.
+        <b>timeUnit</b> transform to aggregate temporal data into inferred month
+        bins by specifying the maximum number of bins as 12.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform17"></div>
       <figcaption>
-        Four time bins each of 5 minutes by setting timeUnit step to 5.
+        Four time bins each of 5 minutes by setting the units to minutes and
+        timeUnit step to 5.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="transform18"></div>
       <figcaption>
         <b>window</b> transform to sum values by category used to calculate
-        proprotion of total.
+        proportion of total.
       </figcaption>
     </figure>
 
@@ -188,19 +189,19 @@
         Should be identical to previous but uses <b>joinAggregate</b> transform.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.TransformTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
