@@ -1,7 +1,7 @@
 port module ProjectionTests exposing (elmToJS)
 
 import Browser
-import Dict exposing (Dict)
+import Dict
 import Html exposing (Html)
 import Html.Attributes
 import Html.Events
@@ -15,8 +15,6 @@ import VegaLite exposing (..)
    https://github.com/deldersveld/topojson
    https://github.com/topojson/world-atlas
 
-   graticule.json produced with mapshaper.org:
-     open console and type -graticule then export as topojson.
 -}
 
 
@@ -34,9 +32,7 @@ worldMapTemplate tText projProps =
         , title tText []
         , background "#c1e7f5"
         , projection projProps
-
-        --, dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
-        , dataFromUrl (path ++ "graticule.json") [ topojsonFeature "graticule" ]
+        , graticule [ grStep ( 5, 5 ) ]
         , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.5 ]
         ]
     )
@@ -91,7 +87,7 @@ configExample =
 
         graticuleSpec =
             asSpec
-                [ dataFromUrl (path ++ "graticule.json") [ topojsonFeature "graticule" ]
+                [ graticule [ grStep ( 5, 5 ) ]
                 , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
                 ]
 
@@ -138,7 +134,7 @@ reflectExample rx ry =
 
         graticuleSpec =
             asSpec
-                [ dataFromUrl (path ++ "graticule.json") [ topojsonFeature "graticule" ]
+                [ graticule [ grStep ( 15, 15 ) ]
                 , geoshape [ maFillOpacity 0.01, maStroke "#411", maStrokeWidth 0.1 ]
                 , projection [ prType identityProjection, prReflectX rx, prReflectY ry ]
                 ]
@@ -182,7 +178,6 @@ specs =
 
 type Msg
     = NewSource String
-    | NoSource
 
 
 main : Program () Spec Msg
@@ -213,13 +208,10 @@ view spec =
 
 
 update : Msg -> Spec -> ( Spec, Cmd Msg )
-update msg model =
+update msg _ =
     case msg of
         NewSource srcName ->
             ( specs |> Dict.fromList |> Dict.get srcName |> Maybe.withDefault Json.Encode.null, Cmd.none )
-
-        NoSource ->
-            ( Json.Encode.null, Cmd.none )
 
 
 port elmToJS : Spec -> Cmd msg
