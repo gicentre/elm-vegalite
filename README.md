@@ -3,10 +3,10 @@
 ![elm-vegaLite banner](https://raw.githubusercontent.com/gicentre/elm-vegalite/master/images/banner.jpg)
 
 [![elm version](https://img.shields.io/badge/Elm-v0.19-blue.svg?style=flat-square)](http://elm-lang.org)
-[![vega-lite version](https://img.shields.io/badge/Vega--Lite-v4.14-purple.svg?style=flat-square)](https://vega.github.io/vega-lite/)
+[![vega-lite version](https://img.shields.io/badge/Vega--Lite-v4.15-purple.svg?style=flat-square)](https://vega.github.io/vega-lite/)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
-_Declarative visualization for Elm_
+_Declarative visualization for Elm._
 
 This package allows you to create data visualizations in Elm, following the Vega-Lite visualization schema.
 It generates JSON _specifications_ that may be sent to the Vega-Lite runtime to create the output.
@@ -63,7 +63,7 @@ There is a demand for good visualization packages with Elm. There are certainly 
 
 Despite the availability of these packages, there is a space for a higher level data visualization package (avoiding, for example the need for explicit construction of chart axes) but one that offers the expressivity to create a wide range data visualization types and styles. In particular, no existing libraries offer easy interaction and view composition (building 'dashboards' comprising many chart types). elm-vegaLite is designed to fill that gap.
 
-**Characteristics of elm-vegaLite**
+**Characteristics of elm-vegaLite.**
 
 - Built upon the widely used [Vega-Lite](https://vega.github.io/vega-lite/) specification that has an academic robustness and momentum behind their development. Vega-Lite is itself built upon the hugely influential [Grammar of Graphics](http://www.springer.com/gb/book/9780387245447).
 
@@ -75,7 +75,7 @@ Despite the availability of these packages, there is a space for a higher level 
 
 - Hierarchical view composition allows complex visualization dashboards to be built from trees of simpler views.
 
-### A rationale for data visualisers
+### A rationale for data visualizers
 
 [Vega-Lite](https://vega.github.io/vega-lite/) hits the sweet spot of abstraction between lower-level specifications such as [D3](https://d3js.org) and higher level visualization software such as [Tableau](https://www.tableau.com). By using JSON to fully encode a visualization specification, Vega-Lite is portable across a range of platforms and sits well within the JavaScript / Web ecosystem. Yet JSON is really an interchange format rather than one suited directly for visualization design and construction.
 

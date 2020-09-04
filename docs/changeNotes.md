@@ -2,17 +2,27 @@
 
 ## Pending changes
 
-### Additions
+None.
+
+---
+
+## V3.0.0 ➡ V3.1.0
+
+### V3.1 Additions
 
 - `rgParams` for extracting regression parameters in the `regression` transform (missed in earlier releases).
 
-### Bug Fixes
+### V3.1 Bug Fixes
 
 - `cuNWSEResize` now specifies the correct resizing cursor.
 
-### Deprecations
+### V3.1 Deprecations
 
 - `lecoShortTimeLabels` deprecated as short time labels are now already the default.
+
+### V3.1 Other Changes
+
+- Minor refactoring and removing of redundant code.
 
 ---
 
