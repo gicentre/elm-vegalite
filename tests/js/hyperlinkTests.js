@@ -10621,7 +10621,7 @@ var $author$project$HyperlinkTests$hyperlink3 = function () {
 						_List_fromArray(
 							[
 								_Utils_Tuple2(
-								$author$project$VegaLite$expr('datum[\'IMDB Rating\']*10 > datum.[\'Rotten Tomatoes Rating\']'),
+								$author$project$VegaLite$expr('datum[\'IMDB Rating\']*10 > datum[\'Rotten Tomatoes Rating\']'),
 								_List_fromArray(
 									[
 										$author$project$VegaLite$mStr('steelblue')

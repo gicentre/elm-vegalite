@@ -73,7 +73,7 @@ hyperlink3 =
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
                     [ mDataCondition
-                        [ ( expr "datum['IMDB Rating']*10 > datum.['Rotten Tomatoes Rating']"
+                        [ ( expr "datum['IMDB Rating']*10 > datum['Rotten Tomatoes Rating']"
                           , [ mStr "steelblue" ]
                           )
                         ]
