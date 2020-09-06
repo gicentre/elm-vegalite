@@ -6,6 +6,12 @@ None.
 
 ---
 
+## V3.1.0 ➡ V3.1.1
+
+_Patch release that uses `main` rather than `master` GitHub branch. See [github.com/github/renaming](https://github.com/github/renaming)_
+
+---
+
 ## V3.0.0 ➡ V3.1.0
 
 ### V3.1 Additions
