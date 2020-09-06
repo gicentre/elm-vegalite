@@ -38,7 +38,7 @@
     <p>
       For details see the
       <a
-        href="https://github.com/gicentre/elm-vegalite/tree/master/docs/walkthrough"
+        href="https://github.com/gicentre/elm-vegalite/tree/main/docs/walkthrough"
         target="_blank"
         >elm-vegalite walkthrough</a
       >.
@@ -175,11 +175,11 @@
     </figure>
 
     <script>
-      Elm.Walkthrough.init().ports.elmToJS.subscribe(function(namedSpecs) {
+      Elm.Walkthrough.init().ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
