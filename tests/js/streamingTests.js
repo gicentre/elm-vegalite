@@ -7266,7 +7266,7 @@ var $elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
-var $author$project$VegaLite$VLData = 10;
+var $author$project$VegaLite$VLData = 11;
 var $author$project$VegaLite$dataTypeLabel = function (dType) {
 	switch (dType.$) {
 		case 0:
@@ -7385,7 +7385,7 @@ var $author$project$VegaLite$formatProperties = function (fmt) {
 var $author$project$VegaLite$dataFromSource = F2(
 	function (sourceName, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			10,
+			11,
 			$elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -7393,7 +7393,7 @@ var $author$project$VegaLite$dataFromSource = F2(
 						'name',
 						$elm$json$Json$Encode$string(sourceName))
 					]))) : _Utils_Tuple2(
-			10,
+			11,
 			$elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -7406,14 +7406,14 @@ var $author$project$VegaLite$dataFromSource = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
-var $author$project$VegaLite$VLEncoding = 15;
+var $author$project$VegaLite$VLEncoding = 16;
 var $author$project$VegaLite$encoding = function (channels) {
 	return _Utils_Tuple2(
-		15,
+		16,
 		$elm$json$Json$Encode$object(channels));
 };
 var $author$project$VegaLite$Line = 9;
-var $author$project$VegaLite$VLMark = 12;
+var $author$project$VegaLite$VLMark = 13;
 var $author$project$VegaLite$markLabel = function (m) {
 	switch (m) {
 		case 0:
@@ -8518,12 +8518,12 @@ var $author$project$VegaLite$mark = F2(
 	function (m, mProps) {
 		if (!mProps.b) {
 			return _Utils_Tuple2(
-				12,
+				13,
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$markLabel(m)));
 		} else {
 			return _Utils_Tuple2(
-				12,
+				13,
 				$elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
@@ -9876,64 +9876,66 @@ var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 		case 0:
 			return 'name';
 		case 1:
-			return 'description';
+			return 'params';
 		case 2:
-			return 'title';
+			return 'description';
 		case 3:
+			return 'title';
+		case 4:
+			return 'width';
+		case 6:
 			return 'width';
 		case 5:
-			return 'width';
-		case 4:
 			return 'height';
-		case 6:
-			return 'height';
-		case 8:
-			return 'padding';
 		case 7:
-			return 'autosize';
+			return 'height';
 		case 9:
-			return 'background';
+			return 'padding';
+		case 8:
+			return 'autosize';
 		case 10:
-			return 'data';
+			return 'background';
 		case 11:
-			return 'datasets';
-		case 14:
-			return 'projection';
+			return 'data';
 		case 12:
-			return 'mark';
-		case 13:
-			return 'transform';
+			return 'datasets';
 		case 15:
-			return 'encoding';
-		case 29:
-			return 'config';
-		case 30:
-			return 'selection';
-		case 17:
-			return 'concat';
-		case 20:
-			return 'columns';
-		case 18:
-			return 'hconcat';
-		case 19:
-			return 'vconcat';
+			return 'projection';
+		case 13:
+			return 'mark';
+		case 14:
+			return 'transform';
 		case 16:
-			return 'layer';
+			return 'encoding';
+		case 30:
+			return 'config';
+		case 31:
+			return 'selection';
+		case 18:
+			return 'concat';
 		case 21:
-			return 'repeat';
+			return 'columns';
+		case 19:
+			return 'hconcat';
+		case 20:
+			return 'vconcat';
+		case 17:
+			return 'layer';
 		case 22:
-			return 'facet';
-		case 25:
-			return 'spacing';
-		case 26:
-			return 'align';
-		case 27:
-			return 'bounds';
-		case 28:
-			return 'center';
+			return 'repeat';
 		case 23:
-			return 'spec';
+			return 'facet';
+		case 26:
+			return 'spacing';
+		case 27:
+			return 'align';
+		case 28:
+			return 'bounds';
+		case 29:
+			return 'center';
 		case 24:
+			return 'spec';
+		case 25:
 			return 'resolve';
 		default:
 			return 'view';
@@ -9957,10 +9959,10 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				},
 				spec)));
 };
-var $author$project$VegaLite$VLWidth = 3;
+var $author$project$VegaLite$VLWidth = 4;
 var $author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(
-		3,
+		4,
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$StreamingTests$streaming1 = function () {
