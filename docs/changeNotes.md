@@ -2,7 +2,9 @@
 
 ## Pending changes
 
-None.
+### Additions
+
+- `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec.
 
 ---
 
