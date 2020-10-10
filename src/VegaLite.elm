@@ -283,6 +283,7 @@ module VegaLite exposing
     , maDy
     , maInnerRadius
     , maOuterRadius
+    , maPadAngle
     , maFill
     , maFillGradient
     , maFilled
@@ -2030,6 +2031,7 @@ property documentation.
 @docs maDy
 @docs maInnerRadius
 @docs maOuterRadius
+@docs maPadAngle
 @docs maFill
 @docs maFillGradient
 @docs maFilled
@@ -5048,8 +5050,9 @@ type MarkOrientation
 [maFontStyle](#maFontStyle), [maFontWeight](#maFontWeight), [maInnerRadius](#maInnerRadius),
 [maOuterRadius](#maOuterRadius), [maInterpolate](#maInterpolate), [maLimit](#maLimit),
 [maLine](#maLine), [maLineHeight](#maLineHeight), [maMedian](#maMedian), [maOpacity](#maOpacity),
-[maOutliers](#maOutliers), [maOrient](#maOrient), [maPoint](#maPoint), [maRadius](#maRadius),
-[maRadiusOffset](#maRadiusOffset), [maRadius2Offset](#maRadius2Offset), [maRemoveInvalid](#maRemoveInvalid),
+[maOutliers](#maOutliers), [maOrient](#maOrient), [maPadAngle](#maPadAngle),
+[maPoint](#maPoint), [maRadius](#maRadius), [maRadiusOffset](#maRadiusOffset),
+[maRadius2Offset](#maRadius2Offset), [maRemoveInvalid](#maRemoveInvalid),
 [maRule](#maRule), [maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
 [maStroke](#maStroke), [maStrokeGradient](#maStrokeGradient), [maStrokeCap](#maStrokeCap),
 [maStrokeDash](#maStrokeDash), [maStrokeDashOffset](#maStrokeDashOffset), [maStrokeJoin](#maStrokeJoin),
@@ -5112,6 +5115,7 @@ type
     | MOutliers (List MarkProperty)
     | MOrder Bool
     | MOrient MarkOrientation
+    | MPadAngle Num
     | MPoint PointMarker
     | MRadius Num
     | MRemoveInvalid Bool
@@ -13521,6 +13525,13 @@ maOutliers =
     MOutliers
 
 
+{-| Angular padding applied to sides of an arc (radians)s.
+-}
+maPadAngle : Float -> MarkProperty
+maPadAngle n =
+    MPadAngle (Num n)
+
+
 {-| Appearance of a point marker joining the vertices of a line or area mark.
 
     line [ maPoint (pmMarker [ maFill "black" ]) ]
@@ -14391,7 +14402,6 @@ markPropertyNumExpr ex fn =
         -- MStrokeCap,MStrokeDash,MStrokeJoin, MHRef, MCursor
         -- MAlign, MBaseline, MInterpolate, MUrl, MAspect, MShape, MDir, MElipsis
         -- MFont, MFontStyle, MFontWeight, MText
-        -- TODO: Add padAngle (currently missing entirely)
         MWidth _ ->
             MWidth (NumExpr ex)
 
@@ -14469,6 +14479,9 @@ markPropertyNumExpr ex fn =
 
         MCornerRadius _ ->
             MCornerRadius (NumExpr ex)
+
+        MPadAngle _ ->
+            MPadAngle (NumExpr ex)
 
         MTension _ ->
             MTension (NumExpr ex)
@@ -21614,6 +21627,9 @@ markProperty mProp =
 
         MOuterRadius n ->
             numExpr "outerRadius" n
+
+        MPadAngle n ->
+            numExpr "padAngle" n
 
         MText txt ->
             [ ( "text", multilineTextSpec txt ) ]

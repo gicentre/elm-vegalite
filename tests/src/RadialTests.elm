@@ -88,8 +88,7 @@ radial3 =
             [ maInnerRadius |> markPropertyNumExpr "radius"
             , maOuterRadius |> markPropertyNumExpr "radius2"
             , maCornerRadius |> markPropertyNumExpr "cornerRadius"
-
-            -- , maPadAngle |> markPropertyNumExpr "padAngle"
+            , maPadAngle |> markPropertyNumExpr "padAngle"
             ]
         ]
 
