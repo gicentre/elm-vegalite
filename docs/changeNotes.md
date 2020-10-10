@@ -6,6 +6,10 @@
 
 - `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec.
 
+- Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties
+
+- Add `maPadAngle` for padding arc segments.
+
 ---
 
 ## V3.1.0 ➡ V3.1.1
