@@ -66,8 +66,6 @@ radial3 =
             params
                 [ ( "radius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
                 , ( "radius2", [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
-                , ( "thetaSingle", [ paValue (num -0.73), paBind (ipRange [ inMin -6.28, inMax 6.28 ]) ] )
-                , ( "theta2Single", [ paValue (num 0.73), paBind (ipRange [ inMin -6.28, inMax 6.28 ]) ] )
                 , ( "cornerRadius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 50, inStep 1 ]) ] )
                 , ( "padAngle", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 1.57 ]) ] )
                 ]
@@ -82,7 +80,18 @@ radial3 =
                 << position Theta [ pName "value", pQuant ]
                 << color [ mName "category" ]
     in
-    toVegaLite [ prm, data [], enc [], arc [] ]
+    toVegaLite
+        [ prm
+        , data []
+        , enc []
+        , arc
+            [ maInnerRadius |> markPropertyNumExpr "radius"
+            , maOuterRadius |> markPropertyNumExpr "radius2"
+            , maCornerRadius |> markPropertyNumExpr "cornerRadius"
+
+            -- , maPadAngle |> markPropertyNumExpr "padAngle"
+            ]
+        ]
 
 
 radial4 : Spec

@@ -251,6 +251,7 @@ module VegaLite exposing
     , textMark
     , tick
     , trail
+    , markPropertyNumExpr
     , maAlign
     , maAngle
     , maAria
@@ -1997,6 +1998,7 @@ See the Vega-Lite
 [tick mark](https://vega.github.io/vega-lite/docs/tick.html#properties)
 property documentation.
 
+@docs markPropertyNumExpr
 @docs maAlign
 @docs maAngle
 @docs maAria
@@ -5065,7 +5067,7 @@ type
     -- types of mark (e.g. `bar`, `textMark` and `tick`) but for simplicity of the
     -- API they are combined in a single type.
     = MAlign HAlign
-    | MAngle Float
+    | MAngle Num
     | MAria (List Aria)
     | MBandSize Float
     | MBaseline VAlign
@@ -5076,78 +5078,78 @@ type
     | MClip Bool
     | MColor String
     | MColorGradient ColorGradient (List GradientProperty)
-    | MCornerRadius Float
-    | MCornerRadiusEnd Float
-    | MCornerRadiusTL Float
-    | MCornerRadiusTR Float
-    | MCornerRadiusBL Float
-    | MCornerRadiusBR Float
+    | MCornerRadius Num
+    | MCornerRadiusEnd Num
+    | MCornerRadiusTL Num
+    | MCornerRadiusTR Num
+    | MCornerRadiusBL Num
+    | MCornerRadiusBR Num
     | MCursor Cursor
     | MHRef String
     | MContinuousBandSize Float
-    | MLimit Float
+    | MLimit Num
     | MEllipsis String
     | MDir TextDirection
     | MDiscreteBandSize Float
-    | MdX Float
-    | MdY Float
+    | MdX Num
+    | MdY Num
     | MExtent SummaryExtent
     | MFill String
     | MFillGradient ColorGradient (List GradientProperty)
     | MFilled Bool
-    | MFillOpacity Float
+    | MFillOpacity Num
     | MFont String
-    | MFontSize Float
+    | MFontSize Num
     | MFontStyle String
     | MFontWeight FontWeight
-    | MInnerRadius Float
+    | MInnerRadius Num
     | MInterpolate MarkInterpolation
     | MLine LineMarker
-    | MLineHeight Float
+    | MLineHeight Num
     | MMedian (List MarkProperty)
-    | MOpacity Float
-    | MOuterRadius Float
+    | MOpacity Num
+    | MOuterRadius Num
     | MOutliers (List MarkProperty)
     | MOrder Bool
     | MOrient MarkOrientation
     | MPoint PointMarker
-    | MRadius Float
+    | MRadius Num
     | MRemoveInvalid Bool
     | MRule (List MarkProperty)
     | MShape Symbol
     | MShortTimeLabels Bool
-    | MSize Float
+    | MSize Num
     | MStroke String
     | MStrokeGradient ColorGradient (List GradientProperty)
     | MStrokeCap StrokeCap
     | MStrokeDash (List Float)
-    | MStrokeDashOffset Float
+    | MStrokeDashOffset Num
     | MStrokeJoin StrokeJoin
-    | MStrokeMiterLimit Float
-    | MStrokeOpacity Float
-    | MStrokeWidth Float
+    | MStrokeMiterLimit Num
+    | MStrokeOpacity Num
+    | MStrokeWidth Num
     | MStyle (List String)
-    | MTension Float
+    | MTension Num
     | MText String
-    | MTheta Float
-    | MTheta2 Float
+    | MTheta Num
+    | MTheta2 Num
     | MThickness Float
     | MTicks (List MarkProperty)
     | MTooltip TooltipContent
-    | MWidth Float
-    | MHeight Float
-    | MX Float
-    | MY Float
-    | MX2 Float
-    | MY2 Float
-    | MXOffset Float
-    | MYOffset Float
-    | MX2Offset Float
-    | MY2Offset Float
-    | MThetaOffset Float
-    | MTheta2Offset Float
-    | MRadiusOffset Float
-    | MRadius2Offset Float
+    | MWidth Num
+    | MHeight Num
+    | MX Num
+    | MY Num
+    | MX2 Num
+    | MY2 Num
+    | MXOffset Num
+    | MYOffset Num
+    | MX2Offset Num
+    | MY2Offset Num
+    | MThetaOffset Num
+    | MTheta2Offset Num
+    | MRadiusOffset Num
+    | MRadius2Offset Num
     | MAspect Bool
 
 
@@ -13107,8 +13109,8 @@ maAlign =
 {-| Rotation angle of a text mark (degrees from horizontal).
 -}
 maAngle : Float -> MarkProperty
-maAngle =
-    MAngle << positiveAngle
+maAngle n =
+    MAngle (Num (positiveAngle n))
 
 
 {-| [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) properties
@@ -13217,48 +13219,48 @@ shapes all four corners; for [arc](#arc) marks it shapes the vertices of segment
 Default is 0 indicating no rounding.
 -}
 maCornerRadius : Float -> MarkProperty
-maCornerRadius =
-    MCornerRadius
+maCornerRadius n =
+    MCornerRadius (Num n)
 
 
 {-| The radius in pixels of the bottom-left corner of a rectangle mark. Will override
 any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusBottomLeft : Float -> MarkProperty
-maCornerRadiusBottomLeft =
-    MCornerRadiusBL
+maCornerRadiusBottomLeft n =
+    MCornerRadiusBL (Num n)
 
 
 {-| The radius in pixels of the bottom-right corner of a rectangle mark. Will override
 any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusBottomRight : Float -> MarkProperty
-maCornerRadiusBottomRight =
-    MCornerRadiusBR
+maCornerRadiusBottomRight n =
+    MCornerRadiusBR (Num n)
 
 
 {-| The radius in pixels of the 'end' corners of a bar mark. For vertical bars
 this would be the top corners and for horizontal bars, the right corners.
 -}
 maCornerRadiusEnd : Float -> MarkProperty
-maCornerRadiusEnd =
-    MCornerRadiusEnd
+maCornerRadiusEnd n =
+    MCornerRadiusEnd (Num n)
 
 
 {-| The radius in pixels of the top-left corner of a rectangle mark. Will override
 any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusTopLeft : Float -> MarkProperty
-maCornerRadiusTopLeft =
-    MCornerRadiusTL
+maCornerRadiusTopLeft n =
+    MCornerRadiusTL (Num n)
 
 
 {-| The radius in pixels of the top-right corner of a rectangle mark. Will override
 any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusTopRight : Float -> MarkProperty
-maCornerRadiusTopRight =
-    MCornerRadiusTR
+maCornerRadiusTopRight n =
+    MCornerRadiusTR (Num n)
 
 
 {-| Cursor to be associated with a hyperlink mark.
@@ -13293,15 +13295,15 @@ maDiscreteBandSize =
 {-| Horizontal offset between a text mark and its anchor.
 -}
 maDx : Float -> MarkProperty
-maDx =
-    MdX
+maDx n =
+    MdX (Num n)
 
 
 {-| Vertical offset between a text mark and its anchor.
 -}
 maDy : Float -> MarkProperty
-maDy =
-    MdY
+maDy n =
+    MdY (Num n)
 
 
 {-| Text to indicate a truncated piece of text (default is the ellipsis ...)
@@ -13369,8 +13371,8 @@ maFillGradient =
 {-| Fill opacity of a mark.
 -}
 maFillOpacity : Float -> MarkProperty
-maFillOpacity =
-    MFillOpacity
+maFillOpacity n =
+    MFillOpacity (Num n)
 
 
 {-| Font of a text mark. Can be any font name made accessible via
@@ -13384,8 +13386,8 @@ maFont =
 {-| Font size in pixels used by a text mark.
 -}
 maFontSize : Float -> MarkProperty
-maFontSize =
-    MFontSize
+maFontSize n =
+    MFontSize (Num n)
 
 
 {-| Font style (e.g. `italic`) used by a text mark.
@@ -13414,8 +13416,8 @@ mAggregate =
 {-| Explicitly set the height of a mark.
 -}
 maHeight : Float -> MarkProperty
-maHeight =
-    MHeight
+maHeight n =
+    MHeight (Num n)
 
 
 {-| Hyperlink to be associated with a mark making it a clickable hyperlink.
@@ -13429,8 +13431,8 @@ maHRef =
 in pie chart.
 -}
 maInnerRadius : Float -> MarkProperty
-maInnerRadius =
-    MInnerRadius
+maInnerRadius n =
+    MInnerRadius (Num n)
 
 
 {-| Interpolation method used by line and area marks. For example, to create a
@@ -13448,15 +13450,15 @@ maInterpolate =
 that exceeds this limit will be truncated with an ellipsis.
 -}
 maLimit : Float -> MarkProperty
-maLimit =
-    MLimit
+maLimit n =
+    MLimit (Num n)
 
 
 {-| Line height for multi-line text marks.
 -}
 maLineHeight : Float -> MarkProperty
-maLineHeight =
-    MLineHeight
+maLineHeight n =
+    MLineHeight (Num n)
 
 
 {-| Appearance of a line marker joining the vertices of an area mark.
@@ -13484,8 +13486,8 @@ maMedian =
 (completely opaque).
 -}
 maOpacity : Float -> MarkProperty
-maOpacity =
-    MOpacity
+maOpacity n =
+    MOpacity (Num n)
 
 
 {-| Ordering of vertices in a line or area mark. If true (default), order is
@@ -13507,8 +13509,8 @@ maOrient =
 {-| Fix the outer radius (R) of a radial plot.
 -}
 maOuterRadius : Float -> MarkProperty
-maOuterRadius =
-    MOuterRadius
+maOuterRadius n =
+    MOuterRadius (Num n)
 
 
 {-| Outlier symbol properties for the boxplot mark. If an empty list is provided,
@@ -13533,24 +13535,24 @@ maPoint =
 coordinates.
 -}
 maRadius : Float -> MarkProperty
-maRadius =
-    MRadius
+maRadius n =
+    MRadius (Num n)
 
 
 {-| Polar coordinate radial offset of a text or arc mark from a polar origin
 specified with `Theta` and `R`.
 -}
 maRadiusOffset : Float -> MarkProperty
-maRadiusOffset =
-    MRadiusOffset
+maRadiusOffset n =
+    MRadiusOffset (Num n)
 
 
 {-| Polar coordinate inner radial offset of an arc mark from a polar origin
 specified with `Theta`, `R` and `R2`.
 -}
 maRadius2Offset : Float -> MarkProperty
-maRadius2Offset =
-    MRadius2Offset
+maRadius2Offset n =
+    MRadius2Offset (Num n)
 
 
 {-| Determine whether or not invalid (`null` and `NaN`) values are considered for
@@ -13591,8 +13593,8 @@ maShortTimeLabels =
 
 -}
 maSize : Float -> MarkProperty
-maSize =
-    MSize
+maSize n =
+    MSize (Num n)
 
 
 {-| Default stroke color of a mark. Color strings can use any valid HTML color
@@ -13634,8 +13636,8 @@ maStrokeDash =
 {-| Number of pixels before the first line dash is drawn.
 -}
 maStrokeDashOffset : Float -> MarkProperty
-maStrokeDashOffset =
-    MStrokeDashOffset
+maStrokeDashOffset n =
+    MStrokeDashOffset (Num n)
 
 
 {-| A color gradient to apply to a mark's boundary stroke. The first parameter indicates
@@ -13663,22 +13665,22 @@ maStrokeJoin =
 {-| Mitre limit at which to bevel a join between line segments of a mark's stroke.
 -}
 maStrokeMiterLimit : Float -> MarkProperty
-maStrokeMiterLimit =
-    MStrokeMiterLimit
+maStrokeMiterLimit n =
+    MStrokeMiterLimit (Num n)
 
 
 {-| Stroke opacity of a mark in the range 0 to 1.
 -}
 maStrokeOpacity : Float -> MarkProperty
-maStrokeOpacity =
-    MStrokeOpacity
+maStrokeOpacity n =
+    MStrokeOpacity (Num n)
 
 
 {-| Stroke width of a mark in pixel units.
 -}
 maStrokeWidth : Float -> MarkProperty
-maStrokeWidth =
-    MStrokeWidth
+maStrokeWidth n =
+    MStrokeWidth (Num n)
 
 
 {-| Names of custom styles to apply to a mark. Each should refer to a named style
@@ -13695,8 +13697,8 @@ maStyle =
 {-| Interpolation tension used when interpolating line and area marks.
 -}
 maTension : Float -> MarkProperty
-maTension =
-    MTension
+maTension n =
+    MTension (Num n)
 
 
 {-| Placeholder text for a text mark for when a text channel is not specified.
@@ -13715,23 +13717,23 @@ length in radians or, when combined with [maTheta2](#maTheta2), the arc's start
 angle.
 -}
 maTheta : Float -> MarkProperty
-maTheta =
-    MTheta
+maTheta n =
+    MTheta (Num n)
 
 
 {-| Polar coordinate angle (clockwise from north in radians) of the end of an
 [arc mark](#arc).
 -}
 maTheta2 : Float -> MarkProperty
-maTheta2 =
-    MTheta2
+maTheta2 n =
+    MTheta2 (Num n)
 
 
 {-| Clockwise angular offset (in radians) of a radially positioned mark.
 -}
 maThetaOffset : Float -> MarkProperty
-maThetaOffset =
-    MThetaOffset
+maThetaOffset n =
+    MThetaOffset (Num n)
 
 
 {-| Clockwise angular offset (in radians) of the second theta value of a radially
@@ -13739,8 +13741,8 @@ positioned mark. Useful when the offsets to apply to the start and end angle of
 an arc need to be set independently.
 -}
 maTheta2Offset : Float -> MarkProperty
-maTheta2Offset =
-    MTheta2Offset
+maTheta2Offset n =
+    MTheta2Offset (Num n)
 
 
 {-| Thickness of a tick mark.
@@ -13767,64 +13769,64 @@ maTooltip =
 {-| Explicitly set the width of a mark (e.g. bar width)
 -}
 maWidth : Float -> MarkProperty
-maWidth =
-    MWidth
+maWidth n =
+    MWidth (Num n)
 
 
 {-| X position of a mark.
 -}
 maX : Float -> MarkProperty
-maX =
-    MX
+maX n =
+    MX (Num n)
 
 
 {-| X2 position (secondary x value for lines and areal marks).
 -}
 maX2 : Float -> MarkProperty
-maX2 =
-    MX2
+maX2 n =
+    MX2 (Num n)
 
 
 {-| X position offset for a mark.
 -}
 maXOffset : Float -> MarkProperty
-maXOffset =
-    MXOffset
+maXOffset n =
+    MXOffset (Num n)
 
 
 {-| X2 position offset for a mark.
 -}
 maX2Offset : Float -> MarkProperty
-maX2Offset =
-    MX2Offset
+maX2Offset n =
+    MX2Offset (Num n)
 
 
 {-| Y position of a mark.
 -}
 maY : Float -> MarkProperty
-maY =
-    MY
+maY n =
+    MY (Num n)
 
 
 {-| Y2 position (secondary y value for lines and areal marks).
 -}
 maY2 : Float -> MarkProperty
-maY2 =
-    MY2
+maY2 n =
+    MY2 (Num n)
 
 
 {-| Y position offset for a mark.
 -}
 maYOffset : Float -> MarkProperty
-maYOffset =
-    MYOffset
+maYOffset n =
+    MYOffset (Num n)
 
 
 {-| Y2 position offset for a mark.
 -}
 maY2Offset : Float -> MarkProperty
-maY2Offset =
-    MY2Offset
+maY2Offset n =
+    MY2Offset (Num n)
 
 
 {-| Apply offset relative to band width for a mark property. Value should be in
@@ -14366,6 +14368,149 @@ nullValue =
 num : Float -> DataValue
 num =
     Number
+
+
+{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+a mark property function requring a numeric value. This can be used to provide an
+interactive parameterisation of a mark property by providing an expression bound
+to an input element. For example,
+
+    prm =
+        params
+            [ ( "radius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
+    :
+    :
+    mk =
+        arc [ maInnerRadius |> markPropertyNumExpr "radius"]
+
+-}
+markPropertyNumExpr : String -> (number -> MarkProperty) -> MarkProperty
+markPropertyNumExpr ex fn =
+    case fn 0 of
+        -- TODO: Add expression for MAria, MTooltip, MColor, MFill, MStoke, MBlend
+        -- MStrokeCap,MStrokeDash,MStrokeJoin, MHRef, MCursor
+        -- MAlign, MBaseline, MInterpolate, MUrl, MAspect, MShape, MDir, MElipsis
+        -- MFont, MFontStyle, MFontWeight, MText
+        -- TODO: Add padAngle (currently missing entirely)
+        MWidth _ ->
+            MWidth (NumExpr ex)
+
+        MHeight _ ->
+            MHeight (NumExpr ex)
+
+        MX _ ->
+            MX (NumExpr ex)
+
+        MY _ ->
+            MY (NumExpr ex)
+
+        MX2 _ ->
+            MX2 (NumExpr ex)
+
+        MY2 _ ->
+            MY2 (NumExpr ex)
+
+        MXOffset _ ->
+            MXOffset (NumExpr ex)
+
+        MYOffset _ ->
+            MYOffset (NumExpr ex)
+
+        MX2Offset _ ->
+            MX2Offset (NumExpr ex)
+
+        MY2Offset _ ->
+            MY2Offset (NumExpr ex)
+
+        MOpacity _ ->
+            MOpacity (NumExpr ex)
+
+        MFillOpacity _ ->
+            MFillOpacity (NumExpr ex)
+
+        MStrokeOpacity _ ->
+            MStrokeOpacity (NumExpr ex)
+
+        MStrokeMiterLimit _ ->
+            MStrokeMiterLimit (NumExpr ex)
+
+        MStrokeWidth _ ->
+            MStrokeWidth (NumExpr ex)
+
+        MStrokeDashOffset _ ->
+            MStrokeDashOffset (NumExpr ex)
+
+        MRadius _ ->
+            MRadius (NumExpr ex)
+
+        MInnerRadius _ ->
+            MInnerRadius (NumExpr ex)
+
+        MOuterRadius _ ->
+            MOuterRadius (NumExpr ex)
+
+        MTheta _ ->
+            MTheta (NumExpr ex)
+
+        MTheta2 _ ->
+            MTheta2 (NumExpr ex)
+
+        MThetaOffset _ ->
+            MThetaOffset (NumExpr ex)
+
+        MTheta2Offset _ ->
+            MTheta2Offset (NumExpr ex)
+
+        MRadiusOffset _ ->
+            MRadiusOffset (NumExpr ex)
+
+        MRadius2Offset _ ->
+            MRadius2Offset (NumExpr ex)
+
+        MCornerRadius _ ->
+            MCornerRadius (NumExpr ex)
+
+        MTension _ ->
+            MTension (NumExpr ex)
+
+        MCornerRadiusEnd _ ->
+            MCornerRadiusEnd (NumExpr ex)
+
+        MCornerRadiusTL _ ->
+            MCornerRadiusTL (NumExpr ex)
+
+        MCornerRadiusTR _ ->
+            MCornerRadiusTR (NumExpr ex)
+
+        MCornerRadiusBL _ ->
+            MCornerRadiusBL (NumExpr ex)
+
+        MCornerRadiusBR _ ->
+            MCornerRadiusBR (NumExpr ex)
+
+        MSize _ ->
+            MSize (NumExpr ex)
+
+        MAngle _ ->
+            MAngle (NumExpr ex)
+
+        MdX _ ->
+            MdX (NumExpr ex)
+
+        MdY _ ->
+            MdY (NumExpr ex)
+
+        MFontSize _ ->
+            MFontSize (NumExpr ex)
+
+        MLimit _ ->
+            MLimit (NumExpr ex)
+
+        MLineHeight _ ->
+            MLineHeight (NumExpr ex)
+
+        _ ->
+            fn 0
 
 
 {-| Minimum-maximum number range to be used in data filtering.
@@ -18597,6 +18742,11 @@ yearWeekDayHoursMinutesSeconds =
 -- ################################################# Private types and functions
 
 
+type Num
+    = Num Float
+    | NumExpr String
+
+
 transpose : List (List a) -> List (List a)
 transpose xss =
     let
@@ -21305,23 +21455,23 @@ markProperty mProp =
         MColor col ->
             [ ( "color", JE.string col ) ]
 
-        MCornerRadius r ->
-            [ ( "cornerRadius", JE.float r ) ]
+        MCornerRadius n ->
+            numExpr "cornerRadius" n
 
-        MCornerRadiusEnd r ->
-            [ ( "cornerRadiusEnd", JE.float r ) ]
+        MCornerRadiusEnd n ->
+            numExpr "cornerRadiusEnd" n
 
-        MCornerRadiusBL r ->
-            [ ( "cornerRadiusBottomLeft", JE.float r ) ]
+        MCornerRadiusBL n ->
+            numExpr "cornerRadiusBottomLeft" n
 
-        MCornerRadiusBR r ->
-            [ ( "cornerRadiusBottomRight", JE.float r ) ]
+        MCornerRadiusBR n ->
+            numExpr "cornerRadiusBottomRight" n
 
-        MCornerRadiusTL r ->
-            [ ( "cornerRadiusTopLeft", JE.float r ) ]
+        MCornerRadiusTL n ->
+            numExpr "cornerRadiusTopLeft" n
 
-        MCornerRadiusTR r ->
-            [ ( "cornerRadiusTopRight", JE.float r ) ]
+        MCornerRadiusTR n ->
+            numExpr "cornerRadiusTopRight" n
 
         MCursor cur ->
             [ ( "cursor", JE.string (cursorLabel cur) ) ]
@@ -21386,20 +21536,20 @@ markProperty mProp =
         MStrokeJoin sj ->
             [ ( "strokeJoin", JE.string (strokeJoinLabel sj) ) ]
 
-        MStrokeMiterLimit ml ->
-            [ ( "strokeMiterLimit", JE.float ml ) ]
+        MStrokeMiterLimit n ->
+            numExpr "strokeMiterLimit" n
 
-        MOpacity x ->
-            [ ( "opacity", JE.float x ) ]
+        MOpacity n ->
+            numExpr "opacity" n
 
-        MFillOpacity x ->
-            [ ( "fillOpacity", JE.float x ) ]
+        MFillOpacity n ->
+            numExpr "fillOpacity" n
 
-        MStrokeOpacity x ->
-            [ ( "strokeOpacity", JE.float x ) ]
+        MStrokeOpacity n ->
+            numExpr "strokeOpacity" n
 
-        MStrokeWidth x ->
-            [ ( "strokeWidth", JE.float x ) ]
+        MStrokeWidth n ->
+            numExpr "strokeWidth" n
 
         MStrokeDash xs ->
             if xs == [] then
@@ -21408,8 +21558,8 @@ markProperty mProp =
             else
                 [ ( "strokeDash", JE.list JE.float xs ) ]
 
-        MStrokeDashOffset x ->
-            [ ( "strokeDashOffset", JE.float x ) ]
+        MStrokeDashOffset n ->
+            numExpr "strokeDashOffset" n
 
         MStyle styles ->
             [ ( "style", JE.list JE.string styles ) ]
@@ -21417,8 +21567,8 @@ markProperty mProp =
         MInterpolate interp ->
             [ ( "interpolate", JE.string (markInterpolationLabel interp) ) ]
 
-        MTension x ->
-            [ ( "tension", JE.float x ) ]
+        MTension n ->
+            numExpr "tension" n
 
         MOrient orient ->
             [ ( "orient", JE.string (markOrientationLabel orient) ) ]
@@ -21426,11 +21576,11 @@ markProperty mProp =
         MShape sym ->
             [ ( "shape", JE.string (symbolLabel sym) ) ]
 
-        MSize x ->
-            [ ( "size", JE.float x ) ]
+        MSize n ->
+            numExpr "size" n
 
-        MAngle x ->
-            [ ( "angle", JE.float x ) ]
+        MAngle n ->
+            numExpr "angle" n
 
         MAlign al ->
             [ ( "align", JE.string (hAlignLabel al) ) ]
@@ -21438,17 +21588,17 @@ markProperty mProp =
         MBaseline va ->
             [ ( "baseline", JE.string (vAlignLabel va) ) ]
 
-        MdX dx ->
-            [ ( "dx", JE.float dx ) ]
+        MdX n ->
+            numExpr "dx" n
 
-        MdY dy ->
-            [ ( "dy", JE.float dy ) ]
+        MdY n ->
+            numExpr "dy" n
 
         MFont fnt ->
             [ ( "font", JE.string fnt ) ]
 
-        MFontSize x ->
-            [ ( "fontSize", JE.float x ) ]
+        MFontSize n ->
+            numExpr "fontSize" n
 
         MFontStyle fSty ->
             [ ( "fontStyle", JE.string fSty ) ]
@@ -21456,23 +21606,23 @@ markProperty mProp =
         MFontWeight w ->
             [ ( "fontWeight", fontWeightSpec w ) ]
 
-        MRadius x ->
-            [ ( "radius", JE.float x ) ]
+        MRadius n ->
+            numExpr "radius" n
 
-        MInnerRadius x ->
-            [ ( "innerRadius", JE.float x ) ]
+        MInnerRadius n ->
+            numExpr "innerRadius" n
 
-        MOuterRadius x ->
-            [ ( "outerRadius", JE.float x ) ]
+        MOuterRadius n ->
+            numExpr "outerRadius" n
 
         MText txt ->
             [ ( "text", multilineTextSpec txt ) ]
 
-        MLineHeight x ->
-            [ ( "lineHeight", JE.float x ) ]
+        MLineHeight n ->
+            numExpr "lineHeight" n
 
-        MLimit x ->
-            [ ( "limit", JE.float x ) ]
+        MLimit n ->
+            numExpr "limit" n
 
         MEllipsis s ->
             [ ( "ellipsis", JE.string s ) ]
@@ -21480,17 +21630,17 @@ markProperty mProp =
         MDir td ->
             [ ( "dir", JE.string (textDirectionLabel td) ) ]
 
-        MTheta x ->
-            [ ( "theta", JE.float x ) ]
+        MTheta n ->
+            numExpr "theta" n
 
-        MTheta2 x ->
-            [ ( "theta2", JE.float x ) ]
+        MTheta2 n ->
+            numExpr "theta2" n
 
-        MThetaOffset x ->
-            [ ( "thetaOffset", JE.float x ) ]
+        MThetaOffset n ->
+            numExpr "thetaOffset" n
 
-        MTheta2Offset x ->
-            [ ( "theta2Offset", JE.float x ) ]
+        MTheta2Offset n ->
+            numExpr "theta2Offset" n
 
         MBinSpacing x ->
             [ ( "binSpacing", JE.float x ) ]
@@ -21561,44 +21711,44 @@ markProperty mProp =
         MLine lm ->
             [ ( "line", lineMarkerSpec lm ) ]
 
-        MWidth w ->
-            [ ( "width", JE.float w ) ]
+        MWidth n ->
+            numExpr "width" n
 
-        MHeight h ->
-            [ ( "height", JE.float h ) ]
+        MHeight n ->
+            numExpr "height" n
 
-        MX x ->
-            [ ( "x", JE.float x ) ]
+        MX n ->
+            numExpr "x" n
 
-        MY y ->
-            [ ( "y", JE.float y ) ]
+        MY n ->
+            numExpr "y" n
 
-        MX2 x ->
-            [ ( "x2", JE.float x ) ]
+        MX2 n ->
+            numExpr "x2" n
 
-        MY2 y ->
-            [ ( "y2", JE.float y ) ]
+        MY2 n ->
+            numExpr "y2" n
 
         MOrder b ->
             [ ( "order", JE.bool b ) ]
 
-        MXOffset o ->
-            [ ( "xOffset", JE.float o ) ]
+        MXOffset n ->
+            numExpr "xOffset" n
 
-        MX2Offset o ->
-            [ ( "x2Offset", JE.float o ) ]
+        MX2Offset n ->
+            numExpr "x2Offset" n
 
-        MYOffset o ->
-            [ ( "yOffset", JE.float o ) ]
+        MYOffset n ->
+            numExpr "yOffset" n
 
-        MY2Offset o ->
-            [ ( "y2Offset", JE.float o ) ]
+        MY2Offset n ->
+            numExpr "y2Offset" n
 
-        MRadiusOffset o ->
-            [ ( "radiusOffset", JE.float o ) ]
+        MRadiusOffset n ->
+            numExpr "radiusOffset" n
 
-        MRadius2Offset o ->
-            [ ( "radius2Offset", JE.float o ) ]
+        MRadius2Offset n ->
+            numExpr "radius2Offset" n
 
         MAspect b ->
             [ ( "aspect", JE.bool b ) ]
@@ -21663,6 +21813,16 @@ monthNameLabel mon =
 
         Dec ->
             "Dec"
+
+
+numExpr : String -> Num -> List ( String, Spec )
+numExpr objName n =
+    case n of
+        Num x ->
+            [ ( objName, JE.float x ) ]
+
+        NumExpr s ->
+            [ ( objName, JE.object [ ( "expr", JE.string s ) ] ) ]
 
 
 operationSpec : Operation -> Spec
