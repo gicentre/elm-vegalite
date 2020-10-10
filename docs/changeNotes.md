@@ -4,9 +4,9 @@
 
 ### Additions
 
-- `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec.
+- `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL4.16).
 
-- Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties
+- Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
 
 - Add `maPadAngle` for padding arc segments.
 
