@@ -163,6 +163,10 @@ textAlign2 =
                 , ( "fontWeight", [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold" ] ]) ] )
                 , ( "fontStyle", [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ] )
                 , ( "axisAngle", [ paExpr "0" ] )
+                , ( "cSize", [ paValue (num 100), paBind (ipRange [ inMin 0, inMax 1000, inStep 5 ]) ] )
+                , ( "strokeWidth", [ paValue (num 4), paBind (ipRange [ inMin 0, inMax 12, inStep 0.1 ]) ] )
+                , ( "fill", [ paValue (str "grey"), paBind (ipColor []) ] )
+                , ( "stroke", [ paValue (str "black"), paBind (ipColor []) ] )
                 ]
 
         data =
@@ -185,8 +189,15 @@ textAlign2 =
                     , pScale [ scDomain (doNums [ 0, 100 ]) ]
                     ]
 
-        specPoint =
-            asSpec [ point [] ]
+        specCircle =
+            asSpec
+                [ circle
+                    [ maSize |> markPropertyNumExpr "cSize"
+                    , maFill |> markPropertyStrExpr "fill"
+                    , maStroke |> markPropertyStrExpr "stroke"
+                    , maStrokeWidth |> markPropertyNumExpr "strokeWidth"
+                    ]
+                ]
 
         encText =
             encoding
@@ -205,14 +216,13 @@ textAlign2 =
                     , maBaseline (vaExpr "baseline")
                     , maFont |> markPropertyStrExpr "font"
                     , maFontSize |> markPropertyNumExpr "fontSize"
-
-                    -- , maFontStyle |> markPropertyStrExpr "fontStyle"
+                    , maFontStyle |> markPropertyStrExpr "fontStyle"
                     , maFontWeight (fwExpr "fontWeight")
                     , maLimit |> markPropertyNumExpr "limit"
                     ]
                 ]
     in
-    toVegaLite [ prm, data [], enc [], layer [ specPoint, specText ] ]
+    toVegaLite [ prm, data [], enc [], layer [ specCircle, specText ] ]
 
 
 multiline1 : Spec

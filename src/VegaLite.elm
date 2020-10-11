@@ -5101,7 +5101,7 @@ type
     | MBorders (List MarkProperty)
     | MBox (List MarkProperty)
     | MClip Bool
-    | MColor String
+    | MColor Str
     | MColorGradient ColorGradient (List GradientProperty)
     | MCornerRadius Num
     | MCornerRadiusEnd Num
@@ -5110,22 +5110,22 @@ type
     | MCornerRadiusBL Num
     | MCornerRadiusBR Num
     | MCursor Cursor
-    | MHRef String
+    | MHRef Str
     | MContinuousBandSize Float
     | MLimit Num
-    | MEllipsis String
+    | MEllipsis Str
     | MDir TextDirection
     | MDiscreteBandSize Float
     | MdX Num
     | MdY Num
     | MExtent SummaryExtent
-    | MFill String
+    | MFill Str
     | MFillGradient ColorGradient (List GradientProperty)
     | MFilled Bool
     | MFillOpacity Num
     | MFont Str
     | MFontSize Num
-    | MFontStyle String
+    | MFontStyle Str
     | MFontWeight FontWeight
     | MInnerRadius Num
     | MInterpolate MarkInterpolation
@@ -5145,7 +5145,7 @@ type
     | MShape Symbol
     | MShortTimeLabels Bool
     | MSize Num
-    | MStroke String
+    | MStroke Str
     | MStrokeGradient ColorGradient (List GradientProperty)
     | MStrokeCap StrokeCap
     | MStrokeDash (List Float)
@@ -5156,7 +5156,7 @@ type
     | MStrokeWidth Num
     | MStyle (List String)
     | MTension Num
-    | MText String
+    | MText Str
     | MTheta Num
     | MTheta2 Num
     | MThickness Float
@@ -13299,8 +13299,8 @@ HTML color specification.
 
 -}
 maColor : String -> MarkProperty
-maColor =
-    MColor
+maColor s =
+    MColor (Str s)
 
 
 {-| A color gradient to apply to a mark. The first parameter indicates whether the
@@ -13411,8 +13411,8 @@ maDy n =
 {-| Text to indicate a truncated piece of text (default is the ellipsis ...)
 -}
 maEllipsis : String -> MarkProperty
-maEllipsis =
-    MEllipsis
+maEllipsis s =
+    MEllipsis (Str s)
 
 
 {-| Extent of whiskers used in a boxplot, error bars or error bands.
@@ -13443,8 +13443,8 @@ to 'see through' a stroked mark to one underneath it in a layered specification.
 
 -}
 maFill : String -> MarkProperty
-maFill =
-    MFill
+maFill s =
+    MFill (Str s)
 
 
 {-| Whether or not a mark's color should be used as the fill color instead of
@@ -13478,8 +13478,7 @@ maFillOpacity n =
 
 
 {-| Font of a text mark. Can be any font name made accessible via a css file (or
-a generic font like `serif`, `monospace` etc.) or an expression that evaluates
-to a valid font name.
+a generic font like `serif`, `monospace` etc.).
 -}
 maFont : String -> MarkProperty
 maFont s =
@@ -13496,8 +13495,8 @@ maFontSize n =
 {-| Font style (e.g. `italic`) used by a text mark.
 -}
 maFontStyle : String -> MarkProperty
-maFontStyle =
-    MFontStyle
+maFontStyle s =
+    MFontStyle (Str s)
 
 
 {-| Font weight used by a text mark.
@@ -13526,8 +13525,8 @@ maHeight n =
 {-| Hyperlink to be associated with a mark making it a clickable hyperlink.
 -}
 maHRef : String -> MarkProperty
-maHRef =
-    MHRef
+maHRef s =
+    MHRef (Str s)
 
 
 {-| Fix the inner radius (R2) of a radial plot. Can be used for creating 'holes'
@@ -13724,8 +13723,8 @@ An empty string (`""`) indicates that no stroke around a mark be drawn.
 
 -}
 maStroke : String -> MarkProperty
-maStroke =
-    MStroke
+maStroke s =
+    MStroke (Str s)
 
 
 {-| Cap style of a mark's stroke.
@@ -13816,8 +13815,8 @@ Multi-line text can be specified by adding a `\n` at each line break or by using
 a `"""` multi-line string.
 -}
 maText : String -> MarkProperty
-maText =
-    MText
+maText s =
+    MText (Str s)
 
 
 {-| Polar coordinate angle (clockwise from north in radians) of an arc or text mark.
@@ -14487,20 +14486,16 @@ to an input element. For example,
 
     prm =
         params
-            [ ( "radius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] ) ]
+            [ ( "r", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] ) ]
     :
     :
     mk =
-        arc [ maInnerRadius |> markPropertyNumExpr "radius"]
+        arc [ maInnerRadius |> markPropertyNumExpr "r"]
 
 -}
 markPropertyNumExpr : String -> (number -> MarkProperty) -> MarkProperty
 markPropertyNumExpr ex fn =
     case fn 0 of
-        -- TODO: Add expression for MAria, MTooltip, MColor, MFill, MStoke, MBlend
-        -- MStrokeCap,MStrokeDash,MStrokeJoin, MHRef, MCursor
-        -- MInterpolate, MUrl, MAspect, MShape, MDir, MElipsis
-        -- MFont, MFontStyle, MText
         MWidth _ ->
             MWidth (NumExpr ex)
 
@@ -14632,22 +14627,42 @@ to an input element. For example,
 
     prm =
         params
-            [ ( "font", [ paValue (str "serif"), paBind (ipSelect [ inOptions [ "serif", "monospace" ] ]) ] ) ]
+            [ ( "clr", [ paValue (str "red"), paBind (ipColor []) ] ) ]
     :
     :
     mk =
-        textMark [ font |> markPropertyStrExpr "font"]
+        circle [ maFill |> markPropertyStrExpr "clr"]
 
 -}
 markPropertyStrExpr : String -> (String -> MarkProperty) -> MarkProperty
 markPropertyStrExpr ex fn =
     case fn "" of
-        -- TODO: Add expression for MAria, MTooltip, MColor, MFill, MStoke, MBlend
-        -- MStrokeCap,MStrokeDash,MStrokeJoin, MHRef, MCursor
-        --  MInterpolate, MUrl, MAspect, MShape, MDir, MElipsis
-        -- MFontStyle, MText
+        -- TODO: Add expression for MAria, MTooltip, MBlend
+        -- MStrokeCap,MStrokeDash,MStrokeJoin, MCursor
+        --  MInterpolate, MUrl, MAspect, MShape, MDir
         MFont _ ->
             MFont (StrExpr ex)
+
+        MFontStyle _ ->
+            MFontStyle (StrExpr ex)
+
+        MColor _ ->
+            MColor (StrExpr ex)
+
+        MFill _ ->
+            MFill (StrExpr ex)
+
+        MStroke _ ->
+            MStroke (StrExpr ex)
+
+        MHRef _ ->
+            MHRef (StrExpr ex)
+
+        MEllipsis _ ->
+            MEllipsis (StrExpr ex)
+
+        MText _ ->
+            MText (StrExpr ex)
 
         _ ->
             fn ""
@@ -21611,8 +21626,17 @@ markProperty mProp =
         MClip b ->
             [ ( "clip", JE.bool b ) ]
 
-        MColor col ->
-            [ ( "color", JE.string col ) ]
+        MColor s ->
+            case s of
+                Str clr ->
+                    if String.trim clr == "" then
+                        [ ( "color", JE.null ) ]
+
+                    else
+                        strExpr "color" s
+
+                _ ->
+                    strExpr "color" s
 
         MCornerRadius n ->
             numExpr "cornerRadius" n
@@ -21639,7 +21663,7 @@ markProperty mProp =
             [ ( "extent", extentSpec ext ) ]
 
         MHRef s ->
-            [ ( "href", JE.string s ) ]
+            strExpr "href" s
 
         MRemoveInvalid b ->
             if b then
@@ -21648,12 +21672,17 @@ markProperty mProp =
             else
                 [ ( "invalid", JE.null ) ]
 
-        MFill col ->
-            if String.trim col == "" then
-                [ ( "fill", JE.null ) ]
+        MFill s ->
+            case s of
+                Str clr ->
+                    if String.trim clr == "" then
+                        [ ( "fill", JE.null ) ]
 
-            else
-                [ ( "fill", JE.string col ) ]
+                    else
+                        strExpr "fill" s
+
+                _ ->
+                    strExpr "fill" s
 
         MFillGradient cGrad props ->
             [ ( "fill"
@@ -21682,12 +21711,17 @@ markProperty mProp =
               )
             ]
 
-        MStroke col ->
-            if String.trim col == "" then
-                [ ( "stroke", JE.null ) ]
+        MStroke s ->
+            case s of
+                Str clr ->
+                    if String.trim clr == "" then
+                        [ ( "stroke", JE.null ) ]
 
-            else
-                [ ( "stroke", JE.string col ) ]
+                    else
+                        strExpr "stroke" s
+
+                _ ->
+                    strExpr "stroke" s
 
         MStrokeCap sc ->
             [ ( "strokeCap", JE.string (strokeCapLabel sc) ) ]
@@ -21759,8 +21793,8 @@ markProperty mProp =
         MFontSize n ->
             numExpr "fontSize" n
 
-        MFontStyle fSty ->
-            [ ( "fontStyle", JE.string fSty ) ]
+        MFontStyle s ->
+            strExpr "fontStyle" s
 
         MFontWeight w ->
             [ ( "fontWeight", fontWeightSpec w ) ]
@@ -21777,8 +21811,8 @@ markProperty mProp =
         MPadAngle n ->
             numExpr "padAngle" n
 
-        MText txt ->
-            [ ( "text", multilineTextSpec txt ) ]
+        MText s ->
+            strExprMultiline "text" s
 
         MLineHeight n ->
             numExpr "lineHeight" n
@@ -21787,7 +21821,7 @@ markProperty mProp =
             numExpr "limit" n
 
         MEllipsis s ->
-            [ ( "ellipsis", JE.string s ) ]
+            strExpr "ellipsis" s
 
         MDir td ->
             [ ( "dir", JE.string (textDirectionLabel td) ) ]
@@ -23253,6 +23287,16 @@ strExpr objName s =
     case s of
         Str x ->
             [ ( objName, JE.string x ) ]
+
+        StrExpr x ->
+            [ ( objName, JE.object [ ( "expr", JE.string x ) ] ) ]
+
+
+strExprMultiline : String -> Str -> List ( String, Spec )
+strExprMultiline objName s =
+    case s of
+        Str x ->
+            [ ( objName, multilineTextSpec x ) ]
 
         StrExpr x ->
             [ ( objName, JE.object [ ( "expr", JE.string x ) ] ) ]

@@ -12,7 +12,7 @@
 
 - Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
 
-- Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties (VL4.16).
+- Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties, such as colours and fonts (VL4.16).
 
 - Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight) (VL4.16).
 
