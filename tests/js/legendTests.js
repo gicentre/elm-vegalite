@@ -5307,7 +5307,7 @@ var $author$project$VegaLite$extentSpec = function (ext) {
 	}
 };
 var $author$project$VegaLite$fontWeightSpec = function (w) {
-	switch (w) {
+	switch (w.$) {
 		case 3:
 			return $elm$json$Json$Encode$string('normal');
 		case 0:
@@ -5316,6 +5316,15 @@ var $author$project$VegaLite$fontWeightSpec = function (w) {
 			return $elm$json$Json$Encode$string('bolder');
 		case 2:
 			return $elm$json$Json$Encode$string('lighter');
+		case 13:
+			var s = w.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 		case 4:
 			return $elm$json$Json$Encode$float(100);
 		case 5:
@@ -5398,14 +5407,23 @@ var $author$project$VegaLite$gradientProperty = function (gp) {
 				A2($elm$json$Json$Encode$list, $author$project$VegaLite$stopSpec, grs));
 	}
 };
-var $author$project$VegaLite$hAlignLabel = function (al) {
-	switch (al) {
+var $author$project$VegaLite$hAlignSpec = function (al) {
+	switch (al.$) {
 		case 1:
-			return 'left';
+			return $elm$json$Json$Encode$string('left');
 		case 0:
-			return 'center';
+			return $elm$json$Json$Encode$string('center');
+		case 2:
+			return $elm$json$Json$Encode$string('right');
 		default:
-			return 'right';
+			var s = al.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$markInterpolationLabel = function (interp) {
@@ -5485,6 +5503,32 @@ var $author$project$VegaLite$numExpr = F2(
 				]);
 		}
 	});
+var $author$project$VegaLite$strExpr = F2(
+	function (objName, s) {
+		if (!s.$) {
+			var x = s.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$string(x))
+				]);
+		} else {
+			var x = s.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(x))
+							])))
+				]);
+		}
+	});
 var $author$project$VegaLite$strokeCapLabel = function (cap) {
 	switch (cap) {
 		case 0:
@@ -5554,20 +5598,29 @@ var $author$project$VegaLite$ttContentLabel = function (ttContent) {
 			return 'null';
 	}
 };
-var $author$project$VegaLite$vAlignLabel = function (al) {
-	switch (al) {
+var $author$project$VegaLite$vAlignSpec = function (al) {
+	switch (al.$) {
 		case 0:
-			return 'top';
+			return $elm$json$Json$Encode$string('top');
 		case 1:
-			return 'line-top';
+			return $elm$json$Json$Encode$string('line-top');
 		case 2:
-			return 'middle';
+			return $elm$json$Json$Encode$string('middle');
 		case 3:
-			return 'bottom';
+			return $elm$json$Json$Encode$string('bottom');
 		case 4:
-			return 'line-bottom';
+			return $elm$json$Json$Encode$string('line-bottom');
+		case 5:
+			return $elm$json$Json$Encode$string('alphabetic');
 		default:
-			return 'alphabetic';
+			var s = al.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$lineMarkerSpec = function (pm) {
@@ -5845,8 +5898,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'align',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(al)))
+					$author$project$VegaLite$hAlignSpec(al))
 				]);
 		case 4:
 			var va = mProp.a;
@@ -5854,8 +5906,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'baseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 25:
 			var n = mProp.a;
@@ -5864,13 +5915,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'dy', n);
 		case 32:
-			var fnt = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'font',
-					$elm$json$Json$Encode$string(fnt))
-				]);
+			var s = mProp.a;
+			return A2($author$project$VegaLite$strExpr, 'font', s);
 		case 33:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'fontSize', n);
@@ -6821,8 +6867,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'labelAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(ha)))
+					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 17:
 			var va = legendProp.a;
@@ -6830,8 +6875,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'labelBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 18:
 			var s = legendProp.a;
@@ -6996,8 +7040,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'titleAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(ha)))
+					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 40:
 			var va = legendProp.a;
@@ -7005,8 +7048,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'titleBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 41:
 			var s = legendProp.a;
@@ -8452,8 +8494,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'labelAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(ha)))
+					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 19:
 			var a = axisCfg.a;
@@ -8469,8 +8510,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'labelBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 21:
 			var mn = axisCfg.a;
@@ -8727,8 +8767,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'titleAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(al)))
+					$author$project$VegaLite$hAlignSpec(al))
 				]);
 		case 52:
 			var a = axisCfg.a;
@@ -8753,8 +8792,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'titleBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 54:
 			var c = axisCfg.a;
@@ -9319,8 +9357,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'labelAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(ha)))
+					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 22:
 			var va = axisProp.a;
@@ -9328,8 +9365,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'labelBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 23:
 			var mn = axisProp.a;
@@ -9754,8 +9790,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'titleAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(al)))
+					$author$project$VegaLite$hAlignSpec(al))
 				]);
 		case 55:
 			var a = axisProp.a;
@@ -9780,8 +9815,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'titleBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 57:
 			var s = axisProp.a;
@@ -9925,8 +9959,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var ha = hProp.a;
 			return _Utils_Tuple2(
 				'labelAlign',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$hAlignLabel(ha)));
+				$author$project$VegaLite$hAlignSpec(ha));
 		case 6:
 			var a = hProp.a;
 			return _Utils_Tuple2(
@@ -9942,8 +9975,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var va = hProp.a;
 			return _Utils_Tuple2(
 				'labelBaseline',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$vAlignLabel(va)));
+				$author$project$VegaLite$vAlignSpec(va));
 		case 9:
 			var s = hProp.a;
 			return _Utils_Tuple2(
@@ -10025,8 +10057,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var ha = hProp.a;
 			return _Utils_Tuple2(
 				'titleAlign',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$hAlignLabel(ha)));
+				$author$project$VegaLite$hAlignSpec(ha));
 		case 23:
 			var x = hProp.a;
 			return _Utils_Tuple2(
@@ -10036,8 +10067,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var va = hProp.a;
 			return _Utils_Tuple2(
 				'titleBaseline',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$vAlignLabel(va)));
+				$author$project$VegaLite$vAlignSpec(va));
 		case 25:
 			var s = hProp.a;
 			return _Utils_Tuple2(
@@ -10222,8 +10252,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'gradientLabelBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 11:
 			var x = legendConfig.a;
@@ -10288,8 +10317,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'labelAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(ha)))
+					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 18:
 			var va = legendConfig.a;
@@ -10297,8 +10325,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'labelBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 19:
 			var s = legendConfig.a;
@@ -10452,8 +10479,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'titleAlign',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$hAlignLabel(ha)))
+					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 44:
 			var va = legendConfig.a;
@@ -10461,8 +10487,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'titleBaseline',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$vAlignLabel(va)))
+					$author$project$VegaLite$vAlignSpec(va))
 				]);
 		case 45:
 			var s = legendConfig.a;
@@ -11520,8 +11545,7 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 			var va = titleCfg.a;
 			return _Utils_Tuple2(
 				'baseline',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$vAlignLabel(va)));
+				$author$project$VegaLite$vAlignSpec(va));
 		case 3:
 			var clr = titleCfg.a;
 			return _Utils_Tuple2(
@@ -13023,8 +13047,8 @@ var $author$project$LegendTests$legendCore = function (legProps) {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 };
-var $author$project$VegaLite$AlignLineTop = 1;
-var $author$project$VegaLite$vaLineTop = 1;
+var $author$project$VegaLite$VAlignLineTop = {$: 1};
+var $author$project$VegaLite$vaLineTop = $author$project$VegaLite$VAlignLineTop;
 var $author$project$LegendTests$legend12 = $author$project$LegendTests$legendCore(
 	_List_fromArray(
 		[
