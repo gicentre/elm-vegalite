@@ -2,6 +2,10 @@
 
 ## Pending changes
 
+### TODO
+
+Add mark property expression functions for `MAria`, `MTooltip`, `MBlend`, `MStrokeCap`, `MStrokeDash`, `MStrokeJoin`, `MCursor`, `MInterpolate`, `MUrl`, `MAspect`, `MShape` and `MDir`.
+
 ### V4.0 Breaking Changes
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
@@ -14,7 +18,7 @@
 
 - Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties, such as colours and fonts (VL4.16).
 
-- Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight) (VL4.16).
+- Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode) (VL4.16).
 
 - Add `maPadAngle` for padding arc segments.
 

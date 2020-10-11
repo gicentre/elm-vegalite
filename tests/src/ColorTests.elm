@@ -338,6 +338,85 @@ blend1 =
         ]
 
 
+blend2 : Spec
+blend2 =
+    let
+        prm =
+            params
+                [ ( "blendMode"
+                  , [ paValue (str "normal")
+                    , paBind
+                        (ipSelect
+                            [ inOptions
+                                [ "normal"
+                                , "multiply"
+                                , "screen"
+                                , "overlay"
+                                , "darken"
+                                , "lighten"
+                                , "color-dodge"
+                                , "color-burn"
+                                , "hard-light"
+                                , "soft-light"
+                                , "difference"
+                                , "exclusion"
+                                , "hue"
+                                , "saturation"
+                                , "color"
+                                , "luminosity"
+                                ]
+                            ]
+                        )
+                    ]
+                  )
+                ]
+
+        blendData =
+            dataFromColumns []
+                << dataColumn "x1" (nums [ 1 ])
+                << dataColumn "y1" (nums [ 2 ])
+                << dataColumn "x1" (nums [ 2 ])
+                << dataColumn "y1" (nums [ 1 ])
+
+        enc1 =
+            encoding
+                << position X [ pName "x1", pAxis [] ]
+                << position Y [ pName "y1", pAxis [] ]
+
+        enc2 =
+            encoding
+                << position X [ pName "x2", pAxis [] ]
+                << position Y [ pName "y2", pAxis [] ]
+
+        spec1 =
+            asSpec
+                [ enc1 []
+                , square
+                    [ maSize 90000
+                    , maFillGradient grLinear [ grStops [ ( 0, "red" ), ( 1, "white" ) ] ]
+                    ]
+                ]
+
+        spec2 =
+            asSpec
+                [ enc2 []
+                , square
+                    [ maSize 90000
+                    , maFillGradient grLinear [ grStops [ ( 0, "blue" ), ( 1, "green" ) ] ]
+                    , maBlend (bmExpr "blendMode")
+                    ]
+                ]
+    in
+    toVegaLite
+        [ width 200
+        , height 200
+        , background "rgb(252,246,229)"
+        , prm
+        , blendData []
+        , layer [ spec1, spec2 ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -373,6 +452,7 @@ specs =
     , ( "gamma4", gamma4 )
     , ( "gamma5", gamma5 )
     , ( "blend1", blend1 )
+    , ( "blend2", blend2 )
     ]
 
 
