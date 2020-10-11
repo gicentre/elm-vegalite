@@ -5175,7 +5175,7 @@ var $author$project$VegaLite$ariaProperty = function (arProp) {
 	}
 };
 var $author$project$VegaLite$blendModeSpec = function (bm) {
-	switch (bm) {
+	switch (bm.$) {
 		case 0:
 			return $elm$json$Json$Encode$null;
 		case 1:
@@ -5206,8 +5206,17 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 			return $elm$json$Json$Encode$string('saturation');
 		case 14:
 			return $elm$json$Json$Encode$string('color');
-		default:
+		case 15:
 			return $elm$json$Json$Encode$string('luminosity');
+		default:
+			var s = bm.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$colorGradientLabel = function (gr) {

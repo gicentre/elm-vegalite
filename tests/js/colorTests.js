@@ -5189,38 +5189,38 @@ var $author$project$VegaLite$Ticks = function (a) {
 	return {$: 38, a: a};
 };
 var $author$project$VegaLite$axcoTicks = $author$project$VegaLite$Ticks;
-var $author$project$VegaLite$BMColor = 14;
-var $author$project$VegaLite$bmColor = 14;
-var $author$project$VegaLite$BMColorBurn = 7;
-var $author$project$VegaLite$bmColorBurn = 7;
-var $author$project$VegaLite$BMColorDodge = 6;
-var $author$project$VegaLite$bmColorDodge = 6;
-var $author$project$VegaLite$BMDarken = 4;
-var $author$project$VegaLite$bmDarken = 4;
-var $author$project$VegaLite$BMDifference = 10;
-var $author$project$VegaLite$bmDifference = 10;
-var $author$project$VegaLite$BMExclusion = 11;
-var $author$project$VegaLite$bmExclusion = 11;
-var $author$project$VegaLite$BMHardLight = 8;
-var $author$project$VegaLite$bmHardLight = 8;
-var $author$project$VegaLite$BMHue = 12;
-var $author$project$VegaLite$bmHue = 12;
-var $author$project$VegaLite$BMLighten = 5;
-var $author$project$VegaLite$bmLighten = 5;
-var $author$project$VegaLite$BMLuminosity = 15;
-var $author$project$VegaLite$bmLuminosity = 15;
-var $author$project$VegaLite$BMMultiply = 1;
-var $author$project$VegaLite$bmMultiply = 1;
-var $author$project$VegaLite$BMNormal = 0;
-var $author$project$VegaLite$bmNormal = 0;
-var $author$project$VegaLite$BMOverlay = 3;
-var $author$project$VegaLite$bmOverlay = 3;
-var $author$project$VegaLite$BMSaturation = 13;
-var $author$project$VegaLite$bmSaturation = 13;
-var $author$project$VegaLite$BMScreen = 2;
-var $author$project$VegaLite$bmScreen = 2;
-var $author$project$VegaLite$BMSoftLight = 9;
-var $author$project$VegaLite$bmSoftLight = 9;
+var $author$project$VegaLite$BMColor = {$: 14};
+var $author$project$VegaLite$bmColor = $author$project$VegaLite$BMColor;
+var $author$project$VegaLite$BMColorBurn = {$: 7};
+var $author$project$VegaLite$bmColorBurn = $author$project$VegaLite$BMColorBurn;
+var $author$project$VegaLite$BMColorDodge = {$: 6};
+var $author$project$VegaLite$bmColorDodge = $author$project$VegaLite$BMColorDodge;
+var $author$project$VegaLite$BMDarken = {$: 4};
+var $author$project$VegaLite$bmDarken = $author$project$VegaLite$BMDarken;
+var $author$project$VegaLite$BMDifference = {$: 10};
+var $author$project$VegaLite$bmDifference = $author$project$VegaLite$BMDifference;
+var $author$project$VegaLite$BMExclusion = {$: 11};
+var $author$project$VegaLite$bmExclusion = $author$project$VegaLite$BMExclusion;
+var $author$project$VegaLite$BMHardLight = {$: 8};
+var $author$project$VegaLite$bmHardLight = $author$project$VegaLite$BMHardLight;
+var $author$project$VegaLite$BMHue = {$: 12};
+var $author$project$VegaLite$bmHue = $author$project$VegaLite$BMHue;
+var $author$project$VegaLite$BMLighten = {$: 5};
+var $author$project$VegaLite$bmLighten = $author$project$VegaLite$BMLighten;
+var $author$project$VegaLite$BMLuminosity = {$: 15};
+var $author$project$VegaLite$bmLuminosity = $author$project$VegaLite$BMLuminosity;
+var $author$project$VegaLite$BMMultiply = {$: 1};
+var $author$project$VegaLite$bmMultiply = $author$project$VegaLite$BMMultiply;
+var $author$project$VegaLite$BMNormal = {$: 0};
+var $author$project$VegaLite$bmNormal = $author$project$VegaLite$BMNormal;
+var $author$project$VegaLite$BMOverlay = {$: 3};
+var $author$project$VegaLite$bmOverlay = $author$project$VegaLite$BMOverlay;
+var $author$project$VegaLite$BMSaturation = {$: 13};
+var $author$project$VegaLite$bmSaturation = $author$project$VegaLite$BMSaturation;
+var $author$project$VegaLite$BMScreen = {$: 2};
+var $author$project$VegaLite$bmScreen = $author$project$VegaLite$BMScreen;
+var $author$project$VegaLite$BMSoftLight = {$: 9};
+var $author$project$VegaLite$bmSoftLight = $author$project$VegaLite$BMSoftLight;
 var $author$project$VegaLite$AxBoth = 0;
 var $author$project$VegaLite$Axis = F2(
 	function (a, b) {
@@ -9731,7 +9731,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 };
 var $author$project$VegaLite$TTNone = 2;
 var $author$project$VegaLite$blendModeSpec = function (bm) {
-	switch (bm) {
+	switch (bm.$) {
 		case 0:
 			return $elm$json$Json$Encode$null;
 		case 1:
@@ -9762,8 +9762,17 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 			return $elm$json$Json$Encode$string('saturation');
 		case 14:
 			return $elm$json$Json$Encode$string('color');
-		default:
+		case 15:
 			return $elm$json$Json$Encode$string('luminosity');
+		default:
+			var s = bm.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$colorGradientLabel = function (gr) {
@@ -13317,6 +13326,358 @@ var $author$project$ColorTests$blend1 = function () {
 				$author$project$VegaLite$vConcat(layers)
 			]));
 }();
+var $author$project$VegaLite$VLBackground = 10;
+var $author$project$VegaLite$background = function (colour) {
+	return _Utils_Tuple2(
+		10,
+		$elm$json$Json$Encode$string(colour));
+};
+var $author$project$VegaLite$BMExpr = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$bmExpr = $author$project$VegaLite$BMExpr;
+var $author$project$VegaLite$VLHeight = 5;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		5,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$InOptions = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
+var $author$project$VegaLite$IPSelect = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$PAxis = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
+var $author$project$VegaLite$PBind = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
+var $author$project$VegaLite$PValue = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
+var $author$project$VegaLite$VLParams = 1;
+var $author$project$VegaLite$pBindingProperties = function (bnd) {
+	switch (bnd.$) {
+		case 0:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('range')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 1:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('checkbox')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 2:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('radio')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 3:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('select')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 4:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('text')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 5:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('number')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 6:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('date')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 7:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('time')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 8:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('month')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 9:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('week')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 10:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('datetimelocal')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 11:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('tel')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		default:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('color')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+	}
+};
+var $author$project$VegaLite$paramProperty = function (pp) {
+	switch (pp.$) {
+		case 0:
+			var binds = pp.a;
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					$author$project$VegaLite$pBindingProperties(binds)));
+		case 1:
+			var s = pp.a;
+			return _Utils_Tuple2(
+				'description',
+				$elm$json$Json$Encode$string(s));
+		case 2:
+			var s = pp.a;
+			return _Utils_Tuple2(
+				'expr',
+				$elm$json$Json$Encode$string(s));
+		default:
+			var d = pp.a;
+			return _Utils_Tuple2(
+				'value',
+				$author$project$VegaLite$dataValueSpec(d));
+	}
+};
+var $author$project$VegaLite$params = function (namedParams) {
+	var paramObj = function (_v0) {
+		var paramName = _v0.a;
+		var pps = _v0.b;
+		return $elm$json$Json$Encode$object(
+			A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'name',
+					$elm$json$Json$Encode$string(paramName)),
+				A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps)));
+	};
+	return _Utils_Tuple2(
+		1,
+		A2($elm$json$Json$Encode$list, paramObj, namedParams));
+};
+var $author$project$VegaLite$Square = 13;
+var $author$project$VegaLite$square = $author$project$VegaLite$mark(13);
+var $author$project$VegaLite$DStr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$str = $author$project$VegaLite$DStr;
+var $author$project$VegaLite$VLWidth = 4;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$ColorTests$blend2 = function () {
+	var prm = $author$project$VegaLite$params(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				'blendMode',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$str('normal')),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipSelect(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inOptions(
+									_List_fromArray(
+										['normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten', 'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity']))
+								])))
+					]))
+			]));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x2'),
+						$author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y2'),
+					$author$project$VegaLite$pAxis(_List_Nil)
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc2(_List_Nil),
+				$author$project$VegaLite$square(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(90000),
+						A2(
+						$author$project$VegaLite$maFillGradient,
+						$author$project$VegaLite$grLinear,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$grStops(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(0, 'blue'),
+										_Utils_Tuple2(1, 'green')
+									]))
+							])),
+						$author$project$VegaLite$maBlend(
+						$author$project$VegaLite$bmExpr('blendMode'))
+					]))
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x1'),
+						$author$project$VegaLite$pAxis(_List_Nil)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y1'),
+					$author$project$VegaLite$pAxis(_List_Nil)
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc1(_List_Nil),
+				$author$project$VegaLite$square(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(90000),
+						A2(
+						$author$project$VegaLite$maFillGradient,
+						$author$project$VegaLite$grLinear,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$grStops(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(0, 'red'),
+										_Utils_Tuple2(1, 'white')
+									]))
+							]))
+					]))
+			]));
+	var blendData = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$dataFromColumns(_List_Nil),
+					A2(
+						$author$project$VegaLite$dataColumn,
+						'x1',
+						$author$project$VegaLite$nums(
+							_List_fromArray(
+								[1])))),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'y1',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[2])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'x1',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[2])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'y1',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[1]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(200),
+				$author$project$VegaLite$height(200),
+				$author$project$VegaLite$background('rgb(252,246,229)'),
+				prm,
+				blendData(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
 var $author$project$VegaLite$calculateAs = F2(
 	function (ex, label) {
 		return $elm$core$List$cons(
@@ -14047,7 +14408,8 @@ var $author$project$ColorTests$specs = _List_fromArray(
 		_Utils_Tuple2('gamma3', $author$project$ColorTests$gamma3),
 		_Utils_Tuple2('gamma4', $author$project$ColorTests$gamma4),
 		_Utils_Tuple2('gamma5', $author$project$ColorTests$gamma5),
-		_Utils_Tuple2('blend1', $author$project$ColorTests$blend1)
+		_Utils_Tuple2('blend1', $author$project$ColorTests$blend1),
+		_Utils_Tuple2('blend2', $author$project$ColorTests$blend2)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

@@ -2924,8 +2924,21 @@ var $author$project$VegaLite$ariaProperty = function (arProp) {
 	}
 };
 var $elm$json$Json$Encode$null = _Json_encodeNull;
+var $elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v0, obj) {
+					var k = _v0.a;
+					var v = _v0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(0),
+			pairs));
+};
 var $author$project$VegaLite$blendModeSpec = function (bm) {
-	switch (bm) {
+	switch (bm.$) {
 		case 0:
 			return $elm$json$Json$Encode$null;
 		case 1:
@@ -2956,8 +2969,17 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 			return $elm$json$Json$Encode$string('saturation');
 		case 14:
 			return $elm$json$Json$Encode$string('color');
-		default:
+		case 15:
 			return $elm$json$Json$Encode$string('luminosity');
+		default:
+			var s = bm.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$colorGradientLabel = function (gr) {
@@ -3060,19 +3082,6 @@ var $author$project$VegaLite$extentSpec = function (ext) {
 			var sc = ext.a;
 			return $elm$json$Json$Encode$float(sc);
 	}
-};
-var $elm$json$Json$Encode$object = function (pairs) {
-	return _Json_wrap(
-		A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v0, obj) {
-					var k = _v0.a;
-					var v = _v0.b;
-					return A3(_Json_addField, k, v, obj);
-				}),
-			_Json_emptyObject(0),
-			pairs));
 };
 var $author$project$VegaLite$fontWeightSpec = function (w) {
 	switch (w.$) {
