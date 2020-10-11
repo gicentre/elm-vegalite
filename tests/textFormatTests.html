@@ -45,7 +45,7 @@
         truncated from left to right with [] replacing ellipsis, legend as date
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Facet header formatting</h2>
 
@@ -55,7 +55,7 @@
         Formatting facet headers as dates.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Text alignment</h2>
 
@@ -66,7 +66,15 @@
         glyphs); x-axis labels aligned to top of 40 pixel line height.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="textAlign2"></div>
+      <figcaption>
+        Interactive control of text alignment and positioning.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Multiline text</h2>
 
@@ -76,7 +84,7 @@
         Multi-line labels (currently data from fields cannot be multi-line)
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Custom formatter</h2>
 
@@ -87,19 +95,19 @@
         formatting if no formatter has been registered in this document).
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.TextFormatTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
