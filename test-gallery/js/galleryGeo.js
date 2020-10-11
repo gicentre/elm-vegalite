@@ -7625,6 +7625,32 @@ var $author$project$VegaLite$strExpr = F2(
 				]);
 		}
 	});
+var $author$project$VegaLite$strExprMultiline = F2(
+	function (objName, s) {
+		if (!s.$) {
+			var x = s.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$author$project$VegaLite$multilineTextSpec(x))
+				]);
+		} else {
+			var x = s.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(x))
+							])))
+				]);
+		}
+	});
 var $author$project$VegaLite$strokeJoinLabel = function (jn) {
 	switch (jn) {
 		case 0:
@@ -7699,13 +7725,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					$elm$json$Json$Encode$bool(b))
 				]);
 		case 10:
-			var col = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'color',
-					$elm$json$Json$Encode$string(col))
-				]);
+			var s = mProp.a;
+			if (!s.$) {
+				var clr = s.a;
+				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+					[
+						_Utils_Tuple2('color', $elm$json$Json$Encode$null)
+					]) : A2($author$project$VegaLite$strExpr, 'color', s);
+			} else {
+				return A2($author$project$VegaLite$strExpr, 'color', s);
+			}
 		case 12:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'cornerRadius', n);
@@ -7743,12 +7772,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 19:
 			var s = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'href',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 49:
 			var b = mProp.a;
 			return b ? _List_fromArray(
@@ -7761,16 +7785,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
 				]);
 		case 28:
-			var col = mProp.a;
-			return ($elm$core$String$trim(col) === '') ? _List_fromArray(
-				[
-					_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'fill',
-					$elm$json$Json$Encode$string(col))
-				]);
+			var s = mProp.a;
+			if (!s.$) {
+				var clr = s.a;
+				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+					[
+						_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
+					]) : A2($author$project$VegaLite$strExpr, 'fill', s);
+			} else {
+				return A2($author$project$VegaLite$strExpr, 'fill', s);
+			}
 		case 29:
 			var cGrad = mProp.a;
 			var props = mProp.b;
@@ -7820,16 +7844,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 							A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))))
 				]);
 		case 54:
-			var col = mProp.a;
-			return ($elm$core$String$trim(col) === '') ? _List_fromArray(
-				[
-					_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'stroke',
-					$elm$json$Json$Encode$string(col))
-				]);
+			var s = mProp.a;
+			if (!s.$) {
+				var clr = s.a;
+				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+					[
+						_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
+					]) : A2($author$project$VegaLite$strExpr, 'stroke', s);
+			} else {
+				return A2($author$project$VegaLite$strExpr, 'stroke', s);
+			}
 		case 56:
 			var sc = mProp.a;
 			return _List_fromArray(
@@ -7950,13 +7974,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'fontSize', n);
 		case 34:
-			var fSty = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'fontStyle',
-					$elm$json$Json$Encode$string(fSty))
-				]);
+			var s = mProp.a;
+			return A2($author$project$VegaLite$strExpr, 'fontStyle', s);
 		case 35:
 			var w = mProp.a;
 			return _List_fromArray(
@@ -7978,13 +7997,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'padAngle', n);
 		case 65:
-			var txt = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'text',
-					$author$project$VegaLite$multilineTextSpec(txt))
-				]);
+			var s = mProp.a;
+			return A2($author$project$VegaLite$strExprMultiline, 'text', s);
 		case 39:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'lineHeight', n);
@@ -7993,12 +8007,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$numExpr, 'limit', n);
 		case 22:
 			var s = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'ellipsis',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'ellipsis', s);
 		case 23:
 			var td = mProp.a;
 			return _List_fromArray(
@@ -11075,7 +11084,13 @@ var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
 var $author$project$VegaLite$MColor = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$maColor = $author$project$VegaLite$MColor;
+var $author$project$VegaLite$Str = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$maColor = function (s) {
+	return $author$project$VegaLite$MColor(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
 var $author$project$VegaLite$DStr = function (a) {
@@ -12325,7 +12340,10 @@ var $author$project$VegaLite$maOpacity = function (n) {
 var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 54, a: a};
 };
-var $author$project$VegaLite$maStroke = $author$project$VegaLite$MStroke;
+var $author$project$VegaLite$maStroke = function (s) {
+	return $author$project$VegaLite$MStroke(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 62, a: a};
 };

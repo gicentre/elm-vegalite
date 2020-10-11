@@ -5467,20 +5467,6 @@ var $author$project$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
-var $author$project$VegaLite$multilineTextSpec = function (tText) {
-	var _v0 = A2($elm$core$String$split, '\n', tText);
-	if (!_v0.b) {
-		return $elm$json$Json$Encode$string('');
-	} else {
-		if (!_v0.b.b) {
-			var s = _v0.a;
-			return $elm$json$Json$Encode$string(s);
-		} else {
-			var ss = _v0;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-		}
-	}
-};
 var $author$project$VegaLite$numExpr = F2(
 	function (objName, n) {
 		if (!n.$) {
@@ -5516,6 +5502,46 @@ var $author$project$VegaLite$strExpr = F2(
 					_Utils_Tuple2(
 					objName,
 					$elm$json$Json$Encode$string(x))
+				]);
+		} else {
+			var x = s.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(x))
+							])))
+				]);
+		}
+	});
+var $author$project$VegaLite$multilineTextSpec = function (tText) {
+	var _v0 = A2($elm$core$String$split, '\n', tText);
+	if (!_v0.b) {
+		return $elm$json$Json$Encode$string('');
+	} else {
+		if (!_v0.b.b) {
+			var s = _v0.a;
+			return $elm$json$Json$Encode$string(s);
+		} else {
+			var ss = _v0;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+		}
+	}
+};
+var $author$project$VegaLite$strExprMultiline = F2(
+	function (objName, s) {
+		if (!s.$) {
+			var x = s.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$author$project$VegaLite$multilineTextSpec(x))
 				]);
 		} else {
 			var x = s.a;
@@ -5674,13 +5700,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					$elm$json$Json$Encode$bool(b))
 				]);
 		case 10:
-			var col = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'color',
-					$elm$json$Json$Encode$string(col))
-				]);
+			var s = mProp.a;
+			if (!s.$) {
+				var clr = s.a;
+				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+					[
+						_Utils_Tuple2('color', $elm$json$Json$Encode$null)
+					]) : A2($author$project$VegaLite$strExpr, 'color', s);
+			} else {
+				return A2($author$project$VegaLite$strExpr, 'color', s);
+			}
 		case 12:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'cornerRadius', n);
@@ -5718,12 +5747,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 19:
 			var s = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'href',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 49:
 			var b = mProp.a;
 			return b ? _List_fromArray(
@@ -5736,16 +5760,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
 				]);
 		case 28:
-			var col = mProp.a;
-			return ($elm$core$String$trim(col) === '') ? _List_fromArray(
-				[
-					_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'fill',
-					$elm$json$Json$Encode$string(col))
-				]);
+			var s = mProp.a;
+			if (!s.$) {
+				var clr = s.a;
+				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+					[
+						_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
+					]) : A2($author$project$VegaLite$strExpr, 'fill', s);
+			} else {
+				return A2($author$project$VegaLite$strExpr, 'fill', s);
+			}
 		case 29:
 			var cGrad = mProp.a;
 			var props = mProp.b;
@@ -5795,16 +5819,16 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 							A2($elm$core$List$map, $author$project$VegaLite$gradientProperty, props))))
 				]);
 		case 54:
-			var col = mProp.a;
-			return ($elm$core$String$trim(col) === '') ? _List_fromArray(
-				[
-					_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'stroke',
-					$elm$json$Json$Encode$string(col))
-				]);
+			var s = mProp.a;
+			if (!s.$) {
+				var clr = s.a;
+				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+					[
+						_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
+					]) : A2($author$project$VegaLite$strExpr, 'stroke', s);
+			} else {
+				return A2($author$project$VegaLite$strExpr, 'stroke', s);
+			}
 		case 56:
 			var sc = mProp.a;
 			return _List_fromArray(
@@ -5925,13 +5949,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'fontSize', n);
 		case 34:
-			var fSty = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'fontStyle',
-					$elm$json$Json$Encode$string(fSty))
-				]);
+			var s = mProp.a;
+			return A2($author$project$VegaLite$strExpr, 'fontStyle', s);
 		case 35:
 			var w = mProp.a;
 			return _List_fromArray(
@@ -5953,13 +5972,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'padAngle', n);
 		case 65:
-			var txt = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'text',
-					$author$project$VegaLite$multilineTextSpec(txt))
-				]);
+			var s = mProp.a;
+			return A2($author$project$VegaLite$strExprMultiline, 'text', s);
 		case 39:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'lineHeight', n);
@@ -5968,12 +5982,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$numExpr, 'limit', n);
 		case 22:
 			var s = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'ellipsis',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'ellipsis', s);
 		case 23:
 			var td = mProp.a;
 			return _List_fromArray(
@@ -13856,6 +13865,8 @@ var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$axLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$AxLabelAngle, $author$project$VegaLite$positiveAngle);
+var $author$project$VegaLite$Circle = 6;
+var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$FWExpr = function (a) {
 	return {$: 13, a: a};
 };
@@ -13880,6 +13891,10 @@ var $author$project$VegaLite$InStep = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$inStep = $author$project$VegaLite$InStep;
+var $author$project$VegaLite$IPColor = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$ipColor = $author$project$VegaLite$IPColor;
 var $author$project$VegaLite$IPRange = function (a) {
 	return {$: 0, a: a};
 };
@@ -13914,14 +13929,28 @@ var $author$project$VegaLite$maDy = function (n) {
 	return $author$project$VegaLite$MdY(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$MFont = function (a) {
-	return {$: 32, a: a};
+var $author$project$VegaLite$MFill = function (a) {
+	return {$: 28, a: a};
 };
 var $author$project$VegaLite$Str = function (a) {
 	return {$: 0, a: a};
 };
+var $author$project$VegaLite$maFill = function (s) {
+	return $author$project$VegaLite$MFill(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MFont = function (a) {
+	return {$: 32, a: a};
+};
 var $author$project$VegaLite$maFont = function (s) {
 	return $author$project$VegaLite$MFont(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MFontStyle = function (a) {
+	return {$: 34, a: a};
+};
+var $author$project$VegaLite$maFontStyle = function (s) {
+	return $author$project$VegaLite$MFontStyle(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$MFontWeight = function (a) {
@@ -13933,6 +13962,27 @@ var $author$project$VegaLite$MLimit = function (a) {
 };
 var $author$project$VegaLite$maLimit = function (n) {
 	return $author$project$VegaLite$MLimit(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$maSize = function (n) {
+	return $author$project$VegaLite$MSize(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 54, a: a};
+};
+var $author$project$VegaLite$maStroke = function (s) {
+	return $author$project$VegaLite$MStroke(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 62, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = function (n) {
+	return $author$project$VegaLite$MStrokeWidth(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$MXOffset = function (a) {
@@ -13994,9 +14044,6 @@ var $author$project$VegaLite$MRadius2Offset = function (a) {
 var $author$project$VegaLite$MRadiusOffset = function (a) {
 	return {$: 83, a: a};
 };
-var $author$project$VegaLite$MSize = function (a) {
-	return {$: 53, a: a};
-};
 var $author$project$VegaLite$MStrokeDashOffset = function (a) {
 	return {$: 58, a: a};
 };
@@ -14005,9 +14052,6 @@ var $author$project$VegaLite$MStrokeMiterLimit = function (a) {
 };
 var $author$project$VegaLite$MStrokeOpacity = function (a) {
 	return {$: 61, a: a};
-};
-var $author$project$VegaLite$MStrokeWidth = function (a) {
-	return {$: 62, a: a};
 };
 var $author$project$VegaLite$MTension = function (a) {
 	return {$: 64, a: a};
@@ -14176,17 +14220,51 @@ var $author$project$VegaLite$markPropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$MColor = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$MEllipsis = function (a) {
+	return {$: 22, a: a};
+};
+var $author$project$VegaLite$MHRef = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$MText = function (a) {
+	return {$: 65, a: a};
+};
 var $author$project$VegaLite$StrExpr = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$markPropertyStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
-		if (_v0.$ === 32) {
-			return $author$project$VegaLite$MFont(
-				$author$project$VegaLite$StrExpr(ex));
-		} else {
-			return fn('');
+		switch (_v0.$) {
+			case 32:
+				return $author$project$VegaLite$MFont(
+					$author$project$VegaLite$StrExpr(ex));
+			case 34:
+				return $author$project$VegaLite$MFontStyle(
+					$author$project$VegaLite$StrExpr(ex));
+			case 10:
+				return $author$project$VegaLite$MColor(
+					$author$project$VegaLite$StrExpr(ex));
+			case 28:
+				return $author$project$VegaLite$MFill(
+					$author$project$VegaLite$StrExpr(ex));
+			case 54:
+				return $author$project$VegaLite$MStroke(
+					$author$project$VegaLite$StrExpr(ex));
+			case 19:
+				return $author$project$VegaLite$MHRef(
+					$author$project$VegaLite$StrExpr(ex));
+			case 22:
+				return $author$project$VegaLite$MEllipsis(
+					$author$project$VegaLite$StrExpr(ex));
+			case 65:
+				return $author$project$VegaLite$MText(
+					$author$project$VegaLite$StrExpr(ex));
+			default:
+				return fn('');
 		}
 	});
 var $elm$core$Basics$negate = function (n) {
@@ -14358,8 +14436,6 @@ var $author$project$VegaLite$params = function (namedParams) {
 		1,
 		A2($elm$json$Json$Encode$list, paramObj, namedParams));
 };
-var $author$project$VegaLite$Point = 10;
-var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$DStr = function (a) {
 	return {$: 3, a: a};
 };
@@ -14369,10 +14445,17 @@ var $author$project$VegaLite$VAlignExpr = function (a) {
 };
 var $author$project$VegaLite$vaExpr = $author$project$VegaLite$VAlignExpr;
 var $author$project$TextFormatTests$textAlign2 = function () {
-	var specPoint = $author$project$VegaLite$asSpec(
+	var specCircle = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$point(_List_Nil)
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						A2($author$project$VegaLite$markPropertyNumExpr, 'cSize', $author$project$VegaLite$maSize),
+						A2($author$project$VegaLite$markPropertyStrExpr, 'fill', $author$project$VegaLite$maFill),
+						A2($author$project$VegaLite$markPropertyStrExpr, 'stroke', $author$project$VegaLite$maStroke),
+						A2($author$project$VegaLite$markPropertyNumExpr, 'strokeWidth', $author$project$VegaLite$maStrokeWidth)
+					]))
 			]));
 	var prm = $author$project$VegaLite$params(
 		_List_fromArray(
@@ -14562,6 +14645,54 @@ var $author$project$TextFormatTests$textAlign2 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paExpr('0')
+					])),
+				_Utils_Tuple2(
+				'cSize',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(100)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(0),
+									$author$project$VegaLite$inMax(1000),
+									$author$project$VegaLite$inStep(5)
+								])))
+					])),
+				_Utils_Tuple2(
+				'strokeWidth',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(4)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(0),
+									$author$project$VegaLite$inMax(12),
+									$author$project$VegaLite$inStep(0.1)
+								])))
+					])),
+				_Utils_Tuple2(
+				'fill',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$str('grey')),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipColor(_List_Nil))
+					])),
+				_Utils_Tuple2(
+				'stroke',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$str('black')),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipColor(_List_Nil))
 					]))
 			]));
 	var encText = A2(
@@ -14590,6 +14721,7 @@ var $author$project$TextFormatTests$textAlign2 = function () {
 						$author$project$VegaLite$vaExpr('baseline')),
 						A2($author$project$VegaLite$markPropertyStrExpr, 'font', $author$project$VegaLite$maFont),
 						A2($author$project$VegaLite$markPropertyNumExpr, 'fontSize', $author$project$VegaLite$maFontSize),
+						A2($author$project$VegaLite$markPropertyStrExpr, 'fontStyle', $author$project$VegaLite$maFontStyle),
 						$author$project$VegaLite$maFontWeight(
 						$author$project$VegaLite$fwExpr('fontWeight')),
 						A2($author$project$VegaLite$markPropertyNumExpr, 'limit', $author$project$VegaLite$maLimit)
@@ -14670,7 +14802,7 @@ var $author$project$TextFormatTests$textAlign2 = function () {
 				enc(_List_Nil),
 				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[specPoint, specText]))
+					[specCircle, specText]))
 			]));
 }();
 var $author$project$VegaLite$AxFormat = function (a) {
@@ -14681,8 +14813,6 @@ var $author$project$VegaLite$AxFormatAsNum = {$: 16};
 var $author$project$VegaLite$axFormatAsNum = $author$project$VegaLite$AxFormatAsNum;
 var $author$project$VegaLite$AxFormatAsTemporal = {$: 17};
 var $author$project$VegaLite$axFormatAsTemporal = $author$project$VegaLite$AxFormatAsTemporal;
-var $author$project$VegaLite$Circle = 6;
-var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$VLHeight = 5;
 var $author$project$VegaLite$height = function (h) {
 	return _Utils_Tuple2(
@@ -14703,10 +14833,10 @@ var $author$project$VegaLite$MDir = function (a) {
 	return {$: 23, a: a};
 };
 var $author$project$VegaLite$maDir = $author$project$VegaLite$MDir;
-var $author$project$VegaLite$MEllipsis = function (a) {
-	return {$: 22, a: a};
+var $author$project$VegaLite$maEllipsis = function (s) {
+	return $author$project$VegaLite$MEllipsis(
+		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$maEllipsis = $author$project$VegaLite$MEllipsis;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 12, a: a};
