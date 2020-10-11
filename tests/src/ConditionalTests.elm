@@ -131,7 +131,7 @@ axisCondition3 =
                         , axDataCondition (expr "datum.value <= 4") (cAxLabelFont "serif" "sans-serif")
                         , axDataCondition (expr "datum.value <= 6") (cAxLabelFontSize 12 18)
                         , axDataCondition (expr "datum.value <=8") (cAxLabelFontStyle "normal" "italic")
-                        , axDataCondition (expr "datum.label =='4.0'") (cAxLabelFontWeight Bold W100)
+                        , axDataCondition (expr "datum.label =='4.0'") (cAxLabelFontWeight fwBold (fwValue 100))
                         , axDataCondition (expr "datum.value >=9") (cAxLabelOpacity 0.3 0.8)
                         ]
                     ]

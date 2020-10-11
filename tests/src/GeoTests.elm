@@ -576,7 +576,7 @@ scribbleMap1 =
     let
         cfg =
             configure
-                << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight W300, ticoFontSize 28 ])
+                << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight (fwValue 300), ticoFontSize 28 ])
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =
@@ -620,7 +620,7 @@ scribbleMap2 =
     let
         cfg =
             configure
-                << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight W300, ticoFontSize 28 ])
+                << configuration (coTitle [ ticoFont "Roboto", ticoFontWeight (fwValue 300), ticoFontSize 28 ])
                 << configuration (coView [ vicoStroke Nothing ])
 
         data =

@@ -440,7 +440,7 @@ titleCfg2 =
             , tiSubtitleFont "serif"
             , tiSubtitleFontSize 10
             , tiSubtitleFontStyle "italic"
-            , tiSubtitleFontWeight W900
+            , tiSubtitleFontWeight (fwValue 900)
             , tiSubtitleLineHeight 18
             , tiSubtitlePadding 60
             ]
@@ -472,7 +472,7 @@ titleCfg3 =
                         , ticoSubtitleFont "serif"
                         , ticoSubtitleFontSize 10
                         , ticoSubtitleFontStyle "italic"
-                        , ticoSubtitleFontWeight W900
+                        , ticoSubtitleFontWeight (fwValue 900)
                         , ticoSubtitleLineHeight 18
                         , ticoSubtitlePadding 60
                         ]

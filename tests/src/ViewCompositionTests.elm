@@ -72,7 +72,7 @@ columns5 =
         [ hdLabelBaseline vaLineTop
         , hdLabelLineHeight 60
         , hdLabelFontStyle "italic"
-        , hdLabelFontWeight Bold
+        , hdLabelFontWeight fwBold
         ]
 
 
@@ -80,13 +80,13 @@ columns6 : Spec
 columns6 =
     genderChart
         [ hdTitleFontStyle "italic"
-        , hdTitleFontWeight W300
+        , hdTitleFontWeight (fwValue 300)
         , hdTitleBaseline vaLineTop
         , hdTitleLineHeight 60
         , hdLabels False
         ]
         [ hdTitleFontStyle "italic"
-        , hdTitleFontWeight W300
+        , hdTitleFontWeight (fwValue 300)
         , hdTitleBaseline vaLineTop
         , hdTitleLineHeight 60
         , hdLabels False

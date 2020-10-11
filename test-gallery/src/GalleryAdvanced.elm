@@ -248,7 +248,7 @@ advanced6 =
                 [ enc3 []
                 , textMark
                     [ maDy -8
-                    , maFontWeight Bold
+                    , maFontWeight fwBold
                     , maColor "#404040"
                     ]
                 ]
@@ -264,7 +264,7 @@ advanced6 =
                 , textMark
                     [ maDy 8
                     , maBaseline vaTop
-                    , maFontWeight Bold
+                    , maFontWeight fwBold
                     , maColor "#404040"
                     ]
                 ]
@@ -283,7 +283,7 @@ advanced6 =
                     ]
 
         spec5 =
-            asSpec [ enc5 [], textMark [ maBaseline vaMiddle, maFontWeight Bold ] ]
+            asSpec [ enc5 [], textMark [ maBaseline vaMiddle, maFontWeight fwBold ] ]
     in
     toVegaLite
         [ desc

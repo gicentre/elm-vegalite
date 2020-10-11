@@ -2,11 +2,19 @@
 
 ## Pending changes
 
+### V4.0 Breaking Changes
+
+- Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
+
 ### Additions
 
 - `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL4.16).
 
 - Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
+
+- Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties (VL4.16).
+
+- Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight) (VL4.16).
 
 - Add `maPadAngle` for padding arc segments.
 

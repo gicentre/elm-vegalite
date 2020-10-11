@@ -145,6 +145,76 @@ textAlign1 =
         ]
 
 
+textAlign2 : Spec
+textAlign2 =
+    let
+        prm =
+            params
+                [ ( "angle", [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ] )
+                , ( "dx", [ paValue (num 5), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
+                , ( "dy", [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
+                , ( "xOffset", [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
+                , ( "yOffset", [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
+                , ( "fontSize", [ paValue (num 14), paBind (ipRange [ inMin 1, inMax 36, inStep 1 ]) ] )
+                , ( "limit", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 150, inStep 1 ]) ] )
+                , ( "align", [ paValue (str "left"), paBind (ipSelect [ inOptions [ "left", "center", "right" ] ]) ] )
+                , ( "baseline", [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom" ] ]) ] )
+                , ( "font", [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ] )
+                , ( "fontWeight", [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold" ] ]) ] )
+                , ( "fontStyle", [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ] )
+                , ( "axisAngle", [ paExpr "0" ] )
+                ]
+
+        data =
+            dataFromColumns []
+                << dataColumn "a" (nums [ 30, 25, 70 ])
+                << dataColumn "b" (nums [ 28, 65, 43 ])
+                << dataColumn "label" (strs [ "Alice", "Bob", "Carol" ])
+
+        enc =
+            encoding
+                << position X
+                    [ pName "a"
+                    , pQuant
+                    , pAxis [ axLabelAngle 0 ]
+                    , pScale [ scDomain (doNums [ 0, 100 ]) ]
+                    ]
+                << position Y
+                    [ pName "b"
+                    , pQuant
+                    , pScale [ scDomain (doNums [ 0, 100 ]) ]
+                    ]
+
+        specPoint =
+            asSpec [ point [] ]
+
+        encText =
+            encoding
+                << text [ tName "label" ]
+
+        specText =
+            asSpec
+                [ encText []
+                , textMark
+                    [ maDx |> markPropertyNumExpr "dx"
+                    , maDy |> markPropertyNumExpr "dy"
+                    , maXOffset |> markPropertyNumExpr "xOffset"
+                    , maYOffset |> markPropertyNumExpr "yOffset"
+                    , maAngle |> markPropertyNumExpr "angle"
+                    , maAlign (haExpr "align")
+                    , maBaseline (vaExpr "baseline")
+                    , maFont |> markPropertyStrExpr "font"
+                    , maFontSize |> markPropertyNumExpr "fontSize"
+
+                    -- , maFontStyle |> markPropertyStrExpr "fontStyle"
+                    , maFontWeight (fwExpr "fontWeight")
+                    , maLimit |> markPropertyNumExpr "limit"
+                    ]
+                ]
+    in
+    toVegaLite [ prm, data [], enc [], layer [ specPoint, specText ] ]
+
+
 multiline1 : Spec
 multiline1 =
     let
@@ -234,6 +304,7 @@ specs =
     [ ( "textFormat1", textFormat1 )
     , ( "textFormat2", textFormat2 )
     , ( "textAlign1", textAlign1 )
+    , ( "textAlign2", textAlign2 )
     , ( "multiline1", multiline1 )
     , ( "customFormatter1", customFormatter1 )
     ]

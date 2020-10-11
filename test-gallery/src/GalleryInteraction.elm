@@ -538,7 +538,7 @@ interaction12 =
                 , ruleEnc []
                 , layer
                     [ asSpec [ rule [ maStrokeWidth 0.5 ] ]
-                    , asSpec [ textEnc [], textMark [ maAlign haCenter, maFontWeight W100 ] ]
+                    , asSpec [ textEnc [], textMark [ maAlign haCenter, maFontWeight (fwValue 100) ] ]
                     ]
                 ]
     in

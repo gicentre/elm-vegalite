@@ -743,13 +743,13 @@ layer8 =
                 << configuration
                     (coAxis
                         [ axcoTitleFont "Pinyon Script"
-                        , axcoTitleFontWeight Bold
+                        , axcoTitleFontWeight fwBold
                         , axcoLabelFont "Pinyon Script"
                         , axcoLabelFontSize 8
-                        , axcoLabelFontWeight Bold
+                        , axcoLabelFontWeight fwBold
                         ]
                     )
-                << configuration (coText [ maFont "Pinyon Script", maFontWeight Bold, maAlign haCenter ])
+                << configuration (coText [ maFont "Pinyon Script", maFontWeight fwBold, maAlign haCenter ])
 
         encWheat =
             encoding

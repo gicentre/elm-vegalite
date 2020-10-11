@@ -402,7 +402,7 @@ label9 =
                     , pAxis
                         [ axDomain False
                         , axOffset 50
-                        , axLabelFontWeight Bold
+                        , axLabelFontWeight fwBold
                         , axTicks False
                         , axGrid True
                         , axTitle ""
