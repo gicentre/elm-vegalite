@@ -347,6 +347,63 @@ symbols2 =
         )
 
 
+symbols3 : Spec
+symbols3 =
+    let
+        prm =
+            params
+                [ ( "angle", [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ] )
+                , ( "strokeWidth", [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 4, inStep 0.1 ]) ] )
+                , ( "size", [ paValue (num 100), paBind (ipRange [ inMin 0, inMax 1000, inStep 5 ]) ] )
+                , ( "shape"
+                  , [ paValue (str "circle")
+                    , paBind
+                        (ipSelect
+                            [ inOptions
+                                [ "circle"
+                                , "square"
+                                , "cross"
+                                , "diamond"
+                                , "triangle-up"
+                                , "triangle-down"
+                                , "triangle-left"
+                                , "triangle-right"
+                                , "triangle"
+                                , "stroke"
+                                , "arrow"
+                                , "wedge"
+                                , "m0 -1l0.866 0.5v1l-0.866 0.5l-0.866 -0.5v-1"
+                                ]
+                            ]
+                        )
+                    ]
+                  )
+                ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << opacity [ mNum 0.6 ]
+    in
+    toVegaLite
+        [ prm
+        , width 300
+        , height 300
+        , data
+        , enc []
+        , point
+            [ maSize |> markPropertyNumExpr "size"
+            , maStrokeWidth |> markPropertyNumExpr "strokeWidth"
+            , maAngle |> markPropertyNumExpr "angle"
+            , maShape (symExpr "shape")
+            ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -377,6 +434,7 @@ specs =
     , ( "isotype1", personGrid )
     , ( "symbols1", symbols1 )
     , ( "symbols2", symbols2 )
+    , ( "symbols3", symbols3 )
     ]
 
 

@@ -44,7 +44,7 @@
       <div id="defOrdinal"></div>
       <figcaption>Default ordinal shapes</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Rounded Rectangle Marks</h2>
     <figure class="cell">
@@ -80,7 +80,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Sized shapes</h2>
     <figure class="cell">
@@ -95,7 +95,7 @@
       <div id="size3"></div>
       <figcaption>Fixed shape, sized by number of cylinders</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Multiple encoding</h2>
     <figure class="cell">
@@ -139,7 +139,7 @@
         pair of legend sets - one for shape/size, the other for color)
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Custom shapes</h2>
     <figure class="cell">
@@ -167,14 +167,14 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="isotype1"></div>
       <figcaption>Isotype custom shapes with interactive selection.</figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Point Symbol Tests</h2>
 
@@ -183,7 +183,7 @@
       <figcaption>Built-in point symbols</figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="symbols2"></div>
@@ -192,19 +192,28 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="symbols3"></div>
+      <figcaption>
+        Interactive shape selection.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ShapeTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
