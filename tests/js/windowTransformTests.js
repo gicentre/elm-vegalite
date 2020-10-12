@@ -5610,9 +5610,27 @@ var $author$project$VegaLite$symbolLabel = function (sym) {
 			return 'arrow';
 		case 11:
 			return 'wedge';
-		default:
+		case 8:
 			var svgPath = sym.a;
 			return svgPath;
+		default:
+			var s = sym.a;
+			return s;
+	}
+};
+var $author$project$VegaLite$symbolSpec = function (sym) {
+	if (sym.$ === 13) {
+		var s = sym.a;
+		return $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'expr',
+					$elm$json$Json$Encode$string(s))
+				]));
+	} else {
+		return $elm$json$Json$Encode$string(
+			$author$project$VegaLite$symbolLabel(sym));
 	}
 };
 var $author$project$VegaLite$textDirectionLabel = function (td) {
@@ -5916,8 +5934,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'shape',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$symbolLabel(sym)))
+					$author$project$VegaLite$symbolSpec(sym))
 				]);
 		case 53:
 			var n = mProp.a;
@@ -7602,8 +7619,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'symbolType',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$symbolLabel(s)))
+					$author$project$VegaLite$symbolSpec(s))
 				]);
 		case 33:
 			var x = legendProp.a;
