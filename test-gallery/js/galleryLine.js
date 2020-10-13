@@ -5490,34 +5490,43 @@ var $author$project$VegaLite$gradientProperty = function (gp) {
 				A2($elm$json$Json$Encode$list, $author$project$VegaLite$stopSpec, grs));
 	}
 };
-var $author$project$VegaLite$markInterpolationLabel = function (interp) {
-	switch (interp) {
+var $author$project$VegaLite$markInterpolationSpec = function (interp) {
+	switch (interp.$) {
 		case 7:
-			return 'linear';
+			return $elm$json$Json$Encode$string('linear');
 		case 8:
-			return 'linear-closed';
+			return $elm$json$Json$Encode$string('linear-closed');
 		case 12:
-			return 'step';
+			return $elm$json$Json$Encode$string('step');
 		case 11:
-			return 'step-before';
+			return $elm$json$Json$Encode$string('step-before');
 		case 10:
-			return 'step-after';
+			return $elm$json$Json$Encode$string('step-after');
 		case 0:
-			return 'basis';
+			return $elm$json$Json$Encode$string('basis');
 		case 2:
-			return 'basis-open';
+			return $elm$json$Json$Encode$string('basis-open');
 		case 1:
-			return 'basis-closed';
+			return $elm$json$Json$Encode$string('basis-closed');
 		case 4:
-			return 'cardinal';
+			return $elm$json$Json$Encode$string('cardinal');
 		case 6:
-			return 'cardinal-open';
+			return $elm$json$Json$Encode$string('cardinal-open');
 		case 5:
-			return 'cardinal-closed';
+			return $elm$json$Json$Encode$string('cardinal-closed');
 		case 3:
-			return 'bundle';
+			return $elm$json$Json$Encode$string('bundle');
+		case 9:
+			return $elm$json$Json$Encode$string('monotone');
 		default:
-			return 'monotone';
+			var s = interp.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$numExpr = F2(
@@ -5887,8 +5896,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'interpolate',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$markInterpolationLabel(interp)))
+					$author$project$VegaLite$markInterpolationSpec(interp))
 				]);
 		case 64:
 			var n = mProp.a;
@@ -13228,8 +13236,8 @@ var $author$project$VegaLite$MInterpolate = function (a) {
 	return {$: 37, a: a};
 };
 var $author$project$VegaLite$maInterpolate = $author$project$VegaLite$MInterpolate;
-var $author$project$VegaLite$StepAfter = 10;
-var $author$project$VegaLite$miStepAfter = 10;
+var $author$project$VegaLite$StepAfter = {$: 10};
+var $author$project$VegaLite$miStepAfter = $author$project$VegaLite$StepAfter;
 var $author$project$GalleryLine$line8 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -13279,8 +13287,8 @@ var $author$project$GalleryLine$line8 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$Monotone = 9;
-var $author$project$VegaLite$miMonotone = 9;
+var $author$project$VegaLite$Monotone = {$: 9};
+var $author$project$VegaLite$miMonotone = $author$project$VegaLite$Monotone;
 var $author$project$GalleryLine$line9 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
