@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Elm-Vegalite Trail Tests</title>
+    <title>Elm-Vegalite Trail and Line Tests</title>
     <meta charset="utf-8" />
 
     <!-- These scripts link to the Vega/Vega-Lite runtime -->
@@ -34,7 +34,7 @@
   </head>
 
   <body>
-    <h1>Elm-Vega Trail Tests</h1>
+    <h1>Elm-Vega Trail and Line Tests</h1>
 
     <figure class="cell">
       <div id="trail1"></div>
@@ -42,7 +42,7 @@
         Stock prices double encoded with position and trail thickness
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="trail2"></div>
@@ -50,19 +50,27 @@
         Connected scatterplot with time encoded with line thickness
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="line1"></div>
+      <figcaption>
+        Interactive line interpolation.
+      </figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.TrailTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

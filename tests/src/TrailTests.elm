@@ -45,6 +45,62 @@ trail2 =
     toVegaLite [ data, enc [], trail [ maOrder False ] ]
 
 
+line1 : Spec
+line1 =
+    let
+        prm =
+            params
+                [ ( "interp"
+                  , [ paValue (str "linear")
+                    , paBind
+                        (ipSelect
+                            [ inName "interpolation style "
+                            , inOptions
+                                [ "linear"
+                                , "linear-closed"
+                                , "step"
+                                , "step-before"
+                                , "step-after"
+                                , "basis"
+                                , "basis-open"
+                                , "basis-closed"
+                                , "cardinal"
+                                , "cardinal-open"
+                                , "cardinal-closed"
+                                , "bundle"
+                                , "monotone"
+                                ]
+                            ]
+                        )
+                    ]
+                  )
+                , ( "tension", [ paValue (num 0), paBind (ipRange [ inName "tension", inMin -10, inMax 10, inStep 0.1 ]) ] )
+                ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Year", pTimeUnit year, pTitle "" ]
+                << position Y [ pName "Miles_per_Gallon", pAggregate opMean ]
+
+        specLine =
+            asSpec [ line [ maInterpolate (miExpr "interp"), maTension |> markPropertyNumExpr "tension" ] ]
+
+        specPoint =
+            asSpec [ point [] ]
+    in
+    toVegaLite
+        [ prm
+        , width 400
+        , height 400
+        , data
+        , enc []
+        , layer [ specLine, specPoint ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -53,6 +109,7 @@ specs : List ( String, Spec )
 specs =
     [ ( "trail1", trail1 )
     , ( "trail2", trail2 )
+    , ( "line1", line1 )
     ]
 
 
