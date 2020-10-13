@@ -5328,6 +5328,32 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 					]));
 	}
 };
+var $author$project$VegaLite$booExpr = F2(
+	function (objName, n) {
+		if (!n.$) {
+			var b = n.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$bool(b))
+				]);
+		} else {
+			var s = n.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
+		}
+	});
 var $author$project$VegaLite$colorGradientLabel = function (gr) {
 	if (!gr) {
 		return 'linear';
@@ -5645,11 +5671,21 @@ var $author$project$VegaLite$strokeJoinSpec = function (jn) {
 					]));
 	}
 };
-var $author$project$VegaLite$textDirectionLabel = function (td) {
-	if (!td) {
-		return 'ltr';
-	} else {
-		return 'rtl';
+var $author$project$VegaLite$textDirectionSpec = function (td) {
+	switch (td.$) {
+		case 0:
+			return $elm$json$Json$Encode$string('ltr');
+		case 1:
+			return $elm$json$Json$Encode$string('rtl');
+		default:
+			var s = td.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$ttContentLabel = function (ttContent) {
@@ -5686,12 +5722,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			}
 		case 30:
 			var b = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'filled',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'filled', b);
 		case 6:
 			var bm = mProp.a;
 			return _List_fromArray(
@@ -5702,12 +5733,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 9:
 			var b = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clip',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clip', b);
 		case 10:
 			var s = mProp.a;
 			if (!s.$) {
@@ -5757,16 +5783,21 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var s = mProp.a;
 			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 49:
-			var b = mProp.a;
-			return b ? _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'invalid',
-					$elm$json$Json$Encode$string('filter'))
-				]) : _List_fromArray(
-				[
-					_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
-				]);
+			var bl = mProp.a;
+			if (!bl.$) {
+				var b = bl.a;
+				return b ? _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'invalid',
+						$elm$json$Json$Encode$string('filter'))
+					]) : _List_fromArray(
+					[
+						_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
+					]);
+			} else {
+				return A2($author$project$VegaLite$booExpr, 'invalid', bl);
+			}
 		case 28:
 			var s = mProp.a;
 			if (!s.$) {
@@ -5993,8 +6024,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'dir',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$textDirectionLabel(td)))
+					$author$project$VegaLite$textDirectionSpec(td))
 				]);
 		case 66:
 			var n = mProp.a;
@@ -6034,12 +6064,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 52:
 			var b = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'shortTimeLabels',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'shortTimeLabels', b);
 		case 3:
 			var x = mProp.a;
 			return _List_fromArray(
@@ -6200,12 +6225,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$numExpr, 'y2', n);
 		case 44:
 			var b = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'order',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'order', b);
 		case 77:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
@@ -6226,12 +6246,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$numExpr, 'radius2Offset', n);
 		default:
 			var b = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aspect',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'aspect', b);
 	}
 };
 var $author$project$VegaLite$pointMarkerSpec = function (pm) {
@@ -12791,10 +12806,16 @@ var $author$project$VegaLite$maFill = function (s) {
 	return $author$project$VegaLite$MFill(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
 var $author$project$VegaLite$MFilled = function (a) {
 	return {$: 30, a: a};
 };
-var $author$project$VegaLite$maFilled = $author$project$VegaLite$MFilled;
+var $author$project$VegaLite$maFilled = function (b) {
+	return $author$project$VegaLite$MFilled(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$GalleryLine$line3 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
