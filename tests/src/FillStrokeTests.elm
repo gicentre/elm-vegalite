@@ -486,6 +486,38 @@ strokeDash9 =
     scaledStrokeDash 4
 
 
+capAndJoin1 : Spec
+capAndJoin1 =
+    let
+        prm =
+            params
+                [ ( "sw", [ paValue (num 4), paBind (ipRange [ inName "stroke width", inMin 1, inMax 20, inStep 1 ]) ] )
+                , ( "cap", [ paValue (str "square"), paBind (ipSelect [ inOptions [ "round", "square", "butt" ] ]) ] )
+                , ( "join", [ paValue (str "miter"), paBind (ipSelect [ inOptions [ "round", "bevel", "miter" ] ]) ] )
+                ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Year", pTimeUnit year, pTitle "" ]
+                << position Y [ pName "Miles_per_Gallon", pAggregate opMean ]
+    in
+    toVegaLite
+        [ prm
+        , width 400
+        , height 400
+        , data
+        , enc []
+        , line
+            [ maStrokeWidth |> markPropertyNumExpr "sw"
+            , maStrokeCap (caExpr "cap")
+            , maStrokeJoin (joExpr "join")
+            ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -518,6 +550,7 @@ specs =
     , ( "strokeDash7", strokeDash7 )
     , ( "strokeDash8", strokeDash8 )
     , ( "strokeDash9", strokeDash9 )
+    , ( "capAndJoin1", capAndJoin1 )
     ]
 
 

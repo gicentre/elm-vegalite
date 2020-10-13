@@ -40,7 +40,7 @@
       <div id="default"></div>
       <figcaption>Default chart with only color specified.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Fill Encodings</h2>
     <figure class="cell">
@@ -57,7 +57,7 @@
       <div id="fill3"></div>
       <figcaption>Red fill</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Stroke Encodings</h2>
     <figure class="cell">
@@ -74,7 +74,7 @@
       <div id="stroke3"></div>
       <figcaption>Red stroke</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Combined Fill and Stroke Encodings</h2>
     <figure class="cell">
@@ -92,7 +92,7 @@
       <div id="combined3"></div>
       <figcaption>Red stroke and ordinal fill</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>GeoJson with combined line and polygon features</h2>
     <figure class="cell">
@@ -109,7 +109,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Gradients</h2>
     <figure class="cell">
@@ -119,7 +119,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="gradient2"></div>
@@ -136,7 +136,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Rounded Bars</h2>
 
@@ -154,7 +154,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Stroke Dash Encoding</h2>
 
@@ -172,7 +172,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="strokeDash3"></div>
@@ -181,7 +181,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="strokeDash4"></div>
@@ -190,7 +190,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="strokeDash5"></div>
@@ -227,19 +227,28 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="capAndJoin1"></div>
+      <figcaption>
+        Interactive cap and join selection.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.FillStrokeTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
