@@ -9002,80 +9002,89 @@ var $author$project$VegaLite$colorGradientLabel = function (gr) {
 		return 'radial';
 	}
 };
-var $author$project$VegaLite$cursorLabel = function (cur) {
-	switch (cur) {
+var $author$project$VegaLite$cursorSpec = function (cur) {
+	switch (cur.$) {
 		case 0:
-			return 'auto';
+			return $elm$json$Json$Encode$string('auto');
 		case 1:
-			return 'default';
+			return $elm$json$Json$Encode$string('default');
 		case 2:
-			return 'none';
+			return $elm$json$Json$Encode$string('none');
 		case 3:
-			return 'context-menu';
+			return $elm$json$Json$Encode$string('context-menu');
 		case 4:
-			return 'help';
+			return $elm$json$Json$Encode$string('help');
 		case 5:
-			return 'pointer';
+			return $elm$json$Json$Encode$string('pointer');
 		case 6:
-			return 'progress';
+			return $elm$json$Json$Encode$string('progress');
 		case 7:
-			return 'wait';
+			return $elm$json$Json$Encode$string('wait');
 		case 8:
-			return 'cell';
+			return $elm$json$Json$Encode$string('cell');
 		case 9:
-			return 'crosshair';
+			return $elm$json$Json$Encode$string('crosshair');
 		case 10:
-			return 'text';
+			return $elm$json$Json$Encode$string('text');
 		case 11:
-			return 'vertical-text';
+			return $elm$json$Json$Encode$string('vertical-text');
 		case 12:
-			return 'alias';
+			return $elm$json$Json$Encode$string('alias');
 		case 13:
-			return 'copy';
+			return $elm$json$Json$Encode$string('copy');
 		case 14:
-			return 'move';
+			return $elm$json$Json$Encode$string('move');
 		case 15:
-			return 'no-drop';
+			return $elm$json$Json$Encode$string('no-drop');
 		case 16:
-			return 'not-allowed';
+			return $elm$json$Json$Encode$string('not-allowed');
 		case 17:
-			return 'all-scroll';
+			return $elm$json$Json$Encode$string('all-scroll');
 		case 18:
-			return 'col-resize';
+			return $elm$json$Json$Encode$string('col-resize');
 		case 19:
-			return 'row-resize';
+			return $elm$json$Json$Encode$string('row-resize');
 		case 20:
-			return 'n-resize';
+			return $elm$json$Json$Encode$string('n-resize');
 		case 21:
-			return 'e-resize';
+			return $elm$json$Json$Encode$string('e-resize');
 		case 22:
-			return 's-resize';
+			return $elm$json$Json$Encode$string('s-resize');
 		case 23:
-			return 'w-resize';
+			return $elm$json$Json$Encode$string('w-resize');
 		case 24:
-			return 'ne-resize';
+			return $elm$json$Json$Encode$string('ne-resize');
 		case 25:
-			return 'nw-resize';
+			return $elm$json$Json$Encode$string('nw-resize');
 		case 26:
-			return 'se-resize';
+			return $elm$json$Json$Encode$string('se-resize');
 		case 27:
-			return 'sw-resize';
+			return $elm$json$Json$Encode$string('sw-resize');
 		case 28:
-			return 'ew-resize';
+			return $elm$json$Json$Encode$string('ew-resize');
 		case 29:
-			return 'ns-resize';
+			return $elm$json$Json$Encode$string('ns-resize');
 		case 30:
-			return 'nesw-resize';
+			return $elm$json$Json$Encode$string('nesw-resize');
 		case 31:
-			return 'nwse-resize';
+			return $elm$json$Json$Encode$string('nwse-resize');
 		case 32:
-			return 'zoom-in';
+			return $elm$json$Json$Encode$string('zoom-in');
 		case 33:
-			return 'zoom-out';
+			return $elm$json$Json$Encode$string('zoom-out');
 		case 34:
-			return 'grab';
+			return $elm$json$Json$Encode$string('grab');
+		case 35:
+			return $elm$json$Json$Encode$string('grabbing');
 		default:
-			return 'grabbing';
+			var s = cur.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$extentSpec = function (ext) {
@@ -9373,8 +9382,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'cursor',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$cursorLabel(cur)))
+					$author$project$VegaLite$cursorSpec(cur))
 				]);
 		case 27:
 			var ext = mProp.a;
