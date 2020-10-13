@@ -5524,14 +5524,23 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 			return $elm$json$Json$Encode$int(n);
 	}
 };
-var $author$project$VegaLite$strokeCapLabel = function (cap) {
-	switch (cap) {
+var $author$project$VegaLite$strokeCapSpec = function (cap) {
+	switch (cap.$) {
 		case 0:
-			return 'butt';
+			return $elm$json$Json$Encode$string('butt');
 		case 1:
-			return 'round';
+			return $elm$json$Json$Encode$string('round');
+		case 2:
+			return $elm$json$Json$Encode$string('square');
 		default:
-			return 'square';
+			var s = cap.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$vAlignSpec = function (al) {
@@ -5602,8 +5611,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'domainCap',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeCapLabel(c)))
+					$author$project$VegaLite$strokeCapSpec(c))
 				]);
 		case 5:
 			var c = axisCfg.a;
@@ -5678,8 +5686,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'gridCap',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeCapLabel(c)))
+					$author$project$VegaLite$strokeCapSpec(c))
 				]);
 		case 12:
 			var c = axisCfg.a;
@@ -8488,8 +8495,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'gridCap',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeCapLabel(c)))
+					$author$project$VegaLite$strokeCapSpec(c))
 				]);
 		case 69:
 			var c = axisProp.a;
@@ -8738,8 +8744,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'domainCap',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeCapLabel(c)))
+					$author$project$VegaLite$strokeCapSpec(c))
 				]);
 		case 10:
 			var c = axisProp.a;
@@ -10052,14 +10057,23 @@ var $author$project$VegaLite$strExprMultiline = F2(
 				]);
 		}
 	});
-var $author$project$VegaLite$strokeJoinLabel = function (jn) {
-	switch (jn) {
+var $author$project$VegaLite$strokeJoinSpec = function (jn) {
+	switch (jn.$) {
 		case 0:
-			return 'miter';
+			return $elm$json$Json$Encode$string('miter');
 		case 1:
-			return 'round';
+			return $elm$json$Json$Encode$string('round');
+		case 2:
+			return $elm$json$Json$Encode$string('bevel');
 		default:
-			return 'bevel';
+			var s = jn.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$textDirectionLabel = function (td) {
@@ -10261,8 +10275,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'strokeCap',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeCapLabel(sc)))
+					$author$project$VegaLite$strokeCapSpec(sc))
 				]);
 		case 59:
 			var sj = mProp.a;
@@ -10270,8 +10283,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				[
 					_Utils_Tuple2(
 					'strokeJoin',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeJoinLabel(sj)))
+					$author$project$VegaLite$strokeJoinSpec(sj))
 				]);
 		case 60:
 			var n = mProp.a;
@@ -11824,14 +11836,12 @@ var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
 			var cap = vb.a;
 			return _Utils_Tuple2(
 				'strokeCap',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$strokeCapLabel(cap)));
+				$author$project$VegaLite$strokeCapSpec(cap));
 		case 11:
 			var jn = vb.a;
 			return _Utils_Tuple2(
 				'strokeJoin',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$strokeJoinLabel(jn)));
+				$author$project$VegaLite$strokeJoinSpec(jn));
 		case 7:
 			var x = vb.a;
 			return _Utils_Tuple2(
@@ -11987,8 +11997,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 				[
 					_Utils_Tuple2(
 					'strokeCap',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeCapLabel(cap)))
+					$author$project$VegaLite$strokeCapSpec(cap))
 				]);
 		case 18:
 			var jn = viewCfg.a;
@@ -11996,8 +12005,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 				[
 					_Utils_Tuple2(
 					'strokeJoin',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$strokeJoinLabel(jn)))
+					$author$project$VegaLite$strokeJoinSpec(jn))
 				]);
 		case 14:
 			var x = viewCfg.a;
