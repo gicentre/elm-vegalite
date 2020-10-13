@@ -40,7 +40,7 @@
       <div id="image1"></div>
       <figcaption>Scatterplot using a single image as a symbol.</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Data-driven images</h2>
     <figure class="cell">
@@ -49,7 +49,7 @@
         Scatterplot using symbols derived from a data field.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Image alignment and aspect ratios</h2>
     <figure class="cell">
@@ -65,7 +65,7 @@
         Forced square aspect ratio.
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="image5"></div>
@@ -88,7 +88,7 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="image8"></div>
@@ -111,11 +111,20 @@
       </figcaption>
     </figure>
 
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="image11"></div>
+      <figcaption>
+        Interactive image alignment.
+      </figcaption>
+    </figure>
+
+    <div style="clear: left;"></div>
 
     <h2>Image size tests</h2>
     <figure class="cell">
-      <div id="image11"></div>
+      <div id="image12"></div>
       <figcaption>
         Fixed size for all images (currently size channel not implemented for
         images)
@@ -123,25 +132,25 @@
     </figure>
 
     <figure class="cell">
-      <div id="image12"></div>
+      <div id="image13"></div>
       <figcaption>
         Middle image double size (currently size channel not implemented for
         images)
       </figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.ImageTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });

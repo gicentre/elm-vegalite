@@ -4,7 +4,7 @@
 
 ### TODO
 
-Add mark property expression functions for `MAria`, `MTooltip`, `MStrokeDash`, `MUrl`, `MAspect` and `MDir`.
+Add mark property expression functions for `MAria`, `MTooltip`, `MStrokeDash`.
 
 ### V4.0 Breaking Changes
 
@@ -18,7 +18,9 @@ Add mark property expression functions for `MAria`, `MTooltip`, `MStrokeDash`, `
 
 - Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties, such as colours and fonts (VL4.16).
 
-- Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type) (VL4.16).
+- Add `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties, such as fixing image aspect ratio (VL4.16).
+
+- Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 
 - Add `maPadAngle` for padding arc segments.
 

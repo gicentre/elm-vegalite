@@ -111,6 +111,48 @@ image10 =
 
 image11 : Spec
 image11 =
+    let
+        prm =
+            params
+                [ ( "asp"
+                  , [ paValue (boo True)
+                    , paBind (ipCheckbox [ inName "maintain aspect ratio" ])
+                    ]
+                  )
+                ]
+
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 5 ])
+                << dataColumn "y" (nums [ 5 ])
+
+        enc =
+            encoding
+                << position X [ pName "x", pQuant, pScale [ scDomain (doNums [ 0, 10 ]) ] ]
+                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 0, 10 ]) ] ]
+
+        encImage =
+            enc << url [ hStr "https://gicentre.github.io/data/images/LillyTarn.jpg" ]
+    in
+    toVegaLite
+        [ prm
+        , data []
+        , layer
+            [ asSpec
+                [ encImage []
+                , image
+                    [ maWidth 100
+                    , maAlign haLeft
+                    , maAspect |> markPropertyBooExpr "asp"
+                    ]
+                ]
+            , asSpec [ enc [], circle [ maColor "red" ] ]
+            ]
+        ]
+
+
+image12 : Spec
+image12 =
     imageEnc
         (dataColumn "img" (strs [ path ++ "ffox.png", path ++ "gimp.png", path ++ "7zip.png" ])
             << dataColumn "mag" (nums [ 1, 1, 1 ])
@@ -120,8 +162,8 @@ image11 =
         )
 
 
-image12 : Spec
-image12 =
+image13 : Spec
+image13 =
     imageEnc
         (dataColumn "img" (strs [ path ++ "ffox.png", path ++ "gimp.png", path ++ "7zip.png" ])
             << dataColumn "mag" (nums [ 1, 2, 1 ])
@@ -149,6 +191,7 @@ specs =
     , ( "image10", image10 )
     , ( "image11", image11 )
     , ( "image12", image12 )
+    , ( "image13", image13 )
     ]
 
 
