@@ -457,6 +457,7 @@ module VegaLite exposing
     , cuZoomOut
     , cuGrab
     , cuGrabbing
+    , cuExpr
     , encoding
     , Measurement(..)
     , position
@@ -2240,6 +2241,7 @@ See the
 @docs cuZoomOut
 @docs cuGrab
 @docs cuGrabbing
+@docs cuExpr
 
 ---
 
@@ -4313,8 +4315,8 @@ type ConfigurationProperty
 [cuWResize](#cuWResize), [cuNEResize](#cuNEResize), [cuNWResize](#cuNWResize),
 [cuSEResize](#cuSEResize), [cuSWResize](#cuSWResize), [cuEWResize](#cuEWResize),
 [cuNSResize](#cuNSResize), [cuNESWResize](#cuNESWResize), [cuNWSEResize](#cuNWSEResize),
-[cuZoomIn](#cuZoomIn), [cuZoomOut](#cuZoomOut), [cuGrab](#cuGrab) and
-[cuGrabbing](#cuGrabbing).
+[cuZoomIn](#cuZoomIn), [cuZoomOut](#cuZoomOut), [cuGrab](#cuGrab), [cuGrabbing](#cuGrabbing)
+and [cuExpr](#cuExpr).
 -}
 type Cursor
     = CAuto
@@ -4353,6 +4355,7 @@ type Cursor
     | CZoomOut
     | CGrab
     | CGrabbing
+    | CursorExpr String
 
 
 {-| Convenience type annotation label for use with data generation functions.
@@ -8994,6 +8997,14 @@ cuEResize =
 cuEWResize : Cursor
 cuEWResize =
     CEWResize
+
+
+{-| Expression that evaluates to some cursor style such as "crosshair", "grab"
+or "help".
+-}
+cuExpr : String -> Cursor
+cuExpr =
+    CursorExpr
 
 
 {-| Grab cursor.
@@ -20082,116 +20093,119 @@ configProperty configProp =
             ( "trail", JE.object (List.concatMap markProperty mps) )
 
 
-cursorLabel : Cursor -> String
-cursorLabel cur =
+cursorSpec : Cursor -> Spec
+cursorSpec cur =
     case cur of
         CAuto ->
-            "auto"
+            JE.string "auto"
 
         CDefault ->
-            "default"
+            JE.string "default"
 
         CNone ->
-            "none"
+            JE.string "none"
 
         CContextMenu ->
-            "context-menu"
+            JE.string "context-menu"
 
         CHelp ->
-            "help"
+            JE.string "help"
 
         CPointer ->
-            "pointer"
+            JE.string "pointer"
 
         CProgress ->
-            "progress"
+            JE.string "progress"
 
         CWait ->
-            "wait"
+            JE.string "wait"
 
         CCell ->
-            "cell"
+            JE.string "cell"
 
         CCrosshair ->
-            "crosshair"
+            JE.string "crosshair"
 
         CText ->
-            "text"
+            JE.string "text"
 
         CVerticalText ->
-            "vertical-text"
+            JE.string "vertical-text"
 
         CAlias ->
-            "alias"
+            JE.string "alias"
 
         CCopy ->
-            "copy"
+            JE.string "copy"
 
         CMove ->
-            "move"
+            JE.string "move"
 
         CNoDrop ->
-            "no-drop"
+            JE.string "no-drop"
 
         CNotAllowed ->
-            "not-allowed"
+            JE.string "not-allowed"
 
         CAllScroll ->
-            "all-scroll"
+            JE.string "all-scroll"
 
         CColResize ->
-            "col-resize"
+            JE.string "col-resize"
 
         CRowResize ->
-            "row-resize"
+            JE.string "row-resize"
 
         CNResize ->
-            "n-resize"
+            JE.string "n-resize"
 
         CEResize ->
-            "e-resize"
+            JE.string "e-resize"
 
         CSResize ->
-            "s-resize"
+            JE.string "s-resize"
 
         CWResize ->
-            "w-resize"
+            JE.string "w-resize"
 
         CNEResize ->
-            "ne-resize"
+            JE.string "ne-resize"
 
         CNWResize ->
-            "nw-resize"
+            JE.string "nw-resize"
 
         CSEResize ->
-            "se-resize"
+            JE.string "se-resize"
 
         CSWResize ->
-            "sw-resize"
+            JE.string "sw-resize"
 
         CEWResize ->
-            "ew-resize"
+            JE.string "ew-resize"
 
         CNSResize ->
-            "ns-resize"
+            JE.string "ns-resize"
 
         CNESWResize ->
-            "nesw-resize"
+            JE.string "nesw-resize"
 
         CNWSEResize ->
-            "nwse-resize"
+            JE.string "nwse-resize"
 
         CZoomIn ->
-            "zoom-in"
+            JE.string "zoom-in"
 
         CZoomOut ->
-            "zoom-out"
+            JE.string "zoom-out"
 
         CGrab ->
-            "grab"
+            JE.string "grab"
 
         CGrabbing ->
-            "grabbing"
+            JE.string "grabbing"
+
+        CursorExpr s ->
+            JE.object [ ( "expr", JE.string s ) ]
 
 
 dataTypeLabel : DataType -> String
@@ -21702,7 +21716,7 @@ markProperty mProp =
             numExpr "cornerRadiusTopRight" n
 
         MCursor cur ->
-            [ ( "cursor", JE.string (cursorLabel cur) ) ]
+            [ ( "cursor", cursorSpec cur ) ]
 
         MExtent ext ->
             [ ( "extent", extentSpec ext ) ]
@@ -23087,7 +23101,7 @@ selectionMarkProperty markProp =
             ( "strokeDashOffset", JE.float x )
 
         SMCursor cur ->
-            ( "cursor", JE.string (cursorLabel cur) )
+            ( "cursor", cursorSpec cur )
 
 
 selectionProperties : SelectionProperty -> List LabelledSpec
@@ -23882,7 +23896,7 @@ viewConfigProperties viewCfg =
             [ ( "cornerRadius", JE.float r ) ]
 
         VCursor cur ->
-            [ ( "cursor", JE.string (cursorLabel cur) ) ]
+            [ ( "cursor", cursorSpec cur ) ]
 
         VFill ms ->
             case ms of
