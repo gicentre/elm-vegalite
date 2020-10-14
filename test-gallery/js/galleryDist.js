@@ -2924,7 +2924,7 @@ var $author$project$VegaLite$markLabel = function (m) {
 var $author$project$VegaLite$ArAria = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$TTNone = 2;
+var $author$project$VegaLite$TTNone = {$: 2};
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$ariaProperty = function (arProp) {
@@ -3485,14 +3485,23 @@ var $author$project$VegaLite$textDirectionSpec = function (td) {
 	}
 };
 var $elm$core$String$trim = _String_trim;
-var $author$project$VegaLite$ttContentLabel = function (ttContent) {
-	switch (ttContent) {
+var $author$project$VegaLite$ttContentSpec = function (ttContent) {
+	switch (ttContent.$) {
 		case 0:
-			return 'encoding';
+			return $elm$json$Json$Encode$string('encoding');
 		case 1:
-			return 'data';
+			return $elm$json$Json$Encode$string('data');
+		case 2:
+			return $elm$json$Json$Encode$string('null');
 		default:
-			return 'null';
+			var s = ttContent.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$vAlignSpec = function (al) {
@@ -3995,7 +4004,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 70:
 			var ttContent = mProp.a;
-			return (ttContent === 2) ? _List_fromArray(
+			return _Utils_eq(ttContent, $author$project$VegaLite$TTNone) ? _List_fromArray(
 				[
 					_Utils_Tuple2('tooltip', $elm$json$Json$Encode$null)
 				]) : _List_fromArray(
@@ -4007,8 +4016,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 							[
 								_Utils_Tuple2(
 								'content',
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$ttContentLabel(ttContent)))
+								$author$project$VegaLite$ttContentSpec(ttContent))
 							])))
 				]);
 		case 47:
@@ -8457,8 +8465,8 @@ var $author$project$VegaLite$Sum = {$: 17};
 var $author$project$VegaLite$opSum = $author$project$VegaLite$Sum;
 var $author$project$VegaLite$PBinned = {$: 8};
 var $author$project$VegaLite$pBinned = $author$project$VegaLite$PBinned;
-var $author$project$VegaLite$TTEncoding = 0;
-var $author$project$VegaLite$ttEncoding = 0;
+var $author$project$VegaLite$TTEncoding = {$: 0};
+var $author$project$VegaLite$ttEncoding = $author$project$VegaLite$TTEncoding;
 var $author$project$GalleryDist$dist2 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,

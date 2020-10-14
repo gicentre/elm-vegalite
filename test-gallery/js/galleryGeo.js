@@ -7374,7 +7374,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				]);
 	}
 };
-var $author$project$VegaLite$TTNone = 2;
+var $author$project$VegaLite$TTNone = {$: 2};
 var $author$project$VegaLite$blendModeSpec = function (bm) {
 	switch (bm.$) {
 		case 0:
@@ -7761,14 +7761,23 @@ var $author$project$VegaLite$textDirectionSpec = function (td) {
 					]));
 	}
 };
-var $author$project$VegaLite$ttContentLabel = function (ttContent) {
-	switch (ttContent) {
+var $author$project$VegaLite$ttContentSpec = function (ttContent) {
+	switch (ttContent.$) {
 		case 0:
-			return 'encoding';
+			return $elm$json$Json$Encode$string('encoding');
 		case 1:
-			return 'data';
+			return $elm$json$Json$Encode$string('data');
+		case 2:
+			return $elm$json$Json$Encode$string('null');
 		default:
-			return 'null';
+			var s = ttContent.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$lineMarkerSpec = function (pm) {
@@ -8246,7 +8255,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 70:
 			var ttContent = mProp.a;
-			return (ttContent === 2) ? _List_fromArray(
+			return _Utils_eq(ttContent, $author$project$VegaLite$TTNone) ? _List_fromArray(
 				[
 					_Utils_Tuple2('tooltip', $elm$json$Json$Encode$null)
 				]) : _List_fromArray(
@@ -8258,8 +8267,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 							[
 								_Utils_Tuple2(
 								'content',
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$ttContentLabel(ttContent)))
+								$author$project$VegaLite$ttContentSpec(ttContent))
 							])))
 				]);
 		case 47:
