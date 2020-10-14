@@ -4,7 +4,7 @@
 
 ### TODO
 
-Add mark property expression functions for `MAria`, `MTooltip`, `MStrokeDash`.
+Add mark property expression functions for `MStrokeDash`.
 
 ### V4.0 Breaking Changes
 

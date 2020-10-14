@@ -23,7 +23,7 @@ tooltip1 =
                 << position Y [ pName "b", pQuant ]
                 << tooltip [ tName "b", tQuant ]
     in
-    toVegaLite [ data [], bar [], enc [] ]
+    toVegaLite [ data [], enc [], bar [] ]
 
 
 tooltip2 : Spec
@@ -43,7 +43,32 @@ tooltip2 =
                     , [ tName "b", tQuant ]
                     ]
     in
-    toVegaLite [ data [], bar [], enc [] ]
+    toVegaLite [ data [], enc [], bar [] ]
+
+
+tooltip3 : Spec
+tooltip3 =
+    let
+        prm =
+            params
+                [ ( "tt"
+                  , [ paValue (boo True)
+                    , paBind (ipCheckbox [ inName "Show tooltips" ])
+                    ]
+                  )
+                ]
+
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        enc =
+            encoding
+                << position X [ pName "a", pOrdinal ]
+                << position Y [ pName "b", pQuant ]
+    in
+    toVegaLite [ prm, data [], enc [], bar [ maTooltip (ttExpr "tt") ] ]
 
 
 
@@ -54,6 +79,7 @@ specs : List ( String, Spec )
 specs =
     [ ( "tooltip1", tooltip1 )
     , ( "tooltip2", tooltip2 )
+    , ( "tooltip3", tooltip3 )
     ]
 
 

@@ -40,25 +40,31 @@
       <div id="tooltip1"></div>
       <figcaption>Standard tooltip</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
 
     <figure class="cell">
       <div id="tooltip2"></div>
       <figcaption>Multi tooltips (2 items per mark)</figcaption>
     </figure>
-    <div style="clear:left"></div>
+    <div style="clear: left;"></div>
+
+    <figure class="cell">
+      <div id="tooltip3"></div>
+      <figcaption>Interactive toggling of tooltips</figcaption>
+    </figure>
+    <div style="clear: left;"></div>
 
     <h2>Source</h2>
     <div id="elmContainer"></div>
 
     <script>
       Elm.TooltipTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
           vegaEmbed(`#${name}`, namedSpecs[name], {
             actions: true,
-            logLevel: vega.Warn
+            logLevel: vega.Warn,
           }).catch(console.warn);
         }
       });
