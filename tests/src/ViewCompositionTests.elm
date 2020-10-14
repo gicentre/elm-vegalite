@@ -312,6 +312,22 @@ concat2 =
     toVegaLite [ hConcat [ mapSpec, chartSpec ] ]
 
 
+padding1 : Spec
+padding1 =
+    let
+        carData =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pBin [] ]
+                << position Y [ pAggregate opCount ]
+                << color [ mName "Origin" ]
+    in
+    toVegaLite
+        [ carData, enc [], bar [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -331,6 +347,7 @@ specs =
     , ( "grid5", grid5 )
     , ( "concat1", concat1 )
     , ( "concat2", concat2 )
+    , ( "padding1", padding1 )
     ]
 
 
