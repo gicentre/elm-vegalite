@@ -68,7 +68,7 @@ tooltip3 =
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
     in
-    toVegaLite [ prm, data [], enc [], bar [ maTooltip (ttExpr "tt") ] ]
+    toVegaLite [ prm, data [], enc [], bar [] ]
 
 
 
