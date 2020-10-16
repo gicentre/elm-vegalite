@@ -10,6 +10,16 @@ Add top-level view property expressions: `cornerRadius`, `fill`, `fillOpacity`, 
 
 Add view title property expressions: `title`, `angle`, `color`, `dx`, `dy`, `font`, `fontSize`, `fontStyle`, `fontWeight`, `frame`, `limit`, `lineHeight`, `offset`, `orient`, `subtitleColor`, `subtitleFont`, `subtitleFontSize`, `subtitleFontStyle`, `subtitleFontWeight`, `subtitleLineHeight`, `subtitlePadding`.
 
+Add datum expressions.
+
+Add axis property expressions.
+
+Add facet header property expressions.
+
+Add legend property expressions.
+
+Add scale property expressions.
+
 ### V4.0 Breaking Changes
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
