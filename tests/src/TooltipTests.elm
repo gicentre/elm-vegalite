@@ -58,6 +58,7 @@ tooltip3 =
                   )
                 ]
 
+        -- TODO: Add ability to turn tool tips on and off depending on checkbox
         data =
             dataFromColumns []
                 << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
