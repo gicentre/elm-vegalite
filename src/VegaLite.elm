@@ -495,6 +495,7 @@ module VegaLite exposing
     , soByRepeat
     , soCustom
     , axisPropertyNumExpr
+    , axisPropertyStrExpr
     , axAria
     , axBandPosition
     , axMaxExtent
@@ -2333,6 +2334,7 @@ See the
 [Vega-Lite axis property documentation](https://vega.github.io/vega-lite/docs/axis.html#axis-properties)
 
 @docs axisPropertyNumExpr
+@docs axisPropertyStrExpr
 
 
 #### General
@@ -4000,27 +4002,27 @@ type AxisProperty
     | AxZIndex Num
     | AxDomain Bool
     | AxDomainCap StrokeCap
-    | AxDomainColor String
+    | AxDomainColor Str
     | AxDomainDash (List Float)
     | AxDomainDashOffset Num
     | AxDomainOpacity Num
     | AxDomainWidth Num
-    | AxFormat String
+    | AxFormat Str
     | AxFormatAsNum
     | AxFormatAsTemporal
-    | AxFormatAsCustom String
+    | AxFormatAsCustom Str
     | AxLabels Bool
     | AxLabelAlign HAlign
     | AxLabelAngle Num
     | AxLabelBaseline VAlign
     | AxLabelBound (Maybe Float)
-    | AxLabelColor String
-    | AxLabelExpr String
+    | AxLabelColor Str
+    | AxLabelExpr Str
     | AxLabelFlush (Maybe Float)
     | AxLabelFlushOffset Num
-    | AxLabelFont String
+    | AxLabelFont Str
     | AxLabelFontSize Num
-    | AxLabelFontStyle String
+    | AxLabelFontStyle Str
     | AxLabelFontWeight FontWeight
     | AxLabelLineHeight Num
     | AxLabelLimit Num
@@ -4030,7 +4032,7 @@ type AxisProperty
     | AxLabelPadding Num
     | AxLabelSeparation Num
     | AxStyle (List String)
-    | AxTickColor String
+    | AxTickColor Str
     | AxTickCount ScaleNice
     | AxTickDash (List Float)
     | AxTickDashOffset Num
@@ -4042,15 +4044,15 @@ type AxisProperty
     | AxTickSize Num
     | AxTickWidth Num
     | AxValues DataValues
-    | AxTitle String
+    | AxTitle Str
     | AxTitleAlign HAlign
     | AxTitleAnchor Anchor
     | AxTitleAngle Num
     | AxTitleBaseline VAlign
-    | AxTitleColor String
-    | AxTitleFont String
+    | AxTitleColor Str
+    | AxTitleFont Str
     | AxTitleFontSize Num
-    | AxTitleFontStyle String
+    | AxTitleFontStyle Str
     | AxTitleFontWeight FontWeight
     | AxTitleLimit Num
     | AxTitleOpacity Num
@@ -4059,7 +4061,7 @@ type AxisProperty
     | AxTitleY Num
     | AxGrid Bool
     | AxGridCap StrokeCap
-    | AxGridColor String
+    | AxGridColor Str
     | AxGridDash (List Float)
     | AxGridDashOffset Num
     | AxGridOpacity Num
@@ -7045,8 +7047,8 @@ axDomainCap =
 {-| Color of axis domain line.
 -}
 axDomainColor : String -> AxisProperty
-axDomainColor =
-    AxDomainColor
+axDomainColor s =
+    AxDomainColor (Str s)
 
 
 {-| Dash style of axis baseline (domain). The parameter should list number of pixels
@@ -7084,8 +7086,8 @@ additionally use [axFormatAsNum](#axFormatAsNum), [axFormatAsTemporal](#axFormat
 or [axFormatAsCustom](#axFormatAsCustom).
 -}
 axFormat : String -> AxisProperty
-axFormat =
-    AxFormat
+axFormat s =
+    AxFormat (Str s)
 
 
 {-| Indicate that axis labels should be formatted as numbers. To control the precise
@@ -7110,8 +7112,8 @@ axFormatAsTemporal =
 with the given name. See [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
 -}
 axFormatAsCustom : String -> AxisProperty
-axFormatAsCustom =
-    AxFormatAsCustom
+axFormatAsCustom s =
+    AxFormatAsCustom (Str s)
 
 
 {-| Whether or not grid lines should be included as part of an axis.
@@ -7131,8 +7133,8 @@ axGridCap =
 {-| Color of grid lines associated with an axis.
 -}
 axGridColor : String -> AxisProperty
-axGridColor =
-    AxGridColor
+axGridColor s =
+    AxGridColor (Str s)
 
 
 {-| Axis grid line dash style. The parameter is a list of alternating 'on' and
@@ -7166,7 +7168,7 @@ axGridWidth n =
 
 {-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
 an axis property function requring a numeric value. This can be used to provide an
-interactive parameterisation of a mark property when an expression is bound to an
+interactive parameterisation of an axis property when an expression is bound to an
 input element. For example,
 
     prm =
@@ -7292,6 +7294,70 @@ axisPropertyNumExpr ex fn =
             fn 0
 
 
+{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requring a string value. This can be used to provide an
+interactive parameterisation of an axis property when an expression is bound to an
+input element. For example,
+
+    prm =
+        params
+            [ ( "color", [ paValue (str "black"), paBind (ipColor [ ]) ] ) ]
+    :
+    :
+      enc =
+          encoding
+              << position X
+                  [ pName "x"
+                  , pAxis [ axTitleColor |> axisPropertyStrExpr "color" ]
+                  ]
+
+-}
+axisPropertyStrExpr : String -> (String -> AxisProperty) -> AxisProperty
+axisPropertyStrExpr ex fn =
+    case fn "" of
+        AxDomainColor _ ->
+            AxDomainColor (StrExpr ex)
+
+        AxFormat _ ->
+            AxFormat (StrExpr ex)
+
+        AxFormatAsCustom _ ->
+            AxFormatAsCustom (StrExpr ex)
+
+        AxLabelColor _ ->
+            AxLabelColor (StrExpr ex)
+
+        AxLabelExpr _ ->
+            AxLabelExpr (StrExpr ex)
+
+        AxLabelFont _ ->
+            AxLabelFont (StrExpr ex)
+
+        AxLabelFontStyle _ ->
+            AxLabelFontStyle (StrExpr ex)
+
+        AxTickColor _ ->
+            AxTickColor (StrExpr ex)
+
+        AxTitle _ ->
+            AxTitle (StrExpr ex)
+
+        AxTitleColor _ ->
+            AxTitleColor (StrExpr ex)
+
+        AxTitleFont _ ->
+            AxTitleFont (StrExpr ex)
+
+        AxTitleFontStyle _ ->
+            AxTitleFontStyle (StrExpr ex)
+
+        AxGridColor _ ->
+            AxGridColor (StrExpr ex)
+
+        _ ->
+            fn ""
+
+
 {-| Horizontal alignment of axis tick labels.
 -}
 axLabelAlign : HAlign -> AxisProperty
@@ -7318,8 +7384,8 @@ axLabelBound =
 {-| Color of axis tick label.
 -}
 axLabelColor : String -> AxisProperty
-axLabelColor =
-    AxLabelColor
+axLabelColor s =
+    AxLabelColor (Str s)
 
 
 {-| An expression to generate axis labels. The parameter is a valid
@@ -7336,8 +7402,8 @@ and 2-digit years for all other tick marks:
 
 -}
 axLabelExpr : String -> AxisProperty
-axLabelExpr =
-    AxLabelExpr
+axLabelExpr s =
+    AxLabelExpr (Str s)
 
 
 {-| How or if labels at beginning or end of the axis should be aligned. Specifies
@@ -7359,8 +7425,8 @@ axLabelFlushOffset n =
 {-| Font name of an axis label.
 -}
 axLabelFont : String -> AxisProperty
-axLabelFont =
-    AxLabelFont
+axLabelFont s =
+    AxLabelFont (Str s)
 
 
 {-| Font size of an axis label.
@@ -7373,8 +7439,8 @@ axLabelFontSize n =
 {-| Font style of an axis label (e.g. "italic")
 -}
 axLabelFontStyle : String -> AxisProperty
-axLabelFontStyle =
-    AxLabelFontStyle
+axLabelFontStyle s =
+    AxLabelFontStyle (Str s)
 
 
 {-| Font weight of an axis label.
@@ -7513,8 +7579,8 @@ a title being displayed. For multi-line titles, insert `\n` at each line break o
 use a `"""` multi-line string.
 -}
 axTitle : String -> AxisProperty
-axTitle =
-    AxTitle
+axTitle s =
+    AxTitle (Str s)
 
 
 {-| Horizontal alignment of an axis title.
@@ -7555,8 +7621,8 @@ axStyle =
 {-| Color of axis ticks.
 -}
 axTickColor : String -> AxisProperty
-axTickColor =
-    AxTickColor
+axTickColor s =
+    AxTickColor (Str s)
 
 
 {-| Axis tick dash style. The parameter is a list of alternating 'on' and 'off'
@@ -7630,15 +7696,15 @@ axTitleBaseline =
 {-| Color of axis title.
 -}
 axTitleColor : String -> AxisProperty
-axTitleColor =
-    AxTitleColor
+axTitleColor s =
+    AxTitleColor (Str s)
 
 
 {-| Font name for an axis title.
 -}
 axTitleFont : String -> AxisProperty
-axTitleFont =
-    AxTitleFont
+axTitleFont s =
+    AxTitleFont (Str s)
 
 
 {-| Font size of an axis title.
@@ -7651,8 +7717,8 @@ axTitleFontSize n =
 {-| Font style of an axis title (e.g. "italic").
 -}
 axTitleFontStyle : String -> AxisProperty
-axTitleFontStyle =
-    AxTitleFontStyle
+axTitleFontStyle s =
+    AxTitleFontStyle (Str s)
 
 
 {-| Font weight of an axis title.
@@ -19658,8 +19724,8 @@ axisProperty axisProp =
               )
             ]
 
-        AxFormat fmt ->
-            [ ( "format", JE.string fmt ) ]
+        AxFormat s ->
+            strExpr "format" s
 
         AxFormatAsNum ->
             [ ( "formatType", JE.string "number" ) ]
@@ -19667,14 +19733,14 @@ axisProperty axisProp =
         AxFormatAsTemporal ->
             [ ( "formatType", JE.string "time" ) ]
 
-        AxFormatAsCustom formatter ->
-            [ ( "formatType", JE.string formatter ) ]
+        AxFormatAsCustom s ->
+            strExpr "formatType" s
 
         AxGridCap c ->
             [ ( "gridCap", strokeCapSpec c ) ]
 
-        AxGridColor c ->
-            [ ( "gridColor", JE.string c ) ]
+        AxGridColor s ->
+            strExpr "gridColor" s
 
         AxGridDash ds ->
             if ds == [] then
@@ -19717,10 +19783,10 @@ axisProperty axisProp =
             numExpr "labelAngle" n
 
         AxLabelColor s ->
-            [ ( "labelColor", JE.string s ) ]
+            strExpr "labelColor" s
 
-        AxLabelExpr ex ->
-            [ ( "labelExpr", JE.string ex ) ]
+        AxLabelExpr s ->
+            strExpr "labelExpr" s
 
         AxLabelFlush mn ->
             case mn of
@@ -19738,13 +19804,13 @@ axisProperty axisProp =
             numExpr "labelFlushOffset" n
 
         AxLabelFont s ->
-            [ ( "labelFont", JE.string s ) ]
+            strExpr "labelFont" s
 
         AxLabelFontSize n ->
             numExpr "labelFontSize" n
 
         AxLabelFontStyle s ->
-            [ ( "labelFontStyle", JE.string s ) ]
+            strExpr "labelFontStyle" s
 
         AxLabelFontWeight fw ->
             [ ( "labelFontWeight", fontWeightSpec fw ) ]
@@ -19776,8 +19842,8 @@ axisProperty axisProp =
         AxDomainCap c ->
             [ ( "domainCap", strokeCapSpec c ) ]
 
-        AxDomainColor c ->
-            [ ( "domainColor", JE.string c ) ]
+        AxDomainColor s ->
+            strExpr "domainColor" s
 
         AxDomainDash ds ->
             if ds == [] then
@@ -19828,7 +19894,7 @@ axisProperty axisProp =
             [ ( "ticks", JE.bool b ) ]
 
         AxTickColor s ->
-            [ ( "tickColor", JE.string s ) ]
+            strExpr "tickColor" s
 
         AxTickCount tc ->
             [ ( "tickCount", scaleNiceSpec tc ) ]
@@ -19868,7 +19934,12 @@ axisProperty axisProp =
             [ ( "values", toList (dataValuesSpecs vals) ) ]
 
         AxTitle s ->
-            [ ( "title", multilineTextSpec s ) ]
+            case s of
+                Str ttl ->
+                    [ ( "title", multilineTextSpec ttl ) ]
+
+                _ ->
+                    strExpr "title" s
 
         AxTitleAlign al ->
             [ ( "titleAlign", hAlignSpec al ) ]
@@ -19883,16 +19954,16 @@ axisProperty axisProp =
             [ ( "titleBaseline", vAlignSpec va ) ]
 
         AxTitleColor s ->
-            [ ( "titleColor", JE.string s ) ]
+            strExpr "titleColor" s
 
         AxTitleFont s ->
-            [ ( "titleFont", JE.string s ) ]
+            strExpr "titleFont" s
 
         AxTitleFontSize n ->
             numExpr "titleFontSize" n
 
         AxTitleFontStyle s ->
-            [ ( "titleFontStyle", JE.string s ) ]
+            strExpr "titleFontStyle" s
 
         AxTitleFontWeight fw ->
             [ ( "titleFontWeight", fontWeightSpec fw ) ]

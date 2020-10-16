@@ -363,6 +363,7 @@ axis16 =
                 [ ( "off", [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ] )
                 , ( "lfs", [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ] )
                 , ( "la", [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ] )
+                , ( "tClr", [ paValue (str "black"), paBind (ipColor [ inName "Title colour" ]) ] )
                 ]
 
         enc =
@@ -374,6 +375,7 @@ axis16 =
                         [ axOffset |> axisPropertyNumExpr "off"
                         , axLabelFontSize |> axisPropertyNumExpr "lfs"
                         , axLabelAngle |> axisPropertyNumExpr "la"
+                        , axTitleColor |> axisPropertyStrExpr "tClr"
                         ]
                     ]
                 << position Y [ pName "y", pOrdinal ]
