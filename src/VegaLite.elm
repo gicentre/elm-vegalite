@@ -5126,9 +5126,9 @@ type
     = MAlign HAlign
     | MAngle Num
     | MAria (List Aria)
-    | MBandSize Float
+    | MBandSize Num
     | MBaseline VAlign
-    | MBinSpacing Float
+    | MBinSpacing Num
     | MBlend BlendMode
     | MBorders (List MarkProperty)
     | MBox (List MarkProperty)
@@ -5143,11 +5143,11 @@ type
     | MCornerRadiusBR Num
     | MCursor Cursor
     | MHRef Str
-    | MContinuousBandSize Float
+    | MContinuousBandSize Num
     | MLimit Num
     | MEllipsis Str
     | MDir TextDirection
-    | MDiscreteBandSize Float
+    | MDiscreteBandSize Num
     | MdX Num
     | MdY Num
     | MExtent SummaryExtent
@@ -5191,7 +5191,7 @@ type
     | MText Str
     | MTheta Num
     | MTheta2 Num
-    | MThickness Float
+    | MThickness Num
     | MTicks (List MarkProperty)
     | MTooltip TooltipContent
     | MWidth Num
@@ -13449,8 +13449,8 @@ maAspect b =
 {-| Band size of a bar mark.
 -}
 maBandSize : Float -> MarkProperty
-maBandSize =
-    MBandSize
+maBandSize n =
+    MBandSize (Num n)
 
 
 {-| Vertical alignment of a text mark.
@@ -13463,8 +13463,8 @@ maBaseline =
 {-| Offset between bars for a binned field using a bar mark.
 -}
 maBinSpacing : Float -> MarkProperty
-maBinSpacing =
-    MBinSpacing
+maBinSpacing n =
+    MBinSpacing (Num n)
 
 
 {-| Color blend mode for drawing an item over its current background. Standard
@@ -13590,8 +13590,8 @@ maCursor =
 {-| Continuous band size of a bar mark.
 -}
 maContinuousBandSize : Float -> MarkProperty
-maContinuousBandSize =
-    MContinuousBandSize
+maContinuousBandSize n =
+    MContinuousBandSize (Num n)
 
 
 {-| Direction of text, which determines which end is truncated in cases where text
@@ -13605,8 +13605,8 @@ maDir =
 {-| Discrete band size of a bar mark.
 -}
 maDiscreteBandSize : Float -> MarkProperty
-maDiscreteBandSize =
-    MDiscreteBandSize
+maDiscreteBandSize n =
+    MDiscreteBandSize (Num n)
 
 
 {-| Horizontal offset between a text mark and its anchor.
@@ -14072,8 +14072,8 @@ maTheta2Offset n =
 {-| Thickness of a tick mark.
 -}
 maThickness : Float -> MarkProperty
-maThickness =
-    MThickness
+maThickness n =
+    MThickness (Num n)
 
 
 {-| Tick properties for the errorbar or boxplot mark.
@@ -22174,23 +22174,23 @@ markProperty mProp =
         MTheta2Offset n ->
             numExpr "theta2Offset" n
 
-        MBinSpacing x ->
-            [ ( "binSpacing", JE.float x ) ]
+        MBinSpacing n ->
+            numExpr "binSpacing" n
 
-        MContinuousBandSize x ->
-            [ ( "continuousBandSize", JE.float x ) ]
+        MContinuousBandSize n ->
+            numExpr "continuousBandSize" n
 
-        MDiscreteBandSize x ->
-            [ ( "discreteBandSize", JE.float x ) ]
+        MDiscreteBandSize n ->
+            numExpr "discreteBandSize" n
 
         MShortTimeLabels b ->
             booExpr "shortTimeLabels" b
 
-        MBandSize x ->
-            [ ( "bandSize", JE.float x ) ]
+        MBandSize n ->
+            numExpr "bandSize" n
 
-        MThickness x ->
-            [ ( "thickness", JE.float x ) ]
+        MThickness n ->
+            numExpr "thickness" n
 
         MRule props ->
             case props of
