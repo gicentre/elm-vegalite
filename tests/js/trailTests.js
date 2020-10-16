@@ -6366,48 +6366,23 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2Offset', n);
 		case 5:
-			var x = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'binSpacing',
-					$elm$json$Json$Encode$float(x))
-				]);
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'binSpacing', n);
 		case 20:
-			var x = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'continuousBandSize',
-					$elm$json$Json$Encode$float(x))
-				]);
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'continuousBandSize', n);
 		case 24:
-			var x = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'discreteBandSize',
-					$elm$json$Json$Encode$float(x))
-				]);
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'discreteBandSize', n);
 		case 52:
 			var b = mProp.a;
 			return A2($author$project$VegaLite$booExpr, 'shortTimeLabels', b);
 		case 3:
-			var x = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'bandSize',
-					$elm$json$Json$Encode$float(x))
-				]);
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'bandSize', n);
 		case 68:
-			var x = mProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'thickness',
-					$elm$json$Json$Encode$float(x))
-				]);
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'thickness', n);
 		case 50:
 			var props = mProp.a;
 			if (!props.b) {
