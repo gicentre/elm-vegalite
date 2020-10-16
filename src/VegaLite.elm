@@ -494,6 +494,7 @@ module VegaLite exposing
     , soByChannel
     , soByRepeat
     , soCustom
+    , axisPropertyNumExpr
     , axAria
     , axBandPosition
     , axMaxExtent
@@ -2331,6 +2332,8 @@ See the
 See the
 [Vega-Lite axis property documentation](https://vega.github.io/vega-lite/docs/axis.html#axis-properties)
 
+@docs axisPropertyNumExpr
+
 
 #### General
 
@@ -3988,80 +3991,80 @@ type AxisConfig
 -}
 type AxisProperty
     = AxAria (List Aria)
-    | AxBandPosition Float
-    | AxMaxExtent Float
-    | AxMinExtent Float
+    | AxBandPosition Num
+    | AxMaxExtent Num
+    | AxMinExtent Num
     | AxOrient Side
-    | AxOffset Float
-    | AxPosition Float
-    | AxZIndex Int
+    | AxOffset Num
+    | AxPosition Num
+    | AxZIndex Num
     | AxDomain Bool
     | AxDomainCap StrokeCap
     | AxDomainColor String
     | AxDomainDash (List Float)
-    | AxDomainDashOffset Float
-    | AxDomainOpacity Float
-    | AxDomainWidth Float
+    | AxDomainDashOffset Num
+    | AxDomainOpacity Num
+    | AxDomainWidth Num
     | AxFormat String
     | AxFormatAsNum
     | AxFormatAsTemporal
     | AxFormatAsCustom String
     | AxLabels Bool
     | AxLabelAlign HAlign
-    | AxLabelAngle Float
+    | AxLabelAngle Num
     | AxLabelBaseline VAlign
     | AxLabelBound (Maybe Float)
     | AxLabelColor String
     | AxLabelExpr String
     | AxLabelFlush (Maybe Float)
-    | AxLabelFlushOffset Float
+    | AxLabelFlushOffset Num
     | AxLabelFont String
-    | AxLabelFontSize Float
+    | AxLabelFontSize Num
     | AxLabelFontStyle String
     | AxLabelFontWeight FontWeight
-    | AxLabelLineHeight Float
-    | AxLabelLimit Float
-    | AxLabelOffset Float
-    | AxLabelOpacity Float
+    | AxLabelLineHeight Num
+    | AxLabelLimit Num
+    | AxLabelOffset Num
+    | AxLabelOpacity Num
     | AxLabelOverlap OverlapStrategy
-    | AxLabelPadding Float
-    | AxLabelSeparation Float
+    | AxLabelPadding Num
+    | AxLabelSeparation Num
     | AxStyle (List String)
     | AxTickColor String
     | AxTickCount ScaleNice
     | AxTickDash (List Float)
-    | AxTickDashOffset Float
+    | AxTickDashOffset Num
     | AxTickExtra Bool
-    | AxTickOffset Float
-    | AxTickOpacity Float
+    | AxTickOffset Num
+    | AxTickOpacity Num
     | AxTickRound Bool
     | AxTicks Bool
-    | AxTickSize Float
-    | AxTickWidth Float
+    | AxTickSize Num
+    | AxTickWidth Num
     | AxValues DataValues
     | AxTitle String
     | AxTitleAlign HAlign
     | AxTitleAnchor Anchor
-    | AxTitleAngle Float
+    | AxTitleAngle Num
     | AxTitleBaseline VAlign
     | AxTitleColor String
     | AxTitleFont String
-    | AxTitleFontSize Float
+    | AxTitleFontSize Num
     | AxTitleFontStyle String
     | AxTitleFontWeight FontWeight
-    | AxTitleLimit Float
-    | AxTitleOpacity Float
-    | AxTitlePadding Float
-    | AxTitleX Float
-    | AxTitleY Float
+    | AxTitleLimit Num
+    | AxTitleOpacity Num
+    | AxTitlePadding Num
+    | AxTitleX Num
+    | AxTitleY Num
     | AxGrid Bool
     | AxGridCap StrokeCap
     | AxGridColor String
     | AxGridDash (List Float)
-    | AxGridDashOffset Float
-    | AxGridOpacity Float
-    | AxGridWidth Float
-    | AxTickMinStep Float
+    | AxGridDashOffset Num
+    | AxGridOpacity Num
+    | AxGridWidth Num
+    | AxTickMinStep Num
     | AxDataCondition BooleanOp ConditionalAxisProperty
 
 
@@ -6506,8 +6509,8 @@ axAria =
 {-| Position of axis tick relative to a band (0 to 1).
 -}
 axBandPosition : Float -> AxisProperty
-axBandPosition =
-    AxBandPosition
+axBandPosition n =
+    AxBandPosition (Num n)
 
 
 {-| Default [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
@@ -7057,22 +7060,22 @@ axDomainDash =
 {-| Number of pixels before the first axis baseline (domain) line dash is drawn.
 -}
 axDomainDashOffset : Float -> AxisProperty
-axDomainDashOffset =
-    AxDomainDashOffset
+axDomainDashOffset n =
+    AxDomainDashOffset (Num n)
 
 
 {-| Opacity of axis domain line.
 -}
 axDomainOpacity : Float -> AxisProperty
-axDomainOpacity =
-    AxDomainOpacity
+axDomainOpacity n =
+    AxDomainOpacity (Num n)
 
 
 {-| Width of axis domain line.
 -}
 axDomainWidth : Float -> AxisProperty
-axDomainWidth =
-    AxDomainWidth
+axDomainWidth n =
+    AxDomainWidth (Num n)
 
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html) for
@@ -7143,22 +7146,150 @@ axGridDash =
 {-| Default number of pixels before the first axis grid line dash is drawn.
 -}
 axGridDashOffset : Float -> AxisProperty
-axGridDashOffset =
-    AxGridDashOffset
+axGridDashOffset n =
+    AxGridDashOffset (Num n)
 
 
 {-| Opacity of grid lines associated with an axis.
 -}
 axGridOpacity : Float -> AxisProperty
-axGridOpacity =
-    AxGridOpacity
+axGridOpacity n =
+    AxGridOpacity (Num n)
 
 
 {-| Width of grid lines associated with an axis.
 -}
 axGridWidth : Float -> AxisProperty
-axGridWidth =
-    AxGridWidth
+axGridWidth n =
+    AxGridWidth (Num n)
+
+
+{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requring a numeric value. This can be used to provide an
+interactive parameterisation of a mark property when an expression is bound to an
+input element. For example,
+
+    prm =
+        params
+            [ ( "axo", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20 ]) ] ) ]
+    :
+    :
+    enc =
+      encoding
+          << position X
+              [ pName "x"
+              , pQuant
+              , pAxis [ axOffset |> axisPropertyNumExpr "axo" ]
+              ]
+
+-}
+axisPropertyNumExpr : String -> (number -> AxisProperty) -> AxisProperty
+axisPropertyNumExpr ex fn =
+    case fn 0 of
+        AxBandPosition _ ->
+            AxBandPosition (NumExpr ex)
+
+        AxMaxExtent _ ->
+            AxMaxExtent (NumExpr ex)
+
+        AxMinExtent _ ->
+            AxMinExtent (NumExpr ex)
+
+        AxOffset _ ->
+            AxOffset (NumExpr ex)
+
+        AxPosition _ ->
+            AxPosition (NumExpr ex)
+
+        AxZIndex _ ->
+            AxZIndex (NumExpr ex)
+
+        AxDomainDashOffset _ ->
+            AxDomainDashOffset (NumExpr ex)
+
+        AxDomainOpacity _ ->
+            AxDomainOpacity (NumExpr ex)
+
+        AxDomainWidth _ ->
+            AxDomainWidth (NumExpr ex)
+
+        AxLabelAngle _ ->
+            AxLabelAngle (NumExpr ex)
+
+        AxLabelFlushOffset _ ->
+            AxLabelFlushOffset (NumExpr ex)
+
+        AxLabelFontSize _ ->
+            AxLabelFontSize (NumExpr ex)
+
+        AxLabelLineHeight _ ->
+            AxLabelLineHeight (NumExpr ex)
+
+        AxLabelLimit _ ->
+            AxLabelLimit (NumExpr ex)
+
+        AxLabelOffset _ ->
+            AxLabelOffset (NumExpr ex)
+
+        AxLabelOpacity _ ->
+            AxLabelOpacity (NumExpr ex)
+
+        AxLabelPadding _ ->
+            AxLabelPadding (NumExpr ex)
+
+        AxLabelSeparation _ ->
+            AxLabelSeparation (NumExpr ex)
+
+        AxTickDashOffset _ ->
+            AxTickDashOffset (NumExpr ex)
+
+        AxTickOffset _ ->
+            AxTickOffset (NumExpr ex)
+
+        AxTickOpacity _ ->
+            AxTickOpacity (NumExpr ex)
+
+        AxTickSize _ ->
+            AxTickSize (NumExpr ex)
+
+        AxTickWidth _ ->
+            AxTickWidth (NumExpr ex)
+
+        AxTitleAngle _ ->
+            AxTitleAngle (NumExpr ex)
+
+        AxTitleFontSize _ ->
+            AxTitleFontSize (NumExpr ex)
+
+        AxTitleLimit _ ->
+            AxTitleLimit (NumExpr ex)
+
+        AxTitleOpacity _ ->
+            AxTitleOpacity (NumExpr ex)
+
+        AxTitlePadding _ ->
+            AxTitlePadding (NumExpr ex)
+
+        AxTitleX _ ->
+            AxTitleX (NumExpr ex)
+
+        AxTitleY _ ->
+            AxTitleY (NumExpr ex)
+
+        AxGridDashOffset _ ->
+            AxGridDashOffset (NumExpr ex)
+
+        AxGridOpacity _ ->
+            AxGridOpacity (NumExpr ex)
+
+        AxGridWidth _ ->
+            AxGridWidth (NumExpr ex)
+
+        AxTickMinStep _ ->
+            AxTickMinStep (NumExpr ex)
+
+        _ ->
+            fn 0
 
 
 {-| Horizontal alignment of axis tick labels.
@@ -7221,8 +7352,8 @@ axLabelFlush =
 {-| Number of pixels by which to offset flush-adjusted labels.
 -}
 axLabelFlushOffset : Float -> AxisProperty
-axLabelFlushOffset =
-    AxLabelFlushOffset
+axLabelFlushOffset n =
+    AxLabelFlushOffset (Num n)
 
 
 {-| Font name of an axis label.
@@ -7235,8 +7366,8 @@ axLabelFont =
 {-| Font size of an axis label.
 -}
 axLabelFontSize : Float -> AxisProperty
-axLabelFontSize =
-    AxLabelFontSize
+axLabelFontSize n =
+    AxLabelFontSize (Num n)
 
 
 {-| Font style of an axis label (e.g. "italic")
@@ -7256,29 +7387,155 @@ axLabelFontWeight =
 {-| Maximum length in pixels of axis tick labels.
 -}
 axLabelLimit : Float -> AxisProperty
-axLabelLimit =
-    AxLabelLimit
+axLabelLimit n =
+    AxLabelLimit (Num n)
 
 
 {-| Axis label line height (useful for multi-line labels).
 -}
 axLabelLineHeight : Float -> AxisProperty
-axLabelLineHeight =
-    AxLabelLineHeight
+axLabelLineHeight n =
+    AxLabelLineHeight (Num n)
 
 
 {-| Offset in pixels of an axis's labels relative to its ticks.
 -}
 axLabelOffset : Float -> AxisProperty
-axLabelOffset =
-    AxLabelOffset
+axLabelOffset n =
+    AxLabelOffset (Num n)
 
 
 {-| Opacity of an axis label.
 -}
 axLabelOpacity : Float -> AxisProperty
-axLabelOpacity =
-    AxLabelOpacity
+axLabelOpacity n =
+    AxLabelOpacity (Num n)
+
+
+{-| Rotation angle of axis labels (degrees from horizontal).
+-}
+axLabelAngle : Float -> AxisProperty
+axLabelAngle n =
+    AxLabelAngle (Num (positiveAngle n))
+
+
+{-| Overlap strategy for labels when they are too large to fit within the space
+devoted to an axis.
+-}
+axLabelOverlap : OverlapStrategy -> AxisProperty
+axLabelOverlap =
+    AxLabelOverlap
+
+
+{-| Padding in pixels between an axis and its text labels.
+-}
+axLabelPadding : Float -> AxisProperty
+axLabelPadding n =
+    AxLabelPadding (Num n)
+
+
+{-| The minimum separation between labels (in pixel units) before they are considered
+non-overlapping. Ignored if [axLabelOverlap](#axLabelOverlap) is [osNone](#osNone).
+-}
+axLabelSeparation : Float -> AxisProperty
+axLabelSeparation n =
+    AxLabelSeparation (Num n)
+
+
+{-| Whether or not axis labels should be displayed.
+-}
+axLabels : Bool -> AxisProperty
+axLabels =
+    AxLabels
+
+
+{-| Maximum extent in pixels that axis ticks and labels should use.
+-}
+axMaxExtent : Float -> AxisProperty
+axMaxExtent n =
+    AxMaxExtent (Num n)
+
+
+{-| Minimum extent in pixels that axis ticks and labels should use.
+-}
+axMinExtent : Float -> AxisProperty
+axMinExtent n =
+    AxMinExtent (Num n)
+
+
+{-| Offset to displace the axis from the edge of the enclosing group or data rectangle.
+-}
+axOffset : Float -> AxisProperty
+axOffset n =
+    AxOffset (Num n)
+
+
+{-| Orientation of an axis relative to the plot it is describing.
+-}
+axOrient : Side -> AxisProperty
+axOrient =
+    AxOrient
+
+
+{-| Anchor position of the axis in pixels. For x-axis with top or
+bottom orientation, this sets the axis group x coordinate. For y-axis with left
+or right orientation, this sets the axis group y coordinate.
+-}
+axPosition : Float -> AxisProperty
+axPosition n =
+    AxPosition (Num n)
+
+
+{-| Whether or not an axis should include tick marks.
+-}
+axTicks : Bool -> AxisProperty
+axTicks =
+    AxTicks
+
+
+{-| Desired number of, or interval between, axis ticks. The resulting number of
+ticks may be different so that values are “nice” (multiples of 2, 5, 10).
+-}
+axTickCount : ScaleNice -> AxisProperty
+axTickCount =
+    AxTickCount
+
+
+{-| Tick mark size in pixels.
+-}
+axTickSize : Float -> AxisProperty
+axTickSize n =
+    AxTickSize (Num n)
+
+
+{-| Title to display as part of an axis. An empty string can be used to prevent
+a title being displayed. For multi-line titles, insert `\n` at each line break or
+use a `"""` multi-line string.
+-}
+axTitle : String -> AxisProperty
+axTitle =
+    AxTitle
+
+
+{-| Horizontal alignment of an axis title.
+-}
+axTitleAlign : HAlign -> AxisProperty
+axTitleAlign =
+    AxTitleAlign
+
+
+{-| Anchor position of an axis title.
+-}
+axTitleAnchor : Anchor -> AxisProperty
+axTitleAnchor =
+    AxTitleAnchor
+
+
+{-| Angle of an axis title (degrees from horizontal).
+-}
+axTitleAngle : Float -> AxisProperty
+axTitleAngle n =
+    AxTitleAngle (Num (positiveAngle n))
 
 
 {-| A list of named styles to apply to an axis. Named styles can be specified via
@@ -7313,8 +7570,8 @@ axTickDash =
 {-| Number of pixels before the first axis tick dash is drawn.
 -}
 axTickDashOffset : Float -> AxisProperty
-axTickDashOffset =
-    AxTickDashOffset
+axTickDashOffset n =
+    AxTickDashOffset (Num n)
 
 
 {-| Whether or not an extra axis tick should be added for the initial position
@@ -7331,22 +7588,22 @@ apart. If specified, the tick count value will be adjusted, if necessary, to
 enforce the minimum step value.
 -}
 axTickMinStep : Float -> AxisProperty
-axTickMinStep =
-    AxTickMinStep
+axTickMinStep n =
+    AxTickMinStep (Num n)
 
 
 {-| Offset in pixels of an axis's ticks, labels and gridlines.
 -}
 axTickOffset : Float -> AxisProperty
-axTickOffset =
-    AxTickOffset
+axTickOffset n =
+    AxTickOffset (Num n)
 
 
 {-| Opacity of axis ticks.
 -}
 axTickOpacity : Float -> AxisProperty
-axTickOpacity =
-    AxTickOpacity
+axTickOpacity n =
+    AxTickOpacity (Num n)
 
 
 {-| Whether or not axis tick positions should be rounded to nearest integer.
@@ -7359,8 +7616,8 @@ axTickRound =
 {-| Width of axis ticks.
 -}
 axTickWidth : Float -> AxisProperty
-axTickWidth =
-    AxTickWidth
+axTickWidth n =
+    AxTickWidth (Num n)
 
 
 {-| Vertical alignment of axis title.
@@ -7387,8 +7644,8 @@ axTitleFont =
 {-| Font size of an axis title.
 -}
 axTitleFontSize : Float -> AxisProperty
-axTitleFontSize =
-    AxTitleFontSize
+axTitleFontSize n =
+    AxTitleFontSize (Num n)
 
 
 {-| Font style of an axis title (e.g. "italic").
@@ -7408,162 +7665,36 @@ axTitleFontWeight =
 {-| Maximum length in pixels of axis title.
 -}
 axTitleLimit : Float -> AxisProperty
-axTitleLimit =
-    AxTitleLimit
+axTitleLimit n =
+    AxTitleLimit (Num n)
 
 
 {-| Opacity of an axis title.
 -}
 axTitleOpacity : Float -> AxisProperty
-axTitleOpacity =
-    AxTitleOpacity
-
-
-{-| X position of an axis title relative to the axis group.
--}
-axTitleX : Float -> AxisProperty
-axTitleX =
-    AxTitleX
-
-
-{-| Y position of an axis title relative to the axis group.
--}
-axTitleY : Float -> AxisProperty
-axTitleY =
-    AxTitleY
-
-
-{-| Rotation angle of axis labels (degrees from horizontal).
--}
-axLabelAngle : Float -> AxisProperty
-axLabelAngle =
-    AxLabelAngle << positiveAngle
-
-
-{-| Overlap strategy for labels when they are too large to fit within the space
-devoted to an axis.
--}
-axLabelOverlap : OverlapStrategy -> AxisProperty
-axLabelOverlap =
-    AxLabelOverlap
-
-
-{-| Padding in pixels between an axis and its text labels.
--}
-axLabelPadding : Float -> AxisProperty
-axLabelPadding =
-    AxLabelPadding
-
-
-{-| The minimum separation between labels (in pixel units) before they are considered
-non-overlapping. Ignored if [axLabelOverlap](#axLabelOverlap) is [osNone](#osNone).
--}
-axLabelSeparation : Float -> AxisProperty
-axLabelSeparation =
-    AxLabelSeparation
-
-
-{-| Whether or not axis labels should be displayed.
--}
-axLabels : Bool -> AxisProperty
-axLabels =
-    AxLabels
-
-
-{-| Maximum extent in pixels that axis ticks and labels should use.
--}
-axMaxExtent : Float -> AxisProperty
-axMaxExtent =
-    AxMaxExtent
-
-
-{-| Minimum extent in pixels that axis ticks and labels should use.
--}
-axMinExtent : Float -> AxisProperty
-axMinExtent =
-    AxMinExtent
-
-
-{-| Offset to displace the axis from the edge of the enclosing group or data rectangle.
--}
-axOffset : Float -> AxisProperty
-axOffset =
-    AxOffset
-
-
-{-| Orientation of an axis relative to the plot it is describing.
--}
-axOrient : Side -> AxisProperty
-axOrient =
-    AxOrient
-
-
-{-| Anchor position of the axis in pixels. For x-axis with top or
-bottom orientation, this sets the axis group x coordinate. For y-axis with left
-or right orientation, this sets the axis group y coordinate.
--}
-axPosition : Float -> AxisProperty
-axPosition =
-    AxPosition
-
-
-{-| Whether or not an axis should include tick marks.
--}
-axTicks : Bool -> AxisProperty
-axTicks =
-    AxTicks
-
-
-{-| Desired number of, or interval between, axis ticks. The resulting number of
-ticks may be different so that values are “nice” (multiples of 2, 5, 10).
--}
-axTickCount : ScaleNice -> AxisProperty
-axTickCount =
-    AxTickCount
-
-
-{-| Tick mark size in pixels.
--}
-axTickSize : Float -> AxisProperty
-axTickSize =
-    AxTickSize
-
-
-{-| Title to display as part of an axis. An empty string can be used to prevent
-a title being displayed. For multi-line titles, insert `\n` at each line break or
-use a `"""` multi-line string.
--}
-axTitle : String -> AxisProperty
-axTitle =
-    AxTitle
-
-
-{-| Horizontal alignment of an axis title.
--}
-axTitleAlign : HAlign -> AxisProperty
-axTitleAlign =
-    AxTitleAlign
-
-
-{-| Anchor position of an axis title.
--}
-axTitleAnchor : Anchor -> AxisProperty
-axTitleAnchor =
-    AxTitleAnchor
-
-
-{-| Angle of an axis title (degrees from horizontal).
--}
-axTitleAngle : Float -> AxisProperty
-axTitleAngle =
-    AxTitleAngle << positiveAngle
+axTitleOpacity n =
+    AxTitleOpacity (Num n)
 
 
 {-| Padding in pixels between a title and axis.
 -}
 axTitlePadding : Float -> AxisProperty
-axTitlePadding =
-    AxTitlePadding
+axTitlePadding n =
+    AxTitlePadding (Num n)
+
+
+{-| X position of an axis title relative to the axis group.
+-}
+axTitleX : Float -> AxisProperty
+axTitleX n =
+    AxTitleX (Num n)
+
+
+{-| Y position of an axis title relative to the axis group.
+-}
+axTitleY : Float -> AxisProperty
+axTitleY n =
+    AxTitleY (Num n)
 
 
 {-| Set explicit tick/grid/label values along an axis. For example, for a
@@ -7615,8 +7746,8 @@ of intersecting grid lines associated with x- and y- axes can be controlled by
 assigning a higher z-value to the axis to appear on top.
 -}
 axZIndex : Int -> AxisProperty
-axZIndex =
-    AxZIndex
+axZIndex n =
+    AxZIndex (Num (toFloat n))
 
 
 {-| An azimuthal equal area map projection.
@@ -14617,8 +14748,8 @@ markPropertyBooExpr ex fn =
 
 {-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
 a mark property function requring a numeric value. This can be used to provide an
-interactive parameterisation of a mark property by providing an expression bound
-to an input element. For example,
+interactive parameterisation of a mark property when an expression is bound to an
+input element. For example,
 
     prm =
         params
@@ -19442,7 +19573,7 @@ axisProperty axisProp =
                     List.map ariaProperty aps
 
         AxBandPosition n ->
-            [ ( "bandPosition", JE.float n ) ]
+            numExpr "bandPosition" n
 
         AxDataCondition predicate cap ->
             let
@@ -19452,67 +19583,67 @@ axisProperty axisProp =
                 ( ifProp, elseProp ) =
                     case cap of
                         CAxLabelAlign ha1 ha2 ->
-                            ( axisProperty (AxLabelAlign ha1) |> firstProp, axisProperty (AxLabelAlign ha2) |> firstProp )
+                            ( axisProperty (AxLabelAlign ha1) |> firstProp, axisProperty (axLabelAlign ha2) |> firstProp )
 
                         CAxLabelBaseline va1 va2 ->
-                            ( axisProperty (AxLabelBaseline va1) |> firstProp, axisProperty (AxLabelBaseline va2) |> firstProp )
+                            ( axisProperty (axLabelBaseline va1) |> firstProp, axisProperty (axLabelBaseline va2) |> firstProp )
 
                         CAxLabelColor c1 c2 ->
-                            ( axisProperty (AxLabelColor c1) |> firstProp, axisProperty (AxLabelColor c2) |> firstProp )
+                            ( axisProperty (axLabelColor c1) |> firstProp, axisProperty (axLabelColor c2) |> firstProp )
 
                         CAxLabelFont f1 f2 ->
-                            ( axisProperty (AxLabelFont f1) |> firstProp, axisProperty (AxLabelFont f2) |> firstProp )
+                            ( axisProperty (axLabelFont f1) |> firstProp, axisProperty (axLabelFont f2) |> firstProp )
 
                         CAxLabelFontSize s1 s2 ->
-                            ( axisProperty (AxLabelFontSize s1) |> firstProp, axisProperty (AxLabelFontSize s2) |> firstProp )
+                            ( axisProperty (axLabelFontSize s1) |> firstProp, axisProperty (axLabelFontSize s2) |> firstProp )
 
                         CAxLabelFontStyle s1 s2 ->
-                            ( axisProperty (AxLabelFontStyle s1) |> firstProp, axisProperty (AxLabelFontStyle s2) |> firstProp )
+                            ( axisProperty (axLabelFontStyle s1) |> firstProp, axisProperty (axLabelFontStyle s2) |> firstProp )
 
                         CAxLabelFontWeight w1 w2 ->
-                            ( axisProperty (AxLabelFontWeight w1) |> firstProp, axisProperty (AxLabelFontWeight w2) |> firstProp )
+                            ( axisProperty (axLabelFontWeight w1) |> firstProp, axisProperty (axLabelFontWeight w2) |> firstProp )
 
                         CAxLabelOffset o1 o2 ->
-                            ( axisProperty (AxLabelOffset o1) |> firstProp, axisProperty (AxLabelOffset o2) |> firstProp )
+                            ( axisProperty (axLabelOffset o1) |> firstProp, axisProperty (axLabelOffset o2) |> firstProp )
 
                         CAxLabelOpacity o1 o2 ->
-                            ( axisProperty (AxLabelOpacity o1) |> firstProp, axisProperty (AxLabelOpacity o2) |> firstProp )
+                            ( axisProperty (axLabelOpacity o1) |> firstProp, axisProperty (axLabelOpacity o2) |> firstProp )
 
                         CAxLabelPadding p1 p2 ->
-                            ( axisProperty (AxLabelPadding p1) |> firstProp, axisProperty (AxLabelPadding p2) |> firstProp )
+                            ( axisProperty (axLabelPadding p1) |> firstProp, axisProperty (axLabelPadding p2) |> firstProp )
 
                         CAxTickColor c1 c2 ->
-                            ( axisProperty (AxTickColor c1) |> firstProp, axisProperty (AxTickColor c2) |> firstProp )
+                            ( axisProperty (axTickColor c1) |> firstProp, axisProperty (axTickColor c2) |> firstProp )
 
                         CAxTickDash d1 d2 ->
-                            ( axisProperty (AxTickDash d1) |> firstProp, axisProperty (AxTickDash d2) |> firstProp )
+                            ( axisProperty (axTickDash d1) |> firstProp, axisProperty (axTickDash d2) |> firstProp )
 
                         CAxTickDashOffset o1 o2 ->
-                            ( axisProperty (AxTickDashOffset o1) |> firstProp, axisProperty (AxTickDashOffset o2) |> firstProp )
+                            ( axisProperty (axTickDashOffset o1) |> firstProp, axisProperty (axTickDashOffset o2) |> firstProp )
 
                         CAxTickOpacity o1 o2 ->
-                            ( axisProperty (AxTickOpacity o1) |> firstProp, axisProperty (AxTickOpacity o2) |> firstProp )
+                            ( axisProperty (axTickOpacity o1) |> firstProp, axisProperty (axTickOpacity o2) |> firstProp )
 
                         CAxTickSize s1 s2 ->
-                            ( axisProperty (AxTickSize s1) |> firstProp, axisProperty (AxTickSize s2) |> firstProp )
+                            ( axisProperty (axTickSize s1) |> firstProp, axisProperty (axTickSize s2) |> firstProp )
 
                         CAxTickWidth w1 w2 ->
-                            ( axisProperty (AxTickWidth w1) |> firstProp, axisProperty (AxTickWidth w2) |> firstProp )
+                            ( axisProperty (axTickWidth w1) |> firstProp, axisProperty (axTickWidth w2) |> firstProp )
 
                         CAxGridColor c1 c2 ->
-                            ( axisProperty (AxGridColor c1) |> firstProp, axisProperty (AxGridColor c2) |> firstProp )
+                            ( axisProperty (axGridColor c1) |> firstProp, axisProperty (axGridColor c2) |> firstProp )
 
                         CAxGridDash d1 d2 ->
-                            ( axisProperty (AxGridDash d1) |> firstProp, axisProperty (AxGridDash d2) |> firstProp )
+                            ( axisProperty (axGridDash d1) |> firstProp, axisProperty (axGridDash d2) |> firstProp )
 
                         CAxGridDashOffset o1 o2 ->
-                            ( axisProperty (AxGridDashOffset o1) |> firstProp, axisProperty (AxGridDashOffset o2) |> firstProp )
+                            ( axisProperty (axGridDashOffset o1) |> firstProp, axisProperty (axGridDashOffset o2) |> firstProp )
 
                         CAxGridOpacity o1 o2 ->
-                            ( axisProperty (AxGridOpacity o1) |> firstProp, axisProperty (AxGridOpacity o2) |> firstProp )
+                            ( axisProperty (axGridOpacity o1) |> firstProp, axisProperty (axGridOpacity o2) |> firstProp )
 
                         CAxGridWidth w1 w2 ->
-                            ( axisProperty (AxGridWidth w1) |> firstProp, axisProperty (AxGridWidth w2) |> firstProp )
+                            ( axisProperty (axGridWidth w1) |> firstProp, axisProperty (axGridWidth w2) |> firstProp )
             in
             [ ( Tuple.first ifProp
               , JE.object
@@ -19552,14 +19683,14 @@ axisProperty axisProp =
             else
                 [ ( "gridDash", JE.list JE.float ds ) ]
 
-        AxGridDashOffset x ->
-            [ ( "gridDashOffset", JE.float x ) ]
+        AxGridDashOffset n ->
+            numExpr "gridDashOffset" n
 
-        AxGridOpacity o ->
-            [ ( "gridOpacity", JE.float o ) ]
+        AxGridOpacity n ->
+            numExpr "gridOpacity" n
 
-        AxGridWidth w ->
-            [ ( "gridWidth", JE.float w ) ]
+        AxGridWidth n ->
+            numExpr "gridWidth" n
 
         AxLabels b ->
             [ ( "labels", JE.bool b ) ]
@@ -19582,8 +19713,8 @@ axisProperty axisProp =
                 Nothing ->
                     [ ( "labelBound", JE.bool False ) ]
 
-        AxLabelAngle a ->
-            [ ( "labelAngle", JE.float a ) ]
+        AxLabelAngle n ->
+            numExpr "labelAngle" n
 
         AxLabelColor s ->
             [ ( "labelColor", JE.string s ) ]
@@ -19604,13 +19735,13 @@ axisProperty axisProp =
                     [ ( "labelFlush", JE.bool False ) ]
 
         AxLabelFlushOffset n ->
-            [ ( "labelFlushOffset", JE.float n ) ]
+            numExpr "labelFlushOffset" n
 
         AxLabelFont s ->
             [ ( "labelFont", JE.string s ) ]
 
         AxLabelFontSize n ->
-            [ ( "labelFontSize", JE.float n ) ]
+            numExpr "labelFontSize" n
 
         AxLabelFontStyle s ->
             [ ( "labelFontStyle", JE.string s ) ]
@@ -19618,26 +19749,26 @@ axisProperty axisProp =
         AxLabelFontWeight fw ->
             [ ( "labelFontWeight", fontWeightSpec fw ) ]
 
-        AxLabelLimit x ->
-            [ ( "labelLimit", JE.float x ) ]
+        AxLabelLimit n ->
+            numExpr "labelLimit" n
 
-        AxLabelLineHeight x ->
-            [ ( "labelLineHeight", JE.float x ) ]
+        AxLabelLineHeight n ->
+            numExpr "labelLineHeight" n
 
-        AxLabelOffset x ->
-            [ ( "labelOffset", JE.float x ) ]
+        AxLabelOffset n ->
+            numExpr "labelOffset" n
 
-        AxLabelOpacity x ->
-            [ ( "labelOpacity", JE.float x ) ]
+        AxLabelOpacity n ->
+            numExpr "labelOpacity" n
 
         AxLabelOverlap strat ->
             [ ( "labelOverlap", overlapStrategySpec strat ) ]
 
-        AxLabelPadding pad ->
-            [ ( "labelPadding", JE.float pad ) ]
+        AxLabelPadding n ->
+            numExpr "labelPadding" n
 
-        AxLabelSeparation x ->
-            [ ( "labelSeparation", JE.float x ) ]
+        AxLabelSeparation n ->
+            numExpr "labelSeparation" n
 
         AxDomain b ->
             [ ( "domain", JE.bool b ) ]
@@ -19655,32 +19786,32 @@ axisProperty axisProp =
             else
                 [ ( "domainDash", JE.list JE.float ds ) ]
 
-        AxDomainDashOffset x ->
-            [ ( "domainDashOffset", JE.float x ) ]
+        AxDomainDashOffset n ->
+            numExpr "domainDashOffset" n
 
-        AxDomainOpacity x ->
-            [ ( "domainOpacity", JE.float x ) ]
+        AxDomainOpacity n ->
+            numExpr "domainOpacity" n
 
-        AxDomainWidth x ->
-            [ ( "domainWidth", JE.float x ) ]
+        AxDomainWidth n ->
+            numExpr "domainWidth" n
 
         AxGrid b ->
             [ ( "grid", JE.bool b ) ]
 
-        AxMaxExtent x ->
-            [ ( "maxExtent", JE.float x ) ]
+        AxMaxExtent n ->
+            numExpr "maxExtent" n
 
-        AxMinExtent x ->
-            [ ( "minExtent", JE.float x ) ]
+        AxMinExtent n ->
+            numExpr "minExtent" n
 
         AxOrient side ->
             [ ( "orient", JE.string (sideLabel side) ) ]
 
-        AxOffset x ->
-            [ ( "offset", JE.float x ) ]
+        AxOffset n ->
+            numExpr "offset" n
 
-        AxPosition x ->
-            [ ( "position", JE.float x ) ]
+        AxPosition n ->
+            numExpr "position" n
 
         AxStyle ss ->
             case ss of
@@ -19691,7 +19822,7 @@ axisProperty axisProp =
                     [ ( "style", JE.list JE.string ss ) ]
 
         AxZIndex n ->
-            [ ( "zindex", JE.int n ) ]
+            numExpr "zindex" n
 
         AxTicks b ->
             [ ( "ticks", JE.bool b ) ]
@@ -19709,29 +19840,29 @@ axisProperty axisProp =
             else
                 [ ( "tickDash", JE.list JE.float ds ) ]
 
-        AxTickDashOffset x ->
-            [ ( "tickDashOffset", JE.float x ) ]
+        AxTickDashOffset n ->
+            numExpr "tickDashOffset" n
 
         AxTickExtra b ->
             [ ( "tickExtra", JE.bool b ) ]
 
-        AxTickOffset x ->
-            [ ( "tickOffset", JE.float x ) ]
+        AxTickOffset n ->
+            numExpr "tickOffset" n
 
-        AxTickOpacity x ->
-            [ ( "tickOpacity", JE.float x ) ]
+        AxTickOpacity n ->
+            numExpr "tickOpacity" n
 
         AxTickRound b ->
             [ ( "tickRound", JE.bool b ) ]
 
-        AxTickMinStep x ->
-            [ ( "tickMinStep", JE.float x ) ]
+        AxTickMinStep n ->
+            numExpr "tickMinStep" n
 
-        AxTickSize sz ->
-            [ ( "tickSize", JE.float sz ) ]
+        AxTickSize n ->
+            numExpr "tickSize" n
 
-        AxTickWidth x ->
-            [ ( "tickWidth", JE.float x ) ]
+        AxTickWidth n ->
+            numExpr "tickWidth" n
 
         AxValues vals ->
             [ ( "values", toList (dataValuesSpecs vals) ) ]
@@ -19742,8 +19873,8 @@ axisProperty axisProp =
         AxTitleAlign al ->
             [ ( "titleAlign", hAlignSpec al ) ]
 
-        AxTitleAngle a ->
-            [ ( "titleAngle", JE.float a ) ]
+        AxTitleAngle n ->
+            numExpr "titleAngle" n
 
         AxTitleAnchor an ->
             [ ( "titleAnchor", JE.string (anchorLabel an) ) ]
@@ -19757,8 +19888,8 @@ axisProperty axisProp =
         AxTitleFont s ->
             [ ( "titleFont", JE.string s ) ]
 
-        AxTitleFontSize x ->
-            [ ( "titleFontSize", JE.float x ) ]
+        AxTitleFontSize n ->
+            numExpr "titleFontSize" n
 
         AxTitleFontStyle s ->
             [ ( "titleFontStyle", JE.string s ) ]
@@ -19766,20 +19897,20 @@ axisProperty axisProp =
         AxTitleFontWeight fw ->
             [ ( "titleFontWeight", fontWeightSpec fw ) ]
 
-        AxTitleLimit x ->
-            [ ( "titleLimit", JE.float x ) ]
+        AxTitleLimit n ->
+            numExpr "titleLimit" n
 
-        AxTitleOpacity x ->
-            [ ( "titleOpacity", JE.float x ) ]
+        AxTitleOpacity n ->
+            numExpr "titleOpacity" n
 
-        AxTitlePadding pad ->
-            [ ( "titlePadding", JE.float pad ) ]
+        AxTitlePadding n ->
+            numExpr "titlePadding" n
 
-        AxTitleX x ->
-            [ ( "titleX", JE.float x ) ]
+        AxTitleX n ->
+            numExpr "titleX" n
 
-        AxTitleY x ->
-            [ ( "titleY", JE.float x ) ]
+        AxTitleY n ->
+            numExpr "titleY" n
 
 
 bin : List BinProperty -> LabelledSpec

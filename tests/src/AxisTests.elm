@@ -355,6 +355,32 @@ axis15 =
     toVegaLite [ data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
+axis16 : Spec
+axis16 =
+    let
+        prm =
+            params
+                [ ( "off", [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ] )
+                , ( "lfs", [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ] )
+                , ( "la", [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ] )
+                ]
+
+        enc =
+            encoding
+                << position X
+                    [ pName "x"
+                    , pQuant
+                    , pAxis
+                        [ axOffset |> axisPropertyNumExpr "off"
+                        , axLabelFontSize |> axisPropertyNumExpr "lfs"
+                        , axLabelAngle |> axisPropertyNumExpr "la"
+                        ]
+                    ]
+                << position Y [ pName "y", pOrdinal ]
+    in
+    toVegaLite [ prm, data [], enc [], line [ maPoint (pmMarker [ maSize 800 ]) ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -379,6 +405,7 @@ specs =
     -- , ( "axis13", axis13 )
     , ( "axis14", axis14 )
     , ( "axis15", axis15 )
+    , ( "axis16", axis16 )
     ]
 
 

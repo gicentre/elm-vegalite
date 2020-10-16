@@ -12,13 +12,15 @@ Add view title property expressions: `title`, `angle`, `color`, `dx`, `dy`, `fon
 
 Add datum expressions.
 
-Add axis property expressions.
+Add non-numeric axis property expressions.
 
 Add facet header property expressions.
 
 Add legend property expressions.
 
 Add scale property expressions.
+
+Add aria expressions (marks, axes, legends etc.)
 
 ### V4.0 Breaking Changes
 
@@ -34,7 +36,9 @@ Add scale property expressions.
 
 - Add `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties, such as fixing image aspect ratio (VL4.16).
 
-- Add mark expression functions for to allow mark properties to be deterined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
+- Add `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
+
+- Add mark expression functions for to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 
 - Add top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour).
 
