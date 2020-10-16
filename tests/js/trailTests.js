@@ -5119,46 +5119,48 @@ var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 		case 10:
 			return 'background';
 		case 11:
-			return 'data';
+			return 'background';
 		case 12:
-			return 'datasets';
-		case 15:
-			return 'projection';
+			return 'data';
 		case 13:
-			return 'mark';
-		case 14:
-			return 'transform';
+			return 'datasets';
 		case 16:
-			return 'encoding';
-		case 30:
-			return 'config';
-		case 31:
-			return 'selection';
-		case 18:
-			return 'concat';
-		case 21:
-			return 'columns';
-		case 19:
-			return 'hconcat';
-		case 20:
-			return 'vconcat';
+			return 'projection';
+		case 14:
+			return 'mark';
+		case 15:
+			return 'transform';
 		case 17:
-			return 'layer';
+			return 'encoding';
+		case 31:
+			return 'config';
+		case 32:
+			return 'selection';
+		case 19:
+			return 'concat';
 		case 22:
-			return 'repeat';
+			return 'columns';
+		case 20:
+			return 'hconcat';
+		case 21:
+			return 'vconcat';
+		case 18:
+			return 'layer';
 		case 23:
-			return 'facet';
-		case 26:
-			return 'spacing';
-		case 27:
-			return 'align';
-		case 28:
-			return 'bounds';
-		case 29:
-			return 'center';
+			return 'repeat';
 		case 24:
-			return 'spec';
+			return 'facet';
+		case 27:
+			return 'spacing';
+		case 28:
+			return 'align';
+		case 29:
+			return 'bounds';
+		case 30:
+			return 'center';
 		case 25:
+			return 'spec';
+		case 26:
 			return 'resolve';
 		default:
 			return 'view';
@@ -5182,7 +5184,7 @@ var $elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
-var $author$project$VegaLite$VLData = 11;
+var $author$project$VegaLite$VLData = 12;
 var $elm$core$List$append = F2(
 	function (xs, ys) {
 		if (!ys.b) {
@@ -5319,7 +5321,7 @@ var $author$project$VegaLite$formatProperties = function (fmt) {
 var $author$project$VegaLite$dataFromUrl = F2(
 	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			11,
+			12,
 			$elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -5327,7 +5329,7 @@ var $author$project$VegaLite$dataFromUrl = F2(
 						'url',
 						$elm$json$Json$Encode$string(u))
 					]))) : _Utils_Tuple2(
-			11,
+			12,
 			$elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
@@ -5340,10 +5342,10 @@ var $author$project$VegaLite$dataFromUrl = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
-var $author$project$VegaLite$VLEncoding = 16;
+var $author$project$VegaLite$VLEncoding = 17;
 var $author$project$VegaLite$encoding = function (channels) {
 	return _Utils_Tuple2(
-		16,
+		17,
 		$elm$json$Json$Encode$object(channels));
 };
 var $author$project$VegaLite$VLHeight = 5;
@@ -5381,7 +5383,7 @@ var $author$project$VegaLite$IPSelect = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
-var $author$project$VegaLite$VLLayer = 17;
+var $author$project$VegaLite$VLLayer = 18;
 var $elm$json$Json$Encode$list = F2(
 	function (func, entries) {
 		return _Json_wrap(
@@ -5394,11 +5396,11 @@ var $elm$json$Json$Encode$list = F2(
 var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
 var $author$project$VegaLite$layer = function (specs) {
 	return _Utils_Tuple2(
-		17,
+		18,
 		$author$project$VegaLite$toList(specs));
 };
 var $author$project$VegaLite$Line = 9;
-var $author$project$VegaLite$VLMark = 13;
+var $author$project$VegaLite$VLMark = 14;
 var $author$project$VegaLite$markLabel = function (m) {
 	switch (m) {
 		case 0:
@@ -6589,12 +6591,12 @@ var $author$project$VegaLite$mark = F2(
 	function (m, mProps) {
 		if (!mProps.b) {
 			return _Utils_Tuple2(
-				13,
+				14,
 				$elm$json$Json$Encode$string(
 					$author$project$VegaLite$markLabel(m)));
 		} else {
 			return _Utils_Tuple2(
-				13,
+				14,
 				$elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
