@@ -35,7 +35,7 @@ chart desText enc =
                 << opacity [ mNum 1 ]
                 << enc
     in
-    toVegaLite [ des, data, trans [], circle [], fullEnc [] ]
+    toVegaLite [ des, data, trans [], fullEnc [], circle [] ]
 
 
 defContinuous : Spec
@@ -417,6 +417,23 @@ blend2 =
         ]
 
 
+background1 : Spec
+background1 =
+    let
+        prm =
+            params [ ( "clr", [ paValue (str "white"), paBind (ipColor []) ] ) ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+    in
+    toVegaLite [ prm, backgroundExpr "clr", data, enc [], circle [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -453,6 +470,7 @@ specs =
     , ( "gamma5", gamma5 )
     , ( "blend1", blend1 )
     , ( "blend2", blend2 )
+    , ( "background1", background1 )
     ]
 
 

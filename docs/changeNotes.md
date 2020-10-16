@@ -6,6 +6,10 @@
 
 Add mark property expression functions for `MStrokeDash`.
 
+Add top-level view property expressions: `cornerRadius`, `fill`, `fillOpacity`, `opacity`, `stroke`, `strokeCap`, `strokeDash`, `strokeDashOffset`, `strokeJoin`, `maStrokeMiterLimit`, `strokeOpacity`, `strokeWidth`.
+
+Add view title property expressions: `title`, `angle`, `color`, `dx`, `dy`, `font`, `fontSize`, `fontStyle`, `fontWeight`, `frame`, `limit`, `lineHeight`, `offset`, `orient`, `subtitleColor`, `subtitleFont`, `subtitleFontSize`, `subtitleFontStyle`, `subtitleFontWeight`, `subtitleLineHeight`, `subtitlePadding`.
+
 ### V4.0 Breaking Changes
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
@@ -20,7 +24,9 @@ Add mark property expression functions for `MStrokeDash`.
 
 - Add `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties, such as fixing image aspect ratio (VL4.16).
 
-- Add mark expression functions for custom types `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
+- Add mark expression functions for to allow mark properties to be deterined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
+
+- Add top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour).
 
 - Add `maPadAngle` for padding arc segments.
 
