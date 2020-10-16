@@ -2544,7 +2544,7 @@ var $author$project$VegaLite$ArAria = function (a) {
 	return {$: 0, a: a};
 };
 var $elm$core$Basics$False = 1;
-var $author$project$VegaLite$TTNone = {$: 2};
+var $author$project$VegaLite$TTNone = 2;
 var $elm$core$Basics$True = 0;
 var $elm$core$Result$Err = function (a) {
 	return {$: 1, a: a};
@@ -3485,22 +3485,13 @@ var $author$project$VegaLite$textDirectionSpec = function (td) {
 };
 var $elm$core$String$trim = _String_trim;
 var $author$project$VegaLite$ttContentSpec = function (ttContent) {
-	switch (ttContent.$) {
+	switch (ttContent) {
 		case 0:
 			return $elm$json$Json$Encode$string('encoding');
 		case 1:
 			return $elm$json$Json$Encode$string('data');
-		case 2:
-			return $elm$json$Json$Encode$string('null');
 		default:
-			var s = ttContent.a;
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'expr',
-						$elm$json$Json$Encode$string(s))
-					]));
+			return $elm$json$Json$Encode$string('null');
 	}
 };
 var $author$project$VegaLite$vAlignSpec = function (al) {
@@ -4003,7 +3994,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 70:
 			var ttContent = mProp.a;
-			return _Utils_eq(ttContent, $author$project$VegaLite$TTNone) ? _List_fromArray(
+			return (ttContent === 2) ? _List_fromArray(
 				[
 					_Utils_Tuple2('tooltip', $elm$json$Json$Encode$null)
 				]) : _List_fromArray(

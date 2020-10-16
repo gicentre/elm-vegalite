@@ -315,6 +315,9 @@ concat2 =
 padding1 : Spec
 padding1 =
     let
+        prm =
+            params [ ( "pd", [ paValue (num 0), paBind (ipRange [ inName "padding", inMin 0, inMax 100, inStep 1 ]) ] ) ]
+
         carData =
             dataFromUrl (path ++ "cars.json") []
 
@@ -325,7 +328,47 @@ padding1 =
                 << color [ mName "Origin" ]
     in
     toVegaLite
-        [ carData, enc [], bar [] ]
+        [ prm
+        , width 300
+        , height 300
+        , autosize [ asFit ]
+        , padding (paSizeExpr "pd")
+        , carData
+        , enc []
+        , bar []
+        ]
+
+
+padding2 : Spec
+padding2 =
+    let
+        prm =
+            params
+                [ ( "l", [ paValue (num 0), paBind (ipRange [ inName "left padding", inMin 0, inMax 50, inStep 1 ]) ] )
+                , ( "t", [ paValue (num 0), paBind (ipRange [ inName "top padding", inMin 0, inMax 50, inStep 1 ]) ] )
+                , ( "r", [ paValue (num 0), paBind (ipRange [ inName "right padding", inMin 0, inMax 50, inStep 1 ]) ] )
+                , ( "b", [ paValue (num 0), paBind (ipRange [ inName "bottom padding", inMin 0, inMax 50, inStep 1 ]) ] )
+                ]
+
+        carData =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pBin [] ]
+                << position Y [ pAggregate opCount ]
+                << color [ mName "Origin" ]
+    in
+    toVegaLite
+        [ prm
+        , width 300
+        , height 300
+        , autosize [ asFit ]
+        , padding (paEdgesExpr "l" "t" "r" "b")
+        , carData
+        , enc []
+        , bar []
+        ]
 
 
 
@@ -348,6 +391,7 @@ specs =
     , ( "concat1", concat1 )
     , ( "concat2", concat2 )
     , ( "padding1", padding1 )
+    , ( "padding2", padding2 )
     ]
 
 

@@ -5548,7 +5548,7 @@ var $author$project$VegaLite$markLabel = function (m) {
 var $author$project$VegaLite$ArAria = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$TTNone = {$: 2};
+var $author$project$VegaLite$TTNone = 2;
 var $author$project$VegaLite$ariaProperty = function (arProp) {
 	if (!arProp.$) {
 		var b = arProp.a;
@@ -6096,22 +6096,13 @@ var $author$project$VegaLite$textDirectionSpec = function (td) {
 	}
 };
 var $author$project$VegaLite$ttContentSpec = function (ttContent) {
-	switch (ttContent.$) {
+	switch (ttContent) {
 		case 0:
 			return $elm$json$Json$Encode$string('encoding');
 		case 1:
 			return $elm$json$Json$Encode$string('data');
-		case 2:
-			return $elm$json$Json$Encode$string('null');
 		default:
-			var s = ttContent.a;
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'expr',
-						$elm$json$Json$Encode$string(s))
-					]));
+			return $elm$json$Json$Encode$string('null');
 	}
 };
 var $author$project$VegaLite$vAlignSpec = function (al) {
@@ -6614,7 +6605,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 70:
 			var ttContent = mProp.a;
-			return _Utils_eq(ttContent, $author$project$VegaLite$TTNone) ? _List_fromArray(
+			return (ttContent === 2) ? _List_fromArray(
 				[
 					_Utils_Tuple2('tooltip', $elm$json$Json$Encode$null)
 				]) : _List_fromArray(
@@ -11529,30 +11520,85 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 	}
 };
 var $author$project$VegaLite$paddingSpec = function (pad) {
-	if (!pad.$) {
-		var p = pad.a;
-		return $elm$json$Json$Encode$float(p);
-	} else {
-		var l = pad.a;
-		var t = pad.b;
-		var r = pad.c;
-		var b = pad.d;
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'left',
-					$elm$json$Json$Encode$float(l)),
-					_Utils_Tuple2(
-					'top',
-					$elm$json$Json$Encode$float(t)),
-					_Utils_Tuple2(
-					'right',
-					$elm$json$Json$Encode$float(r)),
-					_Utils_Tuple2(
-					'bottom',
-					$elm$json$Json$Encode$float(b))
-				]));
+	switch (pad.$) {
+		case 0:
+			var p = pad.a;
+			return $elm$json$Json$Encode$float(p);
+		case 1:
+			var l = pad.a;
+			var t = pad.b;
+			var r = pad.c;
+			var b = pad.d;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'left',
+						$elm$json$Json$Encode$float(l)),
+						_Utils_Tuple2(
+						'top',
+						$elm$json$Json$Encode$float(t)),
+						_Utils_Tuple2(
+						'right',
+						$elm$json$Json$Encode$float(r)),
+						_Utils_Tuple2(
+						'bottom',
+						$elm$json$Json$Encode$float(b))
+					]));
+		case 3:
+			var l = pad.a;
+			var t = pad.b;
+			var r = pad.c;
+			var b = pad.d;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'left',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(l))
+								]))),
+						_Utils_Tuple2(
+						'top',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(t))
+								]))),
+						_Utils_Tuple2(
+						'right',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(r))
+								]))),
+						_Utils_Tuple2(
+						'bottom',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(b))
+								])))
+					]));
+		default:
+			var s = pad.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$projectionLabel = function (proj) {

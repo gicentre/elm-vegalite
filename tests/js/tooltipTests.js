@@ -5153,7 +5153,7 @@ var $author$project$VegaLite$markLabel = function (m) {
 var $author$project$VegaLite$ArAria = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$TTNone = {$: 2};
+var $author$project$VegaLite$TTNone = 2;
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $author$project$VegaLite$ariaProperty = function (arProp) {
@@ -5714,22 +5714,13 @@ var $author$project$VegaLite$textDirectionSpec = function (td) {
 };
 var $elm$core$String$trim = _String_trim;
 var $author$project$VegaLite$ttContentSpec = function (ttContent) {
-	switch (ttContent.$) {
+	switch (ttContent) {
 		case 0:
 			return $elm$json$Json$Encode$string('encoding');
 		case 1:
 			return $elm$json$Json$Encode$string('data');
-		case 2:
-			return $elm$json$Json$Encode$string('null');
 		default:
-			var s = ttContent.a;
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'expr',
-						$elm$json$Json$Encode$string(s))
-					]));
+			return $elm$json$Json$Encode$string('null');
 	}
 };
 var $author$project$VegaLite$vAlignSpec = function (al) {
@@ -6232,7 +6223,7 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 70:
 			var ttContent = mProp.a;
-			return _Utils_eq(ttContent, $author$project$VegaLite$TTNone) ? _List_fromArray(
+			return (ttContent === 2) ? _List_fromArray(
 				[
 					_Utils_Tuple2('tooltip', $elm$json$Json$Encode$null)
 				]) : _List_fromArray(
@@ -10326,10 +10317,6 @@ var $author$project$VegaLite$IPCheckbox = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$ipCheckbox = $author$project$VegaLite$IPCheckbox;
-var $author$project$VegaLite$MTooltip = function (a) {
-	return {$: 70, a: a};
-};
-var $author$project$VegaLite$maTooltip = $author$project$VegaLite$MTooltip;
 var $author$project$VegaLite$PBind = function (a) {
 	return {$: 0, a: a};
 };
@@ -10532,10 +10519,6 @@ var $author$project$VegaLite$params = function (namedParams) {
 		1,
 		A2($elm$json$Json$Encode$list, paramObj, namedParams));
 };
-var $author$project$VegaLite$TTExpr = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$ttExpr = $author$project$VegaLite$TTExpr;
 var $author$project$TooltipTests$tooltip3 = function () {
 	var prm = $author$project$VegaLite$params(
 		_List_fromArray(
@@ -10598,12 +10581,7 @@ var $author$project$TooltipTests$tooltip3 = function () {
 				prm,
 				data(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$bar(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maTooltip(
-						$author$project$VegaLite$ttExpr('tt'))
-					]))
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$TooltipTests$specs = _List_fromArray(
