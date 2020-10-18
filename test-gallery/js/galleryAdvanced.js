@@ -6886,12 +6886,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'gridWidth', n);
 		case 19:
 			var b = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labels',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'labels', b);
 		case 20:
 			var ha = axisProp.a;
 			return _List_fromArray(
@@ -7011,12 +7006,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'labelSeparation', n);
 		case 8:
 			var b = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'domain',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'domain', b);
 		case 9:
 			var c = axisProp.a;
 			return _List_fromArray(
@@ -7050,12 +7040,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'domainWidth', n);
 		case 67:
 			var b = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'grid',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'grid', b);
 		case 2:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'maxExtent', n);
@@ -7100,12 +7085,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'zindex', n);
 		case 48:
 			var b = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'ticks',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'ticks', b);
 		case 40:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'tickColor', s);
@@ -7133,12 +7113,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'tickDashOffset', n);
 		case 44:
 			var b = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'tickExtra',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'tickExtra', b);
 		case 45:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickOffset', n);
@@ -7147,12 +7122,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'tickOpacity', n);
 		case 47:
 			var b = axisProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'tickRound',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'tickRound', b);
 		case 74:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickMinStep', n);
@@ -12610,7 +12580,13 @@ var $author$project$GalleryAdvanced$advanced17 = function () {
 var $author$project$VegaLite$AxGrid = function (a) {
 	return {$: 67, a: a};
 };
-var $author$project$VegaLite$axGrid = $author$project$VegaLite$AxGrid;
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$axGrid = function (b) {
+	return $author$project$VegaLite$AxGrid(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$AxTitle = function (a) {
 	return {$: 52, a: a};
 };
@@ -12980,9 +12956,6 @@ var $author$project$VegaLite$MString = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
-var $author$project$VegaLite$Boo = function (a) {
-	return {$: 0, a: a};
-};
 var $author$project$VegaLite$MClip = function (a) {
 	return {$: 9, a: a};
 };
