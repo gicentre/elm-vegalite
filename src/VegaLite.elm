@@ -494,6 +494,7 @@ module VegaLite exposing
     , soByChannel
     , soByRepeat
     , soCustom
+    , axisPropertyBooExpr
     , axisPropertyNumExpr
     , axisPropertyStrExpr
     , axAria
@@ -2333,6 +2334,7 @@ See the
 See the
 [Vega-Lite axis property documentation](https://vega.github.io/vega-lite/docs/axis.html#axis-properties)
 
+@docs axisPropertyBooExpr
 @docs axisPropertyNumExpr
 @docs axisPropertyStrExpr
 
@@ -4000,7 +4002,7 @@ type AxisProperty
     | AxOffset Num
     | AxPosition Num
     | AxZIndex Num
-    | AxDomain Bool
+    | AxDomain Boo
     | AxDomainCap StrokeCap
     | AxDomainColor Str
     | AxDomainDash (List Float)
@@ -4011,7 +4013,7 @@ type AxisProperty
     | AxFormatAsNum
     | AxFormatAsTemporal
     | AxFormatAsCustom Str
-    | AxLabels Bool
+    | AxLabels Boo
     | AxLabelAlign HAlign
     | AxLabelAngle Num
     | AxLabelBaseline VAlign
@@ -4036,11 +4038,11 @@ type AxisProperty
     | AxTickCount ScaleNice
     | AxTickDash (List Float)
     | AxTickDashOffset Num
-    | AxTickExtra Bool
+    | AxTickExtra Boo
     | AxTickOffset Num
     | AxTickOpacity Num
-    | AxTickRound Bool
-    | AxTicks Bool
+    | AxTickRound Boo
+    | AxTicks Boo
     | AxTickSize Num
     | AxTickWidth Num
     | AxValues DataValues
@@ -4059,7 +4061,7 @@ type AxisProperty
     | AxTitlePadding Num
     | AxTitleX Num
     | AxTitleY Num
-    | AxGrid Bool
+    | AxGrid Boo
     | AxGridCap StrokeCap
     | AxGridColor Str
     | AxGridDash (List Float)
@@ -7033,8 +7035,8 @@ axcoTitleY =
 {-| Whether or not an axis baseline (domain) should be included as part of an axis.
 -}
 axDomain : Bool -> AxisProperty
-axDomain =
-    AxDomain
+axDomain b =
+    AxDomain (Boo b)
 
 
 {-| How the ends of the axis baseline (domain) are capped.
@@ -7119,8 +7121,8 @@ axFormatAsCustom s =
 {-| Whether or not grid lines should be included as part of an axis.
 -}
 axGrid : Bool -> AxisProperty
-axGrid =
-    AxGrid
+axGrid b =
+    AxGrid (Boo b)
 
 
 {-| How the ends of gridlines are capped.
@@ -7164,6 +7166,50 @@ axGridOpacity n =
 axGridWidth : Float -> AxisProperty
 axGridWidth n =
     AxGridWidth (Num n)
+
+
+{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requring a Boolean value. This can be used to provide an
+interactive parameterisation of an axis property when an expression is bound to an
+input element. For example,
+
+    prm =
+        params
+            [ ( "lbls", [ paValue (boo True), paBind (ipCheckbox [ ]) ] ) ]
+    :
+    :
+    enc =
+      encoding
+          << position X
+              [ pName "x"
+              , pQuant
+              , pAxis [ axLabels |> axisPropertyBooExpr "lbls" ]
+              ]
+
+-}
+axisPropertyBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
+axisPropertyBooExpr ex fn =
+    case fn False of
+        AxDomain _ ->
+            AxDomain (BooExpr ex)
+
+        AxLabels _ ->
+            AxLabels (BooExpr ex)
+
+        AxTickExtra _ ->
+            AxTickExtra (BooExpr ex)
+
+        AxTickRound _ ->
+            AxTickRound (BooExpr ex)
+
+        AxTicks _ ->
+            AxTicks (BooExpr ex)
+
+        AxGrid _ ->
+            AxGrid (BooExpr ex)
+
+        _ ->
+            fn False
 
 
 {-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
@@ -7511,8 +7557,8 @@ axLabelSeparation n =
 {-| Whether or not axis labels should be displayed.
 -}
 axLabels : Bool -> AxisProperty
-axLabels =
-    AxLabels
+axLabels b =
+    AxLabels (Boo b)
 
 
 {-| Maximum extent in pixels that axis ticks and labels should use.
@@ -7555,8 +7601,8 @@ axPosition n =
 {-| Whether or not an axis should include tick marks.
 -}
 axTicks : Bool -> AxisProperty
-axTicks =
-    AxTicks
+axTicks b =
+    AxTicks (Boo b)
 
 
 {-| Desired number of, or interval between, axis ticks. The resulting number of
@@ -7644,8 +7690,8 @@ axTickDashOffset n =
 of an axis.
 -}
 axTickExtra : Bool -> AxisProperty
-axTickExtra =
-    AxTickExtra
+axTickExtra b =
+    AxTickExtra (Boo b)
 
 
 {-| The minimum desired step between axis ticks, in terms of scale domain values.
@@ -7675,8 +7721,8 @@ axTickOpacity n =
 {-| Whether or not axis tick positions should be rounded to nearest integer.
 -}
 axTickRound : Bool -> AxisProperty
-axTickRound =
-    AxTickRound
+axTickRound b =
+    AxTickRound (Boo b)
 
 
 {-| Width of axis ticks.
@@ -19759,7 +19805,7 @@ axisProperty axisProp =
             numExpr "gridWidth" n
 
         AxLabels b ->
-            [ ( "labels", JE.bool b ) ]
+            booExpr "labels" b
 
         AxLabelAlign ha ->
             [ ( "labelAlign", hAlignSpec ha ) ]
@@ -19837,7 +19883,7 @@ axisProperty axisProp =
             numExpr "labelSeparation" n
 
         AxDomain b ->
-            [ ( "domain", JE.bool b ) ]
+            booExpr "domain" b
 
         AxDomainCap c ->
             [ ( "domainCap", strokeCapSpec c ) ]
@@ -19862,7 +19908,7 @@ axisProperty axisProp =
             numExpr "domainWidth" n
 
         AxGrid b ->
-            [ ( "grid", JE.bool b ) ]
+            booExpr "grid" b
 
         AxMaxExtent n ->
             numExpr "maxExtent" n
@@ -19891,7 +19937,7 @@ axisProperty axisProp =
             numExpr "zindex" n
 
         AxTicks b ->
-            [ ( "ticks", JE.bool b ) ]
+            booExpr "ticks" b
 
         AxTickColor s ->
             strExpr "tickColor" s
@@ -19910,7 +19956,7 @@ axisProperty axisProp =
             numExpr "tickDashOffset" n
 
         AxTickExtra b ->
-            [ ( "tickExtra", JE.bool b ) ]
+            booExpr "tickExtra" b
 
         AxTickOffset n ->
             numExpr "tickOffset" n
@@ -19919,7 +19965,7 @@ axisProperty axisProp =
             numExpr "tickOpacity" n
 
         AxTickRound b ->
-            [ ( "tickRound", JE.bool b ) ]
+            booExpr "tickRound" b
 
         AxTickMinStep n ->
             numExpr "tickMinStep" n

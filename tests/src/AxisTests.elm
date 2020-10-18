@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 data : List DataColumn -> Data
 data =
     dataFromColumns []
@@ -360,27 +365,43 @@ axis16 =
     let
         prm =
             params
-                [ ( "off", [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ] )
-                , ( "lfs", [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ] )
-                , ( "la", [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ] )
-                , ( "tClr", [ paValue (str "black"), paBind (ipColor [ inName "Title colour" ]) ] )
+                [ ( "offset", [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ] )
+                , ( "labelFontSize", [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ] )
+                , ( "labelAngle", [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ] )
+                , ( "titleColor", [ paValue (str "black"), paBind (ipColor [ inName "Title colour" ]) ] )
+                , ( "domain", [ paValue (boo True), paBind (ipCheckbox []) ] )
+                , ( "labels", [ paValue (boo True), paBind (ipCheckbox []) ] )
+                , ( "tickExtra", [ paValue (boo True), paBind (ipCheckbox []) ] )
+                , ( "tickRound", [ paValue (boo True), paBind (ipCheckbox []) ] )
+                , ( "ticks", [ paValue (boo True), paBind (ipCheckbox []) ] )
+                , ( "grd", [ paValue (boo True), paBind (ipCheckbox []) ] )
                 ]
+
+        dataMovies =
+            dataFromUrl (path ++ "movies.json") []
 
         enc =
             encoding
                 << position X
-                    [ pName "x"
-                    , pQuant
+                    [ pName "IMDB Rating"
+                    , pBin []
+                    , pOrdinal
                     , pAxis
-                        [ axOffset |> axisPropertyNumExpr "off"
-                        , axLabelFontSize |> axisPropertyNumExpr "lfs"
-                        , axLabelAngle |> axisPropertyNumExpr "la"
-                        , axTitleColor |> axisPropertyStrExpr "tClr"
+                        [ axOffset |> axisPropertyNumExpr "offset"
+                        , axLabelFontSize |> axisPropertyNumExpr "labelFontSize"
+                        , axLabelAngle |> axisPropertyNumExpr "labelAngle"
+                        , axTitleColor |> axisPropertyStrExpr "titleColor"
+                        , axDomain |> axisPropertyBooExpr "domain"
+                        , axLabels |> axisPropertyBooExpr "labels"
+                        , axTickExtra |> axisPropertyBooExpr "tickExtra"
+                        , axTickRound |> axisPropertyBooExpr "tickRound"
+                        , axTicks |> axisPropertyBooExpr "ticks"
+                        , axGrid |> axisPropertyBooExpr "grid"
                         ]
                     ]
-                << position Y [ pName "y", pOrdinal ]
+                << position Y [ pAggregate opCount ]
     in
-    toVegaLite [ prm, data [], enc [], line [ maPoint (pmMarker [ maSize 800 ]) ] ]
+    toVegaLite [ prm, width 300, height 200, dataMovies, enc [], bar [] ]
 
 
 

@@ -2,6 +2,8 @@
 
 ## Pending changes
 
+_The changes that relate to adding expression parameters (which form the majority of this update) are likely to form part of the major release supporting VegaLite 5. There are plans in VegaLite 5 to rationalise expression and selection support so until that is confirmed, the expression parameter changes below are subject to further change._
+
 ### TODO
 
 Add mark property expression functions for `MStrokeDash`.
