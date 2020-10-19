@@ -144,6 +144,36 @@ legend14 =
     legendCoreCfg [ lecoSymbolLimit 4 ]
 
 
+legend15 : Spec
+legend15 =
+    let
+        prm =
+            params
+                [ ( "xPos", [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ] )
+                , ( "yPos", [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ] )
+                , ( "titleColor", [ paValue (str "black"), paBind (ipColor []) ] )
+                ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Weight_in_lbs", pQuant ]
+                << position Y [ pName "Horsepower", pQuant ]
+                << color
+                    [ mName "Origin"
+                    , mLegend
+                        [ leOrient loNone
+                        , leX |> legendPropertyNumExpr "xPos"
+                        , leY |> legendPropertyNumExpr "yPos"
+                        , leTitleColor |> legendPropertyStrExpr "titleColor"
+                        ]
+                    ]
+    in
+    toVegaLite [ prm, width 300, height 300, data, enc [], circle [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -164,6 +194,7 @@ specs =
     , ( "legend12", legend12 )
     , ( "legend13", legend13 )
     , ( "legend14", legend14 )
+    , ( "legend15", legend15 )
     ]
 
 

@@ -14,11 +14,11 @@ Add view title property expressions: `title`, `angle`, `color`, `dx`, `dy`, `fon
 
 Add datum expressions.
 
-Add non-numeric axis property expressions.
+Add custom type axis property expressions.
+
+Add custom type legend property expressions.
 
 Add facet header property expressions.
-
-Add legend property expressions.
 
 Add scale property expressions.
 
@@ -41,6 +41,12 @@ Add aria expressions (marks, axes, legends etc.)
 - Add `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
 
 - Add `axisPropertyStrExpr` for providing expressions that evaluate to string axis properties (VL4.16).
+
+- Add `axisPropertyBooExpr` for providing expressions that evaluate to boolean axis properties (VL4.16).
+
+- Add `legendPropertyNumExpr` for providing expressions that evaluate to numeric legend properties (VL4.16).
+
+- Add `legendPropertyStrExpr` for providing expressions that evaluate to string legend properties (VL4.16).
 
 - Add mark expression functions for to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 
