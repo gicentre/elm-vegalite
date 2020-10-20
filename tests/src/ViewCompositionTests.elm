@@ -371,6 +371,44 @@ padding2 =
         ]
 
 
+background1 : Spec
+background1 =
+    let
+        prm =
+            params
+                [ ( "cr", [ paValue (num 0), paBind (ipRange [ inName "Corner radius", inMin 0, inMax 100, inStep 1 ]) ] )
+                , ( "fo", [ paValue (num 1), paBind (ipRange [ inName "Fill opacity", inMin 0, inMax 1 ]) ] )
+                , ( "so", [ paValue (num 1), paBind (ipRange [ inName "Stroke opacity", inMin 0, inMax 1 ]) ] )
+                , ( "sw", [ paValue (num 1), paBind (ipRange [ inName "Stroke width ", inMin 0, inMax 20 ]) ] )
+                ]
+
+        carData =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pBin [], pAxis [] ]
+                << position Y [ pAggregate opCount, pAxis [] ]
+                << color [ mName "Origin" ]
+    in
+    toVegaLite
+        [ prm
+        , width 300
+        , height 300
+        , viewBackground
+            [ viewFill (Just "yellow")
+            , viewStroke (Just "black")
+            , viewCornerRadius |> viewBackgroundNumExpr "cr"
+            , viewFillOpacity |> viewBackgroundNumExpr "fo"
+            , viewStrokeOpacity |> viewBackgroundNumExpr "so"
+            , viewStrokeWidth |> viewBackgroundNumExpr "sw"
+            ]
+        , carData
+        , enc []
+        , bar []
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -392,6 +430,7 @@ specs =
     , ( "concat2", concat2 )
     , ( "padding1", padding1 )
     , ( "padding2", padding2 )
+    , ( "background1", background1 )
     ]
 
 

@@ -8,9 +8,9 @@ _The changes that relate to adding expression parameters (which form the majorit
 
 Add mark property expression functions for `MStrokeDash`.
 
-Add top-level view property expressions: `cornerRadius`, `fill`, `fillOpacity`, `opacity`, `stroke`, `strokeCap`, `strokeDash`, `strokeDashOffset`, `strokeJoin`, `maStrokeMiterLimit`, `strokeOpacity`, `strokeWidth`.
+Add top-level view background expressions: `fill`, `stroke`, `strokeCap`, `strokeDash`, `strokeJoin`.
 
-Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, `subtitleFontWeight`, `subtitleLineHeight` and .
+Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, and `subtitleFontWeight`.
 
 Add datum expressions.
 
@@ -51,6 +51,8 @@ Add aria expressions (marks, axes, legends etc.)
 - Add `titlePropertyNumExpr` for providing expressions that evaluate to numeric title properties (VL4.16).
 
 - Add `titlePropertyStrExpr` for providing expressions that evaluate to string title properties (VL4.16).
+
+- Add `viewBackgroundNumExpr` for providing expressions that evaluate to numeric view background properties (VL4.16).
 
 - Add mark expression functions for to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 
