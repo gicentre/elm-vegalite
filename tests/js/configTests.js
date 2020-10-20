@@ -11240,129 +11240,121 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 	switch (titleCfg.$) {
 		case 0:
 			var an = titleCfg.a;
-			return _Utils_Tuple2(
-				'anchor',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$anchorLabel(an)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'anchor',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$anchorLabel(an)))
+				]);
 		case 1:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'angle',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'angle', n);
 		case 2:
 			var va = titleCfg.a;
-			return _Utils_Tuple2(
-				'baseline',
-				$author$project$VegaLite$vAlignSpec(va));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'baseline',
+					$author$project$VegaLite$vAlignSpec(va))
+				]);
 		case 3:
-			var clr = titleCfg.a;
-			return _Utils_Tuple2(
-				'color',
-				$elm$json$Json$Encode$string(clr));
+			var s = titleCfg.a;
+			return A2($author$project$VegaLite$strExpr, 'color', s);
 		case 4:
-			var fnt = titleCfg.a;
-			return _Utils_Tuple2(
-				'font',
-				$elm$json$Json$Encode$string(fnt));
+			var s = titleCfg.a;
+			return A2($author$project$VegaLite$strExpr, 'font', s);
 		case 5:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'fontSize',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'fontSize', n);
 		case 6:
 			var s = titleCfg.a;
-			return _Utils_Tuple2(
-				'fontStyle',
-				$elm$json$Json$Encode$string(s));
+			return A2($author$project$VegaLite$strExpr, 'fontStyle', s);
 		case 8:
 			var tf = titleCfg.a;
-			return _Utils_Tuple2(
-				'frame',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$tfLabel(tf)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'frame',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$tfLabel(tf)))
+				]);
 		case 7:
 			var w = titleCfg.a;
-			return _Utils_Tuple2(
-				'fontWeight',
-				$author$project$VegaLite$fontWeightSpec(w));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fontWeight',
+					$author$project$VegaLite$fontWeightSpec(w))
+				]);
 		case 10:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'limit',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'limit', n);
 		case 9:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'lineHeight',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'lineHeight', n);
 		case 11:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'offset',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'offset', n);
 		case 12:
 			var sd = titleCfg.a;
-			return _Utils_Tuple2(
-				'orient',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$sideLabel(sd)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'orient',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$sideLabel(sd)))
+				]);
 		case 13:
 			var ss = titleCfg.a;
 			if (ss.b && (!ss.b.b)) {
 				var s = ss.a;
-				return _Utils_Tuple2(
-					'style',
-					$elm$json$Json$Encode$string(s));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'style',
+						$elm$json$Json$Encode$string(s))
+					]);
 			} else {
-				return _Utils_Tuple2(
-					'style',
-					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'style',
+						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss))
+					]);
 			}
 		case 14:
 			var s = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitle',
-				$author$project$VegaLite$multilineTextSpec(s));
+			return A2($author$project$VegaLite$strExpr, 'subtitle', s);
 		case 15:
 			var s = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitleColor',
-				$elm$json$Json$Encode$string(s));
+			return A2($author$project$VegaLite$strExpr, 'subtitleColor', s);
 		case 16:
 			var s = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitleFont',
-				$elm$json$Json$Encode$string(s));
+			return A2($author$project$VegaLite$strExpr, 'subtitleFont', s);
 		case 17:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitleFontSize',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'subtitleFontSize', n);
 		case 18:
 			var s = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitleFontStyle',
-				$elm$json$Json$Encode$string(s));
+			return A2($author$project$VegaLite$strExpr, 'subtitleFontStyle', s);
 		case 19:
 			var w = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitleFontWeight',
-				$author$project$VegaLite$fontWeightSpec(w));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'subtitleFontWeight',
+					$author$project$VegaLite$fontWeightSpec(w))
+				]);
 		case 20:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitleLineHeight',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'subtitleLineHeight', n);
 		case 21:
-			var x = titleCfg.a;
-			return _Utils_Tuple2(
-				'subtitlePadding',
-				$elm$json$Json$Encode$float(x));
+			var n = titleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'subtitlePadding', n);
 		default:
 			var n = titleCfg.a;
-			return _Utils_Tuple2(
-				'zindex',
-				$elm$json$Json$Encode$int(n));
+			return A2($author$project$VegaLite$numExpr, 'zindex', n);
 	}
 };
 var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
@@ -11857,7 +11849,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'title',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tcs)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tcs)));
 		case 28:
 			var styles = configProp.a;
 			return _Utils_Tuple2(
@@ -12502,7 +12494,7 @@ var $author$project$VegaLite$title = F2(
 					_Utils_Tuple2(
 						'text',
 						$author$project$VegaLite$multilineTextSpec(txt)),
-					A2($elm$core$List$map, $author$project$VegaLite$titleConfigProperty, tps))));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tps))));
 	});
 var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
@@ -13591,11 +13583,17 @@ var $author$project$VegaLite$lecoTitleColor = $author$project$VegaLite$LeTitleCo
 var $author$project$VegaLite$TColor = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$ticoColor = $author$project$VegaLite$TColor;
+var $author$project$VegaLite$ticoColor = function (s) {
+	return $author$project$VegaLite$TColor(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$TFont = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$ticoFont = $author$project$VegaLite$TFont;
+var $author$project$VegaLite$ticoFont = function (s) {
+	return $author$project$VegaLite$TFont(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeVis(
 	A2(
 		$elm$core$Basics$composeL,
@@ -13776,7 +13774,10 @@ var $author$project$ConfigTests$scaleCfg1 = $author$project$ConfigTests$singleVi
 var $author$project$VegaLite$TSubtitle = function (a) {
 	return {$: 14, a: a};
 };
-var $author$project$VegaLite$tiSubtitle = $author$project$VegaLite$TSubtitle;
+var $author$project$VegaLite$tiSubtitle = function (s) {
+	return $author$project$VegaLite$TSubtitle(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$ConfigTests$titleCfg1 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13836,19 +13837,31 @@ var $author$project$VegaLite$tiAnchor = $author$project$VegaLite$TAnchor;
 var $author$project$VegaLite$TSubtitleColor = function (a) {
 	return {$: 15, a: a};
 };
-var $author$project$VegaLite$tiSubtitleColor = $author$project$VegaLite$TSubtitleColor;
+var $author$project$VegaLite$tiSubtitleColor = function (s) {
+	return $author$project$VegaLite$TSubtitleColor(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$TSubtitleFont = function (a) {
 	return {$: 16, a: a};
 };
-var $author$project$VegaLite$tiSubtitleFont = $author$project$VegaLite$TSubtitleFont;
+var $author$project$VegaLite$tiSubtitleFont = function (s) {
+	return $author$project$VegaLite$TSubtitleFont(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$TSubtitleFontSize = function (a) {
 	return {$: 17, a: a};
 };
-var $author$project$VegaLite$tiSubtitleFontSize = $author$project$VegaLite$TSubtitleFontSize;
+var $author$project$VegaLite$tiSubtitleFontSize = function (n) {
+	return $author$project$VegaLite$TSubtitleFontSize(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$TSubtitleFontStyle = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$tiSubtitleFontStyle = $author$project$VegaLite$TSubtitleFontStyle;
+var $author$project$VegaLite$tiSubtitleFontStyle = function (s) {
+	return $author$project$VegaLite$TSubtitleFontStyle(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$TSubtitleFontWeight = function (a) {
 	return {$: 19, a: a};
 };
@@ -13856,11 +13869,17 @@ var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TSu
 var $author$project$VegaLite$TSubtitleLineHeight = function (a) {
 	return {$: 20, a: a};
 };
-var $author$project$VegaLite$tiSubtitleLineHeight = $author$project$VegaLite$TSubtitleLineHeight;
+var $author$project$VegaLite$tiSubtitleLineHeight = function (n) {
+	return $author$project$VegaLite$TSubtitleLineHeight(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$TSubtitlePadding = function (a) {
 	return {$: 21, a: a};
 };
-var $author$project$VegaLite$tiSubtitlePadding = $author$project$VegaLite$TSubtitlePadding;
+var $author$project$VegaLite$tiSubtitlePadding = function (n) {
+	return $author$project$VegaLite$TSubtitlePadding(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$ConfigTests$titleCfg2 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13911,13 +13930,31 @@ var $author$project$ConfigTests$titleCfg2 = function () {
 			]));
 }();
 var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TAnchor;
-var $author$project$VegaLite$ticoSubtitleColor = $author$project$VegaLite$TSubtitleColor;
-var $author$project$VegaLite$ticoSubtitleFont = $author$project$VegaLite$TSubtitleFont;
-var $author$project$VegaLite$ticoSubtitleFontSize = $author$project$VegaLite$TSubtitleFontSize;
-var $author$project$VegaLite$ticoSubtitleFontStyle = $author$project$VegaLite$TSubtitleFontStyle;
+var $author$project$VegaLite$ticoSubtitleColor = function (s) {
+	return $author$project$VegaLite$TSubtitleColor(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$ticoSubtitleFont = function (s) {
+	return $author$project$VegaLite$TSubtitleFont(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$ticoSubtitleFontSize = function (n) {
+	return $author$project$VegaLite$TSubtitleFontSize(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$ticoSubtitleFontStyle = function (s) {
+	return $author$project$VegaLite$TSubtitleFontStyle(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$ticoSubtitleFontWeight = $author$project$VegaLite$TSubtitleFontWeight;
-var $author$project$VegaLite$ticoSubtitleLineHeight = $author$project$VegaLite$TSubtitleLineHeight;
-var $author$project$VegaLite$ticoSubtitlePadding = $author$project$VegaLite$TSubtitlePadding;
+var $author$project$VegaLite$ticoSubtitleLineHeight = function (n) {
+	return $author$project$VegaLite$TSubtitleLineHeight(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$ticoSubtitlePadding = function (n) {
+	return $author$project$VegaLite$TSubtitlePadding(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$ConfigTests$titleCfg3 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
