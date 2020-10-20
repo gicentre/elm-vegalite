@@ -10,7 +10,7 @@ Add mark property expression functions for `MStrokeDash`.
 
 Add top-level view property expressions: `cornerRadius`, `fill`, `fillOpacity`, `opacity`, `stroke`, `strokeCap`, `strokeDash`, `strokeDashOffset`, `strokeJoin`, `maStrokeMiterLimit`, `strokeOpacity`, `strokeWidth`.
 
-Add view title property expressions: `title`, `angle`, `color`, `dx`, `dy`, `font`, `fontSize`, `fontStyle`, `fontWeight`, `frame`, `limit`, `lineHeight`, `offset`, `orient`, `subtitleColor`, `subtitleFont`, `subtitleFontSize`, `subtitleFontStyle`, `subtitleFontWeight`, `subtitleLineHeight`, `subtitlePadding`.
+Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, `subtitleFontWeight`, `subtitleLineHeight` and .
 
 Add datum expressions.
 
@@ -34,9 +34,9 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
 
-- Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties, such as colours and fonts (VL4.16).
+- Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties (VL4.16).
 
-- Add `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties, such as fixing image aspect ratio (VL4.16).
+- Add `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties (VL4.16).
 
 - Add `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
 
@@ -47,6 +47,10 @@ Add aria expressions (marks, axes, legends etc.)
 - Add `legendPropertyNumExpr` for providing expressions that evaluate to numeric legend properties (VL4.16).
 
 - Add `legendPropertyStrExpr` for providing expressions that evaluate to string legend properties (VL4.16).
+
+- Add `titlePropertyNumExpr` for providing expressions that evaluate to numeric title properties (VL4.16).
+
+- Add `titlePropertyStrExpr` for providing expressions that evaluate to string title properties (VL4.16).
 
 - Add mark expression functions for to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 

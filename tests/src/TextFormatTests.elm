@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+
+
 textFormat1 : Spec
 textFormat1 =
     let
@@ -305,6 +310,53 @@ customFormatter1 =
     toVegaLite [ width 100, data [], trans [], bar [], enc [] ]
 
 
+title1 : Spec
+title1 =
+    let
+        prm =
+            params
+                [ ( "fontSize", [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64, inStep 1 ]) ] )
+                , ( "angle", [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ] )
+                , ( "limit", [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ] )
+                , ( "offset", [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ] )
+                , ( "colour", [ paValue (str "black"), paBind (ipColor []) ] )
+                , ( "subtitle", [ paValue (str "A subtitle"), paBind (ipSelect [ inOptions [ "A subtitle", "A different subtitle", "And a third subtitle" ] ]) ] )
+                , ( "subtitlePadding", [ paValue (num 5), paBind (ipRange [ inMin -50, inMax 50, inStep 1 ]) ] )
+                , ( "subtitleColour", [ paValue (str "black"), paBind (ipColor []) ] )
+                ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Weight_in_lbs", pQuant ]
+                << position Y [ pName "Horsepower", pQuant ]
+    in
+    toVegaLite
+        [ prm
+        , padding (paEdges 5 250 5 5)
+        , title "This is the visualization title\nthat is split over two lines"
+            [ tiFontSize |> titlePropertyNumExpr "fontSize"
+            , tiAngle |> titlePropertyNumExpr "angle"
+            , tiLineHeight |> titlePropertyNumExpr "fontSize"
+            , tiLimit |> titlePropertyNumExpr "limit"
+            , tiOffset |> titlePropertyNumExpr "offset"
+            , tiColor |> titlePropertyStrExpr "colour"
+            , tiSubtitle |> titlePropertyStrExpr "subtitle"
+            , tiSubtitleFontSize |> titlePropertyNumExpr "fontSize/2"
+            , tiSubtitleLineHeight |> titlePropertyNumExpr "fontSize/2"
+            , tiSubtitlePadding |> titlePropertyNumExpr "subtitlePadding"
+            , tiSubtitleColor |> titlePropertyStrExpr "subtitleColour"
+            ]
+        , width 400
+        , height 400
+        , data
+        , enc []
+        , circle []
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -317,6 +369,7 @@ specs =
     , ( "textAlign2", textAlign2 )
     , ( "multiline1", multiline1 )
     , ( "customFormatter1", customFormatter1 )
+    , ( "title1", title1 )
     ]
 
 
