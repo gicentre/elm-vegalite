@@ -11100,83 +11100,96 @@ var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
 	switch (vb.$) {
 		case 0:
 			var styles = vb.a;
-			return _Utils_Tuple2(
-				'style',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'style',
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, styles))
+				]);
 		case 1:
-			var r = vb.a;
-			return _Utils_Tuple2(
-				'cornerRadius',
-				$elm$json$Json$Encode$float(r));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'cornerRadius', n);
 		case 2:
 			var ms = vb.a;
 			if (!ms.$) {
 				var s = ms.a;
-				return _Utils_Tuple2(
-					'fill',
-					$elm$json$Json$Encode$string(s));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'fill',
+						$elm$json$Json$Encode$string(s))
+					]);
 			} else {
-				return _Utils_Tuple2(
-					'fill',
-					$elm$json$Json$Encode$string(''));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'fill',
+						$elm$json$Json$Encode$string(''))
+					]);
 			}
 		case 3:
-			var x = vb.a;
-			return _Utils_Tuple2(
-				'fillOpacity',
-				$elm$json$Json$Encode$float(x));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'fillOpacity', n);
 		case 4:
-			var x = vb.a;
-			return _Utils_Tuple2(
-				'opacity',
-				$elm$json$Json$Encode$float(x));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'opacity', n);
 		case 5:
 			var ms = vb.a;
 			if (!ms.$) {
 				var s = ms.a;
-				return _Utils_Tuple2(
-					'stroke',
-					$elm$json$Json$Encode$string(s));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'stroke',
+						$elm$json$Json$Encode$string(s))
+					]);
 			} else {
-				return _Utils_Tuple2(
-					'stroke',
-					$elm$json$Json$Encode$string(''));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'stroke',
+						$elm$json$Json$Encode$string(''))
+					]);
 			}
 		case 6:
-			var x = vb.a;
-			return _Utils_Tuple2(
-				'strokeOpacity',
-				$elm$json$Json$Encode$float(x));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'strokeOpacity', n);
 		case 8:
 			var cap = vb.a;
-			return _Utils_Tuple2(
-				'strokeCap',
-				$author$project$VegaLite$strokeCapSpec(cap));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeCap',
+					$author$project$VegaLite$strokeCapSpec(cap))
+				]);
 		case 11:
 			var jn = vb.a;
-			return _Utils_Tuple2(
-				'strokeJoin',
-				$author$project$VegaLite$strokeJoinSpec(jn));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeJoin',
+					$author$project$VegaLite$strokeJoinSpec(jn))
+				]);
 		case 7:
-			var x = vb.a;
-			return _Utils_Tuple2(
-				'strokeWidth',
-				$elm$json$Json$Encode$float(x));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'strokeWidth', n);
 		case 9:
 			var xs = vb.a;
-			return _Utils_eq(xs, _List_Nil) ? _Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null) : _Utils_Tuple2(
-				'strokeDash',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+			return _Utils_eq(xs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2('strokeDash', $elm$json$Json$Encode$null)
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'strokeDash',
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
+				]);
 		case 10:
-			var x = vb.a;
-			return _Utils_Tuple2(
-				'strokeDashOffset',
-				$elm$json$Json$Encode$float(x));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'strokeDashOffset', n);
 		default:
-			var x = vb.a;
-			return _Utils_Tuple2(
-				'strokeMiterLimit',
-				$elm$json$Json$Encode$float(x));
+			var n = vb.a;
+			return A2($author$project$VegaLite$numExpr, 'strokeMiterLimit', n);
 	}
 };
 var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
@@ -11358,7 +11371,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 				]);
 		default:
 			var vbs = viewCfg.a;
-			return A2($elm$core$List$map, $author$project$VegaLite$viewBackgroundProperty, vbs);
+			return A2($elm$core$List$concatMap, $author$project$VegaLite$viewBackgroundProperty, vbs);
 	}
 };
 var $author$project$VegaLite$configProperty = function (configProp) {
