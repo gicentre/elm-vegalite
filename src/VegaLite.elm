@@ -13456,7 +13456,7 @@ values identifying a borough (`id` and `borough`) that is used to join the data 
     trans =
         transform
             << lookup "id"
-                (censuData [])
+                (censusData [])
                 "borough"
                 (luFields [ "carOwnership", "numBedrooms" ])
 
