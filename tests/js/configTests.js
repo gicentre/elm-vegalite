@@ -11371,23 +11371,8 @@ var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'cornerRadius', n);
 		case 2:
-			var ms = vb.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'fill',
-						$elm$json$Json$Encode$string(s))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'fill',
-						$elm$json$Json$Encode$string(''))
-					]);
-			}
+			var s = vb.a;
+			return A2($author$project$VegaLite$strExpr, 'fill', s);
 		case 3:
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'fillOpacity', n);
@@ -11395,23 +11380,8 @@ var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'opacity', n);
 		case 5:
-			var ms = vb.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'stroke',
-						$elm$json$Json$Encode$string(s))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'stroke',
-						$elm$json$Json$Encode$string(''))
-					]);
-			}
+			var s = vb.a;
+			return A2($author$project$VegaLite$strExpr, 'stroke', s);
 		case 6:
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'strokeOpacity', n);
@@ -14072,11 +14042,29 @@ var $author$project$VegaLite$viewCornerRadius = function (n) {
 var $author$project$VegaLite$VBFill = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$viewFill = $author$project$VegaLite$VBFill;
+var $author$project$VegaLite$viewFill = function (ms) {
+	if (!ms.$) {
+		var s = ms.a;
+		return $author$project$VegaLite$VBFill(
+			$author$project$VegaLite$Str(s));
+	} else {
+		return $author$project$VegaLite$VBFill(
+			$author$project$VegaLite$Str(''));
+	}
+};
 var $author$project$VegaLite$VBStroke = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$VegaLite$viewStroke = $author$project$VegaLite$VBStroke;
+var $author$project$VegaLite$viewStroke = function (ms) {
+	if (!ms.$) {
+		var s = ms.a;
+		return $author$project$VegaLite$VBStroke(
+			$author$project$VegaLite$Str(s));
+	} else {
+		return $author$project$VegaLite$VBStroke(
+			$author$project$VegaLite$Str(''));
+	}
+};
 var $author$project$VegaLite$VBStrokeCap = function (a) {
 	return {$: 8, a: a};
 };

@@ -10006,23 +10006,8 @@ var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'cornerRadius', n);
 		case 2:
-			var ms = vb.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'fill',
-						$elm$json$Json$Encode$string(s))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'fill',
-						$elm$json$Json$Encode$string(''))
-					]);
-			}
+			var s = vb.a;
+			return A2($author$project$VegaLite$strExpr, 'fill', s);
 		case 3:
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'fillOpacity', n);
@@ -10030,23 +10015,8 @@ var $author$project$VegaLite$viewBackgroundProperty = function (vb) {
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'opacity', n);
 		case 5:
-			var ms = vb.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'stroke',
-						$elm$json$Json$Encode$string(s))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'stroke',
-						$elm$json$Json$Encode$string(''))
-					]);
-			}
+			var s = vb.a;
+			return A2($author$project$VegaLite$strExpr, 'stroke', s);
 		case 6:
 			var n = vb.a;
 			return A2($author$project$VegaLite$numExpr, 'strokeOpacity', n);
