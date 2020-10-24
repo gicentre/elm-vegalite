@@ -1106,6 +1106,7 @@ module VegaLite exposing
     , tiZIndex
     , viewBackground
     , viewBackgroundNumExpr
+    , viewBackgroundStrExpr
     , viewStyle
     , viewCornerRadius
     , viewFill
@@ -3284,6 +3285,7 @@ of other views. For more details see the
 
 @docs viewBackground
 @docs viewBackgroundNumExpr
+@docs viewBackgroundStrExpr
 
 @docs viewStyle
 @docs viewCornerRadius
@@ -6068,10 +6070,10 @@ type VAlign
 type ViewBackground
     = VBStyle (List String)
     | VBCornerRadius Num
-    | VBFill (Maybe String)
+    | VBFill Str
     | VBFillOpacity Num
     | VBOpacity Num
-    | VBStroke (Maybe String)
+    | VBStroke Str
     | VBStrokeOpacity Num
     | VBStrokeWidth Num
     | VBStrokeCap StrokeCap
@@ -19145,6 +19147,33 @@ viewBackgroundNumExpr ex fn =
             fn 0
 
 
+{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+a view background function requiring a Maybe String value. This can be used to
+provide an interactive parameterisation of a view background when an expression
+is bound to an input element. For example,
+
+    prm =
+        params
+            [ ( "clr", [ paValue (str "white"), paBind (ipColor [ ]) ] ) ]
+    :
+    :
+    bg =
+        viewBackground [ viewFill |> viewBackgroundStrExpr "clr"]
+
+-}
+viewBackgroundStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
+viewBackgroundStrExpr ex fn =
+    case fn Nothing of
+        VBFill _ ->
+            VBFill (StrExpr ex)
+
+        VBStroke _ ->
+            VBStroke (StrExpr ex)
+
+        _ ->
+            fn Nothing
+
+
 {-| The radius in pixels of rounded corners in single view or layer background.
 -}
 viewCornerRadius : Float -> ViewBackground
@@ -19155,8 +19184,13 @@ viewCornerRadius n =
 {-| Fill color for a single view or layer background.
 -}
 viewFill : Maybe String -> ViewBackground
-viewFill =
-    VBFill
+viewFill ms =
+    case ms of
+        Just s ->
+            VBFill (Str s)
+
+        Nothing ->
+            VBFill (Str "")
 
 
 {-| Fill opacity for a single view or layer background.
@@ -19177,8 +19211,13 @@ viewOpacity n =
 is provided, no strokes are drawn around the view.
 -}
 viewStroke : Maybe String -> ViewBackground
-viewStroke =
-    VBStroke
+viewStroke ms =
+    case ms of
+        Just s ->
+            VBStroke (Str s)
+
+        Nothing ->
+            VBStroke (Str "")
 
 
 {-| Stroke cap line-ending around a single view or layer background.
@@ -24543,13 +24582,8 @@ viewBackgroundProperty vb =
         VBCornerRadius n ->
             numExpr "cornerRadius" n
 
-        VBFill ms ->
-            case ms of
-                Just s ->
-                    [ ( "fill", JE.string s ) ]
-
-                Nothing ->
-                    [ ( "fill", JE.string "" ) ]
+        VBFill s ->
+            strExpr "fill" s
 
         VBFillOpacity n ->
             numExpr "fillOpacity" n
@@ -24557,13 +24591,8 @@ viewBackgroundProperty vb =
         VBOpacity n ->
             numExpr "opacity" n
 
-        VBStroke ms ->
-            case ms of
-                Just s ->
-                    [ ( "stroke", JE.string s ) ]
-
-                Nothing ->
-                    [ ( "stroke", JE.string "" ) ]
+        VBStroke s ->
+            strExpr "stroke" s
 
         VBStrokeOpacity n ->
             numExpr "strokeOpacity" n

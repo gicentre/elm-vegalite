@@ -376,7 +376,9 @@ background1 =
     let
         prm =
             params
-                [ ( "cr", [ paValue (num 0), paBind (ipRange [ inName "Corner radius", inMin 0, inMax 100, inStep 1 ]) ] )
+                [ ( "fc", [ paValue (str "white"), paBind (ipColor []) ] )
+                , ( "sc", [ paValue (str "black"), paBind (ipColor []) ] )
+                , ( "cr", [ paValue (num 0), paBind (ipRange [ inName "Corner radius", inMin 0, inMax 100, inStep 1 ]) ] )
                 , ( "fo", [ paValue (num 1), paBind (ipRange [ inName "Fill opacity", inMin 0, inMax 1 ]) ] )
                 , ( "so", [ paValue (num 1), paBind (ipRange [ inName "Stroke opacity", inMin 0, inMax 1 ]) ] )
                 , ( "sw", [ paValue (num 1), paBind (ipRange [ inName "Stroke width ", inMin 0, inMax 20 ]) ] )
@@ -396,8 +398,8 @@ background1 =
         , width 300
         , height 300
         , viewBackground
-            [ viewFill (Just "yellow")
-            , viewStroke (Just "black")
+            [ viewFill |> viewBackgroundStrExpr "fc"
+            , viewStroke |> viewBackgroundStrExpr "sc"
             , viewCornerRadius |> viewBackgroundNumExpr "cr"
             , viewFillOpacity |> viewBackgroundNumExpr "fo"
             , viewStrokeOpacity |> viewBackgroundNumExpr "so"
