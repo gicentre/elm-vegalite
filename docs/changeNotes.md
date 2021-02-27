@@ -26,7 +26,13 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
 
+### V4.0 Deprecations
+
+- `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
+
 ### Additions
+
+- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
 - `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL4.16).
 

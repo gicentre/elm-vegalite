@@ -11,7 +11,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 timeByUnit : TimeUnit -> Spec
@@ -88,12 +88,12 @@ timeBand : Spec
 timeBand =
     let
         data =
-            dataFromUrl (path ++ "seattle-temps.csv") []
+            dataFromUrl (path ++ "seattle-weather.csv") []
 
         enc =
             encoding
-                << position X [ pName "date", pTimeUnit month, pBand 0.5 ]
-                << position Y [ pName "temp", pAggregate opMean ]
+                << position X [ pName "date", pTimeUnit month, pBandPosition 0.5 ]
+                << position Y [ pName "temp_max", pAggregate opMean ]
     in
     toVegaLite
         [ width 400
@@ -150,7 +150,7 @@ specs =
    The code below creates an Elm module that opens an outgoing port to Javascript
    and sends both the specs and DOM node to it.
    It allows the source code of any of the generated specs to be selected from
-   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
+   a drop-down list. Useful for viewing specs that might generate invalid Vega-Lite.
 -}
 
 

@@ -482,7 +482,7 @@ module VegaLite exposing
     , pScale
     , pAxis
     , pSort
-    , pBand
+    , pBandPosition
     , pStack
     , pWidth
     , pHeight
@@ -1541,6 +1541,7 @@ module VegaLite exposing
     , WOperation
     , WindowProperty
     , lecoShortTimeLabels
+    , pBand
     , scDomainMid
     -- , axcoStyle
     --, leUnselectedOpacity
@@ -2315,7 +2316,7 @@ See the
 @docs pScale
 @docs pAxis
 @docs pSort
-@docs pBand
+@docs pBandPosition
 @docs pStack
 @docs pWidth
 @docs pHeight
@@ -3822,6 +3823,7 @@ to the functions that generate them.
 # 11. Deprecated Functions
 
 @docs lecoShortTimeLabels
+@docs pBand
 @docs scDomainMid
 
 -}
@@ -5421,7 +5423,7 @@ type Position
 [pOrdinal](#pOrdinal), [pTemporal](#pTemporal), [pGeo](#pGeo), [pMType](#pMType),
 [pRepeat](#pRepeat), [pBin](#PBin), [pBinned](#pBinned), [pTimeUnit](#pTimeUnit),
 [pTitle](#pTitle), [pAggregate](#pAggregate), [pScale](#pScale), [pAxis](#pAxis),
-[pSort](#pSort), [pBand](#pBand), [pStack](#pStack), [pWidth](#pWidth),
+[pSort](#pSort), [pBandPosition](#pBandPosition), [pStack](#pStack), [pWidth](#pWidth),
 [pHeight](#pHeight), [pNum](#pNum) and [pImpute](#pImpute).
 -}
 type PositionChannel
@@ -5440,7 +5442,7 @@ type PositionChannel
     | PScale (List ScaleProperty)
     | PAxis (List AxisProperty)
     | PSort (List SortProperty)
-    | PBand Float
+    | PBandPosition Float
     | PStack StackOffset
     | PImpute (List ImputeProperty)
 
@@ -15758,6 +15760,13 @@ pAxis =
     PAxis
 
 
+{-| Deprecated in favour of [pBandPosition](#pBandPosition).
+-}
+pBand : Float -> PositionChannel
+pBand =
+    PBandPosition
+
+
 {-| Specify mark position or size relative to band size. For non-rect marks,
 the relative position on a band of a stacked, binned, time unit or band scale is
 used. A value of 0, positions the mark at the beginning of the band; 0.5, in the
@@ -15768,9 +15777,9 @@ to the band width or the time unit interval. If set to 0.5, the mark size is hal
 of the bandwidth or the time unit interval. etc.
 
 -}
-pBand : Float -> PositionChannel
-pBand =
-    PBand
+pBandPosition : Float -> PositionChannel
+pBandPosition =
+    PBandPosition
 
 
 {-| Discretize numeric values into bins when encoding with a position channel.
@@ -23291,8 +23300,8 @@ positionChannelProperty pDef =
                 _ ->
                     ( "sort", JE.object (List.concatMap sortProperties sps) )
 
-        PBand x ->
-            ( "band", JE.float x )
+        PBandPosition x ->
+            ( "bandPosition", JE.float x )
 
         PScale sps ->
             if sps == [] then
