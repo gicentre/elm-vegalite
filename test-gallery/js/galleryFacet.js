@@ -6171,7 +6171,7 @@ var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$GalleryFacet$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryFacet$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
 };
@@ -7932,7 +7932,7 @@ var $author$project$GalleryFacet$facet4 = function () {
 					$author$project$VegaLite$fName('Origin'),
 					$author$project$VegaLite$fOrdinal
 				])));
-	var desc = $author$project$VegaLite$description('Disitributions of car engine power for different countries of origin');
+	var desc = $author$project$VegaLite$description('Distributions of car engine power for different countries of origin');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryFacet$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -8317,6 +8317,7 @@ var $author$project$GalleryFacet$facet6 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
+				desc,
 				data,
 				$author$project$VegaLite$columns(2),
 				$author$project$VegaLite$facetFlow(
@@ -11265,8 +11266,6 @@ var $author$project$GalleryFacet$facet7 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$ChY = 1;
-var $author$project$VegaLite$chY = 1;
 var $author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -11418,81 +11417,6 @@ var $author$project$VegaLite$Numbers = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
-var $author$project$VegaLite$RIndependent = 1;
-var $author$project$VegaLite$reIndependent = 1;
-var $author$project$VegaLite$RScale = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$reScale = $author$project$VegaLite$RScale;
-var $author$project$VegaLite$resolutionLabel = function (res) {
-	if (!res) {
-		return 'shared';
-	} else {
-		return 'independent';
-	}
-};
-var $author$project$VegaLite$resolveProperty = function (res) {
-	switch (res.$) {
-		case 0:
-			var chRules = res.a;
-			return _Utils_Tuple2(
-				'axis',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v1) {
-							var ch = _v1.a;
-							var chRule = _v1.b;
-							return _Utils_Tuple2(
-								$author$project$VegaLite$channelLabel(ch),
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$resolutionLabel(chRule)));
-						},
-						chRules)));
-		case 1:
-			var chRules = res.a;
-			return _Utils_Tuple2(
-				'legend',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v2) {
-							var ch = _v2.a;
-							var chRule = _v2.b;
-							return _Utils_Tuple2(
-								$author$project$VegaLite$channelLabel(ch),
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$resolutionLabel(chRule)));
-						},
-						chRules)));
-		default:
-			var chRules = res.a;
-			return _Utils_Tuple2(
-				'scale',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v3) {
-							var ch = _v3.a;
-							var chRule = _v3.b;
-							return _Utils_Tuple2(
-								$author$project$VegaLite$channelLabel(ch),
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$resolutionLabel(chRule)));
-						},
-						chRules)));
-	}
-};
-var $author$project$VegaLite$resolution = function (res) {
-	return $elm$core$List$cons(
-		$author$project$VegaLite$resolveProperty(res));
-};
-var $author$project$VegaLite$VLResolve = 26;
-var $author$project$VegaLite$resolve = function (res) {
-	return _Utils_Tuple2(
-		26,
-		$elm$json$Json$Encode$object(res));
-};
 var $author$project$VegaLite$VLSpacing = 27;
 var $author$project$VegaLite$spacing = function (sp) {
 	return _Utils_Tuple2(
@@ -11504,15 +11428,6 @@ var $author$project$VegaLite$Strings = function (a) {
 };
 var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
 var $author$project$GalleryFacet$facet8 = function () {
-	var res = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$resolve,
-		$author$project$VegaLite$resolution(
-			$author$project$VegaLite$reScale(
-				_List_fromArray(
-					[
-						_Utils_Tuple2($author$project$VegaLite$chY, $author$project$VegaLite$reIndependent)
-					]))));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(

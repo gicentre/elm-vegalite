@@ -7547,7 +7547,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
-var $author$project$GalleryBar$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryBar$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$VLWidth = 4;
 var $author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(

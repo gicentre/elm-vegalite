@@ -6264,7 +6264,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
-var $author$project$GalleryRepeat$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryRepeat$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
 };
@@ -7536,7 +7536,7 @@ var $author$project$GalleryRepeat$repeat1 = function () {
 				_List_fromArray(
 					[spec1, spec2]))
 			]));
-	var desc = $author$project$VegaLite$description('Monthly weather information for individual years and overall average for Seatle and New York');
+	var desc = $author$project$VegaLite$description('Monthly weather information for individual years and overall average for Seattle and New York');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryRepeat$path + 'weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -8523,10 +8523,6 @@ var $author$project$GalleryRepeat$repeat4 = function () {
 						])))
 			]));
 }();
-var $author$project$VegaLite$MaxBins = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$biMaxBins = $author$project$VegaLite$MaxBins;
 var $author$project$VegaLite$Flush = 1;
 var $author$project$VegaLite$boFlush = 1;
 var $author$project$VegaLite$VLBounds = 29;
@@ -10980,35 +10976,6 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$GalleryRepeat$repeat5 = function () {
-	var encPosition = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('IMDB Rating'),
-						$author$project$VegaLite$pBin(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$biMaxBins(10)
-							]))
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('Rotten Tomatoes Rating'),
-					$author$project$VegaLite$pBin(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$biMaxBins(10)
-						]))
-				])));
 	var enc2_2 = A2(
 		$elm$core$Basics$composeL,
 		A2(

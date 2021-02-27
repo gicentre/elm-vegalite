@@ -7969,7 +7969,7 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$GalleryAdvanced$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryAdvanced$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 12, a: a};
 };
@@ -12663,7 +12663,7 @@ var $author$project$GalleryAdvanced$advanced18 = function () {
 				[
 					$author$project$VegaLite$mNum(1)
 				])));
-	var desc = $author$project$VegaLite$description('Line chart to show benchmakring results.');
+	var desc = $author$project$VegaLite$description('Line chart to show benchmarking results.');
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

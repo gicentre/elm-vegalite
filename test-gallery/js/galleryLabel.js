@@ -10974,11 +10974,6 @@ var $author$project$VegaLite$VStroke = function (a) {
 };
 var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
 var $author$project$GalleryLabel$label10 = function () {
-	var transLabel6 = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('datum.label !== \'PoleStar\'')));
 	var transLabel4 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11561,7 +11556,7 @@ var $author$project$VegaLite$MAggregate = function (a) {
 var $author$project$VegaLite$mAggregate = $author$project$VegaLite$MAggregate;
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
-var $author$project$GalleryLabel$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryLabel$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$SCBandPaddingInner = function (a) {

@@ -5141,7 +5141,7 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$GalleryTable$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryTable$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
 };

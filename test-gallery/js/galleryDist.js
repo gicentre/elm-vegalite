@@ -4249,7 +4249,7 @@ var $author$project$VegaLite$PName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$pName = $author$project$VegaLite$PName;
-var $author$project$GalleryDist$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryDist$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -7598,17 +7598,6 @@ var $author$project$GalleryDist$dist11 = function () {
 						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, o))
 					]));
 		});
-	var encTick = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			0,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('median'),
-					$author$project$VegaLite$pQuant
-				])));
 	var encRule = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -8162,7 +8151,7 @@ var $author$project$GalleryDist$dist2 = function () {
 							$author$project$VegaLite$axFormat('.1~%')
 						]))
 				])));
-	var desc = $author$project$VegaLite$description('Histogram with relative requency calculcated for the y scale and axis.');
+	var desc = $author$project$VegaLite$description('Histogram with relative frequency calculated for the y scale and axis.');
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryDist$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(

@@ -6091,7 +6091,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
-var $author$project$SimpleScatterplot$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$SimpleScatterplot$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
 };

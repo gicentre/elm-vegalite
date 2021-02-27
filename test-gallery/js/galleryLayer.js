@@ -7858,7 +7858,7 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$GalleryLayer$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryLayer$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$size = function (markProps) {
@@ -11698,7 +11698,7 @@ var $author$project$GalleryLayer$layer4 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$axTitle('Avgerage Temperature (°C)'),
+								$author$project$VegaLite$axTitle('Average Temperature (°C)'),
 								$author$project$VegaLite$axTitleColor('#85C5A6')
 							]))
 					]))),

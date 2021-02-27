@@ -7625,7 +7625,7 @@ var $author$project$VegaLite$PBin = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
-var $author$project$HelloWorlds$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$HelloWorlds$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$HelloWorlds$myOtherVis = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,

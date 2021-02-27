@@ -4390,7 +4390,7 @@ var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$GalleryMulti$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryMulti$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -12618,7 +12618,7 @@ var $author$project$GalleryMulti$multi7 = function () {
 				[
 					$author$project$VegaLite$pName('d.latitude')
 				])));
-	var desc = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
+	var desc = $author$project$VegaLite$description('One dot per airport in the US overlaid on geoshape');
 	var dataFlights = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryMulti$path + 'flights-airport.csv', _List_Nil);
 	var dataBoundaries = A2(
 		$author$project$VegaLite$dataFromUrl,

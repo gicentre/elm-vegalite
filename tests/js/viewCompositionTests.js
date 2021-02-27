@@ -14140,17 +14140,8 @@ var $author$project$VegaLite$ColumnBy = function (a) {
 var $author$project$VegaLite$columnBy = $author$project$VegaLite$ColumnBy;
 var $author$project$ViewCompositionTests$data = function () {
 	var vals = $author$project$VegaLite$nums(
-		_Utils_ap(
-			_List_fromArray(
-				[30, 15, 12, 25, 30, 25, 10, 28, 11, 18, 24, 16, 10, 10, 10]),
-			_Utils_ap(
-				_List_fromArray(
-					[8, 8, 29, 11, 24, 12, 26, 32, 9, 8, 18, 28, 8, 20, 24]),
-				_Utils_ap(
-					_List_fromArray(
-						[21, 15, 20, 4, 13, 12, 27, 21, 14, 5, 1, 2, 11, 2, 5]),
-					_List_fromArray(
-						[14, 20, 24, 20, 2, 9, 15, 14, 13, 22, 30, 30, 10, 8, 12])))));
+		_List_fromArray(
+			[30, 15, 12, 25, 30, 25, 10, 28, 11, 18, 24, 16, 10, 10, 10, 8, 8, 29, 11, 24, 12, 26, 32, 9, 8, 18, 28, 8, 20, 24, 21, 15, 20, 4, 13, 12, 27, 21, 14, 5, 1, 2, 11, 2, 5, 14, 20, 24, 20, 2, 9, 15, 14, 13, 22, 30, 30, 10, 8, 12]));
 	var rows = $author$project$VegaLite$nums(
 		A2(
 			$elm$core$List$concatMap,

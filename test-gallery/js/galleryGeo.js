@@ -10104,7 +10104,7 @@ var $author$project$VegaLite$MmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
-var $author$project$GalleryGeo$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$GalleryGeo$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$AlbersUsa = {$: 1};
 var $author$project$VegaLite$albersUsa = $author$project$VegaLite$AlbersUsa;
 var $author$project$VegaLite$PType = function (a) {
@@ -10758,7 +10758,7 @@ var $author$project$GalleryGeo$geo3 = function () {
 				[
 					$author$project$VegaLite$mStr('#eee')
 				])));
-	var desc = $author$project$VegaLite$description('One dot per airport in the US overlayed on geoshape');
+	var desc = $author$project$VegaLite$description('One dot per airport in the US overlaid on geoshape');
 	var backdropSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11351,7 +11351,7 @@ var $author$project$GalleryGeo$geo6 = function () {
 			[
 				$author$project$VegaLite$topojsonFeature('states')
 			]));
-	var desc = $author$project$VegaLite$description('US state capitals overlayed on map of the US');
+	var desc = $author$project$VegaLite$description('US state capitals overlaid on map of the US');
 	var capitalData = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryGeo$path + 'us-state-capitals.json', _List_Nil);
 	var overlaySpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
