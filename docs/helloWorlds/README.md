@@ -6,7 +6,7 @@ In many cases you may wish to embed more than one visualization created by elm-v
 The template to do this can be very similar to the simple [HelloWorld](../helloWorld/README.md) example.
 The difference being that instead of a single `<div>` into which a visualization is inserted, you provide a sequence of `<div>` containers each with some unique id.
 
-There is also a minor change to the `vegeEmbed` function call so it references a collection of named specifications corresponding to each of the unique IDs of the `<div>` containers.
+There is also a minor change to the `vegaEmbed` function call so it references a collection of named specifications corresponding to each of the unique IDs of the `<div>` containers.
 
 You can copy this example to a file `helloWorlds.html` somewhere on your machine:
 
@@ -19,7 +19,7 @@ You can copy this example to a file `helloWorlds.html` somewhere on your machine
 
   <!-- These scripts link to the Vega/Vega-Lite runtime -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
   <!-- This is the script generated from Elm -->
@@ -156,7 +156,9 @@ The three specifications are then combined (with `combineSpecs`) into a single J
 
 The final task, as before, is to convert the Elm file into JavaScript:
 
-    elm make helloWorlds.elm --output=js/helloWorlds.js --optimize
+```sh
+elm make helloWorlds.elm --output=js/helloWorlds.js --optimize
+```
 
 This should create the `helloWorlds.js` file required by the HTML.
 
