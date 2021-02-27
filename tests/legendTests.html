@@ -1,159 +1,160 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Legend Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Legend Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/legendTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <!-- Page formatting -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+  <script src="js/legendTests.js"></script>
+
+  <!-- Page formatting -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Elm-VegaLite Legend Tests</h1>
+
+  <figure class="cell">
+    <div id="legend1"></div>
+    <figcaption>Default legend layout (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend2"></div>
+    <figcaption>Legend orient top (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend3"></div>
+    <figcaption>Legend orient top-right (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend4"></div>
+    <figcaption>Legend orient right (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend5"></div>
+    <figcaption>Legend orient bottom-right (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend6"></div>
+    <figcaption>Legend orient bottom (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend7"></div>
+    <figcaption>Legend orient bottom-left (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend8"></div>
+    <figcaption>Legend orient left (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend9"></div>
+    <figcaption>Legend orient top-left (3 legends)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend10"></div>
+    <figcaption>
+      Manually positioned single legend within the top-right of the charting
+      area.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend11"></div>
+    <figcaption>
+      3 legends, cusomtised via style configuration
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend12"></div>
+    <figcaption>
+      Legend label baseline set to line-top.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend13"></div>
+    <figcaption>
+      With symbol limit set to 4.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend14"></div>
+    <figcaption>
+      As above but set via config.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="legend15"></div>
+    <figcaption>
+      Interactive parameterisation of legend properties.
+    </figcaption>
+  </figure>
+
+  <div style="clear: left;"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.LegendTests.init({
+      node: document.getElementById("elmContainer"),
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
       }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
+    });
+  </script>
+</body>
 
-  <body>
-    <h1>Elm-VegaLite Legend Tests</h1>
-
-    <figure class="cell">
-      <div id="legend1"></div>
-      <figcaption>Default legend layout (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend2"></div>
-      <figcaption>Legend orient top (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend3"></div>
-      <figcaption>Legend orient top-right (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend4"></div>
-      <figcaption>Legend orient right (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend5"></div>
-      <figcaption>Legend orient bottom-right (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend6"></div>
-      <figcaption>Legend orient bottom (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend7"></div>
-      <figcaption>Legend orient bottom-left (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend8"></div>
-      <figcaption>Legend orient left (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend9"></div>
-      <figcaption>Legend orient top-left (3 legends)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend10"></div>
-      <figcaption>
-        Manually positioned single legend within the top-right of the charting
-        area.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend11"></div>
-      <figcaption>
-        3 legends, cusomtised via style configuration
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend12"></div>
-      <figcaption>
-        Legend label baseline set to line-top.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend13"></div>
-      <figcaption>
-        With symbol limit set to 4.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend14"></div>
-      <figcaption>
-        As above but set via config.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="legend15"></div>
-      <figcaption>
-        Interactive parameterisation of legend properties.
-      </figcaption>
-    </figure>
-
-    <div style="clear: left;"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.LegendTests.init({
-        node: document.getElementById("elmContainer"),
-      }).ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
 </html>

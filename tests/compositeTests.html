@@ -1,136 +1,137 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Composite Mark Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Composite Mark Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/compositeTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+  <script src="js/compositeTests.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Elm-Vega Composite Mark Tests</h1>
+
+  <figure class="cell">
+    <div id="boxplot1"></div>
+    <figcaption>Boxplot with full range</figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="boxplot2"></div>
+    <figcaption>Boxplot with 2*IQR</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="boxplot3"></div>
+    <figcaption>
+      Boxplot with customised 0.5*IQR box, ticks, whiskers and outliers
+    </figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="boxplot4"></div>
+    <figcaption>
+      As previous but only ticks shown.
+    </figcaption>
+  </figure>
+
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="errorband1"></div>
+    <figcaption>Error band 95% confidence interval</figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="errorband2"></div>
+    <figcaption>Error band spanning 1 standard deviation</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="errorbar1"></div>
+    <figcaption>Error bars with 95% confidence interval</figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="errorbar2"></div>
+    <figcaption>Error bars spanning 1 standard deviation</figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="errorbar3"></div>
+    <figcaption>Error bars with colour encoding</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="errorbar4"></div>
+    <figcaption>Symmetric error bars with explicit xError channel</figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="errorbar5"></div>
+    <figcaption>
+      Asymmetric error bars with explicit xError and xError2 channels
+    </figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="errorbar6"></div>
+    <figcaption>
+      Symmetric vertical error bars with explicit yError channel
+    </figcaption>
+  </figure>
+
+  <figure class="cell">
+    <div id="errorbar7"></div>
+    <figcaption>
+      Asymmetric vertical error bars with explicit yError and yError2 channels
+    </figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.CompositeTests.init({
+      node: document.getElementById("elmContainer")
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn
+        }).catch(console.warn);
       }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
+    });
+  </script>
+</body>
 
-  <body>
-    <h1>Elm-Vega Composite Mark Tests</h1>
-
-    <figure class="cell">
-      <div id="boxplot1"></div>
-      <figcaption>Boxplot with full range</figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="boxplot2"></div>
-      <figcaption>Boxplot with 2*IQR</figcaption>
-    </figure>
-    <div style="clear:left"></div>
-
-    <figure class="cell">
-      <div id="boxplot3"></div>
-      <figcaption>
-        Boxplot with customised 0.5*IQR box, ticks, whiskers and outliers
-      </figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="boxplot4"></div>
-      <figcaption>
-        As previous but only ticks shown.
-      </figcaption>
-    </figure>
-
-    <div style="clear:left"></div>
-
-    <figure class="cell">
-      <div id="errorband1"></div>
-      <figcaption>Error band 95% confidence interval</figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="errorband2"></div>
-      <figcaption>Error band spanning 1 standard deviation</figcaption>
-    </figure>
-    <div style="clear:left"></div>
-
-    <figure class="cell">
-      <div id="errorbar1"></div>
-      <figcaption>Error bars with 95% confidence interval</figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="errorbar2"></div>
-      <figcaption>Error bars spanning 1 standard deviation</figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="errorbar3"></div>
-      <figcaption>Error bars with colour encoding</figcaption>
-    </figure>
-    <div style="clear:left"></div>
-
-    <figure class="cell">
-      <div id="errorbar4"></div>
-      <figcaption>Symmetric error bars with explicit xError channel</figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="errorbar5"></div>
-      <figcaption>
-        Asymmetric error bars with explicit xError and xError2 channels
-      </figcaption>
-    </figure>
-    <div style="clear:left"></div>
-
-    <figure class="cell">
-      <div id="errorbar6"></div>
-      <figcaption>
-        Symmetric vertical error bars with explicit yError channel
-      </figcaption>
-    </figure>
-
-    <figure class="cell">
-      <div id="errorbar7"></div>
-      <figcaption>
-        Asymmetric vertical error bars with explicit yError and yError2 channels
-      </figcaption>
-    </figure>
-    <div style="clear:left"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.CompositeTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
 </html>

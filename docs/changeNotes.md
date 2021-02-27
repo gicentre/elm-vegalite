@@ -2,7 +2,7 @@
 
 ## Pending changes
 
-_The changes that relate to adding expression parameters (which form the majority of this update) are likely to form part of the major release supporting VegaLite 5. There are plans in VegaLite 5 to rationalise expression and selection support so until that is confirmed, the expression parameter changes below are subject to further change._
+_The changes that relate to adding expression parameters (which form the majority of this update) support the major release of VegaLite 5._
 
 ### TODO
 
@@ -11,8 +11,6 @@ Add mark property expression functions for `MStrokeDash`.
 Add top-level view background expressions: `strokeCap`, `strokeDash`, `strokeJoin`.
 
 Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, and `subtitleFontWeight`.
-
-Add datum expressions.
 
 Add custom type axis property expressions.
 
@@ -32,35 +30,37 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL4.16).
 
-- Add `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
+- `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
 
-- Add `markPropertyStrExpr` for providing expressions that evaluate to string mark properties (VL4.16).
+- `markPropertyStrExpr` for providing expressions that evaluate to string mark properties (VL4.16).
 
-- Add `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties (VL4.16).
+- `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties (VL4.16).
 
-- Add `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
+- `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
 
-- Add `axisPropertyStrExpr` for providing expressions that evaluate to string axis properties (VL4.16).
+- `axisPropertyStrExpr` for providing expressions that evaluate to string axis properties (VL4.16).
 
-- Add `axisPropertyBooExpr` for providing expressions that evaluate to boolean axis properties (VL4.16).
+- `axisPropertyBooExpr` for providing expressions that evaluate to boolean axis properties (VL4.16).
 
-- Add `legendPropertyNumExpr` for providing expressions that evaluate to numeric legend properties (VL4.16).
+- `legendPropertyNumExpr` for providing expressions that evaluate to numeric legend properties (VL4.16).
 
-- Add `legendPropertyStrExpr` for providing expressions that evaluate to string legend properties (VL4.16).
+- `legendPropertyStrExpr` for providing expressions that evaluate to string legend properties (VL4.16).
 
-- Add `titlePropertyNumExpr` for providing expressions that evaluate to numeric title properties (VL4.16).
+- `titlePropertyNumExpr` for providing expressions that evaluate to numeric title properties (VL4.16).
 
-- Add `titlePropertyStrExpr` for providing expressions that evaluate to string title properties (VL4.16).
+- `titlePropertyStrExpr` for providing expressions that evaluate to string title properties (VL4.16).
 
-- Add `viewBackgroundNumExpr` for providing expressions that evaluate to numeric view background properties (VL4.16).
+- `viewBackgroundNumExpr` for providing expressions that evaluate to numeric view background properties (VL4.16).
 
-- Add `viewBackgroundStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL4.16).
+- `viewBackgroundStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL4.16).
 
-- Add mark expression functions for to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
+- Mark expression functions to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 
-- Add top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour).
+- Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
-- Add `maPadAngle` for padding arc segments.
+- `dataExpr` for creating a datum value from an expression (VL4.16).
+
+- `maPadAngle` for padding arc segments.
 
 ---
 

@@ -1,165 +1,166 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Conditional Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Conditional Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/conditionalTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+  <script src="js/conditionalTests.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Elm-Vega Conditional Tests</h1>
+
+  <h2>Conditional Mark Properties</h2>
+  <figure class="cell">
+    <div id="markCondition1"></div>
+    <figcaption>Null values in grey.</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="markCondition2"></div>
+    <figcaption>
+      Nested conditions, should result in circles colured
+      blue-blue-blue-red-yellow-black
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Conditional Axis Properties (VL 4)</h2>
+  <figure class="cell">
+    <div id="axisCondition1"></div>
+    <figcaption>Dashed gridlines left of centre.</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="axisCondition2"></div>
+    <figcaption>
+      Conditional axis ticks: red up to 2, short up to 5, transparent from 8
+      and thick tick at 4. Y-axis label padding greater for values less than
+      100.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="axisCondition3"></div>
+    <figcaption>
+      Conditional axis labels: red up to 2, transparent from 8 and thick tick
+      at 4.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Conditional Selection Properties</h2>
+  <figure class="cell">
+    <div id="selectionCondition1"></div>
+    <figcaption>
+      Two selection styles (drag and shift-drag; no effect).
+    </figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="selectionCondition2"></div>
+    <figcaption>
+      Two selection styles (drag and shift-drag; only intersections select).
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="selectionCondition4"></div>
+    <figcaption>
+      Selection with default clear disabled (double clicking on selection
+      should have no effect).
+    </figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="selectionCondition5"></div>
+    <figcaption>
+      Initially no selection. Selection clears once mouse released.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="selectionCondition3"></div>
+    <figcaption>Combined data and selection condition.</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="bindScales1"></div>
+    <figcaption>
+      Zooming selection that resets on double click (default)
+    </figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="bindScales2"></div>
+    <figcaption>
+      Zooming selection that resets on any shift-mouse click
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Conditional Ordering</h2>
+  <figure class="cell">
+    <div id="orderCondition1"></div>
+    <figcaption>
+      Ensures selected cell with thick borders is drawn on top.
+    </figcaption>
+  </figure>
+
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="orderCondition2"></div>
+    <figcaption>
+      Use oDataCondition to ensure that European data are shown on top.
+    </figcaption>
+  </figure>
+
+  <div style="clear: left;"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.ConditionalTests.init({
+      node: document.getElementById("elmContainer"),
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
       }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
+    });
+  </script>
+</body>
 
-  <body>
-    <h1>Elm-Vega Conditional Tests</h1>
-
-    <h2>Conditional Mark Properties</h2>
-    <figure class="cell">
-      <div id="markCondition1"></div>
-      <figcaption>Null values in grey.</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="markCondition2"></div>
-      <figcaption>
-        Nested conditions, should result in circles colured
-        blue-blue-blue-red-yellow-black
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Conditional Axis Properties (VL 4)</h2>
-    <figure class="cell">
-      <div id="axisCondition1"></div>
-      <figcaption>Dashed gridlines left of centre.</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="axisCondition2"></div>
-      <figcaption>
-        Conditional axis ticks: red up to 2, short up to 5, transparent from 8
-        and thick tick at 4. Y-axis label padding greater for values less than
-        100.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="axisCondition3"></div>
-      <figcaption>
-        Conditional axis labels: red up to 2, transparent from 8 and thick tick
-        at 4.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Conditional Selection Properties</h2>
-    <figure class="cell">
-      <div id="selectionCondition1"></div>
-      <figcaption>
-        Two selection styles (drag and shift-drag; no effect).
-      </figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="selectionCondition2"></div>
-      <figcaption>
-        Two selection styles (drag and shift-drag; only intersections select).
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="selectionCondition4"></div>
-      <figcaption>
-        Selection with default clear disabled (double clicking on selection
-        should have no effect).
-      </figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="selectionCondition5"></div>
-      <figcaption>
-        Initially no selection. Selection clears once mouse released.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="selectionCondition3"></div>
-      <figcaption>Combined data and selection condition.</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="bindScales1"></div>
-      <figcaption>
-        Zooming selection that resets on double click (default)
-      </figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="bindScales2"></div>
-      <figcaption>
-        Zooming selection that resets on any shift-mouse click
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Conditional Ordering</h2>
-    <figure class="cell">
-      <div id="orderCondition1"></div>
-      <figcaption>
-        Ensures selected cell with thick borders is drawn on top.
-      </figcaption>
-    </figure>
-
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="orderCondition2"></div>
-      <figcaption>
-        Use oDataCondition to ensure that European data are shown on top.
-      </figcaption>
-    </figure>
-
-    <div style="clear: left;"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.ConditionalTests.init({
-        node: document.getElementById("elmContainer"),
-      }).ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
 </html>

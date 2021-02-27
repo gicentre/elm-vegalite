@@ -1,214 +1,212 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Colour Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Colour Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/colorTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+  <script src="js/colorTests.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Elm-Vega Colour Tests</h1>
+
+  <h2>Default Schemes</h2>
+  <figure class="cell">
+    <div id="defContinuous"></div>
+    <figcaption>Default continuous colours</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="defOrdinal"></div>
+    <figcaption>Default ordinal colours</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="defNominal"></div>
+    <figcaption>Default nominal colours</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Named Schemes</h2>
+  <figure class="cell">
+    <div id="namedContinuous1"></div>
+    <figcaption>Named colour scheme (plasma)</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="namedContinuous2"></div>
+    <figcaption>Upper range of named colour scheme</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="namedContinuous3"></div>
+    <figcaption>Reversed named colour scheme</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="namedContinuous4"></div>
+    <figcaption>Upper range of reversed colour scheme</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Custom Schemes</h2>
+  <figure class="cell">
+    <div id="customContinuous"></div>
+    <figcaption>Custom continuous range (red to blue)</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="customDiscrete"></div>
+    <figcaption>Custom discrete values (red, green, blue)</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Colour Scales</h2>
+  <figure class="cell">
+    <div id="scale1"></div>
+    <figcaption>Linear scale (default)</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="scale3"></div>
+    <figcaption>Power scale with default (linear) exponent</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="scale4"></div>
+    <figcaption>Cubic power scale</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="scale5"></div>
+    <figcaption>Square root scale</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="scale6"></div>
+    <figcaption>Log Scale</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="scale7"></div>
+    <figcaption>SymLog Scale with default slope constant (1)</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="scale8"></div>
+    <figcaption>SymLog Scale with slope constant of 0.01</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Interpolation Type</h2>
+  <figure class="cell">
+    <div id="interp1"></div>
+    <figcaption>HSL interpolation</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="interp2"></div>
+    <figcaption>HSL-long interpolation</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="interp3"></div>
+    <figcaption>Lab interpolation</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="interp4"></div>
+    <figcaption>HCL interpolation</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="interp5"></div>
+    <figcaption>HCL-long interpolation</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="interp6"></div>
+    <figcaption>Cubehelix interpolation</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="interp7"></div>
+    <figcaption>Cubehelix-long interpolation</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Gamma Value</h2>
+  <figure class="cell">
+    <div id="gamma1"></div>
+    <figcaption>Cubehelix-long, gamma = -0.1</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="gamma2"></div>
+    <figcaption>Cubehelix-long, gamma = 0</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="gamma3"></div>
+    <figcaption>Cubehelix-long, (default) gamma = 1</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="gamma4"></div>
+    <figcaption>Cubehelix-long, gamma = 2</figcaption>
+  </figure>
+  <figure class="cell">
+    <div id="gamma5"></div>
+    <figcaption>Cubehelix-long, gamma = 10</figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Blend Modes</h2>
+
+  <figure class="cell">
+    <div id="blend1"></div>
+    <figcaption>
+      Colour blending, that should approximate these
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode">CSS examples</a>
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="blend2"></div>
+    <figcaption>
+      Interactive choice of colour blend mode.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="background1"></div>
+    <figcaption>
+      Interactive choice of colour background.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.ColorTests.init({
+      node: document.getElementById("elmContainer"),
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
       }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
+    });
+  </script>
+</body>
 
-  <body>
-    <h1>Elm-Vega Colour Tests</h1>
-
-    <h2>Default Schemes</h2>
-    <figure class="cell">
-      <div id="defContinuous"></div>
-      <figcaption>Default continuous colours</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="defOrdinal"></div>
-      <figcaption>Default ordinal colours</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="defNominal"></div>
-      <figcaption>Default nominal colours</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Named Schemes</h2>
-    <figure class="cell">
-      <div id="namedContinuous1"></div>
-      <figcaption>Named colour scheme (plasma)</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="namedContinuous2"></div>
-      <figcaption>Upper range of named colour scheme</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="namedContinuous3"></div>
-      <figcaption>Reversed named colour scheme</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="namedContinuous4"></div>
-      <figcaption>Upper range of reversed colour scheme</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Custom Schemes</h2>
-    <figure class="cell">
-      <div id="customContinuous"></div>
-      <figcaption>Custom continuous range (red to blue)</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="customDiscrete"></div>
-      <figcaption>Custom discrete values (red, green, blue)</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Colour Scales</h2>
-    <figure class="cell">
-      <div id="scale1"></div>
-      <figcaption>Linear scale (default)</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale3"></div>
-      <figcaption>Power scale with default (linear) exponent</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale4"></div>
-      <figcaption>Cubic power scale</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale5"></div>
-      <figcaption>Square root scale</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale6"></div>
-      <figcaption>Log Scale</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale7"></div>
-      <figcaption>SymLog Scale with default slope constant (1)</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="scale8"></div>
-      <figcaption>SymLog Scale with slope constant of 0.01</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Interpolation Type</h2>
-    <figure class="cell">
-      <div id="interp1"></div>
-      <figcaption>HSL interpolation</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="interp2"></div>
-      <figcaption>HSL-long interpolation</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="interp3"></div>
-      <figcaption>Lab interpolation</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="interp4"></div>
-      <figcaption>HCL interpolation</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="interp5"></div>
-      <figcaption>HCL-long interpolation</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="interp6"></div>
-      <figcaption>Cubehelix interpolation</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="interp7"></div>
-      <figcaption>Cubehelix-long interpolation</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Gamma Value</h2>
-    <figure class="cell">
-      <div id="gamma1"></div>
-      <figcaption>Cubehelix-long, gamma = -0.1</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="gamma2"></div>
-      <figcaption>Cubehelix-long, gamma = 0</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="gamma3"></div>
-      <figcaption>Cubehelix-long, (default) gamma = 1</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="gamma4"></div>
-      <figcaption>Cubehelix-long, gamma = 2</figcaption>
-    </figure>
-    <figure class="cell">
-      <div id="gamma5"></div>
-      <figcaption>Cubehelix-long, gamma = 10</figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Blend Modes</h2>
-
-    <figure class="cell">
-      <div id="blend1"></div>
-      <figcaption>
-        Colour blending, that should approximate these
-        <a
-          href="https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode"
-          >CSS examples</a
-        >
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="blend2"></div>
-      <figcaption>
-        Interactive choice of colour blend mode.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="background1"></div>
-      <figcaption>
-        Interactive choice of colour background.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.ColorTests.init({
-        node: document.getElementById("elmContainer"),
-      }).ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
 </html>

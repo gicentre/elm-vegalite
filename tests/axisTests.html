@@ -1,216 +1,217 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Axis Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Axis Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/axisTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto Condensed";
-      }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
+  <script src="js/axisTests.js"></script>
 
-  <body>
-    <h1>Elm-Vega Axis Tests</h1>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto Condensed";
+    }
 
-    <h2>Default Axes</h2>
-    <figure class="cell">
-      <div id="axis01"></div>
-      <figcaption>Default quantitative axis on x and ordinal on y</figcaption>
-    </figure>
+    figcaption {
+      padding-top: 0.5em;
+    }
 
-    <figure class="cell">
-      <div id="axis01a"></div>
-      <figcaption>
-        Quantitative axis configured to show red grid lines.
-      </figcaption>
-    </figure>
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
 
-    <div style="clear: left;"></div>
+<body>
+  <h1>Elm-Vega Axis Tests</h1>
 
-    <figure class="cell" width="350">
-      <div id="axis02"></div>
-      <figcaption>
-        Responsive width with associated responsive x axis
-      </figcaption>
-    </figure>
+  <h2>Default Axes</h2>
+  <figure class="cell">
+    <div id="axis01"></div>
+    <figcaption>Default quantitative axis on x and ordinal on y</figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <figure class="cell">
+    <div id="axis01a"></div>
+    <figcaption>
+      Quantitative axis configured to show red grid lines.
+    </figcaption>
+  </figure>
 
-    <figure class="cell">
-      <div id="axis03"></div>
-      <figcaption>
-        Default ordinal x-axis (numbers as strings in alphabetical order)
-      </figcaption>
-    </figure>
+  <div style="clear: left;"></div>
 
-    <div style="clear: left;"></div>
+  <figure class="cell" width="350">
+    <div id="axis02"></div>
+    <figcaption>
+      Responsive width with associated responsive x axis
+    </figcaption>
+  </figure>
 
-    <figure class="cell">
-      <div id="axis04"></div>
-      <figcaption>
-        Default temporal x-axis
-      </figcaption>
-    </figure>
+  <div style="clear: left;"></div>
 
-    <figure class="cell">
-      <div id="axis04a"></div>
-      <figcaption>
-        Temporal axis configured to show dashed domain and dashed red grid
-        lines.
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis03"></div>
+    <figcaption>
+      Default ordinal x-axis (numbers as strings in alphabetical order)
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <h2>Explicit Axis Values</h2>
-    <figure class="cell">
-      <div id="axis05"></div>
-      <figcaption>
-        Explicit x-axis values at 1, 2, 4.5 ,9 and 11 (which should be ignored)
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis04"></div>
+    <figcaption>
+      Default temporal x-axis
+    </figcaption>
+  </figure>
 
-    <figure class="cell">
-      <div id="axis06"></div>
-      <figcaption>
-        Explicit x-axis values at "1", "2", "4", "dummy" (should be ignored),
-        "9" and "11" (which should also be ignored)
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis04a"></div>
+    <figcaption>
+      Temporal axis configured to show dashed domain and dashed red grid
+      lines.
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <figure class="cell">
-      <div id="axis07"></div>
-      <figcaption>
-        Explicit x-axis values at 4th Jan, 8th Jan and 20th Jan (should be
-        ignored as outside of domain).
-      </figcaption>
-    </figure>
+  <h2>Explicit Axis Values</h2>
+  <figure class="cell">
+    <div id="axis05"></div>
+    <figcaption>
+      Explicit x-axis values at 1, 2, 4.5 ,9 and 11 (which should be ignored)
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <figure class="cell">
+    <div id="axis06"></div>
+    <figcaption>
+      Explicit x-axis values at "1", "2", "4", "dummy" (should be ignored),
+      "9" and "11" (which should also be ignored)
+    </figcaption>
+  </figure>
 
-    <h2>Axis label expressions</h2>
-    <figure class="cell">
-      <div id="axis08"></div>
-      <figcaption>
-        Should recalculate label to be 0.01 of data value.
-      </figcaption>
-    </figure>
+  <div style="clear: left;"></div>
 
-    <figure class="cell">
-      <div id="axis09"></div>
-      <figcaption>
-        Preface each label with the word 'number'
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis07"></div>
+    <figcaption>
+      Explicit x-axis values at 4th Jan, 8th Jan and 20th Jan (should be
+      ignored as outside of domain).
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <h2>Axis Configuration</h2>
+  <h2>Axis label expressions</h2>
+  <figure class="cell">
+    <div id="axis08"></div>
+    <figcaption>
+      Should recalculate label to be 0.01 of data value.
+    </figcaption>
+  </figure>
 
-    <figure class="cell">
-      <div id="axis10"></div>
-      <figcaption>
-        Should be identical to previous, but defined via an axis configuration.
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis09"></div>
+    <figcaption>
+      Preface each label with the word 'number'
+    </figcaption>
+  </figure>
 
-    <figure class="cell">
-      <div id="axis11"></div>
-      <figcaption>
-        Should be identical to previous, but configured to show 10 axis ticks on
-        y axis
-      </figcaption>
-    </figure>
+  <div style="clear: left;"></div>
 
-    <div style="clear: left;"></div>
+  <h2>Axis Configuration</h2>
 
-    <figure class="cell">
-      <div id="axis12"></div>
-      <figcaption>
-        Red dashed X axis and blue Y axis each with 10 tick marks, configured
-        via axStyle.
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis10"></div>
+    <figcaption>
+      Should be identical to previous, but defined via an axis configuration.
+    </figcaption>
+  </figure>
 
-    <!-- <figure class="cell">
+  <figure class="cell">
+    <div id="axis11"></div>
+    <figcaption>
+      Should be identical to previous, but configured to show 10 axis ticks on
+      y axis
+    </figcaption>
+  </figure>
+
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="axis12"></div>
+    <figcaption>
+      Red dashed X axis and blue Y axis each with 10 tick marks, configured
+      via axStyle.
+    </figcaption>
+  </figure>
+
+  <!-- <figure class="cell">
       <div id="axis13"></div>
       <figcaption>
         Identical to previous but created via axcoStyle.
       </figcaption>
     </figure> -->
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <h2>Conditional Axis Properties</h2>
+  <h2>Conditional Axis Properties</h2>
 
-    <figure class="cell">
-      <div id="axis14"></div>
-      <figcaption>
-        The '0' in the catX 10 label should be aligned with tick (conditional
-        axis offset)
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis14"></div>
+    <figcaption>
+      The '0' in the catX 10 label should be aligned with tick (conditional
+      axis offset)
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <figure class="cell">
-      <div id="axis15"></div>
-      <figcaption>
-        Square caps for dashed domain and rounded caps for grid lines. Dash
-        styles conditional on data values.
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis15"></div>
+    <figcaption>
+      Square caps for dashed domain and rounded caps for grid lines. Dash
+      styles conditional on data values.
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <figure class="cell">
-      <div id="axis16"></div>
-      <figcaption>
-        Interactive parameterisation of axis properties.
-      </figcaption>
-    </figure>
+  <figure class="cell">
+    <div id="axis16"></div>
+    <figcaption>
+      Interactive parameterisation of axis properties.
+    </figcaption>
+  </figure>
 
-    <div style="clear: left;"></div>
+  <div style="clear: left;"></div>
 
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
 
-    <script>
-      Elm.AxisTests.init({
-        node: document.getElementById("elmContainer"),
-      }).ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
+  <script>
+    Elm.AxisTests.init({
+      node: document.getElementById("elmContainer"),
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
+      }
+    });
+  </script>
+</body>
+
 </html>

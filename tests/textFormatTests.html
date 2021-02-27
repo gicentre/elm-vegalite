@@ -1,124 +1,125 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Text Formatting Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Text Formatting Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/textFormatTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <!-- Page formatting -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+  <script src="js/textFormatTests.js"></script>
+
+  <!-- Page formatting -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Elm-Vega Text Formatting Tests</h1>
+
+  <h2>Channel, legend and axis formatting</h2>
+
+  <figure class="cell">
+    <div id="textFormat1"></div>
+    <figcaption>
+      Text channel formatted as date, x-axis as date, y-axis as 4dp number
+      truncated from left to right with [] replacing ellipsis, legend as date
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Facet header formatting</h2>
+
+  <figure class="cell">
+    <div id="textFormat2"></div>
+    <figcaption>
+      Formatting facet headers as dates.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Text alignment</h2>
+
+  <figure class="cell">
+    <div id="textAlign1"></div>
+    <figcaption>
+      6 vertical text alignments (should align to different parts of the font
+      glyphs); x-axis labels aligned to top of 40 pixel line height.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="textAlign2"></div>
+    <figcaption>
+      Interactive control of text alignment and positioning.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Multiline text</h2>
+
+  <figure class="cell">
+    <div id="multiline1"></div>
+    <figcaption>
+      Multi-line labels (currently data from fields cannot be multi-line)
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Custom formatter</h2>
+
+  <figure class="cell">
+    <div id="customFormatter1"></div>
+    <figcaption>
+      Custom formats with a registered formatter (will show no non-default
+      formatting if no formatter has been registered in this document).
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <figure class="cell">
+    <div id="title1"></div>
+    <figcaption>
+      Interactive title parameterisation.
+    </figcaption>
+  </figure>
+  <div style="clear: left;"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.TextFormatTests.init({
+      node: document.getElementById("elmContainer"),
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
       }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
+    });
+  </script>
+</body>
 
-  <body>
-    <h1>Elm-Vega Text Formatting Tests</h1>
-
-    <h2>Channel, legend and axis formatting</h2>
-
-    <figure class="cell">
-      <div id="textFormat1"></div>
-      <figcaption>
-        Text channel formatted as date, x-axis as date, y-axis as 4dp number
-        truncated from left to right with [] replacing ellipsis, legend as date
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Facet header formatting</h2>
-
-    <figure class="cell">
-      <div id="textFormat2"></div>
-      <figcaption>
-        Formatting facet headers as dates.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Text alignment</h2>
-
-    <figure class="cell">
-      <div id="textAlign1"></div>
-      <figcaption>
-        6 vertical text alignments (should align to different parts of the font
-        glyphs); x-axis labels aligned to top of 40 pixel line height.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="textAlign2"></div>
-      <figcaption>
-        Interactive control of text alignment and positioning.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Multiline text</h2>
-
-    <figure class="cell">
-      <div id="multiline1"></div>
-      <figcaption>
-        Multi-line labels (currently data from fields cannot be multi-line)
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Custom formatter</h2>
-
-    <figure class="cell">
-      <div id="customFormatter1"></div>
-      <figcaption>
-        Custom formats with a registered formatter (will show no non-default
-        formatting if no formatter has been registered in this document).
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <figure class="cell">
-      <div id="title1"></div>
-      <figcaption>
-        Interactive title parameterisation.
-      </figcaption>
-    </figure>
-    <div style="clear: left;"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.TextFormatTests.init({
-        node: document.getElementById("elmContainer"),
-      }).ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
 </html>

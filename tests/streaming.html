@@ -1,100 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Streaming Tests</title>
-    <meta charset="utf-8" />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+<head>
+  <title>Streaming Tests</title>
+  <meta charset="utf-8" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- This is the script generated from Elm -->
+  <script src="js/streamingTests.js"></script>
+</head>
+
+<body>
+  <h1>Streaming Tests</h1>
+
+  <p>
+    Animated visualization following this
+    <a href="https://vega.github.io/vega-lite/tutorials/streaming.html" target="_blank">Vega-lite streaming
+      tutorial</a>.
+  </p>
+
+  <div id="streaming1"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.StreamingTests.init({
+      node: document.getElementById("elmContainer")
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn
+        }).then(function (res) {
+          /**
+           * Generates a new tuple with random walk.
+           */
+          function newGenerator() {
+            var counter = -1;
+            var previousY = [5, 5, 5, 5];
+            return function () {
+              counter++;
+              var newVals = previousY.map(function (v, c) {
+                return {
+                  x: counter,
+                  y: v + Math.round(Math.random() * 10 - c * 3),
+                  category: c
+                };
+              });
+              previousY = newVals.map(function (v) {
+                return v.y;
+              });
+              return newVals;
+            };
+          }
+
+          var valueGenerator = newGenerator();
+          var minimumX = -100;
+          window.setInterval(function () {
+            minimumX++;
+            var changeSet = vega
+              .changeset()
+              .insert(valueGenerator())
+              .remove(function (t) {
+                return t.x < minimumX;
+              });
+            res.view.change("table", changeSet).run();
+          }, 1000);
+        });
       }
-      figcaption {
-        padding-top: 0.5em;
-      }
-      .cell {
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
+    });
+  </script>
+</body>
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
-    <!-- This is the script generated from Elm -->
-    <script src="js/streamingTests.js"></script>
-  </head>
-
-  <body>
-    <h1>Streaming Tests</h1>
-
-    <p>
-      Animated visualization following this
-      <a
-        href="https://vega.github.io/vega-lite/tutorials/streaming.html"
-        target="_blank"
-        >Vega-lite streaming tutorial</a
-      >.
-    </p>
-
-    <div id="streaming1"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.StreamingTests.init({
-        node: document.getElementById("elmContainer")
-      }).ports.elmToJS.subscribe(function(namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn
-          }).then(function(res) {
-            /**
-             * Generates a new tuple with random walk.
-             */
-            function newGenerator() {
-              var counter = -1;
-              var previousY = [5, 5, 5, 5];
-              return function() {
-                counter++;
-                var newVals = previousY.map(function(v, c) {
-                  return {
-                    x: counter,
-                    y: v + Math.round(Math.random() * 10 - c * 3),
-                    category: c
-                  };
-                });
-                previousY = newVals.map(function(v) {
-                  return v.y;
-                });
-                return newVals;
-              };
-            }
-
-            var valueGenerator = newGenerator();
-            var minimumX = -100;
-            window.setInterval(function() {
-              minimumX++;
-              var changeSet = vega
-                .changeset()
-                .insert(valueGenerator())
-                .remove(function(t) {
-                  return t.x < minimumX;
-                });
-              res.view.change("table", changeSet).run();
-            }, 1000);
-          });
-        }
-      });
-    </script>
-  </body>
 </html>
