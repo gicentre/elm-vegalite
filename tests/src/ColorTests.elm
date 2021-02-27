@@ -58,25 +58,25 @@ defNominal =
 
 namedContinuous1 : Spec
 namedContinuous1 =
-    chart "Continuous colour scale based on named vega schame. Should use the entire plasma colour scheme."
+    chart "Continuous colour scale based on named vega scheme. Should use the entire plasma colour scheme."
         (color [ mName "Acceleration", mQuant, mScale [ scScheme "plasma" [] ] ])
 
 
 namedContinuous2 : Spec
 namedContinuous2 =
-    chart "Continuous colour scale based on named vega schame. Should use the upper half of the plasma colour scheme."
+    chart "Continuous colour scale based on named vega scheme. Should use the upper half of the plasma colour scheme."
         (color [ mName "Acceleration", mQuant, mScale [ scScheme "plasma" [ 0.5, 1 ] ] ])
 
 
 namedContinuous3 : Spec
 namedContinuous3 =
-    chart "Continuous colour scale based on named vega schame. Should use the flipped plasma colour scheme (i.e. red to orange)."
+    chart "Continuous colour scale based on named vega scheme. Should use the flipped plasma colour scheme (i.e. red to orange)."
         (color [ mName "Acceleration", mQuant, mScale [ scScheme "plasma" [], scReverse True ] ])
 
 
 namedContinuous4 : Spec
 namedContinuous4 =
-    chart "Continuous colour scale based on named vega schame. Should use the first half of the flipped plasma colour scheme (i.e. red to orange)."
+    chart "Continuous colour scale based on named vega scheme. Should use the first half of the flipped plasma colour scheme (i.e. red to orange)."
         (color [ mName "Acceleration", mQuant, mScale [ scScheme "plasma" [ 0, 0.5 ], scReverse True ] ])
 
 
@@ -481,7 +481,7 @@ specs =
    The code below creates an Elm module that opens an outgoing port to Javascript
    and sends both the specs and DOM node to it.
    It allows the source code of any of the generated specs to be selected from
-   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
+   a drop-down list. Useful for viewing specs that might generate invalid Vega-Lite.
 -}
 
 
