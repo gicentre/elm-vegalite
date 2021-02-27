@@ -11,7 +11,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 singleVis : (List a -> ( VLProperty, Spec )) -> Spec
@@ -544,7 +544,7 @@ specs =
    The code below creates an Elm module that opens an outgoing port to Javascript
    and sends both the specs and DOM node to it.
    It allows the source code of any of the generated specs to be selected from
-   a drop-down list. Useful for viewin specs that might generate invalid Vega-Lite.
+   a drop-down list. Useful for viewing specs that might generate invalid Vega-Lite.
 -}
 
 
