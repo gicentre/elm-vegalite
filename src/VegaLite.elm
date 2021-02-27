@@ -18712,7 +18712,7 @@ this to be done compactly:
 -}
 toVegaLite : List ( VLProperty, Spec ) -> Spec
 toVegaLite spec =
-    ( "$schema", JE.string "https://vega.github.io/schema/vega-lite/v4.json" )
+    ( "$schema", JE.string "https://vega.github.io/schema/vega-lite/v5.json" )
         :: List.map (\( s, v ) -> ( vlPropertyLabel s, v )) spec
         |> JE.object
 
