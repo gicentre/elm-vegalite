@@ -4758,6 +4758,15 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 			var d = val.a;
 			return $elm$json$Json$Encode$object(
 				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+		case 4:
+			var s = val.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 		default:
 			return $elm$json$Json$Encode$null;
 	}
@@ -10223,7 +10232,7 @@ var $author$project$VegaLite$selectionLabel = function (seType) {
 			return 'interval';
 	}
 };
-var $author$project$VegaLite$NullValue = {$: 4};
+var $author$project$VegaLite$NullValue = {$: 5};
 var $author$project$VegaLite$bindLegendProperty = function (blProp) {
 	switch (blProp.$) {
 		case 1:
