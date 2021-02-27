@@ -1,127 +1,127 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Vega-Lite Test Gallery: Distribution charts</title>
-    <meta charset="utf-8" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto+Condensed:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <link href="css/gallery.css" type="text/css" rel="stylesheet" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Vega-Lite Test Gallery: Distribution charts</title>
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto+Condensed:wght@300&display=swap"
+    rel="stylesheet" />
+  <link href="css/gallery.css" type="text/css" rel="stylesheet" />
 
-    <!-- This is the script generated from Elm -->
-    <script src="js/galleryDist.js"></script>
-  </head>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <body>
-    <h1>Vega-LiteTest Gallery</h1>
+  <!-- This is the script generated from Elm -->
+  <script src="js/galleryDist.js"></script>
+</head>
 
-    <ul>
-      <li><a href="bar.html">bar charts</a></li>
-      <li><a href="scatter.html">scatter and strip plots</a></li>
-      <li><a href="line.html">line charts</a></li>
-      <li><a href="area.html">area charts and streamgraphs</a></li>
-      <li><a href="radial.html">radial charts</a></li>
-      <li><a href="table.html">table-based charts</a></li>
-      <li>distribution charts</li>
-      <li><a href="advanced.html">advanced calculations</a></li>
-      <li><a href="error.html">error bars and bands</a></li>
-      <li><a href="label.html">labelling and annotation</a></li>
-      <li><a href="layer.html">other layered charts</a></li>
-      <li><a href="facet.html">faceted plots</a></li>
-      <li><a href="repeat.html">repeats and concatenation</a></li>
-      <li><a href="geo.html">geographic maps</a></li>
-      <li><a href="interaction.html">interactive charts</a></li>
-      <li><a href="multi.html">interactive multi-view displays</a></li>
-    </ul>
+<body>
+  <h1>Vega-LiteTest Gallery</h1>
 
-    <h2>Distribution charts</h2>
-    <p>
-      Simple histogram of IMDB ratings. Histogram for visualizing discrete
-      freqency distributions.
-    </p>
-    <div id="dist1" class="view"></div>
+  <ul>
+    <li><a href="bar.html">bar charts</a></li>
+    <li><a href="scatter.html">scatter and strip plots</a></li>
+    <li><a href="line.html">line charts</a></li>
+    <li><a href="area.html">area charts and streamgraphs</a></li>
+    <li><a href="radial.html">radial charts</a></li>
+    <li><a href="table.html">table-based charts</a></li>
+    <li>distribution charts</li>
+    <li><a href="advanced.html">advanced calculations</a></li>
+    <li><a href="error.html">error bars and bands</a></li>
+    <li><a href="label.html">labelling and annotation</a></li>
+    <li><a href="layer.html">other layered charts</a></li>
+    <li><a href="facet.html">faceted plots</a></li>
+    <li><a href="repeat.html">repeats and concatenation</a></li>
+    <li><a href="geo.html">geographic maps</a></li>
+    <li><a href="interaction.html">interactive charts</a></li>
+    <li><a href="multi.html">interactive multi-view displays</a></li>
+  </ul>
 
-    <p>
-      Relative frequency histogram. The data is binned with first transform. The
-      number of values per bin and the total number are calculated in the second
-      and third transform to calculate the relative frequency in the last
-      transformation step.
-    </p>
-    <div id="dist2" class="view"></div>
+  <h2>Distribution charts</h2>
+  <p>
+    Simple histogram of IMDB ratings. Histogram for visualizing discrete
+    freqency distributions.
+  </p>
+  <div id="dist1" class="view"></div>
 
-    <p>
-      Cumulative frequency distribution. The cumulative distribution can be
-      calculated at runtime using the window transform.
-    </p>
-    <div id="dist3" class="view"></div>
+  <p>
+    Relative frequency histogram. The data is binned with first transform. The
+    number of values per bin and the total number are calculated in the second
+    and third transform to calculate the relative frequency in the last
+    transformation step.
+  </p>
+  <div id="dist2" class="view"></div>
 
-    <p>
-      Density plot from a univariate distribution:
-    </p>
-    <div id="dist4" class="view"></div>
+  <p>
+    Cumulative frequency distribution. The cumulative distribution can be
+    calculated at runtime using the window transform.
+  </p>
+  <div id="dist3" class="view"></div>
 
-    <p>
-      Stacked density estimates:
-    </p>
-    <div id="dist5" class="view"></div>
+  <p>
+    Density plot from a univariate distribution:
+  </p>
+  <div id="dist4" class="view"></div>
 
-    <p>
-      A layered histogram and cumulative histogram. As with the previous
-      example, the cumulative distribution is calculated using a window
-      transform.
-    </p>
-    <div id="dist6" class="view"></div>
+  <p>
+    Stacked density estimates:
+  </p>
+  <div id="dist5" class="view"></div>
 
-    <p>
-      A vertical 2D box plot showing median, min, and max in the US population
-      distribution of age groups in 2000.
-    </p>
-    <div id="dist7" class="view"></div>
+  <p>
+    A layered histogram and cumulative histogram. As with the previous
+    example, the cumulative distribution is calculated using a window
+    transform.
+  </p>
+  <div id="dist6" class="view"></div>
 
-    <p>
-      A Tukey box plot showing median and interquartile range in the US
-      population distribution of age groups in 2000. This isn't strictly a Tukey
-      box plot as the IQR extends beyond the min/max values for some age
-      cohorts.
-    </p>
-    <div id="dist8" class="view"></div>
+  <p>
+    A vertical 2D box plot showing median, min, and max in the US population
+    distribution of age groups in 2000.
+  </p>
+  <div id="dist7" class="view"></div>
 
-    <p>
-      Box plot showing median, minimum, and maximum body mass of penguins.
-    </p>
-    <div id="dist9" class="view"></div>
+  <p>
+    A Tukey box plot showing median and interquartile range in the US
+    population distribution of age groups in 2000. This isn't strictly a Tukey
+    box plot as the IQR extends beyond the min/max values for some age
+    cohorts.
+  </p>
+  <div id="dist8" class="view"></div>
 
-    <p>
-      Tukey box plot showing median and lower and upper quartiles of the
-      distribution of body mass of penguins.
-    </p>
-    <div id="dist10" class="view"></div>
+  <p>
+    Box plot showing median, minimum, and maximum body mass of penguins.
+  </p>
+  <div id="dist9" class="view"></div>
 
-    <p>
-      Box plot with pre-calculated values.
-    </p>
-    <div id="dist11" class="view"></div>
+  <p>
+    Tukey box plot showing median and lower and upper quartiles of the
+    distribution of body mass of penguins.
+  </p>
+  <div id="dist10" class="view"></div>
 
-    <p>
-      A QQ (quantile-quantile) plot summarising two distributions.
-    </p>
-    <div id="dist12" class="view"></div>
+  <p>
+    Box plot with pre-calculated values.
+  </p>
+  <div id="dist11" class="view"></div>
 
-    <script>
-      Elm.GalleryDist.init().ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
+  <p>
+    A QQ (quantile-quantile) plot summarising two distributions.
+  </p>
+  <div id="dist12" class="view"></div>
+
+  <script>
+    Elm.GalleryDist.init().ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
+      }
+    });
+  </script>
+</body>
+
 </html>

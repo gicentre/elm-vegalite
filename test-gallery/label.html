@@ -1,109 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Vega-Lite Test Gallery: Labelling and annotation</title>
-    <meta charset="utf-8" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto+Condensed:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <link href="css/gallery.css" type="text/css" rel="stylesheet" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Vega-Lite Test Gallery: Labelling and annotation</title>
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto+Condensed:wght@300&display=swap"
+    rel="stylesheet" />
+  <link href="css/gallery.css" type="text/css" rel="stylesheet" />
 
-    <!-- This is the script generated from Elm -->
-    <script src="js/galleryLabel.js"></script>
-  </head>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <body>
-    <h1>Vega-LiteTest Gallery</h1>
+  <!-- This is the script generated from Elm -->
+  <script src="js/galleryLabel.js"></script>
+</head>
 
-    <ul>
-      <li><a href="bar.html">bar charts</a></li>
-      <li><a href="scatter.html">scatter and strip plots</a></li>
-      <li><a href="line.html">line charts</a></li>
-      <li><a href="area.html">area charts and streamgraphs</a></li>
-      <li><a href="radial.html">radial charts</a></li>
-      <li><a href="table.html">table-based charts</a></li>
-      <li><a href="dist.html">distribution charts</a></li>
-      <li><a href="advanced.html">advanced calculations</a></li>
-      <li><a href="error.html">error bars and bands</a></li>
-      <li>labelling and annotation</li>
-      <li><a href="layer.html">other layered charts</a></li>
-      <li><a href="facet.html">faceted plots</a></li>
-      <li><a href="repeat.html">repeats and concatenation</a></li>
-      <li><a href="geo.html">geographic maps</a></li>
-      <li><a href="interaction.html">interactive charts</a></li>
-      <li><a href="multi.html">interactive multi-view displays</a></li>
-    </ul>
+<body>
+  <h1>Vega-LiteTest Gallery</h1>
 
-    <h2>Labelling and annotation</h2>
-    <p>A simple bar chart with embedded data labels.</p>
-    <div id="label1" class="view"></div>
+  <ul>
+    <li><a href="bar.html">bar charts</a></li>
+    <li><a href="scatter.html">scatter and strip plots</a></li>
+    <li><a href="line.html">line charts</a></li>
+    <li><a href="area.html">area charts and streamgraphs</a></li>
+    <li><a href="radial.html">radial charts</a></li>
+    <li><a href="table.html">table-based charts</a></li>
+    <li><a href="dist.html">distribution charts</a></li>
+    <li><a href="advanced.html">advanced calculations</a></li>
+    <li><a href="error.html">error bars and bands</a></li>
+    <li>labelling and annotation</li>
+    <li><a href="layer.html">other layered charts</a></li>
+    <li><a href="facet.html">faceted plots</a></li>
+    <li><a href="repeat.html">repeats and concatenation</a></li>
+    <li><a href="geo.html">geographic maps</a></li>
+    <li><a href="interaction.html">interactive charts</a></li>
+    <li><a href="multi.html">interactive multi-view displays</a></li>
+  </ul>
 
-    <p>A simple bar chart with conditionally coloured labels and emojis.</p>
-    <div id="label2" class="view"></div>
+  <h2>Labelling and annotation</h2>
+  <p>A simple bar chart with embedded data labels.</p>
+  <div id="label1" class="view"></div>
 
-    <p>Layering text over 'heatmap'.</p>
-    <div id="label3" class="view"></div>
+  <p>A simple bar chart with conditionally coloured labels and emojis.</p>
+  <div id="label2" class="view"></div>
 
-    <p>Carbon dioxide in the atmosphere.</p>
-    <div id="label4" class="view"></div>
+  <p>Layering text over 'heatmap'.</p>
+  <div id="label3" class="view"></div>
 
-    <p>
-      Bar chart that highlights values beyond a threshold using the window
-      transform to perform the threshold counting. The PM2.5 value of Beijing
-      observed 15 days, highlighting the days when PM2.5 level is hazardous to
-      human health. (<a
-        href="https://chartaccent.github.io/chartaccent.html"
-        target="_blank"
-        >data source</a
-      >).
-    </p>
-    <div id="label5" class="view"></div>
+  <p>Carbon dioxide in the atmosphere.</p>
+  <div id="label4" class="view"></div>
 
-    <p>Monthly precipitation with mean value overlay.</p>
-    <div id="label6" class="view"></div>
+  <p>
+    Bar chart that highlights values beyond a threshold using the window
+    transform to perform the threshold counting. The PM2.5 value of Beijing
+    observed 15 days, highlighting the days when PM2.5 level is hazardous to
+    human health. (<a href="https://chartaccent.github.io/chartaccent.html" target="_blank">data source</a>).
+  </p>
+  <div id="label5" class="view"></div>
 
-    <p>Histogram with global mean overlay.</p>
-    <div id="label7" class="view"></div>
+  <p>Monthly precipitation with mean value overlay.</p>
+  <div id="label6" class="view"></div>
 
-    <p>
-      The population of the German city of Falkensee over time with annotated
-      time periods highlighted.
-    </p>
-    <div id="label8" class="view"></div>
+  <p>Histogram with global mean overlay.</p>
+  <div id="label7" class="view"></div>
 
-    <p>
-      Distributions and medians of Likert Scale Ratings. Copy of Figure 9 from
-      [Interactive Repair of Tables Extracted from PDF Documents on Mobile
-      Devices](http://idl.cs.washington.edu/files/2019-InteractiveTableRepair-CHI.pdf)
-    </p>
-    <div id="label9" class="view"></div>
+  <p>
+    The population of the German city of Falkensee over time with annotated
+    time periods highlighted.
+  </p>
+  <div id="label8" class="view"></div>
 
-    <p>
-      Comparing Likert scale ratings between two conditions (Figure 10. from
-      <a
-        href="http://idl.cs.washington.edu/files/2017-Voyager2-CHI.pdf"
-        target="_blank"
-        >Voyager 2: Augmenting Visual Analysis with Partial View
-        Specifications</a
-      >).
-    </p>
-    <div id="label10" class="view"></div>
+  <p>
+    Distributions and medians of Likert Scale Ratings. Copy of Figure 9 from
+    [Interactive Repair of Tables Extracted from PDF Documents on Mobile
+    Devices](http://idl.cs.washington.edu/files/2019-InteractiveTableRepair-CHI.pdf)
+  </p>
+  <div id="label9" class="view"></div>
 
-    <script>
-      Elm.GalleryLabel.init().ports.elmToJS.subscribe(function(namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
+  <p>
+    Comparing Likert scale ratings between two conditions (Figure 10. from
+    <a href="http://idl.cs.washington.edu/files/2017-Voyager2-CHI.pdf" target="_blank">Voyager 2: Augmenting Visual
+      Analysis with Partial View
+      Specifications</a>).
+  </p>
+  <div id="label10" class="view"></div>
+
+  <script>
+    Elm.GalleryLabel.init().ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn
+        }).catch(console.warn);
+      }
+    });
+  </script>
+</body>
+
 </html>
