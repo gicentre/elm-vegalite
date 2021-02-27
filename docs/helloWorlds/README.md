@@ -67,7 +67,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 myFirstVis : Spec
@@ -162,7 +162,7 @@ elm make helloWorlds.elm --output=js/helloWorlds.js --optimize
 
 This should create the `helloWorlds.js` file required by the HTML.
 
-Because some of the visualizations in this example load an external file containing the data ([cars.json](https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/cars.json)), the file `helloWorlds.html` can only be viewed when served from a web server. Running a local web server such as `elm-reactor` provides a convenient way to test the code. The result should look similar to this:
+Because some of the visualizations in this example load an external file containing the data ([cars.json](https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/cars.json)), the file `helloWorlds.html` can only be viewed when served from a web server. Running a local web server such as `elm-reactor` provides a convenient way to test the code. The result should look similar to this:
 
 ![Hello, Worlds! output](images/helloWorlds.png)
 

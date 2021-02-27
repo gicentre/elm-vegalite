@@ -40,7 +40,7 @@ With elm-vegaLite, we do the following to create this visualization expression:
 
 ```elm
 toVegaLite
-    [ dataFromUrl "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/seattle-weather.csv" []
+    [ dataFromUrl "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/seattle-weather.csv" []
     , tick []
     , encoding (position X [ pName "temp_max", pQuant ] [])
     ]
@@ -59,7 +59,7 @@ As we build up more complex visualizations we will use many more encodings. To k
 ```elm
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 ```
 
 ```elm
