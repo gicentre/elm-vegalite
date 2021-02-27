@@ -9924,7 +9924,7 @@ var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
-var $author$project$WindowTransformTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$WindowTransformTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$ByChannel = function (a) {
 	return {$: 5, a: a};
 };

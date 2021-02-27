@@ -13753,7 +13753,7 @@ var $author$project$VegaLite$params = function (namedParams) {
 		1,
 		A2($elm$json$Json$Encode$list, paramObj, namedParams));
 };
-var $author$project$AxisTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$AxisTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$DStr = function (a) {
 	return {$: 3, a: a};
 };

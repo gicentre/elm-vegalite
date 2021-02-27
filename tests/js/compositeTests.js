@@ -6476,7 +6476,7 @@ var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$CompositeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$CompositeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
 		case 1:
@@ -10258,7 +10258,7 @@ var $author$project$CompositeTests$errorbar4 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var desc = $author$project$VegaLite$description('Symetric error bars encoded with xError channel');
+	var desc = $author$project$VegaLite$description('Symmetric error bars encoded with xError channel');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10385,7 +10385,7 @@ var $author$project$CompositeTests$errorbar5 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var desc = $author$project$VegaLite$description('Asymetric error bars encoded with xError and xError2 channels');
+	var desc = $author$project$VegaLite$description('Asymmetric error bars encoded with xError and xError2 channels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10508,7 +10508,7 @@ var $author$project$CompositeTests$errorbar6 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var desc = $author$project$VegaLite$description('Symetric error bars encoded with yError channel');
+	var desc = $author$project$VegaLite$description('Symmetric error bars encoded with yError channel');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10632,7 +10632,7 @@ var $author$project$CompositeTests$errorbar7 = function () {
 					])),
 				encErrorBars(_List_Nil)
 			]));
-	var desc = $author$project$VegaLite$description('Asymetric error bars encoded with yError and yError2 channels');
+	var desc = $author$project$VegaLite$description('Asymmetric error bars encoded with yError and yError2 channels');
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(

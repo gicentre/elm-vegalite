@@ -9711,7 +9711,7 @@ var $author$project$ImageTests$imageEnc = F2(
 						]))
 				]));
 	});
-var $author$project$ImageTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$ImageTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:

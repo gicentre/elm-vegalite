@@ -12908,7 +12908,7 @@ var $author$project$VegaLite$maRemoveInvalid = function (b) {
 	return $author$project$VegaLite$MRemoveInvalid(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$NullTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$NullTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$NullTests$filter1 = function () {

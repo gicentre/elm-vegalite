@@ -12146,7 +12146,7 @@ var $author$project$VegaLite$PmType = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
-var $author$project$LegendTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$LegendTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:

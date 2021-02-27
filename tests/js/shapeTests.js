@@ -13086,7 +13086,7 @@ var $author$project$VegaLite$maSize = function (n) {
 	return $author$project$VegaLite$MSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$ShapeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$ShapeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$ShapeTests$rectTest = function (mps) {
