@@ -9561,7 +9561,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 		case 15:
 			var x = pDef.a;
 			return _Utils_Tuple2(
-				'band',
+				'bandPosition',
 				$elm$json$Json$Encode$float(x));
 		case 12:
 			var sps = pDef.a;
@@ -13946,7 +13946,7 @@ var $author$project$VegaLite$SScheme = F2(
 var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
 var $author$project$ColorTests$namedContinuous1 = A2(
 	$author$project$ColorTests$chart,
-	'Continuous colour scale based on named vega schame. Should use the entire plasma colour scheme.',
+	'Continuous colour scale based on named vega scheme. Should use the entire plasma colour scheme.',
 	$author$project$VegaLite$color(
 		_List_fromArray(
 			[
@@ -13960,7 +13960,7 @@ var $author$project$ColorTests$namedContinuous1 = A2(
 			])));
 var $author$project$ColorTests$namedContinuous2 = A2(
 	$author$project$ColorTests$chart,
-	'Continuous colour scale based on named vega schame. Should use the upper half of the plasma colour scheme.',
+	'Continuous colour scale based on named vega scheme. Should use the upper half of the plasma colour scheme.',
 	$author$project$VegaLite$color(
 		_List_fromArray(
 			[
@@ -13982,7 +13982,7 @@ var $author$project$VegaLite$SReverse = function (a) {
 var $author$project$VegaLite$scReverse = $author$project$VegaLite$SReverse;
 var $author$project$ColorTests$namedContinuous3 = A2(
 	$author$project$ColorTests$chart,
-	'Continuous colour scale based on named vega schame. Should use the flipped plasma colour scheme (i.e. red to orange).',
+	'Continuous colour scale based on named vega scheme. Should use the flipped plasma colour scheme (i.e. red to orange).',
 	$author$project$VegaLite$color(
 		_List_fromArray(
 			[
@@ -13997,7 +13997,7 @@ var $author$project$ColorTests$namedContinuous3 = A2(
 			])));
 var $author$project$ColorTests$namedContinuous4 = A2(
 	$author$project$ColorTests$chart,
-	'Continuous colour scale based on named vega schame. Should use the first half of the flipped plasma colour scheme (i.e. red to orange).',
+	'Continuous colour scale based on named vega scheme. Should use the first half of the flipped plasma colour scheme (i.e. red to orange).',
 	$author$project$VegaLite$color(
 		_List_fromArray(
 			[

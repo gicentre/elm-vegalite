@@ -9678,7 +9678,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 		case 15:
 			var x = pDef.a;
 			return _Utils_Tuple2(
-				'band',
+				'bandPosition',
 				$elm$json$Json$Encode$float(x));
 		case 12:
 			var sps = pDef.a;
@@ -14818,7 +14818,7 @@ var $author$project$VegaLite$padding = function (pad) {
 		9,
 		$author$project$VegaLite$paddingSpec(pad));
 };
-var $author$project$TextFormatTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$TextFormatTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$TAngle = function (a) {
 	return {$: 1, a: a};
 };

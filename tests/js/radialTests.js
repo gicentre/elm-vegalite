@@ -9482,7 +9482,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 		case 15:
 			var x = pDef.a;
 			return _Utils_Tuple2(
-				'band',
+				'bandPosition',
 				$elm$json$Json$Encode$float(x));
 		case 12:
 			var sps = pDef.a;

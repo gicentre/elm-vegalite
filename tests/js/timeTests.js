@@ -9504,7 +9504,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 		case 15:
 			var x = pDef.a;
 			return _Utils_Tuple2(
-				'band',
+				'bandPosition',
 				$elm$json$Json$Encode$float(x));
 		case 12:
 			var sps = pDef.a;
@@ -9889,11 +9889,11 @@ var $author$project$VegaLite$PAggregate = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
-var $author$project$VegaLite$PBand = function (a) {
+var $author$project$VegaLite$PBandPosition = function (a) {
 	return {$: 15, a: a};
 };
-var $author$project$VegaLite$pBand = $author$project$VegaLite$PBand;
-var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/';
+var $author$project$VegaLite$pBandPosition = $author$project$VegaLite$PBandPosition;
+var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
@@ -9911,17 +9911,17 @@ var $author$project$TimeTests$timeBand = function () {
 					[
 						$author$project$VegaLite$pName('date'),
 						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
-						$author$project$VegaLite$pBand(0.5)
+						$author$project$VegaLite$pBandPosition(0.5)
 					]))),
 		A2(
 			$author$project$VegaLite$position,
 			1,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('temp'),
+					$author$project$VegaLite$pName('temp_max'),
 					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
 				])));
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TimeTests$path + 'seattle-temps.csv', _List_Nil);
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TimeTests$path + 'seattle-weather.csv', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
