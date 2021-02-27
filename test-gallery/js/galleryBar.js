@@ -7404,7 +7404,7 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 			$elm$core$List$cons,
 			_Utils_Tuple2(
 				'$schema',
-				$elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v4.json')),
+				$elm$json$Json$Encode$string('https://vega.github.io/schema/vega-lite/v5.json')),
 			A2(
 				$elm$core$List$map,
 				function (_v0) {
