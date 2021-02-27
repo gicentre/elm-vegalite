@@ -1,6 +1,5 @@
 port module GalleryRadial exposing (elmToJS)
 
-import Dict exposing (Dict)
 import Platform
 import VegaLite exposing (..)
 
@@ -9,11 +8,6 @@ import VegaLite exposing (..)
 -- NOTE: All data sources in these examples originally provided at
 -- https://github.com/vega/vega-datasets
 -- The examples themselves reproduce those at https://vega.github.io/vega-lite/examples/
-
-
-path : String
-path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
 
 
 radial : String -> Float -> Spec

@@ -12,7 +12,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 facet1 : Spec
@@ -84,7 +84,7 @@ facet4 : Spec
 facet4 =
     let
         desc =
-            description "Disitributions of car engine power for different countries of origin"
+            description "Distributions of car engine power for different countries of origin"
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -156,7 +156,8 @@ facet6 =
                 << color [ mName "year" ]
     in
     toVegaLite
-        [ data
+        [ desc
+        , data
         , columns 2
         , facetFlow
             [ fName "site"
@@ -232,10 +233,6 @@ facet8 =
                     ]
                 << row [ fName "a", fHeader [ hdTitle "Factor A", hdLabelAngle 0 ] ]
                 << column [ fName "b", fHeader [ hdTitle "Factor B" ] ]
-
-        res =
-            resolve
-                << resolution (reScale [ ( chY, reIndependent ) ])
     in
     toVegaLite [ desc, width 60, heightStep 8, spacing 5, data [], enc [], bar [] ]
 

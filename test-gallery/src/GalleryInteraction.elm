@@ -12,7 +12,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 interaction1 : Spec
@@ -683,7 +683,8 @@ interaction14 =
                 << configuration (coView [ vicoStroke Nothing ])
     in
     toVegaLite
-        [ cfg []
+        [ desc
+        , cfg []
         , data
         , trans []
         , res []

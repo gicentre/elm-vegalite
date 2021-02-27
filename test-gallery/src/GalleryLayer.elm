@@ -13,7 +13,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 layer1 : Spec
@@ -231,7 +231,7 @@ layer4 =
                     [ pName "temp_max"
                     , pAggregate opMean
                     , pScale [ scDomain (doNums [ 0, 30 ]) ]
-                    , pAxis [ axTitle "Avgerage Temperature (°C)", axTitleColor "#85C5A6" ]
+                    , pAxis [ axTitle "Average Temperature (°C)", axTitleColor "#85C5A6" ]
                     ]
                 << position Y2 [ pName "temp_min", pAggregate opMean ]
 

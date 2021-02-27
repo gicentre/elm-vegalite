@@ -12,14 +12,14 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 repeat1 : Spec
 repeat1 =
     let
         desc =
-            description "Monthly weather information for individual years and overall average for Seatle and New York"
+            description "Monthly weather information for individual years and overall average for Seattle and New York"
 
         data =
             dataFromUrl (path ++ "weather.csv") []
@@ -164,11 +164,6 @@ repeat5 =
 
         data =
             dataFromUrl (path ++ "movies.json") []
-
-        encPosition =
-            encoding
-                << position X [ pName "IMDB Rating", pBin [ biMaxBins 10 ] ]
-                << position Y [ pName "Rotten Tomatoes Rating", pBin [ biMaxBins 10 ] ]
 
         cfg =
             configure

@@ -12,7 +12,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 multi1 : Spec
@@ -413,7 +413,7 @@ multi7 : Spec
 multi7 =
     let
         desc =
-            description "One dot per airport in the US overlayed on geoshape"
+            description "One dot per airport in the US overlaid on geoshape"
 
         dataBoundaries =
             dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]

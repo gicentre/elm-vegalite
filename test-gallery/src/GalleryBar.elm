@@ -1,6 +1,6 @@
 port module GalleryBar exposing (elmToJS)
 
-import Dict exposing (Dict)
+import Dict
 import Platform
 import VegaLite exposing (..)
 
@@ -13,7 +13,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 bar1 : Spec

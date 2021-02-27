@@ -12,7 +12,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 label1 : Spec
@@ -595,10 +595,6 @@ label10 =
                     , maStyle [ "arrow-label" ]
                     ]
                 ]
-
-        transLabel6 =
-            transform
-                << filter (fiExpr "datum.label !== 'PoleStar'")
 
         specLabels =
             asSpec [ labelData [], layer [ specLabel1, specLabel2, specLabel3, specLabel4 ] ]

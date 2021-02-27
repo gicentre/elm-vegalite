@@ -13,7 +13,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.1/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
 dist1 : Spec
@@ -37,7 +37,7 @@ dist2 : Spec
 dist2 =
     let
         desc =
-            description "Histogram with relative requency calculcated for the y scale and axis."
+            description "Histogram with relative frequency calculated for the y scale and axis."
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -305,10 +305,6 @@ dist11 =
 
         specBar =
             asSpec [ encBar [], bar [ maSize 14 ] ]
-
-        encTick =
-            encoding
-                << position X [ pName "median", pQuant ]
 
         specTick =
             asSpec [ tick [ maColor "white", maSize 14 ] ]
