@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hello World from Elm-Vegalite</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Hello World from Elm-Vegalite</title>
+  <meta charset="utf-8" />
 
-    <!-- This is the script generated from Elm -->
-    <script src="js/helloWorld.js"></script>
-  </head>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <body>
-    <!-- The id indicates the container in which to embed the Vega-Lite output. -->
-    <div id="vis"></div>
+  <!-- This is the script generated from Elm -->
+  <script src="js/helloWorld.js"></script>
+</head>
 
-    <script>
-      // This function grabs the specification from Elm (here called specs).
-      // Replace 'HelloWorld' in line below with name of your Elm module when you write your own.
-      Elm.HelloWorld.init().ports.elmToJS.subscribe(function(specs) {
-        // Change actions to true to display links to source, editor and image.
-        vegaEmbed("#vis", specs, { actions: false }).catch(console.warn);
-      });
-    </script>
-  </body>
+<body>
+  <!-- The id indicates the container in which to embed the Vega-Lite output. -->
+  <div id="vis"></div>
+
+  <script>
+    // This function grabs the specification from Elm (here called specs).
+    // Replace 'HelloWorld' in line below with name of your Elm module when you write your own.
+    Elm.HelloWorld.init().ports.elmToJS.subscribe(function (specs) {
+      // Change actions to true to display links to source, editor and image.
+      vegaEmbed("#vis", specs, { actions: false }).catch(console.warn);
+    });
+  </script>
+</body>
+
 </html>

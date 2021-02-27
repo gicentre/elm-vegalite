@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Scatterplot Generated with elm-vega</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Simple Scatterplot Generated with elm-vega</title>
+  <meta charset="utf-8" />
 
-    <!-- This is the script generated from Elm -->
-    <script src="js/simpleScatterplot.js"></script>
-  </head>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <body>
-    <h1>Simple Scatterplot Generated with elm-vega</h1>
+  <!-- This is the script generated from Elm -->
+  <script src="js/simpleScatterplot.js"></script>
+</head>
 
-    <!-- The id indicates the container in which to embed the Vega-Lite output. -->
-    <div id="scatter"></div>
+<body>
+  <h1>Simple Scatterplot Generated with elm-vega</h1>
 
-    <script>
-      Elm.SimpleScatterplot.init().ports.elmToJS.subscribe(function(
-        namedSpecs
-      ) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: false,
-            logLevel: vega.Warn
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
+  <!-- The id indicates the container in which to embed the Vega-Lite output. -->
+  <div id="scatter"></div>
+
+  <script>
+    Elm.SimpleScatterplot.init().ports.elmToJS.subscribe(function (
+      namedSpecs
+    ) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: false,
+          logLevel: vega.Warn
+        }).catch(console.warn);
+      }
+    });
+  </script>
+</body>
+
 </html>
