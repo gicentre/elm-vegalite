@@ -395,12 +395,12 @@ background1 =
         , width 300
         , height 300
         , viewBackground
-            [ viewFill |> viewBackgroundStrExpr "fc"
-            , viewStroke |> viewBackgroundStrExpr "sc"
-            , viewCornerRadius |> viewBackgroundNumExpr "cr"
-            , viewFillOpacity |> viewBackgroundNumExpr "fo"
-            , viewStrokeOpacity |> viewBackgroundNumExpr "so"
-            , viewStrokeWidth |> viewBackgroundNumExpr "sw"
+            [ viewFill |> viStrExpr "fc"
+            , viewStroke |> viStrExpr "sc"
+            , viewCornerRadius |> viNumExpr "cr"
+            , viewFillOpacity |> viNumExpr "fo"
+            , viewStrokeOpacity |> viNumExpr "so"
+            , viewStrokeWidth |> viNumExpr "sw"
             ]
         , carData
         , enc []

@@ -1104,8 +1104,8 @@ module VegaLite exposing
     , tiStyle
     , tiZIndex
     , viewBackground
-    , viewBackgroundNumExpr
-    , viewBackgroundStrExpr
+    , viNumExpr
+    , viStrExpr
     , viewStyle
     , viewCornerRadius
     , viewFill
@@ -3285,8 +3285,8 @@ of other views. For more details see the
 [Vega-Lite view background documentation](https://vega.github.io/vega-lite/docs/spec.html#view-background)
 
 @docs viewBackground
-@docs viewBackgroundNumExpr
-@docs viewBackgroundStrExpr
+@docs viNumExpr
+@docs viStrExpr
 
 @docs viewStyle
 @docs viewCornerRadius
@@ -19126,11 +19126,11 @@ input element. For example,
     :
     :
     bg =
-        viewBackground [ viewCornerRadius |> viewBackgroundNumExpr "r"]
+        viewBackground [ viewCornerRadius |> viNumExpr "r"]
 
 -}
-viewBackgroundNumExpr : String -> (number -> ViewBackground) -> ViewBackground
-viewBackgroundNumExpr ex fn =
+viNumExpr : String -> (number -> ViewBackground) -> ViewBackground
+viNumExpr ex fn =
     case fn 0 of
         VBCornerRadius _ ->
             VBCornerRadius (NumExpr ex)
@@ -19168,11 +19168,11 @@ is bound to an input element. For example,
     :
     :
     bg =
-        viewBackground [ viewFill |> viewBackgroundStrExpr "clr"]
+        viewBackground [ viewFill |> viStrExpr "clr"]
 
 -}
-viewBackgroundStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
-viewBackgroundStrExpr ex fn =
+viStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
+viStrExpr ex fn =
     case fn Nothing of
         VBFill _ ->
             VBFill (StrExpr ex)

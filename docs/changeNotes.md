@@ -56,9 +56,9 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
 
-- `viewBackgroundNumExpr` for providing expressions that evaluate to numeric view background properties (VL4.16).
+- `viNumExpr` for providing expressions that evaluate to numeric view background properties (VL5.0).
 
-- `viewBackgroundStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL4.16).
+- `viStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
 
 - Mark expression functions to allow mark properties to be determined interactively: `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `tdExpr` (text direction) (VL4.16).
 
