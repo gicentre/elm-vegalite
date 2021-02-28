@@ -12836,13 +12836,6 @@ var $author$project$VegaLite$IPRange = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
-var $author$project$VegaLite$LTitleColor = function (a) {
-	return {$: 41, a: a};
-};
-var $author$project$VegaLite$leTitleColor = function (s) {
-	return $author$project$VegaLite$LTitleColor(
-		$author$project$VegaLite$Str(s));
-};
 var $author$project$VegaLite$LClipHeight = function (a) {
 	return {$: 1, a: a};
 };
@@ -12909,7 +12902,7 @@ var $author$project$VegaLite$LZIndex = function (a) {
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$legendPropertyNumExpr = F2(
+var $author$project$VegaLite$leNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -13019,13 +13012,16 @@ var $author$project$VegaLite$LSymbolStrokeColor = function (a) {
 var $author$project$VegaLite$LTitle = function (a) {
 	return {$: 38, a: a};
 };
+var $author$project$VegaLite$LTitleColor = function (a) {
+	return {$: 41, a: a};
+};
 var $author$project$VegaLite$LTitleFont = function (a) {
 	return {$: 42, a: a};
 };
 var $author$project$VegaLite$StrExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$legendPropertyStrExpr = F2(
+var $author$project$VegaLite$leStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
 		switch (_v0.$) {
@@ -13069,6 +13065,10 @@ var $author$project$VegaLite$legendPropertyStrExpr = F2(
 				return fn('');
 		}
 	});
+var $author$project$VegaLite$leTitleColor = function (s) {
+	return $author$project$VegaLite$LTitleColor(
+		$author$project$VegaLite$Str(s));
+};
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -13308,9 +13308,9 @@ var $author$project$LegendTests$legend15 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$leOrient($author$project$VegaLite$loNone),
-							A2($author$project$VegaLite$legendPropertyNumExpr, 'xPos', $author$project$VegaLite$leX),
-							A2($author$project$VegaLite$legendPropertyNumExpr, 'yPos', $author$project$VegaLite$leY),
-							A2($author$project$VegaLite$legendPropertyStrExpr, 'titleColor', $author$project$VegaLite$leTitleColor)
+							A2($author$project$VegaLite$leNumExpr, 'xPos', $author$project$VegaLite$leX),
+							A2($author$project$VegaLite$leNumExpr, 'yPos', $author$project$VegaLite$leY),
+							A2($author$project$VegaLite$leStrExpr, 'titleColor', $author$project$VegaLite$leTitleColor)
 						]))
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$LegendTests$path + 'cars.json', _List_Nil);

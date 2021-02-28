@@ -13198,59 +13198,25 @@ var $author$project$AxisTests$axis15 = function () {
 var $author$project$VegaLite$AxDomain = function (a) {
 	return {$: 8, a: a};
 };
-var $author$project$VegaLite$Boo = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$axDomain = function (b) {
-	return $author$project$VegaLite$AxDomain(
-		$author$project$VegaLite$Boo(b));
-};
 var $author$project$VegaLite$AxGrid = function (a) {
 	return {$: 67, a: a};
-};
-var $author$project$VegaLite$axGrid = function (b) {
-	return $author$project$VegaLite$AxGrid(
-		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$AxLabels = function (a) {
 	return {$: 19, a: a};
 };
-var $author$project$VegaLite$axLabels = function (b) {
-	return $author$project$VegaLite$AxLabels(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$AxOffset = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$axOffset = function (n) {
-	return $author$project$VegaLite$AxOffset(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$AxTickExtra = function (a) {
 	return {$: 44, a: a};
-};
-var $author$project$VegaLite$axTickExtra = function (b) {
-	return $author$project$VegaLite$AxTickExtra(
-		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$AxTickRound = function (a) {
 	return {$: 47, a: a};
 };
-var $author$project$VegaLite$axTickRound = function (b) {
-	return $author$project$VegaLite$AxTickRound(
-		$author$project$VegaLite$Boo(b));
-};
 var $author$project$VegaLite$AxTicks = function (a) {
 	return {$: 48, a: a};
-};
-var $author$project$VegaLite$axTicks = function (b) {
-	return $author$project$VegaLite$AxTicks(
-		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$BooExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$axisPropertyBooExpr = F2(
+var $author$project$VegaLite$axBooExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(false);
 		switch (_v0.$) {
@@ -13276,6 +13242,21 @@ var $author$project$VegaLite$axisPropertyBooExpr = F2(
 				return fn(false);
 		}
 	});
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$axDomain = function (b) {
+	return $author$project$VegaLite$AxDomain(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axGrid = function (b) {
+	return $author$project$VegaLite$AxGrid(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axLabels = function (b) {
+	return $author$project$VegaLite$AxLabels(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$AxBandPosition = function (a) {
 	return {$: 1, a: a};
 };
@@ -13302,6 +13283,9 @@ var $author$project$VegaLite$AxMaxExtent = function (a) {
 };
 var $author$project$VegaLite$AxMinExtent = function (a) {
 	return {$: 3, a: a};
+};
+var $author$project$VegaLite$AxOffset = function (a) {
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$AxPosition = function (a) {
 	return {$: 6, a: a};
@@ -13339,7 +13323,7 @@ var $author$project$VegaLite$AxZIndex = function (a) {
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$axisPropertyNumExpr = F2(
+var $author$project$VegaLite$axNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -13449,6 +13433,10 @@ var $author$project$VegaLite$axisPropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$axOffset = function (n) {
+	return $author$project$VegaLite$AxOffset(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$AxFormat = function (a) {
 	return {$: 15, a: a};
 };
@@ -13470,7 +13458,7 @@ var $author$project$VegaLite$AxTitleFontStyle = function (a) {
 var $author$project$VegaLite$StrExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$axisPropertyStrExpr = F2(
+var $author$project$VegaLite$axStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
 		switch (_v0.$) {
@@ -13517,6 +13505,18 @@ var $author$project$VegaLite$axisPropertyStrExpr = F2(
 				return fn('');
 		}
 	});
+var $author$project$VegaLite$axTickExtra = function (b) {
+	return $author$project$VegaLite$AxTickExtra(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axTickRound = function (b) {
+	return $author$project$VegaLite$AxTickRound(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axTicks = function (b) {
+	return $author$project$VegaLite$AxTicks(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$Bar = 2;
 var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
 var $author$project$VegaLite$Boolean = function (a) {
@@ -13895,16 +13895,16 @@ var $author$project$AxisTests$axis16 = function () {
 						$author$project$VegaLite$pAxis(
 						_List_fromArray(
 							[
-								A2($author$project$VegaLite$axisPropertyNumExpr, 'offset', $author$project$VegaLite$axOffset),
-								A2($author$project$VegaLite$axisPropertyNumExpr, 'labelFontSize', $author$project$VegaLite$axLabelFontSize),
-								A2($author$project$VegaLite$axisPropertyNumExpr, 'labelAngle', $author$project$VegaLite$axLabelAngle),
-								A2($author$project$VegaLite$axisPropertyStrExpr, 'titleColor', $author$project$VegaLite$axTitleColor),
-								A2($author$project$VegaLite$axisPropertyBooExpr, 'domain', $author$project$VegaLite$axDomain),
-								A2($author$project$VegaLite$axisPropertyBooExpr, 'labels', $author$project$VegaLite$axLabels),
-								A2($author$project$VegaLite$axisPropertyBooExpr, 'tickExtra', $author$project$VegaLite$axTickExtra),
-								A2($author$project$VegaLite$axisPropertyBooExpr, 'tickRound', $author$project$VegaLite$axTickRound),
-								A2($author$project$VegaLite$axisPropertyBooExpr, 'ticks', $author$project$VegaLite$axTicks),
-								A2($author$project$VegaLite$axisPropertyBooExpr, 'grid', $author$project$VegaLite$axGrid)
+								A2($author$project$VegaLite$axNumExpr, 'offset', $author$project$VegaLite$axOffset),
+								A2($author$project$VegaLite$axNumExpr, 'labelFontSize', $author$project$VegaLite$axLabelFontSize),
+								A2($author$project$VegaLite$axNumExpr, 'labelAngle', $author$project$VegaLite$axLabelAngle),
+								A2($author$project$VegaLite$axStrExpr, 'titleColor', $author$project$VegaLite$axTitleColor),
+								A2($author$project$VegaLite$axBooExpr, 'domain', $author$project$VegaLite$axDomain),
+								A2($author$project$VegaLite$axBooExpr, 'labels', $author$project$VegaLite$axLabels),
+								A2($author$project$VegaLite$axBooExpr, 'tickExtra', $author$project$VegaLite$axTickExtra),
+								A2($author$project$VegaLite$axBooExpr, 'tickRound', $author$project$VegaLite$axTickRound),
+								A2($author$project$VegaLite$axBooExpr, 'ticks', $author$project$VegaLite$axTicks),
+								A2($author$project$VegaLite$axBooExpr, 'grid', $author$project$VegaLite$axGrid)
 							]))
 					]))),
 		A2(

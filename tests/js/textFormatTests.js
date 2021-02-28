@@ -14846,39 +14846,16 @@ var $author$project$VegaLite$tiLimit = function (n) {
 var $author$project$VegaLite$TOffset = function (a) {
 	return {$: 11, a: a};
 };
-var $author$project$VegaLite$tiOffset = function (n) {
-	return $author$project$VegaLite$TOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$TSubtitleColor = function (a) {
-	return {$: 15, a: a};
-};
-var $author$project$VegaLite$tiSubtitleColor = function (s) {
-	return $author$project$VegaLite$TSubtitleColor(
-		$author$project$VegaLite$Str(s));
-};
 var $author$project$VegaLite$TSubtitleFontSize = function (a) {
 	return {$: 17, a: a};
-};
-var $author$project$VegaLite$tiSubtitleFontSize = function (n) {
-	return $author$project$VegaLite$TSubtitleFontSize(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$tiSubtitleLineHeight = function (n) {
-	return $author$project$VegaLite$TSubtitleLineHeight(
-		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$TSubtitlePadding = function (a) {
 	return {$: 21, a: a};
 };
-var $author$project$VegaLite$tiSubtitlePadding = function (n) {
-	return $author$project$VegaLite$TSubtitlePadding(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$TZIndex = function (a) {
 	return {$: 22, a: a};
 };
-var $author$project$VegaLite$titlePropertyNumExpr = F2(
+var $author$project$VegaLite$tiNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -14913,11 +14890,18 @@ var $author$project$VegaLite$titlePropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$tiOffset = function (n) {
+	return $author$project$VegaLite$TOffset(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$TFont = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$TFontStyle = function (a) {
 	return {$: 6, a: a};
+};
+var $author$project$VegaLite$TSubtitleColor = function (a) {
+	return {$: 15, a: a};
 };
 var $author$project$VegaLite$TSubtitleFont = function (a) {
 	return {$: 16, a: a};
@@ -14925,7 +14909,7 @@ var $author$project$VegaLite$TSubtitleFont = function (a) {
 var $author$project$VegaLite$TSubtitleFontStyle = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$titlePropertyStrExpr = F2(
+var $author$project$VegaLite$tiStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
 		switch (_v0.$) {
@@ -14954,6 +14938,22 @@ var $author$project$VegaLite$titlePropertyStrExpr = F2(
 				return fn('');
 		}
 	});
+var $author$project$VegaLite$tiSubtitleColor = function (s) {
+	return $author$project$VegaLite$TSubtitleColor(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$tiSubtitleFontSize = function (n) {
+	return $author$project$VegaLite$TSubtitleFontSize(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$tiSubtitleLineHeight = function (n) {
+	return $author$project$VegaLite$TSubtitleLineHeight(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$tiSubtitlePadding = function (n) {
+	return $author$project$VegaLite$TSubtitlePadding(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$TextFormatTests$title1 = function () {
 	var prm = $author$project$VegaLite$params(
 		_List_fromArray(
@@ -15099,17 +15099,17 @@ var $author$project$TextFormatTests$title1 = function () {
 				'This is the visualization title\nthat is split over two lines',
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'fontSize', $author$project$VegaLite$tiFontSize),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'angle', $author$project$VegaLite$tiAngle),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'fontSize', $author$project$VegaLite$tiLineHeight),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'limit', $author$project$VegaLite$tiLimit),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'offset', $author$project$VegaLite$tiOffset),
-						A2($author$project$VegaLite$titlePropertyStrExpr, 'colour', $author$project$VegaLite$tiColor),
-						A2($author$project$VegaLite$titlePropertyStrExpr, 'subtitle', $author$project$VegaLite$tiSubtitle),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'fontSize/2', $author$project$VegaLite$tiSubtitleFontSize),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'fontSize/2', $author$project$VegaLite$tiSubtitleLineHeight),
-						A2($author$project$VegaLite$titlePropertyNumExpr, 'subtitlePadding', $author$project$VegaLite$tiSubtitlePadding),
-						A2($author$project$VegaLite$titlePropertyStrExpr, 'subtitleColour', $author$project$VegaLite$tiSubtitleColor)
+						A2($author$project$VegaLite$tiNumExpr, 'fontSize', $author$project$VegaLite$tiFontSize),
+						A2($author$project$VegaLite$tiNumExpr, 'angle', $author$project$VegaLite$tiAngle),
+						A2($author$project$VegaLite$tiNumExpr, 'fontSize', $author$project$VegaLite$tiLineHeight),
+						A2($author$project$VegaLite$tiNumExpr, 'limit', $author$project$VegaLite$tiLimit),
+						A2($author$project$VegaLite$tiNumExpr, 'offset', $author$project$VegaLite$tiOffset),
+						A2($author$project$VegaLite$tiStrExpr, 'colour', $author$project$VegaLite$tiColor),
+						A2($author$project$VegaLite$tiStrExpr, 'subtitle', $author$project$VegaLite$tiSubtitle),
+						A2($author$project$VegaLite$tiNumExpr, 'fontSize/2', $author$project$VegaLite$tiSubtitleFontSize),
+						A2($author$project$VegaLite$tiNumExpr, 'fontSize/2', $author$project$VegaLite$tiSubtitleLineHeight),
+						A2($author$project$VegaLite$tiNumExpr, 'subtitlePadding', $author$project$VegaLite$tiSubtitlePadding),
+						A2($author$project$VegaLite$tiStrExpr, 'subtitleColour', $author$project$VegaLite$tiSubtitleColor)
 					])),
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(400),
