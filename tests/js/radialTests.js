@@ -11406,20 +11406,6 @@ var $author$project$VegaLite$maCornerRadius = function (n) {
 	return $author$project$VegaLite$MCornerRadius(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$MOuterRadius = function (a) {
-	return {$: 42, a: a};
-};
-var $author$project$VegaLite$maOuterRadius = function (n) {
-	return $author$project$VegaLite$MOuterRadius(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$MPadAngle = function (a) {
-	return {$: 46, a: a};
-};
-var $author$project$VegaLite$maPadAngle = function (n) {
-	return $author$project$VegaLite$MPadAngle(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$MAngle = function (a) {
 	return {$: 1, a: a};
 };
@@ -11452,6 +11438,12 @@ var $author$project$VegaLite$MLimit = function (a) {
 };
 var $author$project$VegaLite$MLineHeight = function (a) {
 	return {$: 39, a: a};
+};
+var $author$project$VegaLite$MOuterRadius = function (a) {
+	return {$: 42, a: a};
+};
+var $author$project$VegaLite$MPadAngle = function (a) {
+	return {$: 46, a: a};
 };
 var $author$project$VegaLite$MRadius = function (a) {
 	return {$: 48, a: a};
@@ -11519,7 +11511,7 @@ var $author$project$VegaLite$MdY = function (a) {
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$markPropertyNumExpr = F2(
+var $author$project$VegaLite$maNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -11647,6 +11639,14 @@ var $author$project$VegaLite$markPropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$maOuterRadius = function (n) {
+	return $author$project$VegaLite$MOuterRadius(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$maPadAngle = function (n) {
+	return $author$project$VegaLite$MPadAngle(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
@@ -11656,7 +11656,7 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLParams = 1;
@@ -11777,11 +11777,6 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$object(
 					$author$project$VegaLite$pBindingProperties(binds)));
 		case 1:
-			var s = pp.a;
-			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(s));
-		case 2:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
@@ -11915,10 +11910,10 @@ var $author$project$RadialTests$radial3 = function () {
 				$author$project$VegaLite$arc(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$markPropertyNumExpr, 'radius', $author$project$VegaLite$maInnerRadius),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'radius2', $author$project$VegaLite$maOuterRadius),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'cornerRadius', $author$project$VegaLite$maCornerRadius),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'padAngle', $author$project$VegaLite$maPadAngle)
+						A2($author$project$VegaLite$maNumExpr, 'radius', $author$project$VegaLite$maInnerRadius),
+						A2($author$project$VegaLite$maNumExpr, 'radius2', $author$project$VegaLite$maOuterRadius),
+						A2($author$project$VegaLite$maNumExpr, 'cornerRadius', $author$project$VegaLite$maCornerRadius),
+						A2($author$project$VegaLite$maNumExpr, 'padAngle', $author$project$VegaLite$maPadAngle)
 					]))
 			]));
 }();

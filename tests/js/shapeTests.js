@@ -13846,7 +13846,7 @@ var $author$project$VegaLite$MdY = function (a) {
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$markPropertyNumExpr = F2(
+var $author$project$VegaLite$maNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -13986,7 +13986,7 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLParams = 1;
@@ -14107,11 +14107,6 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$object(
 					$author$project$VegaLite$pBindingProperties(binds)));
 		case 1:
-			var s = pp.a;
-			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(s));
-		case 2:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
@@ -14252,9 +14247,9 @@ var $author$project$ShapeTests$symbols3 = function () {
 				$author$project$VegaLite$point(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$markPropertyNumExpr, 'size', $author$project$VegaLite$maSize),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'strokeWidth', $author$project$VegaLite$maStrokeWidth),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'angle', $author$project$VegaLite$maAngle),
+						A2($author$project$VegaLite$maNumExpr, 'size', $author$project$VegaLite$maSize),
+						A2($author$project$VegaLite$maNumExpr, 'strokeWidth', $author$project$VegaLite$maStrokeWidth),
+						A2($author$project$VegaLite$maNumExpr, 'angle', $author$project$VegaLite$maAngle),
 						$author$project$VegaLite$maShape(
 						$author$project$VegaLite$symExpr('shape'))
 					]))

@@ -6587,16 +6587,6 @@ var $author$project$VegaLite$MInterpolate = function (a) {
 	return {$: 37, a: a};
 };
 var $author$project$VegaLite$maInterpolate = $author$project$VegaLite$MInterpolate;
-var $author$project$VegaLite$MTension = function (a) {
-	return {$: 64, a: a};
-};
-var $author$project$VegaLite$Num = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$maTension = function (n) {
-	return $author$project$VegaLite$MTension(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$MAngle = function (a) {
 	return {$: 1, a: a};
 };
@@ -6669,6 +6659,9 @@ var $author$project$VegaLite$MStrokeOpacity = function (a) {
 var $author$project$VegaLite$MStrokeWidth = function (a) {
 	return {$: 62, a: a};
 };
+var $author$project$VegaLite$MTension = function (a) {
+	return {$: 64, a: a};
+};
 var $author$project$VegaLite$MTheta = function (a) {
 	return {$: 66, a: a};
 };
@@ -6717,7 +6710,7 @@ var $author$project$VegaLite$MdY = function (a) {
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$markPropertyNumExpr = F2(
+var $author$project$VegaLite$maNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -6845,6 +6838,13 @@ var $author$project$VegaLite$markPropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$Num = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$maTension = function (n) {
+	return $author$project$VegaLite$MTension(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$InterpolateExpr = function (a) {
 	return {$: 13, a: a};
 };
@@ -6879,7 +6879,7 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLParams = 1;
@@ -7175,11 +7175,6 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$object(
 					$author$project$VegaLite$pBindingProperties(binds)));
 		case 1:
-			var s = pp.a;
-			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(s));
-		case 2:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
@@ -10089,7 +10084,7 @@ var $author$project$TrailTests$line1 = function () {
 					[
 						$author$project$VegaLite$maInterpolate(
 						$author$project$VegaLite$miExpr('interp')),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'tension', $author$project$VegaLite$maTension)
+						A2($author$project$VegaLite$maNumExpr, 'tension', $author$project$VegaLite$maTension)
 					]))
 			]));
 	var prm = $author$project$VegaLite$params(

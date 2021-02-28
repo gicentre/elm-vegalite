@@ -6499,24 +6499,6 @@ var $author$project$VegaLite$mark = F2(
 		}
 	});
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
-var $author$project$VegaLite$MStrokeCap = function (a) {
-	return {$: 56, a: a};
-};
-var $author$project$VegaLite$maStrokeCap = $author$project$VegaLite$MStrokeCap;
-var $author$project$VegaLite$MStrokeJoin = function (a) {
-	return {$: 59, a: a};
-};
-var $author$project$VegaLite$maStrokeJoin = $author$project$VegaLite$MStrokeJoin;
-var $author$project$VegaLite$MStrokeWidth = function (a) {
-	return {$: 62, a: a};
-};
-var $author$project$VegaLite$Num = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$maStrokeWidth = function (n) {
-	return $author$project$VegaLite$MStrokeWidth(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$MAngle = function (a) {
 	return {$: 1, a: a};
 };
@@ -6586,6 +6568,9 @@ var $author$project$VegaLite$MStrokeMiterLimit = function (a) {
 var $author$project$VegaLite$MStrokeOpacity = function (a) {
 	return {$: 61, a: a};
 };
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 62, a: a};
+};
 var $author$project$VegaLite$MTension = function (a) {
 	return {$: 64, a: a};
 };
@@ -6637,7 +6622,7 @@ var $author$project$VegaLite$MdY = function (a) {
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$markPropertyNumExpr = F2(
+var $author$project$VegaLite$maNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -6765,6 +6750,21 @@ var $author$project$VegaLite$markPropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$MStrokeCap = function (a) {
+	return {$: 56, a: a};
+};
+var $author$project$VegaLite$maStrokeCap = $author$project$VegaLite$MStrokeCap;
+var $author$project$VegaLite$MStrokeJoin = function (a) {
+	return {$: 59, a: a};
+};
+var $author$project$VegaLite$maStrokeJoin = $author$project$VegaLite$MStrokeJoin;
+var $author$project$VegaLite$Num = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = function (n) {
+	return $author$project$VegaLite$MStrokeWidth(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
@@ -6792,7 +6792,7 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLParams = 1;
@@ -7088,11 +7088,6 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$object(
 					$author$project$VegaLite$pBindingProperties(binds)));
 		case 1:
-			var s = pp.a;
-			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(s));
-		case 2:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
@@ -10144,7 +10139,7 @@ var $author$project$FillStrokeTests$capAndJoin1 = function () {
 				$author$project$VegaLite$line(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$markPropertyNumExpr, 'sw', $author$project$VegaLite$maStrokeWidth),
+						A2($author$project$VegaLite$maNumExpr, 'sw', $author$project$VegaLite$maStrokeWidth),
 						$author$project$VegaLite$maStrokeCap(
 						$author$project$VegaLite$caExpr('cap')),
 						$author$project$VegaLite$maStrokeJoin(

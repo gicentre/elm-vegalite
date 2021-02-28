@@ -8366,7 +8366,7 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLParams = 1;
@@ -8531,11 +8531,6 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$object(
 					$author$project$VegaLite$pBindingProperties(binds)));
 		case 1:
-			var s = pp.a;
-			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(s));
-		case 2:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',

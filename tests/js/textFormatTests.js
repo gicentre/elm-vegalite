@@ -13705,41 +13705,6 @@ var $author$project$VegaLite$maLimit = function (n) {
 	return $author$project$VegaLite$MLimit(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$MSize = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$maSize = function (n) {
-	return $author$project$VegaLite$MSize(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$MStroke = function (a) {
-	return {$: 54, a: a};
-};
-var $author$project$VegaLite$maStroke = function (s) {
-	return $author$project$VegaLite$MStroke(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$MStrokeWidth = function (a) {
-	return {$: 62, a: a};
-};
-var $author$project$VegaLite$maStrokeWidth = function (n) {
-	return $author$project$VegaLite$MStrokeWidth(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$MXOffset = function (a) {
-	return {$: 77, a: a};
-};
-var $author$project$VegaLite$maXOffset = function (n) {
-	return $author$project$VegaLite$MXOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$MYOffset = function (a) {
-	return {$: 78, a: a};
-};
-var $author$project$VegaLite$maYOffset = function (n) {
-	return $author$project$VegaLite$MYOffset(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$MCornerRadius = function (a) {
 	return {$: 12, a: a};
 };
@@ -13785,6 +13750,9 @@ var $author$project$VegaLite$MRadius2Offset = function (a) {
 var $author$project$VegaLite$MRadiusOffset = function (a) {
 	return {$: 83, a: a};
 };
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 53, a: a};
+};
 var $author$project$VegaLite$MStrokeDashOffset = function (a) {
 	return {$: 58, a: a};
 };
@@ -13793,6 +13761,9 @@ var $author$project$VegaLite$MStrokeMiterLimit = function (a) {
 };
 var $author$project$VegaLite$MStrokeOpacity = function (a) {
 	return {$: 61, a: a};
+};
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 62, a: a};
 };
 var $author$project$VegaLite$MTension = function (a) {
 	return {$: 64, a: a};
@@ -13821,6 +13792,9 @@ var $author$project$VegaLite$MX2 = function (a) {
 var $author$project$VegaLite$MX2Offset = function (a) {
 	return {$: 79, a: a};
 };
+var $author$project$VegaLite$MXOffset = function (a) {
+	return {$: 77, a: a};
+};
 var $author$project$VegaLite$MY = function (a) {
 	return {$: 74, a: a};
 };
@@ -13830,10 +13804,13 @@ var $author$project$VegaLite$MY2 = function (a) {
 var $author$project$VegaLite$MY2Offset = function (a) {
 	return {$: 80, a: a};
 };
+var $author$project$VegaLite$MYOffset = function (a) {
+	return {$: 78, a: a};
+};
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$markPropertyNumExpr = F2(
+var $author$project$VegaLite$maNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -13961,6 +13938,10 @@ var $author$project$VegaLite$markPropertyNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$maSize = function (n) {
+	return $author$project$VegaLite$MSize(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$MColor = function (a) {
 	return {$: 10, a: a};
 };
@@ -13970,13 +13951,16 @@ var $author$project$VegaLite$MEllipsis = function (a) {
 var $author$project$VegaLite$MHRef = function (a) {
 	return {$: 19, a: a};
 };
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 54, a: a};
+};
 var $author$project$VegaLite$MText = function (a) {
 	return {$: 65, a: a};
 };
 var $author$project$VegaLite$StrExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$markPropertyStrExpr = F2(
+var $author$project$VegaLite$maStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
 		switch (_v0.$) {
@@ -14008,6 +13992,22 @@ var $author$project$VegaLite$markPropertyStrExpr = F2(
 				return fn('');
 		}
 	});
+var $author$project$VegaLite$maStroke = function (s) {
+	return $author$project$VegaLite$MStroke(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$maStrokeWidth = function (n) {
+	return $author$project$VegaLite$MStrokeWidth(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$maXOffset = function (n) {
+	return $author$project$VegaLite$MXOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$maYOffset = function (n) {
+	return $author$project$VegaLite$MYOffset(
+		$author$project$VegaLite$Num(n));
+};
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -14020,11 +14020,11 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PExpr = function (a) {
-	return {$: 2, a: a};
+	return {$: 1, a: a};
 };
 var $author$project$VegaLite$paExpr = $author$project$VegaLite$PExpr;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLParams = 1;
@@ -14147,11 +14147,6 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 		case 1:
 			var s = pp.a;
 			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(s));
-		case 2:
-			var s = pp.a;
-			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
 		default:
@@ -14192,10 +14187,10 @@ var $author$project$TextFormatTests$textAlign2 = function () {
 				$author$project$VegaLite$circle(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$markPropertyNumExpr, 'cSize', $author$project$VegaLite$maSize),
-						A2($author$project$VegaLite$markPropertyStrExpr, 'fill', $author$project$VegaLite$maFill),
-						A2($author$project$VegaLite$markPropertyStrExpr, 'stroke', $author$project$VegaLite$maStroke),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'strokeWidth', $author$project$VegaLite$maStrokeWidth)
+						A2($author$project$VegaLite$maNumExpr, 'cSize', $author$project$VegaLite$maSize),
+						A2($author$project$VegaLite$maStrExpr, 'fill', $author$project$VegaLite$maFill),
+						A2($author$project$VegaLite$maStrExpr, 'stroke', $author$project$VegaLite$maStroke),
+						A2($author$project$VegaLite$maNumExpr, 'strokeWidth', $author$project$VegaLite$maStrokeWidth)
 					]))
 			]));
 	var prm = $author$project$VegaLite$params(
@@ -14451,21 +14446,21 @@ var $author$project$TextFormatTests$textAlign2 = function () {
 				$author$project$VegaLite$textMark(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$markPropertyNumExpr, 'dx', $author$project$VegaLite$maDx),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'dy', $author$project$VegaLite$maDy),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'xOffset', $author$project$VegaLite$maXOffset),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'yOffset', $author$project$VegaLite$maYOffset),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'angle', $author$project$VegaLite$maAngle),
+						A2($author$project$VegaLite$maNumExpr, 'dx', $author$project$VegaLite$maDx),
+						A2($author$project$VegaLite$maNumExpr, 'dy', $author$project$VegaLite$maDy),
+						A2($author$project$VegaLite$maNumExpr, 'xOffset', $author$project$VegaLite$maXOffset),
+						A2($author$project$VegaLite$maNumExpr, 'yOffset', $author$project$VegaLite$maYOffset),
+						A2($author$project$VegaLite$maNumExpr, 'angle', $author$project$VegaLite$maAngle),
 						$author$project$VegaLite$maAlign(
 						$author$project$VegaLite$haExpr('align')),
 						$author$project$VegaLite$maBaseline(
 						$author$project$VegaLite$vaExpr('baseline')),
-						A2($author$project$VegaLite$markPropertyStrExpr, 'font', $author$project$VegaLite$maFont),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'fontSize', $author$project$VegaLite$maFontSize),
-						A2($author$project$VegaLite$markPropertyStrExpr, 'fontStyle', $author$project$VegaLite$maFontStyle),
+						A2($author$project$VegaLite$maStrExpr, 'font', $author$project$VegaLite$maFont),
+						A2($author$project$VegaLite$maNumExpr, 'fontSize', $author$project$VegaLite$maFontSize),
+						A2($author$project$VegaLite$maStrExpr, 'fontStyle', $author$project$VegaLite$maFontStyle),
 						$author$project$VegaLite$maFontWeight(
 						$author$project$VegaLite$fwExpr('fontWeight')),
-						A2($author$project$VegaLite$markPropertyNumExpr, 'limit', $author$project$VegaLite$maLimit)
+						A2($author$project$VegaLite$maNumExpr, 'limit', $author$project$VegaLite$maLimit)
 					]))
 			]));
 	var enc = A2(
