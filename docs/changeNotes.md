@@ -48,9 +48,9 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `axBooExpr` for providing expressions that evaluate to boolean axis properties (VL5.0).
 
-- `legendPropertyNumExpr` for providing expressions that evaluate to numeric legend properties (VL4.16).
+- `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
 
-- `legendPropertyStrExpr` for providing expressions that evaluate to string legend properties (VL4.16).
+- `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
 
 - `titlePropertyNumExpr` for providing expressions that evaluate to numeric title properties (VL4.16).
 

@@ -165,9 +165,9 @@ legend15 =
                     [ mName "Origin"
                     , mLegend
                         [ leOrient loNone
-                        , leX |> legendPropertyNumExpr "xPos"
-                        , leY |> legendPropertyNumExpr "yPos"
-                        , leTitleColor |> legendPropertyStrExpr "titleColor"
+                        , leX |> leNumExpr "xPos"
+                        , leY |> leNumExpr "yPos"
+                        , leTitleColor |> leStrExpr "titleColor"
                         ]
                     ]
     in

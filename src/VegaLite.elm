@@ -647,8 +647,8 @@ module VegaLite exposing
     , mStr
     , mBoo
     , mSymbol
-    , legendPropertyNumExpr
-    , legendPropertyStrExpr
+    , leNumExpr
+    , leStrExpr
     , leAria
     , leGradient
     , leSymbol
@@ -2553,8 +2553,8 @@ Appearance of the visual marks in the visualization such as their color or size.
 See the
 [Vega-Lite legend property documentation](https://vega.github.io/vega-lite/docs/legend.html#legend-properties).
 
-@docs legendPropertyNumExpr
-@docs legendPropertyStrExpr
+@docs leNumExpr
+@docs leStrExpr
 
 @docs leAria
 @docs leGradient
@@ -12889,12 +12889,12 @@ input element. For example,
       encoding
           << color
               [ mName "animal"
-              , mLegend [ leX |> legendPropertyNumExpr "xPos" ]
+              , mLegend [ leX |> leNumExpr "xPos" ]
               ]
 
 -}
-legendPropertyNumExpr : String -> (number -> LegendProperty) -> LegendProperty
-legendPropertyNumExpr ex fn =
+leNumExpr : String -> (number -> LegendProperty) -> LegendProperty
+leNumExpr ex fn =
     case fn 0 of
         LClipHeight _ ->
             LClipHeight (NumExpr ex)
@@ -12986,12 +12986,12 @@ input element. For example,
         encoding
             << color
                 [ mName "animal"
-                , mLegend [ leTitleColor |> legendPropertyNumExpr "color" ]
+                , mLegend [ leTitleColor |> leStrExpr "color" ]
                 ]
 
 -}
-legendPropertyStrExpr : String -> (String -> LegendProperty) -> LegendProperty
-legendPropertyStrExpr ex fn =
+leStrExpr : String -> (String -> LegendProperty) -> LegendProperty
+leStrExpr ex fn =
     case fn "" of
         LFillColor _ ->
             LFillColor (StrExpr ex)
