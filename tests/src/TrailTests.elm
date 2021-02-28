@@ -86,7 +86,7 @@ line1 =
                 << position Y [ pName "Miles_per_Gallon", pAggregate opMean ]
 
         specLine =
-            asSpec [ line [ maInterpolate (miExpr "interp"), maTension |> markPropertyNumExpr "tension" ] ]
+            asSpec [ line [ maInterpolate (miExpr "interp"), maTension |> maNumExpr "tension" ] ]
 
         specPoint =
             asSpec [ point [] ]

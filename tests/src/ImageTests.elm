@@ -143,7 +143,7 @@ image11 =
                 , image
                     [ maWidth 100
                     , maAlign haLeft
-                    , maAspect |> markPropertyBooExpr "asp"
+                    , maAspect |> maBooExpr "asp"
                     ]
                 ]
             , asSpec [ enc [], circle [ maColor "red" ] ]

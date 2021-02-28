@@ -34,13 +34,13 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
-- `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL4.16).
+- `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
 
-- `markPropertyNumExpr` for providing expressions that evaluate to numeric mark properties (VL4.16).
+- `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 
-- `markPropertyStrExpr` for providing expressions that evaluate to string mark properties (VL4.16).
+- `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
 
-- `markPropertyBooExpr` for providing expressions that evaluate to boolean mark properties (VL4.16).
+- `maBooExpr` for providing expressions that evaluate to boolean mark properties (VL5.0).
 
 - `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
 

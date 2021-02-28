@@ -396,9 +396,9 @@ symbols3 =
         , data
         , enc []
         , point
-            [ maSize |> markPropertyNumExpr "size"
-            , maStrokeWidth |> markPropertyNumExpr "strokeWidth"
-            , maAngle |> markPropertyNumExpr "angle"
+            [ maSize |> maNumExpr "size"
+            , maStrokeWidth |> maNumExpr "strokeWidth"
+            , maAngle |> maNumExpr "angle"
             , maShape (symExpr "shape")
             ]
         ]

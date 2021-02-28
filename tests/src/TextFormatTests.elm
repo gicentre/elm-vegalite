@@ -197,10 +197,10 @@ textAlign2 =
         specCircle =
             asSpec
                 [ circle
-                    [ maSize |> markPropertyNumExpr "cSize"
-                    , maFill |> markPropertyStrExpr "fill"
-                    , maStroke |> markPropertyStrExpr "stroke"
-                    , maStrokeWidth |> markPropertyNumExpr "strokeWidth"
+                    [ maSize |> maNumExpr "cSize"
+                    , maFill |> maStrExpr "fill"
+                    , maStroke |> maStrExpr "stroke"
+                    , maStrokeWidth |> maNumExpr "strokeWidth"
                     ]
                 ]
 
@@ -212,18 +212,18 @@ textAlign2 =
             asSpec
                 [ encText []
                 , textMark
-                    [ maDx |> markPropertyNumExpr "dx"
-                    , maDy |> markPropertyNumExpr "dy"
-                    , maXOffset |> markPropertyNumExpr "xOffset"
-                    , maYOffset |> markPropertyNumExpr "yOffset"
-                    , maAngle |> markPropertyNumExpr "angle"
+                    [ maDx |> maNumExpr "dx"
+                    , maDy |> maNumExpr "dy"
+                    , maXOffset |> maNumExpr "xOffset"
+                    , maYOffset |> maNumExpr "yOffset"
+                    , maAngle |> maNumExpr "angle"
                     , maAlign (haExpr "align")
                     , maBaseline (vaExpr "baseline")
-                    , maFont |> markPropertyStrExpr "font"
-                    , maFontSize |> markPropertyNumExpr "fontSize"
-                    , maFontStyle |> markPropertyStrExpr "fontStyle"
+                    , maFont |> maStrExpr "font"
+                    , maFontSize |> maNumExpr "fontSize"
+                    , maFontStyle |> maStrExpr "fontStyle"
                     , maFontWeight (fwExpr "fontWeight")
-                    , maLimit |> markPropertyNumExpr "limit"
+                    , maLimit |> maNumExpr "limit"
                     ]
                 ]
     in

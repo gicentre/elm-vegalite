@@ -85,10 +85,10 @@ radial3 =
         , data []
         , enc []
         , arc
-            [ maInnerRadius |> markPropertyNumExpr "radius"
-            , maOuterRadius |> markPropertyNumExpr "radius2"
-            , maCornerRadius |> markPropertyNumExpr "cornerRadius"
-            , maPadAngle |> markPropertyNumExpr "padAngle"
+            [ maInnerRadius |> maNumExpr "radius"
+            , maOuterRadius |> maNumExpr "radius2"
+            , maCornerRadius |> maNumExpr "cornerRadius"
+            , maPadAngle |> maNumExpr "padAngle"
             ]
         ]
 

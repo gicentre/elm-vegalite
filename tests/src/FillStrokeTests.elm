@@ -511,7 +511,7 @@ capAndJoin1 =
         , data
         , enc []
         , line
-            [ maStrokeWidth |> markPropertyNumExpr "sw"
+            [ maStrokeWidth |> maNumExpr "sw"
             , maStrokeCap (caExpr "cap")
             , maStrokeJoin (joExpr "join")
             ]
