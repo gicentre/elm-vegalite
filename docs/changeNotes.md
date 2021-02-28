@@ -52,9 +52,9 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
 
-- `titlePropertyNumExpr` for providing expressions that evaluate to numeric title properties (VL4.16).
+- `tiNumExpr` for providing expressions that evaluate to numeric title properties (VL5.0).
 
-- `titlePropertyStrExpr` for providing expressions that evaluate to string title properties (VL4.16).
+- `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
 
 - `viewBackgroundNumExpr` for providing expressions that evaluate to numeric view background properties (VL4.16).
 

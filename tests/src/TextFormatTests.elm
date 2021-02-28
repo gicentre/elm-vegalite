@@ -337,17 +337,17 @@ title1 =
         [ prm
         , padding (paEdges 5 250 5 5)
         , title "This is the visualization title\nthat is split over two lines"
-            [ tiFontSize |> titlePropertyNumExpr "fontSize"
-            , tiAngle |> titlePropertyNumExpr "angle"
-            , tiLineHeight |> titlePropertyNumExpr "fontSize"
-            , tiLimit |> titlePropertyNumExpr "limit"
-            , tiOffset |> titlePropertyNumExpr "offset"
-            , tiColor |> titlePropertyStrExpr "colour"
-            , tiSubtitle |> titlePropertyStrExpr "subtitle"
-            , tiSubtitleFontSize |> titlePropertyNumExpr "fontSize/2"
-            , tiSubtitleLineHeight |> titlePropertyNumExpr "fontSize/2"
-            , tiSubtitlePadding |> titlePropertyNumExpr "subtitlePadding"
-            , tiSubtitleColor |> titlePropertyStrExpr "subtitleColour"
+            [ tiFontSize |> tiNumExpr "fontSize"
+            , tiAngle |> tiNumExpr "angle"
+            , tiLineHeight |> tiNumExpr "fontSize"
+            , tiLimit |> tiNumExpr "limit"
+            , tiOffset |> tiNumExpr "offset"
+            , tiColor |> tiStrExpr "colour"
+            , tiSubtitle |> tiStrExpr "subtitle"
+            , tiSubtitleFontSize |> tiNumExpr "fontSize/2"
+            , tiSubtitleLineHeight |> tiNumExpr "fontSize/2"
+            , tiSubtitlePadding |> tiNumExpr "subtitlePadding"
+            , tiSubtitleColor |> tiStrExpr "subtitleColour"
             ]
         , width 400
         , height 400

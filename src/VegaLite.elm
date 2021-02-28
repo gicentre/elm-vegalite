@@ -1075,8 +1075,8 @@ module VegaLite exposing
     , ipDateTimeLocal
     , ipTel
     , ipColor
-    , titlePropertyNumExpr
-    , titlePropertyStrExpr
+    , tiNumExpr
+    , tiStrExpr
     , title
     , tiAnchor
     , tiAngle
@@ -3247,8 +3247,8 @@ These are in addition to the data and transform options described above. See the
 Per-title settings. To standardize the appearance of all titles in a multi-view
 specification, use [coTitle](#coTitle) instead.
 
-@docs titlePropertyNumExpr
-@docs titlePropertyStrExpr
+@docs tiNumExpr
+@docs tiStrExpr
 
 @docs title
 @docs tiAnchor
@@ -18276,11 +18276,11 @@ input element. For example,
     :
     :
     ttl =
-        title "My title" [ tiFontSize |> titlePropertyNumExpr "fs"]
+        title "My title" [ tiFontSize |> tiNumExpr "fs"]
 
 -}
-titlePropertyNumExpr : String -> (number -> TitleProperty) -> TitleProperty
-titlePropertyNumExpr ex fn =
+tiNumExpr : String -> (number -> TitleProperty) -> TitleProperty
+tiNumExpr ex fn =
     case fn 0 of
         TAngle _ ->
             TAngle (NumExpr ex)
@@ -18324,11 +18324,11 @@ input element. For example,
     :
     :
     ttl =
-        title "My title" [ tiColor |> titlePropertyStrExpr "clr"]
+        title "My title" [ tiColor |> tiStrExpr "clr"]
 
 -}
-titlePropertyStrExpr : String -> (String -> TitleProperty) -> TitleProperty
-titlePropertyStrExpr ex fn =
+tiStrExpr : String -> (String -> TitleProperty) -> TitleProperty
+tiStrExpr ex fn =
     case fn "" of
         TColor _ ->
             TColor (StrExpr ex)
