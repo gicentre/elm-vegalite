@@ -494,9 +494,9 @@ module VegaLite exposing
     , soByChannel
     , soByRepeat
     , soCustom
-    , axisPropertyBooExpr
-    , axisPropertyNumExpr
-    , axisPropertyStrExpr
+    , axBooExpr
+    , axNumExpr
+    , axStrExpr
     , axAria
     , axBandPosition
     , axMaxExtent
@@ -2342,9 +2342,9 @@ See the
 See the
 [Vega-Lite axis property documentation](https://vega.github.io/vega-lite/docs/axis.html#axis-properties)
 
-@docs axisPropertyBooExpr
-@docs axisPropertyNumExpr
-@docs axisPropertyStrExpr
+@docs axBooExpr
+@docs axNumExpr
+@docs axStrExpr
 
 
 #### General
@@ -7200,12 +7200,12 @@ input element. For example,
           << position X
               [ pName "x"
               , pQuant
-              , pAxis [ axLabels |> axisPropertyBooExpr "lbls" ]
+              , pAxis [ axLabels |> axBooExpr "lbls" ]
               ]
 
 -}
-axisPropertyBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
-axisPropertyBooExpr ex fn =
+axBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
+axBooExpr ex fn =
     case fn False of
         AxDomain _ ->
             AxDomain (BooExpr ex)
@@ -7244,12 +7244,12 @@ input element. For example,
           << position X
               [ pName "x"
               , pQuant
-              , pAxis [ axOffset |> axisPropertyNumExpr "axo" ]
+              , pAxis [ axOffset |> axNumExpr "axo" ]
               ]
 
 -}
-axisPropertyNumExpr : String -> (number -> AxisProperty) -> AxisProperty
-axisPropertyNumExpr ex fn =
+axNumExpr : String -> (number -> AxisProperty) -> AxisProperty
+axNumExpr ex fn =
     case fn 0 of
         AxBandPosition _ ->
             AxBandPosition (NumExpr ex)
@@ -7371,12 +7371,12 @@ input element. For example,
           encoding
               << position X
                   [ pName "x"
-                  , pAxis [ axTitleColor |> axisPropertyStrExpr "color" ]
+                  , pAxis [ axTitleColor |> axStrExpr "color" ]
                   ]
 
 -}
-axisPropertyStrExpr : String -> (String -> AxisProperty) -> AxisProperty
-axisPropertyStrExpr ex fn =
+axStrExpr : String -> (String -> AxisProperty) -> AxisProperty
+axStrExpr ex fn =
     case fn "" of
         AxDomainColor _ ->
             AxDomainColor (StrExpr ex)

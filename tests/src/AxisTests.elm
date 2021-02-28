@@ -387,16 +387,16 @@ axis16 =
                     , pBin []
                     , pOrdinal
                     , pAxis
-                        [ axOffset |> axisPropertyNumExpr "offset"
-                        , axLabelFontSize |> axisPropertyNumExpr "labelFontSize"
-                        , axLabelAngle |> axisPropertyNumExpr "labelAngle"
-                        , axTitleColor |> axisPropertyStrExpr "titleColor"
-                        , axDomain |> axisPropertyBooExpr "domain"
-                        , axLabels |> axisPropertyBooExpr "labels"
-                        , axTickExtra |> axisPropertyBooExpr "tickExtra"
-                        , axTickRound |> axisPropertyBooExpr "tickRound"
-                        , axTicks |> axisPropertyBooExpr "ticks"
-                        , axGrid |> axisPropertyBooExpr "grid"
+                        [ axOffset |> axNumExpr "offset"
+                        , axLabelFontSize |> axNumExpr "labelFontSize"
+                        , axLabelAngle |> axNumExpr "labelAngle"
+                        , axTitleColor |> axStrExpr "titleColor"
+                        , axDomain |> axBooExpr "domain"
+                        , axLabels |> axBooExpr "labels"
+                        , axTickExtra |> axBooExpr "tickExtra"
+                        , axTickRound |> axBooExpr "tickRound"
+                        , axTicks |> axBooExpr "ticks"
+                        , axGrid |> axBooExpr "grid"
                         ]
                     ]
                 << position Y [ pAggregate opCount ]

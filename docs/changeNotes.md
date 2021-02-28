@@ -42,11 +42,11 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `maBooExpr` for providing expressions that evaluate to boolean mark properties (VL5.0).
 
-- `axisPropertyNumExpr` for providing expressions that evaluate to numeric axis properties (VL4.16).
+- `axNumExpr` for providing expressions that evaluate to numeric axis properties (VL5.0).
 
-- `axisPropertyStrExpr` for providing expressions that evaluate to string axis properties (VL4.16).
+- `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
 
-- `axisPropertyBooExpr` for providing expressions that evaluate to boolean axis properties (VL4.16).
+- `axBooExpr` for providing expressions that evaluate to boolean axis properties (VL5.0).
 
 - `legendPropertyNumExpr` for providing expressions that evaluate to numeric legend properties (VL4.16).
 
