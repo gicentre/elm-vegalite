@@ -1,76 +1,89 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Elm-Vegalite Parameter Tests</title>
+    <meta charset="utf-8" />
 
-<head>
-  <title>Elm-Vegalite Parameter Tests</title>
-  <meta charset="utf-8" />
+    <!-- These scripts link to the Vega/Vega-Lite runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <!-- These scripts link to the Vega/Vega-Lite runtime -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script src="js/paramTests.js"></script>
 
-  <script src="js/paramTests.js"></script>
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
-  <style>
-    body {
-      font-family: "Roboto", sans-serif;
-    }
-
-    figcaption {
-      padding-top: 0.5em;
-    }
-
-    .cell {
-      float: left;
-      padding: 1em;
-      border-radius: 1em;
-      margin: 1.2em;
-      background-color: rgb(251, 247, 238);
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Elm-Vega Parameter Tests</h1>
-
-  <p>For Vega-Lite 5 params allowing signals and selections to be used in a specification.</p>
-
-  <figure class="cell">
-    <div id="param1"></div>
-    <figcaption>Simple constant parameter. Should show bars with 5px corner radius.</figcaption>
-  </figure>
-  <div style="clear: left;"></div>
-
-  <figure class="cell">
-    <div id="param2"></div>
-    <figcaption>Parameter bound to slider value.</figcaption>
-  </figure>
-  <div style="clear: left;"></div>
-
-  <figure class="cell">
-    <div id="param3"></div>
-    <figcaption>Expression that resizes bar width by height of vis.</figcaption>
-  </figure>
-  <div style="clear: left;"></div>
-
-
-  <h2>Source</h2>
-  <div id="elmContainer"></div>
-
-  <script>
-    Elm.ParamTests.init({
-      node: document.getElementById("elmContainer"),
-    }).ports.elmToJS.subscribe(function (namedSpecs) {
-      for (let name of Object.keys(namedSpecs)) {
-        vegaEmbed(`#${name}`, namedSpecs[name], {
-          actions: true,
-          logLevel: vega.Warn,
-        }).catch(console.warn);
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
       }
-    });
-  </script>
-</body>
 
+      figcaption {
+        padding-top: 0.5em;
+      }
+
+      .cell {
+        float: left;
+        padding: 1em;
+        border-radius: 1em;
+        margin: 1.2em;
+        background-color: rgb(251, 247, 238);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Elm-Vega Parameter Tests</h1>
+
+    <p>
+      For Vega-Lite 5 params allowing signals and selections to be used in a
+      specification.
+    </p>
+
+    <figure class="cell">
+      <div id="param1"></div>
+      <figcaption>
+        Simple constant parameter. Should show bars with 5px corner radius.
+      </figcaption>
+    </figure>
+    <div style="clear: left"></div>
+
+    <figure class="cell">
+      <div id="param2"></div>
+      <figcaption>Parameter bound to slider value.</figcaption>
+    </figure>
+    <div style="clear: left"></div>
+
+    <figure class="cell">
+      <div id="param3"></div>
+      <figcaption>
+        Expression that resizes bar width by height of vis.
+      </figcaption>
+    </figure>
+    <div style="clear: left"></div>
+
+    <figure class="cell">
+      <div id="param4"></div>
+      <figcaption>Point and interval selection parameters.</figcaption>
+    </figure>
+    <div style="clear: left"></div>
+
+    <h2>Source</h2>
+    <div id="elmContainer"></div>
+
+    <script>
+      Elm.ParamTests.init({
+        node: document.getElementById("elmContainer"),
+      }).ports.elmToJS.subscribe(function (namedSpecs) {
+        for (let name of Object.keys(namedSpecs)) {
+          vegaEmbed(`#${name}`, namedSpecs[name], {
+            actions: true,
+            logLevel: vega.Warn,
+          }).catch(console.warn);
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -6,6 +6,10 @@ _The changes that relate to adding expression parameters (which form the majorit
 
 ### TODO
 
+Provide new simplified VL5 selection specifications and deprecate old model.
+
+Add selection property expression function (probably something equivalent to `maStrExpr` so that point or interval type can be determined by an expression.
+
 Add mark property expression functions for `MStrokeDash`.
 
 Add top-level view background expressions: `strokeCap`, `strokeDash`, `strokeJoin`.
@@ -34,7 +38,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
-- `params` and associated `paBind`, `paDescription`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
+- `params` and associated `paBind`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
 
 - `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 

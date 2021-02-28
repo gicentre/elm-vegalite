@@ -129,6 +129,30 @@ param3 =
     toVegaLite [ cfg [], ps, data [], enc [], layer [ spec1, spec2, spec3, spec4, spec5, spec6 ] ]
 
 
+param4 : Spec
+param4 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                [ ( "pts", [ paSelect paInterval ] ) ]
+
+        enc =
+            encoding
+                << position X [ pName "Cylinders" ]
+                << position Y [ pName "Origin" ]
+                << color
+                    -- TODO: Provide new VL5 selection specification
+                    [ mSelectionCondition (selectionName "pts")
+                        [ mAggregate opCount ]
+                        [ mStr "grey" ]
+                    ]
+    in
+    toVegaLite [ width 240, ps, data, enc [], rect [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -138,6 +162,7 @@ specs =
     [ ( "param1", param1 )
     , ( "param2", param2 )
     , ( "param3", param3 )
+    , ( "param4", param4 )
     ]
 
 
