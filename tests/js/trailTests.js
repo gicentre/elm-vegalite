@@ -7166,6 +7166,13 @@ var $author$project$VegaLite$pBindingProperties = function (bnd) {
 				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
 	}
 };
+var $author$project$VegaLite$pSelectLabel = function (ps) {
+	if (!ps) {
+		return 'point';
+	} else {
+		return 'interval';
+	}
+};
 var $author$project$VegaLite$paramProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
@@ -7179,11 +7186,17 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		default:
+		case 2:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
 				$author$project$VegaLite$dataValueSpec(d));
+		default:
+			var s = pp.a;
+			return _Utils_Tuple2(
+				'select',
+				$elm$json$Json$Encode$string(
+					$author$project$VegaLite$pSelectLabel(s)));
 	}
 };
 var $author$project$VegaLite$params = function (namedParams) {
