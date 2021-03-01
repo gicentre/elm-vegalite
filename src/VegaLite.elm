@@ -4759,7 +4759,7 @@ type HyperlinkChannel
     | HBinned
     | HAggregate Operation
     | HTimeUnit TimeUnit
-    | HDataCondition BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
+    | HDataCondition Bool BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
     | HString String
 
 
@@ -5081,7 +5081,7 @@ type MarkChannel
     | MTitle String
     | MAggregate Operation
     | MLegend (List LegendProperty)
-    | MDataCondition (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
+    | MDataCondition Bool (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
     | MPath String
     | MNumber Float
     | MString String
@@ -5318,7 +5318,7 @@ type OrderChannel
     | OAggregate Operation
     | OTimeUnit TimeUnit
     | OSort (List SortProperty)
-    | ODataCondition (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
+    | ODataCondition Bool (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
     | ONumber Float
 
 
@@ -5911,7 +5911,7 @@ type TextChannel
     | TAggregate Operation
     | TTimeUnit TimeUnit
     | TTitle String
-    | TDataCondition (List ( BooleanOp, List TextChannel )) (List TextChannel)
+    | TDataCondition Bool (List ( BooleanOp, List TextChannel )) (List TextChannel)
     | TFormat String
     | TFormatAsNum
     | TFormatAsTemporal
@@ -11398,8 +11398,8 @@ parameter provides the expression to evaluate, the second the encoding to apply
 if the expression is true, the third the encoding if the expression is false.
 -}
 hDataCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
-hDataCondition op tCh fCh =
-    HDataCondition op tCh fCh
+hDataCondition =
+    HDataCondition False
 
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html) for
@@ -11764,7 +11764,7 @@ has been selected, the third the encoding if it is not selected.
 -}
 hSelectionCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
 hSelectionCondition =
-    HDataCondition
+    HDataCondition True
 
 
 {-| HSL color interpolation for continuous color scales.
@@ -14501,7 +14501,7 @@ are true.
 -}
 mDataCondition : List ( BooleanOp, List MarkChannel ) -> List MarkChannel -> MarkChannel
 mDataCondition =
-    MDataCondition
+    MDataCondition False
 
 
 {-| Name of a literal data item used for encoding with a mark property channel.
@@ -14812,7 +14812,7 @@ is true; the third parameter is the encoding if the selection is false.
 -}
 mSelectionCondition : BooleanOp -> List MarkChannel -> List MarkChannel -> MarkChannel
 mSelectionCondition bo tMcs =
-    MDataCondition [ ( bo, tMcs ) ]
+    MDataCondition True [ ( bo, tMcs ) ]
 
 
 {-| Sort order when encoding sortable mark properties such as colour.
@@ -15282,7 +15282,7 @@ tests are true.
 -}
 oDataCondition : List ( BooleanOp, List OrderChannel ) -> List OrderChannel -> OrderChannel
 oDataCondition =
-    ODataCondition
+    ODataCondition False
 
 
 {-| Indicate a data field encoded with an order channel is a geo feature. Equivalent
@@ -15614,7 +15614,7 @@ is true; the third parameter is the encoding if the selection is false.
 -}
 oSelectionCondition : BooleanOp -> List OrderChannel -> List OrderChannel -> OrderChannel
 oSelectionCondition bo tOcs =
-    ODataCondition [ ( bo, tOcs ) ]
+    ODataCondition True [ ( bo, tOcs ) ]
 
 
 {-| Sort order to be used by an order channel.
@@ -18035,7 +18035,7 @@ are evaluated as true.
 -}
 tDataCondition : List ( BooleanOp, List TextChannel ) -> List TextChannel -> TextChannel
 tDataCondition =
-    TDataCondition
+    TDataCondition False
 
 
 {-| Name of a literal data item used for encoding with a text channel. Unlike
@@ -18824,7 +18824,7 @@ selection is true; the third parameter is the encoding if the selection is false
 -}
 tSelectionCondition : BooleanOp -> List TextChannel -> List TextChannel -> TextChannel
 tSelectionCondition bo tTcs =
-    TDataCondition [ ( bo, tTcs ) ]
+    TDataCondition True [ ( bo, tTcs ) ]
 
 
 {-| Literal string value when encoding with a text channel. Can be useful for
@@ -20687,28 +20687,6 @@ cInterpolateSpec iType =
             JE.object [ ( "type", JE.string "cubehelix-long" ), ( "gamma", JE.float gamma ) ]
 
 
-containsSelection : BooleanOp -> Bool
-containsSelection bo =
-    case bo of
-        Selection _ ->
-            True
-
-        SelectionName _ ->
-            True
-
-        And bo1 bo2 ->
-            containsSelection bo1 || containsSelection bo2
-
-        Or bo1 bo2 ->
-            containsSelection bo1 || containsSelection bo2
-
-        Not bo1 ->
-            containsSelection bo1
-
-        _ ->
-            False
-
-
 colorGradientLabel : ColorGradient -> String
 colorGradientLabel gr =
     case gr of
@@ -21753,8 +21731,8 @@ hyperlinkChannelProperties field =
         HBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        HDataCondition predicate ifClause elseClause ->
-            if containsSelection predicate then
+        HDataCondition isSelection predicate ifClause elseClause ->
+            if isSelection then
                 ( "condition", JE.object (( "selection", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
                     :: List.concatMap hyperlinkChannelProperties elseClause
 
@@ -22321,10 +22299,10 @@ markChannelProperties field =
         MBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        MDataCondition tests elseClause ->
+        MDataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    if containsSelection predicate then
+                    if isSelection then
                         JE.object
                             (( "selection", booleanOpSpec predicate )
                                 :: List.concatMap markChannelProperties ifClause
@@ -23025,10 +23003,10 @@ orderChannelProperties oDef =
         ONumber n ->
             [ ( "value", JE.float n ) ]
 
-        ODataCondition tests elseClause ->
+        ODataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    if containsSelection predicate then
+                    if isSelection then
                         JE.object
                             (( "selection", booleanOpSpec predicate )
                                 :: List.concatMap orderChannelProperties ifClause
@@ -24300,10 +24278,10 @@ textChannelProperties tDef =
         TFormatAsCustom formatter ->
             [ ( "formatType", JE.string formatter ) ]
 
-        TDataCondition tests elseClause ->
+        TDataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    if containsSelection predicate then
+                    if isSelection then
                         JE.object
                             (( "selection", booleanOpSpec predicate )
                                 :: List.concatMap textChannelProperties ifClause
