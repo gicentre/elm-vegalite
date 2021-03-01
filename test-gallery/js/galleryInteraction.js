@@ -12909,37 +12909,52 @@ var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 7:
-			var selName = field.a;
-			var ifClause = field.b;
-			var elseClause = field.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
-		case 8:
 			var predicate = field.a;
 			var ifClause = field.b;
 			var elseClause = field.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'test',
-								$author$project$VegaLite$booleanOpSpec(predicate)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
+			switch (predicate.$) {
+				case 3:
+					var s = predicate.a;
+					return A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'condition',
+							$elm$json$Json$Encode$object(
+								A2(
+									$elm$core$List$cons,
+									_Utils_Tuple2(
+										'selection',
+										$elm$json$Json$Encode$string(s)),
+									A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
+				case 4:
+					var s = predicate.a;
+					return A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'condition',
+							$elm$json$Json$Encode$object(
+								A2(
+									$elm$core$List$cons,
+									_Utils_Tuple2(
+										'selection',
+										$elm$json$Json$Encode$string(s)),
+									A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
+				default:
+					return A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'condition',
+							$elm$json$Json$Encode$object(
+								A2(
+									$elm$core$List$cons,
+									_Utils_Tuple2(
+										'test',
+										$author$project$VegaLite$booleanOpSpec(predicate)),
+									A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
+			}
 		case 6:
 			var tu = field.a;
 			return _List_fromArray(
