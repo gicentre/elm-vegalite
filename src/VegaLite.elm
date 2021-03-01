@@ -4759,7 +4759,6 @@ type HyperlinkChannel
     | HBinned
     | HAggregate Operation
     | HTimeUnit TimeUnit
-    | HSelectionCondition BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
     | HDataCondition BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
     | HString String
 
@@ -11764,8 +11763,8 @@ provides the selection to evaluate, the second the encoding to apply if the hype
 has been selected, the third the encoding if it is not selected.
 -}
 hSelectionCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
-hSelectionCondition op tCh fCh =
-    HSelectionCondition op tCh fCh
+hSelectionCondition =
+    HDataCondition
 
 
 {-| HSL color interpolation for continuous color scales.
@@ -21732,13 +21731,22 @@ hyperlinkChannelProperties field =
         HBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        HSelectionCondition selName ifClause elseClause ->
-            ( "condition", JE.object (( "selection", booleanOpSpec selName ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                :: List.concatMap hyperlinkChannelProperties elseClause
-
         HDataCondition predicate ifClause elseClause ->
-            ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                :: List.concatMap hyperlinkChannelProperties elseClause
+            case predicate of
+                -- Param p ->
+                --     ( "condition", JE.object (( "param", JE.string p ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                --         :: List.concatMap hyperlinkChannelProperties elseClause
+                Selection s ->
+                    ( "condition", JE.object (( "selection", JE.string s ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                        :: List.concatMap hyperlinkChannelProperties elseClause
+
+                SelectionName s ->
+                    ( "condition", JE.object (( "selection", JE.string s ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                        :: List.concatMap hyperlinkChannelProperties elseClause
+
+                _ ->
+                    ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                        :: List.concatMap hyperlinkChannelProperties elseClause
 
         HTimeUnit tu ->
             [ ( "timeUnit", timeUnitSpec tu ) ]
