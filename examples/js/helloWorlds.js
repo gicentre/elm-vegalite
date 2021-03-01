@@ -4705,6 +4705,38 @@ var $author$project$VegaLite$bin = function (bProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$binProperty, bProps)));
 };
+var $author$project$VegaLite$containsSelection = function (bo) {
+	containsSelection:
+	while (true) {
+		switch (bo.$) {
+			case 3:
+				var string = bo.a;
+				return true;
+			case 4:
+				var string = bo.a;
+				return true;
+			case 5:
+				var booleanOp = bo.a;
+				var booleanOp2 = bo.b;
+				var $temp$bo = booleanOp;
+				bo = $temp$bo;
+				continue containsSelection;
+			case 6:
+				var booleanOp = bo.a;
+				var booleanOp2 = bo.b;
+				var $temp$bo = booleanOp;
+				bo = $temp$bo;
+				continue containsSelection;
+			case 7:
+				var booleanOp = bo.a;
+				var $temp$bo = booleanOp;
+				bo = $temp$bo;
+				continue containsSelection;
+			default:
+				return false;
+		}
+	}
+};
 var $author$project$VegaLite$dataValueSpec = function (val) {
 	switch (val.$) {
 		case 2:
@@ -6244,37 +6276,22 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 		case 14:
 			var tests = field.a;
 			var elseClause = field.b;
-			var testClause = function (_v7) {
-				var predicate = _v7.a;
-				var ifClause = _v7.b;
-				switch (predicate.$) {
-					case 3:
-						var s = predicate.a;
-						return $elm$json$Json$Encode$object(
-							A2(
-								$elm$core$List$cons,
-								_Utils_Tuple2(
-									'selection',
-									$elm$json$Json$Encode$string(s)),
-								A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-					case 4:
-						var s = predicate.a;
-						return $elm$json$Json$Encode$object(
-							A2(
-								$elm$core$List$cons,
-								_Utils_Tuple2(
-									'selection',
-									$elm$json$Json$Encode$string(s)),
-								A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-					default:
-						return $elm$json$Json$Encode$object(
-							A2(
-								$elm$core$List$cons,
-								_Utils_Tuple2(
-									'test',
-									$author$project$VegaLite$booleanOpSpec(predicate)),
-								A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-				}
+			var testClause = function (_v6) {
+				var predicate = _v6.a;
+				var ifClause = _v6.b;
+				return $author$project$VegaLite$containsSelection(predicate) ? $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'selection',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
 			};
 			return A2(
 				$elm$core$List$cons,
