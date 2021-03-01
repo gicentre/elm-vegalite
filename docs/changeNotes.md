@@ -32,9 +32,13 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### V4.0 Deprecations
 
+- `mDataCondition` and `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a simplified `mCondition` (and its `o`, `t` and `h` equivalents) (VL5.0).
+
 - `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
 
 ### Additions
+
+- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a `Predicate` for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`).
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 

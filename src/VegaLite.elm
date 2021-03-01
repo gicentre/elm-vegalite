@@ -1020,20 +1020,17 @@ module VegaLite exposing
     , seGlobal
     , seUnion
     , seIntersection
-    , mSelectionCondition
-    , mDataCondition
-    , oSelectionCondition
-    , oDataCondition
-    , tSelectionCondition
-    , tDataCondition
-    , hDataCondition
-    , hSelectionCondition
+    , mCondition
+    , oCondition
+    , tCondition
+    , hCondition
+    , prParam
+    , prParamEmpty
+    , prTest
+    , expr
     , and
     , or
     , not
-    , expr
-    , selected
-    , selectionName
     , name
     , description
     , height
@@ -1503,6 +1500,7 @@ module VegaLite exposing
     , PivotProperty
     , PointMarker
     , PositionChannel
+    , Predicate
     , Projection
     , ProjectionProperty
     , PSelect
@@ -1544,9 +1542,19 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
+    , hDataCondition
+    , hSelectionCondition
     , lecoShortTimeLabels
+    , mDataCondition
+    , mSelectionCondition
+    , oDataCondition
+    , oSelectionCondition
     , pBand
     , scDomainMid
+    , selected
+    , selectionName
+    , tDataCondition
+    , tSelectionCondition
     -- , axcoStyle
     --, leUnselectedOpacity
     -- TODO: CHECK IF THESE WILL BE NEEDED
@@ -3126,70 +3134,27 @@ See the [Vega-lite resolve selection documentation](https://vega.github.io/vega-
 
 ## 7.3 Conditional Channel Encodings
 
-To make channel encoding conditional on the result of some interaction, use
-[mSelectionCondition](#mSelectionCondition) (and its 'o', 't' and 'h' variants).
-Similarly [mDataCondition](#mDataCondition) (and its 'o', 't' and 'h' variants)
-will encode a mark conditionally depending on some data properties such as whether
-a datum is null or an outlier.
+Channel encoding can be made conditional on the result of some interaction or data
+condition. This allows mark appearance to depending on some properties such as whether
+a datum is null or whether it has been selected through interaction. The condition
+to test (predicate) is specified as a parameter with [params](#params), and the
+resulting encodings that are dependent on the predicate specified via
+[mCondition](#mCondition) (and its 'o', 't' and 'h' variants).
 
-For interaction, once a selection has been defined and named, supplying a set of
-encodings allow mark encodings to become dependent on that selection.
-`mSelectionCondition` is followed firstly by a (Boolean) selection and then an
-encoding if that selection is true and another encoding to be applied if it is false.
-The color specification below states "whenever data marks are selected with an
-interval mouse drag, encode the cylinder field with an ordinal color scheme,
-otherwise make them grey":
+TODO: XXXX Provide examples
 
-    sel =
-        selection << select "myBrush" Interval []
+@docs mCondition
+@docs oCondition
+@docs tCondition
+@docs hCondition
 
-    enc =
-        encoding
-            << position X [ pName "Horsepower", pQuant ]
-            << position Y [ pName "Miles_per_Gallon", pQuant ]
-            << color
-                [ mSelectionCondition (selectionName "myBrush")
-                    [ mName "Cylinders", mOrdinal ]
-                    [ mStr "grey" ]
-                ]
-
-In a similar way, `mDataCondition` will encode a mark depending on whether any
-predicate tests are satisfied. Unlike selections, multiple conditions and associated
-encodings can be specified. Each test condition is evaluated in order and only on
-failure of the test does encoding proceed to the next test. If no tests are true,
-the encoding in the final parameter is applied in a similar way to 'case of'
-expressions:
-
-    enc =
-        encoding
-            << position X [ pName "value", pOrdinal ]
-            << color
-                [ mDataCondition
-                    [ ( expr "datum.value < 40", [ mStr "blue" ] )
-                    , ( expr "datum.value < 50", [ mStr "red" ] )
-                    , ( expr "datum.value < 60", [ mStr "yellow" ] )
-                    ]
-                    [ mStr "black" ]
-                ]
-
-See the
-[Vega-Lite documentation](https://vega.github.io/vega-lite/docs/condition.html).
-
-@docs mSelectionCondition
-@docs mDataCondition
-@docs oSelectionCondition
-@docs oDataCondition
-@docs tSelectionCondition
-@docs tDataCondition
-@docs hDataCondition
-@docs hSelectionCondition
-
+@docs prParam
+@docs prParamEmpty
+@docs prTest
+@docs expr
 @docs and
 @docs or
 @docs not
-@docs expr
-@docs selected
-@docs selectionName
 
 ---
 
@@ -3785,6 +3750,7 @@ to the functions that generate them.
 @docs PivotProperty
 @docs PointMarker
 @docs PositionChannel
+@docs Predicate
 @docs Projection
 @docs ProjectionProperty
 @docs PSelect
@@ -3830,9 +3796,19 @@ to the functions that generate them.
 
 # 11. Deprecated Functions
 
+@docs hDataCondition
+@docs hSelectionCondition
 @docs lecoShortTimeLabels
+@docs mDataCondition
+@docs mSelectionCondition
+@docs oDataCondition
+@docs oSelectionCondition
 @docs pBand
 @docs scDomainMid
+@docs selected
+@docs selectionName
+@docs tDataCondition
+@docs tSelectionCondition
 
 -}
 
@@ -4172,18 +4148,21 @@ type BlendMode
     | BMExpr String
 
 
-{-| Generated by [expr](#expr), [fiOp](#fiOp), [fiOpTrans](#fiOpTrans), [selected](#selected),
-[selectionName](#selectionName), [and](#and), [or](#or) and [not](#not).
+{-| Generated by [expr](#expr), [fiOp](#fiOp), [fiOpTrans](#fiOpTrans), [and](#and),
+[or](#or) and [not](#not).
+
+TODO: XXXX Deprecate Selection and SelectionName variants
+
 -}
 type BooleanOp
     = Expr String
     | FilterOp Filter
     | FilterOpTrans MarkChannel Filter
-    | Selection String
-    | SelectionName String
     | And BooleanOp BooleanOp
     | Or BooleanOp BooleanOp
     | Not BooleanOp
+    | Selection String
+    | SelectionName String
 
 
 {-| Generated by [boFull](#boFull) and [boFlush](#boFlush).
@@ -4748,8 +4727,7 @@ type HeaderProperty
 {-| Generated by [hName](#hName), [hRepeat](#hRepeat), [hQuant](#hQuant),
 [hNominal](#hNominal), [hOrdinal](#hOrdinal), [hTemporal](#hTemporal), [hGeo](#hGeo),
 [hMType](#hMType), [hBin](#hBin), [hBinned](#hBinned), [hAggregate](#hAggregate),
-[hTimeUnit](#hTimeUnit), [hDataCondition](#hDataCondition),
-[hSelectionCondition](#hSelectionCondition) and [hStr](#hStr).
+[hTimeUnit](#hTimeUnit), [hCondition](#hCondition) and [hStr](#hStr).
 -}
 type HyperlinkChannel
     = HName String
@@ -4759,8 +4737,9 @@ type HyperlinkChannel
     | HBinned
     | HAggregate Operation
     | HTimeUnit TimeUnit
-    | HDataCondition Bool BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
+    | HCondition Predicate (List HyperlinkChannel) (List HyperlinkChannel)
     | HString String
+    | HDataCondition Bool BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
 
 
 {-| Generated by [imValue](#imValue), [imMean](#imMean), [imMedian](#imMedian),
@@ -5062,12 +5041,12 @@ type Mark
 [mOrdinal](#mOrdinal), [mTemporal](#mTemporal), [mGeo](#mGeo), [mMType](#mMType),
 [mRepeat](#mRepeat), [mRepeatDatum](#mRepeatDatum), [mScale](#mScale), [mBand](#mBand),
 [mBin](#mBin), [mBinned](#mBinned) [mTimeUnit](#mTimeUnit), [mTitle](#mTitle),
-[mAggregate](#mAggregate), [mLegend](#mLegend), [mSort](#mSort),
-[mSelectionCondition](#mSelectionCondition), [mDataCondition](#mDataCondition),
+[mAggregate](#mAggregate), [mLegend](#mLegend), [mSort](#mSort), [mCondition](#mCondition),
 [mPath](#mPath), [mNum](#mNum), [mStr](#mStr) and [mBoo](#mBoo).
 -}
 type MarkChannel
     = MName String
+    | MCondition Predicate (List MarkChannel) (List MarkChannel)
     | MDatum DataValue
     | MRepeat Arrangement
     | MRepeatDatum Arrangement
@@ -5081,11 +5060,11 @@ type MarkChannel
     | MTitle String
     | MAggregate Operation
     | MLegend (List LegendProperty)
-    | MDataCondition Bool (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
     | MPath String
     | MNumber Float
     | MString String
     | MBoolean Bool
+    | MDataCondition Bool (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
 
 
 {-| Generated by [miBasis](#miBasis), [miBasisClosed](#miBasisClosed),
@@ -5308,18 +5287,19 @@ type Operation
 {-| Generated by [oName](#oName), [oRepeat](#oRepeat), [oQuant](#oQuant), [oNominal](#oNominal),
 [oOrdinal](#oOrdinal), [oTemporal](#oTemporal), [oGeo](#oGeo), [oMType](#oMType),
 [oBin](#oBin), [oAggregate](#oAggregate), [oTimeUnit](#oTimeUnit), [oSort](#oSort),
-[oNum](#oNum), [oSelectionCondition](#oSelectionCondition) and [oDataCondition](#oDataCondition).
+[oNum](#oNum and, [oCondition](#oCondition).
 -}
 type OrderChannel
     = OName String
+    | OCondition Predicate (List OrderChannel) (List OrderChannel)
     | ORepeat Arrangement
     | OmType Measurement
     | OBin (List BinProperty)
     | OAggregate Operation
     | OTimeUnit TimeUnit
     | OSort (List SortProperty)
-    | ODataCondition Bool (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
     | ONumber Float
+    | ODataCondition Bool (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
 
 
 {-| Generated by [osNone](#osNone), [osGreedy](#osGreedy) and [osParity](#osParity).
@@ -5340,7 +5320,8 @@ type Padding
     | PEdgesExpr String String String String
 
 
-{-| Generated by [paBind](#paBind), [paExpr](#paExpr) and [paValue](#paValue).
+{-| Generated by [paBind](#paBind), [paExpr](#paExpr), [paValue](#paValue) and
+[paSelect](#paSelect).
 -}
 type ParamProperty
     = PBind PBinding
@@ -5507,6 +5488,14 @@ type ProjectionProperty
     | PRatio Float
     | PSpacing Float
     | PTilt Float
+
+
+{-| Generated by [prParam](#prParam), [prParamEmpty](#prParamEmpty) and [prTest](#prTest).
+-}
+type Predicate
+    = Param String
+    | ParamEmpty String
+    | Test BooleanOp
 
 
 {-| Generated by [paPoint](#paPoint) and [paInterval](#paInterval).
@@ -5897,8 +5886,7 @@ type SummaryExtent
 {-| Generated by [tName](#tName), [tRepeat](#tRepeat), [tQuant](#tQuant), [tNominal](#tNominal),
 [tOrdinal](#tOrdinal), [tTemporal](#tTemporal), [tGeo](#tGeo),[tMType](#tMType),
 [tBin](#tBin), [tBinned](#tBinned), [tAggregate](#tAggregate), [tTimeUnit](#tTimeUnit),
-[tTitle](#tTitle), [tSelectionCondition](#tSelectionCondition),
-[tDataCondition](#tDataCondition), [tFormat](#tFormat), [tFormatAsNum](#tFormatAsNum),
+[tTitle](#tTitle), [tCondition](#tCondition), [tFormat](#tFormat), [tFormatAsNum](#tFormatAsNum),
 [tFormatAsTemporal](#tFormatAsTemporal), [tFormatAsCustom](#tFormatAsCustom),
 [tStr](#tStr) and [tDatum](#tDatum).
 -}
@@ -5911,13 +5899,14 @@ type TextChannel
     | TAggregate Operation
     | TTimeUnit TimeUnit
     | TTitle String
-    | TDataCondition Bool (List ( BooleanOp, List TextChannel )) (List TextChannel)
+    | TCondition Predicate (List TextChannel) (List TextChannel)
     | TFormat String
     | TFormatAsNum
     | TFormatAsTemporal
     | TFormatAsCustom String
     | TString String
     | TDatum DataValue
+    | TDataCondition Bool (List ( BooleanOp, List TextChannel )) (List TextChannel)
 
 
 {-| Generated by [tdLeftToRight](#tdLeftToRight), [tdRightToLeft](#tdRightToLeft)
@@ -11393,9 +11382,22 @@ hConcat specs =
     ( VLHConcat, toList specs )
 
 
+{-| Make a hyperlink channel conditional a predicate expression.
+
+TODO: XXXX Complete comments with example
+
+-}
+hCondition : Predicate -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
+hCondition =
+    HCondition
+
+
 {-| Make a hyperlink channel conditional on some predicate expression. The first
 parameter provides the expression to evaluate, the second the encoding to apply
 if the expression is true, the third the encoding if the expression is false.
+
+TODO: XXXX Deprecate with example
+
 -}
 hDataCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
 hDataCondition =
@@ -11761,6 +11763,9 @@ hRepeat =
 {-| Make a hyperlink channel conditional on interactive selection. The first parameter
 provides the selection to evaluate, the second the encoding to apply if the hyperlink
 has been selected, the third the encoding if it is not selected.
+
+TODO: XXXX Deprecate comments.
+
 -}
 hSelectionCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
 hSelectionCondition =
@@ -14488,6 +14493,16 @@ mBoo =
     MBoolean
 
 
+{-| Make a mark channel conditional a predicate expression.
+
+TODO: XXXX Complete comments with example
+
+-}
+mCondition : Predicate -> List MarkChannel -> List MarkChannel -> MarkChannel
+mCondition =
+    MCondition
+
+
 {-| Make a mark channel conditional on one or more predicate expressions. The first
 parameter is a list of tuples each pairing a test condition with the encoding if
 that condition evaluates to true. The second is the encoding if none of the tests
@@ -14497,6 +14512,8 @@ are true.
         [ mDataCondition [ ( expr "datum.myField === null", [ mStr "grey" ] ) ]
             [ mStr "black" ]
         ]
+
+TODO: XXXX Deprecate comments
 
 -}
 mDataCondition : List ( BooleanOp, List MarkChannel ) -> List MarkChannel -> MarkChannel
@@ -14808,6 +14825,8 @@ is true; the third parameter is the encoding if the selection is false.
             [ mName "myField", mOrdinal ]
             [ mStr "grey" ]
         ]
+
+TODO: XXXX Deprecate comments
 
 -}
 mSelectionCondition : BooleanOp -> List MarkChannel -> List MarkChannel -> MarkChannel
@@ -15270,6 +15289,16 @@ oBin =
     OBin
 
 
+{-| Make an order channel conditional a predicate expression.
+
+TODO: XXXX Complete comments with example
+
+-}
+oCondition : Predicate -> List OrderChannel -> List OrderChannel -> OrderChannel
+oCondition =
+    OCondition
+
+
 {-| Make an order channel conditional on one or more predicate expressions. The
 first parameter is a list of tuples each pairing a test condition with the encoding
 if that condition evaluates to true. The second is the encoding if none of the
@@ -15278,6 +15307,8 @@ tests are true.
     order
         [ oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ]
         ]
+
+TODO: XXXX Depreicate
 
 -}
 oDataCondition : List ( BooleanOp, List OrderChannel ) -> List OrderChannel -> OrderChannel
@@ -15611,6 +15642,8 @@ is true; the third parameter is the encoding if the selection is false.
             [ oNum 0 ]
         ]
 
+TODO: XXXX Deprecate comments.
+
 -}
 oSelectionCondition : BooleanOp -> List OrderChannel -> List OrderChannel -> OrderChannel
 oSelectionCondition bo tOcs =
@@ -15761,7 +15794,7 @@ parse =
     Parse
 
 
-{-| Identify the selection type (point or interval) to be used by a selection parameter.
+{-| Specify a selection parameter to be used for interaction.
 -}
 paSelect : PSelect -> ParamProperty
 paSelect =
@@ -16164,6 +16197,23 @@ projection pProps =
     ( VLProjection, JE.object (List.map projectionProperty pProps) )
 
 
+{-| Parameter name that should evaluate to either true or false for use in functions
+that use predicates, such as [mCondition](#mCondition).
+-}
+prParam : String -> Predicate
+prParam =
+    Param
+
+
+{-| Parameter name that should evaluate to either true or false for use in selections
+for conditional encoduing. Same as [prParam](#prParam) except that an empty selection
+is assumed to be false.
+-}
+prParamEmpty : String -> Predicate
+prParamEmpty =
+    ParamEmpty
+
+
 {-| Reflect the x-coordinates after performing an identity projection. This
 creates a left-right mirror image of the geoshape marks when subject to an
 [identityProjection](#identityProjection).
@@ -16203,6 +16253,14 @@ prScale =
 prSpacing : Float -> ProjectionProperty
 prSpacing =
     PSpacing
+
+
+{-| Test that should evaluate to either true or false for use in functions
+that use predicates, such as [mCondition](#mCondition)
+-}
+prTest : BooleanOp -> Predicate
+prTest =
+    Test
 
 
 {-| 'Satellite' map projection tilt.
@@ -17437,6 +17495,8 @@ a weight of more than 30:
     transform
         << filter (fCompose (and (selected "brush") (expr "datum.weight > 30")))
 
+TODO: XXXX Deprecate
+
 -}
 selected : String -> BooleanOp
 selected =
@@ -17451,6 +17511,8 @@ selected =
             << select "myBrush" seInterval []
             << select "myPaintbrush" seMulti [ seOn "mouseover", seNearest True ]
 
+TODO: XXXX Deprecate
+
 -}
 selection : List LabelledSpec -> ( VLProperty, Spec )
 selection sels =
@@ -17464,6 +17526,8 @@ selection sels =
             [ mName "myField", mNominal ]
             [ mStr "grey" ]
         ]
+
+TODO: XXXX Update to reflect new interaction model.
 
 -}
 selectionName : String -> BooleanOp
@@ -18028,10 +18092,23 @@ tBinned =
     TBinned
 
 
+{-| Make a text channel conditional a predicate expression.
+
+TODO: XXXX Complete comments with example
+
+-}
+tCondition : Predicate -> List TextChannel -> List TextChannel -> TextChannel
+tCondition =
+    TCondition
+
+
 {-| Make a text channel conditional on one or more predicate expressions. The first
 parameter is a list of tuples each pairing an expression to evaluate with the encoding
 if that expression is true. The second is the encoding if none of the expressions
 are evaluated as true.
+
+TODO: XXXX Deprecate comments
+
 -}
 tDataCondition : List ( BooleanOp, List TextChannel ) -> List TextChannel -> TextChannel
 tDataCondition =
@@ -18821,6 +18898,9 @@ true =
 {-| Make a text channel conditional on interactive selection. The first parameter
 is a selection condition to evaluate; the second the encoding to apply if that
 selection is true; the third parameter is the encoding if the selection is false.
+
+TODO: XXXX Deprecate comments.
+
 -}
 tSelectionCondition : BooleanOp -> List TextChannel -> List TextChannel -> TextChannel
 tSelectionCondition bo tTcs =
@@ -20602,12 +20682,6 @@ booleanOpSpec bo =
         FilterOpTrans tr f ->
             trFilterSpec tr f
 
-        SelectionName selName ->
-            JE.string selName
-
-        Selection sel ->
-            JE.object [ ( "selection", JE.string sel ) ]
-
         And operand1 operand2 ->
             JE.object [ ( "and", JE.list booleanOpSpec [ operand1, operand2 ] ) ]
 
@@ -20616,6 +20690,12 @@ booleanOpSpec bo =
 
         Not operand ->
             JE.object [ ( "not", booleanOpSpec operand ) ]
+
+        SelectionName selName ->
+            JE.string selName
+
+        Selection sel ->
+            JE.object [ ( "selection", JE.string sel ) ]
 
 
 boundsSpec : Bounds -> Spec
@@ -21731,6 +21811,10 @@ hyperlinkChannelProperties field =
         HBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
+        HCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap hyperlinkChannelProperties ifClause) )
+                :: List.concatMap hyperlinkChannelProperties elseClause
+
         HDataCondition isSelection predicate ifClause elseClause ->
             if isSelection then
                 ( "condition", JE.object (( "selection", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
@@ -22298,6 +22382,10 @@ markChannelProperties field =
 
         MBinned ->
             [ ( "bin", JE.string "binned" ) ]
+
+        MCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap markChannelProperties ifClause) )
+                :: List.concatMap markChannelProperties elseClause
 
         MDataCondition isSelection tests elseClause ->
             let
@@ -23003,6 +23091,10 @@ orderChannelProperties oDef =
         ONumber n ->
             [ ( "value", JE.float n ) ]
 
+        OCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap orderChannelProperties ifClause) )
+                :: List.concatMap orderChannelProperties elseClause
+
         ODataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
@@ -23296,6 +23388,19 @@ positionLabel pChannel =
 
         Latitude2 ->
             "latitude2"
+
+
+predicateProperties : Predicate -> List LabelledSpec
+predicateProperties predicate =
+    case predicate of
+        Param p ->
+            [ ( "param", JE.string p ) ]
+
+        ParamEmpty p ->
+            [ ( "param", JE.string p ), ( "empty", JE.bool False ) ]
+
+        Test bo ->
+            [ ( "test", booleanOpSpec bo ) ]
 
 
 projectionLabel : Projection -> String
@@ -24277,6 +24382,10 @@ textChannelProperties tDef =
 
         TFormatAsCustom formatter ->
             [ ( "formatType", JE.string formatter ) ]
+
+        TCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap textChannelProperties ifClause) )
+                :: List.concatMap textChannelProperties elseClause
 
         TDataCondition isSelection tests elseClause ->
             let

@@ -143,12 +143,7 @@ param4 =
             encoding
                 << position X [ pName "Cylinders" ]
                 << position Y [ pName "Origin" ]
-                << color
-                    -- TODO: Provide new VL5 selection specification
-                    [ mSelectionCondition (selectionName "pts")
-                        [ mAggregate opCount ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParamEmpty "pts") [ mAggregate opCount ] [ mStr "grey" ] ]
     in
     toVegaLite [ width 240, ps, data, enc [], rect [] ]
 
