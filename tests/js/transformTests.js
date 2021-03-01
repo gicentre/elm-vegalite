@@ -6831,26 +6831,20 @@ var $author$project$VegaLite$containsSelection = function (bo) {
 	while (true) {
 		switch (bo.$) {
 			case 3:
-				var string = bo.a;
 				return true;
 			case 4:
-				var string = bo.a;
 				return true;
 			case 5:
-				var booleanOp = bo.a;
-				var booleanOp2 = bo.b;
-				var $temp$bo = booleanOp;
-				bo = $temp$bo;
-				continue containsSelection;
+				var bo1 = bo.a;
+				var bo2 = bo.b;
+				return $author$project$VegaLite$containsSelection(bo1) || $author$project$VegaLite$containsSelection(bo2);
 			case 6:
-				var booleanOp = bo.a;
-				var booleanOp2 = bo.b;
-				var $temp$bo = booleanOp;
-				bo = $temp$bo;
-				continue containsSelection;
+				var bo1 = bo.a;
+				var bo2 = bo.b;
+				return $author$project$VegaLite$containsSelection(bo1) || $author$project$VegaLite$containsSelection(bo2);
 			case 7:
-				var booleanOp = bo.a;
-				var $temp$bo = booleanOp;
+				var bo1 = bo.a;
+				var $temp$bo = bo1;
 				bo = $temp$bo;
 				continue containsSelection;
 			default:
