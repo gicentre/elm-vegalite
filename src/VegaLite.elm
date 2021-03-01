@@ -5913,7 +5913,6 @@ type TextChannel
     | TAggregate Operation
     | TTimeUnit TimeUnit
     | TTitle String
-    | TSelectionCondition BooleanOp (List TextChannel) (List TextChannel)
     | TDataCondition (List ( BooleanOp, List TextChannel )) (List TextChannel)
     | TFormat String
     | TFormatAsNum
@@ -18826,8 +18825,8 @@ is a selection condition to evaluate; the second the encoding to apply if that
 selection is true; the third parameter is the encoding if the selection is false.
 -}
 tSelectionCondition : BooleanOp -> List TextChannel -> List TextChannel -> TextChannel
-tSelectionCondition =
-    TSelectionCondition
+tSelectionCondition bo tTcs =
+    TDataCondition [ ( bo, tTcs ) ]
 
 
 {-| Literal string value when encoding with a text channel. Can be useful for
@@ -24294,22 +24293,32 @@ textChannelProperties tDef =
         TFormatAsCustom formatter ->
             [ ( "formatType", JE.string formatter ) ]
 
-        TSelectionCondition selName ifClause elseClause ->
-            ( "condition"
-            , JE.object
-                (( "selection", booleanOpSpec selName )
-                    :: List.concatMap textChannelProperties ifClause
-                )
-            )
-                :: List.concatMap textChannelProperties elseClause
-
         TDataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    JE.object
-                        (( "test", booleanOpSpec predicate )
-                            :: List.concatMap textChannelProperties ifClause
-                        )
+                    case predicate of
+                        -- Param p ->
+                        --     JE.object
+                        --         (( "param", JE.string p )
+                        --             :: List.concatMap textChannelProperties ifClause
+                        --         )
+                        Selection s ->
+                            JE.object
+                                (( "selection", JE.string s )
+                                    :: List.concatMap textChannelProperties ifClause
+                                )
+
+                        SelectionName s ->
+                            JE.object
+                                (( "selection", JE.string s )
+                                    :: List.concatMap textChannelProperties ifClause
+                                )
+
+                        _ ->
+                            JE.object
+                                (( "test", booleanOpSpec predicate )
+                                    :: List.concatMap textChannelProperties ifClause
+                                )
             in
             ( "condition", JE.list testClause tests )
                 :: List.concatMap textChannelProperties elseClause
