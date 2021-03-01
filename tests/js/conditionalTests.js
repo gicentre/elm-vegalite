@@ -6734,32 +6734,6 @@ var $author$project$VegaLite$bin = function (bProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$binProperty, bProps)));
 };
-var $author$project$VegaLite$containsSelection = function (bo) {
-	containsSelection:
-	while (true) {
-		switch (bo.$) {
-			case 3:
-				return true;
-			case 4:
-				return true;
-			case 5:
-				var bo1 = bo.a;
-				var bo2 = bo.b;
-				return $author$project$VegaLite$containsSelection(bo1) || $author$project$VegaLite$containsSelection(bo2);
-			case 6:
-				var bo1 = bo.a;
-				var bo2 = bo.b;
-				return $author$project$VegaLite$containsSelection(bo1) || $author$project$VegaLite$containsSelection(bo2);
-			case 7:
-				var bo1 = bo.a;
-				var $temp$bo = bo1;
-				bo = $temp$bo;
-				continue containsSelection;
-			default:
-				return false;
-		}
-	}
-};
 var $author$project$VegaLite$dayLabel = function (dayName) {
 	switch (dayName) {
 		case 0:
@@ -8399,12 +8373,13 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 14:
-			var tests = field.a;
-			var elseClause = field.b;
+			var isSelection = field.a;
+			var tests = field.b;
+			var elseClause = field.c;
 			var testClause = function (_v6) {
 				var predicate = _v6.a;
 				var ifClause = _v6.b;
-				return $author$project$VegaLite$containsSelection(predicate) ? $elm$json$Json$Encode$object(
+				return isSelection ? $elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
 						_Utils_Tuple2(
@@ -12989,11 +12964,11 @@ var $author$project$VegaLite$configure = function (configs) {
 		31,
 		$elm$json$Json$Encode$object(configs));
 };
-var $author$project$VegaLite$MDataCondition = F2(
-	function (a, b) {
-		return {$: 14, a: a, b: b};
+var $author$project$VegaLite$MDataCondition = F3(
+	function (a, b, c) {
+		return {$: 14, a: a, b: b, c: c};
 	});
-var $author$project$VegaLite$mDataCondition = $author$project$VegaLite$MDataCondition;
+var $author$project$VegaLite$mDataCondition = $author$project$VegaLite$MDataCondition(false);
 var $author$project$VegaLite$MString = function (a) {
 	return {$: 17, a: a};
 };
@@ -13398,13 +13373,15 @@ var $author$project$VegaLite$ONumber = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$oNum = $author$project$VegaLite$ONumber;
-var $author$project$VegaLite$ODataCondition = F2(
-	function (a, b) {
-		return {$: 7, a: a, b: b};
+var $author$project$VegaLite$ODataCondition = F3(
+	function (a, b, c) {
+		return {$: 7, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$oSelectionCondition = F2(
 	function (bo, tOcs) {
-		return $author$project$VegaLite$ODataCondition(
+		return A2(
+			$author$project$VegaLite$ODataCondition,
+			true,
 			_List_fromArray(
 				[
 					_Utils_Tuple2(bo, tOcs)
@@ -13527,12 +13504,13 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 					$elm$json$Json$Encode$float(n))
 				]);
 		default:
-			var tests = oDef.a;
-			var elseClause = oDef.b;
+			var isSelection = oDef.a;
+			var tests = oDef.b;
+			var elseClause = oDef.c;
 			var testClause = function (_v5) {
 				var predicate = _v5.a;
 				var ifClause = _v5.b;
-				return $author$project$VegaLite$containsSelection(predicate) ? $elm$json$Json$Encode$object(
+				return isSelection ? $elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
 						_Utils_Tuple2(
@@ -13769,7 +13747,7 @@ var $author$project$VegaLite$maStroke = function (s) {
 	return $author$project$VegaLite$MStroke(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$oDataCondition = $author$project$VegaLite$ODataCondition;
+var $author$project$VegaLite$oDataCondition = $author$project$VegaLite$ODataCondition(false);
 var $author$project$ConditionalTests$orderCondition2 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13948,7 +13926,9 @@ var $author$project$ConditionalTests$selectionCondition1 = function () {
 }();
 var $author$project$VegaLite$mSelectionCondition = F2(
 	function (bo, tMcs) {
-		return $author$project$VegaLite$MDataCondition(
+		return A2(
+			$author$project$VegaLite$MDataCondition,
+			true,
 			_List_fromArray(
 				[
 					_Utils_Tuple2(bo, tMcs)
