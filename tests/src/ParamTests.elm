@@ -136,8 +136,7 @@ param4 =
             dataFromUrl (path ++ "cars.json") []
 
         ps =
-            params
-                [ ( "pts", [ paSelect paInterval ] ) ]
+            params [ ( "pts", [ paSelect paInterval ] ) ]
 
         enc =
             encoding
@@ -146,6 +145,25 @@ param4 =
                 << color [ mCondition (prParamEmpty "pts") [ mAggregate opCount ] [ mStr "grey" ] ]
     in
     toVegaLite [ width 240, ps, data, enc [], rect [] ]
+
+
+param5 : Spec
+param5 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                [ ( "paintbrush", [ paSelect paInterval ] ) ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << size [ mCondition (prParamEmpty "paintbrush") [ mNum 300 ] [ mNum 50 ] ]
+    in
+    toVegaLite [ ps, data, enc [], point [] ]
 
 
 
@@ -158,6 +176,7 @@ specs =
     , ( "param2", param2 )
     , ( "param3", param3 )
     , ( "param4", param4 )
+    , ( "param5", param5 )
     ]
 
 

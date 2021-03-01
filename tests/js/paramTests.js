@@ -13670,12 +13670,85 @@ var $author$project$ParamTests$param4 = function () {
 				$author$project$VegaLite$rect(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$MNumber = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$mNum = $author$project$VegaLite$MNumber;
+var $author$project$VegaLite$Point = 10;
+var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
+var $author$project$VegaLite$size = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$ParamTests$param5 = function () {
+	var ps = $author$project$VegaLite$params(
+		_List_fromArray(
+			[
+				_Utils_Tuple2(
+				'paintbrush',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paSelect($author$project$VegaLite$paInterval)
+					]))
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Horsepower'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Miles_per_Gallon'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('paintbrush'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(300)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(50)
+						]))
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ParamTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				ps,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+}();
 var $author$project$ParamTests$specs = _List_fromArray(
 	[
 		_Utils_Tuple2('param1', $author$project$ParamTests$param1),
 		_Utils_Tuple2('param2', $author$project$ParamTests$param2),
 		_Utils_Tuple2('param3', $author$project$ParamTests$param3),
-		_Utils_Tuple2('param4', $author$project$ParamTests$param4)
+		_Utils_Tuple2('param4', $author$project$ParamTests$param4),
+		_Utils_Tuple2('param5', $author$project$ParamTests$param5)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
