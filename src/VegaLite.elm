@@ -20690,20 +20690,20 @@ cInterpolateSpec iType =
 containsSelection : BooleanOp -> Bool
 containsSelection bo =
     case bo of
-        Selection string ->
+        Selection _ ->
             True
 
-        SelectionName string ->
+        SelectionName _ ->
             True
 
-        And booleanOp booleanOp2 ->
-            containsSelection booleanOp
+        And bo1 bo2 ->
+            containsSelection bo1 || containsSelection bo2
 
-        Or booleanOp booleanOp2 ->
-            containsSelection booleanOp
+        Or bo1 bo2 ->
+            containsSelection bo1 || containsSelection bo2
 
-        Not booleanOp ->
-            containsSelection booleanOp
+        Not bo1 ->
+            containsSelection bo1
 
         _ ->
             False

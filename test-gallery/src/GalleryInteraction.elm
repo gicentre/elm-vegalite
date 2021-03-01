@@ -465,7 +465,7 @@ interaction11 =
 
         enc2 =
             encoding
-                << opacity [ mSelectionCondition (expr "hover") [ mNum 0.3 ] [ mNum 0 ] ]
+                << opacity [ mSelectionCondition (selectionName "hover") [ mNum 0.3 ] [ mNum 0 ] ]
                 << tooltips
                     [ [ tName "AAPL", tQuant ]
                     , [ tName "AMZN", tQuant ]
