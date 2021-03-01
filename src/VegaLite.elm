@@ -5504,6 +5504,30 @@ type Predicate
 
 
 -- TODO: Add full selection parameter options
+-- Many, but not all SelectionProperty variants match what is required:
+-- Included
+--   | Encodings (List Channel)
+--   | Fields (List String)
+--   | On String
+--   | Clear String
+--   | ResolveSelections SelectionResolution
+--   | Toggle String
+--   | Nearest Bool
+--   | SelectionMark (List SelectionMarkProperty)
+--   | Translate String
+--   | Zoom String
+-- But the following are not used directly:
+-- type SelectionProperty
+--     = Empty
+--     | Bind (List Binding)
+--     | BindScales
+--     | BindLegend (List BindLegendProperty)
+--     | SInit (List ( String, DataValue ))
+--     | SInitInterval (Maybe ( DataValue, DataValue )) (Maybe ( DataValue, DataValue ))
+-- Need to be able to represent values such as (previously generated with seInitInterval)
+-- "params": [{"name":"mySelection","select": "interval",
+-- "value": {"x": [{"year": 2013}, {"year": 2015}], "y": [4000, 8000]}}
+--  ],
 
 
 type PSelect
