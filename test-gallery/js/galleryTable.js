@@ -4842,34 +4842,39 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 14:
-			var selName = field.a;
-			var ifClause = field.b;
-			var elseClause = field.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 15:
 			var tests = field.a;
 			var elseClause = field.b;
-			var testClause = function (_v6) {
-				var predicate = _v6.a;
-				var ifClause = _v6.b;
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
+			var testClause = function (_v7) {
+				var predicate = _v7.a;
+				var ifClause = _v7.b;
+				switch (predicate.$) {
+					case 3:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
+					case 4:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
+					default:
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'test',
+									$author$project$VegaLite$booleanOpSpec(predicate)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
+				}
 			};
 			return A2(
 				$elm$core$List$cons,
@@ -4908,7 +4913,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'aggregate',
 					$author$project$VegaLite$operationSpec(op))
 				]);
-		case 16:
+		case 15:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -4916,7 +4921,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'value',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 17:
+		case 16:
 			var x = field.a;
 			return _List_fromArray(
 				[
@@ -4924,7 +4929,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					'value',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 18:
+		case 17:
 			var s = field.a;
 			return _List_fromArray(
 				[
@@ -10743,7 +10748,7 @@ var $author$project$VegaLite$layer = function (specs) {
 		$author$project$VegaLite$toList(specs));
 };
 var $author$project$VegaLite$MString = function (a) {
-	return {$: 18, a: a};
+	return {$: 17, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
 var $author$project$VegaLite$MBaseline = function (a) {
