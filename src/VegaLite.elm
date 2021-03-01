@@ -5082,7 +5082,6 @@ type MarkChannel
     | MTitle String
     | MAggregate Operation
     | MLegend (List LegendProperty)
-    | MSelectionCondition BooleanOp (List MarkChannel) (List MarkChannel)
     | MDataCondition (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
     | MPath String
     | MNumber Float
@@ -14815,8 +14814,8 @@ is true; the third parameter is the encoding if the selection is false.
 
 -}
 mSelectionCondition : BooleanOp -> List MarkChannel -> List MarkChannel -> MarkChannel
-mSelectionCondition =
-    MSelectionCondition
+mSelectionCondition bo tMcs =
+    MDataCondition [ ( bo, tMcs ) ]
 
 
 {-| Sort order when encoding sortable mark properties such as colour.
@@ -22302,22 +22301,32 @@ markChannelProperties field =
         MBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        MSelectionCondition selName ifClause elseClause ->
-            ( "condition"
-            , JE.object
-                (( "selection", booleanOpSpec selName )
-                    :: List.concatMap markChannelProperties ifClause
-                )
-            )
-                :: List.concatMap markChannelProperties elseClause
-
         MDataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    JE.object
-                        (( "test", booleanOpSpec predicate )
-                            :: List.concatMap markChannelProperties ifClause
-                        )
+                    case predicate of
+                        -- Param p ->
+                        --     JE.object
+                        --         (( "param", JE.string p )
+                        --             :: List.concatMap markChannelProperties ifClause
+                        --         )
+                        Selection s ->
+                            JE.object
+                                (( "selection", JE.string s )
+                                    :: List.concatMap markChannelProperties ifClause
+                                )
+
+                        SelectionName s ->
+                            JE.object
+                                (( "selection", JE.string s )
+                                    :: List.concatMap markChannelProperties ifClause
+                                )
+
+                        _ ->
+                            JE.object
+                                (( "test", booleanOpSpec predicate )
+                                    :: List.concatMap markChannelProperties ifClause
+                                )
             in
             ( "condition"
             , case tests of
