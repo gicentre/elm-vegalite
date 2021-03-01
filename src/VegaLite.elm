@@ -5319,7 +5319,6 @@ type OrderChannel
     | OAggregate Operation
     | OTimeUnit TimeUnit
     | OSort (List SortProperty)
-    | OSelectionCondition BooleanOp (List OrderChannel) (List OrderChannel)
     | ODataCondition (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
     | ONumber Float
 
@@ -15615,8 +15614,8 @@ is true; the third parameter is the encoding if the selection is false.
 
 -}
 oSelectionCondition : BooleanOp -> List OrderChannel -> List OrderChannel -> OrderChannel
-oSelectionCondition =
-    OSelectionCondition
+oSelectionCondition bo tOcs =
+    ODataCondition [ ( bo, tOcs ) ]
 
 
 {-| Sort order to be used by an order channel.
@@ -23016,22 +23015,32 @@ orderChannelProperties oDef =
         ONumber n ->
             [ ( "value", JE.float n ) ]
 
-        OSelectionCondition selName ifClause elseClause ->
-            ( "condition"
-            , JE.object
-                (( "selection", booleanOpSpec selName )
-                    :: List.concatMap orderChannelProperties ifClause
-                )
-            )
-                :: List.concatMap orderChannelProperties elseClause
-
         ODataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    JE.object
-                        (( "test", booleanOpSpec predicate )
-                            :: List.concatMap orderChannelProperties ifClause
-                        )
+                    case predicate of
+                        -- Param p ->
+                        --     JE.object
+                        --         (( "param", JE.string p )
+                        --             :: List.concatMap orderChannelProperties ifClause
+                        --         )
+                        Selection s ->
+                            JE.object
+                                (( "selection", JE.string s )
+                                    :: List.concatMap orderChannelProperties ifClause
+                                )
+
+                        SelectionName s ->
+                            JE.object
+                                (( "selection", JE.string s )
+                                    :: List.concatMap orderChannelProperties ifClause
+                                )
+
+                        _ ->
+                            JE.object
+                                (( "test", booleanOpSpec predicate )
+                                    :: List.concatMap orderChannelProperties ifClause
+                                )
             in
             ( "condition"
             , case tests of
