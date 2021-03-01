@@ -10810,7 +10810,7 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
 				]);
-		case 9:
+		case 8:
 			var n = oDef.a;
 			return _List_fromArray(
 				[
@@ -10818,35 +10818,40 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 					'value',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 7:
-			var selName = oDef.a;
-			var ifClause = oDef.b;
-			var elseClause = oDef.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
 		default:
 			var tests = oDef.a;
 			var elseClause = oDef.b;
-			var testClause = function (_v5) {
-				var predicate = _v5.a;
-				var ifClause = _v5.b;
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+			var testClause = function (_v6) {
+				var predicate = _v6.a;
+				var ifClause = _v6.b;
+				switch (predicate.$) {
+					case 3:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+					case 4:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+					default:
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'test',
+									$author$project$VegaLite$booleanOpSpec(predicate)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+				}
 			};
 			return A2(
 				$elm$core$List$cons,

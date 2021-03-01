@@ -13384,14 +13384,21 @@ var $author$project$VegaLite$maStrokeWidth = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ONumber = function (a) {
-	return {$: 9, a: a};
+	return {$: 8, a: a};
 };
 var $author$project$VegaLite$oNum = $author$project$VegaLite$ONumber;
-var $author$project$VegaLite$OSelectionCondition = F3(
-	function (a, b, c) {
-		return {$: 7, a: a, b: b, c: c};
+var $author$project$VegaLite$ODataCondition = F2(
+	function (a, b) {
+		return {$: 7, a: a, b: b};
 	});
-var $author$project$VegaLite$oSelectionCondition = $author$project$VegaLite$OSelectionCondition;
+var $author$project$VegaLite$oSelectionCondition = F2(
+	function (bo, tOcs) {
+		return $author$project$VegaLite$ODataCondition(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(bo, tOcs)
+				]));
+	});
 var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 	switch (oDef.$) {
 		case 0:
@@ -13500,7 +13507,7 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
 				]);
-		case 9:
+		case 8:
 			var n = oDef.a;
 			return _List_fromArray(
 				[
@@ -13508,35 +13515,40 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 					'value',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 7:
-			var selName = oDef.a;
-			var ifClause = oDef.b;
-			var elseClause = oDef.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
 		default:
 			var tests = oDef.a;
 			var elseClause = oDef.b;
-			var testClause = function (_v5) {
-				var predicate = _v5.a;
-				var ifClause = _v5.b;
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+			var testClause = function (_v6) {
+				var predicate = _v6.a;
+				var ifClause = _v6.b;
+				switch (predicate.$) {
+					case 3:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+					case 4:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+					default:
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'test',
+									$author$project$VegaLite$booleanOpSpec(predicate)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+				}
 			};
 			return A2(
 				$elm$core$List$cons,
@@ -13761,10 +13773,6 @@ var $author$project$VegaLite$maStroke = function (s) {
 	return $author$project$VegaLite$MStroke(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$ODataCondition = F2(
-	function (a, b) {
-		return {$: 8, a: a, b: b};
-	});
 var $author$project$VegaLite$oDataCondition = $author$project$VegaLite$ODataCondition;
 var $author$project$ConditionalTests$orderCondition2 = function () {
 	var enc = A2(
