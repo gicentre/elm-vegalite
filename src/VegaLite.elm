@@ -20687,6 +20687,28 @@ cInterpolateSpec iType =
             JE.object [ ( "type", JE.string "cubehelix-long" ), ( "gamma", JE.float gamma ) ]
 
 
+containsSelection : BooleanOp -> Bool
+containsSelection bo =
+    case bo of
+        Selection string ->
+            True
+
+        SelectionName string ->
+            True
+
+        And booleanOp booleanOp2 ->
+            containsSelection booleanOp
+
+        Or booleanOp booleanOp2 ->
+            containsSelection booleanOp
+
+        Not booleanOp ->
+            containsSelection booleanOp
+
+        _ ->
+            False
+
+
 colorGradientLabel : ColorGradient -> String
 colorGradientLabel gr =
     case gr of
@@ -21732,21 +21754,13 @@ hyperlinkChannelProperties field =
             [ ( "bin", JE.string "binned" ) ]
 
         HDataCondition predicate ifClause elseClause ->
-            case predicate of
-                -- Param p ->
-                --     ( "condition", JE.object (( "param", JE.string p ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                --         :: List.concatMap hyperlinkChannelProperties elseClause
-                Selection s ->
-                    ( "condition", JE.object (( "selection", JE.string s ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                        :: List.concatMap hyperlinkChannelProperties elseClause
+            if containsSelection predicate then
+                ( "condition", JE.object (( "selection", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                    :: List.concatMap hyperlinkChannelProperties elseClause
 
-                SelectionName s ->
-                    ( "condition", JE.object (( "selection", JE.string s ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                        :: List.concatMap hyperlinkChannelProperties elseClause
-
-                _ ->
-                    ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                        :: List.concatMap hyperlinkChannelProperties elseClause
+            else
+                ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                    :: List.concatMap hyperlinkChannelProperties elseClause
 
         HTimeUnit tu ->
             [ ( "timeUnit", timeUnitSpec tu ) ]
@@ -22310,29 +22324,17 @@ markChannelProperties field =
         MDataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    case predicate of
-                        -- Param p ->
-                        --     JE.object
-                        --         (( "param", JE.string p )
-                        --             :: List.concatMap markChannelProperties ifClause
-                        --         )
-                        Selection s ->
-                            JE.object
-                                (( "selection", JE.string s )
-                                    :: List.concatMap markChannelProperties ifClause
-                                )
+                    if containsSelection predicate then
+                        JE.object
+                            (( "selection", booleanOpSpec predicate )
+                                :: List.concatMap markChannelProperties ifClause
+                            )
 
-                        SelectionName s ->
-                            JE.object
-                                (( "selection", JE.string s )
-                                    :: List.concatMap markChannelProperties ifClause
-                                )
-
-                        _ ->
-                            JE.object
-                                (( "test", booleanOpSpec predicate )
-                                    :: List.concatMap markChannelProperties ifClause
-                                )
+                    else
+                        JE.object
+                            (( "test", booleanOpSpec predicate )
+                                :: List.concatMap markChannelProperties ifClause
+                            )
             in
             ( "condition"
             , case tests of
@@ -23026,29 +23028,17 @@ orderChannelProperties oDef =
         ODataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    case predicate of
-                        -- Param p ->
-                        --     JE.object
-                        --         (( "param", JE.string p )
-                        --             :: List.concatMap orderChannelProperties ifClause
-                        --         )
-                        Selection s ->
-                            JE.object
-                                (( "selection", JE.string s )
-                                    :: List.concatMap orderChannelProperties ifClause
-                                )
+                    if containsSelection predicate then
+                        JE.object
+                            (( "selection", booleanOpSpec predicate )
+                                :: List.concatMap orderChannelProperties ifClause
+                            )
 
-                        SelectionName s ->
-                            JE.object
-                                (( "selection", JE.string s )
-                                    :: List.concatMap orderChannelProperties ifClause
-                                )
-
-                        _ ->
-                            JE.object
-                                (( "test", booleanOpSpec predicate )
-                                    :: List.concatMap orderChannelProperties ifClause
-                                )
+                    else
+                        JE.object
+                            (( "test", booleanOpSpec predicate )
+                                :: List.concatMap orderChannelProperties ifClause
+                            )
             in
             ( "condition"
             , case tests of
@@ -24313,29 +24303,17 @@ textChannelProperties tDef =
         TDataCondition tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    case predicate of
-                        -- Param p ->
-                        --     JE.object
-                        --         (( "param", JE.string p )
-                        --             :: List.concatMap textChannelProperties ifClause
-                        --         )
-                        Selection s ->
-                            JE.object
-                                (( "selection", JE.string s )
-                                    :: List.concatMap textChannelProperties ifClause
-                                )
+                    if containsSelection predicate then
+                        JE.object
+                            (( "selection", booleanOpSpec predicate )
+                                :: List.concatMap textChannelProperties ifClause
+                            )
 
-                        SelectionName s ->
-                            JE.object
-                                (( "selection", JE.string s )
-                                    :: List.concatMap textChannelProperties ifClause
-                                )
-
-                        _ ->
-                            JE.object
-                                (( "test", booleanOpSpec predicate )
-                                    :: List.concatMap textChannelProperties ifClause
-                                )
+                    else
+                        JE.object
+                            (( "test", booleanOpSpec predicate )
+                                :: List.concatMap textChannelProperties ifClause
+                            )
             in
             ( "condition", JE.list testClause tests )
                 :: List.concatMap textChannelProperties elseClause
