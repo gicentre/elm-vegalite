@@ -2,7 +2,7 @@
 
 ## Pending changes
 
-_The changes that relate to adding expression parameters (which form the majority of this update) support the major release of VegaLite 5._
+_Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of VegaLite 5._
 
 ### TODO
 
