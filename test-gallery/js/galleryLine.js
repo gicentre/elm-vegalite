@@ -11361,7 +11361,7 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					'title',
 					$author$project$VegaLite$multilineTextSpec(t))
 				]);
-		case 10:
+		case 9:
 			var fmt = tDef.a;
 			return _List_fromArray(
 				[
@@ -11369,21 +11369,21 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					'format',
 					$elm$json$Json$Encode$string(fmt))
 				]);
-		case 11:
+		case 10:
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'formatType',
 					$elm$json$Json$Encode$string('number'))
 				]);
-		case 12:
+		case 11:
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'formatType',
 					$elm$json$Json$Encode$string('time'))
 				]);
-		case 13:
+		case 12:
 			var formatter = tDef.a;
 			return _List_fromArray(
 				[
@@ -11392,34 +11392,39 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					$elm$json$Json$Encode$string(formatter))
 				]);
 		case 8:
-			var selName = tDef.a;
-			var ifClause = tDef.b;
-			var elseClause = tDef.c;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(selName)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 9:
 			var tests = tDef.a;
 			var elseClause = tDef.b;
-			var testClause = function (_v1) {
-				var predicate = _v1.a;
-				var ifClause = _v1.b;
-				return $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+			var testClause = function (_v2) {
+				var predicate = _v2.a;
+				var ifClause = _v2.b;
+				switch (predicate.$) {
+					case 3:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+					case 4:
+						var s = predicate.a;
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'selection',
+									$elm$json$Json$Encode$string(s)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+					default:
+						return $elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'test',
+									$author$project$VegaLite$booleanOpSpec(predicate)),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
+				}
 			};
 			return A2(
 				$elm$core$List$cons,
@@ -11427,7 +11432,7 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					'condition',
 					A2($elm$json$Json$Encode$list, testClause, tests)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 14:
+		case 13:
 			var s = tDef.a;
 			return _List_fromArray(
 				[
