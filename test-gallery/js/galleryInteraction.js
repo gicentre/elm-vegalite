@@ -11099,7 +11099,7 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 				[
 					A3(
 					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$expr('myTooltip'),
+					$author$project$VegaLite$selectionName('myTooltip'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mNum(1)

@@ -380,7 +380,11 @@ interaction10 =
 
         enc1_2 =
             encoding
-                << opacity [ mSelectionCondition (expr "myTooltip") [ mNum 1 ] [ mNum 0 ] ]
+                << opacity
+                    [ mSelectionCondition (selectionName "myTooltip")
+                        [ mNum 1 ]
+                        [ mNum 0 ]
+                    ]
 
         sel1_2 =
             selection
