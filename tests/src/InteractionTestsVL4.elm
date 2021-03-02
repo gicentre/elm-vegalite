@@ -1,4 +1,4 @@
-port module InteractionTests exposing (elmToJS)
+port module InteractionTestsVL4 exposing (elmToJS)
 
 import Browser
 import Dict
@@ -45,12 +45,12 @@ encHighlight =
         << position X [ pName "month", pTemporal, pTitle "" ]
         << position Y [ pName "reportedCrimes", pQuant, pTitle "Reported crimes" ]
         << color
-            [ mCondition (prParam "mySelection")
+            [ mSelectionCondition (selectionName "mySelection")
                 [ mName "crimeType", mScale cScale ]
                 [ mStr "black" ]
             ]
         << opacity
-            [ mCondition (prParam "mySelection")
+            [ mSelectionCondition (selectionName "mySelection")
                 [ mNum 1 ]
                 [ mNum 0.1 ]
             ]
@@ -59,41 +59,39 @@ encHighlight =
 interaction1 : Spec
 interaction1 =
     let
-        ps =
-            params [ ( "mySelection", [ paSelect sePoint [ seToggle tpFalse ] ] ) ]
+        sel =
+            selection << select "mySelection" seSingle []
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], line [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], line [] ]
 
 
 interaction2 : Spec
 interaction2 =
     let
-        ps =
-            params [ ( "mySelection", [ paSelect sePoint [] ] ) ]
+        sel =
+            selection << select "mySelection" seMulti []
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], line [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], line [] ]
 
 
 interaction3 : Spec
 interaction3 =
     let
-        ps =
-            params [ ( "mySelection", [ paSelect sePoint [ seToggle tpFalse, seNearest True, seFields [ "crimeType" ] ] ] ) ]
+        sel =
+            selection
+                << select "mySelection" seSingle [ seNearest True, seFields [ "crimeType" ] ]
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction4 : Spec
 interaction4 =
     let
-        ps =
-            params [ ( "mySelection", [ paSelect seInterval [ seEncodings [ chX ] ] ] ) ]
+        sel =
+            selection
+                << select "mySelection" seInterval [ seEmpty, seEncodings [ chX ] ]
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], circle [] ]
-
-
-
--- TODO: Update the functions below to use the new VL5 interaction model
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction5 : Spec
