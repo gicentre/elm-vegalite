@@ -7485,6 +7485,21 @@ var $author$project$VegaLite$selectionResolutionLabel = function (res) {
 			return 'intersect';
 	}
 };
+var $author$project$VegaLite$togglePredicateSpec = function (tp) {
+	switch (tp.$) {
+		case 0:
+			return $elm$json$Json$Encode$bool(false);
+		case 1:
+			var ex = tp.a;
+			return $elm$json$Json$Encode$string(ex);
+		case 2:
+			return $elm$json$Json$Encode$string('event.shiftKey');
+		case 3:
+			return $elm$json$Json$Encode$string('event.ctrlKey');
+		default:
+			return $elm$json$Json$Encode$string('event.altKey');
+	}
+};
 var $author$project$VegaLite$selectionProperties = function (selProp) {
 	switch (selProp.$) {
 		case 7:
@@ -7707,12 +7722,12 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					$elm$json$Json$Encode$bool(b))
 				]);
 		case 15:
-			var ex = selProp.a;
+			var tp = selProp.a;
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'toggle',
-					$elm$json$Json$Encode$string(ex))
+					$author$project$VegaLite$togglePredicateSpec(tp))
 				]);
 		case 5:
 			var e = selProp.a;
@@ -13717,6 +13732,10 @@ var $author$project$VegaLite$size = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
+var $author$project$VegaLite$TpExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$tpExpr = $author$project$VegaLite$TpExpr;
 var $author$project$ParamTests$param5 = function () {
 	var ps = $author$project$VegaLite$params(
 		_List_fromArray(
@@ -13731,7 +13750,8 @@ var $author$project$ParamTests$param5 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$seOn('mouseover'),
-								$author$project$VegaLite$seToggle('false')
+								$author$project$VegaLite$seToggle(
+								$author$project$VegaLite$tpExpr('event.shiftKey && event.ctrlKey'))
 							]))
 					]))
 			]));
