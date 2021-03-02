@@ -8497,11 +8497,13 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 var $author$project$VegaLite$selectionLabel = function (seType) {
 	switch (seType) {
 		case 0:
-			return 'single';
+			return 'point';
 		case 1:
-			return 'multi';
-		default:
 			return 'interval';
+		case 2:
+			return 'single';
+		default:
+			return 'multi';
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};
@@ -10402,14 +10404,14 @@ var $author$project$VegaLite$SCBandPaddingInner = function (a) {
 var $author$project$VegaLite$sacoBandPaddingInner = $author$project$VegaLite$SCBandPaddingInner;
 var $author$project$VegaLite$Empty = {$: 0};
 var $author$project$VegaLite$seEmpty = $author$project$VegaLite$Empty;
-var $author$project$VegaLite$SeMulti = 1;
-var $author$project$VegaLite$seMulti = 1;
+var $author$project$VegaLite$SeMulti = 3;
+var $author$project$VegaLite$seMulti = 3;
 var $author$project$VegaLite$On = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$seOn = $author$project$VegaLite$On;
-var $author$project$VegaLite$SeSingle = 0;
-var $author$project$VegaLite$seSingle = 0;
+var $author$project$VegaLite$SeSingle = 2;
+var $author$project$VegaLite$seSingle = 2;
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -12092,8 +12094,8 @@ var $author$project$VegaLite$resolve = function (res) {
 		26,
 		$elm$json$Json$Encode$object(res));
 };
-var $author$project$VegaLite$SeInterval = 2;
-var $author$project$VegaLite$seInterval = 2;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {

@@ -10651,11 +10651,13 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 var $author$project$VegaLite$selectionLabel = function (seType) {
 	switch (seType) {
 		case 0:
-			return 'single';
+			return 'point';
 		case 1:
-			return 'multi';
-		default:
 			return 'interval';
+		case 2:
+			return 'single';
+		default:
+			return 'multi';
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};
@@ -13747,13 +13749,6 @@ var $author$project$VegaLite$pBindingProperties = function (bnd) {
 				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
 	}
 };
-var $author$project$VegaLite$pSelectLabel = function (ps) {
-	if (!ps) {
-		return 'point';
-	} else {
-		return 'interval';
-	}
-};
 var $author$project$VegaLite$paramProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
@@ -13774,10 +13769,24 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$author$project$VegaLite$dataValueSpec(d));
 		default:
 			var s = pp.a;
-			return _Utils_Tuple2(
-				'select',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$pSelectLabel(s)));
+			var sps = pp.b;
+			if (!sps.b) {
+				return _Utils_Tuple2(
+					'select',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$selectionLabel(s)));
+			} else {
+				return _Utils_Tuple2(
+					'select',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'type',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$selectionLabel(s))),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, sps))));
+			}
 	}
 };
 var $author$project$VegaLite$params = function (namedParams) {

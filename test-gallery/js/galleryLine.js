@@ -9312,11 +9312,13 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 var $author$project$VegaLite$selectionLabel = function (seType) {
 	switch (seType) {
 		case 0:
-			return 'single';
+			return 'point';
 		case 1:
-			return 'multi';
-		default:
 			return 'interval';
+		case 2:
+			return 'single';
+		default:
+			return 'multi';
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};

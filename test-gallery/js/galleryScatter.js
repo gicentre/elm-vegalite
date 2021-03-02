@@ -10429,11 +10429,13 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 var $author$project$VegaLite$selectionLabel = function (seType) {
 	switch (seType) {
 		case 0:
-			return 'single';
+			return 'point';
 		case 1:
-			return 'multi';
-		default:
 			return 'interval';
+		case 2:
+			return 'single';
+		default:
+			return 'multi';
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};
@@ -11844,8 +11846,8 @@ var $author$project$VegaLite$SZero = function (a) {
 var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
 var $author$project$VegaLite$BindScales = {$: 1};
 var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
-var $author$project$VegaLite$SeInterval = 2;
-var $author$project$VegaLite$seInterval = 2;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(

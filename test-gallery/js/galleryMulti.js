@@ -7402,8 +7402,8 @@ var $author$project$VegaLite$Encodings = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
-var $author$project$VegaLite$SeInterval = 2;
-var $author$project$VegaLite$seInterval = 2;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -7419,11 +7419,13 @@ var $elm$core$Basics$neq = _Utils_notEqual;
 var $author$project$VegaLite$selectionLabel = function (seType) {
 	switch (seType) {
 		case 0:
-			return 'single';
+			return 'point';
 		case 1:
-			return 'multi';
-		default:
 			return 'interval';
+		case 2:
+			return 'single';
+		default:
+			return 'multi';
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};
@@ -11090,8 +11092,8 @@ var $author$project$VegaLite$resolve = function (res) {
 		26,
 		$elm$json$Json$Encode$object(res));
 };
-var $author$project$VegaLite$SeSingle = 0;
-var $author$project$VegaLite$seSingle = 0;
+var $author$project$VegaLite$SeSingle = 2;
+var $author$project$VegaLite$seSingle = 2;
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -11360,8 +11362,8 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
-var $author$project$VegaLite$SeMulti = 1;
-var $author$project$VegaLite$seMulti = 1;
+var $author$project$VegaLite$SeMulti = 3;
+var $author$project$VegaLite$seMulti = 3;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {

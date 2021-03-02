@@ -9635,8 +9635,8 @@ var $author$project$VegaLite$mark = F2(
 		}
 	});
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
-var $author$project$VegaLite$SeSingle = 0;
-var $author$project$VegaLite$seSingle = 0;
+var $author$project$VegaLite$SeSingle = 2;
+var $author$project$VegaLite$seSingle = 2;
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -9652,11 +9652,13 @@ var $elm$core$Basics$neq = _Utils_notEqual;
 var $author$project$VegaLite$selectionLabel = function (seType) {
 	switch (seType) {
 		case 0:
-			return 'single';
+			return 'point';
 		case 1:
-			return 'multi';
-		default:
 			return 'interval';
+		case 2:
+			return 'single';
+		default:
+			return 'multi';
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};
@@ -10389,8 +10391,8 @@ var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$BindScales = {$: 1};
 var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
-var $author$project$VegaLite$SeInterval = 2;
-var $author$project$VegaLite$seInterval = 2;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
 var $author$project$InteractionTests$interaction10 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
@@ -12875,8 +12877,8 @@ var $author$project$InteractionTests$interaction12 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$SeMulti = 1;
-var $author$project$VegaLite$seMulti = 1;
+var $author$project$VegaLite$SeMulti = 3;
+var $author$project$VegaLite$seMulti = 3;
 var $author$project$VegaLite$On = function (a) {
 	return {$: 3, a: a};
 };
