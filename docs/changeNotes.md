@@ -30,6 +30,17 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
 
+- `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
+
+  | Old version                  | New version                           |
+  | ---------------------------- | ------------------------------------- |
+  | `seToggle "false"`           | `seToggle tpFalse`                    |
+  | `seToggle "true"`            | `seToggle tpShiftKey`                 |
+  | `seToggle "event.shiftKey"`  | `seToggle tpShiftKey`                 |
+  | `seToggle "event.ctrlKey"`   | `seToggle tpCtrlKey`                  |
+  | `seToggle "event.altKey"`    | `seToggle tpAltKey`                   |
+  | `seToggle "some expression"` | `seToggle (tpExpr "some expression")` |
+
 ### V4.0 Deprecations
 
 - `mDataCondition` and `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a simplified `mCondition` (and its `o`, `t` and `h` equivalents) (VL5.0).
@@ -38,7 +49,9 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### Additions
 
-- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a `Predicate` for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`).
+- `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
+
+- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a `Predicate` for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
