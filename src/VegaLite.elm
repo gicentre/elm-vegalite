@@ -15773,6 +15773,12 @@ with corresponding parameter properties. For example,
             ]
 
 -}
+
+
+
+-- TODO: XXXX Use point-free compatible syntax as we do for dataFromColumns, encoding etc.
+
+
 params : List ( String, List ParamProperty ) -> ( VLProperty, Spec )
 params namedParams =
     let
