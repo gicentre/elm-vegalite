@@ -49,6 +49,8 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### Additions
 
+- `dataValues` and `dataObject` for creating nested data values for functions that require a single data value.
+
 - `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
 
 - `mCondition` (and its `o`, `t` and `h` equivalents) that takes a `Predicate` for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
