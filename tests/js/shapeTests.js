@@ -14050,7 +14050,6 @@ var $author$project$VegaLite$PValue = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
-var $author$project$VegaLite$VLParams = 1;
 var $author$project$VegaLite$pBindingProperties = function (bnd) {
 	switch (bnd.$) {
 		case 0:
@@ -14199,21 +14198,51 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 			}
 	}
 };
-var $author$project$VegaLite$params = function (namedParams) {
-	var paramObj = function (_v0) {
-		var paramName = _v0.a;
-		var pps = _v0.b;
+var $author$project$VegaLite$param = F2(
+	function (nme, pps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				nme,
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps))));
+	});
+var $author$project$VegaLite$VLParams = 1;
+var $elm$json$Json$Decode$decodeValue = _Json_run;
+var $elm$json$Json$Decode$keyValuePairs = _Json_decodeKeyValuePairs;
+var $elm$json$Json$Decode$value = _Json_decodeValue;
+var $elm$core$Result$withDefault = F2(
+	function (def, result) {
+		if (!result.$) {
+			var a = result.a;
+			return a;
+		} else {
+			return def;
+		}
+	});
+var $author$project$VegaLite$params = function (prms) {
+	var toLabelledSpecs = function (obj) {
+		return A2(
+			$elm$core$Result$withDefault,
+			_List_Nil,
+			A2(
+				$elm$json$Json$Decode$decodeValue,
+				$elm$json$Json$Decode$keyValuePairs($elm$json$Json$Decode$value),
+				obj));
+	};
+	var extract = function (_v0) {
+		var nme = _v0.a;
+		var obj = _v0.b;
 		return $elm$json$Json$Encode$object(
 			A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'name',
-					$elm$json$Json$Encode$string(paramName)),
-				A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps)));
+					$elm$json$Json$Encode$string(nme)),
+				toLabelledSpecs(obj)));
 	};
 	return _Utils_Tuple2(
 		1,
-		A2($elm$json$Json$Encode$list, paramObj, namedParams));
+		A2($elm$json$Json$Encode$list, extract, prms));
 };
 var $author$project$VegaLite$DStr = function (a) {
 	return {$: 3, a: a};
@@ -14224,40 +14253,49 @@ var $author$project$VegaLite$SymExpr = function (a) {
 };
 var $author$project$VegaLite$symExpr = $author$project$VegaLite$SymExpr;
 var $author$project$ShapeTests$symbols3 = function () {
-	var prm = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'angle',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inMin(-180),
-									$author$project$VegaLite$inMax(180),
-									$author$project$VegaLite$inStep(1)
-								])))
-					])),
-				_Utils_Tuple2(
-				'strokeWidth',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0.5)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(4),
-									$author$project$VegaLite$inStep(0.1)
-								])))
-					])),
-				_Utils_Tuple2(
+	var prm = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$params,
+					A2(
+						$author$project$VegaLite$param,
+						'angle',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$num(0)),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipRange(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inMin(-180),
+											$author$project$VegaLite$inMax(180),
+											$author$project$VegaLite$inStep(1)
+										])))
+							]))),
+				A2(
+					$author$project$VegaLite$param,
+					'strokeWidth',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValue(
+							$author$project$VegaLite$num(0.5)),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inMin(0),
+										$author$project$VegaLite$inMax(4),
+										$author$project$VegaLite$inStep(0.1)
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
 				'size',
 				_List_fromArray(
 					[
@@ -14271,23 +14309,23 @@ var $author$project$ShapeTests$symbols3 = function () {
 									$author$project$VegaLite$inMax(1000),
 									$author$project$VegaLite$inStep(5)
 								])))
-					])),
-				_Utils_Tuple2(
-				'shape',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$str('circle')),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipSelect(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inOptions(
-									_List_fromArray(
-										['circle', 'square', 'cross', 'diamond', 'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'triangle', 'stroke', 'arrow', 'wedge', 'm0 -1l0.866 0.5v1l-0.866 0.5l-0.866 -0.5v-1']))
-								])))
-					]))
-			]));
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'shape',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$str('circle')),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipSelect(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inOptions(
+								_List_fromArray(
+									['circle', 'square', 'cross', 'diamond', 'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'triangle', 'stroke', 'arrow', 'wedge', 'm0 -1l0.866 0.5v1l-0.866 0.5l-0.866 -0.5v-1']))
+							])))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14320,7 +14358,7 @@ var $author$project$ShapeTests$symbols3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm,
+				prm(_List_Nil),
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				data,

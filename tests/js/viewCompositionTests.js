@@ -8404,7 +8404,6 @@ var $author$project$VegaLite$PValue = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
-var $author$project$VegaLite$VLParams = 1;
 var $author$project$VegaLite$inputProperty = function (prop) {
 	switch (prop.$) {
 		case 3:
@@ -9169,21 +9168,51 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 			}
 	}
 };
-var $author$project$VegaLite$params = function (namedParams) {
-	var paramObj = function (_v0) {
-		var paramName = _v0.a;
-		var pps = _v0.b;
+var $author$project$VegaLite$param = F2(
+	function (nme, pps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				nme,
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps))));
+	});
+var $author$project$VegaLite$VLParams = 1;
+var $elm$json$Json$Decode$decodeValue = _Json_run;
+var $elm$json$Json$Decode$keyValuePairs = _Json_decodeKeyValuePairs;
+var $elm$json$Json$Decode$value = _Json_decodeValue;
+var $elm$core$Result$withDefault = F2(
+	function (def, result) {
+		if (!result.$) {
+			var a = result.a;
+			return a;
+		} else {
+			return def;
+		}
+	});
+var $author$project$VegaLite$params = function (prms) {
+	var toLabelledSpecs = function (obj) {
+		return A2(
+			$elm$core$Result$withDefault,
+			_List_Nil,
+			A2(
+				$elm$json$Json$Decode$decodeValue,
+				$elm$json$Json$Decode$keyValuePairs($elm$json$Json$Decode$value),
+				obj));
+	};
+	var extract = function (_v0) {
+		var nme = _v0.a;
+		var obj = _v0.b;
 		return $elm$json$Json$Encode$object(
 			A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'name',
-					$elm$json$Json$Encode$string(paramName)),
-				A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps)));
+					$elm$json$Json$Encode$string(nme)),
+				toLabelledSpecs(obj)));
 	};
 	return _Utils_Tuple2(
 		1,
-		A2($elm$json$Json$Encode$list, paramObj, namedParams));
+		A2($elm$json$Json$Encode$list, extract, prms));
 };
 var $author$project$ViewCompositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$AxLabelAlign = function (a) {
@@ -10601,59 +10630,74 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$ViewCompositionTests$background1 = function () {
-	var prm = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'fc',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$str('white')),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipColor(_List_Nil))
-					])),
-				_Utils_Tuple2(
-				'sc',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$str('black')),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipColor(_List_Nil))
-					])),
-				_Utils_Tuple2(
-				'cr',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
+	var prm = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						A2(
+							$elm$core$Basics$composeL,
+							$author$project$VegaLite$params,
+							A2(
+								$author$project$VegaLite$param,
+								'fc',
+								_List_fromArray(
+									[
+										$author$project$VegaLite$paValue(
+										$author$project$VegaLite$str('white')),
+										$author$project$VegaLite$paBind(
+										$author$project$VegaLite$ipColor(_List_Nil))
+									]))),
+						A2(
+							$author$project$VegaLite$param,
+							'sc',
 							_List_fromArray(
 								[
-									$author$project$VegaLite$inName('Corner radius'),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(100),
-									$author$project$VegaLite$inStep(1)
-								])))
-					])),
-				_Utils_Tuple2(
-				'fo',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(1)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('Fill opacity'),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(1)
-								])))
-					])),
-				_Utils_Tuple2(
+									$author$project$VegaLite$paValue(
+									$author$project$VegaLite$str('black')),
+									$author$project$VegaLite$paBind(
+									$author$project$VegaLite$ipColor(_List_Nil))
+								]))),
+					A2(
+						$author$project$VegaLite$param,
+						'cr',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$num(0)),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipRange(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inName('Corner radius'),
+											$author$project$VegaLite$inMin(0),
+											$author$project$VegaLite$inMax(100),
+											$author$project$VegaLite$inStep(1)
+										])))
+							]))),
+				A2(
+					$author$project$VegaLite$param,
+					'fo',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValue(
+							$author$project$VegaLite$num(1)),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inName('Fill opacity'),
+										$author$project$VegaLite$inMin(0),
+										$author$project$VegaLite$inMax(1)
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
 				'so',
 				_List_fromArray(
 					[
@@ -10667,23 +10711,23 @@ var $author$project$ViewCompositionTests$background1 = function () {
 									$author$project$VegaLite$inMin(0),
 									$author$project$VegaLite$inMax(1)
 								])))
-					])),
-				_Utils_Tuple2(
-				'sw',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(1)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('Stroke width '),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(20)
-								])))
-					]))
-			]));
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'sw',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(1)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inName('Stroke width '),
+								$author$project$VegaLite$inMin(0),
+								$author$project$VegaLite$inMax(20)
+							])))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10717,7 +10761,7 @@ var $author$project$ViewCompositionTests$background1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm,
+				prm(_List_Nil),
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				$author$project$VegaLite$viewBackground(
@@ -14684,26 +14728,26 @@ var $author$project$VegaLite$padding = function (pad) {
 		$author$project$VegaLite$paddingSpec(pad));
 };
 var $author$project$ViewCompositionTests$padding1 = function () {
-	var prm = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'pd',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('padding'),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(100),
-									$author$project$VegaLite$inStep(1)
-								])))
-					]))
-			]));
+	var prm = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'pd',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(0)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inName('padding'),
+								$author$project$VegaLite$inMin(0),
+								$author$project$VegaLite$inMax(100),
+								$author$project$VegaLite$inStep(1)
+							])))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14735,7 +14779,7 @@ var $author$project$ViewCompositionTests$padding1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm,
+				prm(_List_Nil),
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				$author$project$VegaLite$autosize(
@@ -14754,42 +14798,51 @@ var $author$project$VegaLite$PEdgesExpr = F4(
 	});
 var $author$project$VegaLite$paEdgesExpr = $author$project$VegaLite$PEdgesExpr;
 var $author$project$ViewCompositionTests$padding2 = function () {
-	var prm = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'l',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('left padding'),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(50),
-									$author$project$VegaLite$inStep(1)
-								])))
-					])),
-				_Utils_Tuple2(
-				't',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('top padding'),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(50),
-									$author$project$VegaLite$inStep(1)
-								])))
-					])),
-				_Utils_Tuple2(
+	var prm = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$params,
+					A2(
+						$author$project$VegaLite$param,
+						'l',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$num(0)),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipRange(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inName('left padding'),
+											$author$project$VegaLite$inMin(0),
+											$author$project$VegaLite$inMax(50),
+											$author$project$VegaLite$inStep(1)
+										])))
+							]))),
+				A2(
+					$author$project$VegaLite$param,
+					't',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValue(
+							$author$project$VegaLite$num(0)),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inName('top padding'),
+										$author$project$VegaLite$inMin(0),
+										$author$project$VegaLite$inMax(50),
+										$author$project$VegaLite$inStep(1)
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
 				'r',
 				_List_fromArray(
 					[
@@ -14804,24 +14857,24 @@ var $author$project$ViewCompositionTests$padding2 = function () {
 									$author$project$VegaLite$inMax(50),
 									$author$project$VegaLite$inStep(1)
 								])))
-					])),
-				_Utils_Tuple2(
-				'b',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('bottom padding'),
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(50),
-									$author$project$VegaLite$inStep(1)
-								])))
-					]))
-			]));
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'b',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(0)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inName('bottom padding'),
+								$author$project$VegaLite$inMin(0),
+								$author$project$VegaLite$inMax(50),
+								$author$project$VegaLite$inStep(1)
+							])))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14853,7 +14906,7 @@ var $author$project$ViewCompositionTests$padding2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm,
+				prm(_List_Nil),
 				$author$project$VegaLite$width(300),
 				$author$project$VegaLite$height(300),
 				$author$project$VegaLite$autosize(

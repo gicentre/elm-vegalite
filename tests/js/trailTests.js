@@ -6882,7 +6882,6 @@ var $author$project$VegaLite$PValue = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
-var $author$project$VegaLite$VLParams = 1;
 var $author$project$VegaLite$dayLabel = function (dayName) {
 	switch (dayName) {
 		case 0:
@@ -7800,21 +7799,51 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 			}
 	}
 };
-var $author$project$VegaLite$params = function (namedParams) {
-	var paramObj = function (_v0) {
-		var paramName = _v0.a;
-		var pps = _v0.b;
+var $author$project$VegaLite$param = F2(
+	function (nme, pps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				nme,
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps))));
+	});
+var $author$project$VegaLite$VLParams = 1;
+var $elm$json$Json$Decode$decodeValue = _Json_run;
+var $elm$json$Json$Decode$keyValuePairs = _Json_decodeKeyValuePairs;
+var $elm$json$Json$Decode$value = _Json_decodeValue;
+var $elm$core$Result$withDefault = F2(
+	function (def, result) {
+		if (!result.$) {
+			var a = result.a;
+			return a;
+		} else {
+			return def;
+		}
+	});
+var $author$project$VegaLite$params = function (prms) {
+	var toLabelledSpecs = function (obj) {
+		return A2(
+			$elm$core$Result$withDefault,
+			_List_Nil,
+			A2(
+				$elm$json$Json$Decode$decodeValue,
+				$elm$json$Json$Decode$keyValuePairs($elm$json$Json$Decode$value),
+				obj));
+	};
+	var extract = function (_v0) {
+		var nme = _v0.a;
+		var obj = _v0.b;
 		return $elm$json$Json$Encode$object(
 			A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'name',
-					$elm$json$Json$Encode$string(paramName)),
-				A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps)));
+					$elm$json$Json$Encode$string(nme)),
+				toLabelledSpecs(obj)));
 	};
 	return _Utils_Tuple2(
 		1,
-		A2($elm$json$Json$Encode$list, paramObj, namedParams));
+		A2($elm$json$Json$Encode$list, extract, prms));
 };
 var $author$project$TrailTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Point = 10;
@@ -10714,10 +10743,13 @@ var $author$project$TrailTests$line1 = function () {
 						A2($author$project$VegaLite$maNumExpr, 'tension', $author$project$VegaLite$maTension)
 					]))
 			]));
-	var prm = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
+	var prm = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$params,
+			A2(
+				$author$project$VegaLite$param,
 				'interp',
 				_List_fromArray(
 					[
@@ -10732,24 +10764,24 @@ var $author$project$TrailTests$line1 = function () {
 									_List_fromArray(
 										['linear', 'linear-closed', 'step', 'step-before', 'step-after', 'basis', 'basis-open', 'basis-closed', 'cardinal', 'cardinal-open', 'cardinal-closed', 'bundle', 'monotone']))
 								])))
-					])),
-				_Utils_Tuple2(
-				'tension',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('tension'),
-									$author$project$VegaLite$inMin(-10),
-									$author$project$VegaLite$inMax(10),
-									$author$project$VegaLite$inStep(0.1)
-								])))
-					]))
-			]));
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'tension',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(0)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inName('tension'),
+								$author$project$VegaLite$inMin(-10),
+								$author$project$VegaLite$inMax(10),
+								$author$project$VegaLite$inStep(0.1)
+							])))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10776,7 +10808,7 @@ var $author$project$TrailTests$line1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm,
+				prm(_List_Nil),
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(400),
 				data,

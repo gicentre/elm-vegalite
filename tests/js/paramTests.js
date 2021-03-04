@@ -6982,7 +6982,6 @@ var $author$project$VegaLite$PValue = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
-var $author$project$VegaLite$VLParams = 1;
 var $author$project$VegaLite$dataValueSpec = function (val) {
 	switch (val.$) {
 		case 2:
@@ -7797,21 +7796,51 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 			}
 	}
 };
-var $author$project$VegaLite$params = function (namedParams) {
-	var paramObj = function (_v0) {
-		var paramName = _v0.a;
-		var pps = _v0.b;
+var $author$project$VegaLite$param = F2(
+	function (nme, pps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				nme,
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps))));
+	});
+var $author$project$VegaLite$VLParams = 1;
+var $elm$json$Json$Decode$decodeValue = _Json_run;
+var $elm$json$Json$Decode$keyValuePairs = _Json_decodeKeyValuePairs;
+var $elm$json$Json$Decode$value = _Json_decodeValue;
+var $elm$core$Result$withDefault = F2(
+	function (def, result) {
+		if (!result.$) {
+			var a = result.a;
+			return a;
+		} else {
+			return def;
+		}
+	});
+var $author$project$VegaLite$params = function (prms) {
+	var toLabelledSpecs = function (obj) {
+		return A2(
+			$elm$core$Result$withDefault,
+			_List_Nil,
+			A2(
+				$elm$json$Json$Decode$decodeValue,
+				$elm$json$Json$Decode$keyValuePairs($elm$json$Json$Decode$value),
+				obj));
+	};
+	var extract = function (_v0) {
+		var nme = _v0.a;
+		var obj = _v0.b;
 		return $elm$json$Json$Encode$object(
 			A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'name',
-					$elm$json$Json$Encode$string(paramName)),
-				A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps)));
+					$elm$json$Json$Encode$string(nme)),
+				toLabelledSpecs(obj)));
 	};
 	return _Utils_Tuple2(
 		1,
-		A2($elm$json$Json$Encode$list, paramObj, namedParams));
+		A2($elm$json$Json$Encode$list, extract, prms));
 };
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
 	switch (arrng) {
@@ -10733,17 +10762,17 @@ var $author$project$VegaLite$toVegaLite = function (spec) {
 				spec)));
 };
 var $author$project$ParamTests$param1 = function () {
-	var ps = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'radius',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(5))
-					]))
-			]));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'radius',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(5))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10789,7 +10818,7 @@ var $author$project$ParamTests$param1 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				ps,
+				ps(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(
@@ -10820,25 +10849,25 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$ParamTests$param2 = function () {
-	var ps = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'radius',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(0)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(20),
-									$author$project$VegaLite$inStep(1)
-								])))
-					]))
-			]));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'radius',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(0)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inMin(0),
+								$author$project$VegaLite$inMax(20),
+								$author$project$VegaLite$inStep(1)
+							])))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10884,7 +10913,7 @@ var $author$project$ParamTests$param2 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				ps,
+				ps(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(
@@ -13351,31 +13380,34 @@ var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
 var $author$project$VegaLite$Tick = 15;
 var $author$project$VegaLite$tick = $author$project$VegaLite$mark(15);
 var $author$project$ParamTests$param3 = function () {
-	var ps = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$params,
+			A2(
+				$author$project$VegaLite$param,
 				'innerBarSize',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paExpr('height/2')
-					])),
-				_Utils_Tuple2(
-				'height',
-				_List_fromArray(
-					[
-						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(20)),
-						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inMin(1),
-									$author$project$VegaLite$inMax(100),
-									$author$project$VegaLite$inStep(1)
-								])))
-					]))
-			]));
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'height',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(20)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inMin(1),
+								$author$project$VegaLite$inMax(100),
+								$author$project$VegaLite$inStep(1)
+							])))
+				])));
 	var enc6 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -13563,7 +13595,7 @@ var $author$project$ParamTests$param3 = function () {
 		_List_fromArray(
 			[
 				cfg(_List_Nil),
-				ps,
+				ps(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$layer(
@@ -13638,16 +13670,16 @@ var $author$project$VegaLite$width = function (w) {
 		$elm$json$Json$Encode$float(w));
 };
 var $author$project$ParamTests$param4 = function () {
-	var ps = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'pts',
-				_List_fromArray(
-					[
-						A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil)
-					]))
-			]));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'pts',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil)
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13689,7 +13721,7 @@ var $author$project$ParamTests$param4 = function () {
 		_List_fromArray(
 			[
 				$author$project$VegaLite$width(240),
-				ps,
+				ps(_List_Nil),
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$rect(_List_Nil)
@@ -13737,24 +13769,24 @@ var $author$project$VegaLite$TpExpr = function (a) {
 };
 var $author$project$VegaLite$tpExpr = $author$project$VegaLite$TpExpr;
 var $author$project$ParamTests$param5 = function () {
-	var ps = $author$project$VegaLite$params(
-		_List_fromArray(
-			[
-				_Utils_Tuple2(
-				'paintbrush',
-				_List_fromArray(
-					[
-						A2(
-						$author$project$VegaLite$paSelect,
-						$author$project$VegaLite$sePoint,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$seOn('mouseover'),
-								$author$project$VegaLite$seToggle(
-								$author$project$VegaLite$tpExpr('event.shiftKey && event.ctrlKey'))
-							]))
-					]))
-			]));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'paintbrush',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seToggle(
+							$author$project$VegaLite$tpExpr('event.shiftKey && event.ctrlKey'))
+						]))
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13831,7 +13863,7 @@ var $author$project$ParamTests$param5 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				ps,
+				ps(_List_Nil),
 				data,
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
