@@ -5210,6 +5210,11 @@ var $author$project$VegaLite$bin = function (bProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$binProperty, bProps)));
 };
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
 var $author$project$VegaLite$dayLabel = function (dayName) {
 	switch (dayName) {
 		case 0:
@@ -5312,6 +5317,29 @@ var $author$project$VegaLite$dateTimeProperty = function (dtp) {
 				$elm$json$Json$Encode$int(ms));
 	}
 };
+var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
+	switch (dvs.$) {
+		case 2:
+			var xs = dvs.a;
+			return A2($elm$core$List$map, $elm$json$Json$Encode$float, xs);
+		case 3:
+			var ss = dvs.a;
+			return A2($elm$core$List$map, $elm$json$Json$Encode$string, ss);
+		case 1:
+			var dtss = dvs.a;
+			return A2(
+				$elm$core$List$map,
+				A2(
+					$elm$core$Basics$composeR,
+					$elm$core$List$map($author$project$VegaLite$dateTimeProperty),
+					$elm$json$Json$Encode$object),
+				dtss);
+		default:
+			var bs = dvs.a;
+			return A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs);
+	}
+};
+var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
 var $author$project$VegaLite$dataValueSpec = function (val) {
 	switch (val.$) {
 		case 2:
@@ -5336,33 +5364,27 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 						'expr',
 						$elm$json$Json$Encode$string(s))
 					]));
-		default:
+		case 5:
 			return $elm$json$Json$Encode$null;
-	}
-};
-var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
-	switch (dvs.$) {
-		case 2:
-			var xs = dvs.a;
-			return A2($elm$core$List$map, $elm$json$Json$Encode$float, xs);
-		case 3:
-			var ss = dvs.a;
-			return A2($elm$core$List$map, $elm$json$Json$Encode$string, ss);
-		case 1:
-			var dtss = dvs.a;
-			return A2(
-				$elm$core$List$map,
-				function (ds) {
-					return $elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds));
-				},
-				dtss);
+		case 6:
+			var vals = val.a;
+			return $author$project$VegaLite$toList(
+				$author$project$VegaLite$dataValuesSpecs(vals));
 		default:
-			var bs = dvs.a;
-			return A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs);
+			var kvs = val.a;
+			return $elm$json$Json$Encode$object(
+				A2(
+					$elm$core$List$map,
+					function (_v1) {
+						var k = _v1.a;
+						var v = _v1.b;
+						return _Utils_Tuple2(
+							k,
+							$author$project$VegaLite$dataValueSpec(v));
+					},
+					kvs));
 	}
 };
-var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
 var $author$project$VegaLite$filterProperties = function (f) {
 	switch (f.$) {
 		case 0:
@@ -8039,11 +8061,6 @@ var $author$project$VegaLite$booExpr = F2(
 							])))
 				]);
 		}
-	});
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
 	});
 var $elm$core$List$head = function (list) {
 	if (list.b) {
