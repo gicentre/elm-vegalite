@@ -1060,6 +1060,7 @@ module VegaLite exposing
     , background
     , backgroundExpr
     , params
+    , param
     , paValue
     , paExpr
     , paSelect
@@ -3146,7 +3147,7 @@ See the [Vega-lite resolve selection documentation](https://vega.github.io/vega-
 Channel encoding can be made conditional on the result of some interaction or data
 condition. This allows mark appearance to depending on some properties such as whether
 a datum is null or whether it has been selected through interaction. The condition
-to test (predicate) is specified as a parameter with [params](#params), and the
+to test (predicate) is specified as a parameter with [param](#param), and the
 resulting encodings that are dependent on the predicate specified via
 [mCondition](#mCondition) (and its 'o', 't' and 'h' variants).
 
@@ -3202,6 +3203,7 @@ These are in addition to the data and transform options described above. See the
 @docs background
 @docs backgroundExpr
 @docs params
+@docs param
 @docs paValue
 @docs paExpr
 @docs paSelect
@@ -15746,13 +15748,25 @@ pAggregate =
     PAggregate
 
 
+{-| Add a named parameter to a list of parameters. A parameter should have a name
+and a list of parameter details. For example,
+
+    param "mySelection" [ paSelect seInterval [] ]
+
+-}
+param : String -> List ParamProperty -> List LabelledSpec -> List LabelledSpec
+param nme pps =
+    (::) ( nme, List.map paramProperty pps |> JE.object )
+
+
 {-| Specify top-level parameters to be used within a specification. While literals
 may be specified as parameters, these are better handled directly in Elm. More
 useful is to create expressions based on the [vega-lite built-in parameters](https://vega.github.io/vega-lite/docs/parameter.html#built-in-variable-parameters)
 `width`, `height`, `padding`, `autosize`, `background` and `cursor`. For example,
 
     ps =
-        params [ ( "textSize", [ paExpr "height/20" ] ) ]
+        params
+            << param "textSize" [ paExpr "height/20" ]
 
 Also useful is the ability to bind parameters to input elements such as range
 sliders that may be updated at runtime. Each tuple should be a named parameter
@@ -15760,32 +15774,27 @@ with corresponding parameter properties. For example,
 
     ps =
         params
-            [ ( "radius"
-              , [ paValue (num 0)
+            << param "radius"
+                [ paValue (num 0)
                 , paBind (ipRange [ inMin 0, inMax 100 ])
                 ]
-              )
-            , ( "theta"
-              , [ paValue (num -0.73)
+            << param "theta"
+                [ paValue (num -0.73)
                 , paBind (ipRange [ inMin -6.28, inMax 6.28 ])
                 ]
-              )
-            ]
 
 -}
-
-
-
--- TODO: XXXX Use point-free compatible syntax as we do for dataFromColumns, encoding etc.
-
-
-params : List ( String, List ParamProperty ) -> ( VLProperty, Spec )
-params namedParams =
+params : List LabelledSpec -> ( VLProperty, Spec )
+params prms =
     let
-        paramObj ( paramName, pps ) =
-            JE.object (( "name", JE.string paramName ) :: List.map paramProperty pps)
+        toLabelledSpecs obj =
+            JD.decodeValue (JD.keyValuePairs JD.value) obj
+                |> Result.withDefault []
+
+        extract ( nme, obj ) =
+            JE.object (( "name", JE.string nme ) :: toLabelledSpecs obj)
     in
-    ( VLParams, JE.list paramObj namedParams )
+    ( VLParams, JE.list extract prms )
 
 
 {-| Parsing rules when processing some data text, specified as a list of tuples
@@ -17580,7 +17589,8 @@ that triggers a selection. For example, to create a paintbrush effect under the
 pointer:
 
     ps =
-        params [ ( "paintbrush", [ paSelect sePoint [ seOn "mouseover" ] ] ) ]
+        params
+            << params "paintbrush" [ paSelect sePoint [ seOn "mouseover" ] ]
 
 -}
 seOn : String -> SelectionProperty
@@ -17626,10 +17636,12 @@ under the pointer while the shift key is pressed down:
 
     ps =
         params
-            [ ( "paintbrush"
-              , [ paSelect sePoint [ seOn "mouseover", seToggle tpShiftKey ] ]
-              )
-            ]
+            << param "paintbrush"
+                [ paSelect sePoint
+                    [ seOn "mouseover"
+                    , seToggle tpShiftKey
+                    ]
+                ]
 
 -}
 seToggle : TogglePredicate -> SelectionProperty
@@ -18446,11 +18458,11 @@ input element. For example,
 
     prm =
         params
-            [ ( "fs", [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ] ) ]
+            << param "fs" [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ]
     :
     :
     ttl =
-        title "My title" [ tiFontSize |> tiNumExpr "fs"]
+        title "My title" [ tiFontSize |> tiNumExpr "fs" ]
 
 -}
 tiNumExpr : String -> (number -> TitleProperty) -> TitleProperty
@@ -18494,11 +18506,11 @@ input element. For example,
 
     prm =
         params
-            [ ( "clr", [ paValue (str "black"), paBind (ipColor []) ] ) ]
+            << params "clr" [ paValue (str "black"), paBind (ipColor []) ]
     :
     :
     ttl =
-        title "My title" [ tiColor |> tiStrExpr "clr"]
+        title "My title" [ tiColor |> tiStrExpr "clr" ]
 
 -}
 tiStrExpr : String -> (String -> TitleProperty) -> TitleProperty
@@ -18887,14 +18899,12 @@ This allows, for example, mulitple key modifiers to generate toggling:
 
     ps =
         params
-            [ ( "paintbrush"
-              , [ paSelect sePoint
+            << param "paintbrush"
+                [ paSelect sePoint
                     [ seOn "mouseover"
                     , seToggle (tpExpr "event.shiftKey && event.ctrlKey")
                     ]
                 ]
-              )
-            ]
 
 -}
 tpExpr : String -> TogglePredicate
@@ -19353,11 +19363,11 @@ input element. For example,
 
     prm =
         params
-            [ ( "r", [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ] ) ]
+            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
     :
     :
     bg =
-        viewBackground [ viewCornerRadius |> viNumExpr "r"]
+        viewBackground [ viewCornerRadius |> viNumExpr "r" ]
 
 -}
 viNumExpr : String -> (number -> ViewBackground) -> ViewBackground
@@ -19395,11 +19405,11 @@ is bound to an input element. For example,
 
     prm =
         params
-            [ ( "clr", [ paValue (str "white"), paBind (ipColor [ ]) ] ) ]
+            << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
     :
     :
     bg =
-        viewBackground [ viewFill |> viStrExpr "clr"]
+        viewBackground [ viewFill |> viStrExpr "clr" ]
 
 -}
 viStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
