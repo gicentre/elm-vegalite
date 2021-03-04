@@ -102,80 +102,89 @@ interaction4 =
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
-
--- TODO: Update the functions below to use the new VL5 interaction model
-
-
 interaction5 : Spec
 interaction5 =
     let
-        sel =
-            selection
-                << select "mySelection"
-                    seInterval
-                    [ seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] ))
-                        (Just ( num 4000, num 8000 ))
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect seInterval []
+                    , paValue
+                        (dataObject
+                            [ ( "x", dataValues (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) )
+                            , ( "y", dataValues (nums [ 4000, 8000 ]) )
+                            ]
+                        )
                     ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction6 : Spec
 interaction6 =
     let
-        sel =
-            selection
-                << select "mySelection"
-                    seInterval
-                    [ seInitInterval Nothing (Just ( num 4000, num 8000 )) ]
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect seInterval []
+                    , paValue (dataObject [ ( "y", dataValues (nums [ 4000, 8000 ]) ) ])
+                    ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction7 : Spec
 interaction7 =
     let
-        sel =
-            selection
-                << select "mySelection"
-                    seInterval
-                    [ seEncodings [ chX ]
-                    , seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] )) Nothing
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect seInterval [ seEncodings [ chX ] ]
+                    , paValue (dataObject [ ( "x", dataValues (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) ) ])
                     ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction8 : Spec
 interaction8 =
     let
-        sel =
-            selection
-                << select "mySelection"
-                    seInterval
-                    [ seInitInterval Nothing Nothing ]
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect seInterval [ seEncodings [ chX ] ]
+                    , paValue (dataObject [ ( "x", dataValues (dts [ [ dtYear 2013 ] ]) ) ])
+                    ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+
+
+
+-- TODO: XXXX Use param friendly bind scales.
 
 
 interaction9 : Spec
 interaction9 =
     let
-        sel =
-            selection
-                << select "mySelection" seInterval [ seBindScales, seEncodings [ chX ] ]
+        ps =
+            params
+                << param "mySelection" [ paSelect seInterval [ seBindScales, seEncodings [ chX ] ] ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+
+
+
+-- TODO: XXXX Use param friendly bind scales.
 
 
 interaction10 : Spec
 interaction10 =
     let
-        sel =
-            selection
-                << select "mySelection" seInterval [ seBindScales ]
+        ps =
+            params
+                << param "mySelection" [ paSelect seInterval [ seBindScales ] ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction11 : Spec
