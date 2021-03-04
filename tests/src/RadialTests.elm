@@ -64,11 +64,10 @@ radial3 =
     let
         prm =
             params
-                [ ( "radius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
-                , ( "radius2", [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
-                , ( "cornerRadius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 50, inStep 1 ]) ] )
-                , ( "padAngle", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 1.57 ]) ] )
-                ]
+                << param "radius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ]
+                << param "radius2" [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ]
+                << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 50, inStep 1 ]) ]
+                << param "padAngle" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 1.57 ]) ]
 
         data =
             dataFromColumns []
@@ -81,7 +80,7 @@ radial3 =
                 << color [ mName "category" ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , data []
         , enc []
         , arc

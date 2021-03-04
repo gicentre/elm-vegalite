@@ -352,11 +352,11 @@ symbols3 =
     let
         prm =
             params
-                [ ( "angle", [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ] )
-                , ( "strokeWidth", [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 4, inStep 0.1 ]) ] )
-                , ( "size", [ paValue (num 100), paBind (ipRange [ inMin 0, inMax 1000, inStep 5 ]) ] )
-                , ( "shape"
-                  , [ paValue (str "circle")
+                << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ]
+                << param "strokeWidth" [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 4, inStep 0.1 ]) ]
+                << param "size" [ paValue (num 100), paBind (ipRange [ inMin 0, inMax 1000, inStep 5 ]) ]
+                << param "shape"
+                    [ paValue (str "circle")
                     , paBind
                         (ipSelect
                             [ inOptions
@@ -377,8 +377,6 @@ symbols3 =
                             ]
                         )
                     ]
-                  )
-                ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -390,7 +388,7 @@ symbols3 =
                 << opacity [ mNum 0.6 ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , width 300
         , height 300
         , data

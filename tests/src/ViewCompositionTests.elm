@@ -313,7 +313,11 @@ padding1 : Spec
 padding1 =
     let
         prm =
-            params [ ( "pd", [ paValue (num 0), paBind (ipRange [ inName "padding", inMin 0, inMax 100, inStep 1 ]) ] ) ]
+            params
+                << param "pd"
+                    [ paValue (num 0)
+                    , paBind (ipRange [ inName "padding", inMin 0, inMax 100, inStep 1 ])
+                    ]
 
         carData =
             dataFromUrl (path ++ "cars.json") []
@@ -325,7 +329,7 @@ padding1 =
                 << color [ mName "Origin" ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , width 300
         , height 300
         , autosize [ asFit ]
@@ -341,11 +345,10 @@ padding2 =
     let
         prm =
             params
-                [ ( "l", [ paValue (num 0), paBind (ipRange [ inName "left padding", inMin 0, inMax 50, inStep 1 ]) ] )
-                , ( "t", [ paValue (num 0), paBind (ipRange [ inName "top padding", inMin 0, inMax 50, inStep 1 ]) ] )
-                , ( "r", [ paValue (num 0), paBind (ipRange [ inName "right padding", inMin 0, inMax 50, inStep 1 ]) ] )
-                , ( "b", [ paValue (num 0), paBind (ipRange [ inName "bottom padding", inMin 0, inMax 50, inStep 1 ]) ] )
-                ]
+                << param "l" [ paValue (num 0), paBind (ipRange [ inName "left padding", inMin 0, inMax 50, inStep 1 ]) ]
+                << param "t" [ paValue (num 0), paBind (ipRange [ inName "top padding", inMin 0, inMax 50, inStep 1 ]) ]
+                << param "r" [ paValue (num 0), paBind (ipRange [ inName "right padding", inMin 0, inMax 50, inStep 1 ]) ]
+                << param "b" [ paValue (num 0), paBind (ipRange [ inName "bottom padding", inMin 0, inMax 50, inStep 1 ]) ]
 
         carData =
             dataFromUrl (path ++ "cars.json") []
@@ -357,7 +360,7 @@ padding2 =
                 << color [ mName "Origin" ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , width 300
         , height 300
         , autosize [ asFit ]
@@ -373,13 +376,12 @@ background1 =
     let
         prm =
             params
-                [ ( "fc", [ paValue (str "white"), paBind (ipColor []) ] )
-                , ( "sc", [ paValue (str "black"), paBind (ipColor []) ] )
-                , ( "cr", [ paValue (num 0), paBind (ipRange [ inName "Corner radius", inMin 0, inMax 100, inStep 1 ]) ] )
-                , ( "fo", [ paValue (num 1), paBind (ipRange [ inName "Fill opacity", inMin 0, inMax 1 ]) ] )
-                , ( "so", [ paValue (num 1), paBind (ipRange [ inName "Stroke opacity", inMin 0, inMax 1 ]) ] )
-                , ( "sw", [ paValue (num 1), paBind (ipRange [ inName "Stroke width ", inMin 0, inMax 20 ]) ] )
-                ]
+                << param "fc" [ paValue (str "white"), paBind (ipColor []) ]
+                << param "sc" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "cr" [ paValue (num 0), paBind (ipRange [ inName "Corner radius", inMin 0, inMax 100, inStep 1 ]) ]
+                << param "fo" [ paValue (num 1), paBind (ipRange [ inName "Fill opacity", inMin 0, inMax 1 ]) ]
+                << param "so" [ paValue (num 1), paBind (ipRange [ inName "Stroke opacity", inMin 0, inMax 1 ]) ]
+                << param "sw" [ paValue (num 1), paBind (ipRange [ inName "Stroke width ", inMin 0, inMax 20 ]) ]
 
         carData =
             dataFromUrl (path ++ "cars.json") []
@@ -391,7 +393,7 @@ background1 =
                 << color [ mName "Origin" ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , width 300
         , height 300
         , viewBackground

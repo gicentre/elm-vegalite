@@ -51,12 +51,7 @@ tooltip3 =
     let
         prm =
             params
-                [ ( "tt"
-                  , [ paValue (boo True)
-                    , paBind (ipCheckbox [ inName "Show tooltips" ])
-                    ]
-                  )
-                ]
+                << param "tt" [ paValue (boo True), paBind (ipCheckbox [ inName "Show tooltips" ]) ]
 
         -- TODO: Add ability to turn tool tips on and off depending on checkbox
         data =
@@ -69,7 +64,7 @@ tooltip3 =
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
     in
-    toVegaLite [ prm, data [], enc [], bar [] ]
+    toVegaLite [ prm [], data [], enc [], bar [] ]
 
 
 

@@ -60,36 +60,46 @@ interaction1 : Spec
 interaction1 =
     let
         ps =
-            params [ ( "mySelection", [ paSelect sePoint [ seToggle tpFalse ] ] ) ]
+            params
+                << param "mySelection" [ paSelect sePoint [ seToggle tpFalse ] ]
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], line [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], line [] ]
 
 
 interaction2 : Spec
 interaction2 =
     let
         ps =
-            params [ ( "mySelection", [ paSelect sePoint [] ] ) ]
+            params
+                << param "mySelection" [ paSelect sePoint [] ]
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], line [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], line [] ]
 
 
 interaction3 : Spec
 interaction3 =
     let
         ps =
-            params [ ( "mySelection", [ paSelect sePoint [ seToggle tpFalse, seNearest True, seFields [ "crimeType" ] ] ] ) ]
+            params
+                << param "mySelection"
+                    [ paSelect sePoint
+                        [ seToggle tpFalse
+                        , seNearest True
+                        , seFields [ "crimeType" ]
+                        ]
+                    ]
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction4 : Spec
 interaction4 =
     let
         ps =
-            params [ ( "mySelection", [ paSelect seInterval [ seEncodings [ chX ] ] ] ) ]
+            params
+                << param "mySelection" [ paSelect seInterval [ seEncodings [ chX ] ] ]
     in
-    toVegaLite [ width 540, data, ps, encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 

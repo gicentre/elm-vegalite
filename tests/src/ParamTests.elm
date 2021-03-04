@@ -23,14 +23,15 @@ param1 =
                 << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
 
         ps =
-            params [ ( "radius", [ paValue (num 5) ] ) ]
+            params
+                << param "radius" [ paValue (num 5) ]
 
         enc =
             encoding
                 << position X [ pName "a", pAxis [ axLabelAngle 0 ] ]
                 << position Y [ pName "b", pQuant ]
     in
-    toVegaLite [ ps, data [], enc [], bar [ maCornerRadius |> maNumExpr "radius" ] ]
+    toVegaLite [ ps [], data [], enc [], bar [ maCornerRadius |> maNumExpr "radius" ] ]
 
 
 param2 : Spec
@@ -43,19 +44,14 @@ param2 =
 
         ps =
             params
-                [ ( "radius"
-                  , [ paValue (num 0)
-                    , paBind (ipRange [ inMin 0, inMax 20, inStep 1 ])
-                    ]
-                  )
-                ]
+                << param "radius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20, inStep 1 ]) ]
 
         enc =
             encoding
                 << position X [ pName "a", pAxis [ axLabelAngle 0 ] ]
                 << position Y [ pName "b", pQuant ]
     in
-    toVegaLite [ ps, data [], enc [], bar [ maCornerRadius |> maNumExpr "radius" ] ]
+    toVegaLite [ ps [], data [], enc [], bar [ maCornerRadius |> maNumExpr "radius" ] ]
 
 
 param3 : Spec
@@ -78,13 +74,8 @@ param3 =
 
         ps =
             params
-                [ ( "innerBarSize", [ paExpr "height/2" ] )
-                , ( "height"
-                  , [ paValue (num 20)
-                    , paBind (ipRange [ inMin 1, inMax 100, inStep 1 ])
-                    ]
-                  )
-                ]
+                << param "innerBarSize" [ paExpr "height/2" ]
+                << param "height" [ paValue (num 20), paBind (ipRange [ inMin 1, inMax 100, inStep 1 ]) ]
 
         enc =
             encoding
@@ -126,7 +117,7 @@ param3 =
         spec6 =
             asSpec [ enc6 [], tick [ maColor "black", maSize |> maNumExpr "height" ] ]
     in
-    toVegaLite [ cfg [], ps, data [], enc [], layer [ spec1, spec2, spec3, spec4, spec5, spec6 ] ]
+    toVegaLite [ cfg [], ps [], data [], enc [], layer [ spec1, spec2, spec3, spec4, spec5, spec6 ] ]
 
 
 param4 : Spec
@@ -136,7 +127,8 @@ param4 =
             dataFromUrl (path ++ "cars.json") []
 
         ps =
-            params [ ( "pts", [ paSelect seInterval [] ] ) ]
+            params
+                << param "pts" [ paSelect seInterval [] ]
 
         enc =
             encoding
@@ -144,7 +136,7 @@ param4 =
                 << position Y [ pName "Origin" ]
                 << color [ mCondition (prParamEmpty "pts") [ mAggregate opCount ] [ mStr "grey" ] ]
     in
-    toVegaLite [ width 240, ps, data, enc [], rect [] ]
+    toVegaLite [ width 240, ps [], data, enc [], rect [] ]
 
 
 param5 : Spec
@@ -155,14 +147,7 @@ param5 =
 
         ps =
             params
-                [ ( "paintbrush"
-                  , [ paSelect sePoint
-                        [ seOn "mouseover"
-                        , seToggle (tpExpr "event.shiftKey && event.ctrlKey")
-                        ]
-                    ]
-                  )
-                ]
+                << param "paintbrush" [ paSelect sePoint [ seOn "mouseover", seToggle (tpExpr "event.shiftKey && event.ctrlKey") ] ]
 
         enc =
             encoding
@@ -172,7 +157,7 @@ param5 =
                 << fill [ mCondition (prParamEmpty "paintbrush") [ mStr "steelblue" ] [ mStr "white" ] ]
                 << opacity [ mCondition (prParamEmpty "paintbrush") [ mNum 1 ] [ mNum 0.4 ] ]
     in
-    toVegaLite [ ps, data, enc [], point [] ]
+    toVegaLite [ ps [], data, enc [], point [] ]
 
 
 
