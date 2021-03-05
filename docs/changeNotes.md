@@ -49,7 +49,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### Additions
 
-- `dataValues` and `dataObject` for creating nested data values for functions that require a single data value.
+- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value.
 
 - `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
 
