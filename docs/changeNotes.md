@@ -49,7 +49,9 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### Additions
 
-- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value.
+- `fiParam` for filtering by parameter value, especially for selection parameters (VL5.0).
+
+- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
 
 - `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
 
