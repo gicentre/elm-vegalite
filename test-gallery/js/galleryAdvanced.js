@@ -4872,7 +4872,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'gte',
 					$author$project$VegaLite$dataValueSpec(val))
 				]);
-		case 7:
+		case 8:
 			var selName = f.a;
 			return _List_fromArray(
 				[
@@ -4880,7 +4880,15 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'selection',
 					$elm$json$Json$Encode$string(selName))
 				]);
-		case 9:
+		case 6:
+			var selName = f.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'param',
+					$elm$json$Json$Encode$string(selName))
+				]);
+		case 10:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -4940,7 +4948,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('range', values)
 				]);
-		case 8:
+		case 9:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -4972,7 +4980,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('oneOf', values)
 				]);
-		case 10:
+		case 11:
 			var field = f.a;
 			return _List_fromArray(
 				[
@@ -6134,7 +6142,7 @@ var $author$project$VegaLite$filterSpec = function (f) {
 		case 5:
 			var ex = f.a;
 			return $elm$json$Json$Encode$string(ex);
-		case 6:
+		case 7:
 			var boolExpr = f.a;
 			return $author$project$VegaLite$booleanOpSpec(boolExpr);
 		default:
@@ -6438,7 +6446,7 @@ var $author$project$VegaLite$trFilterSpec = F2(
 			case 5:
 				var ex = f.a;
 				return $elm$json$Json$Encode$string(ex);
-			case 6:
+			case 7:
 				var boolExpr = f.a;
 				return $author$project$VegaLite$booleanOpSpec(boolExpr);
 			default:
@@ -12995,7 +13003,7 @@ var $author$project$VegaLite$DTYear = function (a) {
 var $author$project$VegaLite$dtYear = $author$project$VegaLite$DTYear;
 var $author$project$VegaLite$FRange = F2(
 	function (a, b) {
-		return {$: 9, a: a, b: b};
+		return {$: 10, a: a, b: b};
 	});
 var $author$project$VegaLite$fiRange = $author$project$VegaLite$FRange;
 var $author$project$VegaLite$MmType = function (a) {
