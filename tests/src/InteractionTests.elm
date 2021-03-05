@@ -111,8 +111,8 @@ interaction5 =
                     [ paSelect seInterval []
                     , paValue
                         (dataObject
-                            [ ( "x", dataValues (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) )
-                            , ( "y", dataValues (nums [ 4000, 8000 ]) )
+                            [ ( "x", daConcat (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) )
+                            , ( "y", daConcat (nums [ 4000, 8000 ]) )
                             ]
                         )
                     ]
@@ -127,7 +127,7 @@ interaction6 =
             params
                 << param "mySelection"
                     [ paSelect seInterval []
-                    , paValue (dataObject [ ( "y", dataValues (nums [ 4000, 8000 ]) ) ])
+                    , paValue (dataObject [ ( "y", daConcat (nums [ 4000, 8000 ]) ) ])
                     ]
     in
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
@@ -140,7 +140,7 @@ interaction7 =
             params
                 << param "mySelection"
                     [ paSelect seInterval [ seEncodings [ chX ] ]
-                    , paValue (dataObject [ ( "x", dataValues (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) ) ])
+                    , paValue (dataObject [ ( "x", daConcat (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) ) ])
                     ]
     in
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
@@ -153,7 +153,7 @@ interaction8 =
             params
                 << param "mySelection"
                     [ paSelect seInterval [ seEncodings [ chX ] ]
-                    , paValue (dataObject [ ( "x", dataValues (dts [ [ dtYear 2013 ] ]) ) ])
+                    , paValue (dataObject [ ( "x", daConcat (dts [ [ dtYear 2013 ] ]) ) ])
                     ]
     in
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]

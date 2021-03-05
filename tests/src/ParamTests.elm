@@ -147,7 +147,12 @@ param5 =
 
         ps =
             params
-                << param "paintbrush" [ paSelect sePoint [ seOn "mouseover", seToggle (tpExpr "event.shiftKey && event.ctrlKey") ] ]
+                << param "paintbrush"
+                    [ paSelect sePoint
+                        [ seOn "mouseover"
+                        , seToggle (tpExpr "event.shiftKey && event.ctrlKey")
+                        ]
+                    ]
 
         enc =
             encoding

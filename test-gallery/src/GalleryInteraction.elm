@@ -192,6 +192,16 @@ interaction7 =
             transform
                 << calculateAs "year(datum.Year)" "Year"
 
+        ps =
+            params
+                << param "CylYr"
+                    [ paSelect sePoint [ seToggle tpFalse, seFields [ "Cylinders", "Year" ] ]
+
+                    -- TODO: Allow list of data objects to be created.
+                    , paValue (dataObject [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ])
+                    ]
+
+        -- TODO: Remove sel1 when parameter spec completed.
         sel1 =
             selection
                 << select "CylYr"
@@ -212,17 +222,17 @@ interaction7 =
         enc1 =
             encoding
                 << color
-                    [ mSelectionCondition (selectionName "CylYr")
+                    [ mCondition (prParam "CylYr")
                         [ mName "Origin" ]
                         [ mStr "grey" ]
                     ]
 
         spec1 =
-            asSpec [ sel1 [], enc1 [], circle [] ]
+            asSpec [ ps [], enc1 [], circle [] ]
 
         trans2 =
             transform
-                << filter (fiSelection "CylYr")
+                << filter (fiParam "CylYr")
 
         enc2 =
             encoding
