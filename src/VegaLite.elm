@@ -12322,8 +12322,19 @@ But note this is not type-safe – if the JSON is not well-formed, a null value 
 -}
 jsonToSpec : String -> Spec
 jsonToSpec =
-    JD.decodeString jsDecoder
-        >> Result.withDefault JE.null
+    let
+        jsDecoder () =
+            JD.oneOf
+                [ JD.map JE.string JD.string
+                , JD.map JE.int JD.int
+                , JD.map JE.float JD.float
+                , JD.map JE.bool JD.bool
+                , JD.list (JD.lazy (\_ -> jsDecoder ())) |> JD.map (JE.list identity)
+                , JD.dict (JD.lazy (\_ -> jsDecoder ())) |> JD.map (Dict.toList >> JE.object)
+                , JD.null JE.null
+                ]
+    in
+    JD.decodeString (jsDecoder ()) >> Result.withDefault JE.null
 
 
 {-| Bevelled stroke join.
@@ -19999,22 +20010,6 @@ transpose xss =
             List.head >> Maybe.withDefault [] >> List.length
     in
     List.foldr (List.map2 (::)) (List.repeat (numCols xss) []) xss
-
-
-
--- Used to decode a string representing any JSON into a Spec (which is a JE.Value)
-
-
-jsDecoder : JD.Decoder Spec
-jsDecoder =
-    JD.oneOf
-        [ JD.map JE.string JD.string
-        , JD.map JE.int JD.int
-        , JD.map JE.float JD.float
-        , JD.list (JD.lazy (\_ -> jsDecoder)) |> JD.map (JE.list identity)
-        , JD.dict (JD.lazy (\_ -> jsDecoder)) |> JD.map (Dict.toList >> JE.object)
-        , JD.null JE.null
-        ]
 
 
 
