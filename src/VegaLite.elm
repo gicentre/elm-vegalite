@@ -12329,8 +12329,8 @@ jsonToSpec =
                 , JD.map JE.int JD.int
                 , JD.map JE.float JD.float
                 , JD.map JE.bool JD.bool
-                , JD.list (JD.lazy (\_ -> jsDecoder ())) |> JD.map (JE.list identity)
-                , JD.dict (JD.lazy (\_ -> jsDecoder ())) |> JD.map (Dict.toList >> JE.object)
+                , JD.map (JE.list identity) (JD.lazy jsDecoder |> JD.list)
+                , JD.map (Dict.toList >> JE.object) (JD.lazy jsDecoder |> JD.dict)
                 , JD.null JE.null
                 ]
     in
