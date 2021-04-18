@@ -62,15 +62,13 @@ param3 =
                 << configuration (coTick [ maThickness 2 ])
 
         data =
-            dataFromJson
-                (Json.Encode.list identity
-                    [ Json.Encode.object
-                        [ ( "ranges", Json.Encode.list Json.Encode.float [ 150, 225, 300 ] )
-                        , ( "measures", Json.Encode.list Json.Encode.float [ 220, 270 ] )
-                        , ( "markers", Json.Encode.list Json.Encode.float [ 250 ] )
-                        ]
-                    ]
-                )
+            jsonToSpec """
+            {
+              "ranges": [150,225,300],
+              "measures": [220,270],
+              "markers": [250]
+            }
+            """ |> dataFromJson
 
         ps =
             params

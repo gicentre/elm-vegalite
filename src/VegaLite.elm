@@ -10,6 +10,7 @@ module VegaLite exposing
     , dataFromRows
     , dataRow
     , dataFromJson
+    , jsonToSpec
     , dataFromSource
     , dataName
     , datasets
@@ -1619,6 +1620,7 @@ For context, see the
 @docs dataFromRows
 @docs dataRow
 @docs dataFromJson
+@docs jsonToSpec
 @docs dataFromSource
 @docs dataName
 @docs datasets
@@ -3829,6 +3831,7 @@ to the functions that generate them.
 
 -}
 
+import Dict
 import Json.Decode as JD
 import Json.Encode as JE
 
@@ -9627,25 +9630,20 @@ creating [geojson](http://geojson.org) objects with [`geometry`](#geometry),
         ]
 
 For more general cases of json creation such as data tables that mix arrays and
-objects, consider using with Elm's
-[`Json.Encode`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Encode).
-
-    row title ranges =
-        Json.Encode.object
-            [ ( "title", Json.Encode.string title )
-            , ( "ranges", Json.Encode.list Json.Encode.float ranges )
-            ]
+objects, consider combining with [jsonToSpec](#jsonToSpec), for example,
 
     data =
-        dataFromJson
-            (Json.Encode.list identity
-                [ row "Revenue" [ 150, 225, 300 ]
-                , row "Profit" [ 20, 25, 30 ]
-                , row "Order size" [ 350, 500, 600 ]
-                , row "New customers" [ 1400, 2000, 2500 ]
-                , row "Satisfaction" [ 3.5, 4.25, 5 ]
-                ]
-            )
+        jsonToSpec
+            """
+            {
+                "Revenue" : [ 150, 225, 300 ],
+                "Profit" : [ 20, 25, 30 ],
+                "Order size" : [ 350, 500, 600 ],
+                "New customers" : [ 1400, 2000, 2500 ],
+                "Satisfaction" : [ 3.5, 4.25, 5 ]
+            }
+            """
+            |> dataFromJson
 
 -}
 dataFromJson : Spec -> List Format -> Data
@@ -12299,6 +12297,33 @@ iTime f =
 iWeek : String -> List InputProperty -> Binding
 iWeek f =
     IWeek f
+
+
+{-| Convert a string representing some JSON into a Spec. Useful when combined
+with [dataFromJson](#dataFromJson) to compactly import inline JSON as data. For
+example,
+
+    data =
+        jsonToSpec
+            """
+            {
+                "Revenue" : [ 150, 225, 300 ],
+                "Profit" : [ 20, 25, 30 ],
+                "Order size" : [ 350, 500, 600 ],
+                "New customers" : [ 1400, 2000, 2500 ],
+                "Satisfaction" : [ 3.5, 4.25, 5 ]
+            }
+            """
+            |> dataFromJson
+
+This can also be used to store a full visualization specification from a JSON object.
+But note this is not type-safe – if the JSON is not well-formed, a null value is returned.
+
+-}
+jsonToSpec : String -> Spec
+jsonToSpec =
+    JD.decodeString jsDecoder
+        >> Result.withDefault JE.null
 
 
 {-| Bevelled stroke join.
@@ -19974,6 +19999,22 @@ transpose xss =
             List.head >> Maybe.withDefault [] >> List.length
     in
     List.foldr (List.map2 (::)) (List.repeat (numCols xss) []) xss
+
+
+
+-- Used to decode a string representing any JSON into a Spec (which is a JE.Value)
+
+
+jsDecoder : JD.Decoder Spec
+jsDecoder =
+    JD.oneOf
+        [ JD.map JE.string JD.string
+        , JD.map JE.int JD.int
+        , JD.map JE.float JD.float
+        , JD.list (JD.lazy (\_ -> jsDecoder)) |> JD.map (JE.list identity)
+        , JD.dict (JD.lazy (\_ -> jsDecoder)) |> JD.map (Dict.toList >> JE.object)
+        , JD.null JE.null
+        ]
 
 
 
