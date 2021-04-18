@@ -13748,7 +13748,7 @@ var $author$project$ParamTests$param3 = function () {
 					$author$project$VegaLite$pTitle('')
 				])));
 	var data = $author$project$VegaLite$dataFromJson(
-		$author$project$VegaLite$jsonToSpec('\n            {\n              "ranges": [150,225,300],\n              "measures": [220,270],\n              "markers": [250]\n            }\n            '));
+		$author$project$VegaLite$jsonToSpec('{"ranges": [150,225,300],"measures": [220,270],"markers": [250]}'));
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
@@ -14036,13 +14036,203 @@ var $author$project$ParamTests$param5 = function () {
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$maOpacity = function (n) {
+	return $author$project$VegaLite$MOpacity(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$Fields = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
+var $author$project$VegaLite$TpFalse = {$: 0};
+var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
+var $author$project$ParamTests$param6 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$params,
+			A2(
+				$author$project$VegaLite$param,
+				'opacityVar',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(50)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(1),
+									$author$project$VegaLite$inMax(100),
+									$author$project$VegaLite$inStep(1)
+								])))
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'sel',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seFields(
+							_List_fromArray(
+								['Miles_per_Gallon'])),
+							$author$project$VegaLite$seToggle($author$project$VegaLite$tpFalse)
+						]))
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Horsepower'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Miles_per_Gallon'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ParamTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						A2($author$project$VegaLite$maNumExpr, 'sel.Miles_per_Gallon * 10 || 75', $author$project$VegaLite$maSize),
+						A2($author$project$VegaLite$maNumExpr, 'opacityVar/100', $author$project$VegaLite$maOpacity)
+					]))
+			]));
+}();
+var $author$project$VegaLite$IPCheckbox = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$ipCheckbox = $author$project$VegaLite$IPCheckbox;
+var $author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$Param = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$prParam = $author$project$VegaLite$Param;
+var $author$project$ParamTests$param7 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$params,
+			A2(
+				$author$project$VegaLite$param,
+				'toggleOrigin',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipCheckbox(_List_Nil))
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'paintbrush',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seOn('mouseover')
+						]))
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('Horsepower'),
+								$author$project$VegaLite$pQuant
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Miles_per_Gallon'),
+							$author$project$VegaLite$pQuant
+						]))),
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						A3(
+						$author$project$VegaLite$mCondition,
+						$author$project$VegaLite$prParam('toggleOrigin'),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mName('Origin')
+							]),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mStr('steelblue')
+							]))
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('paintbrush'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(300)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(30)
+						]))
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ParamTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+}();
 var $author$project$ParamTests$specs = _List_fromArray(
 	[
 		_Utils_Tuple2('param1', $author$project$ParamTests$param1),
 		_Utils_Tuple2('param2', $author$project$ParamTests$param2),
 		_Utils_Tuple2('param3', $author$project$ParamTests$param3),
 		_Utils_Tuple2('param4', $author$project$ParamTests$param4),
-		_Utils_Tuple2('param5', $author$project$ParamTests$param5)
+		_Utils_Tuple2('param5', $author$project$ParamTests$param5),
+		_Utils_Tuple2('param6', $author$project$ParamTests$param6),
+		_Utils_Tuple2('param7', $author$project$ParamTests$param7)
 	]);
 var $elm$core$Dict$get = F2(
 	function (targetKey, dict) {
