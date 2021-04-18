@@ -62,13 +62,9 @@ param3 =
                 << configuration (coTick [ maThickness 2 ])
 
         data =
-            jsonToSpec """
-            {
-              "ranges": [150,225,300],
-              "measures": [220,270],
-              "markers": [250]
-            }
-            """ |> dataFromJson
+            jsonToSpec
+                """{"ranges": [150,225,300],"measures": [220,270],"markers": [250]}"""
+                |> dataFromJson
 
         ps =
             params
@@ -163,6 +159,54 @@ param5 =
     toVegaLite [ ps [], data, enc [], point [] ]
 
 
+param6 : Spec
+param6 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "opacityVar" [ paValue (num 50), paBind (ipRange [ inMin 1, inMax 100, inStep 1 ]) ]
+                << param "sel" [ paSelect sePoint [ seFields [ "Miles_per_Gallon" ], seToggle tpFalse ] ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+    in
+    toVegaLite
+        [ ps []
+        , data
+        , enc []
+        , point
+            [ maSize |> maNumExpr "sel.Miles_per_Gallon * 10 || 75"
+            , maOpacity |> maNumExpr "opacityVar/100"
+            ]
+        ]
+
+
+param7 : Spec
+param7 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "toggleOrigin" [ paBind (ipCheckbox []) ]
+                << param "paintbrush" [ paSelect sePoint [ seOn "mouseover" ] ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mCondition (prParam "toggleOrigin") [ mName "Origin" ] [ mStr "steelblue" ] ]
+                << size [ mCondition (prParamEmpty "paintbrush") [ mNum 300 ] [ mNum 30 ] ]
+    in
+    toVegaLite [ ps [], data, enc [], point [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -174,6 +218,8 @@ specs =
     , ( "param3", param3 )
     , ( "param4", param4 )
     , ( "param5", param5 )
+    , ( "param6", param6 )
+    , ( "param7", param7 )
     ]
 
 
