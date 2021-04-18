@@ -13517,18 +13517,12 @@ var $author$project$VegaLite$jsonToSpec = function () {
 					$elm$json$Json$Decode$map,
 					$elm$json$Json$Encode$list($elm$core$Basics$identity),
 					$elm$json$Json$Decode$list(
-						$elm$json$Json$Decode$lazy(
-							function (_v1) {
-								return jsDecoder(0);
-							}))),
+						$elm$json$Json$Decode$lazy(jsDecoder))),
 					A2(
 					$elm$json$Json$Decode$map,
 					A2($elm$core$Basics$composeR, $elm$core$Dict$toList, $elm$json$Json$Encode$object),
 					$elm$json$Json$Decode$dict(
-						$elm$json$Json$Decode$lazy(
-							function (_v2) {
-								return jsDecoder(0);
-							}))),
+						$elm$json$Json$Decode$lazy(jsDecoder))),
 					$elm$json$Json$Decode$null($elm$json$Json$Encode$null)
 				]));
 	};
