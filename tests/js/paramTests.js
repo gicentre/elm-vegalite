@@ -13360,6 +13360,7 @@ var $author$project$VegaLite$dataFromJson = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
+var $elm$json$Json$Decode$bool = _Json_decodeBool;
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
@@ -13503,40 +13504,40 @@ var $elm$json$Json$Decode$list = _Json_decodeList;
 var $elm$json$Json$Decode$null = _Json_decodeNull;
 var $elm$json$Json$Decode$oneOf = _Json_oneOf;
 var $elm$json$Json$Decode$string = _Json_decodeString;
-function $author$project$VegaLite$cyclic$jsDecoder() {
-	return $elm$json$Json$Decode$oneOf(
-		_List_fromArray(
-			[
-				A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$string, $elm$json$Json$Decode$string),
-				A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$int, $elm$json$Json$Decode$int),
-				A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$float, $elm$json$Json$Decode$float),
-				A2(
-				$elm$json$Json$Decode$map,
-				$elm$json$Json$Encode$list($elm$core$Basics$identity),
-				$elm$json$Json$Decode$list(
-					$elm$json$Json$Decode$lazy(
-						function (_v0) {
-							return $author$project$VegaLite$cyclic$jsDecoder();
-						}))),
-				A2(
-				$elm$json$Json$Decode$map,
-				A2($elm$core$Basics$composeR, $elm$core$Dict$toList, $elm$json$Json$Encode$object),
-				$elm$json$Json$Decode$dict(
-					$elm$json$Json$Decode$lazy(
-						function (_v1) {
-							return $author$project$VegaLite$cyclic$jsDecoder();
-						}))),
-				$elm$json$Json$Decode$null($elm$json$Json$Encode$null)
-			]));
-}
-var $author$project$VegaLite$jsDecoder = $author$project$VegaLite$cyclic$jsDecoder();
-$author$project$VegaLite$cyclic$jsDecoder = function () {
-	return $author$project$VegaLite$jsDecoder;
-};
-var $author$project$VegaLite$jsonToSpec = A2(
-	$elm$core$Basics$composeR,
-	$elm$json$Json$Decode$decodeString($author$project$VegaLite$jsDecoder),
-	$elm$core$Result$withDefault($elm$json$Json$Encode$null));
+var $author$project$VegaLite$jsonToSpec = function () {
+	var jsDecoder = function (_v0) {
+		return $elm$json$Json$Decode$oneOf(
+			_List_fromArray(
+				[
+					A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$string, $elm$json$Json$Decode$string),
+					A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$int, $elm$json$Json$Decode$int),
+					A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$float, $elm$json$Json$Decode$float),
+					A2($elm$json$Json$Decode$map, $elm$json$Json$Encode$bool, $elm$json$Json$Decode$bool),
+					A2(
+					$elm$json$Json$Decode$map,
+					$elm$json$Json$Encode$list($elm$core$Basics$identity),
+					$elm$json$Json$Decode$list(
+						$elm$json$Json$Decode$lazy(
+							function (_v1) {
+								return jsDecoder(0);
+							}))),
+					A2(
+					$elm$json$Json$Decode$map,
+					A2($elm$core$Basics$composeR, $elm$core$Dict$toList, $elm$json$Json$Encode$object),
+					$elm$json$Json$Decode$dict(
+						$elm$json$Json$Decode$lazy(
+							function (_v2) {
+								return jsDecoder(0);
+							}))),
+					$elm$json$Json$Decode$null($elm$json$Json$Encode$null)
+				]));
+	};
+	return A2(
+		$elm$core$Basics$composeR,
+		$elm$json$Json$Decode$decodeString(
+			jsDecoder(0)),
+		$elm$core$Result$withDefault($elm$json$Json$Encode$null));
+}();
 var $author$project$VegaLite$VLLayer = 18;
 var $author$project$VegaLite$layer = function (specs) {
 	return _Utils_Tuple2(
