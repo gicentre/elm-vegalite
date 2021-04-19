@@ -45,13 +45,11 @@ encHighlight =
         << position X [ pName "month", pTemporal, pTitle "" ]
         << position Y [ pName "reportedCrimes", pQuant, pTitle "Reported crimes" ]
         << color
-            [ mCondition (prParam "mySelection")
-                [ mName "crimeType", mScale cScale ]
+            [ mCondition [ ( prParam "mySelection", [ mName "crimeType", mScale cScale ] ) ]
                 [ mStr "black" ]
             ]
         << opacity
-            [ mCondition (prParam "mySelection")
-                [ mNum 1 ]
+            [ mCondition [ ( prParam "mySelection", [ mNum 1 ] ) ]
                 [ mNum 0.1 ]
             ]
 

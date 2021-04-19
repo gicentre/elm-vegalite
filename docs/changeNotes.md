@@ -90,7 +90,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
 
-- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a `Predicate` for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
+- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 

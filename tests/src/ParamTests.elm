@@ -128,7 +128,10 @@ param4 =
             encoding
                 << position X [ pName "Cylinders" ]
                 << position Y [ pName "Origin" ]
-                << color [ mCondition (prParamEmpty "pts") [ mAggregate opCount ] [ mStr "grey" ] ]
+                << color
+                    [ mCondition [ ( prParamEmpty "pts", [ mAggregate opCount ] ) ]
+                        [ mStr "grey" ]
+                    ]
     in
     toVegaLite [ width 240, ps [], data, enc [], rect [] ]
 
@@ -152,9 +155,18 @@ param5 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << size [ mCondition (prParamEmpty "paintbrush") [ mNum 300 ] [ mNum 50 ] ]
-                << fill [ mCondition (prParamEmpty "paintbrush") [ mStr "steelblue" ] [ mStr "white" ] ]
-                << opacity [ mCondition (prParamEmpty "paintbrush") [ mNum 1 ] [ mNum 0.4 ] ]
+                << size
+                    [ mCondition [ ( prParamEmpty "paintbrush", [ mNum 300 ] ) ]
+                        [ mNum 50 ]
+                    ]
+                << fill
+                    [ mCondition [ ( prParamEmpty "paintbrush", [ mStr "steelblue" ] ) ]
+                        [ mStr "white" ]
+                    ]
+                << opacity
+                    [ mCondition [ ( prParamEmpty "paintbrush", [ mNum 1 ] ) ]
+                        [ mNum 0.4 ]
+                    ]
     in
     toVegaLite [ ps [], data, enc [], point [] ]
 
@@ -201,8 +213,14 @@ param7 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mCondition (prParam "toggleOrigin") [ mName "Origin" ] [ mStr "steelblue" ] ]
-                << size [ mCondition (prParamEmpty "paintbrush") [ mNum 300 ] [ mNum 30 ] ]
+                << color
+                    [ mCondition [ ( prParam "toggleOrigin", [ mName "Origin" ] ) ]
+                        [ mStr "steelblue" ]
+                    ]
+                << size
+                    [ mCondition [ ( prParamEmpty "paintbrush", [ mNum 300 ] ) ]
+                        [ mNum 30 ]
+                    ]
     in
     toVegaLite [ ps [], data, enc [], point [] ]
 

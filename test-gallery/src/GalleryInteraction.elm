@@ -30,20 +30,23 @@ interaction1 =
                 << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
                 << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
 
-        sel =
-            selection
-                << select "highlight" seSingle [ seOn "mouseover", seEmpty ]
-                << select "select" seMulti []
+        ps =
+            params
+                << param "highlight" [ paSelect sePoint [ seOn "mouseover" ] ]
+                << param "select" [ paSelect sePoint [] ]
 
         enc =
             encoding
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
-                << fillOpacity [ mSelectionCondition (selectionName "select") [ mNum 1 ] [ mNum 0.3 ] ]
+                << fillOpacity
+                    [ mCondition [ ( prParam "select", [ mNum 1 ] ) ]
+                        [ mNum 0.3 ]
+                    ]
                 << strokeWidth
-                    [ mDataCondition
-                        [ ( and (selected "select") (expr "length(data(\"select_store\"))"), [ mNum 2 ] )
-                        , ( selected "highlight", [ mNum 1 ] )
+                    [ mCondition
+                        [ ( prParamEmpty "select", [ mNum 2 ] )
+                        , ( prParamEmpty "highlight", [ mNum 1 ] )
                         ]
                         [ mNum 0 ]
                     ]
@@ -52,7 +55,7 @@ interaction1 =
         [ desc
         , cfg []
         , data []
-        , sel []
+        , ps []
         , enc []
         , bar [ maFill "#4C78A8", maStroke "black", maCursor cuPointer ]
         ]
@@ -213,8 +216,7 @@ interaction7 =
         enc1 =
             encoding
                 << color
-                    [ mCondition (prParam "CylYr")
-                        [ mName "Origin" ]
+                    [ mCondition [ ( prParam "CylYr", [ mName "Origin" ] ) ]
                         [ mStr "grey" ]
                     ]
 

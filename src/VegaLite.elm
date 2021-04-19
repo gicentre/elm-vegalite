@@ -5077,7 +5077,7 @@ type Mark
 -}
 type MarkChannel
     = MName String
-    | MCondition Predicate (List MarkChannel) (List MarkChannel)
+    | MCondition (List ( Predicate, List MarkChannel )) (List MarkChannel)
     | MDatum DataValue
     | MRepeat Arrangement
     | MRepeatDatum Arrangement
@@ -14580,12 +14580,12 @@ mBoo =
     MBoolean
 
 
-{-| Make a mark channel conditional a predicate expression.
+{-| Make a mark channel conditional a sequence of predicate expressions.
 
 TODO: XXXX Complete comments with example
 
 -}
-mCondition : Predicate -> List MarkChannel -> List MarkChannel -> MarkChannel
+mCondition : List ( Predicate, List MarkChannel ) -> List MarkChannel -> MarkChannel
 mCondition =
     MCondition
 
@@ -22633,8 +22633,14 @@ markChannelProperties field =
         MBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        MCondition predicate ifClause elseClause ->
-            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap markChannelProperties ifClause) )
+        MCondition ifClauses elseClause ->
+            ( "condition"
+            , JE.list
+                (\( predicate, ifClause ) ->
+                    JE.object (predicateProperties predicate ++ List.concatMap markChannelProperties ifClause)
+                )
+                ifClauses
+            )
                 :: List.concatMap markChannelProperties elseClause
 
         MDataCondition isSelection tests elseClause ->
