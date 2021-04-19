@@ -199,18 +199,9 @@ interaction7 =
 
                     -- TODO: Allow list of data objects to be created.
                     , paValue (dataObject [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ])
-                    ]
-
-        -- TODO: Remove sel1 when parameter spec completed.
-        sel1 =
-            selection
-                << select "CylYr"
-                    seSingle
-                    [ seFields [ "Cylinders", "Year" ]
-                    , seInit [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ]
-                    , seBind
-                        [ iRange "Cylinders" [ inName "Cylinders ", inMin 3, inMax 8, inStep 1 ]
-                        , iRange "Year" [ inName "Year ", inMin 1969, inMax 1981, inStep 1 ]
+                    , paBindings
+                        [ ( "Cylinders", ipRange [ inName "Cylinders", inMin 3, inMax 8, inStep 1 ] )
+                        , ( "Year", ipRange [ inName "Year", inMin 1969, inMax 1981, inStep 1 ] )
                         ]
                     ]
 
