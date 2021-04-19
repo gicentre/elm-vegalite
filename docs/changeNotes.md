@@ -51,6 +51,18 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
 
+- `seBindScales` deprecated in favour of `paBindScales` (VL5.0). Where previously zooming might have been specified as
+
+  ```elm
+  selection << select "zoomer" seInterval [ seBindScales ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  params << param "zoomer" [ paSelect seInterval [], paBindScales ]
+  ```
+
 ### Additions
 
 - `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
@@ -65,7 +77,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
-- `params` and associated `param`, `paBind`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
+- `params` and associated `param`, `paBind`, `paBindScales`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
 
 - `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 

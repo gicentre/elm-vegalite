@@ -111,8 +111,8 @@ interaction5 =
                     [ paSelect seInterval []
                     , paValue
                         (dataObject
-                            [ ( "x", daConcat (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) )
-                            , ( "y", daConcat (nums [ 4000, 8000 ]) )
+                            [ ( "x", dts [ [ dtYear 2013 ], [ dtYear 2015 ] ] |> daConcat )
+                            , ( "y", nums [ 4000, 8000 ] |> daConcat )
                             ]
                         )
                     ]
@@ -153,14 +153,10 @@ interaction8 =
             params
                 << param "mySelection"
                     [ paSelect seInterval [ seEncodings [ chX ] ]
-                    , paValue (dataObject [ ( "x", daConcat (dts [ [ dtYear 2013 ] ]) ) ])
+                    , paValue (dataObject [ ( "x", daConcat (dts [ [ dtYear 2013 ], [ dtYear 2013 ] ]) ) ])
                     ]
     in
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
-
-
-
--- TODO: XXXX Use param friendly bind scales.
 
 
 interaction9 : Spec
@@ -168,13 +164,12 @@ interaction9 =
     let
         ps =
             params
-                << param "mySelection" [ paSelect seInterval [ seBindScales, seEncodings [ chX ] ] ]
+                << param "mySelection"
+                    [ paSelect seInterval [ seEncodings [ chX ] ]
+                    , paBindScales
+                    ]
     in
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
-
-
-
--- TODO: XXXX Use param friendly bind scales.
 
 
 interaction10 : Spec
@@ -182,7 +177,7 @@ interaction10 =
     let
         ps =
             params
-                << param "mySelection" [ paSelect seInterval [ seBindScales ] ]
+                << param "mySelection" [ paSelect seInterval [], paBindScales ]
     in
     toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
