@@ -6979,7 +6979,7 @@ var $author$project$VegaLite$PmType = function (a) {
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 4, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
@@ -7809,10 +7809,24 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$string('scales'));
 		case 2:
 			var s = pp.a;
+			return (!$elm$core$String$length(
+				$elm$core$String$trim(s))) ? _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$string('legend')) : _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'legend',
+							$elm$json$Json$Encode$string(s))
+						])));
+		case 3:
+			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		case 3:
+		case 4:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
@@ -10938,7 +10952,7 @@ var $author$project$VegaLite$PTitle = function (a) {
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
-		return {$: 4, a: a, b: b};
+		return {$: 5, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$ParamTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
@@ -13758,7 +13772,7 @@ var $author$project$VegaLite$maThickness = function (n) {
 var $author$project$VegaLite$NFalse = {$: 9};
 var $author$project$VegaLite$niFalse = $author$project$VegaLite$NFalse;
 var $author$project$VegaLite$PExpr = function (a) {
-	return {$: 2, a: a};
+	return {$: 3, a: a};
 };
 var $author$project$VegaLite$paExpr = $author$project$VegaLite$PExpr;
 var $author$project$VegaLite$SNice = function (a) {

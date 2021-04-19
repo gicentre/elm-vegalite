@@ -9653,7 +9653,7 @@ var $author$project$VegaLite$mark = F2(
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
-		return {$: 4, a: a, b: b};
+		return {$: 5, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$VegaLite$inputProperty = function (prop) {
@@ -10394,10 +10394,24 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$string('scales'));
 		case 2:
 			var s = pp.a;
+			return (!$elm$core$String$length(
+				$elm$core$String$trim(s))) ? _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$string('legend')) : _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'legend',
+							$elm$json$Json$Encode$string(s))
+						])));
+		case 3:
+			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		case 3:
+		case 4:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
@@ -10629,10 +10643,6 @@ var $author$project$InteractionTests$interaction10 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$BLField = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$blField = $author$project$VegaLite$BLField;
 var $author$project$VegaLite$Legend = function (a) {
 	return {$: 23, a: a};
 };
@@ -13016,10 +13026,148 @@ var $author$project$VegaLite$LeUnselectedOpacity = function (a) {
 	return {$: 52, a: a};
 };
 var $author$project$VegaLite$lecoUnselectedOpacity = $author$project$VegaLite$LeUnselectedOpacity;
-var $author$project$VegaLite$BindLegend = function (a) {
+var $author$project$VegaLite$PBindLegend = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$seBindLegend = $author$project$VegaLite$BindLegend;
+var $author$project$VegaLite$paBindLegend = $author$project$VegaLite$PBindLegend;
+var $author$project$VegaLite$Fields = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
+var $author$project$InteractionTests$interaction11 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'mySelection',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seFields(
+							_List_fromArray(
+								['crimeType']))
+						])),
+					$author$project$VegaLite$paBindLegend('')
+				])));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coLegend(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$lecoUnselectedOpacity(0.1)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$ChColor = 4;
+var $author$project$VegaLite$chColor = 4;
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$InteractionTests$interaction12 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'mySelection',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chColor]))
+						])),
+					$author$project$VegaLite$paBindLegend('dblclick')
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$On = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$seOn = $author$project$VegaLite$On;
+var $author$project$InteractionTests$interaction13 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'mySelection',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seOn('click'),
+							$author$project$VegaLite$seFields(
+							_List_fromArray(
+								['crimeType']))
+						])),
+					$author$project$VegaLite$paBindLegend('dblclick')
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$IRadio = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var $author$project$VegaLite$iRadio = function (f) {
+	return $author$project$VegaLite$IRadio(f);
+};
+var $author$project$VegaLite$InName = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
+var $author$project$VegaLite$InOptions = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
+var $author$project$VegaLite$Bind = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$seBind = $author$project$VegaLite$Bind;
+var $author$project$VegaLite$Nearest = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$seNearest = $author$project$VegaLite$Nearest;
 var $author$project$VegaLite$SeSingle = 2;
 var $author$project$VegaLite$seSingle = 2;
 var $elm$core$List$filter = F2(
@@ -13060,140 +13208,6 @@ var $author$project$VegaLite$selection = function (sels) {
 		32,
 		$elm$json$Json$Encode$object(sels));
 };
-var $author$project$InteractionTests$interaction11 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seBindLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$blField('crimeType')
-						]))
-				])));
-	var cfg = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$configure,
-		$author$project$VegaLite$configuration(
-			$author$project$VegaLite$coLegend(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$lecoUnselectedOpacity(0.1)
-					]))));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				cfg(_List_Nil),
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$BLChannel = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$blChannel = $author$project$VegaLite$BLChannel;
-var $author$project$VegaLite$BLEvent = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$blEvent = $author$project$VegaLite$BLEvent;
-var $author$project$VegaLite$ChColor = 4;
-var $author$project$VegaLite$chColor = 4;
-var $author$project$InteractionTests$interaction12 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seBindLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$blChannel($author$project$VegaLite$chColor),
-							$author$project$VegaLite$blEvent('dblclick')
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$SeMulti = 3;
-var $author$project$VegaLite$seMulti = 3;
-var $author$project$VegaLite$On = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$seOn = $author$project$VegaLite$On;
-var $author$project$InteractionTests$interaction13 = function () {
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'mySelection',
-			$author$project$VegaLite$seMulti,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seOn('click'),
-					$author$project$VegaLite$seBindLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$blField('crimeType'),
-							$author$project$VegaLite$blEvent('dblclick')
-						]))
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				sel(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
-			]));
-}();
-var $author$project$VegaLite$IRadio = F2(
-	function (a, b) {
-		return {$: 2, a: a, b: b};
-	});
-var $author$project$VegaLite$iRadio = function (f) {
-	return $author$project$VegaLite$IRadio(f);
-};
-var $author$project$VegaLite$InName = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
-var $author$project$VegaLite$InOptions = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
-var $author$project$VegaLite$Bind = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$seBind = $author$project$VegaLite$Bind;
-var $author$project$VegaLite$Fields = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$seFields = $author$project$VegaLite$Fields;
-var $author$project$VegaLite$Nearest = function (a) {
-	return {$: 14, a: a};
-};
-var $author$project$VegaLite$seNearest = $author$project$VegaLite$Nearest;
 var $author$project$InteractionTests$interaction14 = function () {
 	var sel = A2(
 		$elm$core$Basics$composeL,
@@ -13580,10 +13594,6 @@ var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
-var $author$project$VegaLite$Encodings = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
 var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
@@ -14452,7 +14462,7 @@ var $author$project$VegaLite$Numbers = function (a) {
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 3, a: a};
+	return {$: 4, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$InteractionTests$interaction5 = function () {
