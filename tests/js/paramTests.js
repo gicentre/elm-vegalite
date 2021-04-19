@@ -8828,7 +8828,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 				_List_fromArray(
 					[
 						_Utils_Tuple2(
-						'selection',
+						'param',
 						$elm$json$Json$Encode$string(selName))
 					]));
 		case 10:
@@ -10853,6 +10853,214 @@ var $author$project$ParamTests$param1 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$Area = 1;
+var $author$project$VegaLite$area = $author$project$VegaLite$mark(1);
+var $author$project$VegaLite$asSpec = function (specs) {
+	return $elm$json$Json$Encode$object(
+		A2(
+			$elm$core$List$map,
+			function (_v0) {
+				var s = _v0.a;
+				var v = _v0.b;
+				return _Utils_Tuple2(
+					$author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var $author$project$VegaLite$AxGrid = function (a) {
+	return {$: 67, a: a};
+};
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$axGrid = function (b) {
+	return $author$project$VegaLite$AxGrid(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$AxTickCount = function (a) {
+	return {$: 41, a: a};
+};
+var $author$project$VegaLite$axTickCount = $author$project$VegaLite$AxTickCount;
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$dataFromUrl = F2(
+	function (u, fmts) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			12,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u))
+					]))) : _Utils_Tuple2(
+			12,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u)),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$DSelection = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$doSelection = $author$project$VegaLite$DSelection;
+var $author$project$VegaLite$VLHeight = 5;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		5,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$NTickCount = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
+var $author$project$VegaLite$PSelect = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
+var $author$project$ParamTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
+var $author$project$VegaLite$VLVConcat = 21;
+var $author$project$VegaLite$vConcat = function (specs) {
+	return _Utils_Tuple2(
+		21,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$VLWidth = 4;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$ParamTests$param10 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'brush',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX]))
+						]))
+				])));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('price'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axTickCount(
+							$author$project$VegaLite$niTickCount(3)),
+							$author$project$VegaLite$axGrid(false)
+						]))
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				$author$project$VegaLite$width(480),
+				$author$project$VegaLite$height(60),
+				enc2(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scDomain(
+								$author$project$VegaLite$doSelection('brush'))
+							])),
+						$author$project$VegaLite$pTitle('')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('price'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(480),
+				enc1(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
+			]));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ParamTests$path + 'sp500.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				$author$project$VegaLite$vConcat(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
 var $author$project$VegaLite$InMax = function (a) {
 	return {$: 4, a: a};
 };
@@ -10948,19 +11156,6 @@ var $author$project$ParamTests$param2 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$asSpec = function (specs) {
-	return $elm$json$Json$Encode$object(
-		A2(
-			$elm$core$List$map,
-			function (_v0) {
-				var s = _v0.a;
-				var v = _v0.b;
-				return _Utils_Tuple2(
-					$author$project$VegaLite$vlPropertyLabel(s),
-					v);
-			},
-			specs));
-};
 var $author$project$VegaLite$TickStyle = function (a) {
 	return {$: 40, a: a};
 };
@@ -13558,14 +13753,6 @@ var $author$project$VegaLite$maThickness = function (n) {
 };
 var $author$project$VegaLite$NFalse = {$: 9};
 var $author$project$VegaLite$niFalse = $author$project$VegaLite$NFalse;
-var $author$project$VegaLite$PScale = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $author$project$VegaLite$PExpr = function (a) {
 	return {$: 1, a: a};
 };
@@ -13777,30 +13964,6 @@ var $author$project$VegaLite$color = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$dataFromUrl = F2(
-	function (u, fmts) {
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			12,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u))
-					]))) : _Utils_Tuple2(
-			12,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u)),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
-					])));
-	});
 var $author$project$VegaLite$MAggregate = function (a) {
 	return {$: 13, a: a};
 };
@@ -13816,26 +13979,12 @@ var $author$project$VegaLite$MString = function (a) {
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
 var $author$project$VegaLite$Count = {$: 4};
 var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
-var $author$project$VegaLite$PSelect = F2(
-	function (a, b) {
-		return {$: 3, a: a, b: b};
-	});
-var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
-var $author$project$ParamTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$ParamEmpty = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$prParamEmpty = $author$project$VegaLite$ParamEmpty;
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$SeInterval = 1;
-var $author$project$VegaLite$seInterval = 1;
-var $author$project$VegaLite$VLWidth = 4;
-var $author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		4,
-		$elm$json$Json$Encode$float(w));
-};
 var $author$project$ParamTests$param4 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
@@ -14244,10 +14393,6 @@ var $author$project$VegaLite$hConcat = function (specs) {
 		20,
 		$author$project$VegaLite$toList(specs));
 };
-var $author$project$VegaLite$SDomain = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
 var $author$project$VegaLite$VLTransform = 15;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -14403,18 +14548,10 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$FoDate = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
-var $author$project$VegaLite$VLHeight = 5;
-var $author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		5,
-		$elm$json$Json$Encode$float(h));
-};
 var $author$project$VegaLite$PAggregate = function (a) {
 	return {$: 11, a: a};
 };
@@ -14427,16 +14564,6 @@ var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
-var $author$project$VegaLite$Encodings = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
-var $author$project$VegaLite$VLVConcat = 21;
-var $author$project$VegaLite$vConcat = function (specs) {
-	return _Utils_Tuple2(
-		21,
-		$author$project$VegaLite$toList(specs));
-};
 var $author$project$ParamTests$param9 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -14564,7 +14691,8 @@ var $author$project$ParamTests$specs = _List_fromArray(
 		_Utils_Tuple2('param6', $author$project$ParamTests$param6),
 		_Utils_Tuple2('param7', $author$project$ParamTests$param7),
 		_Utils_Tuple2('param8', $author$project$ParamTests$param8),
-		_Utils_Tuple2('param9', $author$project$ParamTests$param9)
+		_Utils_Tuple2('param9', $author$project$ParamTests$param9),
+		_Utils_Tuple2('param10', $author$project$ParamTests$param10)
 	]);
 var $elm$core$Dict$get = F2(
 	function (targetKey, dict) {
