@@ -6,13 +6,11 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 ### TODO
 
-Provide new simplified VL5 selection specifications and deprecate old model.
+Provide new simplified VL5 selection specifications and deprecate old model. Should include checking whether any instances of "selection" are generated in JSON.
 
 Add selection property expression function (probably something equivalent to `maStrExpr` so that point or interval type can be determined by an expression.
 
 Add mark property expression functions for `MStrokeDash`.
-
-Add bin extent expression function (`biExtent`).
 
 Add tickBand property for axes (VL5?).
 
