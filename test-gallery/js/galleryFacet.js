@@ -5119,7 +5119,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 				_List_fromArray(
 					[
 						_Utils_Tuple2(
-						'selection',
+						'param',
 						$elm$json$Json$Encode$string(selName)),
 						_Utils_Tuple2(
 						'encoding',
@@ -5133,7 +5133,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 				_List_fromArray(
 					[
 						_Utils_Tuple2(
-						'selection',
+						'param',
 						$elm$json$Json$Encode$string(selName)),
 						_Utils_Tuple2(
 						'field',
