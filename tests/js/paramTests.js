@@ -8093,7 +8093,7 @@ var $author$project$VegaLite$binProperty = function (binProp) {
 					_List_fromArray(
 						[
 							_Utils_Tuple2(
-							'selection',
+							'param',
 							$elm$json$Json$Encode$string(s))
 						])));
 		default:
@@ -14224,6 +14224,336 @@ var $author$project$ParamTests$param7 = function () {
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doNums = $author$project$VegaLite$DNumbers;
+var $author$project$VegaLite$FParam = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$fiParam = $author$project$VegaLite$FParam;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$VegaLite$VLHConcat = 20;
+var $author$project$VegaLite$hConcat = function (specs) {
+	return _Utils_Tuple2(
+		20,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$VLTransform = 15;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(15, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		15,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$ParamTests$param8 = function () {
+	var trans2 = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiParam('brush')));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'brush',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil)
+				])));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Acceleration'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scDomain(
+								$author$project$VegaLite$doNums(
+									_List_fromArray(
+										[0, 25])))
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Displacement'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 500])))
+						]))
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				trans2(_List_Nil),
+				enc2(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Horsepower'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Miles_per_Gallon'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc1(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ParamTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				data,
+				$author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 52, a: a};
+};
+var $author$project$VegaLite$axTitle = function (s) {
+	return $author$project$VegaLite$AxTitle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MaxBins = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$biMaxBins = $author$project$VegaLite$MaxBins;
+var $author$project$VegaLite$SelectionExtent = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$biSelectionExtent = $author$project$VegaLite$SelectionExtent;
+var $author$project$VegaLite$calculateAs = F2(
+	function (ex, label) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'calculate',
+							$elm$json$Json$Encode$string(ex)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
+						]))));
+	});
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$FoDate = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
+var $author$project$VegaLite$VLHeight = 5;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		5,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$PAggregate = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PBin = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
+var $author$project$VegaLite$Parse = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$VegaLite$VLVConcat = 21;
+var $author$project$VegaLite$vConcat = function (specs) {
+	return _Utils_Tuple2(
+		21,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$ParamTests$param9 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$calculateAs, 'hours(datum.date) + minutes(datum.date) / 60', 'time'));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'brush',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX]))
+						]))
+				])));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('time'),
+						$author$project$VegaLite$pBin(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$biMaxBins(30)
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount),
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axTitle('Count')
+						]))
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				$author$project$VegaLite$width(480),
+				$author$project$VegaLite$height(50),
+				enc2(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('time'),
+						$author$project$VegaLite$pBin(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$biMaxBins(30),
+								$author$project$VegaLite$biSelectionExtent('brush')
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(480),
+				$author$project$VegaLite$height(150),
+				enc1(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$ParamTests$path + 'flights-5k.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$parse(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'date',
+						$author$project$VegaLite$foDate(''))
+					]))
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				trans(_List_Nil),
+				$author$project$VegaLite$vConcat(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
 var $author$project$ParamTests$specs = _List_fromArray(
 	[
 		_Utils_Tuple2('param1', $author$project$ParamTests$param1),
@@ -14232,7 +14562,9 @@ var $author$project$ParamTests$specs = _List_fromArray(
 		_Utils_Tuple2('param4', $author$project$ParamTests$param4),
 		_Utils_Tuple2('param5', $author$project$ParamTests$param5),
 		_Utils_Tuple2('param6', $author$project$ParamTests$param6),
-		_Utils_Tuple2('param7', $author$project$ParamTests$param7)
+		_Utils_Tuple2('param7', $author$project$ParamTests$param7),
+		_Utils_Tuple2('param8', $author$project$ParamTests$param8),
+		_Utils_Tuple2('param9', $author$project$ParamTests$param9)
 	]);
 var $elm$core$Dict$get = F2(
 	function (targetKey, dict) {

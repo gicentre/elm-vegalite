@@ -3010,7 +3010,7 @@ var $author$project$VegaLite$binProperty = function (binProp) {
 					_List_fromArray(
 						[
 							_Utils_Tuple2(
-							'selection',
+							'param',
 							$elm$json$Json$Encode$string(s))
 						])));
 		default:
