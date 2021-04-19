@@ -23965,13 +23965,13 @@ scaleDomainSpec sdType =
 
         DSelectionChannel selName ch ->
             JE.object
-                [ ( "selection", JE.string selName )
+                [ ( "param", JE.string selName )
                 , ( "encoding", JE.string (channelLabel ch) )
                 ]
 
         DSelectionField selName f ->
             JE.object
-                [ ( "selection", JE.string selName )
+                [ ( "param", JE.string selName )
                 , ( "field", JE.string f )
                 ]
 
