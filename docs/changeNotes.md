@@ -12,9 +12,15 @@ Add selection property expression function (probably something equivalent to `ma
 
 Add mark property expression functions for `MStrokeDash`.
 
+Add bin extent expression function (`biExtent`).
+
+Add tickBand property for axes (VL5?).
+
 Add top-level view background expressions: `strokeCap`, `strokeDash`, `strokeJoin`.
 
 Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, and `subtitleFontWeight`.
+
+Add projection property expressions.
 
 Add custom type axis property expressions.
 
