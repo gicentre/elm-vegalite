@@ -4951,25 +4951,31 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 1:
-			var predicate = field.a;
-			var ifClause = field.b;
-			var elseClause = field.c;
+			var ifClauses = field.a;
+			var elseClause = field.b;
 			return A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'condition',
-					$elm$json$Json$Encode$object(
-						_Utils_ap(
-							$author$project$VegaLite$predicateProperties(predicate),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
+					A2(
+						$elm$json$Json$Encode$list,
+						function (_v6) {
+							var predicate = _v6.a;
+							var ifClause = _v6.b;
+							return $elm$json$Json$Encode$object(
+								_Utils_ap(
+									$author$project$VegaLite$predicateProperties(predicate),
+									A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
+						},
+						ifClauses)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 19:
 			var isSelection = field.a;
 			var tests = field.b;
 			var elseClause = field.c;
-			var testClause = function (_v7) {
-				var predicate = _v7.a;
-				var ifClause = _v7.b;
+			var testClause = function (_v8) {
+				var predicate = _v8.a;
+				var ifClause = _v8.b;
 				return isSelection ? $elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
