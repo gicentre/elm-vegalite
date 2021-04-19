@@ -273,6 +273,35 @@ param9 =
     toVegaLite [ data, trans [], vConcat [ spec1, spec2 ] ]
 
 
+param10 : Spec
+param10 =
+    let
+        data =
+            dataFromUrl (path ++ "sp500.csv") []
+
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
+
+        enc1 =
+            encoding
+                << position X [ pName "date", pTemporal, pScale [ scDomain (doSelection "brush") ], pTitle "" ]
+                << position Y [ pName "price", pQuant ]
+
+        spec1 =
+            asSpec [ width 480, enc1 [], area [] ]
+
+        enc2 =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant, pAxis [ axTickCount (niTickCount 3), axGrid False ] ]
+
+        spec2 =
+            asSpec [ ps [], width 480, height 60, enc2 [], area [] ]
+    in
+    toVegaLite [ data, vConcat [ spec1, spec2 ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -288,6 +317,7 @@ specs =
     , ( "param7", param7 )
     , ( "param8", param8 )
     , ( "param9", param9 )
+    , ( "param10", param10 )
     ]
 
 

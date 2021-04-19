@@ -23961,7 +23961,7 @@ scaleDomainSpec sdType =
             JE.list JE.string cats
 
         DSelection selName ->
-            JE.object [ ( "selection", JE.string selName ) ]
+            JE.object [ ( "param", JE.string selName ) ]
 
         DSelectionChannel selName ch ->
             JE.object
