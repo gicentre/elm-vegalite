@@ -3304,15 +3304,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'gte',
 					$author$project$VegaLite$dataValueSpec(val))
 				]);
-		case 8:
-			var selName = f.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'selection',
-					$elm$json$Json$Encode$string(selName))
-				]);
-		case 6:
+		case 7:
 			var selName = f.a;
 			return _List_fromArray(
 				[
@@ -3320,7 +3312,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'param',
 					$elm$json$Json$Encode$string(selName))
 				]);
-		case 10:
+		case 9:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -3380,7 +3372,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('range', values)
 				]);
-		case 9:
+		case 8:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -3412,7 +3404,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('oneOf', values)
 				]);
-		case 11:
+		case 10:
 			var field = f.a;
 			return _List_fromArray(
 				[
@@ -4796,7 +4788,7 @@ var $author$project$VegaLite$filterSpec = function (f) {
 		case 5:
 			var ex = f.a;
 			return $elm$json$Json$Encode$string(ex);
-		case 7:
+		case 6:
 			var boolExpr = f.a;
 			return $author$project$VegaLite$booleanOpSpec(boolExpr);
 		default:
@@ -5100,7 +5092,7 @@ var $author$project$VegaLite$trFilterSpec = F2(
 			case 5:
 				var ex = f.a;
 				return $elm$json$Json$Encode$string(ex);
-			case 7:
+			case 6:
 				var boolExpr = f.a;
 				return $author$project$VegaLite$booleanOpSpec(boolExpr);
 			default:
