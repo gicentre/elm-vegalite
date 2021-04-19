@@ -171,7 +171,9 @@ interaction11 =
     let
         sel =
             selection
-                << select "mySelection" seSingle [ seBindLegend [ blField "crimeType" ] ]
+                << select "mySelection"
+                    seSingle
+                    [ seBindLegend [ blField "crimeType" ] ]
 
         cfg =
             configure

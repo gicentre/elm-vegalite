@@ -63,6 +63,25 @@ Add aria expressions (marks, axes, legends etc.)
   params << param "zoomer" [ paSelect seInterval [], paBindScales ]
   ```
 
+- `seBindLegend` deprecated in favour of `paBindLegend` (VL5.0). Where previously legend binding might have been specified as
+
+  ```elm
+  selection
+      << select "mySelection"
+          seSingle
+          [ seBindLegend [ blField "crimeType", blEvent "dblclick ] ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  params
+      << param "mySelection"
+          [ paSelect sePoint [ seFields [ "crimeType" ] ]
+          , paBindLegend "dblclick"
+          ]
+  ```
+
 ### Additions
 
 - `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.

@@ -185,39 +185,44 @@ interaction10 =
 interaction11 : Spec
 interaction11 =
     let
-        sel =
-            selection
-                << select "mySelection" seSingle [ seBindLegend [ blField "crimeType" ] ]
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect sePoint [ seFields [ "crimeType" ] ]
+                    , paBindLegend ""
+                    ]
 
         cfg =
             configure
                 << configuration (coLegend [ lecoUnselectedOpacity 0.1 ])
     in
-    toVegaLite [ cfg [], width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ cfg [], width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction12 : Spec
 interaction12 =
     let
-        sel =
-            selection
-                << select "mySelection" seSingle [ seBindLegend [ blChannel chColor, blEvent "dblclick" ] ]
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect sePoint [ seEncodings [ chColor ] ]
+                    , paBindLegend "dblclick"
+                    ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction13 : Spec
 interaction13 =
     let
-        sel =
-            selection
-                << select "mySelection"
-                    seMulti
-                    [ seOn "click"
-                    , seBindLegend [ blField "crimeType", blEvent "dblclick" ]
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect sePoint [ seOn "click", seFields [ "crimeType" ] ]
+                    , paBindLegend "dblclick"
                     ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction14 : Spec
