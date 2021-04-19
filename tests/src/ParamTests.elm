@@ -207,6 +207,72 @@ param7 =
     toVegaLite [ ps [], data, enc [], point [] ]
 
 
+param8 : Spec
+param8 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [] ]
+
+        enc1 =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+
+        spec1 =
+            asSpec [ enc1 [], point [] ]
+
+        trans2 =
+            transform
+                << filter (fiParam "brush")
+
+        enc2 =
+            encoding
+                << position X [ pName "Acceleration", pQuant, pScale [ scDomain (doNums [ 0, 25 ]) ] ]
+                << position Y [ pName "Displacement", pQuant, pScale [ scDomain (doNums [ 0, 500 ]) ] ]
+
+        spec2 =
+            asSpec [ trans2 [], enc2 [], point [] ]
+    in
+    toVegaLite [ ps [], data, hConcat [ spec1, spec2 ] ]
+
+
+param9 : Spec
+param9 =
+    let
+        data =
+            dataFromUrl (path ++ "flights-5k.json") [ parse [ ( "date", foDate "" ) ] ]
+
+        trans =
+            transform
+                << calculateAs "hours(datum.date) + minutes(datum.date) / 60" "time"
+
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
+
+        enc1 =
+            encoding
+                << position X [ pName "time", pBin [ biMaxBins 30, biSelectionExtent "brush" ] ]
+                << position Y [ pAggregate opCount ]
+
+        spec1 =
+            asSpec [ width 480, height 150, enc1 [], bar [] ]
+
+        enc2 =
+            encoding
+                << position X [ pName "time", pBin [ biMaxBins 30 ] ]
+                << position Y [ pAggregate opCount, pAxis [ axTitle "Count" ] ]
+
+        spec2 =
+            asSpec [ ps [], width 480, height 50, enc2 [], bar [] ]
+    in
+    toVegaLite [ data, trans [], vConcat [ spec1, spec2 ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -220,6 +286,8 @@ specs =
     , ( "param5", param5 )
     , ( "param6", param6 )
     , ( "param7", param7 )
+    , ( "param8", param8 )
+    , ( "param9", param9 )
     ]
 
 

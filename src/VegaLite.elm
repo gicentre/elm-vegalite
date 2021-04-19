@@ -7982,8 +7982,8 @@ biDivide =
     Divides
 
 
-{-| Desired range of bin values when binning a collection of values.
-The first and second parameters indicate the minimum and maximum range values.
+{-| Desired extent of bin values when binning a collection of values.
+The first and second parameters indicate the minimum and maximum extent.
 To base a binning extent on an interactive selection, use
 [biSelectionExtent](#biSelectionExtent) instead.
 -}
@@ -8052,18 +8052,18 @@ binAs bProps field label =
 
 
 {-| Set the desired range of bin values based on an interactive selection. The
-parameter should be the name of an interval selection that defines the extent.
+parameter should be the name of an interval selection parameter that defines the
+extent.
 
-    sel =
-        selection
-            << select "brush" seInterval [ seEncodings [ chX ] ]
+    ps =
+        params
+            << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
     enc =
         encoding
             << position X
                 [ pName "temperature"
                 , pBin [ biSelectionExtent "brush" ]
-                , pQuant
                 ]
 
 -}
@@ -20787,7 +20787,7 @@ binProperty binProp =
             ( "extent", JE.list JE.float [ mn, mx ] )
 
         SelectionExtent s ->
-            ( "extent", JE.object [ ( "selection", JE.string s ) ] )
+            ( "extent", JE.object [ ( "param", JE.string s ) ] )
 
         Nice b ->
             ( "nice", JE.bool b )
