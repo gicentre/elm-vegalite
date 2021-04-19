@@ -9645,7 +9645,7 @@ var $author$project$VegaLite$mark = F2(
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
-		return {$: 5, a: a, b: b};
+		return {$: 6, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$VegaLite$inputProperty = function (prop) {
@@ -10375,16 +10375,32 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 var $author$project$VegaLite$paramProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
+			var bps = pp.a;
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					$author$project$VegaLite$pBindingProperties(bps)));
+		case 1:
 			var binds = pp.a;
 			return _Utils_Tuple2(
 				'bind',
 				$elm$json$Json$Encode$object(
-					$author$project$VegaLite$pBindingProperties(binds)));
-		case 1:
+					A2(
+						$elm$core$List$map,
+						function (_v1) {
+							var bName = _v1.a;
+							var bps = _v1.b;
+							return _Utils_Tuple2(
+								bName,
+								$elm$json$Json$Encode$object(
+									$author$project$VegaLite$pBindingProperties(bps)));
+						},
+						binds)));
+		case 2:
 			return _Utils_Tuple2(
 				'bind',
 				$elm$json$Json$Encode$string('scales'));
-		case 2:
+		case 3:
 			var s = pp.a;
 			return (!$elm$core$String$length(
 				$elm$core$String$trim(s))) ? _Utils_Tuple2(
@@ -10398,12 +10414,12 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 							'legend',
 							$elm$json$Json$Encode$string(s))
 						])));
-		case 3:
+		case 4:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		case 4:
+		case 5:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
@@ -10609,7 +10625,7 @@ var $author$project$InteractionTests$interaction1 = function () {
 }();
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$PBindScales = {$: 1};
+var $author$project$VegaLite$PBindScales = {$: 2};
 var $author$project$VegaLite$paBindScales = $author$project$VegaLite$PBindScales;
 var $author$project$VegaLite$SeInterval = 1;
 var $author$project$VegaLite$seInterval = 1;
@@ -13019,7 +13035,7 @@ var $author$project$VegaLite$LeUnselectedOpacity = function (a) {
 };
 var $author$project$VegaLite$lecoUnselectedOpacity = $author$project$VegaLite$LeUnselectedOpacity;
 var $author$project$VegaLite$PBindLegend = function (a) {
-	return {$: 2, a: a};
+	return {$: 3, a: a};
 };
 var $author$project$VegaLite$paBindLegend = $author$project$VegaLite$PBindLegend;
 var $author$project$VegaLite$Fields = function (a) {
@@ -13253,7 +13269,7 @@ var $author$project$VegaLite$Number = function (a) {
 };
 var $author$project$VegaLite$num = $author$project$VegaLite$Number;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$VLTransform = 15;

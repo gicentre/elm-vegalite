@@ -13387,13 +13387,6 @@ var $author$project$VegaLite$DObject = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$dataObject = $author$project$VegaLite$DObject;
-var $author$project$VegaLite$IRange = F2(
-	function (a, b) {
-		return {$: 0, a: a, b: b};
-	});
-var $author$project$VegaLite$iRange = function (f) {
-	return $author$project$VegaLite$IRange(f);
-};
 var $author$project$VegaLite$InMax = function (a) {
 	return {$: 4, a: a};
 };
@@ -13410,18 +13403,26 @@ var $author$project$VegaLite$InStep = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$inStep = $author$project$VegaLite$InStep;
+var $author$project$VegaLite$IPRange = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
 var $author$project$VegaLite$MCondition = F3(
 	function (a, b, c) {
 		return {$: 1, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
+var $author$project$VegaLite$PBindings = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$paBindings = $author$project$VegaLite$PBindings;
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
-		return {$: 5, a: a, b: b};
+		return {$: 6, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$pBindingProperties = function (bnd) {
@@ -13535,16 +13536,32 @@ var $author$project$VegaLite$pBindingProperties = function (bnd) {
 var $author$project$VegaLite$paramProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
+			var bps = pp.a;
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					$author$project$VegaLite$pBindingProperties(bps)));
+		case 1:
 			var binds = pp.a;
 			return _Utils_Tuple2(
 				'bind',
 				$elm$json$Json$Encode$object(
-					$author$project$VegaLite$pBindingProperties(binds)));
-		case 1:
+					A2(
+						$elm$core$List$map,
+						function (_v1) {
+							var bName = _v1.a;
+							var bps = _v1.b;
+							return _Utils_Tuple2(
+								bName,
+								$elm$json$Json$Encode$object(
+									$author$project$VegaLite$pBindingProperties(bps)));
+						},
+						binds)));
+		case 2:
 			return _Utils_Tuple2(
 				'bind',
 				$elm$json$Json$Encode$string('scales'));
-		case 2:
+		case 3:
 			var s = pp.a;
 			return (!$elm$core$String$length(
 				$elm$core$String$trim(s))) ? _Utils_Tuple2(
@@ -13558,12 +13575,12 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 							'legend',
 							$elm$json$Json$Encode$string(s))
 						])));
-		case 3:
+		case 4:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		case 4:
+		case 5:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
@@ -13640,10 +13657,6 @@ var $author$project$VegaLite$Param = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$prParam = $author$project$VegaLite$Param;
-var $author$project$VegaLite$Bind = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$seBind = $author$project$VegaLite$Bind;
 var $author$project$VegaLite$SePoint = 0;
 var $author$project$VegaLite$sePoint = 0;
 var $author$project$VegaLite$Toggle = function (a) {
@@ -13662,53 +13675,6 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		A2($author$project$VegaLite$calculateAs, 'year(datum.Year)', 'Year'));
-	var sel1 = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'CylYr',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seFields(
-					_List_fromArray(
-						['Cylinders', 'Year'])),
-					$author$project$VegaLite$seInit(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'Cylinders',
-							$author$project$VegaLite$num(4)),
-							_Utils_Tuple2(
-							'Year',
-							$author$project$VegaLite$num(1977))
-						])),
-					$author$project$VegaLite$seBind(
-					_List_fromArray(
-						[
-							A2(
-							$author$project$VegaLite$iRange,
-							'Cylinders',
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('Cylinders '),
-									$author$project$VegaLite$inMin(3),
-									$author$project$VegaLite$inMax(8),
-									$author$project$VegaLite$inStep(1)
-								])),
-							A2(
-							$author$project$VegaLite$iRange,
-							'Year',
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inName('Year '),
-									$author$project$VegaLite$inMin(1969),
-									$author$project$VegaLite$inMax(1981),
-									$author$project$VegaLite$inStep(1)
-								]))
-						]))
-				])));
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -13737,7 +13703,31 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 								_Utils_Tuple2(
 								'Year',
 								$author$project$VegaLite$num(1977))
-							])))
+							]))),
+					$author$project$VegaLite$paBindings(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'Cylinders',
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inName('Cylinders'),
+										$author$project$VegaLite$inMin(3),
+										$author$project$VegaLite$inMax(8),
+										$author$project$VegaLite$inStep(1)
+									]))),
+							_Utils_Tuple2(
+							'Year',
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inName('Year'),
+										$author$project$VegaLite$inMin(1969),
+										$author$project$VegaLite$inMax(1981),
+										$author$project$VegaLite$inStep(1)
+									])))
+						]))
 				])));
 	var encPos = A2(
 		$elm$core$Basics$composeL,

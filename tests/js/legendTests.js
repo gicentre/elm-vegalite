@@ -13150,7 +13150,7 @@ var $author$project$VegaLite$PBind = function (a) {
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 4, a: a};
+	return {$: 5, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$pBindingProperties = function (bnd) {
@@ -13264,16 +13264,32 @@ var $author$project$VegaLite$pBindingProperties = function (bnd) {
 var $author$project$VegaLite$paramProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
+			var bps = pp.a;
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					$author$project$VegaLite$pBindingProperties(bps)));
+		case 1:
 			var binds = pp.a;
 			return _Utils_Tuple2(
 				'bind',
 				$elm$json$Json$Encode$object(
-					$author$project$VegaLite$pBindingProperties(binds)));
-		case 1:
+					A2(
+						$elm$core$List$map,
+						function (_v1) {
+							var bName = _v1.a;
+							var bps = _v1.b;
+							return _Utils_Tuple2(
+								bName,
+								$elm$json$Json$Encode$object(
+									$author$project$VegaLite$pBindingProperties(bps)));
+						},
+						binds)));
+		case 2:
 			return _Utils_Tuple2(
 				'bind',
 				$elm$json$Json$Encode$string('scales'));
-		case 2:
+		case 3:
 			var s = pp.a;
 			return (!$elm$core$String$length(
 				$elm$core$String$trim(s))) ? _Utils_Tuple2(
@@ -13287,12 +13303,12 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 							'legend',
 							$elm$json$Json$Encode$string(s))
 						])));
-		case 3:
+		case 4:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		case 4:
+		case 5:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
