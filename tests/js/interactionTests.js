@@ -9653,7 +9653,7 @@ var $author$project$VegaLite$mark = F2(
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
-		return {$: 3, a: a, b: b};
+		return {$: 4, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$VegaLite$inputProperty = function (prop) {
@@ -10389,11 +10389,15 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 				$elm$json$Json$Encode$object(
 					$author$project$VegaLite$pBindingProperties(binds)));
 		case 1:
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$string('scales'));
+		case 2:
 			var s = pp.a;
 			return _Utils_Tuple2(
 				'expr',
 				$elm$json$Json$Encode$string(s));
-		case 2:
+		case 3:
 			var d = pp.a;
 			return _Utils_Tuple2(
 				'value',
@@ -10599,8 +10603,8 @@ var $author$project$InteractionTests$interaction1 = function () {
 }();
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$BindScales = {$: 1};
-var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
+var $author$project$VegaLite$PBindScales = {$: 1};
+var $author$project$VegaLite$paBindScales = $author$project$VegaLite$PBindScales;
 var $author$project$VegaLite$SeInterval = 1;
 var $author$project$VegaLite$seInterval = 1;
 var $author$project$InteractionTests$interaction10 = function () {
@@ -10612,11 +10616,8 @@ var $author$project$InteractionTests$interaction10 = function () {
 			'mySelection',
 			_List_fromArray(
 				[
-					A2(
-					$author$project$VegaLite$paSelect,
-					$author$project$VegaLite$seInterval,
-					_List_fromArray(
-						[$author$project$VegaLite$seBindScales]))
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil),
+					$author$project$VegaLite$paBindScales
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -14451,7 +14452,7 @@ var $author$project$VegaLite$Numbers = function (a) {
 };
 var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
 var $author$project$VegaLite$PValue = function (a) {
-	return {$: 2, a: a};
+	return {$: 3, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$InteractionTests$interaction5 = function () {
@@ -14613,6 +14614,10 @@ var $author$project$InteractionTests$interaction8 = function () {
 												_List_fromArray(
 												[
 													$author$project$VegaLite$dtYear(2013)
+												]),
+												_List_fromArray(
+												[
+													$author$project$VegaLite$dtYear(2013)
 												])
 											]))))
 							])))
@@ -14641,11 +14646,11 @@ var $author$project$InteractionTests$interaction9 = function () {
 					$author$project$VegaLite$seInterval,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$seBindScales,
 							$author$project$VegaLite$seEncodings(
 							_List_fromArray(
 								[$author$project$VegaLite$chX]))
-						]))
+						])),
+					$author$project$VegaLite$paBindScales
 				])));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
