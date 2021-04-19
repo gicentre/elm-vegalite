@@ -232,7 +232,7 @@ interaction7 =
 
         trans2 =
             transform
-                << filter (fiParam "CylYr")
+                << filter (fiSelection "CylYr")
 
         enc2 =
             encoding

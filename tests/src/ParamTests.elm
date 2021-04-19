@@ -227,7 +227,7 @@ param8 =
 
         trans2 =
             transform
-                << filter (fiParam "brush")
+                << filter (fiSelection "brush")
 
         enc2 =
             encoding

@@ -228,14 +228,12 @@ interaction13 =
 interaction14 : Spec
 interaction14 =
     let
-        sel =
-            selection
-                << select "mySelection"
-                    seSingle
-                    [ seFields [ "crimeType" ]
-                    , seNearest True
-                    , seBind
-                        [ iRadio "crimeType"
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect sePoint [ seFields [ "crimeType" ] ]
+                    , paBind
+                        (ipRadio
                             [ inName " "
                             , inOptions
                                 [ "Anti-social behaviour"
@@ -245,33 +243,33 @@ interaction14 =
                                 , "Vehicle crime"
                                 ]
                             ]
-                        ]
+                        )
                     ]
     in
-    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
 
 
 interaction15 : Spec
 interaction15 =
     let
-        sel =
-            selection
-                << select "maxSlider"
-                    seSingle
-                    [ seInit [ ( "maxReported", num 14000 ) ]
-                    , seBind [ iRange "maxReported" [ inName "Max", inMin 400, inMax 14000 ] ]
+        ps =
+            params
+                << param "minSlider"
+                    [ paSelect sePoint []
+                    , paValue (dataObject [ ( "minReported", num 0 ) ])
+                    , paBind (ipRange [ inName "Min", inMax 12800 ])
                     ]
-                << select "minSlider"
-                    seSingle
-                    [ seInit [ ( "minReported", num 0 ) ]
-                    , seBind [ iRange "minReported" [ inName "Min", inMax 12800 ] ]
+                << param "maxSlider"
+                    [ paSelect sePoint []
+                    , paValue (dataObject [ ( "maxReported", num 14000 ) ])
+                    , paBind (ipRange [ inName "Max", inMin 400, inMax 14000 ])
                     ]
 
         trans =
             transform
                 << filter (fiExpr "datum.reportedCrimes >= minSlider_minReported && maxSlider_maxReported >= datum.reportedCrimes")
     in
-    toVegaLite [ width 540, data, trans [], sel [], enc [], circle [] ]
+    toVegaLite [ width 540, data, trans [], ps [], enc [], circle [] ]
 
 
 interaction16 : Spec
@@ -280,14 +278,11 @@ interaction16 =
         stockData =
             dataFromUrl (path ++ "stocks.csv") [ csv, parse [ ( "date", foDate "" ) ] ]
 
-        sel =
-            selection
-                << select "index"
-                    seSingle
-                    [ seOn "mouseover"
-                    , seEncodings [ chX ]
-                    , seNearest True
-                    , seInit [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ]
+        ps =
+            params
+                << param "index"
+                    [ paSelect sePoint [ seEncodings [ chX ], seOn "mouseover", seNearest True ]
+                    , paValue (dataObject [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ])
                     ]
 
         trans =
@@ -301,7 +296,7 @@ interaction16 =
                 << position X [ pName "date", pTemporal, pAxis [] ]
 
         pointSpec =
-            asSpec [ sel [], pointEnc [], point [ maOpacity 0 ] ]
+            asSpec [ ps [], pointEnc [], point [ maOpacity 0 ] ]
 
         lineEnc =
             encoding
