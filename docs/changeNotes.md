@@ -92,6 +92,8 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
 
+- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
+
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
 - `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
