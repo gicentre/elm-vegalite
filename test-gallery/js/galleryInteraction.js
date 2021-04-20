@@ -5320,7 +5320,18 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'param',
 					$elm$json$Json$Encode$string(selName))
 				]);
-		case 9:
+		case 8:
+			var selName = f.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'param',
+					$elm$json$Json$Encode$string(selName)),
+					_Utils_Tuple2(
+					'empty',
+					$elm$json$Json$Encode$bool(false))
+				]);
+		case 10:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -5380,7 +5391,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('range', values)
 				]);
-		case 8:
+		case 9:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -5412,7 +5423,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('oneOf', values)
 				]);
-		case 10:
+		case 11:
 			var field = f.a;
 			return _List_fromArray(
 				[
@@ -6414,7 +6425,16 @@ var $author$project$VegaLite$booleanOpSpec = function (bo) {
 						'not',
 						$author$project$VegaLite$booleanOpSpec(operand))
 					]));
-		case 7:
+		case 6:
+			var p = bo.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'param',
+						$elm$json$Json$Encode$string(p))
+					]));
+		case 8:
 			var selName = bo.a;
 			return $elm$json$Json$Encode$string(selName);
 		default:
@@ -6596,31 +6616,25 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 1:
-			var ifClauses = field.a;
-			var elseClause = field.b;
+			var predicate = field.a;
+			var ifClause = field.b;
+			var elseClause = field.c;
 			return A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'condition',
-					A2(
-						$elm$json$Json$Encode$list,
-						function (_v6) {
-							var predicate = _v6.a;
-							var ifClause = _v6.b;
-							return $elm$json$Json$Encode$object(
-								_Utils_ap(
-									$author$project$VegaLite$predicateProperties(predicate),
-									A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-						},
-						ifClauses)),
+					$elm$json$Json$Encode$object(
+						_Utils_ap(
+							$author$project$VegaLite$predicateProperties(predicate),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 19:
 			var isSelection = field.a;
 			var tests = field.b;
 			var elseClause = field.c;
-			var testClause = function (_v8) {
-				var predicate = _v8.a;
-				var ifClause = _v8.b;
+			var testClause = function (_v7) {
+				var predicate = _v7.a;
+				var ifClause = _v7.b;
 				return isSelection ? $elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
@@ -10076,9 +10090,9 @@ var $author$project$VegaLite$fillOpacity = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$MCondition = F2(
-	function (a, b) {
-		return {$: 1, a: a, b: b};
+var $author$project$VegaLite$MCondition = F3(
+	function (a, b, c) {
+		return {$: 1, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
 var $author$project$VegaLite$MNumber = function (a) {
@@ -10820,16 +10834,12 @@ var $author$project$GalleryInteraction$interaction1 = function () {
 			$author$project$VegaLite$fillOpacity(
 				_List_fromArray(
 					[
-						A2(
+						A3(
 						$author$project$VegaLite$mCondition,
+						$author$project$VegaLite$prParam('select'),
 						_List_fromArray(
 							[
-								_Utils_Tuple2(
-								$author$project$VegaLite$prParam('select'),
-								_List_fromArray(
-									[
-										$author$project$VegaLite$mNum(1)
-									]))
+								$author$project$VegaLite$mNum(1)
 							]),
 						_List_fromArray(
 							[
@@ -10839,22 +10849,12 @@ var $author$project$GalleryInteraction$interaction1 = function () {
 		$author$project$VegaLite$strokeWidth(
 			_List_fromArray(
 				[
-					A2(
+					A3(
 					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('select'),
 					_List_fromArray(
 						[
-							_Utils_Tuple2(
-							$author$project$VegaLite$prParamEmpty('select'),
-							_List_fromArray(
-								[
-									$author$project$VegaLite$mNum(2)
-								])),
-							_Utils_Tuple2(
-							$author$project$VegaLite$prParamEmpty('highlight'),
-							_List_fromArray(
-								[
-									$author$project$VegaLite$mNum(1)
-								]))
+							$author$project$VegaLite$mNum(2)
 						]),
 					_List_fromArray(
 						[
@@ -10985,20 +10985,6 @@ var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
-var $author$project$VegaLite$MDataCondition = F3(
-	function (a, b, c) {
-		return {$: 19, a: a, b: b, c: c};
-	});
-var $author$project$VegaLite$mSelectionCondition = F2(
-	function (bo, tMcs) {
-		return A2(
-			$author$project$VegaLite$MDataCondition,
-			true,
-			_List_fromArray(
-				[
-					_Utils_Tuple2(bo, tMcs)
-				]));
-	});
 var $author$project$VegaLite$MAlign = function (a) {
 	return {$: 0, a: a};
 };
@@ -11045,8 +11031,6 @@ var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
-var $author$project$VegaLite$Empty = {$: 0};
-var $author$project$VegaLite$seEmpty = $author$project$VegaLite$Empty;
 var $author$project$VegaLite$Encodings = function (a) {
 	return {$: 8, a: a};
 };
@@ -11055,50 +11039,10 @@ var $author$project$VegaLite$Nearest = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$seNearest = $author$project$VegaLite$Nearest;
-var $author$project$VegaLite$SeSingle = 2;
-var $author$project$VegaLite$seSingle = 2;
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$Basics$neq = _Utils_notEqual;
-var $author$project$VegaLite$select = F3(
-	function (selName, sType, options) {
-		var selProps = A2(
-			$elm$core$List$filter,
-			A2(
-				$elm$core$Basics$composeR,
-				$elm$core$Tuple$second,
-				$elm$core$Basics$neq($elm$json$Json$Encode$null)),
-			A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$selectionLabel(sType))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, options)));
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				selName,
-				$elm$json$Json$Encode$object(selProps)));
-	});
-var $author$project$VegaLite$VLSelection = 32;
-var $author$project$VegaLite$selection = function (sels) {
-	return _Utils_Tuple2(
-		32,
-		$elm$json$Json$Encode$object(sels));
+var $author$project$VegaLite$Toggle = function (a) {
+	return {$: 15, a: a};
 };
-var $author$project$VegaLite$SelectionName = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$selectionName = $author$project$VegaLite$SelectionName;
+var $author$project$VegaLite$seToggle = $author$project$VegaLite$Toggle;
 var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
@@ -11275,6 +11219,8 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 14;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
+var $author$project$VegaLite$TpFalse = {$: 0};
+var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
 var $author$project$VegaLite$VLTransform = 15;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -11313,21 +11259,26 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiSelection('myTooltip')));
-	var sel1_2 = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myTooltip',
-			$author$project$VegaLite$seSingle,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seNearest(true),
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seEncodings(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
 					_List_fromArray(
-						[$author$project$VegaLite$chX])),
-					$author$project$VegaLite$seEmpty
+						[
+							$author$project$VegaLite$seToggle($author$project$VegaLite$tpFalse),
+							$author$project$VegaLite$seNearest(true),
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX]))
+						]))
 				])));
 	var enc2_2 = A2(
 		$elm$core$Basics$composeL,
@@ -11413,8 +11364,8 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('myTooltip'),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('myTooltip'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mNum(1)
@@ -11467,7 +11418,7 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 						$author$project$VegaLite$asSpec(
 						_List_fromArray(
 							[
-								sel1_2(_List_Nil),
+								ps(_List_Nil),
 								enc1_2(_List_Nil),
 								$author$project$VegaLite$point(_List_Nil)
 							]))
@@ -11499,6 +11450,10 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 					[spec1, spec2]))
 			]));
 }();
+var $author$project$VegaLite$FSelectionEmpty = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$fiSelectionEmpty = $author$project$VegaLite$FSelectionEmpty;
 var $author$project$VegaLite$PiGroupBy = function (a) {
 	return {$: 0, a: a};
 };
@@ -11565,7 +11520,7 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiSelection('hover')));
+			$author$project$VegaLite$fiSelectionEmpty('hover')));
 	var transPivot = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11579,22 +11534,26 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 					_List_fromArray(
 						['date']))
 				])));
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'hover',
-			$author$project$VegaLite$seSingle,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seFields(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
 					_List_fromArray(
-						['date'])),
-					$author$project$VegaLite$seEmpty,
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seClear('mouseout'),
-					$author$project$VegaLite$seNearest(true)
+						[
+							$author$project$VegaLite$seFields(
+							_List_fromArray(
+								['date'])),
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seClear('mouseout'),
+							$author$project$VegaLite$seNearest(true)
+						]))
 				])));
 	var enc2 = A2(
 		$elm$core$Basics$composeL,
@@ -11605,8 +11564,8 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 				_List_fromArray(
 					[
 						A3(
-						$author$project$VegaLite$mSelectionCondition,
-						$author$project$VegaLite$selectionName('hover'),
+						$author$project$VegaLite$mCondition,
+						$author$project$VegaLite$prParamEmpty('hover'),
 						_List_fromArray(
 							[
 								$author$project$VegaLite$mNum(0.3)
@@ -11648,7 +11607,7 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 	var spec2 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
+				ps(_List_Nil),
 				transPivot(_List_Nil),
 				enc2(_List_Nil),
 				$author$project$VegaLite$rule(_List_Nil)
@@ -11753,6 +11712,10 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
+var $author$project$VegaLite$DObject = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$dataObject = $author$project$VegaLite$DObject;
 var $author$project$VegaLite$DateTime = function (a) {
 	return {$: 1, a: a};
 };
@@ -11865,10 +11828,10 @@ var $author$project$VegaLite$PNumber = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
-var $author$project$VegaLite$SInit = function (a) {
-	return {$: 9, a: a};
+var $author$project$VegaLite$PValue = function (a) {
+	return {$: 5, a: a};
 };
-var $author$project$VegaLite$seInit = $author$project$VegaLite$SInit;
+var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$TTimeUnit = function (a) {
 	return {$: 6, a: a};
 };
@@ -11901,34 +11864,6 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 					$author$project$VegaLite$tName('date'),
 					$author$project$VegaLite$tTimeUnit($author$project$VegaLite$yearMonth)
 				])));
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
-			'index',
-			$author$project$VegaLite$seSingle,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seEncodings(
-					_List_fromArray(
-						[$author$project$VegaLite$chX])),
-					$author$project$VegaLite$seNearest(true),
-					$author$project$VegaLite$seInit(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'x',
-							$author$project$VegaLite$dt(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$dtYear(2005),
-										$author$project$VegaLite$dtMonthNum(0),
-										$author$project$VegaLite$dtDate(1)
-									])))
-						]))
-				])));
 	var ruleTrans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11953,6 +11888,41 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 				[
 					$author$project$VegaLite$mStr('firebrick')
 				])));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'index',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seToggle($author$project$VegaLite$tpFalse),
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX])),
+							$author$project$VegaLite$seNearest(true)
+						])),
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$dataObject(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'x',
+								$author$project$VegaLite$dt(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$dtYear(2005),
+											$author$project$VegaLite$dtMonthNum(0),
+											$author$project$VegaLite$dtDate(1)
+										])))
+							])))
+				])));
 	var pointEnc = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$encoding,
@@ -11968,7 +11938,7 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 	var pointSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
+				ps(_List_Nil),
 				pointEnc(_List_Nil),
 				$author$project$VegaLite$point(
 				_List_fromArray(
@@ -12128,10 +12098,6 @@ var $author$project$VegaLite$coAxisYFilter = function (cp) {
 			return cp;
 	}
 };
-var $author$project$VegaLite$Not = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$not = $author$project$VegaLite$Not;
 var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
@@ -12139,17 +12105,22 @@ var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
 var $author$project$VegaLite$YearMonthDate = {$: 4};
 var $author$project$VegaLite$yearMonthDate = $author$project$VegaLite$YearMonthDate;
 var $author$project$GalleryInteraction$interaction13 = function () {
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'hover',
-			$author$project$VegaLite$seSingle,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seEmpty
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seToggle($author$project$VegaLite$tpFalse),
+							$author$project$VegaLite$seOn('mouseover')
+						]))
 				])));
 	var enc3 = A2(
 		$elm$core$Basics$composeL,
@@ -12158,21 +12129,20 @@ var $author$project$GalleryInteraction$interaction13 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$not(
-						$author$project$VegaLite$selectionName('hover')),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('hover'),
+					_List_Nil,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mStr('transparent')
-						]),
-					_List_Nil)
+						]))
 				])));
 	var spec3 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
-				$author$project$VegaLite$rule(_List_Nil),
-				enc3(_List_Nil)
+				ps(_List_Nil),
+				enc3(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
 			]));
 	var enc2 = A2(
 		$elm$core$Basics$composeL,
@@ -12615,10 +12585,6 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 				$author$project$VegaLite$fiLessThan,
 				'rank',
 				$author$project$VegaLite$num(20))));
-	var sel = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3($author$project$VegaLite$select, 'brush', $author$project$VegaLite$seInterval, _List_Nil));
 	var res = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$resolve,
@@ -12628,6 +12594,16 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 					[
 						_Utils_Tuple2($author$project$VegaLite$chColor, $author$project$VegaLite$reIndependent)
 					]))));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'brush',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil)
+				])));
 	var encPoint = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12655,8 +12631,8 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('brush'),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('brush'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('Cylinders'),
@@ -12670,9 +12646,9 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 	var specPoint = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
-				$author$project$VegaLite$point(_List_Nil),
-				encPoint(_List_Nil)
+				ps(_List_Nil),
+				encPoint(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 	var encOriginText = A2(
 		$elm$core$Basics$composeL,
@@ -12779,14 +12755,6 @@ var $author$project$GalleryInteraction$interaction14 = function () {
 					[specPoint, specHPText, specMPGText, specOriginText]))
 			]));
 }();
-var $author$project$VegaLite$And = F2(
-	function (a, b) {
-		return {$: 3, a: a, b: b};
-	});
-var $author$project$VegaLite$and = F2(
-	function (op1, op2) {
-		return A2($author$project$VegaLite$And, op1, op2);
-	});
 var $author$project$VegaLite$Domain = function (a) {
 	return {$: 3, a: a};
 };
@@ -12828,10 +12796,6 @@ var $author$project$VegaLite$Range = function (a) {
 	return {$: 33, a: a};
 };
 var $author$project$VegaLite$coRange = $author$project$VegaLite$Range;
-var $author$project$VegaLite$Expr = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$expr = $author$project$VegaLite$Expr;
 var $author$project$VegaLite$fill = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -12839,20 +12803,198 @@ var $author$project$VegaLite$fill = function (markProps) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
-var $author$project$VegaLite$mDataCondition = $author$project$VegaLite$MDataCondition(false);
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$VegaLite$OCondition = F3(
+	function (a, b, c) {
+		return {$: 1, a: a, b: b, c: c};
+	});
+var $author$project$VegaLite$oCondition = $author$project$VegaLite$OCondition;
+var $author$project$VegaLite$ONumber = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$oNum = $author$project$VegaLite$ONumber;
+var $author$project$VegaLite$orderChannelProperties = function (oDef) {
+	switch (oDef.$) {
+		case 0:
+			var s = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 2:
+			var arr = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 3:
+			var measure = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(measure)))
+				]);
+		case 4:
+			var bps = oDef.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 5:
+			var op = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+		case 6:
+			var tu = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		case 7:
+			var sps = oDef.a;
+			_v1$4:
+			while (true) {
+				if (!sps.b) {
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('sort', $elm$json$Json$Encode$null)
+						]);
+				} else {
+					if (!sps.b.b) {
+						switch (sps.a.$) {
+							case 0:
+								var _v2 = sps.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('ascending'))
+									]);
+							case 1:
+								var _v3 = sps.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$elm$json$Json$Encode$string('descending'))
+									]);
+							case 2:
+								var dvs = sps.a.a;
+								return _List_fromArray(
+									[
+										_Utils_Tuple2(
+										'sort',
+										$author$project$VegaLite$toList(
+											$author$project$VegaLite$dataValuesSpecs(dvs)))
+									]);
+							default:
+								break _v1$4;
+						}
+					} else {
+						break _v1$4;
+					}
+				}
+			}
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'sort',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
+				]);
+		case 8:
+			var n = oDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$elm$json$Json$Encode$float(n))
+				]);
+		case 1:
+			var predicate = oDef.a;
+			var ifClause = oDef.b;
+			var elseClause = oDef.c;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					$elm$json$Json$Encode$object(
+						_Utils_ap(
+							$author$project$VegaLite$predicateProperties(predicate),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
+		default:
+			var isSelection = oDef.a;
+			var tests = oDef.b;
+			var elseClause = oDef.c;
+			var testClause = function (_v5) {
+				var predicate = _v5.a;
+				var ifClause = _v5.b;
+				return isSelection ? $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'selection',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$cons,
+						_Utils_Tuple2(
+							'test',
+							$author$project$VegaLite$booleanOpSpec(predicate)),
+						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
+			};
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'condition',
+					function () {
+						if (tests.b && (!tests.b.b)) {
+							var test = tests.a;
+							return testClause(test);
+						} else {
+							return A2($elm$json$Json$Encode$list, testClause, tests);
+						}
+					}()),
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
+	}
+};
+var $author$project$VegaLite$order = function (oDefs) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'order',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, oDefs))));
+};
 var $author$project$VegaLite$RRamp = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$racoRamp = $author$project$VegaLite$RRamp;
+var $author$project$VegaLite$Rect = 11;
+var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = $author$project$VegaLite$SCBandPaddingOuter;
-var $author$project$VegaLite$Selection = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$selected = $author$project$VegaLite$Selection;
 var $author$project$VegaLite$stroke = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -12865,10 +13007,16 @@ var $author$project$VegaLite$VStep = function (a) {
 };
 var $author$project$VegaLite$vicoStep = $author$project$VegaLite$VStep;
 var $author$project$GalleryInteraction$interaction15 = function () {
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3($author$project$VegaLite$select, 'highlight', $author$project$VegaLite$seSingle, _List_Nil));
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'highlight',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$sePoint, _List_Nil)
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12879,62 +13027,72 @@ var $author$project$GalleryInteraction$interaction15 = function () {
 					$elm$core$Basics$composeL,
 					A2(
 						$elm$core$Basics$composeL,
-						$author$project$VegaLite$encoding,
 						A2(
-							$author$project$VegaLite$position,
-							0,
-							_List_fromArray(
-								[
-									$author$project$VegaLite$pName('predicted')
-								]))),
-					A2(
-						$author$project$VegaLite$position,
-						1,
-						_List_fromArray(
-							[
-								$author$project$VegaLite$pName('actual')
-							]))),
-				$author$project$VegaLite$fill(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mName('count'),
-							$author$project$VegaLite$mQuant
-						]))),
-			$author$project$VegaLite$stroke(
-				_List_fromArray(
-					[
-						A2(
-						$author$project$VegaLite$mDataCondition,
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								A2(
-									$author$project$VegaLite$and,
-									$author$project$VegaLite$selected('highlight'),
-									$author$project$VegaLite$expr('length(data(\"highlight_store\"))')),
+							$elm$core$Basics$composeL,
+							$author$project$VegaLite$encoding,
+							A2(
+								$author$project$VegaLite$position,
+								0,
 								_List_fromArray(
 									[
-										$author$project$VegaLite$mStr('black')
-									]))
+										$author$project$VegaLite$pName('predicted')
+									]))),
+						A2(
+							$author$project$VegaLite$position,
+							1,
+							_List_fromArray(
+								[
+									$author$project$VegaLite$pName('actual')
+								]))),
+					$author$project$VegaLite$fill(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mName('count'),
+								$author$project$VegaLite$mQuant
+							]))),
+				$author$project$VegaLite$stroke(
+					_List_fromArray(
+						[
+							A3(
+							$author$project$VegaLite$mCondition,
+							$author$project$VegaLite$prParamEmpty('highlight'),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$mStr('black')
+								]),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$mStr('')
+								]))
+						]))),
+			$author$project$VegaLite$opacity(
+				_List_fromArray(
+					[
+						A3(
+						$author$project$VegaLite$mCondition,
+						$author$project$VegaLite$prParam('highlight'),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mNum(1)
 							]),
 						_List_fromArray(
 							[
-								$author$project$VegaLite$mStr('')
+								$author$project$VegaLite$mNum(0.5)
 							]))
 					]))),
-		$author$project$VegaLite$opacity(
+		$author$project$VegaLite$order(
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('highlight'),
+					$author$project$VegaLite$oCondition,
+					$author$project$VegaLite$prParam('highlight'),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mNum(1)
+							$author$project$VegaLite$oNum(1)
 						]),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mNum(0.5)
+							$author$project$VegaLite$oNum(0)
 						]))
 				])));
 	var data = A2(
@@ -13010,9 +13168,13 @@ var $author$project$GalleryInteraction$interaction15 = function () {
 			[
 				cfg(_List_Nil),
 				data(_List_Nil),
-				sel(_List_Nil),
+				ps(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
+				$author$project$VegaLite$rect(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStrokeWidth(2)
+					]))
 			]));
 }();
 var $author$project$VegaLite$AxMinExtent = function (a) {
@@ -13070,18 +13232,23 @@ var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
 var $author$project$VegaLite$Descending = {$: 1};
 var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
 var $author$project$GalleryInteraction$interaction16 = function () {
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'brush',
-			$author$project$VegaLite$seInterval,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seEncodings(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
 					_List_fromArray(
-						[$author$project$VegaLite$chY]))
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chY]))
+						]))
 				])));
 	var encMini = A2(
 		$elm$core$Basics$composeL,
@@ -13115,7 +13282,7 @@ var $author$project$GalleryInteraction$interaction16 = function () {
 			[
 				$author$project$VegaLite$width(50),
 				$author$project$VegaLite$height(200),
-				sel(_List_Nil),
+				ps(_List_Nil),
 				encMini(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
@@ -13377,10 +13544,16 @@ var $author$project$GalleryInteraction$interaction2 = function () {
 			]));
 }();
 var $author$project$GalleryInteraction$interaction3 = function () {
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3($author$project$VegaLite$select, 'myBrush', $author$project$VegaLite$seInterval, _List_Nil));
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'myBrush',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil)
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13408,8 +13581,8 @@ var $author$project$GalleryInteraction$interaction3 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('myBrush'),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('myBrush'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mName('Cylinders'),
@@ -13427,7 +13600,7 @@ var $author$project$GalleryInteraction$interaction3 = function () {
 			[
 				desc,
 				data,
-				sel(_List_Nil),
+				ps(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
 			]));
@@ -13452,23 +13625,28 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 						$author$project$VegaLite$maColor('goldenrod')
 					]))
 			]));
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myBrush',
-			$author$project$VegaLite$seInterval,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seEncodings(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
 					_List_fromArray(
-						[$author$project$VegaLite$chX]))
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX]))
+						]))
 				])));
 	var specBackground = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
+				ps(_List_Nil),
 				$author$project$VegaLite$area(_List_Nil)
 			]));
 	var enc = A2(
@@ -13505,8 +13683,6 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 					[specBackground, specHighlight]))
 			]));
 }();
-var $author$project$VegaLite$SeMulti = 3;
-var $author$project$VegaLite$seMulti = 3;
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -13515,17 +13691,22 @@ var $author$project$VegaLite$size = function (markProps) {
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
 var $author$project$GalleryInteraction$interaction5 = function () {
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myPaintbrush',
-			$author$project$VegaLite$seMulti,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seNearest(true)
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seNearest(true)
+						]))
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13554,8 +13735,8 @@ var $author$project$GalleryInteraction$interaction5 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('myPaintbrush'),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('myPaintbrush'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mNum(300)
@@ -13572,25 +13753,27 @@ var $author$project$GalleryInteraction$interaction5 = function () {
 			[
 				desc,
 				data,
-				sel(_List_Nil),
+				ps(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$BindScales = {$: 1};
-var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
+var $author$project$VegaLite$PBindScales = {$: 2};
+var $author$project$VegaLite$paBindScales = $author$project$VegaLite$PBindScales;
 var $author$project$GalleryInteraction$interaction6 = function () {
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myGrid',
-			$author$project$VegaLite$seInterval,
 			_List_fromArray(
-				[$author$project$VegaLite$seBindScales])));
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil),
+					$author$project$VegaLite$paBindScales
+				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13643,15 +13826,11 @@ var $author$project$GalleryInteraction$interaction6 = function () {
 			[
 				desc,
 				data,
-				sel(_List_Nil),
+				ps(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$DObject = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$dataObject = $author$project$VegaLite$DObject;
 var $author$project$VegaLite$InMax = function (a) {
 	return {$: 4, a: a};
 };
@@ -13676,16 +13855,6 @@ var $author$project$VegaLite$PBindings = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$paBindings = $author$project$VegaLite$PBindings;
-var $author$project$VegaLite$PValue = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
-var $author$project$VegaLite$Toggle = function (a) {
-	return {$: 15, a: a};
-};
-var $author$project$VegaLite$seToggle = $author$project$VegaLite$Toggle;
-var $author$project$VegaLite$TpFalse = {$: 0};
-var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
 var $author$project$GalleryInteraction$interaction7 = function () {
 	var trans2 = A2(
 		$elm$core$Basics$composeL,
@@ -13799,16 +13968,12 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					A2(
+					A3(
 					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('CylYr'),
 					_List_fromArray(
 						[
-							_Utils_Tuple2(
-							$author$project$VegaLite$prParam('CylYr'),
-							_List_fromArray(
-								[
-									$author$project$VegaLite$mName('Origin')
-								]))
+							$author$project$VegaLite$mName('Origin')
 						]),
 					_List_fromArray(
 						[
@@ -13846,18 +14011,23 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiSelection('myBrush')));
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myBrush',
-			$author$project$VegaLite$seInterval,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seEncodings(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
 					_List_fromArray(
-						[$author$project$VegaLite$chX]))
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX]))
+						]))
 				])));
 	var encPos = A2(
 		$elm$core$Basics$composeL,
@@ -13910,8 +14080,8 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('myBrush'),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('myBrush'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mNum(1)
@@ -13924,7 +14094,7 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
+				ps(_List_Nil),
 				enc1(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
@@ -13969,27 +14139,32 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
 			$author$project$VegaLite$fiExpr('datum.symbol !== \'IBM\'')));
-	var sel1 = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myHover',
-			$author$project$VegaLite$seSingle,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seOn('mouseover'),
-					$author$project$VegaLite$seEmpty,
-					$author$project$VegaLite$seFields(
-					_List_fromArray(
-						['symbol'])),
-					$author$project$VegaLite$seInit(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
 					_List_fromArray(
 						[
-							_Utils_Tuple2(
-							'symbol',
-							$author$project$VegaLite$str('AAPL'))
-						]))
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seFields(
+							_List_fromArray(
+								['symbol']))
+						])),
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$dataObject(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'symbol',
+								$author$project$VegaLite$str('AAPL'))
+							])))
 				])));
 	var enc2_1 = A2(
 		$elm$core$Basics$composeL,
@@ -14083,7 +14258,7 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 						_List_fromArray(
 							[
 								$author$project$VegaLite$description('Transparent layer to make it easier to trigger selection'),
-								sel1(_List_Nil),
+								ps(_List_Nil),
 								$author$project$VegaLite$line(
 								_List_fromArray(
 									[
@@ -14107,8 +14282,8 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 				_List_fromArray(
 					[
 						A3(
-						$author$project$VegaLite$mSelectionCondition,
-						$author$project$VegaLite$selectionName('myHover'),
+						$author$project$VegaLite$mCondition,
+						$author$project$VegaLite$prParamEmpty('myHover'),
 						_List_fromArray(
 							[
 								$author$project$VegaLite$mName('symbol'),
@@ -14123,8 +14298,8 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 			_List_fromArray(
 				[
 					A3(
-					$author$project$VegaLite$mSelectionCondition,
-					$author$project$VegaLite$selectionName('myHover'),
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('myHover'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mNum(1)

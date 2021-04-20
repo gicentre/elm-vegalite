@@ -5405,7 +5405,18 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'param',
 					$elm$json$Json$Encode$string(selName))
 				]);
-		case 9:
+		case 8:
+			var selName = f.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'param',
+					$elm$json$Json$Encode$string(selName)),
+					_Utils_Tuple2(
+					'empty',
+					$elm$json$Json$Encode$bool(false))
+				]);
+		case 10:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -5465,7 +5476,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('range', values)
 				]);
-		case 8:
+		case 9:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -5497,7 +5508,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('oneOf', values)
 				]);
-		case 10:
+		case 11:
 			var field = f.a;
 			return _List_fromArray(
 				[
@@ -6499,7 +6510,16 @@ var $author$project$VegaLite$booleanOpSpec = function (bo) {
 						'not',
 						$author$project$VegaLite$booleanOpSpec(operand))
 					]));
-		case 7:
+		case 6:
+			var p = bo.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'param',
+						$elm$json$Json$Encode$string(p))
+					]));
+		case 8:
 			var selName = bo.a;
 			return $elm$json$Json$Encode$string(selName);
 		default:
@@ -6681,31 +6701,25 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 1:
-			var ifClauses = field.a;
-			var elseClause = field.b;
+			var predicate = field.a;
+			var ifClause = field.b;
+			var elseClause = field.c;
 			return A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'condition',
-					A2(
-						$elm$json$Json$Encode$list,
-						function (_v6) {
-							var predicate = _v6.a;
-							var ifClause = _v6.b;
-							return $elm$json$Json$Encode$object(
-								_Utils_ap(
-									$author$project$VegaLite$predicateProperties(predicate),
-									A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-						},
-						ifClauses)),
+					$elm$json$Json$Encode$object(
+						_Utils_ap(
+							$author$project$VegaLite$predicateProperties(predicate),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 19:
 			var isSelection = field.a;
 			var tests = field.b;
 			var elseClause = field.c;
-			var testClause = function (_v8) {
-				var predicate = _v8.a;
-				var ifClause = _v8.b;
+			var testClause = function (_v7) {
+				var predicate = _v7.a;
+				var ifClause = _v7.b;
 				return isSelection ? $elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
@@ -10862,11 +10876,11 @@ var $author$project$VegaLite$filter = function (f) {
 };
 var $author$project$VegaLite$HAlignRight = {$: 2};
 var $author$project$VegaLite$haRight = $author$project$VegaLite$HAlignRight;
-var $author$project$VegaLite$MDataCondition = F3(
+var $author$project$VegaLite$MCondition = F3(
 	function (a, b, c) {
-		return {$: 19, a: a, b: b, c: c};
+		return {$: 1, a: a, b: b, c: c};
 	});
-var $author$project$VegaLite$mDataCondition = $author$project$VegaLite$MDataCondition(false);
+var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
 var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 14, a: a};
 };
@@ -10955,6 +10969,10 @@ var $author$project$VegaLite$PScale = function (a) {
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
+var $author$project$VegaLite$Test = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$prTest = $author$project$VegaLite$Test;
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
@@ -11318,16 +11336,13 @@ var $author$project$GalleryLabel$label10 = function () {
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					A2(
-					$author$project$VegaLite$mDataCondition,
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prTest(
+						$author$project$VegaLite$expr('datum.to > 0')),
 					_List_fromArray(
 						[
-							_Utils_Tuple2(
-							$author$project$VegaLite$expr('datum.to > 0'),
-							_List_fromArray(
-								[
-									$author$project$VegaLite$mSymbol($author$project$VegaLite$symTriangleRight)
-								]))
+							$author$project$VegaLite$mSymbol($author$project$VegaLite$symTriangleRight)
 						]),
 					_List_fromArray(
 						[
@@ -11475,16 +11490,13 @@ var $author$project$GalleryLabel$label2 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					A2(
-					$author$project$VegaLite$mDataCondition,
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prTest(
+						$author$project$VegaLite$expr('datum.count > 10')),
 					_List_fromArray(
 						[
-							_Utils_Tuple2(
-							$author$project$VegaLite$expr('datum.count > 10'),
-							_List_fromArray(
-								[
-									$author$project$VegaLite$mStr('white')
-								]))
+							$author$project$VegaLite$mStr('white')
 						]),
 					_List_fromArray(
 						[

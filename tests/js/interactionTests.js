@@ -5651,7 +5651,18 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					'param',
 					$elm$json$Json$Encode$string(selName))
 				]);
-		case 9:
+		case 8:
+			var selName = f.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'param',
+					$elm$json$Json$Encode$string(selName)),
+					_Utils_Tuple2(
+					'empty',
+					$elm$json$Json$Encode$bool(false))
+				]);
+		case 10:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -5711,7 +5722,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('range', values)
 				]);
-		case 8:
+		case 9:
 			var field = f.a;
 			var vals = f.b;
 			var values = function () {
@@ -5743,7 +5754,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					$elm$json$Json$Encode$string(field)),
 					_Utils_Tuple2('oneOf', values)
 				]);
-		case 10:
+		case 11:
 			var field = f.a;
 			return _List_fromArray(
 				[
@@ -7106,7 +7117,16 @@ var $author$project$VegaLite$booleanOpSpec = function (bo) {
 						'not',
 						$author$project$VegaLite$booleanOpSpec(operand))
 					]));
-		case 7:
+		case 6:
+			var p = bo.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'param',
+						$elm$json$Json$Encode$string(p))
+					]));
+		case 8:
 			var selName = bo.a;
 			return $elm$json$Json$Encode$string(selName);
 		default:
@@ -7288,31 +7308,25 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$elm$json$Json$Encode$string('binned'))
 				]);
 		case 1:
-			var ifClauses = field.a;
-			var elseClause = field.b;
+			var predicate = field.a;
+			var ifClause = field.b;
+			var elseClause = field.c;
 			return A2(
 				$elm$core$List$cons,
 				_Utils_Tuple2(
 					'condition',
-					A2(
-						$elm$json$Json$Encode$list,
-						function (_v6) {
-							var predicate = _v6.a;
-							var ifClause = _v6.b;
-							return $elm$json$Json$Encode$object(
-								_Utils_ap(
-									$author$project$VegaLite$predicateProperties(predicate),
-									A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-						},
-						ifClauses)),
+					$elm$json$Json$Encode$object(
+						_Utils_ap(
+							$author$project$VegaLite$predicateProperties(predicate),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 19:
 			var isSelection = field.a;
 			var tests = field.b;
 			var elseClause = field.c;
-			var testClause = function (_v8) {
-				var predicate = _v8.a;
-				var ifClause = _v8.b;
+			var testClause = function (_v7) {
+				var predicate = _v7.a;
+				var ifClause = _v7.b;
 				return isSelection ? $elm$json$Json$Encode$object(
 					A2(
 						$elm$core$List$cons,
@@ -7458,9 +7472,9 @@ var $author$project$VegaLite$encoding = function (channels) {
 		17,
 		$elm$json$Json$Encode$object(channels));
 };
-var $author$project$VegaLite$MCondition = F2(
-	function (a, b) {
-		return {$: 1, a: a, b: b};
+var $author$project$VegaLite$MCondition = F3(
+	function (a, b, c) {
+		return {$: 1, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
 var $author$project$VegaLite$MName = function (a) {
@@ -8704,17 +8718,13 @@ var $author$project$InteractionTests$encHighlight = A2(
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					A2(
+					A3(
 					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('mySelection'),
 					_List_fromArray(
 						[
-							_Utils_Tuple2(
-							$author$project$VegaLite$prParam('mySelection'),
-							_List_fromArray(
-								[
-									$author$project$VegaLite$mName('crimeType'),
-									$author$project$VegaLite$mScale($author$project$InteractionTests$cScale)
-								]))
+							$author$project$VegaLite$mName('crimeType'),
+							$author$project$VegaLite$mScale($author$project$InteractionTests$cScale)
 						]),
 					_List_fromArray(
 						[
@@ -8724,16 +8734,12 @@ var $author$project$InteractionTests$encHighlight = A2(
 	$author$project$VegaLite$opacity(
 		_List_fromArray(
 			[
-				A2(
+				A3(
 				$author$project$VegaLite$mCondition,
+				$author$project$VegaLite$prParam('mySelection'),
 				_List_fromArray(
 					[
-						_Utils_Tuple2(
-						$author$project$VegaLite$prParam('mySelection'),
-						_List_fromArray(
-							[
-								$author$project$VegaLite$mNum(1)
-							]))
+						$author$project$VegaLite$mNum(1)
 					]),
 				_List_fromArray(
 					[
@@ -13959,44 +13965,6 @@ var $author$project$VegaLite$SelectionMark = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$seSelectionMark = $author$project$VegaLite$SelectionMark;
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$Basics$neq = _Utils_notEqual;
-var $author$project$VegaLite$select = F3(
-	function (selName, sType, options) {
-		var selProps = A2(
-			$elm$core$List$filter,
-			A2(
-				$elm$core$Basics$composeR,
-				$elm$core$Tuple$second,
-				$elm$core$Basics$neq($elm$json$Json$Encode$null)),
-			A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'type',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$selectionLabel(sType))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, options)));
-		return $elm$core$List$cons(
-			_Utils_Tuple2(
-				selName,
-				$elm$json$Json$Encode$object(selProps)));
-	});
-var $author$project$VegaLite$VLSelection = 32;
-var $author$project$VegaLite$selection = function (sels) {
-	return _Utils_Tuple2(
-		32,
-		$elm$json$Json$Encode$object(sels));
-};
 var $author$project$VegaLite$SMCursor = function (a) {
 	return {$: 7, a: a};
 };
@@ -14025,22 +13993,27 @@ var $author$project$InteractionTests$interaction17 = function () {
 						$author$project$VegaLite$foDate(''))
 					]))
 			]));
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myBrush',
-			$author$project$VegaLite$seInterval,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seEncodings(
-					_List_fromArray(
-						[$author$project$VegaLite$chX])),
-					$author$project$VegaLite$seSelectionMark(
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$smCursor($author$project$VegaLite$cuPointer)
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX])),
+							$author$project$VegaLite$seSelectionMark(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$smCursor($author$project$VegaLite$cuPointer)
+								]))
 						]))
 				])));
 	var encLine = A2(
@@ -14079,14 +14052,18 @@ var $author$project$InteractionTests$interaction17 = function () {
 				$author$project$VegaLite$width(400),
 				cfg(_List_Nil),
 				stockData,
+				ps(_List_Nil),
 				trans(_List_Nil),
-				sel(_List_Nil),
 				encLine(_List_Nil),
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$ChY = 1;
 var $author$project$VegaLite$chY = 1;
+var $author$project$VegaLite$DConcat = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$daConcat = $author$project$VegaLite$DConcat;
 var $author$project$VegaLite$dataSequenceAs = F4(
 	function (start, stop, step, outName) {
 		return _Utils_Tuple2(
@@ -14141,6 +14118,10 @@ var $author$project$VegaLite$MPoint = function (a) {
 	return {$: 47, a: a};
 };
 var $author$project$VegaLite$maPoint = $author$project$VegaLite$MPoint;
+var $author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
 var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
@@ -14151,38 +14132,45 @@ var $author$project$VegaLite$PMMarker = function (a) {
 };
 var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
 var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$SInitInterval = F2(
-	function (a, b) {
-		return {$: 10, a: a, b: b};
-	});
-var $author$project$VegaLite$seInitInterval = $author$project$VegaLite$SInitInterval;
 var $author$project$InteractionTests$interaction18 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		A2($author$project$VegaLite$calculateAs, 'cos(datum.theta)', 'y'));
-	var sel = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$selection,
-		A3(
-			$author$project$VegaLite$select,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
 			'myBrush',
-			$author$project$VegaLite$seInterval,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$seEncodings(
-					_List_fromArray(
-						[$author$project$VegaLite$chX, $author$project$VegaLite$chY])),
 					A2(
-					$author$project$VegaLite$seInitInterval,
-					$elm$core$Maybe$Just(
-						_Utils_Tuple2(
-							$author$project$VegaLite$num(0.4),
-							$author$project$VegaLite$num(1))),
-					$elm$core$Maybe$Just(
-						_Utils_Tuple2(
-							$author$project$VegaLite$num(0.6),
-							$author$project$VegaLite$num(0.8))))
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX, $author$project$VegaLite$chY]))
+						])),
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$dataObject(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'x',
+								$author$project$VegaLite$daConcat(
+									$author$project$VegaLite$nums(
+										_List_fromArray(
+											[0.4, 1])))),
+								_Utils_Tuple2(
+								'y',
+								$author$project$VegaLite$daConcat(
+									$author$project$VegaLite$nums(
+										_List_fromArray(
+											[0.6, 0.8]))))
+							])))
 				])));
 	var overviewEnc = A2(
 		$elm$core$Basics$composeL,
@@ -14210,7 +14198,7 @@ var $author$project$InteractionTests$interaction18 = function () {
 	var overviewSpec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				sel(_List_Nil),
+				ps(_List_Nil),
 				overviewEnc(_List_Nil),
 				$author$project$VegaLite$line(_List_Nil)
 			]));
@@ -14460,18 +14448,10 @@ var $author$project$InteractionTests$interaction4 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$DConcat = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$daConcat = $author$project$VegaLite$DConcat;
 var $author$project$VegaLite$DateTimes = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$dts = $author$project$VegaLite$DateTimes;
-var $author$project$VegaLite$Numbers = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
 var $author$project$InteractionTests$interaction5 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
