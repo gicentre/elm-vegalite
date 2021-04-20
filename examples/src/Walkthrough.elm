@@ -344,11 +344,7 @@ scatterProps =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "picked")
-                        [ mName "Origin" ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "picked") [ mName "Origin" ] [ mStr "grey" ] ]
     in
     [ cfg []
     , dataFromUrl (path ++ "cars.json") []
@@ -361,128 +357,120 @@ scatterProps =
 interactiveScatter1 : Spec
 interactiveScatter1 =
     let
-        sel =
-            selection
-                << select "picked" seSingle []
+        ps =
+            params
+                << param "picked" [ paSelect sePoint [ seToggle tpFalse ] ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter2 : Spec
 interactiveScatter2 =
     let
-        sel =
-            selection
-                << select "picked" seMulti []
+        ps =
+            params
+                << param "picked" [ paSelect sePoint [] ]
     in
-    toVegaLite <| sel [] :: scatterProps
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter3 : Spec
 interactiveScatter3 =
     let
-        sel =
-            selection
-                << select "picked" seMulti [ seOn "mouseover" ]
+        ps =
+            params
+                << param "picked" [ paSelect sePoint [ seOn "mouseover" ] ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter4 : Spec
 interactiveScatter4 =
     let
-        sel =
-            selection
-                << select "picked" seSingle [ seEmpty, seFields [ "Cylinders" ] ]
+        ps =
+            params
+                << param "picked" [ paSelect sePoint [ seFields [ "Cylinders" ] ] ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter5 : Spec
 interactiveScatter5 =
     let
-        sel =
-            selection
-                << select "picked"
-                    seSingle
-                    [ seFields [ "Cylinders" ]
-                    , seBind [ iRange "Cylinders" [ inMin 3, inMax 8, inStep 1 ] ]
+        ps =
+            params
+                << param "picked"
+                    [ paSelect sePoint [ seFields [ "Cylinders" ] ]
+                    , paBind (ipRange [ inMin 3, inMax 8, inStep 1 ])
                     ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter6 : Spec
 interactiveScatter6 =
     let
-        sel =
-            selection
-                << select "picked"
-                    seSingle
-                    [ seFields [ "Cylinders", "Year" ]
-                    , seBind
-                        [ iRange "Cylinders" [ inMin 3, inMax 8, inStep 1 ]
-                        , iRange "Year" [ inMin 1969, inMax 1981, inStep 1 ]
+        ps =
+            params
+                << param "picked"
+                    [ paSelect sePoint [ seFields [ "Cylinders", "Year" ] ]
+                    , paBindings
+                        [ ( "Cylinders", ipRange [ inMin 3, inMax 8, inStep 1 ] )
+                        , ( "Year", ipRange [ inMin 1969, inMax 1981, inStep 1 ] )
                         ]
                     ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter7 : Spec
 interactiveScatter7 =
     let
-        sel =
-            selection
-                << select "picked" seInterval []
+        ps =
+            params
+                << param "picked" [ paSelect seInterval [] ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter8 : Spec
 interactiveScatter8 =
     let
-        sel =
-            selection
-                << select "picked" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "picked" [ paSelect seInterval [ seEncodings [ chX ] ] ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 interactiveScatter9 : Spec
 interactiveScatter9 =
     let
-        sel =
-            selection
-                << select "picked" seInterval [ seEncodings [ chX ], seBindScales ]
+        ps =
+            params
+                << param "picked"
+                    [ paSelect seInterval [ seEncodings [ chX ] ]
+                    , paBindScales
+                    ]
     in
-    toVegaLite (sel [] :: scatterProps)
+    toVegaLite (ps [] :: scatterProps)
 
 
 coordinatedScatter1 : Spec
 coordinatedScatter1 =
     let
+        ps =
+            params
+                << param "picked" [ paSelect seInterval [ seEncodings [ chX ] ] ]
+
         enc =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
                 << position Y [ pRepeat arRow, pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "picked")
-                        [ mName "Origin" ]
-                        [ mStr "grey" ]
-                    ]
-
-        sel =
-            selection
-                << select "picked" seInterval [ seEncodings [ chX ] ]
+                << color [ mCondition (prParam "picked") [ mName "Origin" ] [ mStr "grey" ] ]
 
         spec =
-            asSpec
-                [ dataFromUrl (path ++ "cars.json") []
-                , enc []
-                , sel []
-                , circle []
-                ]
+            asSpec [ dataFromUrl (path ++ "cars.json") [], ps [], enc [], circle [] ]
     in
     toVegaLite
         [ cfg []
@@ -497,23 +485,19 @@ coordinatedScatter1 =
 coordinatedScatter2 : Spec
 coordinatedScatter2 =
     let
+        ps =
+            params
+                << param "picked" [ paSelect seInterval [], paBindScales ]
+
         enc =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
                 << position Y [ pRepeat arRow, pQuant ]
                 << color [ mName "Origin" ]
 
-        sel =
-            selection
-                << select "picked" seInterval [ seBindScales ]
-
         spec =
             asSpec
-                [ dataFromUrl (path ++ "cars.json") []
-                , circle []
-                , enc []
-                , sel []
-                ]
+                [ dataFromUrl (path ++ "cars.json") [], ps [], enc [], circle [] ]
     in
     toVegaLite
         [ cfg []
@@ -528,8 +512,9 @@ coordinatedScatter2 =
 contextAndFocus : Spec
 contextAndFocus =
     let
-        sel =
-            selection << select "brush" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         encContext =
             encoding
@@ -541,7 +526,7 @@ contextAndFocus =
                     ]
 
         specContext =
-            asSpec [ width 400, height 80, sel [], area [], encContext [] ]
+            asSpec [ width 400, height 80, ps [], encContext [], area [] ]
 
         encDetail =
             encoding
@@ -554,7 +539,7 @@ contextAndFocus =
                 << position Y [ pName "price", pQuant ]
 
         specDetail =
-            asSpec [ width 400, area [], encDetail [] ]
+            asSpec [ width 400, encDetail [], area [] ]
     in
     toVegaLite
         [ cfg []
@@ -571,8 +556,9 @@ crossFilter =
             transform
                 << calculateAs "hours(datum.date)" "hour"
 
-        sel =
-            selection << select "brush" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         filterTrans =
             transform
@@ -597,8 +583,8 @@ crossFilter =
                 [ dataFromUrl (path ++ "flights-2k.json") [ parse [ ( "date", foDate "%Y/%m/%d %H:%M" ) ] ]
                 , hourTrans []
                 , layer
-                    [ asSpec [ bar [], totalEnc [] ]
-                    , asSpec [ sel [], filterTrans [], bar [], selectedEnc [] ]
+                    [ asSpec [ totalEnc [], bar [] ]
+                    , asSpec [ ps [], filterTrans [], selectedEnc [], bar [] ]
                     ]
                 ]
         ]

@@ -267,31 +267,26 @@ personGrid =
                 << calculateAs "ceil (datum.id/10)" "col"
                 << calculateAs "datum.id - datum.col*10" "row"
 
-        sel =
-            selection
-                << select "highlight" seInterval []
+        ps =
+            params
+                << param "highlight" [ paSelect seInterval [] ]
 
         enc =
             encoding
                 << position X [ pName "col", pOrdinal, pAxis [] ]
                 << position Y [ pName "row", pOrdinal, pAxis [] ]
                 << shape [ mPath <| Maybe.withDefault "circle" <| Dict.get "person" isotypes ]
-                << color
-                    [ mSelectionCondition (selectionName "highlight")
-                        [ mStr "rgb(194,81,64)" ]
-                        [ mStr "rgb(167,165,156)" ]
-                    ]
-                << size [ mNum 90 ]
+                << color [ mCondition (prParam "highlight") [ mStr "rgb(194,81,64)" ] [ mStr "rgb(167,165,156)" ] ]
     in
     toVegaLite
         [ config []
         , width 400
         , height 400
+        , ps []
         , data []
         , trans []
-        , point [ maFilled True ]
         , enc []
-        , sel []
+        , point [ maFilled True, maSize 90 ]
         ]
 
 

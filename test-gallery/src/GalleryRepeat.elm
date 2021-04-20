@@ -119,32 +119,30 @@ repeat4 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "myBrush"
-                    seInterval
-                    [ seOn "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
-                    , seTranslate "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
-                    , seZoom "wheel![event.shiftKey]"
-                    , seResolve seUnion
+        ps =
+            params
+                << param "myBrush"
+                    [ paSelect seInterval
+                        [ seOn "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
+                        , seTranslate "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
+                        , seZoom "wheel![event.shiftKey]"
+                        , seResolve seUnion
+                        ]
                     ]
-                << select "grid"
-                    seInterval
-                    [ seBindScales
-                    , seTranslate "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!"
-                    , seZoom "wheel![event.shiftKey]"
-                    , seResolve seGlobal
+                << param "grid"
+                    [ paSelect seInterval
+                        [ seTranslate "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!"
+                        , seZoom "wheel![event.shiftKey]"
+                        , seResolve seGlobal
+                        ]
+                    , paBindScales
                     ]
 
         enc =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
                 << position Y [ pRepeat arRow, pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Origin" ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "myBrush") [ mName "Origin" ] [ mStr "grey" ] ]
     in
     toVegaLite
         [ desc
@@ -152,7 +150,7 @@ repeat4 =
             [ rowFields [ "Horsepower", "Acceleration", "Miles_per_Gallon" ]
             , columnFields [ "Miles_per_Gallon", "Acceleration", "Horsepower" ]
             ]
-        , specification (asSpec [ data, sel [], enc [], point [] ])
+        , specification (asSpec [ data, ps [], enc [], point [] ])
         ]
 
 

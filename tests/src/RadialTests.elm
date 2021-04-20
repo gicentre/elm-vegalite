@@ -294,19 +294,19 @@ radial13 =
                 << dataColumn "a" (strs [ "A", "B", "C", "D" ])
                 << dataColumn "b" (nums [ 28, 55, 43, 91 ])
 
-        sel =
-            selection
-                << select "highlight" seSingle [ seOn "mouseover", seEmpty ]
-                << select "select" seMulti []
+        ps =
+            params
+                << param "highlight" [ paSelect sePoint [ seToggle tpFalse, seOn "mouseover" ] ]
+                << param "select" [ paSelect sePoint [] ]
 
         enc =
             encoding
                 << position Theta [ pName "b", pQuant ]
                 << color [ mName "a", mLegend [] ]
-                << fillOpacity [ mDataCondition [ ( selected "highlight", [ mNum 1 ] ) ] [ mNum 0.6 ] ]
-                << strokeWidth [ mDataCondition [ ( selected "highlight", [ mNum 0 ] ) ] [ mNum 8 ] ]
+                << fillOpacity [ mCondition (prParam "highlight") [ mNum 1 ] [ mNum 0.6 ] ]
+                << strokeWidth [ mCondition (prParam "highlight") [ mNum 0 ] [ mNum 8 ] ]
     in
-    toVegaLite [ data [], sel [], enc [], arc [ maStroke "white" ] ]
+    toVegaLite [ data [], ps [], enc [], arc [ maStroke "white" ] ]
 
 
 

@@ -46,25 +46,21 @@ personGrid =
             dataFromColumns []
                 << dataColumn "id" (nums <| List.map toFloat (List.range 1 100))
 
+        ps =
+            params
+                << param "highlight" [ paSelect seInterval [] ]
+
         trans =
             transform
                 << calculateAs "ceil (datum.id/10)" "col"
                 << calculateAs "datum.id - datum.col*10" "row"
 
-        sel =
-            selection
-                << select "highlight" seInterval []
-
         enc =
             encoding
                 << position X [ pName "col", pOrdinal, pAxis [] ]
                 << position Y [ pName "row", pOrdinal, pAxis [] ]
-                << shape [ mPath <| Maybe.withDefault "circle" <| Dict.get "person" isotypes ]
-                << color
-                    [ mSelectionCondition (selectionName "highlight")
-                        [ mStr "rgb(194,81,64)" ]
-                        [ mStr "rgb(167,165,156)" ]
-                    ]
+                << shape [ Dict.get "person" isotypes |> Maybe.withDefault "circle" |> mPath ]
+                << color [ mCondition (prParam "highlight") [ mStr "rgb(194,81,64)" ] [ mStr "rgb(167,165,156)" ] ]
                 << size [ mNum 90 ]
     in
     toVegaLite
@@ -72,9 +68,9 @@ personGrid =
         , width 400
         , height 400
         , data []
+        , ps []
         , trans []
         , enc []
-        , sel []
         , point [ maFilled True ]
         ]
 

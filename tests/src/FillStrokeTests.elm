@@ -117,7 +117,8 @@ geo2 =
             encoding
                 << stroke [ mName "geometry.type" ]
                 << fill
-                    [ mDataCondition [ ( expr "datum.geometry.type === 'Polygon'", [ mName "geometry.type" ] ) ]
+                    [ mCondition (prTest (expr "datum.geometry.type === 'Polygon'"))
+                        [ mName "geometry.type" ]
                         [ mStr "rgb(0,0,0,0)" ]
                     ]
     in

@@ -84,7 +84,8 @@ label2 =
             encoding
                 << text [ tName "count", tQuant ]
                 << color
-                    [ mDataCondition [ ( expr "datum.count > 10", [ mStr "white" ] ) ]
+                    [ mCondition (prTest (expr "datum.count > 10"))
+                        [ mStr "white" ]
                         [ mStr "black" ]
                     ]
 
@@ -551,7 +552,8 @@ label10 =
             encoding
                 << position X [ pName "to", pQuant, pAxis [] ]
                 << shape
-                    [ mDataCondition [ ( expr "datum.to > 0", [ mSymbol symTriangleRight ] ) ]
+                    [ mCondition (prTest (expr "datum.to > 0"))
+                        [ mSymbol symTriangleRight ]
                         [ mSymbol symTriangleLeft ]
                     ]
 

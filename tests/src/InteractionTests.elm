@@ -44,14 +44,8 @@ encHighlight =
     encoding
         << position X [ pName "month", pTemporal, pTitle "" ]
         << position Y [ pName "reportedCrimes", pQuant, pTitle "Reported crimes" ]
-        << color
-            [ mCondition [ ( prParam "mySelection", [ mName "crimeType", mScale cScale ] ) ]
-                [ mStr "black" ]
-            ]
-        << opacity
-            [ mCondition [ ( prParam "mySelection", [ mNum 1 ] ) ]
-                [ mNum 0.1 ]
-            ]
+        << color [ mCondition (prParam "mySelection") [ mName "crimeType", mScale cScale ] [ mStr "black" ] ]
+        << opacity [ mCondition (prParam "mySelection") [ mNum 1 ] [ mNum 0.1 ] ]
 
 
 interaction1 : Spec
@@ -346,12 +340,11 @@ interaction17 =
             transform
                 << filter (fiExpr "datum.symbol==='GOOG'")
 
-        sel =
-            selection
-                << select "myBrush"
-                    seInterval
-                    [ seEncodings [ chX ]
-                    , seSelectionMark [ smCursor cuPointer ]
+        ps =
+            params
+                << param "myBrush"
+                    [ paSelect seInterval
+                        [ seEncodings [ chX ], seSelectionMark [ smCursor cuPointer ] ]
                     ]
 
         encLine =
@@ -359,7 +352,7 @@ interaction17 =
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ width 400, cfg [], stockData, trans [], sel [], encLine [], line [] ]
+    toVegaLite [ width 400, cfg [], stockData, ps [], trans [], encLine [], line [] ]
 
 
 interaction18 : Spec
@@ -372,14 +365,16 @@ interaction18 =
             transform
                 << calculateAs "cos(datum.theta)" "y"
 
-        sel =
-            selection
-                << select "myBrush"
-                    seInterval
-                    [ seEncodings [ chX, chY ]
-                    , seInitInterval
-                        (Just ( num 0.4, num 1 ))
-                        (Just ( num 0.6, num 0.8 ))
+        ps =
+            params
+                << param "myBrush"
+                    [ paSelect seInterval [ seEncodings [ chX, chY ] ]
+                    , paValue
+                        (dataObject
+                            [ ( "x", nums [ 0.4, 1 ] |> daConcat )
+                            , ( "y", nums [ 0.6, 0.8 ] |> daConcat )
+                            ]
+                        )
                     ]
 
         overviewEnc =
@@ -388,7 +383,7 @@ interaction18 =
                 << position Y [ pName "y", pQuant, pAxis [] ]
 
         overviewSpec =
-            asSpec [ sel [], overviewEnc [], line [] ]
+            asSpec [ ps [], overviewEnc [], line [] ]
 
         detailEnc =
             encoding
