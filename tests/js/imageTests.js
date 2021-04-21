@@ -9869,25 +9869,6 @@ var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 							$author$project$VegaLite$predicateProperties(predicate),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
-		case 'HConditions':
-			var ifClauses = field.a;
-			var elseClause = field.b;
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					A2(
-						$elm$json$Json$Encode$list,
-						function (_v1) {
-							var predicate = _v1.a;
-							var ifClause = _v1.b;
-							return $elm$json$Json$Encode$object(
-								_Utils_ap(
-									$author$project$VegaLite$predicateProperties(predicate),
-									A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)));
-						},
-						ifClauses)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
 		case 'HDataCondition':
 			var isSelection = field.a;
 			var predicate = field.b;
