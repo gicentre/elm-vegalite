@@ -53,11 +53,10 @@ markCondition2 =
             encoding
                 << position X [ pName "value", pOrdinal ]
                 << color
-                    -- TODO: Deal with nested if clauses in mCondition
-                    [ mDataCondition
-                        [ ( expr "datum.value < 40", [ mStr "blue" ] )
-                        , ( expr "datum.value < 50", [ mStr "red" ] )
-                        , ( expr "datum.value < 60", [ mStr "yellow" ] )
+                    [ mConditions
+                        [ ( prTest (expr "datum.value < 40"), [ mStr "blue" ] )
+                        , ( prTest (expr "datum.value < 50"), [ mStr "red" ] )
+                        , ( prTest (expr "datum.value < 60"), [ mStr "yellow" ] )
                         ]
                         [ mStr "black" ]
                     ]

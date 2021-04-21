@@ -47,7 +47,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### V4.0 Deprecations
 
-- `mDataCondition` and `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a simplified `mCondition` (and its `o`, `t` and `h` equivalents) (VL5.0).
+- `mDataCondition` and `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a simplified `mCondition`/`mConditions` (and their `o`, `t` and `h` equivalents) (VL5.0).
 
 - `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
 
