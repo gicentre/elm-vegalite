@@ -8604,16 +8604,25 @@ var $elm$core$Tuple$second = function (_v0) {
 	var y = _v0.b;
 	return y;
 };
-var $author$project$VegaLite$sideLabel = function (side) {
+var $author$project$VegaLite$sideSpec = function (side) {
 	switch (side.$) {
 		case 'STop':
-			return 'top';
+			return $elm$json$Json$Encode$string('top');
 		case 'SBottom':
-			return 'bottom';
+			return $elm$json$Json$Encode$string('bottom');
 		case 'SLeft':
-			return 'left';
+			return $elm$json$Json$Encode$string('left');
+		case 'SRight':
+			return $elm$json$Json$Encode$string('right');
 		default:
-			return 'right';
+			var ex = side.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(ex))
+					]));
 	}
 };
 var $elm$core$Maybe$withDefault = F2(
@@ -9105,8 +9114,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'orient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$sideLabel(side)))
+					$author$project$VegaLite$sideSpec(side))
 				]);
 		case 'AxOffset':
 			var n = axisProp.a;
@@ -9114,6 +9122,9 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 'AxPosition':
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'position', n);
+		case 'AxTranslate':
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'translate', n);
 		case 'AxStyle':
 			var ss = axisProp.a;
 			if (ss.b && (!ss.b.b)) {
@@ -11648,8 +11659,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'labelOrient',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$sideLabel(orient)));
+				$author$project$VegaLite$sideSpec(orient));
 		case 'HLabelPadding':
 			var x = hProp.a;
 			return _Utils_Tuple2(
@@ -11664,8 +11674,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'orient',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$sideLabel(orient)));
+				$author$project$VegaLite$sideSpec(orient));
 		case 'HTitle':
 			var s = hProp.a;
 			if (s === '') {
@@ -11735,8 +11744,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var orient = hProp.a;
 			return _Utils_Tuple2(
 				'titleOrient',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$sideLabel(orient)));
+				$author$project$VegaLite$sideSpec(orient));
 		default:
 			var x = hProp.a;
 			return _Utils_Tuple2(
@@ -12676,8 +12684,7 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 				[
 					_Utils_Tuple2(
 					'orient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$sideLabel(sd)))
+					$author$project$VegaLite$sideSpec(sd))
 				]);
 		case 'TStyle':
 			var ss = titleCfg.a;
