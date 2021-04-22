@@ -62,13 +62,12 @@ firstCentreOffset =
 radial3 : Spec
 radial3 =
     let
-        prm =
+        ps =
             params
-                [ ( "radius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
-                , ( "radius2", [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] )
-                , ( "cornerRadius", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 50, inStep 1 ]) ] )
-                , ( "padAngle", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 1.57 ]) ] )
-                ]
+                << param "radius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ]
+                << param "radius2" [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ]
+                << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 50, inStep 1 ]) ]
+                << param "padAngle" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 1.57 ]) ]
 
         data =
             dataFromColumns []
@@ -81,7 +80,7 @@ radial3 =
                 << color [ mName "category" ]
     in
     toVegaLite
-        [ prm
+        [ ps []
         , data []
         , enc []
         , arc
@@ -295,19 +294,19 @@ radial13 =
                 << dataColumn "a" (strs [ "A", "B", "C", "D" ])
                 << dataColumn "b" (nums [ 28, 55, 43, 91 ])
 
-        sel =
-            selection
-                << select "highlight" seSingle [ seOn "mouseover", seEmpty ]
-                << select "select" seMulti []
+        ps =
+            params
+                << param "highlight" [ paSelect sePoint [ seToggle tpFalse, seOn "mouseover" ] ]
+                << param "select" [ paSelect sePoint [] ]
 
         enc =
             encoding
                 << position Theta [ pName "b", pQuant ]
                 << color [ mName "a", mLegend [] ]
-                << fillOpacity [ mDataCondition [ ( selected "highlight", [ mNum 1 ] ) ] [ mNum 0.6 ] ]
-                << strokeWidth [ mDataCondition [ ( selected "highlight", [ mNum 0 ] ) ] [ mNum 8 ] ]
+                << fillOpacity [ mCondition (prParam "highlight") [ mNum 1 ] [ mNum 0.6 ] ]
+                << strokeWidth [ mCondition (prParam "highlight") [ mNum 0 ] [ mNum 8 ] ]
     in
-    toVegaLite [ data [], sel [], enc [], arc [ maStroke "white" ] ]
+    toVegaLite [ data [], ps [], enc [], arc [ maStroke "white" ] ]
 
 
 

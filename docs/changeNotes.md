@@ -2,19 +2,21 @@
 
 ## Pending changes
 
-_Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of VegaLite 5._
+_Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of Vega-Lite 5._
 
 ### TODO
-
-Provide new simplified VL5 selection specifications and deprecate old model.
 
 Add selection property expression function (probably something equivalent to `maStrExpr` so that point or interval type can be determined by an expression.
 
 Add mark property expression functions for `MStrokeDash`.
 
+Add tickBand property for axes (VL5?).
+
 Add top-level view background expressions: `strokeCap`, `strokeDash`, `strokeJoin`.
 
 Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, and `subtitleFontWeight`.
+
+Add projection property expressions.
 
 Add custom type axis property expressions.
 
@@ -30,15 +32,108 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
 
+- `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
+
+  | Old version                  | New version                           |
+  | ---------------------------- | ------------------------------------- |
+  | `seToggle "false"`           | `seToggle tpFalse`                    |
+  | `seToggle "true"`            | `seToggle tpShiftKey`                 |
+  | `seToggle "event.shiftKey"`  | `seToggle tpShiftKey`                 |
+  | `seToggle "event.ctrlKey"`   | `seToggle tpCtrlKey`                  |
+  | `seToggle "event.altKey"`    | `seToggle tpAltKey`                   |
+  | `seToggle "some expression"` | `seToggle (tpExpr "some expression")` |
+
 ### V4.0 Deprecations
+
+These mostly reflect the new selection and parameter model in Vega-Lite 5.
+
+- `selection` deprecated in favour of `params`.
+- `select` deprecated in favour of `param` with `paSelect`.
+- `selected` deprecated in favour of `bParam`.
+- `selectionName` deprecated in favour of `prParam`
+- `blField`, `blChannel` and `blEvent` deprecated in favour of `param` settings.
+
+- `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a unified `mCondition` (and their `o`, `t` and `h` equivalents) (VL5.0). Where previously a selection condition would be specified as
+
+  ```elm
+  mSelectionCondition (selectionName "mySelection") [ mStr "red" ] [ mStr "black" ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  mCondition (prParam "mySelection") [ mStr "red" ] [ mStr "black" ]
+  ```
+
+- `mDataCondition` (and its `o`, `t` and `h` equivalents) deprecated in favour of the unified `mCondition` (and its `o`, `t` and `h` equivalents) (VL5.0). Where previously a data-dependent condition would be specified as
+
+  ```elm
+  mDataCondition [ ( expr "datum.x == null", [ mStr "grey" ] ) ] [ mStr "black" ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  mCondition (prTest (expr "datum.x == null")) [ mStr "grey" ] [ mStr "black" ]
+  ```
+
+- Under the VL5 interaction model, input elements (sliders etc.) now bound to parameters, so the following are deprecated, replaced by their 'ip' equivalents: `iRange`, `iCheckbox`, `iRadio`, `iSelect`, `iText`, `iNumber`, `iDate`, `iTime`, `iMonth`, `iWeek`, `iDateTimeLocal`, `iTel`, `iColor`.
 
 - `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
 
+- `seBindScales` deprecated in favour of `paBindScales` (VL5.0). Where previously zooming might have been specified as
+
+  ```elm
+  selection << select "zoomer" seInterval [ seBindScales ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  params << param "zoomer" [ paSelect seInterval [], paBindScales ]
+  ```
+
+- `seBindLegend` deprecated in favour of `paBindLegend` (VL5.0). Where previously legend binding might have been specified as
+
+  ```elm
+  selection
+      << select "mySelection"
+          seSingle
+          [ seBindLegend [ blField "crimeType", blEvent "dblclick ] ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  params
+      << param "mySelection"
+          [ paSelect sePoint [ seFields [ "crimeType" ] ]
+          , paBindLegend "dblclick"
+          ]
+  ```
+
+- `seSingle` and `seMulti` deprecated in favour of `sePoint` (and with `seToggle tpFalse` for single selection behaviour).
+
+- `seEmpty` deprecated in favour of `prParamEmpty` and `fiSelectionEmpty`.
+- `seInit` and `seInitInterval` deprecated in favour of `paValue`.
+
 ### Additions
+
+- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
+
+- `fiSelectionEmpty` for filtering with default empty result.
+
+- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
+
+- `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
+
+- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
+
+- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
-- `params` and associated `paBind`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
+- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
 
 - `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 

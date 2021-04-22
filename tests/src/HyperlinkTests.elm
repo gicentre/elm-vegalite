@@ -72,15 +72,12 @@ hyperlink3 =
                 << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum['IMDB Rating']*10 > datum['Rotten Tomatoes Rating']"
-                          , [ mStr "steelblue" ]
-                          )
-                        ]
+                    [ mCondition (prTest (expr "datum['IMDB Rating']*10 > datum['Rotten Tomatoes Rating']"))
+                        [ mStr "steelblue" ]
                         [ mStr "red" ]
                     ]
                 << hyperlink
-                    [ hDataCondition (expr "datum['IMDB Rating']*10 > datum['Rotten Tomatoes Rating']")
+                    [ hCondition (prTest (expr "datum['IMDB Rating']*10 > datum['Rotten Tomatoes Rating']"))
                         [ hStr "http://www.imdb.com" ]
                         [ hStr "https://www.rottentomatoes.com" ]
                     ]

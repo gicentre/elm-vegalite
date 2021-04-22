@@ -149,10 +149,9 @@ legend15 =
     let
         prm =
             params
-                [ ( "xPos", [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ] )
-                , ( "yPos", [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ] )
-                , ( "titleColor", [ paValue (str "black"), paBind (ipColor []) ] )
-                ]
+                << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ]
+                << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ]
+                << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -171,7 +170,7 @@ legend15 =
                         ]
                     ]
     in
-    toVegaLite [ prm, width 300, height 300, data, enc [], circle [] ]
+    toVegaLite [ prm [], width 300, height 300, data, enc [], circle [] ]
 
 
 

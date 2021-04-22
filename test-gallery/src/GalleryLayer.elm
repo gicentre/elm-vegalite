@@ -36,8 +36,8 @@ layer1 =
             encoding
                 << position X [ pName "date", pTitle "", pTemporal ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum.open < datum.close", [ mStr "orange" ] ) ]
+                    [ mCondition (prTest (expr "datum.open < datum.close"))
+                        [ mStr "orange" ]
                         [ mStr "steelBlue" ]
                     ]
 

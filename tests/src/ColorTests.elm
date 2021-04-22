@@ -343,8 +343,9 @@ blend2 =
     let
         prm =
             params
-                [ ( "blendMode"
-                  , [ paValue (str "normal")
+                << param
+                    "blendMode"
+                    [ paValue (str "normal")
                     , paBind
                         (ipSelect
                             [ inOptions
@@ -368,8 +369,6 @@ blend2 =
                             ]
                         )
                     ]
-                  )
-                ]
 
         blendData =
             dataFromColumns []
@@ -411,7 +410,7 @@ blend2 =
         [ width 200
         , height 200
         , background "rgb(252,246,229)"
-        , prm
+        , prm []
         , blendData []
         , layer [ spec1, spec2 ]
         ]
@@ -421,7 +420,8 @@ background1 : Spec
 background1 =
     let
         prm =
-            params [ ( "clr", [ paValue (str "white"), paBind (ipColor []) ] ) ]
+            params
+                << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -431,7 +431,7 @@ background1 =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
-    toVegaLite [ prm, backgroundExpr "clr", data, enc [], circle [] ]
+    toVegaLite [ prm [], backgroundExpr "clr", data, enc [], circle [] ]
 
 
 

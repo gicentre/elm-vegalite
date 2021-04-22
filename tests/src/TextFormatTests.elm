@@ -155,24 +155,23 @@ textAlign2 =
     let
         prm =
             params
-                [ ( "angle", [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ] )
-                , ( "dx", [ paValue (num 5), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
-                , ( "dy", [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
-                , ( "xOffset", [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
-                , ( "yOffset", [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ] )
-                , ( "fontSize", [ paValue (num 14), paBind (ipRange [ inMin 1, inMax 36, inStep 1 ]) ] )
-                , ( "limit", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 150, inStep 1 ]) ] )
-                , ( "align", [ paValue (str "left"), paBind (ipSelect [ inOptions [ "left", "center", "right" ] ]) ] )
-                , ( "baseline", [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom" ] ]) ] )
-                , ( "font", [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ] )
-                , ( "fontWeight", [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold" ] ]) ] )
-                , ( "fontStyle", [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ] )
-                , ( "axisAngle", [ paExpr "0" ] )
-                , ( "cSize", [ paValue (num 100), paBind (ipRange [ inMin 0, inMax 1000, inStep 5 ]) ] )
-                , ( "strokeWidth", [ paValue (num 4), paBind (ipRange [ inMin 0, inMax 12, inStep 0.1 ]) ] )
-                , ( "fill", [ paValue (str "grey"), paBind (ipColor []) ] )
-                , ( "stroke", [ paValue (str "black"), paBind (ipColor []) ] )
-                ]
+                << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ]
+                << param "dx" [ paValue (num 5), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ]
+                << param "dy" [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ]
+                << param "xOffset" [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ]
+                << param "yOffset" [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ]
+                << param "fontSize" [ paValue (num 14), paBind (ipRange [ inMin 1, inMax 36, inStep 1 ]) ]
+                << param "limit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 150, inStep 1 ]) ]
+                << param "align" [ paValue (str "left"), paBind (ipSelect [ inOptions [ "left", "center", "right" ] ]) ]
+                << param "baseline" [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom" ] ]) ]
+                << param "font" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "fontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold" ] ]) ]
+                << param "fontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "axisAngle" [ paExpr "0" ]
+                << param "cSize" [ paValue (num 100), paBind (ipRange [ inMin 0, inMax 1000, inStep 5 ]) ]
+                << param "strokeWidth" [ paValue (num 4), paBind (ipRange [ inMin 0, inMax 12, inStep 0.1 ]) ]
+                << param "fill" [ paValue (str "grey"), paBind (ipColor []) ]
+                << param "stroke" [ paValue (str "black"), paBind (ipColor []) ]
 
         data =
             dataFromColumns []
@@ -227,7 +226,7 @@ textAlign2 =
                     ]
                 ]
     in
-    toVegaLite [ prm, data [], enc [], layer [ specCircle, specText ] ]
+    toVegaLite [ prm [], data [], enc [], layer [ specCircle, specText ] ]
 
 
 multiline1 : Spec
@@ -315,15 +314,17 @@ title1 =
     let
         prm =
             params
-                [ ( "fontSize", [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64, inStep 1 ]) ] )
-                , ( "angle", [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ] )
-                , ( "limit", [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ] )
-                , ( "offset", [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ] )
-                , ( "colour", [ paValue (str "black"), paBind (ipColor []) ] )
-                , ( "subtitle", [ paValue (str "A subtitle"), paBind (ipSelect [ inOptions [ "A subtitle", "A different subtitle", "And a third subtitle" ] ]) ] )
-                , ( "subtitlePadding", [ paValue (num 5), paBind (ipRange [ inMin -50, inMax 50, inStep 1 ]) ] )
-                , ( "subtitleColour", [ paValue (str "black"), paBind (ipColor []) ] )
-                ]
+                << param "fontSize" [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64, inStep 1 ]) ]
+                << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ]
+                << param "limit" [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ]
+                << param "colour" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "subtitle"
+                    [ paValue (str "A subtitle")
+                    , paBind (ipSelect [ inOptions [ "A subtitle", "A different subtitle", "And a third subtitle" ] ])
+                    ]
+                << param "subtitlePadding" [ paValue (num 5), paBind (ipRange [ inMin -50, inMax 50, inStep 1 ]) ]
+                << param "subtitleColour" [ paValue (str "black"), paBind (ipColor []) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -334,7 +335,7 @@ title1 =
                 << position Y [ pName "Horsepower", pQuant ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , padding (paEdges 5 250 5 5)
         , title "This is the visualization title\nthat is split over two lines"
             [ tiFontSize |> tiNumExpr "fontSize"

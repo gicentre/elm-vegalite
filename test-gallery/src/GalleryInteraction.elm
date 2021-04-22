@@ -30,29 +30,31 @@ interaction1 =
                 << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
                 << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
 
-        sel =
-            selection
-                << select "highlight" seSingle [ seOn "mouseover", seEmpty ]
-                << select "select" seMulti []
+        ps =
+            params
+                << param "highlight" [ paSelect sePoint [ seOn "mouseover" ] ]
+                << param "select" [ paSelect sePoint [] ]
 
         enc =
             encoding
                 << position X [ pName "a", pOrdinal ]
                 << position Y [ pName "b", pQuant ]
-                << fillOpacity [ mSelectionCondition (selectionName "select") [ mNum 1 ] [ mNum 0.3 ] ]
+                << fillOpacity [ mCondition (prParam "select") [ mNum 1 ] [ mNum 0.3 ] ]
                 << strokeWidth
-                    [ mDataCondition
-                        [ ( and (selected "select") (expr "length(data(\"select_store\"))"), [ mNum 2 ] )
-                        , ( selected "highlight", [ mNum 1 ] )
-                        ]
-                        [ mNum 0 ]
-                    ]
+                    -- TODO: ADD mConditions or similar for multiple conditions.
+                    -- [ mCondition
+                    --     [ ( prParamEmpty "select", [ mNum 2 ] )
+                    --     , ( prParamEmpty "highlight", [ mNum 1 ] )
+                    --     ]
+                    --     [ mNum 0 ]
+                    -- ]
+                    [ mCondition (prParamEmpty "select") [ mNum 2 ] [ mNum 0 ] ]
     in
     toVegaLite
         [ desc
         , cfg []
         , data []
-        , sel []
+        , ps []
         , enc []
         , bar [ maFill "#4C78A8", maStroke "black", maCursor cuPointer ]
         ]
@@ -91,20 +93,17 @@ interaction3 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection << select "myBrush" seInterval []
+        ps =
+            params
+                << param "myBrush" [ paSelect seInterval [] ]
 
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Cylinders", mOrdinal ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "myBrush") [ mName "Cylinders", mOrdinal ] [ mStr "grey" ] ]
     in
-    toVegaLite [ desc, data, sel [], enc [], point [] ]
+    toVegaLite [ desc, data, ps [], enc [], point [] ]
 
 
 interaction4 : Spec
@@ -120,8 +119,9 @@ interaction4 =
             transform
                 << filter (fiSelection "myBrush")
 
-        sel =
-            selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "myBrush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         enc =
             encoding
@@ -129,7 +129,7 @@ interaction4 =
                 << position Y [ pName "count", pAggregate opSum ]
 
         specBackground =
-            asSpec [ sel [], area [] ]
+            asSpec [ ps [], area [] ]
 
         specHighlight =
             asSpec [ trans [], area [ maColor "goldenrod" ] ]
@@ -146,16 +146,17 @@ interaction5 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection << select "myPaintbrush" seMulti [ seOn "mouseover", seNearest True ]
+        ps =
+            params
+                << param "myPaintbrush" [ paSelect sePoint [ seOn "mouseover", seNearest True ] ]
 
         enc =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << size [ mSelectionCondition (selectionName "myPaintbrush") [ mNum 300 ] [ mNum 50 ] ]
+                << size [ mCondition (prParam "myPaintbrush") [ mNum 300 ] [ mNum 50 ] ]
     in
-    toVegaLite [ desc, data, sel [], enc [], point [] ]
+    toVegaLite [ desc, data, ps [], enc [], point [] ]
 
 
 interaction6 : Spec
@@ -167,8 +168,8 @@ interaction6 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection << select "myGrid" seInterval [ seBindScales ]
+        ps =
+            params << param "myGrid" [ paSelect seInterval [], paBindScales ]
 
         enc =
             encoding
@@ -176,7 +177,7 @@ interaction6 =
                 << position Y [ pName "Miles_per_Gallon", pQuant, pScale [ scDomain (doNums [ 20, 40 ]) ] ]
                 << size [ mName "Cylinders", mQuant ]
     in
-    toVegaLite [ desc, data, sel [], enc [], circle [] ]
+    toVegaLite [ desc, data, ps [], enc [], circle [] ]
 
 
 interaction7 : Spec
@@ -192,15 +193,16 @@ interaction7 =
             transform
                 << calculateAs "year(datum.Year)" "Year"
 
-        sel1 =
-            selection
-                << select "CylYr"
-                    seSingle
-                    [ seFields [ "Cylinders", "Year" ]
-                    , seInit [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ]
-                    , seBind
-                        [ iRange "Cylinders" [ inName "Cylinders ", inMin 3, inMax 8, inStep 1 ]
-                        , iRange "Year" [ inName "Year ", inMin 1969, inMax 1981, inStep 1 ]
+        ps =
+            params
+                << param "CylYr"
+                    [ paSelect sePoint [ seToggle tpFalse, seFields [ "Cylinders", "Year" ] ]
+
+                    -- TODO: Allow list of data objects to be created.
+                    , paValue (dataObject [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ])
+                    , paBindings
+                        [ ( "Cylinders", ipRange [ inName "Cylinders", inMin 3, inMax 8, inStep 1 ] )
+                        , ( "Year", ipRange [ inName "Year", inMin 1969, inMax 1981, inStep 1 ] )
                         ]
                     ]
 
@@ -211,14 +213,10 @@ interaction7 =
 
         enc1 =
             encoding
-                << color
-                    [ mSelectionCondition (selectionName "CylYr")
-                        [ mName "Origin" ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "CylYr") [ mName "Origin" ] [ mStr "grey" ] ]
 
         spec1 =
-            asSpec [ sel1 [], enc1 [], circle [] ]
+            asSpec [ ps [], enc1 [], circle [] ]
 
         trans2 =
             transform
@@ -244,9 +242,9 @@ interaction8 =
         data =
             dataFromUrl (path ++ "seattle-weather.csv") []
 
-        sel =
-            selection
-                << select "myBrush" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "myBrush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         encPos =
             encoding
@@ -255,10 +253,10 @@ interaction8 =
         enc1 =
             encoding
                 << position X [ pName "date", pOrdinal, pTimeUnit month ]
-                << opacity [ mSelectionCondition (selectionName "myBrush") [ mNum 1 ] [ mNum 0.7 ] ]
+                << opacity [ mCondition (prParam "myBrush") [ mNum 1 ] [ mNum 0.7 ] ]
 
         spec1 =
-            asSpec [ sel [], enc1 [], bar [] ]
+            asSpec [ ps [], enc1 [], bar [] ]
 
         trans =
             transform
@@ -288,37 +286,28 @@ interaction9 =
         data =
             dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
+        ps =
+            params
+                << param "myHover"
+                    [ paSelect sePoint [ seOn "mouseover", seFields [ "symbol" ] ]
+
+                    -- TODO: Allow list of data objects to be created.
+                    , paValue (dataObject [ ( "symbol", str "AAPL" ) ])
+                    ]
+
         trans =
             transform
                 << filter (fiExpr "datum.symbol !== 'IBM'")
 
         enc =
             encoding
-                << color
-                    [ mSelectionCondition (selectionName "myHover")
-                        [ mName "symbol", mLegend [] ]
-                        [ mStr "grey" ]
-                    ]
-                << opacity
-                    [ mSelectionCondition (selectionName "myHover")
-                        [ mNum 1 ]
-                        [ mNum 0.2 ]
-                    ]
+                << color [ mCondition (prParamEmpty "myHover") [ mName "symbol", mLegend [] ] [ mStr "grey" ] ]
+                << opacity [ mCondition (prParamEmpty "myHover") [ mNum 1 ] [ mNum 0.2 ] ]
 
         enc1 =
             encoding
                 << position X [ pName "date", pTemporal, pTitle "" ]
                 << position Y [ pName "price", pQuant, pTitle "Price" ]
-
-        sel1 =
-            selection
-                << select "myHover"
-                    seSingle
-                    [ seOn "mouseover"
-                    , seEmpty
-                    , seFields [ "symbol" ]
-                    , seInit [ ( "symbol", str "AAPL" ) ]
-                    ]
 
         spec1 =
             asSpec
@@ -326,7 +315,7 @@ interaction9 =
                 , layer
                     [ asSpec
                         [ description "Transparent layer to make it easier to trigger selection"
-                        , sel1 []
+                        , ps []
                         , line [ maStrokeWidth 8, maStroke "transparent" ]
                         ]
                     , asSpec [ line [] ]
@@ -363,6 +352,13 @@ interaction10 =
         data =
             dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
+        ps =
+            params
+                << param "label"
+                    [ paSelect sePoint
+                        [ seNearest True, seOn "mouseover", seEncodings [ chX ] ]
+                    ]
+
         enc1 =
             encoding
                 << position X [ pName "date", pTemporal ]
@@ -374,29 +370,19 @@ interaction10 =
                 [ enc1 []
                 , layer
                     [ asSpec [ line [] ]
-                    , asSpec [ sel1_2 [], enc1_2 [], point [] ]
+                    , asSpec [ ps [], enc1_2 [], point [] ]
                     ]
                 ]
 
         enc1_2 =
             encoding
-                << opacity [ mSelectionCondition (expr "myTooltip") [ mNum 1 ] [ mNum 0 ] ]
-
-        sel1_2 =
-            selection
-                << select "myTooltip"
-                    seSingle
-                    [ seNearest True
-                    , seOn "mouseover"
-                    , seEncodings [ chX ]
-                    , seEmpty
-                    ]
+                << opacity [ mCondition (prParamEmpty "label") [ mNum 1 ] [ mNum 0 ] ]
 
         spec2 =
             asSpec [ trans2 [], layer [ spec2_1, spec2_2 ] ]
 
         trans2 =
-            transform << filter (fiSelection "myTooltip")
+            transform << filter (fiSelectionEmpty "label")
 
         spec2_1 =
             asSpec [ enc2_1 [], rule [ maColor "gray" ] ]
@@ -432,7 +418,7 @@ interaction11 =
 
         transSelFilter =
             transform
-                << filter (fiSelection "hover")
+                << filter (fiSelectionEmpty "hover")
 
         enc1 =
             encoding
@@ -448,15 +434,15 @@ interaction11 =
                     ]
                 ]
 
-        sel =
-            selection
-                << select "hover"
-                    seSingle
-                    [ seFields [ "date" ]
-                    , seEmpty
-                    , seOn "mouseover"
-                    , seClear "mouseout"
-                    , seNearest True
+        ps =
+            params
+                << param "hover"
+                    [ paSelect sePoint
+                        [ seFields [ "date" ]
+                        , seOn "mouseover"
+                        , seClear "mouseout"
+                        , seNearest True
+                        ]
                     ]
 
         transPivot =
@@ -465,7 +451,7 @@ interaction11 =
 
         enc2 =
             encoding
-                << opacity [ mSelectionCondition (expr "hover") [ mNum 0.3 ] [ mNum 0 ] ]
+                << opacity [ mCondition (prParamEmpty "hover") [ mNum 0.3 ] [ mNum 0 ] ]
                 << tooltips
                     [ [ tName "AAPL", tQuant ]
                     , [ tName "AMZN", tQuant ]
@@ -475,7 +461,7 @@ interaction11 =
                     ]
 
         spec2 =
-            asSpec [ sel [], transPivot [], enc2 [], rule [] ]
+            asSpec [ ps [], transPivot [], enc2 [], rule [] ]
     in
     toVegaLite [ desc, width 400, height 300, data, enc [], layer [ spec1, spec2 ] ]
 
@@ -486,14 +472,13 @@ interaction12 =
         data =
             dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
 
-        sel =
-            selection
-                << select "index"
-                    seSingle
-                    [ seOn "mouseover"
-                    , seEncodings [ chX ]
-                    , seNearest True
-                    , seInit [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ]
+        ps =
+            params
+                << param "index"
+                    [ paSelect sePoint [ seToggle tpFalse, seOn "mouseover", seEncodings [ chX ], seNearest True ]
+
+                    -- TODO: Allow list of data objects to be created.
+                    , paValue (dataObject [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ])
                     ]
 
         trans =
@@ -507,7 +492,7 @@ interaction12 =
                 << position X [ pName "date", pTemporal, pAxis [] ]
 
         pointSpec =
-            asSpec [ sel [], pointEnc [], point [ maOpacity 0 ] ]
+            asSpec [ ps [], pointEnc [], point [ maOpacity 0 ] ]
 
         lineEnc =
             encoding
@@ -581,20 +566,16 @@ interaction13 =
         spec2 =
             asSpec [ line [ maColor "red" ], enc2 [] ]
 
-        sel =
-            selection
-                << select "hover" seSingle [ seOn "mouseover", seEmpty ]
+        ps =
+            params
+                << param "hover" [ paSelect sePoint [ seToggle tpFalse, seOn "mouseover" ] ]
 
         enc3 =
             encoding
-                << color
-                    [ mSelectionCondition (VegaLite.not (selectionName "hover"))
-                        [ mStr "transparent" ]
-                        []
-                    ]
+                << color [ mCondition (prParamEmpty "hover") [] [ mStr "transparent" ] ]
 
         spec3 =
-            asSpec [ sel [], rule [], enc3 [] ]
+            asSpec [ ps [], enc3 [], rule [] ]
     in
     toVegaLite [ desc, cfg [], data, enc [], layer [ spec1, spec2, spec3 ] ]
 
@@ -612,22 +593,18 @@ interaction14 =
             transform
                 << window [ ( [ wiOp woRowNumber ], "rowNumber" ) ] []
 
-        sel =
-            selection
-                << select "brush" seInterval []
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [] ]
 
         encPoint =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "brush")
-                        [ mName "Cylinders", mOrdinal ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "brush") [ mName "Cylinders", mOrdinal ] [ mStr "grey" ] ]
 
         specPoint =
-            asSpec [ sel [], point [], encPoint [] ]
+            asSpec [ ps [], encPoint [], point [] ]
 
         tableTrans =
             transform
@@ -701,9 +678,9 @@ interaction15 =
                 << dataColumn "predicted" (strs [ "A", "B", "C", "A", "B", "C", "A", "B", "C" ])
                 << dataColumn "count" (nums [ 13, 0, 0, 0, 10, 6, 0, 0, 9 ])
 
-        sel =
-            selection
-                << select "highlight" seSingle []
+        ps =
+            params
+                << param "highlight" [ paSelect sePoint [] ]
 
         cfg =
             configure
@@ -718,22 +695,11 @@ interaction15 =
                 << position X [ pName "predicted" ]
                 << position Y [ pName "actual" ]
                 << fill [ mName "count", mQuant ]
-                << stroke
-                    [ mDataCondition
-                        [ ( and (selected "highlight")
-                                (expr "length(data(\"highlight_store\"))")
-                          , [ mStr "black" ]
-                          )
-                        ]
-                        [ mStr "" ]
-                    ]
-                << opacity
-                    [ mSelectionCondition (selectionName "highlight")
-                        [ mNum 1 ]
-                        [ mNum 0.5 ]
-                    ]
+                << stroke [ mCondition (prParamEmpty "highlight") [ mStr "black" ] [ mStr "" ] ]
+                << opacity [ mCondition (prParam "highlight") [ mNum 1 ] [ mNum 0.5 ] ]
+                << order [ oCondition (prParam "highlight") [ oNum 1 ] [ oNum 0 ] ]
     in
-    toVegaLite [ cfg [], data [], sel [], enc [], bar [] ]
+    toVegaLite [ cfg [], data [], ps [], enc [], rect [ maStrokeWidth 2 ] ]
 
 
 interaction16 : Spec
@@ -742,9 +708,9 @@ interaction16 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "brush" seInterval [ seEncodings [ chY ] ]
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [ seEncodings [ chY ] ] ]
 
         encMain =
             encoding
@@ -773,7 +739,7 @@ interaction16 =
                 << position X [ pAggregate opCount, pAxis [] ]
 
         specMini =
-            asSpec [ width 50, height 200, sel [], encMini [], bar [] ]
+            asSpec [ width 50, height 200, ps [], encMini [], bar [] ]
     in
     toVegaLite [ data, hConcat [ specMain, specMini ] ]
 

@@ -24,8 +24,9 @@ multi1 =
         data =
             dataFromUrl (path ++ "sp500.csv") []
 
-        sel =
-            selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "myBrush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         enc1 =
             encoding
@@ -50,7 +51,7 @@ multi1 =
                     ]
 
         spec2 =
-            asSpec [ width 480, height 60, sel [], area [], enc2 [] ]
+            asSpec [ width 480, height 60, ps [], enc2 [], area [] ]
     in
     toVegaLite [ desc, data, vConcat [ spec1, spec2 ] ]
 
@@ -80,16 +81,16 @@ multi2 =
         specAll =
             asSpec [ encAll [], bar [] ]
 
-        sel =
-            selection
-                << select "myBrush" seInterval [ seEncodings [ chX ], seSelectionMark [ smFill "steelblue" ] ]
+        ps =
+            params
+                << param "myBrush" [ paSelect seInterval [ seEncodings [ chX ], seSelectionMark [ smFill "steelblue" ] ] ]
 
         selTrans =
             transform
                 << filter (fiSelection "myBrush")
 
         specSelection =
-            asSpec [ sel [], selTrans [], encPosition [], bar [] ]
+            asSpec [ ps [], selTrans [], encPosition [], bar [] ]
     in
     toVegaLite
         [ desc
@@ -109,32 +110,31 @@ multi3 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "myBrush"
-                    seInterval
-                    [ seOn "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
-                    , seTranslate "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
-                    , seZoom "wheel![event.shiftKey]"
-                    , seResolve seUnion
+        ps =
+            params
+                << param "myBrush"
+                    [ paSelect
+                        seInterval
+                        [ seOn "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
+                        , seTranslate "[mousedown[event.shiftKey], window:mouseup] > window:mousemove!"
+                        , seZoom "wheel![event.shiftKey]"
+                        , seResolve seUnion
+                        ]
                     ]
-                << select "grid"
-                    seInterval
-                    [ seBindScales
-                    , seTranslate "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!"
-                    , seZoom "wheel![event.shiftKey]"
-                    , seResolve seGlobal
+                << param "grid"
+                    [ paSelect seInterval
+                        [ seTranslate "[mousedown[!event.shiftKey], window:mouseup] > window:mousemove!"
+                        , seZoom "wheel![event.shiftKey]"
+                        , seResolve seGlobal
+                        ]
+                    , paBindScales
                     ]
 
         enc =
             encoding
                 << position X [ pRepeat arColumn, pQuant ]
                 << position Y [ pRepeat arRow, pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "Origin" ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "myBrush") [ mName "Origin" ] [ mStr "grey" ] ]
     in
     toVegaLite
         [ desc
@@ -142,7 +142,7 @@ multi3 =
             [ rowFields [ "Horsepower", "Acceleration", "Miles_per_Gallon" ]
             , columnFields [ "Miles_per_Gallon", "Acceleration", "Horsepower" ]
             ]
-        , specification (asSpec [ data, enc [], sel [], point [] ])
+        , specification (asSpec [ data, ps [], enc [], point [] ])
         ]
 
 
@@ -159,6 +159,9 @@ multi4 =
 
         data =
             dataFromUrl (path ++ "movies.json") []
+
+        ps =
+            params << param "myPts" [ paSelect sePoint [ seEncodings [ chX ], seToggle tpFalse ] ]
 
         trans =
             transform
@@ -206,21 +209,14 @@ multi4 =
         heatSpec =
             asSpec [ encPosition [], layer [ spec1, spec2 ] ]
 
-        sel =
-            selection << select "myPts" seSingle [ seEncodings [ chX ] ]
-
         barSpec =
-            asSpec [ width 420, height 120, sel [], encBar [], bar [] ]
+            asSpec [ width 420, height 120, ps [], encBar [], bar [] ]
 
         encBar =
             encoding
                 << position X [ pName "Major Genre", pAxis [ axTitle "", axLabelAngle -40 ] ]
                 << position Y [ pAggregate opCount, pTitle "Number of films" ]
-                << color
-                    [ mSelectionCondition (selectionName "myPts")
-                        [ mStr "steelblue" ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "myPts") [ mStr "steelblue" ] [ mStr "grey" ] ]
 
         res =
             resolve
@@ -243,12 +239,9 @@ multi5 =
         data =
             dataFromUrl (path ++ "seattle-weather.csv") []
 
-        spec1 =
-            asSpec
-                [ width 600, height 300, point [], sel1 [], trans1 [], enc1 [] ]
-
-        sel1 =
-            selection << select "myBrush" seInterval [ seEncodings [ chX ] ]
+        ps1 =
+            params
+                << param "myBrush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         trans1 =
             transform << filter (fiSelection "myClick")
@@ -276,11 +269,8 @@ multi5 =
                     , pTitle "Maximum Daily Temperature (C)"
                     ]
                 << color
-                    [ mSelectionCondition (selectionName "myBrush")
-                        [ mName "weather"
-                        , mTitle "Weather"
-                        , mScale weatherColors
-                        ]
+                    [ mCondition (prParam "myBrush")
+                        [ mName "weather", mTitle "Weather", mScale weatherColors ]
                         [ mStr "#cfdebe" ]
                     ]
                 << size
@@ -289,11 +279,13 @@ multi5 =
                     , mScale [ scDomain (doNums [ -1, 50 ]) ]
                     ]
 
-        spec2 =
-            asSpec [ width 600, bar [], sel2 [], trans2 [], enc2 [] ]
+        spec1 =
+            asSpec
+                [ width 600, height 300, ps1 [], trans1 [], enc1 [], point [] ]
 
-        sel2 =
-            selection << select "myClick" seMulti [ seEncodings [ chColor ] ]
+        ps2 =
+            params
+                << param "myClick" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
 
         trans2 =
             transform << filter (fiSelection "myBrush")
@@ -303,10 +295,13 @@ multi5 =
                 << position X [ pAggregate opCount ]
                 << position Y [ pName "weather" ]
                 << color
-                    [ mSelectionCondition (selectionName "myClick")
+                    [ mCondition (prParam "myClick")
                         [ mName "weather", mScale weatherColors ]
                         [ mStr "#acbf98" ]
                     ]
+
+        spec2 =
+            asSpec [ width 600, ps2 [], bar [], trans2 [], enc2 [] ]
     in
     toVegaLite
         [ title "Seattle Weather, 2012-2015" []
@@ -329,22 +324,18 @@ multi6 =
             transform
                 << window [ ( [ wiOp woRowNumber ], "rowNumber" ) ] []
 
-        sel =
-            selection
-                << select "brush" seInterval []
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [] ]
 
         encPoint =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color
-                    [ mSelectionCondition (selectionName "brush")
-                        [ mName "Cylinders", mOrdinal ]
-                        [ mStr "grey" ]
-                    ]
+                << color [ mCondition (prParam "brush") [ mName "Cylinders", mOrdinal ] [ mStr "grey" ] ]
 
         specPoint =
-            asSpec [ sel [], point [], encPoint [] ]
+            asSpec [ ps [], encPoint [], point [] ]
 
         tableTrans =
             transform
@@ -358,12 +349,7 @@ multi6 =
                 << text [ tName "Horsepower" ]
 
         specHPText =
-            asSpec
-                [ title "Engine power" []
-                , tableTrans []
-                , textMark []
-                , encHPText []
-                ]
+            asSpec [ title "Engine power" [], tableTrans [], encHPText [], textMark [] ]
 
         encMPGText =
             encoding
@@ -371,12 +357,7 @@ multi6 =
                 << text [ tName "Miles_per_Gallon" ]
 
         specMPGText =
-            asSpec
-                [ title "Efficiency (mpg)" []
-                , tableTrans []
-                , textMark []
-                , encMPGText []
-                ]
+            asSpec [ title "Efficiency (mpg)" [], tableTrans [], encMPGText [], textMark [] ]
 
         encOriginText =
             encoding
@@ -384,12 +365,7 @@ multi6 =
                 << text [ tName "Origin" ]
 
         specOriginText =
-            asSpec
-                [ title "Country of origin" []
-                , tableTrans []
-                , textMark []
-                , encOriginText []
-                ]
+            asSpec [ title "Country of origin" [], tableTrans [], encOriginText [], textMark [] ]
 
         res =
             resolve
@@ -428,6 +404,17 @@ multi7 =
             configure
                 << configuration (coView [ vicoStroke Nothing ])
 
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect sePoint
+                        [ seOn "mouseover"
+                        , seNearest True
+                        , seToggle tpFalse
+                        , seFields [ "origin" ]
+                        ]
+                    ]
+
         backdropSpec =
             asSpec
                 [ dataBoundaries
@@ -436,7 +423,7 @@ multi7 =
 
         lineTrans =
             transform
-                << filter (fiSelection "mySelection")
+                << filter (fiSelectionEmpty "mySelection")
                 << lookup "origin" dataAirports "iata" (luAs "o")
                 << lookup "destination" dataAirports "iata" (luAs "d")
 
@@ -471,12 +458,8 @@ multi7 =
                 << size [ mName "routes", mQuant, mScale [ scRange (raNums [ 0, 1000 ]) ], mLegend [] ]
                 << order [ oName "routes", oSort [ soDescending ] ]
 
-        sel =
-            selection
-                << select "mySelection" seSingle [ seOn "mouseover", seNearest True, seEmpty, seFields [ "origin" ] ]
-
         airportSpec =
-            asSpec [ dataFlights, airportTrans [], sel [], airportEnc [], circle [] ]
+            asSpec [ dataFlights, airportTrans [], ps [], airportEnc [], circle [] ]
     in
     toVegaLite
         [ desc
@@ -498,9 +481,9 @@ multi8 =
             transform
                 << calculateAs "hours(datum.date) + minutes(datum.date) / 60" "time"
 
-        sel =
-            selection
-                << select "brush" seInterval [ seEncodings [ chX ] ]
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
         enc1 =
             encoding
@@ -508,7 +491,7 @@ multi8 =
                 << position Y [ pAggregate opCount ]
 
         spec1 =
-            asSpec [ width 963, height 100, sel [], enc1 [], bar [] ]
+            asSpec [ width 963, height 100, ps [], enc1 [], bar [] ]
 
         enc2 =
             encoding

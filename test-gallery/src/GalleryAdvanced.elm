@@ -211,10 +211,15 @@ advanced6 =
                 << position Y [ pName "previous_sum", pQuant, pTitle "Amount" ]
                 << position Y2 [ pName "sum" ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum.label === 'Begin' || datum.label === 'End'", [ mStr "#f7e0b6" ] )
-                        , ( expr "datum.sum < datum.previous_sum", [ mStr "#f78a64" ] )
-                        ]
+                    -- [ mDataCondition
+                    --     [ ( expr "datum.label === 'Begin' || datum.label === 'End'", [ mStr "#f7e0b6" ] )
+                    --     , ( expr "datum.sum < datum.previous_sum", [ mStr "#f78a64" ] )
+                    --     ]
+                    --     [ mStr "#93c4aa" ]
+                    -- ]
+                    -- TODO: How to nest if clauses
+                    [ mCondition (prTest (expr "datum.label === 'Begin' || datum.label === 'End'"))
+                        [ mCondition (prTest (expr "datum.sum < datum.previous_sum")) [ mStr "#f7e0b6" ] [ mStr "#f78a64" ] ]
                         [ mStr "#93c4aa" ]
                     ]
 
@@ -274,13 +279,14 @@ advanced6 =
                 << position Y [ pName "center", pQuant ]
                 << text [ tName "text_amount" ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum.label === 'Begin' || datum.label === 'End'"
-                          , [ mStr "#725a30" ]
-                          )
-                        ]
-                        [ mStr "white" ]
-                    ]
+                    -- [ mDataCondition
+                    --     [ ( expr "datum.label === 'Begin' || datum.label === 'End'"
+                    --       , [ mStr "#725a30" ]
+                    --       )
+                    --     ]
+                    --     [ mStr "white" ]
+                    -- ]
+                    [ mCondition (prTest (expr "datum.label === 'Begin' || datum.label === 'End'")) [ mStr "#725a30" ] [ mStr "white" ] ]
 
         spec5 =
             asSpec [ enc5 [], textMark [ maBaseline vaMiddle, maFontWeight fwBold ] ]

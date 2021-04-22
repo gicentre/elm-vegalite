@@ -10,6 +10,7 @@ module VegaLite exposing
     , dataFromRows
     , dataRow
     , dataFromJson
+    , jsonToSpec
     , dataFromSource
     , dataName
     , datasets
@@ -142,10 +143,11 @@ module VegaLite exposing
     , fiGreaterThan
     , fiGreaterThanEq
     , fiExpr
+    , fiSelection
+    , fiSelectionEmpty
     , fiOp
     , fiOpTrans
     , fiCompose
-    , fiSelection
     , fiOneOf
     , fiRange
     , fiValid
@@ -964,41 +966,43 @@ module VegaLite exposing
     , hdFormatAsNum
     , hdFormatAsTemporal
     , hdFormatAsCustom
-    , selection
-    , select
-    , seSingle
-    , seMulti
+    , params
+    , param
+    , paValue
+    , paExpr
+    , paSelect
+    , sePoint
     , seInterval
-    , seEmpty
     , seClear
-    , seInit
-    , seInitInterval
     , seEncodings
     , seFields
     , seNearest
     , seOn
     , seToggle
+    , tpFalse
+    , tpExpr
+    , tpShiftKey
+    , tpAltKey
+    , tpCtrltKey
     , seTranslate
     , seZoom
-    , seBind
-    , seBindLegend
-    , blField
-    , blChannel
-    , blEvent
-    , seBindScales
-    , iRange
-    , iCheckbox
-    , iRadio
-    , iSelect
-    , iText
-    , iNumber
-    , iDate
-    , iTime
-    , iMonth
-    , iWeek
-    , iDateTimeLocal
-    , iTel
-    , iColor
+    , paBind
+    , paBindings
+    , paBindScales
+    , paBindLegend
+    , ipRange
+    , ipCheckbox
+    , ipRadio
+    , ipSelect
+    , ipText
+    , ipNumber
+    , ipDate
+    , ipTime
+    , ipMonth
+    , ipWeek
+    , ipDateTimeLocal
+    , ipTel
+    , ipColor
     , inDebounce
     , inElement
     , inOptions
@@ -1020,20 +1024,21 @@ module VegaLite exposing
     , seGlobal
     , seUnion
     , seIntersection
-    , mSelectionCondition
-    , mDataCondition
-    , oSelectionCondition
-    , oDataCondition
-    , tSelectionCondition
-    , tDataCondition
-    , hDataCondition
-    , hSelectionCondition
+    , mCondition
+    , mConditions
+    , oCondition
+    , oConditions
+    , tCondition
+    , tConditions
+    , hCondition
+    , prParam
+    , prParamEmpty
+    , prTest
+    , bParam
+    , expr
     , and
     , or
     , not
-    , expr
-    , selected
-    , selectionName
     , name
     , description
     , height
@@ -1058,26 +1063,6 @@ module VegaLite exposing
     , asResize
     , background
     , backgroundExpr
-    , params
-    , paValue
-    , paExpr
-    , paSelect
-    , paPoint
-    , paInterval
-    , paBind
-    , ipRange
-    , ipCheckbox
-    , ipRadio
-    , ipSelect
-    , ipText
-    , ipNumber
-    , ipDate
-    , ipTime
-    , ipMonth
-    , ipWeek
-    , ipDateTimeLocal
-    , ipTel
-    , ipColor
     , tiNumExpr
     , tiStrExpr
     , title
@@ -1376,7 +1361,9 @@ module VegaLite exposing
     , num
     , str
     , dataExpr
+    , dataObject
     , nullValue
+    , daConcat
     , boos
     , dts
     , nums
@@ -1443,8 +1430,6 @@ module VegaLite exposing
     , AxisProperty
     , AxisChoice
     , AxisConfig
-    , Binding
-    , BindLegendProperty
     , BinProperty
     , BlendMode
     , BooleanOp
@@ -1503,9 +1488,9 @@ module VegaLite exposing
     , PivotProperty
     , PointMarker
     , PositionChannel
+    , Predicate
     , Projection
     , ProjectionProperty
-    , PSelect
     , QuantileProperty
     , RangeConfig
     , RegressionMethod
@@ -1537,6 +1522,7 @@ module VegaLite exposing
     , TitleConfig
     , TitleFrame
     , TitleProperty
+    , TogglePredicate
     , TooltipContent
     , VAlign
     , ViewBackground
@@ -1544,9 +1530,47 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
+    , Binding
+    , BindLegendProperty
+    , blField
+    , blChannel
+    , blEvent
+    , hDataCondition
+    , hSelectionCondition
+    , iCheckbox
+    , iColor
+    , iDate
+    , iDateTimeLocal
+    , iMonth
+    , iNumber
+    , iRadio
+    , iRange
+    , iSelect
+    , iTel
+    , iText
+    , iTime
+    , iWeek
     , lecoShortTimeLabels
+    , mDataCondition
+    , mSelectionCondition
+    , oDataCondition
+    , oSelectionCondition
     , pBand
     , scDomainMid
+    , seBind
+    , seBindLegend
+    , seBindScales
+    , seEmpty
+    , seInit
+    , seInitInterval
+    , select
+    , selected
+    , selection
+    , selectionName
+    , seMulti
+    , seSingle
+    , tDataCondition
+    , tSelectionCondition
     -- , axcoStyle
     --, leUnselectedOpacity
     -- TODO: CHECK IF THESE WILL BE NEEDED
@@ -1567,11 +1591,11 @@ the Vega-Lite runtime, you can embed specifications directly in a
 4.  [Specifying Marks](#4-specifying-marks)
 5.  [Encoding Data as Channels](#5-encoding-data-as-channels)
 6.  [View Composition](#6-view-composition)
-7.  [Selections for Interaction](#7-selections-for-interaction)
+7.  [Parameters](#7-parameters)
 8.  [Top-level Settings](#8-top-level-settings)
 9.  [General Data Functions](#9-general-data-functions)
 10. [Type Reference](#10-type-reference)
-11. [Deprecated Functions](#11-deprecated-functions)
+11. [Deprecated Types and Functions](#11-deprecated-types-and-functions)
 
 ---
 
@@ -1603,6 +1627,7 @@ For context, see the
 @docs dataFromRows
 @docs dataRow
 @docs dataFromJson
+@docs jsonToSpec
 @docs dataFromSource
 @docs dataName
 @docs datasets
@@ -1824,10 +1849,11 @@ See the
 @docs fiGreaterThan
 @docs fiGreaterThanEq
 @docs fiExpr
+@docs fiSelection
+@docs fiSelectionEmpty
 @docs fiOp
 @docs fiOpTrans
 @docs fiCompose
-@docs fiSelection
 @docs fiOneOf
 @docs fiRange
 @docs fiValid
@@ -3030,64 +3056,68 @@ See
 ---
 
 
-# 7. Selections for Interaction
+# 7. Parameters
 
-Selections allow a visualization to respond to interactions (such as clicking or
-dragging). They transform interactions into data queries. See the Vega-Lite
-[selection](https://vega.github.io/vega-lite/docs/selection.html) and
-[bind](https://vega.github.io/vega-lite/docs/bind.html)
-documentation.
+Vega-Lite _parameters_ allow named objects whose values can change to persist within
+a specification. In the case of simple variables, it is often easier to use Elm
+directly to store persistant values. The main benefits of parameters are for storing
+_interaction selections_ such as mouse selections or slider values. See the Vega-Lite
+[parameter documentation](https://vega.github.io/vega-lite/docs/parameter.html) for
+details.
 
-  - 7.1 [Selections](#7-1-selections)
+  - 7.1 [Selection Parameters](#7-1-selection-parameters)
   - 7.2 [Selection Resolution](#7-2-selection-resolution)
   - 7.3 [Conditional Channel Encodings](#7-3-conditional-channel-encodings)
 
+@docs params
+@docs param
+@docs paValue
+@docs paExpr
 
-## 7.1 Selections
 
-@docs selection
-@docs select
-@docs seSingle
-@docs seMulti
+## 7.1 Selection Parameters
+
+@docs paSelect
+@docs sePoint
 @docs seInterval
-@docs seEmpty
 @docs seClear
-@docs seInit
-@docs seInitInterval
 @docs seEncodings
 @docs seFields
 @docs seNearest
 @docs seOn
 @docs seToggle
+@docs tpFalse
+@docs tpExpr
+@docs tpShiftKey
+@docs tpAltKey
+@docs tpCtrltKey
 @docs seTranslate
 @docs seZoom
 
 
 ### Selection Bindings
 
-@docs seBind
-@docs seBindLegend
-@docs blField
-@docs blChannel
-@docs blEvent
-@docs seBindScales
+@docs paBind
+@docs paBindings
+@docs paBindScales
+@docs paBindLegend
 
 
 ### Input Elements
 
-@docs iRange
-@docs iCheckbox
-@docs iRadio
-@docs iSelect
-@docs iText
-@docs iNumber
-@docs iDate
-@docs iTime
-@docs iMonth
-@docs iWeek
-@docs iDateTimeLocal
-@docs iTel
-@docs iColor
+@docs ipRange
+@docs ipCheckbox
+@docs ipRadio
+@docs ipSelect
+@docs ipText
+@docs ipNumber
+@docs ipDate
+@docs ipTime
+@docs ipMonth
+@docs ipWeek
+@docs ipDateTimeLocal
+@docs ipTel
+@docs ipColor
 
 @docs inDebounce
 @docs inElement
@@ -3126,70 +3156,30 @@ See the [Vega-lite resolve selection documentation](https://vega.github.io/vega-
 
 ## 7.3 Conditional Channel Encodings
 
-To make channel encoding conditional on the result of some interaction, use
-[mSelectionCondition](#mSelectionCondition) (and its 'o', 't' and 'h' variants).
-Similarly [mDataCondition](#mDataCondition) (and its 'o', 't' and 'h' variants)
-will encode a mark conditionally depending on some data properties such as whether
-a datum is null or an outlier.
+Channel encoding can be made conditional on a parameter value, therefore allowing
+it to be the result of some interaction or data expression. It does this via
+[mCondition](#mCondition) (and its 'o', 't' and 'h' variants). Mark appearance can
+therefore depend on some properties such as whether a datum is null or whether it
+has been interactively selected. The condition to test (predicate) is usually
+specified either as a parameter with [prParam](#prParam) or an expression with
+[prTest](#prTest).
 
-For interaction, once a selection has been defined and named, supplying a set of
-encodings allow mark encodings to become dependent on that selection.
-`mSelectionCondition` is followed firstly by a (Boolean) selection and then an
-encoding if that selection is true and another encoding to be applied if it is false.
-The color specification below states "whenever data marks are selected with an
-interval mouse drag, encode the cylinder field with an ordinal color scheme,
-otherwise make them grey":
+@docs mCondition
+@docs mConditions
+@docs oCondition
+@docs oConditions
+@docs tCondition
+@docs tConditions
+@docs hCondition
 
-    sel =
-        selection << select "myBrush" Interval []
-
-    enc =
-        encoding
-            << position X [ pName "Horsepower", pQuant ]
-            << position Y [ pName "Miles_per_Gallon", pQuant ]
-            << color
-                [ mSelectionCondition (selectionName "myBrush")
-                    [ mName "Cylinders", mOrdinal ]
-                    [ mStr "grey" ]
-                ]
-
-In a similar way, `mDataCondition` will encode a mark depending on whether any
-predicate tests are satisfied. Unlike selections, multiple conditions and associated
-encodings can be specified. Each test condition is evaluated in order and only on
-failure of the test does encoding proceed to the next test. If no tests are true,
-the encoding in the final parameter is applied in a similar way to 'case of'
-expressions:
-
-    enc =
-        encoding
-            << position X [ pName "value", pOrdinal ]
-            << color
-                [ mDataCondition
-                    [ ( expr "datum.value < 40", [ mStr "blue" ] )
-                    , ( expr "datum.value < 50", [ mStr "red" ] )
-                    , ( expr "datum.value < 60", [ mStr "yellow" ] )
-                    ]
-                    [ mStr "black" ]
-                ]
-
-See the
-[Vega-Lite documentation](https://vega.github.io/vega-lite/docs/condition.html).
-
-@docs mSelectionCondition
-@docs mDataCondition
-@docs oSelectionCondition
-@docs oDataCondition
-@docs tSelectionCondition
-@docs tDataCondition
-@docs hDataCondition
-@docs hSelectionCondition
-
+@docs prParam
+@docs prParamEmpty
+@docs prTest
+@docs bParam
+@docs expr
 @docs and
 @docs or
 @docs not
-@docs expr
-@docs selected
-@docs selectionName
 
 ---
 
@@ -3227,26 +3217,6 @@ These are in addition to the data and transform options described above. See the
 @docs asResize
 @docs background
 @docs backgroundExpr
-@docs params
-@docs paValue
-@docs paExpr
-@docs paSelect
-@docs paPoint
-@docs paInterval
-@docs paBind
-@docs ipRange
-@docs ipCheckbox
-@docs ipRadio
-@docs ipSelect
-@docs ipText
-@docs ipNumber
-@docs ipDate
-@docs ipTime
-@docs ipMonth
-@docs ipWeek
-@docs ipDateTimeLocal
-@docs ipTel
-@docs ipColor
 
 
 ## 8.1 Title
@@ -3628,7 +3598,7 @@ See the
 
 # 9. General Data Functions
 
-In addition to more general data types like integers and string, the following types
+In addition to more general data types like integers and strings, the following types
 can carry data used in specifications.
 
   - 9.1 [Temporal Data](#9-1-temporal-data)
@@ -3640,7 +3610,9 @@ can carry data used in specifications.
 @docs num
 @docs str
 @docs dataExpr
+@docs dataObject
 @docs nullValue
+@docs daConcat
 @docs boos
 @docs dts
 @docs nums
@@ -3725,8 +3697,6 @@ to the functions that generate them.
 @docs AxisProperty
 @docs AxisChoice
 @docs AxisConfig
-@docs Binding
-@docs BindLegendProperty
 @docs BinProperty
 @docs BlendMode
 @docs BooleanOp
@@ -3785,9 +3755,9 @@ to the functions that generate them.
 @docs PivotProperty
 @docs PointMarker
 @docs PositionChannel
+@docs Predicate
 @docs Projection
 @docs ProjectionProperty
-@docs PSelect
 @docs QuantileProperty
 @docs RangeConfig
 @docs RegressionMethod
@@ -3819,6 +3789,7 @@ to the functions that generate them.
 @docs TitleConfig
 @docs TitleFrame
 @docs TitleProperty
+@docs TogglePredicate
 @docs TooltipContent
 @docs VAlign
 @docs ViewBackground
@@ -3828,14 +3799,53 @@ to the functions that generate them.
 @docs WindowProperty
 
 
-# 11. Deprecated Functions
+# 11. Deprecated Types and Functions
 
+@docs Binding
+@docs BindLegendProperty
+@docs blField
+@docs blChannel
+@docs blEvent
+@docs hDataCondition
+@docs hSelectionCondition
+@docs iCheckbox
+@docs iColor
+@docs iDate
+@docs iDateTimeLocal
+@docs iMonth
+@docs iNumber
+@docs iRadio
+@docs iRange
+@docs iSelect
+@docs iTel
+@docs iText
+@docs iTime
+@docs iWeek
 @docs lecoShortTimeLabels
+@docs mDataCondition
+@docs mSelectionCondition
+@docs oDataCondition
+@docs oSelectionCondition
 @docs pBand
 @docs scDomainMid
+@docs seBind
+@docs seBindLegend
+@docs seBindScales
+@docs seEmpty
+@docs seInit
+@docs seInitInterval
+@docs select
+@docs selected
+@docs selection
+@docs selectionName
+@docs seMulti
+@docs seSingle
+@docs tDataCondition
+@docs tSelectionCondition
 
 -}
 
+import Dict
 import Json.Decode as JD
 import Json.Encode as JE
 
@@ -4098,17 +4108,13 @@ type AxisProperty
     | AxDataCondition BooleanOp ConditionalAxisProperty
 
 
-{-| Generated by [iRange](#iRange), [iCheckbox](#iCheckbox),
-[iRadio](#iRadio), [iSelect](#iSelect), [iText](#iText), [iNumber](#iNumber),
-[iDate](#iDate), [iTime](#iTime), [iMonth](#iMonth), [iWeek](#iWeek), [iDateTimeLocal](#iDateTimeLocal),
-[iTel](#iTel) and [iColor](#iColor).
+{-| Deprecated in favour of [PBinding](#PBinding).
 -}
 type Binding
     = IRange String (List InputProperty)
     | ICheckbox String (List InputProperty)
     | IRadio String (List InputProperty)
     | ISelect String (List InputProperty)
-      -- TODO: Check validity: The following input types can generate a warning if options are included even if options appear to have an effect (e.g. placeholder)
     | IText String (List InputProperty)
     | INumber String (List InputProperty)
     | IDate String (List InputProperty)
@@ -4120,7 +4126,7 @@ type Binding
     | IColor String (List InputProperty)
 
 
-{-| Generated by [blField](#blField), [blChannel](#blChannel) and [blEvent](#blEvent).
+{-| Deprecated in favour of binding properties set via [param](#param).
 -}
 type BindLegendProperty
     = BLField String
@@ -4172,18 +4178,19 @@ type BlendMode
     | BMExpr String
 
 
-{-| Generated by [expr](#expr), [fiOp](#fiOp), [fiOpTrans](#fiOpTrans), [selected](#selected),
-[selectionName](#selectionName), [and](#and), [or](#or) and [not](#not).
+{-| Generated by [expr](#expr), [fiOp](#fiOp), [fiOpTrans](#fiOpTrans),[bParam](#bParam),
+[and](#and),[or](#or) and [not](#not).
 -}
 type BooleanOp
     = Expr String
     | FilterOp Filter
     | FilterOpTrans MarkChannel Filter
-    | Selection String
-    | SelectionName String
+    | BooleanParam String
     | And BooleanOp BooleanOp
     | Or BooleanOp BooleanOp
     | Not BooleanOp
+    | Selection String
+    | SelectionName String
 
 
 {-| Generated by [boFull](#boFull) and [boFlush](#boFlush).
@@ -4440,7 +4447,8 @@ type DataType
 
 
 {-| Generated by [boo](#boo), [true](#true), [false](#false), [dt](#dt),
-[num](#num), [str](#str), [dataExpr](#dataExpr) and [nullValue](#nullValue).
+[num](#num), [str](#str), [dataExpr](#dataExpr), [daConcat](#daConcat),
+[dataObject](#dataObject) and [nullValue](#nullValue).
 -}
 type DataValue
     = Boolean Bool
@@ -4449,15 +4457,21 @@ type DataValue
     | DStr String
     | DExpr String
     | NullValue
+    | DConcat DataValues
+    | DObject (List ( String, DataValue ))
 
 
-{-| Generated by [boos](#boos), [dts](#dts), [nums](#nums) and [strs](#strs).
+{-| Generated by [boos](#boos), [dts](#dts), [nums](#nums), [strs](#strs) and [dataObjects](#dataObjects)
 -}
 type DataValues
     = Booleans (List Bool)
     | DateTimes (List (List DateTime))
     | Numbers (List Float)
     | Strings (List String)
+
+
+
+-- TODO: DObjects
 
 
 {-| Generated by [dtYear](#dtYear), [dtQuarter](#dtQuarter), [dtMonth](#dtMonth),
@@ -4586,8 +4600,8 @@ type FieldTitleProperty
 {-| Generated by [fiEqual](#fiEqual), [fiLessThan](#fiLessThan),
 [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiEqGreaterThan),
 [fiGreaterThanEq](#fiGreaterThanEq), [fiExpr](#fiExpr), [fiCompose](#fiCompose),
-[fiSelection](#fiSelection), [fiOneOf](#fiOneOf), [fiRange](#fiRange) and
-[fiValid](#fiValid).
+[fiSelection](#fiSelection), [fiSelectionEmpty](#fiSelectionEmpty),
+[fiOneOf](#fiOneOf), [fiRange](#fiRange) and [fiValid](#fiValid).
 -}
 type Filter
     = FEqual String DataValue
@@ -4598,6 +4612,7 @@ type Filter
     | FExpr String
     | FCompose BooleanOp
     | FSelection String
+    | FSelectionEmpty String
     | FOneOf String DataValues
     | FRange String FilterRange
     | FValid String
@@ -4748,8 +4763,7 @@ type HeaderProperty
 {-| Generated by [hName](#hName), [hRepeat](#hRepeat), [hQuant](#hQuant),
 [hNominal](#hNominal), [hOrdinal](#hOrdinal), [hTemporal](#hTemporal), [hGeo](#hGeo),
 [hMType](#hMType), [hBin](#hBin), [hBinned](#hBinned), [hAggregate](#hAggregate),
-[hTimeUnit](#hTimeUnit), [hDataCondition](#hDataCondition),
-[hSelectionCondition](#hSelectionCondition) and [hStr](#hStr).
+[hTimeUnit](#hTimeUnit), [hCondition](#hCondition) and [hStr](#hStr).
 -}
 type HyperlinkChannel
     = HName String
@@ -4759,9 +4773,9 @@ type HyperlinkChannel
     | HBinned
     | HAggregate Operation
     | HTimeUnit TimeUnit
-    | HSelectionCondition BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
-    | HDataCondition BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
+    | HCondition Predicate (List HyperlinkChannel) (List HyperlinkChannel)
     | HString String
+    | HDataCondition Bool BooleanOp (List HyperlinkChannel) (List HyperlinkChannel)
 
 
 {-| Generated by [imValue](#imValue), [imMean](#imMean), [imMedian](#imMedian),
@@ -5063,12 +5077,13 @@ type Mark
 [mOrdinal](#mOrdinal), [mTemporal](#mTemporal), [mGeo](#mGeo), [mMType](#mMType),
 [mRepeat](#mRepeat), [mRepeatDatum](#mRepeatDatum), [mScale](#mScale), [mBand](#mBand),
 [mBin](#mBin), [mBinned](#mBinned) [mTimeUnit](#mTimeUnit), [mTitle](#mTitle),
-[mAggregate](#mAggregate), [mLegend](#mLegend), [mSort](#mSort),
-[mSelectionCondition](#mSelectionCondition), [mDataCondition](#mDataCondition),
-[mPath](#mPath), [mNum](#mNum), [mStr](#mStr) and [mBoo](#mBoo).
+[mAggregate](#mAggregate), [mLegend](#mLegend), [mSort](#mSort), [mCondition](#mCondition),
+[mConditions](#mConditions), [mPath](#mPath), [mNum](#mNum), [mStr](#mStr) and [mBoo](#mBoo).
 -}
 type MarkChannel
     = MName String
+    | MCondition Predicate (List MarkChannel) (List MarkChannel)
+    | MConditions (List ( Predicate, List MarkChannel )) (List MarkChannel)
     | MDatum DataValue
     | MRepeat Arrangement
     | MRepeatDatum Arrangement
@@ -5082,12 +5097,11 @@ type MarkChannel
     | MTitle String
     | MAggregate Operation
     | MLegend (List LegendProperty)
-    | MSelectionCondition BooleanOp (List MarkChannel) (List MarkChannel)
-    | MDataCondition (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
     | MPath String
     | MNumber Float
     | MString String
     | MBoolean Bool
+    | MDataCondition Bool (List ( BooleanOp, List MarkChannel )) (List MarkChannel)
 
 
 {-| Generated by [miBasis](#miBasis), [miBasisClosed](#miBasisClosed),
@@ -5310,19 +5324,20 @@ type Operation
 {-| Generated by [oName](#oName), [oRepeat](#oRepeat), [oQuant](#oQuant), [oNominal](#oNominal),
 [oOrdinal](#oOrdinal), [oTemporal](#oTemporal), [oGeo](#oGeo), [oMType](#oMType),
 [oBin](#oBin), [oAggregate](#oAggregate), [oTimeUnit](#oTimeUnit), [oSort](#oSort),
-[oNum](#oNum), [oSelectionCondition](#oSelectionCondition) and [oDataCondition](#oDataCondition).
+[oNum](#oNum), [oCondition](#oCondition) and [oConditions](#oConditions).
 -}
 type OrderChannel
     = OName String
+    | OCondition Predicate (List OrderChannel) (List OrderChannel)
+    | OConditions (List ( Predicate, List OrderChannel )) (List OrderChannel)
     | ORepeat Arrangement
     | OmType Measurement
     | OBin (List BinProperty)
     | OAggregate Operation
     | OTimeUnit TimeUnit
     | OSort (List SortProperty)
-    | OSelectionCondition BooleanOp (List OrderChannel) (List OrderChannel)
-    | ODataCondition (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
     | ONumber Float
+    | ODataCondition Bool (List ( BooleanOp, List OrderChannel )) (List OrderChannel)
 
 
 {-| Generated by [osNone](#osNone), [osGreedy](#osGreedy) and [osParity](#osParity).
@@ -5343,13 +5358,17 @@ type Padding
     | PEdgesExpr String String String String
 
 
-{-| Generated by [paBind](#paBind), [paExpr](#paExpr) and [paValue](#paValue).
+{-| Generated by [paBind](#paBind), [paBindings](#paBindings), [paBindLegend](#paBindLegend),
+[paBindScales](#paBindScales), [paExpr](#paExpr), [paValue](#paValue) and [paSelect](#paSelect).
 -}
 type ParamProperty
     = PBind PBinding
+    | PBindings (List ( String, PBinding ))
+    | PBindScales
+    | PBindLegend String
     | PExpr String
     | PValue DataValue
-    | PSelect PSelect
+    | PSelect Selection (List SelectionProperty)
 
 
 {-| Generated by [ipRange](#ipRange), [ipCheckbox](#ipCheckbox),
@@ -5512,11 +5531,12 @@ type ProjectionProperty
     | PTilt Float
 
 
-{-| Generated by [paPoint](#paPoint) and [paInterval](#paInterval).
+{-| Generated by [prParam](#prParam), [prParamEmpty](#prParamEmpty) and [prTest](#prTest).
 -}
-type PSelect
-    = PPoint
-    | PInterval
+type Predicate
+    = Param String
+    | ParamEmpty String
+    | Test BooleanOp
 
 
 {-| Generated by [qtGroupBy](#qtGroupBy), [qtProbs](#qtProbs), [qtStep](#qtStep)
@@ -5737,12 +5757,13 @@ type ScaleRange
 -- | RMaxString String
 
 
-{-| Generated by [seInterval](#seInterval), [seSingle](#seSingle) and [seMulti](#seMulti).
+{-| Generated by [sePoint](#sePoint) and [seInterval](#seInterval).
 -}
 type Selection
-    = SeSingle
-    | SeMulti
+    = SePoint
     | SeInterval
+    | SeSingle
+    | SeMulti
 
 
 {-| Generated by [smFill](#smFill), [smFillOpacity](#smFillOpacity), [smStroke](#smStroke),
@@ -5761,11 +5782,10 @@ type SelectionMarkProperty
     | SMCursor Cursor
 
 
-{-| Generated by [seBind](#seBind), [seBindLegend](#seBindLegend), [seBindScales](#seBindScales),
-[seEmpty](#seEmpty), [seClear](#seClear), [seEncodings](#seEncodings),[seFields](#seFields),
-[seInit](#seInit), [seInitInterval](#seInitInterval), [seNearest](#seNearest), [seOn](#seOn),
-[seResolve](#seResolve), [seSelectionMark](#seSelectionMark), [seToggle](#seToggle),
-[seTranslate](#seTranslate) and [seZoom](#seZoom).
+{-| Generated by [seClear](#seClear), [seEncodings](#seEncodings),[seFields](#seFields),
+[seNearest](#seNearest), [seOn](#seOn), [seResolve](#seResolve),
+[seSelectionMark](#seSelectionMark), [seToggle](#seToggle), [seTranslate](#seTranslate)
+and [seZoom](#seZoom).
 -}
 type SelectionProperty
     = Empty
@@ -5783,7 +5803,7 @@ type SelectionProperty
     | SelectionMark (List SelectionMarkProperty)
     | Bind (List Binding)
     | Nearest Bool
-    | Toggle String
+    | Toggle TogglePredicate
 
 
 {-| Generated by [seGlobal](#seGlobal), [seUnion](#seUnion) and
@@ -5897,11 +5917,11 @@ type SummaryExtent
     | ExIqrScale Float
 
 
-{-| Generated by [tName](#tName), [tRepeat](#tRepeat), [tQuant](#tQuant), [tNominal](#tNominal),
-[tOrdinal](#tOrdinal), [tTemporal](#tTemporal), [tGeo](#tGeo),[tMType](#tMType),
-[tBin](#tBin), [tBinned](#tBinned), [tAggregate](#tAggregate), [tTimeUnit](#tTimeUnit),
-[tTitle](#tTitle), [tSelectionCondition](#tSelectionCondition),
-[tDataCondition](#tDataCondition), [tFormat](#tFormat), [tFormatAsNum](#tFormatAsNum),
+{-| Generated by [tName](#tName), [tRepeat](#tRepeat), [tQuant](#tQuant),
+[tNominal](#tNominal), [tOrdinal](#tOrdinal), [tTemporal](#tTemporal), [tGeo](#tGeo),
+[tMType](#tMType), [tBin](#tBin), [tBinned](#tBinned), [tAggregate](#tAggregate),
+[tTimeUnit](#tTimeUnit), [tTitle](#tTitle), [tCondition](#tCondition),
+[tConditions](#tConditions), [tFormat](#tFormat), [tFormatAsNum](#tFormatAsNum),
 [tFormatAsTemporal](#tFormatAsTemporal), [tFormatAsCustom](#tFormatAsCustom),
 [tStr](#tStr) and [tDatum](#tDatum).
 -}
@@ -5914,14 +5934,15 @@ type TextChannel
     | TAggregate Operation
     | TTimeUnit TimeUnit
     | TTitle String
-    | TSelectionCondition BooleanOp (List TextChannel) (List TextChannel)
-    | TDataCondition (List ( BooleanOp, List TextChannel )) (List TextChannel)
+    | TCondition Predicate (List TextChannel) (List TextChannel)
+    | TConditions (List ( Predicate, List TextChannel )) (List TextChannel)
     | TFormat String
     | TFormatAsNum
     | TFormatAsTemporal
     | TFormatAsCustom String
     | TString String
     | TDatum DataValue
+    | TDataCondition Bool (List ( BooleanOp, List TextChannel )) (List TextChannel)
 
 
 {-| Generated by [tdLeftToRight](#tdLeftToRight), [tdRightToLeft](#tdRightToLeft)
@@ -6052,6 +6073,17 @@ type TitleFrame
 -}
 type alias TitleProperty =
     TitleConfig
+
+
+{-| Generate by [tpFalse](#tpFalse), [tpShiftKey](#tpShiftKey), [tpCtrlKey](#tpCtrlKey),
+[tpAltKey](#tpAltKey) and [tpExpr](#tpExpr).
+-}
+type TogglePredicate
+    = TpFalse
+    | TpExpr String
+    | TpShiftKey
+    | TpCtrlKey
+    | TpAltKey
 
 
 {-| Generated by [ttEncoding](#ttEncoding), [ttData](#ttData) and [ttNone](#ttNone).
@@ -7961,8 +7993,8 @@ biDivide =
     Divides
 
 
-{-| Desired range of bin values when binning a collection of values.
-The first and second parameters indicate the minimum and maximum range values.
+{-| Desired extent of bin values when binning a collection of values.
+The first and second parameters indicate the minimum and maximum extent.
 To base a binning extent on an interactive selection, use
 [biSelectionExtent](#biSelectionExtent) instead.
 -}
@@ -8031,18 +8063,18 @@ binAs bProps field label =
 
 
 {-| Set the desired range of bin values based on an interactive selection. The
-parameter should be the name of an interval selection that defines the extent.
+parameter should be the name of an interval selection parameter that defines the
+extent.
 
-    sel =
-        selection
-            << select "brush" seInterval [ seEncodings [ chX ] ]
+    ps =
+        params
+            << param "brush" [ paSelect seInterval [ seEncodings [ chX ] ] ]
 
     enc =
         encoding
             << position X
                 [ pName "temperature"
                 , pBin [ biSelectionExtent "brush" ]
-                , pQuant
                 ]
 
 -}
@@ -8065,25 +8097,21 @@ biSteps =
     Steps
 
 
-{-| The channel shown to be made interactive in an interactive legend binding.
-`seBindLegend` should specify either this channel or a data field with [blField](#blField).
+{-| Deprecated in favour of setting the channel in [param](#param).
 -}
 blChannel : Channel -> BindLegendProperty
 blChannel =
     BLChannel
 
 
-{-| A [Vega event stream](https://vega.github.io/vega/docs/event-streams) that triggers
-an interactive legend selection. If not specified, the selection is triggered with
-a single click.
+{-| Deprecated in favour of setting the event stream with [paBindLegend](#paBindLegend).
 -}
 blEvent : String -> BindLegendProperty
 blEvent =
     BLEvent
 
 
-{-| The data field shown to be made interactive in an interactive legend binding.
-`seBindLegend` should specify either this field or a channel with [blChannel](#blChannel).
+{-| Deprecated in favour of setting the field in [param](#param).
 -}
 blField : String -> BindLegendProperty
 blField =
@@ -8267,6 +8295,23 @@ are shown, but ticks and outliers can be specified explicitly.
 boxplot : List MarkProperty -> ( VLProperty, Spec )
 boxplot =
     mark Boxplot
+
+
+{-| Treat a parameter as a boolean expression that may be composed to form more
+complex boolean expressions. Can be used when composing selections from multiple
+paramters. For example, if we have two interval selection paramters `alex` and
+`morgan` we can conditionally colour if both selections intersect.
+
+    color
+        [ mCondition (prTest (and (bParam "alex") (bParam "morgan")))
+            [ mStr "red" ]
+            [ mStr "gray" ]
+        ]
+
+-}
+bParam : String -> BooleanOp
+bParam =
+    BooleanParam
 
 
 {-| Subviews in a composed view to be aligned into a clean grid structure where
@@ -9065,7 +9110,7 @@ rectangle and require interactive selection of items to use a double-click.
             configure
                 << configuration (coAxis [ axcoDomainWidth 2 ])
                 << configuration (coView [ vicoStroke Nothing ])
-                << configuration (coSelection [ ( seSingle, [ seOn "dblclick" ] ) ])
+                << configuration (coSelection [ ( sePoint, [ seOn "dblclick" ] ) ])
     in
     toVegaLite [ cfg [], data [], enc [], bar [] ]
 
@@ -9503,6 +9548,16 @@ cuZoomOut =
     CZoomOut
 
 
+{-| Concatenate a list of data values as a single data value. For example,
+
+    param "location" [ paValue (daConcat (nums [ 4000, 8000 ])) ]
+
+-}
+daConcat : DataValues -> DataValue
+daConcat =
+    DConcat
+
+
 {-| Compute some aggregate summary statistics for a field to be encoded with a
 level of detail (grouping) channel. The type of aggregation is determined by the
 given operation parameter.
@@ -9599,25 +9654,20 @@ creating [geojson](http://geojson.org) objects with [`geometry`](#geometry),
         ]
 
 For more general cases of json creation such as data tables that mix arrays and
-objects, consider using with Elm's
-[`Json.Encode`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Encode).
-
-    row title ranges =
-        Json.Encode.object
-            [ ( "title", Json.Encode.string title )
-            , ( "ranges", Json.Encode.list Json.Encode.float ranges )
-            ]
+objects, consider combining with [jsonToSpec](#jsonToSpec), for example,
 
     data =
-        dataFromJson
-            (Json.Encode.list identity
-                [ row "Revenue" [ 150, 225, 300 ]
-                , row "Profit" [ 20, 25, 30 ]
-                , row "Order size" [ 350, 500, 600 ]
-                , row "New customers" [ 1400, 2000, 2500 ]
-                , row "Satisfaction" [ 3.5, 4.25, 5 ]
-                ]
-            )
+        jsonToSpec
+            """
+            {
+                "Revenue" : [ 150, 225, 300 ],
+                "Profit" : [ 20, 25, 30 ],
+                "Order size" : [ 350, 500, 600 ],
+                "New customers" : [ 1400, 2000, 2500 ],
+                "Satisfaction" : [ 3.5, 4.25, 5 ]
+            }
+            """
+            |> dataFromJson
 
 -}
 dataFromJson : Spec -> List Format -> Data
@@ -9726,6 +9776,41 @@ dataFromUrl u fmts =
         )
 
 
+{-| Name to give a data source. Useful when a specification needs to reference a
+data source, such as one generated via an API call.
+
+    data =
+        dataFromUrl "myData.json" [] |> dataName "myName"
+
+-}
+dataName : String -> Data -> Data
+dataName s data =
+    let
+        extract d =
+            case JD.decodeString (JD.keyValuePairs JD.value) (JE.encode 0 d) of
+                Ok [ ( dType, value ) ] ->
+                    ( dType, value )
+
+                _ ->
+                    --|> Debug.log "Non-data spec provided to dataName"
+                    ( "", d )
+
+        spec =
+            (\( _, dataSpec ) -> extract dataSpec) data
+    in
+    ( VLData, JE.object [ ( "name", JE.string s ), spec ] )
+
+
+{-| Key-value pairs representing a named data value. For example,
+
+    dataObject [ ( "x", num 3500 ), ( "firstName", str "Ada" ) ]
+
+-}
+dataObject : List ( String, DataValue ) -> DataValue
+dataObject =
+    DObject
+
+
 {-| Create a row of data. A row comprises a list of (_columnName_, _value_) pairs.
 -}
 dataRow : List ( String, DataValue ) -> List DataRow -> List DataRow
@@ -9777,31 +9862,6 @@ datasets namedData =
             List.map (\( s, data ) -> ( s, (\( _, spec ) -> extract spec) data )) namedData
     in
     ( VLDatasets, JE.object specs )
-
-
-{-| Name to give a data source. Useful when a specification needs to reference a
-data source, such as one generated via an API call.
-
-    data =
-        dataFromUrl "myData.json" [] |> dataName "myName"
-
--}
-dataName : String -> Data -> Data
-dataName s data =
-    let
-        extract d =
-            case JD.decodeString (JD.keyValuePairs JD.value) (JE.encode 0 d) of
-                Ok [ ( dType, value ) ] ->
-                    ( dType, value )
-
-                _ ->
-                    --|> Debug.log "Non-data spec provided to dataName"
-                    ( "", d )
-
-        spec =
-            (\( _, dataSpec ) -> extract dataSpec) data
-    in
-    ( VLData, JE.object [ ( "name", JE.string s ), spec ] )
 
 
 {-| Generate a sequence of numbers as a data source between the value of the first
@@ -10737,21 +10797,20 @@ fiRange =
     FRange
 
 
-{-| Filter a data stream so that only data in a given field that are within the
-given interactive selection are used.
-
-    sel =
-        selection
-            << select "myBrush" seInterval [ seEncodings [ chX ] ]
-
-    trans =
-        transform
-            << filter (fiSelection "myBrush")
-
+{-| Filter a data stream in response to the value of a selection parameter. Useful
+for creating interactive filtering from a selection.
 -}
 fiSelection : String -> Filter
 fiSelection =
     FSelection
+
+
+{-| Similar to [fiSelection](#fiSelection) except that an empty selection filters
+out all values.
+-}
+fiSelectionEmpty : String -> Filter
+fiSelectionEmpty =
+    FSelectionEmpty
 
 
 {-| Filter a data stream so that only valid data (i.e. not null or NaN) in a given
@@ -11397,13 +11456,21 @@ hConcat specs =
     ( VLHConcat, toList specs )
 
 
-{-| Make a hyperlink channel conditional on some predicate expression. The first
-parameter provides the expression to evaluate, the second the encoding to apply
-if the expression is true, the third the encoding if the expression is false.
+{-| Make a hyperlink channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
+-}
+hCondition : Predicate -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
+hCondition =
+    HCondition
+
+
+{-| Deprecated in favour of [hCondition](#hCondition).
 -}
 hDataCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
-hDataCondition op tCh fCh =
-    HDataCondition op tCh fCh
+hDataCondition =
+    HDataCondition False
 
 
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html) for
@@ -11665,7 +11732,7 @@ hdTitlePadding =
 
 {-| Override the default height of the visualization. If not specified the height
 will be calculated based on the content of the visualization. How the content is
-sized relative to this height specification can be customised with [autosize])(#autosize).
+sized relative to this height specification can be customised with [autosize](#autosize).
 -}
 height : Float -> ( VLProperty, Spec )
 height h =
@@ -11762,13 +11829,11 @@ hRepeat =
     HRepeat
 
 
-{-| Make a hyperlink channel conditional on interactive selection. The first parameter
-provides the selection to evaluate, the second the encoding to apply if the hyperlink
-has been selected, the third the encoding if it is not selected.
+{-| Deprecated in favour of [hCondition](#hCondition).
 -}
 hSelectionCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
-hSelectionCondition op tCh fCh =
-    HSelectionCondition op tCh fCh
+hSelectionCondition =
+    HDataCondition True
 
 
 {-| HSL color interpolation for continuous color scales.
@@ -11833,28 +11898,28 @@ hyperlink hyperProps =
     (::) ( "href", JE.object (List.concatMap hyperlinkChannelProperties hyperProps) )
 
 
-{-| Checkbox input element that can bound to a named field value.
+{-| Deprecated in favour of [ipCheckbox](#ipCheckbox).
 -}
 iCheckbox : String -> List InputProperty -> Binding
 iCheckbox f =
     ICheckbox f
 
 
-{-| Color input element that can bound to a named field value.
+{-| Deprecated in favour of [ipColor](#ipColor).
 -}
 iColor : String -> List InputProperty -> Binding
 iColor f =
     IColor f
 
 
-{-| Date input element that can bound to a named field value.
+{-| Deprecated in favour of [ipDate](#ipDate).
 -}
 iDate : String -> List InputProperty -> Binding
 iDate f =
     IDate f
 
 
-{-| Local time input element that can bound to a named field value.
+{-| Deprecated in favour of [ipDateTimeLocal](#ipDateTimeLocal).
 -}
 iDateTimeLocal : String -> List InputProperty -> Binding
 iDateTimeLocal f =
@@ -11991,7 +12056,7 @@ imNewValue =
     ImNewValue
 
 
-{-| Month input element that can bound to a named field value.
+{-| Deprecated in favour of [ipMonth](#ipMonth).
 -}
 iMonth : String -> List InputProperty -> Binding
 iMonth f =
@@ -12102,7 +12167,7 @@ inStep =
     InStep
 
 
-{-| Number input element that can bound to a named value.
+{-| Deprecated in favour of [ipNumber](#ipNumber).
 -}
 iNumber : String -> List InputProperty -> Binding
 iNumber f =
@@ -12200,53 +12265,91 @@ ipWeek =
     IPWeek
 
 
-{-| Radio box input element that can bound to a named value.
+{-| Deprecated in favour of [ipRadio](#ipRadio).
 -}
 iRadio : String -> List InputProperty -> Binding
 iRadio f =
     IRadio f
 
 
-{-| Range slider input element that can bound to a named field value.
+{-| Deprecated in favour of [ipRange](#ipRange).
 -}
 iRange : String -> List InputProperty -> Binding
 iRange f =
     IRange f
 
 
-{-| Select input element that can bound to a named value.
+{-| Deprecated in favour of [ipSelect](#ipSelect).
 -}
 iSelect : String -> List InputProperty -> Binding
 iSelect f =
     ISelect f
 
 
-{-| Telephone number input element that can bound to a named value.
+{-| Deprecated in favour of [ipTel](#ipTel).
 -}
 iTel : String -> List InputProperty -> Binding
 iTel f =
     ITel f
 
 
-{-| Text input element that can bound to a named value.
+{-| Deprecated in favour of [ipText](#ipText).
 -}
 iText : String -> List InputProperty -> Binding
 iText f =
     IText f
 
 
-{-| Time input element that can bound to a named value.
+{-| Deprecated in favour of [ipTime](#ipTime).
 -}
 iTime : String -> List InputProperty -> Binding
 iTime f =
     ITime f
 
 
-{-| Week input element that can bound to a named value.
+{-| Deprecated in favour of [ipWeek](#ipWeek).
 -}
 iWeek : String -> List InputProperty -> Binding
 iWeek f =
     IWeek f
+
+
+{-| Convert a string representing some JSON into a Spec. Useful when combined
+with [dataFromJson](#dataFromJson) to compactly import inline JSON as data. For
+example,
+
+    data =
+        jsonToSpec
+            """
+            {
+                "Revenue" : [ 150, 225, 300 ],
+                "Profit" : [ 20, 25, 30 ],
+                "Order size" : [ 350, 500, 600 ],
+                "New customers" : [ 1400, 2000, 2500 ],
+                "Satisfaction" : [ 3.5, 4.25, 5 ]
+            }
+            """
+            |> dataFromJson
+
+This can also be used to store a full visualization specification from a JSON object.
+But note this is not type-safe – if the JSON is not well-formed, a null value is returned.
+
+-}
+jsonToSpec : String -> Spec
+jsonToSpec =
+    let
+        jsDecoder () =
+            JD.oneOf
+                [ JD.map JE.string JD.string
+                , JD.map JE.int JD.int
+                , JD.map JE.float JD.float
+                , JD.map JE.bool JD.bool
+                , JD.map (JE.list identity) (JD.lazy jsDecoder |> JD.list)
+                , JD.map (Dict.toList >> JE.object) (JD.lazy jsDecoder |> JD.dict)
+                , JD.null JE.null
+                ]
+    in
+    JD.decodeString (jsDecoder ()) >> Result.withDefault JE.null
 
 
 {-| Bevelled stroke join.
@@ -13575,13 +13678,14 @@ lookup key1 ( _, spec ) key2 lufs =
 
 {-| Attach the results of an interactive selection to a primary data source.
 The first three parameters are the field in the primary data source to look up;
-the name of the interactive selection; and the name of the field in the selection
-to link with the primary data field. This is similar to [lookup](#lookup) except
-that the data in a selection are used in place of the secondary data source.
+the name of the interactive selection parameter; and the name of the field in the
+selection to link with the primary data field. This is similar to [lookup](#lookup)
+except that the data in a selection are used in place of the secondary data source.
 
-      sel =
-          selection
-              << select "mySel" seSingle [ seOn "mouseover", seEncodings [ chX ] ]
+      ps =
+          params
+              << param "mySel"
+                  [ paSelect sePoint [ seOn "mouseover", seEncodings [ chX ] ] ]
 
       trans =
           transform
@@ -13596,7 +13700,7 @@ lookupSelection key1 selName key2 =
             [ ( "lookup", JE.string key1 )
             , ( "from"
               , JE.object
-                    [ ( "selection", JE.string selName )
+                    [ ( "param", JE.string selName )
                     , ( "key", JE.string key2 )
                     ]
               )
@@ -14492,20 +14596,58 @@ mBoo =
     MBoolean
 
 
-{-| Make a mark channel conditional on one or more predicate expressions. The first
-parameter is a list of tuples each pairing a test condition with the encoding if
-that condition evaluates to true. The second is the encoding if none of the tests
-are true.
+{-| Make a mark channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
+For example, to encode in one of two colours depending on a selection:
 
-    color
-        [ mDataCondition [ ( expr "datum.myField === null", [ mStr "grey" ] ) ]
-            [ mStr "black" ]
-        ]
+    encoding
+        << color
+            [ mCondition (prParam "mySelection")
+                [ mStr "red" ]
+                [ mStr "black" ]
+            ]
+
+-}
+mCondition : Predicate -> List MarkChannel -> List MarkChannel -> MarkChannel
+mCondition =
+    MCondition
+
+
+{-| Make a mark channel conditional on a sequence of predicate values. This can
+be used when several predicates need to be tested in sequence each with their own
+encoding outcome ('if-else'). For example a four-way conditional color encoding
+can be specified as:
+
+    encoding
+        << color
+            [ mConditions
+                [ ( prTest (expr "datum.value < 40"), [ mStr "blue" ] )
+                , ( prTest (expr "datum.value < 50"), [ mStr "red" ] )
+                , ( prTest (expr "datum.value < 60"), [ mStr "yellow" ] )
+                ]
+                [ mStr "black" ]
+            ]
+
+-}
+mConditions : List ( Predicate, List MarkChannel ) -> List MarkChannel -> MarkChannel
+mConditions =
+    MConditions
+
+
+{-| Deprecated in favour of [mCondition](#mCondition). Instead of
+
+    mDataCondition [ ( expr "datum.x == null", [ mStr "grey" ] ) ] [ mStr "black" ]
+
+use
+
+    mCondition (prTest (expr "datum.x == null")) [ mStr "grey" ] [ mStr "black" ]
 
 -}
 mDataCondition : List ( BooleanOp, List MarkChannel ) -> List MarkChannel -> MarkChannel
 mDataCondition =
-    MDataCondition
+    MDataCondition False
 
 
 {-| Name of a literal data item used for encoding with a mark property channel.
@@ -14803,20 +14945,18 @@ mScale =
     MScale
 
 
-{-| Make a mark channel conditional on interactive selection. The first parameter
-is a selection condition to evaluate; the second the encoding to apply if that selection
-is true; the third parameter is the encoding if the selection is false.
+{-| Deprecated in favour of [mCondition](#mCondition). Instead of
 
-    color
-        [ mSelectionCondition (selectionName "myBrush")
-            [ mName "myField", mOrdinal ]
-            [ mStr "grey" ]
-        ]
+    mSelectionCondition (selectionName "mySelection") [ mStr "red" ] [ mStr "black" ]
+
+use
+
+    mCondition (prParam "mySelection") [ mStr "red" ] [ mStr "black" ]
 
 -}
 mSelectionCondition : BooleanOp -> List MarkChannel -> List MarkChannel -> MarkChannel
-mSelectionCondition =
-    MSelectionCondition
+mSelectionCondition bo tMcs =
+    MDataCondition True [ ( bo, tMcs ) ]
 
 
 {-| Sort order when encoding sortable mark properties such as colour.
@@ -15274,19 +15414,58 @@ oBin =
     OBin
 
 
-{-| Make an order channel conditional on one or more predicate expressions. The
-first parameter is a list of tuples each pairing a test condition with the encoding
-if that condition evaluates to true. The second is the encoding if none of the
-tests are true.
+{-| Make an order channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
+
+For example, to bring marks of an interactively selected colour to the front:
+
+    ps =
+        params
+            << param "sel" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
+
+    enc =
+        encoding
+            << order [ oCondition (prParam "sel") [ oNum 1 ] [ oNum 0 ] ]
+
+-}
+oCondition : Predicate -> List OrderChannel -> List OrderChannel -> OrderChannel
+oCondition =
+    OCondition
+
+
+{-| Make an order channel conditional on a sequence of predicate values. This can
+be used when several predicates need to be tested in sequence each with their
+own encoding outcomes ('if-else'). For example to control mark z-order for three
+category values:
 
     order
-        [ oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ]
+        [ oConditions
+            [ ( prTest (expr "datum.Origin == 'Europe'"), [ oNum 3 ] )
+            , ( prTest (expr "datum.Origin == 'Japan'"), [ oNum 2 ] )
+            ]
+            [ oNum 1 ]
         ]
+
+-}
+oConditions : List ( Predicate, List OrderChannel ) -> List OrderChannel -> OrderChannel
+oConditions =
+    OConditions
+
+
+{-| Deprecated in favour of [oCondition](#oCondition). Instead of
+
+    oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ]
+
+use
+
+    oCondition (prTest (expr "datum.Origin == 'Europe'")) [ oNum 1 ] [ oNum 0 ]
 
 -}
 oDataCondition : List ( BooleanOp, List OrderChannel ) -> List OrderChannel -> OrderChannel
 oDataCondition =
-    ODataCondition
+    ODataCondition False
 
 
 {-| Indicate a data field encoded with an order channel is a geo feature. Equivalent
@@ -15605,20 +15784,18 @@ osParity =
     OParity
 
 
-{-| Make an order channel conditional on interactive selection. The first parameter
-is a selection condition to evaluate; the second the encoding to apply if that selection
-is true; the third parameter is the encoding if the selection is false.
+{-| Deprecated in favour of [oCondition](#oCondition). Instead of
 
-    order
-        [ oSelectionCondition (selectionName "myHighlight")
-            [ oNum 1 ]
-            [ oNum 0 ]
-        ]
+    oSelectionCondition (selectionName "mySelection") [ mNum 0 ] [ mNum 1 ]
+
+use
+
+    oCondition (prParam "mySelection") [ oNum 0 ] [ oNum 1 ]
 
 -}
 oSelectionCondition : BooleanOp -> List OrderChannel -> List OrderChannel -> OrderChannel
-oSelectionCondition =
-    OSelectionCondition
+oSelectionCondition bo tOcs =
+    ODataCondition True [ ( bo, tOcs ) ]
 
 
 {-| Sort order to be used by an order channel.
@@ -15643,12 +15820,79 @@ oTimeUnit =
     OTimeUnit
 
 
-{-| The dynamic binding associated with a top-level parameter. Can be used to create
-a parameter value that varies as an input control (e.g. slider) is updated.
+{-| The dynamic binding associated with a parameter. Can be used to create a parameter
+value that varies as an interactive input control (e.g. slider) is updated.
+
+    param "mySlider"
+        [ paSelect sePoint []
+        , paBind (ipRange [ inMin 1, inMax 10 ])
+        ]
+
 -}
 paBind : PBinding -> ParamProperty
 paBind =
     PBind
+
+
+{-| One or more named dynamic bindings associated with a parameter.
+Unlike [paBind](#paBind), this allows multiple input elements to be bound to the
+same field. For example, to bind a selection to the 'And' selection of two sliders:
+
+    param "CylYr"
+        [ paSelect sePoint [ seFields [ "Cylinders", "Year" ] ]
+        , paBindings
+            [ ( "Cylinders", ipRange [ inMin 3, inMax 8, inStep 1 ] )
+            , ( "Year", ipRange [ inMin 1969, inMax 1981, inStep 1 ] )
+            ]
+        ]
+
+-}
+paBindings : List ( String, PBinding ) -> ParamProperty
+paBindings =
+    PBindings
+
+
+{-| Bind a named parameter selection to a legend for interactive selection of
+field values from a legend. Can be bound to a field or channel. For example the
+following will bind a color legend to a point selection allowing filtering or
+highlighting by the selected value that has been encoded with color.
+
+    ps =
+        params
+            << param "legSel"
+                [ paSelect sePoint [ seEncodings [ chColor ] ]
+                , paBindLegend ""
+                ]
+
+To customise which events should trigger legend interaction, provide a
+[Vega event stream string](https://vega.github.io/vega/docs/event-streams/). If an
+empty string is provided, the default single-click interaction is used.
+
+For example, to allow legend selection with a double click:
+
+    paBindLegend "dblClick"
+
+or with shift-click:
+
+    paBindLegend "click[event.shiftKey]"
+
+-}
+paBindLegend : String -> ParamProperty
+paBindLegend =
+    PBindLegend
+
+
+{-| Bind a named parameter selection to the scales of a view to allow interactive
+zooming and panning. For example,
+
+    ps =
+        params
+            << param "zoomer" [ paSelect seInterval [], paBindScales ]
+
+-}
+paBindScales : ParamProperty
+paBindScales =
+    PBindScales
 
 
 {-| Padding around the visualization in pixel units. The way padding is interpreted
@@ -15700,54 +15944,65 @@ pAggregate =
     PAggregate
 
 
-{-| Specify an interval selection parameter.
--}
-paInterval : PSelect
-paInterval =
-    PInterval
+{-| Add a named parameter to a list of parameters. A parameter should have a name
+and a list of parameter details. For example,
 
+    param "mySelection" [ paSelect seInterval [] ]
 
-{-| Specify a point selection parameter.
 -}
-paPoint : PSelect
-paPoint =
-    PPoint
+param : String -> List ParamProperty -> List LabelledSpec -> List LabelledSpec
+param nme pps =
+    (::) ( nme, List.map paramProperty pps |> JE.object )
 
 
 {-| Specify top-level parameters to be used within a specification. While literals
 may be specified as parameters, these are better handled directly in Elm. More
-useful is to create expressions based on the [vega-lite built-in parameters](https://vega.github.io/vega-lite/docs/parameter.html#built-in-variable-parameters)
-`width`, `height`, `padding`, `autosize`, `background` and `cursor`. For example,
-
-    ps =
-        params [ ( "textSize", [ paExpr "height/20" ] ) ]
-
-Also useful is the ability to bind parameters to input elements such as range
-sliders that may be updated at runtime. Each tuple should be a named parameter
-with corresponding parameter properties. For example,
+useful expression paramters are those that use the
+[vega-lite built-in parameters](https://vega.github.io/vega-lite/docs/parameter.html#built-in-variable-parameters)
+`width`, `height`, `padding`, `autosize`, `background` and `cursor`. For example
+to keep text size a fixed proportion of the plot height:
 
     ps =
         params
-            [ ( "radius"
-              , [ paValue (num 0)
-                , paBind (ipRange [ inMin 0, inMax 100 ])
-                ]
-              )
-            , ( "theta"
-              , [ paValue (num -0.73)
-                , paBind (ipRange [ inMin -6.28, inMax 6.28 ])
-                ]
-              )
-            ]
+            << param "textSize" [ paExpr "height/20" ]
+
+Also useful is the ability to bind parameters to input elements such as range
+sliders that may be updated at runtime. For example the value of the `radius` parameter
+is determined by the slider position and then used as a mark property to alter
+circle size dynamically:
+
+    let
+        ps =
+            params
+                << param "radius"
+                    [ paValue (num 0)
+                    , paBind (ipRange [ inMin 0, inMax 100, inStep 1 ])
+                    ]
+
+        enc =
+            encoding
+                << position Theta [ pName "value", pQuant ]
+                << color [ mName "category" ]
+    in
+    toVegaLite
+        [ ps []
+        , data []
+        , enc []
+        , arc [ maInnerRadius |> maNumExpr "radius" ]
+        ]
 
 -}
-params : List ( String, List ParamProperty ) -> ( VLProperty, Spec )
-params namedParams =
+params : List LabelledSpec -> ( VLProperty, Spec )
+params prms =
     let
-        paramObj ( paramName, pps ) =
-            JE.object (( "name", JE.string paramName ) :: List.map paramProperty pps)
+        toLabelledSpecs obj =
+            JD.decodeValue (JD.keyValuePairs JD.value) obj
+                |> Result.withDefault []
+
+        extract ( nme, obj ) =
+            JE.object (( "name", JE.string nme ) :: toLabelledSpecs obj)
     in
-    ( VLParams, JE.list paramObj namedParams )
+    ( VLParams, JE.list extract prms )
 
 
 {-| Parsing rules when processing some data text, specified as a list of tuples
@@ -15765,9 +16020,17 @@ parse =
     Parse
 
 
-{-| Identify the selection type (point or interval) to be used by a selection parameter.
+{-| Specify a selection parameter to be used for interaction. For example, to create
+an interval selection:
+
+    param "mySelection" [ paSelect seInterval [] ]
+
+To project a point selection across the field encoded with colour:
+
+    param "mySelection" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
+
 -}
-paSelect : PSelect -> ParamProperty
+paSelect : Selection -> List SelectionProperty -> ParamProperty
 paSelect =
     PSelect
 
@@ -16168,6 +16431,23 @@ projection pProps =
     ( VLProjection, JE.object (List.map projectionProperty pProps) )
 
 
+{-| Parameter name that should evaluate to either true or false for use in functions
+that use predicates, such as [mCondition](#mCondition).
+-}
+prParam : String -> Predicate
+prParam =
+    Param
+
+
+{-| Parameter name that should evaluate to either true or false for use in selections
+for conditional encoduing. Same as [prParam](#prParam) except that an empty selection
+is assumed to be false.
+-}
+prParamEmpty : String -> Predicate
+prParamEmpty =
+    ParamEmpty
+
+
 {-| Reflect the x-coordinates after performing an identity projection. This
 creates a left-right mirror image of the geoshape marks when subject to an
 [identityProjection](#identityProjection).
@@ -16207,6 +16487,14 @@ prScale =
 prSpacing : Float -> ProjectionProperty
 prSpacing =
     PSpacing
+
+
+{-| Test that should evaluate to either true or false for use in functions
+that use predicates, such as [mCondition](#mCondition)
+-}
+prTest : BooleanOp -> Predicate
+prTest =
+    Test
 
 
 {-| 'Satellite' map projection tilt.
@@ -17215,59 +17503,34 @@ scZero =
     SZero
 
 
-{-| Bind to some input elements as part of a named selection. For example, to
-allow a selection to be based on a drop-down list of options:
-
-    sel =
-        selection
-            << select "mySelection"
-                seSingle
-                [ seFields [ "crimeType" ]
-                , seBind
-                    [ iSelect "crimeType"
-                        [ inOptions
-                            [ "Anti-social behaviour"
-                            , "Criminal damage and arson"
-                            , "Drugs"
-                            , "Robbery"
-                            , "Vehicle crime"
-                            ]
-                        ]
-                    ]
-                ]
-
+{-| Deprecated in favour of [paBind](#paBind).
 -}
 seBind : List Binding -> SelectionProperty
 seBind =
     Bind
 
 
-{-| Enable binding between a legend selection and the item it references. Currently
-only applicable to categorical (symbol) legends.
-
-For example, to make an interactive legend of crime types that can be selected
-with a click:
+{-| Deprecated in favour of [paBindLegend](#paBindLegend). Where previously you
+might have specified a legend binding as
 
     sel =
         selection
-            << select "mySelection"
+            << select "legSel"
                 seSingle
-                [ seBindLegend [ blField "crimeType" ] ]
+                [ seBindLegend
+                    [ blField "crimeType"
+                    , blEvent "dblclick"
+                    ]
+                ]
 
-To make the binding two-way (clicking on an item in the chart selects its legend
-category), add an event stream selector to the selection with [seOn](#seOn).
+It should now be specified as
 
-For example, to allow multiple legend entries to be selected with double clicks
-directly on the legend or clicks on the main chart:
-
-    select "mySelection"
-        seMulti
-        [ seOn "click"
-        , seBindLegend
-            [ blField "crimeType"
-            , blEvent "dblclick"
-            ]
-        ]
+    ps =
+        params
+            << param "legSel"
+                [ paSelect sePoint [ seFields [ "crimeType" ] ]
+                , paBindLegend "dblclick"
+                ]
 
 -}
 seBindLegend : List BindLegendProperty -> SelectionProperty
@@ -17275,12 +17538,18 @@ seBindLegend =
     BindLegend
 
 
-{-| Enable two-way binding between a selection and the scales used in the same
-view. Commonly used for zooming and panning by binding selection to position scaling:
+{-| Deprecated in favour of [paBindScales](#paBindScales). Where previously you
+might have specified a scale binding as:
 
     sel =
         selection
-            << select "mySelection" seInterval [ seBindScales ]
+            << select "zoomer" seInterval [ seBindScales ]
+
+It should now be specified as:
+
+    ps =
+        params
+            << param "zoomer" [ paSelect seInterval [], paBindScales ]
 
 -}
 seBindScales : SelectionProperty
@@ -17292,10 +17561,12 @@ seBindScales =
 that can clear a selection. For example, to allow a zoomed/panned view to be reset
 on shift-click:
 
-    selection
-        << select "myZoomPan"
-            seInterval
-            [ seBindScales, seClear "click[event.shiftKey]" ]
+    ps =
+        params
+            << param "myZoomPan"
+                [ paSelect seInterval [ seClear "click[event.shiftKey]" ]
+                , paBindScales
+                ]
 
 To remove the default clearing behaviour of a selection, provide an empty string
 rather than an event stream selector.
@@ -17320,7 +17591,8 @@ secondsMilliseconds =
     SecondsMilliseconds
 
 
-{-| Make a selection empty by default when nothing selected.
+{-| Deprecated in favour of [prParamEmpty](#prParamEmpty) and
+[fiSelectionEmpty](#fiSelectionEmpty).
 -}
 seEmpty : SelectionProperty
 seEmpty =
@@ -17330,9 +17602,12 @@ seEmpty =
 {-| Encoding channels that form a named selection. For example, to _project_ a
 selection across all items that share the same value in the color channel:
 
-    sel =
-        selection
-            << select "mySelection" seMulti [ seEncodings [ chColor ] ]
+    ps =
+        params
+            << param "sel"
+                [ paSelect sePoint
+                    [ seEncodings [ chColor ] ]
+                ]
 
 -}
 seEncodings : List Channel -> SelectionProperty
@@ -17354,48 +17629,16 @@ seGlobal =
     SeGlobal
 
 
-{-| Initialise one or more selections with values from bound fields.
-
-    sel =
-        selection
-            << select "CylYr"
-                seSingle
-                [ seFields [ "Cylinders", "Year" ]
-                , seInit
-                    [ ( "Cylinders", num 4 )
-                    , ( "Year", num 1977 )
-                    ]
-                , seBind
-                    [ iRange "Cylinders" [ inName "Cylinders ", inMin 3, inMax 8, inStep 1 ]
-                    , iRange "Year" [ inName "Year ", inMin 1969, inMax 1981, inStep 1 ]
-                    ]
-                ]
-
+{-| Deprecated in favour of [paValue](#paValue) for initialising the value of a
+selection paramter.
 -}
 seInit : List ( String, DataValue ) -> SelectionProperty
 seInit =
     SInit
 
 
-{-| Initialise the domain extent of an interval selection. The parameters refer to
-the (xMin, xMax) and (yMin, yMax) domain extents of the initial interval selection.
-If one of the tuples is `Nothing` the selection is projected over that dimension.
-If both are nothing, no initialisation is provided.
-
-Initialise selection between 2013-2015 along x-channel and 40-80 along y-channel:
-
-    select "mySelection"
-        seInterval
-        [ seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] ))
-            (Just ( num 40, num 80 ))
-        ]
-
-Initialise selection on the y-channel between 40-80 and project across the x-channel:
-
-    select "mySelection"
-        seInterval
-        [ seInitInterval Nothing (Just ( num 40, num 80 )) ]
-
+{-| Deprecated in favour of [paValue](#paValue) for initialising the value of a
+selection paramter.
 -}
 seInitInterval : Maybe ( DataValue, DataValue ) -> Maybe ( DataValue, DataValue ) -> SelectionProperty
 seInitInterval =
@@ -17418,10 +17661,7 @@ seInterval =
     SeInterval
 
 
-{-| Create a single named selection that may be applied to a data query or transformation.
-The first two parameters specify the name to be given to the selection for later
-reference and the type of selection made. The third allows additional selection options to
-be specified.
+{-| Deprecated in favour of creating a [param](#param) containing a [paSelect](#paSelect) property.
 -}
 select : String -> Selection -> List SelectionProperty -> List LabelledSpec -> List LabelledSpec
 select selName sType options =
@@ -17434,48 +17674,29 @@ select selName sType options =
     (::) ( selName, JE.object selProps )
 
 
-{-| Interactive selection that will be true or false as part of a logical composition.
-e.g., to filter a dataset so that only items selected interactively and that have
-a weight of more than 30:
-
-    transform
-        << filter (fCompose (and (selected "brush") (expr "datum.weight > 30")))
-
+{-| Deprecated in favour of [bParam](#bParam) to treat a selection parameter as a
+Boolean expression.
 -}
 selected : String -> BooleanOp
 selected =
     Selection
 
 
-{-| Create a full selection specification from a list of selections.
-
-    sel =
-        selection
-            << select "view" seInterval [ seBindScales ]
-            << select "myBrush" seInterval []
-            << select "myPaintbrush" seMulti [ seOn "mouseover", seNearest True ]
-
+{-| Deprecated in favour of [params](#params).
 -}
 selection : List LabelledSpec -> ( VLProperty, Spec )
 selection sels =
     ( VLSelection, JE.object sels )
 
 
-{-| Name a selection that is used as part of a conditional encoding.
-
-    color
-        [ mSelectionCondition (selectionName "myBrush")
-            [ mName "myField", mNominal ]
-            [ mStr "grey" ]
-        ]
-
+{-| Deprecated in favour of [prParam](#prParam).
 -}
 selectionName : String -> BooleanOp
 selectionName =
     SelectionName
 
 
-{-| Indicate multiple interactive mark selections can be made (e.g. with shift-click).
+{-| Deprecated in favour of [sePoint](#sePoint).
 -}
 seMulti : Selection
 seMulti =
@@ -17491,11 +17712,24 @@ seNearest =
 
 
 {-| [Vega event stream selector](https://vega.github.io/vega/docs/event-streams/#selector)
-that triggers a selection.
+that triggers a selection. For example, to create a paintbrush effect under the
+pointer:
+
+    ps =
+        params
+            << params "paintbrush" [ paSelect sePoint [ seOn "mouseover" ] ]
+
 -}
 seOn : String -> SelectionProperty
 seOn =
     On
+
+
+{-| Specify a point selection type.
+-}
+sePoint : Selection
+sePoint =
+    SePoint
 
 
 {-| Strategy that determines how selections’ data queries are resolved when applied
@@ -17513,7 +17747,8 @@ seSelectionMark =
     SelectionMark
 
 
-{-| Indicate a single, mark at a time, interactive selection can be made.
+{-| Deprecated in favour of [sePoint](#sePoint) with [seToggle](#seToggle) set to
+[tpFalse](#tpFalse).
 -}
 seSingle : Selection
 seSingle =
@@ -17521,9 +17756,18 @@ seSingle =
 
 
 {-| Predicate expression that determines a toggled selection. See the
-[Vega-Lite toggle documentation](https://vega.github.io/vega-lite/docs/toggle.html)
+[Vega-Lite toggle documentation](https://vega.github.io/vega-lite/docs/selection.html#toggle)
+
+For example, to create a paintbrush type effect that leaves a trail of selections
+under the pointer while the shift key is pressed down:
+
+    ps =
+        params
+            << param "paintbrush"
+                [ paSelect sePoint [ seOn "mouseover", seToggle tpShiftKey ] ]
+
 -}
-seToggle : String -> SelectionProperty
+seToggle : TogglePredicate -> SelectionProperty
 seToggle =
     Toggle
 
@@ -18032,14 +18276,37 @@ tBinned =
     TBinned
 
 
-{-| Make a text channel conditional on one or more predicate expressions. The first
-parameter is a list of tuples each pairing an expression to evaluate with the encoding
-if that expression is true. The second is the encoding if none of the expressions
-are evaluated as true.
+{-| Make a text channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
+-}
+tCondition : Predicate -> List TextChannel -> List TextChannel -> TextChannel
+tCondition =
+    TCondition
+
+
+{-| Make an text channel conditional on a sequence of predicate values. This can
+be used when several predicates need to be tested in sequence each with their own
+encoding outcomes ('if-else').
+-}
+tConditions : List ( Predicate, List TextChannel ) -> List TextChannel -> TextChannel
+tConditions =
+    TConditions
+
+
+{-| Deprecated in favour of [tCondition](#tCondition). Instead of
+
+    tDataCondition [ ( expr "datum.Origin == 'Europe'", [ tStr "EU" ] ) ] [ tStr "" ]
+
+use
+
+    tCondition (prTest (expr "datum.Origin == 'Europe'")) [ tStr "EU" ] [ tStr "" ]
+
 -}
 tDataCondition : List ( BooleanOp, List TextChannel ) -> List TextChannel -> TextChannel
 tDataCondition =
-    TDataCondition
+    TDataCondition False
 
 
 {-| Name of a literal data item used for encoding with a text channel. Unlike
@@ -18324,11 +18591,11 @@ input element. For example,
 
     prm =
         params
-            [ ( "fs", [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ] ) ]
+            << param "fs" [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ]
     :
     :
     ttl =
-        title "My title" [ tiFontSize |> tiNumExpr "fs"]
+        title "My title" [ tiFontSize |> tiNumExpr "fs" ]
 
 -}
 tiNumExpr : String -> (number -> TitleProperty) -> TitleProperty
@@ -18372,11 +18639,11 @@ input element. For example,
 
     prm =
         params
-            [ ( "clr", [ paValue (str "black"), paBind (ipColor []) ] ) ]
+            << params "clr" [ paValue (str "black"), paBind (ipColor []) ]
     :
     :
     ttl =
-        title "My title" [ tiColor |> tiStrExpr "clr"]
+        title "My title" [ tiColor |> tiStrExpr "clr" ]
 
 -}
 tiStrExpr : String -> (String -> TitleProperty) -> TitleProperty
@@ -18601,32 +18868,6 @@ timeUnitAs tu field label =
         )
 
 
-{-| Specify the maximum number of bins used when discretizing time units. Can be
-useful as an alternative to explicitly providing a time unit to bin by as it will
-be inferred from the temporal domain extent and the number of bins. For example,
-when applied to a dataset of hourly readings for a full year, the following will
-bin into days:
-
-    tuMaxBins 366
-
--}
-tuMaxBins : Int -> TimeUnit
-tuMaxBins =
-    TUMaxBins
-
-
-{-| Specify the the number of steps between time unit bins, in terms of the least
-significant unit provided. For example, the following will bin temporal data into
-biweekly weekly groups:
-
-    tuStep 14 yearMonthDate
-
--}
-tuStep : Float -> TimeUnit -> TimeUnit
-tuStep =
-    TUStep
-
-
 {-| Title to be displayed for a plot. The first parameter is the text of the title,
 the second a list of any title properties to configure its appearance. To display
 a title over more than one line, insert `\n` at each line break or use a `"""`
@@ -18769,6 +19010,58 @@ toVegaLite spec =
         |> JE.object
 
 
+{-| Specify that data values in a selection are toggled when interacted with on
+multiple occasions while the alt key is held down.
+-}
+tpAltKey : TogglePredicate
+tpAltKey =
+    TpAltKey
+
+
+{-| Specify that data values in a selection are toggled when interacted with on
+multiple occasions while the control key is held down.
+-}
+tpCtrltKey : TogglePredicate
+tpCtrltKey =
+    TpShiftKey
+
+
+{-| Specify that repeated selections are toggled when the given
+[expression](https://vega.github.io/vega/docs/expressions/) evaluates to true.
+This allows, for example, mulitple key modifiers to generate toggling:
+
+    ps =
+        params
+            << param "paintbrush"
+                [ paSelect sePoint
+                    [ seOn "mouseover"
+                    , seToggle (tpExpr "event.shiftKey && event.ctrlKey")
+                    ]
+                ]
+
+-}
+tpExpr : String -> TogglePredicate
+tpExpr =
+    TpExpr
+
+
+{-| Specify that data values in a selection are never unselected when interacted
+with on multiple occasions. This allows a single selected item to be guaranteed.
+-}
+tpFalse : TogglePredicate
+tpFalse =
+    TpFalse
+
+
+{-| Specify that data values in a selection are toggled when interacted with on
+multiple occasions while the shift key is held down. This is the default behaviour
+so should only be needed if moving back from some other specified behavior.
+-}
+tpShiftKey : TogglePredicate
+tpShiftKey =
+    TpShiftKey
+
+
 {-| [Trail mark](https://vega.github.io/vega-lite/docs/trail.html) (line
 with variable width along its length).
 -}
@@ -18822,13 +19115,18 @@ true =
     Boolean True
 
 
-{-| Make a text channel conditional on interactive selection. The first parameter
-is a selection condition to evaluate; the second the encoding to apply if that
-selection is true; the third parameter is the encoding if the selection is false.
+{-| Deprecated in favour of [tCondition](#tCondition). Instead of
+
+    tSelectionCondition (selectionName "mySelection") [ tName "label" ] [ tStr "" ]
+
+use
+
+    tCondition (prParam "mySelection") [ tName "label" ] [ tStr "" ]
+
 -}
 tSelectionCondition : BooleanOp -> List TextChannel -> List TextChannel -> TextChannel
-tSelectionCondition =
-    TSelectionCondition
+tSelectionCondition bo tTcs =
+    TDataCondition True [ ( bo, tTcs ) ]
 
 
 {-| Literal string value when encoding with a text channel. Can be useful for
@@ -18922,6 +19220,32 @@ ttNone =
 tQuant : TextChannel
 tQuant =
     TmType Quantitative
+
+
+{-| Specify the maximum number of bins used when discretizing time units. Can be
+useful as an alternative to explicitly providing a time unit to bin by as it will
+be inferred from the temporal domain extent and the number of bins. For example,
+when applied to a dataset of hourly readings for a full year, the following will
+bin into days:
+
+    tuMaxBins 366
+
+-}
+tuMaxBins : Int -> TimeUnit
+tuMaxBins =
+    TUMaxBins
+
+
+{-| Specify the the number of steps between time unit bins, in terms of the least
+significant unit provided. For example, the following will bin temporal data into
+biweekly weekly groups:
+
+    tuStep 14 yearMonthDate
+
+-}
+tuStep : Float -> TimeUnit -> TimeUnit
+tuStep =
+    TUStep
 
 
 {-| Encode a url channel. The first parameter is a list of url channel
@@ -19174,11 +19498,11 @@ input element. For example,
 
     prm =
         params
-            [ ( "r", [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ] ) ]
+            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
     :
     :
     bg =
-        viewBackground [ viewCornerRadius |> viNumExpr "r"]
+        viewBackground [ viewCornerRadius |> viNumExpr "r" ]
 
 -}
 viNumExpr : String -> (number -> ViewBackground) -> ViewBackground
@@ -19216,11 +19540,11 @@ is bound to an input element. For example,
 
     prm =
         params
-            [ ( "clr", [ paValue (str "white"), paBind (ipColor [ ]) ] ) ]
+            << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
     :
     :
     bg =
-        viewBackground [ viewFill |> viStrExpr "clr"]
+        viewBackground [ viewFill |> viStrExpr "clr" ]
 
 -}
 viStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
@@ -19402,7 +19726,7 @@ specified, the width will be calculated based on the content of the visualizatio
     toVegaLite [ width 540, data [], enc [], bar [] ]
 
 How the content is sized relative to this width specification can be customised
-with [autosize])(#autosize).
+with [autosize](#autosize).
 
 -}
 width : Float -> ( VLProperty, Spec )
@@ -20523,7 +20847,7 @@ binProperty binProp =
             ( "extent", JE.list JE.float [ mn, mx ] )
 
         SelectionExtent s ->
-            ( "extent", JE.object [ ( "selection", JE.string s ) ] )
+            ( "extent", JE.object [ ( "param", JE.string s ) ] )
 
         Nice b ->
             ( "nice", JE.bool b )
@@ -20606,12 +20930,6 @@ booleanOpSpec bo =
         FilterOpTrans tr f ->
             trFilterSpec tr f
 
-        SelectionName selName ->
-            JE.string selName
-
-        Selection sel ->
-            JE.object [ ( "selection", JE.string sel ) ]
-
         And operand1 operand2 ->
             JE.object [ ( "and", JE.list booleanOpSpec [ operand1, operand2 ] ) ]
 
@@ -20620,6 +20938,15 @@ booleanOpSpec bo =
 
         Not operand ->
             JE.object [ ( "not", booleanOpSpec operand ) ]
+
+        BooleanParam p ->
+            JE.object [ ( "param", JE.string p ) ]
+
+        SelectionName selName ->
+            JE.string selName
+
+        Selection sel ->
+            JE.object [ ( "selection", JE.string sel ) ]
 
 
 boundsSpec : Bounds -> Spec
@@ -21039,6 +21366,12 @@ dataValueSpec val =
         NullValue ->
             JE.null
 
+        DConcat vals ->
+            dataValuesSpecs vals |> toList
+
+        DObject kvs ->
+            kvs |> List.map (\( k, v ) -> ( k, dataValueSpec v )) |> JE.object
+
 
 dataValuesSpecs : DataValues -> List Spec
 dataValuesSpecs dvs =
@@ -21050,7 +21383,7 @@ dataValuesSpecs dvs =
             List.map JE.string ss
 
         DateTimes dtss ->
-            List.map (\ds -> JE.object (List.map dateTimeProperty ds)) dtss
+            List.map (List.map dateTimeProperty >> JE.object) dtss
 
         Booleans bs ->
             List.map JE.bool bs
@@ -21346,7 +21679,10 @@ filterProperties f =
             [ ( "field", JE.string field ), ( "gte", dataValueSpec val ) ]
 
         FSelection selName ->
-            [ ( "selection", JE.string selName ) ]
+            [ ( "param", JE.string selName ) ]
+
+        FSelectionEmpty selName ->
+            [ ( "param", JE.string selName ), ( "empty", JE.bool False ) ]
 
         FRange field vals ->
             let
@@ -21735,13 +22071,18 @@ hyperlinkChannelProperties field =
         HBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        HSelectionCondition selName ifClause elseClause ->
-            ( "condition", JE.object (( "selection", booleanOpSpec selName ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+        HCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap hyperlinkChannelProperties ifClause) )
                 :: List.concatMap hyperlinkChannelProperties elseClause
 
-        HDataCondition predicate ifClause elseClause ->
-            ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
-                :: List.concatMap hyperlinkChannelProperties elseClause
+        HDataCondition isSelection predicate ifClause elseClause ->
+            if isSelection then
+                ( "condition", JE.object (( "selection", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                    :: List.concatMap hyperlinkChannelProperties elseClause
+
+            else
+                ( "condition", JE.object (( "test", booleanOpSpec predicate ) :: List.concatMap hyperlinkChannelProperties ifClause) )
+                    :: List.concatMap hyperlinkChannelProperties elseClause
 
         HTimeUnit tu ->
             [ ( "timeUnit", timeUnitSpec tu ) ]
@@ -22302,22 +22643,36 @@ markChannelProperties field =
         MBinned ->
             [ ( "bin", JE.string "binned" ) ]
 
-        MSelectionCondition selName ifClause elseClause ->
+        MCondition predicate ifClause elseClause ->
             ( "condition"
-            , JE.object
-                (( "selection", booleanOpSpec selName )
-                    :: List.concatMap markChannelProperties ifClause
-                )
+            , JE.object (predicateProperties predicate ++ List.concatMap markChannelProperties ifClause)
             )
                 :: List.concatMap markChannelProperties elseClause
 
-        MDataCondition tests elseClause ->
+        MConditions ifClauses elseClause ->
+            ( "condition"
+            , JE.list
+                (\( predicate, ifClause ) ->
+                    JE.object (predicateProperties predicate ++ List.concatMap markChannelProperties ifClause)
+                )
+                ifClauses
+            )
+                :: List.concatMap markChannelProperties elseClause
+
+        MDataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    JE.object
-                        (( "test", booleanOpSpec predicate )
-                            :: List.concatMap markChannelProperties ifClause
-                        )
+                    if isSelection then
+                        JE.object
+                            (( "selection", booleanOpSpec predicate )
+                                :: List.concatMap markChannelProperties ifClause
+                            )
+
+                    else
+                        JE.object
+                            (( "test", booleanOpSpec predicate )
+                                :: List.concatMap markChannelProperties ifClause
+                            )
             in
             ( "condition"
             , case tests of
@@ -22872,6 +23227,19 @@ monthNameLabel mon =
             "Dec"
 
 
+multilineTextSpec : String -> Spec
+multilineTextSpec tText =
+    case String.split "\n" tText of
+        [] ->
+            JE.string ""
+
+        [ s ] ->
+            JE.string s
+
+        ss ->
+            JE.list JE.string ss
+
+
 numExpr : String -> Num -> List ( String, Spec )
 numExpr objName n =
     case n of
@@ -23008,22 +23376,34 @@ orderChannelProperties oDef =
         ONumber n ->
             [ ( "value", JE.float n ) ]
 
-        OSelectionCondition selName ifClause elseClause ->
+        OCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap orderChannelProperties ifClause) )
+                :: List.concatMap orderChannelProperties elseClause
+
+        OConditions ifClauses elseClause ->
             ( "condition"
-            , JE.object
-                (( "selection", booleanOpSpec selName )
-                    :: List.concatMap orderChannelProperties ifClause
+            , JE.list
+                (\( predicate, ifClause ) ->
+                    JE.object (predicateProperties predicate ++ List.concatMap orderChannelProperties ifClause)
                 )
+                ifClauses
             )
                 :: List.concatMap orderChannelProperties elseClause
 
-        ODataCondition tests elseClause ->
+        ODataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    JE.object
-                        (( "test", booleanOpSpec predicate )
-                            :: List.concatMap orderChannelProperties ifClause
-                        )
+                    if isSelection then
+                        JE.object
+                            (( "selection", booleanOpSpec predicate )
+                                :: List.concatMap orderChannelProperties ifClause
+                            )
+
+                    else
+                        JE.object
+                            (( "test", booleanOpSpec predicate )
+                                :: List.concatMap orderChannelProperties ifClause
+                            )
             in
             ( "condition"
             , case tests of
@@ -23078,8 +23458,29 @@ paddingSpec pad =
 paramProperty : ParamProperty -> LabelledSpec
 paramProperty pp =
     case pp of
-        PBind binds ->
-            ( "bind", JE.object (pBindingProperties binds) )
+        PBind bps ->
+            ( "bind", JE.object (pBindingProperties bps) )
+
+        PBindings binds ->
+            ( "bind"
+            , JE.object
+                (List.map
+                    (\( bName, bps ) ->
+                        ( bName, JE.object (pBindingProperties bps) )
+                    )
+                    binds
+                )
+            )
+
+        PBindScales ->
+            ( "bind", JE.string "scales" )
+
+        PBindLegend s ->
+            if (String.trim s |> String.length) == 0 then
+                ( "bind", JE.string "legend" )
+
+            else
+                ( "bind", JE.object [ ( "legend", JE.string s ) ] )
 
         PExpr s ->
             ( "expr", JE.string s )
@@ -23087,8 +23488,13 @@ paramProperty pp =
         PValue d ->
             ( "value", dataValueSpec d )
 
-        PSelect s ->
-            ( "select", JE.string (pSelectLabel s) )
+        PSelect s sps ->
+            case sps of
+                [] ->
+                    ( "select", JE.string (selectionLabel s) )
+
+                _ ->
+                    ( "select", JE.object (( "type", JE.string (selectionLabel s) ) :: List.concatMap selectionProperties sps) )
 
 
 pBindingProperties : PBinding -> List LabelledSpec
@@ -23305,6 +23711,19 @@ positionLabel pChannel =
             "latitude2"
 
 
+predicateProperties : Predicate -> List LabelledSpec
+predicateProperties predicate =
+    case predicate of
+        Param p ->
+            [ ( "param", JE.string p ) ]
+
+        ParamEmpty p ->
+            [ ( "param", JE.string p ), ( "empty", JE.bool False ) ]
+
+        Test bo ->
+            [ ( "test", booleanOpSpec bo ) ]
+
+
 projectionLabel : Projection -> String
 projectionLabel proj =
     case proj of
@@ -23429,16 +23848,6 @@ projectionProperty pp =
 
         PTilt x ->
             ( "tilt", JE.float x )
-
-
-pSelectLabel : PSelect -> String
-pSelectLabel ps =
-    case ps of
-        PPoint ->
-            "point"
-
-        PInterval ->
-            "interval"
 
 
 quantileProperty : QuantileProperty -> LabelledSpec
@@ -23657,17 +24066,17 @@ scaleDomainSpec sdType =
             JE.list JE.string cats
 
         DSelection selName ->
-            JE.object [ ( "selection", JE.string selName ) ]
+            JE.object [ ( "param", JE.string selName ) ]
 
         DSelectionChannel selName ch ->
             JE.object
-                [ ( "selection", JE.string selName )
+                [ ( "param", JE.string selName )
                 , ( "encoding", JE.string (channelLabel ch) )
                 ]
 
         DSelectionField selName f ->
             JE.object
-                [ ( "selection", JE.string selName )
+                [ ( "param", JE.string selName )
                 , ( "field", JE.string f )
                 ]
 
@@ -23885,14 +24294,17 @@ schemeProperty schName extent =
 selectionLabel : Selection -> String
 selectionLabel seType =
     case seType of
+        SePoint ->
+            "point"
+
+        SeInterval ->
+            "interval"
+
         SeSingle ->
             "single"
 
         SeMulti ->
             "multi"
-
-        SeInterval ->
-            "interval"
 
 
 selectionMarkProperty : SelectionMarkProperty -> LabelledSpec
@@ -24020,8 +24432,8 @@ selectionProperties selProp =
         Nearest b ->
             [ ( "nearest", JE.bool b ) ]
 
-        Toggle ex ->
-            [ ( "toggle", JE.string ex ) ]
+        Toggle tp ->
+            [ ( "toggle", togglePredicateSpec tp ) ]
 
         Translate e ->
             if e == "" then
@@ -24285,22 +24697,34 @@ textChannelProperties tDef =
         TFormatAsCustom formatter ->
             [ ( "formatType", JE.string formatter ) ]
 
-        TSelectionCondition selName ifClause elseClause ->
+        TCondition predicate ifClause elseClause ->
+            ( "condition", JE.object (predicateProperties predicate ++ List.concatMap textChannelProperties ifClause) )
+                :: List.concatMap textChannelProperties elseClause
+
+        TConditions ifClauses elseClause ->
             ( "condition"
-            , JE.object
-                (( "selection", booleanOpSpec selName )
-                    :: List.concatMap textChannelProperties ifClause
+            , JE.list
+                (\( predicate, ifClause ) ->
+                    JE.object (predicateProperties predicate ++ List.concatMap textChannelProperties ifClause)
                 )
+                ifClauses
             )
                 :: List.concatMap textChannelProperties elseClause
 
-        TDataCondition tests elseClause ->
+        TDataCondition isSelection tests elseClause ->
             let
                 testClause ( predicate, ifClause ) =
-                    JE.object
-                        (( "test", booleanOpSpec predicate )
-                            :: List.concatMap textChannelProperties ifClause
-                        )
+                    if isSelection then
+                        JE.object
+                            (( "selection", booleanOpSpec predicate )
+                                :: List.concatMap textChannelProperties ifClause
+                            )
+
+                    else
+                        JE.object
+                            (( "test", booleanOpSpec predicate )
+                                :: List.concatMap textChannelProperties ifClause
+                            )
             in
             ( "condition", JE.list testClause tests )
                 :: List.concatMap textChannelProperties elseClause
@@ -24569,21 +24993,23 @@ titleConfigProperty titleCfg =
             numExpr "zindex" n
 
 
-multilineTextSpec : String -> Spec
-multilineTextSpec tText =
-    case String.split "\n" tText of
-        [] ->
-            JE.string ""
+togglePredicateSpec : TogglePredicate -> Spec
+togglePredicateSpec tp =
+    case tp of
+        TpFalse ->
+            JE.bool False
 
-        [ s ] ->
-            JE.string s
+        TpExpr ex ->
+            JE.string ex
 
-        ss ->
-            JE.list JE.string ss
+        TpShiftKey ->
+            JE.string "event.shiftKey"
 
+        TpCtrlKey ->
+            JE.string "event.ctrlKey"
 
-
--- Provides an equivalent ot the Elm 0.18 Json list function.
+        TpAltKey ->
+            JE.string "event.altKey"
 
 
 toList : List JE.Value -> JE.Value

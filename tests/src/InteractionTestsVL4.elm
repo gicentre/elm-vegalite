@@ -1,4 +1,4 @@
-port module InteractionTests exposing (elmToJS)
+port module InteractionTestsVL4 exposing (elmToJS)
 
 import Browser
 import Dict
@@ -44,188 +44,179 @@ encHighlight =
     encoding
         << position X [ pName "month", pTemporal, pTitle "" ]
         << position Y [ pName "reportedCrimes", pQuant, pTitle "Reported crimes" ]
-        << color [ mCondition (prParam "mySelection") [ mName "crimeType", mScale cScale ] [ mStr "black" ] ]
-        << opacity [ mCondition (prParam "mySelection") [ mNum 1 ] [ mNum 0.1 ] ]
+        << color
+            [ mSelectionCondition (selectionName "mySelection")
+                [ mName "crimeType", mScale cScale ]
+                [ mStr "black" ]
+            ]
+        << opacity
+            [ mSelectionCondition (selectionName "mySelection")
+                [ mNum 1 ]
+                [ mNum 0.1 ]
+            ]
 
 
 interaction1 : Spec
 interaction1 =
     let
-        ps =
-            params
-                << param "mySelection" [ paSelect sePoint [ seToggle tpFalse ] ]
+        sel =
+            selection << select "mySelection" seSingle []
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], line [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], line [] ]
 
 
 interaction2 : Spec
 interaction2 =
     let
-        ps =
-            params
-                << param "mySelection" [ paSelect sePoint [] ]
+        sel =
+            selection << select "mySelection" seMulti []
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], line [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], line [] ]
 
 
 interaction3 : Spec
 interaction3 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect sePoint
-                        [ seToggle tpFalse
-                        , seNearest True
-                        , seFields [ "crimeType" ]
-                        ]
-                    ]
+        sel =
+            selection
+                << select "mySelection" seSingle [ seNearest True, seFields [ "crimeType" ] ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction4 : Spec
 interaction4 =
     let
-        ps =
-            params
-                << param "mySelection" [ paSelect seInterval [ seEncodings [ chX ] ] ]
+        sel =
+            selection
+                << select "mySelection" seInterval [ seEmpty, seEncodings [ chX ] ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction5 : Spec
 interaction5 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect seInterval []
-                    , paValue
-                        (dataObject
-                            [ ( "x", dts [ [ dtYear 2013 ], [ dtYear 2015 ] ] |> daConcat )
-                            , ( "y", nums [ 4000, 8000 ] |> daConcat )
-                            ]
-                        )
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] ))
+                        (Just ( num 4000, num 8000 ))
                     ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction6 : Spec
 interaction6 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect seInterval []
-                    , paValue (dataObject [ ( "y", daConcat (nums [ 4000, 8000 ]) ) ])
-                    ]
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seInitInterval Nothing (Just ( num 4000, num 8000 )) ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction7 : Spec
 interaction7 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect seInterval [ seEncodings [ chX ] ]
-                    , paValue (dataObject [ ( "x", daConcat (dts [ [ dtYear 2013 ], [ dtYear 2015 ] ]) ) ])
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seEncodings [ chX ]
+                    , seInitInterval (Just ( dt [ dtYear 2013 ], dt [ dtYear 2015 ] )) Nothing
                     ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction8 : Spec
 interaction8 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect seInterval [ seEncodings [ chX ] ]
-                    , paValue (dataObject [ ( "x", daConcat (dts [ [ dtYear 2013 ], [ dtYear 2013 ] ]) ) ])
-                    ]
+        sel =
+            selection
+                << select "mySelection"
+                    seInterval
+                    [ seInitInterval Nothing Nothing ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction9 : Spec
 interaction9 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect seInterval [ seEncodings [ chX ] ]
-                    , paBindScales
-                    ]
+        sel =
+            selection
+                << select "mySelection" seInterval [ seBindScales, seEncodings [ chX ] ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction10 : Spec
 interaction10 =
     let
-        ps =
-            params
-                << param "mySelection" [ paSelect seInterval [], paBindScales ]
+        sel =
+            selection
+                << select "mySelection" seInterval [ seBindScales ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction11 : Spec
 interaction11 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect sePoint [ seFields [ "crimeType" ] ]
-                    , paBindLegend ""
-                    ]
+        sel =
+            selection
+                << select "mySelection"
+                    seSingle
+                    [ seBindLegend [ blField "crimeType" ] ]
 
         cfg =
             configure
                 << configuration (coLegend [ lecoUnselectedOpacity 0.1 ])
     in
-    toVegaLite [ cfg [], width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ cfg [], width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction12 : Spec
 interaction12 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect sePoint [ seEncodings [ chColor ] ]
-                    , paBindLegend "dblclick"
-                    ]
+        sel =
+            selection
+                << select "mySelection" seSingle [ seBindLegend [ blChannel chColor, blEvent "dblclick" ] ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction13 : Spec
 interaction13 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect sePoint [ seOn "click", seFields [ "crimeType" ] ]
-                    , paBindLegend "dblclick"
+        sel =
+            selection
+                << select "mySelection"
+                    seMulti
+                    [ seOn "click"
+                    , seBindLegend [ blField "crimeType", blEvent "dblclick" ]
                     ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction14 : Spec
 interaction14 =
     let
-        ps =
-            params
-                << param "mySelection"
-                    [ paSelect sePoint [ seFields [ "crimeType" ] ]
-                    , paBind
-                        (ipRadio
+        sel =
+            selection
+                << select "mySelection"
+                    seSingle
+                    [ seFields [ "crimeType" ]
+                    , seNearest True
+                    , seBind
+                        [ iRadio "crimeType"
                             [ inName " "
                             , inOptions
                                 [ "Anti-social behaviour"
@@ -235,33 +226,33 @@ interaction14 =
                                 , "Vehicle crime"
                                 ]
                             ]
-                        )
+                        ]
                     ]
     in
-    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+    toVegaLite [ width 540, data, sel [], encHighlight [], circle [] ]
 
 
 interaction15 : Spec
 interaction15 =
     let
-        ps =
-            params
-                << param "minSlider"
-                    [ paSelect sePoint []
-                    , paValue (dataObject [ ( "minReported", num 0 ) ])
-                    , paBind (ipRange [ inName "Min", inMax 12800 ])
+        sel =
+            selection
+                << select "maxSlider"
+                    seSingle
+                    [ seInit [ ( "maxReported", num 14000 ) ]
+                    , seBind [ iRange "maxReported" [ inName "Max", inMin 400, inMax 14000 ] ]
                     ]
-                << param "maxSlider"
-                    [ paSelect sePoint []
-                    , paValue (dataObject [ ( "maxReported", num 14000 ) ])
-                    , paBind (ipRange [ inName "Max", inMin 400, inMax 14000 ])
+                << select "minSlider"
+                    seSingle
+                    [ seInit [ ( "minReported", num 0 ) ]
+                    , seBind [ iRange "minReported" [ inName "Min", inMax 12800 ] ]
                     ]
 
         trans =
             transform
                 << filter (fiExpr "datum.reportedCrimes >= minSlider_minReported && maxSlider_maxReported >= datum.reportedCrimes")
     in
-    toVegaLite [ width 540, data, trans [], ps [], enc [], circle [] ]
+    toVegaLite [ width 540, data, trans [], sel [], enc [], circle [] ]
 
 
 interaction16 : Spec
@@ -270,11 +261,14 @@ interaction16 =
         stockData =
             dataFromUrl (path ++ "stocks.csv") [ csv, parse [ ( "date", foDate "" ) ] ]
 
-        ps =
-            params
-                << param "index"
-                    [ paSelect sePoint [ seEncodings [ chX ], seOn "mouseover", seNearest True ]
-                    , paValue (dataObject [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ])
+        sel =
+            selection
+                << select "index"
+                    seSingle
+                    [ seOn "mouseover"
+                    , seEncodings [ chX ]
+                    , seNearest True
+                    , seInit [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ]
                     ]
 
         trans =
@@ -288,7 +282,7 @@ interaction16 =
                 << position X [ pName "date", pTemporal, pAxis [] ]
 
         pointSpec =
-            asSpec [ ps [], pointEnc [], point [ maOpacity 0 ] ]
+            asSpec [ sel [], pointEnc [], point [ maOpacity 0 ] ]
 
         lineEnc =
             encoding
@@ -340,11 +334,12 @@ interaction17 =
             transform
                 << filter (fiExpr "datum.symbol==='GOOG'")
 
-        ps =
-            params
-                << param "myBrush"
-                    [ paSelect seInterval
-                        [ seEncodings [ chX ], seSelectionMark [ smCursor cuPointer ] ]
+        sel =
+            selection
+                << select "myBrush"
+                    seInterval
+                    [ seEncodings [ chX ]
+                    , seSelectionMark [ smCursor cuPointer ]
                     ]
 
         encLine =
@@ -352,7 +347,7 @@ interaction17 =
                 << position X [ pName "date", pTemporal ]
                 << position Y [ pName "price", pQuant ]
     in
-    toVegaLite [ width 400, cfg [], stockData, ps [], trans [], encLine [], line [] ]
+    toVegaLite [ width 400, cfg [], stockData, trans [], sel [], encLine [], line [] ]
 
 
 interaction18 : Spec
@@ -365,16 +360,14 @@ interaction18 =
             transform
                 << calculateAs "cos(datum.theta)" "y"
 
-        ps =
-            params
-                << param "myBrush"
-                    [ paSelect seInterval [ seEncodings [ chX, chY ] ]
-                    , paValue
-                        (dataObject
-                            [ ( "x", nums [ 0.4, 1 ] |> daConcat )
-                            , ( "y", nums [ 0.6, 0.8 ] |> daConcat )
-                            ]
-                        )
+        sel =
+            selection
+                << select "myBrush"
+                    seInterval
+                    [ seEncodings [ chX, chY ]
+                    , seInitInterval
+                        (Just ( num 0.4, num 1 ))
+                        (Just ( num 0.6, num 0.8 ))
                     ]
 
         overviewEnc =
@@ -383,7 +376,7 @@ interaction18 =
                 << position Y [ pName "y", pQuant, pAxis [] ]
 
         overviewSpec =
-            asSpec [ ps [], overviewEnc [], line [] ]
+            asSpec [ sel [], overviewEnc [], line [] ]
 
         detailEnc =
             encoding

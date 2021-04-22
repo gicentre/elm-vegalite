@@ -29,12 +29,13 @@ markCondition1 =
                 << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
-                    [ mDataCondition
-                        [ ( or (expr "datum['IMDB Rating'] === null")
+                    [ mCondition
+                        (prTest
+                            (or (expr "datum['IMDB Rating'] === null")
                                 (expr "datum['Rotten Tomatoes Rating'] === null")
-                          , [ mStr "#ddd" ]
-                          )
-                        ]
+                            )
+                        )
+                        [ mStr "#ddd" ]
                         [ mStr "#0099ee" ]
                     ]
     in
@@ -52,10 +53,10 @@ markCondition2 =
             encoding
                 << position X [ pName "value", pOrdinal ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum.value < 40", [ mStr "blue" ] )
-                        , ( expr "datum.value < 50", [ mStr "red" ] )
-                        , ( expr "datum.value < 60", [ mStr "yellow" ] )
+                    [ mConditions
+                        [ ( prTest (expr "datum.value < 40"), [ mStr "blue" ] )
+                        , ( prTest (expr "datum.value < 50"), [ mStr "red" ] )
+                        , ( prTest (expr "datum.value < 60"), [ mStr "yellow" ] )
                         ]
                         [ mStr "black" ]
                     ]
@@ -146,18 +147,20 @@ selectionCondition1 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "alex"
-                    seInterval
-                    [ seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
-                    , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+        ps =
+            params
+                << param "alex"
+                    [ paSelect seInterval
+                        [ seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        ]
                     ]
-                << select "morgan"
-                    seInterval
-                    [ seOn "[mousedown[event.shiftKey], mouseup] > mousemove"
-                    , seTranslate "[mousedown[event.shiftKey], mouseup] > mousemove"
-                    , seSelectionMark [ smFill "#fdbb84", smFillOpacity 0.5, smStroke "#e34a33" ]
+                << param "morgan"
+                    [ paSelect seInterval
+                        [ seOn "[mousedown[event.shiftKey], mouseup] > mousemove"
+                        , seTranslate "[mousedown[event.shiftKey], mouseup] > mousemove"
+                        , seSelectionMark [ smFill "#fdbb84", smFillOpacity 0.5, smStroke "#e34a33" ]
+                        ]
                     ]
 
         enc =
@@ -167,7 +170,7 @@ selectionCondition1 =
                 << color [ mAggregate opCount, mName "*" ]
     in
     toVegaLite
-        [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
+        [ data, ps [], rect [ maCursor cuGrab ], enc [] ]
 
 
 selectionCondition2 : Spec
@@ -176,18 +179,20 @@ selectionCondition2 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "alex"
-                    seInterval
-                    [ seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
-                    , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+        ps =
+            params
+                << param "alex"
+                    [ paSelect seInterval
+                        [ seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        ]
                     ]
-                << select "morgan"
-                    seInterval
-                    [ seOn "[mousedown[event.shiftKey], mouseup] > mousemove"
-                    , seTranslate "[mousedown[event.shiftKey], mouseup] > mousemove"
-                    , seSelectionMark [ smFill "#fdbb84", smFillOpacity 0.5, smStroke "#e34a33" ]
+                << param "morgan"
+                    [ paSelect seInterval
+                        [ seOn "[mousedown[event.shiftKey], mouseup] > mousemove"
+                        , seTranslate "[mousedown[event.shiftKey], mouseup] > mousemove"
+                        , seSelectionMark [ smFill "#fdbb84", smFillOpacity 0.5, smStroke "#e34a33" ]
+                        ]
                     ]
 
         enc =
@@ -195,14 +200,13 @@ selectionCondition2 =
                 << position Y [ pName "Origin", pOrdinal ]
                 << position X [ pName "Cylinders", pOrdinal ]
                 << color
-                    [ mSelectionCondition
-                        (and (selectionName "alex") (selectionName "morgan"))
-                        [ mAggregate opCount, mName "*" ]
+                    [ mCondition (prTest (and (bParam "alex") (bParam "morgan")))
+                        [ mAggregate opCount ]
                         [ mStr "gray" ]
                     ]
     in
     toVegaLite
-        [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
+        [ data, ps [], rect [ maCursor cuGrab ], enc [] ]
 
 
 selectionCondition3 : Spec
@@ -211,18 +215,13 @@ selectionCondition3 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [] ]
+
         trans =
             transform
-                << filter
-                    (fiCompose
-                        (and (selected "brush")
-                            (expr "datum.Weight_in_lbs > 3000")
-                        )
-                    )
-
-        sel =
-            selection
-                << select "brush" seInterval []
+                << filter (fiCompose (and (bParam "brush") (expr "datum.Weight_in_lbs > 3000")))
 
         enc1 =
             encoding
@@ -230,7 +229,7 @@ selectionCondition3 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
 
         spec1 =
-            asSpec [ sel [], point [], enc1 [] ]
+            asSpec [ ps [], enc1 [], point [] ]
 
         enc2 =
             encoding
@@ -238,7 +237,7 @@ selectionCondition3 =
                 << position Y [ pName "Displacement", pQuant, pScale [ scDomain (doNums [ 0, 500 ]) ] ]
 
         spec2 =
-            asSpec [ trans [], point [], enc2 [] ]
+            asSpec [ trans [], enc2 [], point [] ]
     in
     toVegaLite
         [ data, vConcat [ spec1, spec2 ] ]
@@ -250,28 +249,24 @@ selectionCondition4 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "mySelection"
-                    seInterval
-                    [ seClear ""
-                    , seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
-                    , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect seInterval
+                        [ seClear ""
+                        , seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        ]
                     ]
 
         enc =
             encoding
                 << position Y [ pName "Origin", pOrdinal ]
                 << position X [ pName "Cylinders", pOrdinal ]
-                << color
-                    [ mSelectionCondition
-                        (selectionName "mySelection")
-                        [ mAggregate opCount, mName "*" ]
-                        [ mStr "gray" ]
-                    ]
+                << color [ mCondition (prParam "mySelection") [ mAggregate opCount, mName "*" ] [ mStr "gray" ] ]
     in
     toVegaLite
-        [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
+        [ data, ps [], enc [], rect [ maCursor cuGrab ] ]
 
 
 selectionCondition5 : Spec
@@ -280,29 +275,24 @@ selectionCondition5 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "mySelection"
-                    seInterval
-                    [ seClear "mouseup"
-                    , seEmpty
-                    , seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
-                    , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect seInterval
+                        [ seClear "mouseup"
+                        , seOn "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        , seTranslate "[mousedown[!event.shiftKey], mouseup] > mousemove"
+                        ]
                     ]
 
         enc =
             encoding
                 << position Y [ pName "Origin", pOrdinal ]
                 << position X [ pName "Cylinders", pOrdinal ]
-                << color
-                    [ mSelectionCondition
-                        (selectionName "mySelection")
-                        [ mAggregate opCount, mName "*" ]
-                        [ mStr "gray" ]
-                    ]
+                << color [ mCondition (prParamEmpty "mySelection") [ mAggregate opCount, mName "*" ] [ mStr "gray" ] ]
     in
     toVegaLite
-        [ data, sel [], rect [ maCursor cuGrab ], enc [] ]
+        [ data, ps [], enc [], rect [ maCursor cuGrab ] ]
 
 
 bindScales1 : Spec
@@ -311,9 +301,9 @@ bindScales1 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "myZoomPan" seInterval [ seBindScales ]
+        ps =
+            params
+                << param "myZoomPan" [ paSelect seInterval [], paBindScales ]
 
         enc =
             encoding
@@ -321,7 +311,7 @@ bindScales1 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ width 300, height 300, data, sel [], circle [], enc [] ]
+        [ width 300, height 300, data, ps [], enc [], circle [] ]
 
 
 bindScales2 : Spec
@@ -330,11 +320,12 @@ bindScales2 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        sel =
-            selection
-                << select "myZoomPan"
-                    seInterval
-                    [ seBindScales, seClear "click[event.shiftKey]" ]
+        ps =
+            params
+                << param "myZoomPan"
+                    [ paSelect seInterval [ seClear "click[event.shiftKey]" ]
+                    , paBindScales
+                    ]
 
         enc =
             encoding
@@ -342,7 +333,7 @@ bindScales2 =
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
     in
     toVegaLite
-        [ width 300, height 300, data, sel [], circle [], enc [] ]
+        [ width 300, height 300, data, ps [], enc [], circle [] ]
 
 
 orderCondition1 : Spec
@@ -354,9 +345,9 @@ orderCondition1 =
                 << dataColumn "predicted" (strs [ "A", "B", "C", "A", "B", "C", "A", "B", "C" ])
                 << dataColumn "count" (nums [ 13, 0, 0, 0, 10, 6, 0, 0, 9 ])
 
-        sel =
-            selection
-                << select "highlight" seSingle []
+        ps =
+            params
+                << param "highlight" [ paSelect sePoint [ seToggle tpFalse ] ]
 
         cfg =
             configure
@@ -371,19 +362,10 @@ orderCondition1 =
                 << position X [ pName "predicted" ]
                 << position Y [ pName "actual" ]
                 << fill [ mName "count", mQuant ]
-                << stroke
-                    [ mDataCondition
-                        [ ( and (selected "highlight")
-                                (expr "length(data(\"highlight_store\"))")
-                          , [ mStr "black" ]
-                          )
-                        ]
-                        [ mStr "" ]
-                    ]
-                << order
-                    [ oSelectionCondition (selectionName "highlight") [ oNum 1 ] [ oNum 0 ] ]
+                << stroke [ mCondition (prParamEmpty "highlight") [ mStr "black" ] [ mStr "" ] ]
+                << order [ oCondition (prParam "highlight") [ oNum 1 ] [ oNum 0 ] ]
     in
-    toVegaLite [ cfg [], data [], sel [], enc [], rect [ maStrokeWidth 8 ] ]
+    toVegaLite [ cfg [], data [], ps [], enc [], rect [ maStrokeWidth 8 ] ]
 
 
 orderCondition2 : Spec
@@ -397,9 +379,40 @@ orderCondition2 =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin" ]
-                << order [ oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ] ]
+                << order
+                    [ oConditions
+                        [ ( prTest (expr "datum.Origin == 'Europe'"), [ oNum 3 ] )
+                        , ( prTest (expr "datum.Origin == 'Japan'"), [ oNum 2 ] )
+                        ]
+                        [ oNum 1 ]
+                    ]
     in
     toVegaLite [ data, enc [], circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ] ]
+
+
+orderCondition3 : Spec
+orderCondition3 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "sel" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mName "Origin" ]
+                << order [ oCondition (prParam "sel") [ oNum 1 ] [ oNum 0 ] ]
+    in
+    toVegaLite
+        [ data
+        , ps []
+        , enc []
+        , circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ]
+        ]
 
 
 
@@ -422,6 +435,7 @@ specs =
     , ( "bindScales2", bindScales2 )
     , ( "orderCondition1", orderCondition1 )
     , ( "orderCondition2", orderCondition2 )
+    , ( "orderCondition3", orderCondition3 )
     ]
 
 

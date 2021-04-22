@@ -50,8 +50,8 @@ line1 =
     let
         prm =
             params
-                [ ( "interp"
-                  , [ paValue (str "linear")
+                << param "interp"
+                    [ paValue (str "linear")
                     , paBind
                         (ipSelect
                             [ inName "interpolation style "
@@ -73,9 +73,7 @@ line1 =
                             ]
                         )
                     ]
-                  )
-                , ( "tension", [ paValue (num 0), paBind (ipRange [ inName "tension", inMin -10, inMax 10, inStep 0.1 ]) ] )
-                ]
+                << param "tension" [ paValue (num 0), paBind (ipRange [ inName "tension", inMin -10, inMax 10, inStep 0.1 ]) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -92,7 +90,7 @@ line1 =
             asSpec [ point [] ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , width 400
         , height 400
         , data

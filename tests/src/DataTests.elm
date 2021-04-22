@@ -871,10 +871,7 @@ datum8 =
         enc =
             encoding
                 << position Y [ pName "i", pOrdinal ]
-                << text
-                    [ tDataCondition [ ( expr "datum.i %2 == 0", [ tStr "even" ] ) ]
-                        [ tStr "odd" ]
-                    ]
+                << text [ tCondition (prTest (expr "datum.i %2 == 0")) [ tStr "even" ] [ tStr "odd" ] ]
     in
     toVegaLite [ data [], enc [], textMark [] ]
 

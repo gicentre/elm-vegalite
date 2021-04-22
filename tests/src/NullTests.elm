@@ -138,11 +138,8 @@ filter1 =
                 << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"
-                          , [ mStr "#ddd" ]
-                          )
-                        ]
+                    [ mCondition (prTest (expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"))
+                        [ mStr "#ddd" ]
                         [ mStr "rgb(76,120,168)" ]
                     ]
     in
@@ -170,11 +167,8 @@ filter2 =
                 << position X [ pName "IMDB Rating", pQuant ]
                 << position Y [ pName "Rotten Tomatoes Rating", pQuant ]
                 << color
-                    [ mDataCondition
-                        [ ( expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"
-                          , [ mStr "#ddd" ]
-                          )
-                        ]
+                    [ mCondition (prTest (expr "datum['IMDB Rating'] === null || datum['Rotten Tomatoes Rating'] === null"))
+                        [ mStr "#ddd" ]
                         [ mStr "rgb(76,120,168)" ]
                     ]
     in

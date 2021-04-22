@@ -504,6 +504,35 @@ axisLegendCfg1 =
         |> singleVis
 
 
+interactionCfg1 : Spec
+interactionCfg1 =
+    let
+        cfg =
+            configure
+                << configuration (coSelection [ ( sePoint, [ seOn "mouseover" ] ) ])
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "sel" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mCondition (prParam "sel") [ mName "Origin" ] [ mStr "#ccc" ] ]
+    in
+    toVegaLite
+        [ cfg []
+        , data
+        , ps []
+        , enc []
+        , circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -534,6 +563,7 @@ specs =
     , ( "titleCfg3", titleCfg3 )
     , ( "scaleCfg1", scaleCfg1 )
     , ( "axisLegendCfg1", axisLegendCfg1 )
+    , ( "interactionCfg1", interactionCfg1 )
     ]
 
 

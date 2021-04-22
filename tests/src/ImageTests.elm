@@ -114,12 +114,7 @@ image11 =
     let
         prm =
             params
-                [ ( "asp"
-                  , [ paValue (boo True)
-                    , paBind (ipCheckbox [ inName "maintain aspect ratio" ])
-                    ]
-                  )
-                ]
+                << param "asp" [ paValue (boo True), paBind (ipCheckbox [ inName "maintain aspect ratio" ]) ]
 
         data =
             dataFromColumns []
@@ -135,7 +130,7 @@ image11 =
             enc << url [ hStr "https://gicentre.github.io/data/images/LillyTarn.jpg" ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , data []
         , layer
             [ asSpec

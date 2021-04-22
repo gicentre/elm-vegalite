@@ -365,17 +365,16 @@ axis16 =
     let
         prm =
             params
-                [ ( "offset", [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ] )
-                , ( "labelFontSize", [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ] )
-                , ( "labelAngle", [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ] )
-                , ( "titleColor", [ paValue (str "black"), paBind (ipColor [ inName "Title colour" ]) ] )
-                , ( "domain", [ paValue (boo True), paBind (ipCheckbox []) ] )
-                , ( "labels", [ paValue (boo True), paBind (ipCheckbox []) ] )
-                , ( "tickExtra", [ paValue (boo True), paBind (ipCheckbox []) ] )
-                , ( "tickRound", [ paValue (boo True), paBind (ipCheckbox []) ] )
-                , ( "ticks", [ paValue (boo True), paBind (ipCheckbox []) ] )
-                , ( "grd", [ paValue (boo True), paBind (ipCheckbox []) ] )
-                ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ]
+                << param "titleColor" [ paValue (str "black"), paBind (ipColor [ inName "Title colour" ]) ]
+                << param "domain" [ paValue (boo True), paBind (ipCheckbox []) ]
+                << param "labels" [ paValue (boo True), paBind (ipCheckbox []) ]
+                << param "tickExtra" [ paValue (boo True), paBind (ipCheckbox []) ]
+                << param "tickRound" [ paValue (boo True), paBind (ipCheckbox []) ]
+                << param "ticks" [ paValue (boo True), paBind (ipCheckbox []) ]
+                << param "grd" [ paValue (boo True), paBind (ipCheckbox []) ]
 
         dataMovies =
             dataFromUrl (path ++ "movies.json") []
@@ -401,7 +400,7 @@ axis16 =
                     ]
                 << position Y [ pAggregate opCount ]
     in
-    toVegaLite [ prm, width 300, height 200, dataMovies, enc [], bar [] ]
+    toVegaLite [ prm [], width 300, height 200, dataMovies, enc [], bar [] ]
 
 
 

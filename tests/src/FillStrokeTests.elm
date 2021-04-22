@@ -117,7 +117,8 @@ geo2 =
             encoding
                 << stroke [ mName "geometry.type" ]
                 << fill
-                    [ mDataCondition [ ( expr "datum.geometry.type === 'Polygon'", [ mName "geometry.type" ] ) ]
+                    [ mCondition (prTest (expr "datum.geometry.type === 'Polygon'"))
+                        [ mName "geometry.type" ]
                         [ mStr "rgb(0,0,0,0)" ]
                     ]
     in
@@ -491,10 +492,9 @@ capAndJoin1 =
     let
         prm =
             params
-                [ ( "sw", [ paValue (num 4), paBind (ipRange [ inName "stroke width", inMin 1, inMax 20, inStep 1 ]) ] )
-                , ( "cap", [ paValue (str "square"), paBind (ipSelect [ inOptions [ "round", "square", "butt" ] ]) ] )
-                , ( "join", [ paValue (str "miter"), paBind (ipSelect [ inOptions [ "round", "bevel", "miter" ] ]) ] )
-                ]
+                << param "sw" [ paValue (num 4), paBind (ipRange [ inName "stroke width", inMin 1, inMax 20, inStep 1 ]) ]
+                << param "cap" [ paValue (str "square"), paBind (ipSelect [ inOptions [ "round", "square", "butt" ] ]) ]
+                << param "join" [ paValue (str "miter"), paBind (ipSelect [ inOptions [ "round", "bevel", "miter" ] ]) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -505,7 +505,7 @@ capAndJoin1 =
                 << position Y [ pName "Miles_per_Gallon", pAggregate opMean ]
     in
     toVegaLite
-        [ prm
+        [ prm []
         , width 400
         , height 400
         , data

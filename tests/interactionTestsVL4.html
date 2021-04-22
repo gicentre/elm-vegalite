@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Elm-Vegalite Interaction Tests</title>
+    <title>
+      Elm-Vegalite Interaction for VL 4 Backward Compatibility Testing
+    </title>
     <meta charset="utf-8" />
 
     <!-- These scripts link to the Vega/Vega-Lite runtime -->
@@ -9,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <script src="js/interactionTests.js"></script>
+    <script src="js/interactionTestsVL4.js"></script>
 
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300"
@@ -35,7 +37,12 @@
   </head>
 
   <body>
-    <h1>Elm-Vega Interaction Tests</h1>
+    <h1>Elm-Vegalite Interaction for VL 4 Backward Compatibility Testing</h1>
+
+    <p>
+      The following all use the old Vega-Lite 4 interaction model syntax and are
+      provided here to ensure we have backward compatibility with that syntax.
+    </p>
 
     <h2>Direct Selection</h2>
     <figure class="cell">
@@ -89,7 +96,11 @@
 
     <figure class="cell">
       <div id="interaction8"></div>
-      <figcaption>Interval selection with only 2013 initialised.</figcaption>
+      <figcaption>
+        Interval selection with no initialization because both init values set
+        to
+        <code>Nothing</code>.
+      </figcaption>
     </figure>
 
     <figure class="cell">
@@ -108,7 +119,10 @@
 
     <figure class="cell">
       <div id="interaction11"></div>
-      <figcaption>Selection of items via clicking on legend.</figcaption>
+      <figcaption>
+        Selection of items via clicking on legend with 0.1 opacity for
+        unselected legend items.
+      </figcaption>
     </figure>
     <div style="clear: left"></div>
 
@@ -188,7 +202,7 @@
     <div id="elmContainer"></div>
 
     <script>
-      Elm.InteractionTests.init({
+      Elm.InteractionTestsVL4.init({
         node: document.getElementById("elmContainer"),
       }).ports.elmToJS.subscribe(function (namedSpecs) {
         for (let name of Object.keys(namedSpecs)) {
