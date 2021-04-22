@@ -62,7 +62,7 @@ firstCentreOffset =
 radial3 : Spec
 radial3 =
     let
-        prm =
+        ps =
             params
                 << param "radius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ]
                 << param "radius2" [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ]
@@ -80,7 +80,7 @@ radial3 =
                 << color [ mName "category" ]
     in
     toVegaLite
-        [ prm []
+        [ ps []
         , data []
         , enc []
         , arc

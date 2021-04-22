@@ -11998,7 +11998,7 @@ var $author$project$VegaLite$PValue = function (a) {
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$RadialTests$radial3 = function () {
-	var prm = A2(
+	var ps = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -12106,7 +12106,7 @@ var $author$project$RadialTests$radial3 = function () {
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm(_List_Nil),
+				ps(_List_Nil),
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$arc(
