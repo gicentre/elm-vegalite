@@ -363,18 +363,67 @@ axis15 =
 axis16 : Spec
 axis16 =
     let
-        prm =
+        ps =
             params
-                << param "offset" [ paValue (num 0), paBind (ipRange [ inName "Axis offset", inMin -10, inMax 10, inStep 1 ]) ]
-                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Axis label font size", inMin 0, inMax 32, inStep 1 ]) ]
-                << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inName "Label angle", inMin -90, inMax 90, inStep 1 ]) ]
-                << param "titleColor" [ paValue (str "black"), paBind (ipColor [ inName "Title colour" ]) ]
-                << param "domain" [ paValue (boo True), paBind (ipCheckbox []) ]
-                << param "labels" [ paValue (boo True), paBind (ipCheckbox []) ]
-                << param "tickExtra" [ paValue (boo True), paBind (ipCheckbox []) ]
-                << param "tickRound" [ paValue (boo True), paBind (ipCheckbox []) ]
-                << param "ticks" [ paValue (boo True), paBind (ipCheckbox []) ]
-                << param "grd" [ paValue (boo True), paBind (ipCheckbox []) ]
+                -- TODO Aria
+                -- TODO domainDash**
+                -- TODO domainDashOffset
+                -- TODO labelAlign
+                -- TODO labelBaseline
+                -- TODO labelBound
+                -- TODO labelColor
+                -- TODO labelFlushOffset
+                -- TODO labelFont
+                -- TODO labelFontWeight
+                -- TODO labelLimit
+                -- TODO labelLineHeight
+                -- TODO labelOffset
+                -- TODO labelOpacity
+                -- TODO labelOverlap
+                -- TODO labelPadding
+                -- TODO labelSeparation
+                -- TODO tickBan
+                -- TODO tickCap
+                -- TODO tickColor
+                -- TODO tickCount
+                -- TODO tickDash
+                -- TODO tickOffset
+                -- TODO tickOpacity
+                -- TODO tickSize
+                -- TODO tickWidth
+                -- TODO tickValues
+                -- TODO titleAlign
+                -- TODO titleAnchor
+                -- TODO titleAngle
+                -- TODO titleBaseline
+                -- TODO titleFont
+                -- TODO titleFontStyle
+                -- TODO titleFontWeight
+                -- TODO titleLimit
+                -- TODO titleLineHeight
+                -- TODO titleOpacity
+                -- TODO titlePadding
+                -- TODO titleX
+                -- TODO titleY
+                -- TODO gridCap
+                -- TODO gridColor
+                -- TODO gridDash
+                -- TODO gridOpacity
+                -- TODO gridWidth
+                << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Axis band position ", inMin 0, inMax 1 ]) ]
+                << param "maxExtent" [ paValue (num 200), paBind (ipRange [ inName "Axis max extent ", inMin 0, inMax 300 ]) ]
+                << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Axis min extent ", inMin 0, inMax 100 ]) ]
+                << param "orient" [ paValue (str "bottom"), paBind (ipSelect [ inName "Axis orient ", inOptions [ "top", "bottom" ] ]) ]
+                << param "domainCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Domain cap ", inOptions [ "butt", "round", "square" ] ]) ]
+                << param "domainColor" [ paValue (str "black"), paBind (ipColor [ inName "Domain colour " ]) ]
+                << param "domainWidth" [ paValue (num 2), paBind (ipRange [ inName "Domain width ", inMin 0.1, inMax 12 ]) ]
+                << param "domainOpacity" [ paValue (num 1), paBind (ipRange [ inName "Domain opacity ", inMin 0, inMax 1 ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inName "Axis offset ", inMin -10, inMax 10, inStep 1 ]) ]
+                << param "position" [ paValue (num 0), paBind (ipRange [ inName "Axis position ", inMin -30, inMax 30 ]) ]
+                << param "translate" [ paValue (num 0.5), paBind (ipRange [ inName "Axis translate ", inMin -4, inMax 4 ]) ]
+                << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inName "Label angle ", inMin -90, inMax 90, inStep 1 ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Axis label font size ", inMin 0, inMax 32, inStep 1 ]) ]
+                << param "titleColor" [ paValue (str "black"), paBind (ipColor [ inName "Title colour " ]) ]
 
         dataMovies =
             dataFromUrl (path ++ "movies.json") []
@@ -386,21 +435,25 @@ axis16 =
                     , pBin []
                     , pOrdinal
                     , pAxis
-                        [ axOffset |> axNumExpr "offset"
+                        [ axBandPosition |> axNumExpr "bandPosition"
+                        , axOffset |> axNumExpr "offset"
+                        , axMaxExtent |> axNumExpr "maxExtent"
+                        , axMinExtent |> axNumExpr "minExtent"
+                        , axOrient (siExpr "orient")
+                        , axDomainCap (caExpr "domainCap")
+                        , axDomainColor |> axStrExpr "domainColor"
+                        , axDomainOpacity |> axNumExpr "domainOpacity"
+                        , axDomainWidth |> axNumExpr "domainWidth"
+                        , axPosition |> axNumExpr "position"
+                        , axTranslate |> axNumExpr "translate"
                         , axLabelFontSize |> axNumExpr "labelFontSize"
                         , axLabelAngle |> axNumExpr "labelAngle"
                         , axTitleColor |> axStrExpr "titleColor"
-                        , axDomain |> axBooExpr "domain"
-                        , axLabels |> axBooExpr "labels"
-                        , axTickExtra |> axBooExpr "tickExtra"
-                        , axTickRound |> axBooExpr "tickRound"
-                        , axTicks |> axBooExpr "ticks"
-                        , axGrid |> axBooExpr "grid"
                         ]
                     ]
                 << position Y [ pAggregate opCount ]
     in
-    toVegaLite [ prm [], width 300, height 200, dataMovies, enc [], bar [] ]
+    toVegaLite [ ps [], width 500, height 400, padding (paSize 80), dataMovies, enc [], bar [] ]
 
 
 
