@@ -13746,6 +13746,369 @@ var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeV
 						$author$project$VegaLite$lecoGradientStrokeColor('yellow')
 					])))));
 var $author$project$ConfigTests$defaultCfg = $author$project$ConfigTests$compositeVis($author$project$VegaLite$configure);
+var $author$project$VegaLite$SelectionStyle = function (a) {
+	return {$: 'SelectionStyle', a: a};
+};
+var $author$project$VegaLite$coSelection = $author$project$VegaLite$SelectionStyle;
+var $author$project$VegaLite$MCondition = F3(
+	function (a, b, c) {
+		return {$: 'MCondition', a: a, b: b, c: c};
+	});
+var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
+var $author$project$VegaLite$MString = function (a) {
+	return {$: 'MString', a: a};
+};
+var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 'MStroke', a: a};
+};
+var $author$project$VegaLite$maStroke = function (s) {
+	return $author$project$VegaLite$MStroke(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 'MStrokeWidth', a: a};
+};
+var $author$project$VegaLite$maStrokeWidth = function (n) {
+	return $author$project$VegaLite$MStrokeWidth(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$PSelect = F2(
+	function (a, b) {
+		return {$: 'PSelect', a: a, b: b};
+	});
+var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
+var $author$project$VegaLite$pBindingProperties = function (bnd) {
+	switch (bnd.$) {
+		case 'IPRange':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('range')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPCheckbox':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('checkbox')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPRadio':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('radio')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPSelect':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('select')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPText':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('text')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPNumber':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('number')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPDate':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('date')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPTime':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('time')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPMonth':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('month')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPWeek':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('week')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPDateTimeLocal':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('datetimelocal')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		case 'IPTel':
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('tel')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+		default:
+			var props = bnd.a;
+			return A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'input',
+					$elm$json$Json$Encode$string('color')),
+				A2($elm$core$List$map, $author$project$VegaLite$inputProperty, props));
+	}
+};
+var $author$project$VegaLite$paramProperty = function (pp) {
+	switch (pp.$) {
+		case 'PBind':
+			var bps = pp.a;
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					$author$project$VegaLite$pBindingProperties(bps)));
+		case 'PBindings':
+			var binds = pp.a;
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					A2(
+						$elm$core$List$map,
+						function (_v1) {
+							var bName = _v1.a;
+							var bps = _v1.b;
+							return _Utils_Tuple2(
+								bName,
+								$elm$json$Json$Encode$object(
+									$author$project$VegaLite$pBindingProperties(bps)));
+						},
+						binds)));
+		case 'PBindScales':
+			return _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$string('scales'));
+		case 'PBindLegend':
+			var s = pp.a;
+			return (!$elm$core$String$length(
+				$elm$core$String$trim(s))) ? _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$string('legend')) : _Utils_Tuple2(
+				'bind',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'legend',
+							$elm$json$Json$Encode$string(s))
+						])));
+		case 'PExpr':
+			var s = pp.a;
+			return _Utils_Tuple2(
+				'expr',
+				$elm$json$Json$Encode$string(s));
+		case 'PValue':
+			var d = pp.a;
+			return _Utils_Tuple2(
+				'value',
+				$author$project$VegaLite$dataValueSpec(d));
+		default:
+			var s = pp.a;
+			var sps = pp.b;
+			if (!sps.b) {
+				return _Utils_Tuple2(
+					'select',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$selectionLabel(s)));
+			} else {
+				return _Utils_Tuple2(
+					'select',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(
+								'type',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$selectionLabel(s))),
+							A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, sps))));
+			}
+	}
+};
+var $author$project$VegaLite$param = F2(
+	function (nme, pps) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				nme,
+				$elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps))));
+	});
+var $author$project$VegaLite$VLParams = {$: 'VLParams'};
+var $elm$json$Json$Decode$decodeValue = _Json_run;
+var $elm$json$Json$Decode$keyValuePairs = _Json_decodeKeyValuePairs;
+var $elm$json$Json$Decode$value = _Json_decodeValue;
+var $elm$core$Result$withDefault = F2(
+	function (def, result) {
+		if (result.$ === 'Ok') {
+			var a = result.a;
+			return a;
+		} else {
+			return def;
+		}
+	});
+var $author$project$VegaLite$params = function (prms) {
+	var toLabelledSpecs = function (obj) {
+		return A2(
+			$elm$core$Result$withDefault,
+			_List_Nil,
+			A2(
+				$elm$json$Json$Decode$decodeValue,
+				$elm$json$Json$Decode$keyValuePairs($elm$json$Json$Decode$value),
+				obj));
+	};
+	var extract = function (_v0) {
+		var nme = _v0.a;
+		var obj = _v0.b;
+		return $elm$json$Json$Encode$object(
+			A2(
+				$elm$core$List$cons,
+				_Utils_Tuple2(
+					'name',
+					$elm$json$Json$Encode$string(nme)),
+				toLabelledSpecs(obj)));
+	};
+	return _Utils_Tuple2(
+		$author$project$VegaLite$VLParams,
+		A2($elm$json$Json$Encode$list, extract, prms));
+};
+var $author$project$VegaLite$Param = function (a) {
+	return {$: 'Param', a: a};
+};
+var $author$project$VegaLite$prParam = $author$project$VegaLite$Param;
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 'Encodings', a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$VegaLite$On = function (a) {
+	return {$: 'On', a: a};
+};
+var $author$project$VegaLite$seOn = $author$project$VegaLite$On;
+var $author$project$VegaLite$SePoint = {$: 'SePoint'};
+var $author$project$VegaLite$sePoint = $author$project$VegaLite$SePoint;
+var $author$project$ConfigTests$interactionCfg1 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'sel',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chColor]))
+						]))
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					$author$project$VegaLite$X,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Horsepower'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				$author$project$VegaLite$Y,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Miles_per_Gallon'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('sel'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mName('Origin')
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mStr('#ccc')
+						]))
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coSelection(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						$author$project$VegaLite$sePoint,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$seOn('mouseover')
+							]))
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data,
+				ps(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(200),
+						$author$project$VegaLite$maStroke('white'),
+						$author$project$VegaLite$maStrokeWidth(0.5),
+						$author$project$VegaLite$maOpacity(1)
+					]))
+			]));
+}();
 var $author$project$VegaLite$MarkStyle = function (a) {
 	return {$: 'MarkStyle', a: a};
 };
@@ -13777,13 +14140,6 @@ var $author$project$VegaLite$MFill = function (a) {
 };
 var $author$project$VegaLite$maFill = function (s) {
 	return $author$project$VegaLite$MFill(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$MStroke = function (a) {
-	return {$: 'MStroke', a: a};
-};
-var $author$project$VegaLite$maStroke = function (s) {
-	return $author$project$VegaLite$MStroke(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$MStrokeOpacity = function (a) {
@@ -14441,7 +14797,8 @@ var $author$project$ConfigTests$specs = _List_fromArray(
 		_Utils_Tuple2('titleCfg2', $author$project$ConfigTests$titleCfg2),
 		_Utils_Tuple2('titleCfg3', $author$project$ConfigTests$titleCfg3),
 		_Utils_Tuple2('scaleCfg1', $author$project$ConfigTests$scaleCfg1),
-		_Utils_Tuple2('axisLegendCfg1', $author$project$ConfigTests$axisLegendCfg1)
+		_Utils_Tuple2('axisLegendCfg1', $author$project$ConfigTests$axisLegendCfg1),
+		_Utils_Tuple2('interactionCfg1', $author$project$ConfigTests$interactionCfg1)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
