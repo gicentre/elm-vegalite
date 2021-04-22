@@ -7244,7 +7244,7 @@ an axis property function requiring a Boolean value. This can be used to provide
 interactive parameterisation of an axis property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "lbls", [ paValue (boo True), paBind (ipCheckbox [ ]) ] ) ]
     :
@@ -7288,7 +7288,7 @@ an axis property function requiring a numeric value. This can be used to provide
 interactive parameterisation of an axis property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "axo", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20 ]) ] ) ]
     :
@@ -7419,7 +7419,7 @@ an axis property function requiring a string value. This can be used to provide 
 interactive parameterisation of an axis property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "color", [ paValue (str "black"), paBind (ipColor [ ]) ] ) ]
     :
@@ -13017,7 +13017,7 @@ an legend property function requiring a numeric value. This can be used to provi
 interactive parameterisation of a legend property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "xPos", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100 ]) ] ) ]
     :
@@ -13114,7 +13114,7 @@ an legend property function requiring a string value. This can be used to provid
 interactive parameterisation of a legend property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "color", [ paValue (str "black"), paBind (ipColor [ ]) ] ) ]
     :
@@ -15175,7 +15175,7 @@ a mark property function requiring a boolean value. This can be used to provide 
 interactive parameterisation of a mark property by providing an expression bound
 to an input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "asp"
               , [ paValue (boo True)
@@ -15219,7 +15219,7 @@ a mark property function requiring a numeric value. This can be used to provide 
 interactive parameterisation of a mark property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "r", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] ) ]
     :
@@ -15360,7 +15360,7 @@ a mark property function requiring a string value. This can be used to provide a
 interactive parameterisation of a mark property by providing an expression bound
 to an input element. For example,
 
-    prm =
+    ps =
         params
             [ ( "clr", [ paValue (str "red"), paBind (ipColor []) ] ) ]
     :
@@ -18614,7 +18614,7 @@ a title property function requiring a numeric value. This can be used to provide
 interactive parameterisation of a title property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             << param "fs" [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ]
     :
@@ -18662,7 +18662,7 @@ a title property function requiring a string value. This can be used to provide 
 interactive parameterisation of a title property when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             << params "clr" [ paValue (str "black"), paBind (ipColor []) ]
     :
@@ -19521,7 +19521,7 @@ a view background function requiring a numeric value. This can be used to provid
 interactive parameterisation of a view background when an expression is bound to an
 input element. For example,
 
-    prm =
+    ps =
         params
             << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
     :
@@ -19559,11 +19559,11 @@ viNumExpr ex fn =
 
 
 {-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
-a view background function requiring a Maybe String value. This can be used to
+a view background function requiring a `Maybe String` value. This can be used to
 provide an interactive parameterisation of a view background when an expression
 is bound to an input element. For example,
 
-    prm =
+    ps =
         params
             << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
     :
