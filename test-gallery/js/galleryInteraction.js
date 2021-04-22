@@ -10970,10 +10970,10 @@ var $author$project$VegaLite$dataFromUrl = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
-var $author$project$VegaLite$FSelection = function (a) {
-	return {$: 'FSelection', a: a};
+var $author$project$VegaLite$FSelectionEmpty = function (a) {
+	return {$: 'FSelectionEmpty', a: a};
 };
-var $author$project$VegaLite$fiSelection = $author$project$VegaLite$FSelection;
+var $author$project$VegaLite$fiSelectionEmpty = $author$project$VegaLite$FSelectionEmpty;
 var $author$project$VegaLite$filter = function (f) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -11058,10 +11058,6 @@ var $author$project$VegaLite$Nearest = function (a) {
 	return {$: 'Nearest', a: a};
 };
 var $author$project$VegaLite$seNearest = $author$project$VegaLite$Nearest;
-var $author$project$VegaLite$Toggle = function (a) {
-	return {$: 'Toggle', a: a};
-};
-var $author$project$VegaLite$seToggle = $author$project$VegaLite$Toggle;
 var $author$project$VegaLite$TName = function (a) {
 	return {$: 'TName', a: a};
 };
@@ -11257,8 +11253,6 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = {$: 'Text'};
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark($author$project$VegaLite$Text);
-var $author$project$VegaLite$TpFalse = {$: 'TpFalse'};
-var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
 var $author$project$VegaLite$VLTransform = {$: 'VLTransform'};
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -11296,13 +11290,13 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
 		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiSelection('myTooltip')));
+			$author$project$VegaLite$fiSelectionEmpty('label')));
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
 		A2(
 			$author$project$VegaLite$param,
-			'myTooltip',
+			'label',
 			_List_fromArray(
 				[
 					A2(
@@ -11310,7 +11304,6 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 					$author$project$VegaLite$sePoint,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$seToggle($author$project$VegaLite$tpFalse),
 							$author$project$VegaLite$seNearest(true),
 							$author$project$VegaLite$seOn('mouseover'),
 							$author$project$VegaLite$seEncodings(
@@ -11403,7 +11396,7 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 				[
 					A3(
 					$author$project$VegaLite$mCondition,
-					$author$project$VegaLite$prParamEmpty('myTooltip'),
+					$author$project$VegaLite$prParamEmpty('label'),
 					_List_fromArray(
 						[
 							$author$project$VegaLite$mNum(1)
@@ -11488,10 +11481,6 @@ var $author$project$GalleryInteraction$interaction10 = function () {
 					[spec1, spec2]))
 			]));
 }();
-var $author$project$VegaLite$FSelectionEmpty = function (a) {
-	return {$: 'FSelectionEmpty', a: a};
-};
-var $author$project$VegaLite$fiSelectionEmpty = $author$project$VegaLite$FSelectionEmpty;
 var $author$project$VegaLite$PiGroupBy = function (a) {
 	return {$: 'PiGroupBy', a: a};
 };
@@ -11797,6 +11786,10 @@ var $author$project$VegaLite$DTYear = function (a) {
 	return {$: 'DTYear', a: a};
 };
 var $author$project$VegaLite$dtYear = $author$project$VegaLite$DTYear;
+var $author$project$VegaLite$FSelection = function (a) {
+	return {$: 'FSelection', a: a};
+};
+var $author$project$VegaLite$fiSelection = $author$project$VegaLite$FSelection;
 var $author$project$VegaLite$W100 = {$: 'W100'};
 var $author$project$VegaLite$W200 = {$: 'W200'};
 var $author$project$VegaLite$W300 = {$: 'W300'};
@@ -11870,10 +11863,16 @@ var $author$project$VegaLite$PValue = function (a) {
 	return {$: 'PValue', a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
+var $author$project$VegaLite$Toggle = function (a) {
+	return {$: 'Toggle', a: a};
+};
+var $author$project$VegaLite$seToggle = $author$project$VegaLite$Toggle;
 var $author$project$VegaLite$TTimeUnit = function (a) {
 	return {$: 'TTimeUnit', a: a};
 };
 var $author$project$VegaLite$tTimeUnit = $author$project$VegaLite$TTimeUnit;
+var $author$project$VegaLite$TpFalse = {$: 'TpFalse'};
+var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
 var $author$project$VegaLite$YearMonth = {$: 'YearMonth'};
 var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
 var $author$project$GalleryInteraction$interaction12 = function () {

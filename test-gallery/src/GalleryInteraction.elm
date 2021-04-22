@@ -354,9 +354,9 @@ interaction10 =
 
         ps =
             params
-                << param "myTooltip"
+                << param "label"
                     [ paSelect sePoint
-                        [ seToggle tpFalse, seNearest True, seOn "mouseover", seEncodings [ chX ] ]
+                        [ seNearest True, seOn "mouseover", seEncodings [ chX ] ]
                     ]
 
         enc1 =
@@ -376,13 +376,13 @@ interaction10 =
 
         enc1_2 =
             encoding
-                << opacity [ mCondition (prParamEmpty "myTooltip") [ mNum 1 ] [ mNum 0 ] ]
+                << opacity [ mCondition (prParamEmpty "label") [ mNum 1 ] [ mNum 0 ] ]
 
         spec2 =
             asSpec [ trans2 [], layer [ spec2_1, spec2_2 ] ]
 
         trans2 =
-            transform << filter (fiSelection "myTooltip")
+            transform << filter (fiSelectionEmpty "label")
 
         spec2_1 =
             asSpec [ enc2_1 [], rule [ maColor "gray" ] ]
