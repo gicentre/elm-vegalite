@@ -9110,8 +9110,6 @@ See the [Vega-Lite documentation](https://vega.github.io/vega-lite/docs/config.h
 The following would make axis lines (domain) 2 pixels wide, remove the border
 rectangle and require interactive selection of items to use a double-click.
 
-TODO: UPDATE SELECTION CONFIG EXAMPLE
-
     let
         cfg =
             configure
@@ -9206,7 +9204,6 @@ coScale =
 
 
 {-| Configure the default appearance of selection marks.
-TODO: UPDATE CONFIGURE SELECTION.
 -}
 coSelection : List ( Selection, List SelectionProperty ) -> ConfigurationProperty
 coSelection =
