@@ -362,11 +362,7 @@ orderCondition1 =
                 << position X [ pName "predicted" ]
                 << position Y [ pName "actual" ]
                 << fill [ mName "count", mQuant ]
-                << stroke
-                    [ mCondition (prTest (and (bParam "highlight") (expr "length(data(\"highlight_store\"))")))
-                        [ mStr "black" ]
-                        [ mStr "" ]
-                    ]
+                << stroke [ mCondition (prParamEmpty "highlight") [ mStr "black" ] [ mStr "" ] ]
                 << order [ oCondition (prParam "highlight") [ oNum 1 ] [ oNum 0 ] ]
     in
     toVegaLite [ cfg [], data [], ps [], enc [], rect [ maStrokeWidth 8 ] ]

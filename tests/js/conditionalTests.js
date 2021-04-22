@@ -13598,14 +13598,6 @@ var $author$project$ConditionalTests$markCondition2 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$And = F2(
-	function (a, b) {
-		return {$: 'And', a: a, b: b};
-	});
-var $author$project$VegaLite$and = F2(
-	function (op1, op2) {
-		return A2($author$project$VegaLite$And, op1, op2);
-	});
 var $author$project$VegaLite$Domain = function (a) {
 	return {$: 'Domain', a: a};
 };
@@ -13617,10 +13609,6 @@ var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$axcoLabelAngle = A2($elm$core$Basics$composeL, $author$project$VegaLite$LabelAngle, $author$project$VegaLite$positiveAngle);
-var $author$project$VegaLite$BooleanParam = function (a) {
-	return {$: 'BooleanParam', a: a};
-};
-var $author$project$VegaLite$bParam = $author$project$VegaLite$BooleanParam;
 var $author$project$VegaLite$AxBoth = {$: 'AxBoth'};
 var $author$project$VegaLite$Axis = F2(
 	function (a, b) {
@@ -13911,6 +13899,10 @@ var $author$project$VegaLite$Param = function (a) {
 	return {$: 'Param', a: a};
 };
 var $author$project$VegaLite$prParam = $author$project$VegaLite$Param;
+var $author$project$VegaLite$ParamEmpty = function (a) {
+	return {$: 'ParamEmpty', a: a};
+};
+var $author$project$VegaLite$prParamEmpty = $author$project$VegaLite$ParamEmpty;
 var $author$project$VegaLite$RRamp = function (a) {
 	return {$: 'RRamp', a: a};
 };
@@ -14001,11 +13993,7 @@ var $author$project$ConditionalTests$orderCondition1 = function () {
 					[
 						A3(
 						$author$project$VegaLite$mCondition,
-						$author$project$VegaLite$prTest(
-							A2(
-								$author$project$VegaLite$and,
-								$author$project$VegaLite$bParam('highlight'),
-								$author$project$VegaLite$expr('length(data(\"highlight_store\"))'))),
+						$author$project$VegaLite$prParamEmpty('highlight'),
 						_List_fromArray(
 							[
 								$author$project$VegaLite$mStr('black')
@@ -14318,6 +14306,18 @@ var $author$project$ConditionalTests$selectionCondition1 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$And = F2(
+	function (a, b) {
+		return {$: 'And', a: a, b: b};
+	});
+var $author$project$VegaLite$and = F2(
+	function (op1, op2) {
+		return A2($author$project$VegaLite$And, op1, op2);
+	});
+var $author$project$VegaLite$BooleanParam = function (a) {
+	return {$: 'BooleanParam', a: a};
+};
+var $author$project$VegaLite$bParam = $author$project$VegaLite$BooleanParam;
 var $author$project$ConditionalTests$selectionCondition2 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
@@ -14656,10 +14656,6 @@ var $author$project$ConditionalTests$selectionCondition4 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$ParamEmpty = function (a) {
-	return {$: 'ParamEmpty', a: a};
-};
-var $author$project$VegaLite$prParamEmpty = $author$project$VegaLite$ParamEmpty;
 var $author$project$ConditionalTests$selectionCondition5 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
