@@ -47,6 +47,11 @@ Add aria expressions (marks, axes, legends etc.)
 
 These mostly reflect the new selection and parameter model in Vega-Lite 5.
 
+- `selection` deprecated in favour of `params`.
+- `select` deprecated in favour of `param` with `paSelect`.
+- `selected` deprecated in favour of `bParam`.
+- `selectionName` deprecated in favour of `prParam`
+
 - `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a unified `mCondition` (and their `o`, `t` and `h` equivalents) (VL5.0). Where previously a selection condition would be specified as
 
   ```elm
@@ -105,6 +110,11 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
           , paBindLegend "dblclick"
           ]
   ```
+
+- `seSingle` and `seMulti` deprecated in favour of `sePoint` (and with `seToggle tpFalse` for single selection behaviour).
+
+- `seEmpty` deprecated in favour of `prParamEmpty` and `fiSelectionEmpty`.
+- `seInit` and `seInitInterval` deprecated in favour of `paValue`.
 
 ### Additions
 
