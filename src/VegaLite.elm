@@ -968,7 +968,6 @@ module VegaLite exposing
     , hdFormatAsCustom
     , sePoint
     , seInterval
-    , seEmpty
     , seClear
     , seEncodings
     , seFields
@@ -1561,6 +1560,7 @@ module VegaLite exposing
     , scDomainMid
     , seBindLegend
     , seBindScales
+    , seEmpty
     , seInit
     , seInitInterval
     , select
@@ -3073,7 +3073,6 @@ documentation.
 
 @docs sePoint
 @docs seInterval
-@docs seEmpty
 @docs seClear
 @docs seEncodings
 @docs seFields
@@ -3150,12 +3149,12 @@ See the [Vega-lite resolve selection documentation](https://vega.github.io/vega-
 
 ## 7.3 Conditional Channel Encodings
 
-Channel encoding can be made conditional on the result of some interaction or data
-condition. This allows mark appearance to depending on some properties such as whether
-a datum is null or whether it has been selected through interaction. The condition
-to test (predicate) is specified as a parameter with [param](#param), and the
-resulting encodings that are dependent on the predicate specified via
-[mCondition](#mCondition) (and its 'o', 't' and 'h' variants).
+Channel encoding can be made conditional on the result of some interaction, data
+expression or parameter value via [mCondition](#mCondition) (and its 'o', 't' and
+'h' variants). This allows mark appearance to depend on some properties such as
+whether a datum is null or whether it has been interactively selected. The
+condition to test (predicate) is usually specified either as a parameter with
+[prParam](#prParam) or an expression with [prTest](#prTest).
 
 TODO: XXXX Provide examples
 
@@ -3831,6 +3830,7 @@ to the functions that generate them.
 @docs scDomainMid
 @docs seBindLegend
 @docs seBindScales
+@docs seEmpty
 @docs seInit
 @docs seInitInterval
 @docs select
@@ -11470,22 +11470,17 @@ hConcat specs =
     ( VLHConcat, toList specs )
 
 
-{-| Make a hyperlink channel conditional a predicate expression.
-
-TODO: XXXX Complete comments with example
-
+{-| Make a hyperlink channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
 -}
 hCondition : Predicate -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
 hCondition =
     HCondition
 
 
-{-| Make a hyperlink channel conditional on some predicate expression. The first
-parameter provides the expression to evaluate, the second the encoding to apply
-if the expression is true, the third the encoding if the expression is false.
-
-TODO: XXXX Deprecate with example
-
+{-| Deprecated in favour of [hCondition](#hCondition).
 -}
 hDataCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
 hDataCondition =
@@ -11848,12 +11843,7 @@ hRepeat =
     HRepeat
 
 
-{-| Make a hyperlink channel conditional on interactive selection. The first parameter
-provides the selection to evaluate, the second the encoding to apply if the hyperlink
-has been selected, the third the encoding if it is not selected.
-
-TODO: XXXX Deprecate comments.
-
+{-| Deprecated in favour of [hCondition](#hCondition).
 -}
 hSelectionCondition : BooleanOp -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
 hSelectionCondition =
@@ -14620,8 +14610,8 @@ mBoo =
     MBoolean
 
 
-{-| Make a mark channel conditional on a predicate expression. A predicate might
-be the result of evaluating a [param](#param) or a boolean expression
+{-| Make a mark channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
 ([prTest](#prTest)). The first parameter is the predicate that evalues to true
 or false; the second the encoding if true, the third the encoding if false.
 For example, to encode in one of two colours depending on a selection:
@@ -14660,17 +14650,13 @@ mConditions =
     MConditions
 
 
-{-| Make a mark channel conditional on one or more predicate expressions. The first
-parameter is a list of tuples each pairing a test condition with the encoding if
-that condition evaluates to true. The second is the encoding if none of the tests
-are true.
+{-| Deprecated in favour of [mCondition](#mCondition). Instead of
 
-    color
-        [ mDataCondition [ ( expr "datum.myField === null", [ mStr "grey" ] ) ]
-            [ mStr "black" ]
-        ]
+    mDataCondition [ ( expr "datum.x == null", [ mStr "grey" ] ) ] [ mStr "black" ]
 
-TODO: XXXX Deprecate comments
+use
+
+    mCondition (prTest (expr "datum.x == null")) [ mStr "grey" ] [ mStr "black" ]
 
 -}
 mDataCondition : List ( BooleanOp, List MarkChannel ) -> List MarkChannel -> MarkChannel
@@ -14973,17 +14959,13 @@ mScale =
     MScale
 
 
-{-| Make a mark channel conditional on interactive selection. The first parameter
-is a selection condition to evaluate; the second the encoding to apply if that selection
-is true; the third parameter is the encoding if the selection is false.
+{-| Deprecated in favour of [mCondition](#mCondition). Instead of
 
-    color
-        [ mSelectionCondition (selectionName "myBrush")
-            [ mName "myField", mOrdinal ]
-            [ mStr "grey" ]
-        ]
+    mSelectionCondition (selectionName "mySelection") [ mStr "red" ] [ mStr "black" ]
 
-TODO: XXXX Deprecate comments
+use
+
+    mCondition (prParam "mySelection") [ mStr "red" ] [ mStr "black" ]
 
 -}
 mSelectionCondition : BooleanOp -> List MarkChannel -> List MarkChannel -> MarkChannel
@@ -15446,9 +15428,20 @@ oBin =
     OBin
 
 
-{-| Make an order channel conditional on a predicate value.
+{-| Make an order channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
 
-TODO: XXXX Complete comments with example
+For example, to bring marks of an interactively selected colour to the front:
+
+    ps =
+        params
+            << param "sel" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
+
+    enc =
+        encoding
+            << order [ oCondition (prParam "sel") [ oNum 1 ] [ oNum 0 ] ]
 
 -}
 oCondition : Predicate -> List OrderChannel -> List OrderChannel -> OrderChannel
@@ -15468,16 +15461,13 @@ oConditions =
     OConditions
 
 
-{-| Make an order channel conditional on one or more predicate expressions. The
-first parameter is a list of tuples each pairing a test condition with the encoding
-if that condition evaluates to true. The second is the encoding if none of the
-tests are true.
+{-| Deprecated in favour of [oCondition](#oCondition). Instead of
 
-    order
-        [ oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ]
-        ]
+    oDataCondition [ ( expr "datum.Origin == 'Europe'", [ oNum 1 ] ) ] [ oNum 0 ]
 
-TODO: XXXX Depreicate
+use
+
+    oCondition (prTest (expr "datum.Origin == 'Europe'")) [ oNum 1 ] [ oNum 0 ]
 
 -}
 oDataCondition : List ( BooleanOp, List OrderChannel ) -> List OrderChannel -> OrderChannel
@@ -15801,17 +15791,13 @@ osParity =
     OParity
 
 
-{-| Make an order channel conditional on interactive selection. The first parameter
-is a selection condition to evaluate; the second the encoding to apply if that selection
-is true; the third parameter is the encoding if the selection is false.
+{-| Deprecated in favour of [oCondition](#oCondition). Instead of
 
-    order
-        [ oSelectionCondition (selectionName "myHighlight")
-            [ oNum 1 ]
-            [ oNum 0 ]
-        ]
+    oSelectionCondition (selectionName "mySelection") [ mNum 0 ] [ mNum 1 ]
 
-TODO: XXXX Deprecate comments.
+use
+
+    oCondition (prParam "mySelection") [ oNum 0 ] [ oNum 1 ]
 
 -}
 oSelectionCondition : BooleanOp -> List OrderChannel -> List OrderChannel -> OrderChannel
@@ -17616,6 +17602,9 @@ secondsMilliseconds =
 
 
 {-| Make a selection empty by default when nothing selected.
+
+TODO: XXXX Deprecate
+
 -}
 seEmpty : SelectionProperty
 seEmpty =
@@ -18362,10 +18351,10 @@ tBinned =
     TBinned
 
 
-{-| Make a text channel conditional a predicate expression.
-
-TODO: XXXX Complete comments with example
-
+{-| Make a text channel encoding conditional on a predicate expression. A predicate
+might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
+([prTest](#prTest)). The first parameter is the predicate that evalues to true
+or false; the second the encoding if true, the third the encoding if false.
 -}
 tCondition : Predicate -> List TextChannel -> List TextChannel -> TextChannel
 tCondition =
@@ -18381,12 +18370,13 @@ tConditions =
     TConditions
 
 
-{-| Make a text channel conditional on one or more predicate expressions. The first
-parameter is a list of tuples each pairing an expression to evaluate with the encoding
-if that expression is true. The second is the encoding if none of the expressions
-are evaluated as true.
+{-| Deprecated in favour of [tCondition](#tCondition). Instead of
 
-TODO: XXXX Deprecate comments
+    tDataCondition [ ( expr "datum.Origin == 'Europe'", [ tStr "EU" ] ) ] [ tStr "" ]
+
+use
+
+    tCondition (prTest (expr "datum.Origin == 'Europe'")) [ tStr "EU" ] [ tStr "" ]
 
 -}
 tDataCondition : List ( BooleanOp, List TextChannel ) -> List TextChannel -> TextChannel
@@ -19200,11 +19190,13 @@ true =
     Boolean True
 
 
-{-| Make a text channel conditional on interactive selection. The first parameter
-is a selection condition to evaluate; the second the encoding to apply if that
-selection is true; the third parameter is the encoding if the selection is false.
+{-| Deprecated in favour of [tCondition](#tCondition). Instead of
 
-TODO: XXXX Deprecate comments.
+    tSelectionCondition (selectionName "mySelection") [ tName "label" ] [ tStr "" ]
+
+use
+
+    tCondition (prParam "mySelection") [ tName "label" ] [ tStr "" ]
 
 -}
 tSelectionCondition : BooleanOp -> List TextChannel -> List TextChannel -> TextChannel

@@ -2,11 +2,9 @@
 
 ## Pending changes
 
-_Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of VegaLite 5._
+_Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of Vega-Lite 5._
 
 ### TODO
-
-Provide new simplified VL5 selection specifications and deprecate old model. Should include checking whether any instances of "selection" are generated in JSON.
 
 Add selection property expression function (probably something equivalent to `maStrExpr` so that point or interval type can be determined by an expression.
 
@@ -47,7 +45,31 @@ Add aria expressions (marks, axes, legends etc.)
 
 ### V4.0 Deprecations
 
-- `mDataCondition` and `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a simplified `mCondition`/`mConditions` (and their `o`, `t` and `h` equivalents) (VL5.0).
+These mostly reflect the new selection and parameter model in Vega-Lite 5.
+
+- `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a unified `mCondition` (and their `o`, `t` and `h` equivalents) (VL5.0). Where previously a selection condition would be specified as
+
+  ```elm
+  mSelectionCondition (selectionName "mySelection") [ mStr "red" ] [ mStr "black" ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  mCondition (prParam "mySelection") [ mStr "red" ] [ mStr "black" ]
+  ```
+
+- `mDataCondition` (and its `o`, `t` and `h` equivalents) deprecated in favour of the unified `mCondition` (and its `o`, `t` and `h` equivalents) (VL5.0). Where previously a data-dependent condition would be specified as
+
+  ```elm
+  mDataCondition [ ( expr "datum.x == null", [ mStr "grey" ] ) ] [ mStr "black" ]
+  ```
+
+  it should now be specified as
+
+  ```elm
+  mCondition (prTest (expr "datum.x == null")) [ mStr "grey" ] [ mStr "black" ]
+  ```
 
 - `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
 
