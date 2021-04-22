@@ -71,6 +71,8 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
   mCondition (prTest (expr "datum.x == null")) [ mStr "grey" ] [ mStr "black" ]
   ```
 
+- Under the VL5 interaction model, input elements (sliders etc.) now bound to parameters, so the following are deprecated, replaced by their 'ip' equivalents: `iRange`, `iCheckbox`, `iRadio`, `iSelect`, `iText`, `iNumber`, `iDate`, `iTime`, `iMonth`, `iWeek`, `iDateTimeLocal`, `iTel`, `iColor`.
+
 - `pBand` deprecated in favour of `pBandPosition` to reflect breaking change in VL5.
 
 - `seBindScales` deprecated in favour of `paBindScales` (VL5.0). Where previously zooming might have been specified as

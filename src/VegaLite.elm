@@ -985,19 +985,6 @@ module VegaLite exposing
     , blField
     , blChannel
     , blEvent
-    , iRange
-    , iCheckbox
-    , iRadio
-    , iSelect
-    , iText
-    , iNumber
-    , iDate
-    , iTime
-    , iMonth
-    , iWeek
-    , iDateTimeLocal
-    , iTel
-    , iColor
     , inDebounce
     , inElement
     , inOptions
@@ -1551,6 +1538,19 @@ module VegaLite exposing
     , WindowProperty
     , hDataCondition
     , hSelectionCondition
+    , iRange
+    , iCheckbox
+    , iRadio
+    , iSelect
+    , iText
+    , iNumber
+    , iDate
+    , iTime
+    , iMonth
+    , iWeek
+    , iDateTimeLocal
+    , iTel
+    , iColor
     , lecoShortTimeLabels
     , mDataCondition
     , mSelectionCondition
@@ -3098,19 +3098,7 @@ documentation.
 
 ### Input Elements
 
-@docs iRange
-@docs iCheckbox
-@docs iRadio
-@docs iSelect
-@docs iText
-@docs iNumber
-@docs iDate
-@docs iTime
-@docs iMonth
-@docs iWeek
-@docs iDateTimeLocal
-@docs iTel
-@docs iColor
+TODO: MOVE TO ipRange etc.
 
 @docs inDebounce
 @docs inElement
@@ -3155,8 +3143,6 @@ expression or parameter value via [mCondition](#mCondition) (and its 'o', 't' an
 whether a datum is null or whether it has been interactively selected. The
 condition to test (predicate) is usually specified either as a parameter with
 [prParam](#prParam) or an expression with [prTest](#prTest).
-
-TODO: XXXX Provide examples
 
 @docs mCondition
 @docs mConditions
@@ -3821,6 +3807,19 @@ to the functions that generate them.
 
 @docs hDataCondition
 @docs hSelectionCondition
+@docs iRange
+@docs iCheckbox
+@docs iRadio
+@docs iSelect
+@docs iText
+@docs iNumber
+@docs iDate
+@docs iTime
+@docs iMonth
+@docs iWeek
+@docs iDateTimeLocal
+@docs iTel
+@docs iColor
 @docs lecoShortTimeLabels
 @docs mDataCondition
 @docs mSelectionCondition
@@ -11746,7 +11745,7 @@ hdTitlePadding =
 
 {-| Override the default height of the visualization. If not specified the height
 will be calculated based on the content of the visualization. How the content is
-sized relative to this height specification can be customised with [autosize])(#autosize).
+sized relative to this height specification can be customised with [autosize](#autosize).
 -}
 height : Float -> ( VLProperty, Spec )
 height h =
@@ -11912,28 +11911,28 @@ hyperlink hyperProps =
     (::) ( "href", JE.object (List.concatMap hyperlinkChannelProperties hyperProps) )
 
 
-{-| Checkbox input element that can bound to a named field value.
+{-| Deprecated in favour of [ipCheckbox](#ipCheckbox).
 -}
 iCheckbox : String -> List InputProperty -> Binding
 iCheckbox f =
     ICheckbox f
 
 
-{-| Color input element that can bound to a named field value.
+{-| Deprecated in favour of [ipColor](#ipColor).
 -}
 iColor : String -> List InputProperty -> Binding
 iColor f =
     IColor f
 
 
-{-| Date input element that can bound to a named field value.
+{-| Deprecated in favour of [ipDate](#ipDate).
 -}
 iDate : String -> List InputProperty -> Binding
 iDate f =
     IDate f
 
 
-{-| Local time input element that can bound to a named field value.
+{-| Deprecated in favour of [ipDateTimeLocal](#ipDateTimeLocal).
 -}
 iDateTimeLocal : String -> List InputProperty -> Binding
 iDateTimeLocal f =
@@ -12070,7 +12069,7 @@ imNewValue =
     ImNewValue
 
 
-{-| Month input element that can bound to a named field value.
+{-| Deprecated in favour of [ipMonth](#ipMonth).
 -}
 iMonth : String -> List InputProperty -> Binding
 iMonth f =
@@ -12181,7 +12180,7 @@ inStep =
     InStep
 
 
-{-| Number input element that can bound to a named value.
+{-| Deprecated in favour of [ipNumber](#ipNumber).
 -}
 iNumber : String -> List InputProperty -> Binding
 iNumber f =
@@ -12279,49 +12278,49 @@ ipWeek =
     IPWeek
 
 
-{-| Radio box input element that can bound to a named value.
+{-| Deprecated in favour of [ipRadio](#ipRadio).
 -}
 iRadio : String -> List InputProperty -> Binding
 iRadio f =
     IRadio f
 
 
-{-| Range slider input element that can bound to a named field value.
+{-| Deprecated in favour of [ipRange](#ipRange).
 -}
 iRange : String -> List InputProperty -> Binding
 iRange f =
     IRange f
 
 
-{-| Select input element that can bound to a named value.
+{-| Deprecated in favour of [ipSelect](#ipSelect).
 -}
 iSelect : String -> List InputProperty -> Binding
 iSelect f =
     ISelect f
 
 
-{-| Telephone number input element that can bound to a named value.
+{-| Deprecated in favour of [ipTel](#ipTel).
 -}
 iTel : String -> List InputProperty -> Binding
 iTel f =
     ITel f
 
 
-{-| Text input element that can bound to a named value.
+{-| Deprecated in favour of [ipText](#ipText).
 -}
 iText : String -> List InputProperty -> Binding
 iText f =
     IText f
 
 
-{-| Time input element that can bound to a named value.
+{-| Deprecated in favour of [ipTime](#ipTime).
 -}
 iTime : String -> List InputProperty -> Binding
 iTime f =
     ITime f
 
 
-{-| Week input element that can bound to a named value.
+{-| Deprecated in favour of [ipWeek](#ipWeek).
 -}
 iWeek : String -> List InputProperty -> Binding
 iWeek f =
@@ -14630,9 +14629,9 @@ mCondition =
 
 
 {-| Make a mark channel conditional on a sequence of predicate values. This can
-be used when several predicates need to be tested in sequence ('if-else') when
-encoding a channel. For example a four-way conditional color encoding might can
-be specified as:
+be used when several predicates need to be tested in sequence each with their own
+encoding outcome ('if-else'). For example a four-way conditional color encoding
+can be specified as:
 
     encoding
         << color
@@ -15450,10 +15449,17 @@ oCondition =
 
 
 {-| Make an order channel conditional on a sequence of predicate values. This can
-be used when several predicates need to be tested in sequence ('if-else') when
-encoding a channel.
+be used when several predicates need to be tested in sequence each with their
+own encoding outcomes ('if-else'). For example to control mark z-order for three
+category values:
 
-TODO: XXXX Complete comments with example
+    order
+        [ oConditions
+            [ ( prTest (expr "datum.Origin == 'Europe'"), [ oNum 3 ] )
+            , ( prTest (expr "datum.Origin == 'Japan'"), [ oNum 2 ] )
+            ]
+            [ oNum 1 ]
+        ]
 
 -}
 oConditions : List ( Predicate, List OrderChannel ) -> List OrderChannel -> OrderChannel
@@ -18362,8 +18368,8 @@ tCondition =
 
 
 {-| Make an text channel conditional on a sequence of predicate values. This can
-be used when several predicates need to be tested in sequence ('if-else') when
-encoding a channel.
+be used when several predicates need to be tested in sequence each with their own
+encoding outcomes ('if-else').
 -}
 tConditions : List ( Predicate, List TextChannel ) -> List TextChannel -> TextChannel
 tConditions =
@@ -19801,7 +19807,7 @@ specified, the width will be calculated based on the content of the visualizatio
     toVegaLite [ width 540, data [], enc [], bar [] ]
 
 How the content is sized relative to this width specification can be customised
-with [autosize])(#autosize).
+with [autosize](#autosize).
 
 -}
 width : Float -> ( VLProperty, Spec )
