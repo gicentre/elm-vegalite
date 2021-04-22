@@ -390,6 +390,31 @@ orderCondition2 =
     toVegaLite [ data, enc [], circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ] ]
 
 
+orderCondition3 : Spec
+orderCondition3 =
+    let
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "sel" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mName "Origin" ]
+                << order [ oCondition (prParam "sel") [ oNum 1 ] [ oNum 0 ] ]
+    in
+    toVegaLite
+        [ data
+        , ps []
+        , enc []
+        , circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -410,6 +435,7 @@ specs =
     , ( "bindScales2", bindScales2 )
     , ( "orderCondition1", orderCondition1 )
     , ( "orderCondition2", orderCondition2 )
+    , ( "orderCondition3", orderCondition3 )
     ]
 
 

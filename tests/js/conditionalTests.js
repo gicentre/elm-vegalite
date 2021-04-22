@@ -14186,6 +14186,93 @@ var $author$project$ConditionalTests$orderCondition2 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$ChColor = {$: 'ChColor'};
+var $author$project$VegaLite$chColor = $author$project$VegaLite$ChColor;
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 'Encodings', a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$ConditionalTests$orderCondition3 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'sel',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chColor]))
+						]))
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						$author$project$VegaLite$X,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('Horsepower'),
+								$author$project$VegaLite$pQuant
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					$author$project$VegaLite$Y,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Miles_per_Gallon'),
+							$author$project$VegaLite$pQuant
+						]))),
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mName('Origin')
+					]))),
+		$author$project$VegaLite$order(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$oCondition,
+					$author$project$VegaLite$prParam('sel'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$oNum(1)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$oNum(0)
+						]))
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				ps(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(200),
+						$author$project$VegaLite$maStroke('white'),
+						$author$project$VegaLite$maStrokeWidth(0.5),
+						$author$project$VegaLite$maOpacity(1)
+					]))
+			]));
+}();
 var $author$project$VegaLite$CGrab = {$: 'CGrab'};
 var $author$project$VegaLite$cuGrab = $author$project$VegaLite$CGrab;
 var $author$project$VegaLite$MAggregate = function (a) {
@@ -14743,7 +14830,8 @@ var $author$project$ConditionalTests$specs = _List_fromArray(
 		_Utils_Tuple2('bindScales1', $author$project$ConditionalTests$bindScales1),
 		_Utils_Tuple2('bindScales2', $author$project$ConditionalTests$bindScales2),
 		_Utils_Tuple2('orderCondition1', $author$project$ConditionalTests$orderCondition1),
-		_Utils_Tuple2('orderCondition2', $author$project$ConditionalTests$orderCondition2)
+		_Utils_Tuple2('orderCondition2', $author$project$ConditionalTests$orderCondition2),
+		_Utils_Tuple2('orderCondition3', $author$project$ConditionalTests$orderCondition3)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
