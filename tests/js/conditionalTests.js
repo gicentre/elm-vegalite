@@ -10848,8 +10848,6 @@ var $author$project$ConditionalTests$bindScales1 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$BindScales = {$: 'BindScales'};
-var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
 var $author$project$VegaLite$Clear = function (a) {
 	return {$: 'Clear', a: a};
 };
@@ -10868,9 +10866,9 @@ var $author$project$ConditionalTests$bindScales2 = function () {
 					$author$project$VegaLite$seInterval,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$seBindScales,
 							$author$project$VegaLite$seClear('click[event.shiftKey]')
-						]))
+						])),
+					$author$project$VegaLite$paBindScales
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -14121,6 +14119,11 @@ var $author$project$VegaLite$maStroke = function (s) {
 	return $author$project$VegaLite$MStroke(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$OConditions = F2(
+	function (a, b) {
+		return {$: 'OConditions', a: a, b: b};
+	});
+var $author$project$VegaLite$oConditions = $author$project$VegaLite$OConditions;
 var $author$project$ConditionalTests$orderCondition2 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -14155,17 +14158,28 @@ var $author$project$ConditionalTests$orderCondition2 = function () {
 		$author$project$VegaLite$order(
 			_List_fromArray(
 				[
-					A3(
-					$author$project$VegaLite$oCondition,
-					$author$project$VegaLite$prTest(
-						$author$project$VegaLite$expr('datum.Origin == \'Europe\'')),
+					A2(
+					$author$project$VegaLite$oConditions,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$oNum(1)
+							_Utils_Tuple2(
+							$author$project$VegaLite$prTest(
+								$author$project$VegaLite$expr('datum.Origin == \'Europe\'')),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$oNum(3)
+								])),
+							_Utils_Tuple2(
+							$author$project$VegaLite$prTest(
+								$author$project$VegaLite$expr('datum.Origin == \'Japan\'')),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$oNum(2)
+								]))
 						]),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$oNum(0)
+							$author$project$VegaLite$oNum(1)
 						]))
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConditionalTests$path + 'cars.json', _List_Nil);
@@ -14436,10 +14450,6 @@ var $author$project$VegaLite$SDomain = function (a) {
 	return {$: 'SDomain', a: a};
 };
 var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$Selection = function (a) {
-	return {$: 'Selection', a: a};
-};
-var $author$project$VegaLite$selected = $author$project$VegaLite$Selection;
 var $author$project$VegaLite$VLTransform = {$: 'VLTransform'};
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -14480,7 +14490,7 @@ var $author$project$ConditionalTests$selectionCondition3 = function () {
 			$author$project$VegaLite$fiCompose(
 				A2(
 					$author$project$VegaLite$and,
-					$author$project$VegaLite$selected('brush'),
+					$author$project$VegaLite$bParam('brush'),
 					$author$project$VegaLite$expr('datum.Weight_in_lbs > 3000')))));
 	var ps = A2(
 		$elm$core$Basics$composeL,

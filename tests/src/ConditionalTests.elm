@@ -215,18 +215,13 @@ selectionCondition3 =
         data =
             dataFromUrl (path ++ "cars.json") []
 
-        trans =
-            transform
-                << filter
-                    (fiCompose
-                        (and (selected "brush")
-                            (expr "datum.Weight_in_lbs > 3000")
-                        )
-                    )
-
         ps =
             params
                 << param "brush" [ paSelect seInterval [] ]
+
+        trans =
+            transform
+                << filter (fiCompose (and (bParam "brush") (expr "datum.Weight_in_lbs > 3000")))
 
         enc1 =
             encoding
@@ -328,8 +323,8 @@ bindScales2 =
         ps =
             params
                 << param "myZoomPan"
-                    [ paSelect seInterval
-                        [ seBindScales, seClear "click[event.shiftKey]" ]
+                    [ paSelect seInterval [ seClear "click[event.shiftKey]" ]
+                    , paBindScales
                     ]
 
         enc =
@@ -388,7 +383,13 @@ orderCondition2 =
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << color [ mName "Origin" ]
-                << order [ oCondition (prTest (expr "datum.Origin == 'Europe'")) [ oNum 1 ] [ oNum 0 ] ]
+                << order
+                    [ oConditions
+                        [ ( prTest (expr "datum.Origin == 'Europe'"), [ oNum 3 ] )
+                        , ( prTest (expr "datum.Origin == 'Japan'"), [ oNum 2 ] )
+                        ]
+                        [ oNum 1 ]
+                    ]
     in
     toVegaLite [ data, enc [], circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ] ]
 
