@@ -51,6 +51,7 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
 - `select` deprecated in favour of `param` with `paSelect`.
 - `selected` deprecated in favour of `bParam`.
 - `selectionName` deprecated in favour of `prParam`
+- `blField`, `blChannel` and `blEvent` deprecated in favour of `param` settings.
 
 - `mSelectionCondition` (and their `o`, `t` and `h` equivalents) deprecated in favour of a unified `mCondition` (and their `o`, `t` and `h` equivalents) (VL5.0). Where previously a selection condition would be specified as
 
