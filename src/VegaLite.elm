@@ -966,6 +966,11 @@ module VegaLite exposing
     , hdFormatAsNum
     , hdFormatAsTemporal
     , hdFormatAsCustom
+    , params
+    , param
+    , paValue
+    , paExpr
+    , paSelect
     , sePoint
     , seInterval
     , seClear
@@ -981,10 +986,26 @@ module VegaLite exposing
     , tpCtrltKey
     , seTranslate
     , seZoom
-    , seBind
+    , paBind
+    , paBindings
+    , paBindScales
+    , paBindLegend
     , blField
     , blChannel
     , blEvent
+    , ipRange
+    , ipCheckbox
+    , ipRadio
+    , ipSelect
+    , ipText
+    , ipNumber
+    , ipDate
+    , ipTime
+    , ipMonth
+    , ipWeek
+    , ipDateTimeLocal
+    , ipTel
+    , ipColor
     , inDebounce
     , inElement
     , inOptions
@@ -1045,28 +1066,6 @@ module VegaLite exposing
     , asResize
     , background
     , backgroundExpr
-    , params
-    , param
-    , paValue
-    , paExpr
-    , paSelect
-    , paBindScales
-    , paBindLegend
-    , paBind
-    , paBindings
-    , ipRange
-    , ipCheckbox
-    , ipRadio
-    , ipSelect
-    , ipText
-    , ipNumber
-    , ipDate
-    , ipTime
-    , ipMonth
-    , ipWeek
-    , ipDateTimeLocal
-    , ipTel
-    , ipColor
     , tiNumExpr
     , tiStrExpr
     , title
@@ -1558,6 +1557,7 @@ module VegaLite exposing
     , oSelectionCondition
     , pBand
     , scDomainMid
+    , seBind
     , seBindLegend
     , seBindScales
     , seEmpty
@@ -1591,7 +1591,7 @@ the Vega-Lite runtime, you can embed specifications directly in a
 4.  [Specifying Marks](#4-specifying-marks)
 5.  [Encoding Data as Channels](#5-encoding-data-as-channels)
 6.  [View Composition](#6-view-composition)
-7.  [Selections for Interaction](#7-selections-for-interaction)
+7.  [Parameters](#7-parameters)
 8.  [Top-level Settings](#8-top-level-settings)
 9.  [General Data Functions](#9-general-data-functions)
 10. [Type Reference](#10-type-reference)
@@ -3056,21 +3056,28 @@ See
 ---
 
 
-# 7. Selections for Interaction
+# 7. Parameters
 
-Selections allow a visualization to respond to interactions (such as clicking or
-dragging). They transform interactions into data queries. See the Vega-Lite
-[selection](https://vega.github.io/vega-lite/docs/selection.html) and
-[bind](https://vega.github.io/vega-lite/docs/bind.html)
-documentation.
+Vega-Lite _parameters_ allow named objects whose values can change to persist within
+a specification. In the case of simple variables, it is often easier to use Elm
+directly to store persistant values. The main benefits of parameters are for storing
+_interaction selections_ such as mouse selections or slider values. See the Vega-Lite
+[parameter documentation](https://vega.github.io/vega-lite/docs/parameter.html) for
+details.
 
-  - 7.1 [Selections](#7-1-selections)
+  - 7.1 [Selection Parameters](#7-1-selection-parameters)
   - 7.2 [Selection Resolution](#7-2-selection-resolution)
   - 7.3 [Conditional Channel Encodings](#7-3-conditional-channel-encodings)
 
+@docs params
+@docs param
+@docs paValue
+@docs paExpr
 
-## 7.1 Selections
 
+## 7.1 Selection Parameters
+
+@docs paSelect
 @docs sePoint
 @docs seInterval
 @docs seClear
@@ -3090,7 +3097,11 @@ documentation.
 
 ### Selection Bindings
 
-@docs seBind
+@docs paBind
+@docs paBindings
+@docs paBindScales
+
+@docs paBindLegend
 @docs blField
 @docs blChannel
 @docs blEvent
@@ -3098,7 +3109,19 @@ documentation.
 
 ### Input Elements
 
-TODO: MOVE TO ipRange etc.
+@docs ipRange
+@docs ipCheckbox
+@docs ipRadio
+@docs ipSelect
+@docs ipText
+@docs ipNumber
+@docs ipDate
+@docs ipTime
+@docs ipMonth
+@docs ipWeek
+@docs ipDateTimeLocal
+@docs ipTel
+@docs ipColor
 
 @docs inDebounce
 @docs inElement
@@ -3137,12 +3160,13 @@ See the [Vega-lite resolve selection documentation](https://vega.github.io/vega-
 
 ## 7.3 Conditional Channel Encodings
 
-Channel encoding can be made conditional on the result of some interaction, data
-expression or parameter value via [mCondition](#mCondition) (and its 'o', 't' and
-'h' variants). This allows mark appearance to depend on some properties such as
-whether a datum is null or whether it has been interactively selected. The
-condition to test (predicate) is usually specified either as a parameter with
-[prParam](#prParam) or an expression with [prTest](#prTest).
+Channel encoding can be made conditional on a parameter value, therefore allowing
+it to be the result of some interaction or data expression. It does this via
+[mCondition](#mCondition) (and its 'o', 't' and 'h' variants). Mark appearance can
+therefore depend on some properties such as whether a datum is null or whether it
+has been interactively selected. The condition to test (predicate) is usually
+specified either as a parameter with [prParam](#prParam) or an expression with
+[prTest](#prTest).
 
 @docs mCondition
 @docs mConditions
@@ -3197,28 +3221,6 @@ These are in addition to the data and transform options described above. See the
 @docs asResize
 @docs background
 @docs backgroundExpr
-@docs params
-@docs param
-@docs paValue
-@docs paExpr
-@docs paSelect
-@docs paBindScales
-@docs paBindLegend
-@docs paBind
-@docs paBindings
-@docs ipRange
-@docs ipCheckbox
-@docs ipRadio
-@docs ipSelect
-@docs ipText
-@docs ipNumber
-@docs ipDate
-@docs ipTime
-@docs ipMonth
-@docs ipWeek
-@docs ipDateTimeLocal
-@docs ipTel
-@docs ipColor
 
 
 ## 8.1 Title
@@ -3827,6 +3829,7 @@ to the functions that generate them.
 @docs oSelectionCondition
 @docs pBand
 @docs scDomainMid
+@docs seBind
 @docs seBindLegend
 @docs seBindScales
 @docs seEmpty
@@ -9107,12 +9110,14 @@ See the [Vega-Lite documentation](https://vega.github.io/vega-lite/docs/config.h
 The following would make axis lines (domain) 2 pixels wide, remove the border
 rectangle and require interactive selection of items to use a double-click.
 
+TODO: UPDATE SELECTION CONFIG EXAMPLE
+
     let
         cfg =
             configure
                 << configuration (coAxis [ axcoDomainWidth 2 ])
                 << configuration (coView [ vicoStroke Nothing ])
-                << configuration (coSelection [ ( seSingle, [ seOn "dblclick" ] ) ])
+                << configuration (coSelection [ ( sePoint, [ seOn "dblclick" ] ) ])
     in
     toVegaLite [ cfg [], data [], enc [], bar [] ]
 
@@ -9201,6 +9206,7 @@ coScale =
 
 
 {-| Configure the default appearance of selection marks.
+TODO: UPDATE CONFIGURE SELECTION.
 -}
 coSelection : List ( Selection, List SelectionProperty ) -> ConfigurationProperty
 coSelection =
@@ -15959,27 +15965,39 @@ param nme pps =
 
 {-| Specify top-level parameters to be used within a specification. While literals
 may be specified as parameters, these are better handled directly in Elm. More
-useful is to create expressions based on the [vega-lite built-in parameters](https://vega.github.io/vega-lite/docs/parameter.html#built-in-variable-parameters)
-`width`, `height`, `padding`, `autosize`, `background` and `cursor`. For example,
+useful expression paramters are those that use the
+[vega-lite built-in parameters](https://vega.github.io/vega-lite/docs/parameter.html#built-in-variable-parameters)
+`width`, `height`, `padding`, `autosize`, `background` and `cursor`. For example
+to keep text size a fixed proportion of the plot height:
 
     ps =
         params
             << param "textSize" [ paExpr "height/20" ]
 
 Also useful is the ability to bind parameters to input elements such as range
-sliders that may be updated at runtime. Each tuple should be a named parameter
-with corresponding parameter properties. For example,
+sliders that may be updated at runtime. For example the value of the `radius` parameter
+is determined by the slider position and then used as a mark property to alter
+circle size dynamically:
 
-    ps =
-        params
-            << param "radius"
-                [ paValue (num 0)
-                , paBind (ipRange [ inMin 0, inMax 100 ])
-                ]
-            << param "theta"
-                [ paValue (num -0.73)
-                , paBind (ipRange [ inMin -6.28, inMax 6.28 ])
-                ]
+    let
+        ps =
+            params
+                << param "radius"
+                    [ paValue (num 0)
+                    , paBind (ipRange [ inMin 0, inMax 100, inStep 1 ])
+                    ]
+
+        enc =
+            encoding
+                << position Theta [ pName "value", pQuant ]
+                << color [ mName "category" ]
+    in
+    toVegaLite
+        [ ps []
+        , data []
+        , enc []
+        , arc [ maInnerRadius |> maNumExpr "radius" ]
+        ]
 
 -}
 params : List LabelledSpec -> ( VLProperty, Spec )
@@ -17493,27 +17511,7 @@ scZero =
     SZero
 
 
-{-| Bind to some input elements as part of a named selection. For example, to
-allow a selection to be based on a drop-down list of options:
-
-    sel =
-        selection
-            << select "mySelection"
-                seSingle
-                [ seFields [ "crimeType" ]
-                , seBind
-                    [ iSelect "crimeType"
-                        [ inOptions
-                            [ "Anti-social behaviour"
-                            , "Criminal damage and arson"
-                            , "Drugs"
-                            , "Robbery"
-                            , "Vehicle crime"
-                            ]
-                        ]
-                    ]
-                ]
-
+{-| Deprecated in favour of [paBind](#paBind).
 -}
 seBind : List Binding -> SelectionProperty
 seBind =
@@ -17571,10 +17569,12 @@ seBindScales =
 that can clear a selection. For example, to allow a zoomed/panned view to be reset
 on shift-click:
 
-    selection
-        << select "myZoomPan"
-            seInterval
-            [ seBindScales, seClear "click[event.shiftKey]" ]
+    ps =
+        params
+            << param "myZoomPan"
+                [ paSelect seInterval [ seClear "click[event.shiftKey]" ]
+                , paBindScales
+                ]
 
 To remove the default clearing behaviour of a selection, provide an empty string
 rather than an event stream selector.
@@ -17610,9 +17610,12 @@ seEmpty =
 {-| Encoding channels that form a named selection. For example, to _project_ a
 selection across all items that share the same value in the color channel:
 
-    sel =
-        selection
-            << select "mySelection" seMulti [ seEncodings [ chColor ] ]
+    ps =
+        params
+            << param "sel"
+                [ paSelect sePoint
+                    [ seEncodings [ chColor ] ]
+                ]
 
 -}
 seEncodings : List Channel -> SelectionProperty
