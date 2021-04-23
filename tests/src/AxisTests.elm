@@ -376,7 +376,6 @@ axis16 =
             params
                 -- TODO Aria
                 -- TODO labelBound
-                -- TODO tickBand
                 -- TODO tickCount
                 -- TODO tickValues
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
@@ -406,6 +405,7 @@ axis16 =
                 << param "labelOverlap" [ paValue (str "false"), paBind (ipSelect [ inName "Label overlap ", inDataOptions [ boo False, str "parity", str "greedy" ] ]) ]
                 << param "labelPadding" [ paValue (num 2), paBind (ipRange [ inName "Label padding ", inMin -30, inMax 30 ]) ]
                 << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inName "Label separation ", inMin 0, inMax 20 ]) ]
+                << param "tickBand" [ paValue (str "center"), paBind (ipSelect [ inName "Tick band ", inOptions [ "center", "extent" ] ]) ]
                 << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Tick cap ", inOptions [ "butt", "round", "square" ] ]) ]
                 << param "tickColor" [ paValue (str "black"), paBind (ipColor [ inName "Tick colour " ]) ]
                 << param "tickDash" [ paValue solid, paBind (ipSelect [ inName "Tick dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
@@ -471,6 +471,7 @@ axis16 =
                         , axLabelOverlap (osExpr "labelOverlap")
                         , axLabelPadding |> axNumExpr "labelPadding"
                         , axLabelSeparation |> axNumExpr "labelSeparation"
+                        , axTickBand (tbExpr "tickBand")
                         , axTickCap (caExpr "tickCap")
                         , axTickColor |> axStrExpr "tickColor"
                         , axTickDash |> axNumsExpr "tickDash"
