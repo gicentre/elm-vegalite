@@ -552,6 +552,7 @@ module VegaLite exposing
     , cAxLabelPadding
     , axLabelSeparation
     , axTicks
+    , axTickCap
     , axTickColor
     , cAxTickColor
     , axTickCount
@@ -560,13 +561,13 @@ module VegaLite exposing
     , axTickDashOffset
     , cAxTickDashOffset
     , axTickExtra
+    , axTickMinStep
     , axTickOffset
     , axTickOpacity
     , cAxTickOpacity
     , axTickRound
     , axTickSize
     , cAxTickSize
-    , axTickMinStep
     , axTickWidth
     , cAxTickWidth
     , axValues
@@ -1200,6 +1201,7 @@ module VegaLite exposing
     , axcoLabelPadding
     , axcoLabelSeparation
     , axcoTicks
+    , axcoTickCap
     , axcoTickColor
     , axcoTickCount
     , axcoTickDash
@@ -2448,6 +2450,7 @@ See the
 #### Axis Ticks
 
 @docs axTicks
+@docs axTickCap
 @docs axTickColor
 @docs cAxTickColor
 @docs axTickCount
@@ -2456,13 +2459,13 @@ See the
 @docs axTickDashOffset
 @docs cAxTickDashOffset
 @docs axTickExtra
+@docs axTickMinStep
 @docs axTickOffset
 @docs axTickOpacity
 @docs cAxTickOpacity
 @docs axTickRound
 @docs axTickSize
 @docs cAxTickSize
-@docs axTickMinStep
 @docs axTickWidth
 @docs cAxTickWidth
 @docs axValues
@@ -3389,6 +3392,7 @@ See the
 @docs axcoLabelPadding
 @docs axcoLabelSeparation
 @docs axcoTicks
+@docs axcoTickCap
 @docs axcoTickColor
 @docs axcoTickCount
 @docs axcoTickDash
@@ -3978,6 +3982,7 @@ type AxisConfig
     | MaxExtent Float
     | MinExtent Float
     | Ticks Bool
+    | TickCap StrokeCap
     | TickColor String
     | TickCount ScaleNice
     | TickDash (List Float)
@@ -4078,6 +4083,7 @@ type AxisProperty
     | AxLabelSeparation Num
     | AxStyle (List String)
     | AxTranslate Num
+    | AxTickCap StrokeCap
     | AxTickColor Str
     | AxTickCount ScaleNice
     | AxTickDash (List Float)
@@ -6911,6 +6917,13 @@ axcoMinExtent =
 -}
 
 
+{-| Default axis tick end cap style.
+-}
+axcoTickCap : StrokeCap -> AxisConfig
+axcoTickCap =
+    TickCap
+
+
 {-| Default axis tick mark color.
 -}
 axcoTickColor : String -> AxisConfig
@@ -7682,58 +7695,6 @@ axPosition n =
     AxPosition (Num n)
 
 
-{-| Whether or not an axis should include tick marks.
--}
-axTicks : Bool -> AxisProperty
-axTicks b =
-    AxTicks (Boo b)
-
-
-{-| Desired number of, or interval between, axis ticks. The resulting number of
-ticks may be different so that values are “nice” (multiples of 2, 5, 10).
--}
-axTickCount : ScaleNice -> AxisProperty
-axTickCount =
-    AxTickCount
-
-
-{-| Tick mark size in pixels.
--}
-axTickSize : Float -> AxisProperty
-axTickSize n =
-    AxTickSize (Num n)
-
-
-{-| Title to display as part of an axis. An empty string can be used to prevent
-a title being displayed. For multi-line titles, insert `\n` at each line break or
-use a `"""` multi-line string.
--}
-axTitle : String -> AxisProperty
-axTitle s =
-    AxTitle (Str s)
-
-
-{-| Horizontal alignment of an axis title.
--}
-axTitleAlign : HAlign -> AxisProperty
-axTitleAlign =
-    AxTitleAlign
-
-
-{-| Anchor position of an axis title.
--}
-axTitleAnchor : Anchor -> AxisProperty
-axTitleAnchor =
-    AxTitleAnchor
-
-
-{-| Angle of an axis title (degrees from horizontal).
--}
-axTitleAngle : Float -> AxisProperty
-axTitleAngle n =
-    AxTitleAngle (Num (positiveAngle n))
-
-
 {-| A list of named styles to apply to an axis. Named styles can be specified via
 [coAxisStyles](#coAxisStyles). Later styles in the list will override earlier
 styles if there is a conflict in any of the properties specified.
@@ -7748,11 +7709,26 @@ axStyle =
     AxStyle
 
 
+{-| How the ends of axis ticks are capped.
+-}
+axTickCap : StrokeCap -> AxisProperty
+axTickCap =
+    AxTickCap
+
+
 {-| Color of axis ticks.
 -}
 axTickColor : String -> AxisProperty
 axTickColor s =
     AxTickColor (Str s)
+
+
+{-| Desired number of, or interval between, axis ticks. The resulting number of
+ticks may be different so that values are “nice” (multiples of 2, 5, 10).
+-}
+axTickCount : ScaleNice -> AxisProperty
+axTickCount =
+    AxTickCount
 
 
 {-| Axis tick dash style. The parameter is a list of alternating 'on' and 'off'
@@ -7809,11 +7785,55 @@ axTickRound b =
     AxTickRound (Boo b)
 
 
+{-| Whether or not an axis should include tick marks.
+-}
+axTicks : Bool -> AxisProperty
+axTicks b =
+    AxTicks (Boo b)
+
+
+{-| Tick mark size in pixels.
+-}
+axTickSize : Float -> AxisProperty
+axTickSize n =
+    AxTickSize (Num n)
+
+
 {-| Width of axis ticks.
 -}
 axTickWidth : Float -> AxisProperty
 axTickWidth n =
     AxTickWidth (Num n)
+
+
+{-| Title to display as part of an axis. An empty string can be used to prevent
+a title being displayed. For multi-line titles, insert `\n` at each line break or
+use a `"""` multi-line string.
+-}
+axTitle : String -> AxisProperty
+axTitle s =
+    AxTitle (Str s)
+
+
+{-| Horizontal alignment of an axis title.
+-}
+axTitleAlign : HAlign -> AxisProperty
+axTitleAlign =
+    AxTitleAlign
+
+
+{-| Anchor position of an axis title.
+-}
+axTitleAnchor : Anchor -> AxisProperty
+axTitleAnchor =
+    AxTitleAnchor
+
+
+{-| Angle of an axis title (degrees from horizontal).
+-}
+axTitleAngle : Float -> AxisProperty
+axTitleAngle n =
+    AxTitleAngle (Num (positiveAngle n))
 
 
 {-| Vertical alignment of axis title.
@@ -20336,6 +20356,9 @@ axisConfigProperty axisCfg =
         Ticks b ->
             [ ( "ticks", JE.bool b ) ]
 
+        TickCap c ->
+            [ ( "tickCap", strokeCapSpec c ) ]
+
         TickColor c ->
             [ ( "tickColor", JE.string c ) ]
 
@@ -20703,6 +20726,9 @@ axisProperty axisProp =
 
         AxTicks b ->
             booExpr "ticks" b
+
+        AxTickCap c ->
+            [ ( "tickCap", strokeCapSpec c ) ]
 
         AxTickColor s ->
             strExpr "tickColor" s

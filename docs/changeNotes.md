@@ -165,7 +165,9 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
 
 - `dataExpr` for creating a datum value from an expression (VL4.16).
 
-- `axTranslate` for axis translation (VL5).
+- `axTranslate` / `axcoTranslate` for axis translation (VL5).
+
+- `axTickCap` / `axcoTickCap` for axis tick capping style (VL5).
 
 - `maPadAngle` for padding arc segments.
 
