@@ -376,7 +376,6 @@ axis16 =
             params
                 -- TODO Aria
                 -- TODO labelBound
-                -- TODO tickCount
                 -- TODO tickValues
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
                 << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Min extent ", inMin 0, inMax 100 ]) ]
@@ -408,6 +407,7 @@ axis16 =
                 << param "tickBand" [ paValue (str "center"), paBind (ipSelect [ inName "Tick band ", inOptions [ "center", "extent" ] ]) ]
                 << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Tick cap ", inOptions [ "butt", "round", "square" ] ]) ]
                 << param "tickColor" [ paValue (str "black"), paBind (ipColor [ inName "Tick colour " ]) ]
+                << param "tickCount" [ paValue (num 20), paBind (ipRange [ inName "Tick count ", inMin 1, inMax 100 ]) ]
                 << param "tickDash" [ paValue solid, paBind (ipSelect [ inName "Tick dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "tickDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Tick dash offset ", inMin 0, inMax 12 ]) ]
                 << param "tickOffset" [ paValue (num 0), paBind (ipRange [ inName "Tick offset ", inMin -30, inMax 30 ]) ]
@@ -501,7 +501,8 @@ axis16 =
                 << position Y
                     [ pAggregate opCount
                     , pAxis
-                        [ axGridDash |> axNumsExpr "gridDash"
+                        [ axTickCount (niExpr "tickCount")
+                        , axGridDash |> axNumsExpr "gridDash"
                         , axGridDashOffset |> axNumExpr "gridDashOffset"
                         ]
                     ]
