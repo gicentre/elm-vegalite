@@ -6219,14 +6219,23 @@ var $author$project$GalleryLine$path = 'https://cdn.jsdelivr.net/npm/vega-datase
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 'AxLabelAlign', a: a};
 };
-var $author$project$VegaLite$anchorLabel = function (an) {
+var $author$project$VegaLite$anchorSpec = function (an) {
 	switch (an.$) {
 		case 'AnStart':
-			return 'start';
+			return $elm$json$Json$Encode$string('start');
 		case 'AnMiddle':
-			return 'middle';
+			return $elm$json$Json$Encode$string('middle');
+		case 'AnEnd':
+			return $elm$json$Json$Encode$string('end');
 		default:
-			return 'end';
+			var s = an.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$AxGridColor = function (a) {
@@ -6919,6 +6928,14 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 'AxTicks':
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'ticks', b);
+		case 'AxTickCap':
+			var c = axisProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tickCap',
+					$author$project$VegaLite$strokeCapSpec(c))
+				]);
 		case 'AxTickColor':
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'tickColor', s);
@@ -7004,8 +7021,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'titleAnchor',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$anchorLabel(an)))
+					$author$project$VegaLite$anchorSpec(an))
 				]);
 		case 'AxTitleBaseline':
 			var va = axisProp.a;
@@ -7038,6 +7054,9 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 'AxTitleLimit':
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
+		case 'AxTitleLineHeight':
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'titleLineHeight', n);
 		case 'AxTitleOpacity':
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleOpacity', n);
@@ -8076,6 +8095,14 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'ticks',
 					$elm$json$Json$Encode$bool(b))
 				]);
+		case 'TickCap':
+			var c = axisCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tickCap',
+					$author$project$VegaLite$strokeCapSpec(c))
+				]);
 		case 'TickColor':
 			var c = axisCfg.a;
 			return _List_fromArray(
@@ -8189,8 +8216,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 				[
 					_Utils_Tuple2(
 					'titleAnchor',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$anchorLabel(an)))
+					$author$project$VegaLite$anchorSpec(an))
 				]);
 		case 'TitleBaseline':
 			var va = axisCfg.a;
@@ -8280,13 +8306,21 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleX',
 					$elm$json$Json$Encode$float(x))
 				]);
-		default:
+		case 'TitleY':
 			var y = axisCfg.a;
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'titleY',
 					$elm$json$Json$Encode$float(y))
+				]);
+		default:
+			var x = axisCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'translate',
+					$elm$json$Json$Encode$float(x))
 				]);
 	}
 };
@@ -8365,8 +8399,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var a = hProp.a;
 			return _Utils_Tuple2(
 				'labelAnchor',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$anchorLabel(a)));
+				$author$project$VegaLite$anchorSpec(a));
 		case 'HLabelAngle':
 			var x = hProp.a;
 			return _Utils_Tuple2(
@@ -8450,8 +8483,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			var a = hProp.a;
 			return _Utils_Tuple2(
 				'titleAnchor',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$anchorLabel(a)));
+				$author$project$VegaLite$anchorSpec(a));
 		case 'HTitleAlign':
 			var ha = hProp.a;
 			return _Utils_Tuple2(
@@ -10004,8 +10036,7 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 				[
 					_Utils_Tuple2(
 					'anchor',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$anchorLabel(an)))
+					$author$project$VegaLite$anchorSpec(an))
 				]);
 		case 'TAngle':
 			var n = titleCfg.a;
