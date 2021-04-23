@@ -87,7 +87,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `viStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction) (VL4.16 to VL 5.1).
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction), `niExpr` (nice tick intervals) (VL4.16 to VL 5.1).
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
