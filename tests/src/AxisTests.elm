@@ -368,62 +368,60 @@ axis16 =
                 -- TODO Aria
                 -- TODO domainDash**
                 -- TODO domainDashOffset
-                -- TODO labelAlign
-                -- TODO labelBaseline
                 -- TODO labelBound
-                -- TODO labelColor
-                -- TODO labelFlushOffset
-                -- TODO labelFont
-                -- TODO labelFontWeight
-                -- TODO labelLimit
-                -- TODO labelLineHeight
-                -- TODO labelOffset
-                -- TODO labelOpacity
                 -- TODO labelOverlap
-                -- TODO labelPadding
-                -- TODO labelSeparation
-                -- TODO tickBan
-                -- TODO tickCap
-                -- TODO tickColor
+                -- TODO tickBand
                 -- TODO tickCount
                 -- TODO tickDash
-                -- TODO tickOffset
-                -- TODO tickOpacity
-                -- TODO tickSize
-                -- TODO tickWidth
                 -- TODO tickValues
-                -- TODO titleAlign
-                -- TODO titleAnchor
-                -- TODO titleAngle
-                -- TODO titleBaseline
-                -- TODO titleFont
-                -- TODO titleFontStyle
-                -- TODO titleFontWeight
-                -- TODO titleLimit
-                -- TODO titleLineHeight
-                -- TODO titleOpacity
-                -- TODO titlePadding
-                -- TODO titleX
-                -- TODO titleY
-                -- TODO gridCap
-                -- TODO gridColor
                 -- TODO gridDash
-                -- TODO gridOpacity
-                -- TODO gridWidth
-                << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Axis band position ", inMin 0, inMax 1 ]) ]
-                << param "maxExtent" [ paValue (num 200), paBind (ipRange [ inName "Axis max extent ", inMin 0, inMax 300 ]) ]
-                << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Axis min extent ", inMin 0, inMax 100 ]) ]
-                << param "orient" [ paValue (str "bottom"), paBind (ipSelect [ inName "Axis orient ", inOptions [ "top", "bottom" ] ]) ]
+                << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
+                << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Min extent ", inMin 0, inMax 100 ]) ]
+                << param "orient" [ paValue (str "bottom"), paBind (ipSelect [ inName "Orientation ", inOptions [ "top", "bottom" ] ]) ]
                 << param "domainCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Domain cap ", inOptions [ "butt", "round", "square" ] ]) ]
                 << param "domainColor" [ paValue (str "black"), paBind (ipColor [ inName "Domain colour " ]) ]
                 << param "domainWidth" [ paValue (num 2), paBind (ipRange [ inName "Domain width ", inMin 0.1, inMax 12 ]) ]
                 << param "domainOpacity" [ paValue (num 1), paBind (ipRange [ inName "Domain opacity ", inMin 0, inMax 1 ]) ]
-                << param "offset" [ paValue (num 0), paBind (ipRange [ inName "Axis offset ", inMin -10, inMax 10, inStep 1 ]) ]
-                << param "position" [ paValue (num 0), paBind (ipRange [ inName "Axis position ", inMin -30, inMax 30 ]) ]
-                << param "translate" [ paValue (num 0.5), paBind (ipRange [ inName "Axis translate ", inMin -4, inMax 4 ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inName "Offset ", inMin -10, inMax 10, inStep 1 ]) ]
+                << param "position" [ paValue (num 0), paBind (ipRange [ inName "Position ", inMin -30, inMax 30 ]) ]
+                << param "translate" [ paValue (num 0.5), paBind (ipRange [ inName "Translate ", inMin -4, inMax 4 ]) ]
+                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inName "Label align ", inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inName "Label baseline ", inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inName "Label angle ", inMin -90, inMax 90, inStep 1 ]) ]
-                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Axis label font size ", inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelColor" [ paValue (str "black"), paBind (ipColor [ inName "Label colour " ]) ]
+                -- << param "labelBound" [ paValue (boo False), paBind (ipCheckbox []) ]
+                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inName "Label font ", inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "labelFlushOffset" [ paValue (num 0), paBind (ipRange [ inName "Label flush offset ", inMin -20, inMax 20 ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Label font size ", inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inName "Label style ", inOptions [ "normal", "italic" ] ]) ]
+                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inName "Label weight ", inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "labelLimit" [ paValue (num 200), paBind (ipRange [ inName "Label limit ", inMin 0, inMax 200 ]) ]
+                << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inName "Label offset ", inMin -30, inMax 30 ]) ]
+                << param "labelOpacity" [ paValue (num 1), paBind (ipRange [ inName "Label opacity ", inMin 0, inMax 1 ]) ]
+                << param "labelPadding" [ paValue (num 2), paBind (ipRange [ inName "Label padding ", inMin -30, inMax 30 ]) ]
+                << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inName "Label separation ", inMin 0, inMax 20 ]) ]
+                << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Tick cap ", inOptions [ "butt", "round", "square" ] ]) ]
+                << param "tickColor" [ paValue (str "black"), paBind (ipColor [ inName "Tick colour " ]) ]
+                << param "tickOffset" [ paValue (num 0), paBind (ipRange [ inName "Tick offset ", inMin -30, inMax 30 ]) ]
+                << param "tickOpacity" [ paValue (num 1), paBind (ipRange [ inName "Tick opacity ", inMin 0, inMax 1 ]) ]
+                << param "tickSize" [ paValue (num 5), paBind (ipRange [ inName "Tick size ", inMin -20, inMax 20 ]) ]
+                << param "tickWidth" [ paValue (num 1), paBind (ipRange [ inName "Tick width ", inMin 0, inMax 12 ]) ]
+                << param "titleAlign" [ paValue (str "center"), paBind (ipSelect [ inName "Title align ", inOptions [ "center", "left", "right" ] ]) ]
+                << param "titleAnchor" [ paValue (str "middle"), paBind (ipSelect [ inName "Title anchor ", inOptions [ "start", "middle", "end" ] ]) ]
+                << param "titleAngle" [ paValue (num 0), paBind (ipRange [ inName "Title angle ", inMin -90, inMax 90, inStep 1 ]) ]
+                << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inName "Title baseline ", inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "titleColor" [ paValue (str "black"), paBind (ipColor [ inName "Title colour " ]) ]
+                << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inName "Title font ", inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inName "Title style ", inOptions [ "normal", "italic" ] ]) ]
+                << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inName "Title weight ", inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "titleLimit" [ paValue (num 200), paBind (ipRange [ inName "Title limit ", inMin 0, inMax 200 ]) ]
+                << param "titleLineHeight" [ paValue (num 16), paBind (ipRange [ inName "Title line height ", inMin -50, inMax 50 ]) ]
+                << param "titleOpacity" [ paValue (num 1), paBind (ipRange [ inName "Title opacity ", inMin 0, inMax 1 ]) ]
+                << param "titlePadding" [ paValue (num 12), paBind (ipRange [ inName "Title padding ", inMin -20, inMax 20 ]) ]
+                << param "gridCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Grid cap ", inOptions [ "butt", "round", "square" ] ]) ]
+                << param "gridColor" [ paValue (str "black"), paBind (ipColor [ inName "Grid colour " ]) ]
+                << param "gridOpacity" [ paValue (num 1), paBind (ipRange [ inName "Grid opacity ", inMin 0, inMax 1 ]) ]
+                << param "gridWidth" [ paValue (num 1), paBind (ipRange [ inName "Grid width ", inMin 0, inMax 12 ]) ]
 
         dataMovies =
             dataFromUrl (path ++ "movies.json") []
@@ -434,10 +432,10 @@ axis16 =
                     [ pName "IMDB Rating"
                     , pBin []
                     , pOrdinal
+                    , pTitle "Internet Movie Database (IMDB)\nBinned Rating"
                     , pAxis
                         [ axBandPosition |> axNumExpr "bandPosition"
                         , axOffset |> axNumExpr "offset"
-                        , axMaxExtent |> axNumExpr "maxExtent"
                         , axMinExtent |> axNumExpr "minExtent"
                         , axOrient (siExpr "orient")
                         , axDomainCap (caExpr "domainCap")
@@ -446,9 +444,44 @@ axis16 =
                         , axDomainWidth |> axNumExpr "domainWidth"
                         , axPosition |> axNumExpr "position"
                         , axTranslate |> axNumExpr "translate"
-                        , axLabelFontSize |> axNumExpr "labelFontSize"
+                        , axLabelAlign (haExpr "labelAlign")
+                        , axLabelBaseline (vaExpr "labelBaseline")
                         , axLabelAngle |> axNumExpr "labelAngle"
+
+                        -- , axLabelBound
+                        , axLabelColor |> axStrExpr "labelColor"
+                        , axLabelFlushOffset |> axNumExpr "labelFlushOffset"
+                        , axLabelFont |> axStrExpr "labelFont"
+                        , axLabelFontSize |> axNumExpr "labelFontSize"
+                        , axLabelFontStyle |> axStrExpr "labelFontStyle"
+                        , axLabelFontWeight (fwExpr "labelFontWeight")
+                        , axLabelLimit |> axNumExpr "labelLimit"
+                        , axLabelOffset |> axNumExpr "labelOffset"
+                        , axLabelOpacity |> axNumExpr "labelOpacity"
+                        , axLabelPadding |> axNumExpr "labelPadding"
+                        , axLabelSeparation |> axNumExpr "labelSeparation"
+                        , axTickCap (caExpr "tickCap")
+                        , axTickColor |> axStrExpr "tickColor"
+                        , axTickOffset |> axNumExpr "tickOffset"
+                        , axTickOpacity |> axNumExpr "tickOpacity"
+                        , axTickSize |> axNumExpr "tickSize"
+                        , axTickWidth |> axNumExpr "tickWidth"
+                        , axTitleAnchor (anExpr "titleAnchor")
+                        , axTitleAlign (haExpr "titleAlign")
+                        , axTitleAngle |> axNumExpr "titleAngle"
+                        , axTitleBaseline (vaExpr "titleBaseline")
                         , axTitleColor |> axStrExpr "titleColor"
+                        , axTitleFont |> axStrExpr "titleFont"
+                        , axTitleFontStyle |> axStrExpr "titleFontStyle"
+                        , axTitleFontWeight (fwExpr "titleFontWeight")
+                        , axTitleLimit |> axNumExpr "titleLimit"
+                        , axTitleLineHeight |> axNumExpr "titleLineHeight"
+                        , axTitleOpacity |> axNumExpr "titleOpacity"
+                        , axTitlePadding |> axNumExpr "titlePadding"
+                        , axGridCap (caExpr "gridCap")
+                        , axGridColor |> axStrExpr "gridColor"
+                        , axGridOpacity |> axNumExpr "gridOpacity"
+                        , axGridWidth |> axNumExpr "gridWidth"
                         ]
                     ]
                 << position Y [ pAggregate opCount ]
