@@ -143,7 +143,7 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
 
 - `axNumExpr` for providing expressions that evaluate to numeric axis properties (VL5.0).
 
-- `axNumsExpr` for providing expressions that evaluate to a list numeric axis (dash) properties (VL5.0).
+- `axNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties (VL5.0).
 
 - `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
 
@@ -161,7 +161,7 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
 
 - `viStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `tdExpr` (text direction) (VL4.16 to VL 5.1).
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction) (VL4.16 to VL 5.1).
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
