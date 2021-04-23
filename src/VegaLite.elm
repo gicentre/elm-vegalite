@@ -3859,6 +3859,7 @@ to the functions that generate them.
 
 -}
 
+import Array
 import Dict
 import Json.Decode as JD
 import Json.Encode as JE
@@ -4059,7 +4060,7 @@ type AxisProperty
     | AxDomain Boo
     | AxDomainCap StrokeCap
     | AxDomainColor Str
-    | AxDomainDash (List Float)
+    | AxDomainDash Nums
     | AxDomainDashOffset Num
     | AxDomainOpacity Num
     | AxDomainWidth Num
@@ -4092,7 +4093,7 @@ type AxisProperty
     | AxTickCap StrokeCap
     | AxTickColor Str
     | AxTickCount ScaleNice
-    | AxTickDash (List Float)
+    | AxTickDash Nums
     | AxTickDashOffset Num
     | AxTickExtra Boo
     | AxTickOffset Num
@@ -4121,7 +4122,7 @@ type AxisProperty
     | AxGrid Boo
     | AxGridCap StrokeCap
     | AxGridColor Str
-    | AxGridDash (List Float)
+    | AxGridDash Nums
     | AxGridDashOffset Num
     | AxGridOpacity Num
     | AxGridWidth Num
@@ -5246,7 +5247,7 @@ type
     | MStroke Str
     | MStrokeGradient ColorGradient (List GradientProperty)
     | MStrokeCap StrokeCap
-    | MStrokeDash (List Float)
+    | MStrokeDash Nums
     | MStrokeDashOffset Num
     | MStrokeJoin StrokeJoin
     | MStrokeMiterLimit Num
@@ -6150,7 +6151,7 @@ type ViewBackground
     | VBStrokeOpacity Num
     | VBStrokeWidth Num
     | VBStrokeCap StrokeCap
-    | VBStrokeDash (List Float)
+    | VBStrokeDash Nums
     | VBStrokeDashOffset Num
     | VBStrokeJoin StrokeJoin
     | VBStrokeMiterLimit Num
@@ -7165,8 +7166,8 @@ axDomainColor s =
 in alternating dash and gap lengths.
 -}
 axDomainDash : List Float -> AxisProperty
-axDomainDash =
-    AxDomainDash
+axDomainDash ns =
+    AxDomainDash (Nums ns)
 
 
 {-| Number of pixels before the first axis baseline (domain) line dash is drawn.
@@ -7251,8 +7252,8 @@ axGridColor s =
 'off' lengths in pixels representing the dashed line.
 -}
 axGridDash : List Float -> AxisProperty
-axGridDash =
-    AxGridDash
+axGridDash ns =
+    AxGridDash (Nums ns)
 
 
 {-| Default number of pixels before the first axis grid line dash is drawn.
@@ -7752,8 +7753,8 @@ axTickCount =
 lengths in pixels representing the dashed line.
 -}
 axTickDash : List Float -> AxisProperty
-axTickDash =
-    AxTickDash
+axTickDash ns =
+    AxTickDash (Nums ns)
 
 
 {-| Number of pixels before the first axis tick dash is drawn.
@@ -14439,8 +14440,8 @@ maStrokeCap =
 sequence of line lengths.
 -}
 maStrokeDash : List Float -> MarkProperty
-maStrokeDash =
-    MStrokeDash
+maStrokeDash xs =
+    MStrokeDash (Nums xs)
 
 
 {-| Number of pixels before the first line dash is drawn.
@@ -18190,7 +18191,7 @@ stroke markProps =
         encoding
             << position X [ pName "date", pTemporal ]
             << position Y [ pName "price", pQuant ]
-            << strokeDash [ mName "company", mNominal ]
+            << strokeDash [ mName "company" ]
 
 -}
 strokeDash : List MarkChannel -> List LabelledSpec -> List LabelledSpec
@@ -19695,8 +19696,8 @@ viewStrokeCap =
 {-| Stroke dash style for a line around a single view or layer background.
 -}
 viewStrokeDash : List Float -> ViewBackground
-viewStrokeDash =
-    VBStrokeDash
+viewStrokeDash ns =
+    VBStrokeDash (Nums ns)
 
 
 {-| Stroke dash offset for line around a single view or layer background.
@@ -20137,6 +20138,11 @@ type Num
     | NumExpr String
 
 
+type Nums
+    = Nums (List Float)
+    | NumsExpr String
+
+
 type Str
     = Str String
     | StrExpr String
@@ -20259,11 +20265,7 @@ axisConfigProperty axisCfg =
             [ ( "domainColor", JE.string c ) ]
 
         DomainDash ds ->
-            if ds == [] then
-                [ ( "domainDash", JE.null ) ]
-
-            else
-                [ ( "domainDash", JE.list JE.float ds ) ]
+            [ ( "domainDash", JE.list JE.float ds ) ]
 
         DomainDashOffset x ->
             [ ( "domainDashOffset", JE.float x ) ]
@@ -20290,11 +20292,7 @@ axisConfigProperty axisCfg =
             [ ( "gridColor", JE.string c ) ]
 
         GridDash ds ->
-            if ds == [] then
-                [ ( "gridDash", JE.null ) ]
-
-            else
-                [ ( "gridDash", JE.list JE.float ds ) ]
+            [ ( "gridDash", JE.list JE.float ds ) ]
 
         GridDashOffset x ->
             [ ( "gridDashOffset", JE.float x ) ]
@@ -20393,11 +20391,7 @@ axisConfigProperty axisCfg =
             [ ( "tickCount", scaleNiceSpec tc ) ]
 
         TickDash ds ->
-            if ds == [] then
-                [ ( "tickDash", JE.null ) ]
-
-            else
-                [ ( "tickDash", JE.list JE.float ds ) ]
+            [ ( "tickDash", JE.list JE.float ds ) ]
 
         TickDashOffset x ->
             [ ( "tickDashOffset", JE.float x ) ]
@@ -20600,12 +20594,8 @@ axisProperty axisProp =
         AxGridColor s ->
             strExpr "gridColor" s
 
-        AxGridDash ds ->
-            if ds == [] then
-                [ ( "gridDash", JE.null ) ]
-
-            else
-                [ ( "gridDash", JE.list JE.float ds ) ]
+        AxGridDash ns ->
+            numsExpr "gridDash" ns
 
         AxGridDashOffset n ->
             numExpr "gridDashOffset" n
@@ -20703,12 +20693,8 @@ axisProperty axisProp =
         AxDomainColor s ->
             strExpr "domainColor" s
 
-        AxDomainDash ds ->
-            if ds == [] then
-                [ ( "domainDash", JE.null ) ]
-
-            else
-                [ ( "domainDash", JE.list JE.float ds ) ]
+        AxDomainDash ns ->
+            numsExpr "domainDash" ns
 
         AxDomainDashOffset n ->
             numExpr "domainDashOffset" n
@@ -20763,12 +20749,8 @@ axisProperty axisProp =
         AxTickCount tc ->
             [ ( "tickCount", scaleNiceSpec tc ) ]
 
-        AxTickDash ds ->
-            if ds == [] then
-                [ ( "tickDash", JE.null ) ]
-
-            else
-                [ ( "tickDash", JE.list JE.float ds ) ]
+        AxTickDash ns ->
+            numsExpr "tickDash" ns
 
         AxTickDashOffset n ->
             numExpr "tickDashOffset" n
@@ -22290,11 +22272,7 @@ legendConfigProperty legendConfig =
             [ ( "strokeColor", JE.string s ) ]
 
         LeStrokeDash xs ->
-            if xs == [] then
-                [ ( "strokeDash", JE.null ) ]
-
-            else
-                [ ( "strokeDash", JE.list JE.float xs ) ]
+            [ ( "strokeDash", JE.list JE.float xs ) ]
 
         LeStrokeWidth x ->
             [ ( "strokeWidth", JE.float x ) ]
@@ -23057,12 +23035,8 @@ markProperty mProp =
         MStrokeWidth n ->
             numExpr "strokeWidth" n
 
-        MStrokeDash xs ->
-            if xs == [] then
-                [ ( "strokeDash", JE.null ) ]
-
-            else
-                [ ( "strokeDash", JE.list JE.float xs ) ]
+        MStrokeDash ns ->
+            numsExpr "strokeDash" ns
 
         MStrokeDashOffset n ->
             numExpr "strokeDashOffset" n
@@ -23344,6 +23318,16 @@ numExpr objName n =
             [ ( objName, JE.float x ) ]
 
         NumExpr s ->
+            [ ( objName, JE.object [ ( "expr", JE.string s ) ] ) ]
+
+
+numsExpr : String -> Nums -> List ( String, Spec )
+numsExpr objName ns =
+    case ns of
+        Nums xs ->
+            [ ( objName, JE.list JE.float xs ) ]
+
+        NumsExpr s ->
             [ ( objName, JE.object [ ( "expr", JE.string s ) ] ) ]
 
 
@@ -24423,11 +24407,7 @@ selectionMarkProperty markProp =
             ( "strokeWidth", JE.float x )
 
         SMStrokeDash xs ->
-            if xs == [] then
-                ( "strokeDash", JE.null )
-
-            else
-                ( "strokeDash", JE.list JE.float xs )
+            ( "strokeDash", JE.list JE.float xs )
 
         SMStrokeDashOffset x ->
             ( "strokeDashOffset", JE.float x )
@@ -25207,12 +25187,8 @@ viewBackgroundProperty vb =
         VBStrokeWidth n ->
             numExpr "strokeWidth" n
 
-        VBStrokeDash xs ->
-            if xs == [] then
-                [ ( "strokeDash", JE.null ) ]
-
-            else
-                [ ( "strokeDash", JE.list JE.float xs ) ]
+        VBStrokeDash ns ->
+            numsExpr "strokeDash" ns
 
         VBStrokeDashOffset n ->
             numExpr "strokeDashOffset" n
@@ -25283,11 +25259,7 @@ viewConfigProperties viewCfg =
             [ ( "strokeWidth", JE.float x ) ]
 
         VStrokeDash xs ->
-            if xs == [] then
-                [ ( "strokeDash", JE.null ) ]
-
-            else
-                [ ( "strokeDash", JE.list JE.float xs ) ]
+            [ ( "strokeDash", JE.list JE.float xs ) ]
 
         VStrokeDashOffset x ->
             [ ( "strokeDashOffset", JE.float x ) ]
