@@ -7285,23 +7285,18 @@ axGridWidth n =
     AxGridWidth (Num n)
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
-an axis property function requiring a Boolean value. This can be used to provide an
-interactive parameterisation of an axis property when an expression is bound to an
-input element. For example,
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
+axis property function requiring a Boolean value. This can be used to provide an
+interactive parameterisation of an axis property when an expression is bound to
+an input element. For example,
 
     ps =
         params
-            [ ( "lbls", [ paValue (boo True), paBind (ipCheckbox [ ]) ] ) ]
-    :
-    :
+            << param "lbls" [ paValue (boo True), paBind (ipCheckbox []) ]
+
     enc =
-      encoding
-          << position X
-              [ pName "x"
-              , pQuant
-              , pAxis [ axLabels |> axBooExpr "lbls" ]
-              ]
+        encoding
+            << position X [ pName "x", pAxis [ axLabels |> axBooExpr "lbls" ] ]
 
 -}
 axBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
@@ -7329,23 +7324,18 @@ axBooExpr ex fn =
             fn False
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 an axis property function requiring a numeric value. This can be used to provide an
 interactive parameterisation of an axis property when an expression is bound to an
 input element. For example,
 
     ps =
         params
-            [ ( "axo", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20 ]) ] ) ]
-    :
-    :
+            << param "axo" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
+
     enc =
-      encoding
-          << position X
-              [ pName "x"
-              , pQuant
-              , pAxis [ axOffset |> axNumExpr "axo" ]
-              ]
+        encoding
+            << position X [ pName "x", pAxis [ axOffset |> axNumExpr "axo" ] ]
 
 -}
 axNumExpr : String -> (number -> AxisProperty) -> AxisProperty
@@ -7463,7 +7453,7 @@ axNumExpr ex fn =
             fn 0
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 an axis property function requiring a list of numbers (for dash styles). This can
 be used to provide an interactive parameterisation of an axis dash property when
 an expression is bound to an input element. For example,
@@ -7502,22 +7492,21 @@ axNumsExpr ex fn =
             fn []
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 an axis property function requiring a string value. This can be used to provide an
 interactive parameterisation of an axis property when an expression is bound to an
 input element. For example,
 
     ps =
         params
-            [ ( "color", [ paValue (str "black"), paBind (ipColor [ ]) ] ) ]
-    :
-    :
-      enc =
-          encoding
-              << position X
-                  [ pName "x"
-                  , pAxis [ axTitleColor |> axStrExpr "color" ]
-                  ]
+            << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+
+    enc =
+        encoding
+            << position X
+                [ pName "x"
+                , pAxis [ axTitleColor |> axStrExpr "color" ]
+                ]
 
 -}
 axStrExpr : String -> (String -> AxisProperty) -> AxisProperty
@@ -13127,22 +13116,21 @@ leFormatAsTemporal =
     LFormatAsTemporal
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 an legend property function requiring a numeric value. This can be used to provide an
 interactive parameterisation of a legend property when an expression is bound to an
 input element. For example,
 
     ps =
         params
-            [ ( "xPos", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100 ]) ] ) ]
-    :
-    :
+            << param "xPos" [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
+
     enc =
-      encoding
-          << color
-              [ mName "animal"
-              , mLegend [ leX |> leNumExpr "xPos" ]
-              ]
+        encoding
+            << color
+                [ mName "animal"
+                , mLegend [ leX |> leNumExpr "xPos" ]
+                ]
 
 -}
 leNumExpr : String -> (number -> LegendProperty) -> LegendProperty
@@ -13224,16 +13212,15 @@ leNumExpr ex fn =
             fn 0
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 an legend property function requiring a string value. This can be used to provide an
 interactive parameterisation of a legend property when an expression is bound to an
 input element. For example,
 
     ps =
         params
-            [ ( "color", [ paValue (str "black"), paBind (ipColor [ ]) ] ) ]
-    :
-    :
+            << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+
     enc =
         encoding
             << color
@@ -15292,23 +15279,20 @@ num =
     Number
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a mark property function requiring a boolean value. This can be used to provide an
 interactive parameterisation of a mark property by providing an expression bound
 to an input element. For example,
 
     ps =
         params
-            [ ( "asp"
-              , [ paValue (boo True)
+            << param "asp"
+                [ paValue (boo True)
                 , paBind (ipCheckbox [ inName "maintain aspect ratio" ])
                 ]
-              )
-            ]
-    :
-    :
+
     mk =
-        image [ maAspect |> maBooExpr "asp"]
+        image [ maAspect |> maBooExpr "asp" ]
 
 -}
 maBooExpr : String -> (Bool -> MarkProperty) -> MarkProperty
@@ -15336,18 +15320,17 @@ maBooExpr ex fn =
             fn False
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a mark property function requiring a numeric value. This can be used to provide an
 interactive parameterisation of a mark property when an expression is bound to an
 input element. For example,
 
     ps =
         params
-            [ ( "r", [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 100, inStep 1 ]) ] ) ]
-    :
-    :
+            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
+
     mk =
-        arc [ maInnerRadius |> maNumExpr "r"]
+        arc [ maInnerRadius |> maNumExpr "r" ]
 
 -}
 maNumExpr : String -> (number -> MarkProperty) -> MarkProperty
@@ -15477,18 +15460,17 @@ maNumExpr ex fn =
             fn 0
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a mark property function requiring a string value. This can be used to provide an
 interactive parameterisation of a mark property by providing an expression bound
 to an input element. For example,
 
     ps =
         params
-            [ ( "clr", [ paValue (str "red"), paBind (ipColor []) ] ) ]
-    :
-    :
+            << param "clr" [ paValue (str "red"), paBind (ipColor []) ]
+
     mk =
-        circle [ maFill |> maStrExpr "clr"]
+        circle [ maFill |> maStrExpr "clr" ]
 
 -}
 maStrExpr : String -> (String -> MarkProperty) -> MarkProperty
@@ -16115,9 +16097,7 @@ circle size dynamically:
         ps =
             params
                 << param "radius"
-                    [ paValue (num 0)
-                    , paBind (ipRange [ inMin 0, inMax 100, inStep 1 ])
-                    ]
+                    [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
 
         enc =
             encoding
@@ -17744,10 +17724,7 @@ selection across all items that share the same value in the color channel:
 
     ps =
         params
-            << param "sel"
-                [ paSelect sePoint
-                    [ seEncodings [ chColor ] ]
-                ]
+            << param "sel" [ paSelect sePoint [ seEncodings [ chColor ] ] ]
 
 -}
 seEncodings : List Channel -> SelectionProperty
@@ -17857,7 +17834,7 @@ pointer:
 
     ps =
         params
-            << params "paintbrush" [ paSelect sePoint [ seOn "mouseover" ] ]
+            << params "paint" [ paSelect sePoint [ seOn "mouseover" ] ]
 
 -}
 seOn : String -> SelectionProperty
@@ -17903,7 +17880,7 @@ under the pointer while the shift key is pressed down:
 
     ps =
         params
-            << param "paintbrush"
+            << param "paint"
                 [ paSelect sePoint [ seOn "mouseover", seToggle tpShiftKey ] ]
 
 -}
@@ -18731,7 +18708,7 @@ tiSubtitlePadding n =
     TSubtitlePadding (Num n)
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a title property function requiring a numeric value. This can be used to provide an
 interactive parameterisation of a title property when an expression is bound to an
 input element. For example,
@@ -18739,8 +18716,7 @@ input element. For example,
     ps =
         params
             << param "fs" [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ]
-    :
-    :
+
     ttl =
         title "My title" [ tiFontSize |> tiNumExpr "fs" ]
 
@@ -18779,7 +18755,7 @@ tiNumExpr ex fn =
             fn 0
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a title property function requiring a string value. This can be used to provide an
 interactive parameterisation of a title property when an expression is bound to an
 input element. For example,
@@ -18787,8 +18763,7 @@ input element. For example,
     ps =
         params
             << params "clr" [ paValue (str "black"), paBind (ipColor []) ]
-    :
-    :
+
     ttl =
         title "My title" [ tiColor |> tiStrExpr "clr" ]
 
@@ -19179,7 +19154,7 @@ This allows, for example, mulitple key modifiers to generate toggling:
 
     ps =
         params
-            << param "paintbrush"
+            << param "paint"
                 [ paSelect sePoint
                     [ seOn "mouseover"
                     , seToggle (tpExpr "event.shiftKey && event.ctrlKey")
@@ -19638,7 +19613,7 @@ viewBackground vbs =
     ( VLViewBackground, JE.object (List.concatMap viewBackgroundProperty vbs) )
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a view background function requiring a numeric value. This can be used to provide an
 interactive parameterisation of a view background when an expression is bound to an
 input element. For example,
@@ -19646,8 +19621,7 @@ input element. For example,
     ps =
         params
             << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
-    :
-    :
+
     bg =
         viewBackground [ viewCornerRadius |> viNumExpr "r" ]
 
@@ -19680,7 +19654,7 @@ viNumExpr ex fn =
             fn 0
 
 
-{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a view background function requiring a `Maybe String` value. This can be used to
 provide an interactive parameterisation of a view background when an expression
 is bound to an input element. For example,
@@ -19688,8 +19662,7 @@ is bound to an input element. For example,
     ps =
         params
             << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
-    :
-    :
+
     bg =
         viewBackground [ viewFill |> viStrExpr "clr" ]
 
