@@ -43,6 +43,68 @@ Add aria expressions (marks, axes, legends etc.)
   | `seToggle "event.altKey"`    | `seToggle tpAltKey`                   |
   | `seToggle "some expression"` | `seToggle (tpExpr "some expression")` |
 
+### Additions
+
+- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
+
+- `fiSelectionEmpty` for filtering with default empty result.
+
+- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
+
+- `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
+
+- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
+
+- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
+
+- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
+
+- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
+
+- `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
+
+- `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
+
+- `maBooExpr` for providing expressions that evaluate to boolean mark properties (VL5.0).
+
+- `axNumExpr` for providing expressions that evaluate to numeric axis properties (VL5.0).
+
+- `axNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties (VL5.0).
+
+- `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
+
+- `axBooExpr` for providing expressions that evaluate to boolean axis properties (VL5.0).
+
+- `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
+
+- `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
+
+- `tiNumExpr` for providing expressions that evaluate to numeric title properties (VL5.0).
+
+- `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
+
+- `viNumExpr` for providing expressions that evaluate to numeric view background properties (VL5.0).
+
+- `viStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
+
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction) (VL4.16 to VL 5.1).
+
+- Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
+
+- `dataExpr` for creating a datum value from an expression (VL4.16).
+
+- `axTranslate` / `axcoTranslate` for axis translation.
+
+- `axTickCap` / `axcoTickCap` for axis tick capping style.
+
+- `axTickBand` / `axcoTickBand` and associated `tbCenter`, `tbExtent` and `tbExpr` for aligning axis ticks and grids with band scales.
+
+- `axTitleLineHeight` for multi-line axis titles.
+
+- `maPadAngle` for padding arc segments.
+
+- `inDataOptions` for non-string input options (numeric values, lists etc.)
+
 ### V4.0 Deprecations
 
 These mostly reflect the new selection and parameter model in Vega-Lite 5.
@@ -116,66 +178,6 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
 
 - `seEmpty` deprecated in favour of `prParamEmpty` and `fiSelectionEmpty`.
 - `seInit` and `seInitInterval` deprecated in favour of `paValue`.
-
-### Additions
-
-- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
-
-- `fiSelectionEmpty` for filtering with default empty result.
-
-- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
-
-- `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
-
-- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
-
-- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
-
-- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
-
-- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
-
-- `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
-
-- `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
-
-- `maBooExpr` for providing expressions that evaluate to boolean mark properties (VL5.0).
-
-- `axNumExpr` for providing expressions that evaluate to numeric axis properties (VL5.0).
-
-- `axNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties (VL5.0).
-
-- `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
-
-- `axBooExpr` for providing expressions that evaluate to boolean axis properties (VL5.0).
-
-- `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
-
-- `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
-
-- `tiNumExpr` for providing expressions that evaluate to numeric title properties (VL5.0).
-
-- `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
-
-- `viNumExpr` for providing expressions that evaluate to numeric view background properties (VL5.0).
-
-- `viStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
-
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction) (VL4.16 to VL 5.1).
-
-- Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
-
-- `dataExpr` for creating a datum value from an expression (VL4.16).
-
-- `axTranslate` / `axcoTranslate` for axis translation.
-
-- `axTickCap` / `axcoTickCap` for axis tick capping style.
-
-- `axTitleLineHeight` for multi-line axis titles.
-
-- `maPadAngle` for padding arc segments.
-
-- `inDataOptions` for non-string input options (numeric values, lists etc.)
 
 ---
 
