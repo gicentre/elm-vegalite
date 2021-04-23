@@ -582,6 +582,7 @@ module VegaLite exposing
     , axTitleFontStyle
     , axTitleFontWeight
     , axTitleLimit
+    , axTitleLineHeight
     , axTitleOpacity
     , axTitlePadding
     , axTitleX
@@ -2484,6 +2485,7 @@ See the
 @docs axTitleFontStyle
 @docs axTitleFontWeight
 @docs axTitleLimit
+@docs axTitleLineHeight
 @docs axTitleOpacity
 @docs axTitlePadding
 @docs axTitleX
@@ -3931,7 +3933,7 @@ type AxisChoice
 [axcoLabelOverlap](#axcoLabelOverlap), [axcoLabelPadding](#axcoLabelPadding),
 [axcoLabelSeparation](#axcoLabelSeparation), [axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor),
 [axcoTickCount](#axcoTickCount), [axcoGridDash](#axcoGridDash), [axcoGridDashOffset](#axcoGridDashOffset),
-[axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset),
+[axcoTickCap](#axcoTickCap), [axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset),
 [axcoTickOpacity](#axcoTickOpacity), [axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize),
 [axcoTickMinStep](#axcoTickMinStep), [axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign),
 [axcoTitleAnchor](#axcoTitleAnchor), [axcoTitleAngle](#axcoTitleAngle),
@@ -4028,14 +4030,14 @@ type AxisConfig
 [axLabelLineHeight](#axLabelLineHeight), [axLabelOffset](#axLabelOffset),
 [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap), [axLabelPadding](#axLabelPadding),
 [axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle), [axTranslate](#axTranslate), [axTicks](#axTicks),
-[axTickColor](#axTickColor), [axTickCount](#axTickCount), [axTickDash](#axTickDash),
+[axTickCap](#axTickCap), [axTickColor](#axTickColor), [axTickCount](#axTickCount), [axTickDash](#axTickDash),
 [axTickDashOffset](#axTickDashOffset), [axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset),
 [axTickOpacity](#axTickOpacity), [axTickRound](#axTickRound), [axTickSize](#axTickSize),
 [axTickMinStep](#axTickMinStep), [axTickWidth](#axTickWidth), [axValues](#axValues),
 [axTitle](#axTitle), [axTitleAlign](#axTitleAlign), [axTitleAnchor](#axTitleAnchor),
 [axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline), [axTitleColor](#axTitleColor),
 [axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize), [axTitleFontStyle](#axTitleFontStyle),
-[axTitleFontWeight](#axTitleFontWeight), [axTitleLimit](#axTitleLimit),
+[axTitleFontWeight](#axTitleFontWeight), [axTitleLimit](#axTitleLimit), [axTitleLineHeight](#axTitleLineHeight),
 [axTitleOpacity](#axTitleOpacity), [axTitlePadding](#axTitlePadding), [axTitleX](#axTitleX),
 [axTitleY](#axTitleY), [axGrid](#axGrid), [axGridCap](#axGridCap),
 [axGridColor](#axGridColor), [axGridDash](#axGridDash), [axGridDashOffset](#axGridDashOffset),
@@ -4107,6 +4109,7 @@ type AxisProperty
     | AxTitleFontStyle Str
     | AxTitleFontWeight FontWeight
     | AxTitleLimit Num
+    | AxTitleLineHeight Num
     | AxTitleOpacity Num
     | AxTitlePadding Num
     | AxTitleX Num
@@ -7409,6 +7412,9 @@ axNumExpr ex fn =
         AxTitleLimit _ ->
             AxTitleLimit (NumExpr ex)
 
+        AxTitleLineHeight _ ->
+            AxTitleLineHeight (NumExpr ex)
+
         AxTitleOpacity _ ->
             AxTitleOpacity (NumExpr ex)
 
@@ -7883,6 +7889,13 @@ axTitleFontWeight =
 axTitleLimit : Float -> AxisProperty
 axTitleLimit n =
     AxTitleLimit (Num n)
+
+
+{-| Line height for multi-line axis titles.
+-}
+axTitleLineHeight : Float -> AxisProperty
+axTitleLineHeight n =
+    AxTitleLineHeight (Num n)
 
 
 {-| Opacity of an axis title.
@@ -20807,6 +20820,9 @@ axisProperty axisProp =
 
         AxTitleLimit n ->
             numExpr "titleLimit" n
+
+        AxTitleLineHeight n ->
+            numExpr "titleLineHeight" n
 
         AxTitleOpacity n ->
             numExpr "titleOpacity" n
