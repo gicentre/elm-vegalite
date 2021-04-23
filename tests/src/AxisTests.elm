@@ -376,7 +376,6 @@ axis16 =
             params
                 -- TODO Aria
                 -- TODO labelBound
-                -- TODO labelOverlap
                 -- TODO tickBand
                 -- TODO tickCount
                 -- TODO tickValues
@@ -404,6 +403,7 @@ axis16 =
                 << param "labelLimit" [ paValue (num 200), paBind (ipRange [ inName "Label limit ", inMin 0, inMax 200 ]) ]
                 << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inName "Label offset ", inMin -30, inMax 30 ]) ]
                 << param "labelOpacity" [ paValue (num 1), paBind (ipRange [ inName "Label opacity ", inMin 0, inMax 1 ]) ]
+                << param "labelOverlap" [ paValue (str "false"), paBind (ipSelect [ inName "Label overlap ", inDataOptions [ boo False, str "parity", str "greedy" ] ]) ]
                 << param "labelPadding" [ paValue (num 2), paBind (ipRange [ inName "Label padding ", inMin -30, inMax 30 ]) ]
                 << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inName "Label separation ", inMin 0, inMax 20 ]) ]
                 << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Tick cap ", inOptions [ "butt", "round", "square" ] ]) ]
@@ -468,6 +468,7 @@ axis16 =
                         , axLabelLimit |> axNumExpr "labelLimit"
                         , axLabelOffset |> axNumExpr "labelOffset"
                         , axLabelOpacity |> axNumExpr "labelOpacity"
+                        , axLabelOverlap (osExpr "labelOverlap")
                         , axLabelPadding |> axNumExpr "labelPadding"
                         , axLabelSeparation |> axNumExpr "labelSeparation"
                         , axTickCap (caExpr "tickCap")
