@@ -3497,13 +3497,22 @@ var $author$project$VegaLite$numExpr = F2(
 		}
 	});
 var $author$project$VegaLite$overlapStrategySpec = function (strat) {
-	switch (strat) {
+	switch (strat.$) {
 		case 0:
 			return $elm$json$Json$Encode$bool(false);
 		case 1:
 			return $elm$json$Json$Encode$string('parity');
-		default:
+		case 2:
 			return $elm$json$Json$Encode$string('greedy');
+		default:
+			var s = strat.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$strExpr = F2(
@@ -11229,8 +11238,8 @@ var $author$project$VegaLite$MTimeUnit = function (a) {
 var $author$project$VegaLite$mTimeUnit = $author$project$VegaLite$MTimeUnit;
 var $author$project$VegaLite$MonthDate = {$: 17};
 var $author$project$VegaLite$monthDate = $author$project$VegaLite$MonthDate;
-var $author$project$VegaLite$ONone = 0;
-var $author$project$VegaLite$osNone = 0;
+var $author$project$VegaLite$ONone = {$: 0};
+var $author$project$VegaLite$osNone = $author$project$VegaLite$ONone;
 var $author$project$VegaLite$YearMonthDate = {$: 4};
 var $author$project$VegaLite$yearMonthDate = $author$project$VegaLite$YearMonthDate;
 var $author$project$GalleryTable$table6 = function () {

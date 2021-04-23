@@ -3584,13 +3584,22 @@ var $author$project$VegaLite$numExpr = F2(
 		}
 	});
 var $author$project$VegaLite$overlapStrategySpec = function (strat) {
-	switch (strat) {
+	switch (strat.$) {
 		case 0:
 			return $elm$json$Json$Encode$bool(false);
 		case 1:
 			return $elm$json$Json$Encode$string('parity');
-		default:
+		case 2:
 			return $elm$json$Json$Encode$string('greedy');
+		default:
+			var s = strat.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$strExpr = F2(
