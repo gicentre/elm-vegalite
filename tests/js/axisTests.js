@@ -5410,6 +5410,23 @@ var $author$project$VegaLite$strokeCapSpec = function (cap) {
 					]));
 	}
 };
+var $author$project$VegaLite$tickBandSpec = function (tb) {
+	switch (tb.$) {
+		case 0:
+			return $elm$json$Json$Encode$string('center');
+		case 1:
+			return $elm$json$Json$Encode$string('extent');
+		default:
+			var s = tb.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
+	}
+};
 var $author$project$VegaLite$vAlignSpec = function (al) {
 	switch (al.$) {
 		case 0:
@@ -5783,6 +5800,14 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					$elm$json$Json$Encode$bool(b))
 				]);
 		case 39:
+			var tb = axisCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tickBand',
+					$author$project$VegaLite$tickBandSpec(tb))
+				]);
+		case 40:
 			var c = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5790,7 +5815,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickCap',
 					$author$project$VegaLite$strokeCapSpec(c))
 				]);
-		case 40:
+		case 41:
 			var c = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5798,7 +5823,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickColor',
 					$elm$json$Json$Encode$string(c))
 				]);
-		case 41:
+		case 42:
 			var tc = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5806,7 +5831,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickCount',
 					$author$project$VegaLite$scaleNiceSpec(tc))
 				]);
-		case 42:
+		case 43:
 			var ds = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5814,7 +5839,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickDash',
 					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ds))
 				]);
-		case 43:
+		case 44:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5822,7 +5847,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickDashOffset',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 44:
+		case 45:
 			var b = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5830,7 +5855,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickExtra',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 45:
+		case 46:
 			var n = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5838,7 +5863,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickOffset',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 46:
+		case 47:
 			var n = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5846,7 +5871,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickOpacity',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 49:
+		case 50:
 			var n = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5854,7 +5879,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickMinStep',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 47:
+		case 48:
 			var b = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5862,7 +5887,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickRound',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 48:
+		case 49:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5870,7 +5895,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 50:
+		case 51:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5878,7 +5903,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'tickWidth',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 51:
+		case 52:
 			var al = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5886,7 +5911,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleAlign',
 					$author$project$VegaLite$hAlignSpec(al))
 				]);
-		case 53:
+		case 54:
 			var a = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5894,7 +5919,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleAngle',
 					$elm$json$Json$Encode$float(a))
 				]);
-		case 52:
+		case 53:
 			var an = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5902,7 +5927,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleAnchor',
 					$author$project$VegaLite$anchorSpec(an))
 				]);
-		case 54:
+		case 55:
 			var va = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5910,7 +5935,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 55:
+		case 56:
 			var c = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5918,7 +5943,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleColor',
 					$elm$json$Json$Encode$string(c))
 				]);
-		case 56:
+		case 57:
 			var f = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5926,7 +5951,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleFont',
 					$elm$json$Json$Encode$string(f))
 				]);
-		case 58:
+		case 59:
 			var s = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5934,7 +5959,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleFontStyle',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 59:
+		case 60:
 			var w = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5942,7 +5967,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(w))
 				]);
-		case 57:
+		case 58:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5950,7 +5975,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleFontSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 60:
+		case 61:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5958,7 +5983,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleLimit',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 61:
+		case 62:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5966,7 +5991,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleLineHeight',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 62:
+		case 63:
 			var n = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5974,7 +5999,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleOpacity',
 					$elm$json$Json$Encode$float(n))
 				]);
-		case 63:
+		case 64:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5982,7 +6007,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titlePadding',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 64:
+		case 65:
 			var x = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -5990,7 +6015,7 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					'titleX',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 65:
+		case 66:
 			var y = axisCfg.a;
 			return _List_fromArray(
 				[
@@ -6022,7 +6047,7 @@ var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
 };
 var $author$project$VegaLite$AxGridColor = function (a) {
-	return {$: 72, a: a};
+	return {$: 73, a: a};
 };
 var $author$project$VegaLite$Str = function (a) {
 	return {$: 0, a: a};
@@ -6032,7 +6057,7 @@ var $author$project$VegaLite$axGridColor = function (s) {
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxGridDash = function (a) {
-	return {$: 73, a: a};
+	return {$: 74, a: a};
 };
 var $author$project$VegaLite$Nums = function (a) {
 	return {$: 0, a: a};
@@ -6042,7 +6067,7 @@ var $author$project$VegaLite$axGridDash = function (ns) {
 		$author$project$VegaLite$Nums(ns));
 };
 var $author$project$VegaLite$AxGridDashOffset = function (a) {
-	return {$: 74, a: a};
+	return {$: 75, a: a};
 };
 var $author$project$VegaLite$Num = function (a) {
 	return {$: 0, a: a};
@@ -6052,14 +6077,14 @@ var $author$project$VegaLite$axGridDashOffset = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxGridOpacity = function (a) {
-	return {$: 75, a: a};
+	return {$: 76, a: a};
 };
 var $author$project$VegaLite$axGridOpacity = function (n) {
 	return $author$project$VegaLite$AxGridOpacity(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxGridWidth = function (a) {
-	return {$: 76, a: a};
+	return {$: 77, a: a};
 };
 var $author$project$VegaLite$axGridWidth = function (n) {
 	return $author$project$VegaLite$AxGridWidth(
@@ -6124,42 +6149,42 @@ var $author$project$VegaLite$axLabelPadding = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxTickColor = function (a) {
-	return {$: 42, a: a};
+	return {$: 43, a: a};
 };
 var $author$project$VegaLite$axTickColor = function (s) {
 	return $author$project$VegaLite$AxTickColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxTickDash = function (a) {
-	return {$: 44, a: a};
+	return {$: 45, a: a};
 };
 var $author$project$VegaLite$axTickDash = function (ns) {
 	return $author$project$VegaLite$AxTickDash(
 		$author$project$VegaLite$Nums(ns));
 };
 var $author$project$VegaLite$AxTickDashOffset = function (a) {
-	return {$: 45, a: a};
+	return {$: 46, a: a};
 };
 var $author$project$VegaLite$axTickDashOffset = function (n) {
 	return $author$project$VegaLite$AxTickDashOffset(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxTickOpacity = function (a) {
-	return {$: 48, a: a};
+	return {$: 49, a: a};
 };
 var $author$project$VegaLite$axTickOpacity = function (n) {
 	return $author$project$VegaLite$AxTickOpacity(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxTickSize = function (a) {
-	return {$: 51, a: a};
+	return {$: 52, a: a};
 };
 var $author$project$VegaLite$axTickSize = function (n) {
 	return $author$project$VegaLite$AxTickSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxTickWidth = function (a) {
-	return {$: 52, a: a};
+	return {$: 53, a: a};
 };
 var $author$project$VegaLite$axTickWidth = function (n) {
 	return $author$project$VegaLite$AxTickWidth(
@@ -8210,7 +8235,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 1:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'bandPosition', n);
-		case 78:
+		case 79:
 			var predicate = axisProp.a;
 			var cap = axisProp.b;
 			var firstProp = A2(
@@ -8474,7 +8499,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 18:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'formatType', s);
-		case 71:
+		case 72:
 			var c = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8482,19 +8507,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'gridCap',
 					$author$project$VegaLite$strokeCapSpec(c))
 				]);
-		case 72:
+		case 73:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'gridColor', s);
-		case 73:
+		case 74:
 			var ns = axisProp.a;
 			return A2($author$project$VegaLite$numsExpr, 'gridDash', ns);
-		case 74:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'gridDashOffset', n);
 		case 75:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'gridOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'gridDashOffset', n);
 		case 76:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'gridOpacity', n);
+		case 77:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'gridWidth', n);
 		case 19:
@@ -8643,7 +8668,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 14:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'domainWidth', n);
-		case 70:
+		case 71:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'grid', b);
 		case 2:
@@ -8690,10 +8715,18 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 7:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'zindex', n);
-		case 50:
+		case 51:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'ticks', b);
 		case 41:
+			var tb = axisProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tickBand',
+					$author$project$VegaLite$tickBandSpec(tb))
+				]);
+		case 42:
 			var c = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8701,10 +8734,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickCap',
 					$author$project$VegaLite$strokeCapSpec(c))
 				]);
-		case 42:
+		case 43:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'tickColor', s);
-		case 43:
+		case 44:
 			var tc = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8712,34 +8745,34 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickCount',
 					$author$project$VegaLite$scaleNiceSpec(tc))
 				]);
-		case 44:
+		case 45:
 			var ns = axisProp.a;
 			return A2($author$project$VegaLite$numsExpr, 'tickDash', ns);
-		case 45:
+		case 46:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickDashOffset', n);
-		case 46:
+		case 47:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'tickExtra', b);
-		case 47:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickOffset', n);
 		case 48:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'tickOffset', n);
 		case 49:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'tickOpacity', n);
+		case 50:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'tickRound', b);
-		case 77:
+		case 78:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickMinStep', n);
-		case 51:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickSize', n);
 		case 52:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickWidth', n);
+			return A2($author$project$VegaLite$numExpr, 'tickSize', n);
 		case 53:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'tickWidth', n);
+		case 54:
 			var vals = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8748,7 +8781,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					$author$project$VegaLite$toList(
 						$author$project$VegaLite$dataValuesSpecs(vals)))
 				]);
-		case 54:
+		case 55:
 			var s = axisProp.a;
 			if (!s.$) {
 				var ttl = s.a;
@@ -8761,7 +8794,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			} else {
 				return A2($author$project$VegaLite$strExpr, 'title', s);
 			}
-		case 55:
+		case 56:
 			var al = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8769,10 +8802,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleAlign',
 					$author$project$VegaLite$hAlignSpec(al))
 				]);
-		case 57:
+		case 58:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleAngle', n);
-		case 56:
+		case 57:
 			var an = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8780,7 +8813,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleAnchor',
 					$author$project$VegaLite$anchorSpec(an))
 				]);
-		case 58:
+		case 59:
 			var va = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8788,19 +8821,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 59:
-			var s = axisProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 60:
 			var s = axisProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 61:
+			var s = axisProp.a;
+			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+		case 62:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleFontSize', n);
-		case 62:
+		case 63:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'titleFontStyle', s);
-		case 63:
+		case 64:
 			var fw = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8808,19 +8841,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 64:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
 		case 65:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titleLineHeight', n);
+			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
 		case 66:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titleOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'titleLineHeight', n);
 		case 67:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
+			return A2($author$project$VegaLite$numExpr, 'titleOpacity', n);
 		case 68:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
+		case 69:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleX', n);
 		default:
@@ -12944,7 +12977,7 @@ var $author$project$AxisTests$axis10 = function () {
 			]));
 }();
 var $author$project$VegaLite$TickCount = function (a) {
-	return {$: 41, a: a};
+	return {$: 42, a: a};
 };
 var $author$project$VegaLite$axcoTickCount = $author$project$VegaLite$TickCount;
 var $author$project$VegaLite$AxY = 2;
@@ -13052,11 +13085,11 @@ var $author$project$VegaLite$AxStyle = function (a) {
 };
 var $author$project$VegaLite$axStyle = $author$project$VegaLite$AxStyle;
 var $author$project$VegaLite$AxTickCount = function (a) {
-	return {$: 43, a: a};
+	return {$: 44, a: a};
 };
 var $author$project$VegaLite$axTickCount = $author$project$VegaLite$AxTickCount;
 var $author$project$VegaLite$AxTitleColor = function (a) {
-	return {$: 59, a: a};
+	return {$: 60, a: a};
 };
 var $author$project$VegaLite$axTitleColor = function (s) {
 	return $author$project$VegaLite$AxTitleColor(
@@ -13153,7 +13186,7 @@ var $author$project$AxisTests$axis12 = function () {
 }();
 var $author$project$VegaLite$AxDataCondition = F2(
 	function (a, b) {
-		return {$: 78, a: a, b: b};
+		return {$: 79, a: a, b: b};
 	});
 var $author$project$VegaLite$axDataCondition = $author$project$VegaLite$AxDataCondition;
 var $author$project$VegaLite$AxLabelAngle = function (a) {
@@ -13235,7 +13268,7 @@ var $author$project$VegaLite$axDomainWidth = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxGridCap = function (a) {
-	return {$: 71, a: a};
+	return {$: 72, a: a};
 };
 var $author$project$VegaLite$axGridCap = $author$project$VegaLite$AxGridCap;
 var $author$project$VegaLite$CAxGridDash = F2(
@@ -13408,34 +13441,34 @@ var $author$project$VegaLite$AxPosition = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$AxTickMinStep = function (a) {
-	return {$: 77, a: a};
+	return {$: 78, a: a};
 };
 var $author$project$VegaLite$AxTickOffset = function (a) {
-	return {$: 47, a: a};
+	return {$: 48, a: a};
 };
 var $author$project$VegaLite$AxTitleAngle = function (a) {
-	return {$: 57, a: a};
+	return {$: 58, a: a};
 };
 var $author$project$VegaLite$AxTitleFontSize = function (a) {
-	return {$: 61, a: a};
+	return {$: 62, a: a};
 };
 var $author$project$VegaLite$AxTitleLimit = function (a) {
-	return {$: 64, a: a};
-};
-var $author$project$VegaLite$AxTitleLineHeight = function (a) {
 	return {$: 65, a: a};
 };
-var $author$project$VegaLite$AxTitleOpacity = function (a) {
+var $author$project$VegaLite$AxTitleLineHeight = function (a) {
 	return {$: 66, a: a};
 };
-var $author$project$VegaLite$AxTitlePadding = function (a) {
+var $author$project$VegaLite$AxTitleOpacity = function (a) {
 	return {$: 67, a: a};
 };
-var $author$project$VegaLite$AxTitleX = function (a) {
+var $author$project$VegaLite$AxTitlePadding = function (a) {
 	return {$: 68, a: a};
 };
-var $author$project$VegaLite$AxTitleY = function (a) {
+var $author$project$VegaLite$AxTitleX = function (a) {
 	return {$: 69, a: a};
+};
+var $author$project$VegaLite$AxTitleY = function (a) {
+	return {$: 70, a: a};
 };
 var $author$project$VegaLite$AxTranslate = function (a) {
 	return {$: 40, a: a};
@@ -13507,55 +13540,55 @@ var $author$project$VegaLite$axNumExpr = F2(
 			case 38:
 				return $author$project$VegaLite$AxLabelSeparation(
 					$author$project$VegaLite$NumExpr(ex));
-			case 45:
+			case 46:
 				return $author$project$VegaLite$AxTickDashOffset(
 					$author$project$VegaLite$NumExpr(ex));
-			case 47:
+			case 48:
 				return $author$project$VegaLite$AxTickOffset(
 					$author$project$VegaLite$NumExpr(ex));
-			case 48:
+			case 49:
 				return $author$project$VegaLite$AxTickOpacity(
 					$author$project$VegaLite$NumExpr(ex));
-			case 51:
+			case 52:
 				return $author$project$VegaLite$AxTickSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 52:
+			case 53:
 				return $author$project$VegaLite$AxTickWidth(
 					$author$project$VegaLite$NumExpr(ex));
-			case 57:
+			case 58:
 				return $author$project$VegaLite$AxTitleAngle(
 					$author$project$VegaLite$NumExpr(ex));
-			case 61:
+			case 62:
 				return $author$project$VegaLite$AxTitleFontSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 64:
+			case 65:
 				return $author$project$VegaLite$AxTitleLimit(
 					$author$project$VegaLite$NumExpr(ex));
-			case 65:
+			case 66:
 				return $author$project$VegaLite$AxTitleLineHeight(
 					$author$project$VegaLite$NumExpr(ex));
-			case 66:
+			case 67:
 				return $author$project$VegaLite$AxTitleOpacity(
 					$author$project$VegaLite$NumExpr(ex));
-			case 67:
+			case 68:
 				return $author$project$VegaLite$AxTitlePadding(
 					$author$project$VegaLite$NumExpr(ex));
-			case 68:
+			case 69:
 				return $author$project$VegaLite$AxTitleX(
 					$author$project$VegaLite$NumExpr(ex));
-			case 69:
+			case 70:
 				return $author$project$VegaLite$AxTitleY(
 					$author$project$VegaLite$NumExpr(ex));
-			case 74:
+			case 75:
 				return $author$project$VegaLite$AxGridDashOffset(
 					$author$project$VegaLite$NumExpr(ex));
-			case 75:
+			case 76:
 				return $author$project$VegaLite$AxGridOpacity(
 					$author$project$VegaLite$NumExpr(ex));
-			case 76:
+			case 77:
 				return $author$project$VegaLite$AxGridWidth(
 					$author$project$VegaLite$NumExpr(ex));
-			case 77:
+			case 78:
 				return $author$project$VegaLite$AxTickMinStep(
 					$author$project$VegaLite$NumExpr(ex));
 			default:
@@ -13572,10 +13605,10 @@ var $author$project$VegaLite$axNumsExpr = F2(
 			case 11:
 				return $author$project$VegaLite$AxDomainDash(
 					$author$project$VegaLite$NumsExpr(ex));
-			case 73:
+			case 74:
 				return $author$project$VegaLite$AxGridDash(
 					$author$project$VegaLite$NumsExpr(ex));
-			case 44:
+			case 45:
 				return $author$project$VegaLite$AxTickDash(
 					$author$project$VegaLite$NumsExpr(ex));
 			default:
@@ -13604,13 +13637,13 @@ var $author$project$VegaLite$AxLabelExpr = function (a) {
 	return {$: 25, a: a};
 };
 var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 54, a: a};
+	return {$: 55, a: a};
 };
 var $author$project$VegaLite$AxTitleFont = function (a) {
-	return {$: 60, a: a};
+	return {$: 61, a: a};
 };
 var $author$project$VegaLite$AxTitleFontStyle = function (a) {
-	return {$: 62, a: a};
+	return {$: 63, a: a};
 };
 var $author$project$VegaLite$StrExpr = function (a) {
 	return {$: 1, a: a};
@@ -13640,30 +13673,34 @@ var $author$project$VegaLite$axStrExpr = F2(
 			case 30:
 				return $author$project$VegaLite$AxLabelFontStyle(
 					$author$project$VegaLite$StrExpr(ex));
-			case 42:
+			case 43:
 				return $author$project$VegaLite$AxTickColor(
 					$author$project$VegaLite$StrExpr(ex));
-			case 54:
+			case 55:
 				return $author$project$VegaLite$AxTitle(
 					$author$project$VegaLite$StrExpr(ex));
-			case 59:
+			case 60:
 				return $author$project$VegaLite$AxTitleColor(
 					$author$project$VegaLite$StrExpr(ex));
-			case 60:
+			case 61:
 				return $author$project$VegaLite$AxTitleFont(
 					$author$project$VegaLite$StrExpr(ex));
-			case 62:
+			case 63:
 				return $author$project$VegaLite$AxTitleFontStyle(
 					$author$project$VegaLite$StrExpr(ex));
-			case 72:
+			case 73:
 				return $author$project$VegaLite$AxGridColor(
 					$author$project$VegaLite$StrExpr(ex));
 			default:
 				return fn('');
 		}
 	});
-var $author$project$VegaLite$AxTickCap = function (a) {
+var $author$project$VegaLite$AxTickBand = function (a) {
 	return {$: 41, a: a};
+};
+var $author$project$VegaLite$axTickBand = $author$project$VegaLite$AxTickBand;
+var $author$project$VegaLite$AxTickCap = function (a) {
+	return {$: 42, a: a};
 };
 var $author$project$VegaLite$axTickCap = $author$project$VegaLite$AxTickCap;
 var $author$project$VegaLite$axTickOffset = function (n) {
@@ -13671,11 +13708,11 @@ var $author$project$VegaLite$axTickOffset = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxTitleAlign = function (a) {
-	return {$: 55, a: a};
+	return {$: 56, a: a};
 };
 var $author$project$VegaLite$axTitleAlign = $author$project$VegaLite$AxTitleAlign;
 var $author$project$VegaLite$AxTitleAnchor = function (a) {
-	return {$: 56, a: a};
+	return {$: 57, a: a};
 };
 var $author$project$VegaLite$axTitleAnchor = $author$project$VegaLite$AxTitleAnchor;
 var $author$project$VegaLite$axTitleAngle = function (n) {
@@ -13684,7 +13721,7 @@ var $author$project$VegaLite$axTitleAngle = function (n) {
 			$author$project$VegaLite$positiveAngle(n)));
 };
 var $author$project$VegaLite$AxTitleBaseline = function (a) {
-	return {$: 58, a: a};
+	return {$: 59, a: a};
 };
 var $author$project$VegaLite$axTitleBaseline = $author$project$VegaLite$AxTitleBaseline;
 var $author$project$VegaLite$axTitleFont = function (s) {
@@ -13696,7 +13733,7 @@ var $author$project$VegaLite$axTitleFontStyle = function (s) {
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxTitleFontWeight = function (a) {
-	return {$: 63, a: a};
+	return {$: 64, a: a};
 };
 var $author$project$VegaLite$axTitleFontWeight = $author$project$VegaLite$AxTitleFontWeight;
 var $author$project$VegaLite$axTitleLimit = function (n) {
@@ -14084,6 +14121,10 @@ var $author$project$VegaLite$DStr = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$str = $author$project$VegaLite$DStr;
+var $author$project$VegaLite$TBExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$tbExpr = $author$project$VegaLite$TBExpr;
 var $author$project$VegaLite$VAlignExpr = function (a) {
 	return {$: 6, a: a};
 };
@@ -14211,154 +14252,173 @@ var $author$project$AxisTests$axis16 = function () {
 																																																					$elm$core$Basics$composeL,
 																																																					A2(
 																																																						$elm$core$Basics$composeL,
-																																																						$author$project$VegaLite$params,
+																																																						A2(
+																																																							$elm$core$Basics$composeL,
+																																																							$author$project$VegaLite$params,
+																																																							A2(
+																																																								$author$project$VegaLite$param,
+																																																								'bandPosition',
+																																																								_List_fromArray(
+																																																									[
+																																																										$author$project$VegaLite$paValue(
+																																																										$author$project$VegaLite$num(0.5)),
+																																																										$author$project$VegaLite$paBind(
+																																																										$author$project$VegaLite$ipRange(
+																																																											_List_fromArray(
+																																																												[
+																																																													$author$project$VegaLite$inName('Band position '),
+																																																													$author$project$VegaLite$inMin(0),
+																																																													$author$project$VegaLite$inMax(1)
+																																																												])))
+																																																									]))),
 																																																						A2(
 																																																							$author$project$VegaLite$param,
-																																																							'bandPosition',
+																																																							'minExtent',
 																																																							_List_fromArray(
 																																																								[
 																																																									$author$project$VegaLite$paValue(
-																																																									$author$project$VegaLite$num(0.5)),
+																																																									$author$project$VegaLite$num(30)),
 																																																									$author$project$VegaLite$paBind(
 																																																									$author$project$VegaLite$ipRange(
 																																																										_List_fromArray(
 																																																											[
-																																																												$author$project$VegaLite$inName('Band position '),
+																																																												$author$project$VegaLite$inName('Min extent '),
 																																																												$author$project$VegaLite$inMin(0),
-																																																												$author$project$VegaLite$inMax(1)
+																																																												$author$project$VegaLite$inMax(100)
 																																																											])))
 																																																								]))),
 																																																					A2(
 																																																						$author$project$VegaLite$param,
-																																																						'minExtent',
+																																																						'orient',
 																																																						_List_fromArray(
 																																																							[
 																																																								$author$project$VegaLite$paValue(
-																																																								$author$project$VegaLite$num(30)),
+																																																								$author$project$VegaLite$str('bottom')),
 																																																								$author$project$VegaLite$paBind(
-																																																								$author$project$VegaLite$ipRange(
+																																																								$author$project$VegaLite$ipSelect(
 																																																									_List_fromArray(
 																																																										[
-																																																											$author$project$VegaLite$inName('Min extent '),
-																																																											$author$project$VegaLite$inMin(0),
-																																																											$author$project$VegaLite$inMax(100)
+																																																											$author$project$VegaLite$inName('Orientation '),
+																																																											$author$project$VegaLite$inOptions(
+																																																											_List_fromArray(
+																																																												['top', 'bottom']))
 																																																										])))
 																																																							]))),
 																																																				A2(
 																																																					$author$project$VegaLite$param,
-																																																					'orient',
+																																																					'domainCap',
 																																																					_List_fromArray(
 																																																						[
 																																																							$author$project$VegaLite$paValue(
-																																																							$author$project$VegaLite$str('bottom')),
+																																																							$author$project$VegaLite$str('butt')),
 																																																							$author$project$VegaLite$paBind(
 																																																							$author$project$VegaLite$ipSelect(
 																																																								_List_fromArray(
 																																																									[
-																																																										$author$project$VegaLite$inName('Orientation '),
+																																																										$author$project$VegaLite$inName('Domain cap '),
 																																																										$author$project$VegaLite$inOptions(
 																																																										_List_fromArray(
-																																																											['top', 'bottom']))
+																																																											['butt', 'round', 'square']))
 																																																									])))
 																																																						]))),
 																																																			A2(
 																																																				$author$project$VegaLite$param,
-																																																				'domainCap',
+																																																				'domainColor',
 																																																				_List_fromArray(
 																																																					[
 																																																						$author$project$VegaLite$paValue(
-																																																						$author$project$VegaLite$str('butt')),
+																																																						$author$project$VegaLite$str('black')),
 																																																						$author$project$VegaLite$paBind(
-																																																						$author$project$VegaLite$ipSelect(
+																																																						$author$project$VegaLite$ipColor(
 																																																							_List_fromArray(
 																																																								[
-																																																									$author$project$VegaLite$inName('Domain cap '),
-																																																									$author$project$VegaLite$inOptions(
-																																																									_List_fromArray(
-																																																										['butt', 'round', 'square']))
+																																																									$author$project$VegaLite$inName('Domain colour ')
 																																																								])))
 																																																					]))),
 																																																		A2(
 																																																			$author$project$VegaLite$param,
-																																																			'domainColor',
+																																																			'domainDash',
 																																																			_List_fromArray(
 																																																				[
-																																																					$author$project$VegaLite$paValue(
-																																																					$author$project$VegaLite$str('black')),
+																																																					$author$project$VegaLite$paValue(solid),
 																																																					$author$project$VegaLite$paBind(
-																																																					$author$project$VegaLite$ipColor(
+																																																					$author$project$VegaLite$ipSelect(
 																																																						_List_fromArray(
 																																																							[
-																																																								$author$project$VegaLite$inName('Domain colour ')
+																																																								$author$project$VegaLite$inName('Domain dash '),
+																																																								$author$project$VegaLite$inDataOptions(
+																																																								_List_fromArray(
+																																																									[solid, shortDash, longDash]))
 																																																							])))
 																																																				]))),
 																																																	A2(
 																																																		$author$project$VegaLite$param,
-																																																		'domainDash',
+																																																		'domainDashOffset',
 																																																		_List_fromArray(
 																																																			[
-																																																				$author$project$VegaLite$paValue(solid),
+																																																				$author$project$VegaLite$paValue(
+																																																				$author$project$VegaLite$num(0)),
 																																																				$author$project$VegaLite$paBind(
-																																																				$author$project$VegaLite$ipSelect(
+																																																				$author$project$VegaLite$ipRange(
 																																																					_List_fromArray(
 																																																						[
-																																																							$author$project$VegaLite$inName('Domain dash '),
-																																																							$author$project$VegaLite$inDataOptions(
-																																																							_List_fromArray(
-																																																								[solid, shortDash, longDash]))
+																																																							$author$project$VegaLite$inName('Domain dash offset '),
+																																																							$author$project$VegaLite$inMin(0),
+																																																							$author$project$VegaLite$inMax(12)
 																																																						])))
 																																																			]))),
 																																																A2(
 																																																	$author$project$VegaLite$param,
-																																																	'domainDashOffset',
+																																																	'domainWidth',
 																																																	_List_fromArray(
 																																																		[
 																																																			$author$project$VegaLite$paValue(
-																																																			$author$project$VegaLite$num(0)),
+																																																			$author$project$VegaLite$num(2)),
 																																																			$author$project$VegaLite$paBind(
 																																																			$author$project$VegaLite$ipRange(
 																																																				_List_fromArray(
 																																																					[
-																																																						$author$project$VegaLite$inName('Domain dash offset '),
-																																																						$author$project$VegaLite$inMin(0),
+																																																						$author$project$VegaLite$inName('Domain width '),
+																																																						$author$project$VegaLite$inMin(0.1),
 																																																						$author$project$VegaLite$inMax(12)
 																																																					])))
 																																																		]))),
 																																															A2(
 																																																$author$project$VegaLite$param,
-																																																'domainWidth',
+																																																'domainOpacity',
 																																																_List_fromArray(
 																																																	[
 																																																		$author$project$VegaLite$paValue(
-																																																		$author$project$VegaLite$num(2)),
+																																																		$author$project$VegaLite$num(1)),
 																																																		$author$project$VegaLite$paBind(
 																																																		$author$project$VegaLite$ipRange(
 																																																			_List_fromArray(
 																																																				[
-																																																					$author$project$VegaLite$inName('Domain width '),
-																																																					$author$project$VegaLite$inMin(0.1),
-																																																					$author$project$VegaLite$inMax(12)
+																																																					$author$project$VegaLite$inName('Domain opacity '),
+																																																					$author$project$VegaLite$inMin(0),
+																																																					$author$project$VegaLite$inMax(1)
 																																																				])))
 																																																	]))),
 																																														A2(
 																																															$author$project$VegaLite$param,
-																																															'domainOpacity',
+																																															'offset',
 																																															_List_fromArray(
 																																																[
 																																																	$author$project$VegaLite$paValue(
-																																																	$author$project$VegaLite$num(1)),
+																																																	$author$project$VegaLite$num(0)),
 																																																	$author$project$VegaLite$paBind(
 																																																	$author$project$VegaLite$ipRange(
 																																																		_List_fromArray(
 																																																			[
-																																																				$author$project$VegaLite$inName('Domain opacity '),
-																																																				$author$project$VegaLite$inMin(0),
-																																																				$author$project$VegaLite$inMax(1)
+																																																				$author$project$VegaLite$inName('Offset '),
+																																																				$author$project$VegaLite$inMin(-10),
+																																																				$author$project$VegaLite$inMax(10),
+																																																				$author$project$VegaLite$inStep(1)
 																																																			])))
 																																																]))),
 																																													A2(
 																																														$author$project$VegaLite$param,
-																																														'offset',
+																																														'position',
 																																														_List_fromArray(
 																																															[
 																																																$author$project$VegaLite$paValue(
@@ -14367,162 +14427,162 @@ var $author$project$AxisTests$axis16 = function () {
 																																																$author$project$VegaLite$ipRange(
 																																																	_List_fromArray(
 																																																		[
-																																																			$author$project$VegaLite$inName('Offset '),
-																																																			$author$project$VegaLite$inMin(-10),
-																																																			$author$project$VegaLite$inMax(10),
-																																																			$author$project$VegaLite$inStep(1)
+																																																			$author$project$VegaLite$inName('Position '),
+																																																			$author$project$VegaLite$inMin(-30),
+																																																			$author$project$VegaLite$inMax(30)
 																																																		])))
 																																															]))),
 																																												A2(
 																																													$author$project$VegaLite$param,
-																																													'position',
+																																													'translate',
 																																													_List_fromArray(
 																																														[
 																																															$author$project$VegaLite$paValue(
-																																															$author$project$VegaLite$num(0)),
+																																															$author$project$VegaLite$num(0.5)),
 																																															$author$project$VegaLite$paBind(
 																																															$author$project$VegaLite$ipRange(
 																																																_List_fromArray(
 																																																	[
-																																																		$author$project$VegaLite$inName('Position '),
-																																																		$author$project$VegaLite$inMin(-30),
-																																																		$author$project$VegaLite$inMax(30)
+																																																		$author$project$VegaLite$inName('Translate '),
+																																																		$author$project$VegaLite$inMin(-4),
+																																																		$author$project$VegaLite$inMax(4)
 																																																	])))
 																																														]))),
 																																											A2(
 																																												$author$project$VegaLite$param,
-																																												'translate',
+																																												'labelAlign',
 																																												_List_fromArray(
 																																													[
 																																														$author$project$VegaLite$paValue(
-																																														$author$project$VegaLite$num(0.5)),
+																																														$author$project$VegaLite$str('center')),
 																																														$author$project$VegaLite$paBind(
-																																														$author$project$VegaLite$ipRange(
+																																														$author$project$VegaLite$ipSelect(
 																																															_List_fromArray(
 																																																[
-																																																	$author$project$VegaLite$inName('Translate '),
-																																																	$author$project$VegaLite$inMin(-4),
-																																																	$author$project$VegaLite$inMax(4)
+																																																	$author$project$VegaLite$inName('Label align '),
+																																																	$author$project$VegaLite$inOptions(
+																																																	_List_fromArray(
+																																																		['center', 'left', 'right']))
 																																																])))
 																																													]))),
 																																										A2(
 																																											$author$project$VegaLite$param,
-																																											'labelAlign',
+																																											'labelBaseline',
 																																											_List_fromArray(
 																																												[
 																																													$author$project$VegaLite$paValue(
-																																													$author$project$VegaLite$str('center')),
+																																													$author$project$VegaLite$str('top')),
 																																													$author$project$VegaLite$paBind(
 																																													$author$project$VegaLite$ipSelect(
 																																														_List_fromArray(
 																																															[
-																																																$author$project$VegaLite$inName('Label align '),
+																																																$author$project$VegaLite$inName('Label baseline '),
 																																																$author$project$VegaLite$inOptions(
 																																																_List_fromArray(
-																																																	['center', 'left', 'right']))
+																																																	['alphabetic', 'top', 'middle', 'bottom', 'line-top', 'line-bottom']))
 																																															])))
 																																												]))),
 																																									A2(
 																																										$author$project$VegaLite$param,
-																																										'labelBaseline',
+																																										'labelAngle',
 																																										_List_fromArray(
 																																											[
 																																												$author$project$VegaLite$paValue(
-																																												$author$project$VegaLite$str('top')),
+																																												$author$project$VegaLite$num(0)),
 																																												$author$project$VegaLite$paBind(
-																																												$author$project$VegaLite$ipSelect(
+																																												$author$project$VegaLite$ipRange(
 																																													_List_fromArray(
 																																														[
-																																															$author$project$VegaLite$inName('Label baseline '),
-																																															$author$project$VegaLite$inOptions(
-																																															_List_fromArray(
-																																																['alphabetic', 'top', 'middle', 'bottom', 'line-top', 'line-bottom']))
+																																															$author$project$VegaLite$inName('Label angle '),
+																																															$author$project$VegaLite$inMin(-90),
+																																															$author$project$VegaLite$inMax(90),
+																																															$author$project$VegaLite$inStep(1)
 																																														])))
 																																											]))),
 																																								A2(
 																																									$author$project$VegaLite$param,
-																																									'labelAngle',
+																																									'labelColor',
 																																									_List_fromArray(
 																																										[
 																																											$author$project$VegaLite$paValue(
-																																											$author$project$VegaLite$num(0)),
+																																											$author$project$VegaLite$str('black')),
 																																											$author$project$VegaLite$paBind(
-																																											$author$project$VegaLite$ipRange(
+																																											$author$project$VegaLite$ipColor(
 																																												_List_fromArray(
 																																													[
-																																														$author$project$VegaLite$inName('Label angle '),
-																																														$author$project$VegaLite$inMin(-90),
-																																														$author$project$VegaLite$inMax(90),
-																																														$author$project$VegaLite$inStep(1)
+																																														$author$project$VegaLite$inName('Label colour ')
 																																													])))
 																																										]))),
 																																							A2(
 																																								$author$project$VegaLite$param,
-																																								'labelColor',
+																																								'labelFont',
 																																								_List_fromArray(
 																																									[
 																																										$author$project$VegaLite$paValue(
-																																										$author$project$VegaLite$str('black')),
+																																										$author$project$VegaLite$str('sans-serif')),
 																																										$author$project$VegaLite$paBind(
-																																										$author$project$VegaLite$ipColor(
+																																										$author$project$VegaLite$ipSelect(
 																																											_List_fromArray(
 																																												[
-																																													$author$project$VegaLite$inName('Label colour ')
+																																													$author$project$VegaLite$inName('Label font '),
+																																													$author$project$VegaLite$inOptions(
+																																													_List_fromArray(
+																																														['sans-serif', 'serif', 'monospace']))
 																																												])))
 																																									]))),
 																																						A2(
 																																							$author$project$VegaLite$param,
-																																							'labelFont',
+																																							'labelFlushOffset',
 																																							_List_fromArray(
 																																								[
 																																									$author$project$VegaLite$paValue(
-																																									$author$project$VegaLite$str('sans-serif')),
+																																									$author$project$VegaLite$num(0)),
 																																									$author$project$VegaLite$paBind(
-																																									$author$project$VegaLite$ipSelect(
+																																									$author$project$VegaLite$ipRange(
 																																										_List_fromArray(
 																																											[
-																																												$author$project$VegaLite$inName('Label font '),
-																																												$author$project$VegaLite$inOptions(
-																																												_List_fromArray(
-																																													['sans-serif', 'serif', 'monospace']))
+																																												$author$project$VegaLite$inName('Label flush offset '),
+																																												$author$project$VegaLite$inMin(-20),
+																																												$author$project$VegaLite$inMax(20)
 																																											])))
 																																								]))),
 																																					A2(
 																																						$author$project$VegaLite$param,
-																																						'labelFlushOffset',
+																																						'labelFontSize',
 																																						_List_fromArray(
 																																							[
 																																								$author$project$VegaLite$paValue(
-																																								$author$project$VegaLite$num(0)),
+																																								$author$project$VegaLite$num(10)),
 																																								$author$project$VegaLite$paBind(
 																																								$author$project$VegaLite$ipRange(
 																																									_List_fromArray(
 																																										[
-																																											$author$project$VegaLite$inName('Label flush offset '),
-																																											$author$project$VegaLite$inMin(-20),
-																																											$author$project$VegaLite$inMax(20)
+																																											$author$project$VegaLite$inName('Label font size '),
+																																											$author$project$VegaLite$inMin(0),
+																																											$author$project$VegaLite$inMax(32),
+																																											$author$project$VegaLite$inStep(1)
 																																										])))
 																																							]))),
 																																				A2(
 																																					$author$project$VegaLite$param,
-																																					'labelFontSize',
+																																					'labelFontStyle',
 																																					_List_fromArray(
 																																						[
 																																							$author$project$VegaLite$paValue(
-																																							$author$project$VegaLite$num(10)),
+																																							$author$project$VegaLite$str('normal')),
 																																							$author$project$VegaLite$paBind(
-																																							$author$project$VegaLite$ipRange(
+																																							$author$project$VegaLite$ipSelect(
 																																								_List_fromArray(
 																																									[
-																																										$author$project$VegaLite$inName('Label font size '),
-																																										$author$project$VegaLite$inMin(0),
-																																										$author$project$VegaLite$inMax(32),
-																																										$author$project$VegaLite$inStep(1)
+																																										$author$project$VegaLite$inName('Label style '),
+																																										$author$project$VegaLite$inOptions(
+																																										_List_fromArray(
+																																											['normal', 'italic']))
 																																									])))
 																																						]))),
 																																			A2(
 																																				$author$project$VegaLite$param,
-																																				'labelFontStyle',
+																																				'labelFontWeight',
 																																				_List_fromArray(
 																																					[
 																																						$author$project$VegaLite$paValue(
@@ -14531,128 +14591,128 @@ var $author$project$AxisTests$axis16 = function () {
 																																						$author$project$VegaLite$ipSelect(
 																																							_List_fromArray(
 																																								[
-																																									$author$project$VegaLite$inName('Label style '),
+																																									$author$project$VegaLite$inName('Label weight '),
 																																									$author$project$VegaLite$inOptions(
 																																									_List_fromArray(
-																																										['normal', 'italic']))
+																																										['normal', 'bold', 'lighter']))
 																																								])))
 																																					]))),
 																																		A2(
 																																			$author$project$VegaLite$param,
-																																			'labelFontWeight',
+																																			'labelLimit',
 																																			_List_fromArray(
 																																				[
 																																					$author$project$VegaLite$paValue(
-																																					$author$project$VegaLite$str('normal')),
+																																					$author$project$VegaLite$num(200)),
 																																					$author$project$VegaLite$paBind(
-																																					$author$project$VegaLite$ipSelect(
+																																					$author$project$VegaLite$ipRange(
 																																						_List_fromArray(
 																																							[
-																																								$author$project$VegaLite$inName('Label weight '),
-																																								$author$project$VegaLite$inOptions(
-																																								_List_fromArray(
-																																									['normal', 'bold', 'lighter']))
+																																								$author$project$VegaLite$inName('Label limit '),
+																																								$author$project$VegaLite$inMin(0),
+																																								$author$project$VegaLite$inMax(200)
 																																							])))
 																																				]))),
 																																	A2(
 																																		$author$project$VegaLite$param,
-																																		'labelLimit',
+																																		'labelOffset',
 																																		_List_fromArray(
 																																			[
 																																				$author$project$VegaLite$paValue(
-																																				$author$project$VegaLite$num(200)),
+																																				$author$project$VegaLite$num(0)),
 																																				$author$project$VegaLite$paBind(
 																																				$author$project$VegaLite$ipRange(
 																																					_List_fromArray(
 																																						[
-																																							$author$project$VegaLite$inName('Label limit '),
-																																							$author$project$VegaLite$inMin(0),
-																																							$author$project$VegaLite$inMax(200)
+																																							$author$project$VegaLite$inName('Label offset '),
+																																							$author$project$VegaLite$inMin(-30),
+																																							$author$project$VegaLite$inMax(30)
 																																						])))
 																																			]))),
 																																A2(
 																																	$author$project$VegaLite$param,
-																																	'labelOffset',
+																																	'labelOpacity',
 																																	_List_fromArray(
 																																		[
 																																			$author$project$VegaLite$paValue(
-																																			$author$project$VegaLite$num(0)),
+																																			$author$project$VegaLite$num(1)),
 																																			$author$project$VegaLite$paBind(
 																																			$author$project$VegaLite$ipRange(
 																																				_List_fromArray(
 																																					[
-																																						$author$project$VegaLite$inName('Label offset '),
-																																						$author$project$VegaLite$inMin(-30),
-																																						$author$project$VegaLite$inMax(30)
+																																						$author$project$VegaLite$inName('Label opacity '),
+																																						$author$project$VegaLite$inMin(0),
+																																						$author$project$VegaLite$inMax(1)
 																																					])))
 																																		]))),
 																															A2(
 																																$author$project$VegaLite$param,
-																																'labelOpacity',
+																																'labelOverlap',
 																																_List_fromArray(
 																																	[
 																																		$author$project$VegaLite$paValue(
-																																		$author$project$VegaLite$num(1)),
+																																		$author$project$VegaLite$str('false')),
 																																		$author$project$VegaLite$paBind(
-																																		$author$project$VegaLite$ipRange(
+																																		$author$project$VegaLite$ipSelect(
 																																			_List_fromArray(
 																																				[
-																																					$author$project$VegaLite$inName('Label opacity '),
-																																					$author$project$VegaLite$inMin(0),
-																																					$author$project$VegaLite$inMax(1)
+																																					$author$project$VegaLite$inName('Label overlap '),
+																																					$author$project$VegaLite$inDataOptions(
+																																					_List_fromArray(
+																																						[
+																																							$author$project$VegaLite$boo(false),
+																																							$author$project$VegaLite$str('parity'),
+																																							$author$project$VegaLite$str('greedy')
+																																						]))
 																																				])))
 																																	]))),
 																														A2(
 																															$author$project$VegaLite$param,
-																															'labelOverlap',
+																															'labelPadding',
 																															_List_fromArray(
 																																[
 																																	$author$project$VegaLite$paValue(
-																																	$author$project$VegaLite$str('false')),
+																																	$author$project$VegaLite$num(2)),
 																																	$author$project$VegaLite$paBind(
-																																	$author$project$VegaLite$ipSelect(
+																																	$author$project$VegaLite$ipRange(
 																																		_List_fromArray(
 																																			[
-																																				$author$project$VegaLite$inName('Label overlap '),
-																																				$author$project$VegaLite$inDataOptions(
-																																				_List_fromArray(
-																																					[
-																																						$author$project$VegaLite$boo(false),
-																																						$author$project$VegaLite$str('parity'),
-																																						$author$project$VegaLite$str('greedy')
-																																					]))
+																																				$author$project$VegaLite$inName('Label padding '),
+																																				$author$project$VegaLite$inMin(-30),
+																																				$author$project$VegaLite$inMax(30)
 																																			])))
 																																]))),
 																													A2(
 																														$author$project$VegaLite$param,
-																														'labelPadding',
+																														'labelSeparation',
 																														_List_fromArray(
 																															[
 																																$author$project$VegaLite$paValue(
-																																$author$project$VegaLite$num(2)),
+																																$author$project$VegaLite$num(0)),
 																																$author$project$VegaLite$paBind(
 																																$author$project$VegaLite$ipRange(
 																																	_List_fromArray(
 																																		[
-																																			$author$project$VegaLite$inName('Label padding '),
-																																			$author$project$VegaLite$inMin(-30),
-																																			$author$project$VegaLite$inMax(30)
+																																			$author$project$VegaLite$inName('Label separation '),
+																																			$author$project$VegaLite$inMin(0),
+																																			$author$project$VegaLite$inMax(20)
 																																		])))
 																															]))),
 																												A2(
 																													$author$project$VegaLite$param,
-																													'labelSeparation',
+																													'tickBand',
 																													_List_fromArray(
 																														[
 																															$author$project$VegaLite$paValue(
-																															$author$project$VegaLite$num(0)),
+																															$author$project$VegaLite$str('center')),
 																															$author$project$VegaLite$paBind(
-																															$author$project$VegaLite$ipRange(
+																															$author$project$VegaLite$ipSelect(
 																																_List_fromArray(
 																																	[
-																																		$author$project$VegaLite$inName('Label separation '),
-																																		$author$project$VegaLite$inMin(0),
-																																		$author$project$VegaLite$inMax(20)
+																																		$author$project$VegaLite$inName('Tick band '),
+																																		$author$project$VegaLite$inOptions(
+																																		_List_fromArray(
+																																			['center', 'extent']))
 																																	])))
 																														]))),
 																											A2(
@@ -15124,6 +15184,8 @@ var $author$project$AxisTests$axis16 = function () {
 								$author$project$VegaLite$osExpr('labelOverlap')),
 								A2($author$project$VegaLite$axNumExpr, 'labelPadding', $author$project$VegaLite$axLabelPadding),
 								A2($author$project$VegaLite$axNumExpr, 'labelSeparation', $author$project$VegaLite$axLabelSeparation),
+								$author$project$VegaLite$axTickBand(
+								$author$project$VegaLite$tbExpr('tickBand')),
 								$author$project$VegaLite$axTickCap(
 								$author$project$VegaLite$caExpr('tickCap')),
 								A2($author$project$VegaLite$axStrExpr, 'tickColor', $author$project$VegaLite$axTickColor),
@@ -15371,15 +15433,15 @@ var $author$project$VegaLite$GridDashOffset = function (a) {
 };
 var $author$project$VegaLite$axcoGridDashOffset = $author$project$VegaLite$GridDashOffset;
 var $author$project$VegaLite$TickDash = function (a) {
-	return {$: 42, a: a};
+	return {$: 43, a: a};
 };
 var $author$project$VegaLite$axcoTickDash = $author$project$VegaLite$TickDash;
 var $author$project$VegaLite$TickDashOffset = function (a) {
-	return {$: 43, a: a};
+	return {$: 44, a: a};
 };
 var $author$project$VegaLite$axcoTickDashOffset = $author$project$VegaLite$TickDashOffset;
 var $author$project$VegaLite$TickSize = function (a) {
-	return {$: 48, a: a};
+	return {$: 49, a: a};
 };
 var $author$project$VegaLite$axcoTickSize = $author$project$VegaLite$TickSize;
 var $author$project$VegaLite$coAxisTemporal = $author$project$VegaLite$AxisTemporal(0);
@@ -15404,7 +15466,7 @@ var $author$project$AxisTests$axis4a = $author$project$AxisTests$tAxisBase(
 					$author$project$VegaLite$axcoTickDashOffset(2)
 				]))));
 var $author$project$VegaLite$AxValues = function (a) {
-	return {$: 53, a: a};
+	return {$: 54, a: a};
 };
 var $author$project$VegaLite$axValues = $author$project$VegaLite$AxValues;
 var $author$project$AxisTests$axis5 = function () {
