@@ -363,23 +363,30 @@ axis15 =
 axis16 : Spec
 axis16 =
     let
+        solid =
+            daConcat (nums [])
+
+        shortDash =
+            daConcat (nums [ 2, 2 ])
+
+        longDash =
+            daConcat (nums [ 8, 8 ])
+
         ps =
             params
                 -- TODO Aria
-                -- TODO domainDash**
-                -- TODO domainDashOffset
                 -- TODO labelBound
                 -- TODO labelOverlap
                 -- TODO tickBand
                 -- TODO tickCount
-                -- TODO tickDash
                 -- TODO tickValues
-                -- TODO gridDash
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
                 << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Min extent ", inMin 0, inMax 100 ]) ]
                 << param "orient" [ paValue (str "bottom"), paBind (ipSelect [ inName "Orientation ", inOptions [ "top", "bottom" ] ]) ]
                 << param "domainCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Domain cap ", inOptions [ "butt", "round", "square" ] ]) ]
                 << param "domainColor" [ paValue (str "black"), paBind (ipColor [ inName "Domain colour " ]) ]
+                << param "domainDash" [ paValue solid, paBind (ipSelect [ inName "Domain dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "domainDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Domain dash offset ", inMin 0, inMax 12 ]) ]
                 << param "domainWidth" [ paValue (num 2), paBind (ipRange [ inName "Domain width ", inMin 0.1, inMax 12 ]) ]
                 << param "domainOpacity" [ paValue (num 1), paBind (ipRange [ inName "Domain opacity ", inMin 0, inMax 1 ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inName "Offset ", inMin -10, inMax 10, inStep 1 ]) ]
@@ -389,7 +396,6 @@ axis16 =
                 << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inName "Label baseline ", inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inName "Label angle ", inMin -90, inMax 90, inStep 1 ]) ]
                 << param "labelColor" [ paValue (str "black"), paBind (ipColor [ inName "Label colour " ]) ]
-                -- << param "labelBound" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inName "Label font ", inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
                 << param "labelFlushOffset" [ paValue (num 0), paBind (ipRange [ inName "Label flush offset ", inMin -20, inMax 20 ]) ]
                 << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Label font size ", inMin 0, inMax 32, inStep 1 ]) ]
@@ -402,6 +408,8 @@ axis16 =
                 << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inName "Label separation ", inMin 0, inMax 20 ]) ]
                 << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Tick cap ", inOptions [ "butt", "round", "square" ] ]) ]
                 << param "tickColor" [ paValue (str "black"), paBind (ipColor [ inName "Tick colour " ]) ]
+                << param "tickDash" [ paValue solid, paBind (ipSelect [ inName "Tick dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "tickDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Tick dash offset ", inMin 0, inMax 12 ]) ]
                 << param "tickOffset" [ paValue (num 0), paBind (ipRange [ inName "Tick offset ", inMin -30, inMax 30 ]) ]
                 << param "tickOpacity" [ paValue (num 1), paBind (ipRange [ inName "Tick opacity ", inMin 0, inMax 1 ]) ]
                 << param "tickSize" [ paValue (num 5), paBind (ipRange [ inName "Tick size ", inMin -20, inMax 20 ]) ]
@@ -420,6 +428,8 @@ axis16 =
                 << param "titlePadding" [ paValue (num 12), paBind (ipRange [ inName "Title padding ", inMin -20, inMax 20 ]) ]
                 << param "gridCap" [ paValue (str "butt"), paBind (ipSelect [ inName "Grid cap ", inOptions [ "butt", "round", "square" ] ]) ]
                 << param "gridColor" [ paValue (str "black"), paBind (ipColor [ inName "Grid colour " ]) ]
+                << param "gridDash" [ paValue solid, paBind (ipSelect [ inName "Grid dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "gridDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Grid dash offset ", inMin 0, inMax 12 ]) ]
                 << param "gridOpacity" [ paValue (num 1), paBind (ipRange [ inName "Grid opacity ", inMin 0, inMax 1 ]) ]
                 << param "gridWidth" [ paValue (num 1), paBind (ipRange [ inName "Grid width ", inMin 0, inMax 12 ]) ]
 
@@ -440,6 +450,8 @@ axis16 =
                         , axOrient (siExpr "orient")
                         , axDomainCap (caExpr "domainCap")
                         , axDomainColor |> axStrExpr "domainColor"
+                        , axDomainDash |> axNumsExpr "domainDash"
+                        , axDomainDashOffset |> axNumExpr "domainDashOffset"
                         , axDomainOpacity |> axNumExpr "domainOpacity"
                         , axDomainWidth |> axNumExpr "domainWidth"
                         , axPosition |> axNumExpr "position"
@@ -447,8 +459,6 @@ axis16 =
                         , axLabelAlign (haExpr "labelAlign")
                         , axLabelBaseline (vaExpr "labelBaseline")
                         , axLabelAngle |> axNumExpr "labelAngle"
-
-                        -- , axLabelBound
                         , axLabelColor |> axStrExpr "labelColor"
                         , axLabelFlushOffset |> axNumExpr "labelFlushOffset"
                         , axLabelFont |> axStrExpr "labelFont"
@@ -462,6 +472,8 @@ axis16 =
                         , axLabelSeparation |> axNumExpr "labelSeparation"
                         , axTickCap (caExpr "tickCap")
                         , axTickColor |> axStrExpr "tickColor"
+                        , axTickDash |> axNumsExpr "tickDash"
+                        , axTickDashOffset |> axNumExpr "tickDashOffset"
                         , axTickOffset |> axNumExpr "tickOffset"
                         , axTickOpacity |> axNumExpr "tickOpacity"
                         , axTickSize |> axNumExpr "tickSize"
@@ -484,7 +496,13 @@ axis16 =
                         , axGridWidth |> axNumExpr "gridWidth"
                         ]
                     ]
-                << position Y [ pAggregate opCount ]
+                << position Y
+                    [ pAggregate opCount
+                    , pAxis
+                        [ axGridDash |> axNumsExpr "gridDash"
+                        , axGridDashOffset |> axNumExpr "gridDashOffset"
+                        ]
+                    ]
     in
     toVegaLite [ ps [], width 500, height 400, padding (paSize 80), dataMovies, enc [], bar [] ]
 
