@@ -7836,9 +7836,18 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 			return $elm$json$Json$Encode$bool(true);
 		case 9:
 			return $elm$json$Json$Encode$bool(false);
-		default:
+		case 11:
 			var n = ni.a;
 			return $elm$json$Json$Encode$int(n);
+		default:
+			var s = ni.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$schemeProperty = F2(
