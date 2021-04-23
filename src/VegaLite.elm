@@ -317,6 +317,7 @@ module VegaLite exposing
     , caButt
     , caExpr
     , maStrokeDash
+    , maStrokeDashExpr
     , maStrokeDashOffset
     , maStrokeJoin
     , joRound
@@ -498,6 +499,7 @@ module VegaLite exposing
     , soCustom
     , axBooExpr
     , axNumExpr
+    , axNumsExpr
     , axStrExpr
     , axAria
     , axBandPosition
@@ -1010,6 +1012,7 @@ module VegaLite exposing
     , inDebounce
     , inElement
     , inOptions
+    , inDataOptions
     , inMin
     , inMax
     , inName
@@ -2132,6 +2135,7 @@ property documentation.
 @docs caButt
 @docs caExpr
 @docs maStrokeDash
+@docs maStrokeDashExpr
 @docs maStrokeDashOffset
 @docs maStrokeJoin
 @docs joRound
@@ -2381,6 +2385,7 @@ See the
 
 @docs axBooExpr
 @docs axNumExpr
+@docs axNumsExpr
 @docs axStrExpr
 
 
@@ -2404,7 +2409,6 @@ See the
 @docs axDomain
 @docs axDomainDash
 @docs axDomainDashOffset
-
 @docs axDomainCap
 @docs axDomainColor
 @docs axDomainOpacity
@@ -3133,6 +3137,7 @@ details.
 @docs inDebounce
 @docs inElement
 @docs inOptions
+@docs inDataOptions
 @docs inMin
 @docs inMax
 @docs inName
@@ -4023,30 +4028,31 @@ type AxisConfig
 [axMaxExtent](#axMaxExtent), [axMinExtent](#axMinExtent), [axOrient](#axOrient),
 [axOffset](#axOffset), [axPosition](#axPosition), [axZIndex](#axZIndex),
 [axDataCondition](#axDataCondition), [axDomain](#axDomain), [axDomainCap](#axDomainCap),
-[axDomainColor](#axDomainColor), [axDomainDash](#axDomainDash), [axDomainDashOffset](#axDomainDashOffset),
-[axDomainOpacity](#axDomainOpacity), [axDomainWidth](#axDomainWidth), [axFormat](#axFormat),
-[axFormatAsNum](#axFormatAsNum), [axFormatAsTemporal](#axFormatAsTemporal),
-[axFormatAsCustom](#axFormatAsCustom), [axLabels](#axLabels), [axLabelAlign](#axLabelAlign),
-[axLabelAngle](#axLabelAngle), [axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound),
-[axLabelColor](#axLabelColor), [axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush),
-[axLabelFlushOffset](#axLabelFlushOffset), [axLabelFont](#axLabelFont),
-[axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
+[axDomainColor](#axDomainColor), [axDomainDash](#axDomainDash),
+[axDomainDashOffset](#axDomainDashOffset), [axDomainOpacity](#axDomainOpacity),
+[axDomainWidth](#axDomainWidth), [axFormat](#axFormat), [axFormatAsNum](#axFormatAsNum),
+[axFormatAsTemporal](#axFormatAsTemporal), [axFormatAsCustom](#axFormatAsCustom),
+[axLabels](#axLabels), [axLabelAlign](#axLabelAlign), [axLabelAngle](#axLabelAngle),
+[axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound), [axLabelColor](#axLabelColor),
+[axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush), [axLabelFlushOffset](#axLabelFlushOffset),
+[axLabelFont](#axLabelFont), [axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
 [axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit),
 [axLabelLineHeight](#axLabelLineHeight), [axLabelOffset](#axLabelOffset),
 [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap), [axLabelPadding](#axLabelPadding),
-[axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle), [axTranslate](#axTranslate), [axTicks](#axTicks),
-[axTickCap](#axTickCap), [axTickColor](#axTickColor), [axTickCount](#axTickCount), [axTickDash](#axTickDash),
-[axTickDashOffset](#axTickDashOffset), [axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset),
-[axTickOpacity](#axTickOpacity), [axTickRound](#axTickRound), [axTickSize](#axTickSize),
-[axTickMinStep](#axTickMinStep), [axTickWidth](#axTickWidth), [axValues](#axValues),
-[axTitle](#axTitle), [axTitleAlign](#axTitleAlign), [axTitleAnchor](#axTitleAnchor),
-[axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline), [axTitleColor](#axTitleColor),
-[axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize), [axTitleFontStyle](#axTitleFontStyle),
-[axTitleFontWeight](#axTitleFontWeight), [axTitleLimit](#axTitleLimit), [axTitleLineHeight](#axTitleLineHeight),
-[axTitleOpacity](#axTitleOpacity), [axTitlePadding](#axTitlePadding), [axTitleX](#axTitleX),
-[axTitleY](#axTitleY), [axGrid](#axGrid), [axGridCap](#axGridCap),
-[axGridColor](#axGridColor), [axGridDash](#axGridDash), [axGridDashOffset](#axGridDashOffset),
-[axGridOpacity](#axGridOpacity) and [axGridWidth](#axGridWidth).
+[axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle), [axTranslate](#axTranslate),
+[axTicks](#axTicks), [axTickCap](#axTickCap), [axTickColor](#axTickColor), [axTickCount](#axTickCount),
+[axTickDash](#axTickDash), [axTickDashOffset](#axTickDashOffset),
+[axTickExtra](#axTickExtra), [axTickOffset](#axTickOffset), [axTickOpacity](#axTickOpacity),
+[axTickRound](#axTickRound), [axTickSize](#axTickSize), [axTickMinStep](#axTickMinStep),
+[axTickWidth](#axTickWidth), [axValues](#axValues), [axTitle](#axTitle), [axTitleAlign](#axTitleAlign),
+[axTitleAnchor](#axTitleAnchor), [axTitleAngle](#axTitleAngle), [axTitleBaseline](#axTitleBaseline),
+[axTitleColor](#axTitleColor), [axTitleFont](#axTitleFont), [axTitleFontSize](#axTitleFontSize),
+[axTitleFontStyle](#axTitleFontStyle), [axTitleFontWeight](#axTitleFontWeight),
+[axTitleLimit](#axTitleLimit), [axTitleLineHeight](#axTitleLineHeight), [axTitleOpacity](#axTitleOpacity),
+[axTitlePadding](#axTitlePadding), [axTitleX](#axTitleX), [axTitleY](#axTitleY),
+[axGrid](#axGrid), [axGridCap](#axGridCap), [axGridColor](#axGridColor), [axGridDash](#axGridDash),
+[axGridDashOffset](#axGridDashOffset), [axGridOpacity](#axGridOpacity)
+and [axGridWidth](#axGridWidth).
 -}
 type AxisProperty
     = AxAria (List Aria)
@@ -4824,13 +4830,14 @@ type ImputeProperty
 
 
 {-| Generated by [inDebounce](#inDebounce), [inElement](#inElement),
-[inOptions](#inOptions), [inMin](#inMin), [inMax](#inMax), [inName](#inName),
-[inStep](#inStep) and [inPlaceholder](#inPlaceholder).
+[inOptions](#inOptions), [inDataOptions](#inDataOptions), [inMin](#inMin),
+[inMax](#inMax), [inName](#inName), [inStep](#inStep) and [inPlaceholder](#inPlaceholder).
 -}
 type InputProperty
     = Debounce Float
     | Element String
     | InOptions (List String)
+    | InDataOptions (List DataValue)
     | InMin Float
     | InMax Float
     | InName String
@@ -5176,7 +5183,8 @@ type MarkOrientation
 [maRadius2Offset](#maRadius2Offset), [maRemoveInvalid](#maRemoveInvalid),
 [maRule](#maRule), [maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
 [maStroke](#maStroke), [maStrokeGradient](#maStrokeGradient), [maStrokeCap](#maStrokeCap),
-[maStrokeDash](#maStrokeDash), [maStrokeDashOffset](#maStrokeDashOffset), [maStrokeJoin](#maStrokeJoin),
+[maStrokeDash](#maStrokeDash), [maStrokeDashExpr](#maStrokeDashExpr),
+[maStrokeDashOffset](#maStrokeDashOffset), [maStrokeJoin](#maStrokeJoin),
 [maStrokeMiterLimit](#maStrokeMiterLimit), [maStrokeOpacity](#maStrokeOpacity),
 [maStrokeWidth](#maStrokeWidth), [maStyle](#maStyle), [maTension](#maTension),
 [maText](#maText), [maTheta](#maTheta), [maTheta2](#maTheta2), [maThetaOffset](#maThetaOffset),
@@ -7248,7 +7256,7 @@ axGridColor s =
     AxGridColor (Str s)
 
 
-{-| Axis grid line dash style. The parameter is a list of alternating 'on' and
+{-| Axis grid lines dash style. The parameter is a list of alternating 'on' and
 'off' lengths in pixels representing the dashed line.
 -}
 axGridDash : List Float -> AxisProperty
@@ -7453,6 +7461,45 @@ axNumExpr ex fn =
 
         _ ->
             fn 0
+
+
+{-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requiring a list of numbers (for dash styles). This can
+be used to provide an interactive parameterisation of an axis dash property when
+an expression is bound to an input element. For example,
+
+    shortDash =
+        daConcat (nums [ 2, 2 ])
+
+    longDash =
+        daConcat (nums [ 8, 8 ])
+
+    ps =
+        params
+            << param "gridDash"
+                [ paValue shortDash
+                , paBind (ipSelect [ inDataOptions [ shortDash, longDash ] ])
+                ]
+
+    enc =
+        encoding
+            << position X [ pAxis [ axGridDash |> axNumsExpr "gridDash" ] ]
+
+-}
+axNumsExpr : String -> (List number -> AxisProperty) -> AxisProperty
+axNumsExpr ex fn =
+    case fn [] of
+        AxDomainDash _ ->
+            AxDomainDash (NumsExpr ex)
+
+        AxGridDash _ ->
+            AxGridDash (NumsExpr ex)
+
+        AxTickDash _ ->
+            AxTickDash (NumsExpr ex)
+
+        _ ->
+            fn []
 
 
 {-| Provide a [Vega expression](https://vega.github.io/vega/docs/expressions/) to
@@ -12181,6 +12228,18 @@ imValue =
     ImValue
 
 
+{-| Options for a radio or select input element. Unlike [inOptions](#inOptions),
+this allows for non-String data types to be listed. For example, to create a list
+of numbers:
+
+    inDataOptions [ num 2, num 3, num 5, num 7, num 11, num 13 ]
+
+-}
+inDataOptions : List DataValue -> InputProperty
+inDataOptions =
+    InDataOptions
+
+
 {-| Delay to introduce when processing input events in order to avoid unnecessary
 event broadcasting.
 -}
@@ -12219,7 +12278,8 @@ inName =
     InName
 
 
-{-| Options for a radio or select input element.
+{-| Options for a radio or select input element. Assumes all options are strings.
+For other types, consider [inDataOptions](#inDataOptions).
 -}
 inOptions : List String -> InputProperty
 inOptions =
@@ -14442,6 +14502,13 @@ sequence of line lengths.
 maStrokeDash : List Float -> MarkProperty
 maStrokeDash xs =
     MStrokeDash (Nums xs)
+
+
+{-| Expression that evalutes to a stroke dash style (list of numbers).
+-}
+maStrokeDashExpr : String -> MarkProperty
+maStrokeDashExpr s =
+    MStrokeDash (NumsExpr s)
 
 
 {-| Number of pixels before the first line dash is drawn.
@@ -22212,6 +22279,9 @@ inputProperty prop =
 
         InOptions opts ->
             ( "options", JE.list JE.string opts )
+
+        InDataOptions opts ->
+            ( "options", JE.list dataValueSpec opts )
 
         InPlaceholder el ->
             ( "placeholder", JE.string el )
