@@ -375,7 +375,7 @@ axis16 =
         ps =
             params
                 -- TODO Aria
-                -- TODO tickValues
+                -- TODO Values
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
                 << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Min extent ", inMin 0, inMax 100 ]) ]
                 << param "orient" [ paValue (str "bottom"), paBind (ipSelect [ inName "Orientation ", inOptions [ "top", "bottom" ] ]) ]
