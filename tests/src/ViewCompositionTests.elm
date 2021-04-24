@@ -397,12 +397,12 @@ background1 =
         , width 300
         , height 300
         , viewBackground
-            [ viewFill |> viStrExpr "fc"
-            , viewStroke |> viStrExpr "sc"
-            , viewCornerRadius |> viNumExpr "cr"
-            , viewFillOpacity |> viNumExpr "fo"
-            , viewStrokeOpacity |> viNumExpr "so"
-            , viewStrokeWidth |> viNumExpr "sw"
+            [ viewFill |> vbStrExpr "fc"
+            , viewStroke |> vbStrExpr "sc"
+            , viewCornerRadius |> vbNumExpr "cr"
+            , viewFillOpacity |> vbNumExpr "fo"
+            , viewStrokeOpacity |> vbNumExpr "so"
+            , viewStrokeWidth |> vbNumExpr "sw"
             ]
         , carData
         , enc []

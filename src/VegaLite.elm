@@ -1105,8 +1105,8 @@ module VegaLite exposing
     , tiStyle
     , tiZIndex
     , viewBackground
-    , viNumExpr
-    , viStrExpr
+    , vbNumExpr
+    , vbStrExpr
     , viewStyle
     , viewCornerRadius
     , viewFill
@@ -3291,8 +3291,8 @@ of other views. For more details see the
 [Vega-Lite view background documentation](https://vega.github.io/vega-lite/docs/spec.html#view-background)
 
 @docs viewBackground
-@docs viNumExpr
-@docs viStrExpr
+@docs vbNumExpr
+@docs vbStrExpr
 
 @docs viewStyle
 @docs viewCornerRadius
@@ -19545,6 +19545,73 @@ vaTop =
     VAlignTop
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a view background function requiring a numeric value. This can be used to provide an
+interactive parameterisation of a view background when an expression is bound to an
+input element. For example,
+
+    ps =
+        params
+            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
+
+    bg =
+        viewBackground [ viewCornerRadius |> vbNumExpr "r" ]
+
+-}
+vbNumExpr : String -> (number -> ViewBackground) -> ViewBackground
+vbNumExpr ex fn =
+    case fn 0 of
+        VBCornerRadius _ ->
+            VBCornerRadius (NumExpr ex)
+
+        VBFillOpacity _ ->
+            VBFillOpacity (NumExpr ex)
+
+        VBOpacity _ ->
+            VBOpacity (NumExpr ex)
+
+        VBStrokeOpacity _ ->
+            VBStrokeOpacity (NumExpr ex)
+
+        VBStrokeWidth _ ->
+            VBStrokeWidth (NumExpr ex)
+
+        VBStrokeDashOffset _ ->
+            VBStrokeDashOffset (NumExpr ex)
+
+        VBStrokeMiterLimit _ ->
+            VBStrokeMiterLimit (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a view background function requiring a `Maybe String` value. This can be used to
+provide an interactive parameterisation of a view background when an expression
+is bound to an input element. For example,
+
+    ps =
+        params
+            << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
+
+    bg =
+        viewBackground [ viewFill |> vbStrExpr "clr" ]
+
+-}
+vbStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
+vbStrExpr ex fn =
+    case fn Nothing of
+        VBFill _ ->
+            VBFill (StrExpr ex)
+
+        VBStroke _ ->
+            VBStroke (StrExpr ex)
+
+        _ ->
+            fn Nothing
+
+
 {-| Juxtapose some specifications vertically in a row layout of views.
 -}
 vConcat : List Spec -> ( VLProperty, Spec )
@@ -19698,73 +19765,6 @@ vicoBackground =
 viewBackground : List ViewBackground -> ( VLProperty, Spec )
 viewBackground vbs =
     ( VLViewBackground, JE.object (List.concatMap viewBackgroundProperty vbs) )
-
-
-{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-a view background function requiring a numeric value. This can be used to provide an
-interactive parameterisation of a view background when an expression is bound to an
-input element. For example,
-
-    ps =
-        params
-            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
-
-    bg =
-        viewBackground [ viewCornerRadius |> viNumExpr "r" ]
-
--}
-viNumExpr : String -> (number -> ViewBackground) -> ViewBackground
-viNumExpr ex fn =
-    case fn 0 of
-        VBCornerRadius _ ->
-            VBCornerRadius (NumExpr ex)
-
-        VBFillOpacity _ ->
-            VBFillOpacity (NumExpr ex)
-
-        VBOpacity _ ->
-            VBOpacity (NumExpr ex)
-
-        VBStrokeOpacity _ ->
-            VBStrokeOpacity (NumExpr ex)
-
-        VBStrokeWidth _ ->
-            VBStrokeWidth (NumExpr ex)
-
-        VBStrokeDashOffset _ ->
-            VBStrokeDashOffset (NumExpr ex)
-
-        VBStrokeMiterLimit _ ->
-            VBStrokeMiterLimit (NumExpr ex)
-
-        _ ->
-            fn 0
-
-
-{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-a view background function requiring a `Maybe String` value. This can be used to
-provide an interactive parameterisation of a view background when an expression
-is bound to an input element. For example,
-
-    ps =
-        params
-            << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
-
-    bg =
-        viewBackground [ viewFill |> viStrExpr "clr" ]
-
--}
-viStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
-viStrExpr ex fn =
-    case fn Nothing of
-        VBFill _ ->
-            VBFill (StrExpr ex)
-
-        VBStroke _ ->
-            VBStroke (StrExpr ex)
-
-        _ ->
-            fn Nothing
 
 
 {-| The radius in pixels of rounded corners in single view or layer background.

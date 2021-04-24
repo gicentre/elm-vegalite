@@ -10633,7 +10633,7 @@ var $author$project$VegaLite$VBStrokeOpacity = function (a) {
 var $author$project$VegaLite$VBStrokeWidth = function (a) {
 	return {$: 7, a: a};
 };
-var $author$project$VegaLite$viNumExpr = F2(
+var $author$project$VegaLite$vbNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
@@ -10671,7 +10671,7 @@ var $author$project$VegaLite$VBFill = function (a) {
 var $author$project$VegaLite$VBStroke = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$VegaLite$viStrExpr = F2(
+var $author$project$VegaLite$vbStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn($elm$core$Maybe$Nothing);
 		switch (_v0.$) {
@@ -10930,12 +10930,12 @@ var $author$project$ViewCompositionTests$background1 = function () {
 				$author$project$VegaLite$viewBackground(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$viStrExpr, 'fc', $author$project$VegaLite$viewFill),
-						A2($author$project$VegaLite$viStrExpr, 'sc', $author$project$VegaLite$viewStroke),
-						A2($author$project$VegaLite$viNumExpr, 'cr', $author$project$VegaLite$viewCornerRadius),
-						A2($author$project$VegaLite$viNumExpr, 'fo', $author$project$VegaLite$viewFillOpacity),
-						A2($author$project$VegaLite$viNumExpr, 'so', $author$project$VegaLite$viewStrokeOpacity),
-						A2($author$project$VegaLite$viNumExpr, 'sw', $author$project$VegaLite$viewStrokeWidth)
+						A2($author$project$VegaLite$vbStrExpr, 'fc', $author$project$VegaLite$viewFill),
+						A2($author$project$VegaLite$vbStrExpr, 'sc', $author$project$VegaLite$viewStroke),
+						A2($author$project$VegaLite$vbNumExpr, 'cr', $author$project$VegaLite$viewCornerRadius),
+						A2($author$project$VegaLite$vbNumExpr, 'fo', $author$project$VegaLite$viewFillOpacity),
+						A2($author$project$VegaLite$vbNumExpr, 'so', $author$project$VegaLite$viewStrokeOpacity),
+						A2($author$project$VegaLite$vbNumExpr, 'sw', $author$project$VegaLite$viewStrokeWidth)
 					])),
 				carData,
 				enc(_List_Nil),
