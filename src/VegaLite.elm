@@ -530,6 +530,7 @@ module VegaLite exposing
     , axLabelBaseline
     , cAxLabelBaseline
     , axLabelBound
+    , axLabelBoundExpr
     , axLabelColor
     , cAxLabelColor
     , axLabelExpr
@@ -2435,6 +2436,7 @@ See the
 @docs axLabelBaseline
 @docs cAxLabelBaseline
 @docs axLabelBound
+@docs axLabelBoundExpr
 @docs axLabelColor
 @docs cAxLabelColor
 @docs axLabelExpr
@@ -4093,7 +4095,8 @@ type AxisProperty
     | AxLabelAlign HAlign
     | AxLabelAngle Num
     | AxLabelBaseline VAlign
-    | AxLabelBound (Maybe Float)
+    | AxLabelBound MaybeNum
+    | AxLabelBoundExpr String
     | AxLabelColor Str
     | AxLabelExpr Str
     | AxLabelFlush (Maybe Float)
@@ -7608,8 +7611,17 @@ axLabelBaseline =
 overflow in pixels.
 -}
 axLabelBound : Maybe Float -> AxisProperty
-axLabelBound =
-    AxLabelBound
+axLabelBound mn =
+    AxLabelBound (MaybeNum mn)
+
+
+{-| Expression that evaluates to True, False or a number depending whether a check
+is to be made for an axis label size. A number specifies the permitted overflow
+in pixels.
+-}
+axLabelBoundExpr : String -> AxisProperty
+axLabelBoundExpr ex =
+    AxLabelBound (MaybeNumExpr ex)
 
 
 {-| Color of axis tick label.
@@ -20270,6 +20282,11 @@ type Nums
     | NumsExpr String
 
 
+type MaybeNum
+    = MaybeNum (Maybe Float)
+    | MaybeNumExpr String
+
+
 type Str
     = Str String
     | StrExpr String
@@ -20746,16 +20763,10 @@ axisProperty axisProp =
             [ ( "labelBaseline", vAlignSpec va ) ]
 
         AxLabelBound mn ->
-            case mn of
-                Just n ->
-                    if n == 1 then
-                        [ ( "labelBound", JE.bool True ) ]
+            maybeNumExpr "labelBound" mn
 
-                    else
-                        [ ( "labelBound", JE.float n ) ]
-
-                Nothing ->
-                    [ ( "labelBound", JE.bool False ) ]
+        AxLabelBoundExpr s ->
+            [ ( "expr", JE.string s ) ]
 
         AxLabelAngle n ->
             numExpr "labelAngle" n
@@ -23371,6 +23382,25 @@ markProperty mProp =
 
         MAspect b ->
             booExpr "aspect" b
+
+
+maybeNumExpr : String -> MaybeNum -> List ( String, Spec )
+maybeNumExpr objName n =
+    case n of
+        MaybeNum maybeX ->
+            case maybeX of
+                Just x ->
+                    if x == 1 then
+                        [ ( objName, JE.bool True ) ]
+
+                    else
+                        [ ( objName, JE.float x ) ]
+
+                Nothing ->
+                    [ ( objName, JE.bool False ) ]
+
+        MaybeNumExpr s ->
+            [ ( objName, JE.object [ ( "expr", JE.string s ) ] ) ]
 
 
 measurementLabel : Measurement -> String
