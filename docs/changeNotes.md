@@ -91,7 +91,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
-- `dataExpr` for creating a datum value from an expression (VL4.16).
+- `datumExpr` for creating a datum value from an expression (VL4.16).
 
 - `axTranslate` / `axcoTranslate` for axis translation.
 
