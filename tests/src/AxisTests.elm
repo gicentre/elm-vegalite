@@ -375,7 +375,6 @@ axis16 =
         ps =
             params
                 -- TODO Aria
-                -- TODO labelBound
                 -- TODO tickValues
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
                 << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Min extent ", inMin 0, inMax 100 ]) ]
@@ -391,6 +390,7 @@ axis16 =
                 << param "translate" [ paValue (num 0.5), paBind (ipRange [ inName "Translate ", inMin -4, inMax 4 ]) ]
                 << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inName "Label align ", inOptions [ "center", "left", "right" ] ]) ]
                 << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inName "Label baseline ", inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "labelBound" [ paValue (boo False), paBind (ipSelect [ inName "Label bound ", inDataOptions [ boo False, boo True, num 15 ] ]) ]
                 << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inName "Label angle ", inMin -90, inMax 90, inStep 1 ]) ]
                 << param "labelColor" [ paValue (str "black"), paBind (ipColor [ inName "Label colour " ]) ]
                 << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inName "Label font ", inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
@@ -401,7 +401,7 @@ axis16 =
                 << param "labelLimit" [ paValue (num 200), paBind (ipRange [ inName "Label limit ", inMin 0, inMax 200 ]) ]
                 << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inName "Label offset ", inMin -30, inMax 30 ]) ]
                 << param "labelOpacity" [ paValue (num 1), paBind (ipRange [ inName "Label opacity ", inMin 0, inMax 1 ]) ]
-                << param "labelOverlap" [ paValue (str "false"), paBind (ipSelect [ inName "Label overlap ", inDataOptions [ boo False, str "parity", str "greedy" ] ]) ]
+                << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inName "Label overlap ", inDataOptions [ boo False, str "parity", str "greedy" ] ]) ]
                 << param "labelPadding" [ paValue (num 2), paBind (ipRange [ inName "Label padding ", inMin -30, inMax 30 ]) ]
                 << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inName "Label separation ", inMin 0, inMax 20 ]) ]
                 << param "tickBand" [ paValue (str "center"), paBind (ipSelect [ inName "Tick band ", inOptions [ "center", "extent" ] ]) ]
@@ -504,6 +504,8 @@ axis16 =
                         [ axTickCount (niExpr "tickCount")
                         , axGridDash |> axNumsExpr "gridDash"
                         , axGridDashOffset |> axNumExpr "gridDashOffset"
+                        , axLabelBoundExpr "labelBound"
+                        , axLabelFontSize |> axNumExpr "labelFontSize"
                         ]
                     ]
     in
