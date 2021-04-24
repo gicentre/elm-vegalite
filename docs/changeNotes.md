@@ -49,7 +49,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `fiSelectionEmpty` for filtering with default empty result.
 
-- `daConcat` and `dataObject` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
+- `daConcat`, `dataObject` and `dataObjects` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
 
 - `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
 
@@ -91,7 +91,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
-- `datumExpr` for creating a datum value from an expression (VL4.16).
+- `datumExpr` / `dataExprs` for creating a datum value or list of data values from an expression (VL4.16).
 
 - `axTranslate` / `axcoTranslate` for axis translation.
 
