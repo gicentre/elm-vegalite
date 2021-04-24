@@ -4,11 +4,6 @@ import Platform
 import VegaLite exposing (..)
 
 
-path : String
-path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
-
-
 arrow1 : Spec
 arrow1 =
     let
