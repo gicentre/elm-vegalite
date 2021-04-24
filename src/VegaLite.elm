@@ -3092,7 +3092,7 @@ See
 
 Vega-Lite _parameters_ allow named objects whose values can change to persist within
 a specification. In the case of simple variables, it is often easier to use Elm
-directly to store persistant values. The main benefits of parameters are for storing
+directly to store persistent values. The main benefits of parameters are for storing
 _interaction selections_ such as mouse selections or slider values. See the Vega-Lite
 [parameter documentation](https://vega.github.io/vega-lite/docs/parameter.html) for
 details.
@@ -8462,7 +8462,7 @@ boxplot =
 
 {-| Treat a parameter as a boolean expression that may be composed to form more
 complex boolean expressions. Can be used when composing selections from multiple
-paramters. For example, if we have two interval selection paramters `alex` and
+parameters. For example, if we have two interval selection parameters `alex` and
 `morgan` we can conditionally colour if both selections intersect.
 
     color
@@ -11646,7 +11646,7 @@ hConcat specs =
 
 {-| Make a hyperlink channel encoding conditional on a predicate expression. A predicate
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
-([prTest](#prTest)). The first parameter is the predicate that evalues to true
+([prTest](#prTest)). The first parameter is the predicate that evaluates to true
 or false; the second the encoding if true, the third the encoding if false.
 -}
 hCondition : Predicate -> List HyperlinkChannel -> List HyperlinkChannel -> HyperlinkChannel
@@ -14570,7 +14570,7 @@ maStrokeDash xs =
     MStrokeDash (Nums xs)
 
 
-{-| Expression that evalutes to a stroke dash style (list of numbers).
+{-| Expression that evaluates to a stroke dash style (list of numbers).
 -}
 maStrokeDashExpr : String -> MarkProperty
 maStrokeDashExpr s =
@@ -14804,7 +14804,7 @@ mBoo =
 
 {-| Make a mark channel encoding conditional on a predicate expression. A predicate
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
-([prTest](#prTest)). The first parameter is the predicate that evalues to true
+([prTest](#prTest)). The first parameter is the predicate that evaluates to true
 or false; the second the encoding if true, the third the encoding if false.
 For example, to encode in one of two colours depending on a selection:
 
@@ -15625,7 +15625,7 @@ oBin =
 
 {-| Make an order channel encoding conditional on a predicate expression. A predicate
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
-([prTest](#prTest)). The first parameter is the predicate that evalues to true
+([prTest](#prTest)). The first parameter is the predicate that evaluates to true
 or false; the second the encoding if true, the third the encoding if false.
 
 For example, to bring marks of an interactively selected colour to the front:
@@ -16182,7 +16182,7 @@ param nme pps =
 
 {-| Specify top-level parameters to be used within a specification. While literals
 may be specified as parameters, these are better handled directly in Elm. More
-useful expression paramters are those that use the
+useful expression parameters are those that use the
 [vega-lite built-in parameters](https://vega.github.io/vega-lite/docs/parameter.html#built-in-variable-parameters)
 `width`, `height`, `padding`, `autosize`, `background` and `cursor`. For example
 to keep text size a fixed proportion of the plot height:
@@ -16663,7 +16663,7 @@ prParam =
 
 
 {-| Parameter name that should evaluate to either true or false for use in selections
-for conditional encoduing. Same as [prParam](#prParam) except that an empty selection
+for conditional encoding. Same as [prParam](#prParam) except that an empty selection
 is assumed to be false.
 -}
 prParamEmpty : String -> Predicate
@@ -17850,7 +17850,7 @@ seGlobal =
 
 
 {-| Deprecated in favour of [paValue](#paValue) for initialising the value of a
-selection paramter.
+selection parameter.
 -}
 seInit : List ( String, DataValue ) -> SelectionProperty
 seInit =
@@ -17858,7 +17858,7 @@ seInit =
 
 
 {-| Deprecated in favour of [paValue](#paValue) for initialising the value of a
-selection paramter.
+selection parameter.
 -}
 seInitInterval : Maybe ( DataValue, DataValue ) -> Maybe ( DataValue, DataValue ) -> SelectionProperty
 seInitInterval =
@@ -18527,7 +18527,7 @@ tBinned =
 
 {-| Make a text channel encoding conditional on a predicate expression. A predicate
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
-([prTest](#prTest)). The first parameter is the predicate that evalues to true
+([prTest](#prTest)). The first parameter is the predicate that evaluates to true
 or false; the second the encoding if true, the third the encoding if false.
 -}
 tCondition : Predicate -> List TextChannel -> List TextChannel -> TextChannel
@@ -19275,7 +19275,7 @@ tpCtrlKey =
 
 {-| Specify that repeated selections are toggled when the given
 [expression](https://vega.github.io/vega/docs/expressions/) evaluates to true.
-This allows, for example, mulitple key modifiers to generate toggling:
+This allows, for example, multiple key modifiers to generate toggling:
 
     ps =
         params
