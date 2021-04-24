@@ -996,7 +996,7 @@ module VegaLite exposing
     , tpExpr
     , tpShiftKey
     , tpAltKey
-    , tpCtrltKey
+    , tpCtrlKey
     , seTranslate
     , seZoom
     , paBind
@@ -3122,7 +3122,7 @@ details.
 @docs tpExpr
 @docs tpShiftKey
 @docs tpAltKey
-@docs tpCtrltKey
+@docs tpCtrlKey
 @docs seTranslate
 @docs seZoom
 
@@ -19268,9 +19268,9 @@ tpAltKey =
 {-| Specify that data values in a selection are toggled when interacted with on
 multiple occasions while the control key is held down.
 -}
-tpCtrltKey : TogglePredicate
-tpCtrltKey =
-    TpShiftKey
+tpCtrlKey : TogglePredicate
+tpCtrlKey =
+    TpCtrlKey
 
 
 {-| Specify that repeated selections are toggled when the given
