@@ -6,19 +6,11 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 ### TODO
 
-Add selection property expression function (probably something equivalent to `maStrExpr` so that point or interval type can be determined by an expression.
-
-Add mark property expression functions for `MStrokeDash`.
-
-Add tickBand property for axes (VL5?).
-
-Add top-level view background expressions: `strokeCap`, `strokeDash`, `strokeJoin`.
+Add top-level view background expressions: `strokeDash`.
 
 Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, and `subtitleFontWeight`.
 
 Add projection property expressions.
-
-Add custom type axis property expressions.
 
 Add custom type legend property expressions.
 
@@ -26,7 +18,7 @@ Add facet header property expressions.
 
 Add scale property expressions.
 
-Add aria expressions (marks, axes, legends etc.)
+Check remaining expression options that may have appeared since VL5 API documentation updates.
 
 ### V4.0 Breaking Changes
 
