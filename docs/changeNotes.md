@@ -103,7 +103,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `maPadAngle` for padding arc segments.
 
-- `inDataOptions` for non-string input options (numeric values, lists etc.)
+- `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
 
 ### V4.0 Deprecations
 
