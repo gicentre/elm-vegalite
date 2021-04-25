@@ -10314,6 +10314,11 @@ var $author$project$VegaLite$MCondition = F3(
 		return {$: 1, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
+var $author$project$VegaLite$MConditions = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var $author$project$VegaLite$mConditions = $author$project$VegaLite$MConditions;
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 17, a: a};
 };
@@ -11071,12 +11076,22 @@ var $author$project$GalleryInteraction$interaction1 = function () {
 		$author$project$VegaLite$strokeWidth(
 			_List_fromArray(
 				[
-					A3(
-					$author$project$VegaLite$mCondition,
-					$author$project$VegaLite$prParamEmpty('select'),
+					A2(
+					$author$project$VegaLite$mConditions,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mNum(2)
+							_Utils_Tuple2(
+							$author$project$VegaLite$prParamEmpty('select'),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$mNum(2)
+								])),
+							_Utils_Tuple2(
+							$author$project$VegaLite$prParamEmpty('highlight'),
+							_List_fromArray(
+								[
+									$author$project$VegaLite$mNum(1)
+								]))
 						]),
 					_List_fromArray(
 						[
@@ -11942,10 +11957,10 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
-var $author$project$VegaLite$DObject = function (a) {
-	return {$: 7, a: a};
+var $author$project$VegaLite$DObjects = function (a) {
+	return {$: 5, a: a};
 };
-var $author$project$VegaLite$dataObject = $author$project$VegaLite$DObject;
+var $author$project$VegaLite$dataObjects = $author$project$VegaLite$DObjects;
 var $author$project$VegaLite$DateTime = function (a) {
 	return {$: 1, a: a};
 };
@@ -12062,10 +12077,10 @@ var $author$project$VegaLite$PNumber = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$pNum = $author$project$VegaLite$PNumber;
-var $author$project$VegaLite$PValue = function (a) {
-	return {$: 5, a: a};
+var $author$project$VegaLite$PValues = function (a) {
+	return {$: 6, a: a};
 };
-var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
+var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
 var $author$project$VegaLite$Toggle = function (a) {
 	return {$: 15, a: a};
 };
@@ -12148,19 +12163,22 @@ var $author$project$GalleryInteraction$interaction12 = function () {
 								[$author$project$VegaLite$chX])),
 							$author$project$VegaLite$seNearest(true)
 						])),
-					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$dataObject(
+					$author$project$VegaLite$paValues(
+					$author$project$VegaLite$dataObjects(
 						_List_fromArray(
 							[
-								_Utils_Tuple2(
-								'x',
-								$author$project$VegaLite$dt(
-									_List_fromArray(
-										[
-											$author$project$VegaLite$dtYear(2005),
-											$author$project$VegaLite$dtMonthNum(0),
-											$author$project$VegaLite$dtDate(1)
-										])))
+								_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'x',
+									$author$project$VegaLite$dt(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$dtYear(2005),
+												$author$project$VegaLite$dtMonthNum(0),
+												$author$project$VegaLite$dtDate(1)
+											])))
+								])
 							])))
 				])));
 	var pointEnc = A2(
@@ -14141,16 +14159,19 @@ var $author$project$GalleryInteraction$interaction7 = function () {
 							_List_fromArray(
 								['Cylinders', 'Year']))
 						])),
-					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$dataObject(
+					$author$project$VegaLite$paValues(
+					$author$project$VegaLite$dataObjects(
 						_List_fromArray(
 							[
-								_Utils_Tuple2(
-								'Cylinders',
-								$author$project$VegaLite$num(4)),
-								_Utils_Tuple2(
-								'Year',
-								$author$project$VegaLite$num(1977))
+								_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'Cylinders',
+									$author$project$VegaLite$num(4)),
+									_Utils_Tuple2(
+									'Year',
+									$author$project$VegaLite$num(1977))
+								])
 							]))),
 					$author$project$VegaLite$paBindings(
 					_List_fromArray(
@@ -14415,13 +14436,16 @@ var $author$project$GalleryInteraction$interaction9 = function () {
 							_List_fromArray(
 								['symbol']))
 						])),
-					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$dataObject(
+					$author$project$VegaLite$paValues(
+					$author$project$VegaLite$dataObjects(
 						_List_fromArray(
 							[
-								_Utils_Tuple2(
-								'symbol',
-								$author$project$VegaLite$str('AAPL'))
+								_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'symbol',
+									$author$project$VegaLite$str('AAPL'))
+								])
 							])))
 				])));
 	var enc2_1 = A2(

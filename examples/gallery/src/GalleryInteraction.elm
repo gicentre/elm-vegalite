@@ -41,14 +41,12 @@ interaction1 =
                 << position Y [ pName "b", pQuant ]
                 << fillOpacity [ mCondition (prParam "select") [ mNum 1 ] [ mNum 0.3 ] ]
                 << strokeWidth
-                    -- TODO: ADD mConditions or similar for multiple conditions.
-                    -- [ mCondition
-                    --     [ ( prParamEmpty "select", [ mNum 2 ] )
-                    --     , ( prParamEmpty "highlight", [ mNum 1 ] )
-                    --     ]
-                    --     [ mNum 0 ]
-                    -- ]
-                    [ mCondition (prParamEmpty "select") [ mNum 2 ] [ mNum 0 ] ]
+                    [ mConditions
+                        [ ( prParamEmpty "select", [ mNum 2 ] )
+                        , ( prParamEmpty "highlight", [ mNum 1 ] )
+                        ]
+                        [ mNum 0 ]
+                    ]
     in
     toVegaLite
         [ desc
@@ -197,9 +195,7 @@ interaction7 =
             params
                 << param "CylYr"
                     [ paSelect sePoint [ seToggle tpFalse, seFields [ "Cylinders", "Year" ] ]
-
-                    -- TODO: Allow list of data objects to be created.
-                    , paValue (dataObject [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ])
+                    , paValues (dataObjects [ [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ] ])
                     , paBindings
                         [ ( "Cylinders", ipRange [ inName "Cylinders", inMin 3, inMax 8, inStep 1 ] )
                         , ( "Year", ipRange [ inName "Year", inMin 1969, inMax 1981, inStep 1 ] )
@@ -290,9 +286,7 @@ interaction9 =
             params
                 << param "myHover"
                     [ paSelect sePoint [ seOn "mouseover", seFields [ "symbol" ] ]
-
-                    -- TODO: Allow list of data objects to be created.
-                    , paValue (dataObject [ ( "symbol", str "AAPL" ) ])
+                    , paValues (dataObjects [ [ ( "symbol", str "AAPL" ) ] ])
                     ]
 
         trans =
@@ -476,9 +470,7 @@ interaction12 =
             params
                 << param "index"
                     [ paSelect sePoint [ seToggle tpFalse, seOn "mouseover", seEncodings [ chX ], seNearest True ]
-
-                    -- TODO: Allow list of data objects to be created.
-                    , paValue (dataObject [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ])
+                    , paValues (dataObjects [ [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ] ])
                     ]
 
         trans =
