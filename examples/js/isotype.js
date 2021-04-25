@@ -3450,16 +3450,28 @@ var $author$project$VegaLite$ArAria = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$ariaProperty = function (arProp) {
-	if (!arProp.$) {
-		var b = arProp.a;
-		return _Utils_Tuple2(
-			'aria',
-			$elm$json$Json$Encode$bool(b));
-	} else {
-		var d = arProp.a;
-		return _Utils_Tuple2(
-			'description',
-			$elm$json$Json$Encode$string(d));
+	switch (arProp.$) {
+		case 0:
+			var b = arProp.a;
+			return _Utils_Tuple2(
+				'aria',
+				$elm$json$Json$Encode$bool(b));
+		case 1:
+			var d = arProp.a;
+			return _Utils_Tuple2(
+				'description',
+				$elm$json$Json$Encode$string(d));
+		default:
+			var s = arProp.a;
+			return _Utils_Tuple2(
+				'aria',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						])));
 	}
 };
 var $author$project$VegaLite$compositionAlignmentLabel = function (ca) {
