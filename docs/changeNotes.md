@@ -59,7 +59,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
-- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr` and `paValue` functions for specifying top-level parameters for use within a spec (VL5.0).
+- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr`, `paValue` and `paValues` functions for specifying top-level parameters for use within a spec (VL5.0).
 
 - `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 
@@ -91,7 +91,7 @@ Add aria expressions (marks, axes, legends etc.)
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
-- `datumExpr` / `dataExprs` for creating a datum value or list of data values from an expression (VL4.16).
+- `datumExpr` / `dataExpr` for creating a datum value or list of data values from an expression (VL4.16).
 
 - `axTranslate` / `axcoTranslate` for axis translation.
 
