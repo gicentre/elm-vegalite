@@ -383,8 +383,6 @@ axis16 =
 
         ps =
             params
-                -- TODO Aria
-                -- TODO Values
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inName "Band position ", inMin 0, inMax 1 ]) ]
                 << param "minExtent" [ paValue (num 30), paBind (ipRange [ inName "Min extent ", inMin 0, inMax 100 ]) ]
                 << param "orient" [ paValue (str "bottom"), paBind (ipSelect [ inName "Orientation ", inOptions [ "top", "bottom" ] ]) ]
@@ -442,6 +440,7 @@ axis16 =
                 << param "gridOpacity" [ paValue (num 1), paBind (ipRange [ inName "Grid opacity ", inMin 0, inMax 1 ]) ]
                 << param "gridWidth" [ paValue (num 1), paBind (ipRange [ inName "Grid width ", inMin 0, inMax 12 ]) ]
                 << param "values" [ paValues aVals1, paBind (ipSelect [ inName "Values ", inDataOptions [ aVals1, aVals2, aVals3 ] ]) ]
+                << param "barDesc" [ paValue (dataObject [ ( "description", str "Bar chart bar" ) ]) ]
 
         dataMovies =
             dataFromUrl (path ++ "movies.json") []
@@ -520,7 +519,15 @@ axis16 =
                         ]
                     ]
     in
-    toVegaLite [ ps [], width 500, height 400, padding (paSize 80), dataMovies, enc [], bar [] ]
+    toVegaLite
+        [ ps []
+        , width 500
+        , height 400
+        , padding (paSize 80)
+        , dataMovies
+        , enc []
+        , bar [ maAria [ arExpr "barDesc" ] ]
+        ]
 
 
 
