@@ -6466,8 +6466,7 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 			return $elm$json$Json$Encode$null;
 		case 6:
 			var vals = val.a;
-			return $author$project$VegaLite$toList(
-				$author$project$VegaLite$dataValuesSpecs(vals));
+			return $author$project$VegaLite$dataValuesSpecs(vals);
 		default:
 			var kvs = val.a;
 			return $elm$json$Json$Encode$object(
@@ -6487,52 +6486,52 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 	switch (dvs.$) {
 		case 2:
 			var xs = dvs.a;
-			return A2($elm$core$List$map, $elm$json$Json$Encode$float, xs);
+			return $author$project$VegaLite$toList(
+				A2($elm$core$List$map, $elm$json$Json$Encode$float, xs));
 		case 4:
 			var ss = dvs.a;
-			return A2($elm$core$List$map, $elm$json$Json$Encode$string, ss);
+			return $author$project$VegaLite$toList(
+				A2($elm$core$List$map, $elm$json$Json$Encode$string, ss));
 		case 1:
 			var dtss = dvs.a;
-			return A2(
-				$elm$core$List$map,
+			return $author$project$VegaLite$toList(
 				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$List$map($author$project$VegaLite$dateTimeProperty),
-					$elm$json$Json$Encode$object),
-				dtss);
+					$elm$core$List$map,
+					A2(
+						$elm$core$Basics$composeR,
+						$elm$core$List$map($author$project$VegaLite$dateTimeProperty),
+						$elm$json$Json$Encode$object),
+					dtss));
 		case 3:
-			var ss = dvs.a;
-			return A2(
-				$elm$core$List$map,
-				function (s) {
-					return $elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'expr',
-								$elm$json$Json$Encode$string(s))
-							]));
-				},
-				ss);
+			var s = dvs.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 		case 0:
 			var bs = dvs.a;
-			return A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs);
+			return $author$project$VegaLite$toList(
+				A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs));
 		default:
 			var obs = dvs.a;
-			return A2(
-				$elm$core$List$map,
+			return $author$project$VegaLite$toList(
 				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$List$map(
-						function (_v1) {
-							var k = _v1.a;
-							var v = _v1.b;
-							return _Utils_Tuple2(
-								k,
-								$author$project$VegaLite$dataValueSpec(v));
-						}),
-					$elm$json$Json$Encode$object),
-				obs);
+					$elm$core$List$map,
+					A2(
+						$elm$core$Basics$composeR,
+						$elm$core$List$map(
+							function (_v1) {
+								var k = _v1.a;
+								var v = _v1.b;
+								return _Utils_Tuple2(
+									k,
+									$author$project$VegaLite$dataValueSpec(v));
+							}),
+						$elm$json$Json$Encode$object),
+					obs));
 	}
 };
 var $author$project$VegaLite$dataColumn = F2(
@@ -6586,20 +6585,18 @@ var $author$project$VegaLite$dataColumn = F2(
 			case 3:
 				var col = data.a;
 				return $elm$core$List$cons(
-					A2(
-						$elm$core$List$map,
-						function (s) {
-							return _Utils_Tuple2(
-								colName,
-								$elm$json$Json$Encode$object(
-									_List_fromArray(
-										[
-											_Utils_Tuple2(
-											'expr',
-											$elm$json$Json$Encode$string(s))
-										])));
-						},
-						col));
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							colName,
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'expr',
+										$elm$json$Json$Encode$string(col))
+									])))
+						]));
 			default:
 				var col = data.a;
 				return $elm$core$List$cons(
@@ -7269,19 +7266,14 @@ var $author$project$VegaLite$filterProperties = function (f) {
 						var ss = vals.a;
 						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
 					case 3:
-						var ss = vals.a;
-						return A2(
-							$elm$json$Json$Encode$list,
-							function (s) {
-								return $elm$json$Json$Encode$object(
-									_List_fromArray(
-										[
-											_Utils_Tuple2(
-											'expr',
-											$elm$json$Json$Encode$string(s))
-										]));
-							},
-							ss);
+						var s = vals.a;
+						return $elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(s))
+								]));
 					case 0:
 						var bs = vals.a;
 						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$bool, bs);
@@ -8635,8 +8627,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 									[
 										_Utils_Tuple2(
 										'sort',
-										$author$project$VegaLite$toList(
-											$author$project$VegaLite$dataValuesSpecs(dvs)))
+										$author$project$VegaLite$dataValuesSpecs(dvs))
 									]);
 							default:
 								break _v3$4;
@@ -9453,8 +9444,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				[
 					_Utils_Tuple2(
 					'values',
-					$author$project$VegaLite$toList(
-						$author$project$VegaLite$dataValuesSpecs(vals)))
+					$author$project$VegaLite$dataValuesSpecs(vals))
 				]);
 		case 55:
 			var s = axisProp.a;
@@ -9602,8 +9592,7 @@ var $author$project$VegaLite$imputeProperty = function (ip) {
 			var dVals = ip.a;
 			return _Utils_Tuple2(
 				'keyvals',
-				$author$project$VegaLite$toList(
-					$author$project$VegaLite$dataValuesSpecs(dVals)));
+				$author$project$VegaLite$dataValuesSpecs(dVals));
 		case 2:
 			var start = ip.a;
 			var stop = ip.b;
@@ -9721,8 +9710,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 								var dvs = sps.a.a;
 								return _Utils_Tuple2(
 									'sort',
-									$author$project$VegaLite$toList(
-										$author$project$VegaLite$dataValuesSpecs(dvs)));
+									$author$project$VegaLite$dataValuesSpecs(dvs));
 							default:
 								break _v1$4;
 						}
@@ -10255,7 +10243,7 @@ var $author$project$VegaLite$Boolean = function (a) {
 };
 var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
 var $author$project$VegaLite$InName = function (a) {
-	return {$: 6, a: a};
+	return {$: 7, a: a};
 };
 var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
 var $author$project$VegaLite$IPCheckbox = function (a) {
@@ -10272,17 +10260,17 @@ var $author$project$VegaLite$PValue = function (a) {
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
 var $author$project$VegaLite$inputProperty = function (prop) {
 	switch (prop.$) {
-		case 4:
+		case 5:
 			var x = prop.a;
 			return _Utils_Tuple2(
 				'min',
 				$elm$json$Json$Encode$float(x));
-		case 5:
+		case 6:
 			var x = prop.a;
 			return _Utils_Tuple2(
 				'max',
 				$elm$json$Json$Encode$float(x));
-		case 7:
+		case 8:
 			var x = prop.a;
 			return _Utils_Tuple2(
 				'step',
@@ -10292,7 +10280,7 @@ var $author$project$VegaLite$inputProperty = function (prop) {
 			return _Utils_Tuple2(
 				'debounce',
 				$elm$json$Json$Encode$float(x));
-		case 6:
+		case 7:
 			var s = prop.a;
 			return _Utils_Tuple2(
 				'name',
@@ -10307,7 +10295,12 @@ var $author$project$VegaLite$inputProperty = function (prop) {
 			return _Utils_Tuple2(
 				'options',
 				A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValueSpec, opts));
-		case 8:
+		case 4:
+			var opts = prop.a;
+			return _Utils_Tuple2(
+				'options',
+				A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValuesSpecs, opts));
+		case 9:
 			var el = prop.a;
 			return _Utils_Tuple2(
 				'placeholder',
@@ -11051,6 +11044,11 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 			return _Utils_Tuple2(
 				'value',
 				$author$project$VegaLite$dataValueSpec(d));
+		case 6:
+			var ds = pp.a;
+			return _Utils_Tuple2(
+				'value',
+				$author$project$VegaLite$dataValuesSpecs(ds));
 		default:
 			var s = pp.a;
 			var sps = pp.b;
