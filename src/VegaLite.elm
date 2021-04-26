@@ -705,6 +705,8 @@ module VegaLite exposing
     , leSymbolDashOffset
     , leSymbolFillColor
     , leSymbolLimit
+    , leSymbolOffset
+    , leSymbolOpacity
     , leSymbolSize
     , leSymbolStrokeColor
     , leSymbolStrokeWidth
@@ -1289,6 +1291,7 @@ module VegaLite exposing
     , lecoSymbolFillColor
     , lecoSymbolLimit
     , lecoSymbolOffset
+    , lecoSymbolOpacity
     , lecoSymbolSize
     , lecoSymbolStrokeColor
     , lecoSymbolStrokeWidth
@@ -2669,6 +2672,8 @@ See the
 @docs leSymbolDashOffset
 @docs leSymbolFillColor
 @docs leSymbolLimit
+@docs leSymbolOffset
+@docs leSymbolOpacity
 @docs leSymbolSize
 @docs leSymbolStrokeColor
 @docs leSymbolStrokeWidth
@@ -3507,6 +3512,7 @@ See the
 @docs lecoSymbolFillColor
 @docs lecoSymbolLimit
 @docs lecoSymbolOffset
+@docs lecoSymbolOpacity
 @docs lecoSymbolSize
 @docs lecoSymbolStrokeColor
 @docs lecoSymbolStrokeWidth
@@ -4924,9 +4930,10 @@ type Legend
 [lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor), [lecoSymbolDash](#lecoSymbolDash),
 [lecoSymbolDashOffset](#lecoSymbolDashOffset), [lecoSymbolDirection](#lecoSymbolDirection),
 [lecoSymbolFillColor](#lecoSymbolFillColor), [lecoSymbolLimit](#lecoSymbolLimit),
-[lecoSymbolOffset](#lecoSymbolOffset),[lecoSymbolSize](#lecoSymbolSize),
-[lecoSymbolStrokeColor](#lecoSymbolStrokeColor), [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth),
-[lecoSymbolType](#lecoSymbolType), [lecoTitleAlign](#lecoTitleAlign), [lecoTitleBaseline](#lecoTitleBaseline),
+[lecoSymbolOffset](#lecoSymbolOffset), [lecoSymbolOpacity](#lecoSymbolOpacity),
+[lecoSymbolSize](#lecoSymbolSize), [lecoSymbolStrokeColor](#lecoSymbolStrokeColor),
+[lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth), [lecoSymbolType](#lecoSymbolType),
+[lecoTitleAlign](#lecoTitleAlign), [lecoTitleBaseline](#lecoTitleBaseline),
 [lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont), [lecoTitleFontSize](#lecoTitleFontSize),
 [lecoTitleFontWeight](#lecoTitleFontWeight), [lecoTitleLimit](#lecoTitleLimit),
 [lecoTitleLineHeight](#lecoTitleLineHeight), [lecoTitlePadding](#lecoTitlePadding) and
@@ -4977,6 +4984,7 @@ type LegendConfig
     | SymbolFillColor String
     | SymbolLimit Int
     | SymbolOffset Float
+    | SymbolOpacity Float
     | SymbolType Symbol
     | SymbolSize Float
     | SymbolStrokeWidth Float
@@ -5023,11 +5031,11 @@ type LegendOrientation
 [leOrient](#leOrient), [lePadding](#lePadding), [leRowPadding](#leRowPadding),
 [leStrokeColor](#leStrokeColor), [leStrokeWidth](#leStrokeWidth), [leSymbolDash](#leSymbolDash),
 [leSymbolDashOffset](#leSymbolDashOffset) [leSymbolFillColor](#leSymbolFillColor),
-[leSymbolLimit](#leSymbolLimit), [leSymbolSize](#leSymbolSize),
-[leSymbolStrokeColor](#leSymbolStrokeColor), [leSymbolStrokeWidth](#leSymbolStrokeWidth),
-[leSymbolType](#leSymbolType), [leTickCount](#leTickCount), [leTitle](#leTitle),
-[leTitleAlign](#leTitleAlign), [leTitleBaseline](#leTitleBaseline), [leTitleColor](#leTitleColor),
-[leTitleFont](#leTitleFont), [leTitleFontSize](#leTitleFontSize),
+[leSymbolLimit](#leSymbolLimit), [leSymbolOffset](#leSymbolOffset), [leSymbolOpacity](#leSymbolOpacity),
+[leSymbolSize](#leSymbolSize), [leSymbolStrokeColor](#leSymbolStrokeColor),
+[leSymbolStrokeWidth](#leSymbolStrokeWidth), [leSymbolType](#leSymbolType), [leTickCount](#leTickCount),
+[leTitle](#leTitle), [leTitleAlign](#leTitleAlign), [leTitleBaseline](#leTitleBaseline),
+[leTitleColor](#leTitleColor), [leTitleFont](#leTitleFont), [leTitleFontSize](#leTitleFontSize),
 [leTitleFontWeight](#leTitleFontWeight), [leTitleLimit](#leTitleLimit),
 [leTitlePadding](#leTitlePadding), [leType](#leType),
 [leValues](#leValues), [leX](#leX), [leY](#leY) and [leZIndex](#leZIndex).
@@ -5071,6 +5079,8 @@ type LegendProperty
     | LSymbolDashOffset Num
     | LSymbolFillColor Str
     | LSymbolLimit Num
+    | LSymbolOffset Num
+    | LSymbolOpacity Num
     | LSymbolSize Num
     | LSymbolStrokeWidth Num
     | LSymbolStrokeColor Str
@@ -13083,6 +13093,13 @@ lecoSymbolType =
     SymbolType
 
 
+{-| Default legend symbol opacity.
+-}
+lecoSymbolOpacity : Float -> LegendConfig
+lecoSymbolOpacity =
+    SymbolOpacity
+
+
 {-| Default legend symbol size.
 -}
 lecoSymbolSize : Float -> LegendConfig
@@ -13334,6 +13351,12 @@ leNumExpr ex fn =
 
         LSymbolLimit _ ->
             LSymbolLimit (NumExpr ex)
+
+        LSymbolOffset _ ->
+            LSymbolOffset (NumExpr ex)
+
+        LSymbolOpacity _ ->
+            LSymbolOpacity (NumExpr ex)
 
         LSymbolSize _ ->
             LSymbolSize (NumExpr ex)
@@ -13668,6 +13691,20 @@ leSymbolType =
 leSymbolSize : Float -> LegendProperty
 leSymbolSize n =
     LSymbolSize (Num n)
+
+
+{-| Symbol offset between legend symbols and legend area.
+-}
+leSymbolOffset : Float -> LegendProperty
+leSymbolOffset n =
+    LSymbolOffset (Num n)
+
+
+{-| Legend symbol opacity.
+-}
+leSymbolOpacity : Float -> LegendProperty
+leSymbolOpacity n =
+    LSymbolOpacity (Num n)
 
 
 {-| Legend symbol stroke width.
@@ -22695,6 +22732,9 @@ legendConfigProperty legendConfig =
         SymbolOffset x ->
             [ ( "symbolOffset", JE.float x ) ]
 
+        SymbolOpacity x ->
+            [ ( "symbolOpacity", JE.float x ) ]
+
         SymbolType s ->
             [ ( "symbolType", symbolSpec s ) ]
 
@@ -22892,6 +22932,12 @@ legendProperty legendProp =
 
         LSymbolLimit n ->
             numExpr "symbolLimit" n
+
+        LSymbolOffset n ->
+            numExpr "symbolOffset" n
+
+        LSymbolOpacity n ->
+            numExpr "symbolOpacity" n
 
         LSymbolStrokeColor s ->
             strExpr "symbolStrokeColor" s
