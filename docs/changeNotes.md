@@ -12,7 +12,7 @@ Add view title property expressions: `title`, `fontWeight`, `frame`, `orient`, a
 
 Add projection property expressions.
 
-Add custom type legend property expressions.
+Add legend and axis config parameterisation expressions (can we use common Legend / Axis properties for direct setting and config setting?)
 
 Add facet header property expressions.
 
@@ -95,7 +95,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `axTitleLineHeight` for multi-line axis titles.
 
-- `leGradientOpacity` for continuous legend opacity.
+- `leGradientOpacity`, `leLabelFontStyle`, `leLabelFontWeight` for legend settings.
 
 - `maPadAngle` for padding arc segments.
 

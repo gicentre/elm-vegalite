@@ -688,6 +688,8 @@ module VegaLite exposing
     , leLabelColor
     , leLabelFont
     , leLabelFontSize
+    , leLabelFontStyle
+    , leLabelFontWeight
     , leLabelLimit
     , leLabelOffset
     , leLabelOverlap
@@ -2642,6 +2644,8 @@ See the
 @docs leLabelColor
 @docs leLabelFont
 @docs leLabelFontSize
+@docs leLabelFontStyle
+@docs leLabelFontWeight
 @docs leLabelLimit
 @docs leLabelOffset
 @docs leLabelOverlap
@@ -4932,6 +4936,8 @@ type LegendConfig
     | LeLabelColor String
     | LeLabelFont String
     | LeLabelFontSize Float
+    | LeLabelFontStyle String
+    | LeLabelFontWeight FontWeight
     | LeLabelLimit Float
     | LeLabelOffset Float
     | LeLabelOverlap OverlapStrategy
@@ -4990,9 +4996,10 @@ type LegendOrientation
 [leGradientStrokeColor](#leGradientStrokeColor), [leGradientStrokeWidth](#leGradientStrokeWidth),
 [leGridAlign](#leGridAlign), [leLabelAlign](#leLabelAlign), [leLabelBaseline](#leLabelBaseline),
 [leLabelColor](#leLabelColor), [leLabelFont](#leLabelFont), [leLabelFontSize](#leLabelFontSize),
-[leLabelLimit](#leLabelLimit), [leLabelOffset](#leLabelOffset), [leLabelOverlap](#leLabelOverlap),
-[leOffset](#leOffset), [leOrient](#leOrient), [lePadding](#lePadding),
-[leRowPadding](#leRowPadding), [leStrokeColor](#leStrokeColor), [leStrokeWidth](#leStrokeWidth),
+[leFontStyle](#leFontStyle), [leFontWeight](#leFontWeight), [leLabelLimit](#leLabelLimit),
+[leLabelOffset](#leLabelOffset), [leLabelOverlap](#leLabelOverlap), [leOffset](#leOffset),
+[leOrient](#leOrient), [lePadding](#lePadding), [leRowPadding](#leRowPadding),
+[leStrokeColor](#leStrokeColor), [leStrokeWidth](#leStrokeWidth),
 [leSymbolFillColor](#leSymbolFillColor), [leSymbolLimit](#leSymbolLimit),
 [leSymbolSize](#leSymbolSize), [leSymbolStrokeColor](#leSymbolStrokeColor),
 [leSymbolStrokeWidth](#leSymbolStrokeWidth), [leSymbolType](#leSymbolType),
@@ -5026,6 +5033,8 @@ type LegendProperty
     | LLabelColor Str
     | LLabelFont Str
     | LLabelFontSize Num
+    | LLabelFontStyle Str
+    | LLabelFontWeight FontWeight
     | LLabelLimit Num
     | LLabelOffset Num
     | LLabelOverlap OverlapStrategy
@@ -13336,6 +13345,9 @@ leStrExpr ex fn =
         LLabelFont _ ->
             LLabelFont (StrExpr ex)
 
+        LLabelFontStyle _ ->
+            LLabelFontStyle (StrExpr ex)
+
         LStrokeColor _ ->
             LStrokeColor (StrExpr ex)
 
@@ -13440,6 +13452,20 @@ leLabelFont s =
 leLabelFontSize : Float -> LegendProperty
 leLabelFontSize n =
     LLabelFontSize (Num n)
+
+
+{-| Font style (e.g italic) for legend labels.
+-}
+leLabelFontStyle : String -> LegendProperty
+leLabelFontStyle s =
+    LLabelFontStyle (Str s)
+
+
+{-| Font weight for legend labels.
+-}
+leLabelFontWeight : FontWeight -> LegendProperty
+leLabelFontWeight =
+    LLabelFontWeight
 
 
 {-| Maximum width for legend labels in pixel units.
@@ -22518,6 +22544,12 @@ legendConfigProperty legendConfig =
         LeLabelFontSize x ->
             [ ( "labelFontSize", JE.float x ) ]
 
+        LeLabelFontStyle s ->
+            [ ( "labelFontStyle", JE.string s ) ]
+
+        LeLabelFontWeight fw ->
+            [ ( "labelFontWeight", fontWeightSpec fw ) ]
+
         LeLabelLimit x ->
             [ ( "labelLimit", JE.float x ) ]
 
@@ -22709,6 +22741,12 @@ legendProperty legendProp =
 
         LLabelFontSize n ->
             numExpr "labelFontSize" n
+
+        LLabelFontStyle s ->
+            strExpr "labelFontStyle" s
+
+        LLabelFontWeight fw ->
+            [ ( "labelFontWeight", fontWeightSpec fw ) ]
 
         LLabelLimit n ->
             numExpr "labelLimit" n
