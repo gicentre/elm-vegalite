@@ -71,6 +71,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
 
+- `prNumExpr` for providing expressions that evaluate to numeric projection properties (VL5.0)
+
 - `tiNumExpr` for providing expressions that evaluate to numeric title properties (VL5.0).
 
 - `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
@@ -96,6 +98,8 @@ Check remaining expression options that may have appeared since VL5 API document
 - `axTitleLineHeight` for multi-line axis titles.
 
 - `leGradientOpacity`/`lecoGradientOpacity`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity` for legend settings.
+
+- `prPointRadius` for geo projection of point symbols.
 
 - `maPadAngle` for padding arc segments.
 
