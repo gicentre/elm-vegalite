@@ -148,10 +148,10 @@ legend15 : Spec
 legend15 =
     let
         lVals1 =
-            nums [ 0, 25 ]
+            nums [ 8, 12, 16, 20, 24 ]
 
         lVals2 =
-            nums [ 8, 12, 16, 20, 24 ]
+            nums [ 0, 25 ]
 
         lVals3 =
             nums [ 5, 10, 15, 20, 25 ]
@@ -160,6 +160,11 @@ legend15 =
             params
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
                 << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor [ inName "Fill colour " ]) ]
+                << param "gradientLength" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 400 ]) ]
+                << param "gradientOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "gradientStrokeColor" [ paValue (str "#006"), paBind (ipColor []) ]
+                << param "gradientStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 4 ]) ]
+                << param "gradientThickness" [ paValue (num 16), paBind (ipRange [ inMin 0, inMax 40 ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
@@ -182,6 +187,11 @@ legend15 =
                     , mLegend
                         [ leCornerRadius |> leNumExpr "cornerRadius"
                         , leFillColor |> leStrExpr "fillColor"
+                        , leGradientLength |> leNumExpr "gradientLength"
+                        , leGradientOpacity |> leNumExpr "gradientOpacity"
+                        , leGradientStrokeColor |> leStrExpr "gradientStrokeColor"
+                        , leGradientStrokeWidth |> leNumExpr "gradientStrokeWidth"
+                        , leGradientThickness |> leNumExpr "gradientThickness"
                         , leOffset |> leNumExpr "offset"
                         , lePadding |> leNumExpr "padding"
                         , leStrokeColor |> leStrExpr "strokeColor"
