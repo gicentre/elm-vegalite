@@ -331,6 +331,7 @@ title1 =
                 << param "fontSize" [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64 ]) ]
                 << param "fontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
                 << param "fontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "frame" [ paValue (str "bounds"), paBind (ipSelect [ inOptions [ "bounds", "group" ] ]) ]
                 << param "limit" [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ]
                 << param "subtitle"
@@ -361,6 +362,7 @@ title1 =
             , tiFontSize |> tiNumExpr "fontSize"
             , tiFontStyle |> tiStrExpr "fontStyle"
             , tiFontWeight (fwExpr "fontWeight")
+            , tiFrame (tfExpr "frame")
             , tiLineHeight |> tiNumExpr "fontSize"
             , tiLimit |> tiNumExpr "limit"
             , tiOffset |> tiNumExpr "offset"
