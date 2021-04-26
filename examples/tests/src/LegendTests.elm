@@ -208,6 +208,10 @@ legend15 =
                 << param "titleFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
                 << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
                 << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "titleLimit" [ paValue (num 180), paBind (ipRange [ inMin 0, inMax 300 ]) ]
+                << param "titleLineHeight" [ paValue (num 16), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "titleOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "titlePadding" [ paValue (num 5), paBind (ipRange [ inMin -30, inMax 30 ]) ]
                 << param "values" [ paValues lVals1, paBind (ipSelect [ inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
                 << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
                 << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
@@ -244,6 +248,8 @@ legend15 =
                         , leStrokeColor |> leStrExpr "strokeColor"
                         , leTickCount |> leNumExpr "tickCount"
                         , leTitleColor |> leStrExpr "titleColor"
+                        , leTitleOpacity |> leNumExpr "titleOpacity"
+                        , leTitlePadding |> leNumExpr "titlePadding"
                         , leValues (dataExpr "values")
                         , leX |> leNumExpr "xPos"
                         , leY |> leNumExpr "yPos"
@@ -251,6 +257,7 @@ legend15 =
                     ]
                 << shape
                     [ mName "Origin"
+                    , mTitle "This is the title of the\nshape legend"
                     , mLegend
                         [ leClipHeight |> leNumExpr "clipHeight"
                         , leColumnPadding |> leNumExpr "columnPadding"
@@ -274,6 +281,8 @@ legend15 =
                         , leTitleFontSize |> leNumExpr "titleFontSize"
                         , leTitleFontStyle |> leStrExpr "titleFontStyle"
                         , leTitleFontWeight (fwExpr "titleFontWeight")
+                        , leTitleLimit |> leNumExpr "titleLimit"
+                        , leTitleLineHeight |> leNumExpr "titleLineHeight"
                         ]
                     ]
     in
