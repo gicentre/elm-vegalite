@@ -10068,11 +10068,21 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 				]);
 	}
 };
-var $author$project$VegaLite$tfLabel = function (tf) {
-	if (tf === 1) {
-		return 'group';
-	} else {
-		return 'bounds';
+var $author$project$VegaLite$tfSpec = function (tf) {
+	switch (tf.$) {
+		case 1:
+			return $elm$json$Json$Encode$string('group');
+		case 0:
+			return $elm$json$Json$Encode$string('bounds');
+		default:
+			var s = tf.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
@@ -10120,8 +10130,7 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 				[
 					_Utils_Tuple2(
 					'frame',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$tfLabel(tf)))
+					$author$project$VegaLite$tfSpec(tf))
 				]);
 		case 9:
 			var w = titleCfg.a;
