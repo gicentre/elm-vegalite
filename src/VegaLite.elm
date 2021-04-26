@@ -678,6 +678,7 @@ module VegaLite exposing
     , leFormatAsTemporal
     , leFormatAsCustom
     , leGradientLength
+    , leGradientOpacity
     , leGradientThickness
     , leGradientStrokeColor
     , leGradientStrokeWidth
@@ -2631,6 +2632,7 @@ See the
 @docs leFormatAsTemporal
 @docs leFormatAsCustom
 @docs leGradientLength
+@docs leGradientOpacity
 @docs leGradientThickness
 @docs leGradientStrokeColor
 @docs leGradientStrokeWidth
@@ -4984,9 +4986,9 @@ type LegendOrientation
 [leCornerRadius](#leCornerRadius), [leDirection](#leDirection), [leFillColor](#leFillColor),
 [leFormat](#leFormat), [leFormatAsNum](#leFormatAsNum), [leFormatAsTemporal](#leFormatAsTemporal),
 [leFormatAsCustom](#leFormatAsCustom) [leGradientLength](#leGradientLength),
-[leGradientThickness](#leGradientThickness), [leGradientStrokeColor](#leGradientStrokeColor),
-[leGradientStrokeWidth](#leGradientStrokeWidth), [leGridAlign](#leGridAlign),
-[leLabelAlign](#leLabelAlign), [leLabelBaseline](#leLabelBaseline),
+[leGradientOpacity](#leGradientOpacity) [leGradientThickness](#leGradientThickness),
+[leGradientStrokeColor](#leGradientStrokeColor), [leGradientStrokeWidth](#leGradientStrokeWidth),
+[leGridAlign](#leGridAlign), [leLabelAlign](#leLabelAlign), [leLabelBaseline](#leLabelBaseline),
 [leLabelColor](#leLabelColor), [leLabelFont](#leLabelFont), [leLabelFontSize](#leLabelFontSize),
 [leLabelLimit](#leLabelLimit), [leLabelOffset](#leLabelOffset), [leLabelOverlap](#leLabelOverlap),
 [leOffset](#leOffset), [leOrient](#leOrient), [lePadding](#lePadding),
@@ -5014,6 +5016,7 @@ type LegendProperty
     | LFormatAsTemporal
     | LFormatAsCustom Str
     | LGradientLength Num
+    | LGradientOpacity Num
     | LGradientThickness Num
     | LGradientStrokeColor Str
     | LGradientStrokeWidth Num
@@ -13231,6 +13234,9 @@ leNumExpr ex fn =
         LGradientLength _ ->
             LGradientLength (NumExpr ex)
 
+        LGradientOpacity _ ->
+            LGradientOpacity (NumExpr ex)
+
         LGradientThickness _ ->
             LGradientThickness (NumExpr ex)
 
@@ -13364,6 +13370,13 @@ leGradient =
 leGradientLength : Float -> LegendProperty
 leGradientLength n =
     LGradientLength (Num n)
+
+
+{-| Opacity of a color ramp legend.
+-}
+leGradientOpacity : Float -> LegendProperty
+leGradientOpacity n =
+    LGradientOpacity (Num n)
 
 
 {-| Color for strokes in a color ramp legend.
@@ -22666,6 +22679,9 @@ legendProperty legendProp =
 
         LGradientLength n ->
             numExpr "gradientLength" n
+
+        LGradientOpacity n ->
+            numExpr "gradientOpacity" n
 
         LGradientThickness n ->
             numExpr "gradientThickness" n

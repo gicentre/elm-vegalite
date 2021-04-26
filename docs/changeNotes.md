@@ -95,6 +95,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `axTitleLineHeight` for multi-line axis titles.
 
+- `leGradientOpacity` for continuous legend opacity.
+
 - `maPadAngle` for padding arc segments.
 
 - `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
