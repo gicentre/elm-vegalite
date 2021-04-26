@@ -714,10 +714,12 @@ module VegaLite exposing
     , leTickCount
     , leTitle
     , leTitleAlign
+    , leTitleAnchor
     , leTitleBaseline
     , leTitleColor
     , leTitleFont
     , leTitleFontSize
+    , leTitleFontStyle
     , leTitleFontWeight
     , leTitleLimit
     , leTitlePadding
@@ -1297,10 +1299,12 @@ module VegaLite exposing
     , lecoSymbolStrokeWidth
     , lecoSymbolType
     , lecoTitleAlign
+    , lecoTitleAnchor
     , lecoTitleBaseline
     , lecoTitleColor
     , lecoTitleFont
     , lecoTitleFontSize
+    , lecoTitleFontStyle
     , lecoTitleFontWeight
     , lecoTitleLimit
     , lecoTitleLineHeight
@@ -2681,10 +2685,12 @@ See the
 @docs leTickCount
 @docs leTitle
 @docs leTitleAlign
+@docs leTitleAnchor
 @docs leTitleBaseline
 @docs leTitleColor
 @docs leTitleFont
 @docs leTitleFontSize
+@docs leTitleFontStyle
 @docs leTitleFontWeight
 @docs leTitleLimit
 @docs leTitlePadding
@@ -3518,10 +3524,12 @@ See the
 @docs lecoSymbolStrokeWidth
 @docs lecoSymbolType
 @docs lecoTitleAlign
+@docs lecoTitleAnchor
 @docs lecoTitleBaseline
 @docs lecoTitleColor
 @docs lecoTitleFont
 @docs lecoTitleFontSize
+@docs lecoTitleFontStyle
 @docs lecoTitleFontWeight
 @docs lecoTitleLimit
 @docs lecoTitleLineHeight
@@ -4933,11 +4941,11 @@ type Legend
 [lecoSymbolOffset](#lecoSymbolOffset), [lecoSymbolOpacity](#lecoSymbolOpacity),
 [lecoSymbolSize](#lecoSymbolSize), [lecoSymbolStrokeColor](#lecoSymbolStrokeColor),
 [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth), [lecoSymbolType](#lecoSymbolType),
-[lecoTitleAlign](#lecoTitleAlign), [lecoTitleBaseline](#lecoTitleBaseline),
+[lecoTitleAlign](#lecoTitleAlign), [lecoTitleAnchor](#lecoTitleAnchor), [lecoTitleBaseline](#lecoTitleBaseline),
 [lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont), [lecoTitleFontSize](#lecoTitleFontSize),
-[lecoTitleFontWeight](#lecoTitleFontWeight), [lecoTitleLimit](#lecoTitleLimit),
-[lecoTitleLineHeight](#lecoTitleLineHeight), [lecoTitlePadding](#lecoTitlePadding) and
-[lecoUnselectedOpacity](#lecoUnselectedOpacity).
+[lecoTitleFontStyle](#lecoTitleFontStyle), [lecoTitleFontWeight](#lecoTitleFontWeight),
+[lecoTitleLimit](#lecoTitleLimit), [lecoTitleLineHeight](#lecoTitleLineHeight),
+[lecoTitlePadding](#lecoTitlePadding) and [lecoUnselectedOpacity](#lecoUnselectedOpacity).
 -}
 type LegendConfig
     = LeAria (List Aria)
@@ -4990,10 +4998,12 @@ type LegendConfig
     | SymbolStrokeWidth Float
     | SymbolStrokeColor String
     | LeTitleAlign HAlign
+    | LeTitleAnchor Anchor
     | LeTitleBaseline VAlign
     | LeTitleColor String
     | LeTitleFont String
     | LeTitleFontSize Float
+    | LeTitleFontStyle String
     | LeTitleFontWeight FontWeight
     | LeTitleLimit Float
     | LeTitleLineHeight Float
@@ -5034,11 +5044,12 @@ type LegendOrientation
 [leSymbolLimit](#leSymbolLimit), [leSymbolOffset](#leSymbolOffset), [leSymbolOpacity](#leSymbolOpacity),
 [leSymbolSize](#leSymbolSize), [leSymbolStrokeColor](#leSymbolStrokeColor),
 [leSymbolStrokeWidth](#leSymbolStrokeWidth), [leSymbolType](#leSymbolType), [leTickCount](#leTickCount),
-[leTitle](#leTitle), [leTitleAlign](#leTitleAlign), [leTitleBaseline](#leTitleBaseline),
-[leTitleColor](#leTitleColor), [leTitleFont](#leTitleFont), [leTitleFontSize](#leTitleFontSize),
+[leTitle](#leTitle), [leTitleAlign](#leTitleAlign), [leTitleAnchor](#leTitleAnchor),
+[leTitleBaseline](#leTitleBaseline), [leTitleColor](#leTitleColor), [leTitleFont](#leTitleFont),
+[leTitleFontStyle](#leTitleFontStyle), [leTitleFontSize](#leTitleFontSize),
 [leTitleFontWeight](#leTitleFontWeight), [leTitleLimit](#leTitleLimit),
-[leTitlePadding](#leTitlePadding), [leType](#leType),
-[leValues](#leValues), [leX](#leX), [leY](#leY) and [leZIndex](#leZIndex).
+[leTitlePadding](#leTitlePadding), [leType](#leType), [leValues](#leValues), [leX](#leX),
+[leY](#leY) and [leZIndex](#leZIndex).
 -}
 type LegendProperty
     = LAria (List Aria)
@@ -5088,10 +5099,12 @@ type LegendProperty
     | LTickCount Num
     | LTitle Str
     | LTitleAlign HAlign
+    | LTitleAnchor Anchor
     | LTitleBaseline VAlign
     | LTitleColor Str
     | LTitleFont Str
     | LTitleFontSize Num
+    | LTitleFontStyle Str
     | LTitleFontWeight FontWeight
     | LTitleLimit Num
     | LTitlePadding Num
@@ -13128,6 +13141,13 @@ lecoTitleAlign =
     LeTitleAlign
 
 
+{-| Default anchoring for legend titles.
+-}
+lecoTitleAnchor : Anchor -> LegendConfig
+lecoTitleAnchor =
+    LeTitleAnchor
+
+
 {-| Default vertical alignment for legend titles.
 -}
 lecoTitleBaseline : VAlign -> LegendConfig
@@ -13154,6 +13174,13 @@ lecoTitleFont =
 lecoTitleFontSize : Float -> LegendConfig
 lecoTitleFontSize =
     LeTitleFontSize
+
+
+{-| Default font style (italic etc) for legend titles.
+-}
+lecoTitleFontStyle : String -> LegendConfig
+lecoTitleFontStyle =
+    LeTitleFontStyle
 
 
 {-| Default font weight for legend titles.
@@ -13349,6 +13376,9 @@ leNumExpr ex fn =
         LStrokeWidth _ ->
             LStrokeWidth (NumExpr ex)
 
+        LSymbolDashOffset _ ->
+            LSymbolDashOffset (NumExpr ex)
+
         LSymbolLimit _ ->
             LSymbolLimit (NumExpr ex)
 
@@ -13474,6 +13504,9 @@ leStrExpr ex fn =
 
         LTitleFont _ ->
             LTitleFont (StrExpr ex)
+
+        LTitleFontStyle _ ->
+            LTitleFontStyle (StrExpr ex)
 
         _ ->
             fn ""
@@ -13743,6 +13776,13 @@ leTitleAlign =
     LTitleAlign
 
 
+{-| Horizontal alignment for legend titles.
+-}
+leTitleAnchor : Anchor -> LegendProperty
+leTitleAnchor =
+    LTitleAnchor
+
+
 {-| Vertical alignment for legend titles.
 -}
 leTitleBaseline : VAlign -> LegendProperty
@@ -13769,6 +13809,13 @@ leTitleFont s =
 leTitleFontSize : Float -> LegendProperty
 leTitleFontSize n =
     LTitleFontSize (Num n)
+
+
+{-| Font style (italic etc.) for legend titles.
+-}
+leTitleFontStyle : String -> LegendProperty
+leTitleFontStyle s =
+    LTitleFontStyle (Str s)
 
 
 {-| Font weight for legend titles.
@@ -22750,6 +22797,9 @@ legendConfigProperty legendConfig =
         LeTitleBaseline va ->
             [ ( "titleBaseline", vAlignSpec va ) ]
 
+        LeTitleAnchor an ->
+            [ ( "titleAnchor", anchorSpec an ) ]
+
         LeTitleColor s ->
             [ ( "titleColor", JE.string s ) ]
 
@@ -22758,6 +22808,9 @@ legendConfigProperty legendConfig =
 
         LeTitleFontSize x ->
             [ ( "titleFontSize", JE.float x ) ]
+
+        LeTitleFontStyle s ->
+            [ ( "titleFontStyle", JE.string s ) ]
 
         LeTitleFontWeight fw ->
             [ ( "titleFontWeight", fontWeightSpec fw ) ]
@@ -22969,6 +23022,9 @@ legendProperty legendProp =
         LTitleAlign ha ->
             [ ( "titleAlign", hAlignSpec ha ) ]
 
+        LTitleAnchor an ->
+            [ ( "titleAnchor", anchorSpec an ) ]
+
         LTitleBaseline va ->
             [ ( "titleBaseline", vAlignSpec va ) ]
 
@@ -22980,6 +23036,9 @@ legendProperty legendProp =
 
         LTitleFontSize n ->
             numExpr "titleFontSize" n
+
+        LTitleFontStyle s ->
+            strExpr "titleFontStyle" s
 
         LTitleFontWeight fw ->
             [ ( "titleFontWeight", fontWeightSpec fw ) ]
