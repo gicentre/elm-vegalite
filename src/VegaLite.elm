@@ -696,7 +696,6 @@ module VegaLite exposing
     , leLabelOverlap
     , leOffset
     , leOrient
-    , leTitleOrient
     , lePadding
     , leRowPadding
     , leStrokeColor
@@ -722,6 +721,9 @@ module VegaLite exposing
     , leTitleFontStyle
     , leTitleFontWeight
     , leTitleLimit
+    , leTitleLineHeight
+    , leTitleOpacity
+    , leTitleOrient
     , leTitlePadding
     , leType
     , leValues
@@ -1308,6 +1310,7 @@ module VegaLite exposing
     , lecoTitleFontWeight
     , lecoTitleLimit
     , lecoTitleLineHeight
+    , lecoTitleOpacity
     , lecoTitlePadding
     , lecoUnselectedOpacity
     , sacoBandPaddingInner
@@ -2667,7 +2670,6 @@ See the
 @docs leLabelOverlap
 @docs leOffset
 @docs leOrient
-@docs leTitleOrient
 @docs lePadding
 @docs leRowPadding
 @docs leStrokeColor
@@ -2693,6 +2695,9 @@ See the
 @docs leTitleFontStyle
 @docs leTitleFontWeight
 @docs leTitleLimit
+@docs leTitleLineHeight
+@docs leTitleOpacity
+@docs leTitleOrient
 @docs leTitlePadding
 @docs leType
 @docs leValues
@@ -3533,6 +3538,7 @@ See the
 @docs lecoTitleFontWeight
 @docs lecoTitleLimit
 @docs lecoTitleLineHeight
+@docs lecoTitleOpacity
 @docs lecoTitlePadding
 @docs lecoUnselectedOpacity
 
@@ -5007,6 +5013,7 @@ type LegendConfig
     | LeTitleFontWeight FontWeight
     | LeTitleLimit Float
     | LeTitleLineHeight Float
+    | LeTitleOpacity Float
     | LeTitlePadding Float
     | LeUnselectedOpacity Float
 
@@ -5047,9 +5054,9 @@ type LegendOrientation
 [leTitle](#leTitle), [leTitleAlign](#leTitleAlign), [leTitleAnchor](#leTitleAnchor),
 [leTitleBaseline](#leTitleBaseline), [leTitleColor](#leTitleColor), [leTitleFont](#leTitleFont),
 [leTitleFontStyle](#leTitleFontStyle), [leTitleFontSize](#leTitleFontSize),
-[leTitleFontWeight](#leTitleFontWeight), [leTitleLimit](#leTitleLimit),
-[leTitlePadding](#leTitlePadding), [leType](#leType), [leValues](#leValues), [leX](#leX),
-[leY](#leY) and [leZIndex](#leZIndex).
+[leTitleFontWeight](#leTitleFontWeight), [leTitleLimit](#leTitleLimit), [leTitleLineHeight](#leTitleLineHeight),
+[leTitleOrient](#leTitleOrient), [leTitlePadding](#leTitlePadding), [leType](#leType),
+[leValues](#leValues), [leX](#leX), [leY](#leY) and [leZIndex](#leZIndex).
 -}
 type LegendProperty
     = LAria (List Aria)
@@ -5107,6 +5114,8 @@ type LegendProperty
     | LTitleFontStyle Str
     | LTitleFontWeight FontWeight
     | LTitleLimit Num
+    | LTitleLineHeight Num
+    | LTitleOpacity Num
     | LTitlePadding Num
     | LType Legend
       -- TODO: Pending resolution to https://github.com/vega/vega-lite/issues/5921
@@ -13204,6 +13213,13 @@ lecoTitleLineHeight =
     LeTitleLineHeight
 
 
+{-| Default opacity of a legend's title.
+-}
+lecoTitleOpacity : Float -> LegendConfig
+lecoTitleOpacity =
+    LeTitleOpacity
+
+
 {-| Default spacing in pixel units between title and legend.
 -}
 lecoTitlePadding : Float -> LegendConfig
@@ -13402,6 +13418,12 @@ leNumExpr ex fn =
 
         LTitleLimit _ ->
             LTitleLimit (NumExpr ex)
+
+        LTitleLineHeight _ ->
+            LTitleLineHeight (NumExpr ex)
+
+        LTitleOpacity _ ->
+            LTitleOpacity (NumExpr ex)
 
         LTitlePadding _ ->
             LTitlePadding (NumExpr ex)
@@ -13830,6 +13852,20 @@ leTitleFontWeight =
 leTitleLimit : Float -> LegendProperty
 leTitleLimit n =
     LTitleLimit (Num n)
+
+
+{-| Height in pixels for each line of a multi-line legend title.
+-}
+leTitleLineHeight : Float -> LegendProperty
+leTitleLineHeight n =
+    LTitleLineHeight (Num n)
+
+
+{-| Opacity of a legend's title.
+-}
+leTitleOpacity : Float -> LegendProperty
+leTitleOpacity n =
+    LTitleOpacity (Num n)
 
 
 {-| Position of a legend's title relative to the main legend content.
@@ -22821,6 +22857,9 @@ legendConfigProperty legendConfig =
         LeTitleLineHeight x ->
             [ ( "titleLineHeight", JE.float x ) ]
 
+        LeTitleOpacity x ->
+            [ ( "titleOpacity", JE.float x ) ]
+
         LeTitlePadding x ->
             [ ( "titlePadding", JE.float x ) ]
 
@@ -23045,6 +23084,12 @@ legendProperty legendProp =
 
         LTitleLimit n ->
             numExpr "titleLimit" n
+
+        LTitleLineHeight n ->
+            numExpr "titleLineHeight" n
+
+        LTitleOpacity n ->
+            numExpr "titleOpacity" n
 
         LTitleOrient orient ->
             [ ( "titleOrient", legendOrientSpec orient ) ]
