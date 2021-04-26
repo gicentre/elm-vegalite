@@ -327,7 +327,10 @@ title1 =
                 << param "dx" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
                 << param "dy" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
                 << param "color" [ paValue (str "black"), paBind (ipColor []) ]
-                << param "fontSize" [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64, inStep 1 ]) ]
+                << param "font" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "fontSize" [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64 ]) ]
+                << param "fontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "fontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
                 << param "limit" [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ]
                 << param "subtitle"
@@ -354,7 +357,10 @@ title1 =
             , tiColor |> tiStrExpr "color"
             , tiDx |> tiNumExpr "dx"
             , tiDy |> tiNumExpr "dy"
+            , tiFont |> tiStrExpr "font"
             , tiFontSize |> tiNumExpr "fontSize"
+            , tiFontStyle |> tiStrExpr "fontStyle"
+            , tiFontWeight (fwExpr "fontWeight")
             , tiLineHeight |> tiNumExpr "fontSize"
             , tiLimit |> tiNumExpr "limit"
             , tiOffset |> tiNumExpr "offset"

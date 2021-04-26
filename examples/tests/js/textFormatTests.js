@@ -15416,6 +15416,13 @@ var $author$project$VegaLite$tiDy = function (n) {
 	return $author$project$VegaLite$TDy(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$TFont = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$tiFont = function (s) {
+	return $author$project$VegaLite$TFont(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$TFontSize = function (a) {
 	return {$: 7, a: a};
 };
@@ -15423,6 +15430,17 @@ var $author$project$VegaLite$tiFontSize = function (n) {
 	return $author$project$VegaLite$TFontSize(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$TFontStyle = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$tiFontStyle = function (s) {
+	return $author$project$VegaLite$TFontStyle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$TFontWeight = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$tiFontWeight = $author$project$VegaLite$TFontWeight;
 var $author$project$VegaLite$TLimit = function (a) {
 	return {$: 12, a: a};
 };
@@ -15486,12 +15504,6 @@ var $author$project$VegaLite$tiNumExpr = F2(
 var $author$project$VegaLite$tiOffset = function (n) {
 	return $author$project$VegaLite$TOffset(
 		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$TFont = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$TFontStyle = function (a) {
-	return {$: 8, a: a};
 };
 var $author$project$VegaLite$TSubtitleColor = function (a) {
 	return {$: 17, a: a};
@@ -15597,77 +15609,130 @@ var $author$project$TextFormatTests$title1 = function () {
 											$elm$core$Basics$composeL,
 											A2(
 												$elm$core$Basics$composeL,
-												$author$project$VegaLite$params,
+												A2(
+													$elm$core$Basics$composeL,
+													A2(
+														$elm$core$Basics$composeL,
+														A2(
+															$elm$core$Basics$composeL,
+															$author$project$VegaLite$params,
+															A2(
+																$author$project$VegaLite$param,
+																'angle',
+																_List_fromArray(
+																	[
+																		$author$project$VegaLite$paValue(
+																		$author$project$VegaLite$num(0)),
+																		$author$project$VegaLite$paBind(
+																		$author$project$VegaLite$ipRange(
+																			_List_fromArray(
+																				[
+																					$author$project$VegaLite$inMin(-90),
+																					$author$project$VegaLite$inMax(90),
+																					$author$project$VegaLite$inStep(1)
+																				])))
+																	]))),
+														A2(
+															$author$project$VegaLite$param,
+															'dx',
+															_List_fromArray(
+																[
+																	$author$project$VegaLite$paValue(
+																	$author$project$VegaLite$num(0)),
+																	$author$project$VegaLite$paBind(
+																	$author$project$VegaLite$ipRange(
+																		_List_fromArray(
+																			[
+																				$author$project$VegaLite$inMin(-40),
+																				$author$project$VegaLite$inMax(40)
+																			])))
+																]))),
+													A2(
+														$author$project$VegaLite$param,
+														'dy',
+														_List_fromArray(
+															[
+																$author$project$VegaLite$paValue(
+																$author$project$VegaLite$num(0)),
+																$author$project$VegaLite$paBind(
+																$author$project$VegaLite$ipRange(
+																	_List_fromArray(
+																		[
+																			$author$project$VegaLite$inMin(-40),
+																			$author$project$VegaLite$inMax(40)
+																		])))
+															]))),
 												A2(
 													$author$project$VegaLite$param,
-													'angle',
+													'color',
 													_List_fromArray(
 														[
 															$author$project$VegaLite$paValue(
-															$author$project$VegaLite$num(0)),
+															$author$project$VegaLite$str('black')),
 															$author$project$VegaLite$paBind(
-															$author$project$VegaLite$ipRange(
-																_List_fromArray(
-																	[
-																		$author$project$VegaLite$inMin(-90),
-																		$author$project$VegaLite$inMax(90),
-																		$author$project$VegaLite$inStep(1)
-																	])))
+															$author$project$VegaLite$ipColor(_List_Nil))
 														]))),
 											A2(
 												$author$project$VegaLite$param,
-												'dx',
+												'font',
 												_List_fromArray(
 													[
 														$author$project$VegaLite$paValue(
-														$author$project$VegaLite$num(0)),
+														$author$project$VegaLite$str('sans-serif')),
 														$author$project$VegaLite$paBind(
-														$author$project$VegaLite$ipRange(
+														$author$project$VegaLite$ipSelect(
 															_List_fromArray(
 																[
-																	$author$project$VegaLite$inMin(-40),
-																	$author$project$VegaLite$inMax(40)
+																	$author$project$VegaLite$inOptions(
+																	_List_fromArray(
+																		['sans-serif', 'serif', 'monospace']))
 																])))
 													]))),
 										A2(
 											$author$project$VegaLite$param,
-											'dy',
+											'fontSize',
 											_List_fromArray(
 												[
 													$author$project$VegaLite$paValue(
-													$author$project$VegaLite$num(0)),
+													$author$project$VegaLite$num(24)),
 													$author$project$VegaLite$paBind(
 													$author$project$VegaLite$ipRange(
 														_List_fromArray(
 															[
-																$author$project$VegaLite$inMin(-40),
-																$author$project$VegaLite$inMax(40)
+																$author$project$VegaLite$inMin(0),
+																$author$project$VegaLite$inMax(64)
 															])))
 												]))),
 									A2(
 										$author$project$VegaLite$param,
-										'color',
+										'fontStyle',
 										_List_fromArray(
 											[
 												$author$project$VegaLite$paValue(
-												$author$project$VegaLite$str('black')),
+												$author$project$VegaLite$str('normal')),
 												$author$project$VegaLite$paBind(
-												$author$project$VegaLite$ipColor(_List_Nil))
+												$author$project$VegaLite$ipSelect(
+													_List_fromArray(
+														[
+															$author$project$VegaLite$inOptions(
+															_List_fromArray(
+																['normal', 'italic']))
+														])))
 											]))),
 								A2(
 									$author$project$VegaLite$param,
-									'fontSize',
+									'fontWeight',
 									_List_fromArray(
 										[
 											$author$project$VegaLite$paValue(
-											$author$project$VegaLite$num(24)),
+											$author$project$VegaLite$str('normal')),
 											$author$project$VegaLite$paBind(
-											$author$project$VegaLite$ipRange(
+											$author$project$VegaLite$ipSelect(
 												_List_fromArray(
 													[
-														$author$project$VegaLite$inMin(0),
-														$author$project$VegaLite$inMax(64),
-														$author$project$VegaLite$inStep(1)
+														$author$project$VegaLite$inOptions(
+														_List_fromArray(
+															['normal', 'bold', 'lighter']))
 													])))
 										]))),
 							A2(
@@ -15795,7 +15860,11 @@ var $author$project$TextFormatTests$title1 = function () {
 						A2($author$project$VegaLite$tiStrExpr, 'color', $author$project$VegaLite$tiColor),
 						A2($author$project$VegaLite$tiNumExpr, 'dx', $author$project$VegaLite$tiDx),
 						A2($author$project$VegaLite$tiNumExpr, 'dy', $author$project$VegaLite$tiDy),
+						A2($author$project$VegaLite$tiStrExpr, 'font', $author$project$VegaLite$tiFont),
 						A2($author$project$VegaLite$tiNumExpr, 'fontSize', $author$project$VegaLite$tiFontSize),
+						A2($author$project$VegaLite$tiStrExpr, 'fontStyle', $author$project$VegaLite$tiFontStyle),
+						$author$project$VegaLite$tiFontWeight(
+						$author$project$VegaLite$fwExpr('fontWeight')),
 						A2($author$project$VegaLite$tiNumExpr, 'fontSize', $author$project$VegaLite$tiLineHeight),
 						A2($author$project$VegaLite$tiNumExpr, 'limit', $author$project$VegaLite$tiLimit),
 						A2($author$project$VegaLite$tiNumExpr, 'offset', $author$project$VegaLite$tiOffset),
