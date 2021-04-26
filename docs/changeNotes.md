@@ -71,6 +71,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
 
+- `leNumsExpr` for providing expressions that evaluate to a list of numeric legend (dash) properties (VL5.0).
+
 - `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
 
 - `tiNumExpr` for providing expressions that evaluate to numeric title properties (VL5.0).

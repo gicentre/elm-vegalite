@@ -663,6 +663,7 @@ module VegaLite exposing
     , mBoo
     , mSymbol
     , leNumExpr
+    , leNumsExpr
     , leStrExpr
     , leAria
     , leGradient
@@ -700,6 +701,8 @@ module VegaLite exposing
     , leRowPadding
     , leStrokeColor
     , leStrokeWidth
+    , leSymbolDash
+    , leSymbolDashOffset
     , leSymbolFillColor
     , leSymbolLimit
     , leSymbolSize
@@ -1280,6 +1283,8 @@ module VegaLite exposing
     , lecoEntryPadding
     , lecoSymbolBaseFillColor
     , lecoSymbolBaseStrokeColor
+    , lecoSymbolDash
+    , lecoSymbolDashOffset
     , lecoSymbolDirection
     , lecoSymbolFillColor
     , lecoSymbolLimit
@@ -2621,6 +2626,7 @@ See the
 [Vega-Lite legend property documentation](https://vega.github.io/vega-lite/docs/legend.html#legend-properties).
 
 @docs leNumExpr
+@docs leNumsExpr
 @docs leStrExpr
 
 @docs leAria
@@ -2659,6 +2665,8 @@ See the
 @docs leRowPadding
 @docs leStrokeColor
 @docs leStrokeWidth
+@docs leSymbolDash
+@docs leSymbolDashOffset
 @docs leSymbolFillColor
 @docs leSymbolLimit
 @docs leSymbolSize
@@ -3493,6 +3501,8 @@ See the
 @docs lecoEntryPadding
 @docs lecoSymbolBaseFillColor
 @docs lecoSymbolBaseStrokeColor
+@docs lecoSymbolDash
+@docs lecoSymbolDashOffset
 @docs lecoSymbolDirection
 @docs lecoSymbolFillColor
 @docs lecoSymbolLimit
@@ -4911,7 +4921,8 @@ type Legend
 [lecoLabelFontStyle](#lecoLabelFontStyle), [lecoLabelFontWeight](#lecoLabelFontWeight),
 [lecoLabelLimit](#lecoLabelLimit), [lecoLabelOffset](#lecoLabelOffset), [lecoLabelOverlap](#lecoLabelOverlap),
 [lecoEntryPadding](#lecoEntryPadding), [lecoSymbolBaseFillColor](#lecoSymbolBaseFillColor),
-[lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor), [lecoSymbolDirection](#lecoSymbolDirection),
+[lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor), [lecoSymbolDash](#lecoSymbolDash),
+[lecoSymbolDashOffset](#lecoSymbolDashOffset), [lecoSymbolDirection](#lecoSymbolDirection),
 [lecoSymbolFillColor](#lecoSymbolFillColor), [lecoSymbolLimit](#lecoSymbolLimit),
 [lecoSymbolOffset](#lecoSymbolOffset),[lecoSymbolSize](#lecoSymbolSize),
 [lecoSymbolStrokeColor](#lecoSymbolStrokeColor), [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth),
@@ -4960,6 +4971,8 @@ type LegendConfig
     | LeStrokeWidth Float
     | SymbolBaseFillColor String
     | SymbolBaseStrokeColor String
+    | SymbolDash (List Float)
+    | SymbolDashOffset Float
     | SymbolDirection MarkOrientation
     | SymbolFillColor String
     | SymbolLimit Int
@@ -5008,12 +5021,12 @@ type LegendOrientation
 [leFontStyle](#leFontStyle), [leFontWeight](#leFontWeight), [leLabelLimit](#leLabelLimit),
 [leLabelOffset](#leLabelOffset), [leLabelOverlap](#leLabelOverlap), [leOffset](#leOffset),
 [leOrient](#leOrient), [lePadding](#lePadding), [leRowPadding](#leRowPadding),
-[leStrokeColor](#leStrokeColor), [leStrokeWidth](#leStrokeWidth),
-[leSymbolFillColor](#leSymbolFillColor), [leSymbolLimit](#leSymbolLimit),
-[leSymbolSize](#leSymbolSize), [leSymbolStrokeColor](#leSymbolStrokeColor),
-[leSymbolStrokeWidth](#leSymbolStrokeWidth), [leSymbolType](#leSymbolType),
-[leTickCount](#leTickCount), [leTitle](#leTitle), [leTitleAlign](#leTitleAlign),
-[leTitleBaseline](#leTitleBaseline), [leTitleColor](#leTitleColor),
+[leStrokeColor](#leStrokeColor), [leStrokeWidth](#leStrokeWidth), [leSymbolDash](#leSymbolDash),
+[leSymbolDashOffset](#leSymbolDashOffset) [leSymbolFillColor](#leSymbolFillColor),
+[leSymbolLimit](#leSymbolLimit), [leSymbolSize](#leSymbolSize),
+[leSymbolStrokeColor](#leSymbolStrokeColor), [leSymbolStrokeWidth](#leSymbolStrokeWidth),
+[leSymbolType](#leSymbolType), [leTickCount](#leTickCount), [leTitle](#leTitle),
+[leTitleAlign](#leTitleAlign), [leTitleBaseline](#leTitleBaseline), [leTitleColor](#leTitleColor),
 [leTitleFont](#leTitleFont), [leTitleFontSize](#leTitleFontSize),
 [leTitleFontWeight](#leTitleFontWeight), [leTitleLimit](#leTitleLimit),
 [leTitlePadding](#leTitlePadding), [leType](#leType),
@@ -5054,6 +5067,8 @@ type LegendProperty
     | LRowPadding Num
     | LStrokeColor Str
     | LStrokeWidth Num
+    | LSymbolDash Nums
+    | LSymbolDashOffset Num
     | LSymbolFillColor Str
     | LSymbolLimit Num
     | LSymbolSize Num
@@ -13026,6 +13041,20 @@ lecoSymbolBaseStrokeColor =
     SymbolBaseStrokeColor
 
 
+{-| Default legend symbol dash style in legend encoding.
+-}
+lecoSymbolDash : List Float -> LegendConfig
+lecoSymbolDash =
+    SymbolDash
+
+
+{-| Default legend symbol dash offset in legend encoding.
+-}
+lecoSymbolDashOffset : Float -> LegendConfig
+lecoSymbolDashOffset =
+    SymbolDashOffset
+
+
 {-| Default legend symbol fill color.
 -}
 lecoSymbolFillColor : String -> LegendConfig
@@ -13338,6 +13367,33 @@ leNumExpr ex fn =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a legend property function requiring a list of numbers (for dash styles). This can
+be used to provide an interactive parameterisation of an axis dash property when
+an expression is bound to an input element. For example,
+
+    ps =
+        params
+            << param "symbolDash"
+                [ paValue nums []
+                , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
+                ]
+
+    enc =
+        encoding
+            << color [ mName "country", mLegned [ leSymbolDash |> leNumsExpr "symbolDash" ] ]
+
+-}
+leNumsExpr : String -> (List number -> LegendProperty) -> LegendProperty
+leNumsExpr ex fn =
+    case fn [] of
+        LSymbolDash _ ->
+            LSymbolDash (NumsExpr ex)
+
+        _ ->
+            fn []
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 an legend property function requiring a string value. This can be used to provide an
 interactive parameterisation of a legend property when an expression is bound to an
 input element. For example,
@@ -13570,6 +13626,20 @@ leStrokeWidth n =
 leSymbol : Legend
 leSymbol =
     Symbol
+
+
+{-| Legend symbol dash style in legend encoding.
+-}
+leSymbolDash : List Float -> LegendProperty
+leSymbolDash ns =
+    LSymbolDash (Nums ns)
+
+
+{-| Legend symbol dash offset in legend encoding.
+-}
+leSymbolDashOffset : Float -> LegendProperty
+leSymbolDashOffset n =
+    LSymbolDashOffset (Num n)
 
 
 {-| Legend symbol fill color.
@@ -22616,8 +22686,14 @@ legendConfigProperty legendConfig =
         SymbolBaseStrokeColor s ->
             [ ( "symbolBaseStrokeColor", JE.string s ) ]
 
-        SymbolOffset o ->
-            [ ( "symbolOffset", JE.float o ) ]
+        SymbolDash sd ->
+            [ ( "symbolDash", JE.list JE.float sd ) ]
+
+        SymbolDashOffset x ->
+            [ ( "symbolDashOffset", JE.float x ) ]
+
+        SymbolOffset x ->
+            [ ( "symbolOffset", JE.float x ) ]
 
         SymbolType s ->
             [ ( "symbolType", symbolSpec s ) ]
@@ -22804,6 +22880,12 @@ legendProperty legendProp =
 
         LStrokeWidth n ->
             numExpr "strokeWidth" n
+
+        LSymbolDash sd ->
+            numsExpr "symbolDash" sd
+
+        LSymbolDashOffset n ->
+            numExpr "symbolDashOffset" n
 
         LSymbolFillColor s ->
             strExpr "symbolFillColor" s
