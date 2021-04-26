@@ -6853,26 +6853,26 @@ var $author$project$VegaLite$compositionAlignmentLabel = function (ca) {
 			return 'all';
 	}
 };
-var $author$project$VegaLite$legendOrientLabel = function (orient) {
+var $author$project$VegaLite$legendOrientSpec = function (orient) {
 	switch (orient) {
 		case 3:
-			return 'left';
+			return $elm$json$Json$Encode$string('left');
 		case 7:
-			return 'top-left';
+			return $elm$json$Json$Encode$string('top-left');
 		case 6:
-			return 'top';
+			return $elm$json$Json$Encode$string('top');
 		case 8:
-			return 'top-right';
+			return $elm$json$Json$Encode$string('top-right');
 		case 5:
-			return 'right';
+			return $elm$json$Json$Encode$string('right');
 		case 2:
-			return 'bottom-right';
+			return $elm$json$Json$Encode$string('bottom-right');
 		case 0:
-			return 'bottom';
+			return $elm$json$Json$Encode$string('bottom');
 		case 1:
-			return 'bottom-left';
+			return $elm$json$Json$Encode$string('bottom-left');
 		default:
-			return 'none';
+			return $elm$json$Json$Encode$string('none');
 	}
 };
 var $author$project$VegaLite$overlapStrategySpec = function (strat) {
@@ -7040,8 +7040,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'orient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$legendOrientLabel(orient)))
+					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
 		case 27:
 			var n = legendProp.a;
@@ -7136,36 +7135,18 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'titleOrient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$legendOrientLabel(orient)))
+					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
 		case 46:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
 		case 48:
 			var vals = legendProp.a;
-			var list = function () {
-				switch (vals.$) {
-					case 1:
-						var xs = vals.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs);
-					case 0:
-						var ds = vals.a;
-						return A2(
-							$elm$json$Json$Encode$list,
-							function (d) {
-								return $elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
-							},
-							ds);
-					default:
-						var ss = vals.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-				}
-			}();
 			return _List_fromArray(
 				[
-					_Utils_Tuple2('values', list)
+					_Utils_Tuple2(
+					'values',
+					$author$project$VegaLite$dataValuesSpecs(vals))
 				]);
 		case 49:
 			var n = legendProp.a;
@@ -10162,8 +10143,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'orient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$legendOrientLabel(orient)))
+					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
 		case 25:
 			var x = legendConfig.a;
@@ -13086,6 +13066,23 @@ var $author$project$LegendTests$legend14 = $author$project$LegendTests$legendCor
 		[
 			$author$project$VegaLite$lecoSymbolLimit(4)
 		]));
+var $author$project$VegaLite$AFit = 1;
+var $author$project$VegaLite$asFit = 1;
+var $author$project$VegaLite$VLAutosize = 8;
+var $author$project$VegaLite$autosize = function (aus) {
+	return _Utils_Tuple2(
+		8,
+		$elm$json$Json$Encode$object(
+			A2($elm$core$List$map, $author$project$VegaLite$autosizeProperty, aus)));
+};
+var $author$project$VegaLite$DExprs = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$dataExpr = $author$project$VegaLite$DExprs;
+var $author$project$VegaLite$InDataOptions = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$inDataOptions = $author$project$VegaLite$InDataOptions;
 var $author$project$VegaLite$InMax = function (a) {
 	return {$: 6, a: a};
 };
@@ -13094,10 +13091,10 @@ var $author$project$VegaLite$InMin = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
-var $author$project$VegaLite$InStep = function (a) {
-	return {$: 8, a: a};
+var $author$project$VegaLite$InName = function (a) {
+	return {$: 7, a: a};
 };
-var $author$project$VegaLite$inStep = $author$project$VegaLite$InStep;
+var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
 var $author$project$VegaLite$IPColor = function (a) {
 	return {$: 12, a: a};
 };
@@ -13106,6 +13103,24 @@ var $author$project$VegaLite$IPRange = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
+var $author$project$VegaLite$IPSelect = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$LCornerRadius = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$leCornerRadius = function (n) {
+	return $author$project$VegaLite$LCornerRadius(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$LFillColor = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$leFillColor = function (s) {
+	return $author$project$VegaLite$LFillColor(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$LClipHeight = function (a) {
 	return {$: 1, a: a};
 };
@@ -13114,9 +13129,6 @@ var $author$project$VegaLite$LColumnPadding = function (a) {
 };
 var $author$project$VegaLite$LColumns = function (a) {
 	return {$: 3, a: a};
-};
-var $author$project$VegaLite$LCornerRadius = function (a) {
-	return {$: 4, a: a};
 };
 var $author$project$VegaLite$LGradientLength = function (a) {
 	return {$: 11, a: a};
@@ -13252,8 +13264,13 @@ var $author$project$VegaLite$leNumExpr = F2(
 				return fn(0);
 		}
 	});
-var $author$project$VegaLite$LFillColor = function (a) {
-	return {$: 6, a: a};
+var $author$project$VegaLite$leOffset = function (n) {
+	return $author$project$VegaLite$LOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$lePadding = function (n) {
+	return $author$project$VegaLite$LPadding(
+		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$LFormat = function (a) {
 	return {$: 7, a: a};
@@ -13335,10 +13352,22 @@ var $author$project$VegaLite$leStrExpr = F2(
 				return fn('');
 		}
 	});
+var $author$project$VegaLite$leStrokeColor = function (s) {
+	return $author$project$VegaLite$LStrokeColor(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$leTickCount = function (n) {
+	return $author$project$VegaLite$LTickCount(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$leTitleColor = function (s) {
 	return $author$project$VegaLite$LTitleColor(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$LValues = function (a) {
+	return {$: 48, a: a};
+};
+var $author$project$VegaLite$leValues = $author$project$VegaLite$LValues;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -13346,14 +13375,32 @@ var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$Numbers = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$nums = $author$project$VegaLite$Numbers;
 var $author$project$VegaLite$PBind = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
+var $author$project$VegaLite$PSize = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$paSize = $author$project$VegaLite$PSize;
 var $author$project$VegaLite$PValue = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
+var $author$project$VegaLite$PValues = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
+var $author$project$VegaLite$VLPadding = 9;
+var $author$project$VegaLite$padding = function (pad) {
+	return _Utils_Tuple2(
+		9,
+		$author$project$VegaLite$paddingSpec(pad));
+};
 var $author$project$VegaLite$pBindingProperties = function (bnd) {
 	switch (bnd.$) {
 		case 0:
@@ -13587,37 +13634,163 @@ var $author$project$VegaLite$params = function (prms) {
 		1,
 		A2($elm$json$Json$Encode$list, extract, prms));
 };
+var $author$project$VegaLite$Point = 10;
+var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
+var $author$project$VegaLite$shape = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'shape',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
 var $author$project$VegaLite$DStr = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$str = $author$project$VegaLite$DStr;
 var $author$project$LegendTests$legend15 = function () {
-	var prm = A2(
+	var lVals3 = $author$project$VegaLite$nums(
+		_List_fromArray(
+			[5, 10, 15, 20, 25]));
+	var lVals2 = $author$project$VegaLite$nums(
+		_List_fromArray(
+			[8, 12, 16, 20, 24]));
+	var lVals1 = $author$project$VegaLite$nums(
+		_List_fromArray(
+			[0, 25]));
+	var ps = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				$author$project$VegaLite$params,
 				A2(
-					$author$project$VegaLite$param,
-					'xPos',
-					_List_fromArray(
-						[
-							$author$project$VegaLite$paValue(
-							$author$project$VegaLite$num(10)),
-							$author$project$VegaLite$paBind(
-							$author$project$VegaLite$ipRange(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						A2(
+							$elm$core$Basics$composeL,
+							A2(
+								$elm$core$Basics$composeL,
+								A2(
+									$elm$core$Basics$composeL,
+									A2(
+										$elm$core$Basics$composeL,
+										A2(
+											$elm$core$Basics$composeL,
+											$author$project$VegaLite$params,
+											A2(
+												$author$project$VegaLite$param,
+												'cornerRadius',
+												_List_fromArray(
+													[
+														$author$project$VegaLite$paValue(
+														$author$project$VegaLite$num(0)),
+														$author$project$VegaLite$paBind(
+														$author$project$VegaLite$ipRange(
+															_List_fromArray(
+																[
+																	$author$project$VegaLite$inMin(0),
+																	$author$project$VegaLite$inMax(60)
+																])))
+													]))),
+										A2(
+											$author$project$VegaLite$param,
+											'fillColor',
+											_List_fromArray(
+												[
+													$author$project$VegaLite$paValue(
+													$author$project$VegaLite$str('#ccc')),
+													$author$project$VegaLite$paBind(
+													$author$project$VegaLite$ipColor(
+														_List_fromArray(
+															[
+																$author$project$VegaLite$inName('Fill colour ')
+															])))
+												]))),
+									A2(
+										$author$project$VegaLite$param,
+										'offset',
+										_List_fromArray(
+											[
+												$author$project$VegaLite$paValue(
+												$author$project$VegaLite$num(0)),
+												$author$project$VegaLite$paBind(
+												$author$project$VegaLite$ipRange(
+													_List_fromArray(
+														[
+															$author$project$VegaLite$inMin(-60),
+															$author$project$VegaLite$inMax(60)
+														])))
+											]))),
+								A2(
+									$author$project$VegaLite$param,
+									'padding',
+									_List_fromArray(
+										[
+											$author$project$VegaLite$paValue(
+											$author$project$VegaLite$num(20)),
+											$author$project$VegaLite$paBind(
+											$author$project$VegaLite$ipRange(
+												_List_fromArray(
+													[
+														$author$project$VegaLite$inMin(-60),
+														$author$project$VegaLite$inMax(60)
+													])))
+										]))),
+							A2(
+								$author$project$VegaLite$param,
+								'strokeColor',
 								_List_fromArray(
 									[
-										$author$project$VegaLite$inMin(-50),
-										$author$project$VegaLite$inMax(300),
-										$author$project$VegaLite$inStep(1)
+										$author$project$VegaLite$paValue(
+										$author$project$VegaLite$str('black')),
+										$author$project$VegaLite$paBind(
+										$author$project$VegaLite$ipColor(_List_Nil))
+									]))),
+						A2(
+							$author$project$VegaLite$param,
+							'tickCount',
+							_List_fromArray(
+								[
+									$author$project$VegaLite$paValue(
+									$author$project$VegaLite$num(10)),
+									$author$project$VegaLite$paBind(
+									$author$project$VegaLite$ipRange(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$inMin(0),
+												$author$project$VegaLite$inMax(30)
+											])))
+								]))),
+					A2(
+						$author$project$VegaLite$param,
+						'titleColor',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$str('black')),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipColor(_List_Nil))
+							]))),
+				A2(
+					$author$project$VegaLite$param,
+					'values',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValues(lVals1),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipSelect(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inName('Values '),
+										$author$project$VegaLite$inDataOptions(
+										_List_fromArray(
+											[lVals1, lVals2, lVals3]))
 									])))
 						]))),
 			A2(
 				$author$project$VegaLite$param,
-				'yPos',
+				'xPos',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paValue(
@@ -13626,20 +13799,24 @@ var $author$project$LegendTests$legend15 = function () {
 						$author$project$VegaLite$ipRange(
 							_List_fromArray(
 								[
-									$author$project$VegaLite$inMin(-50),
-									$author$project$VegaLite$inMax(300),
-									$author$project$VegaLite$inStep(1)
+									$author$project$VegaLite$inMin(-300),
+									$author$project$VegaLite$inMax(300)
 								])))
 					]))),
 		A2(
 			$author$project$VegaLite$param,
-			'titleColor',
+			'yPos',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$str('black')),
+					$author$project$VegaLite$num(10)),
 					$author$project$VegaLite$paBind(
-					$author$project$VegaLite$ipColor(_List_Nil))
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inMin(-300),
+								$author$project$VegaLite$inMax(300)
+							])))
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13647,46 +13824,66 @@ var $author$project$LegendTests$legend15 = function () {
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				$author$project$VegaLite$encoding,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('Weight_in_lbs'),
+								$author$project$VegaLite$pQuant
+							]))),
 				A2(
 					$author$project$VegaLite$position,
-					0,
+					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Weight_in_lbs'),
+							$author$project$VegaLite$pName('Horsepower'),
 							$author$project$VegaLite$pQuant
 						]))),
-			A2(
-				$author$project$VegaLite$position,
-				1,
+			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('Horsepower'),
-						$author$project$VegaLite$pQuant
+						$author$project$VegaLite$mName('Acceleration'),
+						$author$project$VegaLite$mQuant,
+						$author$project$VegaLite$mLegend(
+						_List_fromArray(
+							[
+								A2($author$project$VegaLite$leNumExpr, 'cornerRadius', $author$project$VegaLite$leCornerRadius),
+								A2($author$project$VegaLite$leStrExpr, 'fillColor', $author$project$VegaLite$leFillColor),
+								A2($author$project$VegaLite$leNumExpr, 'offset', $author$project$VegaLite$leOffset),
+								A2($author$project$VegaLite$leNumExpr, 'padding', $author$project$VegaLite$lePadding),
+								A2($author$project$VegaLite$leStrExpr, 'strokeColor', $author$project$VegaLite$leStrokeColor),
+								A2($author$project$VegaLite$leNumExpr, 'tickCount', $author$project$VegaLite$leTickCount),
+								A2($author$project$VegaLite$leStrExpr, 'titleColor', $author$project$VegaLite$leTitleColor),
+								$author$project$VegaLite$leValues(
+								$author$project$VegaLite$dataExpr('values')),
+								A2($author$project$VegaLite$leNumExpr, 'xPos', $author$project$VegaLite$leX),
+								A2($author$project$VegaLite$leNumExpr, 'yPos', $author$project$VegaLite$leY)
+							]))
 					]))),
-		$author$project$VegaLite$color(
+		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin'),
-					$author$project$VegaLite$mLegend(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$leOrient($author$project$VegaLite$loNone),
-							A2($author$project$VegaLite$leNumExpr, 'xPos', $author$project$VegaLite$leX),
-							A2($author$project$VegaLite$leNumExpr, 'yPos', $author$project$VegaLite$leY),
-							A2($author$project$VegaLite$leStrExpr, 'titleColor', $author$project$VegaLite$leTitleColor)
-						]))
+					$author$project$VegaLite$mName('Origin')
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$LegendTests$path + 'cars.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
-				prm(_List_Nil),
-				$author$project$VegaLite$width(300),
-				$author$project$VegaLite$height(300),
+				ps(_List_Nil),
+				$author$project$VegaLite$width(500),
+				$author$project$VegaLite$height(400),
+				$author$project$VegaLite$autosize(
+				_List_fromArray(
+					[$author$project$VegaLite$asFit])),
+				$author$project$VegaLite$padding(
+				$author$project$VegaLite$paSize(80)),
 				data,
 				enc(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
+				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Top = 6;

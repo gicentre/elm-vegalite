@@ -7166,26 +7166,26 @@ var $author$project$VegaLite$compositionAlignmentLabel = function (ca) {
 			return 'all';
 	}
 };
-var $author$project$VegaLite$legendOrientLabel = function (orient) {
+var $author$project$VegaLite$legendOrientSpec = function (orient) {
 	switch (orient) {
 		case 3:
-			return 'left';
+			return $elm$json$Json$Encode$string('left');
 		case 7:
-			return 'top-left';
+			return $elm$json$Json$Encode$string('top-left');
 		case 6:
-			return 'top';
+			return $elm$json$Json$Encode$string('top');
 		case 8:
-			return 'top-right';
+			return $elm$json$Json$Encode$string('top-right');
 		case 5:
-			return 'right';
+			return $elm$json$Json$Encode$string('right');
 		case 2:
-			return 'bottom-right';
+			return $elm$json$Json$Encode$string('bottom-right');
 		case 0:
-			return 'bottom';
+			return $elm$json$Json$Encode$string('bottom');
 		case 1:
-			return 'bottom-left';
+			return $elm$json$Json$Encode$string('bottom-left');
 		default:
-			return 'none';
+			return $elm$json$Json$Encode$string('none');
 	}
 };
 var $author$project$VegaLite$overlapStrategySpec = function (strat) {
@@ -7353,8 +7353,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'orient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$legendOrientLabel(orient)))
+					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
 		case 27:
 			var n = legendProp.a;
@@ -7449,36 +7448,18 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 				[
 					_Utils_Tuple2(
 					'titleOrient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$legendOrientLabel(orient)))
+					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
 		case 46:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
 		case 48:
 			var vals = legendProp.a;
-			var list = function () {
-				switch (vals.$) {
-					case 1:
-						var xs = vals.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs);
-					case 0:
-						var ds = vals.a;
-						return A2(
-							$elm$json$Json$Encode$list,
-							function (d) {
-								return $elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
-							},
-							ds);
-					default:
-						var ss = vals.a;
-						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
-				}
-			}();
 			return _List_fromArray(
 				[
-					_Utils_Tuple2('values', list)
+					_Utils_Tuple2(
+					'values',
+					$author$project$VegaLite$dataValuesSpecs(vals))
 				]);
 		case 49:
 			var n = legendProp.a;
@@ -11109,8 +11090,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 				[
 					_Utils_Tuple2(
 					'orient',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$legendOrientLabel(orient)))
+					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
 		case 25:
 			var x = legendConfig.a;
