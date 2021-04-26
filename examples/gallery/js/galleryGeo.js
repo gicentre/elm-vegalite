@@ -4702,7 +4702,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 		case 2:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'columnPadding', n);
-		case 28:
+		case 29:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'rowPadding', n);
 		case 3:
@@ -4723,7 +4723,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$markOrientationLabel(d)))
 				]);
-		case 47:
+		case 48:
 			var lType = legendProp.a;
 			if (!lType) {
 				return _List_fromArray(
@@ -4765,14 +4765,17 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			return A2($author$project$VegaLite$numExpr, 'gradientLength', n);
 		case 12:
 			var n = legendProp.a;
-			return A2($author$project$VegaLite$numExpr, 'gradientThickness', n);
+			return A2($author$project$VegaLite$numExpr, 'gradientOpacity', n);
 		case 13:
+			var n = legendProp.a;
+			return A2($author$project$VegaLite$numExpr, 'gradientThickness', n);
+		case 14:
 			var s = legendProp.a;
 			return A2($author$project$VegaLite$strExpr, 'gradientStrokeColor', s);
-		case 14:
+		case 15:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'gradientStrokeWidth', n);
-		case 15:
+		case 16:
 			var ga = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4781,7 +4784,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$compositionAlignmentLabel(ga)))
 				]);
-		case 16:
+		case 17:
 			var ha = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4789,7 +4792,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'labelAlign',
 					$author$project$VegaLite$hAlignSpec(ha))
 				]);
-		case 17:
+		case 18:
 			var va = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4797,22 +4800,22 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'labelBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 18:
-			var s = legendProp.a;
-			return A2($author$project$VegaLite$strExpr, 'labelColor', s);
 		case 19:
 			var s = legendProp.a;
-			return A2($author$project$VegaLite$strExpr, 'labelFont', s);
+			return A2($author$project$VegaLite$strExpr, 'labelColor', s);
 		case 20:
-			var n = legendProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelFontSize', n);
+			var s = legendProp.a;
+			return A2($author$project$VegaLite$strExpr, 'labelFont', s);
 		case 21:
 			var n = legendProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelLimit', n);
+			return A2($author$project$VegaLite$numExpr, 'labelFontSize', n);
 		case 22:
 			var n = legendProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelOffset', n);
+			return A2($author$project$VegaLite$numExpr, 'labelLimit', n);
 		case 23:
+			var n = legendProp.a;
+			return A2($author$project$VegaLite$numExpr, 'labelOffset', n);
+		case 24:
 			var lo = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4820,10 +4823,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'labelOverlap',
 					$author$project$VegaLite$overlapStrategySpec(lo))
 				]);
-		case 24:
+		case 25:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'offset', n);
-		case 25:
+		case 26:
 			var orient = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4831,25 +4834,25 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'orient',
 					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
-		case 27:
+		case 28:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'padding', n);
-		case 29:
+		case 30:
 			var s = legendProp.a;
 			return A2($author$project$VegaLite$strExpr, 'strokeColor', s);
-		case 30:
+		case 31:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'strokeWidth', n);
-		case 31:
+		case 32:
 			var s = legendProp.a;
 			return A2($author$project$VegaLite$strExpr, 'symbolFillColor', s);
-		case 32:
+		case 33:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'symbolLimit', n);
-		case 35:
+		case 36:
 			var s = legendProp.a;
 			return A2($author$project$VegaLite$strExpr, 'symbolStrokeColor', s);
-		case 36:
+		case 37:
 			var s = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4857,16 +4860,16 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'symbolType',
 					$author$project$VegaLite$symbolSpec(s))
 				]);
-		case 33:
-			var n = legendProp.a;
-			return A2($author$project$VegaLite$numExpr, 'symbolSize', n);
 		case 34:
 			var n = legendProp.a;
+			return A2($author$project$VegaLite$numExpr, 'symbolSize', n);
+		case 35:
+			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'symbolStrokeWidth', n);
-		case 37:
+		case 38:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickCount', n);
-		case 38:
+		case 39:
 			var txt = legendProp.a;
 			if (!txt.$) {
 				var s = txt.a;
@@ -4882,7 +4885,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			} else {
 				return A2($author$project$VegaLite$strExpr, 'title', txt);
 			}
-		case 39:
+		case 40:
 			var ha = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4890,7 +4893,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleAlign',
 					$author$project$VegaLite$hAlignSpec(ha))
 				]);
-		case 40:
+		case 41:
 			var va = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4898,16 +4901,16 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 41:
-			var s = legendProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 42:
 			var s = legendProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 43:
+			var s = legendProp.a;
+			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+		case 44:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleFontSize', n);
-		case 44:
+		case 45:
 			var fw = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4915,10 +4918,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 45:
+		case 46:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
-		case 26:
+		case 27:
 			var orient = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4926,10 +4929,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleOrient',
 					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
-		case 46:
+		case 47:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
-		case 48:
+		case 49:
 			var vals = legendProp.a;
 			return _List_fromArray(
 				[
@@ -4937,10 +4940,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'values',
 					$author$project$VegaLite$dataValuesSpecs(vals))
 				]);
-		case 49:
+		case 50:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'legendX', n);
-		case 50:
+		case 51:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'legendY', n);
 		default:
@@ -12355,18 +12358,18 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 		]);
 };
 var $author$project$VegaLite$LOffset = function (a) {
-	return {$: 24, a: a};
+	return {$: 25, a: a};
 };
 var $author$project$VegaLite$leOffset = function (n) {
 	return $author$project$VegaLite$LOffset(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$LOrient = function (a) {
-	return {$: 25, a: a};
+	return {$: 26, a: a};
 };
 var $author$project$VegaLite$leOrient = $author$project$VegaLite$LOrient;
 var $author$project$VegaLite$LTitle = function (a) {
-	return {$: 38, a: a};
+	return {$: 39, a: a};
 };
 var $author$project$VegaLite$leTitle = function (s) {
 	return $author$project$VegaLite$LTitle(
