@@ -78,7 +78,7 @@ textFormat2 =
 
         trans =
             transform
-                << filter (fiExpr "datum.month >= '2016'")
+                << filter (fiExpr "year(datum.month) >= '2016'")
 
         enc =
             encoding
@@ -153,7 +153,7 @@ textAlign1 =
 textAlign2 : Spec
 textAlign2 =
     let
-        prm =
+        ps =
             params
                 << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180, inStep 1 ]) ]
                 << param "dx" [ paValue (num 5), paBind (ipRange [ inMin -20, inMax 20, inStep 1 ]) ]
@@ -226,7 +226,7 @@ textAlign2 =
                     ]
                 ]
     in
-    toVegaLite [ prm [], data [], enc [], layer [ specCircle, specText ] ]
+    toVegaLite [ ps [], data [], enc [], layer [ specCircle, specText ] ]
 
 
 multiline1 : Spec
@@ -312,19 +312,31 @@ customFormatter1 =
 title1 : Spec
 title1 =
     let
-        prm =
+        t1 =
+            strs [ "This is the visualization title", "that is split over two lines" ]
+
+        t2 =
+            strs [ "Short title" ]
+
+        t3 =
+            strs [ "A Title", "over", "three lines" ]
+
+        ps =
             params
-                << param "fontSize" [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64, inStep 1 ]) ]
                 << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ]
+                << param "dx" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
+                << param "dy" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
+                << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "fontSize" [ paValue (num 24), paBind (ipRange [ inMin 0, inMax 64, inStep 1 ]) ]
                 << param "limit" [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ]
-                << param "colour" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "subtitle"
                     [ paValue (str "A subtitle")
                     , paBind (ipSelect [ inOptions [ "A subtitle", "A different subtitle", "And a third subtitle" ] ])
                     ]
-                << param "subtitlePadding" [ paValue (num 5), paBind (ipRange [ inMin -50, inMax 50, inStep 1 ]) ]
                 << param "subtitleColour" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "subtitlePadding" [ paValue (num 5), paBind (ipRange [ inMin -50, inMax 50, inStep 1 ]) ]
+                << param "title" [ paValues t1, paBind (ipSelect [ inDataOptions [ t1, t2, t3 ] ]) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -335,20 +347,22 @@ title1 =
                 << position Y [ pName "Horsepower", pQuant ]
     in
     toVegaLite
-        [ prm []
+        [ ps []
         , padding (paEdges 5 250 5 5)
-        , title "This is the visualization title\nthat is split over two lines"
-            [ tiFontSize |> tiNumExpr "fontSize"
-            , tiAngle |> tiNumExpr "angle"
+        , titleExpr "title"
+            [ tiAngle |> tiNumExpr "angle"
+            , tiColor |> tiStrExpr "color"
+            , tiDx |> tiNumExpr "dx"
+            , tiDy |> tiNumExpr "dy"
+            , tiFontSize |> tiNumExpr "fontSize"
             , tiLineHeight |> tiNumExpr "fontSize"
             , tiLimit |> tiNumExpr "limit"
             , tiOffset |> tiNumExpr "offset"
-            , tiColor |> tiStrExpr "colour"
             , tiSubtitle |> tiStrExpr "subtitle"
+            , tiSubtitleColor |> tiStrExpr "subtitleColour"
             , tiSubtitleFontSize |> tiNumExpr "fontSize/2"
             , tiSubtitleLineHeight |> tiNumExpr "fontSize/2"
             , tiSubtitlePadding |> tiNumExpr "subtitlePadding"
-            , tiSubtitleColor |> tiStrExpr "subtitleColour"
             ]
         , width 400
         , height 400
