@@ -191,7 +191,7 @@ legend15 =
                 << param "rowPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
                 << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "symbolDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
-                << param "symbolDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol dash offset ", inMin 0, inMax 12 ]) ]
+                << param "symbolDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
                 << param "symbolFillColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "symbolLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
                 << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
@@ -200,7 +200,14 @@ legend15 =
                 << param "symbolStrokeColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "symbolStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 8 ]) ]
                 << param "tickCount" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 30 ]) ]
+                << param "titleAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "titleAnchor" [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "start", "middle", "end" ] ]) ]
+                << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "titleFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
                 << param "values" [ paValues lVals1, paBind (ipSelect [ inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
                 << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
                 << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
@@ -259,6 +266,14 @@ legend15 =
                         , leSymbolSize |> leNumExpr "symbolSize"
                         , leSymbolStrokeColor |> leStrExpr "symbolStrokeColor"
                         , leSymbolStrokeWidth |> leNumExpr "symbolStrokeWidth"
+                        , leTitleAlign (haExpr "titleAlign")
+                        , leTitleAnchor (anExpr "titleAnchor")
+                        , leTitleBaseline (vaExpr "titleBaseline")
+                        , leTitleColor |> leStrExpr "titleColor"
+                        , leTitleFont |> leStrExpr "titleFont"
+                        , leTitleFontSize |> leNumExpr "titleFontSize"
+                        , leTitleFontStyle |> leStrExpr "titleFontStyle"
+                        , leTitleFontWeight (fwExpr "titleFontWeight")
                         ]
                     ]
     in
