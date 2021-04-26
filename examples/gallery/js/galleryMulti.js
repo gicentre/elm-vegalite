@@ -10499,43 +10499,52 @@ var $author$project$VegaLite$paddingSpec = function (pad) {
 					]));
 	}
 };
-var $author$project$VegaLite$projectionLabel = function (proj) {
+var $author$project$VegaLite$projectionSpec = function (proj) {
 	switch (proj.$) {
 		case 0:
-			return 'albers';
+			return $elm$json$Json$Encode$string('albers');
 		case 1:
-			return 'albersUsa';
+			return $elm$json$Json$Encode$string('albersUsa');
 		case 2:
-			return 'azimuthalEqualArea';
+			return $elm$json$Json$Encode$string('azimuthalEqualArea');
 		case 3:
-			return 'azimuthalEquidistant';
+			return $elm$json$Json$Encode$string('azimuthalEquidistant');
 		case 4:
-			return 'conicConformal';
+			return $elm$json$Json$Encode$string('conicConformal');
 		case 5:
-			return 'conicEqualarea';
+			return $elm$json$Json$Encode$string('conicEqualarea');
 		case 6:
-			return 'conicEquidistant';
+			return $elm$json$Json$Encode$string('conicEquidistant');
 		case 7:
 			var projName = proj.a;
-			return projName;
+			return $elm$json$Json$Encode$string(projName);
 		case 9:
-			return 'equalEarth';
+			return $elm$json$Json$Encode$string('equalEarth');
 		case 8:
-			return 'equirectangular';
+			return $elm$json$Json$Encode$string('equirectangular');
 		case 10:
-			return 'gnomonic';
+			return $elm$json$Json$Encode$string('gnomonic');
 		case 11:
-			return 'identity';
+			return $elm$json$Json$Encode$string('identity');
 		case 12:
-			return 'mercator';
+			return $elm$json$Json$Encode$string('mercator');
 		case 13:
-			return 'naturalEarth1';
+			return $elm$json$Json$Encode$string('naturalEarth1');
 		case 14:
-			return 'orthographic';
+			return $elm$json$Json$Encode$string('orthographic');
 		case 15:
-			return 'stereographic';
+			return $elm$json$Json$Encode$string('stereographic');
+		case 16:
+			return $elm$json$Json$Encode$string('transverseMercator');
 		default:
-			return 'transverseMercator';
+			var s = proj.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 	}
 };
 var $author$project$VegaLite$projectionProperty = function (pp) {
@@ -10544,8 +10553,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			var proj = pp.a;
 			return _Utils_Tuple2(
 				'type',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$projectionLabel(proj)));
+				$author$project$VegaLite$projectionSpec(proj));
 		case 1:
 			var numOrNull = pp.a;
 			if (!numOrNull.$) {
