@@ -167,35 +167,41 @@ legend15 =
 
         ps =
             params
+                << param "clipHeight" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 200 ]) ]
+                << param "columnPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
+                << param "columns" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
-                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor [ inName "Fill colour " ]) ]
+                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor []) ]
                 << param "gradientLength" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "gradientOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
                 << param "gradientStrokeColor" [ paValue (str "#006"), paBind (ipColor []) ]
                 << param "gradientStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 4 ]) ]
                 << param "gradientThickness" [ paValue (num 16), paBind (ipRange [ inMin 0, inMax 40 ]) ]
-                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inName "Label align ", inOptions [ "center", "left", "right" ] ]) ]
-                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inName "Label baseline ", inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
-                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inName "Label font ", inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
-                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Label font size ", inMin 0, inMax 32, inStep 1 ]) ]
-                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inName "Label style ", inOptions [ "normal", "italic" ] ]) ]
-                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inName "Label weight ", inOptions [ "normal", "bold", "lighter" ] ]) ]
-                << param "labelLimit" [ paValue (num 20), paBind (ipRange [ inName "Label limit ", inMin 0, inMax 20 ]) ]
-                << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inName "Label offset ", inMin -30, inMax 30 ]) ]
-                << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inName "Label overlap ", inDatumOptions [ boo False, str "parity", str "greedy" ] ]) ]
+                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "labelLimit" [ paValue (num 20), paBind (ipRange [ inMin 0, inMax 20 ]) ]
+                << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+                << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inDatumOptions [ boo False, str "parity", str "greedy" ] ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "rowPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
                 << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
-                << param "symbolDash" [ paValues solid, paBind (ipSelect [ inName "Symbol dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "symbolDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "symbolDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol dash offset ", inMin 0, inMax 12 ]) ]
                 << param "symbolFillColor" [ paValue (str "black"), paBind (ipColor []) ]
-                << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol offset ", inMin -40, inMax 40 ]) ]
-                << param "symbolOpacity" [ paValue (num 1), paBind (ipRange [ inName "Symbol opacity ", inMin 0, inMax 1 ]) ]
-                << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inName "Symbol size ", inMin 0, inMax 1000 ]) ]
+                << param "symbolLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
+                << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
+                << param "symbolOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 1000 ]) ]
                 << param "symbolStrokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 8 ]) ]
                 << param "tickCount" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 30 ]) ]
                 << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
-                << param "values" [ paValues lVals1, paBind (ipSelect [ inName "Values ", inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
+                << param "values" [ paValues lVals1, paBind (ipSelect [ inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
                 << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
                 << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
 
@@ -239,15 +245,20 @@ legend15 =
                 << shape
                     [ mName "Origin"
                     , mLegend
-                        [ leLabelFontSize |> leNumExpr "labelFontSize"
+                        [ leClipHeight |> leNumExpr "clipHeight"
+                        , leColumnPadding |> leNumExpr "columnPadding"
+                        , leColumns |> leNumExpr "columns"
+                        , leLabelFontSize |> leNumExpr "labelFontSize"
+                        , leRowPadding |> leNumExpr "rowPadding"
                         , leSymbolDash |> leNumsExpr "symbolDash"
                         , leSymbolDashOffset |> leNumExpr "symbolDashOffset"
                         , leSymbolFillColor |> leStrExpr "symbolFillColor"
+                        , leSymbolLimit |> leNumExpr "symbolLimit"
                         , leSymbolOffset |> leNumExpr "symbolOffset"
                         , leSymbolOpacity |> leNumExpr "symbolOpacity"
                         , leSymbolSize |> leNumExpr "symbolSize"
                         , leSymbolStrokeColor |> leStrExpr "symbolStrokeColor"
-                        , leSymbolSize |> leNumExpr "symbolSize"
+                        , leSymbolStrokeWidth |> leNumExpr "symbolStrokeWidth"
                         ]
                     ]
     in
