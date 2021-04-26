@@ -23,6 +23,57 @@ path =
     "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
+proj1 : Spec
+proj1 =
+    let
+        ps =
+            params
+                << param "type"
+                    [ paValue (str "equalEarth")
+                    , paBind
+                        (ipSelect
+                            [ inOptions
+                                [ "albers"
+                                , "albersUsa"
+                                , "azimuthalEqualArea"
+                                , "azimuthalEquidistant"
+                                , "conicConformal"
+                                , "conicEqualArea"
+                                , "conicEquidistant"
+                                , "equalEarth"
+                                , "equirectangular"
+                                , "gnomonic"
+                                , "mercator"
+                                , "naturalEarth1"
+                                , "orthographic"
+                                , "stereographic"
+                                , "transverseMercator"
+                                ]
+                            ]
+                        )
+                    ]
+
+        data =
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grStep ( 15, 15 ) ]
+                , geoshape [ maFilled False, maStrokeWidth 0.1, maStroke "black" ]
+                ]
+
+        countrySpec =
+            asSpec [ data, geoshape [ maFill "#ccc" ] ]
+
+        proj =
+            projection [ prType (prExpr "type") ]
+    in
+    toVegaLite [ ps [], width 600, height 300, proj, layer [ sphereSpec, countrySpec, gratSpec ] ]
+
+
 worldMapTemplate : String -> List ProjectionProperty -> ( String, Spec )
 worldMapTemplate tText projProps =
     ( tText
@@ -155,7 +206,8 @@ reflectExample rx ry =
 
 specs : List ( String, Spec )
 specs =
-    standardProjs
+    ( "proj1", proj1 )
+        :: standardProjs
         ++ [ configExample
            , reflectExample False False
            , reflectExample True False
