@@ -156,6 +156,15 @@ legend15 =
         lVals3 =
             nums [ 5, 10, 15, 20, 25 ]
 
+        solid =
+            nums []
+
+        shortDash =
+            nums [ 2, 2 ]
+
+        longDash =
+            nums [ 8, 8 ]
+
         ps =
             params
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
@@ -171,9 +180,15 @@ legend15 =
                 << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Label font size ", inMin 0, inMax 32, inStep 1 ]) ]
                 << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inName "Label style ", inOptions [ "normal", "italic" ] ]) ]
                 << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inName "Label weight ", inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "labelLimit" [ paValue (num 20), paBind (ipRange [ inName "Label limit ", inMin 0, inMax 20 ]) ]
+                << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inName "Label offset ", inMin -30, inMax 30 ]) ]
+                << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inName "Label overlap ", inDatumOptions [ boo False, str "parity", str "greedy" ] ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inName "Symbol size ", inMin 0, inMax 1000 ]) ]
+                << param "symbolDash" [ paValues solid, paBind (ipSelect [ inName "Symbol dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol dash offset ", inMin 0, inMax 12 ]) ]
                 << param "tickCount" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 30 ]) ]
                 << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "values" [ paValues lVals1, paBind (ipSelect [ inName "Values ", inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
@@ -204,6 +219,9 @@ legend15 =
                         , leLabelFontSize |> leNumExpr "labelFontSize"
                         , leLabelFontStyle |> leStrExpr "labelFontStyle"
                         , leLabelFontWeight (fwExpr "labelFontWeight")
+                        , leLabelLimit |> leNumExpr "labelLimit"
+                        , leLabelOffset |> leNumExpr "labelOffset"
+                        , leLabelOverlap (osExpr "labelOverlap")
                         , leOffset |> leNumExpr "offset"
                         , lePadding |> leNumExpr "padding"
                         , leStrokeColor |> leStrExpr "strokeColor"
@@ -214,7 +232,15 @@ legend15 =
                         , leY |> leNumExpr "yPos"
                         ]
                     ]
-                << shape [ mName "Origin" ]
+                << shape
+                    [ mName "Origin"
+                    , mLegend
+                        [ leLabelFontSize |> leNumExpr "labelFontSize"
+                        , leSymbolDash |> leNumsExpr "symbolDash"
+                        , leSymbolDashOffset |> leNumExpr "symbolDashOffset"
+                        , leSymbolSize |> leNumExpr "symbolSize"
+                        ]
+                    ]
     in
     toVegaLite
         [ ps []
