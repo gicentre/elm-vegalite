@@ -1119,6 +1119,7 @@ module VegaLite exposing
     , tiZIndex
     , viewBackground
     , vbNumExpr
+    , vbNumsExpr
     , vbStrExpr
     , viewStyle
     , viewCornerRadius
@@ -3324,6 +3325,7 @@ of other views. For more details see the
 
 @docs viewBackground
 @docs vbNumExpr
+@docs vbNumsExpr
 @docs vbStrExpr
 
 @docs viewStyle
@@ -7573,7 +7575,7 @@ an expression is bound to an input element. For example,
     ps =
         params
             << param "gridDash"
-                [ paValue shortDash
+                [ paValue (nums [ 2, 2 ])
                 , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
                 ]
 
@@ -19876,6 +19878,32 @@ vbNumExpr ex fn =
 
         _ ->
             fn 0
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a a view background function requiring a list of numbers (for dash styles). This can
+be used to provide an interactive parameterisation of a view background dash property
+when an expression is bound to an input element. For example,
+
+    ps =
+        params
+            << param "bgDash"
+                [ paValue (nums [ 2, 2 ])
+                , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
+                ]
+
+    bg =
+        viewBackground [ viewStrokeDash |> vbNumsExpr "bgDash" ]
+
+-}
+vbNumsExpr : String -> (List number -> ViewBackground) -> ViewBackground
+vbNumsExpr ex fn =
+    case fn [] of
+        VBStrokeDash _ ->
+            VBStrokeDash (NumsExpr ex)
+
+        _ ->
+            fn []
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
