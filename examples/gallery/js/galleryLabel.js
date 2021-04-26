@@ -8602,132 +8602,143 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
 			var proj = pp.a;
-			return _Utils_Tuple2(
-				'type',
-				$author$project$VegaLite$projectionSpec(proj));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$author$project$VegaLite$projectionSpec(proj))
+				]);
 		case 1:
 			var numOrNull = pp.a;
 			if (!numOrNull.$) {
 				var x = numOrNull.a;
-				return _Utils_Tuple2(
-					'clipAngle',
-					$elm$json$Json$Encode$float(x));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'clipAngle',
+						$elm$json$Json$Encode$float(x))
+					]);
 			} else {
-				return _Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null);
+				return _List_fromArray(
+					[
+						_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
+					]);
 			}
 		case 2:
 			var rClip = pp.a;
 			if (!rClip.$) {
-				return _Utils_Tuple2('clipExtent', $elm$json$Json$Encode$null);
+				return _List_fromArray(
+					[
+						_Utils_Tuple2('clipExtent', $elm$json$Json$Encode$null)
+					]);
 			} else {
 				var l = rClip.a;
 				var t = rClip.b;
 				var r = rClip.c;
 				var b = rClip.d;
-				return _Utils_Tuple2(
-					'clipExtent',
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'clipExtent',
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[l, t, r, b])))
+					]);
+			}
+		case 9:
+			var b = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'reflectX',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 10:
+			var b = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'reflectY',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 3:
+			var lon = pp.a;
+			var lat = pp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'center',
 					A2(
 						$elm$json$Json$Encode$list,
 						$elm$json$Json$Encode$float,
 						_List_fromArray(
-							[l, t, r, b])));
-			}
-		case 8:
-			var b = pp.a;
-			return _Utils_Tuple2(
-				'reflectX',
-				$elm$json$Json$Encode$bool(b));
-		case 9:
-			var b = pp.a;
-			return _Utils_Tuple2(
-				'reflectY',
-				$elm$json$Json$Encode$bool(b));
-		case 3:
-			var lon = pp.a;
-			var lat = pp.b;
-			return _Utils_Tuple2(
-				'center',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[lon, lat])));
+							[lon, lat])))
+				]);
 		case 4:
-			var sc = pp.a;
-			return _Utils_Tuple2(
-				'scale',
-				$elm$json$Json$Encode$float(sc));
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'scale', x);
 		case 5:
 			var tx = pp.a;
 			var ty = pp.b;
-			return _Utils_Tuple2(
-				'translate',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[tx, ty])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'translate',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[tx, ty])))
+				]);
 		case 6:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
-			return _Utils_Tuple2(
-				'rotate',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[lambda, phi, gamma])));
-		case 7:
-			var pr = pp.a;
-			return _Utils_Tuple2(
-				'precision',
-				$elm$json$Json$Encode$float(pr));
-		case 10:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'rotate',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[lambda, phi, gamma])))
+				]);
+		case 8:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'coefficient',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
+		case 7:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'precision', x);
 		case 11:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'distance',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 12:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'fraction',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'distance', x);
 		case 13:
-			var n = pp.a;
-			return _Utils_Tuple2(
-				'lobes',
-				$elm$json$Json$Encode$int(n));
-		case 14:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'parallel',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+		case 14:
+			var n = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'lobes', n);
 		case 15:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'radius',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'parallel', x);
 		case 16:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'ratio',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 17:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'spacing',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+		case 18:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'spacing', x);
 		default:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'tilt',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'tilt', x);
 	}
 };
 var $author$project$VegaLite$rangeConfigProperty = function (rangeCfg) {
@@ -10033,7 +10044,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'projection',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$projectionProperty, pps)));
 		case 0:
 			var mps = configProp.a;
 			return _Utils_Tuple2(

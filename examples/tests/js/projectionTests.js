@@ -10784,132 +10784,143 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
 			var proj = pp.a;
-			return _Utils_Tuple2(
-				'type',
-				$author$project$VegaLite$projectionSpec(proj));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$author$project$VegaLite$projectionSpec(proj))
+				]);
 		case 1:
 			var numOrNull = pp.a;
 			if (!numOrNull.$) {
 				var x = numOrNull.a;
-				return _Utils_Tuple2(
-					'clipAngle',
-					$elm$json$Json$Encode$float(x));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'clipAngle',
+						$elm$json$Json$Encode$float(x))
+					]);
 			} else {
-				return _Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null);
+				return _List_fromArray(
+					[
+						_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
+					]);
 			}
 		case 2:
 			var rClip = pp.a;
 			if (!rClip.$) {
-				return _Utils_Tuple2('clipExtent', $elm$json$Json$Encode$null);
+				return _List_fromArray(
+					[
+						_Utils_Tuple2('clipExtent', $elm$json$Json$Encode$null)
+					]);
 			} else {
 				var l = rClip.a;
 				var t = rClip.b;
 				var r = rClip.c;
 				var b = rClip.d;
-				return _Utils_Tuple2(
-					'clipExtent',
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'clipExtent',
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$float,
+							_List_fromArray(
+								[l, t, r, b])))
+					]);
+			}
+		case 9:
+			var b = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'reflectX',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 10:
+			var b = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'reflectY',
+					$elm$json$Json$Encode$bool(b))
+				]);
+		case 3:
+			var lon = pp.a;
+			var lat = pp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'center',
 					A2(
 						$elm$json$Json$Encode$list,
 						$elm$json$Json$Encode$float,
 						_List_fromArray(
-							[l, t, r, b])));
-			}
-		case 8:
-			var b = pp.a;
-			return _Utils_Tuple2(
-				'reflectX',
-				$elm$json$Json$Encode$bool(b));
-		case 9:
-			var b = pp.a;
-			return _Utils_Tuple2(
-				'reflectY',
-				$elm$json$Json$Encode$bool(b));
-		case 3:
-			var lon = pp.a;
-			var lat = pp.b;
-			return _Utils_Tuple2(
-				'center',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[lon, lat])));
+							[lon, lat])))
+				]);
 		case 4:
-			var sc = pp.a;
-			return _Utils_Tuple2(
-				'scale',
-				$elm$json$Json$Encode$float(sc));
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'scale', x);
 		case 5:
 			var tx = pp.a;
 			var ty = pp.b;
-			return _Utils_Tuple2(
-				'translate',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[tx, ty])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'translate',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[tx, ty])))
+				]);
 		case 6:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
-			return _Utils_Tuple2(
-				'rotate',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[lambda, phi, gamma])));
-		case 7:
-			var pr = pp.a;
-			return _Utils_Tuple2(
-				'precision',
-				$elm$json$Json$Encode$float(pr));
-		case 10:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'rotate',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[lambda, phi, gamma])))
+				]);
+		case 8:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'coefficient',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
+		case 7:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'precision', x);
 		case 11:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'distance',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 12:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'fraction',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'distance', x);
 		case 13:
-			var n = pp.a;
-			return _Utils_Tuple2(
-				'lobes',
-				$elm$json$Json$Encode$int(n));
-		case 14:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'parallel',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+		case 14:
+			var n = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'lobes', n);
 		case 15:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'radius',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'parallel', x);
 		case 16:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'ratio',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 17:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'spacing',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+		case 18:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'spacing', x);
 		default:
 			var x = pp.a;
-			return _Utils_Tuple2(
-				'tilt',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'tilt', x);
 	}
 };
 var $author$project$VegaLite$rangeConfigProperty = function (rangeCfg) {
@@ -12215,7 +12226,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'projection',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$projectionProperty, pps)));
 		case 0:
 			var mps = configProp.a;
 			return _Utils_Tuple2(
@@ -12969,7 +12980,10 @@ var $author$project$VegaLite$prClipAngle = $author$project$VegaLite$PClipAngle;
 var $author$project$VegaLite$PPrecision = function (a) {
 	return {$: 7, a: a};
 };
-var $author$project$VegaLite$prPrecision = $author$project$VegaLite$PPrecision;
+var $author$project$VegaLite$prPrecision = function (x) {
+	return $author$project$VegaLite$PPrecision(
+		$author$project$VegaLite$Num(x));
+};
 var $author$project$VegaLite$VLBackground = 10;
 var $author$project$VegaLite$background = function (colour) {
 	return _Utils_Tuple2(
@@ -12987,7 +13001,7 @@ var $author$project$VegaLite$projection = function (pProps) {
 	return _Utils_Tuple2(
 		16,
 		$elm$json$Json$Encode$object(
-			A2($elm$core$List$map, $author$project$VegaLite$projectionProperty, pProps)));
+			A2($elm$core$List$concatMap, $author$project$VegaLite$projectionProperty, pProps)));
 };
 var $author$project$VegaLite$VLWidth = 4;
 var $author$project$VegaLite$width = function (w) {
@@ -13043,10 +13057,22 @@ var $author$project$ProjectionTests$d3Projections = function () {
 		_List_fromArray(
 			['airy', 'aitoff', 'armadillo', 'august', 'baker', 'berghaus', 'bertin1953', 'boggs', 'bonne', 'bottomley', 'collignon', 'craig', 'craster', 'cylindricalequalarea', 'cylindricalstereographic', 'eckert1', 'eckert2', 'eckert3', 'eckert4', 'eckert5', 'eckert6', 'eisenlohr', 'fahey', 'foucaut', 'gingery', 'winkel3']));
 }();
+var $author$project$VegaLite$InMax = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$inMax = $author$project$VegaLite$InMax;
+var $author$project$VegaLite$InMin = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
 var $author$project$VegaLite$InOptions = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
+var $author$project$VegaLite$IPRange = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
 var $author$project$VegaLite$IPSelect = function (a) {
 	return {$: 3, a: a};
 };
@@ -13313,6 +13339,90 @@ var $author$project$VegaLite$ProjectionExpr = function (a) {
 	return {$: 17, a: a};
 };
 var $author$project$VegaLite$prExpr = $author$project$VegaLite$ProjectionExpr;
+var $author$project$VegaLite$NumExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$PCoefficient = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$PDistance = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$PFraction = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$PLobes = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$PParallel = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$PRadius = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$PRatio = function (a) {
+	return {$: 17, a: a};
+};
+var $author$project$VegaLite$PSpacing = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$PTilt = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$PrPointRadius = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$PrScale = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$prNumExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(0);
+		switch (_v0.$) {
+			case 8:
+				return $author$project$VegaLite$PrPointRadius(
+					$author$project$VegaLite$NumExpr(ex));
+			case 4:
+				return $author$project$VegaLite$PrScale(
+					$author$project$VegaLite$NumExpr(ex));
+			case 7:
+				return $author$project$VegaLite$PPrecision(
+					$author$project$VegaLite$NumExpr(ex));
+			case 11:
+				return $author$project$VegaLite$PCoefficient(
+					$author$project$VegaLite$NumExpr(ex));
+			case 12:
+				return $author$project$VegaLite$PDistance(
+					$author$project$VegaLite$NumExpr(ex));
+			case 13:
+				return $author$project$VegaLite$PFraction(
+					$author$project$VegaLite$NumExpr(ex));
+			case 14:
+				return $author$project$VegaLite$PLobes(
+					$author$project$VegaLite$NumExpr(ex));
+			case 15:
+				return $author$project$VegaLite$PParallel(
+					$author$project$VegaLite$NumExpr(ex));
+			case 16:
+				return $author$project$VegaLite$PRadius(
+					$author$project$VegaLite$NumExpr(ex));
+			case 17:
+				return $author$project$VegaLite$PRatio(
+					$author$project$VegaLite$NumExpr(ex));
+			case 18:
+				return $author$project$VegaLite$PSpacing(
+					$author$project$VegaLite$NumExpr(ex));
+			case 19:
+				return $author$project$VegaLite$PTilt(
+					$author$project$VegaLite$NumExpr(ex));
+			default:
+				return fn(0);
+		}
+	});
+var $author$project$VegaLite$prScale = function (x) {
+	return $author$project$VegaLite$PrScale(
+		$author$project$VegaLite$Num(x));
+};
 var $author$project$VegaLite$sphere = _Utils_Tuple2(
 	12,
 	$elm$json$Json$Encode$object(
@@ -13339,7 +13449,37 @@ var $author$project$ProjectionTests$proj1 = function () {
 			]));
 	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$params,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$params,
+				A2(
+					$author$project$VegaLite$param,
+					'precision',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inMin(0.01),
+										$author$project$VegaLite$inMax(10)
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
+				'scale',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(50),
+									$author$project$VegaLite$inMax(500)
+								])))
+					]))),
 		A2(
 			$author$project$VegaLite$param,
 			'type',
@@ -13359,6 +13499,8 @@ var $author$project$ProjectionTests$proj1 = function () {
 	var proj = $author$project$VegaLite$projection(
 		_List_fromArray(
 			[
+				A2($author$project$VegaLite$prNumExpr, 'precision', $author$project$VegaLite$prPrecision),
+				A2($author$project$VegaLite$prNumExpr, 'scale', $author$project$VegaLite$prScale),
 				$author$project$VegaLite$prType(
 				$author$project$VegaLite$prExpr('type'))
 			]));
@@ -13412,11 +13554,11 @@ var $author$project$VegaLite$Identity = {$: 11};
 var $author$project$VegaLite$identityProjection = $author$project$VegaLite$Identity;
 var $elm$core$Basics$not = _Basics_not;
 var $author$project$VegaLite$PReflectX = function (a) {
-	return {$: 8, a: a};
+	return {$: 9, a: a};
 };
 var $author$project$VegaLite$prReflectX = $author$project$VegaLite$PReflectX;
 var $author$project$VegaLite$PReflectY = function (a) {
-	return {$: 9, a: a};
+	return {$: 10, a: a};
 };
 var $author$project$VegaLite$prReflectY = $author$project$VegaLite$PReflectY;
 var $author$project$ProjectionTests$reflectExample = F2(
