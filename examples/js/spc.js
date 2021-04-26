@@ -7174,7 +7174,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$markOrientationLabel(d)))
 				]);
-		case 54:
+		case 56:
 			var lType = legendProp.a;
 			if (!lType) {
 				return _List_fromArray(
@@ -7368,6 +7368,14 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					$author$project$VegaLite$hAlignSpec(ha))
 				]);
 		case 47:
+			var an = legendProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'titleAnchor',
+					$author$project$VegaLite$anchorSpec(an))
+				]);
+		case 48:
 			var va = legendProp.a;
 			return _List_fromArray(
 				[
@@ -7375,16 +7383,19 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 48:
-			var s = legendProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 49:
 			var s = legendProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 50:
+			var s = legendProp.a;
+			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+		case 51:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleFontSize', n);
-		case 51:
+		case 52:
+			var s = legendProp.a;
+			return A2($author$project$VegaLite$strExpr, 'titleFontStyle', s);
+		case 53:
 			var fw = legendProp.a;
 			return _List_fromArray(
 				[
@@ -7392,7 +7403,7 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 52:
+		case 54:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
 		case 29:
@@ -7403,10 +7414,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'titleOrient',
 					$author$project$VegaLite$legendOrientSpec(orient))
 				]);
-		case 53:
+		case 55:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
-		case 55:
+		case 57:
 			var vals = legendProp.a;
 			return _List_fromArray(
 				[
@@ -7414,10 +7425,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 					'values',
 					$author$project$VegaLite$dataValuesSpecs(vals))
 				]);
-		case 56:
+		case 58:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'legendX', n);
-		case 57:
+		case 59:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'legendY', n);
 		default:
@@ -9777,7 +9788,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleAlign',
 					$author$project$VegaLite$hAlignSpec(ha))
 				]);
-		case 50:
+		case 51:
 			var va = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9785,7 +9796,15 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 51:
+		case 50:
+			var an = legendConfig.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'titleAnchor',
+					$author$project$VegaLite$anchorSpec(an))
+				]);
+		case 52:
 			var s = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9793,7 +9812,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleColor',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 52:
+		case 53:
 			var s = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9801,7 +9820,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleFont',
 					$elm$json$Json$Encode$string(s))
 				]);
-		case 53:
+		case 54:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9809,7 +9828,15 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleFontSize',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 54:
+		case 55:
+			var s = legendConfig.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'titleFontStyle',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 56:
 			var fw = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9817,7 +9844,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 55:
+		case 57:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9825,7 +9852,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleLimit',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 56:
+		case 58:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
@@ -9833,7 +9860,7 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 					'titleLineHeight',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 57:
+		case 59:
 			var x = legendConfig.a;
 			return _List_fromArray(
 				[
