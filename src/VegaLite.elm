@@ -1261,6 +1261,7 @@ module VegaLite exposing
     , lecoGradientLabelBaseline
     , lecoGradientLabelLimit
     , lecoGradientLabelOffset
+    , lecoGradientOpacity
     , lecoGradientStrokeColor
     , lecoGradientStrokeWidth
     , lecoGradientHeight
@@ -1271,6 +1272,8 @@ module VegaLite exposing
     , lecoLabelColor
     , lecoLabelFont
     , lecoLabelFontSize
+    , lecoLabelFontStyle
+    , lecoLabelFontWeight
     , lecoLabelLimit
     , lecoLabelOffset
     , lecoLabelOverlap
@@ -3471,6 +3474,7 @@ See the
 @docs lecoGradientLabelBaseline
 @docs lecoGradientLabelLimit
 @docs lecoGradientLabelOffset
+@docs lecoGradientOpacity
 @docs lecoGradientStrokeColor
 @docs lecoGradientStrokeWidth
 @docs lecoGradientHeight
@@ -3481,6 +3485,8 @@ See the
 @docs lecoLabelColor
 @docs lecoLabelFont
 @docs lecoLabelFontSize
+@docs lecoLabelFontStyle
+@docs lecoLabelFontWeight
 @docs lecoLabelLimit
 @docs lecoLabelOffset
 @docs lecoLabelOverlap
@@ -4897,15 +4903,17 @@ type Legend
 [lecoStrokeDash](#lecoStrokeDash), [lecoStrokeWidth](#lecoStrokeWidth), [lecoPadding](#lecoPadding),
 [lecoRowPadding](#lecoRowPadding), [lecoGradientDirection](#lecoGradientDirection),
 [lecoGradientLabelBaseline](#lecoGradientLabelBaseline), [lecoGradientLabelLimit](#lecoGradientLabelLimit),
-[lecoGradientLabelOffset](#lecoGradientLabelOffset), [lecoGradientStrokeColor](#lecoGradientStrokeColor),
-[lecoGradientStrokeWidth](#lecoGradientStrokeWidth), [lecoGradientHeight](#lecoGradientHeight),
-[lecoGradientWidth](#lecoGradientWidth), [lecoGridAlign](#lecoGridAlign), [lecoLabelAlign](#lecoLabelAlign),
-[lecoLabelBaseline](#lecoLabelBaseline), [lecoLabelColor](#lecoLabelColor), [lecoLabelFont](#lecoLabelFont),
-[lecoLabelFontSize](#lecoLabelFontSize), [lecoLabelLimit](#lecoLabelLimit), [lecoLabelOffset](#lecoLabelOffset),
-[lecoLabelOverlap](#lecoLabelOverlap), [lecoEntryPadding](#lecoEntryPadding),
-[lecoSymbolBaseFillColor](#lecoSymbolBaseFillColor), [lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor),
-[lecoSymbolDirection](#lecoSymbolDirection), [lecoSymbolFillColor](#lecoSymbolFillColor),
-[lecoSymbolLimit](#lecoSymbolLimit), [lecoSymbolOffset](#lecoSymbolOffset),[lecoSymbolSize](#lecoSymbolSize),
+[lecoGradientLabelOffset](#lecoGradientLabelOffset), [lecoGradientOpacity](#lecoGradienOpacity),
+[lecoGradientStrokeColor](#lecoGradientStrokeColor), [lecoGradientStrokeWidth](#lecoGradientStrokeWidth),
+[lecoGradientHeight](#lecoGradientHeight), [lecoGradientWidth](#lecoGradientWidth),
+[lecoGridAlign](#lecoGridAlign), [lecoLabelAlign](#lecoLabelAlign), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoLabelColor](#lecoLabelColor), [lecoLabelFont](#lecoLabelFont), [lecoLabelFontSize](#lecoLabelFontSize),
+[lecoLabelFontStyle](#lecoLabelFontStyle), [lecoLabelFontWeight](#lecoLabelFontWeight),
+[lecoLabelLimit](#lecoLabelLimit), [lecoLabelOffset](#lecoLabelOffset), [lecoLabelOverlap](#lecoLabelOverlap),
+[lecoEntryPadding](#lecoEntryPadding), [lecoSymbolBaseFillColor](#lecoSymbolBaseFillColor),
+[lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor), [lecoSymbolDirection](#lecoSymbolDirection),
+[lecoSymbolFillColor](#lecoSymbolFillColor), [lecoSymbolLimit](#lecoSymbolLimit),
+[lecoSymbolOffset](#lecoSymbolOffset),[lecoSymbolSize](#lecoSymbolSize),
 [lecoSymbolStrokeColor](#lecoSymbolStrokeColor), [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth),
 [lecoSymbolType](#lecoSymbolType), [lecoTitleAlign](#lecoTitleAlign), [lecoTitleBaseline](#lecoTitleBaseline),
 [lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont), [lecoTitleFontSize](#lecoTitleFontSize),
@@ -4927,6 +4935,7 @@ type LegendConfig
     | GradientLabelBaseline VAlign
     | GradientLabelLimit Float
     | GradientLabelOffset Float
+    | GradientOpacity Float
     | GradientStrokeColor String
     | GradientStrokeWidth Float
     | GradientWidth Float
@@ -12841,6 +12850,13 @@ lecoGradientLabelOffset =
     GradientLabelOffset
 
 
+{-| Default opacity of a color ramp legend.
+-}
+lecoGradientOpacity : Float -> LegendConfig
+lecoGradientOpacity =
+    GradientLabelOffset
+
+
 {-| Default color for strokes in a color ramp legend.
 -}
 lecoGradientStrokeColor : String -> LegendConfig
@@ -12904,11 +12920,25 @@ lecoLabelFont =
     LeLabelFont
 
 
-{-| Default font size legend labels.
+{-| Default font size of legend labels.
 -}
 lecoLabelFontSize : Float -> LegendConfig
 lecoLabelFontSize =
     LeLabelFontSize
+
+
+{-| Default font style (italic etc.) of legend labels.
+-}
+lecoLabelFontStyle : String -> LegendConfig
+lecoLabelFontStyle =
+    LeLabelFontStyle
+
+
+{-| Default font weight of legend labels.
+-}
+lecoLabelFontWeight : FontWeight -> LegendConfig
+lecoLabelFontWeight =
+    LeLabelFontWeight
 
 
 {-| Default maximum width for legend labels in pixel units.
@@ -22513,6 +22543,9 @@ legendConfigProperty legendConfig =
 
         GradientLabelOffset x ->
             [ ( "gradientLabelOffset", JE.float x ) ]
+
+        GradientOpacity x ->
+            [ ( "gradientOpacity", JE.float x ) ]
 
         GradientStrokeColor s ->
             [ ( "gradientStrokeColor", JE.string s ) ]

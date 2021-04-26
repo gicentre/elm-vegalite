@@ -95,7 +95,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `axTitleLineHeight` for multi-line axis titles.
 
-- `leGradientOpacity`, `leLabelFontStyle`, `leLabelFontWeight` for legend settings.
+- `leGradientOpacity`/`lecoGradientOpacity`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight` for legend settings.
 
 - `maPadAngle` for padding arc segments.
 
