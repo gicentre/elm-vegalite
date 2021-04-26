@@ -6,8 +6,6 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 ### TODO
 
-Add view title property expressions: `fontWeight`, `frame`, `orient`, and `subtitleFontWeight`.
-
 Add projection property expressions.
 
 Add legend and axis config parameterisation expressions (can we use common Legend / Axis properties for direct setting and config setting?)

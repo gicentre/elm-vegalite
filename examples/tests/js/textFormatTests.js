@@ -15380,6 +15380,10 @@ var $author$project$VegaLite$InDataOptions = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$inDataOptions = $author$project$VegaLite$InDataOptions;
+var $author$project$VegaLite$InName = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
 var $author$project$VegaLite$PEdges = F4(
 	function (a, b, c, d) {
 		return {$: 1, a: a, b: b, c: c, d: d};
@@ -15396,6 +15400,10 @@ var $author$project$VegaLite$padding = function (pad) {
 		$author$project$VegaLite$paddingSpec(pad));
 };
 var $author$project$TextFormatTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$VegaLite$SExpr = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$siExpr = $author$project$VegaLite$SExpr;
 var $author$project$VegaLite$FrExpr = function (a) {
 	return {$: 2, a: a};
 };
@@ -15522,6 +15530,10 @@ var $author$project$VegaLite$tiOffset = function (n) {
 	return $author$project$VegaLite$TOffset(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$TOrient = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$tiOrient = $author$project$VegaLite$TOrient;
 var $author$project$VegaLite$TSubtitleColor = function (a) {
 	return {$: 17, a: a};
 };
@@ -15564,10 +15576,22 @@ var $author$project$VegaLite$tiSubtitleColor = function (s) {
 	return $author$project$VegaLite$TSubtitleColor(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$tiSubtitleFont = function (s) {
+	return $author$project$VegaLite$TSubtitleFont(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$tiSubtitleFontSize = function (n) {
 	return $author$project$VegaLite$TSubtitleFontSize(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$tiSubtitleFontStyle = function (s) {
+	return $author$project$VegaLite$TSubtitleFontStyle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$TSubtitleFontWeight = function (a) {
+	return {$: 21, a: a};
+};
+var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TSubtitleFontWeight;
 var $author$project$VegaLite$tiSubtitleLineHeight = function (n) {
 	return $author$project$VegaLite$TSubtitleLineHeight(
 		$author$project$VegaLite$Num(n));
@@ -15634,10 +15658,28 @@ var $author$project$TextFormatTests$title1 = function () {
 															$elm$core$Basics$composeL,
 															A2(
 																$elm$core$Basics$composeL,
-																$author$project$VegaLite$params,
+																A2(
+																	$elm$core$Basics$composeL,
+																	$author$project$VegaLite$params,
+																	A2(
+																		$author$project$VegaLite$param,
+																		'angle',
+																		_List_fromArray(
+																			[
+																				$author$project$VegaLite$paValue(
+																				$author$project$VegaLite$num(0)),
+																				$author$project$VegaLite$paBind(
+																				$author$project$VegaLite$ipRange(
+																					_List_fromArray(
+																						[
+																							$author$project$VegaLite$inMin(-90),
+																							$author$project$VegaLite$inMax(90),
+																							$author$project$VegaLite$inStep(1)
+																						])))
+																			]))),
 																A2(
 																	$author$project$VegaLite$param,
-																	'angle',
+																	'dx',
 																	_List_fromArray(
 																		[
 																			$author$project$VegaLite$paValue(
@@ -15646,14 +15688,13 @@ var $author$project$TextFormatTests$title1 = function () {
 																			$author$project$VegaLite$ipRange(
 																				_List_fromArray(
 																					[
-																						$author$project$VegaLite$inMin(-90),
-																						$author$project$VegaLite$inMax(90),
-																						$author$project$VegaLite$inStep(1)
+																						$author$project$VegaLite$inMin(-40),
+																						$author$project$VegaLite$inMax(40)
 																					])))
 																		]))),
 															A2(
 																$author$project$VegaLite$param,
-																'dx',
+																'dy',
 																_List_fromArray(
 																	[
 																		$author$project$VegaLite$paValue(
@@ -15668,63 +15709,64 @@ var $author$project$TextFormatTests$title1 = function () {
 																	]))),
 														A2(
 															$author$project$VegaLite$param,
-															'dy',
+															'color',
 															_List_fromArray(
 																[
 																	$author$project$VegaLite$paValue(
-																	$author$project$VegaLite$num(0)),
+																	$author$project$VegaLite$str('black')),
 																	$author$project$VegaLite$paBind(
-																	$author$project$VegaLite$ipRange(
-																		_List_fromArray(
-																			[
-																				$author$project$VegaLite$inMin(-40),
-																				$author$project$VegaLite$inMax(40)
-																			])))
+																	$author$project$VegaLite$ipColor(_List_Nil))
 																]))),
 													A2(
 														$author$project$VegaLite$param,
-														'color',
+														'font',
 														_List_fromArray(
 															[
 																$author$project$VegaLite$paValue(
-																$author$project$VegaLite$str('black')),
+																$author$project$VegaLite$str('sans-serif')),
 																$author$project$VegaLite$paBind(
-																$author$project$VegaLite$ipColor(_List_Nil))
+																$author$project$VegaLite$ipSelect(
+																	_List_fromArray(
+																		[
+																			$author$project$VegaLite$inOptions(
+																			_List_fromArray(
+																				['sans-serif', 'serif', 'monospace']))
+																		])))
 															]))),
 												A2(
 													$author$project$VegaLite$param,
-													'font',
+													'fontSize',
 													_List_fromArray(
 														[
 															$author$project$VegaLite$paValue(
-															$author$project$VegaLite$str('sans-serif')),
+															$author$project$VegaLite$num(24)),
 															$author$project$VegaLite$paBind(
-															$author$project$VegaLite$ipSelect(
+															$author$project$VegaLite$ipRange(
 																_List_fromArray(
 																	[
-																		$author$project$VegaLite$inOptions(
-																		_List_fromArray(
-																			['sans-serif', 'serif', 'monospace']))
+																		$author$project$VegaLite$inMin(0),
+																		$author$project$VegaLite$inMax(64)
 																	])))
 														]))),
 											A2(
 												$author$project$VegaLite$param,
-												'fontSize',
+												'fontStyle',
 												_List_fromArray(
 													[
 														$author$project$VegaLite$paValue(
-														$author$project$VegaLite$num(24)),
+														$author$project$VegaLite$str('normal')),
 														$author$project$VegaLite$paBind(
-														$author$project$VegaLite$ipRange(
+														$author$project$VegaLite$ipSelect(
 															_List_fromArray(
 																[
-																	$author$project$VegaLite$inMin(0),
-																	$author$project$VegaLite$inMax(64)
+																	$author$project$VegaLite$inOptions(
+																	_List_fromArray(
+																		['normal', 'italic']))
 																])))
 													]))),
 										A2(
 											$author$project$VegaLite$param,
-											'fontStyle',
+											'fontWeight',
 											_List_fromArray(
 												[
 													$author$project$VegaLite$paValue(
@@ -15735,44 +15777,43 @@ var $author$project$TextFormatTests$title1 = function () {
 															[
 																$author$project$VegaLite$inOptions(
 																_List_fromArray(
-																	['normal', 'italic']))
+																	['normal', 'bold', 'lighter']))
 															])))
 												]))),
 									A2(
 										$author$project$VegaLite$param,
-										'fontWeight',
+										'frame',
 										_List_fromArray(
 											[
 												$author$project$VegaLite$paValue(
-												$author$project$VegaLite$str('normal')),
+												$author$project$VegaLite$str('bounds')),
 												$author$project$VegaLite$paBind(
 												$author$project$VegaLite$ipSelect(
 													_List_fromArray(
 														[
 															$author$project$VegaLite$inOptions(
 															_List_fromArray(
-																['normal', 'bold', 'lighter']))
+																['bounds', 'group']))
 														])))
 											]))),
 								A2(
 									$author$project$VegaLite$param,
-									'frame',
+									'limit',
 									_List_fromArray(
 										[
 											$author$project$VegaLite$paValue(
-											$author$project$VegaLite$str('bounds')),
+											$author$project$VegaLite$num(0)),
 											$author$project$VegaLite$paBind(
-											$author$project$VegaLite$ipSelect(
+											$author$project$VegaLite$ipRange(
 												_List_fromArray(
 													[
-														$author$project$VegaLite$inOptions(
-														_List_fromArray(
-															['bounds', 'group']))
+														$author$project$VegaLite$inMax(300),
+														$author$project$VegaLite$inStep(1)
 													])))
 										]))),
 							A2(
 								$author$project$VegaLite$param,
-								'limit',
+								'offset',
 								_List_fromArray(
 									[
 										$author$project$VegaLite$paValue(
@@ -15781,24 +15822,26 @@ var $author$project$TextFormatTests$title1 = function () {
 										$author$project$VegaLite$ipRange(
 											_List_fromArray(
 												[
-													$author$project$VegaLite$inMax(300),
+													$author$project$VegaLite$inMin(-100),
+													$author$project$VegaLite$inMax(100),
 													$author$project$VegaLite$inStep(1)
 												])))
 									]))),
 						A2(
 							$author$project$VegaLite$param,
-							'offset',
+							'orient',
 							_List_fromArray(
 								[
 									$author$project$VegaLite$paValue(
-									$author$project$VegaLite$num(0)),
+									$author$project$VegaLite$str('top')),
 									$author$project$VegaLite$paBind(
-									$author$project$VegaLite$ipRange(
+									$author$project$VegaLite$ipSelect(
 										_List_fromArray(
 											[
-												$author$project$VegaLite$inMin(-100),
-												$author$project$VegaLite$inMax(100),
-												$author$project$VegaLite$inStep(1)
+												$author$project$VegaLite$inName('Orientation '),
+												$author$project$VegaLite$inOptions(
+												_List_fromArray(
+													['top', 'bottom', 'left', 'right']))
 											])))
 								]))),
 					A2(
@@ -15902,12 +15945,18 @@ var $author$project$TextFormatTests$title1 = function () {
 						$author$project$VegaLite$fwExpr('fontWeight')),
 						$author$project$VegaLite$tiFrame(
 						$author$project$VegaLite$tfExpr('frame')),
-						A2($author$project$VegaLite$tiNumExpr, 'fontSize', $author$project$VegaLite$tiLineHeight),
 						A2($author$project$VegaLite$tiNumExpr, 'limit', $author$project$VegaLite$tiLimit),
+						A2($author$project$VegaLite$tiNumExpr, 'fontSize', $author$project$VegaLite$tiLineHeight),
 						A2($author$project$VegaLite$tiNumExpr, 'offset', $author$project$VegaLite$tiOffset),
+						$author$project$VegaLite$tiOrient(
+						$author$project$VegaLite$siExpr('orient')),
 						A2($author$project$VegaLite$tiStrExpr, 'subtitle', $author$project$VegaLite$tiSubtitle),
 						A2($author$project$VegaLite$tiStrExpr, 'subtitleColour', $author$project$VegaLite$tiSubtitleColor),
+						A2($author$project$VegaLite$tiStrExpr, 'font', $author$project$VegaLite$tiSubtitleFont),
 						A2($author$project$VegaLite$tiNumExpr, 'fontSize/2', $author$project$VegaLite$tiSubtitleFontSize),
+						A2($author$project$VegaLite$tiStrExpr, 'fontStyle', $author$project$VegaLite$tiSubtitleFontStyle),
+						$author$project$VegaLite$tiSubtitleFontWeight(
+						$author$project$VegaLite$fwExpr('fontWeight')),
 						A2($author$project$VegaLite$tiNumExpr, 'fontSize/2', $author$project$VegaLite$tiSubtitleLineHeight),
 						A2($author$project$VegaLite$tiNumExpr, 'subtitlePadding', $author$project$VegaLite$tiSubtitlePadding)
 					])),

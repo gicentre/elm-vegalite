@@ -334,6 +334,7 @@ title1 =
                 << param "frame" [ paValue (str "bounds"), paBind (ipSelect [ inOptions [ "bounds", "group" ] ]) ]
                 << param "limit" [ paValue (num 0), paBind (ipRange [ inMax 300, inStep 1 ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -100, inMax 100, inStep 1 ]) ]
+                << param "orient" [ paValue (str "top"), paBind (ipSelect [ inName "Orientation ", inOptions [ "top", "bottom", "left", "right" ] ]) ]
                 << param "subtitle"
                     [ paValue (str "A subtitle")
                     , paBind (ipSelect [ inOptions [ "A subtitle", "A different subtitle", "And a third subtitle" ] ])
@@ -363,12 +364,16 @@ title1 =
             , tiFontStyle |> tiStrExpr "fontStyle"
             , tiFontWeight (fwExpr "fontWeight")
             , tiFrame (tfExpr "frame")
-            , tiLineHeight |> tiNumExpr "fontSize"
             , tiLimit |> tiNumExpr "limit"
+            , tiLineHeight |> tiNumExpr "fontSize"
             , tiOffset |> tiNumExpr "offset"
+            , tiOrient (siExpr "orient")
             , tiSubtitle |> tiStrExpr "subtitle"
             , tiSubtitleColor |> tiStrExpr "subtitleColour"
+            , tiSubtitleFont |> tiStrExpr "font"
             , tiSubtitleFontSize |> tiNumExpr "fontSize/2"
+            , tiSubtitleFontStyle |> tiStrExpr "fontStyle"
+            , tiSubtitleFontWeight (fwExpr "fontWeight")
             , tiSubtitleLineHeight |> tiNumExpr "fontSize/2"
             , tiSubtitlePadding |> tiNumExpr "subtitlePadding"
             ]
