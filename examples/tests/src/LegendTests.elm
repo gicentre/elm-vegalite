@@ -165,6 +165,12 @@ legend15 =
                 << param "gradientStrokeColor" [ paValue (str "#006"), paBind (ipColor []) ]
                 << param "gradientStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 4 ]) ]
                 << param "gradientThickness" [ paValue (num 16), paBind (ipRange [ inMin 0, inMax 40 ]) ]
+                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inName "Label align ", inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inName "Label baseline ", inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inName "Label font ", inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inName "Label font size ", inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inName "Label style ", inOptions [ "normal", "italic" ] ]) ]
+                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inName "Label weight ", inOptions [ "normal", "bold", "lighter" ] ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
@@ -192,6 +198,12 @@ legend15 =
                         , leGradientStrokeColor |> leStrExpr "gradientStrokeColor"
                         , leGradientStrokeWidth |> leNumExpr "gradientStrokeWidth"
                         , leGradientThickness |> leNumExpr "gradientThickness"
+                        , leLabelAlign (haExpr "labelAlign")
+                        , leLabelBaseline (vaExpr "labelBaseline")
+                        , leLabelFont |> leStrExpr "labelFont"
+                        , leLabelFontSize |> leNumExpr "labelFontSize"
+                        , leLabelFontStyle |> leStrExpr "labelFontStyle"
+                        , leLabelFontWeight (fwExpr "labelFontWeight")
                         , leOffset |> leNumExpr "offset"
                         , lePadding |> leNumExpr "padding"
                         , leStrokeColor |> leStrExpr "strokeColor"
