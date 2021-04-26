@@ -147,11 +147,27 @@ legend14 =
 legend15 : Spec
 legend15 =
     let
-        prm =
+        lVals1 =
+            nums [ 0, 25 ]
+
+        lVals2 =
+            nums [ 8, 12, 16, 20, 24 ]
+
+        lVals3 =
+            nums [ 5, 10, 15, 20, 25 ]
+
+        ps =
             params
-                << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ]
-                << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -50, inMax 300, inStep 1 ]) ]
+                << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
+                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor [ inName "Fill colour " ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "tickCount" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 30 ]) ]
                 << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "values" [ paValues lVals1, paBind (ipSelect [ inName "Values ", inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
+                << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
+                << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
 
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -161,16 +177,33 @@ legend15 =
                 << position X [ pName "Weight_in_lbs", pQuant ]
                 << position Y [ pName "Horsepower", pQuant ]
                 << color
-                    [ mName "Origin"
+                    [ mName "Acceleration"
+                    , mQuant
                     , mLegend
-                        [ leOrient loNone
+                        [ leCornerRadius |> leNumExpr "cornerRadius"
+                        , leFillColor |> leStrExpr "fillColor"
+                        , leOffset |> leNumExpr "offset"
+                        , lePadding |> leNumExpr "padding"
+                        , leStrokeColor |> leStrExpr "strokeColor"
+                        , leTickCount |> leNumExpr "tickCount"
+                        , leTitleColor |> leStrExpr "titleColor"
+                        , leValues (dataExpr "values")
                         , leX |> leNumExpr "xPos"
                         , leY |> leNumExpr "yPos"
-                        , leTitleColor |> leStrExpr "titleColor"
                         ]
                     ]
+                << shape [ mName "Origin" ]
     in
-    toVegaLite [ prm [], width 300, height 300, data, enc [], circle [] ]
+    toVegaLite
+        [ ps []
+        , width 500
+        , height 400
+        , autosize [ asFit ]
+        , padding (paSize 80)
+        , data
+        , enc []
+        , point []
+        ]
 
 
 
