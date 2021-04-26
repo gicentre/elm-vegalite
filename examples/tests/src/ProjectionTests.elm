@@ -28,6 +28,8 @@ proj1 =
     let
         ps =
             params
+                << param "precision" [ paBind (ipRange [ inMin 0.01, inMax 10 ]) ]
+                << param "scale" [ paBind (ipRange [ inMin 50, inMax 500 ]) ]
                 << param "type"
                     [ paValue (str "equalEarth")
                     , paBind
@@ -69,7 +71,11 @@ proj1 =
             asSpec [ data, geoshape [ maFill "#ccc" ] ]
 
         proj =
-            projection [ prType (prExpr "type") ]
+            projection
+                [ prPrecision |> prNumExpr "precision"
+                , prScale |> prNumExpr "scale"
+                , prType (prExpr "type")
+                ]
     in
     toVegaLite [ ps [], width 600, height 300, proj, layer [ sphereSpec, countrySpec, gratSpec ] ]
 
