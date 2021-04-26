@@ -186,9 +186,13 @@ legend15 =
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
-                << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inName "Symbol size ", inMin 0, inMax 1000 ]) ]
                 << param "symbolDash" [ paValues solid, paBind (ipSelect [ inName "Symbol dash ", inDataOptions [ solid, shortDash, longDash ] ]) ]
-                << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol dash offset ", inMin 0, inMax 12 ]) ]
+                << param "symbolDashOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol dash offset ", inMin 0, inMax 12 ]) ]
+                << param "symbolFillColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inName "Symbol offset ", inMin -40, inMax 40 ]) ]
+                << param "symbolOpacity" [ paValue (num 1), paBind (ipRange [ inName "Symbol opacity ", inMin 0, inMax 1 ]) ]
+                << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inName "Symbol size ", inMin 0, inMax 1000 ]) ]
+                << param "symbolStrokeColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "tickCount" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 30 ]) ]
                 << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "values" [ paValues lVals1, paBind (ipSelect [ inName "Values ", inDataOptions [ lVals1, lVals2, lVals3 ] ]) ]
@@ -238,6 +242,11 @@ legend15 =
                         [ leLabelFontSize |> leNumExpr "labelFontSize"
                         , leSymbolDash |> leNumsExpr "symbolDash"
                         , leSymbolDashOffset |> leNumExpr "symbolDashOffset"
+                        , leSymbolFillColor |> leStrExpr "symbolFillColor"
+                        , leSymbolOffset |> leNumExpr "symbolOffset"
+                        , leSymbolOpacity |> leNumExpr "symbolOpacity"
+                        , leSymbolSize |> leNumExpr "symbolSize"
+                        , leSymbolStrokeColor |> leStrExpr "symbolStrokeColor"
                         , leSymbolSize |> leNumExpr "symbolSize"
                         ]
                     ]
@@ -250,7 +259,7 @@ legend15 =
         , padding (paSize 80)
         , data
         , enc []
-        , point []
+        , point [ maFilled True ]
         ]
 
 
