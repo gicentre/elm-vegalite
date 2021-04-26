@@ -83,7 +83,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `vbStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction), `niExpr` (nice tick intervals), `arExpr` (Aria accessibility), `titleExpr` (parameterised title) (VL4.16 to VL 5.0).
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction), `niExpr` (nice tick intervals), `arExpr` (Aria accessibility), `titleExpr` (parameterised title), `tfExpr` (title frame) (VL4.16 to VL 5.0).
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
