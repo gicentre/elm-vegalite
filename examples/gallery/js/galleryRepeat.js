@@ -10589,7 +10589,10 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			switch (n.$) {
 				case 0:
 					var x = n.a;
-					return _List_fromArray(
+					return (x <= 0) ? _List_fromArray(
+						[
+							_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
+						]) : _List_fromArray(
 						[
 							_Utils_Tuple2(
 							'clipAngle',

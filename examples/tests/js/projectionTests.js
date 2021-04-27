@@ -10837,7 +10837,10 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			switch (n.$) {
 				case 0:
 					var x = n.a;
-					return _List_fromArray(
+					return (x <= 0) ? _List_fromArray(
+						[
+							_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
+						]) : _List_fromArray(
 						[
 							_Utils_Tuple2(
 							'clipAngle',
@@ -12993,18 +12996,12 @@ var $author$project$VegaLite$customProjection = $author$project$VegaLite$Custom;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
-var $author$project$VegaLite$NoNum = {$: 1};
 var $author$project$VegaLite$PClipAngle = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$prClipAngle = function (mn) {
-	if (!mn.$) {
-		var n = mn.a;
-		return $author$project$VegaLite$PClipAngle(
-			$author$project$VegaLite$Num(n));
-	} else {
-		return $author$project$VegaLite$PClipAngle($author$project$VegaLite$NoNum);
-	}
+var $author$project$VegaLite$prClipAngle = function (n) {
+	return $author$project$VegaLite$PClipAngle(
+		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$PPrecision = function (a) {
 	return {$: 7, a: a};
@@ -13074,8 +13071,7 @@ var $author$project$ProjectionTests$d3Projections = function () {
 				[
 					$author$project$VegaLite$prType(
 					$author$project$VegaLite$customProjection(pText)),
-					$author$project$VegaLite$prClipAngle(
-					$elm$core$Maybe$Just(179.999)),
+					$author$project$VegaLite$prClipAngle(179.99),
 					A3($author$project$VegaLite$prRotate, 20, -90, 0),
 					$author$project$VegaLite$prPrecision(0.1)
 				]));
@@ -13540,6 +13536,7 @@ var $author$project$ProjectionTests$proj1 = function () {
 	var proj = $author$project$VegaLite$projection(
 		_List_fromArray(
 			[
+				$author$project$VegaLite$prClipAngle(0),
 				$author$project$VegaLite$prClipExtent(
 				A4($author$project$VegaLite$clipRect, 10, 10, 590, 290)),
 				A2($author$project$VegaLite$prNumExpr, 'precision', $author$project$VegaLite$prPrecision),
@@ -13750,8 +13747,7 @@ var $author$project$ProjectionTests$standardProjs = _List_fromArray(
 		_List_fromArray(
 			[
 				$author$project$VegaLite$prType($author$project$VegaLite$conicConformal),
-				$author$project$VegaLite$prClipAngle(
-				$elm$core$Maybe$Just(65))
+				$author$project$VegaLite$prClipAngle(65)
 			])),
 		A2(
 		$author$project$ProjectionTests$worldMapTemplate,
