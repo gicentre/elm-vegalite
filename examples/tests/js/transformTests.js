@@ -12908,10 +12908,10 @@ var $author$project$VegaLite$LUFields = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$luFields = $author$project$VegaLite$LUFields;
-var $author$project$VegaLite$PType = function (a) {
+var $author$project$VegaLite$PrType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$prType = $author$project$VegaLite$PType;
+var $author$project$VegaLite$prType = $author$project$VegaLite$PrType;
 var $author$project$VegaLite$VLProjection = 16;
 var $author$project$VegaLite$projectionSpec = function (proj) {
 	switch (proj.$) {
@@ -12976,14 +12976,9 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			switch (n.$) {
 				case 0:
 					var x = n.a;
-					return (x <= 0) ? _List_fromArray(
+					return (x > 0) ? A2($author$project$VegaLite$numExpr, 'clipAngle', n) : _List_fromArray(
 						[
 							_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
-						]) : _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'clipAngle',
-							$elm$json$Json$Encode$float(x))
 						]);
 				case 1:
 					return _List_fromArray(
@@ -12991,13 +12986,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 							_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
 						]);
 				default:
-					var s = n.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'expr',
-							$elm$json$Json$Encode$string(s))
-						]);
+					return A2($author$project$VegaLite$numExpr, 'clipAngle', n);
 			}
 		case 2:
 			var rClip = pp.a;
@@ -13015,19 +13004,15 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					[
 						_Utils_Tuple2(
 						'clipExtent',
-						$author$project$VegaLite$toList(
+						A2(
+							$elm$json$Json$Encode$list,
+							$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
 							_List_fromArray(
 								[
-									A2(
-									$elm$json$Json$Encode$list,
-									$elm$json$Json$Encode$float,
 									_List_fromArray(
-										[l, t])),
-									A2(
-									$elm$json$Json$Encode$list,
-									$elm$json$Json$Encode$float,
+									[l, t]),
 									_List_fromArray(
-										[r, b]))
+									[r, b])
 								])))
 					]);
 			}
