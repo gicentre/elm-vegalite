@@ -24596,7 +24596,11 @@ projectionProperty pp =
                     [ ( "clipExtent", JE.null ) ]
 
                 LTRB l t r b ->
-                    [ ( "clipExtent", JE.list JE.float [ l, t, r, b ] ) ]
+                    [ ( "clipExtent"
+                      , [ JE.list JE.float [ l, t ], JE.list JE.float [ r, b ] ]
+                            |> toList
+                      )
+                    ]
 
         PReflectX b ->
             booExpr "reflectX" b

@@ -35,7 +35,7 @@ Check remaining expression options that may have appeared since VL5 API document
   | `seToggle "event.altKey"`    | `seToggle tpAltKey`                   |
   | `seToggle "some expression"` | `seToggle (tpExpr "some expression")` |
 
-### Additions
+### V4.0 Additions
 
 #### New Parameter and expression model
 
@@ -122,6 +122,10 @@ Check remaining expression options that may have appeared since VL5 API document
 #### Convenience functions
 
 - `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
+
+### V4.0 Bug Fixes
+
+- `prClipExtent` now correctly creates two point arrays defining Cartesian clip extent for map projections.
 
 ### V4.0 Deprecations
 
