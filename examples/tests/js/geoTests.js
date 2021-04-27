@@ -5787,28 +5787,34 @@ var $author$project$VegaLite$multilineTextSpec = function (tText) {
 };
 var $author$project$VegaLite$numExpr = F2(
 	function (objName, n) {
-		if (!n.$) {
-			var x = n.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$float(x))
-				]);
-		} else {
-			var s = n.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'expr',
-								$elm$json$Json$Encode$string(s))
-							])))
-				]);
+		switch (n.$) {
+			case 0:
+				var x = n.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$float(x))
+					]);
+			case 1:
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
+					]);
+			default:
+				var s = n.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(s))
+								])))
+					]);
 		}
 	});
 var $author$project$VegaLite$numsExpr = F2(
@@ -5858,28 +5864,34 @@ var $author$project$VegaLite$overlapStrategySpec = function (strat) {
 };
 var $author$project$VegaLite$strExpr = F2(
 	function (objName, s) {
-		if (!s.$) {
-			var x = s.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$string(x))
-				]);
-		} else {
-			var x = s.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'expr',
-								$elm$json$Json$Encode$string(x))
-							])))
-				]);
+		switch (s.$) {
+			case 0:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$string(x))
+					]);
+			case 1:
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
+					]);
+			default:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(x))
+								])))
+					]);
 		}
 	});
 var $author$project$VegaLite$symbolLabel = function (sym) {
@@ -6167,19 +6179,25 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			return A2($author$project$VegaLite$numExpr, 'tickCount', n);
 		case 45:
 			var txt = legendProp.a;
-			if (!txt.$) {
-				var s = txt.a;
-				return (s === '') ? _List_fromArray(
-					[
-						_Utils_Tuple2('title', $elm$json$Json$Encode$null)
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'title',
-						$author$project$VegaLite$multilineTextSpec(s))
-					]);
-			} else {
-				return A2($author$project$VegaLite$strExpr, 'title', txt);
+			switch (txt.$) {
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('title', $elm$json$Json$Encode$null)
+						]);
+				case 0:
+					var s = txt.a;
+					return (s === '') ? _List_fromArray(
+						[
+							_Utils_Tuple2('title', $elm$json$Json$Encode$null)
+						]) : _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'title',
+							$author$project$VegaLite$multilineTextSpec(s))
+						]);
+				default:
+					return A2($author$project$VegaLite$strExpr, 'title', txt);
 			}
 		case 46:
 			var ha = legendProp.a;
@@ -9955,28 +9973,34 @@ var $author$project$VegaLite$markInterpolationSpec = function (interp) {
 };
 var $author$project$VegaLite$strExprMultiline = F2(
 	function (objName, s) {
-		if (!s.$) {
-			var x = s.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$author$project$VegaLite$multilineTextSpec(x))
-				]);
-		} else {
-			var x = s.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'expr',
-								$elm$json$Json$Encode$string(x))
-							])))
-				]);
+		switch (s.$) {
+			case 0:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$author$project$VegaLite$multilineTextSpec(x))
+					]);
+			case 1:
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
+					]);
+			default:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(x))
+								])))
+					]);
 		}
 	});
 var $author$project$VegaLite$strokeJoinSpec = function (jn) {
@@ -10063,14 +10087,20 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$booExpr, 'clip', b);
 		case 10:
 			var s = mProp.a;
-			if (!s.$) {
-				var clr = s.a;
-				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
-					[
-						_Utils_Tuple2('color', $elm$json$Json$Encode$null)
-					]) : A2($author$project$VegaLite$strExpr, 'color', s);
-			} else {
-				return A2($author$project$VegaLite$strExpr, 'color', s);
+			switch (s.$) {
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('color', $elm$json$Json$Encode$null)
+						]);
+				case 0:
+					var clr = s.a;
+					return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+						[
+							_Utils_Tuple2('color', $elm$json$Json$Encode$null)
+						]) : A2($author$project$VegaLite$strExpr, 'color', s);
+				default:
+					return A2($author$project$VegaLite$strExpr, 'color', s);
 			}
 		case 12:
 			var n = mProp.a;
@@ -10127,14 +10157,20 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			}
 		case 28:
 			var s = mProp.a;
-			if (!s.$) {
-				var clr = s.a;
-				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
-					[
-						_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
-					]) : A2($author$project$VegaLite$strExpr, 'fill', s);
-			} else {
-				return A2($author$project$VegaLite$strExpr, 'fill', s);
+			switch (s.$) {
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
+						]);
+				case 0:
+					var clr = s.a;
+					return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+						[
+							_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
+						]) : A2($author$project$VegaLite$strExpr, 'fill', s);
+				default:
+					return A2($author$project$VegaLite$strExpr, 'fill', s);
 			}
 		case 29:
 			var cGrad = mProp.a;
@@ -10186,14 +10222,20 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 				]);
 		case 54:
 			var s = mProp.a;
-			if (!s.$) {
-				var clr = s.a;
-				return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
-					[
-						_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
-					]) : A2($author$project$VegaLite$strExpr, 'stroke', s);
-			} else {
-				return A2($author$project$VegaLite$strExpr, 'stroke', s);
+			switch (s.$) {
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
+						]);
+				case 0:
+					var clr = s.a;
+					return ($elm$core$String$trim(clr) === '') ? _List_fromArray(
+						[
+							_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
+						]) : A2($author$project$VegaLite$strExpr, 'stroke', s);
+				default:
+					return A2($author$project$VegaLite$strExpr, 'stroke', s);
 			}
 		case 56:
 			var sc = mProp.a;
@@ -10695,20 +10737,29 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					$author$project$VegaLite$projectionSpec(proj))
 				]);
 		case 1:
-			var numOrNull = pp.a;
-			if (!numOrNull.$) {
-				var x = numOrNull.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'clipAngle',
-						$elm$json$Json$Encode$float(x))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
-					]);
+			var n = pp.a;
+			switch (n.$) {
+				case 0:
+					var x = n.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'clipAngle',
+							$elm$json$Json$Encode$float(x))
+						]);
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('clipAngle', $elm$json$Json$Encode$null)
+						]);
+				default:
+					var s = n.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]);
 			}
 		case 2:
 			var rClip = pp.a;
@@ -10726,72 +10777,40 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					[
 						_Utils_Tuple2(
 						'clipExtent',
-						A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$float,
+						$author$project$VegaLite$toList(
 							_List_fromArray(
-								[l, t, r, b])))
+								[
+									A2(
+									$elm$json$Json$Encode$list,
+									$elm$json$Json$Encode$float,
+									_List_fromArray(
+										[l, t])),
+									A2(
+									$elm$json$Json$Encode$list,
+									$elm$json$Json$Encode$float,
+									_List_fromArray(
+										[r, b]))
+								])))
 					]);
 			}
 		case 9:
 			var b = pp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reflectX',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reflectX', b);
 		case 10:
 			var b = pp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reflectY',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
-			var lon = pp.a;
-			var lat = pp.b;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'center',
-					A2(
-						$elm$json$Json$Encode$list,
-						$elm$json$Json$Encode$float,
-						_List_fromArray(
-							[lon, lat])))
-				]);
+			var xs = pp.a;
+			return A2($author$project$VegaLite$numsExpr, 'center', xs);
 		case 4:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'scale', x);
 		case 5:
-			var tx = pp.a;
-			var ty = pp.b;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'translate',
-					A2(
-						$elm$json$Json$Encode$list,
-						$elm$json$Json$Encode$float,
-						_List_fromArray(
-							[tx, ty])))
-				]);
+			var xs = pp.a;
+			return A2($author$project$VegaLite$numsExpr, 'translate', xs);
 		case 6:
-			var lambda = pp.a;
-			var phi = pp.b;
-			var gamma = pp.c;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'rotate',
-					A2(
-						$elm$json$Json$Encode$list,
-						$elm$json$Json$Encode$float,
-						_List_fromArray(
-							[lambda, phi, gamma])))
-				]);
+			var xs = pp.a;
+			return A2($author$project$VegaLite$numsExpr, 'rotate', xs);
 		case 8:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
@@ -11890,9 +11909,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 			} else {
 				return _List_fromArray(
 					[
-						_Utils_Tuple2(
-						'fill',
-						$elm$json$Json$Encode$string(''))
+						_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
 					]);
 			}
 		case 9:
@@ -11932,9 +11949,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 			} else {
 				return _List_fromArray(
 					[
-						_Utils_Tuple2(
-						'stroke',
-						$elm$json$Json$Encode$string(''))
+						_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
 					]);
 			}
 		case 13:
@@ -13752,11 +13767,16 @@ var $elm$core$Basics$negate = function (n) {
 };
 var $author$project$VegaLite$Orthographic = {$: 14};
 var $author$project$VegaLite$orthographic = $author$project$VegaLite$Orthographic;
-var $author$project$VegaLite$PrRotate = F3(
-	function (a, b, c) {
-		return {$: 6, a: a, b: b, c: c};
+var $author$project$VegaLite$PrRotate = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$prRotate = F3(
+	function (lambda, phi, gamma) {
+		return $author$project$VegaLite$PrRotate(
+			$author$project$VegaLite$Nums(
+				_List_fromArray(
+					[lambda, phi, gamma])));
 	});
-var $author$project$VegaLite$prRotate = $author$project$VegaLite$PrRotate;
 var $author$project$VegaLite$sphere = _Utils_Tuple2(
 	12,
 	$elm$json$Json$Encode$object(
@@ -15018,11 +15038,16 @@ var $author$project$GeoTests$sphere2 = function () {
 					[sphereSpec, countrySpec]))
 			]));
 }();
-var $author$project$VegaLite$PrTranslate = F2(
-	function (a, b) {
-		return {$: 5, a: a, b: b};
+var $author$project$VegaLite$PrTranslate = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$prTranslate = F2(
+	function (lambda, phi) {
+		return $author$project$VegaLite$PrTranslate(
+			$author$project$VegaLite$Nums(
+				_List_fromArray(
+					[lambda, phi])));
 	});
-var $author$project$VegaLite$prTranslate = $author$project$VegaLite$PrTranslate;
 var $author$project$GeoTests$translate1 = function () {
 	var proj = $author$project$VegaLite$projection(
 		_List_fromArray(
