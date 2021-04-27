@@ -5645,16 +5645,16 @@ type Projection
 -}
 type ProjectionProperty
     = PType Projection
-    | PClipAngle (Maybe Float)
+    | PClipAngle Num
     | PClipExtent ClipRect
-    | PCenter Float Float
+    | PCenter Nums
     | PrScale Num
-    | PrTranslate Float Float
-    | PrRotate Float Float Float
+    | PrTranslate Nums
+    | PrRotate Nums
     | PPrecision Num
     | PrPointRadius Num
-    | PReflectX Bool
-    | PReflectY Bool
+    | PReflectX Boo
+    | PReflectY Boo
     | PCoefficient Num
     | PDistance Num
     | PFraction Num
@@ -16824,8 +16824,8 @@ position pos pDefs =
 {-| Projection’s center as longitude and latitude in degrees.
 -}
 prCenter : Float -> Float -> ProjectionProperty
-prCenter =
-    PCenter
+prCenter lng lat =
+    PCenter (Nums [ lng, lat ])
 
 
 {-| Projection’s clipping circle radius to the specified angle in degrees.
@@ -16833,8 +16833,13 @@ A value of `Nothing` will switch to antimeridian cutting rather than small-circl
 clipping.
 -}
 prClipAngle : Maybe Float -> ProjectionProperty
-prClipAngle =
-    PClipAngle
+prClipAngle mn =
+    case mn of
+        Just n ->
+            PClipAngle (Num n)
+
+        Nothing ->
+            PClipAngle NoNum
 
 
 {-| Projection’s viewport clip extent to the specified bounds in pixels.
@@ -17017,8 +17022,8 @@ creates a left-right mirror image of the geoshape marks when subject to an
 [identityProjection](#identityProjection).
 -}
 prReflectX : Bool -> ProjectionProperty
-prReflectX =
-    PReflectX
+prReflectX b =
+    PReflectX (Boo b)
 
 
 {-| Reflect the y-coordinates after performing an identity projection. This
@@ -17026,16 +17031,16 @@ creates a top-bottom mirror image of the geoshape marks when subject to an
 [identityProjection](#identityProjection).
 -}
 prReflectY : Bool -> ProjectionProperty
-prReflectY =
-    PReflectY
+prReflectY b =
+    PReflectY (Boo b)
 
 
 {-| A projection’s three-axis rotation angle. This should be in order _lambda phi
 gamma_ specifying the rotation angles in degrees about each spherical axis.
 -}
 prRotate : Float -> Float -> Float -> ProjectionProperty
-prRotate =
-    PrRotate
+prRotate lambda phi gamma =
+    PrRotate (Nums [ lambda, phi, gamma ])
 
 
 {-| A projection’s zoom scale, which if set, overrides automatic scaling of a
@@ -17069,11 +17074,12 @@ prTilt x =
 
 
 {-| A projection’s panning translation, which if set, overrides automatic positioning
-of a geo feature to fit within the viewing area.
+of a geo feature to fit within the viewing area. Parameters should be provided in
+longitude, latitude order.
 -}
 prTranslate : Float -> Float -> ProjectionProperty
-prTranslate =
-    PrTranslate
+prTranslate lambda phi =
+    PrTranslate (Nums [ lambda, phi ])
 
 
 {-| Type of global map projection.
@@ -20247,7 +20253,7 @@ viewFill ms =
             VBFill (Str s)
 
         Nothing ->
-            VBFill (Str "")
+            VBFill NoStr
 
 
 {-| Fill opacity for a single view or layer background.
@@ -20274,7 +20280,7 @@ viewStroke ms =
             VBStroke (Str s)
 
         Nothing ->
-            VBStroke (Str "")
+            VBStroke NoStr
 
 
 {-| Stroke cap line-ending around a single view or layer background.
@@ -20726,6 +20732,7 @@ type Boo
 
 type Num
     = Num Float
+    | NoNum
     | NumExpr String
 
 
@@ -20741,6 +20748,7 @@ type MaybeNum
 
 type Str
     = Str String
+    | NoStr
     | StrExpr String
 
 
@@ -23220,6 +23228,9 @@ legendProperty legendProp =
 
         LTitle txt ->
             case txt of
+                NoStr ->
+                    [ ( "title", JE.null ) ]
+
                 Str s ->
                     if s == "" then
                         [ ( "title", JE.null ) ]
@@ -23576,6 +23587,9 @@ markProperty mProp =
 
         MColor s ->
             case s of
+                NoStr ->
+                    [ ( "color", JE.null ) ]
+
                 Str clr ->
                     if String.trim clr == "" then
                         [ ( "color", JE.null ) ]
@@ -23627,6 +23641,9 @@ markProperty mProp =
 
         MFill s ->
             case s of
+                NoStr ->
+                    [ ( "fill", JE.null ) ]
+
                 Str clr ->
                     if String.trim clr == "" then
                         [ ( "fill", JE.null ) ]
@@ -23666,6 +23683,9 @@ markProperty mProp =
 
         MStroke s ->
             case s of
+                NoStr ->
+                    [ ( "stroke", JE.null ) ]
+
                 Str clr ->
                     if String.trim clr == "" then
                         [ ( "stroke", JE.null ) ]
@@ -23997,6 +24017,9 @@ numExpr objName n =
     case n of
         Num x ->
             [ ( objName, JE.float x ) ]
+
+        NoNum ->
+            [ ( objName, JE.null ) ]
 
         NumExpr s ->
             [ ( objName, JE.object [ ( "expr", JE.string s ) ] ) ]
@@ -24556,13 +24579,16 @@ projectionProperty pp =
         PType proj ->
             [ ( "type", projectionSpec proj ) ]
 
-        PClipAngle numOrNull ->
-            case numOrNull of
-                Just x ->
+        PClipAngle n ->
+            case n of
+                Num x ->
                     [ ( "clipAngle", JE.float x ) ]
 
-                Nothing ->
+                NoNum ->
                     [ ( "clipAngle", JE.null ) ]
+
+                NumExpr s ->
+                    [ ( "expr", JE.string s ) ]
 
         PClipExtent rClip ->
             case rClip of
@@ -24573,22 +24599,24 @@ projectionProperty pp =
                     [ ( "clipExtent", JE.list JE.float [ l, t, r, b ] ) ]
 
         PReflectX b ->
-            [ ( "reflectX", JE.bool b ) ]
+            booExpr "reflectX" b
 
         PReflectY b ->
-            [ ( "reflectY", JE.bool b ) ]
+            booExpr "reflectY" b
 
-        PCenter lon lat ->
-            [ ( "center", JE.list JE.float [ lon, lat ] ) ]
+        PCenter xs ->
+            numsExpr "center" xs
 
         PrScale x ->
             numExpr "scale" x
 
-        PrTranslate tx ty ->
-            [ ( "translate", JE.list JE.float [ tx, ty ] ) ]
+        PrTranslate xs ->
+            -- [ ( "translate", JE.list JE.float [ tx, ty ] ) ]
+            numsExpr "translate" xs
 
-        PrRotate lambda phi gamma ->
-            [ ( "rotate", JE.list JE.float [ lambda, phi, gamma ] ) ]
+        PrRotate xs ->
+            -- [ ( "rotate", JE.list JE.float [ lambda, phi, gamma ] ) ]
+            numsExpr "rotate" xs
 
         PrPointRadius x ->
             numExpr "pointRadius" x
@@ -25364,6 +25392,9 @@ strExpr objName s =
         Str x ->
             [ ( objName, JE.string x ) ]
 
+        NoStr ->
+            [ ( objName, JE.null ) ]
+
         StrExpr x ->
             [ ( objName, JE.object [ ( "expr", JE.string x ) ] ) ]
 
@@ -25373,6 +25404,9 @@ strExprMultiline objName s =
     case s of
         Str x ->
             [ ( objName, multilineTextSpec x ) ]
+
+        NoStr ->
+            [ ( objName, JE.null ) ]
 
         StrExpr x ->
             [ ( objName, JE.object [ ( "expr", JE.string x ) ] ) ]
@@ -25945,7 +25979,7 @@ viewConfigProperties viewCfg =
                     [ ( "fill", JE.string s ) ]
 
                 Nothing ->
-                    [ ( "fill", JE.string "" ) ]
+                    [ ( "fill", JE.null ) ]
 
         VFillOpacity x ->
             [ ( "fillOpacity", JE.float x ) ]
@@ -25962,7 +25996,7 @@ viewConfigProperties viewCfg =
                     [ ( "stroke", JE.string s ) ]
 
                 Nothing ->
-                    [ ( "stroke", JE.string "" ) ]
+                    [ ( "stroke", JE.null ) ]
 
         VStrokeOpacity x ->
             [ ( "strokeOpacity", JE.float x ) ]
