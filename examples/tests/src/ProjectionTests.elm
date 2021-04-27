@@ -75,7 +75,8 @@ proj1 =
 
         proj =
             projection
-                [ prClipExtent (clipRect 10 10 590 290)
+                [ prClipAngle 0
+                , prClipExtent (clipRect 10 10 590 290)
                 , prPrecision |> prNumExpr "precision"
                 , prScale |> prNumExpr "scale"
                 , prType (prExpr "type")
@@ -104,7 +105,7 @@ standardProjs =
     [ worldMapTemplate "Albers" [ prType albers ]
     , worldMapTemplate "AzimuthalEqualArea" [ prType azimuthalEqualArea ]
     , worldMapTemplate "AzimuthalEquidistant" [ prType azimuthalEquidistant ]
-    , worldMapTemplate "ConicConformal" [ prType conicConformal, prClipAngle (Just 65) ]
+    , worldMapTemplate "ConicConformal" [ prType conicConformal, prClipAngle 65 ]
     , worldMapTemplate "ConicEqualArea" [ prType conicEqualArea ]
     , worldMapTemplate "ConicEquidistant" [ prType conicEquidistant ]
     , worldMapTemplate "EqualEarth" [ prType equalEarth ]
@@ -124,7 +125,7 @@ d3Projections =
     -- Note these require registering via JavaScript in the hosting page.
     let
         customSpec pText =
-            worldMapTemplate pText [ prType (customProjection pText), prClipAngle (Just 179.999), prRotate 20 -90 0, prPrecision 0.1 ]
+            worldMapTemplate pText [ prType (customProjection pText), prClipAngle 179.99, prRotate 20 -90 0, prPrecision 0.1 ]
     in
     List.map customSpec [ "airy", "aitoff", "armadillo", "august", "baker", "berghaus", "bertin1953", "boggs", "bonne", "bottomley", "collignon", "craig", "craster", "cylindricalequalarea", "cylindricalstereographic", "eckert1", "eckert2", "eckert3", "eckert4", "eckert5", "eckert6", "eisenlohr", "fahey", "foucaut", "gingery", "winkel3" ]
 
