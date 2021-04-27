@@ -8,6 +8,8 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Add projection property expressions.
 
+Add projection fit and (conic) parallels.
+
 Add legend and axis config parameterisation expressions (can we use common Legend / Axis properties for direct setting and config setting?)
 
 Add facet header property expressions.
@@ -35,21 +37,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 ### Additions
 
-- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
+#### New Parameter and expression model
 
-- `fiSelectionEmpty` for filtering with default empty result.
-
-- `daConcat`, `dataObject` and `dataObjects` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
-
-- `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
-
-- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
-
-- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
-
-- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
-
-- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paSelect`, `paExpr`, `paValue` and `paValues` functions for specifying top-level parameters for use within a spec (VL5.0).
+- `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paBindLegend`, `paSelect`, `paExpr`, `paValue` and `paValues` functions for specifying top-level parameters for use within a spec (VL5.0).
 
 - `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 
@@ -83,11 +73,35 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `vbStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction), `niExpr` (nice tick intervals), `arExpr` (Aria accessibility), `titleExpr` (parameterised title), `tfExpr` (title frame), `prExpr` (projection type) (VL4.16 to VL 5.0).
+- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
+
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (mark interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction), `niExpr` (nice tick intervals), `arExpr` (Aria accessibility), `titleExpr` (top-level title), `tfExpr` (title frame), `prExpr` (projection type) (VL4.16 to VL 5.0).
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
 - `datumExpr` / `dataExpr` for creating a datum value or list of data values from an expression (VL4.16).
+
+#### New selection model
+
+- `ipRange`, `ipSelect`, `ipCheckbox` etc. for input elements as parameters.
+
+- `fiSelectionEmpty` for filtering with default empty result.
+
+- `TogglePredicate` and associated functions `tpFalse`, `tpExpr`, `tpShiftKey`, `tpCtrlKey` and `tpAltKey` for typesafe toggling of selections.
+
+#### Simplified conditional encoding
+
+- `mCondition` (and its `o`, `t` and `h` equivalents) that takes a list of `Predicate`s and associated encodings for testing. A predicate can be either a parameter or a test (via new functions `prParam`, `prParamEmpty` and `prTest`) (VL5.0).
+
+#### Data functions
+
+- `daConcat`, `dataObject` and `dataObjects` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
+
+- `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
+
+#### Other Vega-Lite changes / previously missing functions
+
+- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
 - `axTranslate` / `axcoTranslate` for axis translation.
 
@@ -105,7 +119,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `tiDx` / `ticoDx` and `tiDy` / `ticoDy` title offset options.
 
-- `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
+#### Convenience functions
+
+- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
 
 ### V4.0 Deprecations
 
