@@ -22,6 +22,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
 
+- `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
+
 - `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
 
 - `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:

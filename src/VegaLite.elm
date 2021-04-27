@@ -16829,17 +16829,12 @@ prCenter lng lat =
 
 
 {-| Projection’s clipping circle radius to the specified angle in degrees.
-A value of `Nothing` will switch to antimeridian cutting rather than small-circle
+A value of 0 will switch to antimeridian cutting rather than small-circle
 clipping.
 -}
-prClipAngle : Maybe Float -> ProjectionProperty
-prClipAngle mn =
-    case mn of
-        Just n ->
-            PClipAngle (Num n)
-
-        Nothing ->
-            PClipAngle NoNum
+prClipAngle : Float -> ProjectionProperty
+prClipAngle n =
+    PClipAngle (Num n)
 
 
 {-| Projection’s viewport clip extent to the specified bounds in pixels.
@@ -24582,7 +24577,11 @@ projectionProperty pp =
         PClipAngle n ->
             case n of
                 Num x ->
-                    [ ( "clipAngle", JE.float x ) ]
+                    if x <= 0 then
+                        [ ( "clipAngle", JE.null ) ]
+
+                    else
+                        [ ( "clipAngle", JE.float x ) ]
 
                 NoNum ->
                     [ ( "clipAngle", JE.null ) ]
