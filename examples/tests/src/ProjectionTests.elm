@@ -30,6 +30,9 @@ proj1 =
             params
                 << param "precision" [ paBind (ipRange [ inMin 0.01, inMax 10 ]) ]
                 << param "scale" [ paBind (ipRange [ inMin 50, inMax 500 ]) ]
+                -- << param "cLat" [ paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                -- << param "cLong" [ paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                -- << param "center" [ paValues (strs [ "cLong", "cLat" ]) ]
                 << param "type"
                     [ paValue (str "equalEarth")
                     , paBind
@@ -72,7 +75,8 @@ proj1 =
 
         proj =
             projection
-                [ prPrecision |> prNumExpr "precision"
+                [ prClipExtent (clipRect 10 10 590 290)
+                , prPrecision |> prNumExpr "precision"
                 , prScale |> prNumExpr "scale"
                 , prType (prExpr "type")
                 ]
