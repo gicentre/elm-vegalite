@@ -28,6 +28,7 @@ proj1 =
     let
         ps =
             params
+                << param "clipAngle" [ paBind (ipRange [ inMin 0, inMax 180 ]) ]
                 << param "precision" [ paBind (ipRange [ inMin 0.01, inMax 10 ]) ]
                 << param "scale" [ paBind (ipRange [ inMin 50, inMax 500 ]) ]
                 -- << param "cLat" [ paBind (ipRange [ inMin -90, inMax 90 ]) ]
@@ -75,7 +76,7 @@ proj1 =
 
         proj =
             projection
-                [ prClipAngle 0
+                [ prClipAngle |> prNumExpr "clipAngle"
                 , prClipExtent (clipRect 10 10 590 290)
                 , prPrecision |> prNumExpr "precision"
                 , prScale |> prNumExpr "scale"
