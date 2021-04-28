@@ -9155,25 +9155,17 @@ var $author$project$VegaLite$paddingSpec = function (pad) {
 					]));
 	}
 };
-var $author$project$VegaLite$NumExpr = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$numSpec = function (n) {
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $author$project$VegaLite$numStr = function (n) {
 	switch (n.$) {
 		case 0:
 			var x = n.a;
-			return $elm$json$Json$Encode$float(x);
+			return $elm$core$String$fromFloat(x);
 		case 1:
-			return $elm$json$Json$Encode$null;
+			return 'null';
 		default:
 			var s = n.a;
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'signal',
-						$elm$json$Json$Encode$string(s))
-					]));
+			return s;
 	}
 };
 var $author$project$VegaLite$projectionSpec = function (proj) {
@@ -9288,25 +9280,12 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 						[
 							_Utils_Tuple2(
 							'clipExtent',
-							$author$project$VegaLite$toList(
+							$elm$json$Json$Encode$object(
 								_List_fromArray(
 									[
-										$author$project$VegaLite$toList(
-										_List_fromArray(
-											[
-												$author$project$VegaLite$numSpec(
-												$author$project$VegaLite$NumExpr(l)),
-												$author$project$VegaLite$numSpec(
-												$author$project$VegaLite$NumExpr(t))
-											])),
-										$author$project$VegaLite$toList(
-										_List_fromArray(
-											[
-												$author$project$VegaLite$numSpec(
-												$author$project$VegaLite$NumExpr(r)),
-												$author$project$VegaLite$numSpec(
-												$author$project$VegaLite$NumExpr(b))
-											]))
+										_Utils_Tuple2(
+										'expr',
+										$elm$json$Json$Encode$string('[[' + (l + (',' + (t + ('],[' + (r + (',' + (b + ']]')))))))))
 									])))
 						]);
 			}
@@ -9323,11 +9302,13 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 				[
 					_Utils_Tuple2(
 					'center',
-					$author$project$VegaLite$toList(
+					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$numSpec(lambda),
-								$author$project$VegaLite$numSpec(phi)
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(
+									'[' + ($author$project$VegaLite$numStr(lambda) + (',' + ($author$project$VegaLite$numStr(phi) + ']')))))
 							])))
 				]);
 		case 4:
@@ -9340,11 +9321,13 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 				[
 					_Utils_Tuple2(
 					'translate',
-					$author$project$VegaLite$toList(
+					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$numSpec(tx),
-								$author$project$VegaLite$numSpec(ty)
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(
+									'[' + ($author$project$VegaLite$numStr(tx) + (',' + ($author$project$VegaLite$numStr(ty) + ']')))))
 							])))
 				]);
 		case 6:
@@ -9355,12 +9338,13 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 				[
 					_Utils_Tuple2(
 					'rotate',
-					$author$project$VegaLite$toList(
+					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$numSpec(lambda),
-								$author$project$VegaLite$numSpec(phi),
-								$author$project$VegaLite$numSpec(gamma)
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(
+									'[' + ($author$project$VegaLite$numStr(lambda) + (',' + ($author$project$VegaLite$numStr(phi) + (',' + ($author$project$VegaLite$numStr(gamma) + ']')))))))
 							])))
 				]);
 		case 9:
@@ -9391,11 +9375,13 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 				[
 					_Utils_Tuple2(
 					'parallels',
-					$author$project$VegaLite$toList(
+					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$numSpec(lat1),
-								$author$project$VegaLite$numSpec(lat2)
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(
+									'[' + ($author$project$VegaLite$numStr(lat1) + (',' + ($author$project$VegaLite$numStr(lat2) + ']')))))
 							])))
 				]);
 		case 17:
