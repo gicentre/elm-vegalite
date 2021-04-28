@@ -421,11 +421,25 @@ headerInteractive =
                 << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
                 << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "labelColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "labelLimit" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 200 ]) ]
+                << param "labelLineHeight" [ paValue (num 16), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "labelPadding" [ paValue (num 10), paBind (ipRange [ inMin -20, inMax 20 ]) ]
     in
     genderChart
         [ hdLabelAlign (haExpr "labelAlign")
         , hdLabelBaseline (vaExpr "labelBaseline")
         , hdLabelColor |> hdStrExpr "labelColor"
+        , hdLabelFont |> hdStrExpr "labelFont"
+        , hdLabelFontSize |> hdNumExpr "labelFontSize"
+        , hdLabelFontStyle |> hdStrExpr "labelFontStyle"
+        , hdLabelFontWeight (fwExpr "labelFontWeight")
+        , hdLabelLimit |> hdNumExpr "labelLimit"
+        , hdLabelLineHeight |> hdNumExpr "labelLineHeight"
+        , hdLabelPadding |> hdNumExpr "labelPadding"
         ]
         []
         (ps [])
