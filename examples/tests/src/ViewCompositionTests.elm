@@ -419,6 +419,7 @@ headerInteractive =
         ps =
             params
                 << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
                 << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "labelColor" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
@@ -428,9 +429,21 @@ headerInteractive =
                 << param "labelLimit" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 200 ]) ]
                 << param "labelLineHeight" [ paValue (num 16), paBind (ipRange [ inMin -50, inMax 50 ]) ]
                 << param "labelPadding" [ paValue (num 10), paBind (ipRange [ inMin -20, inMax 20 ]) ]
+                << param "titleAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "titleAngle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "titleFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "titleLimit" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 200 ]) ]
+                << param "titleLineHeight" [ paValue (num 16), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "titlePadding" [ paValue (num 10), paBind (ipRange [ inMin -20, inMax 20 ]) ]
     in
     genderChart
         [ hdLabelAlign (haExpr "labelAlign")
+        , hdLabelAngle |> hdNumExpr "labelAngle"
         , hdLabelBaseline (vaExpr "labelBaseline")
         , hdLabelColor |> hdStrExpr "labelColor"
         , hdLabelFont |> hdStrExpr "labelFont"
@@ -440,6 +453,17 @@ headerInteractive =
         , hdLabelLimit |> hdNumExpr "labelLimit"
         , hdLabelLineHeight |> hdNumExpr "labelLineHeight"
         , hdLabelPadding |> hdNumExpr "labelPadding"
+        , hdTitleAlign (haExpr "titleAlign")
+        , hdTitleAngle |> hdNumExpr "titleAngle"
+        , hdTitleBaseline (vaExpr "titleBaseline")
+        , hdTitleColor |> hdStrExpr "titleColor"
+        , hdTitleFont |> hdStrExpr "titleFont"
+        , hdTitleFontSize |> hdNumExpr "titleFontSize"
+        , hdTitleFontStyle |> hdStrExpr "titleFontStyle"
+        , hdTitleFontWeight (fwExpr "titleFontWeight")
+        , hdTitleLimit |> hdNumExpr "titleLimit"
+        , hdTitleLineHeight |> hdNumExpr "titleLineHeight"
+        , hdTitlePadding |> hdNumExpr "titlePadding"
         ]
         []
         (ps [])
