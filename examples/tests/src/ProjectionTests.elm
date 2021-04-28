@@ -41,6 +41,8 @@ proj1 =
                 << param "centerLat" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
                 << param "translateX" [ paValue (num 300), paBind (ipRange [ inMin 600, inMax 600 ]) ]
                 << param "translateY" [ paValue (num 150), paBind (ipRange [ inMin -300, inMax 300 ]) ]
+                << param "parallels1" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "parallels2" [ paValue (num 45), paBind (ipRange [ inMin -90, inMax 90 ]) ]
                 << param "type"
                     [ paValue (str "equalEarth")
                     , paBind
@@ -91,6 +93,7 @@ proj1 =
                 , prCenterExpr "centerLong" "centerLat"
                 , prPrecision |> prNumExpr "precision"
                 , prScale |> prNumExpr "scale"
+                , prParallelsExpr "parallels1" "parallels2"
                 , prType (prExpr "type")
                 ]
     in
