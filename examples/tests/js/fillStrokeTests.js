@@ -6999,7 +6999,7 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 		case 6:
 			var vals = val.a;
 			return $author$project$VegaLite$dataValuesSpecs(vals);
-		default:
+		case 7:
 			var kvs = val.a;
 			return $elm$json$Json$Encode$object(
 				A2(
@@ -7012,6 +7012,9 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 							$author$project$VegaLite$dataValueSpec(v));
 					},
 					kvs));
+		default:
+			var xs = val.a;
+			return A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValueSpec, xs);
 	}
 };
 var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
@@ -7047,7 +7050,7 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 			var bs = dvs.a;
 			return $author$project$VegaLite$toList(
 				A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs));
-		default:
+		case 5:
 			var obs = dvs.a;
 			return $author$project$VegaLite$toList(
 				A2(
@@ -7064,6 +7067,10 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 							}),
 						$elm$json$Json$Encode$object),
 					obs));
+		default:
+			var ds = dvs.a;
+			return $author$project$VegaLite$toList(
+				A2($elm$core$List$map, $author$project$VegaLite$dataValuesSpecs, ds));
 	}
 };
 var $author$project$VegaLite$inputProperty = function (prop) {
@@ -8369,7 +8376,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					case 0:
 						var bs = vals.a;
 						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$bool, bs);
-					default:
+					case 5:
 						var obs = vals.a;
 						return A2(
 							$elm$json$Json$Encode$list,
@@ -8385,6 +8392,9 @@ var $author$project$VegaLite$filterProperties = function (f) {
 									}),
 								$elm$json$Json$Encode$object),
 							obs);
+					default:
+						var ds = vals.a;
+						return A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValuesSpecs, ds);
 				}
 			}();
 			return _List_fromArray(
@@ -11211,7 +11221,7 @@ var $author$project$VegaLite$dataColumn = F2(
 										$elm$json$Json$Encode$string(col))
 									])))
 						]));
-			default:
+			case 5:
 				var col = data.a;
 				return $elm$core$List$cons(
 					A2(
@@ -11230,6 +11240,17 @@ var $author$project$VegaLite$dataColumn = F2(
 												$author$project$VegaLite$dataValueSpec(v));
 										},
 										kvs)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$author$project$VegaLite$dataValuesSpecs(ds));
 						},
 						col));
 		}
@@ -11289,7 +11310,7 @@ var $author$project$VegaLite$dataFromColumns = F2(
 									])))
 						])));
 		} else {
-			var dataArray = A2(
+			var dArray = A2(
 				$elm$json$Json$Encode$list,
 				$elm$json$Json$Encode$object,
 				$author$project$VegaLite$transpose(cols));
@@ -11298,13 +11319,13 @@ var $author$project$VegaLite$dataFromColumns = F2(
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							_Utils_Tuple2('values', dataArray)
+							_Utils_Tuple2('values', dArray)
 						]))) : _Utils_Tuple2(
 				12,
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							_Utils_Tuple2('values', dataArray),
+							_Utils_Tuple2('values', dArray),
 							_Utils_Tuple2(
 							'format',
 							$elm$json$Json$Encode$object(

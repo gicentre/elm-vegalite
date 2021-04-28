@@ -6694,7 +6694,7 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 		case 6:
 			var vals = val.a;
 			return $author$project$VegaLite$dataValuesSpecs(vals);
-		default:
+		case 7:
 			var kvs = val.a;
 			return $elm$json$Json$Encode$object(
 				A2(
@@ -6707,6 +6707,9 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 							$author$project$VegaLite$dataValueSpec(v));
 					},
 					kvs));
+		default:
+			var xs = val.a;
+			return A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValueSpec, xs);
 	}
 };
 var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
@@ -6742,7 +6745,7 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 			var bs = dvs.a;
 			return $author$project$VegaLite$toList(
 				A2($elm$core$List$map, $elm$json$Json$Encode$bool, bs));
-		default:
+		case 5:
 			var obs = dvs.a;
 			return $author$project$VegaLite$toList(
 				A2(
@@ -6759,6 +6762,10 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 							}),
 						$elm$json$Json$Encode$object),
 					obs));
+		default:
+			var ds = dvs.a;
+			return $author$project$VegaLite$toList(
+				A2($elm$core$List$map, $author$project$VegaLite$dataValuesSpecs, ds));
 	}
 };
 var $author$project$VegaLite$inputProperty = function (prop) {
@@ -8067,7 +8074,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					case 0:
 						var bs = vals.a;
 						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$bool, bs);
-					default:
+					case 5:
 						var obs = vals.a;
 						return A2(
 							$elm$json$Json$Encode$list,
@@ -8083,6 +8090,9 @@ var $author$project$VegaLite$filterProperties = function (f) {
 									}),
 								$elm$json$Json$Encode$object),
 							obs);
+					default:
+						var ds = vals.a;
+						return A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValuesSpecs, ds);
 				}
 			}();
 			return _List_fromArray(
@@ -12284,6 +12294,24 @@ var $author$project$VegaLite$paddingSpec = function (pad) {
 					]));
 	}
 };
+var $author$project$VegaLite$numSpec = function (n) {
+	switch (n.$) {
+		case 0:
+			var x = n.a;
+			return $elm$json$Json$Encode$float(x);
+		case 1:
+			return $elm$json$Json$Encode$null;
+		default:
+			var s = n.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'signal',
+						$elm$json$Json$Encode$string(s))
+					]));
+	}
+};
 var $author$project$VegaLite$projectionSpec = function (proj) {
 	switch (proj.$) {
 		case 0:
@@ -12361,31 +12389,46 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			}
 		case 2:
 			var rClip = pp.a;
-			if (!rClip.$) {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2('clipExtent', $elm$json$Json$Encode$null)
-					]);
-			} else {
-				var l = rClip.a;
-				var t = rClip.b;
-				var r = rClip.c;
-				var b = rClip.d;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'clipExtent',
-						A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
-							_List_fromArray(
-								[
-									_List_fromArray(
-									[l, t]),
-									_List_fromArray(
-									[r, b])
-								])))
-					]);
+			switch (rClip.$) {
+				case 0:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('clipExtent', $elm$json$Json$Encode$null)
+						]);
+				case 1:
+					var l = rClip.a;
+					var t = rClip.b;
+					var r = rClip.c;
+					var b = rClip.d;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'clipExtent',
+							A2(
+								$elm$json$Json$Encode$list,
+								$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
+								_List_fromArray(
+									[
+										_List_fromArray(
+										[l, t]),
+										_List_fromArray(
+										[r, b])
+									])))
+						]);
+				default:
+					var s = rClip.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'clipExtent',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'expr',
+										$elm$json$Json$Encode$string(s))
+									])))
+						]);
 			}
 		case 9:
 			var b = pp.a;
@@ -12394,17 +12437,52 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
-			var xs = pp.a;
-			return A2($author$project$VegaLite$numsExpr, 'center', xs);
+			var lamda = pp.a;
+			var phi = pp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'center',
+					$author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$numSpec(lamda),
+								$author$project$VegaLite$numSpec(phi)
+							])))
+				]);
 		case 4:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'scale', x);
 		case 5:
-			var xs = pp.a;
-			return A2($author$project$VegaLite$numsExpr, 'translate', xs);
+			var tx = pp.a;
+			var ty = pp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'translate',
+					$author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$numSpec(tx),
+								$author$project$VegaLite$numSpec(ty)
+							])))
+				]);
 		case 6:
-			var xs = pp.a;
-			return A2($author$project$VegaLite$numsExpr, 'rotate', xs);
+			var lambda = pp.a;
+			var phi = pp.b;
+			var gamma = pp.c;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'rotate',
+					$author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$numSpec(lambda),
+								$author$project$VegaLite$numSpec(phi),
+								$author$project$VegaLite$numSpec(gamma)
+							])))
+				]);
 		case 8:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
@@ -13355,7 +13433,7 @@ var $author$project$VegaLite$dataColumn = F2(
 										$elm$json$Json$Encode$string(col))
 									])))
 						]));
-			default:
+			case 5:
 				var col = data.a;
 				return $elm$core$List$cons(
 					A2(
@@ -13374,6 +13452,17 @@ var $author$project$VegaLite$dataColumn = F2(
 												$author$project$VegaLite$dataValueSpec(v));
 										},
 										kvs)));
+						},
+						col));
+			default:
+				var col = data.a;
+				return $elm$core$List$cons(
+					A2(
+						$elm$core$List$map,
+						function (ds) {
+							return _Utils_Tuple2(
+								colName,
+								$author$project$VegaLite$dataValuesSpecs(ds));
 						},
 						col));
 		}
@@ -13433,7 +13522,7 @@ var $author$project$VegaLite$dataFromColumns = F2(
 									])))
 						])));
 		} else {
-			var dataArray = A2(
+			var dArray = A2(
 				$elm$json$Json$Encode$list,
 				$elm$json$Json$Encode$object,
 				$author$project$VegaLite$transpose(cols));
@@ -13442,13 +13531,13 @@ var $author$project$VegaLite$dataFromColumns = F2(
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							_Utils_Tuple2('values', dataArray)
+							_Utils_Tuple2('values', dArray)
 						]))) : _Utils_Tuple2(
 				12,
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							_Utils_Tuple2('values', dataArray),
+							_Utils_Tuple2('values', dArray),
 							_Utils_Tuple2(
 							'format',
 							$elm$json$Json$Encode$object(
