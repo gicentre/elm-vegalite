@@ -6,9 +6,7 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 ### TODO
 
-Add projection property expressions.
-
-Add projection fit and (conic) parallels.
+Do we need to add projection fit function?
 
 Add legend and axis config parameterisation expressions (can we use common Legend / Axis properties for direct setting and config setting?)
 
