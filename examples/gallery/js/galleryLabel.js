@@ -8738,10 +8738,10 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									])))
 						]);
 			}
-		case 9:
+		case 10:
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectX', b);
-		case 10:
+		case 11:
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
@@ -8791,34 +8791,48 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 								$author$project$VegaLite$numSpec(gamma)
 							])))
 				]);
-		case 8:
+		case 9:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
 		case 7:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'precision', x);
-		case 11:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 12:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'distance', x);
+			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 13:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+			return A2($author$project$VegaLite$numExpr, 'distance', x);
 		case 14:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+		case 15:
 			var n = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'lobes', n);
-		case 15:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'parallel', x);
 		case 16:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'radius', x);
+			var lat = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'parallel', lat);
+		case 8:
+			var lat1 = pp.a;
+			var lat2 = pp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'parallels',
+					$author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$numSpec(lat1),
+								$author$project$VegaLite$numSpec(lat2)
+							])))
+				]);
 		case 17:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 18:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+		case 19:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'spacing', x);
 		default:
