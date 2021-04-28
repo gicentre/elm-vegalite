@@ -13838,7 +13838,7 @@ var $author$project$ProjectionTests$proj1 = function () {
 									$author$project$VegaLite$ipRange(
 										_List_fromArray(
 											[
-												$author$project$VegaLite$inMin(600),
+												$author$project$VegaLite$inMin(-600),
 												$author$project$VegaLite$inMax(600)
 											])))
 								]))),
