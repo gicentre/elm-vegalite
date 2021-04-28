@@ -10,8 +10,6 @@ Do we need to add projection fit function?
 
 Add legend and axis config parameterisation expressions (can we use common Legend / Axis properties for direct setting and config setting?)
 
-Add facet header property expressions.
-
 Add scale property expressions.
 
 Check remaining expression options that may have appeared since VL5 API documentation updates.
