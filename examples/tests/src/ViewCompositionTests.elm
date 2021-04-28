@@ -14,8 +14,8 @@ path =
     "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
 
 
-genderChart : List HeaderProperty -> List HeaderProperty -> Spec
-genderChart hdProps cProps =
+genderChart : List HeaderProperty -> List HeaderProperty -> ( VLProperty, Spec ) -> Spec
+genderChart hdProps cProps ps =
     let
         cfg2 =
             configure
@@ -37,22 +37,22 @@ genderChart hdProps cProps =
                 << position Y [ pName "people", pAggregate opSum, pTitle "Population" ]
                 << color [ mName "gender", mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ] ]
     in
-    toVegaLite [ widthStep 17, cfg2 [], popData, trans [], enc [], bar [] ]
+    toVegaLite [ ps, widthStep 17, cfg2 [], popData, trans [], enc [], bar [] ]
 
 
 columns1 : Spec
 columns1 =
-    genderChart [] []
+    genderChart [] [] (params [])
 
 
 columns2 : Spec
 columns2 =
-    genderChart [ hdTitleFontSize 20, hdLabelFontSize 15 ] []
+    genderChart [ hdTitleFontSize 20, hdLabelFontSize 15 ] [] (params [])
 
 
 columns3 : Spec
 columns3 =
-    genderChart [] [ hdTitleFontSize 20, hdLabelFontSize 15 ]
+    genderChart [] [ hdTitleFontSize 20, hdLabelFontSize 15 ] (params [])
 
 
 columns4 : Spec
@@ -64,6 +64,7 @@ columns4 =
         , hdLabelPadding 40
         ]
         []
+        (params [])
 
 
 columns5 : Spec
@@ -74,6 +75,7 @@ columns5 =
         , hdLabelFontStyle "italic"
         , hdLabelFontWeight fwBold
         ]
+        (params [])
 
 
 columns6 : Spec
@@ -91,6 +93,7 @@ columns6 =
         , hdTitleLineHeight 60
         , hdLabels False
         ]
+        (params [])
 
 
 data : List DataColumn -> Data
@@ -410,6 +413,24 @@ background1 =
         ]
 
 
+headerInteractive : Spec
+headerInteractive =
+    let
+        ps =
+            params
+                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "labelColor" [ paValue (str "black"), paBind (ipColor []) ]
+    in
+    genderChart
+        [ hdLabelAlign (haExpr "labelAlign")
+        , hdLabelBaseline (vaExpr "labelBaseline")
+        , hdLabelColor |> hdStrExpr "labelColor"
+        ]
+        []
+        (ps [])
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -432,6 +453,7 @@ specs =
     , ( "padding1", padding1 )
     , ( "padding2", padding2 )
     , ( "background1", background1 )
+    , ( "headerInteractive", headerInteractive )
     ]
 
 
