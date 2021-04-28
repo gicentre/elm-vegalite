@@ -29,11 +29,18 @@ proj1 =
         ps =
             params
                 << param "clipAngle" [ paBind (ipRange [ inMin 0, inMax 180 ]) ]
+                -- << param "clipL" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
+                -- << param "clipR" [ paValue (num 400), paBind (ipRange [ inMin 400, inMax 600 ]) ]
+                -- << param "clipExtent" [ paValue (datumArray [ datumArray [ datumExpr "clipL", num 20 ], datumArray [ num 100, num 100 ] ]) ]
                 << param "precision" [ paBind (ipRange [ inMin 0.01, inMax 10 ]) ]
-                << param "scale" [ paBind (ipRange [ inMin 50, inMax 500 ]) ]
-                -- << param "cLat" [ paBind (ipRange [ inMin -90, inMax 90 ]) ]
-                -- << param "cLong" [ paBind (ipRange [ inMin -180, inMax 180 ]) ]
-                -- << param "center" [ paValues (strs [ "cLong", "cLat" ]) ]
+                << param "scale" [ paValue (num 100), paBind (ipRange [ inMin 10, inMax 500 ]) ]
+                << param "rotate0" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                << param "rotate1" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "rotate2" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                << param "centerLong" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                << param "centerLat" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "translateX" [ paValue (num 300), paBind (ipRange [ inMin 600, inMax 600 ]) ]
+                << param "translateY" [ paValue (num 150), paBind (ipRange [ inMin -300, inMax 300 ]) ]
                 << param "type"
                     [ paValue (str "equalEarth")
                     , paBind
@@ -77,7 +84,11 @@ proj1 =
         proj =
             projection
                 [ prClipAngle |> prNumExpr "clipAngle"
-                , prClipExtent (clipRect 10 10 590 290)
+
+                -- , prClipExtent (clipRectExpr "clipExtent")
+                , prRotateExpr "rotate0" "rotate1" "rotate2"
+                , prTranslateExpr "translateX" "translateY"
+                , prCenterExpr "centerLong" "centerLat"
                 , prPrecision |> prNumExpr "precision"
                 , prScale |> prNumExpr "scale"
                 , prType (prExpr "type")
