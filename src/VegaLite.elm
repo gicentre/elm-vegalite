@@ -964,6 +964,7 @@ module VegaLite exposing
     , arFlow
     , arColumn
     , arRow
+    , hdNumExpr
     , hdStrExpr
     , hdLabelAngle
     , hdLabelAlign
@@ -3103,6 +3104,7 @@ arrangement. See the
 See
 [Vega-Lite header documentation](https://vega.github.io/vega-lite/docs/header.html)
 
+@docs hdNumExpr
 @docs hdStrExpr
 
 
@@ -4872,14 +4874,14 @@ type HeaderProperty
     | HLabelBaseline VAlign
     | HLabelColor Str
     | HLabelExpr String
-    | HLabelFont String
-    | HLabelFontSize Float
-    | HLabelFontStyle String
+    | HLabelFont Str
+    | HLabelFontSize Num
+    | HLabelFontStyle Str
     | HLabelFontWeight FontWeight
-    | HLabelLimit Float
-    | HLabelLineHeight Float
+    | HLabelLimit Num
+    | HLabelLineHeight Num
     | HLabelOrient Side
-    | HLabelPadding Float
+    | HLabelPadding Num
     | HLabels Bool
     | HOrient Side
     | HTitleAlign HAlign
@@ -11915,22 +11917,22 @@ hdLabelExpr =
 {-| Header label font in a faceted view.
 -}
 hdLabelFont : String -> HeaderProperty
-hdLabelFont =
-    HLabelFont
+hdLabelFont s =
+    HLabelFont (Str s)
 
 
 {-| Header label font size in a faceted view.
 -}
 hdLabelFontSize : Float -> HeaderProperty
-hdLabelFontSize =
-    HLabelFontSize
+hdLabelFontSize n =
+    HLabelFontSize (Num n)
 
 
 {-| Header label font style (e.g. `italic`) in a faceted view.
 -}
 hdLabelFontStyle : String -> HeaderProperty
-hdLabelFontStyle =
-    HLabelFontStyle
+hdLabelFontStyle s =
+    HLabelFontStyle (Str s)
 
 
 {-| Header label font weight in a faceted view.
@@ -11943,15 +11945,15 @@ hdLabelFontWeight =
 {-| Maximum length of a header label in a faceted view.
 -}
 hdLabelLimit : Float -> HeaderProperty
-hdLabelLimit =
-    HLabelLimit
+hdLabelLimit n =
+    HLabelLimit (Num n)
 
 
 {-| Header label line height in a faceted view (useful for multi-line labels).
 -}
 hdLabelLineHeight : Float -> HeaderProperty
-hdLabelLineHeight =
-    HLabelLineHeight
+hdLabelLineHeight n =
+    HLabelLineHeight (Num n)
 
 
 {-| The position of a header label relative to a sub-plot. A 'label' is the title
@@ -11965,8 +11967,8 @@ hdLabelOrient =
 {-| Spacing in pixels between facet labels and the main plot area.
 -}
 hdLabelPadding : Float -> HeaderProperty
-hdLabelPadding =
-    HLabelPadding
+hdLabelPadding x =
+    HLabelPadding (Num x)
 
 
 {-| Whether or not labels in a faceted view are displayed.
@@ -11974,6 +11976,41 @@ hdLabelPadding =
 hdLabels : Bool -> HeaderProperty
 hdLabels =
     HLabels
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+facet header property function requiring a numeric value. This can be used for interactive
+parameterisation when an expression is bound to an input element. For example,
+
+    ps =
+        params
+            << param "size" [ paValue (num 12), paBind (ipRange [ inMax 32 ]) ]
+
+    enc =
+        encoding
+            << column
+                [ fName "country"
+                , fHeader [ hdLabelFontSize |> hdNumExpr "size" ]
+                ]
+
+-}
+hdNumExpr : String -> (number -> HeaderProperty) -> HeaderProperty
+hdNumExpr ex fn =
+    case fn 0 of
+        HLabelFontSize _ ->
+            HLabelFontSize (NumExpr ex)
+
+        HLabelLimit _ ->
+            HLabelLimit (NumExpr ex)
+
+        HLabelLineHeight _ ->
+            HLabelLineHeight (NumExpr ex)
+
+        HLabelPadding _ ->
+            HLabelPadding (NumExpr ex)
+
+        _ ->
+            fn 0
 
 
 {-| The relative position of both a header label and title relative to a sub-plot
@@ -12007,6 +12044,12 @@ hdStrExpr ex fn =
     case fn "" of
         HLabelColor _ ->
             HLabelColor (StrExpr ex)
+
+        HLabelFont _ ->
+            HLabelFont (StrExpr ex)
+
+        HLabelFontStyle _ ->
+            HLabelFontStyle (StrExpr ex)
 
         _ ->
             fn ""
@@ -22828,28 +22871,28 @@ headerProperty hProp =
             [ ( "labelExpr", JE.string s ) ]
 
         HLabelFont s ->
-            [ ( "labelFont", JE.string s ) ]
+            strExpr "labelFont" s
 
         HLabelFontSize x ->
-            [ ( "labelFontSize", JE.float x ) ]
+            numExpr "labelFontSize" x
 
         HLabelFontStyle s ->
-            [ ( "labelFontStyle", JE.string s ) ]
+            strExpr "labelFontStyle" s
 
         HLabelFontWeight fw ->
             [ ( "labelFontWeight", fontWeightSpec fw ) ]
 
         HLabelLimit x ->
-            [ ( "labelLimit", JE.float x ) ]
+            numExpr "labelLimit" x
 
         HLabelLineHeight x ->
-            [ ( "labelLineHeight", JE.float x ) ]
+            numExpr "labelLineHeight" x
 
         HLabelOrient orient ->
             [ ( "labelOrient", sideSpec orient ) ]
 
         HLabelPadding x ->
-            [ ( "labelPadding", JE.float x ) ]
+            numExpr "labelPadding" x
 
         HLabels b ->
             [ ( "labels", JE.bool b ) ]
