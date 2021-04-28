@@ -24363,12 +24363,7 @@ paddingSpec pad =
                 ]
 
         PEdgesExpr l t r b ->
-            JE.object
-                [ ( "left", JE.object [ ( "expr", JE.string l ) ] )
-                , ( "top", JE.object [ ( "expr", JE.string t ) ] )
-                , ( "right", JE.object [ ( "expr", JE.string r ) ] )
-                , ( "bottom", JE.object [ ( "expr", JE.string b ) ] )
-                ]
+            JE.object [ ( "expr", "{'left':" ++ l ++ ",'top':" ++ t ++ ",'right':" ++ r ++ ",'bottom':" ++ b ++ "}" |> JE.string ) ]
 
         PSizeExpr s ->
             JE.object [ ( "expr", JE.string s ) ]
