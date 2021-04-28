@@ -9288,12 +9288,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 7:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelAngle',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelAngle', x);
 		case 8:
 			var va = hProp.a;
 			return _List_fromArray(
@@ -9396,12 +9391,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 23:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleAngle',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'titleAngle', x);
 		case 24:
 			var va = hProp.a;
 			return _List_fromArray(
@@ -9412,20 +9402,10 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 25:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleColor',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 26:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleFont',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
 		case 29:
 			var fw = hProp.a;
 			return _List_fromArray(
@@ -9436,36 +9416,16 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 27:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleFontSize',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'titleFontSize', x);
 		case 28:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleFontStyle',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'titleFontStyle', s);
 		case 30:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleLimit',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'titleLimit', x);
 		case 31:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titleLineHeight',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'titleLineHeight', x);
 		case 32:
 			var orient = hProp.a;
 			return _List_fromArray(
@@ -9476,12 +9436,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		default:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'titlePadding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'titlePadding', x);
 	}
 };
 var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
