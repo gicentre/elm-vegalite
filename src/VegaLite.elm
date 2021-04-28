@@ -24153,18 +24153,17 @@ numsExpr objName ns =
             [ ( objName, JE.object [ ( "expr", JE.string s ) ] ) ]
 
 
-numSpec : Num -> Spec
-numSpec n =
+numStr : Num -> String
+numStr n =
     case n of
         Num x ->
-            JE.float x
+            String.fromFloat x
 
         NoNum ->
-            JE.null
+            "null"
 
         NumExpr s ->
-            -- TODO: Replace "signal" with "expr" once VL bug fixed
-            JE.object [ ( "signal", JE.string s ) ]
+            s
 
 
 operationSpec : Operation -> Spec
@@ -24736,9 +24735,10 @@ projectionProperty pp =
 
                 ClipRectExpr l t r b ->
                     [ ( "clipExtent"
-                      , toList
-                            [ toList [ numSpec (NumExpr l), numSpec (NumExpr t) ]
-                            , toList [ numSpec (NumExpr r), numSpec (NumExpr b) ]
+                      , JE.object
+                            [ ( "expr"
+                              , JE.string ("[[" ++ l ++ "," ++ t ++ "],[" ++ r ++ "," ++ b ++ "]]")
+                              )
                             ]
                       )
                     ]
@@ -24750,16 +24750,26 @@ projectionProperty pp =
             booExpr "reflectY" b
 
         PrCenter lambda phi ->
-            [ ( "center", toList [ numSpec lambda, numSpec phi ] ) ]
+            [ ( "center"
+              , JE.object [ ( "expr", "[" ++ numStr lambda ++ "," ++ numStr phi ++ "]" |> JE.string ) ]
+              )
+            ]
 
         PrScale x ->
             numExpr "scale" x
 
         PrTranslate tx ty ->
-            [ ( "translate", toList [ numSpec tx, numSpec ty ] ) ]
+            [ ( "translate"
+              , JE.object [ ( "expr", "[" ++ numStr tx ++ "," ++ numStr ty ++ "]" |> JE.string ) ]
+              )
+            ]
 
         PrRotate lambda phi gamma ->
-            [ ( "rotate", toList [ numSpec lambda, numSpec phi, numSpec gamma ] ) ]
+            -- [ ( "rotate", toList [ numSpec lambda, numSpec phi, numSpec gamma ] ) ]
+            [ ( "rotate"
+              , JE.object [ ( "expr", "[" ++ numStr lambda ++ "," ++ numStr phi ++ "," ++ numStr gamma ++ "]" |> JE.string ) ]
+              )
+            ]
 
         PrPointRadius x ->
             numExpr "pointRadius" x
@@ -24783,7 +24793,11 @@ projectionProperty pp =
             numExpr "parallel" lat
 
         PrParallels lat1 lat2 ->
-            [ ( "parallels", toList [ numSpec lat1, numSpec lat2 ] ) ]
+            [ ( "parallels"
+              , JE.object
+                    [ ( "expr", "[" ++ numStr lat1 ++ "," ++ numStr lat2 ++ "]" |> JE.string ) ]
+              )
+            ]
 
         PrRadius x ->
             numExpr "radius" x
