@@ -964,6 +964,7 @@ module VegaLite exposing
     , arFlow
     , arColumn
     , arRow
+    , hdStrExpr
     , hdLabelAngle
     , hdLabelAlign
     , hdLabelAnchor
@@ -3102,6 +3103,11 @@ arrangement. See the
 See
 [Vega-Lite header documentation](https://vega.github.io/vega-lite/docs/header.html)
 
+@docs hdStrExpr
+
+
+#### Header Labels
+
 @docs hdLabelAngle
 @docs hdLabelAlign
 @docs hdLabelAnchor
@@ -3118,6 +3124,9 @@ See
 @docs hdLabelPadding
 @docs hdLabels
 
+
+#### Header Title
+
 @docs hdTitle
 @docs hdTitleAlign
 @docs hdTitleAnchor
@@ -3133,6 +3142,9 @@ See
 @docs hdTitleOrient
 @docs hdOrient
 @docs hdTitlePadding
+
+
+#### Header Formatting
 
 @docs hdFormat
 @docs hdFormatAsNum
@@ -4858,7 +4870,7 @@ type HeaderProperty
     | HLabelAnchor Anchor
     | HLabelAngle Float
     | HLabelBaseline VAlign
-    | HLabelColor String
+    | HLabelColor Str
     | HLabelExpr String
     | HLabelFont String
     | HLabelFontSize Float
@@ -11887,8 +11899,8 @@ hdLabelAngle =
 {-| Header label text color for a faceted view.
 -}
 hdLabelColor : String -> HeaderProperty
-hdLabelColor =
-    HLabelColor
+hdLabelColor s =
+    HLabelColor (Str s)
 
 
 {-| [Expression](https://vega.github.io/vega/docs/expressions/) for customising
@@ -11971,6 +11983,33 @@ separately).
 hdOrient : Side -> HeaderProperty
 hdOrient =
     HOrient
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a facet header property function requiring a string value. This can be used to provide an
+interactive parameterisation of a header property when an expression is bound to an
+input element. For example,
+
+    ps =
+        params
+            << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+
+    enc =
+        encoding
+            << column
+                [ fName "country"
+                , fHeader [ hdLabelColor |> hdStrExpr "color" ]
+                ]
+
+-}
+hdStrExpr : String -> (String -> HeaderProperty) -> HeaderProperty
+hdStrExpr ex fn =
+    case fn "" of
+        HLabelColor _ ->
+            HLabelColor (StrExpr ex)
+
+        _ ->
+            fn ""
 
 
 {-| Header title in a faceted view. A 'title' is the overall title describing the
@@ -21932,7 +21971,7 @@ configProperty configProp =
             ( "geoshape", JE.object (List.concatMap markProperty mps) )
 
         HeaderStyle hps ->
-            ( "header", JE.object (List.map headerProperty hps) )
+            ( "header", JE.object (List.concatMap headerProperty hps) )
 
         LineStyle mps ->
             ( "line", JE.object (List.concatMap markProperty mps) )
@@ -22417,7 +22456,7 @@ facetChannelProperty fMap =
             ( "timeUnit", timeUnitSpec tu )
 
         FHeader hProps ->
-            ( "header", JE.object (List.map headerProperty hProps) )
+            ( "header", JE.object (List.concatMap headerProperty hProps) )
 
         FAlign al ->
             ( "align", JE.string (compositionAlignmentLabel al) )
@@ -22755,115 +22794,115 @@ hAlignSpec al =
             JE.object [ ( "expr", JE.string s ) ]
 
 
-headerProperty : HeaderProperty -> LabelledSpec
+headerProperty : HeaderProperty -> List LabelledSpec
 headerProperty hProp =
     case hProp of
         HFormat fmt ->
-            ( "format", JE.string fmt )
+            [ ( "format", JE.string fmt ) ]
 
         HFormatAsNum ->
-            ( "formatType", JE.string "number" )
+            [ ( "formatType", JE.string "number" ) ]
 
         HFormatAsTemporal ->
-            ( "formatType", JE.string "time" )
+            [ ( "formatType", JE.string "time" ) ]
 
         HFormatAsCustom formatter ->
-            ( "formatType", JE.string formatter )
+            [ ( "formatType", JE.string formatter ) ]
 
         HLabelAlign ha ->
-            ( "labelAlign", hAlignSpec ha )
+            [ ( "labelAlign", hAlignSpec ha ) ]
 
         HLabelAnchor a ->
-            ( "labelAnchor", anchorSpec a )
+            [ ( "labelAnchor", anchorSpec a ) ]
 
         HLabelAngle x ->
-            ( "labelAngle", JE.float x )
+            [ ( "labelAngle", JE.float x ) ]
 
         HLabelBaseline va ->
-            ( "labelBaseline", vAlignSpec va )
+            [ ( "labelBaseline", vAlignSpec va ) ]
 
         HLabelColor s ->
-            ( "labelColor", JE.string s )
+            strExpr "labelColor" s
 
         HLabelExpr s ->
-            ( "labelExpr", JE.string s )
+            [ ( "labelExpr", JE.string s ) ]
 
         HLabelFont s ->
-            ( "labelFont", JE.string s )
+            [ ( "labelFont", JE.string s ) ]
 
         HLabelFontSize x ->
-            ( "labelFontSize", JE.float x )
+            [ ( "labelFontSize", JE.float x ) ]
 
         HLabelFontStyle s ->
-            ( "labelFontStyle", JE.string s )
+            [ ( "labelFontStyle", JE.string s ) ]
 
         HLabelFontWeight fw ->
-            ( "labelFontWeight", fontWeightSpec fw )
+            [ ( "labelFontWeight", fontWeightSpec fw ) ]
 
         HLabelLimit x ->
-            ( "labelLimit", JE.float x )
+            [ ( "labelLimit", JE.float x ) ]
 
         HLabelLineHeight x ->
-            ( "labelLineHeight", JE.float x )
+            [ ( "labelLineHeight", JE.float x ) ]
 
         HLabelOrient orient ->
-            ( "labelOrient", sideSpec orient )
+            [ ( "labelOrient", sideSpec orient ) ]
 
         HLabelPadding x ->
-            ( "labelPadding", JE.float x )
+            [ ( "labelPadding", JE.float x ) ]
 
         HLabels b ->
-            ( "labels", JE.bool b )
+            [ ( "labels", JE.bool b ) ]
 
         HOrient orient ->
-            ( "orient", sideSpec orient )
+            [ ( "orient", sideSpec orient ) ]
 
         HTitle s ->
             case s of
                 "" ->
-                    ( "title", JE.null )
+                    [ ( "title", JE.null ) ]
 
                 _ ->
-                    ( "title", multilineTextSpec s )
+                    [ ( "title", multilineTextSpec s ) ]
 
         HTitleAnchor a ->
-            ( "titleAnchor", anchorSpec a )
+            [ ( "titleAnchor", anchorSpec a ) ]
 
         HTitleAlign ha ->
-            ( "titleAlign", hAlignSpec ha )
+            [ ( "titleAlign", hAlignSpec ha ) ]
 
         HTitleAngle x ->
-            ( "titleAngle", JE.float x )
+            [ ( "titleAngle", JE.float x ) ]
 
         HTitleBaseline va ->
-            ( "titleBaseline", vAlignSpec va )
+            [ ( "titleBaseline", vAlignSpec va ) ]
 
         HTitleColor s ->
-            ( "titleColor", JE.string s )
+            [ ( "titleColor", JE.string s ) ]
 
         HTitleFont s ->
-            ( "titleFont", JE.string s )
+            [ ( "titleFont", JE.string s ) ]
 
         HTitleFontWeight fw ->
-            ( "titleFontWeight", fontWeightSpec fw )
+            [ ( "titleFontWeight", fontWeightSpec fw ) ]
 
         HTitleFontSize x ->
-            ( "titleFontSize", JE.float x )
+            [ ( "titleFontSize", JE.float x ) ]
 
         HTitleFontStyle s ->
-            ( "titleFontStyle", JE.string s )
+            [ ( "titleFontStyle", JE.string s ) ]
 
         HTitleLimit x ->
-            ( "titleLimit", JE.float x )
+            [ ( "titleLimit", JE.float x ) ]
 
         HTitleLineHeight x ->
-            ( "titleLineHeight", JE.float x )
+            [ ( "titleLineHeight", JE.float x ) ]
 
         HTitleOrient orient ->
-            ( "titleOrient", sideSpec orient )
+            [ ( "titleOrient", sideSpec orient ) ]
 
         HTitlePadding x ->
-            ( "titlePadding", JE.float x )
+            [ ( "titlePadding", JE.float x ) ]
 
 
 hyperlinkChannelProperties : HyperlinkChannel -> List LabelledSpec
