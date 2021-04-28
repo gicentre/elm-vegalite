@@ -10659,41 +10659,8 @@ var $author$project$VegaLite$paddingSpec = function (pad) {
 				_List_fromArray(
 					[
 						_Utils_Tuple2(
-						'left',
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'expr',
-									$elm$json$Json$Encode$string(l))
-								]))),
-						_Utils_Tuple2(
-						'top',
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'expr',
-									$elm$json$Json$Encode$string(t))
-								]))),
-						_Utils_Tuple2(
-						'right',
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'expr',
-									$elm$json$Json$Encode$string(r))
-								]))),
-						_Utils_Tuple2(
-						'bottom',
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'expr',
-									$elm$json$Json$Encode$string(b))
-								])))
+						'expr',
+						$elm$json$Json$Encode$string('{\'left\':' + (l + (',\'top\':' + (t + (',\'right\':' + (r + (',\'bottom\':' + (b + '}')))))))))
 					]));
 		default:
 			var s = pad.a;
