@@ -9155,6 +9155,9 @@ var $author$project$VegaLite$paddingSpec = function (pad) {
 					]));
 	}
 };
+var $author$project$VegaLite$NumExpr = function (a) {
+	return {$: 2, a: a};
+};
 var $author$project$VegaLite$numSpec = function (n) {
 	switch (n.$) {
 		case 0:
@@ -9277,17 +9280,33 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									])))
 						]);
 				default:
-					var s = rClip.a;
+					var l = rClip.a;
+					var t = rClip.b;
+					var r = rClip.c;
+					var b = rClip.d;
 					return _List_fromArray(
 						[
 							_Utils_Tuple2(
 							'clipExtent',
-							$elm$json$Json$Encode$object(
+							$author$project$VegaLite$toList(
 								_List_fromArray(
 									[
-										_Utils_Tuple2(
-										'expr',
-										$elm$json$Json$Encode$string(s))
+										$author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(l)),
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(t))
+											])),
+										$author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(r)),
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(b))
+											]))
 									])))
 						]);
 			}
@@ -9298,7 +9317,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
-			var lamda = pp.a;
+			var lambda = pp.a;
 			var phi = pp.b;
 			return _List_fromArray(
 				[
@@ -9307,7 +9326,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					$author$project$VegaLite$toList(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$numSpec(lamda),
+								$author$project$VegaLite$numSpec(lambda),
 								$author$project$VegaLite$numSpec(phi)
 							])))
 				]);

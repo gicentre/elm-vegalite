@@ -10784,6 +10784,9 @@ var $author$project$VegaLite$paddingSpec = function (pad) {
 					]));
 	}
 };
+var $author$project$VegaLite$NumExpr = function (a) {
+	return {$: 2, a: a};
+};
 var $author$project$VegaLite$numSpec = function (n) {
 	switch (n.$) {
 		case 0:
@@ -10906,17 +10909,33 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									])))
 						]);
 				default:
-					var s = rClip.a;
+					var l = rClip.a;
+					var t = rClip.b;
+					var r = rClip.c;
+					var b = rClip.d;
 					return _List_fromArray(
 						[
 							_Utils_Tuple2(
 							'clipExtent',
-							$elm$json$Json$Encode$object(
+							$author$project$VegaLite$toList(
 								_List_fromArray(
 									[
-										_Utils_Tuple2(
-										'expr',
-										$elm$json$Json$Encode$string(s))
+										$author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(l)),
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(t))
+											])),
+										$author$project$VegaLite$toList(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(r)),
+												$author$project$VegaLite$numSpec(
+												$author$project$VegaLite$NumExpr(b))
+											]))
 									])))
 						]);
 			}
@@ -10927,7 +10946,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
-			var lamda = pp.a;
+			var lambda = pp.a;
 			var phi = pp.b;
 			return _List_fromArray(
 				[
@@ -10936,7 +10955,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					$author$project$VegaLite$toList(
 						_List_fromArray(
 							[
-								$author$project$VegaLite$numSpec(lamda),
+								$author$project$VegaLite$numSpec(lambda),
 								$author$project$VegaLite$numSpec(phi)
 							])))
 				]);
@@ -13161,6 +13180,14 @@ var $author$project$ProjectionTests$d3Projections = function () {
 		_List_fromArray(
 			['airy', 'aitoff', 'armadillo', 'august', 'baker', 'berghaus', 'bertin1953', 'boggs', 'bonne', 'bottomley', 'collignon', 'craig', 'craster', 'cylindricalequalarea', 'cylindricalstereographic', 'eckert1', 'eckert2', 'eckert3', 'eckert4', 'eckert5', 'eckert6', 'eisenlohr', 'fahey', 'foucaut', 'gingery', 'winkel3']));
 }();
+var $author$project$VegaLite$ClipRectExpr = F4(
+	function (a, b, c, d) {
+		return {$: 2, a: a, b: b, c: c, d: d};
+	});
+var $author$project$VegaLite$clipRectExpr = F4(
+	function (l, t, r, b) {
+		return A4($author$project$VegaLite$ClipRectExpr, l, t, r, b);
+	});
 var $author$project$VegaLite$InMax = function (a) {
 	return {$: 6, a: a};
 };
@@ -13443,9 +13470,6 @@ var $author$project$VegaLite$params = function (prms) {
 		1,
 		A2($elm$json$Json$Encode$list, extract, prms));
 };
-var $author$project$VegaLite$NumExpr = function (a) {
-	return {$: 2, a: a};
-};
 var $author$project$VegaLite$PrCenter = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
@@ -13457,6 +13481,10 @@ var $author$project$VegaLite$prCenterExpr = F2(
 			$author$project$VegaLite$NumExpr(lng),
 			$author$project$VegaLite$NumExpr(lat));
 	});
+var $author$project$VegaLite$PrClipExtent = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$prClipExtent = $author$project$VegaLite$PrClipExtent;
 var $author$project$VegaLite$ProjectionExpr = function (a) {
 	return {$: 17, a: a};
 };
@@ -13625,18 +13653,86 @@ var $author$project$ProjectionTests$proj1 = function () {
 													$elm$core$Basics$composeL,
 													A2(
 														$elm$core$Basics$composeL,
-														$author$project$VegaLite$params,
+														A2(
+															$elm$core$Basics$composeL,
+															A2(
+																$elm$core$Basics$composeL,
+																A2(
+																	$elm$core$Basics$composeL,
+																	A2(
+																		$elm$core$Basics$composeL,
+																		$author$project$VegaLite$params,
+																		A2(
+																			$author$project$VegaLite$param,
+																			'clipAngle',
+																			_List_fromArray(
+																				[
+																					$author$project$VegaLite$paBind(
+																					$author$project$VegaLite$ipRange(
+																						_List_fromArray(
+																							[
+																								$author$project$VegaLite$inMin(0),
+																								$author$project$VegaLite$inMax(180)
+																							])))
+																				]))),
+																	A2(
+																		$author$project$VegaLite$param,
+																		'clipL',
+																		_List_fromArray(
+																			[
+																				$author$project$VegaLite$paValue(
+																				$author$project$VegaLite$num(0)),
+																				$author$project$VegaLite$paBind(
+																				$author$project$VegaLite$ipRange(
+																					_List_fromArray(
+																						[
+																							$author$project$VegaLite$inMin(0),
+																							$author$project$VegaLite$inMax(400)
+																						])))
+																			]))),
+																A2(
+																	$author$project$VegaLite$param,
+																	'clipR',
+																	_List_fromArray(
+																		[
+																			$author$project$VegaLite$paValue(
+																			$author$project$VegaLite$num(600)),
+																			$author$project$VegaLite$paBind(
+																			$author$project$VegaLite$ipRange(
+																				_List_fromArray(
+																					[
+																						$author$project$VegaLite$inMin(400),
+																						$author$project$VegaLite$inMax(600)
+																					])))
+																		]))),
+															A2(
+																$author$project$VegaLite$param,
+																'clipT',
+																_List_fromArray(
+																	[
+																		$author$project$VegaLite$paValue(
+																		$author$project$VegaLite$num(0)),
+																		$author$project$VegaLite$paBind(
+																		$author$project$VegaLite$ipRange(
+																			_List_fromArray(
+																				[
+																					$author$project$VegaLite$inMin(0),
+																					$author$project$VegaLite$inMax(300)
+																				])))
+																	]))),
 														A2(
 															$author$project$VegaLite$param,
-															'clipAngle',
+															'clipB',
 															_List_fromArray(
 																[
+																	$author$project$VegaLite$paValue(
+																	$author$project$VegaLite$num(300)),
 																	$author$project$VegaLite$paBind(
 																	$author$project$VegaLite$ipRange(
 																		_List_fromArray(
 																			[
 																				$author$project$VegaLite$inMin(0),
-																				$author$project$VegaLite$inMax(180)
+																				$author$project$VegaLite$inMax(300)
 																			])))
 																]))),
 													A2(
@@ -13822,6 +13918,8 @@ var $author$project$ProjectionTests$proj1 = function () {
 		_List_fromArray(
 			[
 				A2($author$project$VegaLite$prNumExpr, 'clipAngle', $author$project$VegaLite$prClipAngle),
+				$author$project$VegaLite$prClipExtent(
+				A4($author$project$VegaLite$clipRectExpr, 'clipL', 'clipT', 'clipR', 'clipB')),
 				A3($author$project$VegaLite$prRotateExpr, 'rotate0', 'rotate1', 'rotate2'),
 				A2($author$project$VegaLite$prTranslateExpr, 'translateX', 'translateY'),
 				A2($author$project$VegaLite$prCenterExpr, 'centerLong', 'centerLat'),
