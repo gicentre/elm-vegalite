@@ -29,9 +29,10 @@ proj1 =
         ps =
             params
                 << param "clipAngle" [ paBind (ipRange [ inMin 0, inMax 180 ]) ]
-                -- << param "clipL" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
-                -- << param "clipR" [ paValue (num 400), paBind (ipRange [ inMin 400, inMax 600 ]) ]
-                -- << param "clipExtent" [ paValue (datumArray [ datumArray [ datumExpr "clipL", num 20 ], datumArray [ num 100, num 100 ] ]) ]
+                << param "clipL" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
+                << param "clipR" [ paValue (num 600), paBind (ipRange [ inMin 400, inMax 600 ]) ]
+                << param "clipT" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 300 ]) ]
+                << param "clipB" [ paValue (num 300), paBind (ipRange [ inMin 0, inMax 300 ]) ]
                 << param "precision" [ paBind (ipRange [ inMin 0.01, inMax 10 ]) ]
                 << param "scale" [ paValue (num 100), paBind (ipRange [ inMin 10, inMax 500 ]) ]
                 << param "rotate0" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180 ]) ]
@@ -86,8 +87,7 @@ proj1 =
         proj =
             projection
                 [ prClipAngle |> prNumExpr "clipAngle"
-
-                -- , prClipExtent (clipRectExpr "clipExtent")
+                , prClipExtent (clipRectExpr "clipL" "clipT" "clipR" "clipB")
                 , prRotateExpr "rotate0" "rotate1" "rotate2"
                 , prTranslateExpr "translateX" "translateY"
                 , prCenterExpr "centerLong" "centerLat"
