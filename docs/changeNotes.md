@@ -97,7 +97,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 #### Data functions
 
-- `daConcat`, `dataObject` and `dataObjects` for creating nested data values for functions that require a single data value (in support of the VL5 interaction model).
+- `daConcat`, `dataObject`, `dataObjects`, `datumArray` and `dataArrays` for creating typesafe nested and mixed data values (in support of the VL5 interaction model).
 
 - `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
 
