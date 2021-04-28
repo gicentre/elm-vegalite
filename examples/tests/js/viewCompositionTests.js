@@ -11211,28 +11211,13 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 11:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelFont',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'labelFont', s);
 		case 12:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelFontSize',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelFontSize', x);
 		case 13:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelFontStyle',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'labelFontStyle', s);
 		case 14:
 			var fw = hProp.a;
 			return _List_fromArray(
@@ -11243,20 +11228,10 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 15:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelLimit',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelLimit', x);
 		case 16:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelLineHeight',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelLineHeight', x);
 		case 17:
 			var orient = hProp.a;
 			return _List_fromArray(
@@ -11267,12 +11242,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 18:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelPadding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelPadding', x);
 		case 19:
 			var b = hProp.a;
 			return _List_fromArray(
@@ -13929,7 +13899,10 @@ var $author$project$ViewCompositionTests$columns1 = A3(
 var $author$project$VegaLite$HLabelFontSize = function (a) {
 	return {$: 12, a: a};
 };
-var $author$project$VegaLite$hdLabelFontSize = $author$project$VegaLite$HLabelFontSize;
+var $author$project$VegaLite$hdLabelFontSize = function (n) {
+	return $author$project$VegaLite$HLabelFontSize(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$HTitleFontSize = function (a) {
 	return {$: 27, a: a};
 };
@@ -13955,7 +13928,10 @@ var $author$project$ViewCompositionTests$columns3 = A3(
 var $author$project$VegaLite$HLabelPadding = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$hdLabelPadding = $author$project$VegaLite$HLabelPadding;
+var $author$project$VegaLite$hdLabelPadding = function (x) {
+	return $author$project$VegaLite$HLabelPadding(
+		$author$project$VegaLite$Num(x));
+};
 var $author$project$VegaLite$HTitlePadding = function (a) {
 	return {$: 33, a: a};
 };
@@ -13983,7 +13959,10 @@ var $author$project$VegaLite$hdLabelBaseline = $author$project$VegaLite$HLabelBa
 var $author$project$VegaLite$HLabelFontStyle = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$hdLabelFontStyle = $author$project$VegaLite$HLabelFontStyle;
+var $author$project$VegaLite$hdLabelFontStyle = function (s) {
+	return $author$project$VegaLite$HLabelFontStyle(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$HLabelFontWeight = function (a) {
 	return {$: 14, a: a};
 };
@@ -13991,7 +13970,10 @@ var $author$project$VegaLite$hdLabelFontWeight = $author$project$VegaLite$HLabel
 var $author$project$VegaLite$HLabelLineHeight = function (a) {
 	return {$: 16, a: a};
 };
-var $author$project$VegaLite$hdLabelLineHeight = $author$project$VegaLite$HLabelLineHeight;
+var $author$project$VegaLite$hdLabelLineHeight = function (n) {
+	return $author$project$VegaLite$HLabelLineHeight(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$VAlignLineTop = {$: 1};
 var $author$project$VegaLite$vaLineTop = $author$project$VegaLite$VAlignLineTop;
 var $author$project$ViewCompositionTests$columns5 = A3(
@@ -15316,6 +15298,10 @@ var $author$project$ViewCompositionTests$grid5 = function () {
 						])))
 			]));
 }();
+var $author$project$VegaLite$FWExpr = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$fwExpr = $author$project$VegaLite$FWExpr;
 var $author$project$VegaLite$HAlignExpr = function (a) {
 	return {$: 3, a: a};
 };
@@ -15331,14 +15317,55 @@ var $author$project$VegaLite$hdLabelColor = function (s) {
 	return $author$project$VegaLite$HLabelColor(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$HLabelFont = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$hdLabelFont = function (s) {
+	return $author$project$VegaLite$HLabelFont(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$HLabelLimit = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$hdLabelLimit = function (n) {
+	return $author$project$VegaLite$HLabelLimit(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$hdNumExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(0);
+		switch (_v0.$) {
+			case 12:
+				return $author$project$VegaLite$HLabelFontSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 15:
+				return $author$project$VegaLite$HLabelLimit(
+					$author$project$VegaLite$NumExpr(ex));
+			case 16:
+				return $author$project$VegaLite$HLabelLineHeight(
+					$author$project$VegaLite$NumExpr(ex));
+			case 18:
+				return $author$project$VegaLite$HLabelPadding(
+					$author$project$VegaLite$NumExpr(ex));
+			default:
+				return fn(0);
+		}
+	});
 var $author$project$VegaLite$hdStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
-		if (_v0.$ === 9) {
-			return $author$project$VegaLite$HLabelColor(
-				$author$project$VegaLite$StrExpr(ex));
-		} else {
-			return fn('');
+		switch (_v0.$) {
+			case 9:
+				return $author$project$VegaLite$HLabelColor(
+					$author$project$VegaLite$StrExpr(ex));
+			case 11:
+				return $author$project$VegaLite$HLabelFont(
+					$author$project$VegaLite$StrExpr(ex));
+			case 13:
+				return $author$project$VegaLite$HLabelFontStyle(
+					$author$project$VegaLite$StrExpr(ex));
+			default:
+				return fn('');
 		}
 	});
 var $author$project$VegaLite$InOptions = function (a) {
@@ -15360,48 +15387,171 @@ var $author$project$ViewCompositionTests$headerInteractive = function () {
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				$author$project$VegaLite$params,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						A2(
+							$elm$core$Basics$composeL,
+							A2(
+								$elm$core$Basics$composeL,
+								A2(
+									$elm$core$Basics$composeL,
+									A2(
+										$elm$core$Basics$composeL,
+										A2(
+											$elm$core$Basics$composeL,
+											$author$project$VegaLite$params,
+											A2(
+												$author$project$VegaLite$param,
+												'labelAlign',
+												_List_fromArray(
+													[
+														$author$project$VegaLite$paValue(
+														$author$project$VegaLite$str('center')),
+														$author$project$VegaLite$paBind(
+														$author$project$VegaLite$ipSelect(
+															_List_fromArray(
+																[
+																	$author$project$VegaLite$inOptions(
+																	_List_fromArray(
+																		['center', 'left', 'right']))
+																])))
+													]))),
+										A2(
+											$author$project$VegaLite$param,
+											'labelBaseline',
+											_List_fromArray(
+												[
+													$author$project$VegaLite$paValue(
+													$author$project$VegaLite$str('top')),
+													$author$project$VegaLite$paBind(
+													$author$project$VegaLite$ipSelect(
+														_List_fromArray(
+															[
+																$author$project$VegaLite$inOptions(
+																_List_fromArray(
+																	['alphabetic', 'top', 'middle', 'bottom', 'line-top', 'line-bottom']))
+															])))
+												]))),
+									A2(
+										$author$project$VegaLite$param,
+										'labelColor',
+										_List_fromArray(
+											[
+												$author$project$VegaLite$paValue(
+												$author$project$VegaLite$str('black')),
+												$author$project$VegaLite$paBind(
+												$author$project$VegaLite$ipColor(_List_Nil))
+											]))),
+								A2(
+									$author$project$VegaLite$param,
+									'labelFont',
+									_List_fromArray(
+										[
+											$author$project$VegaLite$paValue(
+											$author$project$VegaLite$str('sans-serif')),
+											$author$project$VegaLite$paBind(
+											$author$project$VegaLite$ipSelect(
+												_List_fromArray(
+													[
+														$author$project$VegaLite$inOptions(
+														_List_fromArray(
+															['sans-serif', 'serif', 'monospace']))
+													])))
+										]))),
+							A2(
+								$author$project$VegaLite$param,
+								'labelFontSize',
+								_List_fromArray(
+									[
+										$author$project$VegaLite$paValue(
+										$author$project$VegaLite$num(10)),
+										$author$project$VegaLite$paBind(
+										$author$project$VegaLite$ipRange(
+											_List_fromArray(
+												[
+													$author$project$VegaLite$inMin(0),
+													$author$project$VegaLite$inMax(32),
+													$author$project$VegaLite$inStep(1)
+												])))
+									]))),
+						A2(
+							$author$project$VegaLite$param,
+							'labelFontStyle',
+							_List_fromArray(
+								[
+									$author$project$VegaLite$paValue(
+									$author$project$VegaLite$str('normal')),
+									$author$project$VegaLite$paBind(
+									$author$project$VegaLite$ipSelect(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$inOptions(
+												_List_fromArray(
+													['normal', 'italic']))
+											])))
+								]))),
+					A2(
+						$author$project$VegaLite$param,
+						'labelFontWeight',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$str('normal')),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipSelect(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inOptions(
+											_List_fromArray(
+												['normal', 'bold', 'lighter']))
+										])))
+							]))),
 				A2(
 					$author$project$VegaLite$param,
-					'labelAlign',
+					'labelLimit',
 					_List_fromArray(
 						[
 							$author$project$VegaLite$paValue(
-							$author$project$VegaLite$str('center')),
+							$author$project$VegaLite$num(200)),
 							$author$project$VegaLite$paBind(
-							$author$project$VegaLite$ipSelect(
+							$author$project$VegaLite$ipRange(
 								_List_fromArray(
 									[
-										$author$project$VegaLite$inOptions(
-										_List_fromArray(
-											['center', 'left', 'right']))
+										$author$project$VegaLite$inMin(0),
+										$author$project$VegaLite$inMax(200)
 									])))
 						]))),
 			A2(
 				$author$project$VegaLite$param,
-				'labelBaseline',
+				'labelLineHeight',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$str('top')),
+						$author$project$VegaLite$num(16)),
 						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipSelect(
+						$author$project$VegaLite$ipRange(
 							_List_fromArray(
 								[
-									$author$project$VegaLite$inOptions(
-									_List_fromArray(
-										['alphabetic', 'top', 'middle', 'bottom', 'line-top', 'line-bottom']))
+									$author$project$VegaLite$inMin(-50),
+									$author$project$VegaLite$inMax(50)
 								])))
 					]))),
 		A2(
 			$author$project$VegaLite$param,
-			'labelColor',
+			'labelPadding',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$str('black')),
+					$author$project$VegaLite$num(10)),
 					$author$project$VegaLite$paBind(
-					$author$project$VegaLite$ipColor(_List_Nil))
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inMin(-20),
+								$author$project$VegaLite$inMax(20)
+							])))
 				])));
 	return A3(
 		$author$project$ViewCompositionTests$genderChart,
@@ -15411,7 +15561,15 @@ var $author$project$ViewCompositionTests$headerInteractive = function () {
 				$author$project$VegaLite$haExpr('labelAlign')),
 				$author$project$VegaLite$hdLabelBaseline(
 				$author$project$VegaLite$vaExpr('labelBaseline')),
-				A2($author$project$VegaLite$hdStrExpr, 'labelColor', $author$project$VegaLite$hdLabelColor)
+				A2($author$project$VegaLite$hdStrExpr, 'labelColor', $author$project$VegaLite$hdLabelColor),
+				A2($author$project$VegaLite$hdStrExpr, 'labelFont', $author$project$VegaLite$hdLabelFont),
+				A2($author$project$VegaLite$hdNumExpr, 'labelFontSize', $author$project$VegaLite$hdLabelFontSize),
+				A2($author$project$VegaLite$hdStrExpr, 'labelFontStyle', $author$project$VegaLite$hdLabelFontStyle),
+				$author$project$VegaLite$hdLabelFontWeight(
+				$author$project$VegaLite$fwExpr('labelFontWeight')),
+				A2($author$project$VegaLite$hdNumExpr, 'labelLimit', $author$project$VegaLite$hdLabelLimit),
+				A2($author$project$VegaLite$hdNumExpr, 'labelLineHeight', $author$project$VegaLite$hdLabelLineHeight),
+				A2($author$project$VegaLite$hdNumExpr, 'labelPadding', $author$project$VegaLite$hdLabelPadding)
 			]),
 		_List_Nil,
 		ps(_List_Nil));

@@ -12262,28 +12262,13 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 11:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelFont',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'labelFont', s);
 		case 12:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelFontSize',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelFontSize', x);
 		case 13:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelFontStyle',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'labelFontStyle', s);
 		case 14:
 			var fw = hProp.a;
 			return _List_fromArray(
@@ -12294,20 +12279,10 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 15:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelLimit',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelLimit', x);
 		case 16:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelLineHeight',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelLineHeight', x);
 		case 17:
 			var orient = hProp.a;
 			return _List_fromArray(
@@ -12318,12 +12293,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 				]);
 		case 18:
 			var x = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelPadding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'labelPadding', x);
 		case 19:
 			var b = hProp.a;
 			return _List_fromArray(
