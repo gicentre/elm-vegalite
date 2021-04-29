@@ -387,6 +387,7 @@ scaleInteractive =
                 << param "yRangeMax" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
                 << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
+                << param "scheme" [ paValue (str "spectral"), paBind (ipSelect [ inOptions [ "plasma", "oranges", "spectral" ] ]) ]
                 << param "shapeB" [ paValue (boo True), paBind (ipCheckbox []) ]
 
         enc =
@@ -410,7 +411,7 @@ scaleInteractive =
                 << color
                     [ mName "val"
                     , mQuant
-                    , mScale [ scScheme "spectral" [], scDomain (doNumExpr "colorMid" doMid) ]
+                    , mScale [ scSchemeExpr "scheme" [], scDomain (doNumExpr "colorMid" doMid) ]
                     ]
                 << shape [ mName "cat", mScale [ scDomainExpr "shapeB ? ['a','b'] : ['a']" ] ]
                 << size
