@@ -8086,12 +8086,17 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 					]));
 	}
 };
-var $author$project$VegaLite$schemeProperty = F2(
-	function (schName, extent) {
+var $author$project$VegaLite$schemeProperty = F3(
+	function (schName, isExpr, extent) {
+		var nameSpec = isExpr ? $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'expr',
+					$elm$json$Json$Encode$string(schName))
+				])) : $elm$json$Json$Encode$string(schName);
 		if (!extent.b) {
-			return _Utils_Tuple2(
-				'scheme',
-				$elm$json$Json$Encode$string(schName));
+			return _Utils_Tuple2('scheme', nameSpec);
 		} else {
 			if (!extent.b.b) {
 				var n = extent.a;
@@ -8100,9 +8105,7 @@ var $author$project$VegaLite$schemeProperty = F2(
 					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
-								_Utils_Tuple2(
-								'name',
-								$elm$json$Json$Encode$string(schName)),
+								_Utils_Tuple2('name', nameSpec),
 								_Utils_Tuple2(
 								'count',
 								$elm$json$Json$Encode$float(n))
@@ -8117,9 +8120,7 @@ var $author$project$VegaLite$schemeProperty = F2(
 						$elm$json$Json$Encode$object(
 							_List_fromArray(
 								[
-									_Utils_Tuple2(
-									'name',
-									$elm$json$Json$Encode$string(schName)),
+									_Utils_Tuple2('name', nameSpec),
 									_Utils_Tuple2(
 									'extent',
 									A2(
@@ -8129,9 +8130,7 @@ var $author$project$VegaLite$schemeProperty = F2(
 											[mn, mx])))
 								])));
 				} else {
-					return _Utils_Tuple2(
-						'scheme',
-						$elm$json$Json$Encode$string(schName));
+					return _Utils_Tuple2('scheme', nameSpec);
 				}
 			}
 		}
@@ -8332,9 +8331,16 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var extent = scaleProp.b;
 			return _List_fromArray(
 				[
-					A2($author$project$VegaLite$schemeProperty, schName, extent)
+					A3($author$project$VegaLite$schemeProperty, schName, false, extent)
 				]);
 		case 5:
+			var schExpr = scaleProp.a;
+			var extent = scaleProp.b;
+			return _List_fromArray(
+				[
+					A3($author$project$VegaLite$schemeProperty, schExpr, true, extent)
+				]);
+		case 6:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8342,7 +8348,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'align',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 6:
+		case 7:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8350,7 +8356,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'padding',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 17:
+		case 18:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8358,7 +8364,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'base',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 14:
+		case 15:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8366,7 +8372,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'exponent',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 15:
+		case 16:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8374,7 +8380,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'domainMid',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 16:
+		case 17:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8382,7 +8388,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'constant',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 7:
+		case 8:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8390,7 +8396,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'paddingInner',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 8:
+		case 9:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8398,7 +8404,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'paddingOuter',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 9:
+		case 10:
 			var b = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8406,7 +8412,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'round',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 10:
+		case 11:
 			var b = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8414,7 +8420,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'clamp',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 11:
+		case 12:
 			var interp = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8422,7 +8428,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'interpolate',
 					$author$project$VegaLite$cInterpolateSpec(interp))
 				]);
-		case 12:
+		case 13:
 			var ni = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -8430,7 +8436,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'nice',
 					$author$project$VegaLite$scaleNiceSpec(ni))
 				]);
-		case 13:
+		case 14:
 			var b = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -10294,7 +10300,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
 var $author$project$VegaLite$SZero = function (a) {
-	return {$: 13, a: a};
+	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
 var $author$project$VegaLite$Year = {$: 0};
