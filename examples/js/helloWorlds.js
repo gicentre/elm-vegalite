@@ -5710,19 +5710,52 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 	}
 };
 var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
+	var numsSpec = function (ns) {
+		if (!ns.$) {
+			var xs = ns.a;
+			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs);
+		} else {
+			var s = ns.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
+		}
+	};
+	var numSpec = function (n) {
+		switch (n.$) {
+			case 0:
+				var x = n.a;
+				return $elm$json$Json$Encode$float(x);
+			case 1:
+				return $elm$json$Json$Encode$null;
+			default:
+				var s = n.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+		}
+	};
 	switch (sdType.$) {
 		case 0:
-			var ns = sdType.a;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, ns);
+			var xs = sdType.a;
+			return numsSpec(xs);
 		case 1:
 			var x = sdType.a;
-			return $elm$json$Json$Encode$float(x);
+			return numSpec(x);
 		case 2:
 			var x = sdType.a;
-			return $elm$json$Json$Encode$float(x);
+			return numSpec(x);
 		case 3:
 			var x = sdType.a;
-			return $elm$json$Json$Encode$float(x);
+			return numSpec(x);
 		case 7:
 			var ds = sdType.a;
 			return A2(
@@ -6018,167 +6051,239 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 	switch (scaleProp.$) {
 		case 0:
 			var sType = scaleProp.a;
-			return _Utils_Tuple2(
-				'type',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$scaleLabel(sType)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$scaleLabel(sType)))
+				]);
 		case 1:
 			var sdType = scaleProp.a;
 			switch (sdType.$) {
 				case 1:
 					var x = sdType.a;
-					return _Utils_Tuple2(
-						'domainMin',
-						$elm$json$Json$Encode$float(x));
+					return A2($author$project$VegaLite$numExpr, 'domainMin', x);
 				case 2:
 					var x = sdType.a;
-					return _Utils_Tuple2(
-						'domainMid',
-						$elm$json$Json$Encode$float(x));
+					return A2($author$project$VegaLite$numExpr, 'domainMid', x);
 				case 3:
 					var x = sdType.a;
-					return _Utils_Tuple2(
-						'domainMax',
-						$elm$json$Json$Encode$float(x));
+					return A2($author$project$VegaLite$numExpr, 'domainMax', x);
 				case 4:
 					var d = sdType.a;
-					return _Utils_Tuple2(
-						'domainMin',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'domainMin',
+							$elm$json$Json$Encode$object(
+								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+						]);
 				case 5:
 					var d = sdType.a;
-					return _Utils_Tuple2(
-						'domainMax',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'domainMax',
+							$elm$json$Json$Encode$object(
+								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+						]);
 				default:
-					return _Utils_Tuple2(
-						'domain',
-						$author$project$VegaLite$scaleDomainSpec(sdType));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'domain',
+							$author$project$VegaLite$scaleDomainSpec(sdType))
+						]);
 			}
 		case 2:
 			var range = scaleProp.a;
 			switch (range.$) {
 				case 4:
 					var x = range.a;
-					return _Utils_Tuple2(
-						'rangeMin',
-						$elm$json$Json$Encode$float(x));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'rangeMin',
+							$elm$json$Json$Encode$float(x))
+						]);
 				case 5:
 					var x = range.a;
-					return _Utils_Tuple2(
-						'rangeMax',
-						$elm$json$Json$Encode$float(x));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'rangeMax',
+							$elm$json$Json$Encode$float(x))
+						]);
 				case 0:
 					var xs = range.a;
-					return _Utils_Tuple2(
-						'range',
-						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'range',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
+						]);
 				case 2:
 					var xss = range.a;
-					return _Utils_Tuple2(
-						'range',
-						A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
-							xss));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'range',
+							A2(
+								$elm$json$Json$Encode$list,
+								$elm$json$Json$Encode$list($elm$json$Json$Encode$float),
+								xss))
+						]);
 				case 1:
 					var ss = range.a;
-					return _Utils_Tuple2(
-						'range',
-						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'range',
+							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss))
+						]);
 				case 3:
 					var s = range.a;
-					return _Utils_Tuple2(
-						'range',
-						$elm$json$Json$Encode$string(s));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'range',
+							$elm$json$Json$Encode$string(s))
+						]);
 				default:
 					var s = range.a;
-					return _Utils_Tuple2(
-						'range',
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'field',
-									$elm$json$Json$Encode$string(s))
-								])));
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'range',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'field',
+										$elm$json$Json$Encode$string(s))
+									])))
+						]);
 			}
 		case 3:
 			var schName = scaleProp.a;
 			var extent = scaleProp.b;
-			return A2($author$project$VegaLite$schemeProperty, schName, extent);
+			return _List_fromArray(
+				[
+					A2($author$project$VegaLite$schemeProperty, schName, extent)
+				]);
 		case 4:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'align',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'align',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 5:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'padding',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'padding',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 16:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'base',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'base',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 13:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'exponent',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'exponent',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 14:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'domainMid',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'domainMid',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 15:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'constant',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'constant',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 6:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'paddingInner',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'paddingInner',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 7:
 			var x = scaleProp.a;
-			return _Utils_Tuple2(
-				'paddingOuter',
-				$elm$json$Json$Encode$float(x));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'paddingOuter',
+					$elm$json$Json$Encode$float(x))
+				]);
 		case 8:
 			var b = scaleProp.a;
-			return _Utils_Tuple2(
-				'round',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'round',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		case 9:
 			var b = scaleProp.a;
-			return _Utils_Tuple2(
-				'clamp',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'clamp',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		case 10:
 			var interp = scaleProp.a;
-			return _Utils_Tuple2(
-				'interpolate',
-				$author$project$VegaLite$cInterpolateSpec(interp));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'interpolate',
+					$author$project$VegaLite$cInterpolateSpec(interp))
+				]);
 		case 11:
 			var ni = scaleProp.a;
-			return _Utils_Tuple2(
-				'nice',
-				$author$project$VegaLite$scaleNiceSpec(ni));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'nice',
+					$author$project$VegaLite$scaleNiceSpec(ni))
+				]);
 		case 12:
 			var b = scaleProp.a;
-			return _Utils_Tuple2(
-				'zero',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'zero',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		default:
 			var b = scaleProp.a;
-			return _Utils_Tuple2(
-				'reverse',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'reverse',
+					$elm$json$Json$Encode$bool(b))
+				]);
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -6434,7 +6539,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					_Utils_Tuple2(
 					'scale',
 					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$scaleProperty, sps)))
+						A2($elm$core$List$concatMap, $author$project$VegaLite$scaleProperty, sps)))
 				]);
 		case 15:
 			var lps = field.a;
@@ -7602,7 +7707,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 			return _Utils_eq(sps, _List_Nil) ? _Utils_Tuple2('scale', $elm$json$Json$Encode$null) : _Utils_Tuple2(
 				'scale',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$scaleProperty, sps)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$scaleProperty, sps)));
 		case 13:
 			var aps = pDef.a;
 			return _Utils_eq(aps, _List_Nil) ? _Utils_Tuple2('axis', $elm$json$Json$Encode$null) : _Utils_Tuple2(
