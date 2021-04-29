@@ -47,7 +47,11 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `scNumExpr` for providing expressions that evaluate to numeric scale properties (VL5.0)
 
+- `sacoNumExpr` for providing expressions that evaluate to numeric scale configuration properties (VL5.0)
+
 - `scBooExpr` for providing expressions that evaluate to Boolean scale properties (VL5.0)
+
+- `sacoBooExpr` for providing expressions that evaluate to Boolean scale configuration properties (VL5.0)
 
 - `doNumExpr` for providing expressions that evaluate to numeric scale domain properties (VL5.0)
 
