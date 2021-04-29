@@ -373,20 +373,27 @@ scaleInteractive =
     let
         data =
             dataFromColumns []
-                << dataColumn "x" (nums [ 1, 2, 3, 4, 5 ])
+                << dataColumn "val" (nums [ 1, 2, 3, 4, 5 ])
+                << dataColumn "date" (strs [ "2021-04-10", "2021-04-11", "2021-04-12", "2021-04-13", "2021-04-14" ])
 
         ps =
             params
-                << param "domainMin" [ paValue (num 0), paBind (ipRange [ inMin -5, inMax 5, inStep 1 ]) ]
-                << param "domainMid" [ paValue (num 3), paBind (ipRange [ inMin 0, inMax 6 ]) ]
-                << param "domainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "colorMid" [ paValue (num 3), paBind (ipRange [ inMin 0, inMax 6 ]) ]
+                << param "xMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "yMin" [ paValue (num 0), paBind (ipRange [ inMin -5, inMax 5, inStep 1 ]) ]
+                << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
+                << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
 
         enc =
             encoding
-                << position X [ pName "x", pQuant, pScale [ scDomain (doNumExpr "domainMax" doMax) ] ]
-                << position Y [ pName "x", pQuant, pScale [ scDomain (doNumExpr "domainMin" doMin) ] ]
-                << color [ mName "x", mQuant, mScale [ scScheme "spectral" [], scDomain (doNumExpr "domainMid" doMid) ] ]
-                << size [ mName "x", mQuant ]
+                << position X [ pName "val", pQuant, pScale [ scDomain (doNumExpr "xMax" doMax) ] ]
+                << position Y [ pName "val", pQuant, pScale [ scDomain (doNumExpr "yMin" doMin) ] ]
+                << color [ mName "val", mQuant, mScale [ scScheme "spectral" [], scDomain (doNumExpr "colorMid" doMid) ] ]
+                << size
+                    [ mName "date"
+                    , mTemporal
+                    , mScale [ scDomain (doDtsExpr "[datetime(minDate),datetime(maxDate)]") ]
+                    ]
     in
     toVegaLite [ ps [], width 400, height 400, data [], enc [], circle [] ]
 
