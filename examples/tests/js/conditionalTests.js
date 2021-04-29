@@ -13029,109 +13029,67 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 	switch (scaleCfg.$) {
 		case 0:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'bandPaddingInner',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'bandPaddingInner', x);
 		case 1:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'bandPaddingOuter',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'bandPaddingOuter', x);
 		case 2:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'barBandPaddingInner',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'barBandPaddingInner', x);
 		case 3:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'barBandPaddingOuter',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'barBandPaddingOuter', x);
 		case 4:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'rectBandPaddingInner',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'rectBandPaddingInner', x);
 		case 5:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'rectBandPaddingOuter',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'rectBandPaddingOuter', x);
 		case 6:
 			var b = scaleCfg.a;
-			return _Utils_Tuple2(
-				'clamp',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 7:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'maxBandSize',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'maxBandSize', x);
 		case 8:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'minBandSize',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'minBandSize', x);
 		case 9:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'maxFontSize',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'maxFontSize', x);
 		case 10:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'minFontSize',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'minFontSize', x);
 		case 11:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'maxOpacity',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'maxOpacity', x);
 		case 12:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'minOpacity',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'minOpacity', x);
 		case 13:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'maxSize',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'maxSize', x);
 		case 14:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'minSize',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'minSize', x);
 		case 15:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'maxStrokeWidth',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'maxStrokeWidth', x);
 		case 16:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'minStrokeWidth',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'minStrokeWidth', x);
 		case 17:
 			var x = scaleCfg.a;
-			return _Utils_Tuple2(
-				'pointPadding',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'pointPadding', x);
 		case 18:
 			var b = scaleCfg.a;
-			return _Utils_Tuple2(
-				'round',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 19:
 			var b = scaleCfg.a;
-			return _Utils_Tuple2(
-				'useUnaggregatedDomain',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
 		default:
 			var b = scaleCfg.a;
-			return _Utils_Tuple2(
-				'xReverse',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'xReverse', b);
 	}
 };
 var $author$project$VegaLite$tfSpec = function (tf) {
@@ -13773,7 +13731,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return _Utils_Tuple2(
 				'scale',
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$scaleConfigProperty, scs)));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$scaleConfigProperty, scs)));
 		case 33:
 			var rcs = configProp.a;
 			return _Utils_Tuple2(
@@ -14487,11 +14445,17 @@ var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$SCBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$sacoBandPaddingInner = $author$project$VegaLite$SCBandPaddingInner;
+var $author$project$VegaLite$sacoBandPaddingInner = function (n) {
+	return $author$project$VegaLite$SCBandPaddingInner(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$sacoBandPaddingOuter = $author$project$VegaLite$SCBandPaddingOuter;
+var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
+	return $author$project$VegaLite$SCBandPaddingOuter(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$SePoint = 0;
 var $author$project$VegaLite$sePoint = 0;
 var $author$project$VegaLite$Toggle = function (a) {
