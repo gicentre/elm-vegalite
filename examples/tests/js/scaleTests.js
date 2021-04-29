@@ -5503,6 +5503,26 @@ var $author$project$VegaLite$filterProperties = function (f) {
 		case 10:
 			var field = f.a;
 			var vals = f.b;
+			var fromTs = function (ts) {
+				if (ts.$ === 1) {
+					var s = ts.a;
+					return $elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							]));
+				} else {
+					if (!ts.a.b) {
+						return $elm$json$Json$Encode$null;
+					} else {
+						var d = ts.a;
+						return $elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+					}
+				}
+			};
 			var values = function () {
 				if (!vals.$) {
 					var mn = vals.a;
@@ -5513,44 +5533,14 @@ var $author$project$VegaLite$filterProperties = function (f) {
 						_List_fromArray(
 							[mn, mx]));
 				} else {
-					if (!vals.a.b) {
-						if (!vals.b.b) {
-							return $author$project$VegaLite$toList(
-								_List_fromArray(
-									[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null]));
-						} else {
-							var dMax = vals.b;
-							return $author$project$VegaLite$toList(
-								_List_fromArray(
-									[
-										$elm$json$Json$Encode$null,
-										$elm$json$Json$Encode$object(
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMax))
-									]));
-						}
-					} else {
-						if (!vals.b.b) {
-							var dMin = vals.a;
-							return $author$project$VegaLite$toList(
-								_List_fromArray(
-									[
-										$elm$json$Json$Encode$object(
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMin)),
-										$elm$json$Json$Encode$null
-									]));
-						} else {
-							var dMin = vals.a;
-							var dMax = vals.b;
-							return A2(
-								$elm$json$Json$Encode$list,
-								$elm$json$Json$Encode$object,
-								_List_fromArray(
-									[
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMin),
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMax)
-									]));
-						}
-					}
+					var ts1 = vals.a;
+					var ts2 = vals.b;
+					return $author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								fromTs(ts1),
+								fromTs(ts2)
+							]));
 				}
 			}();
 			return _List_fromArray(
@@ -5599,9 +5589,9 @@ var $author$project$VegaLite$filterProperties = function (f) {
 							A2(
 								$elm$core$Basics$composeR,
 								$elm$core$List$map(
-									function (_v3) {
-										var k = _v3.a;
-										var v = _v3.b;
+									function (_v4) {
+										var k = _v4.a;
+										var v = _v4.b;
 										return _Utils_Tuple2(
 											k,
 											$author$project$VegaLite$dataValueSpec(v));
@@ -6535,18 +6525,51 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
+		case 8:
+			var s = sdType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 		case 4:
-			var d = sdType.a;
-			return $elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			var ts = sdType.a;
+			if (!ts.$) {
+				var d = ts.a;
+				return $elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			} else {
+				var s = ts.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 5:
-			var d = sdType.a;
-			return $elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			var ts = sdType.a;
+			if (!ts.$) {
+				var d = ts.a;
+				return $elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			} else {
+				var s = ts.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 6:
 			var cats = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
-		case 8:
+		case 9:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -6555,7 +6578,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'param',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		case 10:
+		case 11:
 			var selName = sdType.a;
 			var ch = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -6569,7 +6592,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(
 							$author$project$VegaLite$channelLabel(ch)))
 					]));
-		case 9:
+		case 10:
 			var selName = sdType.a;
 			var f = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -6582,7 +6605,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'field',
 						$elm$json$Json$Encode$string(f))
 					]));
-		case 12:
+		case 13:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -6841,23 +6864,57 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					var x = sdType.a;
 					return A2($author$project$VegaLite$numExpr, 'domainMax', x);
 				case 4:
-					var d = sdType.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'domainMin',
-							$elm$json$Json$Encode$object(
-								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
-						]);
+					var ts = sdType.a;
+					if (!ts.$) {
+						var d = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMin',
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+							]);
+					} else {
+						var s = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMin',
+								$elm$json$Json$Encode$object(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'expr',
+											$elm$json$Json$Encode$string(s))
+										])))
+							]);
+					}
 				case 5:
-					var d = sdType.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'domainMax',
-							$elm$json$Json$Encode$object(
-								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
-						]);
+					var ts = sdType.a;
+					if (!ts.$) {
+						var d = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMax',
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+							]);
+					} else {
+						var s = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMax',
+								$elm$json$Json$Encode$object(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'expr',
+											$elm$json$Json$Encode$string(s))
+										])))
+							]);
+					}
 				default:
 					return _List_fromArray(
 						[
@@ -10530,7 +10587,13 @@ var $author$project$VegaLite$doMin = function (n) {
 var $author$project$VegaLite$DMinDateTime = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$doMinDt = $author$project$VegaLite$DMinDateTime;
+var $author$project$VegaLite$Timestamp = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doMinDt = function (ts) {
+	return $author$project$VegaLite$DMinDateTime(
+		$author$project$VegaLite$Timestamp(ts));
+};
 var $author$project$ScaleTests$scale14 = A2(
 	$author$project$ScaleTests$lineChart,
 	_List_fromArray(
@@ -10557,7 +10620,10 @@ var $author$project$VegaLite$doMax = function (n) {
 var $author$project$VegaLite$DMaxDateTime = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$VegaLite$doMaxDt = $author$project$VegaLite$DMaxDateTime;
+var $author$project$VegaLite$doMaxDt = function (ts) {
+	return $author$project$VegaLite$DMaxDateTime(
+		$author$project$VegaLite$Timestamp(ts));
+};
 var $author$project$ScaleTests$scale15 = A2(
 	$author$project$ScaleTests$lineChart,
 	_List_fromArray(
@@ -14351,6 +14417,10 @@ var $author$project$ScaleTests$scale9 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$DDateTimesExpr = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$doDtsExpr = $author$project$VegaLite$DDateTimesExpr;
 var $author$project$VegaLite$NumExpr = function (a) {
 	return {$: 2, a: a};
 };
@@ -14383,10 +14453,16 @@ var $author$project$VegaLite$InStep = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$inStep = $author$project$VegaLite$InStep;
+var $author$project$VegaLite$IPDate = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$ipDate = $author$project$VegaLite$IPDate;
 var $author$project$VegaLite$IPRange = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$mTemporal = $author$project$VegaLite$MmType(3);
 var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
@@ -14632,6 +14708,10 @@ var $author$project$VegaLite$params = function (prms) {
 		1,
 		A2($elm$json$Json$Encode$list, extract, prms));
 };
+var $author$project$VegaLite$DStr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$str = $author$project$VegaLite$DStr;
 var $author$project$ScaleTests$scaleInteractive = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
@@ -14639,10 +14719,45 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 			$elm$core$Basics$composeL,
 			A2(
 				$elm$core$Basics$composeL,
-				$author$project$VegaLite$params,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$params,
+						A2(
+							$author$project$VegaLite$param,
+							'colorMid',
+							_List_fromArray(
+								[
+									$author$project$VegaLite$paValue(
+									$author$project$VegaLite$num(3)),
+									$author$project$VegaLite$paBind(
+									$author$project$VegaLite$ipRange(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$inMin(0),
+												$author$project$VegaLite$inMax(6)
+											])))
+								]))),
+					A2(
+						$author$project$VegaLite$param,
+						'xMax',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$num(5)),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipRange(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inMin(0),
+											$author$project$VegaLite$inMax(10),
+											$author$project$VegaLite$inStep(1)
+										])))
+							]))),
 				A2(
 					$author$project$VegaLite$param,
-					'domainMin',
+					'yMin',
 					_List_fromArray(
 						[
 							$author$project$VegaLite$paValue(
@@ -14658,34 +14773,23 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 						]))),
 			A2(
 				$author$project$VegaLite$param,
-				'domainMid',
+				'minDate',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(3)),
+						$author$project$VegaLite$str('2021-04-08')),
 						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inMin(0),
-									$author$project$VegaLite$inMax(6)
-								])))
+						$author$project$VegaLite$ipDate(_List_Nil))
 					]))),
 		A2(
 			$author$project$VegaLite$param,
-			'domainMax',
+			'maxDate',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$num(5)),
+					$author$project$VegaLite$str('2021-04-15')),
 					$author$project$VegaLite$paBind(
-					$author$project$VegaLite$ipRange(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$inMin(0),
-								$author$project$VegaLite$inMax(10),
-								$author$project$VegaLite$inStep(1)
-							])))
+					$author$project$VegaLite$ipDate(_List_Nil))
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -14701,13 +14805,13 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 						0,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('x'),
+								$author$project$VegaLite$pName('val'),
 								$author$project$VegaLite$pQuant,
 								$author$project$VegaLite$pScale(
 								_List_fromArray(
 									[
 										$author$project$VegaLite$scDomain(
-										A2($author$project$VegaLite$doNumExpr, 'domainMax', $author$project$VegaLite$doMax))
+										A2($author$project$VegaLite$doNumExpr, 'xMax', $author$project$VegaLite$doMax))
 									]))
 							]))),
 				A2(
@@ -14715,43 +14819,57 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('x'),
+							$author$project$VegaLite$pName('val'),
 							$author$project$VegaLite$pQuant,
 							$author$project$VegaLite$pScale(
 							_List_fromArray(
 								[
 									$author$project$VegaLite$scDomain(
-									A2($author$project$VegaLite$doNumExpr, 'domainMin', $author$project$VegaLite$doMin))
+									A2($author$project$VegaLite$doNumExpr, 'yMin', $author$project$VegaLite$doMin))
 								]))
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('x'),
+						$author$project$VegaLite$mName('val'),
 						$author$project$VegaLite$mQuant,
 						$author$project$VegaLite$mScale(
 						_List_fromArray(
 							[
 								A2($author$project$VegaLite$scScheme, 'spectral', _List_Nil),
 								$author$project$VegaLite$scDomain(
-								A2($author$project$VegaLite$doNumExpr, 'domainMid', $author$project$VegaLite$doMid))
+								A2($author$project$VegaLite$doNumExpr, 'colorMid', $author$project$VegaLite$doMid))
 							]))
 					]))),
 		$author$project$VegaLite$size(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('x'),
-					$author$project$VegaLite$mQuant
+					$author$project$VegaLite$mName('date'),
+					$author$project$VegaLite$mTemporal,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doDtsExpr('[datetime(minDate),datetime(maxDate)]'))
+						]))
 				])));
 	var data = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'val',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[1, 2, 3, 4, 5])))),
 		A2(
 			$author$project$VegaLite$dataColumn,
-			'x',
-			$author$project$VegaLite$nums(
+			'date',
+			$author$project$VegaLite$strs(
 				_List_fromArray(
-					[1, 2, 3, 4, 5]))));
+					['2021-04-10', '2021-04-11', '2021-04-12', '2021-04-13', '2021-04-14']))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[

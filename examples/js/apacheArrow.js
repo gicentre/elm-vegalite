@@ -4524,6 +4524,26 @@ var $author$project$VegaLite$filterProperties = function (f) {
 		case 10:
 			var field = f.a;
 			var vals = f.b;
+			var fromTs = function (ts) {
+				if (ts.$ === 1) {
+					var s = ts.a;
+					return $elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							]));
+				} else {
+					if (!ts.a.b) {
+						return $elm$json$Json$Encode$null;
+					} else {
+						var d = ts.a;
+						return $elm$json$Json$Encode$object(
+							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+					}
+				}
+			};
 			var values = function () {
 				if (!vals.$) {
 					var mn = vals.a;
@@ -4534,44 +4554,14 @@ var $author$project$VegaLite$filterProperties = function (f) {
 						_List_fromArray(
 							[mn, mx]));
 				} else {
-					if (!vals.a.b) {
-						if (!vals.b.b) {
-							return $author$project$VegaLite$toList(
-								_List_fromArray(
-									[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null]));
-						} else {
-							var dMax = vals.b;
-							return $author$project$VegaLite$toList(
-								_List_fromArray(
-									[
-										$elm$json$Json$Encode$null,
-										$elm$json$Json$Encode$object(
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMax))
-									]));
-						}
-					} else {
-						if (!vals.b.b) {
-							var dMin = vals.a;
-							return $author$project$VegaLite$toList(
-								_List_fromArray(
-									[
-										$elm$json$Json$Encode$object(
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMin)),
-										$elm$json$Json$Encode$null
-									]));
-						} else {
-							var dMin = vals.a;
-							var dMax = vals.b;
-							return A2(
-								$elm$json$Json$Encode$list,
-								$elm$json$Json$Encode$object,
-								_List_fromArray(
-									[
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMin),
-										A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, dMax)
-									]));
-						}
-					}
+					var ts1 = vals.a;
+					var ts2 = vals.b;
+					return $author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								fromTs(ts1),
+								fromTs(ts2)
+							]));
 				}
 			}();
 			return _List_fromArray(
@@ -4620,9 +4610,9 @@ var $author$project$VegaLite$filterProperties = function (f) {
 							A2(
 								$elm$core$Basics$composeR,
 								$elm$core$List$map(
-									function (_v3) {
-										var k = _v3.a;
-										var v = _v3.b;
+									function (_v4) {
+										var k = _v4.a;
+										var v = _v4.b;
 										return _Utils_Tuple2(
 											k,
 											$author$project$VegaLite$dataValueSpec(v));
@@ -5285,18 +5275,51 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
+		case 8:
+			var s = sdType.a;
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'expr',
+						$elm$json$Json$Encode$string(s))
+					]));
 		case 4:
-			var d = sdType.a;
-			return $elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			var ts = sdType.a;
+			if (!ts.$) {
+				var d = ts.a;
+				return $elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			} else {
+				var s = ts.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 5:
-			var d = sdType.a;
-			return $elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			var ts = sdType.a;
+			if (!ts.$) {
+				var d = ts.a;
+				return $elm$json$Json$Encode$object(
+					A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+			} else {
+				var s = ts.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 6:
 			var cats = sdType.a;
 			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
-		case 8:
+		case 9:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -5305,7 +5328,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'param',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		case 10:
+		case 11:
 			var selName = sdType.a;
 			var ch = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -5319,7 +5342,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(
 							$author$project$VegaLite$channelLabel(ch)))
 					]));
-		case 9:
+		case 10:
 			var selName = sdType.a;
 			var f = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -5332,7 +5355,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'field',
 						$elm$json$Json$Encode$string(f))
 					]));
-		case 12:
+		case 13:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -5591,23 +5614,57 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					var x = sdType.a;
 					return A2($author$project$VegaLite$numExpr, 'domainMax', x);
 				case 4:
-					var d = sdType.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'domainMin',
-							$elm$json$Json$Encode$object(
-								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
-						]);
+					var ts = sdType.a;
+					if (!ts.$) {
+						var d = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMin',
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+							]);
+					} else {
+						var s = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMin',
+								$elm$json$Json$Encode$object(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'expr',
+											$elm$json$Json$Encode$string(s))
+										])))
+							]);
+					}
 				case 5:
-					var d = sdType.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'domainMax',
-							$elm$json$Json$Encode$object(
-								A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
-						]);
+					var ts = sdType.a;
+					if (!ts.$) {
+						var d = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMax',
+								$elm$json$Json$Encode$object(
+									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+							]);
+					} else {
+						var s = ts.a;
+						return _List_fromArray(
+							[
+								_Utils_Tuple2(
+								'domainMax',
+								$elm$json$Json$Encode$object(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'expr',
+											$elm$json$Json$Encode$string(s))
+										])))
+							]);
+					}
 				default:
 					return _List_fromArray(
 						[
