@@ -5920,6 +5920,20 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$scaleLabel(sType)))
 				]);
+		case 2:
+			var s = scaleProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'domain',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
 		case 1:
 			var sdType = scaleProp.a;
 			switch (sdType.$) {
@@ -5992,7 +6006,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 							$author$project$VegaLite$scaleDomainSpec(sdType))
 						]);
 			}
-		case 2:
+		case 3:
 			var range = scaleProp.a;
 			switch (range.$) {
 				case 4:
@@ -6061,14 +6075,14 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 									])))
 						]);
 			}
-		case 3:
+		case 4:
 			var schName = scaleProp.a;
 			var extent = scaleProp.b;
 			return _List_fromArray(
 				[
 					A2($author$project$VegaLite$schemeProperty, schName, extent)
 				]);
-		case 4:
+		case 5:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6076,7 +6090,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'align',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 5:
+		case 6:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6084,7 +6098,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'padding',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 16:
+		case 17:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6092,7 +6106,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'base',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 13:
+		case 14:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6100,7 +6114,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'exponent',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 14:
+		case 15:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6108,7 +6122,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'domainMid',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 15:
+		case 16:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6116,7 +6130,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'constant',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 6:
+		case 7:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6124,7 +6138,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'paddingInner',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 7:
+		case 8:
 			var x = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6132,7 +6146,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'paddingOuter',
 					$elm$json$Json$Encode$float(x))
 				]);
-		case 8:
+		case 9:
 			var b = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6140,7 +6154,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'round',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 9:
+		case 10:
 			var b = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6148,7 +6162,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'clamp',
 					$elm$json$Json$Encode$bool(b))
 				]);
-		case 10:
+		case 11:
 			var interp = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6156,7 +6170,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'interpolate',
 					$author$project$VegaLite$cInterpolateSpec(interp))
 				]);
-		case 11:
+		case 12:
 			var ni = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -6164,7 +6178,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 					'nice',
 					$author$project$VegaLite$scaleNiceSpec(ni))
 				]);
-		case 12:
+		case 13:
 			var b = scaleProp.a;
 			return _List_fromArray(
 				[
@@ -7938,7 +7952,7 @@ var $author$project$VegaLite$RMaxNumber = function (a) {
 };
 var $author$project$VegaLite$raMax = $author$project$VegaLite$RMaxNumber;
 var $author$project$VegaLite$SRange = function (a) {
-	return {$: 2, a: a};
+	return {$: 3, a: a};
 };
 var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
 var $author$project$VegaLite$size = function (markProps) {
@@ -12762,7 +12776,7 @@ var $author$project$VegaLite$SType = function (a) {
 };
 var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
 var $author$project$VegaLite$SZero = function (a) {
-	return {$: 12, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
 var $author$project$VegaLite$BindScales = {$: 1};
