@@ -6860,6 +6860,32 @@ var $author$project$VegaLite$schemeProperty = F2(
 			}
 		}
 	});
+var $author$project$VegaLite$strsExpr = F2(
+	function (objName, ss) {
+		if (!ss.$) {
+			var xs = ss.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, xs))
+				]);
+		} else {
+			var s = ss.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
+		}
+	});
 var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 	switch (scaleProp.$) {
 		case 0:
@@ -6960,31 +6986,35 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 		case 3:
 			var range = scaleProp.a;
 			switch (range.$) {
-				case 4:
-					var x = range.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'rangeMin',
-							$elm$json$Json$Encode$float(x))
-						]);
 				case 5:
 					var x = range.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'rangeMax',
-							$elm$json$Json$Encode$float(x))
-						]);
+					return A2($author$project$VegaLite$numExpr, 'rangeMin', x);
+				case 6:
+					var x = range.a;
+					return A2($author$project$VegaLite$numExpr, 'rangeMax', x);
 				case 0:
 					var xs = range.a;
+					return A2($author$project$VegaLite$numsExpr, 'range', xs);
+				case 2:
+					var ss = range.a;
 					return _List_fromArray(
 						[
 							_Utils_Tuple2(
 							'range',
-							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
+							A2(
+								$elm$json$Json$Encode$list,
+								function (s) {
+									return $elm$json$Json$Encode$object(
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												'expr',
+												$elm$json$Json$Encode$string(s))
+											]));
+								},
+								ss))
 						]);
-				case 2:
+				case 3:
 					var xss = range.a;
 					return _List_fromArray(
 						[
@@ -6997,13 +7027,8 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 						]);
 				case 1:
 					var ss = range.a;
-					return _List_fromArray(
-						[
-							_Utils_Tuple2(
-							'range',
-							A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss))
-						]);
-				case 3:
+					return A2($author$project$VegaLite$strsExpr, 'range', ss);
+				case 4:
 					var s = range.a;
 					return _List_fromArray(
 						[
@@ -14197,6 +14222,9 @@ var $author$project$VegaLite$SDomain = function (a) {
 var $author$project$VegaLite$SRange = function (a) {
 	return {$: 3, a: a};
 };
+var $author$project$VegaLite$Strs = function (a) {
+	return {$: 0, a: a};
+};
 var $elm$core$List$unzip = function (pairs) {
 	var step = F2(
 		function (_v0, _v1) {
@@ -14223,7 +14251,8 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 			$author$project$VegaLite$SDomain(
 			$author$project$VegaLite$DStrings(domain)),
 			$author$project$VegaLite$SRange(
-			$author$project$VegaLite$RStrings(range))
+			$author$project$VegaLite$RStrings(
+				$author$project$VegaLite$Strs(range)))
 		]);
 };
 var $author$project$ShapeTests$cross = 'M -1.5 -1.5 m1 0 h 1 v 1 h 1 v 1 h -1 v 1 h -1  v -1 h -1 v -1 h 1z';
