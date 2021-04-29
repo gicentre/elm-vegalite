@@ -379,24 +379,27 @@ scaleInteractive =
 
         ps =
             params
+                << param "clamp" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "colorMid" [ paValue (num 3), paBind (ipRange [ inMin 0, inMax 6 ]) ]
-                << param "xDomainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
-                << param "yDomainMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "xDomainMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "yDomainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
                 << param "xRangeMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "xRangeMax" [ paValue (num 350), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "yRangeMax" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
                 << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
+                << param "rev" [ paValue (boo True), paBind (ipCheckbox [ inName "reverse colours" ]) ]
                 << param "scheme" [ paValue (str "spectral"), paBind (ipSelect [ inOptions [ "plasma", "oranges", "spectral" ] ]) ]
                 << param "shapeB" [ paValue (boo True), paBind (ipCheckbox []) ]
+                << param "zeroOrigin" [ paValue (boo True), paBind (ipCheckbox []) ]
 
-        enc =
+        encPoint =
             encoding
                 << position X
                     [ pName "val"
                     , pQuant
                     , pScale
-                        [ scDomain (doNumExpr "xDomainMax" doMax)
+                        [ scDomain (doNumExpr "xDomainMin" doMin)
                         , scRange (raExprs [ "xRangeMin", "xRangeMax" ])
                         ]
                     ]
@@ -404,14 +407,19 @@ scaleInteractive =
                     [ pName "val"
                     , pQuant
                     , pScale
-                        [ scDomain (doNumExpr "yDomainMin" doMin)
+                        [ scDomain (doNumExpr "yDomainMax" doMax)
                         , scRange (raNumExpr "yRangeMax" raMax)
+                        , scBooExpr "zeroOrigin" scZero
                         ]
                     ]
                 << color
                     [ mName "val"
                     , mQuant
-                    , mScale [ scSchemeExpr "scheme" [], scDomain (doNumExpr "colorMid" doMid) ]
+                    , mScale
+                        [ scSchemeExpr "scheme" []
+                        , scDomain (doNumExpr "colorMid" doMid)
+                        , scBooExpr "rev" scReverse
+                        ]
                     ]
                 << shape [ mName "cat", mScale [ scDomainExpr "shapeB ? ['a','b'] : ['a']" ] ]
                 << size
@@ -419,8 +427,27 @@ scaleInteractive =
                     , mTemporal
                     , mScale [ scDomain (doDtsExpr "[datetime(minDate),datetime(maxDate)]") ]
                     ]
+
+        specPoint =
+            asSpec [ encPoint [], point [ maFilled True ] ]
+
+        encLine =
+            encoding
+                << position X
+                    [ pName "val"
+                    , pQuant
+                    , pScale [ scBooExpr "clamp" scClamp ]
+                    ]
+                << position Y
+                    [ pName "val"
+                    , pQuant
+                    , pScale [ scBooExpr "clamp" scClamp ]
+                    ]
+
+        specLine =
+            asSpec [ encLine [], line [] ]
     in
-    toVegaLite [ ps [], width 400, height 400, data [], enc [], point [ maFilled True ] ]
+    toVegaLite [ ps [], width 400, height 400, data [], layer [ specPoint, specLine ] ]
 
 
 
