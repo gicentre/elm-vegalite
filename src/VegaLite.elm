@@ -828,6 +828,7 @@ module VegaLite exposing
     , kTemporal
     , kGeo
     , scType
+    , scNumExpr
     , scBooExpr
     , doNumExpr
     , scDomain
@@ -2907,6 +2908,7 @@ Used to specify how the encoding of a data field should be applied. See the
 [Vega-Lite scale documentation](https://vega.github.io/vega-lite/docs/scale.html).
 
 @docs scType
+@docs scNumExpr
 @docs scBooExpr
 
 
@@ -5915,20 +5917,20 @@ type ScaleProperty
     | SRange ScaleRange
     | SScheme String (List Float)
     | SSchemeExpr String (List Float)
-    | SAlign Float
-    | SPadding Float
-    | SPaddingInner Float
-    | SPaddingOuter Float
+    | SAlign Num
+    | SPadding Num
+    | SPaddingInner Num
+    | SPaddingOuter Num
     | SRound Boo
     | SClamp Boo
       -- TODO:  Need to restrict set of valid scale types that work with color interpolation.
     | SInterpolate CInterpolate
     | SNice ScaleNice
     | SZero Boo
-    | SExponent Float
-    | SDomainMid Float
-    | SConstant Float
-    | SBase Float
+    | SExponent Num
+    | SDomainMid Num
+    | SConstant Num
+    | SBase Num
     | SReverse Boo
 
 
@@ -18238,7 +18240,7 @@ axis, 1 away from axis.
 -}
 scAlign : Float -> ScaleProperty
 scAlign x =
-    SAlign (max 0 (min 1 x))
+    SAlign (Num (max 0 (min 1 x)))
 
 
 {-| A band scale.
@@ -18251,8 +18253,8 @@ scBand =
 {-| The base to use for log scaling.
 -}
 scBase : Float -> ScaleProperty
-scBase =
-    SBase
+scBase n =
+    SBase (Num n)
 
 
 {-| An ordinal band scale.
@@ -18310,8 +18312,8 @@ scClamp b =
 unspecified, the default is 1.
 -}
 scConstant : Float -> ScaleProperty
-scConstant =
-    SConstant
+scConstant n =
+    SConstant (Num n)
 
 
 {-| Custom scaling domain.
@@ -18331,15 +18333,15 @@ scDomainExpr =
 {-| Deprecated in favour of `scDomain doMid`
 -}
 scDomainMid : Float -> ScaleProperty
-scDomainMid =
-    SDomainMid
+scDomainMid n =
+    SDomainMid (Num n)
 
 
 {-| The exponent to use for power scaling.
 -}
 scExponent : Float -> ScaleProperty
-scExponent =
-    SExponent
+scExponent n =
+    SExponent (Num n)
 
 
 {-| Interpolation method for scaling range values.
@@ -18372,6 +18374,54 @@ scNice =
     SNice
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a scale property function requiring a numeric value. This can be used to provide
+an interactive parameterisation of a mark property by providing an expression bound
+to an input element. For example,
+
+    ps =
+        params
+            << param "pad"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 100 ])
+                ]
+
+    enc =
+        encoding
+            << position X [ mName "val" mScale [ scNumExpr "pad" scPadding ] ]
+
+-}
+scNumExpr : String -> (number -> ScaleProperty) -> ScaleProperty
+scNumExpr ex fn =
+    case fn 0 of
+        SAlign _ ->
+            SAlign (NumExpr ex)
+
+        SBase _ ->
+            SBase (NumExpr ex)
+
+        SConstant _ ->
+            SConstant (NumExpr ex)
+
+        SDomainMid _ ->
+            SDomainMid (NumExpr ex)
+
+        SExponent _ ->
+            SExponent (NumExpr ex)
+
+        SPadding _ ->
+            SPadding (NumExpr ex)
+
+        SPaddingInner _ ->
+            SPaddingInner (NumExpr ex)
+
+        SPaddingOuter _ ->
+            SPaddingOuter (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
 {-| An ordinal scale.
 -}
 scOrdinal : Scale
@@ -18382,22 +18432,22 @@ scOrdinal =
 {-| Padding in pixels to apply to a scaling.
 -}
 scPadding : Float -> ScaleProperty
-scPadding =
-    SPadding
+scPadding n =
+    SPadding (Num n)
 
 
 {-| Inner padding to apply to a band scaling.
 -}
 scPaddingInner : Float -> ScaleProperty
-scPaddingInner =
-    SPaddingInner
+scPaddingInner n =
+    SPaddingInner (Num n)
 
 
 {-| Outer padding to apply to a band scaling.
 -}
 scPaddingOuter : Float -> ScaleProperty
-scPaddingOuter =
-    SPaddingOuter
+scPaddingOuter n =
+    SPaddingOuter (Num n)
 
 
 {-| A point scale.
@@ -25623,28 +25673,28 @@ scaleProperty scaleProp =
             [ schemeProperty schExpr True extent ]
 
         SAlign x ->
-            [ ( "align", JE.float x ) ]
+            numExpr "align" x
 
         SPadding x ->
-            [ ( "padding", JE.float x ) ]
+            numExpr "padding" x
 
         SBase x ->
-            [ ( "base", JE.float x ) ]
+            numExpr "base" x
 
         SExponent x ->
-            [ ( "exponent", JE.float x ) ]
+            numExpr "exponent" x
 
         SDomainMid x ->
-            [ ( "domainMid", JE.float x ) ]
+            numExpr "domainMid" x
 
         SConstant x ->
-            [ ( "constant", JE.float x ) ]
+            numExpr "constant" x
 
         SPaddingInner x ->
-            [ ( "paddingInner", JE.float x ) ]
+            numExpr "paddingInner" x
 
         SPaddingOuter x ->
-            [ ( "paddingOuter", JE.float x ) ]
+            numExpr "paddingOuter" x
 
         SRound b ->
             booExpr "round" b
