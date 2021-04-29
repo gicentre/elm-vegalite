@@ -5844,10 +5844,10 @@ type ScaleConfig
 [doUnaggregated](#doUnaggregated).
 -}
 type ScaleDomain
-    = DNumbers (List Float)
-    | DMinNumber Float
-    | DMidNumber Float
-    | DMaxNumber Float
+    = DNumbers Nums
+    | DMinNumber Num
+    | DMidNumber Num
+    | DMaxNumber Num
     | DMinDateTime (List DateTime)
     | DMaxDateTime (List DateTime)
     | DStrings (List String)
@@ -10500,22 +10500,22 @@ domainRangeMap lowerMap upperMap =
         ( domain, range ) =
             List.unzip [ lowerMap, upperMap ]
     in
-    [ SDomain (DNumbers domain), SRange (RStrings range) ]
+    [ SDomain (DNumbers (Nums domain)), SRange (RStrings range) ]
 
 
 {-| Numeric values that define a scale domain.
 -}
 doNums : List Float -> ScaleDomain
-doNums =
-    DNumbers
+doNums ns =
+    DNumbers (Nums ns)
 
 
 {-| Set the maximum value of a continuous numeric domain. The minimum will be
 determined by the data. To set both the min and max values use [doNums](#doNums).
 -}
 doMax : Float -> ScaleDomain
-doMax =
-    DMaxNumber
+doMax n =
+    DMaxNumber (Num n)
 
 
 {-| Set the maximum value of a date-time domain. The minimum will be determined
@@ -10531,16 +10531,16 @@ domain is not symmetric about the given midpoint but you wish to use a color
 scheme that diverges equally from that point.
 -}
 doMid : Float -> ScaleDomain
-doMid =
-    DMidNumber
+doMid n =
+    DMidNumber (Num n)
 
 
 {-| Set the minimum value of a continuous numeric domain. The maximum will be
 determined by the data. To set both the min and max values use [doNums](#doNums).
 -}
 doMin : Float -> ScaleDomain
-doMin =
-    DMinNumber
+doMin n =
+    DMinNumber (Num n)
 
 
 {-| Set the minimum value of a date-time domain. The maximum will be determined
@@ -23583,7 +23583,7 @@ markChannelProperties field =
                 [ ( "scale", JE.null ) ]
 
             else
-                [ ( "scale", JE.object (List.map scaleProperty sps) ) ]
+                [ ( "scale", JE.object (List.concatMap scaleProperty sps) ) ]
 
         MLegend lps ->
             if lps == [] then
@@ -24657,7 +24657,7 @@ positionChannelProperty pDef =
                 ( "scale", JE.null )
 
             else
-                ( "scale", JE.object (List.map scaleProperty sps) )
+                ( "scale", JE.object (List.concatMap scaleProperty sps) )
 
         PAxis aps ->
             if aps == [] then
@@ -24869,7 +24869,6 @@ projectionProperty pp =
             ]
 
         PrRotate lambda phi gamma ->
-            -- [ ( "rotate", toList [ numSpec lambda, numSpec phi, numSpec gamma ] ) ]
             [ ( "rotate"
               , JE.object [ ( "expr", "[" ++ numStr lambda ++ "," ++ numStr phi ++ "," ++ numStr gamma ++ "]" |> JE.string ) ]
               )
@@ -25106,18 +25105,38 @@ scaleConfigProperty scaleCfg =
 
 scaleDomainSpec : ScaleDomain -> Spec
 scaleDomainSpec sdType =
+    let
+        numSpec n =
+            case n of
+                Num x ->
+                    JE.float x
+
+                NoNum ->
+                    JE.null
+
+                NumExpr s ->
+                    JE.object [ ( "expr", JE.string s ) ]
+
+        numsSpec ns =
+            case ns of
+                Nums xs ->
+                    JE.list JE.float xs
+
+                NumsExpr s ->
+                    JE.object [ ( "expr", JE.string s ) ]
+    in
     case sdType of
-        DNumbers ns ->
-            JE.list JE.float ns
+        DNumbers xs ->
+            numsSpec xs
 
         DMinNumber x ->
-            JE.float x
+            numSpec x
 
         DMidNumber x ->
-            JE.float x
+            numSpec x
 
         DMaxNumber x ->
-            JE.float x
+            numSpec x
 
         DDateTimes ds ->
             JE.list (\d -> JE.object (List.map dateTimeProperty d)) ds
@@ -25242,105 +25261,105 @@ scaleNiceSpec ni =
             JE.object [ ( "expr", JE.string s ) ]
 
 
-scaleProperty : ScaleProperty -> LabelledSpec
+scaleProperty : ScaleProperty -> List LabelledSpec
 scaleProperty scaleProp =
     case scaleProp of
         SType sType ->
-            ( "type", JE.string (scaleLabel sType) )
+            [ ( "type", JE.string (scaleLabel sType) ) ]
 
         SDomain sdType ->
             case sdType of
                 DMinNumber x ->
-                    ( "domainMin", JE.float x )
+                    numExpr "domainMin" x
 
                 DMidNumber x ->
-                    ( "domainMid", JE.float x )
+                    numExpr "domainMid" x
 
                 DMaxNumber x ->
-                    ( "domainMax", JE.float x )
+                    numExpr "domainMax" x
 
                 DMinDateTime d ->
-                    ( "domainMin", JE.object (List.map dateTimeProperty d) )
+                    [ ( "domainMin", JE.object (List.map dateTimeProperty d) ) ]
 
                 DMaxDateTime d ->
-                    ( "domainMax", JE.object (List.map dateTimeProperty d) )
+                    [ ( "domainMax", JE.object (List.map dateTimeProperty d) ) ]
 
                 _ ->
-                    ( "domain", scaleDomainSpec sdType )
+                    [ ( "domain", scaleDomainSpec sdType ) ]
 
         SRange range ->
             case range of
                 RMinNumber x ->
-                    ( "rangeMin", JE.float x )
+                    [ ( "rangeMin", JE.float x ) ]
 
                 RMaxNumber x ->
-                    ( "rangeMax", JE.float x )
+                    [ ( "rangeMax", JE.float x ) ]
 
                 -- TODO: Pending confirmation of https://github.com/vega/vega-lite/issues/6758
                 -- RMinString s ->
-                --     ( "rangeMin", JE.string s )
+                --     [( "rangeMin", JE.string s )]
                 --
                 -- RMaxString s ->
-                --     ( "rangeMax", JE.string s )
+                --     [( "rangeMax", JE.string s )]
                 RNumbers xs ->
-                    ( "range", JE.list JE.float xs )
+                    [ ( "range", JE.list JE.float xs ) ]
 
                 RNumberLists xss ->
-                    ( "range", JE.list (JE.list JE.float) xss )
+                    [ ( "range", JE.list (JE.list JE.float) xss ) ]
 
                 RStrings ss ->
-                    ( "range", JE.list JE.string ss )
+                    [ ( "range", JE.list JE.string ss ) ]
 
                 RName s ->
-                    ( "range", JE.string s )
+                    [ ( "range", JE.string s ) ]
 
                 RField s ->
-                    ( "range", JE.object [ ( "field", JE.string s ) ] )
+                    [ ( "range", JE.object [ ( "field", JE.string s ) ] ) ]
 
         SScheme schName extent ->
-            schemeProperty schName extent
+            [ schemeProperty schName extent ]
 
         SAlign x ->
-            ( "align", JE.float x )
+            [ ( "align", JE.float x ) ]
 
         SPadding x ->
-            ( "padding", JE.float x )
+            [ ( "padding", JE.float x ) ]
 
         SBase x ->
-            ( "base", JE.float x )
+            [ ( "base", JE.float x ) ]
 
         SExponent x ->
-            ( "exponent", JE.float x )
+            [ ( "exponent", JE.float x ) ]
 
         SDomainMid x ->
-            ( "domainMid", JE.float x )
+            [ ( "domainMid", JE.float x ) ]
 
         SConstant x ->
-            ( "constant", JE.float x )
+            [ ( "constant", JE.float x ) ]
 
         SPaddingInner x ->
-            ( "paddingInner", JE.float x )
+            [ ( "paddingInner", JE.float x ) ]
 
         SPaddingOuter x ->
-            ( "paddingOuter", JE.float x )
+            [ ( "paddingOuter", JE.float x ) ]
 
         SRound b ->
-            ( "round", JE.bool b )
+            [ ( "round", JE.bool b ) ]
 
         SClamp b ->
-            ( "clamp", JE.bool b )
+            [ ( "clamp", JE.bool b ) ]
 
         SInterpolate interp ->
-            ( "interpolate", cInterpolateSpec interp )
+            [ ( "interpolate", cInterpolateSpec interp ) ]
 
         SNice ni ->
-            ( "nice", scaleNiceSpec ni )
+            [ ( "nice", scaleNiceSpec ni ) ]
 
         SZero b ->
-            ( "zero", JE.bool b )
+            [ ( "zero", JE.bool b ) ]
 
         SReverse b ->
-            ( "reverse", JE.bool b )
+            [ ( "reverse", JE.bool b ) ]
 
 
 schemeProperty : String -> List Float -> LabelledSpec
