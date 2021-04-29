@@ -7469,11 +7469,17 @@ an input element. For example,
 
     ps =
         params
-            << param "lbls" [ paValue (boo True), paBind (ipCheckbox []) ]
+            << param "lbls"
+                [ paValue (boo True)
+                , paBind (ipCheckbox [])
+                ]
 
     enc =
         encoding
-            << position X [ pName "x", pAxis [ axLabels |> axBooExpr "lbls" ] ]
+            << position X
+                [ pName "x"
+                , pAxis [ axBooExpr "lbls" axLabels ]
+                ]
 
 -}
 axBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
@@ -7507,11 +7513,17 @@ parameterisation when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "axo" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
+            << param "axo"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 20 ])
+                ]
 
     enc =
         encoding
-            << position X [ pName "x", pAxis [ axOffset |> axNumExpr "axo" ] ]
+            << position X
+                [ pName "x"
+                , pAxis [ axNumExpr "axo" axOffset ]
+                ]
 
 -}
 axNumExpr : String -> (number -> AxisProperty) -> AxisProperty
@@ -7643,7 +7655,7 @@ an expression is bound to an input element. For example,
 
     enc =
         encoding
-            << position X [ pAxis [ axGridDash |> axNumsExpr "gridDash" ] ]
+            << position X [ pAxis [ axNumsExpr "gridDash" axGridDash ] ]
 
 -}
 axNumsExpr : String -> (List number -> AxisProperty) -> AxisProperty
@@ -7669,13 +7681,16 @@ input element. For example,
 
     ps =
         params
-            << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+            << param "color"
+                [ paValue (str "black")
+                , paBind (ipColor [])
+                ]
 
     enc =
         encoding
             << position X
                 [ pName "x"
-                , pAxis [ axTitleColor |> axStrExpr "color" ]
+                , pAxis [ axStrExpr "color" axTitleColor ]
                 ]
 
 -}
@@ -10554,13 +10569,16 @@ For example,
 
     ps =
         params
-            << param "xm" [ paValue (num 50), paBind (ipRange [ inMax 100 ]) ]
+            << param "upper"
+                [ paValue (num 50)
+                , paBind (ipRange [ inMax 100 ])
+                ]
 
     enc =
         encoding
             << position X
                 [ pName "x"
-                , pScale [ scDomain (doMax |> doNumExpr "xm") ]
+                , pScale [ scDomain (doNumExpr "upper" doMax) ]
                 ]
 
 -}
@@ -12020,13 +12038,16 @@ parameterisation when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "size" [ paValue (num 12), paBind (ipRange [ inMax 32 ]) ]
+            << param "size"
+                [ paValue (num 12)
+                , paBind (ipRange [ inMax 32 ])
+                ]
 
     enc =
         encoding
             << column
                 [ fName "country"
-                , fHeader [ hdLabelFontSize |> hdNumExpr "size" ]
+                , fHeader [ hdNumExpr "size" hdLabelFontSize ]
                 ]
 
 -}
@@ -12083,13 +12104,16 @@ input element. For example,
 
     ps =
         params
-            << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+            << param "color"
+                [ paValue (str "black")
+                , paBind (ipColor [])
+                ]
 
     enc =
         encoding
             << column
                 [ fName "country"
-                , fHeader [ hdLabelColor |> hdStrExpr "color" ]
+                , fHeader [ hdStrExpr "color" hdLabelColor ]
                 ]
 
 -}
@@ -13569,13 +13593,16 @@ parameterisation when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "xPos" [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
+            << param "xPos"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 100 ])
+                ]
 
     enc =
         encoding
             << color
                 [ mName "animal"
-                , mLegend [ leX |> leNumExpr "xPos" ]
+                , mLegend [ leNumExpr "xPos" leX ]
                 ]
 
 -}
@@ -13683,14 +13710,17 @@ an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "symbolDash"
+            << param "dashStyle"
                 [ paValue nums []
                 , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
                 ]
 
     enc =
         encoding
-            << color [ mName "country", mLegned [ leSymbolDash |> leNumsExpr "symbolDash" ] ]
+            << color
+                [ mName "country"
+                , mLegned [ leNumsExpr "dashStyle" leSymbolDash ]
+                ]
 
 -}
 leNumsExpr : String -> (List number -> LegendProperty) -> LegendProperty
@@ -13710,13 +13740,16 @@ input element. For example,
 
     ps =
         params
-            << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+            << param "color"
+                [ paValue (str "black")
+                , paBind (ipColor [])
+                ]
 
     enc =
         encoding
             << color
                 [ mName "animal"
-                , mLegend [ leTitleColor |> leStrExpr "color" ]
+                , mLegend [ leStrExpr "color" leTitleColor ]
                 ]
 
 -}
@@ -15860,7 +15893,7 @@ to an input element. For example,
                 ]
 
     mk =
-        image [ maAspect |> maBooExpr "asp" ]
+        image [ maBooExpr "asp" maAspect ]
 
 -}
 maBooExpr : String -> (Bool -> MarkProperty) -> MarkProperty
@@ -15894,10 +15927,13 @@ parameterisation when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
+            << param "r"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 100 ])
+                ]
 
     mk =
-        arc [ maInnerRadius |> maNumExpr "r" ]
+        arc [ maNumExpr "r" maInnerRadius ]
 
 -}
 maNumExpr : String -> (number -> MarkProperty) -> MarkProperty
@@ -16034,10 +16070,13 @@ to an input element. For example,
 
     ps =
         params
-            << param "clr" [ paValue (str "red"), paBind (ipColor []) ]
+            << param "clr"
+                [ paValue (str "red")
+                , paBind (ipColor [])
+                ]
 
     mk =
-        circle [ maFill |> maStrExpr "clr" ]
+        circle [ maStrExpr "clr" maFill ]
 
 -}
 maStrExpr : String -> (String -> MarkProperty) -> MarkProperty
@@ -16680,7 +16719,9 @@ circle size dynamically:
         ps =
             params
                 << param "radius"
-                    [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
+                    [ paValue (num 0)
+                    , paBind (ipRange [ inMax 100 ])
+                    ]
 
         enc =
             encoding
@@ -16691,7 +16732,7 @@ circle size dynamically:
         [ ps []
         , data []
         , enc []
-        , arc [ maInnerRadius |> maNumExpr "radius" ]
+        , arc [ maNumExpr "radius" maInnerRadius ]
         ]
 
 -}
@@ -17124,10 +17165,13 @@ For example,
 
     ps =
         params
-            << param "a" [ paValue (num 0), paBind (ipRange [ inMax 180 ]) ]
+            << param "angle"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 180 ])
+                ]
 
     proj =
-        projection [ prClipAngle |> prNumExpr "a" ]
+        projection [ prNumExpr "angle" prClipAngle ]
 
 -}
 prNumExpr : String -> (number -> ProjectionProperty) -> ProjectionProperty
@@ -19462,10 +19506,13 @@ parameterisation when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "fs" [ paValue (num 0), paBind (ipRange [ inMax 32 ]) ]
+            << param "fs"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 32 ])
+                ]
 
     ttl =
-        title "My title" [ tiFontSize |> tiNumExpr "fs" ]
+        title "My title" [ tiNumExpr "fs" tiFontSize ]
 
 -}
 tiNumExpr : String -> (number -> TitleProperty) -> TitleProperty
@@ -19515,10 +19562,13 @@ input element. For example,
 
     ps =
         params
-            << params "clr" [ paValue (str "black"), paBind (ipColor []) ]
+            << params "clr"
+                [ paValue (str "black")
+                , paBind (ipColor [])
+                ]
 
     ttl =
-        title "My title" [ tiColor |> tiStrExpr "clr" ]
+        title "My title" [ tiStrExpr "clr" tiColor ]
 
 -}
 tiStrExpr : String -> (String -> TitleProperty) -> TitleProperty
@@ -20248,10 +20298,13 @@ parameterisation when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "r" [ paValue (num 0), paBind (ipRange [ inMax 20 ]) ]
+            << param "r"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 20 ])
+                ]
 
     bg =
-        viewBackground [ viewCornerRadius |> vbNumExpr "r" ]
+        viewBackground [ vbNumExpr "r" viewCornerRadius ]
 
 -}
 vbNumExpr : String -> (number -> ViewBackground) -> ViewBackground
@@ -20289,13 +20342,13 @@ when an expression is bound to an input element. For example,
 
     ps =
         params
-            << param "bgDash"
+            << param "dashStyle"
                 [ paValue (nums [ 2, 2 ])
                 , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
                 ]
 
     bg =
-        viewBackground [ viewStrokeDash |> vbNumsExpr "bgDash" ]
+        viewBackground [ vbNumsExpr "dashStyle" viewStrokeDash ]
 
 -}
 vbNumsExpr : String -> (List number -> ViewBackground) -> ViewBackground
@@ -20315,10 +20368,13 @@ is bound to an input element. For example,
 
     ps =
         params
-            << param "clr" [ paValue (str "white"), paBind (ipColor []) ]
+            << param "clr"
+                [ paValue (str "white")
+                , paBind (ipColor [])
+                ]
 
     bg =
-        viewBackground [ viewFill |> vbStrExpr "clr" ]
+        viewBackground [ vbStrExpr "clr" viewFill ]
 
 -}
 vbStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground

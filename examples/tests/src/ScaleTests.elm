@@ -383,9 +383,9 @@ scaleInteractive =
 
         enc =
             encoding
-                << position X [ pName "x", pQuant, pScale [ scDomain (doMax |> doNumExpr "domainMax") ] ]
-                << position Y [ pName "x", pQuant, pScale [ scDomain (doMin |> doNumExpr "domainMin") ] ]
-                << color [ mName "x", mQuant, mScale [ scScheme "spectral" [], scDomain (doMid |> doNumExpr "domainMid") ] ]
+                << position X [ pName "x", pQuant, pScale [ scDomain (doNumExpr "domainMax" doMax) ] ]
+                << position Y [ pName "x", pQuant, pScale [ scDomain (doNumExpr "domainMin" doMin) ] ]
+                << color [ mName "x", mQuant, mScale [ scScheme "spectral" [], scDomain (doNumExpr "domainMid" doMid) ] ]
                 << size [ mName "x", mQuant ]
     in
     toVegaLite [ ps [], width 400, height 400, data [], enc [], circle [] ]
