@@ -828,6 +828,7 @@ module VegaLite exposing
     , kTemporal
     , kGeo
     , scType
+    , doNumExpr
     , scDomain
     , categoricalDomainMap
     , domainRangeMap
@@ -2903,6 +2904,8 @@ Used to specify how the encoding of a data field should be applied. See the
 ### 5.10.1 Scale Domain
 
 Describes the data values that will be encoded.
+
+@docs doNumExpr
 
 @docs scDomain
 @docs categoricalDomainMap
@@ -10503,13 +10506,6 @@ domainRangeMap lowerMap upperMap =
     [ SDomain (DNumbers (Nums domain)), SRange (RStrings range) ]
 
 
-{-| Numeric values that define a scale domain.
--}
-doNums : List Float -> ScaleDomain
-doNums ns =
-    DNumbers (Nums ns)
-
-
 {-| Set the maximum value of a continuous numeric domain. The minimum will be
 determined by the data. To set both the min and max values use [doNums](#doNums).
 -}
@@ -10549,6 +10545,46 @@ by the data. To set both the min and max values use [doDts](#doDts).
 doMinDt : List DateTime -> ScaleDomain
 doMinDt =
     DMinDateTime
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a domain scale property function requiring a numeric value. This can be used for
+interactive parameterisation when an expression is bound to an input element.
+For example,
+
+    ps =
+        params
+            << param "xm" [ paValue (num 50), paBind (ipRange [ inMax 100 ]) ]
+
+    enc =
+        encoding
+            << position X
+                [ pName "x"
+                , pScale [ scDomain (doMax |> doNumExpr "xm") ]
+                ]
+
+-}
+doNumExpr : String -> (number -> ScaleDomain) -> ScaleDomain
+doNumExpr ex fn =
+    case fn 0 of
+        DMaxNumber _ ->
+            DMaxNumber (NumExpr ex)
+
+        DMidNumber _ ->
+            DMidNumber (NumExpr ex)
+
+        DMinNumber _ ->
+            DMinNumber (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
+{-| Numeric values that define a scale domain.
+-}
+doNums : List Float -> ScaleDomain
+doNums ns =
+    DNumbers (Nums ns)
 
 
 {-| Indicate a data field encoded with a detail channel is ordinal. Equivalent to

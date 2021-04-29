@@ -45,6 +45,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `maBooExpr` for providing expressions that evaluate to boolean mark properties (VL5.0).
 
+- `doNumExpr` for providing expressions that evaluate to numeric scale domain properties (VL5.0)
+
 - `axNumExpr` for providing expressions that evaluate to numeric axis properties (VL5.0).
 
 - `axNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties (VL5.0).
