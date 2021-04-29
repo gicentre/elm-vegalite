@@ -43,7 +43,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
 
-- `maBooExpr` for providing expressions that evaluate to boolean mark properties (VL5.0).
+- `maBooExpr` for providing expressions that evaluate to Boolean mark properties (VL5.0).
+
+- `scBooExpr` for providing expressions that evaluate to Boolean scale properties (VL5.0)
 
 - `doNumExpr` for providing expressions that evaluate to numeric scale domain properties (VL5.0)
 
@@ -55,7 +57,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
 
-- `axBooExpr` for providing expressions that evaluate to boolean axis properties (VL5.0).
+- `axBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
 
 - `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
 
