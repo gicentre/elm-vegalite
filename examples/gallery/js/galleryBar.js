@@ -6282,68 +6282,28 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 6:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'align',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'align', x);
 		case 7:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'padding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'padding', x);
 		case 18:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'base',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'base', x);
 		case 15:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'exponent',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'exponent', x);
 		case 16:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'domainMid',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'domainMid', x);
 		case 17:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'constant',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'constant', x);
 		case 8:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingInner',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingInner', x);
 		case 9:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingOuter',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingOuter', x);
 		case 10:
 			var b = scaleProp.a;
 			return A2($author$project$VegaLite$booExpr, 'round', b);
@@ -12721,7 +12681,10 @@ var $author$project$VegaLite$maYOffset = function (n) {
 var $author$project$VegaLite$SPaddingInner = function (a) {
 	return {$: 8, a: a};
 };
-var $author$project$VegaLite$scPaddingInner = $author$project$VegaLite$SPaddingInner;
+var $author$project$VegaLite$scPaddingInner = function (n) {
+	return $author$project$VegaLite$SPaddingInner(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$VAlignTop = {$: 0};
 var $author$project$VegaLite$vaTop = $author$project$VegaLite$VAlignTop;
 var $author$project$GalleryBar$bar21 = function () {
@@ -13943,7 +13906,10 @@ var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
 var $author$project$VegaLite$SBase = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$scBase = $author$project$VegaLite$SBase;
+var $author$project$VegaLite$scBase = function (n) {
+	return $author$project$VegaLite$SBase(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$ScLog = 3;
 var $author$project$VegaLite$scLog = 3;
 var $author$project$GalleryBar$bar6 = function () {

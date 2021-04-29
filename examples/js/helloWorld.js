@@ -6273,68 +6273,28 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 6:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'align',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'align', x);
 		case 7:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'padding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'padding', x);
 		case 18:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'base',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'base', x);
 		case 15:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'exponent',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'exponent', x);
 		case 16:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'domainMid',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'domainMid', x);
 		case 17:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'constant',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'constant', x);
 		case 8:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingInner',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingInner', x);
 		case 9:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingOuter',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingOuter', x);
 		case 10:
 			var b = scaleProp.a;
 			return A2($author$project$VegaLite$booExpr, 'round', b);

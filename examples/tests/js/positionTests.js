@@ -8661,68 +8661,28 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 6:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'align',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'align', x);
 		case 7:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'padding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'padding', x);
 		case 18:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'base',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'base', x);
 		case 15:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'exponent',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'exponent', x);
 		case 16:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'domainMid',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'domainMid', x);
 		case 17:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'constant',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'constant', x);
 		case 8:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingInner',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingInner', x);
 		case 9:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingOuter',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingOuter', x);
 		case 10:
 			var b = scaleProp.a;
 			return A2($author$project$VegaLite$booExpr, 'round', b);
@@ -10270,15 +10230,19 @@ var $elm$core$Basics$min = F2(
 	});
 var $author$project$VegaLite$scAlign = function (x) {
 	return $author$project$VegaLite$SAlign(
-		A2(
-			$elm$core$Basics$max,
-			0,
-			A2($elm$core$Basics$min, 1, x)));
+		$author$project$VegaLite$Num(
+			A2(
+				$elm$core$Basics$max,
+				0,
+				A2($elm$core$Basics$min, 1, x))));
 };
 var $author$project$VegaLite$SPaddingInner = function (a) {
 	return {$: 8, a: a};
 };
-var $author$project$VegaLite$scPaddingInner = $author$project$VegaLite$SPaddingInner;
+var $author$project$VegaLite$scPaddingInner = function (n) {
+	return $author$project$VegaLite$SPaddingInner(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$VLWidth = 4;
 var $author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(

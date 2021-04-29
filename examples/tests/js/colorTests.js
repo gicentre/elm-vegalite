@@ -9215,68 +9215,28 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 6:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'align',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'align', x);
 		case 7:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'padding',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'padding', x);
 		case 18:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'base',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'base', x);
 		case 15:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'exponent',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'exponent', x);
 		case 16:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'domainMid',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'domainMid', x);
 		case 17:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'constant',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'constant', x);
 		case 8:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingInner',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingInner', x);
 		case 9:
 			var x = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'paddingOuter',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'paddingOuter', x);
 		case 10:
 			var b = scaleProp.a;
 			return A2($author$project$VegaLite$booExpr, 'round', b);
@@ -14875,7 +14835,10 @@ var $author$project$ColorTests$scale3 = A2(
 var $author$project$VegaLite$SExponent = function (a) {
 	return {$: 15, a: a};
 };
-var $author$project$VegaLite$scExponent = $author$project$VegaLite$SExponent;
+var $author$project$VegaLite$scExponent = function (n) {
+	return $author$project$VegaLite$SExponent(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$ColorTests$scale4 = A2(
 	$author$project$ColorTests$chart,
 	'Cubic Power colour scale.',
@@ -14954,7 +14917,10 @@ var $author$project$ColorTests$scale7 = A2(
 var $author$project$VegaLite$SConstant = function (a) {
 	return {$: 17, a: a};
 };
-var $author$project$VegaLite$scConstant = $author$project$VegaLite$SConstant;
+var $author$project$VegaLite$scConstant = function (n) {
+	return $author$project$VegaLite$SConstant(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$ColorTests$scale8 = A2(
 	$author$project$ColorTests$chart,
 	'SymLog colour scale with slope constant of 0.01.',
