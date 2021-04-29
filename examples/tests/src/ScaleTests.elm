@@ -380,16 +380,33 @@ scaleInteractive =
         ps =
             params
                 << param "colorMid" [ paValue (num 3), paBind (ipRange [ inMin 0, inMax 6 ]) ]
-                << param "xMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
-                << param "yMin" [ paValue (num 0), paBind (ipRange [ inMin -5, inMax 5, inStep 1 ]) ]
+                << param "xDomainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "yDomainMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "xRangeMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
+                << param "xRangeMax" [ paValue (num 350), paBind (ipRange [ inMin 0, inMax 400 ]) ]
+                << param "yRangeMax" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
                 << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
                 << param "shapeB" [ paValue (boo True), paBind (ipCheckbox []) ]
 
         enc =
             encoding
-                << position X [ pName "val", pQuant, pScale [ scDomain (doNumExpr "xMax" doMax) ] ]
-                << position Y [ pName "val", pQuant, pScale [ scDomain (doNumExpr "yMin" doMin) ] ]
+                << position X
+                    [ pName "val"
+                    , pQuant
+                    , pScale
+                        [ scDomain (doNumExpr "xDomainMax" doMax)
+                        , scRange (raExprs [ "xRangeMin", "xRangeMax" ])
+                        ]
+                    ]
+                << position Y
+                    [ pName "val"
+                    , pQuant
+                    , pScale
+                        [ scDomain (doNumExpr "yDomainMin" doMin)
+                        , scRange (raNumExpr "yRangeMax" raMax)
+                        ]
+                    ]
                 << color
                     [ mName "val"
                     , mQuant
