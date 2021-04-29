@@ -374,6 +374,7 @@ scaleInteractive =
         data =
             dataFromColumns []
                 << dataColumn "val" (nums [ 1, 2, 3, 4, 5 ])
+                << dataColumn "cat" (strs [ "a", "a", "b", "b", "a" ])
                 << dataColumn "date" (strs [ "2021-04-10", "2021-04-11", "2021-04-12", "2021-04-13", "2021-04-14" ])
 
         ps =
@@ -383,19 +384,25 @@ scaleInteractive =
                 << param "yMin" [ paValue (num 0), paBind (ipRange [ inMin -5, inMax 5, inStep 1 ]) ]
                 << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
                 << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
+                << param "shapeB" [ paValue (boo True), paBind (ipCheckbox []) ]
 
         enc =
             encoding
                 << position X [ pName "val", pQuant, pScale [ scDomain (doNumExpr "xMax" doMax) ] ]
                 << position Y [ pName "val", pQuant, pScale [ scDomain (doNumExpr "yMin" doMin) ] ]
-                << color [ mName "val", mQuant, mScale [ scScheme "spectral" [], scDomain (doNumExpr "colorMid" doMid) ] ]
+                << color
+                    [ mName "val"
+                    , mQuant
+                    , mScale [ scScheme "spectral" [], scDomain (doNumExpr "colorMid" doMid) ]
+                    ]
+                << shape [ mName "cat", mScale [ scDomainExpr "shapeB ? ['a','b'] : ['a']" ] ]
                 << size
                     [ mName "date"
                     , mTemporal
                     , mScale [ scDomain (doDtsExpr "[datetime(minDate),datetime(maxDate)]") ]
                     ]
     in
-    toVegaLite [ ps [], width 400, height 400, data [], enc [], circle [] ]
+    toVegaLite [ ps [], width 400, height 400, data [], enc [], point [ maFilled True ] ]
 
 
 
