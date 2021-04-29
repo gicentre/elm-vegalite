@@ -368,6 +368,29 @@ scale20 =
     scatterplot [ scRange (raField "c") ] []
 
 
+scaleInteractive : Spec
+scaleInteractive =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 1, 2, 3, 4, 5 ])
+
+        ps =
+            params
+                << param "domainMin" [ paValue (num 0), paBind (ipRange [ inMin -5, inMax 5, inStep 1 ]) ]
+                << param "domainMid" [ paValue (num 3), paBind (ipRange [ inMin 0, inMax 6 ]) ]
+                << param "domainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+
+        enc =
+            encoding
+                << position X [ pName "x", pQuant, pScale [ scDomain (doMax |> doNumExpr "domainMax") ] ]
+                << position Y [ pName "x", pQuant, pScale [ scDomain (doMin |> doNumExpr "domainMin") ] ]
+                << color [ mName "x", mQuant, mScale [ scScheme "spectral" [], scDomain (doMid |> doNumExpr "domainMid") ] ]
+                << size [ mName "x", mQuant ]
+    in
+    toVegaLite [ ps [], width 400, height 400, data [], enc [], circle [] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -394,6 +417,7 @@ specs =
     , ( "scale18", scale18 )
     , ( "scale19", scale19 )
     , ( "scale20", scale20 )
+    , ( "scaleInteractive", scaleInteractive )
     ]
 
 
