@@ -6367,6 +6367,32 @@ var $author$project$VegaLite$operationSpec = function (op) {
 			return $elm$json$Json$Encode$string('variancep');
 	}
 };
+var $author$project$VegaLite$booExpr = F2(
+	function (objName, n) {
+		if (!n.$) {
+			var b = n.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$bool(b))
+				]);
+		} else {
+			var s = n.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
+		}
+	});
 var $author$project$VegaLite$cInterpolateSpec = function (iType) {
 	switch (iType.$) {
 		case 7:
@@ -7110,20 +7136,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 10:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'round',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 11:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clamp',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 12:
 			var interp = scaleProp.a;
 			return _List_fromArray(
@@ -7142,20 +7158,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 14:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'zero',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'zero', b);
 		default:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reverse',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reverse', b);
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -7975,32 +7981,6 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 					]));
 	}
 };
-var $author$project$VegaLite$booExpr = F2(
-	function (objName, n) {
-		if (!n.$) {
-			var b = n.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$bool(b))
-				]);
-		} else {
-			var s = n.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'expr',
-								$elm$json$Json$Encode$string(s))
-							])))
-				]);
-		}
-	});
 var $author$project$VegaLite$colorGradientLabel = function (gr) {
 	if (!gr) {
 		return 'linear';
@@ -14170,7 +14150,10 @@ var $author$project$VegaLite$scQuantize = 12;
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 14, a: a};
 };
-var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
+var $author$project$VegaLite$scZero = function (b) {
+	return $author$project$VegaLite$SZero(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$ScaleTests$scale4 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -14477,6 +14460,19 @@ var $author$project$ScaleTests$scale9 = function () {
 				enc(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$asSpec = function (specs) {
+	return $elm$json$Json$Encode$object(
+		A2(
+			$elm$core$List$map,
+			function (_v0) {
+				var s = _v0.a;
+				var v = _v0.b;
+				return _Utils_Tuple2(
+					$author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
 var $author$project$VegaLite$Boolean = function (a) {
 	return {$: 0, a: a};
 };
@@ -14513,6 +14509,10 @@ var $author$project$VegaLite$InMin = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
+var $author$project$VegaLite$InName = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$inName = $author$project$VegaLite$InName;
 var $author$project$VegaLite$InOptions = function (a) {
 	return {$: 2, a: a};
 };
@@ -14537,6 +14537,12 @@ var $author$project$VegaLite$IPSelect = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$VLLayer = 18;
+var $author$project$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		18,
+		$author$project$VegaLite$toList(specs));
+};
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$mTemporal = $author$project$VegaLite$MmType(3);
 var $author$project$VegaLite$Number = function (a) {
@@ -14804,10 +14810,50 @@ var $author$project$VegaLite$raNumExpr = F2(
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$BooExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$SClamp = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$SReverse = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$SRound = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$scBooExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(true);
+		switch (_v0.$) {
+			case 11:
+				return $author$project$VegaLite$SClamp(
+					$author$project$VegaLite$BooExpr(ex));
+			case 19:
+				return $author$project$VegaLite$SReverse(
+					$author$project$VegaLite$BooExpr(ex));
+			case 10:
+				return $author$project$VegaLite$SRound(
+					$author$project$VegaLite$BooExpr(ex));
+			case 14:
+				return $author$project$VegaLite$SZero(
+					$author$project$VegaLite$BooExpr(ex));
+			default:
+				return fn(false);
+		}
+	});
+var $author$project$VegaLite$scClamp = function (b) {
+	return $author$project$VegaLite$SClamp(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$SDomainExpr = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$scDomainExpr = $author$project$VegaLite$SDomainExpr;
+var $author$project$VegaLite$scReverse = function (b) {
+	return $author$project$VegaLite$SReverse(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$SSchemeExpr = F2(
 	function (a, b) {
 		return {$: 5, a: a, b: b};
@@ -14845,57 +14891,103 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 										$elm$core$Basics$composeL,
 										A2(
 											$elm$core$Basics$composeL,
-											$author$project$VegaLite$params,
+											A2(
+												$elm$core$Basics$composeL,
+												A2(
+													$elm$core$Basics$composeL,
+													A2(
+														$elm$core$Basics$composeL,
+														$author$project$VegaLite$params,
+														A2(
+															$author$project$VegaLite$param,
+															'clamp',
+															_List_fromArray(
+																[
+																	$author$project$VegaLite$paValue(
+																	$author$project$VegaLite$boo(false)),
+																	$author$project$VegaLite$paBind(
+																	$author$project$VegaLite$ipCheckbox(_List_Nil))
+																]))),
+													A2(
+														$author$project$VegaLite$param,
+														'colorMid',
+														_List_fromArray(
+															[
+																$author$project$VegaLite$paValue(
+																$author$project$VegaLite$num(3)),
+																$author$project$VegaLite$paBind(
+																$author$project$VegaLite$ipRange(
+																	_List_fromArray(
+																		[
+																			$author$project$VegaLite$inMin(0),
+																			$author$project$VegaLite$inMax(6)
+																		])))
+															]))),
+												A2(
+													$author$project$VegaLite$param,
+													'xDomainMin',
+													_List_fromArray(
+														[
+															$author$project$VegaLite$paValue(
+															$author$project$VegaLite$num(0)),
+															$author$project$VegaLite$paBind(
+															$author$project$VegaLite$ipRange(
+																_List_fromArray(
+																	[
+																		$author$project$VegaLite$inMin(0),
+																		$author$project$VegaLite$inMax(10),
+																		$author$project$VegaLite$inStep(1)
+																	])))
+														]))),
 											A2(
 												$author$project$VegaLite$param,
-												'colorMid',
+												'yDomainMax',
 												_List_fromArray(
 													[
 														$author$project$VegaLite$paValue(
-														$author$project$VegaLite$num(3)),
+														$author$project$VegaLite$num(5)),
 														$author$project$VegaLite$paBind(
 														$author$project$VegaLite$ipRange(
 															_List_fromArray(
 																[
 																	$author$project$VegaLite$inMin(0),
-																	$author$project$VegaLite$inMax(6)
+																	$author$project$VegaLite$inMax(10),
+																	$author$project$VegaLite$inStep(1)
 																])))
 													]))),
 										A2(
 											$author$project$VegaLite$param,
-											'xDomainMax',
+											'xRangeMin',
 											_List_fromArray(
 												[
 													$author$project$VegaLite$paValue(
-													$author$project$VegaLite$num(5)),
+													$author$project$VegaLite$num(0)),
 													$author$project$VegaLite$paBind(
 													$author$project$VegaLite$ipRange(
 														_List_fromArray(
 															[
 																$author$project$VegaLite$inMin(0),
-																$author$project$VegaLite$inMax(10),
-																$author$project$VegaLite$inStep(1)
+																$author$project$VegaLite$inMax(400)
 															])))
 												]))),
 									A2(
 										$author$project$VegaLite$param,
-										'yDomainMin',
+										'xRangeMax',
 										_List_fromArray(
 											[
 												$author$project$VegaLite$paValue(
-												$author$project$VegaLite$num(0)),
+												$author$project$VegaLite$num(350)),
 												$author$project$VegaLite$paBind(
 												$author$project$VegaLite$ipRange(
 													_List_fromArray(
 														[
 															$author$project$VegaLite$inMin(0),
-															$author$project$VegaLite$inMax(10),
-															$author$project$VegaLite$inStep(1)
+															$author$project$VegaLite$inMax(400)
 														])))
 											]))),
 								A2(
 									$author$project$VegaLite$param,
-									'xRangeMin',
+									'yRangeMax',
 									_List_fromArray(
 										[
 											$author$project$VegaLite$paValue(
@@ -14910,73 +15002,67 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 										]))),
 							A2(
 								$author$project$VegaLite$param,
-								'xRangeMax',
+								'minDate',
 								_List_fromArray(
 									[
 										$author$project$VegaLite$paValue(
-										$author$project$VegaLite$num(350)),
+										$author$project$VegaLite$str('2021-04-08')),
 										$author$project$VegaLite$paBind(
-										$author$project$VegaLite$ipRange(
-											_List_fromArray(
-												[
-													$author$project$VegaLite$inMin(0),
-													$author$project$VegaLite$inMax(400)
-												])))
+										$author$project$VegaLite$ipDate(_List_Nil))
 									]))),
 						A2(
 							$author$project$VegaLite$param,
-							'yRangeMax',
+							'maxDate',
 							_List_fromArray(
 								[
 									$author$project$VegaLite$paValue(
-									$author$project$VegaLite$num(0)),
+									$author$project$VegaLite$str('2021-04-15')),
 									$author$project$VegaLite$paBind(
-									$author$project$VegaLite$ipRange(
-										_List_fromArray(
-											[
-												$author$project$VegaLite$inMin(0),
-												$author$project$VegaLite$inMax(400)
-											])))
+									$author$project$VegaLite$ipDate(_List_Nil))
 								]))),
 					A2(
 						$author$project$VegaLite$param,
-						'minDate',
+						'rev',
 						_List_fromArray(
 							[
 								$author$project$VegaLite$paValue(
-								$author$project$VegaLite$str('2021-04-08')),
+								$author$project$VegaLite$boo(true)),
 								$author$project$VegaLite$paBind(
-								$author$project$VegaLite$ipDate(_List_Nil))
+								$author$project$VegaLite$ipCheckbox(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inName('reverse colours')
+										])))
 							]))),
 				A2(
 					$author$project$VegaLite$param,
-					'maxDate',
+					'scheme',
 					_List_fromArray(
 						[
 							$author$project$VegaLite$paValue(
-							$author$project$VegaLite$str('2021-04-15')),
+							$author$project$VegaLite$str('spectral')),
 							$author$project$VegaLite$paBind(
-							$author$project$VegaLite$ipDate(_List_Nil))
+							$author$project$VegaLite$ipSelect(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inOptions(
+										_List_fromArray(
+											['plasma', 'oranges', 'spectral']))
+									])))
 						]))),
 			A2(
 				$author$project$VegaLite$param,
-				'scheme',
+				'shapeB',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$str('spectral')),
+						$author$project$VegaLite$boo(true)),
 						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipSelect(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inOptions(
-									_List_fromArray(
-										['plasma', 'oranges', 'spectral']))
-								])))
+						$author$project$VegaLite$ipCheckbox(_List_Nil))
 					]))),
 		A2(
 			$author$project$VegaLite$param,
-			'shapeB',
+			'zeroOrigin',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$paValue(
@@ -14984,7 +15070,7 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 					$author$project$VegaLite$paBind(
 					$author$project$VegaLite$ipCheckbox(_List_Nil))
 				])));
-	var enc = A2(
+	var encPoint = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -15006,7 +15092,7 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 									_List_fromArray(
 										[
 											$author$project$VegaLite$scDomain(
-											A2($author$project$VegaLite$doNumExpr, 'xDomainMax', $author$project$VegaLite$doMax)),
+											A2($author$project$VegaLite$doNumExpr, 'xDomainMin', $author$project$VegaLite$doMin)),
 											$author$project$VegaLite$scRange(
 											$author$project$VegaLite$raExprs(
 												_List_fromArray(
@@ -15024,9 +15110,10 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 								_List_fromArray(
 									[
 										$author$project$VegaLite$scDomain(
-										A2($author$project$VegaLite$doNumExpr, 'yDomainMin', $author$project$VegaLite$doMin)),
+										A2($author$project$VegaLite$doNumExpr, 'yDomainMax', $author$project$VegaLite$doMax)),
 										$author$project$VegaLite$scRange(
-										A2($author$project$VegaLite$raNumExpr, 'yRangeMax', $author$project$VegaLite$raMax))
+										A2($author$project$VegaLite$raNumExpr, 'yRangeMax', $author$project$VegaLite$raMax)),
+										A2($author$project$VegaLite$scBooExpr, 'zeroOrigin', $author$project$VegaLite$scZero)
 									]))
 							]))),
 				$author$project$VegaLite$color(
@@ -15039,7 +15126,8 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 								[
 									A2($author$project$VegaLite$scSchemeExpr, 'scheme', _List_Nil),
 									$author$project$VegaLite$scDomain(
-									A2($author$project$VegaLite$doNumExpr, 'colorMid', $author$project$VegaLite$doMid))
+									A2($author$project$VegaLite$doNumExpr, 'colorMid', $author$project$VegaLite$doMid)),
+									A2($author$project$VegaLite$scBooExpr, 'rev', $author$project$VegaLite$scReverse)
 								]))
 						]))),
 			$author$project$VegaLite$shape(
@@ -15064,6 +15152,53 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 							$author$project$VegaLite$doDtsExpr('[datetime(minDate),datetime(maxDate)]'))
 						]))
 				])));
+	var specPoint = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encPoint(_List_Nil),
+				$author$project$VegaLite$point(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFilled(true)
+					]))
+			]));
+	var encLine = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('val'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								A2($author$project$VegaLite$scBooExpr, 'clamp', $author$project$VegaLite$scClamp)
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('val'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							A2($author$project$VegaLite$scBooExpr, 'clamp', $author$project$VegaLite$scClamp)
+						]))
+				])));
+	var specLine = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encLine(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
 	var data = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -15096,12 +15231,9 @@ var $author$project$ScaleTests$scaleInteractive = function () {
 				$author$project$VegaLite$width(400),
 				$author$project$VegaLite$height(400),
 				data(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$point(
+				$author$project$VegaLite$layer(
 				_List_fromArray(
-					[
-						$author$project$VegaLite$maFilled(true)
-					]))
+					[specPoint, specLine]))
 			]));
 }();
 var $author$project$ScaleTests$specs = _List_fromArray(

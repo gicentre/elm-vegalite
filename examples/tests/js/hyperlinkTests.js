@@ -8172,20 +8172,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 10:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'round',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 11:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clamp',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 12:
 			var interp = scaleProp.a;
 			return _List_fromArray(
@@ -8204,20 +8194,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 14:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'zero',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'zero', b);
 		default:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reverse',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reverse', b);
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {

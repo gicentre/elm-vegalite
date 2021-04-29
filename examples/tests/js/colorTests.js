@@ -9279,20 +9279,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 10:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'round',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 11:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clamp',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 12:
 			var interp = scaleProp.a;
 			return _List_fromArray(
@@ -9311,20 +9301,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 14:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'zero',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'zero', b);
 		default:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reverse',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reverse', b);
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -14812,10 +14792,16 @@ var $author$project$ColorTests$namedContinuous2 = A2(
 							[0.5, 1]))
 					]))
 			])));
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
 var $author$project$VegaLite$SReverse = function (a) {
 	return {$: 19, a: a};
 };
-var $author$project$VegaLite$scReverse = $author$project$VegaLite$SReverse;
+var $author$project$VegaLite$scReverse = function (b) {
+	return $author$project$VegaLite$SReverse(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$ColorTests$namedContinuous3 = A2(
 	$author$project$ColorTests$chart,
 	'Continuous colour scale based on named vega scheme. Should use the flipped plasma colour scheme (i.e. red to orange).',

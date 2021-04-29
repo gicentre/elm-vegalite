@@ -4227,6 +4227,32 @@ var $author$project$VegaLite$operationSpec = function (op) {
 			return $elm$json$Json$Encode$string('variancep');
 	}
 };
+var $author$project$VegaLite$booExpr = F2(
+	function (objName, n) {
+		if (!n.$) {
+			var b = n.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$bool(b))
+				]);
+		} else {
+			var s = n.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					objName,
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
+		}
+	});
 var $author$project$VegaLite$cInterpolateSpec = function (iType) {
 	switch (iType.$) {
 		case 7:
@@ -4970,20 +4996,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 10:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'round',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 11:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clamp',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 12:
 			var interp = scaleProp.a;
 			return _List_fromArray(
@@ -5002,20 +5018,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 14:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'zero',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'zero', b);
 		default:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reverse',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reverse', b);
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -5831,32 +5837,6 @@ var $author$project$VegaLite$blendModeSpec = function (bm) {
 					]));
 	}
 };
-var $author$project$VegaLite$booExpr = F2(
-	function (objName, n) {
-		if (!n.$) {
-			var b = n.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$bool(b))
-				]);
-		} else {
-			var s = n.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					objName,
-					$elm$json$Json$Encode$object(
-						_List_fromArray(
-							[
-								_Utils_Tuple2(
-								'expr',
-								$elm$json$Json$Encode$string(s))
-							])))
-				]);
-		}
-	});
 var $author$project$VegaLite$colorGradientLabel = function (gr) {
 	if (!gr) {
 		return 'linear';

@@ -6378,20 +6378,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 10:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'round',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 11:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clamp',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 12:
 			var interp = scaleProp.a;
 			return _List_fromArray(
@@ -6410,20 +6400,10 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 				]);
 		case 14:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'zero',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'zero', b);
 		default:
 			var b = scaleProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'reverse',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'reverse', b);
 	}
 };
 var $author$project$VegaLite$sortProperties = function (sp) {
@@ -8550,10 +8530,16 @@ var $author$project$VegaLite$PScale = function (a) {
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$GalleryAdvanced$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
 var $author$project$VegaLite$SZero = function (a) {
 	return {$: 14, a: a};
 };
-var $author$project$VegaLite$scZero = $author$project$VegaLite$SZero;
+var $author$project$VegaLite$scZero = function (b) {
+	return $author$project$VegaLite$SZero(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$GalleryAdvanced$advanced11 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -13160,9 +13146,6 @@ var $author$project$GalleryAdvanced$advanced17 = function () {
 }();
 var $author$project$VegaLite$AxGrid = function (a) {
 	return {$: 71, a: a};
-};
-var $author$project$VegaLite$Boo = function (a) {
-	return {$: 0, a: a};
 };
 var $author$project$VegaLite$axGrid = function (b) {
 	return $author$project$VegaLite$AxGrid(
