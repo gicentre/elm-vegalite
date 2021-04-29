@@ -388,6 +388,7 @@ scaleInteractive =
                 << param "yRangeMax" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
                 << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
+                << param "pad" [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
                 << param "rev" [ paValue (boo True), paBind (ipCheckbox [ inName "reverse colours" ]) ]
                 << param "scheme" [ paValue (str "spectral"), paBind (ipSelect [ inOptions [ "plasma", "oranges", "spectral" ] ]) ]
                 << param "shapeB" [ paValue (boo True), paBind (ipCheckbox []) ]
@@ -401,6 +402,7 @@ scaleInteractive =
                     , pScale
                         [ scDomain (doNumExpr "xDomainMin" doMin)
                         , scRange (raExprs [ "xRangeMin", "xRangeMax" ])
+                        , scNumExpr "pad" scPadding
                         ]
                     ]
                 << position Y
@@ -410,6 +412,7 @@ scaleInteractive =
                         [ scDomain (doNumExpr "yDomainMax" doMax)
                         , scRange (raNumExpr "yRangeMax" raMax)
                         , scBooExpr "zeroOrigin" scZero
+                        , scNumExpr "pad" scPadding
                         ]
                     ]
                 << color
