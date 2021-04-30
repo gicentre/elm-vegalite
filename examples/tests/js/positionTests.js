@@ -6146,10 +6146,10 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 		case 67:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2', n);
-		case 81:
+		case 83:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'thetaOffset', n);
-		case 82:
+		case 84:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2Offset', n);
 		case 5:
@@ -6298,38 +6298,56 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$numExpr, 'width', n);
 		case 72:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'height', n);
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'width',
+					$elm$json$Json$Encode$object(
+						A2($author$project$VegaLite$numExpr, 'band', n)))
+				]);
 		case 73:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x', n);
+			return A2($author$project$VegaLite$numExpr, 'height', n);
 		case 74:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'y', n);
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'height',
+					$elm$json$Json$Encode$object(
+						A2($author$project$VegaLite$numExpr, 'band', n)))
+				]);
 		case 75:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x2', n);
+			return A2($author$project$VegaLite$numExpr, 'x', n);
 		case 76:
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'y', n);
+		case 77:
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'x2', n);
+		case 78:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'y2', n);
 		case 44:
 			var b = mProp.a;
 			return A2($author$project$VegaLite$booExpr, 'order', b);
-		case 77:
-			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
 		case 79:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x2Offset', n);
-		case 78:
+			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
+		case 81:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'yOffset', n);
+			return A2($author$project$VegaLite$numExpr, 'x2Offset', n);
 		case 80:
 			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'yOffset', n);
+		case 82:
+			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'y2Offset', n);
-		case 83:
+		case 85:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'radiusOffset', n);
-		case 84:
+		case 86:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'radius2Offset', n);
 		default:
@@ -6920,14 +6938,14 @@ var $author$project$VegaLite$maSize = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$MX = function (a) {
-	return {$: 73, a: a};
+	return {$: 75, a: a};
 };
 var $author$project$VegaLite$maX = function (n) {
 	return $author$project$VegaLite$MX(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$MY = function (a) {
-	return {$: 74, a: a};
+	return {$: 76, a: a};
 };
 var $author$project$VegaLite$maY = function (n) {
 	return $author$project$VegaLite$MY(
@@ -10301,7 +10319,7 @@ var $author$project$PositionTests$position2 = $author$project$VegaLite$toVegaLit
 				]))
 		]));
 var $author$project$VegaLite$MX2 = function (a) {
-	return {$: 75, a: a};
+	return {$: 77, a: a};
 };
 var $author$project$VegaLite$maX2 = function (n) {
 	return $author$project$VegaLite$MX2(
@@ -10320,7 +10338,7 @@ var $author$project$PositionTests$position3 = $author$project$VegaLite$toVegaLit
 				]))
 		]));
 var $author$project$VegaLite$MY2 = function (a) {
-	return {$: 76, a: a};
+	return {$: 78, a: a};
 };
 var $author$project$VegaLite$maY2 = function (n) {
 	return $author$project$VegaLite$MY2(
@@ -10400,7 +10418,7 @@ var $author$project$VegaLite$height = function (h) {
 		$elm$json$Json$Encode$float(h));
 };
 var $author$project$VegaLite$MHeight = function (a) {
-	return {$: 72, a: a};
+	return {$: 73, a: a};
 };
 var $author$project$VegaLite$maHeight = function (n) {
 	return $author$project$VegaLite$MHeight(

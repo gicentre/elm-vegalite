@@ -6147,10 +6147,10 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 		case 67:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2', n);
-		case 81:
+		case 83:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'thetaOffset', n);
-		case 82:
+		case 84:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2Offset', n);
 		case 5:
@@ -6299,38 +6299,56 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			return A2($author$project$VegaLite$numExpr, 'width', n);
 		case 72:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'height', n);
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'width',
+					$elm$json$Json$Encode$object(
+						A2($author$project$VegaLite$numExpr, 'band', n)))
+				]);
 		case 73:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x', n);
+			return A2($author$project$VegaLite$numExpr, 'height', n);
 		case 74:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'y', n);
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'height',
+					$elm$json$Json$Encode$object(
+						A2($author$project$VegaLite$numExpr, 'band', n)))
+				]);
 		case 75:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x2', n);
+			return A2($author$project$VegaLite$numExpr, 'x', n);
 		case 76:
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'y', n);
+		case 77:
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'x2', n);
+		case 78:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'y2', n);
 		case 44:
 			var b = mProp.a;
 			return A2($author$project$VegaLite$booExpr, 'order', b);
-		case 77:
-			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
 		case 79:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x2Offset', n);
-		case 78:
+			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
+		case 81:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'yOffset', n);
+			return A2($author$project$VegaLite$numExpr, 'x2Offset', n);
 		case 80:
 			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'yOffset', n);
+		case 82:
+			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'y2Offset', n);
-		case 83:
+		case 85:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'radiusOffset', n);
-		case 84:
+		case 86:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'radius2Offset', n);
 		default:
@@ -8927,14 +8945,14 @@ var $author$project$VegaLite$maInnerRadius = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$MTheta2Offset = function (a) {
-	return {$: 82, a: a};
+	return {$: 84, a: a};
 };
 var $author$project$VegaLite$maTheta2Offset = function (n) {
 	return $author$project$VegaLite$MTheta2Offset(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$MThetaOffset = function (a) {
-	return {$: 81, a: a};
+	return {$: 83, a: a};
 };
 var $author$project$VegaLite$maThetaOffset = function (n) {
 	return $author$project$VegaLite$MThetaOffset(
@@ -12219,7 +12237,10 @@ var $author$project$VegaLite$MFontSize = function (a) {
 	return {$: 33, a: a};
 };
 var $author$project$VegaLite$MHeight = function (a) {
-	return {$: 72, a: a};
+	return {$: 73, a: a};
+};
+var $author$project$VegaLite$MHeightBand = function (a) {
+	return {$: 74, a: a};
 };
 var $author$project$VegaLite$MLimit = function (a) {
 	return {$: 21, a: a};
@@ -12237,10 +12258,10 @@ var $author$project$VegaLite$MRadius = function (a) {
 	return {$: 48, a: a};
 };
 var $author$project$VegaLite$MRadius2Offset = function (a) {
-	return {$: 84, a: a};
+	return {$: 86, a: a};
 };
 var $author$project$VegaLite$MRadiusOffset = function (a) {
-	return {$: 83, a: a};
+	return {$: 85, a: a};
 };
 var $author$project$VegaLite$MSize = function (a) {
 	return {$: 53, a: a};
@@ -12266,29 +12287,32 @@ var $author$project$VegaLite$MTheta2 = function (a) {
 var $author$project$VegaLite$MWidth = function (a) {
 	return {$: 71, a: a};
 };
-var $author$project$VegaLite$MX = function (a) {
-	return {$: 73, a: a};
+var $author$project$VegaLite$MWidthBand = function (a) {
+	return {$: 72, a: a};
 };
-var $author$project$VegaLite$MX2 = function (a) {
+var $author$project$VegaLite$MX = function (a) {
 	return {$: 75, a: a};
 };
-var $author$project$VegaLite$MX2Offset = function (a) {
-	return {$: 79, a: a};
-};
-var $author$project$VegaLite$MXOffset = function (a) {
+var $author$project$VegaLite$MX2 = function (a) {
 	return {$: 77, a: a};
 };
-var $author$project$VegaLite$MY = function (a) {
-	return {$: 74, a: a};
+var $author$project$VegaLite$MX2Offset = function (a) {
+	return {$: 81, a: a};
 };
-var $author$project$VegaLite$MY2 = function (a) {
+var $author$project$VegaLite$MXOffset = function (a) {
+	return {$: 79, a: a};
+};
+var $author$project$VegaLite$MY = function (a) {
 	return {$: 76, a: a};
 };
+var $author$project$VegaLite$MY2 = function (a) {
+	return {$: 78, a: a};
+};
 var $author$project$VegaLite$MY2Offset = function (a) {
-	return {$: 80, a: a};
+	return {$: 82, a: a};
 };
 var $author$project$VegaLite$MYOffset = function (a) {
-	return {$: 78, a: a};
+	return {$: 80, a: a};
 };
 var $author$project$VegaLite$MdX = function (a) {
 	return {$: 25, a: a};
@@ -12306,31 +12330,37 @@ var $author$project$VegaLite$maNumExpr = F2(
 			case 71:
 				return $author$project$VegaLite$MWidth(
 					$author$project$VegaLite$NumExpr(ex));
-			case 72:
+			case 73:
 				return $author$project$VegaLite$MHeight(
 					$author$project$VegaLite$NumExpr(ex));
-			case 73:
-				return $author$project$VegaLite$MX(
+			case 72:
+				return $author$project$VegaLite$MWidthBand(
 					$author$project$VegaLite$NumExpr(ex));
 			case 74:
-				return $author$project$VegaLite$MY(
+				return $author$project$VegaLite$MHeightBand(
 					$author$project$VegaLite$NumExpr(ex));
 			case 75:
-				return $author$project$VegaLite$MX2(
+				return $author$project$VegaLite$MX(
 					$author$project$VegaLite$NumExpr(ex));
 			case 76:
-				return $author$project$VegaLite$MY2(
+				return $author$project$VegaLite$MY(
 					$author$project$VegaLite$NumExpr(ex));
 			case 77:
-				return $author$project$VegaLite$MXOffset(
+				return $author$project$VegaLite$MX2(
 					$author$project$VegaLite$NumExpr(ex));
 			case 78:
-				return $author$project$VegaLite$MYOffset(
+				return $author$project$VegaLite$MY2(
 					$author$project$VegaLite$NumExpr(ex));
 			case 79:
-				return $author$project$VegaLite$MX2Offset(
+				return $author$project$VegaLite$MXOffset(
 					$author$project$VegaLite$NumExpr(ex));
 			case 80:
+				return $author$project$VegaLite$MYOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 81:
+				return $author$project$VegaLite$MX2Offset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 82:
 				return $author$project$VegaLite$MY2Offset(
 					$author$project$VegaLite$NumExpr(ex));
 			case 41:
@@ -12366,16 +12396,16 @@ var $author$project$VegaLite$maNumExpr = F2(
 			case 67:
 				return $author$project$VegaLite$MTheta2(
 					$author$project$VegaLite$NumExpr(ex));
-			case 81:
+			case 83:
 				return $author$project$VegaLite$MThetaOffset(
 					$author$project$VegaLite$NumExpr(ex));
-			case 82:
+			case 84:
 				return $author$project$VegaLite$MTheta2Offset(
 					$author$project$VegaLite$NumExpr(ex));
-			case 83:
+			case 85:
 				return $author$project$VegaLite$MRadiusOffset(
 					$author$project$VegaLite$NumExpr(ex));
-			case 84:
+			case 86:
 				return $author$project$VegaLite$MRadius2Offset(
 					$author$project$VegaLite$NumExpr(ex));
 			case 12:
