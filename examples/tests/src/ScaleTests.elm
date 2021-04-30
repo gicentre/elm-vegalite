@@ -381,13 +381,14 @@ scaleInteractive =
             params
                 << param "clamp" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "colorMid" [ paValue (num 3), paBind (ipRange [ inMin 0, inMax 6 ]) ]
-                << param "xDomainMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
-                << param "yDomainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10, inStep 1 ]) ]
+                << param "xDomainMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 10 ]) ]
+                << param "yDomainMax" [ paValue (num 5), paBind (ipRange [ inMin 0, inMax 10 ]) ]
                 << param "xRangeMin" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "xRangeMax" [ paValue (num 350), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "yRangeMax" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "minDate" [ paValue (str "2021-04-08"), paBind (ipDate []) ]
                 << param "maxDate" [ paValue (str "2021-04-15"), paBind (ipDate []) ]
+                << param "nice" [ paValue (boo True), paBind (ipCheckbox []) ]
                 << param "pad" [ paValue (num 0), paBind (ipRange [ inMax 100 ]) ]
                 << param "rev" [ paValue (boo True), paBind (ipCheckbox [ inName "reverse colours" ]) ]
                 << param "scheme" [ paValue (str "spectral"), paBind (ipSelect [ inOptions [ "plasma", "oranges", "spectral" ] ]) ]
@@ -403,6 +404,7 @@ scaleInteractive =
                         [ scDomain (doNumExpr "xDomainMin" doMin)
                         , scRange (raExprs [ "xRangeMin", "xRangeMax" ])
                         , scNumExpr "pad" scPadding
+                        , scNice (niExpr "nice")
                         ]
                     ]
                 << position Y
@@ -413,6 +415,7 @@ scaleInteractive =
                         , scRange (raNumExpr "yRangeMax" raMax)
                         , scBooExpr "zeroOrigin" scZero
                         , scNumExpr "pad" scPadding
+                        , scNice (niExpr "nice")
                         ]
                     ]
                 << color
