@@ -125,7 +125,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `axTitleLineHeight` for multi-line axis titles.
 
-- `leGradientOpacity`/`lecoGradientOpacity`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity` for legend settings.
+- `lecoDirection`, `leGradientOpacity`/`lecoGradientOpacity`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity` for legend settings.
 
 - `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
 
