@@ -70,7 +70,7 @@ param2 =
         , bar
             [ maStroke "black"
             , maNumExpr "strokeWidth" maStrokeWidth
-            , maWidth 40
+            , maWidthBand 0.8
             , maNumExpr "radius" maCornerRadius
             , maNumsExpr "dashStyle" maStrokeDash
             ]
