@@ -37,6 +37,15 @@ param1 =
 param2 : Spec
 param2 =
     let
+        solid =
+            nums []
+
+        shortDash =
+            nums [ 2, 2 ]
+
+        longDash =
+            nums [ 8, 8 ]
+
         data =
             dataFromColumns []
                 << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
@@ -44,14 +53,28 @@ param2 =
 
         ps =
             params
-                << param "radius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20, inStep 1 ]) ]
+                << param "dashStyle" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "radius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20 ]) ]
+                << param "strokeWidth" [ paValue (num 2), paBind (ipRange [ inMin 0, inMax 10 ]) ]
 
         enc =
             encoding
                 << position X [ pName "a", pAxis [ axLabelAngle 0 ] ]
                 << position Y [ pName "b", pQuant ]
     in
-    toVegaLite [ ps [], data [], enc [], bar [ maCornerRadius |> maNumExpr "radius" ] ]
+    toVegaLite
+        [ ps []
+        , width 600
+        , data []
+        , enc []
+        , bar
+            [ maStroke "black"
+            , maNumExpr "strokeWidth" maStrokeWidth
+            , maWidth 40
+            , maNumExpr "radius" maCornerRadius
+            , maNumsExpr "dashStyle" maStrokeDash
+            ]
+        ]
 
 
 param3 : Spec

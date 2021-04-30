@@ -11570,6 +11570,10 @@ var $author$project$ParamTests$param10 = function () {
 					[spec1, spec2]))
 			]));
 }();
+var $author$project$VegaLite$InDataOptions = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$inDataOptions = $author$project$VegaLite$InDataOptions;
 var $author$project$VegaLite$InMax = function (a) {
 	return {$: 6, a: a};
 };
@@ -11578,36 +11582,115 @@ var $author$project$VegaLite$InMin = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
-var $author$project$VegaLite$InStep = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$inStep = $author$project$VegaLite$InStep;
 var $author$project$VegaLite$IPRange = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
+var $author$project$VegaLite$IPSelect = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$MStrokeDash = function (a) {
+	return {$: 57, a: a};
+};
+var $author$project$VegaLite$NumsExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$maNumsExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(_List_Nil);
+		if (_v0.$ === 57) {
+			return $author$project$VegaLite$MStrokeDash(
+				$author$project$VegaLite$NumsExpr(ex));
+		} else {
+			return fn(_List_Nil);
+		}
+	});
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 54, a: a};
+};
+var $author$project$VegaLite$maStroke = function (s) {
+	return $author$project$VegaLite$MStroke(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$maStrokeDash = function (xs) {
+	return $author$project$VegaLite$MStrokeDash(
+		$author$project$VegaLite$Nums(xs));
+};
+var $author$project$VegaLite$maStrokeWidth = function (n) {
+	return $author$project$VegaLite$MStrokeWidth(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$maWidth = function (n) {
+	return $author$project$VegaLite$MWidth(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$PBind = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
+var $author$project$VegaLite$PValues = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
 var $author$project$ParamTests$param2 = function () {
+	var solid = $author$project$VegaLite$nums(_List_Nil);
+	var shortDash = $author$project$VegaLite$nums(
+		_List_fromArray(
+			[2, 2]));
+	var longDash = $author$project$VegaLite$nums(
+		_List_fromArray(
+			[8, 8]));
 	var ps = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$params,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$params,
+				A2(
+					$author$project$VegaLite$param,
+					'dashStyle',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValues(solid),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipSelect(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inDataOptions(
+										_List_fromArray(
+											[solid, shortDash, longDash]))
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
+				'radius',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(0)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(0),
+									$author$project$VegaLite$inMax(20)
+								])))
+					]))),
 		A2(
 			$author$project$VegaLite$param,
-			'radius',
+			'strokeWidth',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$num(0)),
+					$author$project$VegaLite$num(2)),
 					$author$project$VegaLite$paBind(
 					$author$project$VegaLite$ipRange(
 						_List_fromArray(
 							[
 								$author$project$VegaLite$inMin(0),
-								$author$project$VegaLite$inMax(20),
-								$author$project$VegaLite$inStep(1)
+								$author$project$VegaLite$inMax(10)
 							])))
 				])));
 	var enc = A2(
@@ -11656,12 +11739,17 @@ var $author$project$ParamTests$param2 = function () {
 		_List_fromArray(
 			[
 				ps(_List_Nil),
+				$author$project$VegaLite$width(600),
 				data(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(
 				_List_fromArray(
 					[
-						A2($author$project$VegaLite$maNumExpr, 'radius', $author$project$VegaLite$maCornerRadius)
+						$author$project$VegaLite$maStroke('black'),
+						A2($author$project$VegaLite$maNumExpr, 'strokeWidth', $author$project$VegaLite$maStrokeWidth),
+						$author$project$VegaLite$maWidth(40),
+						A2($author$project$VegaLite$maNumExpr, 'radius', $author$project$VegaLite$maCornerRadius),
+						A2($author$project$VegaLite$maNumsExpr, 'dashStyle', $author$project$VegaLite$maStrokeDash)
 					]))
 			]));
 }();
@@ -14160,6 +14248,10 @@ var $author$project$VegaLite$dataFromJson = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
+var $author$project$VegaLite$InStep = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$inStep = $author$project$VegaLite$InStep;
 var $elm$json$Json$Decode$bool = _Json_decodeBool;
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};

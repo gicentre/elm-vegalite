@@ -1,141 +1,140 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Elm-Vegalite Parameter Tests</title>
-    <meta charset="utf-8" />
 
-    <!-- These scripts link to the Vega/Vega-Lite runtime -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<head>
+  <title>Elm-Vegalite Parameter Tests</title>
+  <meta charset="utf-8" />
 
-    <script src="js/paramTests.js"></script>
+  <!-- These scripts link to the Vega/Vega-Lite runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
+  <script src="js/paramTests.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+
+    figcaption {
+      padding-top: 0.5em;
+    }
+
+    .cell {
+      float: left;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1.2em;
+      background-color: rgb(251, 247, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Elm-Vega Parameter Tests</h1>
+
+  <p>
+    For Vega-Lite 5 params allowing signals and selections to be used in a
+    specification.
+  </p>
+
+  <figure class="cell">
+    <div id="param1"></div>
+    <figcaption>
+      Simple constant parameter. Should show bars with 5px corner radius.
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param2"></div>
+    <figcaption>Parameters bound to interactive input elements.</figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param3"></div>
+    <figcaption>
+      Expression that resizes bar width by height of vis.
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param4"></div>
+    <figcaption>Interval selection with default unselected.</figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param5"></div>
+    <figcaption>
+      Paintbrush selection parameters with ctrl and shift keys both held down.
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param6"></div>
+    <figcaption>
+      Opacity determined by slider value, and size is determined by that of
+      the clicked point’s Miles_per_Gallon.
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param7"></div>
+    <figcaption>
+      Predicate expressions to use checkbox and mouseover values directly.
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param8"></div>
+    <figcaption>
+      Predicate expressions to for cross filtering (interval selection in
+      left, filters in right chart).
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param9"></div>
+    <figcaption>
+      Predicate expressions to for cross filtering (interval selection in
+      lower, sets extent of upper chart).
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="param10"></div>
+    <figcaption>
+      Predicate expressions to for cross filtering (interval selection in
+      lower, sets domain of upper chart).
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <h2>Source</h2>
+  <div id="elmContainer"></div>
+
+  <script>
+    Elm.ParamTests.init({
+      node: document.getElementById("elmContainer"),
+    }).ports.elmToJS.subscribe(function (namedSpecs) {
+      for (let name of Object.keys(namedSpecs)) {
+        vegaEmbed(`#${name}`, namedSpecs[name], {
+          actions: true,
+          logLevel: vega.Warn,
+        }).catch(console.warn);
       }
+    });
+  </script>
+</body>
 
-      figcaption {
-        padding-top: 0.5em;
-      }
-
-      .cell {
-        float: left;
-        padding: 1em;
-        border-radius: 1em;
-        margin: 1.2em;
-        background-color: rgb(251, 247, 238);
-      }
-    </style>
-  </head>
-
-  <body>
-    <h1>Elm-Vega Parameter Tests</h1>
-
-    <p>
-      For Vega-Lite 5 params allowing signals and selections to be used in a
-      specification.
-    </p>
-
-    <figure class="cell">
-      <div id="param1"></div>
-      <figcaption>
-        Simple constant parameter. Should show bars with 5px corner radius.
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param2"></div>
-      <figcaption>Parameter bound to slider value.</figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param3"></div>
-      <figcaption>
-        Expression that resizes bar width by height of vis.
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param4"></div>
-      <figcaption>Interval selection with default unselected.</figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param5"></div>
-      <figcaption>
-        Paintbrush selection parameters with ctrl and shift keys both held down.
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param6"></div>
-      <figcaption>
-        Opacity determined by slider value, and size is determined by that of
-        the clicked point’s Miles_per_Gallon.
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param7"></div>
-      <figcaption>
-        Predicate expressions to use checkbox and mouseover values directly.
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param8"></div>
-      <figcaption>
-        Predicate expressions to for cross filtering (interval selection in
-        left, filters in right chart).
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param9"></div>
-      <figcaption>
-        Predicate expressions to for cross filtering (interval selection in
-        lower, sets extent of upper chart).
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <figure class="cell">
-      <div id="param10"></div>
-      <figcaption>
-        Predicate expressions to for cross filtering (interval selection in
-        lower, sets domain of upper chart).
-      </figcaption>
-    </figure>
-    <div style="clear: left"></div>
-
-    <h2>Source</h2>
-    <div id="elmContainer"></div>
-
-    <script>
-      Elm.ParamTests.init({
-        node: document.getElementById("elmContainer"),
-      }).ports.elmToJS.subscribe(function (namedSpecs) {
-        for (let name of Object.keys(namedSpecs)) {
-          vegaEmbed(`#${name}`, namedSpecs[name], {
-            actions: true,
-            logLevel: vega.Warn,
-          }).catch(console.warn);
-        }
-      });
-    </script>
-  </body>
 </html>
