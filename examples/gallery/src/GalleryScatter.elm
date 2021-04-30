@@ -329,6 +329,33 @@ scatter14 =
     toVegaLite [ desc, data [], enc [], image [ maWidth 25, maHeight 25 ] ]
 
 
+scatter15 : Spec
+scatter15 =
+    let
+        desc =
+            description "A custom axis labels for grouping calculated values."
+
+        data =
+            dataFromUrl "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/movies.json" []
+
+        enc =
+            encoding
+                << position X
+                    [ pName "IMDB Rating"
+                    , pAggregate opMean
+                    , pScale [ scDomain (doNums [ 0, 10 ]) ]
+                    , pAxis
+                        [ axTitle ""
+                        , axValues (nums [ 0, 5, 10 ])
+                        , axLabelExpr "datum.label == 0 ? 'Poor' : datum.label == 5 ? 'Neutral' : 'Great'"
+                        , axLabelFlush Nothing
+                        ]
+                    ]
+                << position Y [ pName "Major Genre", pSort [ soByChannel chX ], pTitle "" ]
+    in
+    toVegaLite [ desc, data, enc [], circle [ maSize 80 ] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -350,6 +377,7 @@ mySpecs =
         , ( "scatter12", scatter12 )
         , ( "scatter13", scatter13 )
         , ( "scatter14", scatter14 )
+        , ( "scatter15", scatter15 )
         ]
 
 

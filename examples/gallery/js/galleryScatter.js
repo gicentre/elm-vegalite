@@ -9041,6 +9041,127 @@ var $author$project$GalleryScatter$scatter14 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$AxLabelExpr = function (a) {
+	return {$: 25, a: a};
+};
+var $author$project$VegaLite$axLabelExpr = function (s) {
+	return $author$project$VegaLite$AxLabelExpr(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$AxLabelFlush = function (a) {
+	return {$: 26, a: a};
+};
+var $author$project$VegaLite$axLabelFlush = $author$project$VegaLite$AxLabelFlush;
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 55, a: a};
+};
+var $author$project$VegaLite$axTitle = function (s) {
+	return $author$project$VegaLite$AxTitle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$AxValues = function (a) {
+	return {$: 54, a: a};
+};
+var $author$project$VegaLite$axValues = $author$project$VegaLite$AxValues;
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doNums = function (ns) {
+	return $author$project$VegaLite$DNumbers(
+		$author$project$VegaLite$Nums(ns));
+};
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$maSize = function (n) {
+	return $author$project$VegaLite$MSize(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$Mean = {$: 7};
+var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$PAggregate = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PScale = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$PSort = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$ByChannel = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
+var $author$project$GalleryScatter$scatter15 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('IMDB Rating'),
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean),
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scDomain(
+								$author$project$VegaLite$doNums(
+									_List_fromArray(
+										[0, 10])))
+							])),
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axTitle(''),
+								$author$project$VegaLite$axValues(
+								$author$project$VegaLite$nums(
+									_List_fromArray(
+										[0, 5, 10]))),
+								$author$project$VegaLite$axLabelExpr('datum.label == 0 ? \'Poor\' : datum.label == 5 ? \'Neutral\' : \'Great\''),
+								$author$project$VegaLite$axLabelFlush($elm$core$Maybe$Nothing)
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Major Genre'),
+					$author$project$VegaLite$pSort(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$soByChannel($author$project$VegaLite$chX)
+						])),
+					$author$project$VegaLite$pTitle('')
+				])));
+	var desc = $author$project$VegaLite$description('A custom axis labels for grouping calculated values.');
+	var data = A2($author$project$VegaLite$dataFromUrl, 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/movies.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(80)
+					]))
+			]));
+}();
 var $author$project$VegaLite$Tick = 15;
 var $author$project$VegaLite$tick = $author$project$VegaLite$mark(15);
 var $author$project$GalleryScatter$scatter2 = function () {
@@ -12477,10 +12598,6 @@ var $author$project$GalleryScatter$scatter8 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$PScale = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
 		return {$: 7, a: a, b: b};
@@ -12826,7 +12943,8 @@ var $author$project$GalleryScatter$mySpecs = $author$project$VegaLite$combineSpe
 			_Utils_Tuple2('scatter11', $author$project$GalleryScatter$scatter11),
 			_Utils_Tuple2('scatter12', $author$project$GalleryScatter$scatter12),
 			_Utils_Tuple2('scatter13', $author$project$GalleryScatter$scatter13),
-			_Utils_Tuple2('scatter14', $author$project$GalleryScatter$scatter14)
+			_Utils_Tuple2('scatter14', $author$project$GalleryScatter$scatter14),
+			_Utils_Tuple2('scatter15', $author$project$GalleryScatter$scatter15)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
