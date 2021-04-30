@@ -133,6 +133,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `maPadAngle` for padding arc segments.
 
+- `maWidthBand` and `maHeightBand` for specifying dimensions relative to band size.
+
 - `tiDx` / `ticoDx` and `tiDy` / `ticoDy` title offset options.
 
 #### Convenience functions

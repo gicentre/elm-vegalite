@@ -347,7 +347,9 @@ module VegaLite exposing
     , maTicks
     , maTooltip
     , maWidth
+    , maWidthBand
     , maHeight
+    , maHeightBand
     , maX
     , maY
     , maXOffset
@@ -2230,7 +2232,9 @@ property documentation.
 @docs maTicks
 @docs maTooltip
 @docs maWidth
+@docs maWidthBand
 @docs maHeight
+@docs maHeightBand
 @docs maX
 @docs maY
 @docs maXOffset
@@ -5352,9 +5356,10 @@ type MarkOrientation
 [maStrokeWidth](#maStrokeWidth), [maStyle](#maStyle), [maTension](#maTension),
 [maText](#maText), [maTheta](#maTheta), [maTheta2](#maTheta2), [maThetaOffset](#maThetaOffset),
 [maTheta2Offset](#maTheta2Offset),[maThickness](#maThickness), [maTicks](#maTicks),
-[maTooltip](#maTooltip), [maX](#maX), [maWidth](#maWidth), [maHeight](#maHeight),
-[maY](#maY), [maXOffset](#maXOffset), [maYOffset](#maYOffset), [maX2](#maX2), [maY2](#maY2),
-[maX2Offset](#maX2Offset) and [maY2Offset](#maY2Offset).
+[maTooltip](#maTooltip), [maX](#maX), [maWidth](#maWidth), [maWidthBand](#maWidthBand),
+[maHeight](#maHeight), [maHeightBand](#maHeightBand), [maY](#maY), [maXOffset](#maXOffset),
+[maYOffset](#maYOffset), [maX2](#maX2), [maY2](#maY2),[maX2Offset](#maX2Offset)
+and [maY2Offset](#maY2Offset).
 -}
 type
     MarkProperty
@@ -5433,7 +5438,9 @@ type
     | MTicks (List MarkProperty)
     | MTooltip TooltipContent
     | MWidth Num
+    | MWidthBand Num
     | MHeight Num
+    | MHeightBand Num
     | MX Num
     | MY Num
     | MX2 Num
@@ -14920,6 +14927,13 @@ maHeight n =
     MHeight (Num n)
 
 
+{-| Set the height of a mark as a proportion of its band size.
+-}
+maHeightBand : Float -> MarkProperty
+maHeightBand n =
+    MHeightBand (Num n)
+
+
 {-| Hyperlink to be associated with a mark making it a clickable hyperlink.
 -}
 maHRef : String -> MarkProperty
@@ -15285,6 +15299,17 @@ maTooltip =
 maWidth : Float -> MarkProperty
 maWidth n =
     MWidth (Num n)
+
+
+{-| Set the width of a mark as a proportion of its band size. For example, to set
+a bar width to be three quarters of its normal width,
+
+    bar [ maWidthBand 0.75 ]
+
+-}
+maWidthBand : Float -> MarkProperty
+maWidthBand n =
+    MWidthBand (Num n)
 
 
 {-| X position of a mark.
@@ -16000,6 +16025,12 @@ maNumExpr ex fn =
 
         MHeight _ ->
             MHeight (NumExpr ex)
+
+        MWidthBand _ ->
+            MWidthBand (NumExpr ex)
+
+        MHeightBand _ ->
+            MHeightBand (NumExpr ex)
 
         MX _ ->
             MX (NumExpr ex)
@@ -24545,8 +24576,14 @@ markProperty mProp =
         MWidth n ->
             numExpr "width" n
 
+        MWidthBand n ->
+            [ ( "width", JE.object (numExpr "band" n) ) ]
+
         MHeight n ->
             numExpr "height" n
+
+        MHeightBand n ->
+            [ ( "height", JE.object (numExpr "band" n) ) ]
 
         MX n ->
             numExpr "x" n
