@@ -325,6 +325,26 @@ line13 : Spec
 line13 =
     let
         desc =
+            description "Bump chart"
+
+        data =
+            dataFromColumns []
+                << dataColumn "build" (List.range 1 16 |> List.map toFloat |> nums)
+                << dataColumn "result" (strs [ "PASSED", "PASSED", "FAILED", "FAILED", "SKIPPED", "PASSED", "PASSED", "FAILED", "PASSED", "PASSED", "SKIPPED", "PASSED", "PASSED", "FAILED", "PASSED", "SKIPPED" ])
+
+        enc =
+            encoding
+                << position X [ pName "build", pQuant ]
+                << position Y [ pName "result" ]
+                << order [ oName "build", oQuant ]
+    in
+    toVegaLite [ desc, data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+line14 : Spec
+line14 =
+    let
+        desc =
             description "Stock prices of five tech companies over time double encoding price with vertical position and line thickness."
 
         data =
@@ -340,8 +360,57 @@ line13 =
     toVegaLite [ desc, data, enc [], trail [] ]
 
 
-line14 : Spec
-line14 =
+line15 : Spec
+line15 =
+    let
+        desc =
+            description "A comet chart showing changes between between two states."
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+                << configuration (coLegend [ lecoOrient loBottom, lecoDirection moHorizontal ])
+
+        data =
+            dataFromUrl (path ++ "barley.json")
+
+        trans =
+            transform
+                << pivot "year" "yield" [ piGroupBy [ "variety", "site" ] ]
+                << foldAs [ "1931", "1932" ] "year" "yield"
+                << calculateAs "toNumber(datum.year)" "year"
+                << calculateAs "datum['1932'] - datum['1931']" "delta"
+
+        enc =
+            encoding
+                << position X [ pName "year", pTitle "" ]
+                << position Y [ pName "variety", pTitle "Variety" ]
+                << size
+                    [ mName "yield"
+                    , mQuant
+                    , mScale [ scRange (raNums [ 0, 12 ]) ]
+                    , mLegend
+                        [ leTitle "Barley Yield (bushels/acre)"
+                        , leValues (nums [ 20, 60 ])
+                        ]
+                    ]
+                << color [ mName "delta", mQuant, mScale [ scDomainMid 0 ], mTitle "Yield Delta (%)" ]
+                << column [ fName "site", fHeader [ hdTitle "Site" ] ]
+                << tooltips [ [ tName "year", tQuant ], [ tName "yield" ] ]
+    in
+    toVegaLite
+        [ desc
+        , cfg []
+        , title "Barley Yield comparison between 1932 and 1931" []
+        , data []
+        , trans []
+        , enc []
+        , trail []
+        ]
+
+
+line16 : Spec
+line16 =
     let
         desc =
             description "Line chart with markers and invalid values."
@@ -364,8 +433,8 @@ line14 =
     toVegaLite [ desc, data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
-line15 : Spec
-line15 =
+line17 : Spec
+line17 =
     let
         desc =
             description "Carbon dioxide in the atmosphere."
@@ -448,8 +517,8 @@ line15 =
         ]
 
 
-line16 : Spec
-line16 =
+line18 : Spec
+line18 =
     let
         desc =
             description "Line chart showing ranks over time for thw World Cup 2018 Group F teams"
@@ -483,8 +552,8 @@ line16 =
     toVegaLite [ desc, data [], trans [], enc [], line [ maOrient moVertical ] ]
 
 
-line17 : Spec
-line17 =
+line19 : Spec
+line19 =
     let
         desc =
             description "Plots a function using a generated sequence"
@@ -516,8 +585,8 @@ line17 =
     toVegaLite [ desc, width 300, height 150, data, trans [], layer [ specSin, specCos ] ]
 
 
-line18 : Spec
-line18 =
+line20 : Spec
+line20 =
     let
         data =
             dataFromUrl (path ++ "stocks.csv") []
@@ -531,8 +600,8 @@ line18 =
     toVegaLite [ data, enc [], line [] ]
 
 
-line19 : Spec
-line19 =
+line21 : Spec
+line21 =
     let
         data =
             dataFromColumns []
@@ -577,6 +646,8 @@ mySpecs =
         , ( "line17", line17 )
         , ( "line18", line18 )
         , ( "line19", line19 )
+        , ( "line20", line20 )
+        , ( "line21", line21 )
         ]
 
 
