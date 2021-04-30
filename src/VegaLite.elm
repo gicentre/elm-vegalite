@@ -264,6 +264,7 @@ module VegaLite exposing
     , trail
     , maBooExpr
     , maNumExpr
+    , maNumsExpr
     , maStrExpr
     , maAlign
     , maAngle
@@ -2145,7 +2146,9 @@ property documentation.
 
 @docs maBooExpr
 @docs maNumExpr
+@docs maNumsExpr
 @docs maStrExpr
+
 @docs maAlign
 @docs maAngle
 @docs maAria
@@ -16114,6 +16117,33 @@ maNumExpr ex fn =
 
         _ ->
             fn 0
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a mark property function requiring a list of numbers (for dash styles). This can
+be used to provide an interactive parameterisation of a mark's dash property when
+an expression is bound to an input element. For example,
+
+    ps =
+        params
+            << param "dashStyle"
+                [ paValue (nums [ 2, 2 ])
+                , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
+                ]
+
+    mk =
+        bar
+            [ maNumsExpr "dashStyle" maStrokeDash, maStroke "black" ]
+
+-}
+maNumsExpr : String -> (List number -> MarkProperty) -> MarkProperty
+maNumsExpr ex fn =
+    case fn [] of
+        MStrokeDash _ ->
+            MStrokeDash (NumsExpr ex)
+
+        _ ->
+            fn []
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to

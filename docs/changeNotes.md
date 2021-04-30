@@ -41,6 +41,8 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
 
+- `maNumsExpr` for providing expressions that evaluate to a list of numeric mark (dash) properties (VL5.0).
+
 - `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
 
 - `maBooExpr` for providing expressions that evaluate to Boolean mark properties (VL5.0).
