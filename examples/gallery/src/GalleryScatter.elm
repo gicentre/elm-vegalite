@@ -188,7 +188,7 @@ scatter9 =
                 << color [ mStr "#000" ]
 
         ps =
-            params << param "view" [ paSelect seInterval [ seBindScales ] ]
+            params << param "view" [ paSelect seInterval [], paBindScales ]
     in
     toVegaLite [ desc, width 500, height 300, data, ps [], enc [], circle [] ]
 

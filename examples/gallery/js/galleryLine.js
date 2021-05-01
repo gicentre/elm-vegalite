@@ -12037,6 +12037,13 @@ var $author$project$VegaLite$column = function (fFields) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields))));
 };
+var $author$project$VegaLite$DMidNumber = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$doMid = function (n) {
+	return $author$project$VegaLite$DMidNumber(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$FHeader = function (a) {
 	return {$: 6, a: a};
 };
@@ -12156,13 +12163,10 @@ var $author$project$VegaLite$raNums = function (ns) {
 	return $author$project$VegaLite$RNumbers(
 		$author$project$VegaLite$Nums(ns));
 };
-var $author$project$VegaLite$SDomainMid = function (a) {
-	return {$: 16, a: a};
+var $author$project$VegaLite$SDomain = function (a) {
+	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomainMid = function (n) {
-	return $author$project$VegaLite$SDomainMid(
-		$author$project$VegaLite$Num(n));
-};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
 var $author$project$VegaLite$SRange = function (a) {
 	return {$: 3, a: a};
 };
@@ -12470,7 +12474,8 @@ var $author$project$GalleryLine$line15 = function () {
 							$author$project$VegaLite$mScale(
 							_List_fromArray(
 								[
-									$author$project$VegaLite$scDomainMid(0)
+									$author$project$VegaLite$scDomain(
+									$author$project$VegaLite$doMid(0))
 								])),
 							$author$project$VegaLite$mTitle('Yield Delta (%)')
 						]))),
@@ -13188,9 +13193,6 @@ var $author$project$VegaLite$DStrings = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$RStrings = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$SDomain = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {

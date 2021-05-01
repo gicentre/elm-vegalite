@@ -12607,6 +12607,8 @@ var $author$project$GalleryScatter$scatter8 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$PBindScales = {$: 2};
+var $author$project$VegaLite$paBindScales = $author$project$VegaLite$PBindScales;
 var $author$project$VegaLite$PSelect = F2(
 	function (a, b) {
 		return {$: 7, a: a, b: b};
@@ -12858,8 +12860,6 @@ var $author$project$VegaLite$scZero = function (b) {
 	return $author$project$VegaLite$SZero(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$BindScales = {$: 1};
-var $author$project$VegaLite$seBindScales = $author$project$VegaLite$BindScales;
 var $author$project$VegaLite$SeInterval = 1;
 var $author$project$VegaLite$seInterval = 1;
 var $author$project$GalleryScatter$scatter9 = function () {
@@ -12871,11 +12871,8 @@ var $author$project$GalleryScatter$scatter9 = function () {
 			'view',
 			_List_fromArray(
 				[
-					A2(
-					$author$project$VegaLite$paSelect,
-					$author$project$VegaLite$seInterval,
-					_List_fromArray(
-						[$author$project$VegaLite$seBindScales]))
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil),
+					$author$project$VegaLite$paBindScales
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,

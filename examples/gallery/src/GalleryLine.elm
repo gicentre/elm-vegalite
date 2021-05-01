@@ -394,7 +394,7 @@ line15 =
                         , leValues (nums [ 20, 60 ])
                         ]
                     ]
-                << color [ mName "delta", mQuant, mScale [ scDomainMid 0 ], mTitle "Yield Delta (%)" ]
+                << color [ mName "delta", mQuant, mScale [ scDomain (doMid 0) ], mTitle "Yield Delta (%)" ]
                 << column [ fName "site", fHeader [ hdTitle "Site" ] ]
                 << tooltips [ [ tName "year", tQuant ], [ tName "yield" ] ]
     in
