@@ -371,6 +371,75 @@ geo9 =
         ]
 
 
+geo10 : Spec
+geo10 =
+    let
+        ps =
+            params
+                << param "type"
+                    [ paValue (str "equalEarth")
+                    , paBind
+                        (ipSelect
+                            [ inOptions
+                                [ "albers"
+                                , "albersUsa"
+                                , "azimuthalEqualArea"
+                                , "azimuthalEquidistant"
+                                , "conicConformal"
+                                , "conicEqualArea"
+                                , "conicEquidistant"
+                                , "equalEarth"
+                                , "equirectangular"
+                                , "gnomonic"
+                                , "mercator"
+                                , "naturalEarth1"
+                                , "orthographic"
+                                , "stereographic"
+                                , "transverseMercator"
+                                ]
+                            ]
+                        )
+                    ]
+                << param "scale" [ paValue (num 100), paBind (ipRange [ inMin 10, inMax 500 ]) ]
+                << param "rotate0" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                << param "rotate1" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "rotate2" [ paValue (num 0), paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                << param "parallels1" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "parallels2" [ paValue (num 45), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+
+        data =
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grStep ( 15, 15 ) ]
+                , geoshape [ maFilled False, maStrokeWidth 0.1, maStroke "black" ]
+                ]
+
+        countrySpec =
+            asSpec [ data, geoshape [ maFill "#ccc" ] ]
+
+        mp =
+            projection
+                [ prRotateExpr "rotate0" "rotate1" "rotate2"
+                , prScale |> prNumExpr "scale"
+                , prParallelsExpr "parallels1" "parallels2"
+                , prType (prExpr "type")
+                ]
+    in
+    toVegaLite
+        [ cfg []
+        , ps []
+        , width 700
+        , height 450
+        , mp
+        , layer [ sphereSpec, countrySpec, gratSpec ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -387,6 +456,7 @@ mySpecs =
         , ( "geo7", geo7 )
         , ( "geo8", geo8 )
         , ( "geo9", geo9 )
+        , ( "geo10", geo10 )
         ]
 
 
