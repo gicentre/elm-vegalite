@@ -86,7 +86,7 @@ Elm and elm-vegaLite provide an ideal environment for educators wishing to teach
 ## Further Reading
 
 - To get started have a go [creating your first elm-VegaLite visualization](https://github.com/gicentre/elm-vegalite/tree/main/docs/helloWorld).
-- For a more thorough set of examples/tutorial, see the [Vega-Lite walkthrough](https://github.com/gicentre/elm-vegalite/tree/main/docs/walkthrough).
+- For a more thorough set of examples/tutorial, see the [gallery](https://github.com/gicentre/elm-vegalite/tree/main/examples/gallery) and [walkthrough](https://github.com/gicentre/elm-vegalite/tree/main/docs/walkthrough).
 - To get coding, see the [elm-vegaLite API documentation.](https://package.elm-lang.org/packages/gicentre/elm-vegalite/latest).
 - Browse the [elm-vegaLite examples](https://github.com/gicentre/elm-vegalite/tree/main/examples) folder.
 - For an example of fully embedding an elm-vegaLite visualization in an elm SPA, see [elm-embed-vegalite](https://github.com/yardsale8/elm-embed-vega).
