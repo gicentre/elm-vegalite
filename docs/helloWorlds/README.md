@@ -1,8 +1,8 @@
-# Multiple Elm-Vega Visualizations in a Single Document
+# Multiple elm-vegaLite visualizations in a single document
 
 ## 1. Create HTML/JavaScript page to receive multiple specifications from Elm
 
-In many cases you may wish to embed more than one visualization created by elm-vega inside a single page.
+In many cases you may wish to embed more than one visualization created by elm-vegaLite inside a single page.
 The template to do this can be very similar to the simple [HelloWorld](../helloWorld/README.md) example.
 The difference being that instead of a single `<div>` into which a visualization is inserted, you provide a sequence of `<div>` containers each with some unique id.
 
@@ -52,9 +52,9 @@ You can copy this example to a file `helloWorlds.html` somewhere on your machine
 </html>
 ```
 
-## 2. Create an Elm-Vega Program
+## 2. Create an elm-vegaLite program
 
-Next, create a file (here called `HelloWorlds.elm`) in the `src` folder relative to `helloWorlds.html`, within which you should provide the elm-vega specifications and the boilerplate for passing the specs to JavaScript.
+Next, create a file (here called `HelloWorlds.elm`) in the `src` folder relative to `helloWorlds.html`, within which you should provide the elm-vegaLite specifications and the boilerplate for passing the specs to JavaScript.
 
 Here is an example containing three visualizations:
 
@@ -152,7 +152,7 @@ In this example, the main body of code comprises three functions (`myFirstVis`, 
 
 The three specifications are then combined (with `combineSpecs`) into a single JSON object in the function `mySpecs` pairing each spec with an ID we can refer to in the HTML `<div>` containers.
 
-## 3. Compile the Elm-Vega into JavaScript
+## 3. Compile the elm-vegaLite into JavaScript
 
 The final task, as before, is to convert the Elm file into JavaScript:
 
@@ -169,8 +169,8 @@ Because some of the visualizations in this example load an external file contain
 ## 4. Next Steps
 
 You should now have the ability to embed single or multiple visualizations in your web pages.
-To understand more about how Elm-Vega itself works, and how to encode different visualization specifications, have a look at
+To understand more about how elm-vegaLite itself works, and how to encode different visualization specifications, have a look at
 
-- the [Elm-Vega Walkthrough](../walkthrough/README.md)
-- the [simple examples](../../vlExamples) included in the `vlExamples` folder.
-- the [vlTest-gallery](../../vlTest-gallery) for a full range of examples.
+- the [elm-vegaLite Walkthrough](../walkthrough/README.md),
+- some [examples](../../examples/README.md),
+- the [gallery](../../gallery/README.md) for a full range of examples.
