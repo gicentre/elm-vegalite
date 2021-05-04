@@ -1,4 +1,4 @@
-# Vega Lite Changes
+# elm-vegaLite changes
 
 ## Pending changes
 
