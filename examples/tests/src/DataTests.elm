@@ -876,6 +876,48 @@ datum8 =
     toVegaLite [ data [], enc [], textMark [] ]
 
 
+dataArr1 : Spec
+dataArr1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x"
+                    (dataArrays
+                        [ nums [ 10, 11 ]
+                        , nums [ 3, 4 ]
+                        , nums [ 8, 6 ]
+                        ]
+                    )
+
+        enc =
+            encoding
+                << position X [ pName "x[0]", pQuant ]
+                << position Y [ pName "x[1]", pQuant ]
+    in
+    toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
+
+
+dataObj1 : Spec
+dataObj1 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x"
+                    (dataObjects
+                        [ [ ( "a", num 10 ), ( "b", num 11 ) ]
+                        , [ ( "a", num 3 ), ( "b", num 4 ) ]
+                        , [ ( "a", num 8 ), ( "b", num 6 ) ]
+                        ]
+                    )
+
+        enc =
+            encoding
+                << position X [ pName "x.a", pQuant ]
+                << position Y [ pName "x.b", pQuant ]
+    in
+    toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -929,6 +971,8 @@ specs =
     , ( "datum6", datum6 )
     , ( "datum7", datum7 )
     , ( "datum8", datum8 )
+    , ( "dataArr1", dataArr1 )
+    , ( "dataObj1", dataObj1 )
     ]
 
 

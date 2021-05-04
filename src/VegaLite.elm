@@ -9966,15 +9966,13 @@ dataColumn colName data =
             (::) (List.map (\b -> ( colName, JE.bool b )) col)
 
         DExprs col ->
-            -- TODO: Check this is meaningful with an expression that generates a list of values.
+            -- TODO: Currently VL does not accept expressionns for data values, but we leave this here for possible future inclusion
             (::) [ ( colName, JE.object [ ( "expr", JE.string col ) ] ) ]
 
-        -- TODO: Check this produces the correct result
         DObjects col ->
             (::) (List.map (\kvs -> ( colName, JE.object (List.map (\( k, v ) -> ( k, dataValueSpec v )) kvs) )) col)
 
         DArrays col ->
-            -- TODO: Check this produces the correct result.
             (::) (List.map (\ds -> ( colName, dataValuesSpecs ds )) col)
 
 
