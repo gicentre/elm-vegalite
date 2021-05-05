@@ -11177,61 +11177,58 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 		case 0:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'bandPaddingInner', x);
-		case 1:
-			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'bandPaddingOuter', x);
-		case 2:
-			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'barBandPaddingInner', x);
 		case 3:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'barBandPaddingOuter', x);
-		case 4:
+			return A2($author$project$VegaLite$numExpr, 'bandPaddingOuter', x);
+		case 1:
+			var x = scaleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'barBandPaddingInner', x);
+		case 2:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'rectBandPaddingInner', x);
 		case 5:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'rectBandPaddingOuter', x);
-		case 6:
+			return A2($author$project$VegaLite$numExpr, 'continuousPadding', x);
+		case 4:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'clamp', b);
-		case 7:
+		case 6:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'maxBandSize', x);
-		case 8:
+		case 7:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'minBandSize', x);
-		case 9:
+		case 8:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'maxFontSize', x);
-		case 10:
+		case 9:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'minFontSize', x);
-		case 11:
+		case 10:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'maxOpacity', x);
-		case 12:
+		case 11:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'minOpacity', x);
-		case 13:
+		case 12:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'maxSize', x);
-		case 14:
+		case 13:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'minSize', x);
-		case 15:
+		case 14:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'maxStrokeWidth', x);
-		case 16:
+		case 15:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'minStrokeWidth', x);
-		case 17:
+		case 16:
 			var x = scaleCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'pointPadding', x);
-		case 18:
+		case 17:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'round', b);
-		case 19:
+		case 18:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
 		default:
@@ -15953,12 +15950,416 @@ var $author$project$ConfigTests$paramCfg2 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Y2 = 3;
 var $author$project$VegaLite$Scale = function (a) {
 	return {$: 36, a: a};
 };
 var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
+var $author$project$VegaLite$Rect = 11;
+var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
+var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
+	return $author$project$VegaLite$SCBandPaddingOuter(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$SCBarBandPaddingInner = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$sacoBarBandPaddingInner = function (n) {
+	return $author$project$VegaLite$SCBarBandPaddingInner(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$SCContinuousPadding = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$sacoContinuousPadding = function (n) {
+	return $author$project$VegaLite$SCContinuousPadding(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$SCMaxBandSize = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$SCMaxFontSize = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$SCMaxOpacity = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$SCMaxSize = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$SCMaxStrokeWidth = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$SCMinBandSize = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$SCMinFontSize = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$SCMinOpacity = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$SCMinSize = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$SCMinStrokeWidth = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$SCPointPadding = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$SCRectBandPaddingInner = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$sacoNumExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(0);
+		switch (_v0.$) {
+			case 0:
+				return $author$project$VegaLite$SCBandPaddingInner(
+					$author$project$VegaLite$NumExpr(ex));
+			case 3:
+				return $author$project$VegaLite$SCBandPaddingOuter(
+					$author$project$VegaLite$NumExpr(ex));
+			case 1:
+				return $author$project$VegaLite$SCBarBandPaddingInner(
+					$author$project$VegaLite$NumExpr(ex));
+			case 2:
+				return $author$project$VegaLite$SCRectBandPaddingInner(
+					$author$project$VegaLite$NumExpr(ex));
+			case 5:
+				return $author$project$VegaLite$SCContinuousPadding(
+					$author$project$VegaLite$NumExpr(ex));
+			case 6:
+				return $author$project$VegaLite$SCMaxBandSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 7:
+				return $author$project$VegaLite$SCMinBandSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 8:
+				return $author$project$VegaLite$SCMaxFontSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 9:
+				return $author$project$VegaLite$SCMinFontSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 10:
+				return $author$project$VegaLite$SCMaxOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 11:
+				return $author$project$VegaLite$SCMinOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 12:
+				return $author$project$VegaLite$SCMaxSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 13:
+				return $author$project$VegaLite$SCMinSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 14:
+				return $author$project$VegaLite$SCMaxStrokeWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 15:
+				return $author$project$VegaLite$SCMinStrokeWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 16:
+				return $author$project$VegaLite$SCPointPadding(
+					$author$project$VegaLite$NumExpr(ex));
+			default:
+				return fn(0);
+		}
+	});
+var $author$project$VegaLite$sacoPointPadding = function (n) {
+	return $author$project$VegaLite$SCPointPadding(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$sacoRectBandPaddingInner = function (n) {
+	return $author$project$VegaLite$SCRectBandPaddingInner(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$VLVConcat = 21;
+var $author$project$VegaLite$vConcat = function (specs) {
+	return _Utils_Tuple2(
+		21,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$ConfigTests$paramCfg3 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						$author$project$VegaLite$params,
+						A2(
+							$author$project$VegaLite$param,
+							'barBandPaddingInner',
+							_List_fromArray(
+								[
+									$author$project$VegaLite$paValue(
+									$author$project$VegaLite$num(0.1)),
+									$author$project$VegaLite$paBind(
+									$author$project$VegaLite$ipRange(
+										_List_fromArray(
+											[
+												$author$project$VegaLite$inMin(0),
+												$author$project$VegaLite$inMax(1)
+											])))
+								]))),
+					A2(
+						$author$project$VegaLite$param,
+						'rectBandPaddingInner',
+						_List_fromArray(
+							[
+								$author$project$VegaLite$paValue(
+								$author$project$VegaLite$num(0)),
+								$author$project$VegaLite$paBind(
+								$author$project$VegaLite$ipRange(
+									_List_fromArray(
+										[
+											$author$project$VegaLite$inMin(0),
+											$author$project$VegaLite$inMax(1)
+										])))
+							]))),
+				A2(
+					$author$project$VegaLite$param,
+					'bandPaddingOuter',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValue(
+							$author$project$VegaLite$num(0.05)),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inMin(0),
+										$author$project$VegaLite$inMax(1)
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
+				'continuousPadding',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(5)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(-10),
+									$author$project$VegaLite$inMax(30)
+								])))
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'pointPadding',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(0.5)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inMin(0),
+								$author$project$VegaLite$inMax(1)
+							])))
+				])));
+	var enc4 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec4 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				enc4(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(300),
+						$author$project$VegaLite$maStroke('black')
+					]))
+			]));
+	var enc3 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('y2'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec3 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				enc3(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('black')
+					]))
+			]));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('x')
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('y'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			3,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y2')
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				enc2(_List_Nil),
+				$author$project$VegaLite$rect(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('black')
+					]))
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('y'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				enc1(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('black')
+					]))
+			]));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'x',
+					$author$project$VegaLite$strs(
+						_List_fromArray(
+							['a', 'b', 'c', 'd', 'e'])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'y',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[1, 3, 5, 4, 2])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'y2',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[10, 9, 8, 7, 7]))));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coScale(
+				_List_fromArray(
+					[
+						A2($author$project$VegaLite$sacoNumExpr, 'barBandPaddingInner', $author$project$VegaLite$sacoBarBandPaddingInner),
+						A2($author$project$VegaLite$sacoNumExpr, 'rectBandPaddingInner', $author$project$VegaLite$sacoRectBandPaddingInner),
+						A2($author$project$VegaLite$sacoNumExpr, 'bandPaddingOuter', $author$project$VegaLite$sacoBandPaddingOuter),
+						A2($author$project$VegaLite$sacoNumExpr, 'continuousPadding', $author$project$VegaLite$sacoContinuousPadding),
+						A2($author$project$VegaLite$sacoNumExpr, 'pointPadding', $author$project$VegaLite$sacoPointPadding)
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data(_List_Nil),
+				ps(_List_Nil),
+				$author$project$VegaLite$vConcat(
+				_List_fromArray(
+					[spec1, spec2, spec3, spec4]))
+			]));
+}();
 var $author$project$VegaLite$SCXReverse = function (a) {
-	return {$: 20, a: a};
+	return {$: 19, a: a};
 };
 var $author$project$VegaLite$sacoXReverse = function (b) {
 	return $author$project$VegaLite$SCXReverse(
@@ -16489,7 +16890,8 @@ var $author$project$ConfigTests$specs = _List_fromArray(
 		_Utils_Tuple2('axisLegendCfg1', $author$project$ConfigTests$axisLegendCfg1),
 		_Utils_Tuple2('interactionCfg1', $author$project$ConfigTests$interactionCfg1),
 		_Utils_Tuple2('paramCfg1', $author$project$ConfigTests$paramCfg1),
-		_Utils_Tuple2('paramCfg2', $author$project$ConfigTests$paramCfg2)
+		_Utils_Tuple2('paramCfg2', $author$project$ConfigTests$paramCfg2),
+		_Utils_Tuple2('paramCfg3', $author$project$ConfigTests$paramCfg3)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
