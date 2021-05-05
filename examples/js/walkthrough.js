@@ -9787,7 +9787,7 @@ var $author$project$VegaLite$titleConfigProperty = function (titleCfg) {
 			}
 		case 16:
 			var s = titleCfg.a;
-			return A2($author$project$VegaLite$strExpr, 'subtitle', s);
+			return A2($author$project$VegaLite$strExprMultiline, 'subtitle', s);
 		case 17:
 			var s = titleCfg.a;
 			return A2($author$project$VegaLite$strExpr, 'subtitleColor', s);
