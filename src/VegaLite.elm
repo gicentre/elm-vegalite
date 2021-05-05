@@ -1114,7 +1114,9 @@ module VegaLite exposing
     , background
     , backgroundExpr
     , tiNumExpr
+    , ticoNumExpr
     , tiStrExpr
+    , ticoStrExpr
     , title
     , titleExpr
     , tiAnchor
@@ -3364,7 +3366,9 @@ Per-title settings. To standardize the appearance of all titles in a multi-view
 specification, use [coTitle](#coTitle) instead.
 
 @docs tiNumExpr
+@docs ticoNumExpr
 @docs tiStrExpr
+@docs ticoStrExpr
 
 @docs title
 @docs titleExpr
@@ -20029,14 +20033,14 @@ ticoColor s =
 
 {-| Default delta offset of title and subtitle x-position.
 -}
-ticoDx : Float -> TitleProperty
+ticoDx : Float -> TitleConfig
 ticoDx n =
     TDx (Num n)
 
 
 {-| Default delta offset of title and subtitle y-position.
 -}
-ticoDy : Float -> TitleProperty
+ticoDy : Float -> TitleConfig
 ticoDy n =
     TDy (Num n)
 
@@ -20092,6 +20096,80 @@ ticoLineHeight n =
     TLineHeight (Num n)
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+title configuration function requiring a numeric value.
+-}
+ticoNumExpr : String -> (number -> TitleConfig) -> TitleConfig
+ticoNumExpr ex fn =
+    case fn 0 of
+        TAngle _ ->
+            TAngle (NumExpr ex)
+
+        TDx _ ->
+            TDx (NumExpr ex)
+
+        TDy _ ->
+            TDy (NumExpr ex)
+
+        TFontSize _ ->
+            TFontSize (NumExpr ex)
+
+        TLineHeight _ ->
+            TLineHeight (NumExpr ex)
+
+        TLimit _ ->
+            TLimit (NumExpr ex)
+
+        TOffset _ ->
+            TOffset (NumExpr ex)
+
+        TSubtitleFontSize _ ->
+            TSubtitleFontSize (NumExpr ex)
+
+        TSubtitleLineHeight _ ->
+            TSubtitleLineHeight (NumExpr ex)
+
+        TSubtitlePadding _ ->
+            TSubtitlePadding (NumExpr ex)
+
+        TZIndex _ ->
+            TZIndex (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a title configuarion function requiring a string value.
+-}
+ticoStrExpr : String -> (String -> TitleConfig) -> TitleConfig
+ticoStrExpr ex fn =
+    case fn "" of
+        TColor _ ->
+            TColor (StrExpr ex)
+
+        TFont _ ->
+            TFont (StrExpr ex)
+
+        TFontStyle _ ->
+            TFontStyle (StrExpr ex)
+
+        TSubtitle _ ->
+            TSubtitle (StrExpr ex)
+
+        TSubtitleColor _ ->
+            TSubtitleColor (StrExpr ex)
+
+        TSubtitleFont _ ->
+            TSubtitleFont (StrExpr ex)
+
+        TSubtitleFontStyle _ ->
+            TSubtitleFontStyle (StrExpr ex)
+
+        _ ->
+            fn ""
+
+
 {-| Default offset in pixel units of titles relative to the chart body.
 -}
 ticoOffset : Float -> TitleConfig
@@ -20125,42 +20203,42 @@ ticoSubtitleColor s =
 
 {-| Default font name of a subtitle.
 -}
-ticoSubtitleFont : String -> TitleProperty
+ticoSubtitleFont : String -> TitleConfig
 ticoSubtitleFont s =
     TSubtitleFont (Str s)
 
 
 {-| Default font size of a subtitle.
 -}
-ticoSubtitleFontSize : Float -> TitleProperty
+ticoSubtitleFontSize : Float -> TitleConfig
 ticoSubtitleFontSize n =
     TSubtitleFontSize (Num n)
 
 
 {-| Default ont style of a subtitle such as `"normal"` or `"italic"`.
 -}
-ticoSubtitleFontStyle : String -> TitleProperty
+ticoSubtitleFontStyle : String -> TitleConfig
 ticoSubtitleFontStyle s =
     TSubtitleFontStyle (Str s)
 
 
 {-| Default font weight of a subtitle.
 -}
-ticoSubtitleFontWeight : FontWeight -> TitleProperty
+ticoSubtitleFontWeight : FontWeight -> TitleConfig
 ticoSubtitleFontWeight =
     TSubtitleFontWeight
 
 
 {-| Default line height in pixels of each line of text in a subtitle.
 -}
-ticoSubtitleLineHeight : Float -> TitleProperty
+ticoSubtitleLineHeight : Float -> TitleConfig
 ticoSubtitleLineHeight n =
     TSubtitleLineHeight (Num n)
 
 
 {-| Default padding in pixels between title and subtitle text.
 -}
-ticoSubtitlePadding : Float -> TitleProperty
+ticoSubtitlePadding : Float -> TitleConfig
 ticoSubtitlePadding n =
     TSubtitlePadding (Num n)
 

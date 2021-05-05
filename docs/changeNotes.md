@@ -73,9 +73,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `prNumExpr` for providing expressions that evaluate to numeric projection properties (VL5.0)
 
-- `tiNumExpr` for providing expressions that evaluate to numeric title properties (VL5.0).
+- `tiNumExpr` / `ticoNumExpr` for providing expressions that evaluate to numeric title properties or configuration (VL5.0).
 
-- `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
+- `tiStrExpr` / `ticoStrExpr` for providing expressions that evaluate to string title properties or configuration (VL5.0).
 
 - `vicoBooExpr` for providing expressions that evaluate to a Boolean view background configuration (VL5.0).
 
