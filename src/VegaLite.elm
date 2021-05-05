@@ -1147,7 +1147,9 @@ module VegaLite exposing
     , tiZIndex
     , viewBackground
     , vbNumExpr
+    , vicoNumExpr
     , vbNumsExpr
+    , vicoNumsExpr
     , vbStrExpr
     , viewStyle
     , viewCornerRadius
@@ -1661,7 +1663,7 @@ a port to activate the visualization. Alternatively, to avoid coding the link to
 the Vega-Lite runtime, you can embed specifications directly in a
 [litvis document](https://github.com/gicentre/litvis).
 
-1.  [Creating a specification](#1-creating-a-vega-lite-specification)
+1.  [Creating a Specification](#1-creating-a-vega-lite-specification)
 2.  [Specifying the Data to Visualize](#2-specifying-the-data-to-visualize)
 3.  [Transforming Data](#3-transforming-data)
 4.  [Specifying Marks](#4-specifying-marks)
@@ -3402,7 +3404,9 @@ of other views. For more details see the
 
 @docs viewBackground
 @docs vbNumExpr
+@docs vicoNumExpr
 @docs vbNumsExpr
+@docs vicoNumsExpr
 @docs vbStrExpr
 
 @docs viewStyle
@@ -6376,24 +6380,24 @@ type ViewBackground
 type ViewConfig
     = VBackground (List ViewBackground)
     | VClip Bool
-    | VContinuousWidth Float
-    | VContinuousHeight Float
-    | VCornerRadius Float
+    | VContinuousWidth Num
+    | VContinuousHeight Num
+    | VCornerRadius Num
     | VCursor Cursor
-    | VDiscreteWidth Float
-    | VDiscreteHeight Float
+    | VDiscreteWidth Num
+    | VDiscreteHeight Num
     | VFill (Maybe String)
-    | VFillOpacity Float
-    | VOpacity Float
-    | VStep Float
+    | VFillOpacity Num
+    | VOpacity Num
+    | VStep Num
     | VStroke (Maybe String)
-    | VStrokeOpacity Float
-    | VStrokeWidth Float
+    | VStrokeOpacity Num
+    | VStrokeWidth Num
     | VStrokeCap StrokeCap
-    | VStrokeDash (List Float)
-    | VStrokeDashOffset Float
+    | VStrokeDash Nums
+    | VStrokeDashOffset Num
     | VStrokeJoin StrokeJoin
-    | VStrokeMiterLimit Float
+    | VStrokeMiterLimit Num
 
 
 {-| Top-level Vega-Lite properties. These are the ones that define the core of the
@@ -8296,9 +8300,8 @@ azimuthalEquidistant =
 
 {-| Background color of the entire visualization. For view compositions, single
 views or layers can have their own background styles in addition to this global
-background color. Should be specified with a CSS
-string such as `#ffe` or `rgb(200,20,150)`. If not specified the background will
-be white.
+background color. Should be specified with a CSS string such as `#ffe` or
+`rgb(200,20,150)`. If not specified the background will be white.
 -}
 background : String -> ( VLProperty, Spec )
 background colour =
@@ -20713,7 +20716,7 @@ vbNumExpr ex fn =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-a a view background function requiring a list of numbers (for dash styles). This can
+a view background function requiring a list of numbers (for dash styles). This can
 be used to provide an interactive parameterisation of a view background dash property
 when an expression is bound to an input element. For example,
 
@@ -20784,22 +20787,22 @@ vicoClip =
 {-| Default height of single views when the plot has continuous y-field.
 -}
 vicoContinuousHeight : Float -> ViewConfig
-vicoContinuousHeight =
-    VContinuousHeight
+vicoContinuousHeight n =
+    VContinuousHeight (Num n)
 
 
 {-| Default width of single views when the plot has continuous x-field.
 -}
 vicoContinuousWidth : Float -> ViewConfig
-vicoContinuousWidth =
-    VContinuousWidth
+vicoContinuousWidth n =
+    VContinuousWidth (Num n)
 
 
 {-| The radius in pixels of rounded rectangle corners.
 -}
 vicoCornerRadius : Float -> ViewConfig
-vicoCornerRadius =
-    VCornerRadius
+vicoCornerRadius n =
+    VCornerRadius (Num n)
 
 
 {-| Default cursor for single views.
@@ -20812,15 +20815,15 @@ vicoCursor =
 {-| Default height of single views when the plot has discrete y-field.
 -}
 vicoDiscreteHeight : Float -> ViewConfig
-vicoDiscreteHeight =
-    VDiscreteHeight
+vicoDiscreteHeight n =
+    VDiscreteHeight (Num n)
 
 
 {-| Default width of single views when the plot has discrete x-field.
 -}
 vicoDiscreteWidth : Float -> ViewConfig
-vicoDiscreteWidth =
-    VDiscreteWidth
+vicoDiscreteWidth n =
+    VDiscreteWidth (Num n)
 
 
 {-| Default fill color for single views.
@@ -20833,22 +20836,93 @@ vicoFill =
 {-| Default fill opacity for single views.
 -}
 vicoFillOpacity : Float -> ViewConfig
-vicoFillOpacity =
-    VFillOpacity
+vicoFillOpacity n =
+    VFillOpacity (Num n)
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+view background confguration function requiring a numeric value.
+-}
+vicoNumExpr : String -> (number -> ViewConfig) -> ViewConfig
+vicoNumExpr ex fn =
+    -- TODO:
+    -- | VClip Bool
+    -- | VCursor Cursor
+    -- | VFill (Maybe String)
+    -- | VStroke (Maybe String)
+    -- | VStrokeCap StrokeCap
+    -- | VStrokeJoin StrokeJoin
+    case fn 0 of
+        -- TODO: Currently not supported but left here for future VL implementation
+        VContinuousWidth _ ->
+            VContinuousWidth (NumExpr ex)
+
+        -- TODO: Currently not supported but left here for future VL implementation
+        VContinuousHeight _ ->
+            VContinuousHeight (NumExpr ex)
+
+        VCornerRadius _ ->
+            VCornerRadius (NumExpr ex)
+
+        -- TODO: Currently not supported but left here for future VL implementation
+        VDiscreteWidth _ ->
+            VDiscreteWidth (NumExpr ex)
+
+        -- TODO: Currently not supported but left here for future VL implementation
+        VDiscreteHeight _ ->
+            VDiscreteHeight (NumExpr ex)
+
+        VFillOpacity _ ->
+            VFillOpacity (NumExpr ex)
+
+        VOpacity _ ->
+            VOpacity (NumExpr ex)
+
+        -- TODO: Currently not supported but left here for future VL implementation
+        VStep _ ->
+            VStep (NumExpr ex)
+
+        VStrokeOpacity _ ->
+            VStrokeOpacity (NumExpr ex)
+
+        VStrokeWidth _ ->
+            VStrokeWidth (NumExpr ex)
+
+        VStrokeDashOffset _ ->
+            VStrokeDashOffset (NumExpr ex)
+
+        VStrokeMiterLimit _ ->
+            VStrokeMiterLimit (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+view background configuration function requiring a list of numbers (for dash styles).
+-}
+vicoNumsExpr : String -> (List number -> ViewConfig) -> ViewConfig
+vicoNumsExpr ex fn =
+    case fn [] of
+        VStrokeDash _ ->
+            VStrokeDash (NumsExpr ex)
+
+        _ ->
+            fn []
 
 
 {-| Default overall opacity for single views.
 -}
 vicoOpacity : Float -> ViewConfig
-vicoOpacity =
-    VOpacity
+vicoOpacity n =
+    VOpacity (Num n)
 
 
 {-| Default step size for x/y discrete fields.
 -}
 vicoStep : Float -> ViewConfig
-vicoStep =
-    VStep
+vicoStep n =
+    VStep (Num n)
 
 
 {-| Default stroke color for single views. If `Nothing` is provided,
@@ -20869,15 +20943,15 @@ vicoStrokeCap =
 {-| Default stroke dash style for single views.
 -}
 vicoStrokeDash : List Float -> ViewConfig
-vicoStrokeDash =
-    VStrokeDash
+vicoStrokeDash ns =
+    VStrokeDash (Nums ns)
 
 
 {-| Default stroke dash offset for single views.
 -}
 vicoStrokeDashOffset : Float -> ViewConfig
-vicoStrokeDashOffset =
-    VStrokeDashOffset
+vicoStrokeDashOffset n =
+    VStrokeDashOffset (Num n)
 
 
 {-| Default stroke line-joining style for single views.
@@ -20890,22 +20964,22 @@ vicoStrokeJoin =
 {-| Default stroke mitre limit at which to bevel a line join in single views.
 -}
 vicoStrokeMiterLimit : Float -> ViewConfig
-vicoStrokeMiterLimit =
-    VStrokeMiterLimit
+vicoStrokeMiterLimit n =
+    VStrokeMiterLimit (Num n)
 
 
 {-| Default stroke opacity for single views.
 -}
 vicoStrokeOpacity : Float -> ViewConfig
-vicoStrokeOpacity =
-    VStrokeOpacity
+vicoStrokeOpacity n =
+    VStrokeOpacity (Num n)
 
 
 {-| Default stroke width of single views.
 -}
 vicoStrokeWidth : Float -> ViewConfig
-vicoStrokeWidth =
-    VStrokeWidth
+vicoStrokeWidth n =
+    VStrokeWidth (Num n)
 
 
 {-| Configure the default single view style.
@@ -26775,22 +26849,22 @@ viewConfigProperties : ViewConfig -> List LabelledSpec
 viewConfigProperties viewCfg =
     case viewCfg of
         VContinuousWidth x ->
-            [ ( "continuousWidth", JE.float x ) ]
+            numExpr "continuousWidth" x
 
         VContinuousHeight x ->
-            [ ( "continuousHeight", JE.float x ) ]
+            numExpr "continuousHeight" x
 
         VDiscreteWidth x ->
-            [ ( "discreteWidth", JE.float x ) ]
+            numExpr "discreteWidth" x
 
         VDiscreteHeight x ->
-            [ ( "discreteHeight", JE.float x ) ]
+            numExpr "discreteHeight" x
 
         VClip b ->
             [ ( "clip", JE.bool b ) ]
 
-        VCornerRadius r ->
-            [ ( "cornerRadius", JE.float r ) ]
+        VCornerRadius x ->
+            numExpr "cornerRadius" x
 
         VCursor cur ->
             [ ( "cursor", cursorSpec cur ) ]
@@ -26804,13 +26878,13 @@ viewConfigProperties viewCfg =
                     [ ( "fill", JE.null ) ]
 
         VFillOpacity x ->
-            [ ( "fillOpacity", JE.float x ) ]
+            numExpr "fillOpacity" x
 
         VOpacity x ->
-            [ ( "opacity", JE.float x ) ]
+            numExpr "opacity" x
 
         VStep x ->
-            [ ( "step", JE.float x ) ]
+            numExpr "step" x
 
         VStroke ms ->
             case ms of
@@ -26821,7 +26895,7 @@ viewConfigProperties viewCfg =
                     [ ( "stroke", JE.null ) ]
 
         VStrokeOpacity x ->
-            [ ( "strokeOpacity", JE.float x ) ]
+            numExpr "strokeOpacity" x
 
         VStrokeCap cap ->
             [ ( "strokeCap", strokeCapSpec cap ) ]
@@ -26830,16 +26904,16 @@ viewConfigProperties viewCfg =
             [ ( "strokeJoin", strokeJoinSpec jn ) ]
 
         VStrokeWidth x ->
-            [ ( "strokeWidth", JE.float x ) ]
+            numExpr "strokeWidth" x
 
         VStrokeDash xs ->
-            [ ( "strokeDash", JE.list JE.float xs ) ]
+            numsExpr "strokeDash" xs
 
         VStrokeDashOffset x ->
-            [ ( "strokeDashOffset", JE.float x ) ]
+            numExpr "strokeDashOffset" x
 
         VStrokeMiterLimit x ->
-            [ ( "strokeMiterLimit", JE.float x ) ]
+            numExpr "strokeMiterLimit" x
 
         VBackground vbs ->
             List.concatMap viewBackgroundProperty vbs

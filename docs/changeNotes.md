@@ -77,9 +77,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
 
-- `vbNumExpr` for providing expressions that evaluate to numeric view background properties (VL5.0).
+- `vbNumExpr` / `vicoNumExpr` for providing expressions that evaluate to numeric view background properties or configuration (VL5.0).
 
-- `vbNumsExpr` for providing expressions that evaluate to a list of numeric view background properties (VL5.0).
+- `vbNumsExpr` / `vicoNumsExpr` for providing expressions that evaluate to a list of numeric view background properties or configuration (VL5.0).
 
 - `vbStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
 
