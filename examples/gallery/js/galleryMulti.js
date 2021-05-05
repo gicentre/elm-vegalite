@@ -11300,12 +11300,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 			return A2($author$project$VegaLite$numExpr, 'discreteHeight', x);
 		case 1:
 			var b = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'clip',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'clip', b);
 		case 4:
 			var x = viewCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'cornerRadius', x);
@@ -11318,21 +11313,8 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					$author$project$VegaLite$cursorSpec(cur))
 				]);
 		case 8:
-			var ms = viewCfg.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'fill',
-						$elm$json$Json$Encode$string(s))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2('fill', $elm$json$Json$Encode$null)
-					]);
-			}
+			var s = viewCfg.a;
+			return A2($author$project$VegaLite$strExpr, 'fill', s);
 		case 9:
 			var x = viewCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'fillOpacity', x);
@@ -11343,21 +11325,8 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 			var x = viewCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'step', x);
 		case 12:
-			var ms = viewCfg.a;
-			if (!ms.$) {
-				var s = ms.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'stroke',
-						$elm$json$Json$Encode$string(s))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2('stroke', $elm$json$Json$Encode$null)
-					]);
-			}
+			var s = viewCfg.a;
+			return A2($author$project$VegaLite$strExpr, 'stroke', s);
 		case 13:
 			var x = viewCfg.a;
 			return A2($author$project$VegaLite$numExpr, 'strokeOpacity', x);
@@ -11839,10 +11808,19 @@ var $author$project$VegaLite$size = function (markProps) {
 };
 var $author$project$VegaLite$TpFalse = {$: 0};
 var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
+var $author$project$VegaLite$NoStr = {$: 1};
 var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
-var $author$project$VegaLite$vicoStroke = $author$project$VegaLite$VStroke;
+var $author$project$VegaLite$vicoStroke = function (ms) {
+	if (!ms.$) {
+		var s = ms.a;
+		return $author$project$VegaLite$VStroke(
+			$author$project$VegaLite$Str(s));
+	} else {
+		return $author$project$VegaLite$VStroke($author$project$VegaLite$NoStr);
+	}
+};
 var $author$project$GalleryMulti$multi4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
