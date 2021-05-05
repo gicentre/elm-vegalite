@@ -533,6 +533,63 @@ interactionCfg1 =
         ]
 
 
+paramCfg1 : Spec
+paramCfg1 =
+    let
+        solid =
+            nums []
+
+        shortDash =
+            nums [ 2, 2 ]
+
+        longDash =
+            nums [ 8, 8 ]
+
+        cfg =
+            configure
+                << configuration
+                    (coView
+                        [ vicoNumExpr "cornerRadius" vicoCornerRadius
+                        , vicoNumExpr "fillOpacity" vicoFillOpacity
+                        , vicoNumsExpr "strokeDash" vicoStrokeDash
+                        , vicoNumExpr "strokeDashOffset" vicoStrokeDashOffset
+                        , vicoNumExpr "strokeMiterLimit" vicoStrokeMiterLimit
+                        , vicoNumExpr "strokeOpacity" vicoStrokeOpacity
+                        , vicoNumExpr "strokeWidth" vicoStrokeWidth
+                        , vicoNumExpr "viewOpacity" vicoOpacity
+                        ]
+                    )
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
+                << param "fillOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "strokeDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "strokeDashOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+                << param "strokeMiterLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 30 ]) ]
+                << param "strokeOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "strokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "viewOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mName "Origin" ]
+    in
+    toVegaLite
+        [ cfg []
+        , viewBackground [ viewFill (Just "#ff0") ]
+        , data
+        , ps []
+        , enc []
+        , circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -564,6 +621,7 @@ specs =
     , ( "scaleCfg1", scaleCfg1 )
     , ( "axisLegendCfg1", axisLegendCfg1 )
     , ( "interactionCfg1", interactionCfg1 )
+    , ( "paramCfg1", paramCfg1 )
     ]
 
 
