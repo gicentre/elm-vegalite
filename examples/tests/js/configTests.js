@@ -15507,7 +15507,37 @@ var $author$project$VegaLite$ticoSubtitlePadding = function (n) {
 	return $author$project$VegaLite$TSubtitlePadding(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$titleExpr = F2(
+	function (s, tps) {
+		return _Utils_Tuple2(
+			3,
+			$elm$json$Json$Encode$object(
+				A2(
+					$elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(s))
+								]))),
+					A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tps))));
+	});
 var $author$project$ConfigTests$paramCfg2 = function () {
+	var ttl4 = $author$project$VegaLite$strs(
+		_List_fromArray(
+			['A longer title laid out over a single line.']));
+	var ttl3 = $author$project$VegaLite$strs(
+		_List_fromArray(
+			['']));
+	var ttl2 = $author$project$VegaLite$strs(
+		_List_fromArray(
+			['Short title']));
+	var ttl1 = $author$project$VegaLite$strs(
+		_List_fromArray(
+			['A medium length title', 'over two lines']));
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -15546,7 +15576,24 @@ var $author$project$ConfigTests$paramCfg2 = function () {
 																			$elm$core$Basics$composeL,
 																			A2(
 																				$elm$core$Basics$composeL,
-																				$author$project$VegaLite$params,
+																				A2(
+																					$elm$core$Basics$composeL,
+																					$author$project$VegaLite$params,
+																					A2(
+																						$author$project$VegaLite$param,
+																						'title',
+																						_List_fromArray(
+																							[
+																								$author$project$VegaLite$paValues(ttl1),
+																								$author$project$VegaLite$paBind(
+																								$author$project$VegaLite$ipSelect(
+																									_List_fromArray(
+																										[
+																											$author$project$VegaLite$inDataOptions(
+																											_List_fromArray(
+																												[ttl1, ttl2, ttl3, ttl4]))
+																										])))
+																							]))),
 																				A2(
 																					$author$project$VegaLite$param,
 																					'angle',
@@ -15893,8 +15940,8 @@ var $author$project$ConfigTests$paramCfg2 = function () {
 				$author$project$VegaLite$padding(
 				$author$project$VegaLite$paSize(80)),
 				A2(
-				$author$project$VegaLite$title,
-				'This is a long title\nsplit over two lines.',
+				$author$project$VegaLite$titleExpr,
+				'title',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$tiSubtitle('And this is a\nmultiline\nsubtitle')

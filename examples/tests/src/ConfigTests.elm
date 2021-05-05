@@ -600,6 +600,18 @@ paramCfg1 =
 paramCfg2 : Spec
 paramCfg2 =
     let
+        ttl1 =
+            strs [ "A medium length title", "over two lines" ]
+
+        ttl2 =
+            strs [ "Short title" ]
+
+        ttl3 =
+            strs [ "" ]
+
+        ttl4 =
+            strs [ "A longer title laid out over a single line." ]
+
         cfg =
             configure
                 << configuration
@@ -632,7 +644,7 @@ paramCfg2 =
 
         ps =
             params
-                -- TODO: Title text as parameter
+                << param "title" [ paValues ttl1, paBind (ipSelect [ inDataOptions [ ttl1, ttl2, ttl3, ttl4 ] ]) ]
                 << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
                 << param "color" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "dx" [ paValue (num 0), paBind (ipRange [ inMin -50, inMax 50 ]) ]
@@ -661,7 +673,7 @@ paramCfg2 =
         [ width 300
         , height 100
         , padding (paSize 80)
-        , title "This is a long title\nsplit over two lines." [ tiSubtitle "And this is a\nmultiline\nsubtitle" ]
+        , titleExpr "title" [ tiSubtitle "And this is a\nmultiline\nsubtitle" ]
         , cfg []
         , data []
         , ps []
