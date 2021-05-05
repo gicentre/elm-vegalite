@@ -6359,15 +6359,36 @@ var $author$project$VegaLite$scaleLabel = function (sc) {
 			return 'threshold';
 	}
 };
-var $author$project$VegaLite$schemeProperty = F3(
-	function (schName, isExpr, extent) {
-		var nameSpec = isExpr ? $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'expr',
-					$elm$json$Json$Encode$string(schName))
-				])) : $elm$json$Json$Encode$string(schName);
+var $author$project$VegaLite$schemeProperty = F2(
+	function (clrs, extent) {
+		var nameSpec = function () {
+			if (!clrs.$) {
+				var ss = clrs.a;
+				if (!ss.b) {
+					return A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$string,
+						_List_fromArray(
+							['rgb(86,119,164)', 'rgb(86,119,164)']));
+				} else {
+					if (!ss.b.b) {
+						var sch = ss.a;
+						return $elm$json$Json$Encode$string(sch);
+					} else {
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+					}
+				}
+			} else {
+				var ex = clrs.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(ex))
+						]));
+			}
+		}();
 		if (!extent.b) {
 			return _Utils_Tuple2('scheme', nameSpec);
 		} else {
@@ -6604,14 +6625,14 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var extent = scaleProp.b;
 			return _List_fromArray(
 				[
-					A3($author$project$VegaLite$schemeProperty, schName, false, extent)
+					A2($author$project$VegaLite$schemeProperty, schName, extent)
 				]);
 		case 5:
 			var schExpr = scaleProp.a;
 			var extent = scaleProp.b;
 			return _List_fromArray(
 				[
-					A3($author$project$VegaLite$schemeProperty, schExpr, true, extent)
+					A2($author$project$VegaLite$schemeProperty, schExpr, extent)
 				]);
 		case 6:
 			var x = scaleProp.a;
@@ -8929,58 +8950,58 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 var $author$project$VegaLite$rangeConfigProperty = function (rangeCfg) {
 	switch (rangeCfg.$) {
 		case 0:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'category',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 1:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'diverging',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 2:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'heatmap',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 3:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'ordinal',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 4:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'ramp',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		default:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'symbol',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 	}
 };
@@ -13784,7 +13805,15 @@ var $author$project$VegaLite$order = function (oDefs) {
 var $author$project$VegaLite$RRamp = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$racoRamp = $author$project$VegaLite$RRamp;
+var $author$project$VegaLite$Strs = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$racoRamp = function (s) {
+	return $author$project$VegaLite$RRamp(
+		$author$project$VegaLite$Strs(
+			_List_fromArray(
+				[s])));
+};
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
@@ -14183,7 +14212,12 @@ var $author$project$VegaLite$SScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
-var $author$project$VegaLite$scScheme = $author$project$VegaLite$SScheme;
+var $author$project$VegaLite$scScheme = function (s) {
+	return $author$project$VegaLite$SScheme(
+		$author$project$VegaLite$Strs(
+			_List_fromArray(
+				[s])));
+};
 var $author$project$VegaLite$OfCenter = 2;
 var $author$project$VegaLite$stCenter = 2;
 var $author$project$GalleryInteraction$interaction2 = function () {

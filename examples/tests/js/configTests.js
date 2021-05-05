@@ -7657,15 +7657,36 @@ var $author$project$VegaLite$scaleLabel = function (sc) {
 			return 'threshold';
 	}
 };
-var $author$project$VegaLite$schemeProperty = F3(
-	function (schName, isExpr, extent) {
-		var nameSpec = isExpr ? $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'expr',
-					$elm$json$Json$Encode$string(schName))
-				])) : $elm$json$Json$Encode$string(schName);
+var $author$project$VegaLite$schemeProperty = F2(
+	function (clrs, extent) {
+		var nameSpec = function () {
+			if (!clrs.$) {
+				var ss = clrs.a;
+				if (!ss.b) {
+					return A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$string,
+						_List_fromArray(
+							['rgb(86,119,164)', 'rgb(86,119,164)']));
+				} else {
+					if (!ss.b.b) {
+						var sch = ss.a;
+						return $elm$json$Json$Encode$string(sch);
+					} else {
+						return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+					}
+				}
+			} else {
+				var ex = clrs.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(ex))
+						]));
+			}
+		}();
 		if (!extent.b) {
 			return _Utils_Tuple2('scheme', nameSpec);
 		} else {
@@ -7902,14 +7923,14 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			var extent = scaleProp.b;
 			return _List_fromArray(
 				[
-					A3($author$project$VegaLite$schemeProperty, schName, false, extent)
+					A2($author$project$VegaLite$schemeProperty, schName, extent)
 				]);
 		case 5:
 			var schExpr = scaleProp.a;
 			var extent = scaleProp.b;
 			return _List_fromArray(
 				[
-					A3($author$project$VegaLite$schemeProperty, schExpr, true, extent)
+					A2($author$project$VegaLite$schemeProperty, schExpr, extent)
 				]);
 		case 6:
 			var x = scaleProp.a;
@@ -11117,58 +11138,58 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 var $author$project$VegaLite$rangeConfigProperty = function (rangeCfg) {
 	switch (rangeCfg.$) {
 		case 0:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'category',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 1:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'diverging',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 2:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'heatmap',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 3:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'ordinal',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		case 4:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'ramp',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 		default:
-			var schemeName = rangeCfg.a;
+			var clrs = rangeCfg.a;
 			return _Utils_Tuple2(
 				'symbol',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A3($author$project$VegaLite$schemeProperty, schemeName, false, _List_Nil)
+							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
 	}
 };
@@ -15955,6 +15976,7 @@ var $author$project$VegaLite$Scale = function (a) {
 	return {$: 36, a: a};
 };
 var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
@@ -16258,21 +16280,28 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('x')
+						]))),
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('x')
+						$author$project$VegaLite$pName('y'),
+						$author$project$VegaLite$pQuant
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('y'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$mName('x')
 				])));
 	var spec4 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -16290,30 +16319,37 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
 			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('y2'),
-						$author$project$VegaLite$pQuant
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('y'),
-					$author$project$VegaLite$pQuant,
-					$author$project$VegaLite$pScale(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$scDomain(
-							$author$project$VegaLite$doNums(
-								_List_fromArray(
-									[0, 4])))
-						]))
+							$author$project$VegaLite$pName('y2'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('y'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scDomain(
+								$author$project$VegaLite$doNums(
+									_List_fromArray(
+										[0, 8])))
+							]))
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('x')
 				])));
 	var spec3 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -16327,6 +16363,54 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 					]))
 			]));
 	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('x')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('y'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				3,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('y2')
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('y2'),
+					$author$project$VegaLite$mQuant
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				enc2(_List_Nil),
+				$author$project$VegaLite$rect(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('black')
+					]))
+			]));
+	var enc1 = A2(
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
@@ -16348,43 +16432,10 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 						$author$project$VegaLite$pName('y'),
 						$author$project$VegaLite$pQuant
 					]))),
-		A2(
-			$author$project$VegaLite$position,
-			3,
+		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('y2')
-				])));
-	var spec2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(300),
-				enc2(_List_Nil),
-				$author$project$VegaLite$rect(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$maStroke('black')
-					]))
-			]));
-	var enc1 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('x')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('y'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$mName('x')
 				])));
 	var spec1 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -16409,19 +16460,19 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 					'x',
 					$author$project$VegaLite$strs(
 						_List_fromArray(
-							['a', 'b', 'c', 'd', 'e'])))),
+							['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'])))),
 			A2(
 				$author$project$VegaLite$dataColumn,
 				'y',
 				$author$project$VegaLite$nums(
 					_List_fromArray(
-						[1, 3, 5, 4, 2])))),
+						[1, 3, 5, 7, 9, 8, 6, 4, 2])))),
 		A2(
 			$author$project$VegaLite$dataColumn,
 			'y2',
 			$author$project$VegaLite$nums(
 				_List_fromArray(
-					[10, 9, 8, 7, 7]))));
+					[15, 14, 13, 12, 11, 10, 9, 8, 7]))));
 	var cfg = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$configure,
