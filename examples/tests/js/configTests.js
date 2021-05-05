@@ -15881,7 +15881,7 @@ var $author$project$ConfigTests$paramCfg2 = function () {
 						A2($author$project$VegaLite$ticoNumExpr, 'subtitleFontSize', $author$project$VegaLite$ticoSubtitleFontSize),
 						A2($author$project$VegaLite$ticoStrExpr, 'subtitleFontStyle', $author$project$VegaLite$ticoSubtitleFontStyle),
 						$author$project$VegaLite$ticoSubtitleFontWeight(
-						$author$project$VegaLite$fwExpr('fontWeight')),
+						$author$project$VegaLite$fwExpr('subtitleFontWeight')),
 						A2($author$project$VegaLite$ticoNumExpr, 'subtitleLineHeight', $author$project$VegaLite$ticoSubtitleLineHeight),
 						A2($author$project$VegaLite$ticoNumExpr, 'subtitlePadding', $author$project$VegaLite$ticoSubtitlePadding)
 					]))));

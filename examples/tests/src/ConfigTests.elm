@@ -620,7 +620,7 @@ paramCfg2 =
                         , ticoStrExpr "subtitleFont" ticoSubtitleFont
                         , ticoNumExpr "subtitleFontSize" ticoSubtitleFontSize
                         , ticoStrExpr "subtitleFontStyle" ticoSubtitleFontStyle
-                        , ticoSubtitleFontWeight (fwExpr "fontWeight")
+                        , ticoSubtitleFontWeight (fwExpr "subtitleFontWeight")
                         , ticoNumExpr "subtitleLineHeight" ticoSubtitleLineHeight
                         , ticoNumExpr "subtitlePadding" ticoSubtitlePadding
                         ]
