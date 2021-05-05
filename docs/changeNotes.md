@@ -8,7 +8,10 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
-Add legend and axis config parameterisation expressions (can we use common Legend / Axis properties for direct setting and config setting?)
+Add axis, concat, legend, facet, range and scale
+config parameterisation expressions
+
+Add images on maps test (VL5.1).
 
 Check remaining expression options that may have appeared since VL5 API documentation updates.
 
@@ -19,6 +22,8 @@ Check remaining expression options that may have appeared since VL5 API document
 - `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
 
 - `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
+
+- Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead.
 
 - `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
 
@@ -45,13 +50,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `maBooExpr` for providing expressions that evaluate to Boolean mark properties (VL5.0).
 
-- `scNumExpr` for providing expressions that evaluate to numeric scale properties (VL5.0)
+- `scNumExpr` / `sacoNumExpr` for providing expressions that evaluate to numeric scale properties or configuration (VL5.0)
 
-- `sacoNumExpr` for providing expressions that evaluate to numeric scale configuration properties (VL5.0)
-
-- `scBooExpr` for providing expressions that evaluate to Boolean scale properties (VL5.0)
-
-- `sacoBooExpr` for providing expressions that evaluate to Boolean scale configuration properties (VL5.0)
+- `scBooExpr` / `sacoBooExpr` for providing expressions that evaluate to Boolean scale properties or configuration (VL5.0)
 
 - `doNumExpr` for providing expressions that evaluate to numeric scale domain properties (VL5.0)
 
