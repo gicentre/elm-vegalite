@@ -12237,36 +12237,16 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 	switch (viewCfg.$) {
 		case 2:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'continuousWidth',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'continuousWidth', x);
 		case 3:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'continuousHeight',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'continuousHeight', x);
 		case 6:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'discreteWidth',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'discreteWidth', x);
 		case 7:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'discreteHeight',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'discreteHeight', x);
 		case 1:
 			var b = viewCfg.a;
 			return _List_fromArray(
@@ -12276,13 +12256,8 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 					$elm$json$Json$Encode$bool(b))
 				]);
 		case 4:
-			var r = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'cornerRadius',
-					$elm$json$Json$Encode$float(r))
-				]);
+			var x = viewCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'cornerRadius', x);
 		case 5:
 			var cur = viewCfg.a;
 			return _List_fromArray(
@@ -12309,28 +12284,13 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 			}
 		case 9:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'fillOpacity',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'fillOpacity', x);
 		case 10:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'opacity',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'opacity', x);
 		case 11:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'step',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'step', x);
 		case 12:
 			var ms = viewCfg.a;
 			if (!ms.$) {
@@ -12349,12 +12309,7 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 			}
 		case 13:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'strokeOpacity',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'strokeOpacity', x);
 		case 15:
 			var cap = viewCfg.a;
 			return _List_fromArray(
@@ -12373,36 +12328,16 @@ var $author$project$VegaLite$viewConfigProperties = function (viewCfg) {
 				]);
 		case 14:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'strokeWidth',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'strokeWidth', x);
 		case 16:
 			var xs = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'strokeDash',
-					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs))
-				]);
+			return A2($author$project$VegaLite$numsExpr, 'strokeDash', xs);
 		case 17:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'strokeDashOffset',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'strokeDashOffset', x);
 		case 19:
 			var x = viewCfg.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'strokeMiterLimit',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'strokeMiterLimit', x);
 		default:
 			var vbs = viewCfg.a;
 			return A2($elm$core$List$concatMap, $author$project$VegaLite$viewBackgroundProperty, vbs);
@@ -12721,11 +12656,17 @@ var $author$project$VegaLite$configure = function (configs) {
 var $author$project$VegaLite$VContinuousHeight = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$vicoContinuousHeight = $author$project$VegaLite$VContinuousHeight;
+var $author$project$VegaLite$vicoContinuousHeight = function (n) {
+	return $author$project$VegaLite$VContinuousHeight(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$VContinuousWidth = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$vicoContinuousWidth = $author$project$VegaLite$VContinuousWidth;
+var $author$project$VegaLite$vicoContinuousWidth = function (n) {
+	return $author$project$VegaLite$VContinuousWidth(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
