@@ -549,9 +549,12 @@ paramCfg1 =
             configure
                 << configuration
                     (coView
-                        [ vicoNumExpr "cornerRadius" vicoCornerRadius
+                        [ vicoBooExpr "clip" vicoClip
+                        , vicoNumExpr "cornerRadius" vicoCornerRadius
                         , vicoCursor (cuExpr "cursor")
+                        , vicoStrExpr "fill" vicoFill
                         , vicoNumExpr "fillOpacity" vicoFillOpacity
+                        , vicoStrExpr "stroke" vicoStroke
                         , vicoNumsExpr "strokeDash" vicoStrokeDash
                         , vicoNumExpr "strokeDashOffset" vicoStrokeDashOffset
                         , vicoNumExpr "strokeMiterLimit" vicoStrokeMiterLimit
@@ -564,36 +567,34 @@ paramCfg1 =
                     )
 
         data =
-            dataFromUrl (path ++ "cars.json") []
+            dataFromColumns []
+                << dataColumn "wavelength" (nums [ 250, 300, 420, 450, 500 ])
+                << dataColumn "power" (nums [ 1, 2, 4, 1.8, 1.1 ])
 
         ps =
             params
+                << param "clip" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
                 << param "cursor" [ paValue (str "default"), paBind (ipSelect [ inOptions [ "default", "crosshair", "help" ] ]) ]
+                << param "fill" [ paValue (str "#ff0"), paBind (ipColor []) ]
                 << param "fillOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "stroke" [ paValue (str "black"), paBind (ipColor []) ]
                 << param "strokeCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
                 << param "strokeJoin" [ paValue (str "miter"), paBind (ipSelect [ inOptions [ "miter", "round", "bevel" ] ]) ]
                 << param "strokeDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "strokeDashOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
                 << param "strokeMiterLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 30 ]) ]
                 << param "strokeOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
-                << param "strokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "strokeWidth" [ paValue (num 6), paBind (ipRange [ inMin 0, inMax 20 ]) ]
                 << param "viewOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin" ]
+                << position X [ pName "wavelength", pQuant, pScale [ scDomain (doNums [ 300, 450 ]) ] ]
+                << position Y [ pName "power", pQuant ]
     in
     toVegaLite
-        [ cfg []
-        , viewBackground [ viewFill (Just "#ff0") ]
-        , data
-        , ps []
-        , enc []
-        , circle [ maSize 200, maStroke "white", maStrokeWidth 0.5, maOpacity 1 ]
-        ]
+        [ cfg [], data [], ps [], enc [], line [] ]
 
 
 
