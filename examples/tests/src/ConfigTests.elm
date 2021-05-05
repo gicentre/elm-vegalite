@@ -682,6 +682,71 @@ paramCfg2 =
         ]
 
 
+paramCfg3 : Spec
+paramCfg3 =
+    let
+        cfg =
+            configure
+                << configuration
+                    (coScale
+                        [ sacoNumExpr "barBandPaddingInner" sacoBarBandPaddingInner
+                        , sacoNumExpr "rectBandPaddingInner" sacoRectBandPaddingInner
+                        , sacoNumExpr "bandPaddingOuter" sacoBandPaddingOuter
+                        , sacoNumExpr "continuousPadding" sacoContinuousPadding
+                        , sacoNumExpr "pointPadding" sacoPointPadding
+                        ]
+                    )
+
+        data =
+            dataFromColumns []
+                << dataColumn "x" (strs [ "a", "b", "c", "d", "e" ])
+                << dataColumn "y" (nums [ 1, 3, 5, 4, 2 ])
+                << dataColumn "y2" (nums [ 10, 9, 8, 7, 7 ])
+
+        ps =
+            params
+                << param "barBandPaddingInner" [ paValue (num 0.1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "rectBandPaddingInner" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "bandPaddingOuter" [ paValue (num 0.05), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "continuousPadding" [ paValue (num 5), paBind (ipRange [ inMin -10, inMax 30 ]) ]
+                << param "pointPadding" [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+
+        enc1 =
+            encoding
+                << position X [ pName "x" ]
+                << position Y [ pName "y", pQuant ]
+
+        enc2 =
+            encoding
+                << position X [ pName "x" ]
+                << position Y [ pName "y", pQuant ]
+                << position Y2 [ pName "y2" ]
+
+        enc3 =
+            encoding
+                << position X [ pName "y2", pQuant ]
+                << position Y [ pName "y", pQuant ]
+
+        enc4 =
+            encoding
+                << position X [ pName "x" ]
+                << position Y [ pName "y", pQuant ]
+
+        spec1 =
+            asSpec [ width 300, enc1 [], bar [ maStroke "black" ] ]
+
+        spec2 =
+            asSpec [ width 300, enc2 [], rect [ maStroke "black" ] ]
+
+        spec3 =
+            asSpec [ width 300, enc3 [], bar [ maStroke "black" ] ]
+
+        spec4 =
+            asSpec [ width 300, enc4 [], circle [ maSize 300, maStroke "black" ] ]
+    in
+    toVegaLite [ cfg [], data [], ps [], vConcat [ spec1, spec2, spec3, spec4 ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -715,6 +780,7 @@ specs =
     , ( "interactionCfg1", interactionCfg1 )
     , ( "paramCfg1", paramCfg1 )
     , ( "paramCfg2", paramCfg2 )
+    , ( "paramCfg3", paramCfg3 )
     ]
 
 
