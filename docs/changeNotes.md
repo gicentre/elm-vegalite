@@ -22,7 +22,9 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
 
-- Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead.
+- Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
+
+- `racoSymbol` for configuring default categorical removed as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
 
 - `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
 
@@ -91,7 +93,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `caExpr` (stroke cap style), `joExpr` (stroke join style), `cuExpr` (cursor style), `miExpr` (mark interpolation type), `siExpr` (side), `osExpr` (axis label overlap strategy), `tdExpr` (text direction), `niExpr` (nice tick intervals), `arExpr` (Aria accessibility), `titleExpr` (top-level title), `tfExpr` (title frame), `prExpr` (projection type), `prCenterExpr` (projection center), `prTranslateExpr` (projection translation), `prRotateExpr` (projection rotation), `prParallelsExpr` (conic projection standard parallels), `clipRectExpr` (projection clipping extent), `scDomainExpr` (domain scaling), `doDtsExpr`, `doMinDt`, `doMaxDt` (domain timestamp boundaries), `raExprs` (range elements), `scSchemeExpr` (colour schemes) (VL4.16 to VL 5.0).
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `racoSymbols` / racoSymbolsExpr`(symbols for default scales),`caExpr`(stroke cap style),`joExpr`(stroke join style),`cuExpr`(cursor style),`miExpr`(mark interpolation type),`siExpr`(side),`osExpr`(axis label overlap strategy),`tdExpr`(text direction),`niExpr`(nice tick intervals),`arExpr`(Aria accessibility),`titleExpr`(top-level title),`tfExpr`(title frame),`prExpr`(projection type),`prCenterExpr`(projection center),`prTranslateExpr`(projection translation),`prRotateExpr`(projection rotation),`prParallelsExpr`(conic projection standard parallels),`clipRectExpr`(projection clipping extent),`scDomainExpr`(domain scaling),`doDtsExpr`, `doMinDt`, `doMaxDt`(domain timestamp boundaries),`raExprs`(range elements),`scSchemeExpr` (colour schemes) (VL4.16 to VL 5.0).
 
 - Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
 
