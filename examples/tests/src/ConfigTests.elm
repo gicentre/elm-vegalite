@@ -694,6 +694,9 @@ paramCfg3 =
                         , sacoNumExpr "bandPaddingOuter" sacoBandPaddingOuter
                         , sacoNumExpr "continuousPadding" sacoContinuousPadding
                         , sacoNumExpr "pointPadding" sacoPointPadding
+                        , sacoBooExpr "clamp" sacoClamp
+                        , sacoBooExpr "round" sacoRound
+                        , sacoBooExpr "xReverse" sacoXReverse
                         ]
                     )
 
@@ -710,6 +713,9 @@ paramCfg3 =
                 << param "bandPaddingOuter" [ paValue (num 0.05), paBind (ipRange [ inMin 0, inMax 1 ]) ]
                 << param "continuousPadding" [ paValue (num 5), paBind (ipRange [ inMin -10, inMax 30 ]) ]
                 << param "pointPadding" [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "clamp" [ paValue (boo False), paBind (ipCheckbox []) ]
+                << param "round" [ paValue (boo False), paBind (ipCheckbox []) ]
+                << param "xReverse" [ paValue (boo False), paBind (ipCheckbox []) ]
 
         enc1 =
             encoding
@@ -725,7 +731,7 @@ paramCfg3 =
         enc3 =
             encoding
                 << position X [ pName "y2", pQuant ]
-                << position Y [ pName "y", pQuant ]
+                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 0, 4 ]) ] ]
 
         enc4 =
             encoding

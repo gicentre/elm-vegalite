@@ -15971,6 +15971,42 @@ var $author$project$VegaLite$sacoBarBandPaddingInner = function (n) {
 	return $author$project$VegaLite$SCBarBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$SCClamp = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$SCRound = function (a) {
+	return {$: 17, a: a};
+};
+var $author$project$VegaLite$SCUseUnaggregatedDomain = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$SCXReverse = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$sacoBooExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(true);
+		switch (_v0.$) {
+			case 4:
+				return $author$project$VegaLite$SCClamp(
+					$author$project$VegaLite$BooExpr(ex));
+			case 19:
+				return $author$project$VegaLite$SCXReverse(
+					$author$project$VegaLite$BooExpr(ex));
+			case 17:
+				return $author$project$VegaLite$SCRound(
+					$author$project$VegaLite$BooExpr(ex));
+			case 18:
+				return $author$project$VegaLite$SCUseUnaggregatedDomain(
+					$author$project$VegaLite$BooExpr(ex));
+			default:
+				return fn(false);
+		}
+	});
+var $author$project$VegaLite$sacoClamp = function (b) {
+	return $author$project$VegaLite$SCClamp(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$SCContinuousPadding = function (a) {
 	return {$: 5, a: a};
 };
@@ -16081,6 +16117,14 @@ var $author$project$VegaLite$sacoRectBandPaddingInner = function (n) {
 	return $author$project$VegaLite$SCRectBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$sacoRound = function (b) {
+	return $author$project$VegaLite$SCRound(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$sacoXReverse = function (b) {
+	return $author$project$VegaLite$SCXReverse(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$VLVConcat = 21;
 var $author$project$VegaLite$vConcat = function (specs) {
 	return _Utils_Tuple2(
@@ -16098,29 +16142,80 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 					$elm$core$Basics$composeL,
 					A2(
 						$elm$core$Basics$composeL,
-						$author$project$VegaLite$params,
+						A2(
+							$elm$core$Basics$composeL,
+							A2(
+								$elm$core$Basics$composeL,
+								A2(
+									$elm$core$Basics$composeL,
+									$author$project$VegaLite$params,
+									A2(
+										$author$project$VegaLite$param,
+										'barBandPaddingInner',
+										_List_fromArray(
+											[
+												$author$project$VegaLite$paValue(
+												$author$project$VegaLite$num(0.1)),
+												$author$project$VegaLite$paBind(
+												$author$project$VegaLite$ipRange(
+													_List_fromArray(
+														[
+															$author$project$VegaLite$inMin(0),
+															$author$project$VegaLite$inMax(1)
+														])))
+											]))),
+								A2(
+									$author$project$VegaLite$param,
+									'rectBandPaddingInner',
+									_List_fromArray(
+										[
+											$author$project$VegaLite$paValue(
+											$author$project$VegaLite$num(0)),
+											$author$project$VegaLite$paBind(
+											$author$project$VegaLite$ipRange(
+												_List_fromArray(
+													[
+														$author$project$VegaLite$inMin(0),
+														$author$project$VegaLite$inMax(1)
+													])))
+										]))),
+							A2(
+								$author$project$VegaLite$param,
+								'bandPaddingOuter',
+								_List_fromArray(
+									[
+										$author$project$VegaLite$paValue(
+										$author$project$VegaLite$num(0.05)),
+										$author$project$VegaLite$paBind(
+										$author$project$VegaLite$ipRange(
+											_List_fromArray(
+												[
+													$author$project$VegaLite$inMin(0),
+													$author$project$VegaLite$inMax(1)
+												])))
+									]))),
 						A2(
 							$author$project$VegaLite$param,
-							'barBandPaddingInner',
+							'continuousPadding',
 							_List_fromArray(
 								[
 									$author$project$VegaLite$paValue(
-									$author$project$VegaLite$num(0.1)),
+									$author$project$VegaLite$num(5)),
 									$author$project$VegaLite$paBind(
 									$author$project$VegaLite$ipRange(
 										_List_fromArray(
 											[
-												$author$project$VegaLite$inMin(0),
-												$author$project$VegaLite$inMax(1)
+												$author$project$VegaLite$inMin(-10),
+												$author$project$VegaLite$inMax(30)
 											])))
 								]))),
 					A2(
 						$author$project$VegaLite$param,
-						'rectBandPaddingInner',
+						'pointPadding',
 						_List_fromArray(
 							[
 								$author$project$VegaLite$paValue(
-								$author$project$VegaLite$num(0)),
+								$author$project$VegaLite$num(0.5)),
 								$author$project$VegaLite$paBind(
 								$author$project$VegaLite$ipRange(
 									_List_fromArray(
@@ -16131,48 +16226,33 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 							]))),
 				A2(
 					$author$project$VegaLite$param,
-					'bandPaddingOuter',
+					'clamp',
 					_List_fromArray(
 						[
 							$author$project$VegaLite$paValue(
-							$author$project$VegaLite$num(0.05)),
+							$author$project$VegaLite$boo(false)),
 							$author$project$VegaLite$paBind(
-							$author$project$VegaLite$ipRange(
-								_List_fromArray(
-									[
-										$author$project$VegaLite$inMin(0),
-										$author$project$VegaLite$inMax(1)
-									])))
+							$author$project$VegaLite$ipCheckbox(_List_Nil))
 						]))),
 			A2(
 				$author$project$VegaLite$param,
-				'continuousPadding',
+				'round',
 				_List_fromArray(
 					[
 						$author$project$VegaLite$paValue(
-						$author$project$VegaLite$num(5)),
+						$author$project$VegaLite$boo(false)),
 						$author$project$VegaLite$paBind(
-						$author$project$VegaLite$ipRange(
-							_List_fromArray(
-								[
-									$author$project$VegaLite$inMin(-10),
-									$author$project$VegaLite$inMax(30)
-								])))
+						$author$project$VegaLite$ipCheckbox(_List_Nil))
 					]))),
 		A2(
 			$author$project$VegaLite$param,
-			'pointPadding',
+			'xReverse',
 			_List_fromArray(
 				[
 					$author$project$VegaLite$paValue(
-					$author$project$VegaLite$num(0.5)),
+					$author$project$VegaLite$boo(false)),
 					$author$project$VegaLite$paBind(
-					$author$project$VegaLite$ipRange(
-						_List_fromArray(
-							[
-								$author$project$VegaLite$inMin(0),
-								$author$project$VegaLite$inMax(1)
-							])))
+					$author$project$VegaLite$ipCheckbox(_List_Nil))
 				])));
 	var enc4 = A2(
 		$elm$core$Basics$composeL,
@@ -16225,7 +16305,15 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('y'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 4])))
+						]))
 				])));
 	var spec3 = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -16345,7 +16433,10 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 						A2($author$project$VegaLite$sacoNumExpr, 'rectBandPaddingInner', $author$project$VegaLite$sacoRectBandPaddingInner),
 						A2($author$project$VegaLite$sacoNumExpr, 'bandPaddingOuter', $author$project$VegaLite$sacoBandPaddingOuter),
 						A2($author$project$VegaLite$sacoNumExpr, 'continuousPadding', $author$project$VegaLite$sacoContinuousPadding),
-						A2($author$project$VegaLite$sacoNumExpr, 'pointPadding', $author$project$VegaLite$sacoPointPadding)
+						A2($author$project$VegaLite$sacoNumExpr, 'pointPadding', $author$project$VegaLite$sacoPointPadding),
+						A2($author$project$VegaLite$sacoBooExpr, 'clamp', $author$project$VegaLite$sacoClamp),
+						A2($author$project$VegaLite$sacoBooExpr, 'round', $author$project$VegaLite$sacoRound),
+						A2($author$project$VegaLite$sacoBooExpr, 'xReverse', $author$project$VegaLite$sacoXReverse)
 					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
@@ -16358,13 +16449,6 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 					[spec1, spec2, spec3, spec4]))
 			]));
 }();
-var $author$project$VegaLite$SCXReverse = function (a) {
-	return {$: 19, a: a};
-};
-var $author$project$VegaLite$sacoXReverse = function (b) {
-	return $author$project$VegaLite$SCXReverse(
-		$author$project$VegaLite$Boo(b));
-};
 var $author$project$ConfigTests$scaleCfg1 = $author$project$ConfigTests$singleVis(
 	A2(
 		$elm$core$Basics$composeL,
