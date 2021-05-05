@@ -597,6 +597,79 @@ paramCfg1 =
         [ cfg [], data [], ps [], enc [], line [] ]
 
 
+paramCfg2 : Spec
+paramCfg2 =
+    let
+        cfg =
+            configure
+                << configuration
+                    (coTitle
+                        [ ticoNumExpr "angle" ticoAngle
+                        , ticoStrExpr "color" ticoColor
+                        , ticoNumExpr "dx" ticoDx
+                        , ticoNumExpr "dy" ticoDy
+                        , ticoStrExpr "font" ticoFont
+                        , ticoNumExpr "fontSize" ticoFontSize
+                        , ticoStrExpr "fontStyle" ticoFontStyle
+                        , ticoFontWeight (fwExpr "fontWeight")
+                        , ticoFrame (tfExpr "frame")
+                        , ticoNumExpr "limit" ticoLimit
+                        , ticoNumExpr "lineHeight" ticoLineHeight
+                        , ticoNumExpr "offset" ticoOffset
+                        , ticoOrient (siExpr "orient")
+                        , ticoStrExpr "subtitleFont" ticoSubtitleFont
+                        , ticoNumExpr "subtitleFontSize" ticoSubtitleFontSize
+                        , ticoStrExpr "subtitleFontStyle" ticoSubtitleFontStyle
+                        , ticoSubtitleFontWeight (fwExpr "fontWeight")
+                        , ticoNumExpr "subtitleLineHeight" ticoSubtitleLineHeight
+                        , ticoNumExpr "subtitlePadding" ticoSubtitlePadding
+                        ]
+                    )
+
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 1, 2, 3, 4, 5 ])
+
+        ps =
+            params
+                -- TODO: Title text as parameter
+                << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
+                << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "dx" [ paValue (num 0), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "dy" [ paValue (num 0), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "font" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "fontSize" [ paValue (num 12), paBind (ipRange [ inMin 0, inMax 50 ]) ]
+                << param "fontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "fontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "frame" [ paValue (str "bounds"), paBind (ipSelect [ inOptions [ "bounds", "group" ] ]) ]
+                << param "limit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 300 ]) ]
+                << param "lineHeight" [ paValue (num 12), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "orient" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "top", "bottom", "left", "right" ] ]) ]
+                << param "subtitleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "subtitleFontSize" [ paValue (num 12), paBind (ipRange [ inMin 0, inMax 50 ]) ]
+                << param "subtitleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "subtitleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "subtitleLineHeight" [ paValue (num 12), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "subtitlePadding" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+
+        enc =
+            encoding
+                << position X [ pName "x" ]
+    in
+    toVegaLite
+        [ width 300
+        , height 100
+        , padding (paSize 80)
+        , title "This is a long title\nsplit over two lines." [ tiSubtitle "And this is a\nmultiline\nsubtitle" ]
+        , cfg []
+        , data []
+        , ps []
+        , enc []
+        , circle []
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -629,6 +702,7 @@ specs =
     , ( "axisLegendCfg1", axisLegendCfg1 )
     , ( "interactionCfg1", interactionCfg1 )
     , ( "paramCfg1", paramCfg1 )
+    , ( "paramCfg2", paramCfg2 )
     ]
 
 
