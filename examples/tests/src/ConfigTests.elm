@@ -685,6 +685,15 @@ paramCfg2 =
 paramCfg3 : Spec
 paramCfg3 =
     let
+        syms1 =
+            strs [ "cross", "diamond", "square" ]
+
+        syms2 =
+            strs [ "arrow", "triangle", "wedge" ]
+
+        syms3 =
+            strs [ "M0,.5L.6,.8L.5,.1L1,-.3L.3,-.4L0,-1L-.3,-.4L-1,-.3L-.5,.1L-.6,.8L0,.5Z" ]
+
         cfg =
             configure
                 << configuration
@@ -699,8 +708,8 @@ paramCfg3 =
                         , sacoBooExpr "xReverse" sacoXReverse
                         ]
                     )
+                << configuration (coRange [ racoSymbolsExpr "symbols" ])
 
-        -- << configuration (coRange [ racoCategory "reds" ])
         data =
             dataFromColumns []
                 << dataColumn "x" (strs [ "a", "b", "c", "d", "e", "f", "g", "h", "i" ])
@@ -717,6 +726,7 @@ paramCfg3 =
                 << param "clamp" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "round" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "xReverse" [ paValue (boo False), paBind (ipCheckbox []) ]
+                << param "symbols" [ paValues syms1, paBind (ipSelect [ inDataOptions [ syms1, syms2, syms3 ] ]) ]
 
         enc1 =
             encoding
@@ -742,6 +752,7 @@ paramCfg3 =
                 << position X [ pName "x" ]
                 << position Y [ pName "y", pQuant ]
                 << color [ mName "x" ]
+                << shape [ mName "x" ]
 
         spec1 =
             asSpec [ width 300, enc1 [], bar [ maStroke "black" ] ]
@@ -753,7 +764,7 @@ paramCfg3 =
             asSpec [ width 300, enc3 [], bar [ maStroke "black" ] ]
 
         spec4 =
-            asSpec [ width 300, enc4 [], circle [ maSize 300, maStroke "black" ] ]
+            asSpec [ width 300, enc4 [], point [ maSize 300, maFilled True, maStroke "black" ] ]
     in
     toVegaLite [ cfg [], data [], ps [], vConcat [ spec1, spec2, spec3, spec4 ] ]
 
