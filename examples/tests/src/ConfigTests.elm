@@ -700,11 +700,12 @@ paramCfg3 =
                         ]
                     )
 
+        -- << configuration (coRange [ racoCategory "reds" ])
         data =
             dataFromColumns []
-                << dataColumn "x" (strs [ "a", "b", "c", "d", "e" ])
-                << dataColumn "y" (nums [ 1, 3, 5, 4, 2 ])
-                << dataColumn "y2" (nums [ 10, 9, 8, 7, 7 ])
+                << dataColumn "x" (strs [ "a", "b", "c", "d", "e", "f", "g", "h", "i" ])
+                << dataColumn "y" (nums [ 1, 3, 5, 7, 9, 8, 6, 4, 2 ])
+                << dataColumn "y2" (nums [ 15, 14, 13, 12, 11, 10, 9, 8, 7 ])
 
         ps =
             params
@@ -721,22 +722,26 @@ paramCfg3 =
             encoding
                 << position X [ pName "x" ]
                 << position Y [ pName "y", pQuant ]
+                << color [ mName "x" ]
 
         enc2 =
             encoding
                 << position X [ pName "x" ]
                 << position Y [ pName "y", pQuant ]
                 << position Y2 [ pName "y2" ]
+                << color [ mName "y2", mQuant ]
 
         enc3 =
             encoding
                 << position X [ pName "y2", pQuant ]
-                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 0, 4 ]) ] ]
+                << position Y [ pName "y", pQuant, pScale [ scDomain (doNums [ 0, 8 ]) ] ]
+                << color [ mName "x" ]
 
         enc4 =
             encoding
                 << position X [ pName "x" ]
                 << position Y [ pName "y", pQuant ]
+                << color [ mName "x" ]
 
         spec1 =
             asSpec [ width 300, enc1 [], bar [ maStroke "black" ] ]
