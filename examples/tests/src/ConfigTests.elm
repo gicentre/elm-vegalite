@@ -550,6 +550,7 @@ paramCfg1 =
                 << configuration
                     (coView
                         [ vicoNumExpr "cornerRadius" vicoCornerRadius
+                        , vicoCursor (cuExpr "cursor")
                         , vicoNumExpr "fillOpacity" vicoFillOpacity
                         , vicoNumsExpr "strokeDash" vicoStrokeDash
                         , vicoNumExpr "strokeDashOffset" vicoStrokeDashOffset
@@ -557,6 +558,8 @@ paramCfg1 =
                         , vicoNumExpr "strokeOpacity" vicoStrokeOpacity
                         , vicoNumExpr "strokeWidth" vicoStrokeWidth
                         , vicoNumExpr "viewOpacity" vicoOpacity
+                        , vicoStrokeCap (caExpr "strokeCap")
+                        , vicoStrokeJoin (joExpr "strokeJoin")
                         ]
                     )
 
@@ -566,7 +569,10 @@ paramCfg1 =
         ps =
             params
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
+                << param "cursor" [ paValue (str "default"), paBind (ipSelect [ inOptions [ "default", "crosshair", "help" ] ]) ]
                 << param "fillOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "strokeCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
+                << param "strokeJoin" [ paValue (str "miter"), paBind (ipSelect [ inOptions [ "miter", "round", "bevel" ] ]) ]
                 << param "strokeDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "strokeDashOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
                 << param "strokeMiterLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 30 ]) ]

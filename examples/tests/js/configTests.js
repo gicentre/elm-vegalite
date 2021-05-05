@@ -14711,10 +14711,18 @@ var $author$project$ConfigTests$paddingCfg = $author$project$ConfigTests$singleV
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coPadding(
 				A4($author$project$VegaLite$paEdges, 90, 60, 30, 0)))));
+var $author$project$VegaLite$CExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$caExpr = $author$project$VegaLite$CExpr;
 var $author$project$VegaLite$View = function (a) {
 	return {$: 44, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
+var $author$project$VegaLite$CursorExpr = function (a) {
+	return {$: 36, a: a};
+};
+var $author$project$VegaLite$cuExpr = $author$project$VegaLite$CursorExpr;
 var $author$project$VegaLite$InDataOptions = function (a) {
 	return {$: 4, a: a};
 };
@@ -14727,6 +14735,10 @@ var $author$project$VegaLite$InMin = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$inMin = $author$project$VegaLite$InMin;
+var $author$project$VegaLite$InOptions = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$inOptions = $author$project$VegaLite$InOptions;
 var $author$project$VegaLite$IPRange = function (a) {
 	return {$: 0, a: a};
 };
@@ -14735,6 +14747,10 @@ var $author$project$VegaLite$IPSelect = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$JExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$joExpr = $author$project$VegaLite$JExpr;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -14754,6 +14770,10 @@ var $author$project$VegaLite$PValues = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
+var $author$project$VegaLite$DStr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$str = $author$project$VegaLite$DStr;
 var $author$project$VegaLite$VCornerRadius = function (a) {
 	return {$: 4, a: a};
 };
@@ -14761,6 +14781,10 @@ var $author$project$VegaLite$vicoCornerRadius = function (n) {
 	return $author$project$VegaLite$VCornerRadius(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$VCursor = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$vicoCursor = $author$project$VegaLite$VCursor;
 var $author$project$VegaLite$VFillOpacity = function (a) {
 	return {$: 9, a: a};
 };
@@ -14865,6 +14889,10 @@ var $author$project$VegaLite$vicoOpacity = function (n) {
 	return $author$project$VegaLite$VOpacity(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$VStrokeCap = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$vicoStrokeCap = $author$project$VegaLite$VStrokeCap;
 var $author$project$VegaLite$vicoStrokeDash = function (ns) {
 	return $author$project$VegaLite$VStrokeDash(
 		$author$project$VegaLite$Nums(ns));
@@ -14873,6 +14901,10 @@ var $author$project$VegaLite$vicoStrokeDashOffset = function (n) {
 	return $author$project$VegaLite$VStrokeDashOffset(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$VStrokeJoin = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$vicoStrokeJoin = $author$project$VegaLite$VStrokeJoin;
 var $author$project$VegaLite$vicoStrokeMiterLimit = function (n) {
 	return $author$project$VegaLite$VStrokeMiterLimit(
 		$author$project$VegaLite$Num(n));
@@ -14929,35 +14961,89 @@ var $author$project$ConfigTests$paramCfg1 = function () {
 								$elm$core$Basics$composeL,
 								A2(
 									$elm$core$Basics$composeL,
-									$author$project$VegaLite$params,
+									A2(
+										$elm$core$Basics$composeL,
+										A2(
+											$elm$core$Basics$composeL,
+											A2(
+												$elm$core$Basics$composeL,
+												$author$project$VegaLite$params,
+												A2(
+													$author$project$VegaLite$param,
+													'cornerRadius',
+													_List_fromArray(
+														[
+															$author$project$VegaLite$paValue(
+															$author$project$VegaLite$num(0)),
+															$author$project$VegaLite$paBind(
+															$author$project$VegaLite$ipRange(
+																_List_fromArray(
+																	[
+																		$author$project$VegaLite$inMin(0),
+																		$author$project$VegaLite$inMax(60)
+																	])))
+														]))),
+											A2(
+												$author$project$VegaLite$param,
+												'cursor',
+												_List_fromArray(
+													[
+														$author$project$VegaLite$paValue(
+														$author$project$VegaLite$str('default')),
+														$author$project$VegaLite$paBind(
+														$author$project$VegaLite$ipSelect(
+															_List_fromArray(
+																[
+																	$author$project$VegaLite$inOptions(
+																	_List_fromArray(
+																		['default', 'crosshair', 'help']))
+																])))
+													]))),
+										A2(
+											$author$project$VegaLite$param,
+											'fillOpacity',
+											_List_fromArray(
+												[
+													$author$project$VegaLite$paValue(
+													$author$project$VegaLite$num(1)),
+													$author$project$VegaLite$paBind(
+													$author$project$VegaLite$ipRange(
+														_List_fromArray(
+															[
+																$author$project$VegaLite$inMin(0),
+																$author$project$VegaLite$inMax(1)
+															])))
+												]))),
 									A2(
 										$author$project$VegaLite$param,
-										'cornerRadius',
+										'strokeCap',
 										_List_fromArray(
 											[
 												$author$project$VegaLite$paValue(
-												$author$project$VegaLite$num(0)),
+												$author$project$VegaLite$str('butt')),
 												$author$project$VegaLite$paBind(
-												$author$project$VegaLite$ipRange(
+												$author$project$VegaLite$ipSelect(
 													_List_fromArray(
 														[
-															$author$project$VegaLite$inMin(0),
-															$author$project$VegaLite$inMax(60)
+															$author$project$VegaLite$inOptions(
+															_List_fromArray(
+																['butt', 'round', 'square']))
 														])))
 											]))),
 								A2(
 									$author$project$VegaLite$param,
-									'fillOpacity',
+									'strokeJoin',
 									_List_fromArray(
 										[
 											$author$project$VegaLite$paValue(
-											$author$project$VegaLite$num(1)),
+											$author$project$VegaLite$str('miter')),
 											$author$project$VegaLite$paBind(
-											$author$project$VegaLite$ipRange(
+											$author$project$VegaLite$ipSelect(
 												_List_fromArray(
 													[
-														$author$project$VegaLite$inMin(0),
-														$author$project$VegaLite$inMax(1)
+														$author$project$VegaLite$inOptions(
+														_List_fromArray(
+															['miter', 'round', 'bevel']))
 													])))
 										]))),
 							A2(
@@ -15087,13 +15173,19 @@ var $author$project$ConfigTests$paramCfg1 = function () {
 				_List_fromArray(
 					[
 						A2($author$project$VegaLite$vicoNumExpr, 'cornerRadius', $author$project$VegaLite$vicoCornerRadius),
+						$author$project$VegaLite$vicoCursor(
+						$author$project$VegaLite$cuExpr('cursor')),
 						A2($author$project$VegaLite$vicoNumExpr, 'fillOpacity', $author$project$VegaLite$vicoFillOpacity),
 						A2($author$project$VegaLite$vicoNumsExpr, 'strokeDash', $author$project$VegaLite$vicoStrokeDash),
 						A2($author$project$VegaLite$vicoNumExpr, 'strokeDashOffset', $author$project$VegaLite$vicoStrokeDashOffset),
 						A2($author$project$VegaLite$vicoNumExpr, 'strokeMiterLimit', $author$project$VegaLite$vicoStrokeMiterLimit),
 						A2($author$project$VegaLite$vicoNumExpr, 'strokeOpacity', $author$project$VegaLite$vicoStrokeOpacity),
 						A2($author$project$VegaLite$vicoNumExpr, 'strokeWidth', $author$project$VegaLite$vicoStrokeWidth),
-						A2($author$project$VegaLite$vicoNumExpr, 'viewOpacity', $author$project$VegaLite$vicoOpacity)
+						A2($author$project$VegaLite$vicoNumExpr, 'viewOpacity', $author$project$VegaLite$vicoOpacity),
+						$author$project$VegaLite$vicoStrokeCap(
+						$author$project$VegaLite$caExpr('strokeCap')),
+						$author$project$VegaLite$vicoStrokeJoin(
+						$author$project$VegaLite$joExpr('strokeJoin'))
 					]))));
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
