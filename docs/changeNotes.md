@@ -8,8 +8,7 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
-Add axis, concat, legend, facet, range and scale
-config parameterisation expressions
+Add axis, concat, legend, facet, and range config parameterisation expressions
 
 Add images on maps test (VL5.1).
 
