@@ -77,11 +77,13 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `tiStrExpr` for providing expressions that evaluate to string title properties (VL5.0).
 
+- `vicoBooExpr` for providing expressions that evaluate to a Boolean view background configuration (VL5.0).
+
 - `vbNumExpr` / `vicoNumExpr` for providing expressions that evaluate to numeric view background properties or configuration (VL5.0).
 
 - `vbNumsExpr` / `vicoNumsExpr` for providing expressions that evaluate to a list of numeric view background properties or configuration (VL5.0).
 
-- `vbStrExpr` for providing expressions that evaluate to Maybe String view background properties (VL5.0).
+- `vbStrExpr` / `vicoStrExpr` for providing expressions that evaluate to Maybe String view background properties or configuration (VL5.0).
 
 - `hdStrExpr` for providing expressions that evaluate to string facet header properties (VL5.0).
 

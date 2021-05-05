@@ -1151,6 +1151,8 @@ module VegaLite exposing
     , vbNumsExpr
     , vicoNumsExpr
     , vbStrExpr
+    , vicoStrExpr
+    , vicoBooExpr
     , viewStyle
     , viewCornerRadius
     , viewFill
@@ -3408,6 +3410,8 @@ of other views. For more details see the
 @docs vbNumsExpr
 @docs vicoNumsExpr
 @docs vbStrExpr
+@docs vicoStrExpr
+@docs vicoBooExpr
 
 @docs viewStyle
 @docs viewCornerRadius
@@ -6379,18 +6383,18 @@ type ViewBackground
 -}
 type ViewConfig
     = VBackground (List ViewBackground)
-    | VClip Bool
+    | VClip Boo
     | VContinuousWidth Num
     | VContinuousHeight Num
     | VCornerRadius Num
     | VCursor Cursor
     | VDiscreteWidth Num
     | VDiscreteHeight Num
-    | VFill (Maybe String)
+    | VFill Str
     | VFillOpacity Num
     | VOpacity Num
     | VStep Num
-    | VStroke (Maybe String)
+    | VStroke Str
     | VStrokeOpacity Num
     | VStrokeWidth Num
     | VStrokeCap StrokeCap
@@ -20777,11 +20781,25 @@ vConcat specs =
     ( VLVConcat, toList specs )
 
 
-{-| Whether or not by default single views should be clipped.
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+view configuration function a Boolean value.
+-}
+vicoBooExpr : String -> (Bool -> ViewConfig) -> ViewConfig
+vicoBooExpr ex fn =
+    case fn False of
+        VClip _ ->
+            VClip (BooExpr ex)
+
+        _ ->
+            fn False
+
+
+{-| Whether or not by default single views should be clipped. Clipping will remove
+everyhing outside the data area including axes and legends.
 -}
 vicoClip : Bool -> ViewConfig
-vicoClip =
-    VClip
+vicoClip b =
+    VClip (Boo b)
 
 
 {-| Default height of single views when the plot has continuous y-field.
@@ -20829,8 +20847,13 @@ vicoDiscreteWidth n =
 {-| Default fill color for single views.
 -}
 vicoFill : Maybe String -> ViewConfig
-vicoFill =
-    VFill
+vicoFill ms =
+    case ms of
+        Just s ->
+            VFill (Str s)
+
+        Nothing ->
+            VFill NoStr
 
 
 {-| Default fill opacity for single views.
@@ -20845,13 +20868,6 @@ view background confguration function requiring a numeric value.
 -}
 vicoNumExpr : String -> (number -> ViewConfig) -> ViewConfig
 vicoNumExpr ex fn =
-    -- TODO:
-    -- | VClip Bool
-    -- | VCursor Cursor
-    -- | VFill (Maybe String)
-    -- | VStroke (Maybe String)
-    -- | VStrokeCap StrokeCap
-    -- | VStrokeJoin StrokeJoin
     case fn 0 of
         -- TODO: Currently not supported but left here for future VL implementation
         VContinuousWidth _ ->
@@ -20925,12 +20941,33 @@ vicoStep n =
     VStep (Num n)
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+view background configuration function requiring a `Maybe String` value.
+-}
+vicoStrExpr : String -> (Maybe String -> ViewConfig) -> ViewConfig
+vicoStrExpr ex fn =
+    case fn Nothing of
+        VFill _ ->
+            VFill (StrExpr ex)
+
+        VStroke _ ->
+            VStroke (StrExpr ex)
+
+        _ ->
+            fn Nothing
+
+
 {-| Default stroke color for single views. If `Nothing` is provided,
 no strokes are drawn around the view.
 -}
 vicoStroke : Maybe String -> ViewConfig
-vicoStroke =
-    VStroke
+vicoStroke ms =
+    case ms of
+        Just s ->
+            VStroke (Str s)
+
+        Nothing ->
+            VStroke NoStr
 
 
 {-| Default stroke cap line-ending style for single views.
@@ -26861,7 +26898,7 @@ viewConfigProperties viewCfg =
             numExpr "discreteHeight" x
 
         VClip b ->
-            [ ( "clip", JE.bool b ) ]
+            booExpr "clip" b
 
         VCornerRadius x ->
             numExpr "cornerRadius" x
@@ -26869,13 +26906,8 @@ viewConfigProperties viewCfg =
         VCursor cur ->
             [ ( "cursor", cursorSpec cur ) ]
 
-        VFill ms ->
-            case ms of
-                Just s ->
-                    [ ( "fill", JE.string s ) ]
-
-                Nothing ->
-                    [ ( "fill", JE.null ) ]
+        VFill s ->
+            strExpr "fill" s
 
         VFillOpacity x ->
             numExpr "fillOpacity" x
@@ -26886,13 +26918,8 @@ viewConfigProperties viewCfg =
         VStep x ->
             numExpr "step" x
 
-        VStroke ms ->
-            case ms of
-                Just s ->
-                    [ ( "stroke", JE.string s ) ]
-
-                Nothing ->
-                    [ ( "stroke", JE.null ) ]
+        VStroke s ->
+            strExpr "stroke" s
 
         VStrokeOpacity x ->
             numExpr "strokeOpacity" x
