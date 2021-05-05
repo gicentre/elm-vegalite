@@ -11028,14 +11028,21 @@ var $author$project$VegaLite$rangeConfigProperty = function (rangeCfg) {
 						[
 							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
 						])));
+		case 5:
+			var syms = rangeCfg.a;
+			return _Utils_Tuple2(
+				'symbol',
+				A2($elm$json$Json$Encode$list, $author$project$VegaLite$symbolSpec, syms));
 		default:
-			var clrs = rangeCfg.a;
+			var s = rangeCfg.a;
 			return _Utils_Tuple2(
 				'symbol',
 				$elm$json$Json$Encode$object(
 					_List_fromArray(
 						[
-							A2($author$project$VegaLite$schemeProperty, clrs, _List_Nil)
+							_Utils_Tuple2(
+							'signal',
+							$elm$json$Json$Encode$string(s))
 						])));
 	}
 };
