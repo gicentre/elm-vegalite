@@ -26809,7 +26809,7 @@ titleConfigProperty titleCfg =
                     [ ( "style", JE.list JE.string ss ) ]
 
         TSubtitle s ->
-            strExpr "subtitle" s
+            strExprMultiline "subtitle" s
 
         TSubtitleColor s ->
             strExpr "subtitleColor" s
