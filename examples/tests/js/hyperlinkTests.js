@@ -6232,10 +6232,10 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 		case 67:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2', n);
-		case 83:
+		case 84:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'thetaOffset', n);
-		case 84:
+		case 85:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'theta2Offset', n);
 		case 5:
@@ -6379,10 +6379,10 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					'line',
 					$author$project$VegaLite$lineMarkerSpec(lm))
 				]);
-		case 71:
+		case 72:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'width', n);
-		case 72:
+		case 73:
 			var n = mProp.a;
 			return _List_fromArray(
 				[
@@ -6391,10 +6391,10 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					$elm$json$Json$Encode$object(
 						A2($author$project$VegaLite$numExpr, 'band', n)))
 				]);
-		case 73:
+		case 74:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'height', n);
-		case 74:
+		case 75:
 			var n = mProp.a;
 			return _List_fromArray(
 				[
@@ -6403,42 +6403,45 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 					$elm$json$Json$Encode$object(
 						A2($author$project$VegaLite$numExpr, 'band', n)))
 				]);
-		case 75:
-			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x', n);
 		case 76:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'y', n);
+			return A2($author$project$VegaLite$numExpr, 'x', n);
 		case 77:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x2', n);
+			return A2($author$project$VegaLite$numExpr, 'y', n);
 		case 78:
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'x2', n);
+		case 79:
 			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'y2', n);
 		case 44:
 			var b = mProp.a;
 			return A2($author$project$VegaLite$booExpr, 'order', b);
-		case 79:
-			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
-		case 81:
-			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'x2Offset', n);
 		case 80:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'yOffset', n);
+			return A2($author$project$VegaLite$numExpr, 'xOffset', n);
 		case 82:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'y2Offset', n);
-		case 85:
+			return A2($author$project$VegaLite$numExpr, 'x2Offset', n);
+		case 81:
 			var n = mProp.a;
-			return A2($author$project$VegaLite$numExpr, 'radiusOffset', n);
+			return A2($author$project$VegaLite$numExpr, 'yOffset', n);
+		case 83:
+			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'y2Offset', n);
 		case 86:
 			var n = mProp.a;
+			return A2($author$project$VegaLite$numExpr, 'radiusOffset', n);
+		case 87:
+			var n = mProp.a;
 			return A2($author$project$VegaLite$numExpr, 'radius2Offset', n);
-		default:
+		case 88:
 			var b = mProp.a;
 			return A2($author$project$VegaLite$booExpr, 'aspect', b);
+		default:
+			var s = mProp.a;
+			return A2($author$project$VegaLite$strExpr, 'url', s);
 	}
 };
 var $author$project$VegaLite$pointMarkerSpec = function (pm) {
