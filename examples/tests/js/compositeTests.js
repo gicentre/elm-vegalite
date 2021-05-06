@@ -10278,11 +10278,11 @@ var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$Year = {$: 0};

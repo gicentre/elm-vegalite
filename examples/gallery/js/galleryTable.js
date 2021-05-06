@@ -10598,14 +10598,14 @@ var $author$project$VegaLite$PBin = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
-var $author$project$VegaLite$RHeatmap = function (a) {
+var $author$project$VegaLite$RacoHeatmap = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$racoHeatmap = function (s) {
-	return $author$project$VegaLite$RHeatmap(
+	return $author$project$VegaLite$RacoHeatmap(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
@@ -10828,18 +10828,18 @@ var $author$project$VegaLite$MBaseline = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$maBaseline = $author$project$VegaLite$MBaseline;
-var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCBandPaddingInner(
+	return $author$project$VegaLite$SacoBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+var $author$project$VegaLite$SacoBandPaddingOuter = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
-	return $author$project$VegaLite$SCBandPaddingOuter(
+	return $author$project$VegaLite$SacoBandPaddingOuter(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$TAggregate = function (a) {
@@ -11373,20 +11373,20 @@ var $author$project$VegaLite$raNums = function (ns) {
 	return $author$project$VegaLite$RNumbers(
 		$author$project$VegaLite$Nums(ns));
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
-var $author$project$VegaLite$SScheme = F2(
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
+var $author$project$VegaLite$ScScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
 var $author$project$VegaLite$scScheme = function (s) {
-	return $author$project$VegaLite$SScheme(
+	return $author$project$VegaLite$ScScheme(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));

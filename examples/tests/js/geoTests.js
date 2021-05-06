@@ -12357,10 +12357,10 @@ var $author$project$VegaLite$DStrings = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
@@ -12389,9 +12389,9 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);
@@ -14384,24 +14384,24 @@ var $author$project$VegaLite$order = function (oDefs) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, oDefs))));
 };
-var $author$project$VegaLite$TFont = function (a) {
+var $author$project$VegaLite$TicoFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$ticoFont = function (s) {
-	return $author$project$VegaLite$TFont(
+	return $author$project$VegaLite$TicoFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFontSize = function (a) {
+var $author$project$VegaLite$TicoFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TFontSize(
+	return $author$project$VegaLite$TicoFontSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TFontWeight = function (a) {
+var $author$project$VegaLite$TicoFontWeight = function (a) {
 	return {$: 9, a: a};
 };
-var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TFontWeight;
+var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TicoFontWeight;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {

@@ -10156,10 +10156,10 @@ var $author$project$VegaLite$position = F2(
 	});
 var $author$project$VegaLite$ScTime = 5;
 var $author$project$VegaLite$scTime = 5;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$VegaLite$ScUtc = 6;
 var $author$project$VegaLite$scUtc = 6;
 var $author$project$VegaLite$size = function (markProps) {
@@ -10506,11 +10506,11 @@ var $author$project$VegaLite$maStrokeWidth = function (n) {
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$TimeTests$timeByUnit = function (tu) {

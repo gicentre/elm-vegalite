@@ -8349,10 +8349,10 @@ var $author$project$VegaLite$raStrs = function (ss) {
 	return $author$project$VegaLite$RStrings(
 		$author$project$VegaLite$Strs(ss));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$OfNormalize = 1;
 var $author$project$VegaLite$stNormalize = 1;
 var $author$project$VegaLite$VLTransform = 15;
@@ -11363,7 +11363,7 @@ var $author$project$VegaLite$axOffset = function (n) {
 var $author$project$VegaLite$DStrings = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
 var $elm$core$List$unzip = function (pairs) {
@@ -11389,19 +11389,19 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);
 };
 var $author$project$VegaLite$ScOrdinal = 7;
 var $author$project$VegaLite$scOrdinal = 7;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$GalleryBar$bar18 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -11979,7 +11979,7 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$CustomSort = function (a) {
 	return {$: 2, a: a};
 };
@@ -12101,11 +12101,11 @@ var $author$project$VegaLite$maYOffset = function (n) {
 	return $author$project$VegaLite$MYOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SPaddingInner = function (a) {
+var $author$project$VegaLite$ScPaddingInner = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$scPaddingInner = function (n) {
-	return $author$project$VegaLite$SPaddingInner(
+	return $author$project$VegaLite$ScPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$VAlignTop = {$: 0};
@@ -13326,11 +13326,11 @@ var $author$project$VegaLite$NTickCount = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
-var $author$project$VegaLite$SBase = function (a) {
+var $author$project$VegaLite$ScBase = function (a) {
 	return {$: 17, a: a};
 };
 var $author$project$VegaLite$scBase = function (n) {
-	return $author$project$VegaLite$SBase(
+	return $author$project$VegaLite$ScBase(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ScLog = 3;

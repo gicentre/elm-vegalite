@@ -13896,32 +13896,32 @@ var $author$project$VegaLite$ParamEmpty = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$prParamEmpty = $author$project$VegaLite$ParamEmpty;
-var $author$project$VegaLite$RRamp = function (a) {
+var $author$project$VegaLite$RacoRamp = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$racoRamp = function (s) {
-	return $author$project$VegaLite$RRamp(
+	return $author$project$VegaLite$RacoRamp(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
 };
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCBandPaddingInner(
+	return $author$project$VegaLite$SacoBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+var $author$project$VegaLite$SacoBandPaddingOuter = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
-	return $author$project$VegaLite$SCBandPaddingOuter(
+	return $author$project$VegaLite$SacoBandPaddingOuter(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$SePoint = 0;
@@ -14546,10 +14546,10 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$VLTransform = 15;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {

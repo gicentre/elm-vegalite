@@ -8111,10 +8111,10 @@ var $author$project$VegaLite$row = function (fFields) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$map, $author$project$VegaLite$facetChannelProperty, fFields))));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:
@@ -8791,11 +8791,11 @@ var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$ByChannel = function (a) {

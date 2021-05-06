@@ -11211,24 +11211,24 @@ var $author$project$VegaLite$PTitle = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
-var $author$project$VegaLite$RHeatmap = function (a) {
+var $author$project$VegaLite$RacoHeatmap = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$racoHeatmap = function (s) {
-	return $author$project$VegaLite$RHeatmap(
+	return $author$project$VegaLite$RacoHeatmap(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
 };
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$VLSpacing = 27;
 var $author$project$VegaLite$spacing = function (sp) {
 	return _Utils_Tuple2(

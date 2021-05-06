@@ -11014,19 +11014,19 @@ var $author$project$VegaLite$raStrs = function (ss) {
 };
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$shape = function (markProps) {
@@ -11048,15 +11048,15 @@ var $author$project$VegaLite$SymTriangleRight = {$: 7};
 var $author$project$VegaLite$symTriangleRight = $author$project$VegaLite$SymTriangleRight;
 var $author$project$VegaLite$FrBounds = {$: 0};
 var $author$project$VegaLite$tfBounds = $author$project$VegaLite$FrBounds;
-var $author$project$VegaLite$TFrame = function (a) {
+var $author$project$VegaLite$TicoFrame = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TFrame;
-var $author$project$VegaLite$TFontSize = function (a) {
+var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TicoFrame;
+var $author$project$VegaLite$TicoFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TFontSize(
+	return $author$project$VegaLite$TicoFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$VLTitle = 3;
@@ -11697,18 +11697,18 @@ var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
 var $author$project$GalleryLabel$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCBandPaddingInner(
+	return $author$project$VegaLite$SacoBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+var $author$project$VegaLite$SacoBandPaddingOuter = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
-	return $author$project$VegaLite$SCBandPaddingOuter(
+	return $author$project$VegaLite$SacoBandPaddingOuter(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$TAggregate = function (a) {
@@ -11856,12 +11856,12 @@ var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
-var $author$project$VegaLite$SScheme = F2(
+var $author$project$VegaLite$ScScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
 var $author$project$VegaLite$scScheme = function (s) {
-	return $author$project$VegaLite$SScheme(
+	return $author$project$VegaLite$ScScheme(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));

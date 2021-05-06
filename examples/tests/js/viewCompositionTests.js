@@ -13287,10 +13287,10 @@ var $author$project$VegaLite$raStrs = function (ss) {
 	return $author$project$VegaLite$RStrings(
 		$author$project$VegaLite$Strs(ss));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$VLTransform = 15;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {

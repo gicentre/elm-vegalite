@@ -7914,10 +7914,10 @@ var $author$project$VegaLite$sample = function (maxSize) {
 			'sample',
 			$elm$json$Json$Encode$float(maxSize)));
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$VLTransform = 15;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {

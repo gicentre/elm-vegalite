@@ -13722,18 +13722,18 @@ var $author$project$VegaLite$lecoTitleColor = function (s) {
 	return $author$project$VegaLite$LecoTitleColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TColor = function (a) {
+var $author$project$VegaLite$TicoColor = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ticoColor = function (s) {
-	return $author$project$VegaLite$TColor(
+	return $author$project$VegaLite$TicoColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFont = function (a) {
+var $author$project$VegaLite$TicoFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$ticoFont = function (s) {
-	return $author$project$VegaLite$TFont(
+	return $author$project$VegaLite$TicoFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeVis(
@@ -14338,10 +14338,10 @@ var $author$project$VegaLite$PValues = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$DStr = function (a) {
 	return {$: 3, a: a};
 };
@@ -14889,87 +14889,87 @@ var $author$project$VegaLite$FrExpr = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$tfExpr = $author$project$VegaLite$FrExpr;
-var $author$project$VegaLite$TSubtitle = function (a) {
+var $author$project$VegaLite$TicoSubtitle = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = function (s) {
-	return $author$project$VegaLite$TSubtitle(
+	return $author$project$VegaLite$TicoSubtitle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TAngle = function (a) {
+var $author$project$VegaLite$TicoAngle = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$ticoAngle = function (n) {
-	return $author$project$VegaLite$TAngle(
+	return $author$project$VegaLite$TicoAngle(
 		$author$project$VegaLite$Num(
 			$author$project$VegaLite$positiveAngle(n)));
 };
-var $author$project$VegaLite$TDx = function (a) {
+var $author$project$VegaLite$TicoDx = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$ticoDx = function (n) {
-	return $author$project$VegaLite$TDx(
+	return $author$project$VegaLite$TicoDx(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TDy = function (a) {
+var $author$project$VegaLite$TicoDy = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$ticoDy = function (n) {
-	return $author$project$VegaLite$TDy(
+	return $author$project$VegaLite$TicoDy(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TFontSize = function (a) {
+var $author$project$VegaLite$TicoFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TFontSize(
+	return $author$project$VegaLite$TicoFontSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TFontStyle = function (a) {
+var $author$project$VegaLite$TicoFontStyle = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$ticoFontStyle = function (s) {
-	return $author$project$VegaLite$TFontStyle(
+	return $author$project$VegaLite$TicoFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFontWeight = function (a) {
+var $author$project$VegaLite$TicoFontWeight = function (a) {
 	return {$: 9, a: a};
 };
-var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TFontWeight;
-var $author$project$VegaLite$TFrame = function (a) {
+var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TicoFontWeight;
+var $author$project$VegaLite$TicoFrame = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$ticoFrame = $author$project$VegaLite$TFrame;
-var $author$project$VegaLite$TLimit = function (a) {
+var $author$project$VegaLite$ticoFrame = $author$project$VegaLite$TicoFrame;
+var $author$project$VegaLite$TicoLimit = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$ticoLimit = function (n) {
-	return $author$project$VegaLite$TLimit(
+	return $author$project$VegaLite$TicoLimit(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TLineHeight = function (a) {
+var $author$project$VegaLite$TicoLineHeight = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$ticoLineHeight = function (n) {
-	return $author$project$VegaLite$TLineHeight(
+	return $author$project$VegaLite$TicoLineHeight(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TOffset = function (a) {
+var $author$project$VegaLite$TicoOffset = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$TSubtitleFontSize = function (a) {
+var $author$project$VegaLite$TicoSubtitleFontSize = function (a) {
 	return {$: 19, a: a};
 };
-var $author$project$VegaLite$TSubtitleLineHeight = function (a) {
+var $author$project$VegaLite$TicoSubtitleLineHeight = function (a) {
 	return {$: 22, a: a};
 };
-var $author$project$VegaLite$TSubtitlePadding = function (a) {
+var $author$project$VegaLite$TicoSubtitlePadding = function (a) {
 	return {$: 23, a: a};
 };
-var $author$project$VegaLite$TZIndex = function (a) {
+var $author$project$VegaLite$TicoZIndex = function (a) {
 	return {$: 24, a: a};
 };
 var $author$project$VegaLite$ticoNumExpr = F2(
@@ -14977,57 +14977,57 @@ var $author$project$VegaLite$ticoNumExpr = F2(
 		var _v0 = fn(0);
 		switch (_v0.$) {
 			case 1:
-				return $author$project$VegaLite$TAngle(
+				return $author$project$VegaLite$TicoAngle(
 					$author$project$VegaLite$NumExpr(ex));
 			case 4:
-				return $author$project$VegaLite$TDx(
+				return $author$project$VegaLite$TicoDx(
 					$author$project$VegaLite$NumExpr(ex));
 			case 5:
-				return $author$project$VegaLite$TDy(
+				return $author$project$VegaLite$TicoDy(
 					$author$project$VegaLite$NumExpr(ex));
 			case 7:
-				return $author$project$VegaLite$TFontSize(
+				return $author$project$VegaLite$TicoFontSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 11:
-				return $author$project$VegaLite$TLineHeight(
+				return $author$project$VegaLite$TicoLineHeight(
 					$author$project$VegaLite$NumExpr(ex));
 			case 12:
-				return $author$project$VegaLite$TLimit(
+				return $author$project$VegaLite$TicoLimit(
 					$author$project$VegaLite$NumExpr(ex));
 			case 13:
-				return $author$project$VegaLite$TOffset(
+				return $author$project$VegaLite$TicoOffset(
 					$author$project$VegaLite$NumExpr(ex));
 			case 19:
-				return $author$project$VegaLite$TSubtitleFontSize(
+				return $author$project$VegaLite$TicoSubtitleFontSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 22:
-				return $author$project$VegaLite$TSubtitleLineHeight(
+				return $author$project$VegaLite$TicoSubtitleLineHeight(
 					$author$project$VegaLite$NumExpr(ex));
 			case 23:
-				return $author$project$VegaLite$TSubtitlePadding(
+				return $author$project$VegaLite$TicoSubtitlePadding(
 					$author$project$VegaLite$NumExpr(ex));
 			case 24:
-				return $author$project$VegaLite$TZIndex(
+				return $author$project$VegaLite$TicoZIndex(
 					$author$project$VegaLite$NumExpr(ex));
 			default:
 				return fn(0);
 		}
 	});
 var $author$project$VegaLite$ticoOffset = function (n) {
-	return $author$project$VegaLite$TOffset(
+	return $author$project$VegaLite$TicoOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TOrient = function (a) {
+var $author$project$VegaLite$TicoOrient = function (a) {
 	return {$: 14, a: a};
 };
-var $author$project$VegaLite$ticoOrient = $author$project$VegaLite$TOrient;
-var $author$project$VegaLite$TSubtitleColor = function (a) {
+var $author$project$VegaLite$ticoOrient = $author$project$VegaLite$TicoOrient;
+var $author$project$VegaLite$TicoSubtitleColor = function (a) {
 	return {$: 17, a: a};
 };
-var $author$project$VegaLite$TSubtitleFont = function (a) {
+var $author$project$VegaLite$TicoSubtitleFont = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$TSubtitleFontStyle = function (a) {
+var $author$project$VegaLite$TicoSubtitleFontStyle = function (a) {
 	return {$: 20, a: a};
 };
 var $author$project$VegaLite$ticoStrExpr = F2(
@@ -15035,52 +15035,52 @@ var $author$project$VegaLite$ticoStrExpr = F2(
 		var _v0 = fn('');
 		switch (_v0.$) {
 			case 3:
-				return $author$project$VegaLite$TColor(
+				return $author$project$VegaLite$TicoColor(
 					$author$project$VegaLite$StrExpr(ex));
 			case 6:
-				return $author$project$VegaLite$TFont(
+				return $author$project$VegaLite$TicoFont(
 					$author$project$VegaLite$StrExpr(ex));
 			case 8:
-				return $author$project$VegaLite$TFontStyle(
+				return $author$project$VegaLite$TicoFontStyle(
 					$author$project$VegaLite$StrExpr(ex));
 			case 16:
-				return $author$project$VegaLite$TSubtitle(
+				return $author$project$VegaLite$TicoSubtitle(
 					$author$project$VegaLite$StrExpr(ex));
 			case 17:
-				return $author$project$VegaLite$TSubtitleColor(
+				return $author$project$VegaLite$TicoSubtitleColor(
 					$author$project$VegaLite$StrExpr(ex));
 			case 18:
-				return $author$project$VegaLite$TSubtitleFont(
+				return $author$project$VegaLite$TicoSubtitleFont(
 					$author$project$VegaLite$StrExpr(ex));
 			case 20:
-				return $author$project$VegaLite$TSubtitleFontStyle(
+				return $author$project$VegaLite$TicoSubtitleFontStyle(
 					$author$project$VegaLite$StrExpr(ex));
 			default:
 				return fn('');
 		}
 	});
 var $author$project$VegaLite$ticoSubtitleFont = function (s) {
-	return $author$project$VegaLite$TSubtitleFont(
+	return $author$project$VegaLite$TicoSubtitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$ticoSubtitleFontSize = function (n) {
-	return $author$project$VegaLite$TSubtitleFontSize(
+	return $author$project$VegaLite$TicoSubtitleFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ticoSubtitleFontStyle = function (s) {
-	return $author$project$VegaLite$TSubtitleFontStyle(
+	return $author$project$VegaLite$TicoSubtitleFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TSubtitleFontWeight = function (a) {
+var $author$project$VegaLite$TicoSubtitleFontWeight = function (a) {
 	return {$: 21, a: a};
 };
-var $author$project$VegaLite$ticoSubtitleFontWeight = $author$project$VegaLite$TSubtitleFontWeight;
+var $author$project$VegaLite$ticoSubtitleFontWeight = $author$project$VegaLite$TicoSubtitleFontWeight;
 var $author$project$VegaLite$ticoSubtitleLineHeight = function (n) {
-	return $author$project$VegaLite$TSubtitleLineHeight(
+	return $author$project$VegaLite$TicoSubtitleLineHeight(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ticoSubtitlePadding = function (n) {
-	return $author$project$VegaLite$TSubtitlePadding(
+	return $author$project$VegaLite$TicoSubtitlePadding(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$titleExpr = F2(
@@ -15539,36 +15539,36 @@ var $author$project$VegaLite$Scale = function (a) {
 };
 var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
-var $author$project$VegaLite$RSymbolsExpr = function (a) {
+var $author$project$VegaLite$RacoSymbolsExpr = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$racoSymbolsExpr = $author$project$VegaLite$RSymbolsExpr;
+var $author$project$VegaLite$racoSymbolsExpr = $author$project$VegaLite$RacoSymbolsExpr;
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+var $author$project$VegaLite$SacoBandPaddingOuter = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
-	return $author$project$VegaLite$SCBandPaddingOuter(
+	return $author$project$VegaLite$SacoBandPaddingOuter(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SCBarBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBarBandPaddingInner = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$sacoBarBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCBarBandPaddingInner(
+	return $author$project$VegaLite$SacoBarBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SCClamp = function (a) {
+var $author$project$VegaLite$SacoClamp = function (a) {
 	return {$: 4, a: a};
 };
-var $author$project$VegaLite$SCRound = function (a) {
+var $author$project$VegaLite$SacoRound = function (a) {
 	return {$: 17, a: a};
 };
-var $author$project$VegaLite$SCUseUnaggregatedDomain = function (a) {
+var $author$project$VegaLite$SacoUseUnaggregatedDomain = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$SCXReverse = function (a) {
+var $author$project$VegaLite$SacoXReverse = function (a) {
 	return {$: 19, a: a};
 };
 var $author$project$VegaLite$sacoBooExpr = F2(
@@ -15576,69 +15576,69 @@ var $author$project$VegaLite$sacoBooExpr = F2(
 		var _v0 = fn(true);
 		switch (_v0.$) {
 			case 4:
-				return $author$project$VegaLite$SCClamp(
+				return $author$project$VegaLite$SacoClamp(
 					$author$project$VegaLite$BooExpr(ex));
 			case 19:
-				return $author$project$VegaLite$SCXReverse(
+				return $author$project$VegaLite$SacoXReverse(
 					$author$project$VegaLite$BooExpr(ex));
 			case 17:
-				return $author$project$VegaLite$SCRound(
+				return $author$project$VegaLite$SacoRound(
 					$author$project$VegaLite$BooExpr(ex));
 			case 18:
-				return $author$project$VegaLite$SCUseUnaggregatedDomain(
+				return $author$project$VegaLite$SacoUseUnaggregatedDomain(
 					$author$project$VegaLite$BooExpr(ex));
 			default:
 				return fn(false);
 		}
 	});
 var $author$project$VegaLite$sacoClamp = function (b) {
-	return $author$project$VegaLite$SCClamp(
+	return $author$project$VegaLite$SacoClamp(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$SCContinuousPadding = function (a) {
+var $author$project$VegaLite$SacoContinuousPadding = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$sacoContinuousPadding = function (n) {
-	return $author$project$VegaLite$SCContinuousPadding(
+	return $author$project$VegaLite$SacoContinuousPadding(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SCMaxBandSize = function (a) {
+var $author$project$VegaLite$SacoMaxBandSize = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$SCMaxFontSize = function (a) {
+var $author$project$VegaLite$SacoMaxFontSize = function (a) {
 	return {$: 8, a: a};
 };
-var $author$project$VegaLite$SCMaxOpacity = function (a) {
+var $author$project$VegaLite$SacoMaxOpacity = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$SCMaxSize = function (a) {
+var $author$project$VegaLite$SacoMaxSize = function (a) {
 	return {$: 12, a: a};
 };
-var $author$project$VegaLite$SCMaxStrokeWidth = function (a) {
+var $author$project$VegaLite$SacoMaxStrokeWidth = function (a) {
 	return {$: 14, a: a};
 };
-var $author$project$VegaLite$SCMinBandSize = function (a) {
+var $author$project$VegaLite$SacoMinBandSize = function (a) {
 	return {$: 7, a: a};
 };
-var $author$project$VegaLite$SCMinFontSize = function (a) {
+var $author$project$VegaLite$SacoMinFontSize = function (a) {
 	return {$: 9, a: a};
 };
-var $author$project$VegaLite$SCMinOpacity = function (a) {
+var $author$project$VegaLite$SacoMinOpacity = function (a) {
 	return {$: 11, a: a};
 };
-var $author$project$VegaLite$SCMinSize = function (a) {
+var $author$project$VegaLite$SacoMinSize = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$SCMinStrokeWidth = function (a) {
+var $author$project$VegaLite$SacoMinStrokeWidth = function (a) {
 	return {$: 15, a: a};
 };
-var $author$project$VegaLite$SCPointPadding = function (a) {
+var $author$project$VegaLite$SacoPointPadding = function (a) {
 	return {$: 16, a: a};
 };
-var $author$project$VegaLite$SCRectBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoRectBandPaddingInner = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$sacoNumExpr = F2(
@@ -15646,71 +15646,71 @@ var $author$project$VegaLite$sacoNumExpr = F2(
 		var _v0 = fn(0);
 		switch (_v0.$) {
 			case 0:
-				return $author$project$VegaLite$SCBandPaddingInner(
+				return $author$project$VegaLite$SacoBandPaddingInner(
 					$author$project$VegaLite$NumExpr(ex));
 			case 3:
-				return $author$project$VegaLite$SCBandPaddingOuter(
+				return $author$project$VegaLite$SacoBandPaddingOuter(
 					$author$project$VegaLite$NumExpr(ex));
 			case 1:
-				return $author$project$VegaLite$SCBarBandPaddingInner(
+				return $author$project$VegaLite$SacoBarBandPaddingInner(
 					$author$project$VegaLite$NumExpr(ex));
 			case 2:
-				return $author$project$VegaLite$SCRectBandPaddingInner(
+				return $author$project$VegaLite$SacoRectBandPaddingInner(
 					$author$project$VegaLite$NumExpr(ex));
 			case 5:
-				return $author$project$VegaLite$SCContinuousPadding(
+				return $author$project$VegaLite$SacoContinuousPadding(
 					$author$project$VegaLite$NumExpr(ex));
 			case 6:
-				return $author$project$VegaLite$SCMaxBandSize(
+				return $author$project$VegaLite$SacoMaxBandSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 7:
-				return $author$project$VegaLite$SCMinBandSize(
+				return $author$project$VegaLite$SacoMinBandSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 8:
-				return $author$project$VegaLite$SCMaxFontSize(
+				return $author$project$VegaLite$SacoMaxFontSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 9:
-				return $author$project$VegaLite$SCMinFontSize(
+				return $author$project$VegaLite$SacoMinFontSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 10:
-				return $author$project$VegaLite$SCMaxOpacity(
+				return $author$project$VegaLite$SacoMaxOpacity(
 					$author$project$VegaLite$NumExpr(ex));
 			case 11:
-				return $author$project$VegaLite$SCMinOpacity(
+				return $author$project$VegaLite$SacoMinOpacity(
 					$author$project$VegaLite$NumExpr(ex));
 			case 12:
-				return $author$project$VegaLite$SCMaxSize(
+				return $author$project$VegaLite$SacoMaxSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 13:
-				return $author$project$VegaLite$SCMinSize(
+				return $author$project$VegaLite$SacoMinSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 14:
-				return $author$project$VegaLite$SCMaxStrokeWidth(
+				return $author$project$VegaLite$SacoMaxStrokeWidth(
 					$author$project$VegaLite$NumExpr(ex));
 			case 15:
-				return $author$project$VegaLite$SCMinStrokeWidth(
+				return $author$project$VegaLite$SacoMinStrokeWidth(
 					$author$project$VegaLite$NumExpr(ex));
 			case 16:
-				return $author$project$VegaLite$SCPointPadding(
+				return $author$project$VegaLite$SacoPointPadding(
 					$author$project$VegaLite$NumExpr(ex));
 			default:
 				return fn(0);
 		}
 	});
 var $author$project$VegaLite$sacoPointPadding = function (n) {
-	return $author$project$VegaLite$SCPointPadding(
+	return $author$project$VegaLite$SacoPointPadding(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$sacoRectBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCRectBandPaddingInner(
+	return $author$project$VegaLite$SacoRectBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$sacoRound = function (b) {
-	return $author$project$VegaLite$SCRound(
+	return $author$project$VegaLite$SacoRound(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$sacoXReverse = function (b) {
-	return $author$project$VegaLite$SCXReverse(
+	return $author$project$VegaLite$SacoXReverse(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$VLVConcat = 21;
@@ -19175,33 +19175,33 @@ var $author$project$VegaLite$W900 = {$: 12};
 var $author$project$VegaLite$fwValue = function (w) {
 	return (w <= 100) ? $author$project$VegaLite$W100 : ((w <= 200) ? $author$project$VegaLite$W200 : ((w <= 300) ? $author$project$VegaLite$W300 : ((w <= 400) ? $author$project$VegaLite$W400 : ((w <= 500) ? $author$project$VegaLite$W500 : ((w <= 600) ? $author$project$VegaLite$W600 : ((w <= 700) ? $author$project$VegaLite$W700 : ((w <= 800) ? $author$project$VegaLite$W800 : $author$project$VegaLite$W900)))))));
 };
-var $author$project$VegaLite$TAnchor = function (a) {
+var $author$project$VegaLite$TicoAnchor = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$tiAnchor = $author$project$VegaLite$TAnchor;
+var $author$project$VegaLite$tiAnchor = $author$project$VegaLite$TicoAnchor;
 var $author$project$VegaLite$tiSubtitleColor = function (s) {
-	return $author$project$VegaLite$TSubtitleColor(
+	return $author$project$VegaLite$TicoSubtitleColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$tiSubtitleFont = function (s) {
-	return $author$project$VegaLite$TSubtitleFont(
+	return $author$project$VegaLite$TicoSubtitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$tiSubtitleFontSize = function (n) {
-	return $author$project$VegaLite$TSubtitleFontSize(
+	return $author$project$VegaLite$TicoSubtitleFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$tiSubtitleFontStyle = function (s) {
-	return $author$project$VegaLite$TSubtitleFontStyle(
+	return $author$project$VegaLite$TicoSubtitleFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TSubtitleFontWeight;
+var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TicoSubtitleFontWeight;
 var $author$project$VegaLite$tiSubtitleLineHeight = function (n) {
-	return $author$project$VegaLite$TSubtitleLineHeight(
+	return $author$project$VegaLite$TicoSubtitleLineHeight(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$tiSubtitlePadding = function (n) {
-	return $author$project$VegaLite$TSubtitlePadding(
+	return $author$project$VegaLite$TicoSubtitlePadding(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$ConfigTests$titleCfg2 = function () {
@@ -19253,9 +19253,9 @@ var $author$project$ConfigTests$titleCfg2 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TAnchor;
+var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TicoAnchor;
 var $author$project$VegaLite$ticoSubtitleColor = function (s) {
-	return $author$project$VegaLite$TSubtitleColor(
+	return $author$project$VegaLite$TicoSubtitleColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$ConfigTests$titleCfg3 = function () {

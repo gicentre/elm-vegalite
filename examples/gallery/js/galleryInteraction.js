@@ -10686,11 +10686,11 @@ var $author$project$VegaLite$ParamEmpty = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$prParamEmpty = $author$project$VegaLite$ParamEmpty;
-var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCBandPaddingInner(
+	return $author$project$VegaLite$SacoBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$On = function (a) {
@@ -13319,25 +13319,25 @@ var $author$project$VegaLite$order = function (oDefs) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, oDefs))));
 };
-var $author$project$VegaLite$RRamp = function (a) {
+var $author$project$VegaLite$RacoRamp = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$racoRamp = function (s) {
-	return $author$project$VegaLite$RRamp(
+	return $author$project$VegaLite$RacoRamp(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
 };
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
-var $author$project$VegaLite$SCBandPaddingOuter = function (a) {
+var $author$project$VegaLite$SacoBandPaddingOuter = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingOuter = function (n) {
-	return $author$project$VegaLite$SCBandPaddingOuter(
+	return $author$project$VegaLite$SacoBandPaddingOuter(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$stroke = function (markProps) {
@@ -13566,10 +13566,10 @@ var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$STop = {$: 0};
 var $author$project$VegaLite$siTop = $author$project$VegaLite$STop;
 var $author$project$VegaLite$ByChannel = function (a) {
@@ -13722,12 +13722,12 @@ var $author$project$VegaLite$PBindLegend = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$paBindLegend = $author$project$VegaLite$PBindLegend;
-var $author$project$VegaLite$SScheme = F2(
+var $author$project$VegaLite$ScScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
 var $author$project$VegaLite$scScheme = function (s) {
-	return $author$project$VegaLite$SScheme(
+	return $author$project$VegaLite$ScScheme(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));

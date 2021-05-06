@@ -10326,11 +10326,11 @@ var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $elm$core$List$takeReverse = F3(
@@ -10584,10 +10584,10 @@ var $author$project$VegaLite$DStrings = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
@@ -10616,9 +10616,9 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);
@@ -10701,13 +10701,13 @@ var $author$project$VegaLite$repeat = function (fields) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$map, $author$project$VegaLite$repeatFieldsProperty, fields)));
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$ScSqrt = 2;
 var $author$project$VegaLite$scSqrt = 2;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$VegaLite$VLSpec = 25;
 var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(25, spec);

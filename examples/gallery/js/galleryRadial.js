@@ -10931,24 +10931,24 @@ var $author$project$VegaLite$raMin = function (n) {
 	return $author$project$VegaLite$RMinNumber(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$ScSqrt = 2;
 var $author$project$VegaLite$scSqrt = 2;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$TmType = function (a) {
@@ -11059,7 +11059,7 @@ var $author$project$VegaLite$DStrings = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
@@ -11088,9 +11088,9 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);
@@ -11554,39 +11554,39 @@ var $elm$core$Basics$negate = function (n) {
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$OfNone = 3;
 var $author$project$VegaLite$stNone = 3;
-var $author$project$VegaLite$TFont = function (a) {
+var $author$project$VegaLite$TicoFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$tiFont = function (s) {
-	return $author$project$VegaLite$TFont(
+	return $author$project$VegaLite$TicoFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFontSize = function (a) {
+var $author$project$VegaLite$TicoFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$tiFontSize = function (n) {
-	return $author$project$VegaLite$TFontSize(
+	return $author$project$VegaLite$TicoFontSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TOffset = function (a) {
+var $author$project$VegaLite$TicoOffset = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$tiOffset = function (n) {
-	return $author$project$VegaLite$TOffset(
+	return $author$project$VegaLite$TicoOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TSubtitle = function (a) {
+var $author$project$VegaLite$TicoSubtitle = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = function (s) {
-	return $author$project$VegaLite$TSubtitle(
+	return $author$project$VegaLite$TicoSubtitle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TSubtitleFont = function (a) {
+var $author$project$VegaLite$TicoSubtitleFont = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$tiSubtitleFont = function (s) {
-	return $author$project$VegaLite$TSubtitleFont(
+	return $author$project$VegaLite$TicoSubtitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$VLTitle = 3;

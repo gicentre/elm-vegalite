@@ -14142,10 +14142,10 @@ var $author$project$VegaLite$padding = function (pad) {
 		9,
 		$author$project$VegaLite$paddingSpec(pad));
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$DataTests$datum4 = function () {
 	var w = 300;
 	var trans = A2(
@@ -14570,11 +14570,11 @@ var $author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$DataTests$domain1 = function () {
@@ -15465,10 +15465,10 @@ var $author$project$VegaLite$NTickCount = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$niTickCount = $author$project$VegaLite$NTickCount;
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
 var $author$project$DataTests$impute1 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,

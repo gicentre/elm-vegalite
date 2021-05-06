@@ -8529,11 +8529,11 @@ var $author$project$GalleryAdvanced$path = 'https://cdn.jsdelivr.net/npm/vega-da
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$GalleryAdvanced$advanced11 = function () {
@@ -12653,14 +12653,14 @@ var $author$project$VegaLite$NFalse = {$: 9};
 var $author$project$VegaLite$niFalse = $author$project$VegaLite$NFalse;
 var $author$project$VegaLite$ScLog = 3;
 var $author$project$VegaLite$scLog = 3;
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -13092,10 +13092,10 @@ var $author$project$VegaLite$maStrokeWidth = function (n) {
 	return $author$project$VegaLite$MStrokeWidth(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$GalleryAdvanced$advanced4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -13186,7 +13186,7 @@ var $author$project$VegaLite$DStrings = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
@@ -13215,9 +13215,9 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);
@@ -13226,17 +13226,17 @@ var $author$project$VegaLite$MOVertical = 1;
 var $author$project$VegaLite$moVertical = 1;
 var $author$project$VegaLite$FrBounds = {$: 0};
 var $author$project$VegaLite$tfBounds = $author$project$VegaLite$FrBounds;
-var $author$project$VegaLite$TFontStyle = function (a) {
+var $author$project$VegaLite$TicoFontStyle = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$tiFontStyle = function (s) {
-	return $author$project$VegaLite$TFontStyle(
+	return $author$project$VegaLite$TicoFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFrame = function (a) {
+var $author$project$VegaLite$TicoFrame = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TFrame;
+var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TicoFrame;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {

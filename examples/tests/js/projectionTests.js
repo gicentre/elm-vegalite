@@ -12455,24 +12455,24 @@ var $author$project$VegaLite$PrType = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$prType = $author$project$VegaLite$PrType;
-var $author$project$VegaLite$TFont = function (a) {
+var $author$project$VegaLite$TicoFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$ticoFont = function (s) {
-	return $author$project$VegaLite$TFont(
+	return $author$project$VegaLite$TicoFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFontSize = function (a) {
+var $author$project$VegaLite$TicoFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TFontSize(
+	return $author$project$VegaLite$TicoFontSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TFontWeight = function (a) {
+var $author$project$VegaLite$TicoFontWeight = function (a) {
 	return {$: 9, a: a};
 };
-var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TFontWeight;
+var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TicoFontWeight;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {

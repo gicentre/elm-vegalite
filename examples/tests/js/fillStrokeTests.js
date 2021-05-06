@@ -12461,14 +12461,14 @@ var $author$project$VegaLite$RNumberLists = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$raNumLists = $author$project$VegaLite$RNumberLists;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$FillStrokeTests$strokeDash2 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,

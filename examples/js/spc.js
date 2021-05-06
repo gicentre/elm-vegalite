@@ -12967,10 +12967,10 @@ var $author$project$VegaLite$position = F2(
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
 	});
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
 var $author$project$Spc$encCusum = A2(
 	$elm$core$Basics$composeL,
 	A2(
@@ -13694,10 +13694,10 @@ var $author$project$VegaLite$Mean = {$: 7};
 var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
 var $author$project$VegaLite$Stdev = {$: 15};
 var $author$project$VegaLite$opStdev = $author$project$VegaLite$Stdev;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$VLTransform = 15;
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -13868,7 +13868,7 @@ var $author$project$VegaLite$DStrings = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
@@ -13897,9 +13897,9 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);

@@ -11495,10 +11495,10 @@ var $author$project$VegaLite$PSelect = F2(
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$ParamTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$Encodings = function (a) {
 	return {$: 8, a: a};
 };
@@ -13919,10 +13919,10 @@ var $author$project$VegaLite$PExpr = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$paExpr = $author$project$VegaLite$PExpr;
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
 var $author$project$VegaLite$Tick = 15;
 var $author$project$VegaLite$tick = $author$project$VegaLite$mark(15);
 var $author$project$ParamTests$param3 = function () {

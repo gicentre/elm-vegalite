@@ -8129,7 +8129,7 @@ var $author$project$VegaLite$MScale = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
-var $author$project$VegaLite$SScheme = F2(
+var $author$project$VegaLite$ScScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
@@ -8137,7 +8137,7 @@ var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$scScheme = function (s) {
-	return $author$project$VegaLite$SScheme(
+	return $author$project$VegaLite$ScScheme(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
@@ -11099,19 +11099,19 @@ var $author$project$VegaLite$PScale = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$GalleryArea$area7 = function () {

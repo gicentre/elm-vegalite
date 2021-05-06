@@ -10370,7 +10370,7 @@ var $author$project$VegaLite$MScale = function (a) {
 var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
 var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
-var $author$project$VegaLite$SScheme = F2(
+var $author$project$VegaLite$ScScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
@@ -10378,7 +10378,7 @@ var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$scScheme = function (s) {
-	return $author$project$VegaLite$SScheme(
+	return $author$project$VegaLite$ScScheme(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
@@ -10433,10 +10433,10 @@ var $author$project$VegaLite$doMid = function (n) {
 	return $author$project$VegaLite$DMidNumber(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$ScaleTests$scale11 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -10777,10 +10777,10 @@ var $author$project$VegaLite$raStrs = function (ss) {
 	return $author$project$VegaLite$RStrings(
 		$author$project$VegaLite$Strs(ss));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$ScaleTests$scale17 = A2(
 	$author$project$ScaleTests$scatterplot,
 	_List_fromArray(
@@ -13357,11 +13357,11 @@ var $author$project$VegaLite$configure = function (configs) {
 		31,
 		$elm$json$Json$Encode$object(configs));
 };
-var $author$project$VegaLite$RRamp = function (a) {
+var $author$project$VegaLite$RacoRamp = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$racoRamp = function (s) {
-	return $author$project$VegaLite$RRamp(
+	return $author$project$VegaLite$RacoRamp(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
@@ -13459,10 +13459,10 @@ var $author$project$VegaLite$PSort = function (a) {
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
 var $author$project$VegaLite$ScQuantile = 11;
 var $author$project$VegaLite$scQuantile = 11;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$ScaleTests$scale3 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -13528,11 +13528,11 @@ var $author$project$ScaleTests$scale3 = function () {
 }();
 var $author$project$VegaLite$ScQuantize = 12;
 var $author$project$VegaLite$scQuantize = 12;
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$ScaleTests$scale4 = function () {
@@ -13717,11 +13717,11 @@ var $author$project$ScaleTests$scale6 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$SExponent = function (a) {
+var $author$project$VegaLite$ScExponent = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$scExponent = function (n) {
-	return $author$project$VegaLite$SExponent(
+	return $author$project$VegaLite$ScExponent(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ScPow = 1;
@@ -13801,11 +13801,11 @@ var $author$project$ScaleTests$scale8 = function () {
 			]));
 }();
 var $elm$core$Basics$e = _Basics_e;
-var $author$project$VegaLite$SBase = function (a) {
+var $author$project$VegaLite$ScBase = function (a) {
 	return {$: 17, a: a};
 };
 var $author$project$VegaLite$scBase = function (n) {
-	return $author$project$VegaLite$SBase(
+	return $author$project$VegaLite$ScBase(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ScLog = 3;
@@ -14200,13 +14200,13 @@ var $author$project$VegaLite$raNumExpr = F2(
 var $author$project$VegaLite$BooExpr = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SClamp = function (a) {
+var $author$project$VegaLite$ScClamp = function (a) {
 	return {$: 11, a: a};
 };
-var $author$project$VegaLite$SReverse = function (a) {
+var $author$project$VegaLite$ScReverse = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$SRound = function (a) {
+var $author$project$VegaLite$ScRound = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$scBooExpr = F2(
@@ -14214,46 +14214,46 @@ var $author$project$VegaLite$scBooExpr = F2(
 		var _v0 = fn(true);
 		switch (_v0.$) {
 			case 11:
-				return $author$project$VegaLite$SClamp(
+				return $author$project$VegaLite$ScClamp(
 					$author$project$VegaLite$BooExpr(ex));
 			case 18:
-				return $author$project$VegaLite$SReverse(
+				return $author$project$VegaLite$ScReverse(
 					$author$project$VegaLite$BooExpr(ex));
 			case 10:
-				return $author$project$VegaLite$SRound(
+				return $author$project$VegaLite$ScRound(
 					$author$project$VegaLite$BooExpr(ex));
 			case 14:
-				return $author$project$VegaLite$SZero(
+				return $author$project$VegaLite$ScZero(
 					$author$project$VegaLite$BooExpr(ex));
 			default:
 				return fn(false);
 		}
 	});
 var $author$project$VegaLite$scClamp = function (b) {
-	return $author$project$VegaLite$SClamp(
+	return $author$project$VegaLite$ScClamp(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$SDomainExpr = function (a) {
+var $author$project$VegaLite$ScDomainExpr = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$scDomainExpr = $author$project$VegaLite$SDomainExpr;
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$scDomainExpr = $author$project$VegaLite$ScDomainExpr;
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
-var $author$project$VegaLite$SAlign = function (a) {
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
+var $author$project$VegaLite$ScAlign = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$SConstant = function (a) {
+var $author$project$VegaLite$ScConstant = function (a) {
 	return {$: 16, a: a};
 };
-var $author$project$VegaLite$SPadding = function (a) {
+var $author$project$VegaLite$ScPadding = function (a) {
 	return {$: 7, a: a};
 };
-var $author$project$VegaLite$SPaddingInner = function (a) {
+var $author$project$VegaLite$ScPaddingInner = function (a) {
 	return {$: 8, a: a};
 };
-var $author$project$VegaLite$SPaddingOuter = function (a) {
+var $author$project$VegaLite$ScPaddingOuter = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$scNumExpr = F2(
@@ -14261,39 +14261,39 @@ var $author$project$VegaLite$scNumExpr = F2(
 		var _v0 = fn(0);
 		switch (_v0.$) {
 			case 6:
-				return $author$project$VegaLite$SAlign(
+				return $author$project$VegaLite$ScAlign(
 					$author$project$VegaLite$NumExpr(ex));
 			case 17:
-				return $author$project$VegaLite$SBase(
+				return $author$project$VegaLite$ScBase(
 					$author$project$VegaLite$NumExpr(ex));
 			case 16:
-				return $author$project$VegaLite$SConstant(
+				return $author$project$VegaLite$ScConstant(
 					$author$project$VegaLite$NumExpr(ex));
 			case 15:
-				return $author$project$VegaLite$SExponent(
+				return $author$project$VegaLite$ScExponent(
 					$author$project$VegaLite$NumExpr(ex));
 			case 7:
-				return $author$project$VegaLite$SPadding(
+				return $author$project$VegaLite$ScPadding(
 					$author$project$VegaLite$NumExpr(ex));
 			case 8:
-				return $author$project$VegaLite$SPaddingInner(
+				return $author$project$VegaLite$ScPaddingInner(
 					$author$project$VegaLite$NumExpr(ex));
 			case 9:
-				return $author$project$VegaLite$SPaddingOuter(
+				return $author$project$VegaLite$ScPaddingOuter(
 					$author$project$VegaLite$NumExpr(ex));
 			default:
 				return fn(0);
 		}
 	});
 var $author$project$VegaLite$scPadding = function (n) {
-	return $author$project$VegaLite$SPadding(
+	return $author$project$VegaLite$ScPadding(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$scReverse = function (b) {
-	return $author$project$VegaLite$SReverse(
+	return $author$project$VegaLite$ScReverse(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$SSchemeExpr = F2(
+var $author$project$VegaLite$ScSchemeExpr = F2(
 	function (a, b) {
 		return {$: 5, a: a, b: b};
 	});
@@ -14301,7 +14301,7 @@ var $author$project$VegaLite$StrsExpr = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$scSchemeExpr = function (s) {
-	return $author$project$VegaLite$SSchemeExpr(
+	return $author$project$VegaLite$ScSchemeExpr(
 		$author$project$VegaLite$StrsExpr(s));
 };
 var $author$project$VegaLite$shape = function (markProps) {

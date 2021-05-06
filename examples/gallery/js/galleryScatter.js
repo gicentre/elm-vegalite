@@ -7961,10 +7961,10 @@ var $author$project$VegaLite$raMax = function (n) {
 	return $author$project$VegaLite$RMaxNumber(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$size = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -9111,10 +9111,10 @@ var $author$project$VegaLite$PSort = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pSort = $author$project$VegaLite$PSort;
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$VegaLite$ByChannel = function (a) {
 	return {$: 5, a: a};
 };
@@ -12275,15 +12275,15 @@ var $author$project$VegaLite$params = function (prms) {
 };
 var $author$project$VegaLite$ScLog = 3;
 var $author$project$VegaLite$scLog = 3;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$SeInterval = 1;

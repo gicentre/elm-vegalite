@@ -13235,10 +13235,10 @@ var $author$project$VegaLite$pTitle = $author$project$VegaLite$PTitle;
 var $elm$core$Basics$pi = _Basics_pi;
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $elm$core$Basics$sin = _Basics_sin;
 var $author$project$VegaLite$SymPath = function (a) {
 	return {$: 8, a: a};
@@ -13822,10 +13822,10 @@ var $author$project$VegaLite$raStrs = function (ss) {
 	return $author$project$VegaLite$RStrings(
 		$author$project$VegaLite$Strs(ss));
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$ColorTests$customContinuous = A2(
 	$author$project$ColorTests$chart,
 	'Custom continuous colour scheme (red to blue ramp).',
@@ -13891,16 +13891,16 @@ var $author$project$VegaLite$CubeHelixLong = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$cubeHelixLong = $author$project$VegaLite$CubeHelixLong;
-var $author$project$VegaLite$SInterpolate = function (a) {
+var $author$project$VegaLite$ScInterpolate = function (a) {
 	return {$: 12, a: a};
 };
-var $author$project$VegaLite$scInterpolate = $author$project$VegaLite$SInterpolate;
+var $author$project$VegaLite$scInterpolate = $author$project$VegaLite$ScInterpolate;
 var $author$project$VegaLite$ScLinear = 0;
 var $author$project$VegaLite$scLinear = 0;
-var $author$project$VegaLite$SType = function (a) {
+var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$scType = $author$project$VegaLite$SType;
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
 var $author$project$ColorTests$gamma1 = A2(
 	$author$project$ColorTests$chart,
 	'cube-helix-long interpolation, gamma of -0.1',
@@ -14138,12 +14138,12 @@ var $author$project$ColorTests$interp7 = A2(
 								['yellow', 'red'])))
 					]))
 			])));
-var $author$project$VegaLite$SScheme = F2(
+var $author$project$VegaLite$ScScheme = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
 var $author$project$VegaLite$scScheme = function (s) {
-	return $author$project$VegaLite$SScheme(
+	return $author$project$VegaLite$ScScheme(
 		$author$project$VegaLite$Strs(
 			_List_fromArray(
 				[s])));
@@ -14180,11 +14180,11 @@ var $author$project$ColorTests$namedContinuous2 = A2(
 							[0.5, 1]))
 					]))
 			])));
-var $author$project$VegaLite$SReverse = function (a) {
+var $author$project$VegaLite$ScReverse = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$scReverse = function (b) {
-	return $author$project$VegaLite$SReverse(
+	return $author$project$VegaLite$ScReverse(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$ColorTests$namedContinuous3 = A2(
@@ -14257,11 +14257,11 @@ var $author$project$ColorTests$scale3 = A2(
 								['yellow', 'red'])))
 					]))
 			])));
-var $author$project$VegaLite$SExponent = function (a) {
+var $author$project$VegaLite$ScExponent = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$scExponent = function (n) {
-	return $author$project$VegaLite$SExponent(
+	return $author$project$VegaLite$ScExponent(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$ColorTests$scale4 = A2(
@@ -14339,11 +14339,11 @@ var $author$project$ColorTests$scale7 = A2(
 								['yellow', 'red'])))
 					]))
 			])));
-var $author$project$VegaLite$SConstant = function (a) {
+var $author$project$VegaLite$ScConstant = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$scConstant = function (n) {
-	return $author$project$VegaLite$SConstant(
+	return $author$project$VegaLite$ScConstant(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$ColorTests$scale8 = A2(

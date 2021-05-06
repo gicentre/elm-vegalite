@@ -10257,7 +10257,7 @@ var $author$project$VegaLite$position = F2(
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$map, $author$project$VegaLite$positionChannelProperty, pDefs))));
 	});
-var $author$project$VegaLite$SAlign = function (a) {
+var $author$project$VegaLite$ScAlign = function (a) {
 	return {$: 6, a: a};
 };
 var $elm$core$Basics$min = F2(
@@ -10265,18 +10265,18 @@ var $elm$core$Basics$min = F2(
 		return (_Utils_cmp(x, y) < 0) ? x : y;
 	});
 var $author$project$VegaLite$scAlign = function (x) {
-	return $author$project$VegaLite$SAlign(
+	return $author$project$VegaLite$ScAlign(
 		$author$project$VegaLite$Num(
 			A2(
 				$elm$core$Basics$max,
 				0,
 				A2($elm$core$Basics$min, 1, x))));
 };
-var $author$project$VegaLite$SPaddingInner = function (a) {
+var $author$project$VegaLite$ScPaddingInner = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$scPaddingInner = function (n) {
-	return $author$project$VegaLite$SPaddingInner(
+	return $author$project$VegaLite$ScPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$VLWidth = 4;

@@ -8020,11 +8020,11 @@ var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$SZero = function (a) {
+var $author$project$VegaLite$ScZero = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$SZero(
+	return $author$project$VegaLite$ScZero(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$Strings = function (a) {
@@ -8321,10 +8321,10 @@ var $author$project$VegaLite$DNumbers = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SDomain = function (a) {
+var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$SRange = function (a) {
+var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
@@ -8356,10 +8356,10 @@ var $author$project$VegaLite$domainRangeMap = F2(
 		var range = _v0.b;
 		return _List_fromArray(
 			[
-				$author$project$VegaLite$SDomain(
+				$author$project$VegaLite$ScDomain(
 				$author$project$VegaLite$DNumbers(
 					$author$project$VegaLite$Nums(domain))),
-				$author$project$VegaLite$SRange(
+				$author$project$VegaLite$ScRange(
 				$author$project$VegaLite$RStrings(
 					$author$project$VegaLite$Strs(range)))
 			]);
@@ -11373,10 +11373,10 @@ var $author$project$VegaLite$RowBy = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$rowBy = $author$project$VegaLite$RowBy;
-var $author$project$VegaLite$SNice = function (a) {
+var $author$project$VegaLite$ScNice = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$scNice = $author$project$VegaLite$SNice;
+var $author$project$VegaLite$scNice = $author$project$VegaLite$ScNice;
 var $author$project$VegaLite$VLSpec = 25;
 var $author$project$VegaLite$specification = function (spec) {
 	return _Utils_Tuple2(25, spec);
@@ -11722,7 +11722,7 @@ var $author$project$VegaLite$PTimeUnit = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
-var $author$project$VegaLite$scDomain = $author$project$VegaLite$SDomain;
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
 var $author$project$GalleryLayer$layer4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -12239,11 +12239,11 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 14;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
-var $author$project$VegaLite$TSubtitle = function (a) {
+var $author$project$VegaLite$TicoSubtitle = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = function (s) {
-	return $author$project$VegaLite$TSubtitle(
+	return $author$project$VegaLite$TicoSubtitle(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$VLTitle = 3;
@@ -12827,11 +12827,11 @@ var $author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
-var $author$project$VegaLite$SCBandPaddingInner = function (a) {
+var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$sacoBandPaddingInner = function (n) {
-	return $author$project$VegaLite$SCBandPaddingInner(
+	return $author$project$VegaLite$SacoBandPaddingInner(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$DStr = function (a) {
@@ -12842,29 +12842,29 @@ var $author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
-var $author$project$VegaLite$TAnchor = function (a) {
+var $author$project$VegaLite$TicoAnchor = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TAnchor;
-var $author$project$VegaLite$TColor = function (a) {
+var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TicoAnchor;
+var $author$project$VegaLite$TicoColor = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ticoColor = function (s) {
-	return $author$project$VegaLite$TColor(
+	return $author$project$VegaLite$TicoColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFont = function (a) {
+var $author$project$VegaLite$TicoFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$ticoFont = function (s) {
-	return $author$project$VegaLite$TFont(
+	return $author$project$VegaLite$TicoFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TFontSize = function (a) {
+var $author$project$VegaLite$TicoFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TFontSize(
+	return $author$project$VegaLite$TicoFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$NoStr = {$: 1};
@@ -13646,9 +13646,9 @@ var $author$project$VegaLite$categoricalDomainMap = function (scaleDomainPairs) 
 	var range = _v0.b;
 	return _List_fromArray(
 		[
-			$author$project$VegaLite$SDomain(
+			$author$project$VegaLite$ScDomain(
 			$author$project$VegaLite$DStrings(domain)),
-			$author$project$VegaLite$SRange(
+			$author$project$VegaLite$ScRange(
 			$author$project$VegaLite$RStrings(
 				$author$project$VegaLite$Strs(range)))
 		]);
@@ -13711,7 +13711,7 @@ var $author$project$VegaLite$raStrs = function (ss) {
 	return $author$project$VegaLite$RStrings(
 		$author$project$VegaLite$Strs(ss));
 };
-var $author$project$VegaLite$scRange = $author$project$VegaLite$SRange;
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
 var $author$project$VegaLite$shape = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
