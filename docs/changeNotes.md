@@ -129,7 +129,7 @@ Add images on maps test (VL5.1).
 
 - `axcoOffset` and `axcoLabelOffset` for configuring axis spacing.
 
-- `lecoDirection`, `lecoGradientLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
+- `lecoDirection`, `lecoGradientLength`, `lecoGradientHorizontalMaxLength`, `lecoGradientHorizontalMinLength`, `lecoGradientVerticalMaxLength`, `lecoGradientVerticalMinLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
 
 - `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
 

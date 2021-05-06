@@ -696,6 +696,10 @@ module VegaLite exposing
     , leFormatAsTemporal
     , leFormatAsCustom
     , leGradientLength
+    , lecoGradientHorizontalMaxLength
+    , lecoGradientHorizontalMinLength
+    , lecoGradientVerticalMaxLength
+    , lecoGradientVerticalMinLength
     , leGradientOpacity
     , leGradientThickness
     , leGradientStrokeColor
@@ -2724,6 +2728,10 @@ See the
 @docs leFormatAsTemporal
 @docs leFormatAsCustom
 @docs leGradientLength
+@docs lecoGradientHorizontalMaxLength
+@docs lecoGradientHorizontalMinLength
+@docs lecoGradientVerticalMaxLength
+@docs lecoGradientVerticalMinLength
 @docs leGradientOpacity
 @docs leGradientThickness
 @docs leGradientStrokeColor
@@ -5103,6 +5111,10 @@ type LegendConfig
     | LeLabelAlign HAlign
     | LeLabelBaseline VAlign
     | LeLabelColor Str
+    | LecoGradientHorizontalMaxLength Num
+    | LecoGradientHorizontalMinLength Num
+    | LecoGradientVerticalMaxLength Num
+    | LecoGradientVerticalMinLength Num
     | LeLabelFont Str
     | LeLabelFontSize Num
     | LeLabelFontStyle Str
@@ -13482,6 +13494,20 @@ lecoFillColor s =
     FillColor (Str s)
 
 
+{-| Default maximum length in pixels of a horizontal color ramp legend.
+-}
+lecoGradientHorizontalMaxLength : Float -> LegendConfig
+lecoGradientHorizontalMaxLength n =
+    LecoGradientHorizontalMaxLength (Num n)
+
+
+{-| Default minimum length in pixels of a horizontal color ramp legend.
+-}
+lecoGradientHorizontalMinLength : Float -> LegendConfig
+lecoGradientHorizontalMinLength n =
+    LecoGradientHorizontalMinLength (Num n)
+
+
 {-| Default vertical alignment for labels in a color ramp legend.
 -}
 lecoGradientLabelBaseline : VAlign -> LegendConfig
@@ -13536,6 +13562,20 @@ lecoGradientStrokeWidth n =
 lecoGradientThickness : Float -> LegendConfig
 lecoGradientThickness n =
     GradientThickness (Num n)
+
+
+{-| Default maximum length in pixels of a vertical color ramp legend.
+-}
+lecoGradientVerticalMaxLength : Float -> LegendConfig
+lecoGradientVerticalMaxLength n =
+    LecoGradientVerticalMaxLength (Num n)
+
+
+{-| Default minimum length in pixels of a vertical color ramp legend.
+-}
+lecoGradientVerticalMinLength : Float -> LegendConfig
+lecoGradientVerticalMinLength n =
+    LecoGradientVerticalMinLength (Num n)
 
 
 {-| Default alignment to apply to symbol legends rows and columns.
@@ -24181,6 +24221,18 @@ legendConfigProperty legendConfig =
 
         GradientDirection d ->
             [ ( "gradientDirection", JE.string (markOrientationLabel d) ) ]
+
+        LecoGradientHorizontalMaxLength x ->
+            numExpr "gradientHorizontalMaxLength" x
+
+        LecoGradientHorizontalMinLength x ->
+            numExpr "gradientHorizontalMinLength" x
+
+        LecoGradientVerticalMaxLength x ->
+            numExpr "gradientVerticalMaxLength" x
+
+        LecoGradientVerticalMinLength x ->
+            numExpr "gradientVerticalMinLength" x
 
         GradientLabelBaseline va ->
             [ ( "gradientLabelBaseline", vAlignSpec va ) ]
