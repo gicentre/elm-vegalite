@@ -769,6 +769,177 @@ paramCfg3 =
     toVegaLite [ cfg [], data [], ps [], vConcat [ spec1, spec2, spec3, spec4 ] ]
 
 
+paramCfg4 : Spec
+paramCfg4 =
+    let
+        solid =
+            nums []
+
+        shortDash =
+            nums [ 2, 2 ]
+
+        longDash =
+            nums [ 8, 8 ]
+
+        aVals1 =
+            nums [ 0, 500, 1000 ]
+
+        aVals2 =
+            nums [ 0, 400, 500, 600, 1000 ]
+
+        aVals3 =
+            nums [ 250, 500, 750 ]
+
+        cfg =
+            configure
+                << configuration
+                    (coAxis
+                        [ axcoNumExpr "bandPosition" axcoBandPosition
+                        , axcoNumExpr "offset" axcoOffset
+                        , axcoNumExpr "minExtent" axcoMinExtent
+                        , axcoDomainCap (caExpr "domainCap")
+                        , axcoStrExpr "domainColor" axcoDomainColor
+                        , axcoNumsExpr "domainDash" axcoDomainDash
+                        , axcoNumExpr "domainDashOffset" axcoDomainDashOffset
+                        , axcoNumExpr "domainOpacity" axcoDomainOpacity
+                        , axcoNumExpr "domainWidth" axcoDomainWidth
+                        , axcoNumExpr "translate" axcoTranslate
+                        , axcoLabelAlign (haExpr "labelAlign")
+                        , axcoLabelBaseline (vaExpr "labelBaseline")
+                        , axcoNumExpr "labelAngle" axcoLabelAngle
+                        , axcoStrExpr "labelColor" axcoLabelColor
+                        , axcoNumExpr "labelFlushOffset" axcoLabelFlushOffset
+                        , axcoStrExpr "labelFont" axcoLabelFont
+                        , axcoNumExpr "labelFontSize" axcoLabelFontSize
+                        , axcoStrExpr "labelFontStyle" axcoLabelFontStyle
+                        , axcoLabelFontWeight (fwExpr "labelFontWeight")
+                        , axcoNumExpr "labelLimit" axcoLabelLimit
+                        , axcoNumExpr "labelOffset" axcoLabelOffset
+                        , axcoNumExpr "labelOpacity" axcoLabelOpacity
+                        , axcoLabelOverlap (osExpr "labelOverlap")
+                        , axcoNumExpr "labelPadding" axcoLabelPadding
+                        , axcoNumExpr "labelSeparation" axcoLabelSeparation
+                        , axcoTickBand (tbExpr "tickBand")
+                        , axcoTickCap (caExpr "tickCap")
+                        , axcoStrExpr "tickColor" axcoTickColor
+                        , axcoNumsExpr "tickDash" axcoTickDash
+                        , axcoNumExpr "tickDashOffset" axcoTickDashOffset
+                        , axcoNumExpr "tickOffset" axcoTickOffset
+                        , axcoNumExpr "tickOpacity" axcoTickOpacity
+                        , axcoNumExpr "tickSize" axcoTickSize
+                        , axcoNumExpr "tickWidth" axcoTickWidth
+                        , axcoTitleAnchor (anExpr "titleAnchor")
+                        , axcoTitleAlign (haExpr "titleAlign")
+                        , axcoNumExpr "titleAngle" axcoTitleAngle
+                        , axcoTitleBaseline (vaExpr "titleBaseline")
+                        , axcoStrExpr "titleColor" axcoTitleColor
+                        , axcoStrExpr "titleFont" axcoTitleFont
+                        , axcoStrExpr "titleFontStyle" axcoTitleFontStyle
+                        , axcoTitleFontWeight (fwExpr "titleFontWeight")
+                        , axcoNumExpr "titleLimit" axcoTitleLimit
+                        , axcoNumExpr "titleLineHeight" axcoTitleLineHeight
+                        , axcoNumExpr "titleOpacity" axcoTitleOpacity
+                        , axcoNumExpr "titlePadding" axcoTitlePadding
+                        , axcoGridCap (caExpr "gridCap")
+                        , axcoStrExpr "gridColor" axcoGridColor
+                        , axcoNumExpr "gridOpacity" axcoGridOpacity
+                        , axcoNumExpr "gridWidth" axcoGridWidth
+                        ]
+                        |> coAxisXFilter
+                    )
+                << configuration
+                    (coAxis
+                        [ axcoTickCount (niExpr "tickCount")
+                        , axcoNumsExpr "gridDash" axcoGridDash
+                        , axcoNumExpr "gridDashOffset" axcoGridDashOffset
+                        , axcoLabelBoundExpr "labelBound"
+                        , axcoNumExpr "labelFontSize" axcoLabelFontSize
+                        ]
+                        |> coAxisYFilter
+                    )
+
+        ps =
+            params
+                << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "minExtent" [ paValue (num 30), paBind (ipRange [ inMin 0, inMax 100 ]) ]
+                << param "domainCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
+                << param "domainColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "domainDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "domainDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "domainWidth" [ paValue (num 2), paBind (ipRange [ inMin 0.1, inMax 12 ]) ]
+                << param "domainOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -10, inMax 10, inStep 1 ]) ]
+                << param "translate" [ paValue (num 0.5), paBind (ipRange [ inMin -4, inMax 4 ]) ]
+                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "labelBound" [ paValue (boo False), paBind (ipSelect [ inDatumOptions [ boo False, boo True, num 15 ] ]) ]
+                << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ]
+                << param "labelColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "labelFlushOffset" [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20 ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "labelLimit" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 200 ]) ]
+                << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+                << param "labelOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inDatumOptions [ boo False, str "parity", str "greedy" ] ]) ]
+                << param "labelPadding" [ paValue (num 2), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+                << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20 ]) ]
+                << param "tickBand" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "extent" ] ]) ]
+                << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
+                << param "tickColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "tickCount" [ paValue (num 20), paBind (ipRange [ inMin 1, inMax 100 ]) ]
+                << param "tickDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "tickDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "tickOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+                << param "tickOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "tickSize" [ paValue (num 5), paBind (ipRange [ inMin -20, inMax 20 ]) ]
+                << param "tickWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "titleAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "titleAnchor" [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "start", "middle", "end" ] ]) ]
+                << param "titleAngle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ]
+                << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "titleLimit" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 200 ]) ]
+                << param "titleLineHeight" [ paValue (num 16), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "titleOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "titlePadding" [ paValue (num 12), paBind (ipRange [ inMin -20, inMax 20 ]) ]
+                << param "gridCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
+                << param "gridColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "gridDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "gridDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "gridOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "gridWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+
+        dataMovies =
+            dataFromUrl (path ++ "movies.json") []
+
+        enc =
+            encoding
+                << position X
+                    [ pName "IMDB Rating"
+                    , pBin []
+                    , pOrdinal
+                    , pTitle "Internet Movie Database (IMDB)\nBinned Rating"
+                    ]
+                << position Y [ pAggregate opCount ]
+    in
+    toVegaLite
+        [ ps []
+        , cfg []
+        , width 500
+        , height 400
+        , padding (paSize 80)
+        , dataMovies
+        , enc []
+        , bar []
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -803,6 +974,7 @@ specs =
     , ( "paramCfg1", paramCfg1 )
     , ( "paramCfg2", paramCfg2 )
     , ( "paramCfg3", paramCfg3 )
+    , ( "paramCfg4", paramCfg4 )
     ]
 
 
