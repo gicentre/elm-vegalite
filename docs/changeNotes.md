@@ -8,7 +8,7 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
-Add axis and legend config parameterisation expressions.
+Add legend config parameterisation expressions.
 
 Add images on maps test (VL5.1).
 
@@ -19,6 +19,8 @@ Add images on maps test (VL5.1).
 - `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
 
 - `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
+
+- `lecoGradientWidth` and `lecoGradientHeight` removed (VL5.0) to be replaced with `lecoGradientLength`, consistent with direct legend property configuration.
 
 - Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
 
@@ -65,7 +67,7 @@ Add images on maps test (VL5.1).
 
 - `axBooExpr` / `axcoBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
 
-- `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
+- `leNumExpr` \ `lecoNumExpr` for providing expressions that evaluate to numeric legend properties or condiguration (VL5.0).
 
 - `leNumsExpr` for providing expressions that evaluate to a list of numeric legend (dash) properties (VL5.0).
 
@@ -113,7 +115,7 @@ Add images on maps test (VL5.1).
 
 - `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
 
-#### Other Vega-Lite changes / previously missing functions
+#### Other Vega-Lite changes for new or previously missing VL functions
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
@@ -127,7 +129,7 @@ Add images on maps test (VL5.1).
 
 - `axcoOffset` and `axcoLabelOffset` for configuring axis spacing.
 
-- `lecoDirection`, `leGradientOpacity`/`lecoGradientOpacity`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity` for legend settings.
+- `lecoDirection`, `lecoGradientLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
 
 - `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
 
