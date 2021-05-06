@@ -681,7 +681,9 @@ module VegaLite exposing
     , leNumExpr
     , lecoNumExpr
     , leNumsExpr
+    , lecoNumsExpr
     , leStrExpr
+    , lecoStrExpr
     , leAria
     , leGradient
     , leSymbol
@@ -1348,6 +1350,7 @@ module VegaLite exposing
     , lecoSymbolStrokeColor
     , lecoSymbolStrokeWidth
     , lecoSymbolType
+    , lecoNoTitle
     , lecoTitleAlign
     , lecoTitleAnchor
     , lecoTitleBaseline
@@ -2712,7 +2715,9 @@ See the
 @docs leNumExpr
 @docs lecoNumExpr
 @docs leNumsExpr
+@docs lecoNumsExpr
 @docs leStrExpr
+@docs lecoStrExpr
 
 @docs leAria
 @docs leGradient
@@ -3646,6 +3651,7 @@ See the
 @docs lecoSymbolStrokeColor
 @docs lecoSymbolStrokeWidth
 @docs lecoSymbolType
+@docs lecoNoTitle
 @docs lecoTitleAlign
 @docs lecoTitleAnchor
 @docs lecoTitleBaseline
@@ -5081,12 +5087,12 @@ type Legend
 [lecoSymbolOffset](#lecoSymbolOffset), [lecoSymbolOpacity](#lecoSymbolOpacity),
 [lecoSymbolSize](#lecoSymbolSize), [lecoSymbolStrokeColor](#lecoSymbolStrokeColor),
 [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth), [lecoSymbolType](#lecoSymbolType),
-[lecoTitleAlign](#lecoTitleAlign), [lecoTitleAnchor](#lecoTitleAnchor), [lecoTitleBaseline](#lecoTitleBaseline),
-[lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont), [lecoTitleFontSize](#lecoTitleFontSize),
-[lecoTitleFontStyle](#lecoTitleFontStyle), [lecoTitleFontWeight](#lecoTitleFontWeight),
-[lecoTitleLimit](#lecoTitleLimit), [lecoTitleLineHeight](#lecoTitleLineHeight),
-[lecoTitlePadding](#lecoTitlePadding), [lecoUnselectedOpacity](#lecoUnselectedOpacity),
-[lecoX](#lecoX) and [lecoY](#lecoY).
+[lecoNoTitle](#lecoNoTitle), [lecoTitleAlign](#lecoTitleAlign), [lecoTitleAnchor](#lecoTitleAnchor),
+[lecoTitleBaseline](#lecoTitleBaseline), [lecoTitleColor](#lecoTitleColor), [lecoTitleFont](#lecoTitleFont),
+[lecoTitleFontSize](#lecoTitleFontSize), [lecoTitleFontStyle](#lecoTitleFontStyle),
+[lecoTitleFontWeight](#lecoTitleFontWeight), [lecoTitleLimit](#lecoTitleLimit),
+[lecoTitleLineHeight](#lecoTitleLineHeight), [lecoTitlePadding](#lecoTitlePadding),
+[lecoUnselectedOpacity](#lecoUnselectedOpacity), [lecoX](#lecoX) and [lecoY](#lecoY).
 -}
 type LegendConfig
     = LeAria (List Aria)
@@ -5111,6 +5117,7 @@ type LegendConfig
     | LeLabelAlign HAlign
     | LeLabelBaseline VAlign
     | LeLabelColor Str
+    | LecoNoTitle
     | LecoGradientHorizontalMaxLength Num
     | LecoGradientHorizontalMinLength Num
     | LecoGradientVerticalMaxLength Num
@@ -13648,6 +13655,13 @@ lecoLabelOffset n =
     LeLabelOffset (Num n)
 
 
+{-| Default to not displaying any legend titles.
+-}
+lecoNoTitle : LegendConfig
+lecoNoTitle =
+    LecoNoTitle
+
+
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
 legend configuration function requiring a numeric value.
 -}
@@ -13742,6 +13756,22 @@ lecoNumExpr ex fn =
             fn 0
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+a legend property configuration requiring a list of numbers (for dash styles).
+-}
+lecoNumsExpr : String -> (List number -> LegendConfig) -> LegendConfig
+lecoNumsExpr ex fn =
+    case fn [] of
+        LeStrokeDash _ ->
+            LeStrokeDash (NumsExpr ex)
+
+        SymbolDash _ ->
+            SymbolDash (NumsExpr ex)
+
+        _ ->
+            fn []
+
+
 {-| Default offset in pixel units between the legend and the enclosing
 group or data rectangle.
 -}
@@ -13776,6 +13806,49 @@ lecoRowPadding n =
 lecoShortTimeLabels : Bool -> LegendConfig
 lecoShortTimeLabels b =
     LeShortTimeLabels (Boo b)
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+an legend configuration function requiring a string value.
+-}
+lecoStrExpr : String -> (String -> LegendConfig) -> LegendConfig
+lecoStrExpr ex fn =
+    case fn "" of
+        FillColor _ ->
+            FillColor (StrExpr ex)
+
+        GradientStrokeColor _ ->
+            GradientStrokeColor (StrExpr ex)
+
+        LeLabelColor _ ->
+            LeLabelColor (StrExpr ex)
+
+        LeLabelFont _ ->
+            LeLabelFont (StrExpr ex)
+
+        LeLabelFontStyle _ ->
+            LeLabelFontStyle (StrExpr ex)
+
+        StrokeColor _ ->
+            StrokeColor (StrExpr ex)
+
+        SymbolFillColor _ ->
+            SymbolFillColor (StrExpr ex)
+
+        SymbolStrokeColor _ ->
+            SymbolStrokeColor (StrExpr ex)
+
+        LeTitleColor _ ->
+            LeTitleColor (StrExpr ex)
+
+        LeTitleFont _ ->
+            LeTitleFont (StrExpr ex)
+
+        LeTitleFontStyle _ ->
+            LeTitleFontStyle (StrExpr ex)
+
+        _ ->
+            fn ""
 
 
 {-| Default legend border color.
@@ -24335,6 +24408,9 @@ legendConfigProperty legendConfig =
 
         SymbolStrokeWidth x ->
             numExpr "symbolStrokeWidth" x
+
+        LecoNoTitle ->
+            [ ( "title", JE.null ) ]
 
         LeTitleAlign ha ->
             [ ( "titleAlign", hAlignSpec ha ) ]

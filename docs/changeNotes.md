@@ -8,6 +8,8 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
+Refactor: Use consistent names for configuration type variants
+
 Add images on maps test (VL5.1).
 
 ### V4.0 Breaking Changes
@@ -18,7 +20,7 @@ Add images on maps test (VL5.1).
 
 - `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
 
-- `lecoGradientWidth` and `lecoGradientHeight` removed (VL5.0) to be replaced with `lecoGradientLength`, consistent with direct legend property configuration.
+- `lecoGradientWidth` and `lecoGradientHeight` removed (VL5.0) to be replaced with `lecoGradientLength`, consistent with direct legend property configuration
 
 - Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
 
@@ -65,11 +67,11 @@ Add images on maps test (VL5.1).
 
 - `axBooExpr` / `axcoBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
 
-- `leNumExpr` \ `lecoNumExpr` for providing expressions that evaluate to numeric legend properties or condiguration (VL5.0).
+- `leNumExpr` / `lecoNumExpr` for providing expressions that evaluate to numeric legend properties or configuration (VL5.0).
 
-- `leNumsExpr` for providing expressions that evaluate to a list of numeric legend (dash) properties (VL5.0).
+- `leNumsExpr` / `lecoNumsExpr` for providing expressions that evaluate to a list of numeric legend (dash) properties or configuration (VL5.0).
 
-- `leStrExpr` for providing expressions that evaluate to string legend properties (VL5.0).
+- `leStrExpr` / `lecoStrExpr` for providing expressions that evaluate to string legend properties or configuration (VL5.0).
 
 - `prNumExpr` for providing expressions that evaluate to numeric projection properties (VL5.0)
 
@@ -127,7 +129,7 @@ Add images on maps test (VL5.1).
 
 - `axcoOffset` and `axcoLabelOffset` for configuring axis spacing.
 
-- `lecoDirection`, `lecoGradientLength`, `lecoGradientHorizontalMaxLength`, `lecoGradientHorizontalMinLength`, `lecoGradientVerticalMaxLength`, `lecoGradientVerticalMinLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
+- `lecoDirection`, `lecoGradientLength`, `lecoGradientHorizontalMaxLength`, `lecoGradientHorizontalMinLength`, `lecoGradientVerticalMaxLength`, `lecoGradientVerticalMinLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle`, `lecoNoTitle`, `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
 
 - `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
 
