@@ -59,7 +59,7 @@ Add images on maps test (VL5.1).
 
 - `axNumExpr` / `axcoNumExpr` for providing expressions that evaluate to numeric axis properties or configuration. (VL5.0).
 
-- `axNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties (VL5.0).
+- `axNumsExpr` / `axcoNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties or configuration (VL5.0).
 
 - `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
 

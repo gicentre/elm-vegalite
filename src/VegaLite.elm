@@ -515,6 +515,7 @@ module VegaLite exposing
     , axNumExpr
     , axcoNumExpr
     , axNumsExpr
+    , axcoNumsExpr
     , axStrExpr
     , axAria
     , axBandPosition
@@ -2479,6 +2480,7 @@ See the
 @docs axNumExpr
 @docs axcoNumExpr
 @docs axNumsExpr
+@docs axcoNumsExpr
 @docs axStrExpr
 
 
@@ -4124,14 +4126,14 @@ type AxisConfig
     | Domain Boo
     | DomainCap StrokeCap
     | DomainColor String
-    | DomainDash (List Float)
+    | DomainDash Nums
     | DomainDashOffset Num
     | DomainOpacity Num
     | DomainWidth Num
     | Grid Boo
     | GridCap StrokeCap
     | GridColor String
-    | GridDash (List Float)
+    | GridDash Nums
     | GridDashOffset Num
     | GridOpacity Num
     | GridWidth Num
@@ -4163,7 +4165,7 @@ type AxisConfig
     | TickCap StrokeCap
     | TickColor String
     | TickCount ScaleNice
-    | TickDash (List Float)
+    | TickDash Nums
     | TickDashOffset Num
     | TickExtra Boo
     | TickOffset Num
@@ -6975,8 +6977,8 @@ axcoDomainColor =
 number of pixels in alternating dash and gap lengths.
 -}
 axcoDomainDash : List Float -> AxisConfig
-axcoDomainDash =
-    DomainDash
+axcoDomainDash ns =
+    DomainDash (Nums ns)
 
 
 {-| Default number of pixels before the first axis baseline (domain) line dash is drawn.
@@ -7024,8 +7026,8 @@ axcoGridColor =
 {-| Default axis line dash style.
 -}
 axcoGridDash : List Float -> AxisConfig
-axcoGridDash =
-    GridDash
+axcoGridDash ns =
+    GridDash (Nums ns)
 
 
 {-| Default number of pixels before the first axis grid line dash is drawn.
@@ -7332,6 +7334,25 @@ axcoNumExpr ex fn =
             fn 0
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+an axis configuration function requiring a list of numbers (for dash styles).
+-}
+axcoNumsExpr : String -> (List number -> AxisConfig) -> AxisConfig
+axcoNumsExpr ex fn =
+    case fn [] of
+        DomainDash _ ->
+            DomainDash (NumsExpr ex)
+
+        GridDash _ ->
+            GridDash (NumsExpr ex)
+
+        TickDash _ ->
+            TickDash (NumsExpr ex)
+
+        _ ->
+            fn []
+
+
 {-| Default offset between the axis annd the edge of the enclosing group or data
 rectangle.
 -}
@@ -7373,8 +7394,8 @@ axcoTickCount =
 'off' lengths in pixels representing the dashed line.
 -}
 axcoTickDash : List Float -> AxisConfig
-axcoTickDash =
-    TickDash
+axcoTickDash ns =
+    TickDash (Nums ns)
 
 
 {-| Default number of pixels before the first axis tick dash is drawn.
@@ -21928,8 +21949,8 @@ axisConfigProperty axisCfg =
         DomainColor c ->
             [ ( "domainColor", JE.string c ) ]
 
-        DomainDash ds ->
-            [ ( "domainDash", JE.list JE.float ds ) ]
+        DomainDash xs ->
+            numsExpr "domainDash" xs
 
         DomainDashOffset x ->
             numExpr "domainDashOffset" x
@@ -21958,8 +21979,8 @@ axisConfigProperty axisCfg =
         GridColor c ->
             [ ( "gridColor", JE.string c ) ]
 
-        GridDash ds ->
-            [ ( "gridDash", JE.list JE.float ds ) ]
+        GridDash xs ->
+            numsExpr "gridDash" xs
 
         GridDashOffset x ->
             numExpr "gridDashOffset" x
@@ -22063,8 +22084,8 @@ axisConfigProperty axisCfg =
         TickCount tc ->
             [ ( "tickCount", scaleNiceSpec tc ) ]
 
-        TickDash ds ->
-            [ ( "tickDash", JE.list JE.float ds ) ]
+        TickDash xs ->
+            numsExpr "tickDash" xs
 
         TickDashOffset x ->
             numExpr "tickDashOffset" x
