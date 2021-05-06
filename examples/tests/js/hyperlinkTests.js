@@ -8151,16 +8151,13 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 		case 7:
 			var x = scaleProp.a;
 			return A2($author$project$VegaLite$numExpr, 'padding', x);
-		case 18:
+		case 17:
 			var x = scaleProp.a;
 			return A2($author$project$VegaLite$numExpr, 'base', x);
 		case 15:
 			var x = scaleProp.a;
 			return A2($author$project$VegaLite$numExpr, 'exponent', x);
 		case 16:
-			var x = scaleProp.a;
-			return A2($author$project$VegaLite$numExpr, 'domainMid', x);
-		case 17:
 			var x = scaleProp.a;
 			return A2($author$project$VegaLite$numExpr, 'constant', x);
 		case 8:
