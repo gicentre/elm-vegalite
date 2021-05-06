@@ -168,6 +168,30 @@ image13 =
         )
 
 
+image14 : Spec
+image14 =
+    let
+        data =
+            dataFromUrl (path ++ "zipcodes.csv") []
+
+        proj =
+            projection [ prType albersUsa ]
+
+        enc =
+            encoding
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
+    in
+    toVegaLite
+        [ width 800
+        , height 450
+        , data
+        , proj
+        , enc []
+        , image [ maWidth 4, maHeight 4, maUrl (path ++ "ffox.png") ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -187,6 +211,7 @@ specs =
     , ( "image11", image11 )
     , ( "image12", image12 )
     , ( "image13", image13 )
+    , ( "image14", image14 )
     ]
 
 
