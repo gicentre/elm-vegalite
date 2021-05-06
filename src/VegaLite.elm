@@ -4162,7 +4162,7 @@ type AxisChoice
 [axcoGridDash](#axcoGridDash), [axcoGridDashOffset](#axcoGridDashOffset),
 [axcoGridOpacity](#axcoGridOpacity), [axcoGridWidth](#axcoGridWidth),
 [axcoLabels](#axcoLabels), [axcoLabelAlign](#axcoLabelAlign), [axcoLabelAngle](#axcoLabelAngle),
-[axcoLabelBaseline](#axcoLabelBaseline), [axcoLabelBound](#axcoLabelBound), [axcpLabelBoundExpr](#axcoLabelBoundExpr)
+[axcoLabelBaseline](#axcoLabelBaseline), [axcoLabelBound](#axcoLabelBound), [axcoLabelBoundExpr](#axcoLabelBoundExpr)
 [axcoLabelColor](#axcoLabelColor), [axcoLabelExpr](#axcoLabelExpr), [axcoLabelFlush](#axcoLabelFlush),
 [axcoLabelFlushOffset](#axcoLabelFlushOffset), [axcoLabelFont](#axcoLabelFont),
 [axcoLabelFontSize](#axcoLabelFontSize), [axcoLabelFontStyle](#axcoLabelFontStyle),
@@ -7454,7 +7454,7 @@ axcoNumsExpr ex fn =
             fn []
 
 
-{-| Default offset between the axis annd the edge of the enclosing group or data
+{-| Default offset between the axis and the edge of the enclosing group or data
 rectangle.
 -}
 axcoOffset : Float -> AxisConfig
@@ -10345,7 +10345,7 @@ dataColumn colName data =
             (::) (List.map (\b -> ( colName, JE.bool b )) col)
 
         DExprs col ->
-            -- TODO: Currently VL does not accept expressionns for data values, but we leave this here for possible future inclusion
+            -- TODO: Currently VL does not accept expressions for data values, but we leave this here for possible future inclusion
             (::) [ ( colName, JE.object [ ( "expr", JE.string col ) ] ) ]
 
         DObjects col ->
@@ -20836,7 +20836,7 @@ ticoNumExpr ex fn =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-a title configuarion function requiring a string value.
+a title configuration function requiring a string value.
 -}
 ticoStrExpr : String -> (String -> TitleConfig) -> TitleConfig
 ticoStrExpr ex fn =
