@@ -501,20 +501,20 @@ axis16 =
                         , axTitleLineHeight |> axNumExpr "titleLineHeight"
                         , axTitleOpacity |> axNumExpr "titleOpacity"
                         , axTitlePadding |> axNumExpr "titlePadding"
-                        , axGridCap (caExpr "gridCap")
-                        , axGridColor |> axStrExpr "gridColor"
-                        , axGridOpacity |> axNumExpr "gridOpacity"
-                        , axGridWidth |> axNumExpr "gridWidth"
                         ]
                     ]
                 << position Y
                     [ pAggregate opCount
                     , pAxis
                         [ axTickCount (niExpr "tickCount")
-                        , axGridDash |> axNumsExpr "gridDash"
-                        , axGridDashOffset |> axNumExpr "gridDashOffset"
+                        , axNumsExpr "gridDash" axGridDash
+                        , axNumExpr "gridDashOffset" axGridDashOffset
+                        , axGridCap (caExpr "gridCap")
+                        , axStrExpr "gridColor" axGridColor
+                        , axNumExpr "gridOpacity" axGridOpacity
+                        , axNumExpr "gridWidth" axGridWidth
                         , axLabelBoundExpr "labelBound"
-                        , axLabelFontSize |> axNumExpr "labelFontSize"
+                        , axNumExpr "labelFontSize" axLabelFontSize
                         , axValues (dataExpr "values")
                         ]
                     ]

@@ -14417,12 +14417,7 @@ var $author$project$AxisTests$axis16 = function () {
 								A2($author$project$VegaLite$axNumExpr, 'titleLimit', $author$project$VegaLite$axTitleLimit),
 								A2($author$project$VegaLite$axNumExpr, 'titleLineHeight', $author$project$VegaLite$axTitleLineHeight),
 								A2($author$project$VegaLite$axNumExpr, 'titleOpacity', $author$project$VegaLite$axTitleOpacity),
-								A2($author$project$VegaLite$axNumExpr, 'titlePadding', $author$project$VegaLite$axTitlePadding),
-								$author$project$VegaLite$axGridCap(
-								$author$project$VegaLite$caExpr('gridCap')),
-								A2($author$project$VegaLite$axStrExpr, 'gridColor', $author$project$VegaLite$axGridColor),
-								A2($author$project$VegaLite$axNumExpr, 'gridOpacity', $author$project$VegaLite$axGridOpacity),
-								A2($author$project$VegaLite$axNumExpr, 'gridWidth', $author$project$VegaLite$axGridWidth)
+								A2($author$project$VegaLite$axNumExpr, 'titlePadding', $author$project$VegaLite$axTitlePadding)
 							]))
 					]))),
 		A2(
@@ -14438,6 +14433,11 @@ var $author$project$AxisTests$axis16 = function () {
 							$author$project$VegaLite$niExpr('tickCount')),
 							A2($author$project$VegaLite$axNumsExpr, 'gridDash', $author$project$VegaLite$axGridDash),
 							A2($author$project$VegaLite$axNumExpr, 'gridDashOffset', $author$project$VegaLite$axGridDashOffset),
+							$author$project$VegaLite$axGridCap(
+							$author$project$VegaLite$caExpr('gridCap')),
+							A2($author$project$VegaLite$axStrExpr, 'gridColor', $author$project$VegaLite$axGridColor),
+							A2($author$project$VegaLite$axNumExpr, 'gridOpacity', $author$project$VegaLite$axGridOpacity),
+							A2($author$project$VegaLite$axNumExpr, 'gridWidth', $author$project$VegaLite$axGridWidth),
 							$author$project$VegaLite$axLabelBoundExpr('labelBound'),
 							A2($author$project$VegaLite$axNumExpr, 'labelFontSize', $author$project$VegaLite$axLabelFontSize),
 							$author$project$VegaLite$axValues(

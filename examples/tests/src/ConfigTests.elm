@@ -840,7 +840,6 @@ paramCfg4 =
                         , axcoNumExpr "titleLineHeight" axcoTitleLineHeight
                         , axcoNumExpr "titleOpacity" axcoTitleOpacity
                         , axcoNumExpr "titlePadding" axcoTitlePadding
-                        , axcoGridCap (caExpr "gridCap")
                         , axcoStrExpr "gridColor" axcoGridColor
                         , axcoNumExpr "gridOpacity" axcoGridOpacity
                         , axcoNumExpr "gridWidth" axcoGridWidth
@@ -850,6 +849,10 @@ paramCfg4 =
                 << configuration
                     (coAxis
                         [ axcoTickCount (niExpr "tickCount")
+                        , axcoGridCap (caExpr "gridCap")
+                        , axcoStrExpr "gridColor" axcoGridColor
+                        , axcoNumExpr "gridOpacity" axcoGridOpacity
+                        , axcoNumExpr "gridWidth" axcoGridWidth
                         , axcoNumsExpr "gridDash" axcoGridDash
                         , axcoNumExpr "gridDashOffset" axcoGridDashOffset
                         , axcoLabelBoundExpr "labelBound"

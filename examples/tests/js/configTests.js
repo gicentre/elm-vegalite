@@ -17829,8 +17829,6 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 								A2($author$project$VegaLite$axcoNumExpr, 'titleLineHeight', $author$project$VegaLite$axcoTitleLineHeight),
 								A2($author$project$VegaLite$axcoNumExpr, 'titleOpacity', $author$project$VegaLite$axcoTitleOpacity),
 								A2($author$project$VegaLite$axcoNumExpr, 'titlePadding', $author$project$VegaLite$axcoTitlePadding),
-								$author$project$VegaLite$axcoGridCap(
-								$author$project$VegaLite$caExpr('gridCap')),
 								A2($author$project$VegaLite$axcoStrExpr, 'gridColor', $author$project$VegaLite$axcoGridColor),
 								A2($author$project$VegaLite$axcoNumExpr, 'gridOpacity', $author$project$VegaLite$axcoGridOpacity),
 								A2($author$project$VegaLite$axcoNumExpr, 'gridWidth', $author$project$VegaLite$axcoGridWidth)
@@ -17842,6 +17840,11 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 						[
 							$author$project$VegaLite$axcoTickCount(
 							$author$project$VegaLite$niExpr('tickCount')),
+							$author$project$VegaLite$axcoGridCap(
+							$author$project$VegaLite$caExpr('gridCap')),
+							A2($author$project$VegaLite$axcoStrExpr, 'gridColor', $author$project$VegaLite$axcoGridColor),
+							A2($author$project$VegaLite$axcoNumExpr, 'gridOpacity', $author$project$VegaLite$axcoGridOpacity),
+							A2($author$project$VegaLite$axcoNumExpr, 'gridWidth', $author$project$VegaLite$axcoGridWidth),
 							A2($author$project$VegaLite$axcoNumsExpr, 'gridDash', $author$project$VegaLite$axcoGridDash),
 							A2($author$project$VegaLite$axcoNumExpr, 'gridDashOffset', $author$project$VegaLite$axcoGridDashOffset),
 							$author$project$VegaLite$axcoLabelBoundExpr('labelBound'),
