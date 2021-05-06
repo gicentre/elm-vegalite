@@ -8,8 +8,6 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
-Add images on maps test (VL5.1).
-
 ### V4.0 Breaking Changes
 
 - **New parameter type**: `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
