@@ -1248,6 +1248,7 @@ module VegaLite exposing
     , axcoLabelAngle
     , axcoLabelBaseline
     , axcoLabelBound
+    , axcoLabelBoundExpr
     , axcoLabelColor
     , axcoLabelExpr
     , axcoLabelFlush
@@ -3531,6 +3532,7 @@ See the
 @docs axcoLabelAngle
 @docs axcoLabelBaseline
 @docs axcoLabelBound
+@docs axcoLabelBoundExpr
 @docs axcoLabelColor
 @docs axcoLabelExpr
 @docs axcoLabelFlush
@@ -4101,7 +4103,7 @@ type AxisChoice
 [axcoGridDash](#axcoGridDash), [axcoGridDashOffset](#axcoGridDashOffset),
 [axcoGridOpacity](#axcoGridOpacity), [axcoGridWidth](#axcoGridWidth),
 [axcoLabels](#axcoLabels), [axcoLabelAlign](#axcoLabelAlign), [axcoLabelAngle](#axcoLabelAngle),
-[axcoLabelBaseline](#axcoLabelBaseline), [axcoLabelBound](#axcoLabelBound),
+[axcoLabelBaseline](#axcoLabelBaseline), [axcoLabelBound](#axcoLabelBound), [axcpLabelBoundExpr](#axcoLabelBoundExpr)
 [axcoLabelColor](#axcoLabelColor), [axcoLabelExpr](#axcoLabelExpr), [axcoLabelFlush](#axcoLabelFlush),
 [axcoLabelFlushOffset](#axcoLabelFlushOffset), [axcoLabelFont](#axcoLabelFont),
 [axcoLabelFontSize](#axcoLabelFontSize), [axcoLabelFontStyle](#axcoLabelFontStyle),
@@ -4143,7 +4145,7 @@ type AxisConfig
     | LabelAlign HAlign
     | LabelAngle Num
     | LabelBaseline VAlign
-    | LabelBound (Maybe Float)
+    | LabelBound MaybeNum
     | LabelFlush (Maybe Float)
     | LabelFlushOffset Num
     | LabelColor Str
@@ -7085,8 +7087,17 @@ axcoLabelBaseline =
 no check for label size is made. A number specifies the permitted overflow in pixels.
 -}
 axcoLabelBound : Maybe Float -> AxisConfig
-axcoLabelBound =
-    LabelBound
+axcoLabelBound mn =
+    LabelBound (MaybeNum mn)
+
+
+{-| Expression that evaluates to True, False or a number depending whether, by default,
+a check is to be made for an axis label size. A number specifies the permitted overflow
+in pixels.
+-}
+axcoLabelBoundExpr : String -> AxisConfig
+axcoLabelBoundExpr ex =
+    LabelBound (MaybeNumExpr ex)
 
 
 {-| Default axis label color.
@@ -22063,16 +22074,7 @@ axisConfigProperty axisCfg =
             [ ( "labelBaseline", vAlignSpec va ) ]
 
         LabelBound mn ->
-            case mn of
-                Just n ->
-                    if n == 1 then
-                        [ ( "labelBound", JE.bool True ) ]
-
-                    else
-                        [ ( "labelBound", JE.float n ) ]
-
-                Nothing ->
-                    [ ( "labelBound", JE.bool False ) ]
+            maybeNumExpr "labelBound" mn
 
         LabelColor s ->
             strExpr "labelColor" s
