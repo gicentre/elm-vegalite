@@ -511,6 +511,7 @@ module VegaLite exposing
     , soByRepeat
     , soCustom
     , axBooExpr
+    , axcoBooExpr
     , axNumExpr
     , axcoNumExpr
     , axNumsExpr
@@ -2474,6 +2475,7 @@ See the
 [Vega-Lite axis property documentation](https://vega.github.io/vega-lite/docs/axis.html#axis-properties)
 
 @docs axBooExpr
+@docs axcoBooExpr
 @docs axNumExpr
 @docs axcoNumExpr
 @docs axNumsExpr
@@ -4118,22 +4120,22 @@ type AxisChoice
 type AxisConfig
     = AxisAria (List Aria)
     | BandPosition Num
-    | AxDisable Bool
-    | Domain Bool
+    | AxDisable Boo
+    | Domain Boo
     | DomainCap StrokeCap
     | DomainColor String
     | DomainDash (List Float)
     | DomainDashOffset Num
     | DomainOpacity Num
     | DomainWidth Num
-    | Grid Bool
+    | Grid Boo
     | GridCap StrokeCap
     | GridColor String
     | GridDash (List Float)
     | GridDashOffset Num
     | GridOpacity Num
     | GridWidth Num
-    | Labels Bool
+    | Labels Boo
     | LabelAlign HAlign
     | LabelAngle Num
     | LabelBaseline VAlign
@@ -4156,17 +4158,17 @@ type AxisConfig
     | MaxExtent Num
     | MinExtent Num
     | OffsetAxis Num
-    | Ticks Bool
+    | Ticks Boo
     | TickBand TickBand
     | TickCap StrokeCap
     | TickColor String
     | TickCount ScaleNice
     | TickDash (List Float)
     | TickDashOffset Num
-    | TickExtra Bool
+    | TickExtra Boo
     | TickOffset Num
     | TickOpacity Num
-    | TickRound Bool
+    | TickRound Boo
     | TickSize Num
     | TickMinStep Num
     | TickWidth Num
@@ -6913,18 +6915,46 @@ axcoBandPosition n =
     BandPosition (Num n)
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
+axis configuration function requiring a Boolean value.
+-}
+axcoBooExpr : String -> (Bool -> AxisConfig) -> AxisConfig
+axcoBooExpr ex fn =
+    case fn False of
+        Domain _ ->
+            Domain (BooExpr ex)
+
+        Labels _ ->
+            Labels (BooExpr ex)
+
+        TickExtra _ ->
+            TickExtra (BooExpr ex)
+
+        TickRound _ ->
+            TickRound (BooExpr ex)
+
+        Ticks _ ->
+            Ticks (BooExpr ex)
+
+        Grid _ ->
+            Grid (BooExpr ex)
+
+        _ ->
+            fn False
+
+
 {-| Whether or not axes are generated for positional encoding by default.
 -}
 axcoDisable : Bool -> AxisConfig
-axcoDisable =
-    AxDisable
+axcoDisable b =
+    AxDisable (Boo b)
 
 
 {-| Whether or not an axis domain should be displayed by default.
 -}
 axcoDomain : Bool -> AxisConfig
-axcoDomain =
-    Domain
+axcoDomain b =
+    Domain (Boo b)
 
 
 {-| Default appearance of ends of axis domain.
@@ -6973,8 +7003,8 @@ axcoDomainWidth n =
 {-| Whether or not an axis grid is displayed by default.
 -}
 axcoGrid : Bool -> AxisConfig
-axcoGrid =
-    Grid
+axcoGrid b =
+    Grid (Boo b)
 
 
 {-| Default appearance of ends of grid lines.
@@ -7022,8 +7052,8 @@ axcoGridWidth n =
 {-| Whether or not an axis has labels by default.
 -}
 axcoLabels : Bool -> AxisConfig
-axcoLabels =
-    Labels
+axcoLabels b =
+    Labels (Boo b)
 
 
 {-| Default axis label horizontal alignment.
@@ -7358,8 +7388,8 @@ axcoTickDashOffset n =
 position of axes.
 -}
 axcoTickExtra : Bool -> AxisConfig
-axcoTickExtra =
-    TickExtra
+axcoTickExtra b =
+    TickExtra (Boo b)
 
 
 {-| The minimum desired step between axis ticks, in terms of scale domain values.
@@ -7389,15 +7419,15 @@ axcoTickOpacity n =
 {-| Whether or not axis tick labels use rounded values by default.
 -}
 axcoTickRound : Bool -> AxisConfig
-axcoTickRound =
-    TickRound
+axcoTickRound b =
+    TickRound (Boo b)
 
 
 {-| Whether or not an axis should show ticks by default.
 -}
 axcoTicks : Bool -> AxisConfig
-axcoTicks =
-    Ticks
+axcoTicks b =
+    Ticks (Boo b)
 
 
 {-| Default axis tick mark size.
@@ -21884,13 +21914,13 @@ axisConfigProperty axisCfg =
                     List.map ariaProperty aps
 
         AxDisable b ->
-            [ ( "disable", JE.bool b ) ]
+            booExpr "disable" b
 
         BandPosition x ->
             numExpr "bandPosition" x
 
         Domain b ->
-            [ ( "domain", JE.bool b ) ]
+            booExpr "domain" b
 
         DomainCap c ->
             [ ( "domainCap", strokeCapSpec c ) ]
@@ -21920,7 +21950,7 @@ axisConfigProperty axisCfg =
             numExpr "offset" x
 
         Grid b ->
-            [ ( "grid", JE.bool b ) ]
+            booExpr "grid" b
 
         GridCap c ->
             [ ( "gridCap", strokeCapSpec c ) ]
@@ -21941,7 +21971,7 @@ axisConfigProperty axisCfg =
             numExpr "gridWidth" x
 
         Labels b ->
-            [ ( "labels", JE.bool b ) ]
+            booExpr "labels" b
 
         LabelAlign ha ->
             [ ( "labelAlign", hAlignSpec ha ) ]
@@ -22019,7 +22049,7 @@ axisConfigProperty axisCfg =
             numExpr "labelSeparation" x
 
         Ticks b ->
-            [ ( "ticks", JE.bool b ) ]
+            booExpr "ticks" b
 
         TickBand tb ->
             [ ( "tickBand", tickBandSpec tb ) ]
@@ -22040,7 +22070,7 @@ axisConfigProperty axisCfg =
             numExpr "tickDashOffset" x
 
         TickExtra b ->
-            [ ( "tickExtra", JE.bool b ) ]
+            booExpr "tickExtra" b
 
         TickOffset x ->
             numExpr "tickOffset" x
@@ -22052,7 +22082,7 @@ axisConfigProperty axisCfg =
             numExpr "tickMinStep" x
 
         TickRound b ->
-            [ ( "tickRound", JE.bool b ) ]
+            booExpr "tickRound" b
 
         TickSize x ->
             numExpr "tickSize" x

@@ -63,7 +63,7 @@ Add images on maps test (VL5.1).
 
 - `axStrExpr` for providing expressions that evaluate to string axis properties (VL5.0).
 
-- `axBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
+- `axBooExpr` / `axcoBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
 
 - `leNumExpr` for providing expressions that evaluate to numeric legend properties (VL5.0).
 
