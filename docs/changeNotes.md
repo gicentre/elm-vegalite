@@ -20,7 +20,9 @@ Add images on maps test (VL5.1).
 
 - `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
 
-- `lecoGradientWidth` and `lecoGradientHeight` removed (VL5.0) to be replaced with `lecoGradientLength`, consistent with direct legend property configuration
+- Removed `lecoGradientWidth` and `lecoGradientHeight` (VL5.0) to be replaced with `lecoGradientLength`, consistent with direct legend property configuration.
+
+- Remove `lecoEntryPadding` (VL5.0) to be replaced with `lecoRowPadding` and `lecoColPadding`.
 
 - Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
 

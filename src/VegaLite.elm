@@ -1336,7 +1336,6 @@ module VegaLite exposing
     , lecoLabelLimit
     , lecoLabelOffset
     , lecoLabelOverlap
-    , lecoEntryPadding
     , lecoSymbolBaseFillColor
     , lecoSymbolBaseStrokeColor
     , lecoSymbolDash
@@ -3637,7 +3636,6 @@ See the
 @docs lecoLabelLimit
 @docs lecoLabelOffset
 @docs lecoLabelOverlap
-@docs lecoEntryPadding
 @docs lecoSymbolBaseFillColor
 @docs lecoSymbolBaseStrokeColor
 @docs lecoSymbolDash
@@ -5080,11 +5078,10 @@ type Legend
 [lecoLabelColor](#lecoLabelColor), [lecoLabelFont](#lecoLabelFont), [lecoLabelFontSize](#lecoLabelFontSize),
 [lecoLabelFontStyle](#lecoLabelFontStyle), [lecoLabelFontWeight](#lecoLabelFontWeight),
 [lecoLabelLimit](#lecoLabelLimit), [lecoLabelOffset](#lecoLabelOffset), [lecoLabelOverlap](#lecoLabelOverlap),
-[lecoEntryPadding](#lecoEntryPadding), [lecoSymbolBaseFillColor](#lecoSymbolBaseFillColor),
-[lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor), [lecoSymbolDash](#lecoSymbolDash),
-[lecoSymbolDashOffset](#lecoSymbolDashOffset), [lecoSymbolDirection](#lecoSymbolDirection),
-[lecoSymbolFillColor](#lecoSymbolFillColor), [lecoSymbolLimit](#lecoSymbolLimit),
-[lecoSymbolOffset](#lecoSymbolOffset), [lecoSymbolOpacity](#lecoSymbolOpacity),
+[lecoSymbolBaseFillColor](#lecoSymbolBaseFillColor), [lecoSymbolBaseStrokeColor](#lecoSymbolBaseStrokeColor),
+[lecoSymbolDash](#lecoSymbolDash), [lecoSymbolDashOffset](#lecoSymbolDashOffset),
+[lecoSymbolDirection](#lecoSymbolDirection), [lecoSymbolFillColor](#lecoSymbolFillColor),
+[lecoSymbolLimit](#lecoSymbolLimit), [lecoSymbolOffset](#lecoSymbolOffset), [lecoSymbolOpacity](#lecoSymbolOpacity),
 [lecoSymbolSize](#lecoSymbolSize), [lecoSymbolStrokeColor](#lecoSymbolStrokeColor),
 [lecoSymbolStrokeWidth](#lecoSymbolStrokeWidth), [lecoSymbolType](#lecoSymbolType),
 [lecoNoTitle](#lecoNoTitle), [lecoTitleAlign](#lecoTitleAlign), [lecoTitleAnchor](#lecoTitleAnchor),
@@ -5095,74 +5092,73 @@ type Legend
 [lecoUnselectedOpacity](#lecoUnselectedOpacity), [lecoX](#lecoX) and [lecoY](#lecoY).
 -}
 type LegendConfig
-    = LeAria (List Aria)
-    | LeDisable Boo
-    | LeClipHeight Num
-    | LeColumnPadding Num
-    | LeColumns Num
-    | LeDirection MarkOrientation
-    | CornerRadius Num
-    | EntryPadding Num
-    | FillColor Str
-    | GradientDirection MarkOrientation
-    | GradientLabelBaseline VAlign
-    | GradientLabelLimit Num
-    | GradientLabelOffset Num
-    | GradientLength Num
-    | GradientOpacity Num
-    | GradientStrokeColor Str
-    | GradientStrokeWidth Num
-    | GradientThickness Num
-    | LeGridAlign CompositionAlignment
-    | LeLabelAlign HAlign
-    | LeLabelBaseline VAlign
-    | LeLabelColor Str
+    = LecoAria (List Aria)
+    | LecoDisable Boo
+    | LecoClipHeight Num
+    | LecoColumnPadding Num
+    | LecoColumns Num
+    | LecoDirection MarkOrientation
+    | LecoCornerRadius Num
+    | LecoFillColor Str
+    | LecoGradientDirection MarkOrientation
+    | LecoGradientLabelBaseline VAlign
+    | LecoGradientLabelLimit Num
+    | LecoGradientLabelOffset Num
+    | LecoGradientLength Num
+    | LecoGradientOpacity Num
+    | LecoGradientStrokeColor Str
+    | LecoGradientStrokeWidth Num
+    | LecoGradientThickness Num
+    | LecoGridAlign CompositionAlignment
+    | LecoLabelAlign HAlign
+    | LecoLabelBaseline VAlign
+    | LecoLabelColor Str
     | LecoNoTitle
     | LecoGradientHorizontalMaxLength Num
     | LecoGradientHorizontalMinLength Num
     | LecoGradientVerticalMaxLength Num
     | LecoGradientVerticalMinLength Num
-    | LeLabelFont Str
-    | LeLabelFontSize Num
-    | LeLabelFontStyle Str
-    | LeLabelFontWeight FontWeight
-    | LeLabelLimit Num
-    | LeLabelOffset Num
-    | LeLabelOverlap OverlapStrategy
-    | Offset Num
-    | Orient LegendOrientation
-    | LePadding Num
-    | LeRowPadding Num
-    | LeShortTimeLabels Boo
-    | StrokeColor Str
-    | LeStrokeDash Nums
-    | LeStrokeWidth Num
-    | SymbolBaseFillColor Str
-    | SymbolBaseStrokeColor Str
-    | SymbolDash Nums
-    | SymbolDashOffset Num
-    | SymbolDirection MarkOrientation
-    | SymbolFillColor Str
-    | SymbolLimit Num
-    | SymbolOffset Num
-    | SymbolOpacity Num
-    | SymbolType Symbol
-    | SymbolSize Num
-    | SymbolStrokeWidth Num
-    | SymbolStrokeColor Str
-    | LeTitleAlign HAlign
-    | LeTitleAnchor Anchor
-    | LeTitleBaseline VAlign
-    | LeTitleColor Str
-    | LeTitleFont Str
-    | LeTitleFontSize Num
-    | LeTitleFontStyle Str
-    | LeTitleFontWeight FontWeight
-    | LeTitleLimit Num
-    | LeTitleLineHeight Num
-    | LeTitleOpacity Num
-    | LeTitlePadding Num
-    | LeUnselectedOpacity Num
+    | LecoLabelFont Str
+    | LecoLabelFontSize Num
+    | LecoLabelFontStyle Str
+    | LecoLabelFontWeight FontWeight
+    | LecoLabelLimit Num
+    | LecoLabelOffset Num
+    | LecoLabelOverlap OverlapStrategy
+    | LecoOffset Num
+    | LecoOrient LegendOrientation
+    | LecoPadding Num
+    | LecoRowPadding Num
+    | LecoShortTimeLabels Boo
+    | LecoStrokeColor Str
+    | LecoStrokeDash Nums
+    | LecoStrokeWidth Num
+    | LecoSymbolBaseFillColor Str
+    | LecoSymbolBaseStrokeColor Str
+    | LecoSymbolDash Nums
+    | LecoSymbolDashOffset Num
+    | LecoSymbolDirection MarkOrientation
+    | LecoSymbolFillColor Str
+    | LecoSymbolLimit Num
+    | LecoSymbolOffset Num
+    | LecoSymbolOpacity Num
+    | LecoSymbolType Symbol
+    | LecoSymbolSize Num
+    | LecoSymbolStrokeWidth Num
+    | LecoSymbolStrokeColor Str
+    | LecoTitleAlign HAlign
+    | LecoTitleAnchor Anchor
+    | LecoTitleBaseline VAlign
+    | LecoTitleColor Str
+    | LecoTitleFont Str
+    | LecoTitleFontSize Num
+    | LecoTitleFontStyle Str
+    | LecoTitleFontWeight FontWeight
+    | LecoTitleLimit Num
+    | LecoTitleLineHeight Num
+    | LecoTitleOpacity Num
+    | LecoTitlePadding Num
+    | LecoUnselectedOpacity Num
     | LecoPositionX Num
     | LecoPositionY Num
 
@@ -13442,63 +13438,56 @@ list is provided, ARIA tagging will be switched off.
 -}
 lecoAria : List Aria -> LegendConfig
 lecoAria =
-    LeAria
+    LecoAria
 
 
 {-| Default maximum height of legend entries.
 -}
 lecoClipHeight : Float -> LegendConfig
 lecoClipHeight n =
-    LeClipHeight (Num n)
+    LecoClipHeight (Num n)
 
 
 {-| Default horizontal padding between symbol legend entries.
 -}
 lecoColumnPadding : Float -> LegendConfig
 lecoColumnPadding n =
-    LeColumnPadding (Num n)
+    LecoColumnPadding (Num n)
 
 
 {-| Default number of columns in which to arrange symbol legend entries.
 -}
 lecoColumns : Float -> LegendConfig
 lecoColumns n =
-    LeColumns (Num n)
+    LecoColumns (Num n)
 
 
 {-| Default legend corner radius.
 -}
 lecoCornerRadius : Float -> LegendConfig
 lecoCornerRadius n =
-    CornerRadius (Num n)
+    LecoCornerRadius (Num n)
 
 
 {-| Default direction of a legend.
 -}
 lecoDirection : MarkOrientation -> LegendConfig
 lecoDirection =
-    LeDirection
+    LecoDirection
 
 
 {-| Whether or not legends should be disabled by default.
 -}
 lecoDisable : Bool -> LegendConfig
 lecoDisable b =
-    LeDisable (Boo b)
-
-
-{-| Default spacing between legend items.
--}
-lecoEntryPadding : Float -> LegendConfig
-lecoEntryPadding n =
-    EntryPadding (Num n)
+    LecoDisable (Boo b)
 
 
 {-| Default background legend color.
 -}
 lecoFillColor : String -> LegendConfig
 lecoFillColor s =
-    FillColor (Str s)
+    LecoFillColor (Str s)
 
 
 {-| Default maximum length in pixels of a horizontal color ramp legend.
@@ -13519,56 +13508,56 @@ lecoGradientHorizontalMinLength n =
 -}
 lecoGradientLabelBaseline : VAlign -> LegendConfig
 lecoGradientLabelBaseline =
-    GradientLabelBaseline
+    LecoGradientLabelBaseline
 
 
 {-| Default maximum allowable length for labels in a color ramp legend.
 -}
 lecoGradientLabelLimit : Float -> LegendConfig
 lecoGradientLabelLimit n =
-    GradientLabelLimit (Num n)
+    LecoGradientLabelLimit (Num n)
 
 
 {-| Default vertical offset in pixel units for labels in a color ramp legend.
 -}
 lecoGradientLabelOffset : Float -> LegendConfig
 lecoGradientLabelOffset n =
-    GradientLabelOffset (Num n)
+    LecoGradientLabelOffset (Num n)
 
 
 {-| Default length in pixels of the primary axis of a color ramp legend.
 -}
 lecoGradientLength : Float -> LegendConfig
 lecoGradientLength n =
-    GradientLength (Num n)
+    LecoGradientLength (Num n)
 
 
 {-| Default opacity of a color ramp legend.
 -}
 lecoGradientOpacity : Float -> LegendConfig
 lecoGradientOpacity n =
-    GradientOpacity (Num n)
+    LecoGradientOpacity (Num n)
 
 
 {-| Default color for strokes in a color ramp legend.
 -}
 lecoGradientStrokeColor : String -> LegendConfig
 lecoGradientStrokeColor s =
-    GradientStrokeColor (Str s)
+    LecoGradientStrokeColor (Str s)
 
 
 {-| Default width for strokes in a color ramp legend.
 -}
 lecoGradientStrokeWidth : Float -> LegendConfig
 lecoGradientStrokeWidth n =
-    GradientStrokeWidth (Num n)
+    LecoGradientStrokeWidth (Num n)
 
 
 {-| Default thickness in pixels of a color ramp legend.
 -}
 lecoGradientThickness : Float -> LegendConfig
 lecoGradientThickness n =
-    GradientThickness (Num n)
+    LecoGradientThickness (Num n)
 
 
 {-| Default maximum length in pixels of a vertical color ramp legend.
@@ -13589,70 +13578,70 @@ lecoGradientVerticalMinLength n =
 -}
 lecoGridAlign : CompositionAlignment -> LegendConfig
 lecoGridAlign =
-    LeGridAlign
+    LecoGridAlign
 
 
 {-| Default horizontal alignment of legend labels.
 -}
 lecoLabelAlign : HAlign -> LegendConfig
 lecoLabelAlign =
-    LeLabelAlign
+    LecoLabelAlign
 
 
 {-| Default vertical alignment of legend labels.
 -}
 lecoLabelBaseline : VAlign -> LegendConfig
 lecoLabelBaseline =
-    LeLabelBaseline
+    LecoLabelBaseline
 
 
 {-| Default color for legend labels.
 -}
 lecoLabelColor : String -> LegendConfig
 lecoLabelColor s =
-    LeLabelColor (Str s)
+    LecoLabelColor (Str s)
 
 
 {-| Default font for legend labels.
 -}
 lecoLabelFont : String -> LegendConfig
 lecoLabelFont s =
-    LeLabelFont (Str s)
+    LecoLabelFont (Str s)
 
 
 {-| Default font size of legend labels.
 -}
 lecoLabelFontSize : Float -> LegendConfig
 lecoLabelFontSize n =
-    LeLabelFontSize (Num n)
+    LecoLabelFontSize (Num n)
 
 
 {-| Default font style (italic etc.) of legend labels.
 -}
 lecoLabelFontStyle : String -> LegendConfig
 lecoLabelFontStyle s =
-    LeLabelFontStyle (Str s)
+    LecoLabelFontStyle (Str s)
 
 
 {-| Default font weight of legend labels.
 -}
 lecoLabelFontWeight : FontWeight -> LegendConfig
 lecoLabelFontWeight =
-    LeLabelFontWeight
+    LecoLabelFontWeight
 
 
 {-| Default maximum width for legend labels in pixel units.
 -}
 lecoLabelLimit : Float -> LegendConfig
 lecoLabelLimit n =
-    LeLabelLimit (Num n)
+    LecoLabelLimit (Num n)
 
 
 {-| Default offset for legend labels.
 -}
 lecoLabelOffset : Float -> LegendConfig
 lecoLabelOffset n =
-    LeLabelOffset (Num n)
+    LecoLabelOffset (Num n)
 
 
 {-| Default to not displaying any legend titles.
@@ -13668,83 +13657,83 @@ legend configuration function requiring a numeric value.
 lecoNumExpr : String -> (number -> LegendConfig) -> LegendConfig
 lecoNumExpr ex fn =
     case fn 0 of
-        LeClipHeight _ ->
-            LeClipHeight (NumExpr ex)
+        LecoClipHeight _ ->
+            LecoClipHeight (NumExpr ex)
 
-        LeColumnPadding _ ->
-            LeColumnPadding (NumExpr ex)
+        LecoColumnPadding _ ->
+            LecoColumnPadding (NumExpr ex)
 
-        LeColumns _ ->
-            LeColumns (NumExpr ex)
+        LecoColumns _ ->
+            LecoColumns (NumExpr ex)
 
-        CornerRadius _ ->
-            CornerRadius (NumExpr ex)
+        LecoCornerRadius _ ->
+            LecoCornerRadius (NumExpr ex)
 
-        GradientLength _ ->
-            GradientLength (NumExpr ex)
+        LecoGradientLength _ ->
+            LecoGradientLength (NumExpr ex)
 
-        GradientOpacity _ ->
-            GradientOpacity (NumExpr ex)
+        LecoGradientOpacity _ ->
+            LecoGradientOpacity (NumExpr ex)
 
-        GradientThickness _ ->
-            GradientThickness (NumExpr ex)
+        LecoGradientThickness _ ->
+            LecoGradientThickness (NumExpr ex)
 
-        GradientStrokeWidth _ ->
-            GradientStrokeWidth (NumExpr ex)
+        LecoGradientStrokeWidth _ ->
+            LecoGradientStrokeWidth (NumExpr ex)
 
-        LeLabelFontSize _ ->
-            LeLabelFontSize (NumExpr ex)
+        LecoLabelFontSize _ ->
+            LecoLabelFontSize (NumExpr ex)
 
-        LeLabelLimit _ ->
-            LeLabelLimit (NumExpr ex)
+        LecoLabelLimit _ ->
+            LecoLabelLimit (NumExpr ex)
 
-        LeLabelOffset _ ->
-            LeLabelOffset (NumExpr ex)
+        LecoLabelOffset _ ->
+            LecoLabelOffset (NumExpr ex)
 
-        Offset _ ->
-            Offset (NumExpr ex)
+        LecoOffset _ ->
+            LecoOffset (NumExpr ex)
 
-        LePadding _ ->
-            LePadding (NumExpr ex)
+        LecoPadding _ ->
+            LecoPadding (NumExpr ex)
 
-        LeRowPadding _ ->
-            LeRowPadding (NumExpr ex)
+        LecoRowPadding _ ->
+            LecoRowPadding (NumExpr ex)
 
-        LeStrokeWidth _ ->
-            LeStrokeWidth (NumExpr ex)
+        LecoStrokeWidth _ ->
+            LecoStrokeWidth (NumExpr ex)
 
-        SymbolDashOffset _ ->
-            SymbolDashOffset (NumExpr ex)
+        LecoSymbolDashOffset _ ->
+            LecoSymbolDashOffset (NumExpr ex)
 
-        SymbolLimit _ ->
-            SymbolLimit (NumExpr ex)
+        LecoSymbolLimit _ ->
+            LecoSymbolLimit (NumExpr ex)
 
-        SymbolOffset _ ->
-            SymbolOffset (NumExpr ex)
+        LecoSymbolOffset _ ->
+            LecoSymbolOffset (NumExpr ex)
 
-        SymbolOpacity _ ->
-            SymbolOpacity (NumExpr ex)
+        LecoSymbolOpacity _ ->
+            LecoSymbolOpacity (NumExpr ex)
 
-        SymbolSize _ ->
-            SymbolSize (NumExpr ex)
+        LecoSymbolSize _ ->
+            LecoSymbolSize (NumExpr ex)
 
-        SymbolStrokeWidth _ ->
-            SymbolStrokeWidth (NumExpr ex)
+        LecoSymbolStrokeWidth _ ->
+            LecoSymbolStrokeWidth (NumExpr ex)
 
-        LeTitleFontSize _ ->
-            LeTitleFontSize (NumExpr ex)
+        LecoTitleFontSize _ ->
+            LecoTitleFontSize (NumExpr ex)
 
-        LeTitleLimit _ ->
-            LeTitleLimit (NumExpr ex)
+        LecoTitleLimit _ ->
+            LecoTitleLimit (NumExpr ex)
 
-        LeTitleLineHeight _ ->
-            LeTitleLineHeight (NumExpr ex)
+        LecoTitleLineHeight _ ->
+            LecoTitleLineHeight (NumExpr ex)
 
-        LeTitleOpacity _ ->
-            LeTitleOpacity (NumExpr ex)
+        LecoTitleOpacity _ ->
+            LecoTitleOpacity (NumExpr ex)
 
-        LeTitlePadding _ ->
-            LeTitlePadding (NumExpr ex)
+        LecoTitlePadding _ ->
+            LecoTitlePadding (NumExpr ex)
 
         LecoPositionX _ ->
             LecoPositionX (NumExpr ex)
@@ -13762,11 +13751,11 @@ a legend property configuration requiring a list of numbers (for dash styles).
 lecoNumsExpr : String -> (List number -> LegendConfig) -> LegendConfig
 lecoNumsExpr ex fn =
     case fn [] of
-        LeStrokeDash _ ->
-            LeStrokeDash (NumsExpr ex)
+        LecoStrokeDash _ ->
+            LecoStrokeDash (NumsExpr ex)
 
-        SymbolDash _ ->
-            SymbolDash (NumsExpr ex)
+        LecoSymbolDash _ ->
+            LecoSymbolDash (NumsExpr ex)
 
         _ ->
             fn []
@@ -13777,35 +13766,35 @@ group or data rectangle.
 -}
 lecoOffset : Float -> LegendConfig
 lecoOffset n =
-    Offset (Num n)
+    LecoOffset (Num n)
 
 
 {-| Default legend position relative to the main plot content.
 -}
 lecoOrient : LegendOrientation -> LegendConfig
 lecoOrient =
-    Orient
+    LecoOrient
 
 
 {-| Default spacing in pixel units between a legend and axis.
 -}
 lecoPadding : Float -> LegendConfig
 lecoPadding n =
-    LePadding (Num n)
+    LecoPadding (Num n)
 
 
 {-| Default vertical spacing in pixel units between legend symbol entries.
 -}
 lecoRowPadding : Float -> LegendConfig
 lecoRowPadding n =
-    LeRowPadding (Num n)
+    LecoRowPadding (Num n)
 
 
 {-| Deprecated as time labels are already abbreviated by default in a legend.
 -}
 lecoShortTimeLabels : Bool -> LegendConfig
 lecoShortTimeLabels b =
-    LeShortTimeLabels (Boo b)
+    LecoShortTimeLabels (Boo b)
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
@@ -13814,38 +13803,38 @@ an legend configuration function requiring a string value.
 lecoStrExpr : String -> (String -> LegendConfig) -> LegendConfig
 lecoStrExpr ex fn =
     case fn "" of
-        FillColor _ ->
-            FillColor (StrExpr ex)
+        LecoFillColor _ ->
+            LecoFillColor (StrExpr ex)
 
-        GradientStrokeColor _ ->
-            GradientStrokeColor (StrExpr ex)
+        LecoGradientStrokeColor _ ->
+            LecoGradientStrokeColor (StrExpr ex)
 
-        LeLabelColor _ ->
-            LeLabelColor (StrExpr ex)
+        LecoLabelColor _ ->
+            LecoLabelColor (StrExpr ex)
 
-        LeLabelFont _ ->
-            LeLabelFont (StrExpr ex)
+        LecoLabelFont _ ->
+            LecoLabelFont (StrExpr ex)
 
-        LeLabelFontStyle _ ->
-            LeLabelFontStyle (StrExpr ex)
+        LecoLabelFontStyle _ ->
+            LecoLabelFontStyle (StrExpr ex)
 
-        StrokeColor _ ->
-            StrokeColor (StrExpr ex)
+        LecoStrokeColor _ ->
+            LecoStrokeColor (StrExpr ex)
 
-        SymbolFillColor _ ->
-            SymbolFillColor (StrExpr ex)
+        LecoSymbolFillColor _ ->
+            LecoSymbolFillColor (StrExpr ex)
 
-        SymbolStrokeColor _ ->
-            SymbolStrokeColor (StrExpr ex)
+        LecoSymbolStrokeColor _ ->
+            LecoSymbolStrokeColor (StrExpr ex)
 
-        LeTitleColor _ ->
-            LeTitleColor (StrExpr ex)
+        LecoTitleColor _ ->
+            LecoTitleColor (StrExpr ex)
 
-        LeTitleFont _ ->
-            LeTitleFont (StrExpr ex)
+        LecoTitleFont _ ->
+            LecoTitleFont (StrExpr ex)
 
-        LeTitleFontStyle _ ->
-            LeTitleFontStyle (StrExpr ex)
+        LecoTitleFontStyle _ ->
+            LecoTitleFontStyle (StrExpr ex)
 
         _ ->
             fn ""
@@ -13855,189 +13844,189 @@ lecoStrExpr ex fn =
 -}
 lecoStrokeColor : String -> LegendConfig
 lecoStrokeColor s =
-    StrokeColor (Str s)
+    LecoStrokeColor (Str s)
 
 
 {-| Default legend border stroke dash style.
 -}
 lecoStrokeDash : List Float -> LegendConfig
 lecoStrokeDash ns =
-    LeStrokeDash (Nums ns)
+    LecoStrokeDash (Nums ns)
 
 
 {-| Default legend border stroke width.
 -}
 lecoStrokeWidth : Float -> LegendConfig
 lecoStrokeWidth n =
-    LeStrokeWidth (Num n)
+    LecoStrokeWidth (Num n)
 
 
 {-| Default legend symbol fill color for when no fill scale color in legend encoding.
 -}
 lecoSymbolBaseFillColor : String -> LegendConfig
 lecoSymbolBaseFillColor s =
-    SymbolBaseFillColor (Str s)
+    LecoSymbolBaseFillColor (Str s)
 
 
 {-| Default legend symbol stroke color for when no stroke scale color in legend encoding.
 -}
 lecoSymbolBaseStrokeColor : String -> LegendConfig
 lecoSymbolBaseStrokeColor s =
-    SymbolBaseStrokeColor (Str s)
+    LecoSymbolBaseStrokeColor (Str s)
 
 
 {-| Default legend symbol dash style in legend encoding.
 -}
 lecoSymbolDash : List Float -> LegendConfig
 lecoSymbolDash ns =
-    SymbolDash (Nums ns)
+    LecoSymbolDash (Nums ns)
 
 
 {-| Default legend symbol dash offset in legend encoding.
 -}
 lecoSymbolDashOffset : Float -> LegendConfig
 lecoSymbolDashOffset n =
-    SymbolDashOffset (Num n)
+    LecoSymbolDashOffset (Num n)
 
 
 {-| Default legend symbol fill color.
 -}
 lecoSymbolFillColor : String -> LegendConfig
 lecoSymbolFillColor s =
-    SymbolFillColor (Str s)
+    LecoSymbolFillColor (Str s)
 
 
 {-| Default legend symbol fill color.
 -}
 lecoSymbolLimit : Int -> LegendConfig
 lecoSymbolLimit n =
-    SymbolLimit (Num (toFloat n))
+    LecoSymbolLimit (Num (toFloat n))
 
 
 {-| Default horizontal pixel offset for legend symbols.
 -}
 lecoSymbolOffset : Float -> LegendConfig
 lecoSymbolOffset n =
-    SymbolOffset (Num n)
+    LecoSymbolOffset (Num n)
 
 
 {-| Default legend symbol type.
 -}
 lecoSymbolType : Symbol -> LegendConfig
 lecoSymbolType =
-    SymbolType
+    LecoSymbolType
 
 
 {-| Default legend symbol opacity.
 -}
 lecoSymbolOpacity : Float -> LegendConfig
 lecoSymbolOpacity n =
-    SymbolOpacity (Num n)
+    LecoSymbolOpacity (Num n)
 
 
 {-| Default legend symbol size.
 -}
 lecoSymbolSize : Float -> LegendConfig
 lecoSymbolSize n =
-    SymbolSize (Num n)
+    LecoSymbolSize (Num n)
 
 
 {-| Default legend symbol stroke width.
 -}
 lecoSymbolStrokeWidth : Float -> LegendConfig
 lecoSymbolStrokeWidth n =
-    SymbolStrokeWidth (Num n)
+    LecoSymbolStrokeWidth (Num n)
 
 
 {-| Default legend symbol outline color.
 -}
 lecoSymbolStrokeColor : String -> LegendConfig
 lecoSymbolStrokeColor s =
-    SymbolStrokeColor (Str s)
+    LecoSymbolStrokeColor (Str s)
 
 
 {-| Default horizontal alignment for legend titles.
 -}
 lecoTitleAlign : HAlign -> LegendConfig
 lecoTitleAlign =
-    LeTitleAlign
+    LecoTitleAlign
 
 
 {-| Default anchoring for legend titles.
 -}
 lecoTitleAnchor : Anchor -> LegendConfig
 lecoTitleAnchor =
-    LeTitleAnchor
+    LecoTitleAnchor
 
 
 {-| Default vertical alignment for legend titles.
 -}
 lecoTitleBaseline : VAlign -> LegendConfig
 lecoTitleBaseline =
-    LeTitleBaseline
+    LecoTitleBaseline
 
 
 {-| Default color legend titles.
 -}
 lecoTitleColor : String -> LegendConfig
 lecoTitleColor s =
-    LeTitleColor (Str s)
+    LecoTitleColor (Str s)
 
 
 {-| Default font for legend titles.
 -}
 lecoTitleFont : String -> LegendConfig
 lecoTitleFont s =
-    LeTitleFont (Str s)
+    LecoTitleFont (Str s)
 
 
 {-| Default font size for legend titles.
 -}
 lecoTitleFontSize : Float -> LegendConfig
 lecoTitleFontSize n =
-    LeTitleFontSize (Num n)
+    LecoTitleFontSize (Num n)
 
 
 {-| Default font style (italic etc) for legend titles.
 -}
 lecoTitleFontStyle : String -> LegendConfig
 lecoTitleFontStyle s =
-    LeTitleFontStyle (Str s)
+    LecoTitleFontStyle (Str s)
 
 
 {-| Default font weight for legend titles.
 -}
 lecoTitleFontWeight : FontWeight -> LegendConfig
 lecoTitleFontWeight =
-    LeTitleFontWeight
+    LecoTitleFontWeight
 
 
 {-| Default maximum size in pixel units for legend titles.
 -}
 lecoTitleLimit : Float -> LegendConfig
 lecoTitleLimit n =
-    LeTitleLimit (Num n)
+    LecoTitleLimit (Num n)
 
 
 {-| Default line height for multi-line legend titles.
 -}
 lecoTitleLineHeight : Float -> LegendConfig
 lecoTitleLineHeight n =
-    LeTitleLineHeight (Num n)
+    LecoTitleLineHeight (Num n)
 
 
 {-| Default opacity of a legend's title.
 -}
 lecoTitleOpacity : Float -> LegendConfig
 lecoTitleOpacity n =
-    LeTitleOpacity (Num n)
+    LecoTitleOpacity (Num n)
 
 
 {-| Default spacing in pixel units between title and legend.
 -}
 lecoTitlePadding : Float -> LegendConfig
 lecoTitlePadding n =
-    LeTitlePadding (Num n)
+    LecoTitlePadding (Num n)
 
 
 {-| Legend corner radius.
@@ -14052,28 +14041,28 @@ leCornerRadius n =
 -}
 lecoUnselectedOpacity : Float -> LegendConfig
 lecoUnselectedOpacity n =
-    LeUnselectedOpacity (Num n)
+    LecoUnselectedOpacity (Num n)
 
 
 {-| Default direction of a color ramp legend.
 -}
 lecoGradientDirection : MarkOrientation -> LegendConfig
 lecoGradientDirection =
-    GradientDirection
+    LecoGradientDirection
 
 
 {-| Strategy for resolving overlapping legend labels.
 -}
 lecoLabelOverlap : OverlapStrategy -> LegendConfig
 lecoLabelOverlap =
-    LeLabelOverlap
+    LecoLabelOverlap
 
 
 {-| Default direction of a symbol legend.
 -}
 lecoSymbolDirection : MarkOrientation -> LegendConfig
 lecoSymbolDirection =
-    SymbolDirection
+    LecoSymbolDirection
 
 
 {-| Horizontal padding between symbol legend entries.
@@ -24242,7 +24231,7 @@ keyChannelProperty pDef =
 legendConfigProperty : LegendConfig -> List LabelledSpec
 legendConfigProperty legendConfig =
     case legendConfig of
-        LeAria aps ->
+        LecoAria aps ->
             case aps of
                 [] ->
                     [ ariaProperty (ArAria False) ]
@@ -24250,49 +24239,49 @@ legendConfigProperty legendConfig =
                 _ ->
                     List.map ariaProperty aps
 
-        LeDisable b ->
+        LecoDisable b ->
             booExpr "disable" b
 
-        LeClipHeight x ->
+        LecoClipHeight x ->
             numExpr "clipHeight" x
 
-        LeColumnPadding x ->
+        LecoColumnPadding x ->
             numExpr "columnPadding" x
 
-        LeRowPadding x ->
+        LecoRowPadding x ->
             numExpr "rowPadding" x
 
-        LeColumns x ->
+        LecoColumns x ->
             numExpr "columns" x
 
-        CornerRadius x ->
+        LecoCornerRadius x ->
             numExpr "cornerRadius" x
 
-        LeDirection d ->
+        LecoDirection d ->
             [ ( "direction", JE.string (markOrientationLabel d) ) ]
 
-        FillColor s ->
+        LecoFillColor s ->
             strExpr "fillColor" s
 
-        Orient orient ->
+        LecoOrient orient ->
             [ ( "orient", legendOrientSpec orient ) ]
 
-        Offset x ->
+        LecoOffset x ->
             numExpr "offset" x
 
-        StrokeColor s ->
+        LecoStrokeColor s ->
             strExpr "strokeColor" s
 
-        LeStrokeDash xs ->
+        LecoStrokeDash xs ->
             numsExpr "strokeDash" xs
 
-        LeStrokeWidth x ->
+        LecoStrokeWidth x ->
             numExpr "strokeWidth" x
 
-        LePadding x ->
+        LecoPadding x ->
             numExpr "padding" x
 
-        GradientDirection d ->
+        LecoGradientDirection d ->
             [ ( "gradientDirection", JE.string (markOrientationLabel d) ) ]
 
         LecoGradientHorizontalMaxLength x ->
@@ -24307,148 +24296,145 @@ legendConfigProperty legendConfig =
         LecoGradientVerticalMinLength x ->
             numExpr "gradientVerticalMinLength" x
 
-        GradientLabelBaseline va ->
+        LecoGradientLabelBaseline va ->
             [ ( "gradientLabelBaseline", vAlignSpec va ) ]
 
-        GradientLabelLimit x ->
+        LecoGradientLabelLimit x ->
             numExpr "gradientLabelLimit" x
 
-        GradientLength x ->
+        LecoGradientLength x ->
             numExpr "gradientLength" x
 
-        GradientLabelOffset x ->
+        LecoGradientLabelOffset x ->
             numExpr "gradientLabelOffset" x
 
-        GradientOpacity x ->
+        LecoGradientOpacity x ->
             numExpr "gradientOpacity" x
 
-        GradientStrokeColor s ->
+        LecoGradientStrokeColor s ->
             strExpr "gradientStrokeColor" s
 
-        GradientStrokeWidth x ->
+        LecoGradientStrokeWidth x ->
             numExpr "gradientStrokeWidth" x
 
-        GradientThickness x ->
+        LecoGradientThickness x ->
             numExpr "gradientThickness" x
 
-        LeGridAlign ga ->
+        LecoGridAlign ga ->
             [ ( "gridAlign", JE.string (compositionAlignmentLabel ga) ) ]
 
-        LeLabelAlign ha ->
+        LecoLabelAlign ha ->
             [ ( "labelAlign", hAlignSpec ha ) ]
 
-        LeLabelBaseline va ->
+        LecoLabelBaseline va ->
             [ ( "labelBaseline", vAlignSpec va ) ]
 
-        LeLabelColor s ->
+        LecoLabelColor s ->
             strExpr "labelColor" s
 
-        LeLabelFont s ->
+        LecoLabelFont s ->
             strExpr "labelFont" s
 
-        LeLabelFontSize x ->
+        LecoLabelFontSize x ->
             numExpr "labelFontSize" x
 
-        LeLabelFontStyle s ->
+        LecoLabelFontStyle s ->
             strExpr "labelFontStyle" s
 
-        LeLabelFontWeight fw ->
+        LecoLabelFontWeight fw ->
             [ ( "labelFontWeight", fontWeightSpec fw ) ]
 
-        LeLabelLimit x ->
+        LecoLabelLimit x ->
             numExpr "labelLimit" x
 
-        LeLabelOffset x ->
+        LecoLabelOffset x ->
             numExpr "labelOffset" x
 
-        LeLabelOverlap lo ->
+        LecoLabelOverlap lo ->
             [ ( "labelOverlap", overlapStrategySpec lo ) ]
 
-        LeShortTimeLabels b ->
+        LecoShortTimeLabels b ->
             booExpr "shortTimeLabels" b
 
-        EntryPadding x ->
-            numExpr "entryPadding" x
-
-        SymbolDirection d ->
+        LecoSymbolDirection d ->
             [ ( "symbolDirection", JE.string (markOrientationLabel d) ) ]
 
-        SymbolLimit x ->
+        LecoSymbolLimit x ->
             numExpr "symbolLimit" x
 
-        SymbolFillColor s ->
+        LecoSymbolFillColor s ->
             strExpr "symbolFillColor" s
 
-        SymbolBaseFillColor s ->
+        LecoSymbolBaseFillColor s ->
             strExpr "symbolBaseFillColor" s
 
-        SymbolStrokeColor s ->
+        LecoSymbolStrokeColor s ->
             strExpr "symbolStrokeColor" s
 
-        SymbolBaseStrokeColor s ->
+        LecoSymbolBaseStrokeColor s ->
             strExpr "symbolBaseStrokeColor" s
 
-        SymbolDash xs ->
+        LecoSymbolDash xs ->
             numsExpr "symbolDash" xs
 
-        SymbolDashOffset x ->
+        LecoSymbolDashOffset x ->
             numExpr "symbolDashOffset" x
 
-        SymbolOffset x ->
+        LecoSymbolOffset x ->
             numExpr "symbolOffset" x
 
-        SymbolOpacity x ->
+        LecoSymbolOpacity x ->
             numExpr "symbolOpacity" x
 
-        SymbolType s ->
+        LecoSymbolType s ->
             [ ( "symbolType", symbolSpec s ) ]
 
-        SymbolSize x ->
+        LecoSymbolSize x ->
             numExpr "symbolSize" x
 
-        SymbolStrokeWidth x ->
+        LecoSymbolStrokeWidth x ->
             numExpr "symbolStrokeWidth" x
 
         LecoNoTitle ->
             [ ( "title", JE.null ) ]
 
-        LeTitleAlign ha ->
+        LecoTitleAlign ha ->
             [ ( "titleAlign", hAlignSpec ha ) ]
 
-        LeTitleBaseline va ->
+        LecoTitleBaseline va ->
             [ ( "titleBaseline", vAlignSpec va ) ]
 
-        LeTitleAnchor an ->
+        LecoTitleAnchor an ->
             [ ( "titleAnchor", anchorSpec an ) ]
 
-        LeTitleColor s ->
+        LecoTitleColor s ->
             strExpr "titleColor" s
 
-        LeTitleFont s ->
+        LecoTitleFont s ->
             strExpr "titleFont" s
 
-        LeTitleFontSize x ->
+        LecoTitleFontSize x ->
             numExpr "titleFontSize" x
 
-        LeTitleFontStyle s ->
+        LecoTitleFontStyle s ->
             strExpr "titleFontStyle" s
 
-        LeTitleFontWeight fw ->
+        LecoTitleFontWeight fw ->
             [ ( "titleFontWeight", fontWeightSpec fw ) ]
 
-        LeTitleLimit x ->
+        LecoTitleLimit x ->
             numExpr "titleLimit" x
 
-        LeTitleLineHeight x ->
+        LecoTitleLineHeight x ->
             numExpr "titleLineHeight" x
 
-        LeTitleOpacity x ->
+        LecoTitleOpacity x ->
             numExpr "titleOpacity" x
 
-        LeTitlePadding x ->
+        LecoTitlePadding x ->
             numExpr "titlePadding" x
 
-        LeUnselectedOpacity x ->
+        LecoUnselectedOpacity x ->
             numExpr "unselectedOpacity" x
 
         LecoPositionX x ->
