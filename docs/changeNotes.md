@@ -115,9 +115,11 @@ Add images on maps test (VL5.1).
 
 - `inDatumOptions` / `inDataOptions` for non-string input options (numeric values, lists etc.)
 
-#### Other Vega-Lite changes for new or previously missing VL functions
+#### Other new or previously missing VL functions
 
 - `coLocale` and associated functions `loDecimal`, `loThousands`, `loGrouping`, `loCurrency`, `loNumerals`, `loPercent`, `loMinus`, `loNan`, `loDateTime`, `loDate`, `loTime`, `loPeriods`, `loDay`, `loShortDays`, `loMonths` and `loShortMonths` for specifying locale defaults (VL5.1).
+
+- `maUrl` for image url.
 
 - `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 

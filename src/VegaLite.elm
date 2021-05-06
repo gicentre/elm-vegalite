@@ -346,6 +346,7 @@ module VegaLite exposing
     , maThickness
     , maTicks
     , maTooltip
+    , maUrl
     , maWidth
     , maWidthBand
     , maHeight
@@ -2177,8 +2178,11 @@ See the Vega-Lite
 [error band](https://vega.github.io/vega-lite/docs/errorband.html#properties),
 [error bar](https://vega.github.io/vega-lite/docs/errorbar.html#properties),
 [hyperlink mark](https://vega.github.io/vega-lite/docs/mark.html#hyperlink),
+[image mark](https://vega.github.io/vega-lite/docs/image.html#properties),
 [line mark](https://vega.github.io/vega-lite/docs/line.html#properties),
 [point mark](https://vega.github.io/vega-lite/docs/point.html#properties),
+[rect mark](https://vega.github.io/vega-lite/docs/rect.html#properties),
+[rule mark](https://vega.github.io/vega-lite/docs/rule.html#properties),
 [square mark](https://vega.github.io/vega-lite/docs/square.html#properties),
 [text mark](https://vega.github.io/vega-lite/docs/text.html#properties) and
 [tick mark](https://vega.github.io/vega-lite/docs/tick.html#properties)
@@ -2269,6 +2273,7 @@ property documentation.
 @docs maThickness
 @docs maTicks
 @docs maTooltip
+@docs maUrl
 @docs maWidth
 @docs maWidthBand
 @docs maHeight
@@ -5470,7 +5475,7 @@ type MarkOrientation
 [maStrokeWidth](#maStrokeWidth), [maStyle](#maStyle), [maTension](#maTension),
 [maText](#maText), [maTheta](#maTheta), [maTheta2](#maTheta2), [maThetaOffset](#maThetaOffset),
 [maTheta2Offset](#maTheta2Offset),[maThickness](#maThickness), [maTicks](#maTicks),
-[maTooltip](#maTooltip), [maX](#maX), [maWidth](#maWidth), [maWidthBand](#maWidthBand),
+[maTooltip](#maTooltip), [maUrl](#maUrl), [maX](#maX), [maWidth](#maWidth), [maWidthBand](#maWidthBand),
 [maHeight](#maHeight), [maHeightBand](#maHeightBand), [maY](#maY), [maXOffset](#maXOffset),
 [maYOffset](#maYOffset), [maX2](#maX2), [maY2](#maY2),[maX2Offset](#maX2Offset)
 and [maY2Offset](#maY2Offset).
@@ -5551,6 +5556,7 @@ type
     | MThickness Num
     | MTicks (List MarkProperty)
     | MTooltip TooltipContent
+    | MUrl Str
     | MWidth Num
     | MWidthBand Num
     | MHeight Num
@@ -15997,6 +16003,13 @@ maTooltip =
     MTooltip
 
 
+{-| An image mark's URL.
+-}
+maUrl : String -> MarkProperty
+maUrl s =
+    MUrl (Str s)
+
+
 {-| Explicitly set the width of a mark (e.g. bar width)
 -}
 maWidth : Float -> MarkProperty
@@ -25616,6 +25629,9 @@ markProperty mProp =
 
         MAspect b ->
             booExpr "aspect" b
+
+        MUrl s ->
+            strExpr "url" s
 
 
 maybeNumExpr : String -> MaybeNum -> List ( String, Spec )
