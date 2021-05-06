@@ -7897,14 +7897,14 @@ var $author$project$VegaLite$axTitle = function (s) {
 	return $author$project$VegaLite$AxTitle(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$AxcoDomain = function (a) {
+	return {$: 3, a: a};
+};
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$Domain = function (a) {
-	return {$: 3, a: a};
-};
 var $author$project$VegaLite$axcoDomain = function (b) {
-	return $author$project$VegaLite$Domain(
+	return $author$project$VegaLite$AxcoDomain(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$AxBoth = 0;

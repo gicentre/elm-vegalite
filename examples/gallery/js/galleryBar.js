@@ -8679,11 +8679,11 @@ var $author$project$VegaLite$axFormat = function (s) {
 	return $author$project$VegaLite$AxFormat(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$Grid = function (a) {
+var $author$project$VegaLite$AxcoGrid = function (a) {
 	return {$: 10, a: a};
 };
 var $author$project$VegaLite$axcoGrid = function (b) {
-	return $author$project$VegaLite$Grid(
+	return $author$project$VegaLite$AxcoGrid(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$AxBoth = 0;
@@ -13409,11 +13409,11 @@ var $author$project$GalleryBar$bar6 = function () {
 				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$DomainWidth = function (a) {
+var $author$project$VegaLite$AxcoDomainWidth = function (a) {
 	return {$: 9, a: a};
 };
 var $author$project$VegaLite$axcoDomainWidth = function (n) {
-	return $author$project$VegaLite$DomainWidth(
+	return $author$project$VegaLite$AxcoDomainWidth(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$column = function (fFields) {

@@ -8084,18 +8084,18 @@ var $author$project$VegaLite$axLabelExpr = function (s) {
 	return $author$project$VegaLite$AxLabelExpr(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$DomainColor = function (a) {
+var $author$project$VegaLite$AxcoDomainColor = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$axcoDomainColor = function (s) {
-	return $author$project$VegaLite$DomainColor(
+	return $author$project$VegaLite$AxcoDomainColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TickColor = function (a) {
+var $author$project$VegaLite$AxcoTickColor = function (a) {
 	return {$: 43, a: a};
 };
 var $author$project$VegaLite$axcoTickColor = function (s) {
-	return $author$project$VegaLite$TickColor(
+	return $author$project$VegaLite$AxcoTickColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$CAxTickDash = F2(

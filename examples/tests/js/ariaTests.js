@@ -12897,10 +12897,10 @@ var $author$project$AriaTests$aria7 = A4(
 		]),
 	_List_Nil,
 	$author$project$VegaLite$configure);
-var $author$project$VegaLite$AxisAria = function (a) {
+var $author$project$VegaLite$AxcoAria = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$axcoAria = $author$project$VegaLite$AxisAria;
+var $author$project$VegaLite$axcoAria = $author$project$VegaLite$AxcoAria;
 var $author$project$VegaLite$AxBoth = 0;
 var $author$project$VegaLite$Axis = F2(
 	function (a, b) {

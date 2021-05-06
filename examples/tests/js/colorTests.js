@@ -10982,28 +10982,28 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
+var $author$project$VegaLite$AxcoDomain = function (a) {
+	return {$: 3, a: a};
+};
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$Domain = function (a) {
-	return {$: 3, a: a};
-};
 var $author$project$VegaLite$axcoDomain = function (b) {
-	return $author$project$VegaLite$Domain(
+	return $author$project$VegaLite$AxcoDomain(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$Labels = function (a) {
+var $author$project$VegaLite$AxcoLabels = function (a) {
 	return {$: 17, a: a};
 };
 var $author$project$VegaLite$axcoLabels = function (b) {
-	return $author$project$VegaLite$Labels(
+	return $author$project$VegaLite$AxcoLabels(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$Ticks = function (a) {
+var $author$project$VegaLite$AxcoTicks = function (a) {
 	return {$: 40, a: a};
 };
 var $author$project$VegaLite$axcoTicks = function (b) {
-	return $author$project$VegaLite$Ticks(
+	return $author$project$VegaLite$AxcoTicks(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$BMColor = {$: 14};

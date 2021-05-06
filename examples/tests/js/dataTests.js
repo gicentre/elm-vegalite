@@ -11611,11 +11611,11 @@ var $author$project$DataTests$datum2 = function () {
 					[spec1, spec2]))
 			]));
 }();
-var $author$project$VegaLite$Domain = function (a) {
+var $author$project$VegaLite$AxcoDomain = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$axcoDomain = function (b) {
-	return $author$project$VegaLite$Domain(
+	return $author$project$VegaLite$AxcoDomain(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$calculateAs = F2(

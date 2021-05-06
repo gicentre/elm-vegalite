@@ -11418,14 +11418,14 @@ var $author$project$VegaLite$axTitle = function (s) {
 	return $author$project$VegaLite$AxTitle(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$VegaLite$AxcoGrid = function (a) {
+	return {$: 10, a: a};
+};
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$Grid = function (a) {
-	return {$: 10, a: a};
-};
 var $author$project$VegaLite$axcoGrid = function (b) {
-	return $author$project$VegaLite$Grid(
+	return $author$project$VegaLite$AxcoGrid(
 		$author$project$VegaLite$Boo(b));
 };
 var $author$project$VegaLite$AxBoth = 0;

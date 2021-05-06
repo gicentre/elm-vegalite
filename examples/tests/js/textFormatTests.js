@@ -10502,11 +10502,11 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$TitleLineHeight = function (a) {
+var $author$project$VegaLite$AxcoTitleLineHeight = function (a) {
 	return {$: 64, a: a};
 };
 var $author$project$VegaLite$axcoTitleLineHeight = function (n) {
-	return $author$project$VegaLite$TitleLineHeight(
+	return $author$project$VegaLite$AxcoTitleLineHeight(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxBoth = 0;

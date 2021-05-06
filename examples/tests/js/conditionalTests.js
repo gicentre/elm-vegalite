@@ -13585,21 +13585,21 @@ var $author$project$ConditionalTests$markCondition2 = function () {
 				enc(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$Domain = function (a) {
+var $author$project$VegaLite$AxcoDomain = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$axcoDomain = function (b) {
-	return $author$project$VegaLite$Domain(
+	return $author$project$VegaLite$AxcoDomain(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$LabelAngle = function (a) {
+var $author$project$VegaLite$AxcoLabelAngle = function (a) {
 	return {$: 19, a: a};
 };
 var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$axcoLabelAngle = function (n) {
-	return $author$project$VegaLite$LabelAngle(
+	return $author$project$VegaLite$AxcoLabelAngle(
 		$author$project$VegaLite$Num(
 			$author$project$VegaLite$positiveAngle(n)));
 };

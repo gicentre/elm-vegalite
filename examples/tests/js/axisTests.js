@@ -12797,11 +12797,11 @@ var $author$project$AxisTests$qAxisBase = function (maybeCfg) {
 			]));
 };
 var $author$project$AxisTests$axis1 = $author$project$AxisTests$qAxisBase($elm$core$Maybe$Nothing);
-var $author$project$VegaLite$LabelExpr = function (a) {
+var $author$project$VegaLite$AxcoLabelExpr = function (a) {
 	return {$: 25, a: a};
 };
 var $author$project$VegaLite$axcoLabelExpr = function (s) {
-	return $author$project$VegaLite$LabelExpr(
+	return $author$project$VegaLite$AxcoLabelExpr(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxBoth = 0;
@@ -12902,10 +12902,10 @@ var $author$project$AxisTests$axis10 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$TickCount = function (a) {
+var $author$project$VegaLite$AxcoTickCount = function (a) {
 	return {$: 44, a: a};
 };
-var $author$project$VegaLite$axcoTickCount = $author$project$VegaLite$TickCount;
+var $author$project$VegaLite$axcoTickCount = $author$project$VegaLite$AxcoTickCount;
 var $author$project$VegaLite$AxY = 2;
 var $author$project$VegaLite$axY = 2;
 var $author$project$VegaLite$coAxisYFilter = function (cp) {
@@ -15309,11 +15309,11 @@ var $author$project$AxisTests$axis16 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$GridColor = function (a) {
+var $author$project$VegaLite$AxcoGridColor = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$axcoGridColor = function (s) {
-	return $author$project$VegaLite$GridColor(
+	return $author$project$VegaLite$AxcoGridColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$coAxisQuant = $author$project$VegaLite$AxisQuant(0);
@@ -15483,53 +15483,53 @@ var $author$project$AxisTests$tAxisBase = function (maybeCfg) {
 			]));
 };
 var $author$project$AxisTests$axis4 = $author$project$AxisTests$tAxisBase($elm$core$Maybe$Nothing);
-var $author$project$VegaLite$DomainDash = function (a) {
+var $author$project$VegaLite$AxcoDomainDash = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$axcoDomainDash = function (ns) {
-	return $author$project$VegaLite$DomainDash(
+	return $author$project$VegaLite$AxcoDomainDash(
 		$author$project$VegaLite$Nums(ns));
 };
-var $author$project$VegaLite$DomainDashOffset = function (a) {
+var $author$project$VegaLite$AxcoDomainDashOffset = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$axcoDomainDashOffset = function (n) {
-	return $author$project$VegaLite$DomainDashOffset(
+	return $author$project$VegaLite$AxcoDomainDashOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$GridDash = function (a) {
+var $author$project$VegaLite$AxcoGridDash = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$axcoGridDash = function (ns) {
-	return $author$project$VegaLite$GridDash(
+	return $author$project$VegaLite$AxcoGridDash(
 		$author$project$VegaLite$Nums(ns));
 };
-var $author$project$VegaLite$GridDashOffset = function (a) {
+var $author$project$VegaLite$AxcoGridDashOffset = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$axcoGridDashOffset = function (n) {
-	return $author$project$VegaLite$GridDashOffset(
+	return $author$project$VegaLite$AxcoGridDashOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TickDash = function (a) {
+var $author$project$VegaLite$AxcoTickDash = function (a) {
 	return {$: 45, a: a};
 };
 var $author$project$VegaLite$axcoTickDash = function (ns) {
-	return $author$project$VegaLite$TickDash(
+	return $author$project$VegaLite$AxcoTickDash(
 		$author$project$VegaLite$Nums(ns));
 };
-var $author$project$VegaLite$TickDashOffset = function (a) {
+var $author$project$VegaLite$AxcoTickDashOffset = function (a) {
 	return {$: 46, a: a};
 };
 var $author$project$VegaLite$axcoTickDashOffset = function (n) {
-	return $author$project$VegaLite$TickDashOffset(
+	return $author$project$VegaLite$AxcoTickDashOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TickSize = function (a) {
+var $author$project$VegaLite$AxcoTickSize = function (a) {
 	return {$: 51, a: a};
 };
 var $author$project$VegaLite$axcoTickSize = function (n) {
-	return $author$project$VegaLite$TickSize(
+	return $author$project$VegaLite$AxcoTickSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$coAxisTemporal = $author$project$VegaLite$AxisTemporal(0);

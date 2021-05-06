@@ -9220,29 +9220,29 @@ var $author$project$GalleryAdvanced$advanced13 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$Domain = function (a) {
+var $author$project$VegaLite$AxcoDomain = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$axcoDomain = function (b) {
-	return $author$project$VegaLite$Domain(
+	return $author$project$VegaLite$AxcoDomain(
 		$author$project$VegaLite$Boo(b));
 };
-var $author$project$VegaLite$LabelAngle = function (a) {
+var $author$project$VegaLite$AxcoLabelAngle = function (a) {
 	return {$: 19, a: a};
 };
 var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$axcoLabelAngle = function (n) {
-	return $author$project$VegaLite$LabelAngle(
+	return $author$project$VegaLite$AxcoLabelAngle(
 		$author$project$VegaLite$Num(
 			$author$project$VegaLite$positiveAngle(n)));
 };
-var $author$project$VegaLite$TickColor = function (a) {
+var $author$project$VegaLite$AxcoTickColor = function (a) {
 	return {$: 43, a: a};
 };
 var $author$project$VegaLite$axcoTickColor = function (s) {
-	return $author$project$VegaLite$TickColor(
+	return $author$project$VegaLite$AxcoTickColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxBoth = 0;

@@ -5270,21 +5270,21 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$LabelFont = function (a) {
+var $author$project$VegaLite$AxcoLabelFont = function (a) {
 	return {$: 26, a: a};
 };
 var $author$project$VegaLite$Str = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$axcoLabelFont = function (s) {
-	return $author$project$VegaLite$LabelFont(
+	return $author$project$VegaLite$AxcoLabelFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TitleFont = function (a) {
+var $author$project$VegaLite$AxcoTitleFont = function (a) {
 	return {$: 59, a: a};
 };
 var $author$project$VegaLite$axcoTitleFont = function (s) {
-	return $author$project$VegaLite$TitleFont(
+	return $author$project$VegaLite$AxcoTitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxBoth = 0;
