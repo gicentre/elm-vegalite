@@ -1317,7 +1317,6 @@ module VegaLite exposing
     , lecoPadding
     , lecoRowPadding
     , lecoGradientDirection
-    , lecoGradientLabelBaseline
     , lecoGradientLabelLimit
     , lecoGradientLabelOffset
     , lecoGradientLength
@@ -3617,7 +3616,6 @@ See the
 @docs lecoPadding
 @docs lecoRowPadding
 @docs lecoGradientDirection
-@docs lecoGradientLabelBaseline
 @docs lecoGradientLabelLimit
 @docs lecoGradientLabelOffset
 @docs lecoGradientLength
@@ -5070,11 +5068,11 @@ type Legend
 [lecoFillColor](#lecoFillColor), [lecoOrient](#lecoOrient), [lecoOffset](#lecoOffset),
 [lecoStrokeColor](#lecoStrokeColor), [lecoStrokeDash](#lecoStrokeDash), [lecoStrokeWidth](#lecoStrokeWidth),
 [lecoPadding](#lecoPadding), [lecoRowPadding](#lecoRowPadding), [lecoGradientDirection](#lecoGradientDirection),
-[lecoGradientLabelBaseline](#lecoGradientLabelBaseline), [lecoGradientLabelLimit](#lecoGradientLabelLimit),
-[lecoGradientLabelOffset](#lecoGradientLabelOffset), [lecoGradientOpacity](#lecoGradientOpacity),
-[lecoGradientStrokeColor](#lecoGradientStrokeColor), [lecoGradientStrokeWidth](#lecoGradientStrokeWidth),
-[lecoGradientLength](#lecoGradientLength), [lecoGradientThickness](#lecoGradientThickness),
-[lecoGridAlign](#lecoGridAlign), [lecoLabelAlign](#lecoLabelAlign), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoGradientLabelLimit](#lecoGradientLabelLimit),[lecoGradientLabelOffset](#lecoGradientLabelOffset),
+[lecoGradientOpacity](#lecoGradientOpacity), [lecoGradientStrokeColor](#lecoGradientStrokeColor),
+[lecoGradientStrokeWidth](#lecoGradientStrokeWidth), [lecoGradientLength](#lecoGradientLength),
+[lecoGradientThickness](#lecoGradientThickness), [lecoGridAlign](#lecoGridAlign),
+[lecoLabelAlign](#lecoLabelAlign), [lecoLabelBaseline](#lecoLabelBaseline),
 [lecoLabelColor](#lecoLabelColor), [lecoLabelFont](#lecoLabelFont), [lecoLabelFontSize](#lecoLabelFontSize),
 [lecoLabelFontStyle](#lecoLabelFontStyle), [lecoLabelFontWeight](#lecoLabelFontWeight),
 [lecoLabelLimit](#lecoLabelLimit), [lecoLabelOffset](#lecoLabelOffset), [lecoLabelOverlap](#lecoLabelOverlap),
@@ -5101,7 +5099,6 @@ type LegendConfig
     | LecoCornerRadius Num
     | LecoFillColor Str
     | LecoGradientDirection MarkOrientation
-    | LecoGradientLabelBaseline VAlign
     | LecoGradientLabelLimit Num
     | LecoGradientLabelOffset Num
     | LecoGradientLength Num
@@ -5109,15 +5106,15 @@ type LegendConfig
     | LecoGradientStrokeColor Str
     | LecoGradientStrokeWidth Num
     | LecoGradientThickness Num
+    | LecoGradientHorizontalMaxLength Num
+    | LecoGradientHorizontalMinLength Num
+    | LecoGradientVerticalMaxLength Num
+    | LecoGradientVerticalMinLength Num
     | LecoGridAlign CompositionAlignment
     | LecoLabelAlign HAlign
     | LecoLabelBaseline VAlign
     | LecoLabelColor Str
     | LecoNoTitle
-    | LecoGradientHorizontalMaxLength Num
-    | LecoGradientHorizontalMinLength Num
-    | LecoGradientVerticalMaxLength Num
-    | LecoGradientVerticalMinLength Num
     | LecoLabelFont Str
     | LecoLabelFontSize Num
     | LecoLabelFontStyle Str
@@ -13502,13 +13499,6 @@ lecoGradientHorizontalMaxLength n =
 lecoGradientHorizontalMinLength : Float -> LegendConfig
 lecoGradientHorizontalMinLength n =
     LecoGradientHorizontalMinLength (Num n)
-
-
-{-| Default vertical alignment for labels in a color ramp legend.
--}
-lecoGradientLabelBaseline : VAlign -> LegendConfig
-lecoGradientLabelBaseline =
-    LecoGradientLabelBaseline
 
 
 {-| Default maximum allowable length for labels in a color ramp legend.
@@ -24295,9 +24285,6 @@ legendConfigProperty legendConfig =
 
         LecoGradientVerticalMinLength x ->
             numExpr "gradientVerticalMinLength" x
-
-        LecoGradientLabelBaseline va ->
-            [ ( "gradientLabelBaseline", vAlignSpec va ) ]
 
         LecoGradientLabelLimit x ->
             numExpr "gradientLabelLimit" x

@@ -24,6 +24,8 @@ Add images on maps test (VL5.1).
 
 - Remove `lecoEntryPadding` (VL5.0) to be replaced with `lecoRowPadding` and `lecoColPadding`.
 
+- Remove `lecoGradientLabelBaseline` to be replaced with `lecoLabelBaseline`.
+
 - Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
 
 - `racoSymbol` for configuring default categorical symbols removed as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
