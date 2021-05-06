@@ -14,21 +14,11 @@ Add images on maps test (VL5.1).
 
 ### V4.0 Breaking Changes
 
-- Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
+- **New parameter type**: `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
 
-- `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
+- **New parameter type**: `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
 
-- `leValues` now takes `DataValues` (allowing numbers, strings, dates and Booleans) rather than a more limited set of (now removed) `LegendValues`. To update older code, replace `leValues (leNums [1,2,3]) with leValues (nums [1,2,3])`.
-
-- Removed redundant or older deprecated legend configuration options: `lecoGradientWidth` and `lecoGradientHeight` ( replaced with `lecoGradientLength`); `lecoEntryPadding` (replaced with `lecoRowPadding` and `lecoColPadding`); `lecoGradientLabelBaseline` (replaced with `lecoLabelBaseline`); `lecoShortTimeLabels` (all time labels short by default).
-
-- Removed older deprecated `scDomainMid`.
-
-- Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
-
-- `racoSymbol` for configuring default categorical symbols removed as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
-
-- `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
+- **New parameter type**: `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
 
   | Old version                  | New version                           |
   | ---------------------------- | ------------------------------------- |
@@ -38,6 +28,16 @@ Add images on maps test (VL5.1).
   | `seToggle "event.ctrlKey"`   | `seToggle tpCtrlKey`                  |
   | `seToggle "event.altKey"`    | `seToggle tpAltKey`                   |
   | `seToggle "some expression"` | `seToggle (tpExpr "some expression")` |
+
+- **Removed exposed type**: Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
+
+- **Removed** redundant or older deprecated legend configuration options: `lecoGradientWidth` and `lecoGradientHeight` ( replaced with `lecoGradientLength`); `lecoEntryPadding` (replaced with `lecoRowPadding` and `lecoColPadding`); `lecoGradientLabelBaseline` (replaced with `lecoLabelBaseline`); `lecoShortTimeLabels` (all time labels short by default).
+
+- **Removed** older deprecated `scDomainMid`.
+
+- **Removed** redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
+
+- **Removed** `racoSymbol` for configuring default categorical symbols as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
 
 ### V4.0 Additions
 
