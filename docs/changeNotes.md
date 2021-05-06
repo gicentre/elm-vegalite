@@ -8,11 +8,9 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
-Add axis, concat, legend, facet, and range config parameterisation expressions
+Add axis and legend config parameterisation expressions.
 
 Add images on maps test (VL5.1).
-
-Check remaining expression options that may have appeared since VL5 API documentation updates.
 
 ### V4.0 Breaking Changes
 
@@ -24,7 +22,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
 
-- `racoSymbol` for configuring default categorical removed as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
+- `racoSymbol` for configuring default categorical symbols removed as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
 
 - `seToggle` for determining how repeated interaction selections should behave, now takes a more typesafe `TogglePredicate` rather than string. See the table below for their replacements:
 
@@ -59,7 +57,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `raNumExpr` for providing expressions that evaluate to numeric scale range properties (VL5.0)
 
-- `axNumExpr` for providing expressions that evaluate to numeric axis properties (VL5.0).
+- `axNumExpr` / `axcoNumExpr` for providing expressions that evaluate to numeric axis properties or configuration. (VL5.0).
 
 - `axNumsExpr` for providing expressions that evaluate to a list of numeric axis (dash) properties (VL5.0).
 
@@ -93,9 +91,7 @@ Check remaining expression options that may have appeared since VL5 API document
 
 - `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `racoSymbols` / racoSymbolsExpr`(symbols for default scales),`caExpr`(stroke cap style),`joExpr`(stroke join style),`cuExpr`(cursor style),`miExpr`(mark interpolation type),`siExpr`(side),`osExpr`(axis label overlap strategy),`tdExpr`(text direction),`niExpr`(nice tick intervals),`arExpr`(Aria accessibility),`titleExpr`(top-level title),`tfExpr`(title frame),`prExpr`(projection type),`prCenterExpr`(projection center),`prTranslateExpr`(projection translation),`prRotateExpr`(projection rotation),`prParallelsExpr`(conic projection standard parallels),`clipRectExpr`(projection clipping extent),`scDomainExpr`(domain scaling),`doDtsExpr`, `doMinDt`, `doMaxDt`(domain timestamp boundaries),`raExprs`(range elements),`scSchemeExpr` (colour schemes) (VL4.16 to VL 5.0).
-
-- Top-level expression functions for interactive parameterisation: `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16).
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `racoSymbols` / `racoSymbolsExpr`(symbols for default scales),`caExpr`(stroke cap style),`joExpr`(stroke join style),`cuExpr`(cursor style),`miExpr`(mark interpolation type),`siExpr`(side),`osExpr`(axis label overlap strategy),`tdExpr`(text direction),`niExpr`(nice tick intervals),`arExpr`(Aria accessibility),`titleExpr`(top-level title),`tfExpr`(title frame),`prExpr`(projection type),`prCenterExpr`(projection center),`prTranslateExpr`(projection translation),`prRotateExpr`(projection rotation),`prParallelsExpr`(conic projection standard parallels),`clipRectExpr`(projection clipping extent),`scDomainExpr`(domain scaling),`doDtsExpr`, `doMinDt`, `doMaxDt`(domain timestamp boundaries),`raExprs`(range elements),`scSchemeExpr` (colour schemes), `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16 to VL 5.0).
 
 - `datumExpr` / `dataExpr` for creating a datum value or list of data values from an expression (VL4.16).
 
@@ -128,6 +124,8 @@ Check remaining expression options that may have appeared since VL5 API document
 - `axTickBand` / `axcoTickBand` and associated `tbCenter`, `tbExtent` and `tbExpr` for aligning axis ticks and grids with band scales.
 
 - `axTitleLineHeight` for multi-line axis titles.
+
+- `axcoOffset` and `axcoLabelOffset` for configuring axis spacing.
 
 - `lecoDirection`, `leGradientOpacity`/`lecoGradientOpacity`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle` and `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity` for legend settings.
 

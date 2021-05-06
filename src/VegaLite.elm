@@ -512,6 +512,7 @@ module VegaLite exposing
     , soCustom
     , axBooExpr
     , axNumExpr
+    , axcoNumExpr
     , axNumsExpr
     , axStrExpr
     , axAria
@@ -1254,10 +1255,12 @@ module VegaLite exposing
     , axcoLabelFontWeight
     , axcoLabelLimit
     , axcoLabelLineHeight
+    , axcoLabelOffset
     , axcoLabelOpacity
     , axcoLabelOverlap
     , axcoLabelPadding
     , axcoLabelSeparation
+    , axcoOffset
     , axcoTicks
     , axcoTickBand
     , axcoTickCap
@@ -2472,6 +2475,7 @@ See the
 
 @docs axBooExpr
 @docs axNumExpr
+@docs axcoNumExpr
 @docs axNumsExpr
 @docs axStrExpr
 
@@ -3531,10 +3535,12 @@ See the
 @docs axcoLabelFontWeight
 @docs axcoLabelLimit
 @docs axcoLabelLineHeight
+@docs axcoLabelOffset
 @docs axcoLabelOpacity
 @docs axcoLabelOverlap
 @docs axcoLabelPadding
 @docs axcoLabelSeparation
+@docs axcoOffset
 @docs axcoTicks
 @docs axcoTickBand
 @docs axcoTickCap
@@ -4094,16 +4100,16 @@ type AxisChoice
 [axcoLabelFlushOffset](#axcoLabelFlushOffset), [axcoLabelFont](#axcoLabelFont),
 [axcoLabelFontSize](#axcoLabelFontSize), [axcoLabelFontStyle](#axcoLabelFontStyle),
 [axcoLabelFontWeight](#axcoLabelFontWeight), [axcoLabelLimit](#axcoLabelLimit),
-[axcoLabelLineHeight](#axcoLabelLineHeight), [axcoLabelOpacity](#axcoLabelOpacity),
-[axcoLabelOverlap](#axcoLabelOverlap), [axcoLabelPadding](#axcoLabelPadding),
-[axcoLabelSeparation](#axcoLabelSeparation), [axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor),
+[axcoLabelLineHeight](#axcoLabelLineHeight), [axcoLabelOffset](#axcoLabelOffset),
+[axcoLabelOpacity](#axcoLabelOpacity), [axcoLabelOverlap](#axcoLabelOverlap),
+[axcoLabelPadding](#axcoLabelPadding), [axcoLabelSeparation](#axcoLabelSeparation),
+[axcoOffset](#axcoOffset), [axcoTicks](#axcoTicks), [axcoTickColor](#axcoTickColor),
 [axcoTickCount](#axcoTickCount), [axcoGridDash](#axcoGridDash), [axcoGridDashOffset](#axcoGridDashOffset),
 [axcoTickCap](#axcoTickCap), [axcoTickExtra](#axcoTickExtra), [axcoTickOffset](#axcoTickOffset),
 [axcoTickOpacity](#axcoTickOpacity), [axcoTickRound](#axcoTickRound), [axcoTickSize](#axcoTickSize),
 [axcoTickMinStep](#axcoTickMinStep), [axcoTickWidth](#axcoTickWidth), [axcoTitleAlign](#axcoTitleAlign),
-[axcoTitleAnchor](#axcoTitleAnchor), [axcoTitleAngle](#axcoTitleAngle),
-[axcoTitleBaseline](#axcoTitleBaseline), [axcoTitleColor](#axcoTitleColor),
-[axcoTitleFont](#axcoTitleFont), [axcoTitleFontSize](#axcoTitleFontSize),
+[axcoTitleAnchor](#axcoTitleAnchor), [axcoTitleAngle](#axcoTitleAngle), [axcoTitleBaseline](#axcoTitleBaseline),
+[axcoTitleColor](#axcoTitleColor), [axcoTitleFont](#axcoTitleFont), [axcoTitleFontSize](#axcoTitleFontSize),
 [axcoTitleFontStyle](#axcoTitleFontStyle), [axcoTitleFontWeight](#axcoTitleFontWeight),
 [axcoTitleLimit](#axcoTitleLimit), [axcoTitleLineHeight](#axcoTitleLineHeight),
 [axcoTitleOpacity](#axcoTitleOpacity), [axcoTitlePadding](#axcoTitlePadding),
@@ -4111,73 +4117,75 @@ type AxisChoice
 -}
 type AxisConfig
     = AxisAria (List Aria)
-    | BandPosition Float
+    | BandPosition Num
     | AxDisable Bool
     | Domain Bool
     | DomainCap StrokeCap
     | DomainColor String
     | DomainDash (List Float)
-    | DomainDashOffset Float
-    | DomainOpacity Float
-    | DomainWidth Float
+    | DomainDashOffset Num
+    | DomainOpacity Num
+    | DomainWidth Num
     | Grid Bool
     | GridCap StrokeCap
     | GridColor String
     | GridDash (List Float)
-    | GridDashOffset Float
-    | GridOpacity Float
-    | GridWidth Float
+    | GridDashOffset Num
+    | GridOpacity Num
+    | GridWidth Num
     | Labels Bool
     | LabelAlign HAlign
-    | LabelAngle Float
+    | LabelAngle Num
     | LabelBaseline VAlign
     | LabelBound (Maybe Float)
     | LabelFlush (Maybe Float)
-    | LabelFlushOffset Float
+    | LabelFlushOffset Num
     | LabelColor String
     | LabelExpr String
     | LabelFont String
-    | LabelFontSize Float
+    | LabelFontSize Num
     | LabelFontStyle String
     | LabelFontWeight FontWeight
-    | LabelLimit Float
-    | LabelLineHeight Float
-    | LabelOpacity Float
+    | LabelLimit Num
+    | LabelLineHeight Num
+    | LabelOffset Num
+    | LabelOpacity Num
     | LabelOverlap OverlapStrategy
-    | LabelPadding Float
-    | LabelSeparation Float
-    | MaxExtent Float
-    | MinExtent Float
+    | LabelPadding Num
+    | LabelSeparation Num
+    | MaxExtent Num
+    | MinExtent Num
+    | OffsetAxis Num
     | Ticks Bool
     | TickBand TickBand
     | TickCap StrokeCap
     | TickColor String
     | TickCount ScaleNice
     | TickDash (List Float)
-    | TickDashOffset Float
+    | TickDashOffset Num
     | TickExtra Bool
-    | TickOffset Float
-    | TickOpacity Float
+    | TickOffset Num
+    | TickOpacity Num
     | TickRound Bool
-    | TickSize Float
-    | TickMinStep Float
-    | TickWidth Float
+    | TickSize Num
+    | TickMinStep Num
+    | TickWidth Num
     | TitleAlign HAlign
     | TitleAnchor Anchor
-    | TitleAngle Float
+    | TitleAngle Num
     | TitleBaseline VAlign
     | TitleColor String
     | TitleFont String
-    | TitleFontSize Float
+    | TitleFontSize Num
     | TitleFontStyle String
     | TitleFontWeight FontWeight
-    | TitleLimit Float
-    | TitleLineHeight Float
-    | TitleOpacity Float
-    | TitlePadding Float
-    | TitleX Float
-    | TitleY Float
-    | TranslateAxis Float
+    | TitleLimit Num
+    | TitleLineHeight Num
+    | TitleOpacity Num
+    | TitlePadding Num
+    | TitleX Num
+    | TitleY Num
+    | TranslateAxis Num
 
 
 {-| Generated by [axAria](#axAria), [axBandPosition](#axBandPosition),
@@ -6844,6 +6852,51 @@ axBandPosition n =
     AxBandPosition (Num n)
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
+axis property function requiring a Boolean value. This can be used to provide an
+interactive parameterisation of an axis property when an expression is bound to
+an input element. For example,
+
+    ps =
+        params
+            << param "lbls"
+                [ paValue (boo True)
+                , paBind (ipCheckbox [])
+                ]
+
+    enc =
+        encoding
+            << position X
+                [ pName "x"
+                , pAxis [ axBooExpr "lbls" axLabels ]
+                ]
+
+-}
+axBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
+axBooExpr ex fn =
+    case fn False of
+        AxDomain _ ->
+            AxDomain (BooExpr ex)
+
+        AxLabels _ ->
+            AxLabels (BooExpr ex)
+
+        AxTickExtra _ ->
+            AxTickExtra (BooExpr ex)
+
+        AxTickRound _ ->
+            AxTickRound (BooExpr ex)
+
+        AxTicks _ ->
+            AxTicks (BooExpr ex)
+
+        AxGrid _ ->
+            AxGrid (BooExpr ex)
+
+        _ ->
+            fn False
+
+
 {-| Default [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
 properties for providing accessible SVG output associated with an axis. If an empty
 list is provided, ARIA tagging will be switched off.
@@ -6856,11 +6909,11 @@ axcoAria =
 {-| Default axis band position.
 -}
 axcoBandPosition : Float -> AxisConfig
-axcoBandPosition =
-    BandPosition
+axcoBandPosition n =
+    BandPosition (Num n)
 
 
-{-| Default appearance of axis.
+{-| Whether or not axes are generated for positional encoding by default.
 -}
 axcoDisable : Bool -> AxisConfig
 axcoDisable =
@@ -6899,22 +6952,22 @@ axcoDomainDash =
 {-| Default number of pixels before the first axis baseline (domain) line dash is drawn.
 -}
 axcoDomainDashOffset : Float -> AxisConfig
-axcoDomainDashOffset =
-    DomainDashOffset
+axcoDomainDashOffset n =
+    DomainDashOffset (Num n)
 
 
 {-| Default axis domain opacity.
 -}
 axcoDomainOpacity : Float -> AxisConfig
-axcoDomainOpacity =
-    DomainOpacity
+axcoDomainOpacity n =
+    DomainOpacity (Num n)
 
 
 {-| Default axis domain width style.
 -}
 axcoDomainWidth : Float -> AxisConfig
-axcoDomainWidth =
-    DomainWidth
+axcoDomainWidth n =
+    DomainWidth (Num n)
 
 
 {-| Whether or not an axis grid is displayed by default.
@@ -6929,40 +6982,6 @@ axcoGrid =
 axcoGridCap : StrokeCap -> AxisConfig
 axcoGridCap =
     GridCap
-
-
-{-| Make an axis property (tick, grid or label) conditional on one or more predicate
-expressions. The first parameter is the test to apply. The second is a pair of properties
-to set if the test evaluates to true or false.
-
-The test parameter has access to the axis properties `value` and `label` corresponding
-to the value associated with an individual axis element and its text label. These
-should be used rather than the underlying data field when referencing a data value.
-
-     pAxis
-        [ axDataCondition (expr "datum.value <= 2")
-            (cAxTickColor "red" "blue")
-        , axDataCondition (expr "datum.label =='4.0'")
-            (cAxTickWidth 5 2)
-        ]
-
-You can also apply inline aggregation before applying the test using
-[fiOpTrans](#fiOpTrans), which can be particularly useful for filtering temporal
-data. For example, the following will apply solid grid lines for January 1st of
-each year and dashes for all other dates:
-
-    pAxis
-        [ axDataCondition
-            (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ])
-                |> fiOpTrans (mTimeUnit monthDate)
-            )
-            (cAxGridDash [] [ 2, 2 ])
-        ]
-
--}
-axDataCondition : BooleanOp -> ConditionalAxisProperty -> AxisProperty
-axDataCondition =
-    AxDataCondition
 
 
 {-| Default axis grid color style.
@@ -6982,22 +7001,22 @@ axcoGridDash =
 {-| Default number of pixels before the first axis grid line dash is drawn.
 -}
 axcoGridDashOffset : Float -> AxisConfig
-axcoGridDashOffset =
-    GridDashOffset
+axcoGridDashOffset n =
+    GridDashOffset (Num n)
 
 
 {-| Default axis grid line opacity.
 -}
 axcoGridOpacity : Float -> AxisConfig
-axcoGridOpacity =
-    GridOpacity
+axcoGridOpacity n =
+    GridOpacity (Num n)
 
 
 {-| Default axis grid line width.
 -}
 axcoGridWidth : Float -> AxisConfig
-axcoGridWidth =
-    GridWidth
+axcoGridWidth n =
+    GridWidth (Num n)
 
 
 {-| Whether or not an axis has labels by default.
@@ -7017,8 +7036,8 @@ axcoLabelAlign =
 {-| Default axis label angle (degrees from horizontal).
 -}
 axcoLabelAngle : Float -> AxisConfig
-axcoLabelAngle =
-    LabelAngle << positiveAngle
+axcoLabelAngle n =
+    LabelAngle (Num (positiveAngle n))
 
 
 {-| Default axis label vertical alignment.
@@ -7065,8 +7084,8 @@ axcoLabelFlush =
 {-| Default number of pixels by which to offset flush-adjusted labels.
 -}
 axcoLabelFlushOffset : Float -> AxisConfig
-axcoLabelFlushOffset =
-    LabelFlushOffset
+axcoLabelFlushOffset n =
+    LabelFlushOffset (Num n)
 
 
 {-| Default axis label font.
@@ -7079,8 +7098,8 @@ axcoLabelFont =
 {-| Default axis label font size.
 -}
 axcoLabelFontSize : Float -> AxisConfig
-axcoLabelFontSize =
-    LabelFontSize
+axcoLabelFontSize n =
+    LabelFontSize (Num n)
 
 
 {-| Default axis label font style (e.g. "italic")
@@ -7101,15 +7120,22 @@ axcoLabelFontWeight =
 left/bottom or right/top of the axis line).
 -}
 axcoLabelLimit : Float -> AxisConfig
-axcoLabelLimit =
-    LabelLimit
+axcoLabelLimit n =
+    LabelLimit (Num n)
 
 
 {-| Default axis label line height (useful for multi-line labels).
 -}
 axcoLabelLineHeight : Float -> AxisConfig
-axcoLabelLineHeight =
-    LabelLineHeight
+axcoLabelLineHeight n =
+    LabelLineHeight (Num n)
+
+
+{-| Default axis offset in pixels of an axis's labels relative to its ticks.
+-}
+axcoLabelOffset : Float -> AxisConfig
+axcoLabelOffset n =
+    LabelOffset (Num n)
 
 
 {-| Default axis label overlap strategy for cases where labels cannot
@@ -7123,45 +7149,165 @@ axcoLabelOverlap =
 {-| Default axis label opacity.
 -}
 axcoLabelOpacity : Float -> AxisConfig
-axcoLabelOpacity =
-    LabelOpacity
+axcoLabelOpacity n =
+    LabelOpacity (Num n)
 
 
 {-| Default axis label padding (space between labels in pixels).
 -}
 axcoLabelPadding : Float -> AxisConfig
-axcoLabelPadding =
-    LabelPadding
+axcoLabelPadding n =
+    LabelPadding (Num n)
 
 
 {-| Default axis label separation (minimum spacing between axis labels).
 -}
 axcoLabelSeparation : Float -> AxisConfig
-axcoLabelSeparation =
-    LabelSeparation
+axcoLabelSeparation n =
+    LabelSeparation (Num n)
 
 
 {-| Default maximum extent style.
 -}
 axcoMaxExtent : Float -> AxisConfig
-axcoMaxExtent =
-    MaxExtent
+axcoMaxExtent n =
+    MaxExtent (Num n)
 
 
 {-| Default minimum extent style.
 -}
 axcoMinExtent : Float -> AxisConfig
-axcoMinExtent =
-    MinExtent
+axcoMinExtent n =
+    MinExtent (Num n)
 
 
 
 {- | A list of named styles to apply as defaults to axes.
-
-   axcoStyle : List String -> AxisConfig
-   axcoStyle =
-       AStyle
+   -- TODO: Do we need this?
+      axcoStyle : List String -> AxisConfig
+      axcoStyle =
+          AStyle
 -}
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
+axis property configuration function requiring a numeric value.
+-}
+axcoNumExpr : String -> (number -> AxisConfig) -> AxisConfig
+axcoNumExpr ex fn =
+    case fn 0 of
+        BandPosition _ ->
+            BandPosition (NumExpr ex)
+
+        MaxExtent _ ->
+            MaxExtent (NumExpr ex)
+
+        MinExtent _ ->
+            MinExtent (NumExpr ex)
+
+        OffsetAxis _ ->
+            OffsetAxis (NumExpr ex)
+
+        TranslateAxis _ ->
+            TranslateAxis (NumExpr ex)
+
+        DomainDashOffset _ ->
+            DomainDashOffset (NumExpr ex)
+
+        DomainOpacity _ ->
+            DomainOpacity (NumExpr ex)
+
+        DomainWidth _ ->
+            DomainWidth (NumExpr ex)
+
+        LabelAngle _ ->
+            LabelAngle (NumExpr ex)
+
+        LabelFlushOffset _ ->
+            LabelFlushOffset (NumExpr ex)
+
+        LabelFontSize _ ->
+            LabelFontSize (NumExpr ex)
+
+        LabelLineHeight _ ->
+            LabelLineHeight (NumExpr ex)
+
+        LabelLimit _ ->
+            LabelLimit (NumExpr ex)
+
+        LabelOffset _ ->
+            LabelOffset (NumExpr ex)
+
+        LabelOpacity _ ->
+            LabelOpacity (NumExpr ex)
+
+        LabelPadding _ ->
+            LabelPadding (NumExpr ex)
+
+        LabelSeparation _ ->
+            LabelSeparation (NumExpr ex)
+
+        TickDashOffset _ ->
+            TickDashOffset (NumExpr ex)
+
+        TickOffset _ ->
+            TickOffset (NumExpr ex)
+
+        TickOpacity _ ->
+            TickOpacity (NumExpr ex)
+
+        TickSize _ ->
+            TickSize (NumExpr ex)
+
+        TickWidth _ ->
+            TickWidth (NumExpr ex)
+
+        TitleAngle _ ->
+            TitleAngle (NumExpr ex)
+
+        TitleFontSize _ ->
+            TitleFontSize (NumExpr ex)
+
+        TitleLimit _ ->
+            TitleLimit (NumExpr ex)
+
+        TitleLineHeight _ ->
+            TitleLineHeight (NumExpr ex)
+
+        TitleOpacity _ ->
+            TitleOpacity (NumExpr ex)
+
+        TitlePadding _ ->
+            TitlePadding (NumExpr ex)
+
+        TitleX _ ->
+            TitleX (NumExpr ex)
+
+        TitleY _ ->
+            TitleY (NumExpr ex)
+
+        GridDashOffset _ ->
+            GridDashOffset (NumExpr ex)
+
+        GridOpacity _ ->
+            GridOpacity (NumExpr ex)
+
+        GridWidth _ ->
+            GridWidth (NumExpr ex)
+
+        TickMinStep _ ->
+            TickMinStep (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
+{-| Default offset between the axis annd the edge of the enclosing group or data
+rectangle.
+-}
+axcoOffset : Float -> AxisConfig
+axcoOffset n =
+    OffsetAxis (Num n)
 
 
 {-| Default alignment of grid lines and ticks in band scales.
@@ -7204,8 +7350,8 @@ axcoTickDash =
 {-| Default number of pixels before the first axis tick dash is drawn.
 -}
 axcoTickDashOffset : Float -> AxisConfig
-axcoTickDashOffset =
-    TickDashOffset
+axcoTickDashOffset n =
+    TickDashOffset (Num n)
 
 
 {-| Whether or not by default an extra axis tick should be added for the initial
@@ -7222,22 +7368,22 @@ apart. If specified, the tick count\` value will be adjusted, if necessary, to
 enforce the minimum step value.
 -}
 axcoTickMinStep : Float -> AxisConfig
-axcoTickMinStep =
-    TickMinStep
+axcoTickMinStep n =
+    TickMinStep (Num n)
 
 
 {-| Default offset in pixels of axis ticks, labels and gridlines.
 -}
 axcoTickOffset : Float -> AxisConfig
-axcoTickOffset =
-    TickOffset
+axcoTickOffset n =
+    TickOffset (Num n)
 
 
 {-| Default opacity of axis ticks.
 -}
 axcoTickOpacity : Float -> AxisConfig
-axcoTickOpacity =
-    TickOpacity
+axcoTickOpacity n =
+    TickOpacity (Num n)
 
 
 {-| Whether or not axis tick labels use rounded values by default.
@@ -7257,15 +7403,15 @@ axcoTicks =
 {-| Default axis tick mark size.
 -}
 axcoTickSize : Float -> AxisConfig
-axcoTickSize =
-    TickSize
+axcoTickSize n =
+    TickSize (Num n)
 
 
 {-| Default axis tick mark width.
 -}
 axcoTickWidth : Float -> AxisConfig
-axcoTickWidth =
-    TickWidth
+axcoTickWidth n =
+    TickWidth (Num n)
 
 
 {-| Default axis tick label horizontal alignment.
@@ -7285,8 +7431,8 @@ axcoTitleAnchor =
 {-| Default axis title angle (degrees from horizontal).
 -}
 axcoTitleAngle : Float -> AxisConfig
-axcoTitleAngle =
-    TitleAngle << positiveAngle
+axcoTitleAngle n =
+    TitleAngle (Num (positiveAngle n))
 
 
 {-| Default axis title vertical alignment.
@@ -7320,8 +7466,8 @@ axcoTitleFontWeight =
 {-| Default axis title font size.
 -}
 axcoTitleFontSize : Float -> AxisConfig
-axcoTitleFontSize =
-    TitleFontSize
+axcoTitleFontSize n =
+    TitleFontSize (Num n)
 
 
 {-| Default axis title font style (e.g. "italic").
@@ -7334,50 +7480,84 @@ axcoTitleFontStyle =
 {-| Default axis title maximum size.
 -}
 axcoTitleLimit : Float -> AxisConfig
-axcoTitleLimit =
-    TitleLimit
+axcoTitleLimit n =
+    TitleLimit (Num n)
 
 
 {-| Default line height for multi-line axis titles.
 -}
 axcoTitleLineHeight : Float -> AxisConfig
-axcoTitleLineHeight =
-    TitleLineHeight
+axcoTitleLineHeight n =
+    TitleLineHeight (Num n)
 
 
 {-| Default opacity of axis titles.
 -}
 axcoTitleOpacity : Float -> AxisConfig
-axcoTitleOpacity =
-    TitleOpacity
+axcoTitleOpacity n =
+    TitleOpacity (Num n)
 
 
 {-| Default axis title padding between axis line and text.
 -}
 axcoTitlePadding : Float -> AxisConfig
-axcoTitlePadding =
-    TitlePadding
+axcoTitlePadding n =
+    TitlePadding (Num n)
 
 
 {-| Default axis x-position relative to the axis group.
 -}
 axcoTitleX : Float -> AxisConfig
-axcoTitleX =
-    TitleX
+axcoTitleX n =
+    TitleX (Num n)
 
 
 {-| Default axis y-position relative to the axis group.
 -}
 axcoTitleY : Float -> AxisConfig
-axcoTitleY =
-    TitleY
+axcoTitleY n =
+    TitleY (Num n)
 
 
 {-| Default coordinate space translation offset for axis layout.
 -}
 axcoTranslate : Float -> AxisConfig
-axcoTranslate =
-    TranslateAxis
+axcoTranslate n =
+    TranslateAxis (Num n)
+
+
+{-| Make an axis property (tick, grid or label) conditional on one or more predicate
+expressions. The first parameter is the test to apply. The second is a pair of properties
+to set if the test evaluates to true or false.
+
+The test parameter has access to the axis properties `value` and `label` corresponding
+to the value associated with an individual axis element and its text label. These
+should be used rather than the underlying data field when referencing a data value.
+
+     pAxis
+        [ axDataCondition (expr "datum.value <= 2")
+            (cAxTickColor "red" "blue")
+        , axDataCondition (expr "datum.label =='4.0'")
+            (cAxTickWidth 5 2)
+        ]
+
+You can also apply inline aggregation before applying the test using
+[fiOpTrans](#fiOpTrans), which can be particularly useful for filtering temporal
+data. For example, the following will apply solid grid lines for January 1st of
+each year and dashes for all other dates:
+
+    pAxis
+        [ axDataCondition
+            (fiEqual "value" (dt [ dtMonth Jan, dtDate 1 ])
+                |> fiOpTrans (mTimeUnit monthDate)
+            )
+            (cAxGridDash [] [ 2, 2 ])
+        ]
+
+-}
+axDataCondition : BooleanOp -> ConditionalAxisProperty -> AxisProperty
+axDataCondition =
+    AxDataCondition
 
 
 {-| Whether or not an axis baseline (domain) should be included as part of an axis.
@@ -7514,284 +7694,6 @@ axGridOpacity n =
 axGridWidth : Float -> AxisProperty
 axGridWidth n =
     AxGridWidth (Num n)
-
-
-{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
-axis property function requiring a Boolean value. This can be used to provide an
-interactive parameterisation of an axis property when an expression is bound to
-an input element. For example,
-
-    ps =
-        params
-            << param "lbls"
-                [ paValue (boo True)
-                , paBind (ipCheckbox [])
-                ]
-
-    enc =
-        encoding
-            << position X
-                [ pName "x"
-                , pAxis [ axBooExpr "lbls" axLabels ]
-                ]
-
--}
-axBooExpr : String -> (Bool -> AxisProperty) -> AxisProperty
-axBooExpr ex fn =
-    case fn False of
-        AxDomain _ ->
-            AxDomain (BooExpr ex)
-
-        AxLabels _ ->
-            AxLabels (BooExpr ex)
-
-        AxTickExtra _ ->
-            AxTickExtra (BooExpr ex)
-
-        AxTickRound _ ->
-            AxTickRound (BooExpr ex)
-
-        AxTicks _ ->
-            AxTicks (BooExpr ex)
-
-        AxGrid _ ->
-            AxGrid (BooExpr ex)
-
-        _ ->
-            fn False
-
-
-{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
-axis property function requiring a numeric value. This can be used for interactive
-parameterisation when an expression is bound to an input element. For example,
-
-    ps =
-        params
-            << param "axo"
-                [ paValue (num 0)
-                , paBind (ipRange [ inMax 20 ])
-                ]
-
-    enc =
-        encoding
-            << position X
-                [ pName "x"
-                , pAxis [ axNumExpr "axo" axOffset ]
-                ]
-
--}
-axNumExpr : String -> (number -> AxisProperty) -> AxisProperty
-axNumExpr ex fn =
-    case fn 0 of
-        AxBandPosition _ ->
-            AxBandPosition (NumExpr ex)
-
-        AxMaxExtent _ ->
-            AxMaxExtent (NumExpr ex)
-
-        AxMinExtent _ ->
-            AxMinExtent (NumExpr ex)
-
-        AxOffset _ ->
-            AxOffset (NumExpr ex)
-
-        AxPosition _ ->
-            AxPosition (NumExpr ex)
-
-        AxTranslate _ ->
-            AxTranslate (NumExpr ex)
-
-        AxZIndex _ ->
-            AxZIndex (NumExpr ex)
-
-        AxDomainDashOffset _ ->
-            AxDomainDashOffset (NumExpr ex)
-
-        AxDomainOpacity _ ->
-            AxDomainOpacity (NumExpr ex)
-
-        AxDomainWidth _ ->
-            AxDomainWidth (NumExpr ex)
-
-        AxLabelAngle _ ->
-            AxLabelAngle (NumExpr ex)
-
-        AxLabelFlushOffset _ ->
-            AxLabelFlushOffset (NumExpr ex)
-
-        AxLabelFontSize _ ->
-            AxLabelFontSize (NumExpr ex)
-
-        AxLabelLineHeight _ ->
-            AxLabelLineHeight (NumExpr ex)
-
-        AxLabelLimit _ ->
-            AxLabelLimit (NumExpr ex)
-
-        AxLabelOffset _ ->
-            AxLabelOffset (NumExpr ex)
-
-        AxLabelOpacity _ ->
-            AxLabelOpacity (NumExpr ex)
-
-        AxLabelPadding _ ->
-            AxLabelPadding (NumExpr ex)
-
-        AxLabelSeparation _ ->
-            AxLabelSeparation (NumExpr ex)
-
-        AxTickDashOffset _ ->
-            AxTickDashOffset (NumExpr ex)
-
-        AxTickOffset _ ->
-            AxTickOffset (NumExpr ex)
-
-        AxTickOpacity _ ->
-            AxTickOpacity (NumExpr ex)
-
-        AxTickSize _ ->
-            AxTickSize (NumExpr ex)
-
-        AxTickWidth _ ->
-            AxTickWidth (NumExpr ex)
-
-        AxTitleAngle _ ->
-            AxTitleAngle (NumExpr ex)
-
-        AxTitleFontSize _ ->
-            AxTitleFontSize (NumExpr ex)
-
-        AxTitleLimit _ ->
-            AxTitleLimit (NumExpr ex)
-
-        AxTitleLineHeight _ ->
-            AxTitleLineHeight (NumExpr ex)
-
-        AxTitleOpacity _ ->
-            AxTitleOpacity (NumExpr ex)
-
-        AxTitlePadding _ ->
-            AxTitlePadding (NumExpr ex)
-
-        AxTitleX _ ->
-            AxTitleX (NumExpr ex)
-
-        AxTitleY _ ->
-            AxTitleY (NumExpr ex)
-
-        AxGridDashOffset _ ->
-            AxGridDashOffset (NumExpr ex)
-
-        AxGridOpacity _ ->
-            AxGridOpacity (NumExpr ex)
-
-        AxGridWidth _ ->
-            AxGridWidth (NumExpr ex)
-
-        AxTickMinStep _ ->
-            AxTickMinStep (NumExpr ex)
-
-        _ ->
-            fn 0
-
-
-{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-an axis property function requiring a list of numbers (for dash styles). This can
-be used to provide an interactive parameterisation of an axis dash property when
-an expression is bound to an input element. For example,
-
-    ps =
-        params
-            << param "gridDash"
-                [ paValue (nums [ 2, 2 ])
-                , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
-                ]
-
-    enc =
-        encoding
-            << position X [ pAxis [ axNumsExpr "gridDash" axGridDash ] ]
-
--}
-axNumsExpr : String -> (List number -> AxisProperty) -> AxisProperty
-axNumsExpr ex fn =
-    case fn [] of
-        AxDomainDash _ ->
-            AxDomainDash (NumsExpr ex)
-
-        AxGridDash _ ->
-            AxGridDash (NumsExpr ex)
-
-        AxTickDash _ ->
-            AxTickDash (NumsExpr ex)
-
-        _ ->
-            fn []
-
-
-{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-an axis property function requiring a string value. This can be used to provide an
-interactive parameterisation of an axis property when an expression is bound to an
-input element. For example,
-
-    ps =
-        params
-            << param "color"
-                [ paValue (str "black")
-                , paBind (ipColor [])
-                ]
-
-    enc =
-        encoding
-            << position X
-                [ pName "x"
-                , pAxis [ axStrExpr "color" axTitleColor ]
-                ]
-
--}
-axStrExpr : String -> (String -> AxisProperty) -> AxisProperty
-axStrExpr ex fn =
-    case fn "" of
-        AxDomainColor _ ->
-            AxDomainColor (StrExpr ex)
-
-        AxFormat _ ->
-            AxFormat (StrExpr ex)
-
-        AxFormatAsCustom _ ->
-            AxFormatAsCustom (StrExpr ex)
-
-        AxLabelColor _ ->
-            AxLabelColor (StrExpr ex)
-
-        AxLabelExpr _ ->
-            AxLabelExpr (StrExpr ex)
-
-        AxLabelFont _ ->
-            AxLabelFont (StrExpr ex)
-
-        AxLabelFontStyle _ ->
-            AxLabelFontStyle (StrExpr ex)
-
-        AxTickColor _ ->
-            AxTickColor (StrExpr ex)
-
-        AxTitle _ ->
-            AxTitle (StrExpr ex)
-
-        AxTitleColor _ ->
-            AxTitleColor (StrExpr ex)
-
-        AxTitleFont _ ->
-            AxTitleFont (StrExpr ex)
-
-        AxTitleFontStyle _ ->
-            AxTitleFontStyle (StrExpr ex)
-
-        AxGridColor _ ->
-            AxGridColor (StrExpr ex)
-
-        _ ->
-            fn ""
 
 
 {-| Horizontal alignment of axis tick labels.
@@ -7974,6 +7876,173 @@ axMinExtent n =
     AxMinExtent (Num n)
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
+axis property function requiring a numeric value. This can be used for interactive
+parameterisation when an expression is bound to an input element. For example,
+
+    ps =
+        params
+            << param "axo"
+                [ paValue (num 0)
+                , paBind (ipRange [ inMax 20 ])
+                ]
+
+    enc =
+        encoding
+            << position X
+                [ pName "x"
+                , pAxis [ axNumExpr "axo" axOffset ]
+                ]
+
+-}
+axNumExpr : String -> (number -> AxisProperty) -> AxisProperty
+axNumExpr ex fn =
+    case fn 0 of
+        AxBandPosition _ ->
+            AxBandPosition (NumExpr ex)
+
+        AxMaxExtent _ ->
+            AxMaxExtent (NumExpr ex)
+
+        AxMinExtent _ ->
+            AxMinExtent (NumExpr ex)
+
+        AxOffset _ ->
+            AxOffset (NumExpr ex)
+
+        AxPosition _ ->
+            AxPosition (NumExpr ex)
+
+        AxTranslate _ ->
+            AxTranslate (NumExpr ex)
+
+        AxZIndex _ ->
+            AxZIndex (NumExpr ex)
+
+        AxDomainDashOffset _ ->
+            AxDomainDashOffset (NumExpr ex)
+
+        AxDomainOpacity _ ->
+            AxDomainOpacity (NumExpr ex)
+
+        AxDomainWidth _ ->
+            AxDomainWidth (NumExpr ex)
+
+        AxLabelAngle _ ->
+            AxLabelAngle (NumExpr ex)
+
+        AxLabelFlushOffset _ ->
+            AxLabelFlushOffset (NumExpr ex)
+
+        AxLabelFontSize _ ->
+            AxLabelFontSize (NumExpr ex)
+
+        AxLabelLineHeight _ ->
+            AxLabelLineHeight (NumExpr ex)
+
+        AxLabelLimit _ ->
+            AxLabelLimit (NumExpr ex)
+
+        AxLabelOffset _ ->
+            AxLabelOffset (NumExpr ex)
+
+        AxLabelOpacity _ ->
+            AxLabelOpacity (NumExpr ex)
+
+        AxLabelPadding _ ->
+            AxLabelPadding (NumExpr ex)
+
+        AxLabelSeparation _ ->
+            AxLabelSeparation (NumExpr ex)
+
+        AxTickDashOffset _ ->
+            AxTickDashOffset (NumExpr ex)
+
+        AxTickOffset _ ->
+            AxTickOffset (NumExpr ex)
+
+        AxTickOpacity _ ->
+            AxTickOpacity (NumExpr ex)
+
+        AxTickSize _ ->
+            AxTickSize (NumExpr ex)
+
+        AxTickWidth _ ->
+            AxTickWidth (NumExpr ex)
+
+        AxTitleAngle _ ->
+            AxTitleAngle (NumExpr ex)
+
+        AxTitleFontSize _ ->
+            AxTitleFontSize (NumExpr ex)
+
+        AxTitleLimit _ ->
+            AxTitleLimit (NumExpr ex)
+
+        AxTitleLineHeight _ ->
+            AxTitleLineHeight (NumExpr ex)
+
+        AxTitleOpacity _ ->
+            AxTitleOpacity (NumExpr ex)
+
+        AxTitlePadding _ ->
+            AxTitlePadding (NumExpr ex)
+
+        AxTitleX _ ->
+            AxTitleX (NumExpr ex)
+
+        AxTitleY _ ->
+            AxTitleY (NumExpr ex)
+
+        AxGridDashOffset _ ->
+            AxGridDashOffset (NumExpr ex)
+
+        AxGridOpacity _ ->
+            AxGridOpacity (NumExpr ex)
+
+        AxGridWidth _ ->
+            AxGridWidth (NumExpr ex)
+
+        AxTickMinStep _ ->
+            AxTickMinStep (NumExpr ex)
+
+        _ ->
+            fn 0
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requiring a list of numbers (for dash styles). This can
+be used to provide an interactive parameterisation of an axis dash property when
+an expression is bound to an input element. For example,
+
+    ps =
+        params
+            << param "gridDash"
+                [ paValue (nums [ 2, 2 ])
+                , paBind (ipSelect [ inDataOptions [ nums [ 2, 2 ], nums [ 8, 8 ] ] ])
+                ]
+
+    enc =
+        encoding
+            << position X [ pAxis [ axNumsExpr "gridDash" axGridDash ] ]
+
+-}
+axNumsExpr : String -> (List number -> AxisProperty) -> AxisProperty
+axNumsExpr ex fn =
+    case fn [] of
+        AxDomainDash _ ->
+            AxDomainDash (NumsExpr ex)
+
+        AxGridDash _ ->
+            AxGridDash (NumsExpr ex)
+
+        AxTickDash _ ->
+            AxTickDash (NumsExpr ex)
+
+        _ ->
+            fn []
+
+
 {-| Offset to displace the axis from the edge of the enclosing group or data rectangle.
 -}
 axOffset : Float -> AxisProperty
@@ -7995,6 +8064,72 @@ or right orientation, this sets the axis group y coordinate.
 axPosition : Float -> AxisProperty
 axPosition n =
     AxPosition (Num n)
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requiring a string value. This can be used to provide an
+interactive parameterisation of an axis property when an expression is bound to an
+input element. For example,
+
+    ps =
+        params
+            << param "color"
+                [ paValue (str "black")
+                , paBind (ipColor [])
+                ]
+
+    enc =
+        encoding
+            << position X
+                [ pName "x"
+                , pAxis [ axStrExpr "color" axTitleColor ]
+                ]
+
+-}
+axStrExpr : String -> (String -> AxisProperty) -> AxisProperty
+axStrExpr ex fn =
+    case fn "" of
+        AxDomainColor _ ->
+            AxDomainColor (StrExpr ex)
+
+        AxFormat _ ->
+            AxFormat (StrExpr ex)
+
+        AxFormatAsCustom _ ->
+            AxFormatAsCustom (StrExpr ex)
+
+        AxLabelColor _ ->
+            AxLabelColor (StrExpr ex)
+
+        AxLabelExpr _ ->
+            AxLabelExpr (StrExpr ex)
+
+        AxLabelFont _ ->
+            AxLabelFont (StrExpr ex)
+
+        AxLabelFontStyle _ ->
+            AxLabelFontStyle (StrExpr ex)
+
+        AxTickColor _ ->
+            AxTickColor (StrExpr ex)
+
+        AxTitle _ ->
+            AxTitle (StrExpr ex)
+
+        AxTitleColor _ ->
+            AxTitleColor (StrExpr ex)
+
+        AxTitleFont _ ->
+            AxTitleFont (StrExpr ex)
+
+        AxTitleFontStyle _ ->
+            AxTitleFontStyle (StrExpr ex)
+
+        AxGridColor _ ->
+            AxGridColor (StrExpr ex)
+
+        _ ->
+            fn ""
 
 
 {-| A list of named styles to apply to an axis. Named styles can be specified via
@@ -21752,7 +21887,7 @@ axisConfigProperty axisCfg =
             [ ( "disable", JE.bool b ) ]
 
         BandPosition x ->
-            [ ( "bandPosition", JE.float x ) ]
+            numExpr "bandPosition" x
 
         Domain b ->
             [ ( "domain", JE.bool b ) ]
@@ -21767,19 +21902,22 @@ axisConfigProperty axisCfg =
             [ ( "domainDash", JE.list JE.float ds ) ]
 
         DomainDashOffset x ->
-            [ ( "domainDashOffset", JE.float x ) ]
+            numExpr "domainDashOffset" x
 
-        DomainOpacity n ->
-            [ ( "domainOpacity", JE.float n ) ]
+        DomainOpacity x ->
+            numExpr "domainOpacity" x
 
-        DomainWidth w ->
-            [ ( "domainWidth", JE.float w ) ]
+        DomainWidth x ->
+            numExpr "domainWidth" x
 
-        MaxExtent n ->
-            [ ( "maxExtent", JE.float n ) ]
+        MaxExtent x ->
+            numExpr "maxExtent" x
 
-        MinExtent n ->
-            [ ( "minExtent", JE.float n ) ]
+        MinExtent x ->
+            numExpr "minExtent" x
+
+        OffsetAxis x ->
+            numExpr "offset" x
 
         Grid b ->
             [ ( "grid", JE.bool b ) ]
@@ -21794,13 +21932,13 @@ axisConfigProperty axisCfg =
             [ ( "gridDash", JE.list JE.float ds ) ]
 
         GridDashOffset x ->
-            [ ( "gridDashOffset", JE.float x ) ]
+            numExpr "gridDashOffset" x
 
-        GridOpacity o ->
-            [ ( "gridOpacity", JE.float o ) ]
+        GridOpacity x ->
+            numExpr "gridOpacity" x
 
         GridWidth x ->
-            [ ( "gridWidth", JE.float x ) ]
+            numExpr "gridWidth" x
 
         Labels b ->
             [ ( "labels", JE.bool b ) ]
@@ -21808,8 +21946,8 @@ axisConfigProperty axisCfg =
         LabelAlign ha ->
             [ ( "labelAlign", hAlignSpec ha ) ]
 
-        LabelAngle a ->
-            [ ( "labelAngle", JE.float a ) ]
+        LabelAngle x ->
+            numExpr "labelAngle" x
 
         LabelBaseline va ->
             [ ( "labelBaseline", vAlignSpec va ) ]
@@ -21844,8 +21982,8 @@ axisConfigProperty axisCfg =
                 Nothing ->
                     [ ( "labelFlush", JE.bool False ) ]
 
-        LabelFlushOffset n ->
-            [ ( "labelFlushOffset", JE.float n ) ]
+        LabelFlushOffset x ->
+            numExpr "labelFlushOffset" x
 
         LabelFont f ->
             [ ( "labelFont", JE.string f ) ]
@@ -21854,28 +21992,31 @@ axisConfigProperty axisCfg =
             [ ( "labelFontStyle", JE.string s ) ]
 
         LabelFontSize x ->
-            [ ( "labelFontSize", JE.float x ) ]
+            numExpr "labelFontSize" x
 
         LabelFontWeight fw ->
             [ ( "labelFontWeight", fontWeightSpec fw ) ]
 
         LabelLimit x ->
-            [ ( "labelLimit", JE.float x ) ]
+            numExpr "labelLimit" x
 
         LabelLineHeight x ->
-            [ ( "labelLineHeight", JE.float x ) ]
+            numExpr "labelLineHeight" x
 
-        LabelOpacity n ->
-            [ ( "labelOpacity", JE.float n ) ]
+        LabelOffset x ->
+            numExpr "labelOffset" x
+
+        LabelOpacity x ->
+            numExpr "labelOpacity" x
 
         LabelOverlap strat ->
             [ ( "labelOverlap", overlapStrategySpec strat ) ]
 
-        LabelPadding pad ->
-            [ ( "labelPadding", JE.float pad ) ]
+        LabelPadding x ->
+            numExpr "labelPadding" x
 
         LabelSeparation x ->
-            [ ( "labelSeparation", JE.float x ) ]
+            numExpr "labelSeparation" x
 
         Ticks b ->
             [ ( "ticks", JE.bool b ) ]
@@ -21896,34 +22037,34 @@ axisConfigProperty axisCfg =
             [ ( "tickDash", JE.list JE.float ds ) ]
 
         TickDashOffset x ->
-            [ ( "tickDashOffset", JE.float x ) ]
+            numExpr "tickDashOffset" x
 
         TickExtra b ->
             [ ( "tickExtra", JE.bool b ) ]
 
-        TickOffset n ->
-            [ ( "tickOffset", JE.float n ) ]
+        TickOffset x ->
+            numExpr "tickOffset" x
 
-        TickOpacity n ->
-            [ ( "tickOpacity", JE.float n ) ]
+        TickOpacity x ->
+            numExpr "tickOpacity" x
 
-        TickMinStep n ->
-            [ ( "tickMinStep", JE.float n ) ]
+        TickMinStep x ->
+            numExpr "tickMinStep" x
 
         TickRound b ->
             [ ( "tickRound", JE.bool b ) ]
 
         TickSize x ->
-            [ ( "tickSize", JE.float x ) ]
+            numExpr "tickSize" x
 
         TickWidth x ->
-            [ ( "tickWidth", JE.float x ) ]
+            numExpr "tickWidth" x
 
         TitleAlign al ->
             [ ( "titleAlign", hAlignSpec al ) ]
 
-        TitleAngle a ->
-            [ ( "titleAngle", JE.float a ) ]
+        TitleAngle x ->
+            numExpr "titleAngle" x
 
         TitleAnchor an ->
             [ ( "titleAnchor", anchorSpec an ) ]
@@ -21944,28 +22085,28 @@ axisConfigProperty axisCfg =
             [ ( "titleFontWeight", fontWeightSpec w ) ]
 
         TitleFontSize x ->
-            [ ( "titleFontSize", JE.float x ) ]
+            numExpr "titleFontSize" x
 
         TitleLimit x ->
-            [ ( "titleLimit", JE.float x ) ]
+            numExpr "titleLimit" x
 
         TitleLineHeight x ->
-            [ ( "titleLineHeight", JE.float x ) ]
+            numExpr "titleLineHeight" x
 
-        TitleOpacity n ->
-            [ ( "titleOpacity", JE.float n ) ]
+        TitleOpacity x ->
+            numExpr "titleOpacity" x
 
         TitlePadding x ->
-            [ ( "titlePadding", JE.float x ) ]
+            numExpr "titlePadding" x
 
         TitleX x ->
-            [ ( "titleX", JE.float x ) ]
+            numExpr "titleX" x
 
-        TitleY y ->
-            [ ( "titleY", JE.float y ) ]
+        TitleY x ->
+            numExpr "titleY" x
 
         TranslateAxis x ->
-            [ ( "translate", JE.float x ) ]
+            numExpr "translate" x
 
 
 axisLabel : AxisChoice -> String
