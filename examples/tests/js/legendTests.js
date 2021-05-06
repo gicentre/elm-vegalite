@@ -10386,6 +10386,113 @@ var $author$project$VegaLite$legendConfigProperty = function (legendConfig) {
 			return A2($author$project$VegaLite$numExpr, 'legendY', x);
 	}
 };
+var $author$project$VegaLite$localeProperty = function (lp) {
+	switch (lp.$) {
+		case 0:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'decimal', s);
+		case 1:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'thousands', s);
+		case 2:
+			var grp = lp.a;
+			return A2($author$project$VegaLite$numExpr, 'grouping', grp);
+		case 3:
+			var ss = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'currency', ss);
+		case 4:
+			var ss = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'numerals', ss);
+		case 5:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'percent', s);
+		case 6:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'minus', s);
+		case 7:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'nan', s);
+		case 8:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'dateTime', s);
+		case 9:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'date', s);
+		case 10:
+			var s = lp.a;
+			return A2($author$project$VegaLite$strExpr, 'time', s);
+		case 11:
+			var ps = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'periods', ps);
+		case 12:
+			var ss = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'days', ss);
+		case 13:
+			var ss = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'shortDays', ss);
+		case 14:
+			var ss = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'months', ss);
+		default:
+			var ss = lp.a;
+			return A2($author$project$VegaLite$strsExpr, 'shortMonths', ss);
+	}
+};
+var $elm$core$Tuple$mapBoth = F3(
+	function (funcA, funcB, _v0) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return _Utils_Tuple2(
+			funcA(x),
+			funcB(y));
+	});
+var $elm$core$List$partition = F2(
+	function (pred, list) {
+		var step = F2(
+			function (x, _v0) {
+				var trues = _v0.a;
+				var falses = _v0.b;
+				return pred(x) ? _Utils_Tuple2(
+					A2($elm$core$List$cons, x, trues),
+					falses) : _Utils_Tuple2(
+					trues,
+					A2($elm$core$List$cons, x, falses));
+			});
+		return A3(
+			$elm$core$List$foldr,
+			step,
+			_Utils_Tuple2(_List_Nil, _List_Nil),
+			list);
+	});
+var $author$project$VegaLite$localeProperties = function (lps) {
+	var splitNumDate = function (lp) {
+		switch (lp.$) {
+			case 0:
+				return true;
+			case 1:
+				return true;
+			case 2:
+				return true;
+			case 3:
+				return true;
+			case 4:
+				return true;
+			case 5:
+				return true;
+			case 6:
+				return true;
+			case 7:
+				return true;
+			default:
+				return false;
+		}
+	};
+	return A3(
+		$elm$core$Tuple$mapBoth,
+		$elm$core$List$concatMap($author$project$VegaLite$localeProperty),
+		$elm$core$List$concatMap($author$project$VegaLite$localeProperty),
+		A2($elm$core$List$partition, splitNumDate, lps));
+};
 var $author$project$VegaLite$paddingSpec = function (pad) {
 	switch (pad.$) {
 		case 0:
@@ -11715,304 +11822,493 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 	switch (configProp.$) {
 		case 1:
 			var b = configProp.a;
-			return _Utils_Tuple2(
-				'aria',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aria',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		case 2:
 			var aus = configProp.a;
-			return _Utils_Tuple2(
-				'autosize',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$autosizeProperty, aus)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'autosize',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$autosizeProperty, aus)))
+				]);
 		case 14:
-			var bg = configProp.a;
-			return _Utils_Tuple2(
-				'background',
-				$elm$json$Json$Encode$string(bg));
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'background', s);
 		case 18:
 			var s = configProp.a;
-			return _Utils_Tuple2(
-				'countTitle',
-				$elm$json$Json$Encode$string(s));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'countTitle',
+					$elm$json$Json$Encode$string(s))
+				]);
+		case 24:
+			var lps = configProp.a;
+			var _v1 = $author$project$VegaLite$localeProperties(lps);
+			if (!_v1.a.b) {
+				if (!_v1.b.b) {
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('locale', $elm$json$Json$Encode$null)
+						]);
+				} else {
+					var dtps = _v1.b;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'locale',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'time',
+										$elm$json$Json$Encode$object(dtps))
+									])))
+						]);
+				}
+			} else {
+				if (!_v1.b.b) {
+					var nps = _v1.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'locale',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'number',
+										$elm$json$Json$Encode$object(nps))
+									])))
+						]);
+				} else {
+					var nps = _v1.a;
+					var dtps = _v1.b;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'locale',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'number',
+										$elm$json$Json$Encode$object(nps)),
+										_Utils_Tuple2(
+										'time',
+										$elm$json$Json$Encode$object(dtps))
+									])))
+						]);
+				}
+			}
 		case 20:
 			var ftp = configProp.a;
-			return _Utils_Tuple2(
-				'fieldTitle',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$fieldTitleLabel(ftp)));
-		case 29:
-			var fmt = configProp.a;
-			return _Utils_Tuple2(
-				'numberFormat',
-				$elm$json$Json$Encode$string(fmt));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'fieldTitle',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$fieldTitleLabel(ftp)))
+				]);
 		case 30:
-			var pad = configProp.a;
-			return _Utils_Tuple2(
-				'padding',
-				$author$project$VegaLite$paddingSpec(pad));
-		case 42:
 			var fmt = configProp.a;
-			return _Utils_Tuple2(
-				'timeFormat',
-				$elm$json$Json$Encode$string(fmt));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'numberFormat',
+					$elm$json$Json$Encode$string(fmt))
+				]);
+		case 31:
+			var pad = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'padding',
+					$author$project$VegaLite$paddingSpec(pad))
+				]);
+		case 43:
+			var fmt = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeFormat',
+					$elm$json$Json$Encode$string(fmt))
+				]);
 		case 3:
 			var axType = configProp.a;
 			var acs = configProp.b;
-			return _Utils_Tuple2(
-				$author$project$VegaLite$axisLabel(axType),
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					$author$project$VegaLite$axisLabel(axType),
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 5:
 			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisLeft',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'axisLeft',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 6:
 			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisRight',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'axisRight',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 7:
 			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisTop',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'axisTop',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 8:
 			var acs = configProp.a;
-			return _Utils_Tuple2(
-				'axisBottom',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'axisBottom',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 9:
 			var axType = configProp.a;
 			var acs = configProp.b;
-			return _Utils_Tuple2(
-				$author$project$VegaLite$axisLabel(axType) + 'Band',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					$author$project$VegaLite$axisLabel(axType) + 'Band',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 10:
 			var axType = configProp.a;
 			var acs = configProp.b;
-			return _Utils_Tuple2(
-				$author$project$VegaLite$axisLabel(axType) + 'Discrete',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					$author$project$VegaLite$axisLabel(axType) + 'Discrete',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 11:
 			var axType = configProp.a;
 			var acs = configProp.b;
-			return _Utils_Tuple2(
-				$author$project$VegaLite$axisLabel(axType) + 'Point',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					$author$project$VegaLite$axisLabel(axType) + 'Point',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 12:
 			var axType = configProp.a;
 			var acs = configProp.b;
-			return _Utils_Tuple2(
-				$author$project$VegaLite$axisLabel(axType) + 'Quantitative',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					$author$project$VegaLite$axisLabel(axType) + 'Quantitative',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 13:
 			var axType = configProp.a;
 			var acs = configProp.b;
-			return _Utils_Tuple2(
-				$author$project$VegaLite$axisLabel(axType) + 'Temporal',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					$author$project$VegaLite$axisLabel(axType) + 'Temporal',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$axisConfigProperty, acs)))
+				]);
 		case 23:
 			var lcs = configProp.a;
-			return _Utils_Tuple2(
-				'legend',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$legendConfigProperty, lcs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'legend',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$legendConfigProperty, lcs)))
+				]);
 		case 21:
 			var fnt = configProp.a;
-			return _Utils_Tuple2(
-				'font',
-				$elm$json$Json$Encode$string(fnt));
-		case 27:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'font',
+					$elm$json$Json$Encode$string(fnt))
+				]);
+		case 28:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'mark',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-		case 32:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'mark',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
+		case 33:
 			var pps = configProp.a;
-			return _Utils_Tuple2(
-				'projection',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$projectionProperty, pps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'projection',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$projectionProperty, pps)))
+				]);
 		case 0:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'area',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'area',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 		case 15:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'bar',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bar',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 		case 16:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'circle',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-		case 25:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'circle',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
+		case 26:
 			var fps = configProp.a;
-			return _Utils_Tuple2(
-				'facet',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$facetConfigProperty, fps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'facet',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$facetConfigProperty, fps)))
+				]);
 		case 17:
 			var cps = configProp.a;
-			return _Utils_Tuple2(
-				'concat',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$concatConfigProperty, cps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'concat',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$concatConfigProperty, cps)))
+				]);
 		case 19:
 			var b = configProp.a;
-			return _Utils_Tuple2(
-				'customFormatTypes',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'customFormatTypes',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		case 22:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'geoshape',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-		case 26:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'geoshape',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
+		case 27:
 			var hps = configProp.a;
-			return _Utils_Tuple2(
-				'header',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$headerProperty, hps)));
-		case 24:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'header',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$headerProperty, hps)))
+				]);
+		case 25:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'line',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-		case 31:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'line',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
+		case 32:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'point',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-		case 34:
-			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'rect',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'point',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 		case 35:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'rule',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-		case 38:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'rect',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
+		case 36:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'square',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'rule',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 		case 39:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'text',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'square',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 		case 40:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'tick',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'text',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 		case 41:
+			var mps = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tick',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
+		case 42:
 			var tcs = configProp.a;
-			return _Utils_Tuple2(
-				'title',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tcs)));
-		case 28:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'title',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tcs)))
+				]);
+		case 29:
 			var styles = configProp.a;
-			return _Utils_Tuple2(
-				'style',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v1) {
-							var sName = _v1.a;
-							var mps = _v1.b;
-							return _Utils_Tuple2(
-								sName,
-								$elm$json$Json$Encode$object(
-									A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
-						},
-						styles)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'style',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v2) {
+								var sName = _v2.a;
+								var mps = _v2.b;
+								return _Utils_Tuple2(
+									sName,
+									$elm$json$Json$Encode$object(
+										A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+							},
+							styles)))
+				]);
 		case 4:
 			var styles = configProp.a;
-			return _Utils_Tuple2(
-				'style',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v2) {
-							var sName = _v2.a;
-							var mps = _v2.b;
-							return _Utils_Tuple2(
-								sName,
-								$elm$json$Json$Encode$object(
-									A2($elm$core$List$concatMap, $author$project$VegaLite$axisProperty, mps)));
-						},
-						styles)));
-		case 36:
-			var scs = configProp.a;
-			return _Utils_Tuple2(
-				'scale',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$scaleConfigProperty, scs)));
-		case 33:
-			var rcs = configProp.a;
-			return _Utils_Tuple2(
-				'range',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$rangeConfigProperty, rcs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'style',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v3) {
+								var sName = _v3.a;
+								var mps = _v3.b;
+								return _Utils_Tuple2(
+									sName,
+									$elm$json$Json$Encode$object(
+										A2($elm$core$List$concatMap, $author$project$VegaLite$axisProperty, mps)));
+							},
+							styles)))
+				]);
 		case 37:
+			var scs = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'scale',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$scaleConfigProperty, scs)))
+				]);
+		case 34:
+			var rcs = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'range',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, $author$project$VegaLite$rangeConfigProperty, rcs)))
+				]);
+		case 38:
 			var selConfig = configProp.a;
-			var selProp = function (_v3) {
-				var sel = _v3.a;
-				var sps = _v3.b;
+			var selProp = function (_v4) {
+				var sel = _v4.a;
+				var sps = _v4.b;
 				return _Utils_Tuple2(
 					$author$project$VegaLite$selectionLabel(sel),
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, sps)));
 			};
-			return _Utils_Tuple2(
-				'selection',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, selProp, selConfig)));
-		case 44:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'selection',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$map, selProp, selConfig)))
+				]);
+		case 45:
 			var vcs = configProp.a;
-			return _Utils_Tuple2(
-				'view',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$viewConfigProperties, vcs)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'view',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$viewConfigProperties, vcs)))
+				]);
 		default:
 			var mps = configProp.a;
-			return _Utils_Tuple2(
-				'trail',
-				$elm$json$Json$Encode$object(
-					A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'trail',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
+				]);
 	}
 };
 var $author$project$VegaLite$configuration = function (cfg) {
-	return $elm$core$List$cons(
+	return $elm$core$Basics$append(
 		$author$project$VegaLite$configProperty(cfg));
 };
 var $author$project$VegaLite$VLConfig = 31;
