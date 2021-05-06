@@ -517,6 +517,7 @@ module VegaLite exposing
     , axNumsExpr
     , axcoNumsExpr
     , axStrExpr
+    , axcoStrExpr
     , axAria
     , axBandPosition
     , axMaxExtent
@@ -2482,6 +2483,7 @@ See the
 @docs axNumsExpr
 @docs axcoNumsExpr
 @docs axStrExpr
+@docs axcoStrExpr
 
 
 #### General
@@ -4125,14 +4127,14 @@ type AxisConfig
     | AxDisable Boo
     | Domain Boo
     | DomainCap StrokeCap
-    | DomainColor String
+    | DomainColor Str
     | DomainDash Nums
     | DomainDashOffset Num
     | DomainOpacity Num
     | DomainWidth Num
     | Grid Boo
     | GridCap StrokeCap
-    | GridColor String
+    | GridColor Str
     | GridDash Nums
     | GridDashOffset Num
     | GridOpacity Num
@@ -4144,11 +4146,11 @@ type AxisConfig
     | LabelBound (Maybe Float)
     | LabelFlush (Maybe Float)
     | LabelFlushOffset Num
-    | LabelColor String
-    | LabelExpr String
-    | LabelFont String
+    | LabelColor Str
+    | LabelExpr Str
+    | LabelFont Str
     | LabelFontSize Num
-    | LabelFontStyle String
+    | LabelFontStyle Str
     | LabelFontWeight FontWeight
     | LabelLimit Num
     | LabelLineHeight Num
@@ -4163,7 +4165,7 @@ type AxisConfig
     | Ticks Boo
     | TickBand TickBand
     | TickCap StrokeCap
-    | TickColor String
+    | TickColor Str
     | TickCount ScaleNice
     | TickDash Nums
     | TickDashOffset Num
@@ -4178,10 +4180,10 @@ type AxisConfig
     | TitleAnchor Anchor
     | TitleAngle Num
     | TitleBaseline VAlign
-    | TitleColor String
-    | TitleFont String
+    | TitleColor Str
+    | TitleFont Str
     | TitleFontSize Num
-    | TitleFontStyle String
+    | TitleFontStyle Str
     | TitleFontWeight FontWeight
     | TitleLimit Num
     | TitleLineHeight Num
@@ -6969,8 +6971,8 @@ axcoDomainCap =
 {-| Default axis domain color.
 -}
 axcoDomainColor : String -> AxisConfig
-axcoDomainColor =
-    DomainColor
+axcoDomainColor s =
+    DomainColor (Str s)
 
 
 {-| Default dash style of axis baseline (domain). The parameter should list
@@ -7019,8 +7021,8 @@ axcoGridCap =
 {-| Default axis grid color style.
 -}
 axcoGridColor : String -> AxisConfig
-axcoGridColor =
-    GridColor
+axcoGridColor s =
+    GridColor (Str s)
 
 
 {-| Default axis line dash style.
@@ -7090,8 +7092,8 @@ axcoLabelBound =
 {-| Default axis label color.
 -}
 axcoLabelColor : String -> AxisConfig
-axcoLabelColor =
-    LabelColor
+axcoLabelColor s =
+    LabelColor (Str s)
 
 
 {-| Default expression to generate axis labels. The parameter is a valid
@@ -7100,8 +7102,8 @@ axcoLabelColor =
 default label text respectively.
 -}
 axcoLabelExpr : String -> AxisConfig
-axcoLabelExpr =
-    LabelExpr
+axcoLabelExpr s =
+    LabelExpr (Str s)
 
 
 {-| Default label alignment at beginning or end of the axis. Specifies the distance
@@ -7123,8 +7125,8 @@ axcoLabelFlushOffset n =
 {-| Default axis label font.
 -}
 axcoLabelFont : String -> AxisConfig
-axcoLabelFont =
-    LabelFont
+axcoLabelFont s =
+    LabelFont (Str s)
 
 
 {-| Default axis label font size.
@@ -7137,8 +7139,8 @@ axcoLabelFontSize n =
 {-| Default axis label font style (e.g. "italic")
 -}
 axcoLabelFontStyle : String -> AxisConfig
-axcoLabelFontStyle =
-    LabelFontStyle
+axcoLabelFontStyle s =
+    LabelFontStyle (Str s)
 
 
 {-| Default axis label font weight.
@@ -7361,6 +7363,63 @@ axcoOffset n =
     OffsetAxis (Num n)
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
+an axis property function requiring a string value. This can be used to provide an
+interactive parameterisation of an axis property when an expression is bound to an
+input element. For example,
+
+    ps =
+        params
+            << param "color"
+                [ paValue (str "black")
+                , paBind (ipColor [])
+                ]
+
+    enc =
+        encoding
+            << position X
+                [ pName "x"
+                , pAxis [ axStrExpr "color" axTitleColor ]
+                ]
+
+-}
+axcoStrExpr : String -> (String -> AxisConfig) -> AxisConfig
+axcoStrExpr ex fn =
+    case fn "" of
+        DomainColor _ ->
+            DomainColor (StrExpr ex)
+
+        LabelColor _ ->
+            LabelColor (StrExpr ex)
+
+        LabelExpr _ ->
+            LabelExpr (StrExpr ex)
+
+        LabelFont _ ->
+            LabelFont (StrExpr ex)
+
+        LabelFontStyle _ ->
+            LabelFontStyle (StrExpr ex)
+
+        TickColor _ ->
+            TickColor (StrExpr ex)
+
+        TitleColor _ ->
+            TitleColor (StrExpr ex)
+
+        TitleFont _ ->
+            TitleFont (StrExpr ex)
+
+        TitleFontStyle _ ->
+            TitleFontStyle (StrExpr ex)
+
+        GridColor _ ->
+            GridColor (StrExpr ex)
+
+        _ ->
+            fn ""
+
+
 {-| Default alignment of grid lines and ticks in band scales.
 -}
 axcoTickBand : TickBand -> AxisConfig
@@ -7378,8 +7437,8 @@ axcoTickCap =
 {-| Default axis tick mark color.
 -}
 axcoTickColor : String -> AxisConfig
-axcoTickColor =
-    TickColor
+axcoTickColor s =
+    TickColor (Str s)
 
 
 {-| Default number of, or interval between, axis ticks. The resulting number of
@@ -7496,15 +7555,15 @@ axcoTitleBaseline =
 {-| Default axis title color.
 -}
 axcoTitleColor : String -> AxisConfig
-axcoTitleColor =
-    TitleColor
+axcoTitleColor s =
+    TitleColor (Str s)
 
 
 {-| Default axis title font.
 -}
 axcoTitleFont : String -> AxisConfig
-axcoTitleFont =
-    TitleFont
+axcoTitleFont s =
+    TitleFont (Str s)
 
 
 {-| Default axis title font weight.
@@ -7524,8 +7583,8 @@ axcoTitleFontSize n =
 {-| Default axis title font style (e.g. "italic").
 -}
 axcoTitleFontStyle : String -> AxisConfig
-axcoTitleFontStyle =
-    TitleFontStyle
+axcoTitleFontStyle s =
+    TitleFontStyle (Str s)
 
 
 {-| Default axis title maximum size.
@@ -21946,8 +22005,8 @@ axisConfigProperty axisCfg =
         DomainCap c ->
             [ ( "domainCap", strokeCapSpec c ) ]
 
-        DomainColor c ->
-            [ ( "domainColor", JE.string c ) ]
+        DomainColor s ->
+            strExpr "domainColor" s
 
         DomainDash xs ->
             numsExpr "domainDash" xs
@@ -21976,8 +22035,8 @@ axisConfigProperty axisCfg =
         GridCap c ->
             [ ( "gridCap", strokeCapSpec c ) ]
 
-        GridColor c ->
-            [ ( "gridColor", JE.string c ) ]
+        GridColor s ->
+            strExpr "gridColor" s
 
         GridDash xs ->
             numsExpr "gridDash" xs
@@ -22015,11 +22074,11 @@ axisConfigProperty axisCfg =
                 Nothing ->
                     [ ( "labelBound", JE.bool False ) ]
 
-        LabelColor c ->
-            [ ( "labelColor", JE.string c ) ]
+        LabelColor s ->
+            strExpr "labelColor" s
 
-        LabelExpr ex ->
-            [ ( "labelExpr", JE.string ex ) ]
+        LabelExpr s ->
+            strExpr "labelExpr" s
 
         LabelFlush mn ->
             case mn of
@@ -22036,11 +22095,11 @@ axisConfigProperty axisCfg =
         LabelFlushOffset x ->
             numExpr "labelFlushOffset" x
 
-        LabelFont f ->
-            [ ( "labelFont", JE.string f ) ]
+        LabelFont s ->
+            strExpr "labelFont" s
 
         LabelFontStyle s ->
-            [ ( "labelFontStyle", JE.string s ) ]
+            strExpr "labelFontStyle" s
 
         LabelFontSize x ->
             numExpr "labelFontSize" x
@@ -22078,8 +22137,8 @@ axisConfigProperty axisCfg =
         TickCap c ->
             [ ( "tickCap", strokeCapSpec c ) ]
 
-        TickColor c ->
-            [ ( "tickColor", JE.string c ) ]
+        TickColor s ->
+            strExpr "tickColor" s
 
         TickCount tc ->
             [ ( "tickCount", scaleNiceSpec tc ) ]
@@ -22123,14 +22182,14 @@ axisConfigProperty axisCfg =
         TitleBaseline va ->
             [ ( "titleBaseline", vAlignSpec va ) ]
 
-        TitleColor c ->
-            [ ( "titleColor", JE.string c ) ]
+        TitleColor s ->
+            strExpr "titleColor" s
 
-        TitleFont f ->
-            [ ( "titleFont", JE.string f ) ]
+        TitleFont s ->
+            strExpr "titleFont" s
 
         TitleFontStyle s ->
-            [ ( "titleFontStyle", JE.string s ) ]
+            strExpr "titleFontStyle" s
 
         TitleFontWeight w ->
             [ ( "titleFontWeight", fontWeightSpec w ) ]
