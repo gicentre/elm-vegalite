@@ -4540,7 +4540,7 @@ type ConfigurationProperty
     | AxisPoint AxisChoice (List AxisConfig)
     | AxisQuant AxisChoice (List AxisConfig)
     | AxisTemporal AxisChoice (List AxisConfig)
-    | Background String
+    | Background Str
     | BarStyle (List MarkProperty)
     | CircleStyle (List MarkProperty)
     | ConcatStyle (List ConcatConfig)
@@ -9487,8 +9487,8 @@ coAxisYFilter cp =
 {-| Configure the default background color of visualizations.
 -}
 coBackground : String -> ConfigurationProperty
-coBackground =
-    Background
+coBackground s =
+    Background (Str s)
 
 
 {-| Configure the default appearance of bar marks.
@@ -9735,7 +9735,7 @@ concat specs =
 -}
 configuration : ConfigurationProperty -> List LabelledSpec -> List LabelledSpec
 configuration cfg =
-    (::) (configProperty cfg)
+    (++) (configProperty cfg)
 
 
 {-| Create a single global configuration from a list of configuration specifications.
@@ -9886,7 +9886,7 @@ coTimeFormat =
 -}
 coTrail : List MarkProperty -> List LabelledSpec -> List LabelledSpec
 coTrail mps =
-    (::) (configProperty (TrailStyle mps))
+    (++) (configProperty (TrailStyle mps))
 
 
 {-| Configure the default single view style.
@@ -23067,159 +23067,161 @@ concatConfigProperty ccp =
             ( "spacing", JE.float x )
 
 
-configProperty : ConfigurationProperty -> LabelledSpec
+configProperty : ConfigurationProperty -> List LabelledSpec
 configProperty configProp =
     case configProp of
         Aria b ->
-            ( "aria", JE.bool b )
+            [ ( "aria", JE.bool b ) ]
 
         Autosize aus ->
-            ( "autosize", JE.object (List.map autosizeProperty aus) )
+            [ ( "autosize", JE.object (List.map autosizeProperty aus) ) ]
 
-        Background bg ->
-            ( "background", JE.string bg )
+        Background s ->
+            strExpr "background" s
 
         CountTitle s ->
-            ( "countTitle", JE.string s )
+            [ ( "countTitle", JE.string s ) ]
 
         FieldTitle ftp ->
-            ( "fieldTitle", JE.string (fieldTitleLabel ftp) )
+            [ ( "fieldTitle", JE.string (fieldTitleLabel ftp) ) ]
 
         NumberFormat fmt ->
-            ( "numberFormat", JE.string fmt )
+            [ ( "numberFormat", JE.string fmt ) ]
 
         Padding pad ->
-            ( "padding", paddingSpec pad )
+            [ ( "padding", paddingSpec pad ) ]
 
         TimeFormat fmt ->
-            ( "timeFormat", JE.string fmt )
+            [ ( "timeFormat", JE.string fmt ) ]
 
         Axis axType acs ->
-            ( axisLabel axType, JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( axisLabel axType, JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisLeft acs ->
-            ( "axisLeft", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( "axisLeft", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisRight acs ->
-            ( "axisRight", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( "axisRight", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisTop acs ->
-            ( "axisTop", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( "axisTop", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisBottom acs ->
-            ( "axisBottom", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( "axisBottom", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisBand axType acs ->
-            ( axisLabel axType ++ "Band", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( axisLabel axType ++ "Band", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisDiscrete axType acs ->
-            ( axisLabel axType ++ "Discrete", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( axisLabel axType ++ "Discrete", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisPoint axType acs ->
-            ( axisLabel axType ++ "Point", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( axisLabel axType ++ "Point", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisQuant axType acs ->
-            ( axisLabel axType ++ "Quantitative", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( axisLabel axType ++ "Quantitative", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         AxisTemporal axType acs ->
-            ( axisLabel axType ++ "Temporal", JE.object (List.concatMap axisConfigProperty acs) )
+            [ ( axisLabel axType ++ "Temporal", JE.object (List.concatMap axisConfigProperty acs) ) ]
 
         Legend lcs ->
-            ( "legend", JE.object (List.concatMap legendConfigProperty lcs) )
+            [ ( "legend", JE.object (List.concatMap legendConfigProperty lcs) ) ]
 
         Font fnt ->
-            ( "font", JE.string fnt )
+            [ ( "font", JE.string fnt ) ]
 
         MarkStyle mps ->
-            ( "mark", JE.object (List.concatMap markProperty mps) )
+            [ ( "mark", JE.object (List.concatMap markProperty mps) ) ]
 
         Projection pps ->
-            ( "projection", JE.object (List.concatMap projectionProperty pps) )
+            [ ( "projection", JE.object (List.concatMap projectionProperty pps) ) ]
 
         AreaStyle mps ->
-            ( "area", JE.object (List.concatMap markProperty mps) )
+            [ ( "area", JE.object (List.concatMap markProperty mps) ) ]
 
         BarStyle mps ->
-            ( "bar", JE.object (List.concatMap markProperty mps) )
+            [ ( "bar", JE.object (List.concatMap markProperty mps) ) ]
 
         CircleStyle mps ->
-            ( "circle", JE.object (List.concatMap markProperty mps) )
+            [ ( "circle", JE.object (List.concatMap markProperty mps) ) ]
 
         FacetStyle fps ->
-            ( "facet", JE.object (List.map facetConfigProperty fps) )
+            [ ( "facet", JE.object (List.map facetConfigProperty fps) ) ]
 
         ConcatStyle cps ->
-            ( "concat", JE.object (List.map concatConfigProperty cps) )
+            [ ( "concat", JE.object (List.map concatConfigProperty cps) ) ]
 
         CustomFormatTypes b ->
-            ( "customFormatTypes", JE.bool b )
+            [ ( "customFormatTypes", JE.bool b ) ]
 
         GeoshapeStyle mps ->
-            ( "geoshape", JE.object (List.concatMap markProperty mps) )
+            [ ( "geoshape", JE.object (List.concatMap markProperty mps) ) ]
 
         HeaderStyle hps ->
-            ( "header", JE.object (List.concatMap headerProperty hps) )
+            [ ( "header", JE.object (List.concatMap headerProperty hps) ) ]
 
         LineStyle mps ->
-            ( "line", JE.object (List.concatMap markProperty mps) )
+            [ ( "line", JE.object (List.concatMap markProperty mps) ) ]
 
         PointStyle mps ->
-            ( "point", JE.object (List.concatMap markProperty mps) )
+            [ ( "point", JE.object (List.concatMap markProperty mps) ) ]
 
         RectStyle mps ->
-            ( "rect", JE.object (List.concatMap markProperty mps) )
+            [ ( "rect", JE.object (List.concatMap markProperty mps) ) ]
 
         RuleStyle mps ->
-            ( "rule", JE.object (List.concatMap markProperty mps) )
+            [ ( "rule", JE.object (List.concatMap markProperty mps) ) ]
 
         SquareStyle mps ->
-            ( "square", JE.object (List.concatMap markProperty mps) )
+            [ ( "square", JE.object (List.concatMap markProperty mps) ) ]
 
         TextStyle mps ->
-            ( "text", JE.object (List.concatMap markProperty mps) )
+            [ ( "text", JE.object (List.concatMap markProperty mps) ) ]
 
         TickStyle mps ->
-            ( "tick", JE.object (List.concatMap markProperty mps) )
+            [ ( "tick", JE.object (List.concatMap markProperty mps) ) ]
 
         TitleStyle tcs ->
-            ( "title", JE.object (List.concatMap titleConfigProperty tcs) )
+            [ ( "title", JE.object (List.concatMap titleConfigProperty tcs) ) ]
 
         MarkStyles styles ->
-            ( "style"
-            , JE.object
-                (List.map
-                    (\( sName, mps ) -> ( sName, JE.object (List.concatMap markProperty mps) ))
-                    styles
-                )
-            )
+            [ ( "style"
+              , JE.object
+                    (List.map
+                        (\( sName, mps ) -> ( sName, JE.object (List.concatMap markProperty mps) ))
+                        styles
+                    )
+              )
+            ]
 
         AxisStyles styles ->
-            ( "style"
-            , JE.object
-                (List.map
-                    (\( sName, mps ) -> ( sName, JE.object (List.concatMap axisProperty mps) ))
-                    styles
-                )
-            )
+            [ ( "style"
+              , JE.object
+                    (List.map
+                        (\( sName, mps ) -> ( sName, JE.object (List.concatMap axisProperty mps) ))
+                        styles
+                    )
+              )
+            ]
 
         Scale scs ->
-            ( "scale", JE.object (List.concatMap scaleConfigProperty scs) )
+            [ ( "scale", JE.object (List.concatMap scaleConfigProperty scs) ) ]
 
         Range rcs ->
-            ( "range", JE.object (List.map rangeConfigProperty rcs) )
+            [ ( "range", JE.object (List.map rangeConfigProperty rcs) ) ]
 
         SelectionStyle selConfig ->
             let
                 selProp ( sel, sps ) =
                     ( selectionLabel sel, JE.object (List.concatMap selectionProperties sps) )
             in
-            ( "selection", JE.object (List.map selProp selConfig) )
+            [ ( "selection", JE.object (List.map selProp selConfig) ) ]
 
         View vcs ->
-            ( "view", JE.object (List.concatMap viewConfigProperties vcs) )
+            [ ( "view", JE.object (List.concatMap viewConfigProperties vcs) ) ]
 
         TrailStyle mps ->
-            ( "trail", JE.object (List.concatMap markProperty mps) )
+            [ ( "trail", JE.object (List.concatMap markProperty mps) ) ]
 
 
 cursorSpec : Cursor -> Spec
