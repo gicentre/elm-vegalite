@@ -943,6 +943,211 @@ paramCfg4 =
         ]
 
 
+paramCfg5 : Spec
+paramCfg5 =
+    let
+        lVals1 =
+            nums [ 8, 12, 16, 20, 24 ]
+
+        lVals2 =
+            nums [ 0, 25 ]
+
+        lVals3 =
+            nums [ 5, 10, 15, 20, 25 ]
+
+        solid =
+            nums []
+
+        shortDash =
+            nums [ 2, 2 ]
+
+        longDash =
+            nums [ 8, 8 ]
+
+        cfg =
+            configure
+                << configuration
+                    (coLegend
+                        [ lecoCornerRadius |> lecoNumExpr "cornerRadius"
+                        , lecoFillColor |> lecoStrExpr "fillColor"
+                        , lecoGradientLength |> lecoNumExpr "gradientLength"
+                        , lecoGradientOpacity |> lecoNumExpr "gradientOpacity"
+                        , lecoGradientStrokeColor |> lecoStrExpr "gradientStrokeColor"
+                        , lecoGradientStrokeWidth |> lecoNumExpr "gradientStrokeWidth"
+                        , lecoGradientThickness |> lecoNumExpr "gradientThickness"
+                        , lecoLabelAlign (haExpr "labelAlign")
+                        , lecoLabelBaseline (vaExpr "labelBaseline")
+                        , lecoLabelFont |> lecoStrExpr "labelFont"
+                        , lecoLabelFontSize |> lecoNumExpr "labelFontSize"
+                        , lecoLabelFontStyle |> lecoStrExpr "labelFontStyle"
+                        , lecoLabelFontWeight (fwExpr "labelFontWeight")
+                        , lecoLabelLimit |> lecoNumExpr "labelLimit"
+                        , lecoLabelOffset |> lecoNumExpr "labelOffset"
+                        , lecoLabelOverlap (osExpr "labelOverlap")
+                        , lecoOffset |> lecoNumExpr "offset"
+                        , lecoPadding |> lecoNumExpr "padding"
+                        , lecoStrokeColor |> lecoStrExpr "strokeColor"
+                        , lecoX |> lecoNumExpr "xPos"
+                        , lecoY |> lecoNumExpr "yPos"
+                        ]
+                    )
+
+        ps =
+            params
+                << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
+                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor []) ]
+                << param "gradientLength" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 400 ]) ]
+                << param "gradientOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "gradientStrokeColor" [ paValue (str "#006"), paBind (ipColor []) ]
+                << param "gradientStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 4 ]) ]
+                << param "gradientThickness" [ paValue (num 16), paBind (ipRange [ inMin 0, inMax 40 ]) ]
+                << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "labelFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "labelFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "labelLimit" [ paValue (num 20), paBind (ipRange [ inMin 0, inMax 20 ]) ]
+                << param "labelOffset" [ paValue (num 0), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+                << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inDatumOptions [ boo False, str "parity", str "greedy" ] ]) ]
+                << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
+                << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
+                << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Weight_in_lbs", pQuant ]
+                << position Y [ pName "Horsepower", pQuant ]
+                << color [ mName "Acceleration", mQuant, mLegend [ leOrient loNone ] ]
+    in
+    toVegaLite
+        [ ps []
+        , cfg []
+        , width 500
+        , height 400
+        , autosize [ asFit ]
+        , padding (paSize 80)
+        , data
+        , enc []
+        , point [ maFilled True ]
+        ]
+
+
+paramCfg6 : Spec
+paramCfg6 =
+    let
+        lVals1 =
+            nums [ 8, 12, 16, 20, 24 ]
+
+        lVals2 =
+            nums [ 0, 25 ]
+
+        lVals3 =
+            nums [ 5, 10, 15, 20, 25 ]
+
+        solid =
+            nums []
+
+        shortDash =
+            nums [ 2, 2 ]
+
+        longDash =
+            nums [ 8, 8 ]
+
+        cfg =
+            configure
+                << configuration
+                    (coLegend
+                        [ lecoClipHeight |> lecoNumExpr "clipHeight"
+                        , lecoColumnPadding |> lecoNumExpr "columnPadding"
+                        , lecoColumns |> lecoNumExpr "columns"
+                        , lecoRowPadding |> lecoNumExpr "rowPadding"
+                        , lecoFillColor |> lecoStrExpr "fillColor"
+                        , lecoStrokeColor |> lecoStrExpr "strokeColor"
+                        , lecoSymbolDash |> lecoNumsExpr "symbolDash"
+                        , lecoSymbolDashOffset |> lecoNumExpr "symbolDashOffset"
+                        , lecoSymbolFillColor |> lecoStrExpr "symbolFillColor"
+                        , lecoSymbolLimit |> lecoNumExpr "symbolLimit"
+                        , lecoSymbolOffset |> lecoNumExpr "symbolOffset"
+                        , lecoSymbolOpacity |> lecoNumExpr "symbolOpacity"
+                        , lecoSymbolSize |> lecoNumExpr "symbolSize"
+                        , lecoSymbolStrokeColor |> lecoStrExpr "symbolStrokeColor"
+                        , lecoSymbolStrokeWidth |> lecoNumExpr "symbolStrokeWidth"
+                        , lecoTitleAlign (haExpr "titleAlign")
+                        , lecoTitleAnchor (anExpr "titleAnchor")
+                        , lecoTitleBaseline (vaExpr "titleBaseline")
+                        , lecoTitleColor |> lecoStrExpr "titleColor"
+                        , lecoTitleFont |> lecoStrExpr "titleFont"
+                        , lecoTitleFontSize |> lecoNumExpr "titleFontSize"
+                        , lecoTitleFontStyle |> lecoStrExpr "titleFontStyle"
+                        , lecoTitleFontWeight (fwExpr "titleFontWeight")
+                        , lecoTitleLimit |> lecoNumExpr "titleLimit"
+                        , lecoTitleLineHeight |> lecoNumExpr "titleLineHeight"
+                        , lecoTitleOpacity |> lecoNumExpr "titleOpacity"
+                        , lecoTitlePadding |> lecoNumExpr "titlePadding"
+                        ]
+                    )
+
+        ps =
+            params
+                << param "clipHeight" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 200 ]) ]
+                << param "columnPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
+                << param "columns" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
+                << param "rowPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
+                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor []) ]
+                << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
+                << param "symbolDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
+                << param "symbolFillColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
+                << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
+                << param "symbolOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 1000 ]) ]
+                << param "symbolStrokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 8 ]) ]
+                << param "titleAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
+                << param "titleAnchor" [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "start", "middle", "end" ] ]) ]
+                << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
+                << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
+                << param "titleFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
+                << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
+                << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
+                << param "titleLimit" [ paValue (num 180), paBind (ipRange [ inMin 0, inMax 300 ]) ]
+                << param "titleLineHeight" [ paValue (num 16), paBind (ipRange [ inMin -50, inMax 50 ]) ]
+                << param "titleOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
+                << param "titlePadding" [ paValue (num 5), paBind (ipRange [ inMin -30, inMax 30 ]) ]
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Weight_in_lbs", pQuant ]
+                << position Y [ pName "Horsepower", pQuant ]
+                << shape
+                    [ mName "Origin"
+                    , mTitle "This is the title of the\nshape legend"
+                    ]
+    in
+    toVegaLite
+        [ ps []
+        , cfg []
+        , width 500
+        , height 400
+        , autosize [ asFit ]
+        , padding (paSize 80)
+        , data
+        , enc []
+        , point [ maFilled True ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -978,6 +1183,8 @@ specs =
     , ( "paramCfg2", paramCfg2 )
     , ( "paramCfg3", paramCfg3 )
     , ( "paramCfg4", paramCfg4 )
+    , ( "paramCfg5", paramCfg5 )
+    , ( "paramCfg6", paramCfg6 )
     ]
 
 
