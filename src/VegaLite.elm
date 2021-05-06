@@ -1652,7 +1652,6 @@ module VegaLite exposing
     , oDataCondition
     , oSelectionCondition
     , pBand
-    , scDomainMid
     , seBind
     , seBindLegend
     , seBindScales
@@ -4029,7 +4028,6 @@ to the functions that generate them.
 @docs oDataCondition
 @docs oSelectionCondition
 @docs pBand
-@docs scDomainMid
 @docs seBind
 @docs seBindLegend
 @docs seBindScales
@@ -5993,7 +5991,6 @@ type ScaleProperty
     | SNice ScaleNice
     | SZero Boo
     | SExponent Num
-    | SDomainMid Num
     | SConstant Num
     | SBase Num
     | SReverse Boo
@@ -18954,13 +18951,6 @@ scDomainExpr =
     SDomainExpr
 
 
-{-| Deprecated in favour of `scDomain doMid`
--}
-scDomainMid : Float -> ScaleProperty
-scDomainMid n =
-    SDomainMid (Num n)
-
-
 {-| The exponent to use for power scaling.
 -}
 scExponent : Float -> ScaleProperty
@@ -19026,9 +19016,6 @@ scNumExpr ex fn =
 
         SConstant _ ->
             SConstant (NumExpr ex)
-
-        SDomainMid _ ->
-            SDomainMid (NumExpr ex)
 
         SExponent _ ->
             SExponent (NumExpr ex)
@@ -26515,9 +26502,6 @@ scaleProperty scaleProp =
 
         SExponent x ->
             numExpr "exponent" x
-
-        SDomainMid x ->
-            numExpr "domainMid" x
 
         SConstant x ->
             numExpr "constant" x

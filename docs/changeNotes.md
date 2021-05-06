@@ -22,6 +22,8 @@ Add images on maps test (VL5.1).
 
 - Removed redundant or older deprecated legend configuration options: `lecoGradientWidth` and `lecoGradientHeight` ( replaced with `lecoGradientLength`); `lecoEntryPadding` (replaced with `lecoRowPadding` and `lecoColPadding`); `lecoGradientLabelBaseline` (replaced with `lecoLabelBaseline`); `lecoShortTimeLabels` (all time labels short by default).
 
+- Removed older deprecated `scDomainMid`.
+
 - Removed redundant `sacoBarBandPaddingOuter` and `sacoRectBandPaddingOuter`: use `sacoBandPaddingOuter` instead (VL5.0).
 
 - `racoSymbol` for configuring default categorical symbols removed as it was previously incorrect (and ineffective). Use `racoSymbols` which takes a list of symbols instead.
