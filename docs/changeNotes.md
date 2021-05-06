@@ -8,8 +8,6 @@ _Major changes are the use of expression parameters (limited form of Vega signal
 
 Do we need to add projection fit function?
 
-Refactor: Use consistent names for configuration type variants
-
 Add images on maps test (VL5.1).
 
 ### V4.0 Breaking Changes
