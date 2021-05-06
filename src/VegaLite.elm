@@ -13547,7 +13547,7 @@ lecoGradientLength n =
 -}
 lecoGradientOpacity : Float -> LegendConfig
 lecoGradientOpacity n =
-    GradientLabelOffset (Num n)
+    GradientOpacity (Num n)
 
 
 {-| Default color for strokes in a color ramp legend.
