@@ -1647,7 +1647,6 @@ module VegaLite exposing
     , iText
     , iTime
     , iWeek
-    , lecoShortTimeLabels
     , mDataCondition
     , mSelectionCondition
     , oDataCondition
@@ -4025,7 +4024,6 @@ to the functions that generate them.
 @docs iText
 @docs iTime
 @docs iWeek
-@docs lecoShortTimeLabels
 @docs mDataCondition
 @docs mSelectionCondition
 @docs oDataCondition
@@ -5114,7 +5112,6 @@ type LegendConfig
     | LecoLabelAlign HAlign
     | LecoLabelBaseline VAlign
     | LecoLabelColor Str
-    | LecoNoTitle
     | LecoLabelFont Str
     | LecoLabelFontSize Num
     | LecoLabelFontStyle Str
@@ -5126,7 +5123,6 @@ type LegendConfig
     | LecoOrient LegendOrientation
     | LecoPadding Num
     | LecoRowPadding Num
-    | LecoShortTimeLabels Boo
     | LecoStrokeColor Str
     | LecoStrokeDash Nums
     | LecoStrokeWidth Num
@@ -5143,6 +5139,7 @@ type LegendConfig
     | LecoSymbolSize Num
     | LecoSymbolStrokeWidth Num
     | LecoSymbolStrokeColor Str
+    | LecoNoTitle
     | LecoTitleAlign HAlign
     | LecoTitleAnchor Anchor
     | LecoTitleBaseline VAlign
@@ -13778,13 +13775,6 @@ lecoPadding n =
 lecoRowPadding : Float -> LegendConfig
 lecoRowPadding n =
     LecoRowPadding (Num n)
-
-
-{-| Deprecated as time labels are already abbreviated by default in a legend.
--}
-lecoShortTimeLabels : Bool -> LegendConfig
-lecoShortTimeLabels b =
-    LecoShortTimeLabels (Boo b)
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
@@ -24339,9 +24329,6 @@ legendConfigProperty legendConfig =
 
         LecoLabelOverlap lo ->
             [ ( "labelOverlap", overlapStrategySpec lo ) ]
-
-        LecoShortTimeLabels b ->
-            booExpr "shortTimeLabels" b
 
         LecoSymbolDirection d ->
             [ ( "symbolDirection", JE.string (markOrientationLabel d) ) ]
