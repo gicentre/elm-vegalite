@@ -1275,6 +1275,7 @@ module VegaLite exposing
     , axcoLabelPadding
     , axcoLabelSeparation
     , axcoOffset
+    , axcoStyle
     , axcoTicks
     , axcoTickBand
     , axcoTickCap
@@ -1685,7 +1686,6 @@ module VegaLite exposing
     , seSingle
     , tDataCondition
     , tSelectionCondition
-    -- , axcoStyle
     --, leUnselectedOpacity
     -- TODO: CHECK IF THESE WILL BE NEEDED
     --, raMaxStr
@@ -3379,7 +3379,7 @@ These are in addition to the data and transform options described above. See the
 
   - 8.1 [Title](#8-1-title)
   - 8.2 [View Background](#8-2-view-background)
-  - 8.3 [Style Configuration](#8-3-style-configuration)
+  - 8.3 [Configuration of Default Appearance](#8-3-configuration-of-default-appearance)
 
 @docs name
 @docs description
@@ -3479,7 +3479,7 @@ of other views. For more details see the
 @docs viewStrokeWidth
 
 
-## 8.3 Style Configuration
+## 8.3 Configuration of Default Appearance
 
 Allows default properties for most marks and guides to be set. See the
 [Vega-Lite configuration documentation](https://vega.github.io/vega-lite/docs/config.html).
@@ -3587,6 +3587,7 @@ See the
 @docs axcoLabelPadding
 @docs axcoLabelSeparation
 @docs axcoOffset
+@docs axcoStyle
 @docs axcoTicks
 @docs axcoTickBand
 @docs axcoTickCap
@@ -4223,6 +4224,7 @@ type AxisConfig
     | AxcoMaxExtent Num
     | AxcoMinExtent Num
     | AxcoOffset Num
+    | AxcoStyle Strs
     | AxcoTicks Boo
     | AxcoTickBand TickBand
     | AxcoTickCap StrokeCap
@@ -7179,9 +7181,9 @@ axcoLabelBound mn =
     AxcoLabelBound (MaybeNum mn)
 
 
-{-| Expression that evaluates to True, False or a number depending whether, by default,
-a check is to be made for an axis label size. A number specifies the permitted overflow
-in pixels.
+{-| Expression that evaluates to `True`, `False` or a number depending whether,
+by default, a check is to be made for an axis label size. A number specifies the
+permitted overflow in pixels.
 -}
 axcoLabelBoundExpr : String -> AxisConfig
 axcoLabelBoundExpr ex =
@@ -7314,13 +7316,12 @@ axcoMinExtent n =
     AxcoMinExtent (Num n)
 
 
-
-{- | A list of named styles to apply as defaults to axes.
-   -- TODO: Do we need this?
-      axcoStyle : List String -> AxisConfig
-      axcoStyle =
-          AStyle
+{-| A list of named styles to apply as defaults to axes.
 -}
+axcoStyle : List String -> AxisConfig
+axcoStyle ss =
+    -- TODO: Do we need this?
+    AxcoStyle (Strs ss)
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to an
@@ -9839,11 +9840,15 @@ configuration cfg =
 {-| Create a single global configuration from a list of configuration specifications.
 Each [configuration](#configuration) that makes up the global list of customisations
 refers to a specific part of all visualizations to which it is applied, such as
-axes, legends, selections etc.
-See the [Vega-Lite documentation](https://vega.github.io/vega-lite/docs/config.html).
+axes, legends, selections etc. See the
+[Vega-Lite documentation](https://vega.github.io/vega-lite/docs/config.html).
 
-The following would make axis lines (domain) 2 pixels wide, remove the border
-rectangle and require interactive selection of items to use a double-click.
+Individual configuration functions are prefixed with an abbreviation of the part
+of the visualization to configure followed by `co`. For example, axis configutation
+functions `axco`, legends `leco`, titles `tico`, faceting `faco` etc.
+
+The following makes all axis lines (domain) 2 pixels wide, removes the border
+rectangle and requires interactive selection of items to use a double-click.
 
     let
         cfg =
@@ -22421,13 +22426,19 @@ autosizeProperty asCfg =
 axisConfigProperty : AxisConfig -> List LabelledSpec
 axisConfigProperty axisCfg =
     case axisCfg of
-        -- AStyle ss ->
-        --     case ss of
-        --         [ s ] ->
-        --             ( "style", JE.string s )
-        --
-        --         _ ->
-        --             ( "style", JE.list JE.string ss )
+        AxcoStyle ss ->
+            case ss of
+                Strs xs ->
+                    case xs of
+                        [ s ] ->
+                            [ ( "style", JE.string s ) ]
+
+                        _ ->
+                            strsExpr "style" ss
+
+                StrsExpr s ->
+                    strsExpr "style" ss
+
         AxcoAria aps ->
             case aps of
                 [] ->

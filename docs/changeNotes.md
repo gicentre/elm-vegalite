@@ -131,6 +131,8 @@ Do we need to add projection fit function?
 
 - `axcoOffset` and `axcoLabelOffset` for configuring axis spacing.
 
+- `axcoStyle` for named axis configuration styles.
+
 - `lecoDirection`, `lecoGradientLength`, `lecoGradientHorizontalMaxLength`, `lecoGradientHorizontalMinLength`, `lecoGradientVerticalMaxLength`, `lecoGradientVerticalMinLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle`, `lecoNoTitle`, `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
 
 - `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
