@@ -288,28 +288,30 @@ axis12 =
 
 
 -- Unlike titles, it would appear Vega-Lite does not allow axis styles to reference other named styles.
--- axis13 : Spec
--- axis13 =
---     let
---         cfg =
---             configure
---                 << configuration
---                     (coAxisStyles
---                         [ ( "tickStyle", [ axTickCount (niTickCount 10) ] )
---                         , ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red" ] )
---                         , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue" ] )
---                         ]
---                     )
---                 << configuration (coAxis [ axcoStyle [ "tickStyle" ] ])
---                 << configuration (coAxis [ axcoStyle [ "redStyle" ] ]|> coAxisXFilter)
---                 << configuration (coAxis [ axcoStyle [ "blueStyle" ] ]|> coAxisYFilter)
---
---         enc =
---             encoding
---                 << position X [ pName "catX", pOrdinal ]
---                 << position Y [ pName "y", pQuant ]
---     in
---     toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
+
+
+axis13 : Spec
+axis13 =
+    let
+        cfg =
+            configure
+                << configuration
+                    (coAxisStyles
+                        [ ( "tickStyle", [ axTickCount (niTickCount 10) ] )
+                        , ( "redStyle", [ axDomainColor "red", axLabelColor "red", axTitleColor "red" ] )
+                        , ( "blueStyle", [ axDomainColor "blue", axLabelColor "blue", axTitleColor "blue" ] )
+                        ]
+                    )
+                << configuration (coAxis [ axcoStyle [ "tickStyle" ] ])
+                << configuration (coAxis [ axcoStyle [ "redStyle" ] ] |> coAxisXFilter)
+                << configuration (coAxis [ axcoStyle [ "blueStyle" ] ] |> coAxisYFilter)
+
+        enc =
+            encoding
+                << position X [ pName "catX", pOrdinal ]
+                << position Y [ pName "y", pQuant ]
+    in
+    toVegaLite [ cfg [], data [], enc [], line [ maPoint (pmMarker []) ] ]
 
 
 axis14 : Spec
@@ -550,8 +552,7 @@ specs =
     , ( "axis10", axis10 )
     , ( "axis11", axis11 )
     , ( "axis12", axis12 )
-
-    -- , ( "axis13", axis13 )
+    , ( "axis13", axis13 )
     , ( "axis14", axis14 )
     , ( "axis15", axis15 )
     , ( "axis16", axis16 )
