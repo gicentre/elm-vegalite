@@ -12557,11 +12557,11 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 14;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
-var $author$project$VegaLite$TicoSubtitle = function (a) {
+var $author$project$VegaLite$TiSubtitle = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = function (s) {
-	return $author$project$VegaLite$TicoSubtitle(
+	return $author$project$VegaLite$TiSubtitle(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$VLTitle = 3;
@@ -13163,29 +13163,29 @@ var $author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
-var $author$project$VegaLite$TicoAnchor = function (a) {
+var $author$project$VegaLite$TiAnchor = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TicoAnchor;
-var $author$project$VegaLite$TicoColor = function (a) {
+var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TiAnchor;
+var $author$project$VegaLite$TiColor = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ticoColor = function (s) {
-	return $author$project$VegaLite$TicoColor(
+	return $author$project$VegaLite$TiColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoFont = function (a) {
+var $author$project$VegaLite$TiFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$ticoFont = function (s) {
-	return $author$project$VegaLite$TicoFont(
+	return $author$project$VegaLite$TiFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoFontSize = function (a) {
+var $author$project$VegaLite$TiFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TicoFontSize(
+	return $author$project$VegaLite$TiFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$NoStr = {$: 1};

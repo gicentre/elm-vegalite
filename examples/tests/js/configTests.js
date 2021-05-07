@@ -14043,18 +14043,18 @@ var $author$project$VegaLite$lecoTitleColor = function (s) {
 	return $author$project$VegaLite$LecoTitleColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoColor = function (a) {
+var $author$project$VegaLite$TiColor = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$ticoColor = function (s) {
-	return $author$project$VegaLite$TicoColor(
+	return $author$project$VegaLite$TiColor(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoFont = function (a) {
+var $author$project$VegaLite$TiFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$ticoFont = function (s) {
-	return $author$project$VegaLite$TicoFont(
+	return $author$project$VegaLite$TiFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeVis(
@@ -15210,198 +15210,200 @@ var $author$project$VegaLite$FrExpr = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$tfExpr = $author$project$VegaLite$FrExpr;
-var $author$project$VegaLite$TicoSubtitle = function (a) {
+var $author$project$VegaLite$TiSubtitle = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = function (s) {
-	return $author$project$VegaLite$TicoSubtitle(
+	return $author$project$VegaLite$TiSubtitle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoAngle = function (a) {
+var $author$project$VegaLite$TiAngle = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$positiveAngle = function (a) {
 	return (a < 0) ? (a + 360) : a;
 };
 var $author$project$VegaLite$ticoAngle = function (n) {
-	return $author$project$VegaLite$TicoAngle(
+	return $author$project$VegaLite$TiAngle(
 		$author$project$VegaLite$Num(
 			$author$project$VegaLite$positiveAngle(n)));
 };
-var $author$project$VegaLite$TicoDx = function (a) {
+var $author$project$VegaLite$TiDx = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$ticoDx = function (n) {
-	return $author$project$VegaLite$TicoDx(
+	return $author$project$VegaLite$TiDx(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoDy = function (a) {
+var $author$project$VegaLite$TiDy = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$ticoDy = function (n) {
-	return $author$project$VegaLite$TicoDy(
+	return $author$project$VegaLite$TiDy(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoFontSize = function (a) {
+var $author$project$VegaLite$TiFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TicoFontSize(
+	return $author$project$VegaLite$TiFontSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoFontStyle = function (a) {
+var $author$project$VegaLite$TiFontStyle = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$ticoFontStyle = function (s) {
-	return $author$project$VegaLite$TicoFontStyle(
+	return $author$project$VegaLite$TiFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoFontWeight = function (a) {
+var $author$project$VegaLite$TiFontWeight = function (a) {
 	return {$: 9, a: a};
 };
-var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TicoFontWeight;
-var $author$project$VegaLite$TicoFrame = function (a) {
+var $author$project$VegaLite$ticoFontWeight = $author$project$VegaLite$TiFontWeight;
+var $author$project$VegaLite$TiFrame = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$ticoFrame = $author$project$VegaLite$TicoFrame;
-var $author$project$VegaLite$TicoLimit = function (a) {
+var $author$project$VegaLite$ticoFrame = $author$project$VegaLite$TiFrame;
+var $author$project$VegaLite$TiLimit = function (a) {
 	return {$: 12, a: a};
 };
 var $author$project$VegaLite$ticoLimit = function (n) {
-	return $author$project$VegaLite$TicoLimit(
+	return $author$project$VegaLite$TiLimit(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoLineHeight = function (a) {
+var $author$project$VegaLite$TiLineHeight = function (a) {
 	return {$: 11, a: a};
 };
 var $author$project$VegaLite$ticoLineHeight = function (n) {
-	return $author$project$VegaLite$TicoLineHeight(
+	return $author$project$VegaLite$TiLineHeight(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoOffset = function (a) {
+var $author$project$VegaLite$TiOffset = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$TicoSubtitleFontSize = function (a) {
+var $author$project$VegaLite$TiSubtitleFontSize = function (a) {
 	return {$: 19, a: a};
 };
-var $author$project$VegaLite$TicoSubtitleLineHeight = function (a) {
+var $author$project$VegaLite$TiSubtitleLineHeight = function (a) {
 	return {$: 22, a: a};
 };
-var $author$project$VegaLite$TicoSubtitlePadding = function (a) {
+var $author$project$VegaLite$TiSubtitlePadding = function (a) {
 	return {$: 23, a: a};
 };
-var $author$project$VegaLite$TicoZIndex = function (a) {
+var $author$project$VegaLite$TiZIndex = function (a) {
 	return {$: 24, a: a};
 };
-var $author$project$VegaLite$ticoNumExpr = F2(
+var $author$project$VegaLite$tiNumExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn(0);
 		switch (_v0.$) {
 			case 1:
-				return $author$project$VegaLite$TicoAngle(
+				return $author$project$VegaLite$TiAngle(
 					$author$project$VegaLite$NumExpr(ex));
 			case 4:
-				return $author$project$VegaLite$TicoDx(
+				return $author$project$VegaLite$TiDx(
 					$author$project$VegaLite$NumExpr(ex));
 			case 5:
-				return $author$project$VegaLite$TicoDy(
+				return $author$project$VegaLite$TiDy(
 					$author$project$VegaLite$NumExpr(ex));
 			case 7:
-				return $author$project$VegaLite$TicoFontSize(
+				return $author$project$VegaLite$TiFontSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 11:
-				return $author$project$VegaLite$TicoLineHeight(
+				return $author$project$VegaLite$TiLineHeight(
 					$author$project$VegaLite$NumExpr(ex));
 			case 12:
-				return $author$project$VegaLite$TicoLimit(
+				return $author$project$VegaLite$TiLimit(
 					$author$project$VegaLite$NumExpr(ex));
 			case 13:
-				return $author$project$VegaLite$TicoOffset(
+				return $author$project$VegaLite$TiOffset(
 					$author$project$VegaLite$NumExpr(ex));
 			case 19:
-				return $author$project$VegaLite$TicoSubtitleFontSize(
+				return $author$project$VegaLite$TiSubtitleFontSize(
 					$author$project$VegaLite$NumExpr(ex));
 			case 22:
-				return $author$project$VegaLite$TicoSubtitleLineHeight(
+				return $author$project$VegaLite$TiSubtitleLineHeight(
 					$author$project$VegaLite$NumExpr(ex));
 			case 23:
-				return $author$project$VegaLite$TicoSubtitlePadding(
+				return $author$project$VegaLite$TiSubtitlePadding(
 					$author$project$VegaLite$NumExpr(ex));
 			case 24:
-				return $author$project$VegaLite$TicoZIndex(
+				return $author$project$VegaLite$TiZIndex(
 					$author$project$VegaLite$NumExpr(ex));
 			default:
 				return fn(0);
 		}
 	});
+var $author$project$VegaLite$ticoNumExpr = $author$project$VegaLite$tiNumExpr;
 var $author$project$VegaLite$ticoOffset = function (n) {
-	return $author$project$VegaLite$TicoOffset(
+	return $author$project$VegaLite$TiOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoOrient = function (a) {
+var $author$project$VegaLite$TiOrient = function (a) {
 	return {$: 14, a: a};
 };
-var $author$project$VegaLite$ticoOrient = $author$project$VegaLite$TicoOrient;
-var $author$project$VegaLite$TicoSubtitleColor = function (a) {
+var $author$project$VegaLite$ticoOrient = $author$project$VegaLite$TiOrient;
+var $author$project$VegaLite$TiSubtitleColor = function (a) {
 	return {$: 17, a: a};
 };
-var $author$project$VegaLite$TicoSubtitleFont = function (a) {
+var $author$project$VegaLite$TiSubtitleFont = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$TicoSubtitleFontStyle = function (a) {
+var $author$project$VegaLite$TiSubtitleFontStyle = function (a) {
 	return {$: 20, a: a};
 };
-var $author$project$VegaLite$ticoStrExpr = F2(
+var $author$project$VegaLite$tiStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
 		switch (_v0.$) {
 			case 3:
-				return $author$project$VegaLite$TicoColor(
+				return $author$project$VegaLite$TiColor(
 					$author$project$VegaLite$StrExpr(ex));
 			case 6:
-				return $author$project$VegaLite$TicoFont(
+				return $author$project$VegaLite$TiFont(
 					$author$project$VegaLite$StrExpr(ex));
 			case 8:
-				return $author$project$VegaLite$TicoFontStyle(
+				return $author$project$VegaLite$TiFontStyle(
 					$author$project$VegaLite$StrExpr(ex));
 			case 16:
-				return $author$project$VegaLite$TicoSubtitle(
+				return $author$project$VegaLite$TiSubtitle(
 					$author$project$VegaLite$StrExpr(ex));
 			case 17:
-				return $author$project$VegaLite$TicoSubtitleColor(
+				return $author$project$VegaLite$TiSubtitleColor(
 					$author$project$VegaLite$StrExpr(ex));
 			case 18:
-				return $author$project$VegaLite$TicoSubtitleFont(
+				return $author$project$VegaLite$TiSubtitleFont(
 					$author$project$VegaLite$StrExpr(ex));
 			case 20:
-				return $author$project$VegaLite$TicoSubtitleFontStyle(
+				return $author$project$VegaLite$TiSubtitleFontStyle(
 					$author$project$VegaLite$StrExpr(ex));
 			default:
 				return fn('');
 		}
 	});
+var $author$project$VegaLite$ticoStrExpr = $author$project$VegaLite$tiStrExpr;
 var $author$project$VegaLite$ticoSubtitleFont = function (s) {
-	return $author$project$VegaLite$TicoSubtitleFont(
+	return $author$project$VegaLite$TiSubtitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$ticoSubtitleFontSize = function (n) {
-	return $author$project$VegaLite$TicoSubtitleFontSize(
+	return $author$project$VegaLite$TiSubtitleFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ticoSubtitleFontStyle = function (s) {
-	return $author$project$VegaLite$TicoSubtitleFontStyle(
+	return $author$project$VegaLite$TiSubtitleFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoSubtitleFontWeight = function (a) {
+var $author$project$VegaLite$TiSubtitleFontWeight = function (a) {
 	return {$: 21, a: a};
 };
-var $author$project$VegaLite$ticoSubtitleFontWeight = $author$project$VegaLite$TicoSubtitleFontWeight;
+var $author$project$VegaLite$ticoSubtitleFontWeight = $author$project$VegaLite$TiSubtitleFontWeight;
 var $author$project$VegaLite$ticoSubtitleLineHeight = function (n) {
-	return $author$project$VegaLite$TicoSubtitleLineHeight(
+	return $author$project$VegaLite$TiSubtitleLineHeight(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$ticoSubtitlePadding = function (n) {
-	return $author$project$VegaLite$TicoSubtitlePadding(
+	return $author$project$VegaLite$TiSubtitlePadding(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$titleExpr = F2(
@@ -19496,33 +19498,33 @@ var $author$project$VegaLite$W900 = {$: 12};
 var $author$project$VegaLite$fwValue = function (w) {
 	return (w <= 100) ? $author$project$VegaLite$W100 : ((w <= 200) ? $author$project$VegaLite$W200 : ((w <= 300) ? $author$project$VegaLite$W300 : ((w <= 400) ? $author$project$VegaLite$W400 : ((w <= 500) ? $author$project$VegaLite$W500 : ((w <= 600) ? $author$project$VegaLite$W600 : ((w <= 700) ? $author$project$VegaLite$W700 : ((w <= 800) ? $author$project$VegaLite$W800 : $author$project$VegaLite$W900)))))));
 };
-var $author$project$VegaLite$TicoAnchor = function (a) {
+var $author$project$VegaLite$TiAnchor = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$tiAnchor = $author$project$VegaLite$TicoAnchor;
+var $author$project$VegaLite$tiAnchor = $author$project$VegaLite$TiAnchor;
 var $author$project$VegaLite$tiSubtitleColor = function (s) {
-	return $author$project$VegaLite$TicoSubtitleColor(
+	return $author$project$VegaLite$TiSubtitleColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$tiSubtitleFont = function (s) {
-	return $author$project$VegaLite$TicoSubtitleFont(
+	return $author$project$VegaLite$TiSubtitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$tiSubtitleFontSize = function (n) {
-	return $author$project$VegaLite$TicoSubtitleFontSize(
+	return $author$project$VegaLite$TiSubtitleFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$tiSubtitleFontStyle = function (s) {
-	return $author$project$VegaLite$TicoSubtitleFontStyle(
+	return $author$project$VegaLite$TiSubtitleFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TicoSubtitleFontWeight;
+var $author$project$VegaLite$tiSubtitleFontWeight = $author$project$VegaLite$TiSubtitleFontWeight;
 var $author$project$VegaLite$tiSubtitleLineHeight = function (n) {
-	return $author$project$VegaLite$TicoSubtitleLineHeight(
+	return $author$project$VegaLite$TiSubtitleLineHeight(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$tiSubtitlePadding = function (n) {
-	return $author$project$VegaLite$TicoSubtitlePadding(
+	return $author$project$VegaLite$TiSubtitlePadding(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$ConfigTests$titleCfg2 = function () {
@@ -19574,9 +19576,9 @@ var $author$project$ConfigTests$titleCfg2 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TicoAnchor;
+var $author$project$VegaLite$ticoAnchor = $author$project$VegaLite$TiAnchor;
 var $author$project$VegaLite$ticoSubtitleColor = function (s) {
-	return $author$project$VegaLite$TicoSubtitleColor(
+	return $author$project$VegaLite$TiSubtitleColor(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$ConfigTests$titleCfg3 = function () {

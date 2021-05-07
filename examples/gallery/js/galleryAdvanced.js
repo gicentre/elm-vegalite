@@ -13544,17 +13544,17 @@ var $author$project$VegaLite$MOVertical = 1;
 var $author$project$VegaLite$moVertical = 1;
 var $author$project$VegaLite$FrBounds = {$: 0};
 var $author$project$VegaLite$tfBounds = $author$project$VegaLite$FrBounds;
-var $author$project$VegaLite$TicoFontStyle = function (a) {
+var $author$project$VegaLite$TiFontStyle = function (a) {
 	return {$: 8, a: a};
 };
 var $author$project$VegaLite$tiFontStyle = function (s) {
-	return $author$project$VegaLite$TicoFontStyle(
+	return $author$project$VegaLite$TiFontStyle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoFrame = function (a) {
+var $author$project$VegaLite$TiFrame = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TicoFrame;
+var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TiFrame;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {

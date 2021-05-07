@@ -11366,15 +11366,15 @@ var $author$project$VegaLite$SymTriangleRight = {$: 7};
 var $author$project$VegaLite$symTriangleRight = $author$project$VegaLite$SymTriangleRight;
 var $author$project$VegaLite$FrBounds = {$: 0};
 var $author$project$VegaLite$tfBounds = $author$project$VegaLite$FrBounds;
-var $author$project$VegaLite$TicoFrame = function (a) {
+var $author$project$VegaLite$TiFrame = function (a) {
 	return {$: 10, a: a};
 };
-var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TicoFrame;
-var $author$project$VegaLite$TicoFontSize = function (a) {
+var $author$project$VegaLite$tiFrame = $author$project$VegaLite$TiFrame;
+var $author$project$VegaLite$TiFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$ticoFontSize = function (n) {
-	return $author$project$VegaLite$TicoFontSize(
+	return $author$project$VegaLite$TiFontSize(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$VLTitle = 3;

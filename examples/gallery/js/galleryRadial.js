@@ -11872,39 +11872,39 @@ var $elm$core$Basics$negate = function (n) {
 var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
 var $author$project$VegaLite$OfNone = 3;
 var $author$project$VegaLite$stNone = 3;
-var $author$project$VegaLite$TicoFont = function (a) {
+var $author$project$VegaLite$TiFont = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$tiFont = function (s) {
-	return $author$project$VegaLite$TicoFont(
+	return $author$project$VegaLite$TiFont(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoFontSize = function (a) {
+var $author$project$VegaLite$TiFontSize = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$tiFontSize = function (n) {
-	return $author$project$VegaLite$TicoFontSize(
+	return $author$project$VegaLite$TiFontSize(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoOffset = function (a) {
+var $author$project$VegaLite$TiOffset = function (a) {
 	return {$: 13, a: a};
 };
 var $author$project$VegaLite$tiOffset = function (n) {
-	return $author$project$VegaLite$TicoOffset(
+	return $author$project$VegaLite$TiOffset(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$TicoSubtitle = function (a) {
+var $author$project$VegaLite$TiSubtitle = function (a) {
 	return {$: 16, a: a};
 };
 var $author$project$VegaLite$tiSubtitle = function (s) {
-	return $author$project$VegaLite$TicoSubtitle(
+	return $author$project$VegaLite$TiSubtitle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$TicoSubtitleFont = function (a) {
+var $author$project$VegaLite$TiSubtitleFont = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$tiSubtitleFont = function (s) {
-	return $author$project$VegaLite$TicoSubtitleFont(
+	return $author$project$VegaLite$TiSubtitleFont(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$VLTitle = 3;
