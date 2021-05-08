@@ -4192,7 +4192,6 @@ var $author$project$VegaLite$dayLabel = function (dayName) {
 			return 'Sun';
 	}
 };
-var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$VegaLite$monthNameLabel = function (mon) {
 	switch (mon) {
 		case 0:
@@ -4224,57 +4223,47 @@ var $author$project$VegaLite$monthNameLabel = function (mon) {
 var $author$project$VegaLite$dateTimeProperty = function (dtp) {
 	switch (dtp.$) {
 		case 0:
-			var y = dtp.a;
-			return _Utils_Tuple2(
-				'year',
-				$elm$json$Json$Encode$int(y));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'year', x);
 		case 1:
-			var q = dtp.a;
-			return _Utils_Tuple2(
-				'quarter',
-				$elm$json$Json$Encode$int(q));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'quarter', x);
 		case 2:
 			var mon = dtp.a;
-			return _Utils_Tuple2(
-				'month',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$monthNameLabel(mon)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'month',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$monthNameLabel(mon)))
+				]);
 		case 3:
-			var n = dtp.a;
-			return _Utils_Tuple2(
-				'month',
-				$elm$json$Json$Encode$int(n));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'month', x);
 		case 4:
-			var d = dtp.a;
-			return _Utils_Tuple2(
-				'date',
-				$elm$json$Json$Encode$int(d));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'date', x);
 		case 5:
 			var d = dtp.a;
-			return _Utils_Tuple2(
-				'day',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$dayLabel(d)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'day',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$dayLabel(d)))
+				]);
 		case 6:
-			var h = dtp.a;
-			return _Utils_Tuple2(
-				'hours',
-				$elm$json$Json$Encode$int(h));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'hours', x);
 		case 7:
-			var m = dtp.a;
-			return _Utils_Tuple2(
-				'minutes',
-				$elm$json$Json$Encode$int(m));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'minutes', x);
 		case 8:
-			var s = dtp.a;
-			return _Utils_Tuple2(
-				'seconds',
-				$elm$json$Json$Encode$int(s));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'seconds', x);
 		default:
-			var ms = dtp.a;
-			return _Utils_Tuple2(
-				'milliseconds',
-				$elm$json$Json$Encode$int(ms));
+			var x = dtp.a;
+			return A2($author$project$VegaLite$numExpr, 'milliseconds', x);
 	}
 };
 var $author$project$VegaLite$toList = $elm$json$Json$Encode$list($elm$core$Basics$identity);
@@ -4292,7 +4281,7 @@ var $author$project$VegaLite$dataValueSpec = function (val) {
 		case 1:
 			var d = val.a;
 			return $elm$json$Json$Encode$object(
-				A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+				A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 		case 4:
 			var s = val.a;
 			return $elm$json$Json$Encode$object(
@@ -4342,7 +4331,7 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 					$elm$core$List$map,
 					A2(
 						$elm$core$Basics$composeR,
-						$elm$core$List$map($author$project$VegaLite$dateTimeProperty),
+						$elm$core$List$concatMap($author$project$VegaLite$dateTimeProperty),
 						$elm$json$Json$Encode$object),
 					dtss));
 		case 3:
@@ -4415,7 +4404,7 @@ var $author$project$VegaLite$dataColumn = F2(
 							return _Utils_Tuple2(
 								colName,
 								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, ds)));
+									A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, ds)));
 						},
 						col));
 			case 0:
@@ -4982,7 +4971,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 					} else {
 						var d = ts.a;
 						return $elm$json$Json$Encode$object(
-							A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+							A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 					}
 				}
 			};
@@ -5027,7 +5016,7 @@ var $author$project$VegaLite$filterProperties = function (f) {
 							$elm$json$Json$Encode$list,
 							function (d) {
 								return $elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+									A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 							},
 							ds);
 					case 4:
@@ -5693,7 +5682,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 				$elm$json$Json$Encode$list,
 				function (d) {
 					return $elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
 		case 8:
@@ -5710,7 +5699,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			if (!ts.$) {
 				var d = ts.a;
 				return $elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 			} else {
 				var s = ts.a;
 				return $elm$json$Json$Encode$object(
@@ -5726,7 +5715,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			if (!ts.$) {
 				var d = ts.a;
 				return $elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 			} else {
 				var s = ts.a;
 				return $elm$json$Json$Encode$object(
@@ -5821,6 +5810,7 @@ var $author$project$VegaLite$scaleLabel = function (sc) {
 			return 'threshold';
 	}
 };
+var $elm$json$Json$Encode$int = _Json_wrap;
 var $author$project$VegaLite$timeUnitLabel = function (tu) {
 	switch (tu.$) {
 		case 0:
@@ -6103,7 +6093,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 								_Utils_Tuple2(
 								'domainMin',
 								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+									A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d)))
 							]);
 					} else {
 						var s = ts.a;
@@ -6129,7 +6119,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 								_Utils_Tuple2(
 								'domainMax',
 								$elm$json$Json$Encode$object(
-									A2($elm$core$List$map, $author$project$VegaLite$dateTimeProperty, d)))
+									A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d)))
 							]);
 					} else {
 						var s = ts.a;
