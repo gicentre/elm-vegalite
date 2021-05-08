@@ -4746,16 +4746,16 @@ type DataValues
 [dtMinute](#dtMinute), [dtSecond](#dtSecond) and [dtMillisecond](#dtMillisecond).
 -}
 type DateTime
-    = DTYear Int
-    | DTQuarter Int
+    = DTYear Num
+    | DTQuarter Num
     | DTMonth MonthName
-    | DTMonthNum Int
-    | DTDate Int
+    | DTMonthNum Num
+    | DTDate Num
     | DTDay DayName
-    | DTHours Int
-    | DTMinutes Int
-    | DTSeconds Int
-    | DTMilliseconds Int
+    | DTHours Num
+    | DTMinutes Num
+    | DTSeconds Num
+    | DTMilliseconds Num
 
 
 {-| Day of the week.
@@ -10398,7 +10398,7 @@ dataColumn colName data =
             (::) (List.map (\s -> ( colName, JE.string s )) col)
 
         DateTimes col ->
-            (::) (List.map (\ds -> ( colName, JE.object (List.map dateTimeProperty ds) )) col)
+            (::) (List.map (\ds -> ( colName, JE.object (List.concatMap dateTimeProperty ds) )) col)
 
         Booleans col ->
             (::) (List.map (\b -> ( colName, JE.bool b )) col)
@@ -11196,8 +11196,8 @@ dt =
 {-| Day of the month (1 to 31).
 -}
 dtDate : Int -> DateTime
-dtDate =
-    DTDate
+dtDate n =
+    DTDate (Num (toFloat n))
 
 
 {-| Day of the week.
@@ -11218,8 +11218,8 @@ dTemporal =
 {-| Hour of the day (0=midnight, 1=1am, 23=11pm etc.).
 -}
 dtHour : Int -> DateTime
-dtHour =
-    DTHours
+dtHour n =
+    DTHours (Num (toFloat n))
 
 
 {-| Form of time unit aggregation of field values when encoding with a level of
@@ -11233,15 +11233,15 @@ dTimeUnit =
 {-| Millisecond of a second (0-999).
 -}
 dtMillisecond : Int -> DateTime
-dtMillisecond =
-    DTMilliseconds
+dtMillisecond n =
+    DTMilliseconds (Num (toFloat n))
 
 
 {-| Minute of an hour (0-59).
 -}
 dtMinute : Int -> DateTime
-dtMinute =
-    DTMinutes
+dtMinute n =
+    DTMinutes (Num (toFloat n))
 
 
 {-| Month of a year.
@@ -11257,47 +11257,47 @@ dtMonthNum : MonthName -> DateTime
 dtMonthNum mon =
     case mon of
         Jan ->
-            DTMonthNum 1
+            DTMonthNum (Num 1)
 
         Feb ->
-            DTMonthNum 2
+            DTMonthNum (Num 2)
 
         Mar ->
-            DTMonthNum 3
+            DTMonthNum (Num 3)
 
         Apr ->
-            DTMonthNum 4
+            DTMonthNum (Num 4)
 
         May ->
-            DTMonthNum 5
+            DTMonthNum (Num 5)
 
         Jun ->
-            DTMonthNum 6
+            DTMonthNum (Num 6)
 
         Jul ->
-            DTMonthNum 7
+            DTMonthNum (Num 7)
 
         Aug ->
-            DTMonthNum 8
+            DTMonthNum (Num 8)
 
         Sep ->
-            DTMonthNum 9
+            DTMonthNum (Num 9)
 
         Oct ->
-            DTMonthNum 10
+            DTMonthNum (Num 10)
 
         Nov ->
-            DTMonthNum 11
+            DTMonthNum (Num 11)
 
         Dec ->
-            DTMonthNum 12
+            DTMonthNum (Num 12)
 
 
 {-| Year quarter (1 to 4).
 -}
 dtQuarter : Int -> DateTime
-dtQuarter =
-    DTQuarter
+dtQuarter n =
+    DTQuarter (Num (toFloat n))
 
 
 {-| Min max date-time range to be used in data filtering. If either
@@ -11320,15 +11320,15 @@ dts =
 {-| Second of a minute (0-59).
 -}
 dtSecond : Int -> DateTime
-dtSecond =
-    DTSeconds
+dtSecond n =
+    DTSeconds (Num (toFloat n))
 
 
 {-| A year.
 -}
 dtYear : Int -> DateTime
-dtYear =
-    DTYear
+dtYear n =
+    DTYear (Num (toFloat n))
 
 
 {-| Create an encoding specification from a list of channel encodings. These are
@@ -23657,7 +23657,7 @@ dataValueSpec val =
             JE.bool b
 
         DateTime d ->
-            JE.object (List.map dateTimeProperty d)
+            JE.object (List.concatMap dateTimeProperty d)
 
         DExpr s ->
             JE.object [ ( "expr", JE.string s ) ]
@@ -23685,7 +23685,7 @@ dataValuesSpecs dvs =
             List.map JE.string ss |> toList
 
         DateTimes dtss ->
-            List.map (List.map dateTimeProperty >> JE.object) dtss |> toList
+            List.map (List.concatMap dateTimeProperty >> JE.object) dtss |> toList
 
         DExprs s ->
             JE.object [ ( "expr", JE.string s ) ]
@@ -23700,38 +23700,38 @@ dataValuesSpecs dvs =
             List.map dataValuesSpecs ds |> toList
 
 
-dateTimeProperty : DateTime -> LabelledSpec
+dateTimeProperty : DateTime -> List LabelledSpec
 dateTimeProperty dtp =
     case dtp of
-        DTYear y ->
-            ( "year", JE.int y )
+        DTYear x ->
+            numExpr "year" x
 
-        DTQuarter q ->
-            ( "quarter", JE.int q )
+        DTQuarter x ->
+            numExpr "quarter" x
 
         DTMonth mon ->
-            ( "month", JE.string (monthNameLabel mon) )
+            [ ( "month", JE.string (monthNameLabel mon) ) ]
 
-        DTMonthNum n ->
-            ( "month", JE.int n )
+        DTMonthNum x ->
+            numExpr "month" x
 
-        DTDate d ->
-            ( "date", JE.int d )
+        DTDate x ->
+            numExpr "date" x
 
         DTDay d ->
-            ( "day", JE.string (dayLabel d) )
+            [ ( "day", JE.string (dayLabel d) ) ]
 
-        DTHours h ->
-            ( "hours", JE.int h )
+        DTHours x ->
+            numExpr "hours" x
 
-        DTMinutes m ->
-            ( "minutes", JE.int m )
+        DTMinutes x ->
+            numExpr "minutes" x
 
-        DTSeconds s ->
-            ( "seconds", JE.int s )
+        DTSeconds x ->
+            numExpr "seconds" x
 
-        DTMilliseconds ms ->
-            ( "milliseconds", JE.int ms )
+        DTMilliseconds x ->
+            numExpr "milliseconds" x
 
 
 dayLabel : DayName -> String
@@ -24006,7 +24006,7 @@ filterProperties f =
                             JE.null
 
                         Timestamp d ->
-                            JE.object (List.map dateTimeProperty d)
+                            JE.object (List.concatMap dateTimeProperty d)
 
                 values =
                     case vals of
@@ -24026,7 +24026,7 @@ filterProperties f =
                             JE.list JE.float xs
 
                         DateTimes ds ->
-                            JE.list (\d -> JE.object (List.map dateTimeProperty d)) ds
+                            JE.list (\d -> JE.object (List.concatMap dateTimeProperty d)) ds
 
                         Strings ss ->
                             JE.list JE.string ss
@@ -26666,7 +26666,7 @@ scaleDomainSpec sdType =
             numSpec x
 
         DDateTimes ds ->
-            JE.list (\d -> JE.object (List.map dateTimeProperty d)) ds
+            JE.list (\d -> JE.object (List.concatMap dateTimeProperty d)) ds
 
         DDateTimesExpr s ->
             JE.object [ ( "expr", JE.string s ) ]
@@ -26674,7 +26674,7 @@ scaleDomainSpec sdType =
         DMinDateTime ts ->
             case ts of
                 Timestamp d ->
-                    JE.object (List.map dateTimeProperty d)
+                    JE.object (List.concatMap dateTimeProperty d)
 
                 TimestampExpr s ->
                     JE.object [ ( "expr", JE.string s ) ]
@@ -26682,7 +26682,7 @@ scaleDomainSpec sdType =
         DMaxDateTime ts ->
             case ts of
                 Timestamp d ->
-                    JE.object (List.map dateTimeProperty d)
+                    JE.object (List.concatMap dateTimeProperty d)
 
                 TimestampExpr s ->
                     JE.object [ ( "expr", JE.string s ) ]
@@ -26824,7 +26824,7 @@ scaleProperty scaleProp =
                 DMinDateTime ts ->
                     case ts of
                         Timestamp d ->
-                            [ ( "domainMin", JE.object (List.map dateTimeProperty d) ) ]
+                            [ ( "domainMin", JE.object (List.concatMap dateTimeProperty d) ) ]
 
                         TimestampExpr s ->
                             [ ( "domainMin", JE.object [ ( "expr", JE.string s ) ] ) ]
@@ -26832,7 +26832,7 @@ scaleProperty scaleProp =
                 DMaxDateTime ts ->
                     case ts of
                         Timestamp d ->
-                            [ ( "domainMax", JE.object (List.map dateTimeProperty d) ) ]
+                            [ ( "domainMax", JE.object (List.concatMap dateTimeProperty d) ) ]
 
                         TimestampExpr s ->
                             [ ( "domainMax", JE.object [ ( "expr", JE.string s ) ] ) ]
