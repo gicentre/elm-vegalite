@@ -65,6 +65,10 @@ Do we need to add projection fit function?
 
 - `axBooExpr` / `axcoBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
 
+- `coBooExpr` for providing expressions that evaluate to Boolean top-level configuration properties (VL5.0).
+
+- `coStrExpr` for providing expressions that evaluate to string top-level configuration properties (VL5.0).
+
 - `leNumExpr` / `lecoNumExpr` for providing expressions that evaluate to numeric legend properties or configuration (VL5.0).
 
 - `leNumsExpr` / `lecoNumsExpr` for providing expressions that evaluate to a list of numeric legend (dash) properties or configuration (VL5.0).
@@ -91,7 +95,7 @@ Do we need to add projection fit function?
 
 - `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` / `axcoLabelBoundExpr` (label boundary clipping), `coBackgroundExpr` (background colour config), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `racoSymbols` / `racoSymbolsExpr`(symbols for default scales),`caExpr`(stroke cap style),`joExpr`(stroke join style),`cuExpr`(cursor style),`miExpr`(mark interpolation type),`siExpr`(side),`osExpr`(axis label overlap strategy),`tdExpr`(text direction),`niExpr`(nice tick intervals),`arExpr`(Aria accessibility),`titleExpr`(top-level title),`tfExpr`(title frame),`prExpr`(projection type),`prCenterExpr`(projection center),`prTranslateExpr`(projection translation),`prRotateExpr`(projection rotation),`prParallelsExpr`(conic projection standard parallels),`clipRectExpr`(projection clipping extent),`scDomainExpr`(domain scaling),`doDtsExpr`, `doMinDt`, `doMaxDt`(domain timestamp boundaries),`raExprs`(range elements),`scSchemeExpr` (colour schemes), `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16 to VL 5.0).
+- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` / `axcoLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `racoSymbols` / `racoSymbolsExpr`(symbols for default scales),`caExpr`(stroke cap style),`joExpr`(stroke join style),`cuExpr`(cursor style),`miExpr`(mark interpolation type),`siExpr`(side),`osExpr`(axis label overlap strategy),`tdExpr`(text direction),`niExpr`(nice tick intervals),`arExpr`(Aria accessibility),`titleExpr`(top-level title),`tfExpr`(title frame),`prExpr`(projection type),`prCenterExpr`(projection center),`prTranslateExpr`(projection translation),`prRotateExpr`(projection rotation),`prParallelsExpr`(conic projection standard parallels),`clipRectExpr`(projection clipping extent),`scDomainExpr`(domain scaling),`doDtsExpr`, `doMinDt`, `doMaxDt`(domain timestamp boundaries),`raExprs`(range elements),`scSchemeExpr` (colour schemes), `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16 to VL 5.0).
 
 - `datumExpr` / `dataExpr` for creating a datum value or list of data values from an expression (VL4.16).
 

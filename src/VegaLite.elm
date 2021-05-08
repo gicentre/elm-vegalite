@@ -1182,6 +1182,8 @@ module VegaLite exposing
     , viewStrokeWidth
     , configure
     , configuration
+    , coBooExpr
+    , coStrExpr
     , coArea
     , coAria
     , coAutosize
@@ -1201,7 +1203,6 @@ module VegaLite exposing
     , coAxisTemporal
     , coAxisStyles
     , coBackground
-    , coBackgroundExpr
     , coBar
     , coCircle
     , coConcat
@@ -3487,6 +3488,9 @@ Allows default properties for most marks and guides to be set. See the
 @docs configure
 @docs configuration
 
+@docs coBooExpr
+@docs coStrExpr
+
 @docs coArea
 @docs coAria
 @docs coAutosize
@@ -3506,7 +3510,6 @@ Allows default properties for most marks and guides to be set. See the
 @docs coAxisTemporal
 @docs coAxisStyles
 @docs coBackground
-@docs coBackgroundExpr
 @docs coBar
 @docs coCircle
 @docs coConcat
@@ -4576,7 +4579,7 @@ type ConditionalAxisProperty
 -}
 type ConfigurationProperty
     = AreaStyle (List MarkProperty)
-    | Aria Bool
+    | Aria Boo
     | Autosize (List Autosize)
     | Axis AxisChoice (List AxisConfig)
     | AxisStyles (List ( String, List AxisProperty ))
@@ -4593,10 +4596,10 @@ type ConfigurationProperty
     | BarStyle (List MarkProperty)
     | CircleStyle (List MarkProperty)
     | ConcatStyle (List ConcatConfig)
-    | CountTitle String
-    | CustomFormatTypes Bool
+    | CountTitle Str
+    | CustomFormatTypes Boo
     | FieldTitle FieldTitleProperty
-    | Font String
+    | Font Str
     | GeoshapeStyle (List MarkProperty)
     | Legend (List LegendConfig)
     | Locale (List LocaleProperty)
@@ -4605,7 +4608,7 @@ type ConfigurationProperty
     | HeaderStyle (List HeaderProperty)
     | MarkStyle (List MarkProperty)
     | MarkStyles (List ( String, List MarkProperty ))
-    | NumberFormat String
+    | NumberFormat Str
     | Padding Padding
     | PointStyle (List MarkProperty)
     | Projection (List ProjectionProperty)
@@ -4618,7 +4621,7 @@ type ConfigurationProperty
     | TextStyle (List MarkProperty)
     | TickStyle (List MarkProperty)
     | TitleStyle (List TitleConfig)
-    | TimeFormat String
+    | TimeFormat Str
       -- Note: Trails appear unusual in having their own top-level config
       -- (see https://vega.github.io/vega-lite/docs/trail.html#config)
     | TrailStyle (List MarkProperty)
@@ -9425,8 +9428,8 @@ should be included for marks and guides when generating SVG output. If not speci
 the default is `True`.
 -}
 coAria : Bool -> ConfigurationProperty
-coAria =
-    Aria
+coAria b =
+    Aria (Boo b)
 
 
 {-| Configure the default sizing of visualizations.
@@ -9585,19 +9588,29 @@ coBackground s =
     Background (Str s)
 
 
-{-| Configure the default background of visualizations with the given expression
-that should evaluate to a color.
--}
-coBackgroundExpr : String -> ConfigurationProperty
-coBackgroundExpr s =
-    Background (StrExpr s)
-
-
 {-| Configure the default appearance of bar marks.
 -}
 coBar : List MarkProperty -> ConfigurationProperty
 coBar =
     BarStyle
+
+
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+top-level configuration function requiring a Boolean value. This can be used to
+provide an interactive parameterisation when an expression is bound to an input
+element.
+-}
+coBooExpr : String -> (Bool -> ConfigurationProperty) -> ConfigurationProperty
+coBooExpr ex fn =
+    case fn False of
+        Aria _ ->
+            Aria (BooExpr ex)
+
+        CustomFormatTypes _ ->
+            CustomFormatTypes (BooExpr ex)
+
+        _ ->
+            fn False
 
 
 {-| Configure the default appearance of circle marks.
@@ -9633,8 +9646,8 @@ cocoSpacing n =
 {-| Configure the default title style for count fields.
 -}
 coCountTitle : String -> ConfigurationProperty
-coCountTitle =
-    CountTitle
+coCountTitle s =
+    CountTitle (Str s)
 
 
 {-| Allow formatting of text marks and guides (e.g. [axFormatAsCustom](#axFormatAsCustom))
@@ -9642,8 +9655,8 @@ to accept a custom formatter function registered as a Vega expression. See
 [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
 -}
 coCustomFormatTypes : Bool -> ConfigurationProperty
-coCustomFormatTypes =
-    CustomFormatTypes
+coCustomFormatTypes b =
+    CustomFormatTypes (Boo b)
 
 
 {-| Configure the default appearance of facet layouts.
@@ -9663,8 +9676,8 @@ coFieldTitle =
 {-| Configure the default font for all titles, labels and text marks.
 -}
 coFont : String -> ConfigurationProperty
-coFont =
-    Font
+coFont s =
+    Font (Str s)
 
 
 {-| Configure the default appearance of geoshape marks.
@@ -9909,8 +9922,8 @@ conicEquidistant =
 {-| Configure the default number formatting for axis and text labels.
 -}
 coNumberFormat : String -> ConfigurationProperty
-coNumberFormat =
-    NumberFormat
+coNumberFormat s =
+    NumberFormat (Str s)
 
 
 {-| Configure the default padding in pixels from the edge of the of visualization
@@ -9977,6 +9990,33 @@ coSquare =
     SquareStyle
 
 
+{-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
+top-level configuration function requiring a string value. This can be used to
+provide an interactive parameterisation when an expression is bound to an input
+element.
+-}
+coStrExpr : String -> (String -> ConfigurationProperty) -> ConfigurationProperty
+coStrExpr ex fn =
+    case fn "" of
+        Background _ ->
+            Background (StrExpr ex)
+
+        CountTitle _ ->
+            CountTitle (StrExpr ex)
+
+        Font _ ->
+            Font (StrExpr ex)
+
+        NumberFormat _ ->
+            NumberFormat (StrExpr ex)
+
+        TimeFormat _ ->
+            TimeFormat (StrExpr ex)
+
+        _ ->
+            fn ""
+
+
 {-| Configure the default appearance of text marks.
 -}
 coText : List MarkProperty -> ConfigurationProperty
@@ -10001,8 +10041,8 @@ coTitle =
 {-| Configure the default time format for axis and legend labels.
 -}
 coTimeFormat : String -> ConfigurationProperty
-coTimeFormat =
-    TimeFormat
+coTimeFormat s =
+    TimeFormat (Str s)
 
 
 {-| Configure the default style of trail marks.
@@ -23307,7 +23347,7 @@ configProperty : ConfigurationProperty -> List LabelledSpec
 configProperty configProp =
     case configProp of
         Aria b ->
-            [ ( "aria", JE.bool b ) ]
+            booExpr "aria" b
 
         Autosize aus ->
             [ ( "autosize", JE.object (List.map autosizeProperty aus) ) ]
@@ -23316,7 +23356,7 @@ configProperty configProp =
             strExpr "background" s
 
         CountTitle s ->
-            [ ( "countTitle", JE.string s ) ]
+            strExpr "countTitle" s
 
         Locale lps ->
             case localeProperties lps of
@@ -23335,14 +23375,14 @@ configProperty configProp =
         FieldTitle ftp ->
             [ ( "fieldTitle", JE.string (fieldTitleLabel ftp) ) ]
 
-        NumberFormat fmt ->
-            [ ( "numberFormat", JE.string fmt ) ]
+        NumberFormat s ->
+            strExpr "numberFormat" s
 
         Padding pad ->
             [ ( "padding", paddingSpec pad ) ]
 
-        TimeFormat fmt ->
-            [ ( "timeFormat", JE.string fmt ) ]
+        TimeFormat s ->
+            strExpr "timeFormat" s
 
         Axis axType acs ->
             [ ( axisLabel axType, JE.object (List.concatMap axisConfigProperty acs) ) ]
@@ -23377,8 +23417,8 @@ configProperty configProp =
         Legend lcs ->
             [ ( "legend", JE.object (List.concatMap legendConfigProperty lcs) ) ]
 
-        Font fnt ->
-            [ ( "font", JE.string fnt ) ]
+        Font s ->
+            strExpr "font" s
 
         MarkStyle mps ->
             [ ( "mark", JE.object (List.concatMap markProperty mps) ) ]
@@ -23402,7 +23442,7 @@ configProperty configProp =
             [ ( "concat", JE.object (List.concatMap concatConfigProperty cps) ) ]
 
         CustomFormatTypes b ->
-            [ ( "customFormatTypes", JE.bool b ) ]
+            booExpr "customFormatTypes" b
 
         GeoshapeStyle mps ->
             [ ( "geoshape", JE.object (List.concatMap markProperty mps) ) ]
