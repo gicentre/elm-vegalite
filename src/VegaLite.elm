@@ -9871,7 +9871,7 @@ axes, legends, selections etc. See the
 [Vega-Lite documentation](https://vega.github.io/vega-lite/docs/config.html).
 
 Individual configuration functions are prefixed with an abbreviation of the part
-of the visualization to configure followed by `co`. For example, axis configutation
+of the visualization to configure followed by `co`. For example, axis configuration
 functions `axco`, legends `leco`, titles `tico`, faceting `faco` etc.
 
 The following makes all axis lines (domain) 2 pixels wide, removes the border
@@ -22456,7 +22456,7 @@ axisConfigProperty axisCfg =
                         _ ->
                             strsExpr "style" ss
 
-                StrsExpr s ->
+                StrsExpr _ ->
                     strsExpr "style" ss
 
         AxcoAria aps ->
