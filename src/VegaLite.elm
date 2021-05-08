@@ -4991,17 +4991,17 @@ type HAlign
 and [hdTitlePadding](#hdTitlePadding).
 -}
 type HeaderProperty
-    = HFormat String
+    = HFormat Str
     | HFormatAsNum
     | HFormatAsTemporal
-    | HFormatAsCustom String
-    | HTitle String
+    | HFormatAsCustom Str
+    | HTitle Str
     | HLabelAlign HAlign
     | HLabelAnchor Anchor
     | HLabelAngle Num
     | HLabelBaseline VAlign
     | HLabelColor Str
-    | HLabelExpr String
+    | HLabelExpr Str
     | HLabelFont Str
     | HLabelFontSize Num
     | HLabelFontStyle Str
@@ -5010,7 +5010,7 @@ type HeaderProperty
     | HLabelLineHeight Num
     | HLabelOrient Side
     | HLabelPadding Num
-    | HLabels Bool
+    | HLabels Boo
     | HOrient Side
     | HTitleAlign HAlign
     | HTitleAnchor Anchor
@@ -12393,16 +12393,16 @@ and data/time values, additionally use [hdFormatAsNum](#hdFormatAsNum),
 [hdFormatAsTemporal](#hdFormatAsTemporal) or [hdFormatAsCustom](#hdFormatAsCustom).
 -}
 hdFormat : String -> HeaderProperty
-hdFormat =
-    HFormat
+hdFormat s =
+    HFormat (Str s)
 
 
 {-| Indicate that facet headers should be formatted with a registered custom formatter
 with the given name. See [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
 -}
 hdFormatAsCustom : String -> HeaderProperty
-hdFormatAsCustom =
-    HFormatAsCustom
+hdFormatAsCustom s =
+    HFormatAsCustom (Str s)
 
 
 {-| Indicate that facet headers should be formatted as numbers. To control the
@@ -12466,8 +12466,8 @@ header labels. Can reference `datum.value` and `datum.label` for access to the
 underlying data values and label text respectively.
 -}
 hdLabelExpr : String -> HeaderProperty
-hdLabelExpr =
-    HLabelExpr
+hdLabelExpr s =
+    HLabelExpr (Str s)
 
 
 {-| Header label font in a faceted view.
@@ -12530,8 +12530,8 @@ hdLabelPadding x =
 {-| Whether or not labels in a faceted view are displayed.
 -}
 hdLabels : Bool -> HeaderProperty
-hdLabels =
-    HLabels
+hdLabels b =
+    HLabels (Boo b)
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
@@ -12622,14 +12622,26 @@ input element. For example,
 hdStrExpr : String -> (String -> HeaderProperty) -> HeaderProperty
 hdStrExpr ex fn =
     case fn "" of
+        HFormat _ ->
+            HFormat (StrExpr ex)
+
+        HFormatAsCustom _ ->
+            HFormatAsCustom (StrExpr ex)
+
         HLabelColor _ ->
             HLabelColor (StrExpr ex)
+
+        HLabelExpr _ ->
+            HLabelExpr (StrExpr ex)
 
         HLabelFont _ ->
             HLabelFont (StrExpr ex)
 
         HLabelFontStyle _ ->
             HLabelFontStyle (StrExpr ex)
+
+        HTitle _ ->
+            HTitle (StrExpr ex)
 
         HTitleColor _ ->
             HTitleColor (StrExpr ex)
@@ -12649,8 +12661,8 @@ collection of faceted plots. For multi-line titles, insert `\n` at each line bre
 or use a `"""` multi-line string.
 -}
 hdTitle : String -> HeaderProperty
-hdTitle =
-    HTitle
+hdTitle s =
+    HTitle (Str s)
 
 
 {-| Horizontal alignment of header title in a faceted view.
@@ -24284,17 +24296,17 @@ hAlignSpec al =
 headerProperty : HeaderProperty -> List LabelledSpec
 headerProperty hProp =
     case hProp of
-        HFormat fmt ->
-            [ ( "format", JE.string fmt ) ]
+        HFormat s ->
+            strExpr "format" s
 
         HFormatAsNum ->
             [ ( "formatType", JE.string "number" ) ]
 
         HFormatAsTemporal ->
-            [ ( "formatType", JE.string "time" ) ]
+            strExpr "formatType" (Str "time")
 
-        HFormatAsCustom formatter ->
-            [ ( "formatType", JE.string formatter ) ]
+        HFormatAsCustom s ->
+            strExpr "formatType" s
 
         HLabelAlign ha ->
             [ ( "labelAlign", hAlignSpec ha ) ]
@@ -24312,7 +24324,7 @@ headerProperty hProp =
             strExpr "labelColor" s
 
         HLabelExpr s ->
-            [ ( "labelExpr", JE.string s ) ]
+            strExpr "labelExpr" s
 
         HLabelFont s ->
             strExpr "labelFont" s
@@ -24339,18 +24351,23 @@ headerProperty hProp =
             numExpr "labelPadding" x
 
         HLabels b ->
-            [ ( "labels", JE.bool b ) ]
+            booExpr "labels" b
 
         HOrient orient ->
             [ ( "orient", sideSpec orient ) ]
 
-        HTitle s ->
-            case s of
-                "" ->
-                    [ ( "title", JE.null ) ]
+        HTitle ttl ->
+            case ttl of
+                Str s ->
+                    case s of
+                        "" ->
+                            strExpr "title" NoStr
+
+                        _ ->
+                            strExprMultiline "title" ttl
 
                 _ ->
-                    [ ( "title", multilineTextSpec s ) ]
+                    strExpr "title" ttl
 
         HTitleAnchor a ->
             [ ( "titleAnchor", anchorSpec a ) ]
