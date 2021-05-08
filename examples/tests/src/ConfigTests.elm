@@ -547,6 +547,8 @@ paramCfg1 =
 
         cfg =
             configure
+                << configuration (coBackground |> coStrExpr "background")
+                << configuration (coFont |> coStrExpr "font")
                 << configuration
                     (coView
                         [ vicoBooExpr "clip" vicoClip
@@ -573,6 +575,8 @@ paramCfg1 =
 
         ps =
             params
+                << param "background" [ paValue (str "rgba(0,0,0,0)") ]
+                << param "font" [ paValue (str "monospace") ]
                 << param "clip" [ paValue (boo False), paBind (ipCheckbox []) ]
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
                 << param "cursor" [ paValue (str "default"), paBind (ipSelect [ inOptions [ "default", "crosshair", "help" ] ]) ]
