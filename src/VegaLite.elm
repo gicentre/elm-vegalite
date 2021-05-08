@@ -12317,7 +12317,12 @@ hAggregate =
     HAggregate
 
 
-{-| Expression that evaluates to some text alignment such as "left", "right" or "center".
+{-| Expression that evaluates to some text alignment such as "left", "right" or
+"center". Can be used, for example, to align text to the left or right depending
+on whether data values are positive or negative:
+
+    maAlign (haExpr "datum.x < 0 ? 'right' : 'left'")
+
 -}
 haExpr : String -> HAlign
 haExpr =
