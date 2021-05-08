@@ -11702,12 +11702,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 	switch (configProp.$) {
 		case 1:
 			var b = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aria',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'aria', b);
 		case 2:
 			var aus = configProp.a;
 			return _List_fromArray(
@@ -11722,12 +11717,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return A2($author$project$VegaLite$strExpr, 'background', s);
 		case 18:
 			var s = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'countTitle',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'countTitle', s);
 		case 24:
 			var lps = configProp.a;
 			var _v1 = $author$project$VegaLite$localeProperties(lps);
@@ -11797,13 +11787,8 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 						$author$project$VegaLite$fieldTitleLabel(ftp)))
 				]);
 		case 30:
-			var fmt = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'numberFormat',
-					$elm$json$Json$Encode$string(fmt))
-				]);
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'numberFormat', s);
 		case 31:
 			var pad = configProp.a;
 			return _List_fromArray(
@@ -11813,13 +11798,8 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$author$project$VegaLite$paddingSpec(pad))
 				]);
 		case 43:
-			var fmt = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'timeFormat',
-					$elm$json$Json$Encode$string(fmt))
-				]);
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'timeFormat', s);
 		case 3:
 			var axType = configProp.a;
 			var acs = configProp.b;
@@ -11926,13 +11906,8 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 						A2($elm$core$List$concatMap, $author$project$VegaLite$legendConfigProperty, lcs)))
 				]);
 		case 21:
-			var fnt = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'font',
-					$elm$json$Json$Encode$string(fnt))
-				]);
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'font', s);
 		case 28:
 			var mps = configProp.a;
 			return _List_fromArray(
@@ -11998,12 +11973,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				]);
 		case 19:
 			var b = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'customFormatTypes',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'customFormatTypes', b);
 		case 22:
 			var mps = configProp.a;
 			return _List_fromArray(

@@ -11716,12 +11716,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 	switch (configProp.$) {
 		case 1:
 			var b = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aria',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'aria', b);
 		case 2:
 			var aus = configProp.a;
 			return _List_fromArray(
@@ -11736,12 +11731,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 			return A2($author$project$VegaLite$strExpr, 'background', s);
 		case 18:
 			var s = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'countTitle',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'countTitle', s);
 		case 24:
 			var lps = configProp.a;
 			var _v1 = $author$project$VegaLite$localeProperties(lps);
@@ -11811,13 +11801,8 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 						$author$project$VegaLite$fieldTitleLabel(ftp)))
 				]);
 		case 30:
-			var fmt = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'numberFormat',
-					$elm$json$Json$Encode$string(fmt))
-				]);
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'numberFormat', s);
 		case 31:
 			var pad = configProp.a;
 			return _List_fromArray(
@@ -11827,13 +11812,8 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$author$project$VegaLite$paddingSpec(pad))
 				]);
 		case 43:
-			var fmt = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'timeFormat',
-					$elm$json$Json$Encode$string(fmt))
-				]);
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'timeFormat', s);
 		case 3:
 			var axType = configProp.a;
 			var acs = configProp.b;
@@ -11940,13 +11920,8 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 						A2($elm$core$List$concatMap, $author$project$VegaLite$legendConfigProperty, lcs)))
 				]);
 		case 21:
-			var fnt = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'font',
-					$elm$json$Json$Encode$string(fnt))
-				]);
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'font', s);
 		case 28:
 			var mps = configProp.a;
 			return _List_fromArray(
@@ -12012,12 +11987,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				]);
 		case 19:
 			var b = configProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'customFormatTypes',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'customFormatTypes', b);
 		case 22:
 			var mps = configProp.a;
 			return _List_fromArray(
@@ -13666,7 +13636,10 @@ var $author$project$VegaLite$coBackground = function (s) {
 var $author$project$VegaLite$Font = function (a) {
 	return {$: 21, a: a};
 };
-var $author$project$VegaLite$coFont = $author$project$VegaLite$Font;
+var $author$project$VegaLite$coFont = function (s) {
+	return $author$project$VegaLite$Font(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$TitleStyle = function (a) {
 	return {$: 42, a: a};
 };
@@ -14494,6 +14467,41 @@ var $author$project$VegaLite$CExpr = function (a) {
 	return {$: 3, a: a};
 };
 var $author$project$VegaLite$caExpr = $author$project$VegaLite$CExpr;
+var $author$project$VegaLite$CountTitle = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$NumberFormat = function (a) {
+	return {$: 30, a: a};
+};
+var $author$project$VegaLite$StrExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$TimeFormat = function (a) {
+	return {$: 43, a: a};
+};
+var $author$project$VegaLite$coStrExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn('');
+		switch (_v0.$) {
+			case 14:
+				return $author$project$VegaLite$Background(
+					$author$project$VegaLite$StrExpr(ex));
+			case 18:
+				return $author$project$VegaLite$CountTitle(
+					$author$project$VegaLite$StrExpr(ex));
+			case 21:
+				return $author$project$VegaLite$Font(
+					$author$project$VegaLite$StrExpr(ex));
+			case 30:
+				return $author$project$VegaLite$NumberFormat(
+					$author$project$VegaLite$StrExpr(ex));
+			case 43:
+				return $author$project$VegaLite$TimeFormat(
+					$author$project$VegaLite$StrExpr(ex));
+			default:
+				return fn('');
+		}
+	});
 var $author$project$VegaLite$View = function (a) {
 	return {$: 45, a: a};
 };
@@ -14727,9 +14735,6 @@ var $author$project$VegaLite$vicoOpacity = function (n) {
 	return $author$project$VegaLite$VOpacity(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$StrExpr = function (a) {
-	return {$: 2, a: a};
-};
 var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
@@ -14820,7 +14825,27 @@ var $author$project$ConfigTests$paramCfg1 = function () {
 														$elm$core$Basics$composeL,
 														A2(
 															$elm$core$Basics$composeL,
-															$author$project$VegaLite$params,
+															A2(
+																$elm$core$Basics$composeL,
+																A2(
+																	$elm$core$Basics$composeL,
+																	$author$project$VegaLite$params,
+																	A2(
+																		$author$project$VegaLite$param,
+																		'background',
+																		_List_fromArray(
+																			[
+																				$author$project$VegaLite$paValue(
+																				$author$project$VegaLite$str('rgba(0,0,0,0)'))
+																			]))),
+																A2(
+																	$author$project$VegaLite$param,
+																	'font',
+																	_List_fromArray(
+																		[
+																			$author$project$VegaLite$paValue(
+																			$author$project$VegaLite$str('monospace'))
+																		]))),
 															A2(
 																$author$project$VegaLite$param,
 																'clip',
@@ -15067,7 +15092,15 @@ var $author$project$ConfigTests$paramCfg1 = function () {
 					[1, 2, 4, 1.8, 1.1]))));
 	var cfg = A2(
 		$elm$core$Basics$composeL,
-		$author$project$VegaLite$configure,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$configure,
+				$author$project$VegaLite$configuration(
+					A2($author$project$VegaLite$coStrExpr, 'background', $author$project$VegaLite$coBackground))),
+			$author$project$VegaLite$configuration(
+				A2($author$project$VegaLite$coStrExpr, 'font', $author$project$VegaLite$coFont))),
 		$author$project$VegaLite$configuration(
 			$author$project$VegaLite$coView(
 				_List_fromArray(
