@@ -11811,6 +11811,12 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					'type',
 					$author$project$VegaLite$projectionSpec(proj))
 				]);
+		case 6:
+			var spec = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2('fit', spec)
+				]);
 		case 1:
 			var n = pp.a;
 			switch (n.$) {
@@ -11874,10 +11880,10 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									])))
 						]);
 			}
-		case 10:
+		case 11:
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectX', b);
-		case 11:
+		case 12:
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
@@ -11915,7 +11921,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									'[' + ($author$project$VegaLite$numStr(tx) + (',' + ($author$project$VegaLite$numStr(ty) + ']')))))
 							])))
 				]);
-		case 6:
+		case 7:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
@@ -11932,28 +11938,28 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									'[' + ($author$project$VegaLite$numStr(lambda) + (',' + ($author$project$VegaLite$numStr(phi) + (',' + ($author$project$VegaLite$numStr(gamma) + ']')))))))
 							])))
 				]);
-		case 9:
+		case 10:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
-		case 7:
+		case 8:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'precision', x);
-		case 12:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 13:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'distance', x);
+			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 14:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+			return A2($author$project$VegaLite$numExpr, 'distance', x);
 		case 15:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+		case 16:
 			var n = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'lobes', n);
-		case 16:
+		case 17:
 			var lat = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'parallel', lat);
-		case 8:
+		case 9:
 			var lat1 = pp.a;
 			var lat2 = pp.b;
 			return _List_fromArray(
@@ -11969,13 +11975,13 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									'[' + ($author$project$VegaLite$numStr(lat1) + (',' + ($author$project$VegaLite$numStr(lat2) + ']')))))
 							])))
 				]);
-		case 17:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 18:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 19:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+		case 20:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'spacing', x);
 		default:

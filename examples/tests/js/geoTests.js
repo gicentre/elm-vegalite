@@ -10466,6 +10466,12 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 					'type',
 					$author$project$VegaLite$projectionSpec(proj))
 				]);
+		case 6:
+			var spec = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2('fit', spec)
+				]);
 		case 1:
 			var n = pp.a;
 			switch (n.$) {
@@ -10529,10 +10535,10 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									])))
 						]);
 			}
-		case 10:
+		case 11:
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectX', b);
-		case 11:
+		case 12:
 			var b = pp.a;
 			return A2($author$project$VegaLite$booExpr, 'reflectY', b);
 		case 3:
@@ -10570,7 +10576,7 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									'[' + ($author$project$VegaLite$numStr(tx) + (',' + ($author$project$VegaLite$numStr(ty) + ']')))))
 							])))
 				]);
-		case 6:
+		case 7:
 			var lambda = pp.a;
 			var phi = pp.b;
 			var gamma = pp.c;
@@ -10587,28 +10593,28 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									'[' + ($author$project$VegaLite$numStr(lambda) + (',' + ($author$project$VegaLite$numStr(phi) + (',' + ($author$project$VegaLite$numStr(gamma) + ']')))))))
 							])))
 				]);
-		case 9:
+		case 10:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'pointRadius', x);
-		case 7:
+		case 8:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'precision', x);
-		case 12:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 13:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'distance', x);
+			return A2($author$project$VegaLite$numExpr, 'coefficient', x);
 		case 14:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+			return A2($author$project$VegaLite$numExpr, 'distance', x);
 		case 15:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'fraction', x);
+		case 16:
 			var n = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'lobes', n);
-		case 16:
+		case 17:
 			var lat = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'parallel', lat);
-		case 8:
+		case 9:
 			var lat1 = pp.a;
 			var lat2 = pp.b;
 			return _List_fromArray(
@@ -10624,13 +10630,13 @@ var $author$project$VegaLite$projectionProperty = function (pp) {
 									'[' + ($author$project$VegaLite$numStr(lat1) + (',' + ($author$project$VegaLite$numStr(lat2) + ']')))))
 							])))
 				]);
-		case 17:
-			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 18:
 			var x = pp.a;
-			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+			return A2($author$project$VegaLite$numExpr, 'radius', x);
 		case 19:
+			var x = pp.a;
+			return A2($author$project$VegaLite$numExpr, 'ratio', x);
+		case 20:
 			var x = pp.a;
 			return A2($author$project$VegaLite$numExpr, 'spacing', x);
 		default:
@@ -13536,6 +13542,200 @@ var $author$project$GeoTests$dotMap1 = function () {
 				$author$project$VegaLite$circle(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$GeoPoints = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$geoPoints = $author$project$VegaLite$GeoPoints;
+var $author$project$VegaLite$geometryTypeProperties = function (gType) {
+	var toCoords = function (pairs) {
+		return A2(
+			$elm$json$Json$Encode$list,
+			function (_v1) {
+				var x = _v1.a;
+				var y = _v1.b;
+				return A2(
+					$elm$json$Json$Encode$list,
+					$elm$json$Json$Encode$float,
+					_List_fromArray(
+						[x, y]));
+			},
+			pairs);
+	};
+	switch (gType.$) {
+		case 0:
+			var x = gType.a;
+			var y = gType.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Point')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$float,
+						_List_fromArray(
+							[x, y])))
+				]);
+		case 1:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('MultiPoint')),
+					_Utils_Tuple2(
+					'coordinates',
+					toCoords(coords))
+				]);
+		case 2:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('LineString')),
+					_Utils_Tuple2(
+					'coordinates',
+					toCoords(coords))
+				]);
+		case 3:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('MultiLineString')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2($elm$json$Json$Encode$list, toCoords, coords))
+				]);
+		case 4:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Polygon')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2($elm$json$Json$Encode$list, toCoords, coords))
+				]);
+		default:
+			var coords = gType.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('MultiPolygon')),
+					_Utils_Tuple2(
+					'coordinates',
+					A2(
+						$elm$json$Json$Encode$list,
+						function (cs) {
+							return $author$project$VegaLite$toList(
+								A2($elm$core$List$map, toCoords, cs));
+						},
+						coords))
+				]);
+	}
+};
+var $author$project$VegaLite$geometry = F2(
+	function (gType, properties) {
+		return _Utils_eq(properties, _List_Nil) ? $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Feature')),
+					_Utils_Tuple2(
+					'geometry',
+					$elm$json$Json$Encode$object(
+						$author$project$VegaLite$geometryTypeProperties(gType)))
+				])) : $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string('Feature')),
+					_Utils_Tuple2(
+					'geometry',
+					$elm$json$Json$Encode$object(
+						$author$project$VegaLite$geometryTypeProperties(gType))),
+					_Utils_Tuple2(
+					'properties',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v0) {
+								var k = _v0.a;
+								var val = _v0.b;
+								return _Utils_Tuple2(
+									k,
+									$author$project$VegaLite$dataValueSpec(val));
+							},
+							properties)))
+				]));
+	});
+var $author$project$VegaLite$MClip = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$maClip = function (b) {
+	return $author$project$VegaLite$MClip(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$MFill = function (a) {
+	return {$: 28, a: a};
+};
+var $author$project$VegaLite$maFill = function (s) {
+	return $author$project$VegaLite$MFill(
+		$author$project$VegaLite$Str(s));
+};
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $author$project$VegaLite$PrFit = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$prFit = $author$project$VegaLite$PrFit;
+var $author$project$GeoTests$fit1 = function () {
+	var geoFrame = A2(
+		$author$project$VegaLite$geometry,
+		$author$project$VegaLite$geoPoints(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(-8, 60),
+					_Utils_Tuple2(1, 47)
+				])),
+		_List_Nil);
+	var proj = $author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$prFit(geoFrame)
+			]));
+	var data = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GeoTests$path + 'world-110m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('land')
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				$author$project$VegaLite$height(300),
+				data,
+				proj,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maClip(true),
+						$author$project$VegaLite$maFill('rgb(149,181,146)')
+					]))
+			]));
+}();
 var $author$project$VegaLite$graticuleProperty = function (prop) {
 	switch (prop.$) {
 		case 0:
@@ -13683,13 +13883,6 @@ var $author$project$VegaLite$graticule = function (grProps) {
 						A2($elm$core$List$concatMap, $author$project$VegaLite$graticuleProperty, grProps)))
 				])));
 };
-var $author$project$VegaLite$MFill = function (a) {
-	return {$: 28, a: a};
-};
-var $author$project$VegaLite$maFill = function (s) {
-	return $author$project$VegaLite$MFill(
-		$author$project$VegaLite$Str(s));
-};
 var $author$project$VegaLite$MFilled = function (a) {
 	return {$: 30, a: a};
 };
@@ -13697,14 +13890,11 @@ var $author$project$VegaLite$maFilled = function (b) {
 	return $author$project$VegaLite$MFilled(
 		$author$project$VegaLite$Boo(b));
 };
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var $author$project$VegaLite$Orthographic = {$: 14};
 var $author$project$VegaLite$orthographic = $author$project$VegaLite$Orthographic;
 var $author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
-		return {$: 6, a: a, b: b, c: c};
+		return {$: 7, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$prRotate = F3(
 	function (lambda, phi, gamma) {
@@ -15323,7 +15513,8 @@ var $author$project$GeoTests$specs = _List_fromArray(
 		_Utils_Tuple2('dotMap1', $author$project$GeoTests$dotMap1),
 		_Utils_Tuple2('scribbleMap1', $author$project$GeoTests$scribbleMap1),
 		_Utils_Tuple2('scribbleMap2', $author$project$GeoTests$scribbleMap2),
-		_Utils_Tuple2('map1d', $author$project$GeoTests$map1d)
+		_Utils_Tuple2('map1d', $author$project$GeoTests$map1d),
+		_Utils_Tuple2('fit1', $author$project$GeoTests$fit1)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
