@@ -701,6 +701,28 @@ map1d =
         [ width 500, height 400, layer [ backgroundSpec, cSpec, hSpec, vSpec ] ]
 
 
+fit1 : Spec
+fit1 =
+    let
+        data =
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "land" ]
+
+        geoFrame =
+            geometry (geoPoints [ ( -8, 60 ), ( 1, 47 ) ])
+                []
+
+        proj =
+            projection [ prFit geoFrame ]
+    in
+    toVegaLite
+        [ width 300
+        , height 300
+        , data
+        , proj
+        , geoshape [ maClip True, maFill "rgb(149,181,146)" ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -730,6 +752,7 @@ specs =
     , ( "scribbleMap1", scribbleMap1 )
     , ( "scribbleMap2", scribbleMap2 )
     , ( "map1d", map1d )
+    , ( "fit1", fit1 )
     ]
 
 
