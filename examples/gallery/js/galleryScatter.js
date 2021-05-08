@@ -6334,12 +6334,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:
 			var s = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'field', s);
 		case 3:
 			var d = field.a;
 			return _List_fromArray(
@@ -6419,12 +6414,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 				]);
 		case 8:
 			var x = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'band',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'band', x);
 		case 11:
 			var sps = field.a;
 			_v3$4:
@@ -6558,13 +6548,8 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
 		case 13:
-			var t = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'title',
-					$author$project$VegaLite$multilineTextSpec(t))
-				]);
+			var s = field.a;
+			return A2($author$project$VegaLite$strExprMultiline, 'title', s);
 		case 14:
 			var op = field.a;
 			return _List_fromArray(
@@ -6575,36 +6560,16 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 				]);
 		case 16:
 			var s = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'value', s);
 		case 17:
 			var x = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'value', x);
 		case 18:
 			var s = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'value', s);
 		default:
 			var b = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'value', b);
 	}
 };
 var $author$project$VegaLite$predicateProperties = function (predicate) {
@@ -7876,7 +7841,10 @@ var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$mName = $author$project$VegaLite$MName;
+var $author$project$VegaLite$mName = function (s) {
+	return $author$project$VegaLite$MName(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 6, a: a};
 };
@@ -8329,25 +8297,24 @@ var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$loessProperty = function (denProp) {
 	switch (denProp.$) {
 		case 0:
-			var fields = denProp.a;
-			return _Utils_Tuple2(
-				'groupby',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+			var ss = denProp.a;
+			return A2($author$project$VegaLite$strsExpr, 'groupby', ss);
 		case 1:
 			var x = denProp.a;
-			return _Utils_Tuple2(
-				'bandwidth',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'bandwidth', x);
 		default:
 			var vStr = denProp.a;
 			var dStr = denProp.b;
-			return _Utils_Tuple2(
-				'as',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$string,
-					_List_fromArray(
-						[vStr, dStr])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'as',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$string,
+						_List_fromArray(
+							[vStr, dStr])))
+				]);
 	}
 };
 var $author$project$VegaLite$loess = F3(
@@ -8366,7 +8333,7 @@ var $author$project$VegaLite$loess = F3(
 								'on',
 								$elm$json$Json$Encode$string(indField))
 							]),
-						A2($elm$core$List$map, $author$project$VegaLite$loessProperty, lsProps)))));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$loessProperty, lsProps)))));
 	});
 var $author$project$VegaLite$LsBandwidth = function (a) {
 	return {$: 1, a: a};
@@ -8377,10 +8344,11 @@ var $elm$core$Basics$min = F2(
 	});
 var $author$project$VegaLite$lsBandwidth = function (bw) {
 	return $author$project$VegaLite$LsBandwidth(
-		A2(
-			$elm$core$Basics$min,
-			1,
-			A2($elm$core$Basics$max, 0, bw)));
+		$author$project$VegaLite$Num(
+			A2(
+				$elm$core$Basics$min,
+				1,
+				A2($elm$core$Basics$max, 0, bw))));
 };
 var $author$project$VegaLite$MColor = function (a) {
 	return {$: 10, a: a};
@@ -12157,7 +12125,10 @@ var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
 var $author$project$VegaLite$MString = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
+var $author$project$VegaLite$mStr = function (s) {
+	return $author$project$VegaLite$MString(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$MRemoveInvalid = function (a) {
 	return {$: 49, a: a};
 };

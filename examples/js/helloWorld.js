@@ -6492,12 +6492,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 	switch (field.$) {
 		case 0:
 			var s = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'field', s);
 		case 3:
 			var d = field.a;
 			return _List_fromArray(
@@ -6577,12 +6572,7 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 				]);
 		case 8:
 			var x = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'band',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'band', x);
 		case 11:
 			var sps = field.a;
 			_v3$4:
@@ -6716,13 +6706,8 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
 		case 13:
-			var t = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'title',
-					$author$project$VegaLite$multilineTextSpec(t))
-				]);
+			var s = field.a;
+			return A2($author$project$VegaLite$strExprMultiline, 'title', s);
 		case 14:
 			var op = field.a;
 			return _List_fromArray(
@@ -6733,36 +6718,16 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 				]);
 		case 16:
 			var s = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'value', s);
 		case 17:
 			var x = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$float(x))
-				]);
+			return A2($author$project$VegaLite$numExpr, 'value', x);
 		case 18:
 			var s = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'value', s);
 		default:
 			var b = field.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'value', b);
 	}
 };
 var $author$project$VegaLite$predicateProperties = function (predicate) {
