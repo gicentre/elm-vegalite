@@ -5351,29 +5351,65 @@ var $author$project$VegaLite$ArAria = function (a) {
 };
 var $author$project$VegaLite$TTNone = 2;
 var $elm$json$Json$Encode$bool = _Json_wrap;
+var $author$project$VegaLite$strExpr = F2(
+	function (objName, s) {
+		switch (s.$) {
+			case 0:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$string(x))
+					]);
+			case 1:
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
+					]);
+			default:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(x))
+								])))
+					]);
+		}
+	});
 var $author$project$VegaLite$ariaProperty = function (arProp) {
 	switch (arProp.$) {
 		case 0:
 			var b = arProp.a;
-			return _Utils_Tuple2(
-				'aria',
-				$elm$json$Json$Encode$bool(b));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aria',
+					$elm$json$Json$Encode$bool(b))
+				]);
 		case 1:
-			var d = arProp.a;
-			return _Utils_Tuple2(
-				'description',
-				$elm$json$Json$Encode$string(d));
+			var s = arProp.a;
+			return A2($author$project$VegaLite$strExpr, 'description', s);
 		default:
 			var s = arProp.a;
-			return _Utils_Tuple2(
-				'aria',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'expr',
-							$elm$json$Json$Encode$string(s))
-						])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aria',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
 	}
 };
 var $author$project$VegaLite$blendModeSpec = function (bm) {
@@ -5780,38 +5816,6 @@ var $author$project$VegaLite$numsExpr = F2(
 				]);
 		}
 	});
-var $author$project$VegaLite$strExpr = F2(
-	function (objName, s) {
-		switch (s.$) {
-			case 0:
-				var x = s.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						objName,
-						$elm$json$Json$Encode$string(x))
-					]);
-			case 1:
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
-					]);
-			default:
-				var x = s.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						objName,
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'expr',
-									$elm$json$Json$Encode$string(x))
-								])))
-					]);
-		}
-	});
 var $author$project$VegaLite$multilineTextSpec = function (tText) {
 	var _v0 = A2($elm$core$String$split, '\n', tText);
 	if (!_v0.b) {
@@ -6011,13 +6015,10 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 		case 2:
 			var aps = mProp.a;
 			if (!aps.b) {
-				return _List_fromArray(
-					[
-						$author$project$VegaLite$ariaProperty(
-						$author$project$VegaLite$ArAria(false))
-					]);
+				return $author$project$VegaLite$ariaProperty(
+					$author$project$VegaLite$ArAria(false));
 			} else {
-				return A2($elm$core$List$map, $author$project$VegaLite$ariaProperty, aps);
+				return A2($elm$core$List$concatMap, $author$project$VegaLite$ariaProperty, aps);
 			}
 		case 30:
 			var b = mProp.a;
@@ -8166,66 +8167,69 @@ var $author$project$VegaLite$axTickWidth = function (n) {
 var $author$project$VegaLite$binProperty = function (binProp) {
 	switch (binProp.$) {
 		case 5:
-			var n = binProp.a;
-			return _Utils_Tuple2(
-				'maxbins',
-				$elm$json$Json$Encode$int(n));
+			var x = binProp.a;
+			return A2($author$project$VegaLite$numExpr, 'maxbins', x);
 		case 0:
 			var x = binProp.a;
-			return _Utils_Tuple2(
-				'anchor',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'anchor', x);
 		case 1:
 			var x = binProp.a;
-			return _Utils_Tuple2(
-				'base',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'base', x);
 		case 8:
 			var x = binProp.a;
-			return _Utils_Tuple2(
-				'step',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'step', x);
 		case 9:
 			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'steps',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+			return A2($author$project$VegaLite$numsExpr, 'steps', xs);
 		case 6:
 			var x = binProp.a;
-			return _Utils_Tuple2(
-				'minstep',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'minstep', x);
 		case 2:
 			var xs = binProp.a;
-			return _Utils_Tuple2(
-				'divide',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$float, xs));
+			return A2($author$project$VegaLite$numsExpr, 'divide', xs);
 		case 3:
-			var mn = binProp.a;
-			var mx = binProp.b;
-			return _Utils_Tuple2(
-				'extent',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[mn, mx])));
+			var ns = binProp.a;
+			return A2($author$project$VegaLite$numsExpr, 'extent', ns);
 		case 4:
-			var s = binProp.a;
-			return _Utils_Tuple2(
-				'extent',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
+			var se = binProp.a;
+			switch (se.$) {
+				case 0:
+					var s = se.a;
+					return _List_fromArray(
 						[
 							_Utils_Tuple2(
-							'param',
-							$elm$json$Json$Encode$string(s))
-						])));
+							'extent',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'param',
+										$elm$json$Json$Encode$string(s))
+									])))
+						]);
+				case 2:
+					var s = se.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'extent',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'param',
+										$elm$json$Json$Encode$string(s))
+									])))
+						]);
+				default:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2('extent', $elm$json$Json$Encode$null)
+						]);
+			}
 		default:
 			var b = binProp.a;
-			return _Utils_Tuple2(
-				'nice',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'nice', b);
 	}
 };
 var $author$project$VegaLite$bin = function (bProps) {
@@ -8234,7 +8238,7 @@ var $author$project$VegaLite$bin = function (bProps) {
 		$elm$json$Json$Encode$bool(true)) : _Utils_Tuple2(
 		'bin',
 		$elm$json$Json$Encode$object(
-			A2($elm$core$List$map, $author$project$VegaLite$binProperty, bProps)));
+			A2($elm$core$List$concatMap, $author$project$VegaLite$binProperty, bProps)));
 };
 var $author$project$VegaLite$filterProperties = function (f) {
 	switch (f.$) {
@@ -8498,13 +8502,10 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 		case 0:
 			var aps = legendProp.a;
 			if (!aps.b) {
-				return _List_fromArray(
-					[
-						$author$project$VegaLite$ariaProperty(
-						$author$project$VegaLite$ArAria(false))
-					]);
+				return $author$project$VegaLite$ariaProperty(
+					$author$project$VegaLite$ArAria(false));
 			} else {
-				return A2($elm$core$List$map, $author$project$VegaLite$ariaProperty, aps);
+				return A2($elm$core$List$concatMap, $author$project$VegaLite$ariaProperty, aps);
 			}
 		case 1:
 			var n = legendProp.a;
@@ -10236,13 +10237,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 0:
 			var aps = axisProp.a;
 			if (!aps.b) {
-				return _List_fromArray(
-					[
-						$author$project$VegaLite$ariaProperty(
-						$author$project$VegaLite$ArAria(false))
-					]);
+				return $author$project$VegaLite$ariaProperty(
+					$author$project$VegaLite$ArAria(false));
 			} else {
-				return A2($elm$core$List$map, $author$project$VegaLite$ariaProperty, aps);
+				return A2($elm$core$List$concatMap, $author$project$VegaLite$ariaProperty, aps);
 			}
 		case 1:
 			var n = axisProp.a;
