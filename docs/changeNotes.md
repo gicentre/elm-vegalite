@@ -261,6 +261,12 @@ These mostly reflect the new selection and parameter model in Vega-Lite 5.
 - `seEmpty` deprecated in favour of `prParamEmpty` and `fiSelectionEmpty`.
 - `seInit` and `seInitInterval` deprecated in favour of `paValue`.
 
+### V4.0 Other Changes
+
+- Examples updated to use new selection model
+- New VL 5 gallery examples
+- Various minor updates to documentation and examples
+
 ---
 
 ## V3.1.0 ➡ V3.1.1
