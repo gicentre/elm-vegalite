@@ -7330,7 +7330,6 @@ axcoMinExtent n =
 -}
 axcoStyle : List String -> AxisConfig
 axcoStyle ss =
-    -- TODO: Do we need this?
     AxcoStyle (Strs ss)
 
 
@@ -21678,22 +21677,18 @@ view background confguration function requiring a numeric value.
 vicoNumExpr : String -> (number -> ViewConfig) -> ViewConfig
 vicoNumExpr ex fn =
     case fn 0 of
-        -- TODO: Currently not supported but left here for future VL implementation
         VContinuousWidth _ ->
             VContinuousWidth (NumExpr ex)
 
-        -- TODO: Currently not supported but left here for future VL implementation
         VContinuousHeight _ ->
             VContinuousHeight (NumExpr ex)
 
         VCornerRadius _ ->
             VCornerRadius (NumExpr ex)
 
-        -- TODO: Currently not supported but left here for future VL implementation
         VDiscreteWidth _ ->
             VDiscreteWidth (NumExpr ex)
 
-        -- TODO: Currently not supported but left here for future VL implementation
         VDiscreteHeight _ ->
             VDiscreteHeight (NumExpr ex)
 
@@ -21703,7 +21698,6 @@ vicoNumExpr ex fn =
         VOpacity _ ->
             VOpacity (NumExpr ex)
 
-        -- TODO: Currently not supported but left here for future VL implementation
         VStep _ ->
             VStep (NumExpr ex)
 
