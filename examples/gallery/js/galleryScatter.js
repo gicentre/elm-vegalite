@@ -9457,7 +9457,6 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 					return A2($author$project$VegaLite$strsExpr, 'style', ss);
 				}
 			} else {
-				var s = ss.a;
 				return A2($author$project$VegaLite$strsExpr, 'style', ss);
 			}
 		case 0:
