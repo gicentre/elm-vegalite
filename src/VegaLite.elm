@@ -4776,14 +4776,14 @@ type DayName
 [dnAs](#dnAs).
 -}
 type DensityProperty
-    = DnGroupBy (List String)
-    | DnCumulative Bool
-    | DnCounts Bool
-    | DnBandwidth Float
-    | DnExtent Float Float
-    | DnMinSteps Int
-    | DnMaxSteps Int
-    | DnSteps Int
+    = DnGroupBy Strs
+    | DnCumulative Boo
+    | DnCounts Boo
+    | DnBandwidth Num
+    | DnExtent Nums
+    | DnMinSteps Num
+    | DnMaxSteps Num
+    | DnSteps Num
     | DnAs String String
 
 
@@ -10833,7 +10833,7 @@ density field dnProps =
         ( "multiSpecs"
         , JE.object
             (( "density", JE.string field )
-                :: List.map densityProperty dnProps
+                :: List.concatMap densityProperty dnProps
             )
         )
 
@@ -10898,24 +10898,24 @@ If 0 or unspecified, the bandwidth will be calculated using
 [Scott's method](https://stats.stackexchange.com/questions/90656/kernel-bandwidth-scotts-vs-silvermans-rules).
 -}
 dnBandwidth : Float -> DensityProperty
-dnBandwidth =
-    DnBandwidth
+dnBandwidth n =
+    DnBandwidth (Num n)
 
 
 {-| Whether density estimates should generate counts (true) or probabilities (false).
 If unspecified, probabilities will be generated.
 -}
 dnCounts : Bool -> DensityProperty
-dnCounts =
-    DnCounts
+dnCounts b =
+    DnCounts (Boo b)
 
 
 {-| Whether or not density estimates will be cumulative. If unspecified, non-cumulative
 estimates will be generated.
 -}
 dnCumulative : Bool -> DensityProperty
-dnCumulative =
-    DnCumulative
+dnCumulative b =
+    DnCumulative (Boo b)
 
 
 {-| The min (first parameter) - max (second parameter) domain from which to sample
@@ -10923,31 +10923,31 @@ a distribution for density estimation. If unspecified, the full extent of input
 values will be sampled.
 -}
 dnExtent : Float -> Float -> DensityProperty
-dnExtent =
-    DnExtent
+dnExtent n1 n2 =
+    DnExtent (Nums [ n1, n2 ])
 
 
 {-| The data fields to group by when estimating density. If not specified, a single
 group containing all data objects will be used.
 -}
 dnGroupBy : List String -> DensityProperty
-dnGroupBy =
-    DnGroupBy
+dnGroupBy ss =
+    DnGroupBy (Strs ss)
 
 
 {-| The maximum number of samples to take when estimating density. Default is 200.
 -}
 dnMaxSteps : Int -> DensityProperty
-dnMaxSteps =
-    DnMaxSteps
+dnMaxSteps n =
+    DnMaxSteps (Num (toFloat n))
 
 
 {-| The minimum number of samples to take from the extent domain when estimating
 density. Default is 25.
 -}
 dnMinSteps : Int -> DensityProperty
-dnMinSteps =
-    DnMinSteps
+dnMinSteps n =
+    DnMinSteps (Num (toFloat n))
 
 
 {-| Indicate a data field encoded with a detail channel is nominal. Equivalent to
@@ -10964,8 +10964,8 @@ and is useful in conjunction with a fixed extent to ensure consistent sample poi
 for stacked densities.
 -}
 dnSteps : Int -> DensityProperty
-dnSteps =
-    DnSteps
+dnSteps n =
+    DnSteps (Num (toFloat n))
 
 
 {-| Date-time values that define a scale domain.
@@ -23759,35 +23759,35 @@ dayLabel dayName =
             "Sun"
 
 
-densityProperty : DensityProperty -> LabelledSpec
+densityProperty : DensityProperty -> List LabelledSpec
 densityProperty denProp =
     case denProp of
-        DnGroupBy fields ->
-            ( "groupby", JE.list JE.string fields )
+        DnGroupBy ss ->
+            strsExpr "groupby" ss
 
         DnCumulative b ->
-            ( "cumulative", JE.bool b )
+            booExpr "cumulative" b
 
         DnCounts b ->
-            ( "counts", JE.bool b )
+            booExpr "counts" b
 
         DnBandwidth x ->
-            ( "bandwidth", JE.float x )
+            numExpr "bandwidth" x
 
-        DnExtent mn mx ->
-            ( "extent", JE.list JE.float [ mn, mx ] )
+        DnExtent xs ->
+            numsExpr "extent" xs
 
-        DnMinSteps n ->
-            ( "minsteps", JE.int n )
+        DnMinSteps x ->
+            numExpr "minsteps" x
 
-        DnMaxSteps n ->
-            ( "maxsteps", JE.int n )
+        DnMaxSteps x ->
+            numExpr "maxsteps" x
 
-        DnSteps n ->
-            ( "steps", JE.int n )
+        DnSteps x ->
+            numExpr "steps" x
 
         DnAs vStr dStr ->
-            ( "as", JE.list JE.string [ vStr, dStr ] )
+            [ ( "as", JE.list JE.string [ vStr, dStr ] ) ]
 
 
 detailChannelProperty : DetailChannel -> LabelledSpec
