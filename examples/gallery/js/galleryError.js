@@ -3573,6 +3573,9 @@ var $author$project$VegaLite$filterProperties = function (f) {
 var $author$project$VegaLite$ArAria = function (a) {
 	return {$: 0, a: a};
 };
+var $author$project$VegaLite$Boo = function (a) {
+	return {$: 0, a: a};
+};
 var $author$project$VegaLite$anchorSpec = function (an) {
 	switch (an.$) {
 		case 0:
@@ -3628,12 +3631,7 @@ var $author$project$VegaLite$ariaProperty = function (arProp) {
 	switch (arProp.$) {
 		case 0:
 			var b = arProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'aria',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'aria', b);
 		case 1:
 			var s = arProp.a;
 			return A2($author$project$VegaLite$strExpr, 'description', s);
@@ -3863,7 +3861,8 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 			var aps = legendProp.a;
 			if (!aps.b) {
 				return $author$project$VegaLite$ariaProperty(
-					$author$project$VegaLite$ArAria(false));
+					$author$project$VegaLite$ArAria(
+						$author$project$VegaLite$Boo(false)));
 			} else {
 				return A2($elm$core$List$concatMap, $author$project$VegaLite$ariaProperty, aps);
 			}
@@ -5689,9 +5688,6 @@ var $author$project$VegaLite$MString = function (a) {
 	return {$: 18, a: a};
 };
 var $author$project$VegaLite$mStr = $author$project$VegaLite$MString;
-var $author$project$VegaLite$Boo = function (a) {
-	return {$: 0, a: a};
-};
 var $author$project$VegaLite$MFilled = function (a) {
 	return {$: 30, a: a};
 };
@@ -6126,7 +6122,8 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var aps = mProp.a;
 			if (!aps.b) {
 				return $author$project$VegaLite$ariaProperty(
-					$author$project$VegaLite$ArAria(false));
+					$author$project$VegaLite$ArAria(
+						$author$project$VegaLite$Boo(false)));
 			} else {
 				return A2($elm$core$List$concatMap, $author$project$VegaLite$ariaProperty, aps);
 			}
@@ -6870,7 +6867,8 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			var aps = axisProp.a;
 			if (!aps.b) {
 				return $author$project$VegaLite$ariaProperty(
-					$author$project$VegaLite$ArAria(false));
+					$author$project$VegaLite$ArAria(
+						$author$project$VegaLite$Boo(false)));
 			} else {
 				return A2($elm$core$List$concatMap, $author$project$VegaLite$ariaProperty, aps);
 			}
