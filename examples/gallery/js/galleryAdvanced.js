@@ -8576,60 +8576,42 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 var $author$project$VegaLite$densityProperty = function (denProp) {
 	switch (denProp.$) {
 		case 0:
-			var fields = denProp.a;
-			return _Utils_Tuple2(
-				'groupby',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+			var ss = denProp.a;
+			return A2($author$project$VegaLite$strsExpr, 'groupby', ss);
 		case 1:
 			var b = denProp.a;
-			return _Utils_Tuple2(
-				'cumulative',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'cumulative', b);
 		case 2:
 			var b = denProp.a;
-			return _Utils_Tuple2(
-				'counts',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'counts', b);
 		case 3:
 			var x = denProp.a;
-			return _Utils_Tuple2(
-				'bandwidth',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'bandwidth', x);
 		case 4:
-			var mn = denProp.a;
-			var mx = denProp.b;
-			return _Utils_Tuple2(
-				'extent',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[mn, mx])));
+			var xs = denProp.a;
+			return A2($author$project$VegaLite$numsExpr, 'extent', xs);
 		case 5:
-			var n = denProp.a;
-			return _Utils_Tuple2(
-				'minsteps',
-				$elm$json$Json$Encode$int(n));
+			var x = denProp.a;
+			return A2($author$project$VegaLite$numExpr, 'minsteps', x);
 		case 6:
-			var n = denProp.a;
-			return _Utils_Tuple2(
-				'maxsteps',
-				$elm$json$Json$Encode$int(n));
+			var x = denProp.a;
+			return A2($author$project$VegaLite$numExpr, 'maxsteps', x);
 		case 7:
-			var n = denProp.a;
-			return _Utils_Tuple2(
-				'steps',
-				$elm$json$Json$Encode$int(n));
+			var x = denProp.a;
+			return A2($author$project$VegaLite$numExpr, 'steps', x);
 		default:
 			var vStr = denProp.a;
 			var dStr = denProp.b;
-			return _Utils_Tuple2(
-				'as',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$string,
-					_List_fromArray(
-						[vStr, dStr])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'as',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$string,
+						_List_fromArray(
+							[vStr, dStr])))
+				]);
 	}
 };
 var $author$project$VegaLite$density = F2(
@@ -8643,16 +8625,25 @@ var $author$project$VegaLite$density = F2(
 						_Utils_Tuple2(
 							'density',
 							$elm$json$Json$Encode$string(field)),
-						A2($elm$core$List$map, $author$project$VegaLite$densityProperty, dnProps)))));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$densityProperty, dnProps)))));
 	});
 var $author$project$VegaLite$DnBandwidth = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$dnBandwidth = $author$project$VegaLite$DnBandwidth;
+var $author$project$VegaLite$dnBandwidth = function (n) {
+	return $author$project$VegaLite$DnBandwidth(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$DnGroupBy = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$dnGroupBy = $author$project$VegaLite$DnGroupBy;
+var $author$project$VegaLite$Strs = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dnGroupBy = function (ss) {
+	return $author$project$VegaLite$DnGroupBy(
+		$author$project$VegaLite$Strs(ss));
+};
 var $author$project$VegaLite$FName = function (a) {
 	return {$: 0, a: a};
 };
@@ -9052,7 +9043,10 @@ var $author$project$VegaLite$color = function (markProps) {
 var $author$project$VegaLite$DnSteps = function (a) {
 	return {$: 7, a: a};
 };
-var $author$project$VegaLite$dnSteps = $author$project$VegaLite$DnSteps;
+var $author$project$VegaLite$dnSteps = function (n) {
+	return $author$project$VegaLite$DnSteps(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
@@ -13401,9 +13395,6 @@ var $author$project$VegaLite$RStrings = function (a) {
 };
 var $author$project$VegaLite$ScRange = function (a) {
 	return {$: 3, a: a};
-};
-var $author$project$VegaLite$Strs = function (a) {
-	return {$: 0, a: a};
 };
 var $elm$core$List$unzip = function (pairs) {
 	var step = F2(

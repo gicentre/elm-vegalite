@@ -8762,60 +8762,42 @@ var $author$project$GalleryDist$dist3 = function () {
 var $author$project$VegaLite$densityProperty = function (denProp) {
 	switch (denProp.$) {
 		case 0:
-			var fields = denProp.a;
-			return _Utils_Tuple2(
-				'groupby',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fields));
+			var ss = denProp.a;
+			return A2($author$project$VegaLite$strsExpr, 'groupby', ss);
 		case 1:
 			var b = denProp.a;
-			return _Utils_Tuple2(
-				'cumulative',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'cumulative', b);
 		case 2:
 			var b = denProp.a;
-			return _Utils_Tuple2(
-				'counts',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'counts', b);
 		case 3:
 			var x = denProp.a;
-			return _Utils_Tuple2(
-				'bandwidth',
-				$elm$json$Json$Encode$float(x));
+			return A2($author$project$VegaLite$numExpr, 'bandwidth', x);
 		case 4:
-			var mn = denProp.a;
-			var mx = denProp.b;
-			return _Utils_Tuple2(
-				'extent',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$float,
-					_List_fromArray(
-						[mn, mx])));
+			var xs = denProp.a;
+			return A2($author$project$VegaLite$numsExpr, 'extent', xs);
 		case 5:
-			var n = denProp.a;
-			return _Utils_Tuple2(
-				'minsteps',
-				$elm$json$Json$Encode$int(n));
+			var x = denProp.a;
+			return A2($author$project$VegaLite$numExpr, 'minsteps', x);
 		case 6:
-			var n = denProp.a;
-			return _Utils_Tuple2(
-				'maxsteps',
-				$elm$json$Json$Encode$int(n));
+			var x = denProp.a;
+			return A2($author$project$VegaLite$numExpr, 'maxsteps', x);
 		case 7:
-			var n = denProp.a;
-			return _Utils_Tuple2(
-				'steps',
-				$elm$json$Json$Encode$int(n));
+			var x = denProp.a;
+			return A2($author$project$VegaLite$numExpr, 'steps', x);
 		default:
 			var vStr = denProp.a;
 			var dStr = denProp.b;
-			return _Utils_Tuple2(
-				'as',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$string,
-					_List_fromArray(
-						[vStr, dStr])));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'as',
+					A2(
+						$elm$json$Json$Encode$list,
+						$elm$json$Json$Encode$string,
+						_List_fromArray(
+							[vStr, dStr])))
+				]);
 	}
 };
 var $author$project$VegaLite$density = F2(
@@ -8829,12 +8811,15 @@ var $author$project$VegaLite$density = F2(
 						_Utils_Tuple2(
 							'density',
 							$elm$json$Json$Encode$string(field)),
-						A2($elm$core$List$map, $author$project$VegaLite$densityProperty, dnProps)))));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$densityProperty, dnProps)))));
 	});
 var $author$project$VegaLite$DnBandwidth = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$dnBandwidth = $author$project$VegaLite$DnBandwidth;
+var $author$project$VegaLite$dnBandwidth = function (n) {
+	return $author$project$VegaLite$DnBandwidth(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$VLHeight = 5;
 var $author$project$VegaLite$height = function (h) {
 	return _Utils_Tuple2(
@@ -8886,19 +8871,36 @@ var $author$project$GalleryDist$dist4 = function () {
 				$author$project$VegaLite$area(_List_Nil)
 			]));
 }();
-var $author$project$VegaLite$DnExtent = F2(
-	function (a, b) {
-		return {$: 4, a: a, b: b};
+var $author$project$VegaLite$DnExtent = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$Nums = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dnExtent = F2(
+	function (n1, n2) {
+		return $author$project$VegaLite$DnExtent(
+			$author$project$VegaLite$Nums(
+				_List_fromArray(
+					[n1, n2])));
 	});
-var $author$project$VegaLite$dnExtent = $author$project$VegaLite$DnExtent;
 var $author$project$VegaLite$DnGroupBy = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$dnGroupBy = $author$project$VegaLite$DnGroupBy;
+var $author$project$VegaLite$Strs = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dnGroupBy = function (ss) {
+	return $author$project$VegaLite$DnGroupBy(
+		$author$project$VegaLite$Strs(ss));
+};
 var $author$project$VegaLite$DnMinSteps = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$VegaLite$dnMinSteps = $author$project$VegaLite$DnMinSteps;
+var $author$project$VegaLite$dnMinSteps = function (n) {
+	return $author$project$VegaLite$DnMinSteps(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 54, a: a};
 };
