@@ -336,7 +336,7 @@ padding1 =
         , width 300
         , height 300
         , autosize [ asFit ]
-        , padding (paSizeExpr "pd")
+        , padding (paSize |> paNumExpr "pd")
         , carData
         , enc []
         , bar []
