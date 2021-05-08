@@ -5787,27 +5787,25 @@ var $author$project$VegaLite$axisConfigProperty = function (axisCfg) {
 			var s = axisCfg.a;
 			return A2($author$project$VegaLite$strExpr, 'labelExpr', s);
 		case 22:
-			var mn = axisCfg.a;
-			if (!mn.$) {
-				var n = mn.a;
-				return (!n) ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$bool(true))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$float(n))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$bool(false))
-					]);
+			var n = axisCfg.a;
+			switch (n.$) {
+				case 0:
+					var x = n.a;
+					return (!x) ? _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'labelFlush',
+							$elm$json$Json$Encode$bool(true))
+						]) : A2($author$project$VegaLite$numExpr, 'labelFlush', n);
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'labelFlush',
+							$elm$json$Json$Encode$bool(false))
+						]);
+				default:
+					return A2($author$project$VegaLite$numExpr, 'labelFlush', n);
 			}
 		case 23:
 			var x = axisCfg.a;
@@ -8631,27 +8629,25 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'labelExpr', s);
 		case 26:
-			var mn = axisProp.a;
-			if (!mn.$) {
-				var n = mn.a;
-				return (n === 1) ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$bool(true))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$float(n))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$bool(false))
-					]);
+			var n = axisProp.a;
+			switch (n.$) {
+				case 0:
+					var x = n.a;
+					return (!x) ? _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'labelFlush',
+							$elm$json$Json$Encode$bool(true))
+						]) : A2($author$project$VegaLite$numExpr, 'labelFlush', n);
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'labelFlush',
+							$elm$json$Json$Encode$bool(false))
+						]);
+				default:
+					return A2($author$project$VegaLite$numExpr, 'labelFlush', n);
 			}
 		case 27:
 			var n = axisProp.a;
@@ -8753,21 +8749,21 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'translate', n);
 		case 39:
 			var ss = axisProp.a;
-			if (ss.b && (!ss.b.b)) {
-				var s = ss.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'style',
-						$elm$json$Json$Encode$string(s))
-					]);
+			if (!ss.$) {
+				var xs = ss.a;
+				if (xs.b && (!xs.b.b)) {
+					var s = xs.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'style',
+							$elm$json$Json$Encode$string(s))
+						]);
+				} else {
+					return A2($author$project$VegaLite$strsExpr, 'style', ss);
+				}
 			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'style',
-						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss))
-					]);
+				return A2($author$project$VegaLite$strsExpr, 'style', ss);
 			}
 		case 7:
 			var n = axisProp.a;
@@ -13327,7 +13323,13 @@ var $author$project$VegaLite$axDomainDash = function (ns) {
 var $author$project$VegaLite$AxStyle = function (a) {
 	return {$: 39, a: a};
 };
-var $author$project$VegaLite$axStyle = $author$project$VegaLite$AxStyle;
+var $author$project$VegaLite$Strs = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$axStyle = function (ss) {
+	return $author$project$VegaLite$AxStyle(
+		$author$project$VegaLite$Strs(ss));
+};
 var $author$project$VegaLite$AxTickCount = function (a) {
 	return {$: 44, a: a};
 };
@@ -13430,9 +13432,6 @@ var $author$project$AxisTests$axis12 = function () {
 }();
 var $author$project$VegaLite$AxcoStyle = function (a) {
 	return {$: 40, a: a};
-};
-var $author$project$VegaLite$Strs = function (a) {
-	return {$: 0, a: a};
 };
 var $author$project$VegaLite$axcoStyle = function (ss) {
 	return $author$project$VegaLite$AxcoStyle(
@@ -13857,6 +13856,9 @@ var $author$project$VegaLite$axMinExtent = function (n) {
 	return $author$project$VegaLite$AxMinExtent(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$AxLabelFlush = function (a) {
+	return {$: 26, a: a};
+};
 var $author$project$VegaLite$AxLabelLineHeight = function (a) {
 	return {$: 32, a: a};
 };
@@ -13944,6 +13946,9 @@ var $author$project$VegaLite$axNumExpr = F2(
 					$author$project$VegaLite$NumExpr(ex));
 			case 21:
 				return $author$project$VegaLite$AxLabelAngle(
+					$author$project$VegaLite$NumExpr(ex));
+			case 26:
+				return $author$project$VegaLite$AxLabelFlush(
 					$author$project$VegaLite$NumExpr(ex));
 			case 27:
 				return $author$project$VegaLite$AxLabelFlushOffset(

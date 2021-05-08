@@ -7295,27 +7295,25 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'labelExpr', s);
 		case 26:
-			var mn = axisProp.a;
-			if (!mn.$) {
-				var n = mn.a;
-				return (n === 1) ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$bool(true))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$float(n))
-					]);
-			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'labelFlush',
-						$elm$json$Json$Encode$bool(false))
-					]);
+			var n = axisProp.a;
+			switch (n.$) {
+				case 0:
+					var x = n.a;
+					return (!x) ? _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'labelFlush',
+							$elm$json$Json$Encode$bool(true))
+						]) : A2($author$project$VegaLite$numExpr, 'labelFlush', n);
+				case 1:
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'labelFlush',
+							$elm$json$Json$Encode$bool(false))
+						]);
+				default:
+					return A2($author$project$VegaLite$numExpr, 'labelFlush', n);
 			}
 		case 27:
 			var n = axisProp.a;
@@ -7417,21 +7415,21 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			return A2($author$project$VegaLite$numExpr, 'translate', n);
 		case 39:
 			var ss = axisProp.a;
-			if (ss.b && (!ss.b.b)) {
-				var s = ss.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'style',
-						$elm$json$Json$Encode$string(s))
-					]);
+			if (!ss.$) {
+				var xs = ss.a;
+				if (xs.b && (!xs.b.b)) {
+					var s = xs.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'style',
+							$elm$json$Json$Encode$string(s))
+						]);
+				} else {
+					return A2($author$project$VegaLite$strsExpr, 'style', ss);
+				}
 			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'style',
-						A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss))
-					]);
+				return A2($author$project$VegaLite$strsExpr, 'style', ss);
 			}
 		case 7:
 			var n = axisProp.a;
