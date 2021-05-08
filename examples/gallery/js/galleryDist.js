@@ -3165,7 +3165,22 @@ var $author$project$VegaLite$extentSpec = function (ext) {
 			return $elm$json$Json$Encode$string('min-max');
 		default:
 			var sc = ext.a;
-			return $elm$json$Json$Encode$float(sc);
+			switch (sc.$) {
+				case 0:
+					var x = sc.a;
+					return $elm$json$Json$Encode$float(x);
+				case 1:
+					return $elm$json$Json$Encode$float(0);
+				default:
+					var s = sc.a;
+					return $elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							]));
+			}
 	}
 };
 var $author$project$VegaLite$fontWeightSpec = function (w) {
@@ -5602,7 +5617,19 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			}
 		case 6:
 			var cats = sdType.a;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
+			if (!cats.$) {
+				var ss = cats.a;
+				return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+			} else {
+				var s = cats.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 9:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
@@ -8484,71 +8511,56 @@ var $author$project$VegaLite$sortFieldProperties = function (wsf) {
 	}
 };
 var $author$project$VegaLite$windowProperty = function (wProp) {
+	var toNum = function (mn) {
+		switch (mn.$) {
+			case 1:
+				return $elm$json$Json$Encode$null;
+			case 0:
+				var n = mn.a;
+				return $elm$json$Json$Encode$float(n);
+			default:
+				var s = mn.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+		}
+	};
 	switch (wProp.$) {
 		case 0:
-			if (!wProp.a.$) {
-				if (!wProp.b.$) {
-					var n1 = wProp.a.a;
-					var n2 = wProp.b.a;
-					return _Utils_Tuple2(
-						'frame',
-						A2(
-							$elm$json$Json$Encode$list,
-							$elm$json$Json$Encode$int,
-							_List_fromArray(
-								[n1, n2])));
-				} else {
-					var n1 = wProp.a.a;
-					var _v2 = wProp.b;
-					return _Utils_Tuple2(
-						'frame',
-						$author$project$VegaLite$toList(
-							_List_fromArray(
-								[
-									$elm$json$Json$Encode$int(n1),
-									$elm$json$Json$Encode$null
-								])));
-				}
-			} else {
-				if (!wProp.b.$) {
-					var _v1 = wProp.a;
-					var n2 = wProp.b.a;
-					return _Utils_Tuple2(
-						'frame',
-						$author$project$VegaLite$toList(
-							_List_fromArray(
-								[
-									$elm$json$Json$Encode$null,
-									$elm$json$Json$Encode$int(n2)
-								])));
-				} else {
-					var _v3 = wProp.a;
-					var _v4 = wProp.b;
-					return _Utils_Tuple2(
-						'frame',
-						$author$project$VegaLite$toList(
-							_List_fromArray(
-								[$elm$json$Json$Encode$null, $elm$json$Json$Encode$null])));
-				}
-			}
+			var n1 = wProp.a;
+			var n2 = wProp.b;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'frame',
+					$author$project$VegaLite$toList(
+						_List_fromArray(
+							[
+								toNum(n1),
+								toNum(n2)
+							])))
+				]);
 		case 1:
 			var b = wProp.a;
-			return _Utils_Tuple2(
-				'ignorePeers',
-				$elm$json$Json$Encode$bool(b));
+			return A2($author$project$VegaLite$booExpr, 'ignorePeers', b);
 		case 2:
-			var fs = wProp.a;
-			return _Utils_Tuple2(
-				'groupby',
-				A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fs));
+			var ss = wProp.a;
+			return A2($author$project$VegaLite$strsExpr, 'groupby', ss);
 		default:
 			var sfs = wProp.a;
-			return _Utils_Tuple2(
-				'sort',
-				A2(
-					$elm$json$Json$Encode$list,
-					A2($elm$core$Basics$composeR, $author$project$VegaLite$sortFieldProperties, $elm$json$Json$Encode$object),
-					sfs));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'sort',
+					A2(
+						$elm$json$Json$Encode$list,
+						A2($elm$core$Basics$composeR, $author$project$VegaLite$sortFieldProperties, $elm$json$Json$Encode$object),
+						sfs))
+				]);
 	}
 };
 var $author$project$VegaLite$joinAggregate = F2(
@@ -8562,7 +8574,7 @@ var $author$project$VegaLite$joinAggregate = F2(
 						_Utils_Tuple2(
 							'joinaggregate',
 							$author$project$VegaLite$toList(ops)),
-						A2($elm$core$List$map, $author$project$VegaLite$windowProperty, wProps)))));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$windowProperty, wProps)))));
 	});
 var $author$project$VegaLite$MTooltip = function (a) {
 	return {$: 70, a: a};
@@ -8683,12 +8695,49 @@ var $author$project$VegaLite$wiAscending = $author$project$VegaLite$WAscending;
 var $author$project$VegaLite$WField = function (a) {
 	return {$: 3, a: a};
 };
-var $author$project$VegaLite$wiField = $author$project$VegaLite$WField;
+var $author$project$VegaLite$wiField = function (s) {
+	return $author$project$VegaLite$WField(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$NoNum = {$: 1};
 var $author$project$VegaLite$WFrame = F2(
 	function (a, b) {
 		return {$: 0, a: a, b: b};
 	});
-var $author$project$VegaLite$wiFrame = $author$project$VegaLite$WFrame;
+var $author$project$VegaLite$wiFrame = F2(
+	function (mn1, mn2) {
+		var _v0 = _Utils_Tuple2(mn1, mn2);
+		if (_v0.a.$ === 1) {
+			if (_v0.b.$ === 1) {
+				var _v1 = _v0.a;
+				var _v2 = _v0.b;
+				return A2($author$project$VegaLite$WFrame, $author$project$VegaLite$NoNum, $author$project$VegaLite$NoNum);
+			} else {
+				var _v3 = _v0.a;
+				var n = _v0.b.a;
+				return A2(
+					$author$project$VegaLite$WFrame,
+					$author$project$VegaLite$NoNum,
+					$author$project$VegaLite$Num(n));
+			}
+		} else {
+			if (_v0.b.$ === 1) {
+				var n = _v0.a.a;
+				var _v4 = _v0.b;
+				return A2(
+					$author$project$VegaLite$WFrame,
+					$author$project$VegaLite$Num(n),
+					$author$project$VegaLite$NoNum);
+			} else {
+				var n1 = _v0.a.a;
+				var n2 = _v0.b.a;
+				return A2(
+					$author$project$VegaLite$WFrame,
+					$author$project$VegaLite$Num(n1),
+					$author$project$VegaLite$Num(n2));
+			}
+		}
+	});
 var $author$project$VegaLite$WSort = function (a) {
 	return {$: 3, a: a};
 };
@@ -8723,25 +8772,27 @@ var $author$project$VegaLite$windowFieldProperty = function (w) {
 	switch (w.$) {
 		case 0:
 			var op = w.a;
-			return _Utils_Tuple2(
-				'op',
-				$author$project$VegaLite$operationSpec(op));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'op',
+					$author$project$VegaLite$operationSpec(op))
+				]);
 		case 1:
 			var op = w.a;
-			return _Utils_Tuple2(
-				'op',
-				$elm$json$Json$Encode$string(
-					$author$project$VegaLite$wOperationLabel(op)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'op',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$wOperationLabel(op)))
+				]);
 		case 2:
-			var n = w.a;
-			return _Utils_Tuple2(
-				'param',
-				$elm$json$Json$Encode$int(n));
+			var x = w.a;
+			return A2($author$project$VegaLite$numExpr, 'param', x);
 		default:
-			var f = w.a;
-			return _Utils_Tuple2(
-				'field',
-				$elm$json$Json$Encode$string(f));
+			var s = w.a;
+			return A2($author$project$VegaLite$strExpr, 'field', s);
 	}
 };
 var $author$project$VegaLite$window = F2(
@@ -8754,7 +8805,7 @@ var $author$project$VegaLite$window = F2(
 						_Utils_Tuple2(
 							'as',
 							$elm$json$Json$Encode$string(outName)),
-						A2($elm$core$List$map, $author$project$VegaLite$windowFieldProperty, ws)));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$windowFieldProperty, ws)));
 			});
 		return $elm$core$List$cons(
 			_Utils_Tuple2(
@@ -8772,7 +8823,7 @@ var $author$project$VegaLite$window = F2(
 									return A2(winFieldDef, ws, out);
 								},
 								wss)),
-						A2($elm$core$List$map, $author$project$VegaLite$windowProperty, wProps)))));
+						A2($elm$core$List$concatMap, $author$project$VegaLite$windowProperty, wProps)))));
 	});
 var $author$project$GalleryDist$dist3 = function () {
 	var trans = A2(
@@ -9410,7 +9461,10 @@ var $author$project$GalleryDist$dist7 = function () {
 var $author$project$VegaLite$ExIqrScale = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$VegaLite$exIqrScale = $author$project$VegaLite$ExIqrScale;
+var $author$project$VegaLite$exIqrScale = function (n) {
+	return $author$project$VegaLite$ExIqrScale(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$MNumber = function (a) {
 	return {$: 17, a: a};
 };

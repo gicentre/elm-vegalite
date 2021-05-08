@@ -5477,7 +5477,22 @@ var $author$project$VegaLite$extentSpec = function (ext) {
 			return $elm$json$Json$Encode$string('min-max');
 		default:
 			var sc = ext.a;
-			return $elm$json$Json$Encode$float(sc);
+			switch (sc.$) {
+				case 0:
+					var x = sc.a;
+					return $elm$json$Json$Encode$float(x);
+				case 1:
+					return $elm$json$Json$Encode$float(0);
+				default:
+					var s = sc.a;
+					return $elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							]));
+			}
 	}
 };
 var $author$project$VegaLite$fontWeightSpec = function (w) {
@@ -7650,7 +7665,19 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			}
 		case 6:
 			var cats = sdType.a;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
+			if (!cats.$) {
+				var ss = cats.a;
+				return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+			} else {
+				var s = cats.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 9:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
@@ -10340,17 +10367,15 @@ var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
 var $author$project$VegaLite$TName = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$VegaLite$tName = $author$project$VegaLite$TName;
+var $author$project$VegaLite$tName = function (s) {
+	return $author$project$VegaLite$TName(
+		$author$project$VegaLite$Str(s));
+};
 var $author$project$VegaLite$textChannelProperties = function (tDef) {
 	switch (tDef.$) {
 		case 0:
 			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'field',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'field', s);
 		case 1:
 			var arr = tDef.a;
 			return _List_fromArray(
@@ -10405,21 +10430,11 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
 		case 7:
-			var t = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'title',
-					$author$project$VegaLite$multilineTextSpec(t))
-				]);
+			var s = tDef.a;
+			return A2($author$project$VegaLite$strExprMultiline, 'title', s);
 		case 10:
-			var fmt = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'format',
-					$elm$json$Json$Encode$string(fmt))
-				]);
+			var s = tDef.a;
+			return A2($author$project$VegaLite$strExpr, 'format', s);
 		case 11:
 			return _List_fromArray(
 				[
@@ -10435,13 +10450,8 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 					$elm$json$Json$Encode$string('time'))
 				]);
 		case 13:
-			var formatter = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string(formatter))
-				]);
+			var s = tDef.a;
+			return A2($author$project$VegaLite$strExpr, 'formatType', s);
 		case 8:
 			var predicate = tDef.a;
 			var ifClause = tDef.b;
@@ -10503,12 +10513,7 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
 		case 14:
 			var s = tDef.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'value',
-					$author$project$VegaLite$multilineTextSpec(s))
-				]);
+			return A2($author$project$VegaLite$strExprMultiline, 'value', s);
 		default:
 			var d = tDef.a;
 			return _List_fromArray(

@@ -5393,7 +5393,22 @@ var $author$project$VegaLite$extentSpec = function (ext) {
 			return $elm$json$Json$Encode$string('min-max');
 		default:
 			var sc = ext.a;
-			return $elm$json$Json$Encode$float(sc);
+			switch (sc.$) {
+				case 0:
+					var x = sc.a;
+					return $elm$json$Json$Encode$float(x);
+				case 1:
+					return $elm$json$Json$Encode$float(0);
+				default:
+					var s = sc.a;
+					return $elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'expr',
+								$elm$json$Json$Encode$string(s))
+							]));
+			}
 	}
 };
 var $author$project$VegaLite$fontWeightSpec = function (w) {
@@ -7831,7 +7846,19 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 			}
 		case 6:
 			var cats = sdType.a;
-			return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, cats);
+			if (!cats.$) {
+				var ss = cats.a;
+				return A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, ss);
+			} else {
+				var s = cats.a;
+				return $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'expr',
+							$elm$json$Json$Encode$string(s))
+						]));
+			}
 		case 9:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
@@ -10073,7 +10100,13 @@ var $author$project$CompositeTests$boxplot1 = $author$project$CompositeTests$bPl
 var $author$project$VegaLite$ExIqrScale = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$VegaLite$exIqrScale = $author$project$VegaLite$ExIqrScale;
+var $author$project$VegaLite$Num = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$exIqrScale = function (n) {
+	return $author$project$VegaLite$ExIqrScale(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$CompositeTests$boxplot2 = $author$project$CompositeTests$bPlot(
 	$author$project$VegaLite$exIqrScale(2));
 var $author$project$VegaLite$MBox = function (a) {
@@ -10108,9 +10141,6 @@ var $author$project$VegaLite$MRule = function (a) {
 var $author$project$VegaLite$maRule = $author$project$VegaLite$MRule;
 var $author$project$VegaLite$MSize = function (a) {
 	return {$: 53, a: a};
-};
-var $author$project$VegaLite$Num = function (a) {
-	return {$: 0, a: a};
 };
 var $author$project$VegaLite$maSize = function (n) {
 	return $author$project$VegaLite$MSize(
