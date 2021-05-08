@@ -8725,15 +8725,11 @@ var $author$project$VegaLite$axisLabel = function (axChoice) {
 };
 var $author$project$VegaLite$concatConfigProperty = function (ccp) {
 	if (!ccp.$) {
-		var n = ccp.a;
-		return _Utils_Tuple2(
-			'columns',
-			$elm$json$Json$Encode$int(n));
+		var x = ccp.a;
+		return A2($author$project$VegaLite$numExpr, 'columns', x);
 	} else {
 		var x = ccp.a;
-		return _Utils_Tuple2(
-			'spacing',
-			$elm$json$Json$Encode$float(x));
+		return A2($author$project$VegaLite$numExpr, 'spacing', x);
 	}
 };
 var $author$project$VegaLite$facetConfigProperty = function (fcp) {
@@ -10974,7 +10970,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					_Utils_Tuple2(
 					'concat',
 					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$concatConfigProperty, cps)))
+						A2($elm$core$List$concatMap, $author$project$VegaLite$concatConfigProperty, cps)))
 				]);
 		case 19:
 			var b = configProp.a;
@@ -11629,7 +11625,10 @@ var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$CoSpacing = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$cocoSpacing = $author$project$VegaLite$CoSpacing;
+var $author$project$VegaLite$cocoSpacing = function (n) {
+	return $author$project$VegaLite$CoSpacing(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$VegaLite$HAlignCenter = {$: 0};
 var $author$project$VegaLite$haCenter = $author$project$VegaLite$HAlignCenter;
 var $author$project$VegaLite$MLegend = function (a) {
