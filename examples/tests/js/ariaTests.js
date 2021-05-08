@@ -8872,16 +8872,47 @@ var $author$project$VegaLite$fieldTitleLabel = function (ftp) {
 			return 'plain';
 	}
 };
+var $author$project$VegaLite$NoStr = {$: 1};
+var $author$project$VegaLite$Str = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$strExprMultiline = F2(
+	function (objName, s) {
+		switch (s.$) {
+			case 0:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$author$project$VegaLite$multilineTextSpec(x))
+					]);
+			case 1:
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
+					]);
+			default:
+				var x = s.a;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						objName,
+						$elm$json$Json$Encode$object(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'expr',
+									$elm$json$Json$Encode$string(x))
+								])))
+					]);
+		}
+	});
 var $author$project$VegaLite$headerProperty = function (hProp) {
 	switch (hProp.$) {
 		case 0:
-			var fmt = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'format',
-					$elm$json$Json$Encode$string(fmt))
-				]);
+			var s = hProp.a;
+			return A2($author$project$VegaLite$strExpr, 'format', s);
 		case 1:
 			return _List_fromArray(
 				[
@@ -8890,20 +8921,13 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 					$elm$json$Json$Encode$string('number'))
 				]);
 		case 2:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string('time'))
-				]);
+			return A2(
+				$author$project$VegaLite$strExpr,
+				'formatType',
+				$author$project$VegaLite$Str('time'));
 		case 3:
-			var formatter = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string(formatter))
-				]);
+			var s = hProp.a;
+			return A2($author$project$VegaLite$strExpr, 'formatType', s);
 		case 5:
 			var ha = hProp.a;
 			return _List_fromArray(
@@ -8936,12 +8960,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			return A2($author$project$VegaLite$strExpr, 'labelColor', s);
 		case 10:
 			var s = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labelExpr',
-					$elm$json$Json$Encode$string(s))
-				]);
+			return A2($author$project$VegaLite$strExpr, 'labelExpr', s);
 		case 11:
 			var s = hProp.a;
 			return A2($author$project$VegaLite$strExpr, 'labelFont', s);
@@ -8978,12 +8997,7 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 			return A2($author$project$VegaLite$numExpr, 'labelPadding', x);
 		case 19:
 			var b = hProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'labels',
-					$elm$json$Json$Encode$bool(b))
-				]);
+			return A2($author$project$VegaLite$booExpr, 'labels', b);
 		case 20:
 			var orient = hProp.a;
 			return _List_fromArray(
@@ -8993,19 +9007,16 @@ var $author$project$VegaLite$headerProperty = function (hProp) {
 					$author$project$VegaLite$sideSpec(orient))
 				]);
 		case 4:
-			var s = hProp.a;
-			if (s === '') {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2('title', $elm$json$Json$Encode$null)
-					]);
+			var ttl = hProp.a;
+			if (!ttl.$) {
+				var s = ttl.a;
+				if (s === '') {
+					return A2($author$project$VegaLite$strExpr, 'title', $author$project$VegaLite$NoStr);
+				} else {
+					return A2($author$project$VegaLite$strExprMultiline, 'title', ttl);
+				}
 			} else {
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'title',
-						$author$project$VegaLite$multilineTextSpec(s))
-					]);
+				return A2($author$project$VegaLite$strExpr, 'title', ttl);
 			}
 		case 22:
 			var a = hProp.a;
@@ -9705,38 +9716,6 @@ var $author$project$VegaLite$markInterpolationSpec = function (interp) {
 					]));
 	}
 };
-var $author$project$VegaLite$strExprMultiline = F2(
-	function (objName, s) {
-		switch (s.$) {
-			case 0:
-				var x = s.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						objName,
-						$author$project$VegaLite$multilineTextSpec(x))
-					]);
-			case 1:
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(objName, $elm$json$Json$Encode$null)
-					]);
-			default:
-				var x = s.a;
-				return _List_fromArray(
-					[
-						_Utils_Tuple2(
-						objName,
-						$elm$json$Json$Encode$object(
-							_List_fromArray(
-								[
-									_Utils_Tuple2(
-									'expr',
-									$elm$json$Json$Encode$string(x))
-								])))
-					]);
-		}
-	});
 var $author$project$VegaLite$strokeJoinSpec = function (jn) {
 	switch (jn.$) {
 		case 0:
@@ -12946,9 +12925,6 @@ var $author$project$AriaTests$aria1 = A4(
 			$author$project$VegaLite$coAria(false))));
 var $author$project$VegaLite$ArDescription = function (a) {
 	return {$: 1, a: a};
-};
-var $author$project$VegaLite$Str = function (a) {
-	return {$: 0, a: a};
 };
 var $author$project$VegaLite$arDescription = function (s) {
 	return $author$project$VegaLite$ArDescription(
