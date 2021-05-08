@@ -4,10 +4,6 @@
 
 _Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of Vega-Lite 5._
 
-### TODO
-
-Do we need to add projection fit function?
-
 ### V4.0 Breaking Changes
 
 - **New parameter type**: `prClipAngle` now accepts a normal numeric value rather than a `Maybe`. To indicate antimeridian cutting supply a 0 rather than `Nothing`.
@@ -151,31 +147,27 @@ point [ maShape (symExpr "myParam") ]
 
 #### Other new or previously missing VL functions
 
-- `coLocale` and associated functions `loDecimal`, `loThousands`, `loGrouping`, `loCurrency`, `loNumerals`, `loPercent`, `loMinus`, `loNan`, `loDateTime`, `loDate`, `loTime`, `loPeriods`, `loDay`, `loShortDays`, `loMonths` and `loShortMonths` for specifying locale defaults (VL5.1).
-
-- `maUrl` for image url.
-
-- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
-
-- `axTranslate` / `axcoTranslate` for axis translation.
-
-- `axTickCap` / `axcoTickCap` for axis tick capping style.
-
-- `axTickBand` / `axcoTickBand` and associated `tbCenter`, `tbExtent` and `tbExpr` for aligning axis ticks and grids with band scales.
-
-- `axTitleLineHeight` for multi-line axis titles.
-
 - `axcoOffset` and `axcoLabelOffset` for configuring axis spacing.
 
 - `axcoStyle` for named axis configuration styles.
 
+- `axTickBand` / `axcoTickBand` and associated `tbCenter`, `tbExtent` and `tbExpr` for aligning axis ticks and grids with band scales.
+
+- `axTickCap` / `axcoTickCap` for axis tick capping style.
+
+- `axTitleLineHeight` for multi-line axis titles.
+
+- `axTranslate` / `axcoTranslate` for axis translation.
+
+- `coLocale` and associated functions `loDecimal`, `loThousands`, `loGrouping`, `loCurrency`, `loNumerals`, `loPercent`, `loMinus`, `loNan`, `loDateTime`, `loDate`, `loTime`, `loPeriods`, `loDay`, `loShortDays`, `loMonths` and `loShortMonths` for specifying locale defaults (VL5.1).
+
 - `lecoDirection`, `lecoGradientLength`, `lecoGradientHorizontalMaxLength`, `lecoGradientHorizontalMinLength`, `lecoGradientVerticalMaxLength`, `lecoGradientVerticalMinLength`, `leGradientOpacity`/`lecoGradientOpacity`, `lecoGradientThickness`, `leLabelFontStyle`/`lecoLabelFontStyle`, `leLabelFontWeight`/`lecoLabelFontWeight`, `leSymbolOpacity`/`lecoSymbolOpacity`, `leSymbolOffset`, `leTitleFontStyle`/`lecoTitleFontStyle`, `lecoNoTitle`, `leTitleAnchor` / `lecoTitleAnchor`, `leTitleLineHeight`, `leTitleOpacity`/`lecoTitleOpacity`, `lecoX` and `lecoY` for legend settings.
 
-- `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
+- `maPadAngle` for padding arc segments; `maUrl` for image url; `maWidthBand` and `maHeightBand` for specifying dimensions relative to band size.
 
-- `maPadAngle` for padding arc segments.
+- `pBandPosition` to replace now deprecated `pBand` (VL5.0)
 
-- `maWidthBand` and `maHeightBand` for specifying dimensions relative to band size.
+- `prFit` for translating and scaling a geo projection to given bounds; `prPointRadius` for geo projection of point symbols; `prParallels` for conic projection standard parallels.
 
 - `tiDx` / `ticoDx` and `tiDy` / `ticoDy` title offset options.
 
