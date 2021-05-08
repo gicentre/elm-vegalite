@@ -41,21 +41,25 @@ Do we need to add projection fit function?
 
 - `params` and associated `param`, `paBind`, `paBindings`, `paBindScales`, `paBindLegend`, `paSelect`, `paExpr`, `paValue` and `paValues` functions for specifying top-level parameters for use within a spec (VL5.0).
 
-- `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
+- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
 
-- `maNumsExpr` for providing expressions that evaluate to a list of numeric mark (dash) properties (VL5.0).
+##### Parameter Transforms
 
-- `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
+The following new functions transform a literal parameter provided to a function into one that instead evaluates a given expression to generate that parameter.
 
-- `maBooExpr` for providing expressions that evaluate to Boolean mark properties (VL5.0).
+For example where you might provide
 
-- `scNumExpr` / `sacoNumExpr` for providing expressions that evaluate to numeric scale properties or configuration (VL5.0)
+```elm
+bar [ maOpacity 0.6 ]
+```
 
-- `scBooExpr` / `sacoBooExpr` for providing expressions that evaluate to Boolean scale properties or configuration (VL5.0)
+you can provide a [Vegalite named parameter](https://vega.github.io/vega-lite/docs/parameter.html) to be evaluated instead:
 
-- `doNumExpr` for providing expressions that evaluate to numeric scale domain properties (VL5.0)
+```elm
+bar [ maOpacity |> maNumExpr "myParam" ]
+```
 
-- `raNumExpr` for providing expressions that evaluate to numeric scale range properties (VL5.0)
+- `axBooExpr` / `axcoBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
 
 - `axNumExpr` / `axcoNumExpr` for providing expressions that evaluate to numeric axis properties or configuration. (VL5.0).
 
@@ -63,11 +67,15 @@ Do we need to add projection fit function?
 
 - `axStrExpr` / `axcoNumsExpr` for providing expressions that evaluate to string axis properties or configuration (VL5.0).
 
-- `axBooExpr` / `axcoBooExpr` for providing expressions that evaluate to Boolean axis properties (VL5.0).
-
 - `coBooExpr` for providing expressions that evaluate to Boolean top-level configuration properties (VL5.0).
 
 - `coStrExpr` for providing expressions that evaluate to string top-level configuration properties (VL5.0).
+
+- `doNumExpr` for providing expressions that evaluate to numeric scale domain properties (VL5.0).
+
+- `hdNumExpr` for providing expressions that evaluate to numeric facet header properties (VL5.0).
+
+- `hdStrExpr` for providing expressions that evaluate to string facet header properties (VL5.0).
 
 - `leNumExpr` / `lecoNumExpr` for providing expressions that evaluate to numeric legend properties or configuration (VL5.0).
 
@@ -75,13 +83,27 @@ Do we need to add projection fit function?
 
 - `leStrExpr` / `lecoStrExpr` for providing expressions that evaluate to string legend properties or configuration (VL5.0).
 
-- `prNumExpr` for providing expressions that evaluate to numeric projection properties (VL5.0)
+- `maBooExpr` for providing expressions that evaluate to Boolean mark properties (VL5.0).
+
+- `maNumExpr` for providing expressions that evaluate to numeric mark properties (VL5.0).
+
+- `maNumsExpr` for providing expressions that evaluate to a list of numeric mark (dash) properties (VL5.0).
+
+- `maStrExpr` for providing expressions that evaluate to string mark properties (VL5.0).
+
+- `paNumExpr` for providing expressions that evaluate to numeric padding properties (VL5.0).
+
+- `prNumExpr` for providing expressions that evaluate to numeric projection properties (VL5.0).
+
+- `raNumExpr` for providing expressions that evaluate to numeric scale range properties (VL5.0).
+
+- `scBooExpr` / `sacoBooExpr` for providing expressions that evaluate to Boolean scale properties or configuration (VL5.0).
+
+- `scNumExpr` / `sacoNumExpr` for providing expressions that evaluate to numeric scale properties or configuration (VL5.0).
 
 - `tiNumExpr` / `ticoNumExpr` for providing expressions that evaluate to numeric title properties or configuration (VL5.0).
 
 - `tiStrExpr` / `ticoStrExpr` for providing expressions that evaluate to string title properties or configuration (VL5.0).
-
-- `vicoBooExpr` for providing expressions that evaluate to a Boolean view background configuration (VL5.0).
 
 - `vbNumExpr` / `vicoNumExpr` for providing expressions that evaluate to numeric view background properties or configuration (VL5.0).
 
@@ -89,15 +111,25 @@ Do we need to add projection fit function?
 
 - `vbStrExpr` / `vicoStrExpr` for providing expressions that evaluate to Maybe String view background properties or configuration (VL5.0).
 
-- `hdStrExpr` for providing expressions that evaluate to string facet header properties (VL5.0).
+- `vicoBooExpr` for providing expressions that evaluate to a Boolean view background configuration (VL5.0).
 
-- `hdNumExpr` for providing expressions that evaluate to numeric facet header properties (VL5.0).
+##### Non-literal parameter expressions
 
-- `bParam` to convert a parameter value into a `BooleanOp` for logical composition.
+Used for providing parameter expressions that evaluate to non-literals.
 
-- Expression functions to allow various named properties to be determined interactively: `anExpr` (text anchoring), `maStrokeDashExpr` (mark line stroke style), `axLabelBoundExpr` / `axcoLabelBoundExpr` (label boundary clipping), `haExpr` (horizontal alignment), `fwExpr` (font weight), `bmExpr` (blend mode), `symExpr` (shape symbol), `racoSymbols` / `racoSymbolsExpr`(symbols for default scales),`caExpr`(stroke cap style),`joExpr`(stroke join style),`cuExpr`(cursor style),`miExpr`(mark interpolation type),`siExpr`(side),`osExpr`(axis label overlap strategy),`tdExpr`(text direction),`niExpr`(nice tick intervals),`arExpr`(Aria accessibility),`titleExpr`(top-level title),`tfExpr`(title frame),`prExpr`(projection type),`prCenterExpr`(projection center),`prTranslateExpr`(projection translation),`prRotateExpr`(projection rotation),`prParallelsExpr`(conic projection standard parallels),`clipRectExpr`(projection clipping extent),`scDomainExpr`(domain scaling),`doDtsExpr`, `doMinDt`, `doMaxDt`(domain timestamp boundaries),`raExprs`(range elements),`scSchemeExpr` (colour schemes), `paSizeExpr` (padding size), `paEdgesExpr` (padding on a per-edge basis), `backgroundExpr` (background colour) (VL4.16 to VL 5.0).
+For example, where you might provide
 
-- `datumExpr` / `dataExpr` for creating a datum value or list of data values from an expression (VL4.16).
+```elm
+point [ maShape symSquare ]
+```
+
+you can provide a [Vegalite named parameter](https://vega.github.io/vega-lite/docs/parameter.html) that evaluates to an appropriate value instead:
+
+```elm
+point [ maShape (symExpr "myParam") ]
+```
+
+- `anExpr` (text anchoring), `arExpr` (Aria accessibility), `axLabelBoundExpr` / `axcoLabelBoundExpr` (label boundary clipping), `backgroundExpr` (background colour), `bmExpr` (blend mode), `caExpr` (stroke cap style), `clipRectExpr` (clipping extent), `cuExpr`(cursor style), `datumExpr` / `dataExpr` (data from expression), `doDtsExpr`, `doMaxDt`, `doMinDt` (domain timestamp boundaries), `fwExpr` (font weight), `haExpr` (horizontal alignment), `joExpr` (stroke join style), `miExpr` (mark interpolation type), `niExpr` (nice tick intervals), `osExpr` (overlap strategy for axis labels), `paEdgesExpr` (padding on a per-edge basis), `prCenterExpr` (projection center), `prExpr` (projection type), `prParallelsExpr` (conic projection standard parallels), `prRotateExpr` (projection rotation), `prTranslateExpr` (projection translation), `racoSymbols` / `racoSymbolsExpr` (symbols for default scales), `raExprs` (range elements), `scDomainExpr` (domain scaling), `scSchemeExpr` (colour schemes), `siExpr`(side), `symExpr` (shape symbol), `tdExpr`(text direction), `tfExpr` (title frame)and `titleExpr` (top-level title). (VL4.16 to VL 5.1).
 
 #### New selection model
 
