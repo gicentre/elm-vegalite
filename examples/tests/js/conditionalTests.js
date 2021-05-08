@@ -5107,7 +5107,16 @@ var $author$project$VegaLite$CAxGridDash = F2(
 	function (a, b) {
 		return {$: 16, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxGridDash = $author$project$VegaLite$CAxGridDash;
+var $author$project$VegaLite$Nums = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$cAxGridDash = F2(
+	function (ns1, ns2) {
+		return A2(
+			$author$project$VegaLite$CAxGridDash,
+			$author$project$VegaLite$Nums(ns1),
+			$author$project$VegaLite$Nums(ns2));
+	});
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -6603,8 +6612,62 @@ var $author$project$VegaLite$arrangementLabel = function (arrng) {
 			return 'layer';
 	}
 };
+var $author$project$VegaLite$AxGridColor = function (a) {
+	return {$: 73, a: a};
+};
+var $author$project$VegaLite$AxGridDash = function (a) {
+	return {$: 74, a: a};
+};
+var $author$project$VegaLite$AxGridDashOffset = function (a) {
+	return {$: 75, a: a};
+};
+var $author$project$VegaLite$AxGridOpacity = function (a) {
+	return {$: 76, a: a};
+};
+var $author$project$VegaLite$AxGridWidth = function (a) {
+	return {$: 77, a: a};
+};
 var $author$project$VegaLite$AxLabelAlign = function (a) {
 	return {$: 20, a: a};
+};
+var $author$project$VegaLite$AxLabelColor = function (a) {
+	return {$: 24, a: a};
+};
+var $author$project$VegaLite$AxLabelFont = function (a) {
+	return {$: 28, a: a};
+};
+var $author$project$VegaLite$AxLabelFontSize = function (a) {
+	return {$: 29, a: a};
+};
+var $author$project$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 30, a: a};
+};
+var $author$project$VegaLite$AxLabelOffset = function (a) {
+	return {$: 34, a: a};
+};
+var $author$project$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 35, a: a};
+};
+var $author$project$VegaLite$AxLabelPadding = function (a) {
+	return {$: 37, a: a};
+};
+var $author$project$VegaLite$AxTickColor = function (a) {
+	return {$: 43, a: a};
+};
+var $author$project$VegaLite$AxTickDash = function (a) {
+	return {$: 45, a: a};
+};
+var $author$project$VegaLite$AxTickDashOffset = function (a) {
+	return {$: 46, a: a};
+};
+var $author$project$VegaLite$AxTickOpacity = function (a) {
+	return {$: 49, a: a};
+};
+var $author$project$VegaLite$AxTickSize = function (a) {
+	return {$: 52, a: a};
+};
+var $author$project$VegaLite$AxTickWidth = function (a) {
+	return {$: 53, a: a};
 };
 var $author$project$VegaLite$anchorSpec = function (an) {
 	switch (an.$) {
@@ -6625,147 +6688,15 @@ var $author$project$VegaLite$anchorSpec = function (an) {
 					]));
 	}
 };
-var $author$project$VegaLite$AxGridColor = function (a) {
-	return {$: 73, a: a};
-};
-var $author$project$VegaLite$Str = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$axGridColor = function (s) {
-	return $author$project$VegaLite$AxGridColor(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$AxGridDash = function (a) {
-	return {$: 74, a: a};
-};
-var $author$project$VegaLite$Nums = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$axGridDash = function (ns) {
-	return $author$project$VegaLite$AxGridDash(
-		$author$project$VegaLite$Nums(ns));
-};
-var $author$project$VegaLite$AxGridDashOffset = function (a) {
-	return {$: 75, a: a};
-};
-var $author$project$VegaLite$axGridDashOffset = function (n) {
-	return $author$project$VegaLite$AxGridDashOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxGridOpacity = function (a) {
-	return {$: 76, a: a};
-};
-var $author$project$VegaLite$axGridOpacity = function (n) {
-	return $author$project$VegaLite$AxGridOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxGridWidth = function (a) {
-	return {$: 77, a: a};
-};
-var $author$project$VegaLite$axGridWidth = function (n) {
-	return $author$project$VegaLite$AxGridWidth(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$axLabelAlign = $author$project$VegaLite$AxLabelAlign;
 var $author$project$VegaLite$AxLabelBaseline = function (a) {
 	return {$: 22, a: a};
 };
 var $author$project$VegaLite$axLabelBaseline = $author$project$VegaLite$AxLabelBaseline;
-var $author$project$VegaLite$AxLabelColor = function (a) {
-	return {$: 24, a: a};
-};
-var $author$project$VegaLite$axLabelColor = function (s) {
-	return $author$project$VegaLite$AxLabelColor(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$AxLabelFont = function (a) {
-	return {$: 28, a: a};
-};
-var $author$project$VegaLite$axLabelFont = function (s) {
-	return $author$project$VegaLite$AxLabelFont(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$AxLabelFontSize = function (a) {
-	return {$: 29, a: a};
-};
-var $author$project$VegaLite$axLabelFontSize = function (n) {
-	return $author$project$VegaLite$AxLabelFontSize(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelFontStyle = function (a) {
-	return {$: 30, a: a};
-};
-var $author$project$VegaLite$axLabelFontStyle = function (s) {
-	return $author$project$VegaLite$AxLabelFontStyle(
-		$author$project$VegaLite$Str(s));
-};
 var $author$project$VegaLite$AxLabelFontWeight = function (a) {
 	return {$: 31, a: a};
 };
 var $author$project$VegaLite$axLabelFontWeight = $author$project$VegaLite$AxLabelFontWeight;
-var $author$project$VegaLite$AxLabelOffset = function (a) {
-	return {$: 34, a: a};
-};
-var $author$project$VegaLite$axLabelOffset = function (n) {
-	return $author$project$VegaLite$AxLabelOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelOpacity = function (a) {
-	return {$: 35, a: a};
-};
-var $author$project$VegaLite$axLabelOpacity = function (n) {
-	return $author$project$VegaLite$AxLabelOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelPadding = function (a) {
-	return {$: 37, a: a};
-};
-var $author$project$VegaLite$axLabelPadding = function (n) {
-	return $author$project$VegaLite$AxLabelPadding(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxTickColor = function (a) {
-	return {$: 43, a: a};
-};
-var $author$project$VegaLite$axTickColor = function (s) {
-	return $author$project$VegaLite$AxTickColor(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$AxTickDash = function (a) {
-	return {$: 45, a: a};
-};
-var $author$project$VegaLite$axTickDash = function (ns) {
-	return $author$project$VegaLite$AxTickDash(
-		$author$project$VegaLite$Nums(ns));
-};
-var $author$project$VegaLite$AxTickDashOffset = function (a) {
-	return {$: 46, a: a};
-};
-var $author$project$VegaLite$axTickDashOffset = function (n) {
-	return $author$project$VegaLite$AxTickDashOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxTickOpacity = function (a) {
-	return {$: 49, a: a};
-};
-var $author$project$VegaLite$axTickOpacity = function (n) {
-	return $author$project$VegaLite$AxTickOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxTickSize = function (a) {
-	return {$: 52, a: a};
-};
-var $author$project$VegaLite$axTickSize = function (n) {
-	return $author$project$VegaLite$AxTickSize(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxTickWidth = function (a) {
-	return {$: 53, a: a};
-};
-var $author$project$VegaLite$axTickWidth = function (n) {
-	return $author$project$VegaLite$AxTickWidth(
-		$author$project$VegaLite$Num(n));
-};
 var $author$project$VegaLite$binProperty = function (binProp) {
 	switch (binProp.$) {
 		case 5:
@@ -9117,40 +9048,40 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelColor(c1))),
+									$author$project$VegaLite$AxLabelColor(c1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelColor(c2))));
+									$author$project$VegaLite$AxLabelColor(c2))));
 					case 3:
 						var f1 = cap.a;
 						var f2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelFont(f1))),
+									$author$project$VegaLite$AxLabelFont(f1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelFont(f2))));
+									$author$project$VegaLite$AxLabelFont(f2))));
 					case 4:
 						var s1 = cap.a;
 						var s2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelFontSize(s1))),
+									$author$project$VegaLite$AxLabelFontSize(s1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelFontSize(s2))));
+									$author$project$VegaLite$AxLabelFontSize(s2))));
 					case 5:
 						var s1 = cap.a;
 						var s2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelFontStyle(s1))),
+									$author$project$VegaLite$AxLabelFontStyle(s1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelFontStyle(s2))));
+									$author$project$VegaLite$AxLabelFontStyle(s2))));
 					case 6:
 						var w1 = cap.a;
 						var w2 = cap.b;
@@ -9167,140 +9098,140 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelOffset(o1))),
+									$author$project$VegaLite$AxLabelOffset(o1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelOffset(o2))));
+									$author$project$VegaLite$AxLabelOffset(o2))));
 					case 8:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelOpacity(o1))),
+									$author$project$VegaLite$AxLabelOpacity(o1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelOpacity(o2))));
+									$author$project$VegaLite$AxLabelOpacity(o2))));
 					case 9:
 						var p1 = cap.a;
 						var p2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelPadding(p1))),
+									$author$project$VegaLite$AxLabelPadding(p1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axLabelPadding(p2))));
+									$author$project$VegaLite$AxLabelPadding(p2))));
 					case 10:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickColor(c1))),
+									$author$project$VegaLite$AxTickColor(c1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickColor(c2))));
+									$author$project$VegaLite$AxTickColor(c2))));
 					case 11:
 						var d1 = cap.a;
 						var d2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickDash(d1))),
+									$author$project$VegaLite$AxTickDash(d1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickDash(d2))));
+									$author$project$VegaLite$AxTickDash(d2))));
 					case 12:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickDashOffset(o1))),
+									$author$project$VegaLite$AxTickDashOffset(o1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickDashOffset(o2))));
+									$author$project$VegaLite$AxTickDashOffset(o2))));
 					case 13:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickOpacity(o1))),
+									$author$project$VegaLite$AxTickOpacity(o1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickOpacity(o2))));
+									$author$project$VegaLite$AxTickOpacity(o2))));
 					case 19:
 						var s1 = cap.a;
 						var s2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickSize(s1))),
+									$author$project$VegaLite$AxTickSize(s1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickSize(s2))));
+									$author$project$VegaLite$AxTickSize(s2))));
 					case 14:
 						var w1 = cap.a;
 						var w2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickWidth(w1))),
+									$author$project$VegaLite$AxTickWidth(w1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axTickWidth(w2))));
+									$author$project$VegaLite$AxTickWidth(w2))));
 					case 15:
 						var c1 = cap.a;
 						var c2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridColor(c1))),
+									$author$project$VegaLite$AxGridColor(c1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridColor(c2))));
+									$author$project$VegaLite$AxGridColor(c2))));
 					case 16:
 						var d1 = cap.a;
 						var d2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridDash(d1))),
+									$author$project$VegaLite$AxGridDash(d1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridDash(d2))));
+									$author$project$VegaLite$AxGridDash(d2))));
 					case 17:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridDashOffset(o1))),
+									$author$project$VegaLite$AxGridDashOffset(o1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridDashOffset(o2))));
+									$author$project$VegaLite$AxGridDashOffset(o2))));
 					case 18:
 						var o1 = cap.a;
 						var o2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridOpacity(o1))),
+									$author$project$VegaLite$AxGridOpacity(o1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridOpacity(o2))));
+									$author$project$VegaLite$AxGridOpacity(o2))));
 					default:
 						var w1 = cap.a;
 						var w2 = cap.b;
 						return _Utils_Tuple2(
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridWidth(w1))),
+									$author$project$VegaLite$AxGridWidth(w1))),
 							firstProp(
 								$author$project$VegaLite$axisProperty(
-									$author$project$VegaLite$axGridWidth(w2))));
+									$author$project$VegaLite$AxGridWidth(w2))));
 				}
 			}();
 			var ifProp = _v2.a;
@@ -10121,27 +10052,60 @@ var $author$project$VegaLite$CAxLabelPadding = F2(
 	function (a, b) {
 		return {$: 9, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxLabelPadding = $author$project$VegaLite$CAxLabelPadding;
+var $author$project$VegaLite$cAxLabelPadding = F2(
+	function (n1, n2) {
+		return A2(
+			$author$project$VegaLite$CAxLabelPadding,
+			$author$project$VegaLite$Num(n1),
+			$author$project$VegaLite$Num(n2));
+	});
 var $author$project$VegaLite$CAxTickColor = F2(
 	function (a, b) {
 		return {$: 10, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxTickColor = $author$project$VegaLite$CAxTickColor;
+var $author$project$VegaLite$Str = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$cAxTickColor = F2(
+	function (s1, s2) {
+		return A2(
+			$author$project$VegaLite$CAxTickColor,
+			$author$project$VegaLite$Str(s1),
+			$author$project$VegaLite$Str(s2));
+	});
 var $author$project$VegaLite$CAxTickOpacity = F2(
 	function (a, b) {
 		return {$: 13, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxTickOpacity = $author$project$VegaLite$CAxTickOpacity;
+var $author$project$VegaLite$cAxTickOpacity = F2(
+	function (n1, n2) {
+		return A2(
+			$author$project$VegaLite$CAxTickOpacity,
+			$author$project$VegaLite$Num(n1),
+			$author$project$VegaLite$Num(n2));
+	});
 var $author$project$VegaLite$CAxTickSize = F2(
 	function (a, b) {
 		return {$: 19, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxTickSize = $author$project$VegaLite$CAxTickSize;
+var $author$project$VegaLite$cAxTickSize = F2(
+	function (n1, n2) {
+		return A2(
+			$author$project$VegaLite$CAxTickSize,
+			$author$project$VegaLite$Num(n1),
+			$author$project$VegaLite$Num(n2));
+	});
 var $author$project$VegaLite$CAxTickWidth = F2(
 	function (a, b) {
 		return {$: 14, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxTickWidth = $author$project$VegaLite$CAxTickWidth;
+var $author$project$VegaLite$cAxTickWidth = F2(
+	function (n1, n2) {
+		return A2(
+			$author$project$VegaLite$CAxTickWidth,
+			$author$project$VegaLite$Num(n1),
+			$author$project$VegaLite$Num(n2));
+	});
 var $author$project$VegaLite$VLWidth = 4;
 var $author$project$VegaLite$width = function (w) {
 	return _Utils_Tuple2(
@@ -10228,22 +10192,46 @@ var $author$project$VegaLite$CAxLabelColor = F2(
 	function (a, b) {
 		return {$: 2, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxLabelColor = $author$project$VegaLite$CAxLabelColor;
+var $author$project$VegaLite$cAxLabelColor = F2(
+	function (s1, s2) {
+		return A2(
+			$author$project$VegaLite$CAxLabelColor,
+			$author$project$VegaLite$Str(s1),
+			$author$project$VegaLite$Str(s2));
+	});
 var $author$project$VegaLite$CAxLabelFont = F2(
 	function (a, b) {
 		return {$: 3, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxLabelFont = $author$project$VegaLite$CAxLabelFont;
+var $author$project$VegaLite$cAxLabelFont = F2(
+	function (s1, s2) {
+		return A2(
+			$author$project$VegaLite$CAxLabelFont,
+			$author$project$VegaLite$Str(s1),
+			$author$project$VegaLite$Str(s2));
+	});
 var $author$project$VegaLite$CAxLabelFontSize = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxLabelFontSize = $author$project$VegaLite$CAxLabelFontSize;
+var $author$project$VegaLite$cAxLabelFontSize = F2(
+	function (n1, n2) {
+		return A2(
+			$author$project$VegaLite$CAxLabelFontSize,
+			$author$project$VegaLite$Num(n1),
+			$author$project$VegaLite$Num(n2));
+	});
 var $author$project$VegaLite$CAxLabelFontStyle = F2(
 	function (a, b) {
 		return {$: 5, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxLabelFontStyle = $author$project$VegaLite$CAxLabelFontStyle;
+var $author$project$VegaLite$cAxLabelFontStyle = F2(
+	function (s1, s2) {
+		return A2(
+			$author$project$VegaLite$CAxLabelFontStyle,
+			$author$project$VegaLite$Str(s1),
+			$author$project$VegaLite$Str(s2));
+	});
 var $author$project$VegaLite$CAxLabelFontWeight = F2(
 	function (a, b) {
 		return {$: 6, a: a, b: b};
@@ -10253,7 +10241,13 @@ var $author$project$VegaLite$CAxLabelOpacity = F2(
 	function (a, b) {
 		return {$: 8, a: a, b: b};
 	});
-var $author$project$VegaLite$cAxLabelOpacity = $author$project$VegaLite$CAxLabelOpacity;
+var $author$project$VegaLite$cAxLabelOpacity = F2(
+	function (n1, n2) {
+		return A2(
+			$author$project$VegaLite$CAxLabelOpacity,
+			$author$project$VegaLite$Num(n1),
+			$author$project$VegaLite$Num(n2));
+	});
 var $author$project$VegaLite$Bold = {$: 0};
 var $author$project$VegaLite$fwBold = $author$project$VegaLite$Bold;
 var $author$project$VegaLite$W100 = {$: 4};
