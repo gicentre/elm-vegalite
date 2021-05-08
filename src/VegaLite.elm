@@ -7017,6 +7017,9 @@ axis configuration function requiring a Boolean value.
 axcoBooExpr : String -> (Bool -> AxisConfig) -> AxisConfig
 axcoBooExpr ex fn =
     case fn False of
+        AxcoDisable _ ->
+            AxcoDisable (BooExpr ex)
+
         AxcoDomain _ ->
             AxcoDomain (BooExpr ex)
 
