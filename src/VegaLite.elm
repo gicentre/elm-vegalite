@@ -4327,7 +4327,8 @@ type AxisProperty
     | AxLabelOverlap OverlapStrategy
     | AxLabelPadding Num
     | AxLabelSeparation Num
-    | AxStyle (List String)
+      -- TODO: Will styles become parameterisable in VL5.2?
+    | AxStyle Strs
     | AxTranslate Num
     | AxTickBand TickBand
     | AxTickCap StrokeCap
@@ -8355,8 +8356,8 @@ greater type safety in elm-vegalite, instead create functions that generate
 
 -}
 axStyle : List String -> AxisProperty
-axStyle =
-    AxStyle
+axStyle ss =
+    AxStyle (Strs ss)
 
 
 {-| Where grid and ticks should be aligned with bands.
@@ -22862,11 +22863,16 @@ axisProperty axisProp =
 
         AxStyle ss ->
             case ss of
-                [ s ] ->
-                    [ ( "style", JE.string s ) ]
+                Strs xs ->
+                    case xs of
+                        [ s ] ->
+                            [ ( "style", JE.string s ) ]
+
+                        _ ->
+                            strsExpr "style" ss
 
                 _ ->
-                    [ ( "style", JE.list JE.string ss ) ]
+                    strsExpr "style" ss
 
         AxZIndex n ->
             numExpr "zindex" n
