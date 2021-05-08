@@ -4206,7 +4206,7 @@ type AxisConfig
     | AxcoLabelAngle Num
     | AxcoLabelBaseline VAlign
     | AxcoLabelBound MaybeNum
-    | AxcoLabelFlush (Maybe Float)
+    | AxcoLabelFlush Num
     | AxcoLabelFlushOffset Num
     | AxcoLabelColor Str
     | AxcoLabelExpr Str
@@ -4314,7 +4314,7 @@ type AxisProperty
     | AxLabelBound MaybeNum
     | AxLabelColor Str
     | AxLabelExpr Str
-    | AxLabelFlush (Maybe Float)
+    | AxLabelFlush Num
     | AxLabelFlushOffset Num
     | AxLabelFont Str
     | AxLabelFontSize Num
@@ -7216,8 +7216,13 @@ threshold from an end-point within which labels are flush-adjusted or if `Nothin
 no flush-adjustment made.
 -}
 axcoLabelFlush : Maybe Float -> AxisConfig
-axcoLabelFlush =
-    AxcoLabelFlush
+axcoLabelFlush mn =
+    case mn of
+        Just n ->
+            AxcoLabelFlush (Num n)
+
+        Nothing ->
+            AxcoLabelFlush NoNum
 
 
 {-| Default number of pixels by which to offset flush-adjusted labels.
@@ -7360,6 +7365,9 @@ axcoNumExpr ex fn =
 
         AxcoLabelAngle _ ->
             AxcoLabelAngle (NumExpr ex)
+
+        AxcoLabelFlush _ ->
+            AxcoLabelFlush (NumExpr ex)
 
         AxcoLabelFlushOffset _ ->
             AxcoLabelFlushOffset (NumExpr ex)
@@ -7967,13 +7975,18 @@ axLabelExpr s =
     AxLabelExpr (Str s)
 
 
-{-| How or if labels at beginning or end of the axis should be aligned. Specifies
+{-| How or if labels at beginning and end of the axis should be aligned. Specifies
 the distance threshold from an end-point within which labels are flush-adjusted
 or if `Nothing`, no flush-adjustment made.
 -}
 axLabelFlush : Maybe Float -> AxisProperty
-axLabelFlush =
-    AxLabelFlush
+axLabelFlush mn =
+    case mn of
+        Just n ->
+            AxLabelFlush (Num n)
+
+        Nothing ->
+            AxLabelFlush NoNum
 
 
 {-| Number of pixels by which to offset flush-adjusted labels.
@@ -8144,6 +8157,9 @@ axNumExpr ex fn =
 
         AxLabelAngle _ ->
             AxLabelAngle (NumExpr ex)
+
+        AxLabelFlush _ ->
+            AxLabelFlush (NumExpr ex)
 
         AxLabelFlushOffset _ ->
             AxLabelFlushOffset (NumExpr ex)
@@ -22471,17 +22487,20 @@ axisConfigProperty axisCfg =
         AxcoLabelExpr s ->
             strExpr "labelExpr" s
 
-        AxcoLabelFlush mn ->
-            case mn of
-                Just n ->
-                    if n == 0 then
+        AxcoLabelFlush n ->
+            case n of
+                Num x ->
+                    if x == 0 then
                         [ ( "labelFlush", JE.bool True ) ]
 
                     else
-                        [ ( "labelFlush", JE.float n ) ]
+                        numExpr "labelFlush" n
 
-                Nothing ->
+                NoNum ->
                     [ ( "labelFlush", JE.bool False ) ]
+
+                _ ->
+                    numExpr "labelFlush" n
 
         AxcoLabelFlushOffset x ->
             numExpr "labelFlushOffset" x
@@ -22771,17 +22790,20 @@ axisProperty axisProp =
         AxLabelExpr s ->
             strExpr "labelExpr" s
 
-        AxLabelFlush mn ->
-            case mn of
-                Just n ->
-                    if n == 1 then
+        AxLabelFlush n ->
+            case n of
+                Num x ->
+                    if x == 0 then
                         [ ( "labelFlush", JE.bool True ) ]
 
                     else
-                        [ ( "labelFlush", JE.float n ) ]
+                        numExpr "labelFlush" n
 
-                Nothing ->
+                NoNum ->
                     [ ( "labelFlush", JE.bool False ) ]
+
+                _ ->
+                    numExpr "labelFlush" n
 
         AxLabelFlushOffset n ->
             numExpr "labelFlushOffset" n
