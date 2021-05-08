@@ -12374,6 +12374,371 @@ var $author$project$GalleryBar$bar20 = function () {
 					[specBar, specText]))
 			]));
 }();
+var $author$project$VegaLite$HAlignExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$haExpr = $author$project$VegaLite$HAlignExpr;
+var $author$project$VegaLite$MAngle = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$MCornerRadius = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$MCornerRadiusBL = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$MCornerRadiusBR = function (a) {
+	return {$: 17, a: a};
+};
+var $author$project$VegaLite$MCornerRadiusEnd = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$MCornerRadiusTL = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$MCornerRadiusTR = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$MFillOpacity = function (a) {
+	return {$: 31, a: a};
+};
+var $author$project$VegaLite$MFontSize = function (a) {
+	return {$: 33, a: a};
+};
+var $author$project$VegaLite$MHeight = function (a) {
+	return {$: 74, a: a};
+};
+var $author$project$VegaLite$MHeightBand = function (a) {
+	return {$: 75, a: a};
+};
+var $author$project$VegaLite$MInnerRadius = function (a) {
+	return {$: 36, a: a};
+};
+var $author$project$VegaLite$MLimit = function (a) {
+	return {$: 21, a: a};
+};
+var $author$project$VegaLite$MLineHeight = function (a) {
+	return {$: 39, a: a};
+};
+var $author$project$VegaLite$MOpacity = function (a) {
+	return {$: 41, a: a};
+};
+var $author$project$VegaLite$MOuterRadius = function (a) {
+	return {$: 42, a: a};
+};
+var $author$project$VegaLite$MPadAngle = function (a) {
+	return {$: 46, a: a};
+};
+var $author$project$VegaLite$MRadius = function (a) {
+	return {$: 48, a: a};
+};
+var $author$project$VegaLite$MRadius2Offset = function (a) {
+	return {$: 87, a: a};
+};
+var $author$project$VegaLite$MRadiusOffset = function (a) {
+	return {$: 86, a: a};
+};
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$MStrokeDashOffset = function (a) {
+	return {$: 58, a: a};
+};
+var $author$project$VegaLite$MStrokeMiterLimit = function (a) {
+	return {$: 60, a: a};
+};
+var $author$project$VegaLite$MStrokeOpacity = function (a) {
+	return {$: 61, a: a};
+};
+var $author$project$VegaLite$MStrokeWidth = function (a) {
+	return {$: 62, a: a};
+};
+var $author$project$VegaLite$MTension = function (a) {
+	return {$: 64, a: a};
+};
+var $author$project$VegaLite$MTheta = function (a) {
+	return {$: 66, a: a};
+};
+var $author$project$VegaLite$MTheta2 = function (a) {
+	return {$: 67, a: a};
+};
+var $author$project$VegaLite$MTheta2Offset = function (a) {
+	return {$: 85, a: a};
+};
+var $author$project$VegaLite$MThetaOffset = function (a) {
+	return {$: 84, a: a};
+};
+var $author$project$VegaLite$MWidth = function (a) {
+	return {$: 72, a: a};
+};
+var $author$project$VegaLite$MWidthBand = function (a) {
+	return {$: 73, a: a};
+};
+var $author$project$VegaLite$MX2 = function (a) {
+	return {$: 78, a: a};
+};
+var $author$project$VegaLite$MX2Offset = function (a) {
+	return {$: 82, a: a};
+};
+var $author$project$VegaLite$MXOffset = function (a) {
+	return {$: 80, a: a};
+};
+var $author$project$VegaLite$MY = function (a) {
+	return {$: 77, a: a};
+};
+var $author$project$VegaLite$MY2 = function (a) {
+	return {$: 79, a: a};
+};
+var $author$project$VegaLite$MY2Offset = function (a) {
+	return {$: 83, a: a};
+};
+var $author$project$VegaLite$MYOffset = function (a) {
+	return {$: 81, a: a};
+};
+var $author$project$VegaLite$MdY = function (a) {
+	return {$: 26, a: a};
+};
+var $author$project$VegaLite$NumExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$maNumExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(0);
+		switch (_v0.$) {
+			case 72:
+				return $author$project$VegaLite$MWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 74:
+				return $author$project$VegaLite$MHeight(
+					$author$project$VegaLite$NumExpr(ex));
+			case 73:
+				return $author$project$VegaLite$MWidthBand(
+					$author$project$VegaLite$NumExpr(ex));
+			case 75:
+				return $author$project$VegaLite$MHeightBand(
+					$author$project$VegaLite$NumExpr(ex));
+			case 76:
+				return $author$project$VegaLite$MX(
+					$author$project$VegaLite$NumExpr(ex));
+			case 77:
+				return $author$project$VegaLite$MY(
+					$author$project$VegaLite$NumExpr(ex));
+			case 78:
+				return $author$project$VegaLite$MX2(
+					$author$project$VegaLite$NumExpr(ex));
+			case 79:
+				return $author$project$VegaLite$MY2(
+					$author$project$VegaLite$NumExpr(ex));
+			case 80:
+				return $author$project$VegaLite$MXOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 81:
+				return $author$project$VegaLite$MYOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 82:
+				return $author$project$VegaLite$MX2Offset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 83:
+				return $author$project$VegaLite$MY2Offset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 41:
+				return $author$project$VegaLite$MOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 31:
+				return $author$project$VegaLite$MFillOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 61:
+				return $author$project$VegaLite$MStrokeOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 60:
+				return $author$project$VegaLite$MStrokeMiterLimit(
+					$author$project$VegaLite$NumExpr(ex));
+			case 62:
+				return $author$project$VegaLite$MStrokeWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 58:
+				return $author$project$VegaLite$MStrokeDashOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 48:
+				return $author$project$VegaLite$MRadius(
+					$author$project$VegaLite$NumExpr(ex));
+			case 36:
+				return $author$project$VegaLite$MInnerRadius(
+					$author$project$VegaLite$NumExpr(ex));
+			case 42:
+				return $author$project$VegaLite$MOuterRadius(
+					$author$project$VegaLite$NumExpr(ex));
+			case 66:
+				return $author$project$VegaLite$MTheta(
+					$author$project$VegaLite$NumExpr(ex));
+			case 67:
+				return $author$project$VegaLite$MTheta2(
+					$author$project$VegaLite$NumExpr(ex));
+			case 84:
+				return $author$project$VegaLite$MThetaOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 85:
+				return $author$project$VegaLite$MTheta2Offset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 86:
+				return $author$project$VegaLite$MRadiusOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 87:
+				return $author$project$VegaLite$MRadius2Offset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 12:
+				return $author$project$VegaLite$MCornerRadius(
+					$author$project$VegaLite$NumExpr(ex));
+			case 46:
+				return $author$project$VegaLite$MPadAngle(
+					$author$project$VegaLite$NumExpr(ex));
+			case 64:
+				return $author$project$VegaLite$MTension(
+					$author$project$VegaLite$NumExpr(ex));
+			case 13:
+				return $author$project$VegaLite$MCornerRadiusEnd(
+					$author$project$VegaLite$NumExpr(ex));
+			case 14:
+				return $author$project$VegaLite$MCornerRadiusTL(
+					$author$project$VegaLite$NumExpr(ex));
+			case 15:
+				return $author$project$VegaLite$MCornerRadiusTR(
+					$author$project$VegaLite$NumExpr(ex));
+			case 16:
+				return $author$project$VegaLite$MCornerRadiusBL(
+					$author$project$VegaLite$NumExpr(ex));
+			case 17:
+				return $author$project$VegaLite$MCornerRadiusBR(
+					$author$project$VegaLite$NumExpr(ex));
+			case 53:
+				return $author$project$VegaLite$MSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 1:
+				return $author$project$VegaLite$MAngle(
+					$author$project$VegaLite$NumExpr(ex));
+			case 25:
+				return $author$project$VegaLite$MdX(
+					$author$project$VegaLite$NumExpr(ex));
+			case 26:
+				return $author$project$VegaLite$MdY(
+					$author$project$VegaLite$NumExpr(ex));
+			case 33:
+				return $author$project$VegaLite$MFontSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 21:
+				return $author$project$VegaLite$MLimit(
+					$author$project$VegaLite$NumExpr(ex));
+			case 39:
+				return $author$project$VegaLite$MLineHeight(
+					$author$project$VegaLite$NumExpr(ex));
+			default:
+				return fn(0);
+		}
+	});
+var $author$project$VegaLite$ScPadding = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$scPadding = function (n) {
+	return $author$project$VegaLite$ScPadding(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$GalleryBar$bar21 = function () {
+	var specBar = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var encText = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tName('b'),
+					$author$project$VegaLite$tQuant
+				])));
+	var specText = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encText(_List_Nil),
+				$author$project$VegaLite$textMark(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maAlign(
+						$author$project$VegaLite$haExpr('datum.b < 0 ? \'right\' : \'left\'')),
+						A2($author$project$VegaLite$maNumExpr, 'datum.b < 0 ? -2 : 2', $author$project$VegaLite$maDx)
+					]))
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('a'),
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axDomain(false),
+								$author$project$VegaLite$axTicks(false),
+								$author$project$VegaLite$axLabelAngle(0),
+								$author$project$VegaLite$axLabelPadding(4)
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('b'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scPadding(20)
+						])),
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							A2(
+							$author$project$VegaLite$axDataCondition,
+							$author$project$VegaLite$expr('datum.value == 0'),
+							A2($author$project$VegaLite$cAxGridColor, 'black', '#ddd'))
+						]))
+				])));
+	var desc = $author$project$VegaLite$description('A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid color to draw a zero baseline.');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'a',
+				$author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'b',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[-28, 55, -33, 91, 81, 53, -19, 87, 52]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specBar, specText]))
+			]));
+}();
 var $author$project$VegaLite$axLabelColor = function (s) {
 	return $author$project$VegaLite$AxLabelColor(
 		$author$project$VegaLite$Str(s));
@@ -12385,15 +12750,9 @@ var $author$project$VegaLite$axZIndex = function (n) {
 	return $author$project$VegaLite$AxZIndex(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$MCornerRadiusEnd = function (a) {
-	return {$: 13, a: a};
-};
 var $author$project$VegaLite$maCornerRadiusEnd = function (n) {
 	return $author$project$VegaLite$MCornerRadiusEnd(
 		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$MYOffset = function (a) {
-	return {$: 81, a: a};
 };
 var $author$project$VegaLite$maYOffset = function (n) {
 	return $author$project$VegaLite$MYOffset(
@@ -12408,7 +12767,7 @@ var $author$project$VegaLite$scPaddingInner = function (n) {
 };
 var $author$project$VegaLite$VAlignTop = {$: 0};
 var $author$project$VegaLite$vaTop = $author$project$VegaLite$VAlignTop;
-var $author$project$GalleryBar$bar21 = function () {
+var $author$project$GalleryBar$bar22 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12479,9 +12838,6 @@ var $author$project$GalleryBar$bar21 = function () {
 }();
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$MOpacity = function (a) {
-	return {$: 41, a: a};
-};
 var $author$project$VegaLite$maOpacity = function (n) {
 	return $author$project$VegaLite$MOpacity(
 		$author$project$VegaLite$Num(n));
@@ -12667,7 +13023,7 @@ var $author$project$VegaLite$window = F2(
 	});
 var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
-var $author$project$GalleryBar$bar22 = function () {
+var $author$project$GalleryBar$bar23 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -13154,7 +13510,7 @@ var $author$project$GalleryBar$toRows = F2(
 		return $elm$core$Basics$append(
 			A2($elm$core$List$concatMap, fToCol, animalFreqs));
 	});
-var $author$project$GalleryBar$bar23 = function () {
+var $author$project$GalleryBar$bar24 = function () {
 	var isotypes = function () {
 		var sheep = 'M-4.1 -0.5c0.2 0 0.2 0.2 0.5 0.2c0.3 0 0.3 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.4 -0.2c0.1 0 0.2 0.2 0.4 0.1c0.2 0 0.2 -0.2 0.4 -0.3c0.1 0 0.1 -0.1 0.4 0c0.3 0 0.3 -0.4 0.6 -0.4c0.3 0 0.6 -0.3 0.7 -0.2c0.1 0.1 1.4 1 1.3 1.4c-0.1 0.4 -0.3 0.3 -0.4 0.3c-0.1 0 -0.5 -0.4 -0.7 -0.2c-0.3 0.2 -0.1 0.4 -0.2 0.6c-0.1 0.1 -0.2 0.2 -0.3 0.4c0 0.2 0.1 0.3 0 0.5c-0.1 0.2 -0.3 0.2 -0.3 0.5c0 0.3 -0.2 0.3 -0.3 0.6c-0.1 0.2 0 0.3 -0.1 0.5c-0.1 0.2 -0.1 0.2 -0.2 0.3c-0.1 0.1 0.3 1.1 0.3 1.1l-0.3 0c0 0 -0.3 -0.9 -0.3 -1c0 -0.1 -0.1 -0.2 -0.3 -0.2c-0.2 0 -0.3 0.1 -0.4 0.4c0 0.3 -0.2 0.8 -0.2 0.8l-0.3 0l0.3 -1c0 0 0.1 -0.6 -0.2 -0.5c-0.3 0.1 -0.2 -0.1 -0.4 -0.1c-0.2 -0.1 -0.3 0.1 -0.4 0c-0.2 -0.1 -0.3 0.1 -0.5 0c-0.2 -0.1 -0.1 0 -0.3 0.3c-0.2 0.3 -0.4 0.3 -0.4 0.3l0.2 1.1l-0.3 0l-0.2 -1.1c0 0 -0.4 -0.6 -0.5 -0.4c-0.1 0.3 -0.1 0.4 -0.3 0.4c-0.1 -0.1 -0.2 1.1 -0.2 1.1l-0.3 0l0.2 -1.1c0 0 -0.3 -0.1 -0.3 -0.5c0 -0.3 0.1 -0.5 0.1 -0.7c0.1 -0.2 -0.1 -1 -0.2 -1.1c-0.1 -0.2 -0.2 -0.8 -0.2 -0.8c0 0 -0.1 -0.5 0.4 -0.8z';
 		var pig = 'M1.2 -2c0 0 0.7 0 1.2 0.5c0.5 0.5 0.4 0.6 0.5 0.6c0.1 0 0.7 0 0.8 0.1c0.1 0 0.2 0.2 0.2 0.2c0 0 -0.6 0.2 -0.6 0.3c0 0.1 0.4 0.9 0.6 0.9c0.1 0 0.6 0 0.6 0.1c0 0.1 0 0.7 -0.1 0.7c-0.1 0 -1.2 0.4 -1.5 0.5c-0.3 0.1 -1.1 0.5 -1.1 0.7c-0.1 0.2 0.4 1.2 0.4 1.2l-0.4 0c0 0 -0.4 -0.8 -0.4 -0.9c0 -0.1 -0.1 -0.3 -0.1 -0.3l-0.2 0l-0.5 1.3l-0.4 0c0 0 -0.1 -0.4 0 -0.6c0.1 -0.1 0.3 -0.6 0.3 -0.7c0 0 -0.8 0 -1.5 -0.1c-0.7 -0.1 -1.2 -0.3 -1.2 -0.2c0 0.1 -0.4 0.6 -0.5 0.6c0 0 0.3 0.9 0.3 0.9l-0.4 0c0 0 -0.4 -0.5 -0.4 -0.6c0 -0.1 -0.2 -0.6 -0.2 -0.5c0 0 -0.4 0.4 -0.6 0.4c-0.2 0.1 -0.4 0.1 -0.4 0.1c0 0 -0.1 0.6 -0.1 0.6l-0.5 0l0 -1c0 0 0.5 -0.4 0.5 -0.5c0 -0.1 -0.7 -1.2 -0.6 -1.4c0.1 -0.1 0.1 -1.1 0.1 -1.1c0 0 -0.2 0.1 -0.2 0.1c0 0 0 0.9 0 1c0 0.1 -0.2 0.3 -0.3 0.3c-0.1 0 0 -0.5 0 -0.9c0 -0.4 0 -0.4 0.2 -0.6c0.2 -0.2 0.6 -0.3 0.8 -0.8c0.3 -0.5 1 -0.6 1 -0.6z';
@@ -13319,7 +13675,7 @@ var $author$project$GalleryBar$bar23 = function () {
 					]))
 			]));
 }();
-var $author$project$GalleryBar$bar24 = function () {
+var $author$project$GalleryBar$bar25 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -13926,15 +14282,9 @@ var $author$project$GalleryBar$weatherBars = function (mProps) {
 			]));
 };
 var $author$project$GalleryBar$bar8 = $author$project$GalleryBar$weatherBars(_List_Nil);
-var $author$project$VegaLite$MCornerRadiusTL = function (a) {
-	return {$: 14, a: a};
-};
 var $author$project$VegaLite$maCornerRadiusTopLeft = function (n) {
 	return $author$project$VegaLite$MCornerRadiusTL(
 		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$MCornerRadiusTR = function (a) {
-	return {$: 15, a: a};
 };
 var $author$project$VegaLite$maCornerRadiusTopRight = function (n) {
 	return $author$project$VegaLite$MCornerRadiusTR(
@@ -13975,7 +14325,8 @@ var $author$project$GalleryBar$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('bar21', $author$project$GalleryBar$bar21),
 			_Utils_Tuple2('bar22', $author$project$GalleryBar$bar22),
 			_Utils_Tuple2('bar23', $author$project$GalleryBar$bar23),
-			_Utils_Tuple2('bar24', $author$project$GalleryBar$bar24)
+			_Utils_Tuple2('bar24', $author$project$GalleryBar$bar24),
+			_Utils_Tuple2('bar25', $author$project$GalleryBar$bar25)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

@@ -578,6 +578,46 @@ bar21 : Spec
 bar21 =
     let
         desc =
+            description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid color to draw a zero baseline."
+
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+                << dataColumn "b" (nums [ -28, 55, -33, 91, 81, 53, -19, 87, 52 ])
+
+        enc =
+            encoding
+                << position Y [ pName "a", pAxis [ axDomain False, axTicks False, axLabelAngle 0, axLabelPadding 4 ] ]
+                << position X
+                    [ pName "b"
+                    , pQuant
+                    , pScale [ scPadding 20 ]
+                    , pAxis [ axDataCondition (expr "datum.value == 0") (cAxGridColor "black" "#ddd") ]
+                    ]
+
+        specBar =
+            asSpec [ bar [] ]
+
+        encText =
+            encoding
+                << text [ tName "b", tQuant ]
+
+        specText =
+            asSpec
+                [ encText []
+                , textMark
+                    [ maAlign (haExpr "datum.b < 0 ? 'right' : 'left'")
+                    , maNumExpr "datum.b < 0 ? -2 : 2" maDx
+                    ]
+                ]
+    in
+    toVegaLite [ desc, data [], enc [], layer [ specBar, specText ] ]
+
+
+bar22 : Spec
+bar22 =
+    let
+        desc =
             description "Bar Chart with a spacing-saving y-axis"
 
         cfg =
@@ -615,8 +655,8 @@ bar21 =
         ]
 
 
-bar22 : Spec
-bar22 =
+bar23 : Spec
+bar23 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -667,8 +707,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar23 : Spec
-bar23 =
+bar24 : Spec
+bar24 =
     let
         isotypes =
             let
@@ -736,8 +776,8 @@ bar23 =
         ]
 
 
-bar24 : Spec
-bar24 =
+bar25 : Spec
+bar25 =
     let
         desc =
             description "Isotype bar chart using emojis for symbols"
@@ -807,6 +847,7 @@ mySpecs =
         , ( "bar22", bar22 )
         , ( "bar23", bar23 )
         , ( "bar24", bar24 )
+        , ( "bar25", bar25 )
         ]
 
 
