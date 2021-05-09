@@ -11311,6 +11311,13 @@ var $author$project$VegaLite$height = function (h) {
 		5,
 		$elm$json$Json$Encode$float(h));
 };
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$maSize = function (n) {
+	return $author$project$VegaLite$MSize(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$DataTests$dataArr1 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
@@ -11359,7 +11366,114 @@ var $author$project$DataTests$dataArr1 = function () {
 				$author$project$VegaLite$height(300),
 				data(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(400)
+					]))
+			]));
+}();
+var $author$project$VegaLite$FOneOf = F2(
+	function (a, b) {
+		return {$: 9, a: a, b: b};
+	});
+var $author$project$VegaLite$fiOneOf = $author$project$VegaLite$FOneOf;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$VegaLite$VLTransform = 15;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(15, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		15,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$DataTests$dataArr2 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			A2(
+				$author$project$VegaLite$fiOneOf,
+				'x[0]',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[3, 10])))));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x[0]'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('x[1]'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'x',
+			$author$project$VegaLite$dataArrays(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$nums(
+						_List_fromArray(
+							[10, 11])),
+						$author$project$VegaLite$nums(
+						_List_fromArray(
+							[3, 4])),
+						$author$project$VegaLite$nums(
+						_List_fromArray(
+							[8, 6]))
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				$author$project$VegaLite$height(300),
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(400)
+					]))
 			]));
 }();
 var $author$project$VegaLite$DObjects = function (a) {
@@ -11432,7 +11546,95 @@ var $author$project$DataTests$dataObj1 = function () {
 				$author$project$VegaLite$height(300),
 				data(_List_Nil),
 				enc(_List_Nil),
-				$author$project$VegaLite$circle(_List_Nil)
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(400)
+					]))
+			]));
+}();
+var $author$project$DataTests$dataObj2 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			A2(
+				$author$project$VegaLite$fiOneOf,
+				'x.a',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[3, 10])))));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('x.a'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('x.b'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$dataFromColumns(_List_Nil),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'x',
+			$author$project$VegaLite$dataObjects(
+				_List_fromArray(
+					[
+						_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'a',
+							$author$project$VegaLite$num(10)),
+							_Utils_Tuple2(
+							'b',
+							$author$project$VegaLite$num(11))
+						]),
+						_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'a',
+							$author$project$VegaLite$num(3)),
+							_Utils_Tuple2(
+							'b',
+							$author$project$VegaLite$num(4))
+						]),
+						_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'a',
+							$author$project$VegaLite$num(8)),
+							_Utils_Tuple2(
+							'b',
+							$author$project$VegaLite$num(6))
+						])
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(300),
+				$author$project$VegaLite$height(300),
+				data(_List_Nil),
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maSize(400)
+					]))
 			]));
 }();
 var $author$project$VegaLite$AxGrid = function (a) {
@@ -14316,32 +14518,6 @@ var $author$project$VegaLite$pTitle = function (s) {
 	return $author$project$VegaLite$PTitle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$VLTransform = 15;
-var $elm$core$List$isEmpty = function (xs) {
-	if (!xs.b) {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v1) {
-		var trName = _v1.a;
-		var val = _v1.b;
-		if (trName === 'multiSpecs') {
-			return val;
-		} else {
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(trName, val)
-					]));
-		}
-	};
-	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(15, $elm$json$Json$Encode$null) : _Utils_Tuple2(
-		15,
-		A2($elm$json$Json$Encode$list, assemble, transforms));
-};
 var $author$project$DataTests$datum3 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -15027,12 +15203,6 @@ var $author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
-var $author$project$VegaLite$filter = function (f) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'filter',
-			$author$project$VegaLite$filterSpec(f)));
-};
 var $author$project$DataTests$filter1 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -16708,7 +16878,9 @@ var $author$project$DataTests$specs = _List_fromArray(
 		_Utils_Tuple2('datum7', $author$project$DataTests$datum7),
 		_Utils_Tuple2('datum8', $author$project$DataTests$datum8),
 		_Utils_Tuple2('dataArr1', $author$project$DataTests$dataArr1),
-		_Utils_Tuple2('dataObj1', $author$project$DataTests$dataObj1)
+		_Utils_Tuple2('dataArr2', $author$project$DataTests$dataArr2),
+		_Utils_Tuple2('dataObj1', $author$project$DataTests$dataObj1),
+		_Utils_Tuple2('dataObj2', $author$project$DataTests$dataObj2)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

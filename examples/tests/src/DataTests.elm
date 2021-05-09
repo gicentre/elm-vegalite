@@ -894,7 +894,32 @@ dataArr1 =
                 << position X [ pName "x[0]", pQuant ]
                 << position Y [ pName "x[1]", pQuant ]
     in
-    toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
+    toVegaLite [ width 300, height 300, data [], enc [], circle [ maSize 400 ] ]
+
+
+dataArr2 : Spec
+dataArr2 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x"
+                    (dataArrays
+                        [ nums [ 10, 11 ]
+                        , nums [ 3, 4 ]
+                        , nums [ 8, 6 ]
+                        ]
+                    )
+
+        trans =
+            transform
+                << filter (fiOneOf "x[0]" (nums [ 3, 10 ]))
+
+        enc =
+            encoding
+                << position X [ pName "x[0]", pQuant ]
+                << position Y [ pName "x[1]", pQuant ]
+    in
+    toVegaLite [ width 300, height 300, data [], trans [], enc [], circle [ maSize 400 ] ]
 
 
 dataObj1 : Spec
@@ -915,7 +940,33 @@ dataObj1 =
                 << position X [ pName "x.a", pQuant ]
                 << position Y [ pName "x.b", pQuant ]
     in
-    toVegaLite [ width 300, height 300, data [], enc [], circle [] ]
+    toVegaLite [ width 300, height 300, data [], enc [], circle [ maSize 400 ] ]
+
+
+dataObj2 : Spec
+dataObj2 =
+    let
+        data =
+            dataFromColumns []
+                << dataColumn "x"
+                    (dataObjects
+                        [ [ ( "a", num 10 ), ( "b", num 11 ) ]
+                        , [ ( "a", num 3 ), ( "b", num 4 ) ]
+                        , [ ( "a", num 8 ), ( "b", num 6 ) ]
+                        ]
+                    )
+
+        trans =
+            transform
+                << filter
+                    (fiOneOf "x.a" (nums [ 3, 10 ]))
+
+        enc =
+            encoding
+                << position X [ pName "x.a", pQuant ]
+                << position Y [ pName "x.b", pQuant ]
+    in
+    toVegaLite [ width 300, height 300, data [], trans [], enc [], circle [ maSize 400 ] ]
 
 
 
@@ -972,7 +1023,9 @@ specs =
     , ( "datum7", datum7 )
     , ( "datum8", datum8 )
     , ( "dataArr1", dataArr1 )
+    , ( "dataArr2", dataArr2 )
     , ( "dataObj1", dataObj1 )
+    , ( "dataObj2", dataObj2 )
     ]
 
 
