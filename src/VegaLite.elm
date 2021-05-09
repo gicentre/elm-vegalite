@@ -24109,11 +24109,11 @@ filterProperties f =
                             JE.list JE.bool bs
 
                         DObjects obs ->
-                            -- TODO: Check this produces the correct result.
+                            -- TODO: Currently VL does not accept filtering by object, but left here for possible future inclusion.
                             JE.list (List.map (\( k, v ) -> ( k, dataValueSpec v )) >> JE.object) obs
 
                         DArrays ds ->
-                            -- TODO: Check this produces the correct result.
+                            -- TODO: Currently VL does not accept filtering by array, but left here for possible future inclusion.
                             JE.list dataValuesSpecs ds
             in
             [ ( "field", JE.string field ), ( "oneOf", values ) ]
