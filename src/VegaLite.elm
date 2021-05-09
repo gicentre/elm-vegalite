@@ -1687,10 +1687,14 @@ module VegaLite exposing
     , seSingle
     , tDataCondition
     , tSelectionCondition
+    -- TODO: Awaiting resolution of https://github.com/vega/vega-lite/issues/5921
     --, leUnselectedOpacity
-    -- TODO: CHECK IF THESE WILL BE NEEDED
+    --
+    -- TODO: Awaiting resolution of https://github.com/vega/vega-lite/issues/6758
     --, raMaxStr
     --  , raMinStr
+    --
+    -- TODO: Awaiting resolution of https://github.com/vega/vega-lite/issues/7404
     -- , ttExpr
     )
 
@@ -21319,6 +21323,7 @@ ttData =
 -- {- | Expression that evaluates to some tooltip property. For example an expression
 -- bound to a checkbox can allow tooltips to be turned on or off.
 -- -}
+-- TODO: Awaiting resolution of https://github.com/vega/vega-lite/issues/7404
 -- ttExpr : String -> TooltipContent
 -- ttExpr =
 --     TTExpr
