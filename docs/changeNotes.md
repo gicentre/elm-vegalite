@@ -1,6 +1,6 @@
 # elm-vegaLite changes
 
-## Pending changes
+## V3.1.1 ➡ V4.0.0
 
 _Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of Vega-Lite 5._
 
