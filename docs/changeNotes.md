@@ -49,7 +49,7 @@ For example where you might provide
 bar [ maOpacity 0.6 ]
 ```
 
-you can provide a [Vegalite named parameter](https://vega.github.io/vega-lite/docs/parameter.html) to be evaluated instead:
+you can provide a [Vega-Lite named parameter](https://vega.github.io/vega-lite/docs/parameter.html) to be evaluated instead:
 
 ```elm
 bar [ maOpacity |> maNumExpr "myParam" ]
@@ -119,7 +119,7 @@ For example, where you might provide
 point [ maShape symSquare ]
 ```
 
-you can provide a [Vegalite named parameter](https://vega.github.io/vega-lite/docs/parameter.html) that evaluates to an appropriate value instead:
+you can provide a [Vega-Lite named parameter](https://vega.github.io/vega-lite/docs/parameter.html) that evaluates to an appropriate value instead:
 
 ```elm
 point [ maShape (symExpr "myParam") ]
@@ -173,7 +173,7 @@ point [ maShape (symExpr "myParam") ]
 
 #### Convenience functions
 
-- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of VegaLite via JSON input.
+- `jsonToSpec` for conversion of any well-formed JSON string into a Spec. Useful for compact specification of nested data structures and as an 'escape hatch' for direct specification of Vega-Lite via JSON input.
 
 ### V4.0 Bug Fixes
 
