@@ -274,14 +274,10 @@ advanced6 =
                 << position Y [ pName "center", pQuant ]
                 << text [ tName "text_amount" ]
                 << color
-                    -- [ mDataCondition
-                    --     [ ( expr "datum.label === 'Begin' || datum.label === 'End'"
-                    --       , [ mStr "#725a30" ]
-                    --       )
-                    --     ]
-                    --     [ mStr "white" ]
-                    -- ]
-                    [ mCondition (prTest (expr "datum.label === 'Begin' || datum.label === 'End'")) [ mStr "#725a30" ] [ mStr "white" ] ]
+                    [ mCondition (prTest (expr "datum.label === 'Begin' || datum.label === 'End'"))
+                        [ mStr "#725a30" ]
+                        [ mStr "white" ]
+                    ]
 
         spec5 =
             asSpec [ enc5 [], textMark [ maBaseline vaMiddle, maFontWeight fwBold ] ]
