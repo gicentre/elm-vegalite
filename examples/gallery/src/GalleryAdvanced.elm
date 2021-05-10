@@ -211,15 +211,10 @@ advanced6 =
                 << position Y [ pName "previous_sum", pQuant, pTitle "Amount" ]
                 << position Y2 [ pName "sum" ]
                 << color
-                    -- [ mDataCondition
-                    --     [ ( expr "datum.label === 'Begin' || datum.label === 'End'", [ mStr "#f7e0b6" ] )
-                    --     , ( expr "datum.sum < datum.previous_sum", [ mStr "#f78a64" ] )
-                    --     ]
-                    --     [ mStr "#93c4aa" ]
-                    -- ]
-                    -- TODO: How to nest if clauses
-                    [ mCondition (prTest (expr "datum.label === 'Begin' || datum.label === 'End'"))
-                        [ mCondition (prTest (expr "datum.sum < datum.previous_sum")) [ mStr "#f7e0b6" ] [ mStr "#f78a64" ] ]
+                    [ mConditions
+                        [ ( prTest (expr "datum.label === 'Begin' || datum.label === 'End'"), [ mStr "#f7e0b6" ] )
+                        , ( prTest (expr "datum.sum < datum.previous_sum"), [ mStr "#f78a64" ] )
+                        ]
                         [ mStr "#93c4aa" ]
                     ]
 

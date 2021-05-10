@@ -13732,6 +13732,11 @@ var $author$project$VegaLite$MCondition = F3(
 		return {$: 1, a: a, b: b, c: c};
 	});
 var $author$project$VegaLite$mCondition = $author$project$VegaLite$MCondition;
+var $author$project$VegaLite$MConditions = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var $author$project$VegaLite$mConditions = $author$project$VegaLite$MConditions;
 var $author$project$VegaLite$MdY = function (a) {
 	return {$: 26, a: a};
 };
@@ -13990,20 +13995,20 @@ var $author$project$GalleryAdvanced$advanced6 = function () {
 		$author$project$VegaLite$color(
 			_List_fromArray(
 				[
-					A3(
-					$author$project$VegaLite$mCondition,
-					$author$project$VegaLite$prTest(
-						$author$project$VegaLite$expr('datum.label === \'Begin\' || datum.label === \'End\'')),
+					A2(
+					$author$project$VegaLite$mConditions,
 					_List_fromArray(
 						[
-							A3(
-							$author$project$VegaLite$mCondition,
+							_Utils_Tuple2(
 							$author$project$VegaLite$prTest(
-								$author$project$VegaLite$expr('datum.sum < datum.previous_sum')),
+								$author$project$VegaLite$expr('datum.label === \'Begin\' || datum.label === \'End\'')),
 							_List_fromArray(
 								[
 									$author$project$VegaLite$mStr('#f7e0b6')
-								]),
+								])),
+							_Utils_Tuple2(
+							$author$project$VegaLite$prTest(
+								$author$project$VegaLite$expr('datum.sum < datum.previous_sum')),
 							_List_fromArray(
 								[
 									$author$project$VegaLite$mStr('#f78a64')
