@@ -17471,7 +17471,8 @@ oTimeUnit =
 
 
 {-| The dynamic binding associated with a parameter. Can be used to create a parameter
-value that varies as an interactive input control (e.g. slider) is updated.
+value that varies as an interactive input control (e.g. slider) is updated. For
+details see the [Vega-Lite binding documentation](https://vega.github.io/vega-lite/docs/bind.html)
 
     param "mySlider"
         [ paSelect sePoint []
