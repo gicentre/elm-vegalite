@@ -19765,7 +19765,7 @@ pointer:
 
     ps =
         params
-            << params "paint" [ paSelect sePoint [ seOn "mouseover" ] ]
+            << param "paint" [ paSelect sePoint [ seOn "mouseover" ] ]
 
 -}
 seOn : String -> SelectionProperty
