@@ -14,7 +14,7 @@ animatedScatter1 =
             dataFromSource "table" [ parse [ ( "fYears", foNum ) ] ]
 
         incomeData =
-            dataFromUrl "https://gicentre.github.io/data/incomeInequality2018.csv" []
+            dataFromUrl "https://gicentre.github.io/data/incomeInequality2020.csv" []
 
         guideData =
             dataFromColumns []
