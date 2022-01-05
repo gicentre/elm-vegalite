@@ -7736,12 +7736,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';
@@ -9935,26 +9939,30 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'theta';
+			return 'xOffset';
 		case 5:
-			return 'theta2';
+			return 'yOffset';
 		case 6:
-			return 'radius';
+			return 'theta';
 		case 7:
-			return 'radius2';
-		case 12:
-			return 'xError';
-		case 13:
-			return 'yError';
-		case 14:
-			return 'xError2';
-		case 15:
-			return 'yError2';
+			return 'theta2';
 		case 8:
-			return 'longitude';
+			return 'radius';
 		case 9:
-			return 'latitude';
+			return 'radius2';
+		case 14:
+			return 'xError';
+		case 15:
+			return 'yError';
+		case 16:
+			return 'xError2';
+		case 17:
+			return 'yError2';
 		case 10:
+			return 'longitude';
+		case 11:
+			return 'latitude';
+		case 12:
 			return 'longitude2';
 		default:
 			return 'latitude2';
@@ -10573,7 +10581,7 @@ var $author$project$CompositeTests$errorbar3 = function () {
 					[specErrorBars, specPoints]))
 			]));
 }();
-var $author$project$VegaLite$XError = 12;
+var $author$project$VegaLite$XError = 14;
 var $author$project$VegaLite$dataColumn = F2(
 	function (colName, data) {
 		switch (data.$) {
@@ -10820,7 +10828,7 @@ var $author$project$CompositeTests$errorbar4 = function () {
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			12,
+			14,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('yieldError')
@@ -10871,7 +10879,7 @@ var $author$project$CompositeTests$errorbar4 = function () {
 					[specErrorBars, specPoints]))
 			]));
 }();
-var $author$project$VegaLite$XError2 = 14;
+var $author$project$VegaLite$XError2 = 16;
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -10940,14 +10948,14 @@ var $author$project$CompositeTests$errorbar5 = function () {
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				12,
+				14,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('yieldError')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			14,
+			16,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('yieldError2')
@@ -11006,7 +11014,7 @@ var $author$project$CompositeTests$errorbar5 = function () {
 					[specErrorBars, specPoints]))
 			]));
 }();
-var $author$project$VegaLite$YError = 13;
+var $author$project$VegaLite$YError = 15;
 var $author$project$CompositeTests$errorbar6 = function () {
 	var encPoints = A2(
 		$elm$core$Basics$composeL,
@@ -11070,7 +11078,7 @@ var $author$project$CompositeTests$errorbar6 = function () {
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			13,
+			15,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('yieldError')
@@ -11121,7 +11129,7 @@ var $author$project$CompositeTests$errorbar6 = function () {
 					[specErrorBars, specPoints]))
 			]));
 }();
-var $author$project$VegaLite$YError2 = 15;
+var $author$project$VegaLite$YError2 = 17;
 var $author$project$CompositeTests$errorbar7 = function () {
 	var encPoints = A2(
 		$elm$core$Basics$composeL,
@@ -11187,14 +11195,14 @@ var $author$project$CompositeTests$errorbar7 = function () {
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				13,
+				15,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('yieldError')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			15,
+			17,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('yieldError2')

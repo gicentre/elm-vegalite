@@ -7768,12 +7768,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';
@@ -9967,26 +9971,30 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'theta';
+			return 'xOffset';
 		case 5:
-			return 'theta2';
+			return 'yOffset';
 		case 6:
-			return 'radius';
+			return 'theta';
 		case 7:
-			return 'radius2';
-		case 12:
-			return 'xError';
-		case 13:
-			return 'yError';
-		case 14:
-			return 'xError2';
-		case 15:
-			return 'yError2';
+			return 'theta2';
 		case 8:
-			return 'longitude';
+			return 'radius';
 		case 9:
-			return 'latitude';
+			return 'radius2';
+		case 14:
+			return 'xError';
+		case 15:
+			return 'yError';
+		case 16:
+			return 'xError2';
+		case 17:
+			return 'yError2';
 		case 10:
+			return 'longitude';
+		case 11:
+			return 'latitude';
+		case 12:
 			return 'longitude2';
 		default:
 			return 'latitude2';
@@ -14551,8 +14559,8 @@ var $author$project$ConditionalTests$orderCondition2 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$ChColor = 4;
-var $author$project$VegaLite$chColor = 4;
+var $author$project$VegaLite$ChColor = 6;
+var $author$project$VegaLite$chColor = 6;
 var $author$project$VegaLite$Encodings = function (a) {
 	return {$: 8, a: a};
 };

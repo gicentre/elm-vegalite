@@ -7287,12 +7287,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';

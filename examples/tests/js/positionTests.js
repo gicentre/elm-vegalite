@@ -8055,12 +8055,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';
@@ -10236,26 +10240,30 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'theta';
+			return 'xOffset';
 		case 5:
-			return 'theta2';
+			return 'yOffset';
 		case 6:
-			return 'radius';
+			return 'theta';
 		case 7:
-			return 'radius2';
-		case 12:
-			return 'xError';
-		case 13:
-			return 'yError';
-		case 14:
-			return 'xError2';
-		case 15:
-			return 'yError2';
+			return 'theta2';
 		case 8:
-			return 'longitude';
+			return 'radius';
 		case 9:
-			return 'latitude';
+			return 'radius2';
+		case 14:
+			return 'xError';
+		case 15:
+			return 'yError';
+		case 16:
+			return 'xError2';
+		case 17:
+			return 'yError2';
 		case 10:
+			return 'longitude';
+		case 11:
+			return 'latitude';
+		case 12:
 			return 'longitude2';
 		default:
 			return 'latitude2';
@@ -10337,6 +10345,223 @@ var $author$project$PositionTests$barAlign = function (x) {
 var $author$project$PositionTests$position10 = $author$project$PositionTests$barAlign(0.5);
 var $author$project$PositionTests$position11 = $author$project$PositionTests$barAlign(0.7);
 var $author$project$PositionTests$position12 = $author$project$PositionTests$barAlign(1);
+var $author$project$VegaLite$XOffset = 4;
+var $author$project$VegaLite$color = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'color',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$MName = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$mName = function (s) {
+	return $author$project$VegaLite$MName(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$Strings = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
+var $author$project$PositionTests$position13 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						0,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('category')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					1,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('value'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				4,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('group')
+					]))),
+		$author$project$VegaLite$color(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('group')
+				])));
+	var data2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'category',
+					$author$project$VegaLite$strs(
+						_List_fromArray(
+							['A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C'])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'group',
+				$author$project$VegaLite$strs(
+					_List_fromArray(
+						['x', 'y', 'z', 'x', 'y', 'z', 'x', 'y', 'z'])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'value',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[0.1, 0.6, 0.9, 0.7, 0.2, 0.1, 0.6, 0.1, 0.2]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data2(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$YOffset = 5;
+var $author$project$VegaLite$calculateAs = F2(
+	function (ex, label) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'calculate',
+							$elm$json$Json$Encode$string(ex)),
+							_Utils_Tuple2(
+							'as',
+							$elm$json$Json$Encode$string(label))
+						]))));
+	});
+var $author$project$VegaLite$dataFromUrl = F2(
+	function (u, fmts) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			12,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u))
+					]))) : _Utils_Tuple2(
+			12,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u)),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$VLHeightStep = 7;
+var $author$project$VegaLite$heightStep = function (hs) {
+	return _Utils_Tuple2(
+		7,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(hs))
+				])));
+};
+var $author$project$PositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$VegaLite$Point = 10;
+var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
+var $author$project$VegaLite$VLTransform = 15;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(15, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		15,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$PositionTests$position14 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$calculateAs, 'random()', 'jitter'));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Horsepower'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Cylinders')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			5,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('jitter'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data2 = A2($author$project$VegaLite$dataFromUrl, $author$project$PositionTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$heightStep(50),
+				data2,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+}();
 var $author$project$PositionTests$position2 = $author$project$VegaLite$toVegaLite(
 	_List_fromArray(
 		[
@@ -10504,7 +10729,9 @@ var $author$project$PositionTests$specs = _List_fromArray(
 		_Utils_Tuple2('position9', $author$project$PositionTests$position9),
 		_Utils_Tuple2('position10', $author$project$PositionTests$position10),
 		_Utils_Tuple2('position11', $author$project$PositionTests$position11),
-		_Utils_Tuple2('position12', $author$project$PositionTests$position12)
+		_Utils_Tuple2('position12', $author$project$PositionTests$position12),
+		_Utils_Tuple2('position13', $author$project$PositionTests$position13),
+		_Utils_Tuple2('position14', $author$project$PositionTests$position14)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

@@ -6496,12 +6496,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';
@@ -12551,8 +12555,8 @@ var $author$project$GeoTests$choropleth1 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$Latitude = 9;
-var $author$project$VegaLite$Longitude = 8;
+var $author$project$VegaLite$Latitude = 11;
+var $author$project$VegaLite$Longitude = 10;
 var $author$project$VegaLite$asSpec = function (specs) {
 	return $elm$json$Json$Encode$object(
 		A2(
@@ -13049,26 +13053,30 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'theta';
+			return 'xOffset';
 		case 5:
-			return 'theta2';
+			return 'yOffset';
 		case 6:
-			return 'radius';
+			return 'theta';
 		case 7:
-			return 'radius2';
-		case 12:
-			return 'xError';
-		case 13:
-			return 'yError';
-		case 14:
-			return 'xError2';
-		case 15:
-			return 'yError2';
+			return 'theta2';
 		case 8:
-			return 'longitude';
+			return 'radius';
 		case 9:
-			return 'latitude';
+			return 'radius2';
+		case 14:
+			return 'xError';
+		case 15:
+			return 'yError';
+		case 16:
+			return 'xError2';
+		case 17:
+			return 'yError2';
 		case 10:
+			return 'longitude';
+		case 11:
+			return 'latitude';
+		case 12:
 			return 'longitude2';
 		default:
 			return 'latitude2';
@@ -13308,14 +13316,14 @@ var $author$project$GeoTests$choropleth2 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					8,
+					10,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('cx')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				9,
+				11,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('cy')
@@ -13506,14 +13514,14 @@ var $author$project$GeoTests$dotMap1 = function () {
 					$author$project$VegaLite$encoding,
 					A2(
 						$author$project$VegaLite$position,
-						8,
+						10,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('longitude')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
-					9,
+					11,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('latitude')
@@ -14143,7 +14151,7 @@ var $author$project$GeoTests$map1d = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				8,
+				10,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pDatum(
@@ -14151,7 +14159,7 @@ var $author$project$GeoTests$map1d = function () {
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			9,
+			11,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('cy')
@@ -14163,14 +14171,14 @@ var $author$project$GeoTests$map1d = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				8,
+				10,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('cx')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			9,
+			11,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pDatum(
@@ -14205,14 +14213,14 @@ var $author$project$GeoTests$map1d = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				8,
+				10,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('cx')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			9,
+			11,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('cy')
@@ -14933,14 +14941,14 @@ var $author$project$GeoTests$scribbleMap1 = function () {
 						$author$project$VegaLite$encoding,
 						A2(
 							$author$project$VegaLite$position,
-							8,
+							10,
 							_List_fromArray(
 								[
 									$author$project$VegaLite$pName('longitude')
 								]))),
 					A2(
 						$author$project$VegaLite$position,
-						9,
+						11,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('latitude')
@@ -15038,14 +15046,14 @@ var $author$project$GeoTests$scribbleMap2 = function () {
 						$author$project$VegaLite$encoding,
 						A2(
 							$author$project$VegaLite$position,
-							8,
+							10,
 							_List_fromArray(
 								[
 									$author$project$VegaLite$pName('longitude')
 								]))),
 					A2(
 						$author$project$VegaLite$position,
-						9,
+						11,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('latitude')
@@ -15387,14 +15395,14 @@ var $author$project$GeoTests$tubeLines3 = function () {
 						$author$project$VegaLite$encoding,
 						A2(
 							$author$project$VegaLite$position,
-							8,
+							10,
 							_List_fromArray(
 								[
 									$author$project$VegaLite$pName('cx')
 								]))),
 					A2(
 						$author$project$VegaLite$position,
-						9,
+						11,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('cy')

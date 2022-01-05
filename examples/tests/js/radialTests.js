@@ -5092,7 +5092,7 @@ var $author$project$RadialTests$elmToJS = _Platform_outgoingPort('elmToJS', $elm
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $elm$json$Json$Encode$null = _Json_encodeNull;
-var $author$project$VegaLite$Theta = 4;
+var $author$project$VegaLite$Theta = 6;
 var $author$project$VegaLite$Arc = 0;
 var $author$project$VegaLite$VLMark = 14;
 var $elm$core$List$append = F2(
@@ -7470,12 +7470,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';
@@ -10114,26 +10118,30 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'theta';
+			return 'xOffset';
 		case 5:
-			return 'theta2';
+			return 'yOffset';
 		case 6:
-			return 'radius';
+			return 'theta';
 		case 7:
-			return 'radius2';
-		case 12:
-			return 'xError';
-		case 13:
-			return 'yError';
-		case 14:
-			return 'xError2';
-		case 15:
-			return 'yError2';
+			return 'theta2';
 		case 8:
-			return 'longitude';
+			return 'radius';
 		case 9:
-			return 'latitude';
+			return 'radius2';
+		case 14:
+			return 'xError';
+		case 15:
+			return 'yError';
+		case 16:
+			return 'xError2';
+		case 17:
+			return 'yError2';
 		case 10:
+			return 'longitude';
+		case 11:
+			return 'latitude';
+		case 12:
 			return 'longitude2';
 		default:
 			return 'latitude2';
@@ -10260,7 +10268,7 @@ var $author$project$RadialTests$radial = F3(
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					4,
+					6,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('value'),
@@ -10299,9 +10307,9 @@ var $author$project$RadialTests$radial = F3(
 				]));
 	});
 var $author$project$RadialTests$radial1 = A3($author$project$RadialTests$radial, 0, 0, 0);
-var $author$project$VegaLite$R = 6;
-var $author$project$VegaLite$R2 = 7;
-var $author$project$VegaLite$Theta2 = 5;
+var $author$project$VegaLite$R = 8;
+var $author$project$VegaLite$R2 = 9;
+var $author$project$VegaLite$Theta2 = 7;
 var $elm$core$Basics$pi = _Basics_pi;
 var $elm$core$Basics$degrees = function (angleInDegrees) {
 	return (angleInDegrees * $elm$core$Basics$pi) / 180;
@@ -10494,7 +10502,7 @@ var $author$project$RadialTests$radial10 = function () {
 						$author$project$VegaLite$encoding,
 						A2(
 							$author$project$VegaLite$position,
-							6,
+							8,
 							_List_fromArray(
 								[
 									$author$project$VegaLite$pName('strength'),
@@ -10507,7 +10515,7 @@ var $author$project$RadialTests$radial10 = function () {
 								]))),
 					A2(
 						$author$project$VegaLite$position,
-						4,
+						6,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('t'),
@@ -10515,14 +10523,14 @@ var $author$project$RadialTests$radial10 = function () {
 							]))),
 				A2(
 					$author$project$VegaLite$position,
-					5,
+					7,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('t2')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				7,
+				9,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pNum(10)
@@ -10784,7 +10792,7 @@ var $author$project$RadialTests$radial11 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					4,
+					6,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('month'),
@@ -10800,7 +10808,7 @@ var $author$project$RadialTests$radial11 = function () {
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				6,
+				8,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pRepeat($author$project$VegaLite$arLayer),
@@ -11151,7 +11159,7 @@ var $author$project$RadialTests$radial12 = function () {
 					$author$project$VegaLite$encoding,
 					A2(
 						$author$project$VegaLite$position,
-						4,
+						6,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('month'),
@@ -11159,7 +11167,7 @@ var $author$project$RadialTests$radial12 = function () {
 							]))),
 				A2(
 					$author$project$VegaLite$position,
-					6,
+					8,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('deaths'),
@@ -12157,7 +12165,7 @@ var $author$project$RadialTests$radial13 = function () {
 					$author$project$VegaLite$encoding,
 					A2(
 						$author$project$VegaLite$position,
-						4,
+						6,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('b'),
@@ -12607,7 +12615,7 @@ var $author$project$RadialTests$radial3 = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				4,
+				6,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('value'),
@@ -12875,7 +12883,7 @@ var $author$project$RadialTests$radial6 = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				4,
+				6,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('value'),
@@ -12967,7 +12975,7 @@ var $author$project$RadialTests$radial8 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					4,
+					6,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('dir'),
@@ -12975,7 +12983,7 @@ var $author$project$RadialTests$radial8 = function () {
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				6,
+				8,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('strength'),
@@ -13032,7 +13040,7 @@ var $author$project$RadialTests$radial9 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					4,
+					6,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('t'),
@@ -13040,7 +13048,7 @@ var $author$project$RadialTests$radial9 = function () {
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				5,
+				7,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('t2')

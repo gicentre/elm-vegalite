@@ -4951,12 +4951,16 @@ var $author$project$VegaLite$channelLabel = function (ch) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'color';
+			return 'xOffset';
 		case 5:
-			return 'opacity';
+			return 'yOffset';
 		case 6:
-			return 'shape';
+			return 'color';
 		case 7:
+			return 'opacity';
+		case 8:
+			return 'shape';
+		case 9:
 			return 'size';
 		default:
 			return 'strokeDash';
@@ -11365,8 +11369,8 @@ var $author$project$GalleryGeo$geo10 = function () {
 					[sphereSpec, countrySpec, gratSpec]))
 			]));
 }();
-var $author$project$VegaLite$Latitude = 9;
-var $author$project$VegaLite$Longitude = 8;
+var $author$project$VegaLite$Latitude = 11;
+var $author$project$VegaLite$Longitude = 10;
 var $author$project$VegaLite$calculateAs = F2(
 	function (ex, label) {
 		return $elm$core$List$cons(
@@ -11740,26 +11744,30 @@ var $author$project$VegaLite$positionLabel = function (pChannel) {
 		case 3:
 			return 'y2';
 		case 4:
-			return 'theta';
+			return 'xOffset';
 		case 5:
-			return 'theta2';
+			return 'yOffset';
 		case 6:
-			return 'radius';
+			return 'theta';
 		case 7:
-			return 'radius2';
-		case 12:
-			return 'xError';
-		case 13:
-			return 'yError';
-		case 14:
-			return 'xError2';
-		case 15:
-			return 'yError2';
+			return 'theta2';
 		case 8:
-			return 'longitude';
+			return 'radius';
 		case 9:
-			return 'latitude';
+			return 'radius2';
+		case 14:
+			return 'xError';
+		case 15:
+			return 'yError';
+		case 16:
+			return 'xError2';
+		case 17:
+			return 'yError2';
 		case 10:
+			return 'longitude';
+		case 11:
+			return 'latitude';
+		case 12:
 			return 'longitude2';
 		default:
 			return 'latitude2';
@@ -11787,14 +11795,14 @@ var $author$project$GalleryGeo$geo2 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					8,
+					10,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('longitude')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				9,
+				11,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('latitude')
@@ -11857,14 +11865,14 @@ var $author$project$GalleryGeo$geo3 = function () {
 					$author$project$VegaLite$encoding,
 					A2(
 						$author$project$VegaLite$position,
-						8,
+						10,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('longitude')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
-					9,
+					11,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('latitude')
@@ -11923,8 +11931,8 @@ var $author$project$GalleryGeo$geo3 = function () {
 					[backdropSpec, overlaySpec]))
 			]));
 }();
-var $author$project$VegaLite$Latitude2 = 11;
-var $author$project$VegaLite$Longitude2 = 10;
+var $author$project$VegaLite$Latitude2 = 13;
+var $author$project$VegaLite$Longitude2 = 12;
 var $author$project$VegaLite$FEqual = F2(
 	function (a, b) {
 		return {$: 0, a: a, b: b};
@@ -11968,28 +11976,28 @@ var $author$project$GalleryGeo$geo4 = function () {
 					$author$project$VegaLite$encoding,
 					A2(
 						$author$project$VegaLite$position,
-						8,
+						10,
 						_List_fromArray(
 							[
 								$author$project$VegaLite$pName('o.longitude')
 							]))),
 				A2(
 					$author$project$VegaLite$position,
-					9,
+					11,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('o.latitude')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				10,
+				12,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('d.longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			11,
+			13,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('d.latitude')
@@ -12013,14 +12021,14 @@ var $author$project$GalleryGeo$geo4 = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				8,
+				10,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			9,
+			11,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('latitude')
@@ -12085,8 +12093,8 @@ var $author$project$GalleryGeo$geo4 = function () {
 }();
 var $author$project$VegaLite$Row = 1;
 var $author$project$VegaLite$arRow = 1;
-var $author$project$VegaLite$ChColor = 4;
-var $author$project$VegaLite$chColor = 4;
+var $author$project$VegaLite$ChColor = 6;
+var $author$project$VegaLite$chColor = 6;
 var $author$project$VegaLite$GeoFeature = 4;
 var $author$project$VegaLite$mGeo = $author$project$VegaLite$MmType(4);
 var $author$project$VegaLite$MRepeat = function (a) {
@@ -12457,14 +12465,14 @@ var $author$project$GalleryGeo$geo6 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					8,
+					10,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('lon')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				9,
+				11,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('lat')
@@ -12919,14 +12927,14 @@ var $author$project$GalleryGeo$geo7 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					8,
+					10,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('longitude')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				9,
+				11,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('latitude')
@@ -12954,14 +12962,14 @@ var $author$project$GalleryGeo$geo7 = function () {
 			$author$project$VegaLite$encoding,
 			A2(
 				$author$project$VegaLite$position,
-				8,
+				10,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('longitude')
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			9,
+			11,
 			_List_fromArray(
 				[
 					$author$project$VegaLite$pName('latitude')
@@ -13347,14 +13355,14 @@ var $author$project$GalleryGeo$geo9 = function () {
 				$author$project$VegaLite$encoding,
 				A2(
 					$author$project$VegaLite$position,
-					8,
+					10,
 					_List_fromArray(
 						[
 							$author$project$VegaLite$pName('cx')
 						]))),
 			A2(
 				$author$project$VegaLite$position,
-				9,
+				11,
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('cy')
