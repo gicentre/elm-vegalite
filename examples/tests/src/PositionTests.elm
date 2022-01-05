@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
+
+
 emptyData : List DataColumn -> Data
 emptyData =
     dataFromColumns []
@@ -109,6 +114,44 @@ position12 =
     barAlign 1
 
 
+position13 : Spec
+position13 =
+    let
+        data2 =
+            dataFromColumns []
+                << dataColumn "category" (strs [ "A", "A", "A", "B", "B", "B", "C", "C", "C" ])
+                << dataColumn "group" (strs [ "x", "y", "z", "x", "y", "z", "x", "y", "z" ])
+                << dataColumn "value" (nums [ 0.1, 0.6, 0.9, 0.7, 0.2, 0.1, 0.6, 0.1, 0.2 ])
+
+        enc =
+            encoding
+                << position X [ pName "category" ]
+                << position Y [ pName "value", pQuant ]
+                << position XOffset [ pName "group" ]
+                << color [ mName "group" ]
+    in
+    toVegaLite [ data2 [], enc [], bar [] ]
+
+
+position14 : Spec
+position14 =
+    let
+        data2 =
+            dataFromUrl (path ++ "cars.json") []
+
+        trans =
+            transform
+                << calculateAs "random()" "jitter"
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Cylinders" ]
+                << position YOffset [ pName "jitter", pQuant ]
+    in
+    toVegaLite [ heightStep 50, data2, trans [], enc [], point [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -127,6 +170,8 @@ specs =
     , ( "position10", position10 )
     , ( "position11", position11 )
     , ( "position12", position12 )
+    , ( "position13", position13 )
+    , ( "position14", position14 )
     ]
 
 

@@ -1,5 +1,13 @@
 # elm-vegaLite changes
 
+## Pending V4.0.0 ➡ V4.1.0
+
+### V4.1 Additions
+
+- Support for the new offset channel (VL 5.2) with `position XOffset` and `position YOffset` along with channel identifiers `chXOffset` and `chYOffset`, useful for grouped bar charts and jitter-plots.
+
+---
+
 ## V3.1.1 ➡ V4.0.0
 
 _Major changes are the use of expression parameters (limited form of Vega signals) and a new unified parameter/selection model for interaction. Both reflect changes introduced with the major release of Vega-Lite 5._
@@ -21,7 +29,7 @@ _Major changes are the use of expression parameters (limited form of Vega signal
   | `seToggle "event.altKey"`    | `seToggle tpAltKey`                   |
   | `seToggle "some expression"` | `seToggle (tpExpr "some expression")` |
 
-- **Removed exposed type**: Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent methods `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
+- **Removed exposed type**: Font weight specification has been rationalised so that `FontWeight` type variants `Bold`, `Bolder`, `Lighter`, `Normal`, `W100`, `W200` etc. are no longer exposed and replaced with equivalent functions `fwBold`, `fwBolder`, `fwLighter`, `fwNormal` and `fwValue`.
 
 - **Removed** redundant or older deprecated legend configuration options: `lecoGradientWidth` and `lecoGradientHeight` ( replaced with `lecoGradientLength`); `lecoEntryPadding` (replaced with `lecoRowPadding` and `lecoColPadding`); `lecoGradientLabelBaseline` (replaced with `lecoLabelBaseline`); `lecoShortTimeLabels` (all time labels short by default).
 

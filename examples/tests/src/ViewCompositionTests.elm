@@ -312,6 +312,42 @@ concat2 =
     toVegaLite [ hConcat [ mapSpec, chartSpec ] ]
 
 
+concat3 : Spec
+concat3 =
+    let
+        data2 =
+            dataFromColumns []
+                << dataColumn "category" (strs [ "A", "A", "A", "B", "B", "B", "C", "C", "C" ])
+                << dataColumn "group" (strs [ "x", "y", "z", "x", "y", "z", "x", "y", "z" ])
+                << dataColumn "value" (nums [ 0.1, 0.6, 0.9, 0.7, 0.2, 0.1, 0.6, 0.1, 0.2 ])
+
+        res =
+            resolve
+                << resolution (reScale [ ( chX, reIndependent ), ( chXOffset, reShared ) ])
+
+        enc1 =
+            encoding
+                << position X [ pName "category" ]
+                << position Y [ pName "value", pQuant ]
+                << position XOffset [ pName "group" ]
+                << color [ mName "group" ]
+
+        enc2 =
+            encoding
+                << position X [ pName "category" ]
+                << position Y [ pName "value", pQuant ]
+                << position XOffset [ pName "group" ]
+                << color [ mName "group" ]
+
+        spec1 =
+            asSpec [ width 100, enc1 [], bar [] ]
+
+        spec2 =
+            asSpec [ width 200, enc2 [], bar [] ]
+    in
+    toVegaLite [ data2 [], res [], vConcat [ spec1, spec2 ] ]
+
+
 padding1 : Spec
 padding1 =
     let
@@ -368,45 +404,6 @@ padding2 =
         , height 300
         , autosize [ asFit ]
         , padding (paEdgesExpr "l" "t" "r" "b")
-        , carData
-        , enc []
-        , bar []
-        ]
-
-
-background1 : Spec
-background1 =
-    let
-        prm =
-            params
-                << param "fc" [ paValue (str "white"), paBind (ipColor []) ]
-                << param "sc" [ paValue (str "black"), paBind (ipColor []) ]
-                << param "cr" [ paValue (num 0), paBind (ipRange [ inName "Corner radius", inMin 0, inMax 100, inStep 1 ]) ]
-                << param "fo" [ paValue (num 1), paBind (ipRange [ inName "Fill opacity", inMin 0, inMax 1 ]) ]
-                << param "so" [ paValue (num 1), paBind (ipRange [ inName "Stroke opacity", inMin 0, inMax 1 ]) ]
-                << param "sw" [ paValue (num 1), paBind (ipRange [ inName "Stroke width ", inMin 0, inMax 20 ]) ]
-
-        carData =
-            dataFromUrl (path ++ "cars.json") []
-
-        enc =
-            encoding
-                << position X [ pName "Horsepower", pBin [], pAxis [] ]
-                << position Y [ pAggregate opCount, pAxis [] ]
-                << color [ mName "Origin" ]
-    in
-    toVegaLite
-        [ prm []
-        , width 300
-        , height 300
-        , viewBackground
-            [ viewFill |> vbStrExpr "fc"
-            , viewStroke |> vbStrExpr "sc"
-            , viewCornerRadius |> vbNumExpr "cr"
-            , viewFillOpacity |> vbNumExpr "fo"
-            , viewStrokeOpacity |> vbNumExpr "so"
-            , viewStrokeWidth |> vbNumExpr "sw"
-            ]
         , carData
         , enc []
         , bar []
@@ -488,9 +485,9 @@ specs =
     , ( "grid5", grid5 )
     , ( "concat1", concat1 )
     , ( "concat2", concat2 )
+    , ( "concat3", concat3 )
     , ( "padding1", padding1 )
     , ( "padding2", padding2 )
-    , ( "background1", background1 )
     , ( "headerInteractive", headerInteractive )
     ]
 
