@@ -72,17 +72,17 @@ scatter4 : Spec
 scatter4 =
     let
         desc =
-            description "A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape."
+            description "A scatterplot showing penguin morphology with species double encoded by colour and shape."
 
         data =
-            dataFromUrl (path ++ "cars.json") []
+            dataFromUrl (path ++ "penguins.json") []
 
         enc =
             encoding
-                << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin" ]
-                << shape [ mName "Origin" ]
+                << position X [ pName "Flipper Length (mm)", pQuant, pScale [ scZero False ] ]
+                << position Y [ pName "Body Mass (g)", pQuant, pScale [ scZero False ] ]
+                << color [ mName "Species" ]
+                << shape [ mName "Species" ]
     in
     toVegaLite
         [ desc, data, enc [], point [] ]
@@ -356,6 +356,25 @@ scatter15 =
     toVegaLite [ desc, data, enc [], circle [ maSize 80 ] ]
 
 
+scatter16 : Spec
+scatter16 =
+    let
+        data2 =
+            dataFromUrl (path ++ "cars.json") []
+
+        trans =
+            transform
+                << calculateAs "random()" "jitter"
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Cylinders" ]
+                << position YOffset [ pName "jitter", pQuant ]
+    in
+    toVegaLite [ heightStep 50, data2, trans [], enc [], point [] ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -378,6 +397,7 @@ mySpecs =
         , ( "scatter13", scatter13 )
         , ( "scatter14", scatter14 )
         , ( "scatter15", scatter15 )
+        , ( "scatter16", scatter16 )
         ]
 
 
