@@ -6,6 +6,8 @@
 
 - Support for the new offset channel (VL 5.2) with `position XOffset` and `position YOffset` along with channel identifiers `chXOffset` and `chYOffset`, useful for grouped bar charts and jitter-plots.
 
+- Add `pRepeatDatum` for use with position offsets and repeated encoding of multiple data fields.
+
 ---
 
 ## V3.1.1 ➡ V4.0.0

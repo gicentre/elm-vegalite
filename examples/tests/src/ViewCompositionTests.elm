@@ -348,6 +348,33 @@ concat3 =
     toVegaLite [ data2 [], res [], vConcat [ spec1, spec2 ] ]
 
 
+repeat1 : Spec
+repeat1 =
+    let
+        data2 =
+            dataFromUrl (path ++ "movies.json") []
+
+        trans =
+            transform
+                << calculateAs "if(isValid(datum['Major Genre']),datum['Major Genre'],'unclassified')" "genre"
+
+        enc =
+            encoding
+                << position X [ pName "genre", pTitle "" ]
+                << position XOffset [ pRepeatDatum arLayer ]
+                << position Y [ pRepeat arLayer, pAggregate opSum, pTitle "Gross" ]
+                << color [ mRepeatDatum arLayer ]
+
+        spec =
+            asSpec [ widthStep 12, trans [], enc [], bar [] ]
+    in
+    toVegaLite
+        [ data2
+        , repeat [ layerFields [ "Worldwide Gross", "US Gross" ] ]
+        , specification spec
+        ]
+
+
 padding1 : Spec
 padding1 =
     let
@@ -486,6 +513,7 @@ specs =
     , ( "concat1", concat1 )
     , ( "concat2", concat2 )
     , ( "concat3", concat3 )
+    , ( "repeat1", repeat1 )
     , ( "padding1", padding1 )
     , ( "padding2", padding2 )
     , ( "headerInteractive", headerInteractive )
