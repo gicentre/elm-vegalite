@@ -13176,6 +13176,10 @@ var $author$project$VegaLite$Number = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$PDatum = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$pDatum = $author$project$VegaLite$PDatum;
 var $author$project$VegaLite$PNumber = function (a) {
 	return {$: 4, a: a};
 };
@@ -13257,10 +13261,10 @@ var $author$project$GalleryLayer$layer7 = function () {
 				[
 					_Utils_Tuple2(
 					'partnerX',
-					$author$project$VegaLite$num(2018)),
+					$author$project$VegaLite$num(2020)),
 					_Utils_Tuple2(
 					'partnerY',
-					$author$project$VegaLite$num(25)),
+					$author$project$VegaLite$num(26)),
 					_Utils_Tuple2(
 					'partnerAnnotation',
 					$author$project$VegaLite$str('partner\'s age'))
@@ -13275,22 +13279,37 @@ var $author$project$GalleryLayer$layer7 = function () {
 		$elm$core$Basics$composeL,
 		A2(
 			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('year'),
+							$author$project$VegaLite$pOrdinal
+						]))),
 			A2(
 				$author$project$VegaLite$position,
-				0,
+				1,
 				_List_fromArray(
 					[
-						$author$project$VegaLite$pName('year'),
-						$author$project$VegaLite$pOrdinal
+						$author$project$VegaLite$pName('partnerAge'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scZero(false)
+							]))
 					]))),
 		A2(
 			$author$project$VegaLite$position,
-			1,
+			3,
 			_List_fromArray(
 				[
-					$author$project$VegaLite$pName('partnerAge'),
-					$author$project$VegaLite$pQuant
+					$author$project$VegaLite$pDatum(
+					$author$project$VegaLite$num(15))
 				])));
 	var specPartners = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13578,7 +13597,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 								A2(
 									$elm$core$List$map,
 									$elm$core$Basics$toFloat,
-									A2($elm$core$List$range, 1999, 2019))))),
+									A2($elm$core$List$range, 1999, 2021))))),
 					A2(
 						$author$project$VegaLite$dataColumn,
 						'dcAge',
@@ -13586,7 +13605,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 							A2(
 								$elm$core$List$map,
 								$elm$core$Basics$toFloat,
-								A2($elm$core$List$range, 24, 44))))),
+								A2($elm$core$List$range, 24, 46))))),
 				A2(
 					$author$project$VegaLite$dataColumn,
 					'minAge',
@@ -13594,7 +13613,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 						A2(
 							$elm$core$List$map,
 							minAge,
-							A2($elm$core$List$range, 24, 44))))),
+							A2($elm$core$List$range, 24, 46))))),
 			A2(
 				$author$project$VegaLite$dataColumn,
 				'maxAge',
@@ -13602,13 +13621,13 @@ var $author$project$GalleryLayer$layer7 = function () {
 					A2(
 						$elm$core$List$map,
 						maxAge,
-						A2($elm$core$List$range, 24, 44))))),
+						A2($elm$core$List$range, 24, 46))))),
 		A2(
 			$author$project$VegaLite$dataColumn,
 			'partnerAge',
 			$author$project$VegaLite$nums(
 				_List_fromArray(
-					[18, 19, 20, 21, 22, 23, 20, 21, 22, 23, 24, 25, 23, 22, 20, 21, 25, 24, 25, 20, 21]))));
+					[18, 19, 20, 21, 22, 23, 20, 21, 22, 23, 24, 25, 23, 22, 20, 21, 25, 24, 25, 20, 21, 22, 23]))));
 	var dcColour = 'rgb(223,117,45)';
 	var specBand = $author$project$VegaLite$asSpec(
 		_List_fromArray(
@@ -13662,10 +13681,10 @@ var $author$project$GalleryLayer$layer7 = function () {
 					[
 						_Utils_Tuple2(
 						'dcX',
-						$author$project$VegaLite$num(2019)),
+						$author$project$VegaLite$num(2021)),
 						_Utils_Tuple2(
 						'dcY',
-						$author$project$VegaLite$num(44)),
+						$author$project$VegaLite$num(46)),
 						_Utils_Tuple2(
 						'dcAnnotation',
 						$author$project$VegaLite$str('Leo\'s age'))
@@ -13675,10 +13694,10 @@ var $author$project$GalleryLayer$layer7 = function () {
 				[
 					_Utils_Tuple2(
 					'dcX',
-					$author$project$VegaLite$num(2012)),
+					$author$project$VegaLite$num(2014)),
 					_Utils_Tuple2(
 					'dcY',
-					$author$project$VegaLite$num(32)),
+					$author$project$VegaLite$num(33)),
 					_Utils_Tuple2(
 					'dcAnnotation',
 					$author$project$VegaLite$str('xkcd non-creepiness range'))
@@ -13892,7 +13911,7 @@ var $author$project$GalleryLayer$layer7 = function () {
 					$author$project$VegaLite$num(2018)),
 					_Utils_Tuple2(
 					'end',
-					$author$project$VegaLite$num(2019))
+					$author$project$VegaLite$num(2021))
 				])));
 	var specPartnerNames = $author$project$VegaLite$asSpec(
 		_List_fromArray(
