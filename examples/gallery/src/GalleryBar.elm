@@ -140,6 +140,48 @@ bar6 =
 bar7 : Spec
 bar7 =
     let
+        times =
+            0 :: ([ 12, 8, 6, 3, 2, 1.5, 1.2, 0.001 ] |> List.map ((/) 100))
+
+        data =
+            dataFromColumns []
+                << dataColumn "startTime" (times |> List.take 8 |> nums)
+                << dataColumn "endTime" (times |> List.drop 1 |> nums)
+                << dataColumn "residency" (nums [ 0, 0, 31.17, 38.96, 6.49, 2.9, 2.6, 16.88 ])
+
+        enc =
+            encoding
+                << position X
+                    [ pName "startTime"
+                    , pSort []
+                    , pScale [ scType scPoint, scPadding 0 ]
+                    , pAxis
+                        [ axTitle ""
+                        , axLabelAngle 0
+                        , axLabelExpr "if(datum.value<10000,format(datum.value, ',.2f'),'∞')"
+                        ]
+                    ]
+                << position X2 [ pName "endTime" ]
+                << position Y
+                    [ pName "residency"
+                    , pQuant
+                    , pScale [ scDomain (doNums [ 0, 100 ]) ]
+                    , pAxis [ axTitle "", axLabelExpr "datum.value+'%'" ]
+                    ]
+    in
+    toVegaLite
+        [ title "Distribution of Frame Render Time (ms)" []
+        , height 100
+        , widthStep 40
+        , data []
+        , enc []
+        , bar [ maStroke "white" ]
+        ]
+
+
+bar8 : Spec
+bar8 =
+    let
         desc =
             description "Grouped bar chart showing population structure by age and gender."
 
@@ -210,18 +252,18 @@ weatherBars mProps =
     toVegaLite [ desc, width 300, data, enc [], bar mProps ]
 
 
-bar8 : Spec
-bar8 =
-    weatherBars []
-
-
 bar9 : Spec
 bar9 =
-    weatherBars [ maCornerRadiusTopLeft 3, maCornerRadiusTopRight 3 ]
+    weatherBars []
 
 
 bar10 : Spec
 bar10 =
+    weatherBars [ maCornerRadiusTopLeft 3, maCornerRadiusTopRight 3 ]
+
+
+bar11 : Spec
+bar11 =
     let
         desc =
             description "Seattle precipitation bar chart with abbreviated labels"
@@ -252,8 +294,8 @@ bar10 =
     toVegaLite [ desc, width 300, data, enc [], bar [] ]
 
 
-bar11 : Spec
-bar11 =
+bar12 : Spec
+bar12 =
     let
         desc =
             description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid colour to draw a zero baseline."
@@ -279,8 +321,8 @@ bar11 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar12 : Spec
-bar12 =
+bar13 : Spec
+bar13 =
     let
         desc =
             description "Barley crop yields as a horizontal stacked bar chart"
@@ -297,8 +339,8 @@ bar12 =
     toVegaLite [ desc, data, enc [], bar [] ]
 
 
-bar13 : Spec
-bar13 =
+bar14 : Spec
+bar14 =
     let
         desc =
             description "Barley crop yields as a horizontal grouped bar chart with stacked background"
@@ -327,8 +369,8 @@ bar13 =
     toVegaLite [ desc, width 400, data, layer [ specBackground, specBars ] ]
 
 
-bar14 : Spec
-bar14 =
+bar15 : Spec
+bar15 =
     let
         desc =
             description "Population structure as a normalised stacked bar chart."
@@ -350,8 +392,8 @@ bar14 =
     toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar15 : Spec
-bar15 =
+bar16 : Spec
+bar16 =
     let
         desc =
             description "Population structure as a normalised stacked bar chart with labels."
@@ -386,8 +428,8 @@ bar15 =
     toVegaLite [ desc, heightStep 17, data, trans [], layer [ barSpec, labelSpec ] ]
 
 
-bar16 : Spec
-bar16 =
+bar17 : Spec
+bar17 =
     let
         desc =
             description "A simple bar chart with ranged data (aka Gantt Chart)."
@@ -407,8 +449,8 @@ bar16 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar17 : Spec
-bar17 =
+bar18 : Spec
+bar18 =
     let
         desc =
             description "A bar chart that directly encodes color names in the data."
@@ -427,8 +469,8 @@ bar17 =
     toVegaLite [ desc, width 100, data [], enc [], bar [] ]
 
 
-bar18 : Spec
-bar18 =
+bar19 : Spec
+bar19 =
     let
         desc =
             description "Layered bar chart showing the US population distribution of age groups and gender in 2000."
@@ -454,8 +496,8 @@ bar18 =
     toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar19 : Spec
-bar19 =
+bar20 : Spec
+bar20 =
     let
         data =
             dataFromUrl (path ++ "population.json") []
@@ -493,8 +535,8 @@ bar19 =
     toVegaLite [ width 300, height 200, cfg [], data, trans [], enc [], bar [] ]
 
 
-bar20 : Spec
-bar20 =
+bar21 : Spec
+bar21 =
     let
         desc =
             description "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark."
@@ -533,8 +575,8 @@ bar20 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar21 : Spec
-bar21 =
+bar22 : Spec
+bar22 =
     let
         desc =
             description "A simple bar chart with embedded data labels."
@@ -565,8 +607,8 @@ bar21 =
     toVegaLite [ desc, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
-bar22 : Spec
-bar22 =
+bar23 : Spec
+bar23 =
     let
         desc =
             description "Bar chart with label overlay"
@@ -635,8 +677,8 @@ bar22 =
         ]
 
 
-bar23 : Spec
-bar23 =
+bar24 : Spec
+bar24 =
     let
         desc =
             description "Grouped bar chart from two data fields"
@@ -665,8 +707,8 @@ bar23 =
         ]
 
 
-bar24 : Spec
-bar24 =
+bar25 : Spec
+bar25 =
     let
         desc =
             description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid color to draw a zero baseline."
@@ -705,8 +747,8 @@ bar24 =
     toVegaLite [ desc, data [], enc [], layer [ specBar, specText ] ]
 
 
-bar25 : Spec
-bar25 =
+bar26 : Spec
+bar26 =
     let
         desc =
             description "Bar Chart with a spacing-saving y-axis"
@@ -746,8 +788,8 @@ bar25 =
         ]
 
 
-bar26 : Spec
-bar26 =
+bar27 : Spec
+bar27 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -798,8 +840,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar27 : Spec
-bar27 =
+bar28 : Spec
+bar28 =
     let
         isotypes =
             let
@@ -867,8 +909,8 @@ bar27 =
         ]
 
 
-bar28 : Spec
-bar28 =
+bar29 : Spec
+bar29 =
     let
         desc =
             description "Isotype bar chart using emojis for symbols"
@@ -942,6 +984,7 @@ mySpecs =
         , ( "bar26", bar26 )
         , ( "bar27", bar27 )
         , ( "bar28", bar28 )
+        , ( "bar29", bar29 )
         ]
 
 
