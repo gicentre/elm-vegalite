@@ -443,11 +443,11 @@ layer7 =
 
         dcData =
             dataFromColumns []
-                << dataColumn "year" (List.range 1999 2019 |> List.map toFloat |> nums)
-                << dataColumn "dcAge" (List.range 24 44 |> List.map toFloat |> nums)
-                << dataColumn "minAge" (List.range 24 44 |> List.map minAge |> nums)
-                << dataColumn "maxAge" (List.range 24 44 |> List.map maxAge |> nums)
-                << dataColumn "partnerAge" ([ 18, 19, 20, 21, 22, 23, 20, 21, 22, 23, 24, 25, 23, 22, 20, 21, 25, 24, 25, 20, 21 ] |> nums)
+                << dataColumn "year" (List.range 1999 2021 |> List.map toFloat |> nums)
+                << dataColumn "dcAge" (List.range 24 46 |> List.map toFloat |> nums)
+                << dataColumn "minAge" (List.range 24 46 |> List.map minAge |> nums)
+                << dataColumn "maxAge" (List.range 24 46 |> List.map maxAge |> nums)
+                << dataColumn "partnerAge" ([ 18, 19, 20, 21, 22, 23, 20, 21, 22, 23, 24, 25, 23, 22, 20, 21, 25, 24, 25, 20, 21, 22, 23 ] |> nums)
 
         annotationData =
             dataFromRows []
@@ -489,27 +489,27 @@ layer7 =
                 << dataRow
                     [ ( "name", str "Camilla Morrone" )
                     , ( "start", num 2018 )
-                    , ( "end", num 2019 )
+                    , ( "end", num 2021 )
                     ]
 
         dcAnnotationData =
             dataFromRows []
                 << dataRow
-                    [ ( "dcX", num 2019 )
-                    , ( "dcY", num 44 )
+                    [ ( "dcX", num 2021 )
+                    , ( "dcY", num 46 )
                     , ( "dcAnnotation", str "Leo's age" )
                     ]
                 << dataRow
-                    [ ( "dcX", num 2012 )
-                    , ( "dcY", num 32 )
+                    [ ( "dcX", num 2014 )
+                    , ( "dcY", num 33 )
                     , ( "dcAnnotation", str "xkcd non-creepiness range" )
                     ]
 
         partnerAnnotationData =
             dataFromRows []
                 << dataRow
-                    [ ( "partnerX", num 2018 )
-                    , ( "partnerY", num 25 )
+                    [ ( "partnerX", num 2020 )
+                    , ( "partnerY", num 26 )
                     , ( "partnerAnnotation", str "partner's age" )
                     ]
 
@@ -570,7 +570,12 @@ layer7 =
         encPartners =
             encoding
                 << position X [ pName "year", pOrdinal ]
-                << position Y [ pName "partnerAge", pQuant ]
+                << position Y
+                    [ pName "partnerAge"
+                    , pQuant
+                    , pScale [ scZero False ]
+                    ]
+                << position Y2 [ pDatum (num 15) ]
 
         specPartners =
             asSpec
