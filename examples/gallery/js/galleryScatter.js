@@ -9202,6 +9202,65 @@ var $author$project$GalleryScatter$scatter15 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$YOffset = 5;
+var $author$project$VegaLite$VLHeightStep = 7;
+var $author$project$VegaLite$heightStep = function (hs) {
+	return _Utils_Tuple2(
+		7,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(hs))
+				])));
+};
+var $author$project$GalleryScatter$scatter16 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$calculateAs, 'random()', 'jitter'));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Horsepower'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Cylinders')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			5,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('jitter'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data2 = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$heightStep(50),
+				data2,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$Tick = 15;
 var $author$project$VegaLite$tick = $author$project$VegaLite$mark(15);
 var $author$project$GalleryScatter$scatter2 = function () {
@@ -9262,6 +9321,13 @@ var $author$project$GalleryScatter$scatter3 = function () {
 				$author$project$VegaLite$tick(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$ScZero = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$scZero = function (b) {
+	return $author$project$VegaLite$ScZero(
+		$author$project$VegaLite$Boo(b));
+};
 var $author$project$VegaLite$shape = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -9284,29 +9350,39 @@ var $author$project$GalleryScatter$scatter4 = function () {
 						0,
 						_List_fromArray(
 							[
-								$author$project$VegaLite$pName('Horsepower'),
-								$author$project$VegaLite$pQuant
+								$author$project$VegaLite$pName('Flipper Length (mm)'),
+								$author$project$VegaLite$pQuant,
+								$author$project$VegaLite$pScale(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$scZero(false)
+									]))
 							]))),
 				A2(
 					$author$project$VegaLite$position,
 					1,
 					_List_fromArray(
 						[
-							$author$project$VegaLite$pName('Miles_per_Gallon'),
-							$author$project$VegaLite$pQuant
+							$author$project$VegaLite$pName('Body Mass (g)'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scZero(false)
+								]))
 						]))),
 			$author$project$VegaLite$color(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$mName('Origin')
+						$author$project$VegaLite$mName('Species')
 					]))),
 		$author$project$VegaLite$shape(
 			_List_fromArray(
 				[
-					$author$project$VegaLite$mName('Origin')
+					$author$project$VegaLite$mName('Species')
 				])));
-	var desc = $author$project$VegaLite$description('A scatterplot showing horsepower and miles per gallon with country of origin double encoded by colour and shape.');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'cars.json', _List_Nil);
+	var desc = $author$project$VegaLite$description('A scatterplot showing penguin morphology with species double encoded by colour and shape.');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryScatter$path + 'penguins.json', _List_Nil);
 	return $author$project$VegaLite$toVegaLite(
 		_List_fromArray(
 			[
@@ -12582,13 +12658,6 @@ var $author$project$VegaLite$ScType = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
-var $author$project$VegaLite$ScZero = function (a) {
-	return {$: 14, a: a};
-};
-var $author$project$VegaLite$scZero = function (b) {
-	return $author$project$VegaLite$ScZero(
-		$author$project$VegaLite$Boo(b));
-};
 var $author$project$VegaLite$SeInterval = 1;
 var $author$project$VegaLite$seInterval = 1;
 var $author$project$GalleryScatter$scatter9 = function () {
@@ -12679,7 +12748,8 @@ var $author$project$GalleryScatter$mySpecs = $author$project$VegaLite$combineSpe
 			_Utils_Tuple2('scatter12', $author$project$GalleryScatter$scatter12),
 			_Utils_Tuple2('scatter13', $author$project$GalleryScatter$scatter13),
 			_Utils_Tuple2('scatter14', $author$project$GalleryScatter$scatter14),
-			_Utils_Tuple2('scatter15', $author$project$GalleryScatter$scatter15)
+			_Utils_Tuple2('scatter15', $author$project$GalleryScatter$scatter15),
+			_Utils_Tuple2('scatter16', $author$project$GalleryScatter$scatter16)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
