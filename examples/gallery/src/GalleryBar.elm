@@ -29,7 +29,7 @@ bar1 =
 
         enc =
             encoding
-                << position X [ pName "a", pOrdinal ]
+                << position X [ pName "a" ]
                 << position Y [ pName "b", pQuant ]
     in
     toVegaLite [ desc, data [], enc [], bar [] ]
@@ -50,7 +50,7 @@ bar2 =
         enc =
             encoding
                 << position X [ pName "people", pAggregate opSum, pTitle "population" ]
-                << position Y [ pName "age", pOrdinal ]
+                << position Y [ pName "age" ]
     in
     toVegaLite [ desc, heightStep 17, data, trans [], enc [], bar [] ]
 
@@ -70,7 +70,7 @@ bar3 =
         enc =
             encoding
                 << position X [ pName "people", pAggregate opSum, pTitle "population" ]
-                << position Y [ pName "age", pOrdinal, pSort [ soByChannel chX, soDescending ] ]
+                << position Y [ pName "age", pSort [ soByChannel chX, soDescending ] ]
     in
     toVegaLite [ desc, heightStep 17, data, trans [], enc [], bar [] ]
 
@@ -153,25 +153,20 @@ bar7 =
 
         enc =
             encoding
-                << position X [ pName "gender", pTitle "" ]
+                << position X [ pName "age", pAxis [ axLabelAngle 0 ] ]
+                << position XOffset [ pName "gender" ]
                 << position Y
                     [ pName "people"
                     , pAggregate opSum
                     , pAxis [ axTitle "population", axGrid False ]
                     ]
-                << column [ fName "age", fOrdinal, fSpacing 10 ]
                 << color
                     [ mName "gender"
                     , mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ]
-                    , mTitle ""
+                    , mLegend [ leTitle "", leOrient loTopRight ]
                     ]
-
-        cfg =
-            configure
-                << configuration (coAxis [ axcoDomainWidth 1 ])
-                << configuration (coView [ vicoStroke Nothing ])
     in
-    toVegaLite [ desc, cfg [], widthStep 12, data, trans [], enc [], bar [] ]
+    toVegaLite [ desc, widthStep 12, data, trans [], enc [], bar [] ]
 
 
 weatherColors : List ScaleProperty
@@ -296,7 +291,7 @@ bar12 =
         enc =
             encoding
                 << position X [ pName "yield", pAggregate opSum ]
-                << position Y [ pName "variety" ]
+                << position Y [ pName "variety", pAxis [ axTicks False ] ]
                 << color [ mName "site" ]
     in
     toVegaLite [ desc, data, enc [], bar [] ]
@@ -304,6 +299,36 @@ bar12 =
 
 bar13 : Spec
 bar13 =
+    let
+        desc =
+            description "Barley crop yields as a horizontal grouped bar chart with stacked background"
+
+        data =
+            dataFromUrl (path ++ "barley.json") []
+
+        encBars =
+            encoding
+                << position X [ pName "yield", pAggregate opSum, pTitle "Yield" ]
+                << position Y [ pName "variety", pAxis [ axTicks False ] ]
+                << position YOffset [ pName "site" ]
+                << color [ mName "site" ]
+
+        encBackground =
+            encoding
+                << position X [ pName "yield", pAggregate opSum ]
+                << position Y [ pName "variety" ]
+
+        specBars =
+            asSpec [ heightStep 5, encBars [], bar [] ]
+
+        specBackground =
+            asSpec [ encBackground [], bar [ maOpacity 0.3 ] ]
+    in
+    toVegaLite [ desc, width 400, data, layer [ specBackground, specBars ] ]
+
+
+bar14 : Spec
+bar14 =
     let
         desc =
             description "Population structure as a normalised stacked bar chart."
@@ -325,8 +350,8 @@ bar13 =
     toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar14 : Spec
-bar14 =
+bar15 : Spec
+bar15 =
     let
         desc =
             description "A simple bar chart with ranged data (aka Gantt Chart)."
@@ -346,8 +371,8 @@ bar14 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar15 : Spec
-bar15 =
+bar16 : Spec
+bar16 =
     let
         desc =
             description "A bar chart that directly encodes color names in the data."
@@ -366,8 +391,8 @@ bar15 =
     toVegaLite [ desc, width 100, data [], enc [], bar [] ]
 
 
-bar16 : Spec
-bar16 =
+bar17 : Spec
+bar17 =
     let
         desc =
             description "Layered bar chart showing the US population distribution of age groups and gender in 2000."
@@ -393,8 +418,8 @@ bar16 =
     toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar17 : Spec
-bar17 =
+bar18 : Spec
+bar18 =
     let
         data =
             dataFromUrl (path ++ "population.json") []
@@ -432,8 +457,8 @@ bar17 =
     toVegaLite [ width 300, height 200, cfg [], data, trans [], enc [], bar [] ]
 
 
-bar18 : Spec
-bar18 =
+bar19 : Spec
+bar19 =
     let
         desc =
             description "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark."
@@ -472,8 +497,8 @@ bar18 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar19 : Spec
-bar19 =
+bar20 : Spec
+bar20 =
     let
         desc =
             description "A simple bar chart with embedded data labels."
@@ -504,8 +529,8 @@ bar19 =
     toVegaLite [ desc, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
-bar20 : Spec
-bar20 =
+bar21 : Spec
+bar21 =
     let
         desc =
             description "Bar chart with label overlay"
@@ -574,8 +599,38 @@ bar20 =
         ]
 
 
-bar21 : Spec
-bar21 =
+bar22 : Spec
+bar22 =
+    let
+        desc =
+            description "Grouped bar chart from two data fields"
+
+        data =
+            dataFromUrl (path ++ "movies.json") []
+
+        trans =
+            transform
+                << calculateAs "if(isValid(datum['Major Genre']),datum['Major Genre'],'unclassified')" "genre"
+
+        enc =
+            encoding
+                << position X [ pName "genre", pTitle "" ]
+                << position XOffset [ pRepeatDatum arLayer ]
+                << position Y [ pRepeat arLayer, pAggregate opSum, pTitle "Gross" ]
+                << color [ mRepeatDatum arLayer, mLegend [ leOrient loTopRight ] ]
+
+        spec =
+            asSpec [ widthStep 12, trans [], enc [], bar [] ]
+    in
+    toVegaLite
+        [ data
+        , repeat [ layerFields [ "Worldwide Gross", "US Gross" ] ]
+        , specification spec
+        ]
+
+
+bar23 : Spec
+bar23 =
     let
         desc =
             description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid color to draw a zero baseline."
@@ -614,8 +669,8 @@ bar21 =
     toVegaLite [ desc, data [], enc [], layer [ specBar, specText ] ]
 
 
-bar22 : Spec
-bar22 =
+bar24 : Spec
+bar24 =
     let
         desc =
             description "Bar Chart with a spacing-saving y-axis"
@@ -655,8 +710,8 @@ bar22 =
         ]
 
 
-bar23 : Spec
-bar23 =
+bar25 : Spec
+bar25 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -707,8 +762,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar24 : Spec
-bar24 =
+bar26 : Spec
+bar26 =
     let
         isotypes =
             let
@@ -776,8 +831,8 @@ bar24 =
         ]
 
 
-bar25 : Spec
-bar25 =
+bar27 : Spec
+bar27 =
     let
         desc =
             description "Isotype bar chart using emojis for symbols"
@@ -848,6 +903,8 @@ mySpecs =
         , ( "bar23", bar23 )
         , ( "bar24", bar24 )
         , ( "bar25", bar25 )
+        , ( "bar26", bar26 )
+        , ( "bar27", bar27 )
         ]
 
 
