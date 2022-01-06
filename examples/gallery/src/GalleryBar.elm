@@ -354,6 +354,42 @@ bar15 : Spec
 bar15 =
     let
         desc =
+            description "Population structure as a normalised stacked bar chart with labels."
+
+        data =
+            dataFromUrl (path ++ "population.json") []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.year == 2000")
+                << calculateAs "datum.sex == 2 ? 'Female' : 'Male'" "gender"
+
+        encBar =
+            encoding
+                << position X [ pName "people", pAggregate opSum, pTitle "Population", pStack stNormalize ]
+                << position Y [ pName "age", pOrdinal ]
+                << color [ mName "gender", mScale [ scRange (raStrs [ "#675193", "#ca8861" ]) ] ]
+
+        encLabel =
+            encoding
+                << position X [ pName "people", pAggregate opSum, pStack stNormalize, pBandPosition 0.5 ]
+                << position Y [ pName "age" ]
+                << detail [ dName "gender" ]
+                << text [ tName "people", tAggregate opSum ]
+
+        barSpec =
+            asSpec [ encBar [], bar [] ]
+
+        labelSpec =
+            asSpec [ encLabel [], textMark [ maOpacity 0.9, maColor "white" ] ]
+    in
+    toVegaLite [ desc, heightStep 17, data, trans [], layer [ barSpec, labelSpec ] ]
+
+
+bar16 : Spec
+bar16 =
+    let
+        desc =
             description "A simple bar chart with ranged data (aka Gantt Chart)."
 
         data =
@@ -371,8 +407,8 @@ bar15 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar16 : Spec
-bar16 =
+bar17 : Spec
+bar17 =
     let
         desc =
             description "A bar chart that directly encodes color names in the data."
@@ -391,8 +427,8 @@ bar16 =
     toVegaLite [ desc, width 100, data [], enc [], bar [] ]
 
 
-bar17 : Spec
-bar17 =
+bar18 : Spec
+bar18 =
     let
         desc =
             description "Layered bar chart showing the US population distribution of age groups and gender in 2000."
@@ -418,8 +454,8 @@ bar17 =
     toVegaLite [ desc, widthStep 17, data, trans [], enc [], bar [] ]
 
 
-bar18 : Spec
-bar18 =
+bar19 : Spec
+bar19 =
     let
         data =
             dataFromUrl (path ++ "population.json") []
@@ -457,8 +493,8 @@ bar18 =
     toVegaLite [ width 300, height 200, cfg [], data, trans [], enc [], bar [] ]
 
 
-bar19 : Spec
-bar19 =
+bar20 : Spec
+bar20 =
     let
         desc =
             description "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark."
@@ -497,8 +533,8 @@ bar19 =
     toVegaLite [ desc, data [], enc [], bar [] ]
 
 
-bar20 : Spec
-bar20 =
+bar21 : Spec
+bar21 =
     let
         desc =
             description "A simple bar chart with embedded data labels."
@@ -529,8 +565,8 @@ bar20 =
     toVegaLite [ desc, cfg [], data [], enc [], layer [ specBar, specText ] ]
 
 
-bar21 : Spec
-bar21 =
+bar22 : Spec
+bar22 =
     let
         desc =
             description "Bar chart with label overlay"
@@ -599,8 +635,8 @@ bar21 =
         ]
 
 
-bar22 : Spec
-bar22 =
+bar23 : Spec
+bar23 =
     let
         desc =
             description "Grouped bar chart from two data fields"
@@ -629,8 +665,8 @@ bar22 =
         ]
 
 
-bar23 : Spec
-bar23 =
+bar24 : Spec
+bar24 =
     let
         desc =
             description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid color to draw a zero baseline."
@@ -669,8 +705,8 @@ bar23 =
     toVegaLite [ desc, data [], enc [], layer [ specBar, specText ] ]
 
 
-bar24 : Spec
-bar24 =
+bar25 : Spec
+bar25 =
     let
         desc =
             description "Bar Chart with a spacing-saving y-axis"
@@ -710,8 +746,8 @@ bar24 =
         ]
 
 
-bar25 : Spec
-bar25 =
+bar26 : Spec
+bar26 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -762,8 +798,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar26 : Spec
-bar26 =
+bar27 : Spec
+bar27 =
     let
         isotypes =
             let
@@ -831,8 +867,8 @@ bar26 =
         ]
 
 
-bar27 : Spec
-bar27 =
+bar28 : Spec
+bar28 =
     let
         desc =
             description "Isotype bar chart using emojis for symbols"
@@ -905,6 +941,7 @@ mySpecs =
         , ( "bar25", bar25 )
         , ( "bar26", bar26 )
         , ( "bar27", bar27 )
+        , ( "bar28", bar28 )
         ]
 
 
