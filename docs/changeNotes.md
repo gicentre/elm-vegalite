@@ -10,6 +10,10 @@
 
 - Add `pRepeatDatum` for use with position offsets and repeated encoding of multiple data fields (VL 5.2).
 
+### V4.1 Other Changes
+
+- Added examples to gallery and tests.
+
 ---
 
 ## V3.1.1 ➡ V4.0.0
