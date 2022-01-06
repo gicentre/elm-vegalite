@@ -1111,7 +1111,9 @@ module VegaLite exposing
     , width
     , widthOfContainer
     , widthStep
+    , widthStepOffset
     , heightStep
+    , heightStepOffset
     , padding
     , paSize
     , paNumExpr
@@ -3399,7 +3401,9 @@ These are in addition to the data and transform options described above. See the
 @docs width
 @docs widthOfContainer
 @docs widthStep
+@docs widthStepOffset
 @docs heightStep
+@docs heightStepOffset
 @docs padding
 @docs paSize
 @docs paNumExpr
@@ -12844,6 +12848,15 @@ heightStep hs =
     ( VLHeightStep, JE.object [ ( "step", JE.float hs ) ] )
 
 
+{-| Set the height of the offset-grouped discrete y-fields. The total height is then
+calculated based on the number of offset discrete fields (e.g. groups of bars with
+`position YOffset` applied).
+-}
+heightStepOffset : Float -> ( VLProperty, Spec )
+heightStepOffset hs =
+    ( VLHeightStep, JE.object [ ( "step", JE.float hs ), ( "for", JE.string "position" ) ] )
+
+
 {-| Indicate a data field encoded as a hyperlink property is a geo feature.
 Equivalent to `hMType GeoFeature`.
 -}
@@ -22091,6 +22104,15 @@ The total width is then calculated based on the number of discrete fields (e.g. 
 widthStep : Float -> ( VLProperty, Spec )
 widthStep ws =
     ( VLWidthStep, JE.object [ ( "step", JE.float ws ) ] )
+
+
+{-| Set the width of the offset-grouped discrete x-fields. The total width is then
+calculated based on the number of offset discrete fields (e.g. groups of bars with
+`position XOffset` applied).
+-}
+widthStepOffset : Float -> ( VLProperty, Spec )
+widthStepOffset ws =
+    ( VLWidthStep, JE.object [ ( "step", JE.float ws ), ( "for", JE.string "position" ) ] )
 
 
 {-| Indicate that the given field should be sorted in ascending order when performing

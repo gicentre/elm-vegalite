@@ -366,7 +366,7 @@ repeat1 =
                 << color [ mRepeatDatum arLayer ]
 
         spec =
-            asSpec [ widthStep 12, trans [], enc [], bar [] ]
+            asSpec [ widthStepOffset 24, trans [], enc [], bar [] ]
     in
     toVegaLite
         [ data2
