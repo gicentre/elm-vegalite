@@ -16003,6 +16003,20 @@ var $author$project$VegaLite$PRepeatDatum = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$pRepeatDatum = $author$project$VegaLite$PRepeatDatum;
+var $author$project$VegaLite$widthStepOffset = function (ws) {
+	return _Utils_Tuple2(
+		6,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'step',
+					$elm$json$Json$Encode$float(ws)),
+					_Utils_Tuple2(
+					'for',
+					$elm$json$Json$Encode$string('position'))
+				])));
+};
 var $author$project$ViewCompositionTests$repeat1 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -16049,7 +16063,7 @@ var $author$project$ViewCompositionTests$repeat1 = function () {
 	var spec = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
-				$author$project$VegaLite$widthStep(12),
+				$author$project$VegaLite$widthStepOffset(24),
 				trans(_List_Nil),
 				enc(_List_Nil),
 				$author$project$VegaLite$bar(_List_Nil)
