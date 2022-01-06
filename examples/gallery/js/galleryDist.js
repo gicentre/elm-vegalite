@@ -9234,7 +9234,7 @@ var $author$project$GalleryDist$dist5 = function () {
 			'Body Mass (g)',
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dnMinSteps(50),
+					$author$project$VegaLite$dnMinSteps(101),
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
 						['Species'])),
