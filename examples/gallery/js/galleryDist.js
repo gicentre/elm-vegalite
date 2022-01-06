@@ -9044,11 +9044,11 @@ var $author$project$VegaLite$dnGroupBy = function (ss) {
 	return $author$project$VegaLite$DnGroupBy(
 		$author$project$VegaLite$Strs(ss));
 };
-var $author$project$VegaLite$DnMinSteps = function (a) {
-	return {$: 5, a: a};
+var $author$project$VegaLite$DnSteps = function (a) {
+	return {$: 7, a: a};
 };
-var $author$project$VegaLite$dnMinSteps = function (n) {
-	return $author$project$VegaLite$DnMinSteps(
+var $author$project$VegaLite$dnSteps = function (n) {
+	return $author$project$VegaLite$DnSteps(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$MStroke = function (a) {
@@ -9234,10 +9234,10 @@ var $author$project$GalleryDist$dist5 = function () {
 			'Body Mass (g)',
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dnMinSteps(101),
 					$author$project$VegaLite$dnGroupBy(
 					_List_fromArray(
 						['Species'])),
+					$author$project$VegaLite$dnSteps(80),
 					A2($author$project$VegaLite$dnExtent, 2500, 6500)
 				])));
 	var enc = A2(
