@@ -11565,7 +11565,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					'datum',
 					$author$project$VegaLite$dataValueSpec(d))
 				]);
-		case 6:
+		case 7:
 			var measure = pDef.a;
 			return _List_fromArray(
 				[
@@ -11574,20 +11574,20 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$measurementLabel(measure)))
 				]);
-		case 7:
+		case 8:
 			var bps = pDef.a;
 			return _List_fromArray(
 				[
 					$author$project$VegaLite$bin(bps)
 				]);
-		case 8:
+		case 9:
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'bin',
 					$elm$json$Json$Encode$string('binned'))
 				]);
-		case 11:
+		case 12:
 			var op = pDef.a;
 			return _List_fromArray(
 				[
@@ -11595,7 +11595,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					'aggregate',
 					$author$project$VegaLite$operationSpec(op))
 				]);
-		case 9:
+		case 10:
 			var tu = pDef.a;
 			return _List_fromArray(
 				[
@@ -11603,10 +11603,10 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					'timeUnit',
 					$author$project$VegaLite$timeUnitSpec(tu))
 				]);
-		case 10:
+		case 11:
 			var s = pDef.a;
 			return A2($author$project$VegaLite$strExprMultiline, 'title', s);
-		case 14:
+		case 15:
 			var sps = pDef.a;
 			_v1$4:
 			while (true) {
@@ -11657,10 +11657,10 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$sortProperties, sps)))
 				]);
-		case 15:
+		case 16:
 			var x = pDef.a;
 			return A2($author$project$VegaLite$numExpr, 'bandPosition', x);
-		case 12:
+		case 13:
 			var sps = pDef.a;
 			return _Utils_eq(sps, _List_Nil) ? _List_fromArray(
 				[
@@ -11672,7 +11672,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$scaleProperty, sps)))
 				]);
-		case 13:
+		case 14:
 			var aps = pDef.a;
 			return _Utils_eq(aps, _List_Nil) ? _List_fromArray(
 				[
@@ -11684,7 +11684,7 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$axisProperty, aps)))
 				]);
-		case 16:
+		case 17:
 			var so = pDef.a;
 			return _List_fromArray(
 				[
@@ -11696,6 +11696,21 @@ var $author$project$VegaLite$positionChannelProperty = function (pDef) {
 				[
 					_Utils_Tuple2(
 					'field',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'repeat',
+								$elm$json$Json$Encode$string(
+									$author$project$VegaLite$arrangementLabel(arr)))
+							])))
+				]);
+		case 6:
+			var arr = pDef.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'datum',
 					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
