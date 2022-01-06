@@ -112,8 +112,8 @@ dist5 =
         trans =
             transform
                 << density "Body Mass (g)"
-                    [ dnMinSteps 101
-                    , dnGroupBy [ "Species" ]
+                    [ dnGroupBy [ "Species" ]
+                    , dnSteps 80
                     , dnExtent 2500 6500
                     ]
 
