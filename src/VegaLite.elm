@@ -1654,8 +1654,6 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    , seBindScales
-    , seEmpty
     , seInit
     , seInitInterval
     , select
@@ -4041,8 +4039,6 @@ to the functions that generate them.
 
 # 11. Deprecated Types and Functions
 
-@docs seBindScales
-@docs seEmpty
 @docs seInit
 @docs seInitInterval
 @docs select
@@ -6062,9 +6058,7 @@ type SelectionMarkProperty
 and [seZoom](#seZoom).
 -}
 type SelectionProperty
-    = Empty
-    | BindScales
-    | On Str
+    = On Str
     | Clear Str
     | Translate Str
     | Zoom Str
@@ -19358,25 +19352,6 @@ scZero b =
     ScZero (Boo b)
 
 
-{-| Deprecated in favour of [paBindScales](#paBindScales). Where previously you
-might have specified a scale binding as:
-
-    sel =
-        selection
-            << select "zoomer" seInterval [ seBindScales ]
-
-It should now be specified as:
-
-    ps =
-        params
-            << param "zoomer" [ paSelect seInterval [], paBindScales ]
-
--}
-seBindScales : SelectionProperty
-seBindScales =
-    BindScales
-
-
 {-| [Vega event stream selector](https://vega.github.io/vega/docs/event-streams/#selector)
 that can clear a selection. For example, to allow a zoomed/panned view to be reset
 on shift-click:
@@ -19409,14 +19384,6 @@ seconds =
 secondsMilliseconds : TimeUnit
 secondsMilliseconds =
     SecondsMilliseconds
-
-
-{-| Deprecated in favour of [prParamEmpty](#prParamEmpty) and
-[fiSelectionEmpty](#fiSelectionEmpty).
--}
-seEmpty : SelectionProperty
-seEmpty =
-    Empty
 
 
 {-| Encoding channels that form a named selection. For example, to _project_ a
@@ -26815,17 +26782,11 @@ selectionProperties selProp =
                 StrExpr _ ->
                     strExpr "clear" es
 
-        Empty ->
-            [ ( "empty", JE.string "none" ) ]
-
         ResolveSelections res ->
             [ ( "resolve", JE.string (selectionResolutionLabel res) ) ]
 
         SelectionMark markProps ->
             [ ( "mark", JE.object (List.concatMap selectionMarkProperty markProps) ) ]
-
-        BindScales ->
-            [ ( "bind", JE.string "scales" ) ]
 
         Nearest b ->
             booExpr "nearest" b
