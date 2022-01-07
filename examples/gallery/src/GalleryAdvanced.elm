@@ -470,14 +470,22 @@ advanced12 =
 
         trans =
             transform
-                << foldAs [ "Beak Length (mm)", "Beak Depth (mm)", "Flipper Length (mm)" ] "measurement" "value"
+                << foldAs [ "Beak Length (mm)", "Beak Depth (mm)" ] "measurement" "value"
                 << density "value" [ dnBandwidth 1, dnGroupBy [ "measurement" ] ]
 
         enc =
             encoding
-                << position X [ pName "value", pQuant, pTitle "length" ]
+                << position X [ pName "value", pQuant, pTitle "Beak size (mm)" ]
                 << position Y [ pName "density", pQuant ]
-                << row [ fName "measurement" ]
+                << row
+                    [ fName "measurement"
+                    , fHeader
+                        [ hdTitle ""
+                        , hdLabelAngle 0
+                        , hdLabelAlign haLeft
+                        , hdLabelExpr "slice(split(datum.value,' '),0,2)"
+                        ]
+                    ]
     in
     toVegaLite [ desc, width 400, height 80, data, trans [], enc [], area [] ]
 
@@ -502,11 +510,19 @@ advanced13 =
 
         enc =
             encoding
-                << position X [ pName "value", pQuant, pTitle "length" ]
+                << position X [ pName "value", pQuant, pTitle "size (mm)" ]
                 << position Y [ pName "density", pQuant ]
-                << color [ mName "measurement", mTitle "" ]
+                << color
+                    [ mName "measurement"
+                    , mLegend
+                        [ leOrient loTopRight
+                        , leOffset 5
+                        , leTitle ""
+                        , leLabelExpr "join(slice(split(datum.value,' '),0,2),' ')"
+                        ]
+                    ]
     in
-    toVegaLite [ desc, width 400, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
+    toVegaLite [ desc, width 500, height 100, data, trans [], enc [], area [ maOpacity 0.5 ] ]
 
 
 advanced14 : Spec
