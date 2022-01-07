@@ -712,6 +712,7 @@ module VegaLite exposing
     , leLabelAlign
     , leLabelBaseline
     , leLabelColor
+    , leLabelExpr
     , leLabelFont
     , leLabelFontSize
     , leLabelFontStyle
@@ -2775,6 +2776,7 @@ See the
 @docs leLabelAlign
 @docs leLabelBaseline
 @docs leLabelColor
+@docs leLabelExpr
 @docs leLabelFont
 @docs leLabelFontSize
 @docs leLabelFontStyle
@@ -5285,6 +5287,7 @@ type LegendProperty
     | LLabelAlign HAlign
     | LLabelBaseline VAlign
     | LLabelColor Str
+    | LLabelExpr Str
     | LLabelFont Str
     | LLabelFontSize Num
     | LLabelFontStyle Str
@@ -14645,6 +14648,20 @@ leLabelBaseline =
 leLabelColor : String -> LegendProperty
 leLabelColor s =
     LLabelColor (Str s)
+
+
+{-| An expression to generate legend labels. The parameter is a valid
+[Vega expression](https://vega.github.io/vega/docs/expressions/). Can reference
+`datum.value` and `datum.label` for access to the underlying data values and
+default label text respectively. For example, to show just the first word of
+each legend category:
+
+    mLegend [ leLabelExpr "split(datum.value,' ')[0]" ]
+
+-}
+leLabelExpr : String -> LegendProperty
+leLabelExpr s =
+    LLabelExpr (Str s)
 
 
 {-| Font for legend labels.
@@ -24963,6 +24980,9 @@ legendProperty legendProp =
 
         LLabelColor s ->
             strExpr "labelColor" s
+
+        LLabelExpr s ->
+            strExpr "labelExpr" s
 
         LLabelFont s ->
             strExpr "labelFont" s

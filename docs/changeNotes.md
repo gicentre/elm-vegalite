@@ -6,13 +6,15 @@
 
 - Support for the new offset channel (VL 5.2) with `position XOffset` and `position YOffset` along with channel identifiers `chXOffset` and `chYOffset`, useful for grouped bar charts and jitter-plots.
 
-- Add `widthStepOffset` and `heightStepOffset` for specifying discrete step sizes (e.g. bars) for groups with a common offset. Only has an effect when specification uses a position offset channel (VL 5.2).
+- `widthStepOffset` and `heightStepOffset` for specifying discrete step sizes (e.g. bars) for groups with a common offset. Only has an effect when specification uses a position offset channel (VL 5.2).
 
-- Add `pRepeatDatum` for use with position offsets and repeated encoding of multiple data fields (VL 5.2).
+- `pRepeatDatum` for use with position offsets and repeated encoding of multiple data fields (VL 5.2).
+
+- `leLabelExpr` for customising legend labels.
 
 ### V4.1 Other Changes
 
-- Added examples to gallery and tests.
+- Added further examples to gallery and tests.
 
 ---
 
