@@ -14506,7 +14506,7 @@ var $author$project$GalleryLayer$layer8 = function () {
 					$author$project$VegaLite$num(52.7)),
 					_Utils_Tuple2(
 					'name',
-					$author$project$VegaLite$str('WILLIAM PLAYFIAR'))
+					$author$project$VegaLite$str('WILLIAM PLAYFAIR'))
 				])));
 	var dataText3 = A2(
 		$elm$core$Basics$composeL,
