@@ -11455,166 +11455,6 @@ var $author$project$VegaLite$bindLegendProperty = function (blProp) {
 						])));
 	}
 };
-var $author$project$VegaLite$bindingProperty = function (bnd) {
-	switch (bnd.$) {
-		case 0:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('range')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 1:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('checkbox')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 2:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('radio')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 3:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('select')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 4:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('text')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 5:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('number')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 6:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('date')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 7:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('time')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 8:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('month')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 9:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('week')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 10:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('datetimelocal')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		case 11:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('tel')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-		default:
-			var label = bnd.a;
-			var props = bnd.b;
-			return _Utils_Tuple2(
-				label,
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'input',
-							$elm$json$Json$Encode$string('color')),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$inputProperty, props))));
-	}
-};
 var $elm$core$Tuple$mapSecond = F2(
 	function (func, _v0) {
 		var x = _v0.a;
@@ -11919,18 +11759,9 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					$elm$json$Json$Encode$string('legend')),
 				labelledSpecs);
 		case 13:
-			var binds = selProp.a;
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'bind',
-					$elm$json$Json$Encode$object(
-						A2($elm$core$List$map, $author$project$VegaLite$bindingProperty, binds)))
-				]);
-		case 14:
 			var b = selProp.a;
 			return A2($author$project$VegaLite$booExpr, 'nearest', b);
-		case 15:
+		case 14:
 			var tp = selProp.a;
 			return _List_fromArray(
 				[
@@ -12133,7 +11964,7 @@ var $author$project$VegaLite$seOn = function (s) {
 var $author$project$VegaLite$SePoint = 0;
 var $author$project$VegaLite$sePoint = 0;
 var $author$project$VegaLite$Toggle = function (a) {
-	return {$: 15, a: a};
+	return {$: 14, a: a};
 };
 var $author$project$VegaLite$seToggle = $author$project$VegaLite$Toggle;
 var $author$project$VegaLite$strokeWidth = function (markProps) {
