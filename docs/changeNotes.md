@@ -1,8 +1,18 @@
 # elm-vegaLite changes
 
-## V4.0.0 ➡ V4.1.0
+## V4.0.0 ➡ V5.0.0
 
-### V4.1 Additions
+### V5.0 Breaking Changes
+
+- Removed deprecated functions and types:
+
+  - `Binding` and associated functions `iCheckbox`, `iColor`, `iDate`, `iDateTimeLocal`, `iMonth`, `iNumber`, `iRadio`, `iRange`, `iSelect`, `iTel`, `iText`, `iTime`, `iWeek` and `seBind`.
+
+  These mostly relate to the old interaction model superseded in Vega-Lite 5 / elm-Vegalite 4 (see 'Deprecations' in change document for elm-Vegalite 4 for details on updating the interaction functions if you are using the old interaction model).
+
+- New `Position` types to support Vega-Lite 5.2's new offset channel: `XOffset` and `YOffset`. While technically a breaking change as it extends the `Position` custom type variants, these additions are unlikely to break any existing code.
+
+### V5.0 Additions
 
 - Support for the new offset channel (VL 5.2) with `position XOffset` and `position YOffset` along with channel identifiers `chXOffset` and `chYOffset`, useful for grouped bar charts and jitter-plots.
 
@@ -12,7 +22,7 @@
 
 - `leLabelExpr` for customising legend labels.
 
-### V4.1 Other Changes
+### V5.0 Other Changes
 
 - Added further examples to gallery and tests.
 

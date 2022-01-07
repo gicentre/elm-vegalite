@@ -1654,32 +1654,17 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    , Binding
     , BindLegendProperty
     , blField
     , blChannel
     , blEvent
     , hDataCondition
     , hSelectionCondition
-    , iCheckbox
-    , iColor
-    , iDate
-    , iDateTimeLocal
-    , iMonth
-    , iNumber
-    , iRadio
-    , iRange
-    , iSelect
-    , iTel
-    , iText
-    , iTime
-    , iWeek
     , mDataCondition
     , mSelectionCondition
     , oDataCondition
     , oSelectionCondition
     , pBand
-    , seBind
     , seBindLegend
     , seBindScales
     , seEmpty
@@ -4070,32 +4055,17 @@ to the functions that generate them.
 
 # 11. Deprecated Types and Functions
 
-@docs Binding
 @docs BindLegendProperty
 @docs blField
 @docs blChannel
 @docs blEvent
 @docs hDataCondition
 @docs hSelectionCondition
-@docs iCheckbox
-@docs iColor
-@docs iDate
-@docs iDateTimeLocal
-@docs iMonth
-@docs iNumber
-@docs iRadio
-@docs iRange
-@docs iSelect
-@docs iTel
-@docs iText
-@docs iTime
-@docs iWeek
 @docs mDataCondition
 @docs mSelectionCondition
 @docs oDataCondition
 @docs oSelectionCondition
 @docs pBand
-@docs seBind
 @docs seBindLegend
 @docs seBindScales
 @docs seEmpty
@@ -4387,24 +4357,6 @@ type AxisProperty
     | AxGridWidth Num
     | AxTickMinStep Num
     | AxDataCondition BooleanOp ConditionalAxisProperty
-
-
-{-| Deprecated in favour of [PBinding](#PBinding).
--}
-type Binding
-    = IRange String (List InputProperty)
-    | ICheckbox String (List InputProperty)
-    | IRadio String (List InputProperty)
-    | ISelect String (List InputProperty)
-    | IText String (List InputProperty)
-    | INumber String (List InputProperty)
-    | IDate String (List InputProperty)
-    | ITime String (List InputProperty)
-    | IMonth String (List InputProperty)
-    | IWeek String (List InputProperty)
-    | IDateTimeLocal String (List InputProperty)
-    | ITel String (List InputProperty)
-    | IColor String (List InputProperty)
 
 
 {-| Deprecated in favour of binding properties set via [param](#param).
@@ -6162,7 +6114,6 @@ type SelectionProperty
     | SInitInterval (Maybe ( DataValue, DataValue )) (Maybe ( DataValue, DataValue ))
     | ResolveSelections SelectionResolution
     | SelectionMark (List SelectionMarkProperty)
-    | Bind (List Binding)
     | Nearest Boo
     | Toggle TogglePredicate
 
@@ -12999,34 +12950,6 @@ hyperlink hyperProps =
     (::) ( "href", JE.object (List.concatMap hyperlinkChannelProperties hyperProps) )
 
 
-{-| Deprecated in favour of [ipCheckbox](#ipCheckbox).
--}
-iCheckbox : String -> List InputProperty -> Binding
-iCheckbox f =
-    ICheckbox f
-
-
-{-| Deprecated in favour of [ipColor](#ipColor).
--}
-iColor : String -> List InputProperty -> Binding
-iColor f =
-    IColor f
-
-
-{-| Deprecated in favour of [ipDate](#ipDate).
--}
-iDate : String -> List InputProperty -> Binding
-iDate f =
-    IDate f
-
-
-{-| Deprecated in favour of [ipDateTimeLocal](#ipDateTimeLocal).
--}
-iDateTimeLocal : String -> List InputProperty -> Binding
-iDateTimeLocal f =
-    IDateTimeLocal f
-
-
 {-| An 'identity' projection where longitude is projected directly to the x position
 and latitude to the y position. Can also reflect either of the coordinates by
 specifying [prReflectX](#prReflectX) / [prReflectY](#prReflectY) in the list of
@@ -13157,13 +13080,6 @@ imNewValue =
     ImNewValue
 
 
-{-| Deprecated in favour of [ipMonth](#ipMonth).
--}
-iMonth : String -> List InputProperty -> Binding
-iMonth f =
-    IMonth f
-
-
 {-| Impute missing data values as a data transform. The first parameter is the
 data field to process; the second the key field to uniquely identify data objects
 within a group; the third customisable options.
@@ -13292,13 +13208,6 @@ inStep n =
     InStep (Num n)
 
 
-{-| Deprecated in favour of [ipNumber](#ipNumber).
--}
-iNumber : String -> List InputProperty -> Binding
-iNumber f =
-    INumber f
-
-
 {-| Checkbox input element that can bound to a named parameter.
 -}
 ipCheckbox : List InputProperty -> PBinding
@@ -13388,55 +13297,6 @@ ipTime =
 ipWeek : List InputProperty -> PBinding
 ipWeek =
     IPWeek
-
-
-{-| Deprecated in favour of [ipRadio](#ipRadio).
--}
-iRadio : String -> List InputProperty -> Binding
-iRadio f =
-    IRadio f
-
-
-{-| Deprecated in favour of [ipRange](#ipRange).
--}
-iRange : String -> List InputProperty -> Binding
-iRange f =
-    IRange f
-
-
-{-| Deprecated in favour of [ipSelect](#ipSelect).
--}
-iSelect : String -> List InputProperty -> Binding
-iSelect f =
-    ISelect f
-
-
-{-| Deprecated in favour of [ipTel](#ipTel).
--}
-iTel : String -> List InputProperty -> Binding
-iTel f =
-    ITel f
-
-
-{-| Deprecated in favour of [ipText](#ipText).
--}
-iText : String -> List InputProperty -> Binding
-iText f =
-    IText f
-
-
-{-| Deprecated in favour of [ipTime](#ipTime).
--}
-iTime : String -> List InputProperty -> Binding
-iTime f =
-    ITime f
-
-
-{-| Deprecated in favour of [ipWeek](#ipWeek).
--}
-iWeek : String -> List InputProperty -> Binding
-iWeek f =
-    IWeek f
 
 
 {-| Convert a string representing some JSON into a Spec. Useful when combined
@@ -19637,13 +19497,6 @@ scZero b =
     ScZero (Boo b)
 
 
-{-| Deprecated in favour of [paBind](#paBind).
--}
-seBind : List Binding -> SelectionProperty
-seBind =
-    Bind
-
-
 {-| Deprecated in favour of [paBindLegend](#paBindLegend). Where previously you
 might have specified a legend binding as
 
@@ -23182,49 +23035,6 @@ bin bProps =
 
     else
         ( "bin", bProps |> List.concatMap binProperty |> JE.object )
-
-
-bindingProperty : Binding -> LabelledSpec
-bindingProperty bnd =
-    case bnd of
-        IRange label props ->
-            ( label, JE.object (( "input", JE.string "range" ) :: List.concatMap inputProperty props) )
-
-        ICheckbox label props ->
-            ( label, JE.object (( "input", JE.string "checkbox" ) :: List.concatMap inputProperty props) )
-
-        IRadio label props ->
-            ( label, JE.object (( "input", JE.string "radio" ) :: List.concatMap inputProperty props) )
-
-        ISelect label props ->
-            ( label, JE.object (( "input", JE.string "select" ) :: List.concatMap inputProperty props) )
-
-        IText label props ->
-            ( label, JE.object (( "input", JE.string "text" ) :: List.concatMap inputProperty props) )
-
-        INumber label props ->
-            ( label, JE.object (( "input", JE.string "number" ) :: List.concatMap inputProperty props) )
-
-        IDate label props ->
-            ( label, JE.object (( "input", JE.string "date" ) :: List.concatMap inputProperty props) )
-
-        ITime label props ->
-            ( label, JE.object (( "input", JE.string "time" ) :: List.concatMap inputProperty props) )
-
-        IMonth label props ->
-            ( label, JE.object (( "input", JE.string "month" ) :: List.concatMap inputProperty props) )
-
-        IWeek label props ->
-            ( label, JE.object (( "input", JE.string "week" ) :: List.concatMap inputProperty props) )
-
-        IDateTimeLocal label props ->
-            ( label, JE.object (( "input", JE.string "datetimelocal" ) :: List.concatMap inputProperty props) )
-
-        ITel label props ->
-            ( label, JE.object (( "input", JE.string "tel" ) :: List.concatMap inputProperty props) )
-
-        IColor label props ->
-            ( label, JE.object (( "input", JE.string "color" ) :: List.concatMap inputProperty props) )
 
 
 bindLegendProperty : BindLegendProperty -> LabelledSpec
@@ -27294,9 +27104,6 @@ selectionProperties selProp =
 
             else
                 ( "bind", JE.string "legend" ) :: labelledSpecs
-
-        Bind binds ->
-            [ ( "bind", JE.object (List.map bindingProperty binds) ) ]
 
         Nearest b ->
             booExpr "nearest" b
