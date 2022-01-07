@@ -1,6 +1,6 @@
 # elm-vegaLite changes
 
-## Pending V4.0.0 ➡ V4.1.0
+## V4.0.0 ➡ V4.1.0
 
 ### V4.1 Additions
 
