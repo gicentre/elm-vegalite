@@ -2,6 +2,8 @@
 
 ## V4.0.0 ➡ V5.0.0
 
+_While this is a 'major' release, this is largely to remove deprecated functions that relate to an older Vega-Lite interaction model. The main addition is to support Vega-Lite's new offset channels for modifying position encoding._
+
 ### V5.0 Breaking Changes
 
 - Removed deprecated functions and types:
