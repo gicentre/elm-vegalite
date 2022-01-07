@@ -10,10 +10,10 @@
   - `BindLegendProperty` and associated functions `blChannel`, `blEvent`,`blField` and `seBindLegend`
   - `hDataCondition`, `hSelectionCondition`, `mDataCondition`, `mSelectionCondition`, `oDataCondition` and `oSelectionCondition`
   - `pBand`
-  - `seBindScales`, `seEmpty`, `seInit` and `seInitInterval`
+  - `seBindScales`, `seEmpty`, `seInit`, `seInitInterval`, `seMulti` and `seSingle`
   - `select`, `selection` and `selectionName`.
 
-  These mostly relate to the old interaction model superseded in Vega-Lite 5 / elm-Vegalite 4 (see 'Deprecations' in change document for elm-Vegalite 4 for details on updating the interaction functions if you are using the old interaction model).
+  These mostly relate to the old interaction model superseded in Vega-Lite 5 / elm-Vegalite 4 (see 'Deprecations' in change document for elm-Vegalite 4 for details on updating any legacy interaction functions that follow the old Vega-Lite interaction model).
 
 - New `Position` types to support Vega-Lite 5.2's new offset channel: `XOffset` and `YOffset`. While technically a breaking change as it extends the `Position` custom type variants, these additions are unlikely to break any existing code.
 
