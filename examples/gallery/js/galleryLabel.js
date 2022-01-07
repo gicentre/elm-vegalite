@@ -8661,15 +8661,10 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 	}
 };
 var $author$project$VegaLite$selectionLabel = function (seType) {
-	switch (seType) {
-		case 0:
-			return 'point';
-		case 1:
-			return 'interval';
-		case 2:
-			return 'single';
-		default:
-			return 'multi';
+	if (!seType) {
+		return 'point';
+	} else {
+		return 'interval';
 	}
 };
 var $author$project$VegaLite$selectionMarkProperty = function (markProp) {
