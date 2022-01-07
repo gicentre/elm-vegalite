@@ -1654,7 +1654,6 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    , pBand
     , seBindScales
     , seEmpty
     , seInit
@@ -4042,7 +4041,6 @@ to the functions that generate them.
 
 # 11. Deprecated Types and Functions
 
-@docs pBand
 @docs seBindScales
 @docs seEmpty
 @docs seInit
@@ -17533,13 +17531,6 @@ provide an empty list.
 pAxis : List AxisProperty -> PositionChannel
 pAxis =
     PAxis
-
-
-{-| Deprecated in favour of [pBandPosition](#pBandPosition).
--}
-pBand : Float -> PositionChannel
-pBand n =
-    PBandPosition (Num n)
 
 
 {-| Specify mark position or size relative to band size. For non-rect marks,

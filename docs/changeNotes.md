@@ -9,6 +9,7 @@
   - `Binding` and associated functions `iCheckbox`, `iColor`, `iDate`, `iDateTimeLocal`, `iMonth`, `iNumber`, `iRadio`, `iRange`, `iSelect`, `iTel`, `iText`, `iTime`, `iWeek` and `seBind`.
   - `BindLegendProperty` and associated functions `blChannel`, `blEvent`,`blField` and `seBindLegend`
   - `hDataCondition`, `hSelectionCondition`, `mDataCondition`, `mSelectionCondition`, `oDataCondition` and `oSelectionCondition`
+  - `pBand`
 
   These mostly relate to the old interaction model superseded in Vega-Lite 5 / elm-Vegalite 4 (see 'Deprecations' in change document for elm-Vegalite 4 for details on updating the interaction functions if you are using the old interaction model).
 
