@@ -1654,10 +1654,6 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    , select
-    , selected
-    , selection
-    , selectionName
     , seMulti
     , seSingle
     -- TODO: Awaiting resolution of https://github.com/vega/vega-lite/issues/5921
@@ -4037,10 +4033,6 @@ to the functions that generate them.
 
 # 11. Deprecated Types and Functions
 
-@docs select
-@docs selected
-@docs selection
-@docs selectionName
 @docs seMulti
 @docs seSingle
 
@@ -19421,41 +19413,6 @@ that intersect with it.
 seInterval : Selection
 seInterval =
     SeInterval
-
-
-{-| Deprecated in favour of creating a [param](#param) containing a [paSelect](#paSelect) property.
--}
-select : String -> Selection -> List SelectionProperty -> List LabelledSpec -> List LabelledSpec
-select selName sType options =
-    let
-        selProps =
-            ( "type", JE.string (selectionLabel sType) )
-                :: List.concatMap selectionProperties options
-                |> List.filter (Tuple.second >> (/=) JE.null)
-    in
-    (::) ( selName, JE.object selProps )
-
-
-{-| Deprecated in favour of [bParam](#bParam) to treat a selection parameter as a
-Boolean expression.
--}
-selected : String -> BooleanOp
-selected =
-    Selection
-
-
-{-| Deprecated in favour of [params](#params).
--}
-selection : List LabelledSpec -> ( VLProperty, Spec )
-selection sels =
-    ( VLSelection, JE.object sels )
-
-
-{-| Deprecated in favour of [prParam](#prParam).
--}
-selectionName : String -> BooleanOp
-selectionName =
-    SelectionName
 
 
 {-| Deprecated in favour of [sePoint](#sePoint).
