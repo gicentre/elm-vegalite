@@ -2,7 +2,7 @@
 
 ## V4.0.0 ➡ V5.0.0
 
-_While this is a 'major' release, this is largely to remove deprecated functions that relate to an older Vega-Lite interaction model. The main addition is to support Vega-Lite's new offset channels for modifying position encoding._
+_While this is a 'major' release, this is largely to remove deprecated functions that relate to an older Vega-Lite interaction model and to longhand measurement type functions that have had shorthand equivalents for several years. The main addition is to support Vega-Lite's new offset channels for modifying position encoding._
 
 ### V5.0 Breaking Changes
 
@@ -18,7 +18,7 @@ _While this is a 'major' release, this is largely to remove deprecated functions
   These mostly relate to the old interaction model superseded in Vega-Lite 5 / elm-Vegalite 4 (see 'Deprecations' in change document for elm-Vegalite 4 for details on updating any legacy interaction functions that follow the old Vega-Lite interaction model).
 
 - New `Position` types to support Vega-Lite 5.2's new offset channel: `XOffset` and `YOffset`. While technically a breaking change as it extends the `Position` custom type variants, these additions are unlikely to break any existing code.
-- Remove exposed `Measurement` type and associated functions `pMType`, `mMType`, `tMType`, `hMType`, `dMType`, `oMType`, `fMType` and `kMType`. Since elm-vegaLite V2, the preferred way to declare a measurement type has been through functions `pQuant`, `pGeo`, `pTemporal`, `mQuant` etc.
+- Remove exposed `Measurement` type and associated functions `pMType`, `mMType`, `tMType`, `hMType`, `dMType`, `oMType`, `fMType` and `kMType`. Since elm-vegaLite V2, the preferred way to declare a measurement type has been through the more concise functions `pQuant`, `pGeo`, `pTemporal`, `mQuant` etc.
 
 ### V5.0 Additions
 
