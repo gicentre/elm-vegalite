@@ -11420,41 +11420,6 @@ var $author$project$VegaLite$selectionLabel = function (seType) {
 	}
 };
 var $author$project$VegaLite$NullValue = {$: 5};
-var $author$project$VegaLite$bindLegendProperty = function (blProp) {
-	switch (blProp.$) {
-		case 1:
-			var ch = blProp.a;
-			return _Utils_Tuple2(
-				'encodings',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$string,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$channelLabel(ch)
-						])));
-		case 0:
-			var f = blProp.a;
-			return _Utils_Tuple2(
-				'fields',
-				A2(
-					$elm$json$Json$Encode$list,
-					$elm$json$Json$Encode$string,
-					_List_fromArray(
-						[f])));
-		default:
-			var es = blProp.a;
-			return _Utils_Tuple2(
-				'bind',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'legend',
-							$elm$json$Json$Encode$string(es))
-						])));
-	}
-};
 var $elm$core$Tuple$mapSecond = F2(
 	function (func, _v0) {
 		var x = _v0.a;
@@ -11462,36 +11427,6 @@ var $elm$core$Tuple$mapSecond = F2(
 		return _Utils_Tuple2(
 			x,
 			func(y));
-	});
-var $elm$core$List$any = F2(
-	function (isOkay, list) {
-		any:
-		while (true) {
-			if (!list.b) {
-				return false;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (isOkay(x)) {
-					return true;
-				} else {
-					var $temp$isOkay = isOkay,
-						$temp$list = xs;
-					isOkay = $temp$isOkay;
-					list = $temp$list;
-					continue any;
-				}
-			}
-		}
-	});
-var $elm$core$List$member = F2(
-	function (x, xs) {
-		return A2(
-			$elm$core$List$any,
-			function (a) {
-				return _Utils_eq(a, x);
-			},
-			xs);
 	});
 var $author$project$VegaLite$selectionMarkProperty = function (markProp) {
 	switch (markProp.$) {
@@ -11553,7 +11488,7 @@ var $author$project$VegaLite$togglePredicateSpec = function (tp) {
 };
 var $author$project$VegaLite$selectionProperties = function (selProp) {
 	switch (selProp.$) {
-		case 7:
+		case 6:
 			var fNames = selProp.a;
 			return _List_fromArray(
 				[
@@ -11561,7 +11496,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					'fields',
 					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fNames))
 				]);
-		case 9:
+		case 8:
 			var iVals = selProp.a;
 			return _List_fromArray(
 				[
@@ -11573,7 +11508,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 							$elm$core$Tuple$mapSecond($author$project$VegaLite$dataValueSpec),
 							iVals)))
 				]);
-		case 10:
+		case 9:
 			var maybeX = selProp.a;
 			var maybeY = selProp.b;
 			var yExtent = _Utils_eq(
@@ -11673,7 +11608,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 						]);
 				}
 			}
-		case 8:
+		case 7:
 			var channels = selProp.a;
 			return _List_fromArray(
 				[
@@ -11684,10 +11619,10 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 						A2($elm$core$Basics$composeL, $elm$json$Json$Encode$string, $author$project$VegaLite$channelLabel),
 						channels))
 				]);
-		case 3:
+		case 2:
 			var s = selProp.a;
 			return A2($author$project$VegaLite$strExpr, 'on', s);
-		case 4:
+		case 3:
 			var es = selProp.a;
 			switch (es.$) {
 				case 0:
@@ -11721,7 +11656,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					'empty',
 					$elm$json$Json$Encode$string('none'))
 				]);
-		case 11:
+		case 10:
 			var res = selProp.a;
 			return _List_fromArray(
 				[
@@ -11730,7 +11665,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$selectionResolutionLabel(res)))
 				]);
-		case 12:
+		case 11:
 			var markProps = selProp.a;
 			return _List_fromArray(
 				[
@@ -11746,22 +11681,10 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					'bind',
 					$elm$json$Json$Encode$string('scales'))
 				]);
-		case 2:
-			var blProps = selProp.a;
-			var labelledSpecs = A2($elm$core$List$map, $author$project$VegaLite$bindLegendProperty, blProps);
-			return A2(
-				$elm$core$List$member,
-				'bind',
-				A2($elm$core$List$map, $elm$core$Tuple$first, labelledSpecs)) ? labelledSpecs : A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'bind',
-					$elm$json$Json$Encode$string('legend')),
-				labelledSpecs);
-		case 13:
+		case 12:
 			var b = selProp.a;
 			return A2($author$project$VegaLite$booExpr, 'nearest', b);
-		case 14:
+		case 13:
 			var tp = selProp.a;
 			return _List_fromArray(
 				[
@@ -11769,7 +11692,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					'toggle',
 					$author$project$VegaLite$togglePredicateSpec(tp))
 				]);
-		case 5:
+		case 4:
 			var es = selProp.a;
 			switch (es.$) {
 				case 0:
@@ -11955,7 +11878,7 @@ var $author$project$VegaLite$Param = function (a) {
 };
 var $author$project$VegaLite$prParam = $author$project$VegaLite$Param;
 var $author$project$VegaLite$On = function (a) {
-	return {$: 3, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$seOn = function (s) {
 	return $author$project$VegaLite$On(
@@ -11964,7 +11887,7 @@ var $author$project$VegaLite$seOn = function (s) {
 var $author$project$VegaLite$SePoint = 0;
 var $author$project$VegaLite$sePoint = 0;
 var $author$project$VegaLite$Toggle = function (a) {
-	return {$: 14, a: a};
+	return {$: 13, a: a};
 };
 var $author$project$VegaLite$seToggle = $author$project$VegaLite$Toggle;
 var $author$project$VegaLite$strokeWidth = function (markProps) {
