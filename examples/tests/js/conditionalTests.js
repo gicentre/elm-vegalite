@@ -8807,40 +8807,6 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 						},
 						ifClauses)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 20:
-			var isSelection = field.a;
-			var tests = field.b;
-			var elseClause = field.c;
-			var testClause = function (_v8) {
-				var predicate = _v8.a;
-				var ifClause = _v8.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					function () {
-						if (tests.b && (!tests.b.b)) {
-							var test = tests.a;
-							return testClause(test);
-						} else {
-							return A2($elm$json$Json$Encode$list, testClause, tests);
-						}
-					}()),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 12:
 			var tu = field.a;
 			return _List_fromArray(
@@ -13961,7 +13927,7 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 							$author$project$VegaLite$predicateProperties(predicate),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
-		case 2:
+		default:
 			var ifClauses = oDef.a;
 			var elseClause = oDef.b;
 			return A2(
@@ -13979,40 +13945,6 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 									A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
 						},
 						ifClauses)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
-		default:
-			var isSelection = oDef.a;
-			var tests = oDef.b;
-			var elseClause = oDef.c;
-			var testClause = function (_v6) {
-				var predicate = _v6.a;
-				var ifClause = _v6.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					function () {
-						if (tests.b && (!tests.b.b)) {
-							var test = tests.a;
-							return testClause(test);
-						} else {
-							return A2($elm$json$Json$Encode$list, testClause, tests);
-						}
-					}()),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
 	}
 };

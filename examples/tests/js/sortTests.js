@@ -7059,6 +7059,92 @@ var $author$project$VegaLite$bin = function (bProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$concatMap, $author$project$VegaLite$binProperty, bProps)));
 };
+var $author$project$VegaLite$measurementLabel = function (mType) {
+	switch (mType) {
+		case 0:
+			return 'nominal';
+		case 1:
+			return 'ordinal';
+		case 2:
+			return 'quantitative';
+		case 3:
+			return 'temporal';
+		default:
+			return 'geojson';
+	}
+};
+var $author$project$VegaLite$operationSpec = function (op) {
+	switch (op.$) {
+		case 0:
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return $elm$json$Json$Encode$string('argmax');
+			} else {
+				var f = maybeField.a;
+				return (!$elm$core$String$length(
+					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmax') : $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmax',
+							$elm$json$Json$Encode$string(f))
+						]));
+			}
+		case 1:
+			var maybeField = op.a;
+			if (maybeField.$ === 1) {
+				return $elm$json$Json$Encode$string('argmin');
+			} else {
+				var f = maybeField.a;
+				return (!$elm$core$String$length(
+					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmin') : $elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'argmin',
+							$elm$json$Json$Encode$string(f))
+						]));
+			}
+		case 4:
+			return $elm$json$Json$Encode$string('count');
+		case 2:
+			return $elm$json$Json$Encode$string('ci0');
+		case 3:
+			return $elm$json$Json$Encode$string('ci1');
+		case 5:
+			return $elm$json$Json$Encode$string('distinct');
+		case 6:
+			return $elm$json$Json$Encode$string('max');
+		case 7:
+			return $elm$json$Json$Encode$string('mean');
+		case 8:
+			return $elm$json$Json$Encode$string('median');
+		case 9:
+			return $elm$json$Json$Encode$string('min');
+		case 10:
+			return $elm$json$Json$Encode$string('missing');
+		case 11:
+			return $elm$json$Json$Encode$string('product');
+		case 12:
+			return $elm$json$Json$Encode$string('q1');
+		case 13:
+			return $elm$json$Json$Encode$string('q3');
+		case 15:
+			return $elm$json$Json$Encode$string('stdev');
+		case 16:
+			return $elm$json$Json$Encode$string('stdevp');
+		case 17:
+			return $elm$json$Json$Encode$string('sum');
+		case 14:
+			return $elm$json$Json$Encode$string('stderr');
+		case 18:
+			return $elm$json$Json$Encode$string('valid');
+		case 19:
+			return $elm$json$Json$Encode$string('variance');
+		default:
+			return $elm$json$Json$Encode$string('variancep');
+	}
+};
 var $author$project$VegaLite$filterProperties = function (f) {
 	switch (f.$) {
 		case 0:
@@ -7666,92 +7752,6 @@ var $author$project$VegaLite$legendProperty = function (legendProp) {
 		default:
 			var n = legendProp.a;
 			return A2($author$project$VegaLite$numExpr, 'zindex', n);
-	}
-};
-var $author$project$VegaLite$measurementLabel = function (mType) {
-	switch (mType) {
-		case 0:
-			return 'nominal';
-		case 1:
-			return 'ordinal';
-		case 2:
-			return 'quantitative';
-		case 3:
-			return 'temporal';
-		default:
-			return 'geojson';
-	}
-};
-var $author$project$VegaLite$operationSpec = function (op) {
-	switch (op.$) {
-		case 0:
-			var maybeField = op.a;
-			if (maybeField.$ === 1) {
-				return $elm$json$Json$Encode$string('argmax');
-			} else {
-				var f = maybeField.a;
-				return (!$elm$core$String$length(
-					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmax') : $elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'argmax',
-							$elm$json$Json$Encode$string(f))
-						]));
-			}
-		case 1:
-			var maybeField = op.a;
-			if (maybeField.$ === 1) {
-				return $elm$json$Json$Encode$string('argmin');
-			} else {
-				var f = maybeField.a;
-				return (!$elm$core$String$length(
-					$elm$core$String$trim(f))) ? $elm$json$Json$Encode$string('argmin') : $elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'argmin',
-							$elm$json$Json$Encode$string(f))
-						]));
-			}
-		case 4:
-			return $elm$json$Json$Encode$string('count');
-		case 2:
-			return $elm$json$Json$Encode$string('ci0');
-		case 3:
-			return $elm$json$Json$Encode$string('ci1');
-		case 5:
-			return $elm$json$Json$Encode$string('distinct');
-		case 6:
-			return $elm$json$Json$Encode$string('max');
-		case 7:
-			return $elm$json$Json$Encode$string('mean');
-		case 8:
-			return $elm$json$Json$Encode$string('median');
-		case 9:
-			return $elm$json$Json$Encode$string('min');
-		case 10:
-			return $elm$json$Json$Encode$string('missing');
-		case 11:
-			return $elm$json$Json$Encode$string('product');
-		case 12:
-			return $elm$json$Json$Encode$string('q1');
-		case 13:
-			return $elm$json$Json$Encode$string('q3');
-		case 15:
-			return $elm$json$Json$Encode$string('stdev');
-		case 16:
-			return $elm$json$Json$Encode$string('stdevp');
-		case 17:
-			return $elm$json$Json$Encode$string('sum');
-		case 14:
-			return $elm$json$Json$Encode$string('stderr');
-		case 18:
-			return $elm$json$Json$Encode$string('valid');
-		case 19:
-			return $elm$json$Json$Encode$string('variance');
-		default:
-			return $elm$json$Json$Encode$string('variancep');
 	}
 };
 var $author$project$VegaLite$cInterpolateSpec = function (iType) {
@@ -8881,40 +8881,6 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 						},
 						ifClauses)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 20:
-			var isSelection = field.a;
-			var tests = field.b;
-			var elseClause = field.c;
-			var testClause = function (_v8) {
-				var predicate = _v8.a;
-				var ifClause = _v8.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					function () {
-						if (tests.b && (!tests.b.b)) {
-							var test = tests.a;
-							return testClause(test);
-						} else {
-							return A2($elm$json$Json$Encode$list, testClause, tests);
-						}
-					}()),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 12:
 			var tu = field.a;
 			return _List_fromArray(
@@ -9113,7 +9079,7 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 							$author$project$VegaLite$predicateProperties(predicate),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
-		case 2:
+		default:
 			var ifClauses = oDef.a;
 			var elseClause = oDef.b;
 			return A2(
@@ -9131,40 +9097,6 @@ var $author$project$VegaLite$orderChannelProperties = function (oDef) {
 									A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
 						},
 						ifClauses)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
-		default:
-			var isSelection = oDef.a;
-			var tests = oDef.b;
-			var elseClause = oDef.c;
-			var testClause = function (_v6) {
-				var predicate = _v6.a;
-				var ifClause = _v6.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					function () {
-						if (tests.b && (!tests.b.b)) {
-							var test = tests.a;
-							return testClause(test);
-						} else {
-							return A2($elm$json$Json$Encode$list, testClause, tests);
-						}
-					}()),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$orderChannelProperties, elseClause));
 	}
 };
@@ -10888,33 +10820,6 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 									A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
 						},
 						ifClauses)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 16:
-			var isSelection = tDef.a;
-			var tests = tDef.b;
-			var elseClause = tDef.c;
-			var testClause = function (_v2) {
-				var predicate = _v2.a;
-				var ifClause = _v2.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					A2($elm$json$Json$Encode$list, testClause, tests)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
 		case 14:
 			var s = tDef.a;

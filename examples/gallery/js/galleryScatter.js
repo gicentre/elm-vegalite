@@ -6545,40 +6545,6 @@ var $author$project$VegaLite$markChannelProperties = function (field) {
 						},
 						ifClauses)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
-		case 20:
-			var isSelection = field.a;
-			var tests = field.b;
-			var elseClause = field.c;
-			var testClause = function (_v8) {
-				var predicate = _v8.a;
-				var ifClause = _v8.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					function () {
-						if (tests.b && (!tests.b.b)) {
-							var test = tests.a;
-							return testClause(test);
-						} else {
-							return A2($elm$json$Json$Encode$list, testClause, tests);
-						}
-					}()),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, elseClause));
 		case 12:
 			var tu = field.a;
 			return _List_fromArray(
@@ -8261,33 +8227,6 @@ var $author$project$VegaLite$textChannelProperties = function (tDef) {
 						},
 						ifClauses)),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
-		case 16:
-			var isSelection = tDef.a;
-			var tests = tDef.b;
-			var elseClause = tDef.c;
-			var testClause = function (_v2) {
-				var predicate = _v2.a;
-				var ifClause = _v2.b;
-				return isSelection ? $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'selection',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause))) : $elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$cons,
-						_Utils_Tuple2(
-							'test',
-							$author$project$VegaLite$booleanOpSpec(predicate)),
-						A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, ifClause)));
-			};
-			return A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					A2($elm$json$Json$Encode$list, testClause, tests)),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, elseClause));
 		case 14:
 			var s = tDef.a;
 			return A2($author$project$VegaLite$strExprMultiline, 'value', s);
@@ -8948,34 +8887,6 @@ var $author$project$VegaLite$hyperlinkChannelProperties = function (field) {
 					$elm$json$Json$Encode$object(
 						_Utils_ap(
 							$author$project$VegaLite$predicateProperties(predicate),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
-		case 9:
-			var isSelection = field.a;
-			var predicate = field.b;
-			var ifClause = field.c;
-			var elseClause = field.d;
-			return isSelection ? A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'selection',
-								$author$project$VegaLite$booleanOpSpec(predicate)),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
-				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause)) : A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(
-					'condition',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'test',
-								$author$project$VegaLite$booleanOpSpec(predicate)),
 							A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, ifClause)))),
 				A2($elm$core$List$concatMap, $author$project$VegaLite$hyperlinkChannelProperties, elseClause));
 		case 6:
