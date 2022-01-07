@@ -21112,7 +21112,7 @@ vicoBooExpr ex fn =
 
 
 {-| Whether or not by default single views should be clipped. Clipping will remove
-everyhing outside the data area including axes and legends.
+everything outside the data area including axes and legends.
 -}
 vicoClip : Bool -> ViewConfig
 vicoClip b =
