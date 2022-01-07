@@ -8536,7 +8536,7 @@ var $author$project$VegaLite$togglePredicateSpec = function (tp) {
 };
 var $author$project$VegaLite$selectionProperties = function (selProp) {
 	switch (selProp.$) {
-		case 6:
+		case 4:
 			var fNames = selProp.a;
 			return _List_fromArray(
 				[
@@ -8544,7 +8544,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					'fields',
 					A2($elm$json$Json$Encode$list, $elm$json$Json$Encode$string, fNames))
 				]);
-		case 8:
+		case 6:
 			var iVals = selProp.a;
 			return _List_fromArray(
 				[
@@ -8556,7 +8556,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 							$elm$core$Tuple$mapSecond($author$project$VegaLite$dataValueSpec),
 							iVals)))
 				]);
-		case 9:
+		case 7:
 			var maybeX = selProp.a;
 			var maybeY = selProp.b;
 			var yExtent = _Utils_eq(
@@ -8656,7 +8656,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 						]);
 				}
 			}
-		case 7:
+		case 5:
 			var channels = selProp.a;
 			return _List_fromArray(
 				[
@@ -8667,10 +8667,10 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 						A2($elm$core$Basics$composeL, $elm$json$Json$Encode$string, $author$project$VegaLite$channelLabel),
 						channels))
 				]);
-		case 2:
+		case 0:
 			var s = selProp.a;
 			return A2($author$project$VegaLite$strExpr, 'on', s);
-		case 3:
+		case 1:
 			var es = selProp.a;
 			switch (es.$) {
 				case 0:
@@ -8697,14 +8697,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 				default:
 					return A2($author$project$VegaLite$strExpr, 'clear', es);
 			}
-		case 0:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'empty',
-					$elm$json$Json$Encode$string('none'))
-				]);
-		case 10:
+		case 8:
 			var res = selProp.a;
 			return _List_fromArray(
 				[
@@ -8713,7 +8706,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					$elm$json$Json$Encode$string(
 						$author$project$VegaLite$selectionResolutionLabel(res)))
 				]);
-		case 11:
+		case 9:
 			var markProps = selProp.a;
 			return _List_fromArray(
 				[
@@ -8722,17 +8715,10 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$selectionMarkProperty, markProps)))
 				]);
-		case 1:
-			return _List_fromArray(
-				[
-					_Utils_Tuple2(
-					'bind',
-					$elm$json$Json$Encode$string('scales'))
-				]);
-		case 12:
+		case 10:
 			var b = selProp.a;
 			return A2($author$project$VegaLite$booExpr, 'nearest', b);
-		case 13:
+		case 11:
 			var tp = selProp.a;
 			return _List_fromArray(
 				[
@@ -8740,7 +8726,7 @@ var $author$project$VegaLite$selectionProperties = function (selProp) {
 					'toggle',
 					$author$project$VegaLite$togglePredicateSpec(tp))
 				]);
-		case 4:
+		case 2:
 			var es = selProp.a;
 			switch (es.$) {
 				case 0:
@@ -8937,18 +8923,18 @@ var $author$project$VegaLite$seGlobal = 0;
 var $author$project$VegaLite$SeInterval = 1;
 var $author$project$VegaLite$seInterval = 1;
 var $author$project$VegaLite$On = function (a) {
-	return {$: 2, a: a};
+	return {$: 0, a: a};
 };
 var $author$project$VegaLite$seOn = function (s) {
 	return $author$project$VegaLite$On(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$ResolveSelections = function (a) {
-	return {$: 10, a: a};
+	return {$: 8, a: a};
 };
 var $author$project$VegaLite$seResolve = $author$project$VegaLite$ResolveSelections;
 var $author$project$VegaLite$Translate = function (a) {
-	return {$: 4, a: a};
+	return {$: 2, a: a};
 };
 var $author$project$VegaLite$seTranslate = function (s) {
 	return $author$project$VegaLite$Translate(
@@ -8957,7 +8943,7 @@ var $author$project$VegaLite$seTranslate = function (s) {
 var $author$project$VegaLite$SeUnion = 1;
 var $author$project$VegaLite$seUnion = 1;
 var $author$project$VegaLite$Zoom = function (a) {
-	return {$: 5, a: a};
+	return {$: 3, a: a};
 };
 var $author$project$VegaLite$seZoom = function (s) {
 	return $author$project$VegaLite$Zoom(
