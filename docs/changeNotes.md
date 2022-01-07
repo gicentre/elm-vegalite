@@ -10,8 +10,7 @@
   - `BindLegendProperty` and associated functions `blChannel`, `blEvent`,`blField` and `seBindLegend`
   - `hDataCondition`, `hSelectionCondition`, `mDataCondition`, `mSelectionCondition`, `oDataCondition` and `oSelectionCondition`
   - `pBand`
-  - `seBindScales`
-  - `seEmpty`
+  - `seBindScales`, `seEmpty`, `seInit`, `seInitInterval`
 
   These mostly relate to the old interaction model superseded in Vega-Lite 5 / elm-Vegalite 4 (see 'Deprecations' in change document for elm-Vegalite 4 for details on updating the interaction functions if you are using the old interaction model).
 

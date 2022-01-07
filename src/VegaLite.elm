@@ -1654,8 +1654,6 @@ module VegaLite exposing
     , Window
     , WOperation
     , WindowProperty
-    , seInit
-    , seInitInterval
     , select
     , selected
     , selection
@@ -4039,8 +4037,6 @@ to the functions that generate them.
 
 # 11. Deprecated Types and Functions
 
-@docs seInit
-@docs seInitInterval
 @docs select
 @docs selected
 @docs selection
@@ -6064,8 +6060,6 @@ type SelectionProperty
     | Zoom Str
     | Fields (List String)
     | Encodings (List Channel)
-    | SInit (List ( String, DataValue ))
-    | SInitInterval (Maybe ( DataValue, DataValue )) (Maybe ( DataValue, DataValue ))
     | ResolveSelections SelectionResolution
     | SelectionMark (List SelectionMarkProperty)
     | Nearest Boo
@@ -19413,22 +19407,6 @@ seGlobal =
     SeGlobal
 
 
-{-| Deprecated in favour of [paValue](#paValue) for initialising the value of a
-selection parameter.
--}
-seInit : List ( String, DataValue ) -> SelectionProperty
-seInit =
-    SInit
-
-
-{-| Deprecated in favour of [paValue](#paValue) for initialising the value of a
-selection parameter.
--}
-seInitInterval : Maybe ( DataValue, DataValue ) -> Maybe ( DataValue, DataValue ) -> SelectionProperty
-seInitInterval =
-    SInitInterval
-
-
 {-| Each subview contains its own brush and marks are selected if they lie
 within _all_ of these individual selections.
 -}
@@ -26716,50 +26694,6 @@ selectionProperties selProp =
     case selProp of
         Fields fNames ->
             [ ( "fields", JE.list JE.string fNames ) ]
-
-        SInit iVals ->
-            [ ( "init", JE.object (List.map (Tuple.mapSecond dataValueSpec) iVals) ) ]
-
-        SInitInterval maybeX maybeY ->
-            let
-                xExtent =
-                    if maybeX == Just ( NullValue, NullValue ) then
-                        Nothing
-
-                    else
-                        maybeX
-
-                yExtent =
-                    if maybeY == Just ( NullValue, NullValue ) then
-                        Nothing
-
-                    else
-                        maybeY
-            in
-            case ( xExtent, yExtent ) of
-                ( Just ( xMin, xMax ), Just ( yMin, yMax ) ) ->
-                    [ ( "init"
-                      , JE.object
-                            [ ( "x", toList [ dataValueSpec xMin, dataValueSpec xMax ] )
-                            , ( "y", toList [ dataValueSpec yMin, dataValueSpec yMax ] )
-                            ]
-                      )
-                    ]
-
-                ( Just ( xMin, xMax ), Nothing ) ->
-                    [ ( "init"
-                      , JE.object [ ( "x", toList [ dataValueSpec xMin, dataValueSpec xMax ] ) ]
-                      )
-                    ]
-
-                ( Nothing, Just ( yMin, yMax ) ) ->
-                    [ ( "init"
-                      , JE.object [ ( "y", toList [ dataValueSpec yMin, dataValueSpec yMax ] ) ]
-                      )
-                    ]
-
-                ( Nothing, Nothing ) ->
-                    [ ( "init", JE.null ) ]
 
         Encodings channels ->
             [ ( "encodings", JE.list (JE.string << channelLabel) channels ) ]
