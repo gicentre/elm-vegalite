@@ -11,9 +11,9 @@ module VegaLite exposing
     , dataRow
     , dataFromJson
     , jsonToSpec
+    , datasets
     , dataFromSource
     , dataName
-    , datasets
     , noData
     , Data
     , DataColumn
@@ -1705,9 +1705,9 @@ For context, see the
 @docs dataRow
 @docs dataFromJson
 @docs jsonToSpec
+@docs datasets
 @docs dataFromSource
 @docs dataName
-@docs datasets
 @docs noData
 @docs Data
 @docs DataColumn
@@ -4574,7 +4574,8 @@ type Cursor
     | CursorExpr String
 
 
-{-| Convenience type annotation label for use with data generation functions.
+{-| Type annotation for describing data generation functions. Useful when annotating
+top-level data-generating functions. For example,
 
     myRegion : List DataColumn -> Data
     myRegion =
@@ -4587,13 +4588,15 @@ type alias Data =
     ( VLProperty, Spec )
 
 
-{-| A single column of data. Used when generating inline data with [dataColumn](#dataColumn).
+{-| Type annotation for a single column of data. Used when describing inline data
+with [dataColumn](#dataColumn).
 -}
 type alias DataColumn =
     List LabelledSpec
 
 
-{-| A single row of data. Used when generating inline data with [dataRow](#dataRow).
+{-| Type annotation for a single row of data. Used when describing inline data
+with [dataRow](#dataRow).
 -}
 type alias DataRow =
     Spec
@@ -6067,6 +6070,14 @@ type SortProperty
 
 {-| Part or all of a Vega-Lite specification. Specs are usually nested and can
 range from a single Boolean value up to the full visualization specification.
+
+You only need to name something as a `Spec` when providing a top level function
+with a type signature. For example,
+
+    myBarchart : Spec
+    myBarchart =
+        ...
+
 -}
 type alias Spec =
     JE.Value
@@ -8981,11 +8992,12 @@ caSquare =
     CSquare
 
 
-{-| Create a set of discrete domain to color mappings suitable for customising categorical
+{-| Create a set of discrete domain to range mappings suitable for customising categorical
 scales. The first item in each tuple should be a domain value and the second the
-color value with which it should be associated. It is a convenience function equivalent
+range value with which it should be associated. It is a convenience function equivalent
 to specifying separate `scDomain` and `scRange` lists and is safer as it guarantees
-a one-to-one correspondence between domain and range values.
+a one-to-one correspondence between domain and range values. This is typically used
+to provide discrete colors for categorical variables.
 
     color
         [ mName "weather"
@@ -9709,11 +9721,13 @@ coMarkStyles =
 {-| Combine a list of labelled specifications to be passed to JavaScript for rendering.
 Useful when you wish to create a single page with multiple visualizations.
 
-    combineSpecs
-        [ ( "vis1", myFirstVis )
-        , ( "vis2", mySecondVis )
-        , ( "vis3", myOtherVis )
-        ]
+    myCharts : Spec
+    myCharts =
+        combineSpecs
+            [ ( "vis1", myVis1 )
+            , ( "vis2", myVis2 )
+            , ( "vis3", myVis3 )
+            ]
 
 -}
 combineSpecs : List LabelledSpec -> Spec
@@ -10288,7 +10302,29 @@ dataArrays =
     DArrays
 
 
-{-| Create a column of data. A column has a name and a list of values.
+{-| Create a column of data. A column has a name and a list of values which is
+then added to an existing list of data columns. This allows multiple data column
+specifications to be chained together with the `<<` operator. For example, to represent
+a table of data in this form:
+
+    | x   | y   |
+    | --- | --- |
+    | a   | 1   |
+    | b   | 2   |
+    | c   | 3   |
+
+you could specify:
+
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromColumns []
+                    << dataColumn "x" (strs [ "a", "b", "c" ])
+                    << dataColumn "y" (nums [ 1, 2, 3 ])
+        in
+        toVegaLite [ data [], ... ]
+
 -}
 dataColumn : String -> DataValues -> List DataColumn -> List DataColumn
 dataColumn colName data =
@@ -10325,22 +10361,27 @@ dataExpr =
 
 {-| Declare a data source from a list of column values. Each column should contain
 values of the same type, but columns each with a different type are permitted.
-If columns do not contain the same number of items the dataset will be truncated
+If columns do not contain the same number of items, the dataset will be truncated
 to the length of the shortest, so beware of inadvertently removing data rows at
 the 'bottom' of a table.
 
 A list of field formatting instructions can be provided as the first parameter
 or an empty list to use the default formatting. Simple numbers and strings do not
 normally need formatting, but it is good practice to explicitly declare date-time
-formats as default date-time formats can vary between browsers.
+formats because default date-time formats can vary between browsers.
 
 The columns are most easily generated with [dataColumn](#dataColumn):
 
-    data =
-        dataFromColumns [ parse [ ( "Year", foDate "%Y" ) ] ]
-            << dataColumn "Animal" (strs [ "Fish", "Dog", "Cat" ])
-            << dataColumn "Age" (nums [ 28, 12, 6 ])
-            << dataColumn "Year" (strs [ "2010", "2014", "2015" ])
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromColumns [ parse [ ( "Year", foDate "%Y" ) ] ]
+                    << dataColumn "Animal" (strs [ "Fish", "Dog", "Cat" ])
+                    << dataColumn "Age" (nums [ 28, 12, 6 ])
+                    << dataColumn "Year" (strs [ "2015", "2019", "2020" ])
+        in
+        toVegaLite [ data [], ... ]
 
 For more complex inline data tables, such as mixtures of arrays and objects, consider
 using [dataFromJson](#dataFromJson).
@@ -10369,36 +10410,34 @@ dataFromColumns fmts cols =
 
 
 {-| Declare a data source from a json specification. The most likely use-case is
-creating [geojson](http://geojson.org) objects with [`geometry`](#geometry),
-[`geometryCollection`](#geometryCollection) and [`geoFeatureCollection`](#geoFeatureCollection).
+creating [geojson](http://geojson.org) objects with [geometry](#geometry),
+[geometryCollection](#geometryCollection) and [geoFeatureCollection](#geoFeatureCollection).
 
-    let
-        geojson =
-            geometry (geoPolygon [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 59 ) ] ]) []
-    in
-    toVegaLite
-        [ width 200
-        , height 200
-        , dataFromJson geojson []
-        , projection [ prType orthographic ]
-        , geoshape []
-        ]
+    myChart : Spec
+    myChart =
+        let
+            geojson =
+                geometry (geoPolygon [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 59 ) ] ]) []
+        in
+        toVegaLite [ dataFromJson geojson [], geoshape [] ]
 
 For more general cases of json creation such as data tables that mix arrays and
-objects, consider combining with [jsonToSpec](#jsonToSpec), for example,
+objects, consider combining with [jsonToSpec](#jsonToSpec). For example,
 
-    data =
-        jsonToSpec
-            """
-            {
+    myChart : Spec
+    myChart =
+        let
+            data =
+                jsonToSpec """{
                 "Revenue" : [ 150, 225, 300 ],
                 "Profit" : [ 20, 25, 30 ],
                 "Order size" : [ 350, 500, 600 ],
                 "New customers" : [ 1400, 2000, 2500 ],
                 "Satisfaction" : [ 3.5, 4.25, 5 ]
-            }
-            """
-            |> dataFromJson
+            }"""
+                    |> dataFromJson
+        in
+        toVegaLite [ data [], ... ]
 
 -}
 dataFromJson : Spec -> List Format -> Data
@@ -10422,15 +10461,20 @@ in the same column. A list of field formatting instructions can be provided as
 the first parameter or an empty list to use the default formatting. Rows are most
 easily generated with [dataRow](#dataRow).
 
-    data =
-        dataFromRows [ parse [ ( "Year", foDate "%Y" ) ] ]
-            << dataRow [ ( "Animal", str "Fish" ), ( "Age", num 28 ), ( "Year", str "2010" ) ]
-            << dataRow [ ( "Animal", str "Dog" ), ( "Age", num 12 ), ( "Year", str "2014" ) ]
-            << dataRow [ ( "Animal", str "Cat" ), ( "Age", num 6 ), ( "Year", str "2015" ) ]
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromRows [ parse [ ( "Year", foDate "%Y" ) ] ]
+                    << dataRow [ ( "Animal", str "Fish" ), ( "Age", num 28 ), ( "Year", str "2015" ) ]
+                    << dataRow [ ( "Animal", str "Dog" ), ( "Age", num 12 ), ( "Year", str "2019" ) ]
+                    << dataRow [ ( "Animal", str "Cat" ), ( "Age", num 6 ), ( "Year", str "2020" ) ]
+        in
+        toVegaLite [ data [], ... ]
 
-Generally, adding data by column is more efficient and less error-prone. For more
-complex inline data tables, such as mixtures of arrays and objects, consider using
-[dataFromJson](#dataFromJson).
+Generally, adding data by column is more efficient and less error-prone, but occasionally
+there can be greater clarity in arranging data by rows. For more complex inline data
+tables, such as mixtures of arrays and objects, consider using [dataFromJson](#dataFromJson).
 
 -}
 dataFromRows : List Format -> List DataRow -> Data
@@ -10456,15 +10500,17 @@ within a specification or one created via the
 formatting instructions can be provided as the second parameter or an empty list
 to use the default formatting.
 
-    data = ...
-    json = ...
-    enc = ...
-    toVegaLite
-        [ datasets [ ( "myData", data [] ),  ( "myJson", dataFromJson json [] ) ]
-        , dataFromSource "myData" []
-        , enc []
-        , bar []
-        ]
+    myChart : Spec
+    myChart =
+        let
+            data = ...
+            json = ...
+        in
+        toVegaLite
+            [ datasets [ ( "myData", data ), ( "myJson", dataFromJson json [] ) ]
+            , dataFromSource "myData" []
+            , ...
+            ]
 
 -}
 dataFromSource : String -> List Format -> Data
@@ -10481,16 +10527,23 @@ dataFromSource sourceName fmts =
         )
 
 
-{-| Declare a data source from a url. The URL can be a local path on a web server
-or an external (CORS) URL. A list of field formatting instructions can be provided
-as the second parameter or an empty list to use the default formatting.
+{-| Declare a data source from a url. The URL can be a local path such as a file
+name in the same folder as the elm specification or an external (CORS) URL. A
+list of field formatting instructions can be provided as the second parameter or
+an empty list to use the default formatting.
 
-    bikeData =
-        dataFromUrl "./data/bicycleHires.csv"
-            [ parse [ ( "numHires", foNum ), ( "avHireTime", foNum ) ] ]
-
-    popData =
+    myPopData : Data
+    myPopData =
         dataFromUrl "https://vega.github.io/vega-lite/data/population.json" []
+
+    myBikeData : Data
+    myBikeData =
+        dataFromUrl "./data/bicycleHires.csv"
+            [ parse
+                [ ( "numHires", foNum )
+                , ( "avHireTime", foNum )
+                ]
+            ]
 
 -}
 dataFromUrl : String -> List Format -> Data
@@ -10510,8 +10563,14 @@ dataFromUrl u fmts =
 {-| Name to give a data source. Useful when a specification needs to reference a
 data source, such as one generated via an API call.
 
-    data =
-        dataFromUrl "myData.json" [] |> dataName "myName"
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromUrl "myData.json" []
+                    |> dataName "myName"
+        in
+        toVegaLite [ data , ...]
 
 -}
 dataName : String -> Data -> Data
@@ -10551,6 +10610,26 @@ dataObjects =
 
 
 {-| Create a row of data. A row comprises a list of (_columnName_, _value_) pairs.
+For example, to specify this table:
+
+    | x   | y   |
+    | --- | --- |
+    | a   | 1   |
+    | b   | 2   |
+    | c   | 3   |
+
+
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromRows []
+                    << dataRow [ ( "x", str "a" ), ( "y", num 1 ) ]
+                    << dataRow [ ( "x", str "b" ), ( "y", num 2 ) ]
+                    << dataRow [ ( "x", str "c" ), ( "y", num 3 ) ]
+        in
+        toVegaLite [ data [], ...]
+
 -}
 dataRow : List ( String, DataValue ) -> List DataRow -> List DataRow
 dataRow r =
@@ -10562,28 +10641,26 @@ can be created with normal data generating functions such as [dataFromRows](#dat
 or [dataFromJson](#dataFromJson). These can be later referred to using
 [dataFromSource](#dataFromSource).
 
-    import Json.Encode as JE
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromColumns []
+                    << dataColumn "name" (strs [ "alphaville", "betatown" ])
+                    << dataColumn "pop" (nums [ 9350, 4770 ])
 
-    let
-        data =
-            dataFromRows []
-                << dataRow [ ( "cat", str "a" ), ( "val", num 10 ) ]
-                << dataRow [ ( "cat", str "b" ), ( "val", num 18 ) ]
-        json =
-            JE.list JE.object
-                [ [ ( "cat", JE.string "a" ), ( "val", JE.float 120 ) ]
-                , [ ( "cat", JE.string "b" ), ( "val", JE.float 180 ) ]
+            geoBounds =
+                geometry (geoPoints [ ( -4, 55 ), ( 3, 59 ) ]) []
+                    |> dataFromJson
+        in
+        toVegaLite
+            [ datasets
+                [ ( "myData", data [] )
+                , ( "myJson", geoBounds [] )
                 ]
-
-        enc = ...
-
-    in
-    toVegaLite
-        [ datasets [ ( "myData", data [] ),  ( "myJson", dataFromJson json [] ) ]
-        , dataFromSource "myData" []
-        , bar []
-        , enc []
-        ]
+            , dataFromSource "myData" []
+            , ...
+            ]
 
 -}
 datasets : List ( String, Data ) -> Data
@@ -11870,16 +11947,20 @@ fwValue w =
         W900
 
 
-{-| Geo features to be used in a `geoshape` specification. Each feature object in
-this collection can be created with [geometry](#geometry).
+{-| A collection of geo features to be used in a [geoshape](#geoshape) specification.
+Each feature in this collection can be created with [geometry](#geometry).
 
-    geojson =
-        geoFeatureCollection
+    myGeo : Data
+    myGeo =
+        (geoFeatureCollection
             [ geometry (geoPolygon [ [ ( -3, 59 ), ( -3, 52 ), ( 4, 52 ), ( -3, 59 ) ] ])
                 [ ( "myRegionName", str "Northern region" ) ]
             , geometry (geoPolygon [ [ ( -3, 52 ), ( 4, 52 ), ( 4, 45 ), ( -3, 52 ) ] ])
                 [ ( "myRegionName", str "Southern region" ) ]
             ]
+            |> dataFromJson
+        )
+            []
 
 -}
 geoFeatureCollection : List Spec -> Spec
@@ -11892,6 +11973,14 @@ geoFeatureCollection geoms =
 
 {-| Line geometry for programmatically creating GeoShapes. Equivalent to the
 [GeoJson geometry `line` type](https://tools.ietf.org/html/rfc7946#section-3.1).
+
+    myGeo : Data
+    myGeo =
+        (geometry (geoLine [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ) ]) []
+            |> dataFromJson
+        )
+            []
+
 -}
 geoLine : List ( Float, Float ) -> Geometry
 geoLine =
@@ -11900,20 +11989,39 @@ geoLine =
 
 {-| Multi-line geometry for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `multi-line` type](https://tools.ietf.org/html/rfc7946#section-3.1).
+
+    myGeo : Data
+    myGeo =
+        (geometry
+            (geoLines
+                [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ) ]
+                , [ ( -4, 57 ), ( 2, 57 ), ( 2, 56 ) ]
+                ]
+            )
+            []
+            |> dataFromJson
+        )
+            []
+
 -}
 geoLines : List (List ( Float, Float )) -> Geometry
 geoLines =
     GeoLines
 
 
-{-| Geometry objects to be used in a `geoshape` specification. Each geometry
-object can be created with [geometry](#geometry).
+{-| Collection of geometry objects that make up a single feature. Can be used in
+a [geoshape](#geoshape) specification. Each geometry object can be created with
+[geometry](#geometry).
 
-    geojson =
-        geometryCollection
+    myGeo : Data
+    myGeo =
+        (geometryCollection
             [ geometry (geoPolygon [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 59 ) ] ]) []
             , geometry (geoPoint -3.5 55.5) []
             ]
+            |> dataFromJson
+        )
+            []
 
 -}
 geometryCollection : List Spec -> Spec
@@ -11924,12 +12032,15 @@ geometryCollection geoms =
         ]
 
 
-{-| Geometric object to be used in a `geoshape`. The first parameter is
-the geometric type, the second an optional list of properties to be associated
-with the object.
+{-| Specify a geometric object. The first parameter is the geometry type,
+the second an optional list of properties to be associated with the object.
 
-      geojson =
-          geometry (geoPolygon [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 59 ) ] ]) []
+    myGeo : Data
+    myGeo =
+        (geometry (geoPoints [ ( -4, 55 ), ( 3, 59 ) ]) []
+            |> dataFromJson
+        )
+            []
 
 -}
 geometry : Geometry -> List ( String, DataValue ) -> Spec
@@ -11950,6 +12061,14 @@ geometry gType properties =
 
 {-| Point geometry for programmatically creating GeoShapes. Equivalent to
 the [GeoJson geometry `point` type](https://tools.ietf.org/html/rfc7946#section-3.1).
+
+    myGeo : Data
+    myGeo =
+        (geometry (geoPoint -3.5 55.5) []
+            |> dataFromJson
+        )
+            []
+
 -}
 geoPoint : Float -> Float -> Geometry
 geoPoint =
@@ -11958,6 +12077,14 @@ geoPoint =
 
 {-| Multi-point geometry for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `multi-point` type](https://tools.ietf.org/html/rfc7946#section-3.1).
+
+    myGeo : Data
+    myGeo =
+        (geometry (geoPoints [ ( -4, 55 ), ( -3, 59 ), ( -3, 56 ) ]) []
+            |> dataFromJson
+        )
+            []
+
 -}
 geoPoints : List ( Float, Float ) -> Geometry
 geoPoints =
@@ -11966,6 +12093,14 @@ geoPoints =
 
 {-| Polygon geometry for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `polygon` type](https://tools.ietf.org/html/rfc7946#section-3.1).
+
+    myGeo : Data
+    myGeo =
+        (geometry (geoPolygon [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 59 ) ] ]) []
+            |> dataFromJson
+        )
+            []
+
 -}
 geoPolygon : List (List ( Float, Float )) -> Geometry
 geoPolygon =
@@ -11974,6 +12109,20 @@ geoPolygon =
 
 {-| Multi-polygon geometry for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `multi-polygon` type](https://tools.ietf.org/html/rfc7946#section-3.1).
+
+    myGeo : Data
+    myGeo =
+        (geometry
+            (geoPolygons
+                [ [ [ ( -3, 59 ), ( 4, 59 ), ( 4, 52 ), ( -3, 59 ) ] ]
+                , [ [ ( -4, 57 ), ( 2, 57 ), ( 2, 56 ), ( -4, 57 ) ] ]
+                ]
+            )
+            []
+            |> dataFromJson
+        )
+            []
+
 -}
 geoPolygons : List (List (List ( Float, Float ))) -> Geometry
 geoPolygons =
@@ -13141,21 +13290,41 @@ ipWeek =
 with [dataFromJson](#dataFromJson) to compactly import inline JSON as data. For
 example,
 
-    data =
-        jsonToSpec
-            """
-            {
+    myChart : Spec
+    myChart =
+        let
+            data =
+                jsonToSpec """{
                 "Revenue" : [ 150, 225, 300 ],
                 "Profit" : [ 20, 25, 30 ],
                 "Order size" : [ 350, 500, 600 ],
                 "New customers" : [ 1400, 2000, 2500 ],
                 "Satisfaction" : [ 3.5, 4.25, 5 ]
-            }
-            """
-            |> dataFromJson
+            }"""
+                    |> dataFromJson
+        in
+        toVegaLite [ data [], ... ]
 
 This can also be used to store a full visualization specification from a JSON object.
-But note this is not type-safe – if the JSON is not well-formed, a null value is returned.
+For example,
+
+    myChart : Spec
+    myChart =
+        """
+    {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": { "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/cars.json"},
+        "mark": "bar",
+        "encoding": {
+            "x": { "field": "Origin" },
+            "y": { "field": "Miles_per_Gallon", "aggregate": "mean" }
+        }
+    }
+    """ |> jsonToSpec
+
+But note this is not type-safe – if the JSON is not well-formed, a JSON
+[null](https://package.elm-lang.org/packages/elm/json/latest/Json-Encode#null)
+value is returned.
 
 -}
 jsonToSpec : String -> Spec
@@ -16430,7 +16599,8 @@ noClip =
     NoClip
 
 
-{-| Ignore the data of a specification's parent when used in a composed spec.
+{-| Ignore the data of a specification's parent when used in a composed spec such
+as layering or concatenation.
 -}
 noData : Data
 noData =
@@ -16899,8 +17069,8 @@ this transformation.
                 ]
                 [ "age" ]
 
-If the operation is `Count`, it does not apply to any specific field, so the second
-parameter can be an empty string.
+If the operation is [opCount](#opCount), it does not apply to any specific field,
+so the second parameter can be an empty string.
 
 -}
 opAs : Operation -> String -> String -> Spec
@@ -19131,9 +19301,11 @@ scRound b =
 
 
 {-| Color scheme used by a color scaling with [mScale](#mScale). The first parameter
-is the name of the scheme (e.g. "viridis") and the second an optional specification
-of the number of colors to use (list of one number), or the extent of the color
-range to use (list of two numbers between 0 and 1).
+is the name of the scheme (e.g. "viridis"). For a full list of supported color scheme
+names, see the [Vega documentation](https://vega.github.io/vega/docs/schemes/).
+The second parameter is an optional specification of the number of colors to use
+(list of one number), or the extent of the color range to use (list of two numbers
+between 0 and 1).
 
     color
         [ mName "value"
@@ -20661,18 +20833,20 @@ Specifications can be built up by chaining functions such as [dataColumn](#dataC
 or [position](#position). Functional composition using the `<<` operator allows
 this to be done compactly:
 
-    let
-        data =
-            dataFromColumns []
-                << dataColumn "a" (strs [ "C", "C", "D" ])
-                << dataColumn "b" (nums [ 2, 7, 1 ])
+    myChart : Spec
+    myChart =
+        let
+            data =
+                dataFromColumns []
+                    << dataColumn "a" (strs [ "C", "C", "D" ])
+                    << dataColumn "b" (nums [ 2, 7, 1 ])
 
-        enc =
-            encoding
-                << position X [ pName "a" ]
-                << position Y [ pName "b", pAggregate opMean ]
-    in
-    toVegaLite [ data [], enc [], bar [] ]
+            enc =
+                encoding
+                    << position X [ pName "a" ]
+                    << position Y [ pName "b", pAggregate opMean ]
+        in
+        toVegaLite [ data [], enc [], bar [] ]
 
 -}
 toVegaLite : List ( VLProperty, Spec ) -> Spec

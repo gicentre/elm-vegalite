@@ -1,5 +1,9 @@
 # elm-vegaLite changes
 
+## Pending
+
+- Add many examples to API docs.
+
 ## V4.0.0 ➡ V5.0.0
 
 _While this is a 'major' release, this is largely to remove deprecated functions that relate to an older Vega-Lite interaction model and to longhand measurement type functions that have had shorthand equivalents for several years. The main addition is to support Vega-Lite's new offset channels for modifying position encoding._
