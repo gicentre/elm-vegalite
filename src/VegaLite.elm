@@ -38,18 +38,18 @@ module VegaLite exposing
     , grExtentMajor
     , grExtentMinor
     , grPrecision
-    , csv
-    , tsv
-    , dsv
-    , arrow
-    , jsonProperty
-    , topojsonFeature
-    , topojsonMesh
     , parse
     , foNum
     , foBoo
     , foDate
     , foUtc
+    , csv
+    , tsv
+    , dsv
+    , arrow
+    , topojsonFeature
+    , topojsonMesh
+    , jsonProperty
     , transform
     , projection
     , prNumExpr
@@ -1751,19 +1751,20 @@ See the Vega-Lite
 [format](https://vega.github.io/vega-lite/docs/data.html#format) and
 [JSON](https://vega.github.io/vega-lite/docs/data.html#json) documentation.
 
-@docs csv
-@docs tsv
-@docs dsv
-@docs arrow
-@docs jsonProperty
-@docs topojsonFeature
-@docs topojsonMesh
 @docs parse
 
 @docs foNum
 @docs foBoo
 @docs foDate
 @docs foUtc
+
+@docs csv
+@docs tsv
+@docs dsv
+@docs arrow
+@docs topojsonFeature
+@docs topojsonMesh
+@docs jsonProperty
 
 ---
 
@@ -6723,10 +6724,11 @@ arLayer =
     Layer
 
 
-{-| [Apache arrow](https://observablehq.com/@theneuralbit/introduction-to-apache-arrow)
-data file format.
+{-| Specify an [Apache arrow](https://observablehq.com/@theneuralbit/introduction-to-apache-arrow)
+data file format when reading a data file. For example,
 
-    data =
+    myData : Data
+    myData =
         dataFromUrl "https://gicentre.github.io/data/scrabble.arrow" [ arrow ]
 
 -}
@@ -9969,8 +9971,13 @@ coView =
     View
 
 
-{-| CSV data file format (only necessary if the file extension does not indicate the
-type).
+{-| Specify a CSV (comma-separated values) file format when reading a data file.
+Only necessary if the file extension does not indicate the type. For example,
+
+    myData : Data
+    myData =
+        dataFromUrl "myData" [ csv ]
+
 -}
 csv : Format
 csv =
@@ -10682,10 +10689,25 @@ datasets namedData =
 
 {-| Generate a sequence of numbers as a data source between the value of the first
 parameter (inclusive) and the second (exclusive) in steps of the value of the third.
-The resulting sequence will have the name `data`.
+The resulting sequence will have the name `data` when referring to it within a
+specification. For example,
 
-    myData =
-        dataSequence 0 6.28 0.1
+    sineWave : Spec
+    sineWave =
+        let
+            myData =
+                dataSequence 0 (2 * pi) (pi / 90)
+
+            trans =
+                transform
+                    << calculateAs "sin(datum.data)" "y"
+
+            enc =
+                encoding
+                    << position X [ pName "data", pQuant ]
+                    << position Y [ pName "y", pQuant ]
+        in
+        toVegaLite [ myData, trans [], enc [], line [] ]
 
 To give the sequence an alternative name use [dataSequenceAs](#dataSequenceAs)
 
@@ -10709,8 +10731,9 @@ dataSequence start stop step =
 parameter (inclusive) and the second (exclusive) in steps of the value of the third.
 The resulting sequence will have the name provided as the fourth parameter.
 
+    myData : Data
     myData =
-        dataSequenceAs 0 6.28 0.1 "x"
+        dataSequenceAs 0 (2 * pi) (pi / 90) "x"
 
 -}
 dataSequenceAs : Float -> Float -> Float -> String -> Data
@@ -11146,7 +11169,13 @@ dQuant =
     DmType Quantitative
 
 
-{-| Delimited file format (DSV) with a given separator.
+{-| Specify a custom delimited file format (DSV) with a given separator when
+reading a data file.
+
+    myData : Data
+    myData =
+        dataFromUrl "myData" [ dsv '|' ]
+
 -}
 dsv : Char -> Format
 dsv =
@@ -11743,9 +11772,16 @@ foBoo =
     FoBoo
 
 
-{-| Date format for parsing input data using
+{-| Specify a date/time format when [parsing](#parse) input data. Should use
 [D3's formatting specifiers](https://github.com/d3/d3-time-format#locale_format)
-or left as an empty string for default formatting.
+to describe the data-time format or an empty string for default formatting. For
+example,
+
+    myData : Data
+    myData =
+        dataFromUrl "myDataFile.csv"
+            [ parse [ ( "timestamp", foDate "%d %b %Y %H:%M" ) ] ]
+
 -}
 foDate : String -> DataType
 foDate =
@@ -11796,7 +11832,7 @@ foldAs fields keyName valName =
         )
 
 
-{-| Indicate numeric data type to be parsed when reading input data.
+{-| Indicate numeric data type to be [parsed](#parse) when reading input data.
 -}
 foNum : DataType
 foNum =
@@ -11810,7 +11846,8 @@ fOrdinal =
     FmType Ordinal
 
 
-{-| Similar to [foDate](#foDate) but for UTC format dates.
+{-| Similar to [foDate](#foDate) but for [UTC](https://www.utctime.net) format
+dates.
 -}
 foUtc : String -> DataType
 foUtc =
@@ -12158,20 +12195,22 @@ gnomonic =
 The parameter can be used to specify the number and extent of lines, or to use
 default values, provide an empty list.
 
-    let
-        proj =
-            projection [ prType orthographic ]
+    myGlobe : Spec
+    myGlobe =
+        let
+            proj =
+                projection [ prType orthographic ]
 
-        sphereSpec =
-            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+            sphereSpec =
+                asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
 
-        gratSpec =
-            asSpec
-                [ graticule [ grStep ( 5, 5 ) ]
-                , geoshape [ maFilled False, maStrokeWidth 0.3 ]
-                ]
-    in
-    toVegaLite [ proj, layer [ sphereSpec, gratSpec ] ]
+            gratSpec =
+                asSpec
+                    [ graticule [ grStep ( 15, 15 ) ]
+                    , geoshape [ maFilled False ]
+                    ]
+        in
+        toVegaLite [ proj, layer [ sphereSpec, gratSpec ] ]
 
 -}
 graticule : List GraticuleProperty -> Data
@@ -12185,17 +12224,17 @@ graticule grProps =
         )
 
 
-{-| Set the extent of both major and minor graticule lines. The first parameter
-is a (longitude,latitude) pair defining the minimum extent, the second parameter
-the maximum extent.
+{-| Set the extent of both major and minor [graticule](#graticule) lines. The first
+parameter is a (longitude,latitude) pair defining the minimum extent, the second
+parameter the maximum extent.
 -}
 grExtent : ( Float, Float ) -> ( Float, Float ) -> GraticuleProperty
 grExtent =
     GrExtent
 
 
-{-| Set the extent of major graticule lines. The first parameter is a
-(longitude,latitude) pair defining the minimum extent, the second parameter
+{-| Set the extent of major [graticule](#graticule) lines. The first parameter is
+a (longitude,latitude) pair defining the minimum extent, the second parameter
 the maximum extent.
 -}
 grExtentMajor : ( Float, Float ) -> ( Float, Float ) -> GraticuleProperty
@@ -12203,8 +12242,8 @@ grExtentMajor =
     GrExtentMajor
 
 
-{-| Set the extent of minor graticule lines. The first parameter is a
-(longitude,latitude) pair defining the minimum extent, the second parameter
+{-| Set the extent of minor [graticule](#graticule) lines. The first parameter is
+a (longitude,latitude) pair defining the minimum extent, the second parameter
 the maximum extent.
 -}
 grExtentMinor : ( Float, Float ) -> ( Float, Float ) -> GraticuleProperty
@@ -12244,7 +12283,7 @@ grRadial =
     GrRadial
 
 
-{-| Set the step sizes between all graticule lines. The parameter is a
+{-| Set the step sizes between all [graticule](#graticule) lines. The parameter is a
 (longitude,latitude) pair defining the EW and NS graticule intervals respectively.
 -}
 grStep : ( Float, Float ) -> GraticuleProperty
@@ -12252,18 +12291,20 @@ grStep =
     GrStep
 
 
-{-| Set the step sizes between major graticule lines. By default, major graticule
-lines extend to both poles, but minor lines stop at ±80 degrees latitude. The parameter
-is a (longitude,latitude) pair defining the EW and NS graticule intervals respectively.
+{-| Set the step sizes between major [graticule](#graticule) lines. By default,
+major graticule lines extend to both poles, but minor lines stop at ±80 degrees
+latitude. The parameter is a (longitude,latitude) pair defining the EW and NS
+graticule intervals respectively.
 -}
 grStepMajor : ( Float, Float ) -> GraticuleProperty
 grStepMajor =
     GrStepMajor
 
 
-{-| Set the step sizes between minor graticule lines. By default, major graticule
-lines extend to both poles, but minor lines stop at ±80 degrees latitude. The parameter
-is a (longitude,latitude) pair defining the EW and NS graticule intervals respectively.
+{-| Set the step sizes between minor [graticule](#graticule) lines. While major
+graticule lines extend to both poles, by default minor lines stop at ±80 degrees
+latitude. The parameter is a (longitude,latitude) pair defining the EW and NS
+graticule intervals respectively.
 -}
 grStepMinor : ( Float, Float ) -> GraticuleProperty
 grStepMinor =
@@ -12278,9 +12319,9 @@ grStops =
     List.sortBy Tuple.first >> GrStops
 
 
-{-| The precision of the graticule in degrees. If unspecified, the default of 2.5
-degrees is used. Smaller values provide a less stepped appearance of curved lines
-but take longer to render.
+{-| The precision of the [graticule](#graticule) in degrees. If unspecified, the
+default of 2.5 degrees is used. Smaller values provide a less stepped appearance
+of curved lines but take longer to render.
 -}
 grPrecision : Float -> GraticuleProperty
 grPrecision n =
@@ -17517,14 +17558,21 @@ params prms =
     ( VLParams, JE.list extract prms )
 
 
-{-| Parsing rules when processing some data text, specified as a list of tuples
-in the form (_fieldName_, _dataType_). Useful when automatic type inference needs
-to be overridden, for example when converting integers representing years into dates
-and strings into numbers:
+{-| Specify parsing rules when processing some data text with [dataFromUrl](#dataFromUrl),
+[dataFromColumns](#dataFromColumns) etc. The parameter should be a list of tuples
+in the form (_fieldName_, _[DataType](#DataType)_). Useful when automatic type
+inference needs to be overridden, for example to ensure numbers with `-` symbols
+are treated as integers and not strings in [transform](#transform) calculations
+or when converting integers representing years into dates. For example,
 
-    data =
+    myData : Data
+    myData =
         dataFromUrl "myDataFile.csv"
-            [ parse [ ( "year", foDate "%Y" ), ( "y", foNum ) ] ]
+            [ parse
+                [ ( "year", foDate "%Y" )
+                , ( "change", foNum )
+                ]
+            ]
 
 -}
 parse : List ( String, DataType ) -> Format
@@ -19763,11 +19811,13 @@ specification spec =
 {-| Generate a data source that is a sphere for bounding global geographic data.
 The sphere will be subject to whatever projection is specified for the view.
 
-    toVegaLite
-        [ sphere
-        , projection [ prType orthographic ]
-        , geoshape [ maFill "aliceblue" ]
-        ]
+    myGlobe : Spec
+    myGlobe =
+        toVegaLite
+            [ sphere
+            , projection [ prType orthographic ]
+            , geoshape [ maFill "aliceblue" ]
+            ]
 
 -}
 sphere : Data
@@ -20804,8 +20854,10 @@ tooltips tDefss =
 of the object can be found by inspecting the topoJSON file and searching for the
 value associated with the `objects` key.
 
-    geodata =
-        dataFromUrl "city.json" [ topojsonFeature "boroughs" ]
+    myData : Data
+    myData =
+        dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonBoroughs.json"
+            [ topojsonFeature "boroughs" ]
 
 -}
 topojsonFeature : String -> Format
@@ -20815,7 +20867,17 @@ topojsonFeature s =
 
 {-| A topoJSON mesh format containing an object with the given name. Unlike
 `topojsonFeature`, the corresponding geo data are returned as a single unified mesh,
-not as individual GeoJSON features.
+not as individual GeoJSON features. Generally meshes can be faster to render but
+only suitable for showing boundary features, not filled areas. For example:
+
+    myLondon : Spec
+    myLondon =
+        toVegaLite
+            [ dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonBoroughs.json"
+                [ topojsonMesh "boroughs" ]
+            , geoshape [ maFilled False ]
+            ]
+
 -}
 topojsonMesh : String -> Format
 topojsonMesh s =
@@ -20976,8 +21038,13 @@ tStr s =
     TString (Str s)
 
 
-{-| TSV data file format (only necessary if the file extension does not indicate the
-type).
+{-| Specify a TSV (tab-separated values) file format when reading a data file.
+Only necessary if the file extension does not indicate the type. For example,
+
+    myData : Data
+    myData =
+        dataFromUrl "myData" [ tsv ]
+
 -}
 tsv : Format
 tsv =
