@@ -27431,6 +27431,8 @@ ttContentSpec ttContent =
 
 
 
+{-| Arbitrary JSON object, ignored by vega-lite
+-}
 userMeta : Spec -> ( VLProperty, Spec )
 userMeta spec =
     ( VLUserMeta, spec )
