@@ -13427,7 +13427,7 @@ var $author$project$AnimatedScatter$animatedScatter1 = function () {
 				[
 					$author$project$VegaLite$oName('Year')
 				])));
-	var incomeData = A2($author$project$VegaLite$dataFromUrl, 'https://gicentre.github.io/data/incomeInequality2020.csv', _List_Nil);
+	var incomeData = A2($author$project$VegaLite$dataFromUrl, 'https://gicentre.github.io/data/incomeInequality2021.csv', _List_Nil);
 	var transJoin = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
