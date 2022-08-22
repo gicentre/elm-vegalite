@@ -275,6 +275,13 @@
   </figure>
   <div style="clear: left"></div>
 
+
+  <figure class="cell">
+    <div id="dateCfg1"></div>
+    <figcaption>Configure default date appearance. Text marks should be abbreviated years.</figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
   <h2>Source</h2>
   <div id="elmContainer"></div>
 
@@ -285,6 +292,10 @@
       const dp = params.match(/\d+/)[0];
       const unit = params.replace(dp, '');
       return datum.toFixed(dp) + unit;
+    });
+    vega.expressionFunction('yrFormat', function (datum, params) {
+      // Input should be a string representing a year, parameters ignored in this example.
+      return "'" + (datum + '').slice(-2);
     });
   </script>
 

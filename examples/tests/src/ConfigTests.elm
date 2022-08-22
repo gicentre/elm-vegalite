@@ -1263,6 +1263,29 @@ numberCfg2 =
         ]
 
 
+dateCfg1 : Spec
+dateCfg1 =
+    let
+        cfg =
+            configure
+                -- Use custom formatter to display
+                << configuration (coCustomFormatTypes True)
+                << configuration (coTimeFormatType "yrFormat")
+
+        data =
+            dataFromColumns []
+                << dataColumn "year" (nums [ 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 ])
+                << dataColumn "val" (nums [ 10, 5, 7, 3, 5, 9, 2, 3 ])
+
+        enc =
+            encoding
+                << position X [ pName "year" ]
+                << position Y [ pName "val", pQuant ]
+                << text [ tName "year", tTemporal ]
+    in
+    toVegaLite [ cfg [], width 400, data [], enc [], textMark [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -1302,6 +1325,7 @@ specs =
     , ( "paramCfg6", paramCfg6 )
     , ( "numberCfg1", numberCfg1 )
     , ( "numberCfg2", numberCfg2 )
+    , ( "dateCfg1", dateCfg1 )
     ]
 
 

@@ -1233,6 +1233,7 @@ module VegaLite exposing
     , coTick
     , coTitle
     , coTimeFormat
+    , coTimeFormatType
     , coTrail
     , coView
     , axcoAria
@@ -3509,6 +3510,7 @@ Allows default properties for most marks and guides to be set. See the
 @docs coTick
 @docs coTitle
 @docs coTimeFormat
+@docs coTimeFormatType
 @docs coTrail
 @docs coView
 
@@ -4480,7 +4482,8 @@ type ConditionalAxisProperty
 [coPoint](#coPoint), [coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
 [coRule](#coRule), [coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
 [coText](#coText), [coFont](#coFont), [coTick](#coTick), [coTitle](#coTitle),
-[coTimeFormat](#coTimeFormat), [coTrail](#coTrail) and [coView](#coView).
+[coTimeFormat](#coTimeFormat), [coTimeFormatType](#coTimeFormatType), [coTrail](#coTrail)
+and [coView](#coView).
 -}
 type ConfigurationProperty
     = AreaStyle (List MarkProperty)
@@ -4530,6 +4533,7 @@ type ConfigurationProperty
     | TickStyle (List MarkProperty)
     | TitleStyle (List TitleConfig)
     | TimeFormat Str
+    | TimeFormatType Str
       -- Note: Trails appear unusual in having their own top-level config
       -- (see https://vega.github.io/vega-lite/docs/trail.html#config)
     | TrailStyle (List MarkProperty)
@@ -10101,6 +10105,15 @@ coTitle =
 coTimeFormat : String -> ConfigurationProperty
 coTimeFormat s =
     TimeFormat (Str s)
+
+
+{-| Provide the name of a registered custom formatter for temporal output that appears
+in axis labels, legends and tooltips. See [coCustomFormatTypes](#coCustomFormatTypes)
+for an example of how to register custom formatter.
+-}
+coTimeFormatType : String -> ConfigurationProperty
+coTimeFormatType s =
+    TimeFormatType (Str s)
 
 
 {-| Configure the default style of trail marks.
@@ -23361,6 +23374,9 @@ configProperty configProp =
 
         TimeFormat s ->
             strExpr "timeFormat" s
+
+        TimeFormatType s ->
+            strExpr "timeFormatType" s
 
         Axis axType acs ->
             [ ( axisLabel axType, JE.object (List.concatMap axisConfigProperty acs) ) ]

@@ -2,10 +2,13 @@
 
 ## Pending
 
-- `coNumberFormatType` and `coNormalizedNumberFormatType` for configuring custom numeric formatting of axis, legend and tooltip numbers (Vega-Lite 5.4).
+- `coNumberFormatType` and `coNormalizedNumberFormatType` for configuring custom numeric formatting of axis, legend and tooltip numbers (Vega-Lite 5.4) and `coTimeFormatType` for custom temporal formatting (Vega-Lite 5.5).
 
-- Add number format configuration tests for new Vega-Lite 5.4 number formatting configuration options
+- Add number format configuration tests for new Vega-Lite 5.4 and 5.5 number and time formatting configuration options.
+
 - Add many examples to API docs.
+
+---
 
 ## V4.0.0 ➡ V5.0.0
 
