@@ -371,6 +371,39 @@ interaction11 : Spec
 interaction11 =
     let
         desc =
+            description "Stock prices of 5 Tech Companies over Time, with a point marker on hover. Note that the hidden markers are intentionally bigger to make it easier for readers to hover."
+
+        data =
+            dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
+
+        enc =
+            encoding
+                << position X [ pName "date", pTemporal ]
+                << position Y [ pName "price", pQuant ]
+                << color [ mName "symbol" ]
+
+        specLines =
+            asSpec [ line [] ]
+
+        ps =
+            params
+                << param "hover" [ paSelect sePoint [ seOn "mouseover", seClear "mouseout" ] ]
+
+        encPoint =
+            encoding
+                << opacity [ mCondition (prParamEmpty "hover") [ mNum 1 ] [ mNum 0 ] ]
+                << size [ mCondition (prParamEmpty "hover") [ mNum 48 ] [ mNum 100 ] ]
+
+        specPoint =
+            asSpec [ ps [], encPoint [], circle [ maTooltip ttEncoding ] ]
+    in
+    toVegaLite [ desc, width 400, height 300, data, enc [], layer [ specLines, specPoint ] ]
+
+
+interaction12 : Spec
+interaction12 =
+    let
+        desc =
             description "Displays labels for all stock prices of the hovered time"
 
         data =
@@ -427,8 +460,8 @@ interaction11 =
     toVegaLite [ desc, width 400, height 300, data, layer [ spec1, spec2 ] ]
 
 
-interaction12 : Spec
-interaction12 =
+interaction13 : Spec
+interaction13 =
     let
         desc =
             description "Displays tooltips for all stock prices of the hovered time"
@@ -490,8 +523,8 @@ interaction12 =
     toVegaLite [ desc, width 400, height 300, data, enc [], layer [ spec1, spec2 ] ]
 
 
-interaction13 : Spec
-interaction13 =
+interaction14 : Spec
+interaction14 =
     let
         data =
             dataFromUrl (path ++ "stocks.csv") [ parse [ ( "date", foDate "" ) ] ]
@@ -552,8 +585,8 @@ interaction13 =
     toVegaLite [ width 650, height 300, data, layer [ pointSpec, lineSpec, labelledRuleSpec ] ]
 
 
-interaction14 : Spec
-interaction14 =
+interaction15 : Spec
+interaction15 =
     let
         desc =
             description "Multi Series Line Chart with Tooltip"
@@ -602,8 +635,8 @@ interaction14 =
     toVegaLite [ desc, cfg [], data, enc [], layer [ spec1, spec2, spec3 ] ]
 
 
-interaction15 : Spec
-interaction15 =
+interaction16 : Spec
+interaction16 =
     let
         desc =
             description "Drag a rectangular brush to show (first 20) selected points in a table."
@@ -691,8 +724,8 @@ interaction15 =
         ]
 
 
-interaction16 : Spec
-interaction16 =
+interaction17 : Spec
+interaction17 =
     let
         data =
             dataFromColumns []
@@ -724,8 +757,8 @@ interaction16 =
     toVegaLite [ cfg [], data [], ps [], enc [], rect [ maStrokeWidth 2 ] ]
 
 
-interaction17 : Spec
-interaction17 =
+interaction18 : Spec
+interaction18 =
     let
         data =
             dataFromUrl (path ++ "cars.json") []
@@ -790,6 +823,7 @@ mySpecs =
         , ( "interaction15", interaction15 )
         , ( "interaction16", interaction16 )
         , ( "interaction17", interaction17 )
+        , ( "interaction18", interaction18 )
         ]
 
 
