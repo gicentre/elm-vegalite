@@ -11,7 +11,7 @@ import VegaLite exposing (..)
 
 path : String
 path =
-    "https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/"
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/"
 
 
 markCondition1 : Spec
