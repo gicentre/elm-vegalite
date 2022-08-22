@@ -9,6 +9,11 @@ import Json.Encode
 import VegaLite exposing (..)
 
 
+path : String
+path =
+    "https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/"
+
+
 tooltip1 : Spec
 tooltip1 =
     let
@@ -67,6 +72,32 @@ tooltip3 =
     toVegaLite [ prm [], data [], enc [], bar [] ]
 
 
+tooltip4 : Spec
+tooltip4 =
+    let
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromColumns []
+                << dataColumn "image"
+                    (strs
+                        [ path ++ "ffox.png"
+                        , path ++ "gimp.png"
+                        , path ++ "7zip.png"
+                        ]
+                    )
+
+        enc =
+            encoding
+                << text [ tName "image" ]
+                << position Y [ pName "image", pAxis [] ]
+                << tooltips [ [ tName "image" ] ]
+    in
+    toVegaLite [ cfg [], data [], enc [], textMark [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -76,6 +107,7 @@ specs =
     [ ( "tooltip1", tooltip1 )
     , ( "tooltip2", tooltip2 )
     , ( "tooltip3", tooltip3 )
+    , ( "tooltip4", tooltip4 )
     ]
 
 
