@@ -16200,7 +16200,11 @@ maTicks =
     MTicks
 
 
-{-| Source of a mark's tooltip content.
+{-| Provide source of a mark's tooltip content. For example to show all encoded
+data values in the tooltip of a circle mark:
+
+    circle [ maTooltip ttEncoding ]
+
 -}
 maTooltip : TooltipContent -> MarkProperty
 maTooltip =
