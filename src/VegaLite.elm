@@ -54,9 +54,29 @@ module VegaLite exposing
     , projection
     , prNumExpr
     , prType
+    , albers
+    , albersUsa
+    , azimuthalEqualArea
+    , azimuthalEquidistant
+    , conicConformal
+    , conicEqualArea
+    , conicEquidistant
+    , equalEarth
+    , equirectangular
+    , gnomonic
+    , identityProjection
+    , mercator
+    , naturalEarth1
+    , orthographic
+    , stereographic
+    , transverseMercator
+    , customProjection
     , prExpr
     , prClipAngle
     , prClipExtent
+    , noClip
+    , clipRect
+    , clipRectExpr
     , prFit
     , prCenter
     , prCenterExpr
@@ -80,26 +100,6 @@ module VegaLite exposing
     , prReflectY
     , prSpacing
     , prTilt
-    , albers
-    , albersUsa
-    , azimuthalEqualArea
-    , azimuthalEquidistant
-    , conicConformal
-    , conicEqualArea
-    , conicEquidistant
-    , equalEarth
-    , equirectangular
-    , gnomonic
-    , identityProjection
-    , mercator
-    , naturalEarth1
-    , orthographic
-    , stereographic
-    , transverseMercator
-    , customProjection
-    , noClip
-    , clipRect
-    , clipRectExpr
     , aggregate
     , joinAggregate
     , opAs
@@ -1217,6 +1217,9 @@ module VegaLite exposing
     , coMark
     , coMarkStyles
     , coNumberFormat
+    , coNumberFormatType
+    , coNormalizedNumberFormat
+    , coNormalizedNumberFormatType
     , coPadding
     , coPoint
     , coProjection
@@ -1772,7 +1775,9 @@ See the Vega-Lite
 # 3. Transforming Data
 
 Transformation rules are applied to data fields or geospatial coordinates before
-they are encoded visually.
+they are encoded visually. They are used when data need to be changed in some way,
+such as filtering items, calculating new fields, joining data tables or performing
+statistical analysis.
 
   - [3.1 Map Projections](#3-1-map-projections)
   - [3.2 Aggregation](#3-2-aggregation)
@@ -1804,9 +1809,31 @@ See the
 @docs prNumExpr
 
 @docs prType
+@docs albers
+@docs albersUsa
+@docs azimuthalEqualArea
+@docs azimuthalEquidistant
+@docs conicConformal
+@docs conicEqualArea
+@docs conicEquidistant
+@docs equalEarth
+@docs equirectangular
+@docs gnomonic
+@docs identityProjection
+@docs mercator
+@docs naturalEarth1
+@docs orthographic
+@docs stereographic
+@docs transverseMercator
+@docs customProjection
 @docs prExpr
+
 @docs prClipAngle
 @docs prClipExtent
+@docs noClip
+@docs clipRect
+@docs clipRectExpr
+
 @docs prFit
 @docs prCenter
 @docs prCenterExpr
@@ -1830,27 +1857,6 @@ See the
 @docs prReflectY
 @docs prSpacing
 @docs prTilt
-
-@docs albers
-@docs albersUsa
-@docs azimuthalEqualArea
-@docs azimuthalEquidistant
-@docs conicConformal
-@docs conicEqualArea
-@docs conicEquidistant
-@docs equalEarth
-@docs equirectangular
-@docs gnomonic
-@docs identityProjection
-@docs mercator
-@docs naturalEarth1
-@docs orthographic
-@docs stereographic
-@docs transverseMercator
-@docs customProjection
-@docs noClip
-@docs clipRect
-@docs clipRectExpr
 
 
 ## 3.2 Aggregation
@@ -3487,6 +3493,9 @@ Allows default properties for most marks and guides to be set. See the
 @docs coMark
 @docs coMarkStyles
 @docs coNumberFormat
+@docs coNumberFormatType
+@docs coNormalizedNumberFormat
+@docs coNormalizedNumberFormatType
 @docs coPadding
 @docs coPoint
 @docs coProjection
@@ -4465,7 +4474,9 @@ type ConditionalAxisProperty
 [coConcat](#coConcat), [coCountTitle](#coCountTitle), [coCustomFormatTypes](#coCustomFormatTypes),
 [coFieldTitle](#coFieldTitle),[coGeoshape](#coGeoshape), [coFacet](#coFacet), [coHeader](#coHeader),
 [coLegend](#coLegend), [coLocale](#coLocale), [coLine](#coLine), [coMark](#coMark),
-[coMarkStyles](#coMarkStyles), [coNumberFormat](#coNumberFormat), [coPadding](#coPadding),
+[coMarkStyles](#coMarkStyles), [coNormalizedNumberFormat](#coNormalisedNumberFormat),
+[coNumberFormat](#coNumberFormat), [coNumberFormaType](#coNumberFormatType),
+[coNormalizedNumberFormatType](#coNormalizedNumberFormatType), [coPadding](#coPadding),
 [coPoint](#coPoint), [coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
 [coRule](#coRule), [coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
 [coText](#coText), [coFont](#coFont), [coTick](#coTick), [coTitle](#coTitle),
@@ -4502,7 +4513,10 @@ type ConfigurationProperty
     | HeaderStyle (List HeaderProperty)
     | MarkStyle (List MarkProperty)
     | MarkStyles (List ( String, List MarkProperty ))
+    | NormalizedNumberFormat Str
+    | NormalizedNumberFormatType Str
     | NumberFormat Str
+    | NumberFormatType Str
     | Padding Padding
     | PointStyle (List MarkProperty)
     | Projection (List ProjectionProperty)
@@ -9310,16 +9324,81 @@ circle =
     mark Circle
 
 
-{-| Clipping rectangle in pixel units. The four parameters are respectively
-'left', 'top', 'right' and 'bottom' of the rectangular clipping bounds.
+{-| Specify the bounds in pixel coordinates of a clipped map projection in left,
+top, right, and bottom order. For example,
+
+    myMap : Spec
+    myMap =
+        let
+            geoData =
+                dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                    [ topojsonFeature "countries1" ]
+
+            proj =
+                projection
+                    [ clipRect 0 0 600 270
+                        |> prClipExtent
+                    ]
+        in
+        toVegaLite
+            [ width 600
+            , height 300
+            , geoData
+            , proj
+            , geoshape []
+            ]
+
 -}
 clipRect : Float -> Float -> Float -> Float -> ClipRect
 clipRect l t r b =
     LTRB l t r b
 
 
-{-| Expression that evaluates to the left, top, bottom, and right of a clipping
-rectangle in pixel coordinates.
+{-| Specify the bounds of a clipped map projection region with four expressions in
+left, top, right, and bottom order that evaluate to pixel positions. Useful when
+parameterising clip extent interactively. For example,
+
+    myMap : Spec
+    myMap =
+        let
+            geoData =
+                dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                    [ topojsonFeature "countries1" ]
+
+            ps =
+                params
+                    << param "left"
+                        [ paValue (num 0)
+                        , paBind (ipRange [ inMin 0, inMax 300 ])
+                        ]
+                    << param "right"
+                        [ paValue (num 600)
+                        , paBind (ipRange [ inMin 300, inMax 600 ])
+                        ]
+                    << param "top"
+                        [ paValue (num 0)
+                        , paBind (ipRange [ inMin 0, inMax 150 ])
+                        ]
+                    << param "bottom"
+                        [ paValue (num 300)
+                        , paBind (ipRange [ inMin 150, inMax 300 ])
+                        ]
+
+            proj =
+                projection
+                    [ clipRectExpr "left" "top" "right" "bottom"
+                        |> prClipExtent
+                    ]
+        in
+        toVegaLite
+            [ width 600
+            , height 300
+            , ps []
+            , geoData
+            , proj
+            , geoshape []
+            ]
+
 -}
 clipRectExpr : String -> String -> String -> String -> ClipRect
 clipRectExpr l t r b =
@@ -9560,9 +9639,35 @@ coCountTitle s =
     CountTitle (Str s)
 
 
-{-| Allow formatting of text marks and guides (e.g. [axFormatAsCustom](#axFormatAsCustom))
-to accept a custom formatter function registered as a Vega expression. See
+{-| Determine whether formatting of text marks and guides (e.g.
+[axFormatAsCustom](#axFormatAsCustom)) will accept a custom formatter function.
+If true, the custom formatter should be registered as a Vega expression. For
+example, registering the JavaScript function
+
+    vega.expressionFunction('unitFormat', function (datum, params) {
+      const dp = params.match(/\d+/)[0];
+      const unit = params.replace(dp, '');
+      return datum.toFixed(dp) + unit;
+    });
+
+And enabling custom formatting within
+
+    cfg =
+        configure
+            << configuration (coCustomFormatTypes True)
+
+Allows custom axis formatting such as the following to display units to 2 decimal
+places followed by an 'm'
+
+    pAxis
+        [ axTitle "Flipper length"
+        , axFormatAsCustom "unitFormat"
+        , axFormat "2m"
+        ]
+
+See
 [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+
 -}
 coCustomFormatTypes : Bool -> ConfigurationProperty
 coCustomFormatTypes b =
@@ -9810,7 +9915,7 @@ configure configs =
     ( VLConfig, JE.object configs )
 
 
-{-| A conformal conic map projection.
+{-| A conformal (shape-preserving) conic map projection.
 -}
 conicConformal : Projection
 conicConformal =
@@ -9824,18 +9929,54 @@ conicEqualArea =
     ConicEqualArea
 
 
-{-| An equidistant conic map projection.
+{-| An equidistant conic map projection. Distance is preserved along a standard
+parallel (or two parallels for secant projections).
 -}
 conicEquidistant : Projection
 conicEquidistant =
     ConicEquidistant
 
 
-{-| Configure the default number formatting for axis and text labels.
+{-| Configure the default number formatting for normalized numeric output used by
+stacked charts. Uses [d3 format codes](https://github.com/d3/d3-format#locale_format)
+to set appearance of numbers.
+-}
+coNormalizedNumberFormat : String -> ConfigurationProperty
+coNormalizedNumberFormat s =
+    NormalizedNumberFormat (Str s)
+
+
+{-| Provide the name of a registered custom formatter for numeric output used by
+stacked charts. See [coCustomFormatTypes](#coCustomFormatTypes)
+for an example of how to register custom formatter.
+-}
+coNormalizedNumberFormatType : String -> ConfigurationProperty
+coNormalizedNumberFormatType s =
+    NormalizedNumberFormatType (Str s)
+
+
+{-| Configure the default number formatting for numeric output that appears in axis
+labels, legends and tooltips. Uses
+[d3 format codes](https://github.com/d3/d3-format#locale_format) to set appearance
+of numbers. For example, to display numeric values to 3 decimal places:
+
+    cfg =
+        configure
+            << configuration (coNumberFormat ".3f")
+
 -}
 coNumberFormat : String -> ConfigurationProperty
 coNumberFormat s =
     NumberFormat (Str s)
+
+
+{-| Provide the name of a registered custom formatter for numeric output that appears
+in axis labels, legends and tooltips. See [coCustomFormatTypes](#coCustomFormatTypes)
+for an example of how to register custom formatter.
+-}
+coNumberFormatType : String -> ConfigurationProperty
+coNumberFormatType s =
+    NumberFormatType (Str s)
 
 
 {-| Configure the default padding in pixels from the edge of the of visualization
@@ -9921,6 +10062,9 @@ coStrExpr ex fn =
 
         NumberFormat _ ->
             NumberFormat (StrExpr ex)
+
+        NormalizedNumberFormat _ ->
+            NormalizedNumberFormat (StrExpr ex)
 
         TimeFormat _ ->
             TimeFormat (StrExpr ex)
@@ -11351,7 +11495,7 @@ equalEarth =
 
 
 {-| An equirectangular map projection that maps longitude to x and latitude to y.
-While showing less area distortion towards the poles than the default [mercator](#mercator)
+While showing less area distortion towards the poles than the [mercator](#mercator)
 projection, it is neither equal-area nor conformal.
 -}
 equirectangular : Projection
@@ -12166,17 +12310,30 @@ geoPolygons =
     GeoPolygons
 
 
-{-| [Geoshape](https://vega.github.io/vega-lite/docs/geoshape.html)
+{-| Display a [geoshape](https://vega.github.io/vega-lite/docs/geoshape.html)
 determined by geographically referenced coordinates.
 
-    let
-        data =
-            dataFromUrl "city.json" [ topojsonFeature "boroughs" ]
-    in
-    toVegaLite
-        [ data
-        , geoshape [ maFill "lightgrey", maStroke "white" ]
-        ]
+    myMap : Spec
+    myMap =
+        let
+            myData =
+                dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonBoroughs.json"
+                    [ topojsonFeature "boroughs" ]
+
+            proj =
+                projection
+                    [ prType transverseMercator
+                    , prRotate 2 0 0
+                    ]
+        in
+        toVegaLite
+            [ myData
+            , proj
+            , geoshape
+                [ maFill "lightgrey"
+                , maStroke "white"
+                ]
+            ]
 
 -}
 geoshape : List MarkProperty -> ( VLProperty, Spec )
@@ -17932,8 +18089,36 @@ pRepeatDatum =
     PRepeatDatum
 
 
-{-| Specify a map projection with an expression that evaluates to a valid projection
-name.
+{-| Specify a map projection type with an expression that evaluates to a valid
+projection name. Useful for interactive selection of map projection. For example,
+
+    myMap : Spec
+    myMap =
+        let
+            geoData =
+                dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                    [ topojsonFeature "countries1" ]
+
+            ps =
+                params
+                    << param "myProj"
+                        [ paValue (str "EqualEarth")
+                        , paBind
+                            (ipSelect
+                                [ inName "Map projection "
+                                , inOptions
+                                    [ "EqualEarth"
+                                    , "Orthographic"
+                                    ]
+                                ]
+                            )
+                        ]
+
+            proj =
+                projection [ prType (prExpr "myProj") ]
+        in
+        toVegaLite [ ps [], geoData, proj, geoshape [] ]
+
 -}
 prExpr : String -> Projection
 prExpr =
@@ -17977,15 +18162,24 @@ a map projection property function requiring a numeric value. This can be used f
 interactive parameterisation when an expression is bound to an input element.
 For example,
 
-    ps =
-        params
-            << param "angle"
-                [ paValue (num 0)
-                , paBind (ipRange [ inMax 180 ])
-                ]
+    myMap : Spec
+    myMap =
+        let
+            geoData =
+                dataFromUrl "https://gicentre.github.io/data/geoTutorials/world-110m.json"
+                    [ topojsonFeature "countries1" ]
 
-    proj =
-        projection [ prNumExpr "angle" prClipAngle ]
+            ps =
+                params
+                    << param "zoom"
+                        [ paValue (num 40)
+                        , paBind (ipRange [ inMin 40, inMax 500 ])
+                        ]
+
+            proj =
+                projection [ prNumExpr "zoom" prScale ]
+        in
+        toVegaLite [ ps [], geoData, proj, geoshape [] ]
 
 -}
 prNumExpr : String -> (number -> ProjectionProperty) -> ProjectionProperty
@@ -18034,10 +18228,24 @@ prNumExpr ex fn =
             fn 0
 
 
-{-| Map projection used for geospatial coordinates.
+{-| Create a map projection to transform geospatial coordinates. Only data positioned
+with [`Longitude` and `Latitude`](#Position) or displayed as a [geoshape](#geoshape)
+are affected by a projection.
 
-    proj =
-        projection [ prType equirectangular, prRotate -156 0 0 ]
+    myMap : Spec
+    myMap =
+        let
+            myData =
+                dataFromUrl "https://gicentre.github.io/data/geoTutorials/londonBoroughs.json"
+                    [ topojsonFeature "boroughs" ]
+
+            proj =
+                projection
+                    [ prType transverseMercator
+                    , prRotate 2 0 0
+                    ]
+        in
+        toVegaLite [ myData, proj, geoshape [] ]
 
 -}
 projection : List ProjectionProperty -> ( VLProperty, Spec )
@@ -18194,7 +18402,11 @@ prTranslateExpr tx ty =
     PrTranslate (NumExpr tx) (NumExpr ty)
 
 
-{-| Type of global map projection.
+{-| Type of global map projection. For example,
+
+    myProj =
+        projection [ prType orthographic ]
+
 -}
 prType : Projection -> ProjectionProperty
 prType =
@@ -20827,7 +21039,9 @@ tRepeat =
 
      tooltip [ tName "Month", tTemporal, tFormat "%B %Y" ]
 
-To encode multiple tooltip values with a mark, use [tooltips](#tooltips).
+To encode multiple tooltip values with a mark, use [tooltips](#tooltips). This is
+also useful if you wish the field name to be displayed along with the value, as
+by default, `tooltip` will only show the value.
 
 -}
 tooltip : List TextChannel -> List LabelledSpec -> List LabelledSpec
@@ -23118,8 +23332,17 @@ configProperty configProp =
         FieldTitle ftp ->
             [ ( "fieldTitle", JE.string (fieldTitleLabel ftp) ) ]
 
+        NormalizedNumberFormat s ->
+            strExpr "normalizedNumberFormat" s
+
+        NormalizedNumberFormatType s ->
+            strExpr "normalizedNumberFormatType" s
+
         NumberFormat s ->
             strExpr "numberFormat" s
+
+        NumberFormatType s ->
+            strExpr "numberFormatType" s
 
         Padding pad ->
             [ ( "padding", paddingSpec pad ) ]
