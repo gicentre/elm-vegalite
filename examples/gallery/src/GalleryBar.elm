@@ -949,6 +949,70 @@ bar29 =
         ]
 
 
+bar30 : Spec
+bar30 =
+    let
+        desc =
+            description "Heat lane chart based on https://www.smashingmagazine.com/2022/07/accessibility-first-approach-chart-visual-design"
+
+        cfg =
+            configure
+                << configuration (coView [ vicoStroke Nothing ])
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        trans =
+            transform
+                << binAs [] "Horsepower" "bHorsepower"
+                << aggregate [ opAs opCount "" "count" ] [ "bHorsepower", "bHorsepower_end" ]
+                << binAs [] "count" "bCount"
+                << calculateAs "datum.bCount_end/2" "y"
+                << calculateAs "-datum.bCount_end/2" "y2"
+                << joinAggregate [ opAs opMax "bCount_end" "maxBCountEnd" ] []
+
+        enc =
+            encoding
+                << position X [ pName "bHorsepower", pQuant, pAxis [ axTitle "Horsepower", axGrid False ] ]
+                << position X2 [ pName "bHorsepower_end" ]
+                << position Y [ pName "y", pAxis [] ]
+                << position Y2 [ pName "y2" ]
+
+        enc1 =
+            encoding
+                << color
+                    [ mName "maxBCountEnd"
+                    , mOrdinal
+                    , mTitle "Count"
+                    , mScale [ scScheme "lighttealblue" [] ]
+                    ]
+
+        enc2 =
+            encoding
+                << color
+                    [ mName "bCount_end"
+                    , mOrdinal
+                    , mTitle "Count"
+                    ]
+
+        spec1 =
+            asSpec [ enc1 [], bar [ maCornerRadius 3, maXOffset 2, maX2Offset -2 ] ]
+
+        spec2 =
+            asSpec [ enc2 [], bar [ maXOffset 2, maX2Offset -2, maYOffset -3, maY2Offset 3 ] ]
+    in
+    toVegaLite
+        [ cfg []
+        , width 400
+        , height 150
+        , title "Car engine horsepower distribution" []
+        , data
+        , trans []
+        , enc []
+        , layer [ spec1, spec2 ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -985,6 +1049,7 @@ mySpecs =
         , ( "bar27", bar27 )
         , ( "bar28", bar28 )
         , ( "bar29", bar29 )
+        , ( "bar30", bar30 )
         ]
 
 
