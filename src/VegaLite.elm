@@ -8671,14 +8671,16 @@ biNice b =
 {-| Binning transformation that may be referenced in other transformations or
 encodings. The first parameter is a list of customisation options ([biBase](#biBase),
 [biDivide](#biDivide) etc.) or an empty list to use the default binning. The second
-is the field to bin and the third the name to give the output binned data.
+is the field to bin and the third the name to give the output binned data. Usually,
+direct binning within an encoding is preferred over this form of bin transformation.
 
     trans =
         transform
             << binAs [ biMaxBins 3 ] "IMDB_Rating" "ratingGroup"
 
-Note that usually, direct binning within an encoding is preferred over this form
-of bin transformation.
+The name given to store the binned values (third parameter) will reference the start
+of each bin balue. To extract the end of each bin, use the same name but with `_end`
+appeded.
 
 -}
 binAs : List BinProperty -> String -> String -> List LabelledSpec -> List LabelledSpec
