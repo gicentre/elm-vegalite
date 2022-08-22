@@ -11941,7 +11941,7 @@ var $author$project$VegaLite$PmType = function (a) {
 };
 var $author$project$VegaLite$Quantitative = 2;
 var $author$project$VegaLite$pQuant = $author$project$VegaLite$PmType(2);
-var $author$project$ConfigTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$ConfigTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$VLMark = 14;
 var $author$project$VegaLite$markLabel = function (m) {

@@ -11117,7 +11117,7 @@ var $author$project$VegaLite$PSelect = F2(
 		return {$: 7, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
-var $author$project$ParamTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$ParamTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$ScDomain = function (a) {
 	return {$: 1, a: a};
 };

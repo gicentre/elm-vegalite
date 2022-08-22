@@ -12219,7 +12219,7 @@ var $author$project$VegaLite$maStrokeWidth = function (n) {
 };
 var $author$project$VegaLite$Orthographic = {$: 14};
 var $author$project$VegaLite$orthographic = $author$project$VegaLite$Orthographic;
-var $author$project$ProjectionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$ProjectionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$PrRotate = F3(
 	function (a, b, c) {
 		return {$: 7, a: a, b: b, c: c};

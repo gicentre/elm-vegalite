@@ -15033,7 +15033,7 @@ var $author$project$VegaLite$padding = function (pad) {
 		9,
 		$author$project$VegaLite$paddingSpec(pad));
 };
-var $author$project$TextFormatTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$TextFormatTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$SExpr = function (a) {
 	return {$: 4, a: a};
 };

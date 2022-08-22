@@ -11947,7 +11947,7 @@ var $author$project$VegaLite$maStrokeOpacity = function (n) {
 	return $author$project$VegaLite$MStrokeOpacity(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$GeoTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$GeoTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$vlPropertyLabel = function (spec) {
 	switch (spec) {
 		case 0:

@@ -10614,7 +10614,7 @@ var $author$project$VegaLite$PAxis = function (a) {
 	return {$: 14, a: a};
 };
 var $author$project$VegaLite$pAxis = $author$project$VegaLite$PAxis;
-var $author$project$SortTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$SortTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$Rect = 11;
 var $author$project$VegaLite$rect = $author$project$VegaLite$mark(11);
 var $author$project$VegaLite$WAscending = function (a) {

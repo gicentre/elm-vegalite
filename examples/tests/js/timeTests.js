@@ -10459,7 +10459,7 @@ var $author$project$VegaLite$pBandPosition = function (n) {
 	return $author$project$VegaLite$PBandPosition(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };

@@ -12133,7 +12133,7 @@ var $author$project$VegaLite$pTitle = function (s) {
 	return $author$project$VegaLite$PTitle(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$ViewCompositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$ViewCompositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$imMethodLabel = function (method) {
 	switch (method) {
 		case 0:
