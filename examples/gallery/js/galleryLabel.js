@@ -9224,8 +9224,17 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 				]);
 		case 30:
 			var s = configProp.a;
-			return A2($author$project$VegaLite$strExpr, 'numberFormat', s);
+			return A2($author$project$VegaLite$strExpr, 'normalizedNumberFormat', s);
 		case 31:
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'normalizedNumberFormatType', s);
+		case 32:
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'numberFormat', s);
+		case 33:
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'numberFormatType', s);
+		case 34:
 			var pad = configProp.a;
 			return _List_fromArray(
 				[
@@ -9233,7 +9242,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					'padding',
 					$author$project$VegaLite$paddingSpec(pad))
 				]);
-		case 43:
+		case 46:
 			var s = configProp.a;
 			return A2($author$project$VegaLite$strExpr, 'timeFormat', s);
 		case 3:
@@ -9353,7 +9362,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 33:
+		case 36:
 			var pps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9437,7 +9446,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 32:
+		case 35:
 			var mps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9446,7 +9455,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 35:
+		case 38:
 			var mps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9455,7 +9464,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 36:
+		case 39:
 			var mps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9464,7 +9473,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 39:
+		case 42:
 			var mps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9473,7 +9482,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 40:
+		case 43:
 			var mps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9482,7 +9491,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 41:
+		case 44:
 			var mps = configProp.a;
 			return _List_fromArray(
 				[
@@ -9491,7 +9500,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$markProperty, mps)))
 				]);
-		case 42:
+		case 45:
 			var tcs = configProp.a;
 			return _List_fromArray(
 				[
@@ -9538,7 +9547,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 							},
 							styles)))
 				]);
-		case 37:
+		case 40:
 			var scs = configProp.a;
 			return _List_fromArray(
 				[
@@ -9547,7 +9556,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$concatMap, $author$project$VegaLite$scaleConfigProperty, scs)))
 				]);
-		case 34:
+		case 37:
 			var rcs = configProp.a;
 			return _List_fromArray(
 				[
@@ -9556,7 +9565,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, $author$project$VegaLite$rangeConfigProperty, rcs)))
 				]);
-		case 38:
+		case 41:
 			var selConfig = configProp.a;
 			var selProp = function (_v4) {
 				var sel = _v4.a;
@@ -9573,7 +9582,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, selProp, selConfig)))
 				]);
-		case 45:
+		case 48:
 			var vcs = configProp.a;
 			return _List_fromArray(
 				[
@@ -10682,11 +10691,11 @@ var $author$project$VegaLite$cAxGridColor = F2(
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
 var $author$project$VegaLite$TitleStyle = function (a) {
-	return {$: 42, a: a};
+	return {$: 45, a: a};
 };
 var $author$project$VegaLite$coTitle = $author$project$VegaLite$TitleStyle;
 var $author$project$VegaLite$View = function (a) {
-	return {$: 45, a: a};
+	return {$: 48, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$color = function (markProps) {
@@ -11477,11 +11486,11 @@ var $author$project$GalleryLabel$label2 = function () {
 			]));
 }();
 var $author$project$VegaLite$Scale = function (a) {
-	return {$: 37, a: a};
+	return {$: 40, a: a};
 };
 var $author$project$VegaLite$coScale = $author$project$VegaLite$Scale;
 var $author$project$VegaLite$TextStyle = function (a) {
-	return {$: 40, a: a};
+	return {$: 43, a: a};
 };
 var $author$project$VegaLite$coText = $author$project$VegaLite$TextStyle;
 var $author$project$VegaLite$dataFromUrl = F2(

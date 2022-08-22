@@ -260,8 +260,33 @@
   </figure>
   <div style="clear: left"></div>
 
+  <h2>Number formatting</h2>
+
+  <figure class="cell">
+    <div id="numberCfg1"></div>
+    <figcaption>Configure default number appearance. Numbers should be displayed to 4 decimal places.</figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
+  <figure class="cell">
+    <div id="numberCfg2"></div>
+    <figcaption>Configure number appearance with a custom formatter for displaying measurement units
+    </figcaption>
+  </figure>
+  <div style="clear: left"></div>
+
   <h2>Source</h2>
   <div id="elmContainer"></div>
+
+  <!-- Register a custom formatter -->
+  <script>
+    vega.expressionFunction('unitFormat', function (datum, params) {
+      // Should be a number of decimal places followed by a unit, e.g. 3m or 0kg
+      const dp = params.match(/\d+/)[0];
+      const unit = params.replace(dp, '');
+      return datum.toFixed(dp) + unit;
+    });
+  </script>
 
   <script>
     Elm.ConfigTests.init({
