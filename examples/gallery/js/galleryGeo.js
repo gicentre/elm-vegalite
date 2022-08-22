@@ -10981,17 +10981,65 @@ var $author$project$VegaLite$calculateAs = F2(
 	});
 var $author$project$VegaLite$Circle = 6;
 var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$VLDescription = 2;
-var $author$project$VegaLite$description = function (s) {
-	return _Utils_Tuple2(
-		2,
-		$elm$json$Json$Encode$string(s));
+var $author$project$VegaLite$DNumbers = function (a) {
+	return {$: 0, a: a};
 };
-var $author$project$VegaLite$MSize = function (a) {
-	return {$: 53, a: a};
+var $author$project$VegaLite$Nums = function (a) {
+	return {$: 0, a: a};
 };
-var $author$project$VegaLite$maSize = function (n) {
-	return $author$project$VegaLite$MSize(
+var $author$project$VegaLite$doNums = function (ns) {
+	return $author$project$VegaLite$DNumbers(
+		$author$project$VegaLite$Nums(ns));
+};
+var $author$project$VegaLite$EqualEarth = {$: 9};
+var $author$project$VegaLite$equalEarth = $author$project$VegaLite$EqualEarth;
+var $author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$VegaLite$InName = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$inName = function (s) {
+	return $author$project$VegaLite$InName(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$InStep = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$inStep = function (n) {
+	return $author$project$VegaLite$InStep(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$JSON = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$jsonProperty = function (s) {
+	return $author$project$VegaLite$JSON(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MScale = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
+var $author$project$VegaLite$MColor = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$maColor = function (s) {
+	return $author$project$VegaLite$MColor(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$MFillOpacity = function (a) {
+	return {$: 31, a: a};
+};
+var $author$project$VegaLite$maFillOpacity = function (n) {
+	return $author$project$VegaLite$MFillOpacity(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$PName = function (a) {
@@ -11388,6 +11436,232 @@ var $author$project$VegaLite$position = F2(
 				$elm$json$Json$Encode$object(
 					A2($elm$core$List$concatMap, $author$project$VegaLite$positionChannelProperty, pDefs))));
 	});
+var $author$project$VegaLite$RNumbers = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$raNums = function (ns) {
+	return $author$project$VegaLite$RNumbers(
+		$author$project$VegaLite$Nums(ns));
+};
+var $author$project$VegaLite$ScDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
+var $author$project$VegaLite$ScExponent = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$scExponent = function (n) {
+	return $author$project$VegaLite$ScExponent(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$ScPow = 1;
+var $author$project$VegaLite$scPow = 1;
+var $author$project$VegaLite$ScRange = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$scRange = $author$project$VegaLite$ScRange;
+var $author$project$VegaLite$ScType = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
+var $author$project$VegaLite$size = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$GalleryGeo$geo11 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$transform,
+					A2($author$project$VegaLite$calculateAs, 'datum.geometry.coordinates[0]', 'longitude')),
+				A2($author$project$VegaLite$calculateAs, 'datum.geometry.coordinates[1]', 'latitude')),
+			A2($author$project$VegaLite$calculateAs, 'datum.properties.mag', 'magnitude')),
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum.magnitude >= minMag')));
+	var sphereSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$sphere,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFill('aliceblue')
+					]))
+			]));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$params,
+			A2(
+				$author$project$VegaLite$param,
+				'rotate',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(180)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(-180),
+									$author$project$VegaLite$inMax(180)
+								])))
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'minMag',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$num(0)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRange(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inName('Minimum magnitude'),
+								$author$project$VegaLite$inMin(0),
+								$author$project$VegaLite$inMax(8),
+								$author$project$VegaLite$inStep(0.1)
+							])))
+				])));
+	var mp = $author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				A3($author$project$VegaLite$prRotateExpr, 'rotate', '0', '0'),
+				$author$project$VegaLite$prType($author$project$VegaLite$equalEarth)
+			]));
+	var gratSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$graticule(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$grStep(
+						_Utils_Tuple2(15, 15))
+					])),
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFilled(false),
+						$author$project$VegaLite$maStrokeWidth(0.1),
+						$author$project$VegaLite$maStroke('black')
+					]))
+			]));
+	var earthquakeEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					10,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('longitude')
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				11,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('latitude')
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('magnitude'),
+					$author$project$VegaLite$mQuant,
+					$author$project$VegaLite$mScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scType($author$project$VegaLite$scPow),
+							$author$project$VegaLite$scExponent(10),
+							$author$project$VegaLite$scDomain(
+							$author$project$VegaLite$doNums(
+								_List_fromArray(
+									[0, 6]))),
+							$author$project$VegaLite$scRange(
+							$author$project$VegaLite$raNums(
+								_List_fromArray(
+									[0, 2000])))
+						]))
+				])));
+	var earthquakeData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryGeo$path + 'earthquakes.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$jsonProperty('features')
+			]));
+	var earthquakeSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				earthquakeData,
+				trans(_List_Nil),
+				earthquakeEnc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maColor('firebrick'),
+						$author$project$VegaLite$maFillOpacity(0.25),
+						$author$project$VegaLite$maStroke('black'),
+						$author$project$VegaLite$maStrokeWidth(0.5)
+					]))
+			]));
+	var countryData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$GalleryGeo$path + 'world-110m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('countries')
+			]));
+	var countrySpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				countryData,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFill('#ccc')
+					]))
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$GalleryGeo$cfg(_List_Nil),
+				ps(_List_Nil),
+				$author$project$VegaLite$width(700),
+				$author$project$VegaLite$height(450),
+				mp,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[sphereSpec, countrySpec, gratSpec, earthquakeSpec]))
+			]));
+}();
+var $author$project$VegaLite$VLDescription = 2;
+var $author$project$VegaLite$description = function (s) {
+	return _Utils_Tuple2(
+		2,
+		$elm$json$Json$Encode$string(s));
+};
+var $author$project$VegaLite$MSize = function (a) {
+	return {$: 53, a: a};
+};
+var $author$project$VegaLite$maSize = function (n) {
+	return $author$project$VegaLite$MSize(
+		$author$project$VegaLite$Num(n));
+};
 var $author$project$GalleryGeo$geo2 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -11452,13 +11726,6 @@ var $author$project$VegaLite$MString = function (a) {
 var $author$project$VegaLite$mStr = function (s) {
 	return $author$project$VegaLite$MString(
 		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$size = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'size',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
 var $author$project$GalleryGeo$geo3 = function () {
 	var overlayEnc = A2(
@@ -11545,23 +11812,10 @@ var $author$project$VegaLite$FEqual = F2(
 		return {$: 0, a: a, b: b};
 	});
 var $author$project$VegaLite$fiEqual = $author$project$VegaLite$FEqual;
-var $author$project$VegaLite$filter = function (f) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'filter',
-			$author$project$VegaLite$filterSpec(f)));
-};
 var $author$project$VegaLite$LUAs = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$luAs = $author$project$VegaLite$LUAs;
-var $author$project$VegaLite$MColor = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$maColor = function (s) {
-	return $author$project$VegaLite$MColor(
-		$author$project$VegaLite$Str(s));
-};
 var $author$project$VegaLite$Rule = 12;
 var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
 var $author$project$GalleryGeo$geo4 = function () {
@@ -12764,12 +13018,6 @@ var $author$project$VegaLite$DStrings = function (a) {
 var $author$project$VegaLite$RStrings = function (a) {
 	return {$: 1, a: a};
 };
-var $author$project$VegaLite$ScDomain = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$ScRange = function (a) {
-	return {$: 3, a: a};
-};
 var $elm$core$List$unzip = function (pairs) {
 	var step = F2(
 		function (_v0, _v1) {
@@ -12825,10 +13073,6 @@ var $author$project$VegaLite$MLegend = function (a) {
 	return {$: 15, a: a};
 };
 var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
-var $author$project$VegaLite$MScale = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$mScale = $author$project$VegaLite$MScale;
 var $author$project$VegaLite$MOpacity = function (a) {
 	return {$: 41, a: a};
 };
@@ -12976,7 +13220,8 @@ var $author$project$GalleryGeo$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('geo7', $author$project$GalleryGeo$geo7),
 			_Utils_Tuple2('geo8', $author$project$GalleryGeo$geo8),
 			_Utils_Tuple2('geo9', $author$project$GalleryGeo$geo9),
-			_Utils_Tuple2('geo10', $author$project$GalleryGeo$geo10)
+			_Utils_Tuple2('geo10', $author$project$GalleryGeo$geo10),
+			_Utils_Tuple2('geo11', $author$project$GalleryGeo$geo11)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);

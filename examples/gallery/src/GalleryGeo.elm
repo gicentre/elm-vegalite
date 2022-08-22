@@ -440,6 +440,75 @@ geo10 =
         ]
 
 
+geo11 : Spec
+geo11 =
+    let
+        ps =
+            params
+                << param "rotate" [ paValue (num 180), paBind (ipRange [ inMin -180, inMax 180 ]) ]
+                << param "minMag" [ paValue (num 0), paBind (ipRange [ inName "Minimum magnitude", inMin 0, inMax 8, inStep 0.1 ]) ]
+
+        mp =
+            projection [ prRotateExpr "rotate" "0" "0", prType equalEarth ]
+
+        countryData =
+            dataFromUrl (path ++ "world-110m.json") [ topojsonFeature "countries" ]
+
+        earthquakeData =
+            dataFromUrl (path ++ "earthquakes.json") [ jsonProperty "features" ]
+
+        trans =
+            transform
+                << calculateAs "datum.geometry.coordinates[0]" "longitude"
+                << calculateAs "datum.geometry.coordinates[1]" "latitude"
+                << calculateAs "datum.properties.mag" "magnitude"
+                << filter (fiExpr "datum.magnitude >= minMag")
+
+        sphereSpec =
+            asSpec [ sphere, geoshape [ maFill "aliceblue" ] ]
+
+        gratSpec =
+            asSpec
+                [ graticule [ grStep ( 15, 15 ) ]
+                , geoshape [ maFilled False, maStrokeWidth 0.1, maStroke "black" ]
+                ]
+
+        countrySpec =
+            asSpec [ countryData, geoshape [ maFill "#ccc" ] ]
+
+        earthquakeEnc =
+            encoding
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
+                << size
+                    [ mName "magnitude"
+                    , mQuant
+                    , mScale
+                        [ scType scPow
+                        , scExponent 10
+                        , scDomain (doNums [ 0, 6 ])
+                        , scRange (raNums [ 0, 2000 ])
+                        ]
+                    ]
+
+        earthquakeSpec =
+            asSpec
+                [ earthquakeData
+                , trans []
+                , earthquakeEnc []
+                , circle [ maColor "firebrick", maFillOpacity 0.25, maStroke "black", maStrokeWidth 0.5 ]
+                ]
+    in
+    toVegaLite
+        [ cfg []
+        , ps []
+        , width 700
+        , height 450
+        , mp
+        , layer [ sphereSpec, countrySpec, gratSpec, earthquakeSpec ]
+        ]
+
+
 
 {- This list comprises the specifications to be provided to the Vega-Lite runtime. -}
 
@@ -457,6 +526,7 @@ mySpecs =
         , ( "geo8", geo8 )
         , ( "geo9", geo9 )
         , ( "geo10", geo10 )
+        , ( "geo11", geo11 )
         ]
 
 
