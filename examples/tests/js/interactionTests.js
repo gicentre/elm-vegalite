@@ -12567,6 +12567,9 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 		case 46:
 			var s = configProp.a;
 			return A2($author$project$VegaLite$strExpr, 'timeFormat', s);
+		case 47:
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'timeFormatType', s);
 		case 3:
 			var axType = configProp.a;
 			var acs = configProp.b;
@@ -12904,7 +12907,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, selProp, selConfig)))
 				]);
-		case 48:
+		case 49:
 			var vcs = configProp.a;
 			return _List_fromArray(
 				[
@@ -13850,7 +13853,7 @@ var $author$project$InteractionTests$interaction16 = function () {
 			]));
 }();
 var $author$project$VegaLite$View = function (a) {
-	return {$: 48, a: a};
+	return {$: 49, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$CPointer = {$: 5};

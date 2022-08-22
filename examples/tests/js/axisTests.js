@@ -11322,6 +11322,9 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 		case 46:
 			var s = configProp.a;
 			return A2($author$project$VegaLite$strExpr, 'timeFormat', s);
+		case 47:
+			var s = configProp.a;
+			return A2($author$project$VegaLite$strExpr, 'timeFormatType', s);
 		case 3:
 			var axType = configProp.a;
 			var acs = configProp.b;
@@ -11659,7 +11662,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, selProp, selConfig)))
 				]);
-		case 48:
+		case 49:
 			var vcs = configProp.a;
 			return _List_fromArray(
 				[
