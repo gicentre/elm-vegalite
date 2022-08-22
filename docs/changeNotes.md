@@ -2,7 +2,7 @@
 
 ## Pending
 
-- `coNumberFormatType` and `coNormalizedNumberFormatType` for configuring custom numeric formatting of axis, legend and tooltip numbers.
+- `coNumberFormatType` and `coNormalizedNumberFormatType` for configuring custom numeric formatting of axis, legend and tooltip numbers (Vega-Lite 5.4).
 
 - Add number format configuration tests for new Vega-Lite 5.4 number formatting configuration options
 - Add many examples to API docs.
