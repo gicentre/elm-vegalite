@@ -21062,6 +21062,12 @@ that define the channel.
         , [ tName "temperature", tQuant ]
         ]
 
+Thsi multi-tooltip version (rather than [tooltip](#tooltip)) should also be used
+if you wish to [display images in tooltips](https://vega.github.io/vega-lite/docs/tooltip.html#tooltip-image).
+For example,
+
+    tooltips [ [ tName "image" ] ]
+
 -}
 tooltips : List (List TextChannel) -> List LabelledSpec -> List LabelledSpec
 tooltips tDefss =
