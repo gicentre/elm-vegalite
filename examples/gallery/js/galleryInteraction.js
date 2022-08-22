@@ -10856,12 +10856,8 @@ var $author$project$VegaLite$asSpec = function (specs) {
 			},
 			specs));
 };
-var $author$project$VegaLite$Circle = 6;
-var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
-var $author$project$VegaLite$View = function (a) {
-	return {$: 48, a: a};
-};
-var $author$project$VegaLite$coView = $author$project$VegaLite$View;
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$color = function (markProps) {
 	return $elm$core$List$cons(
 		_Utils_Tuple2(
@@ -10893,6 +10889,202 @@ var $author$project$VegaLite$dataFromUrl = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
+var $author$project$VegaLite$FSelection = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$fiSelection = $author$project$VegaLite$FSelection;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$VegaLite$VLLayer = 18;
+var $author$project$VegaLite$layer = function (specs) {
+	return _Utils_Tuple2(
+		18,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$MString = function (a) {
+	return {$: 18, a: a};
+};
+var $author$project$VegaLite$mStr = function (s) {
+	return $author$project$VegaLite$MString(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$Month = {$: 16};
+var $author$project$VegaLite$month = $author$project$VegaLite$Month;
+var $author$project$VegaLite$Mean = {$: 7};
+var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$opacity = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'opacity',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$PAggregate = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PTimeUnit = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$GalleryInteraction$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
+var $author$project$VegaLite$Rule = 12;
+var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
+var $author$project$VegaLite$Encodings = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
+var $author$project$VegaLite$size = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$VLTransform = 15;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(15, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		15,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$GalleryInteraction$interaction10 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiSelection('myBrush')));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'myBrush',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$seInterval,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seEncodings(
+							_List_fromArray(
+								[$author$project$VegaLite$chX]))
+						]))
+				])));
+	var encPos = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('precipitation'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+				])));
+	var enc2 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$mStr('firebrick')
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mNum(3)
+				])));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				trans(_List_Nil),
+				enc2(_List_Nil),
+				$author$project$VegaLite$rule(_List_Nil)
+			]));
+	var enc1 = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pOrdinal,
+						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month)
+					]))),
+		$author$project$VegaLite$opacity(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParam('myBrush'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(1)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(0.7)
+						]))
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				enc1(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var desc = $author$project$VegaLite$description('Drag over bars to update selection average');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'seattle-weather.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				data,
+				encPos(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[spec1, spec2]))
+			]));
+}();
+var $author$project$VegaLite$Circle = 6;
+var $author$project$VegaLite$circle = $author$project$VegaLite$mark(6);
+var $author$project$VegaLite$View = function (a) {
+	return {$: 48, a: a};
+};
+var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$DObjects = function (a) {
 	return {$: 5, a: a};
 };
@@ -10901,24 +11093,12 @@ var $author$project$VegaLite$FExpr = function (a) {
 	return {$: 5, a: a};
 };
 var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
-var $author$project$VegaLite$filter = function (f) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'filter',
-			$author$project$VegaLite$filterSpec(f)));
-};
 var $author$project$VegaLite$FoDate = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$foDate = $author$project$VegaLite$FoDate;
 var $author$project$VegaLite$HAlignLeft = {$: 1};
 var $author$project$VegaLite$haLeft = $author$project$VegaLite$HAlignLeft;
-var $author$project$VegaLite$VLLayer = 18;
-var $author$project$VegaLite$layer = function (specs) {
-	return _Utils_Tuple2(
-		18,
-		$author$project$VegaLite$toList(specs));
-};
 var $author$project$VegaLite$Line = 9;
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$MLegend = function (a) {
@@ -10930,13 +11110,6 @@ var $author$project$VegaLite$MName = function (a) {
 };
 var $author$project$VegaLite$mName = function (s) {
 	return $author$project$VegaLite$MName(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$MString = function (a) {
-	return {$: 18, a: a};
-};
-var $author$project$VegaLite$mStr = function (s) {
-	return $author$project$VegaLite$MString(
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$MAlign = function (a) {
@@ -10963,17 +11136,6 @@ var $author$project$VegaLite$ArgMax = function (a) {
 var $author$project$VegaLite$opArgMax = $author$project$VegaLite$ArgMax;
 var $author$project$VegaLite$Max = {$: 6};
 var $author$project$VegaLite$opMax = $author$project$VegaLite$Max;
-var $author$project$VegaLite$opacity = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'opacity',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
-};
-var $author$project$VegaLite$PAggregate = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
 var $author$project$VegaLite$Temporal = 3;
 var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$PTitle = function (a) {
@@ -10991,7 +11153,6 @@ var $author$project$VegaLite$Parse = function (a) {
 	return {$: 7, a: a};
 };
 var $author$project$VegaLite$parse = $author$project$VegaLite$Parse;
-var $author$project$GalleryInteraction$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.2/data/';
 var $author$project$VegaLite$Fields = function (a) {
 	return {$: 4, a: a};
 };
@@ -11142,32 +11303,6 @@ var $author$project$VegaLite$text = function (tDefs) {
 };
 var $author$project$VegaLite$Text = 14;
 var $author$project$VegaLite$textMark = $author$project$VegaLite$mark(14);
-var $author$project$VegaLite$VLTransform = 15;
-var $elm$core$List$isEmpty = function (xs) {
-	if (!xs.b) {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $author$project$VegaLite$transform = function (transforms) {
-	var assemble = function (_v1) {
-		var trName = _v1.a;
-		var val = _v1.b;
-		if (trName === 'multiSpecs') {
-			return val;
-		} else {
-			return $elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(trName, val)
-					]));
-		}
-	};
-	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(15, $elm$json$Json$Encode$null) : _Utils_Tuple2(
-		15,
-		A2($elm$json$Json$Encode$list, assemble, transforms));
-};
 var $author$project$VegaLite$VStroke = function (a) {
 	return {$: 12, a: a};
 };
@@ -11180,7 +11315,7 @@ var $author$project$VegaLite$vicoStroke = function (ms) {
 		return $author$project$VegaLite$VStroke($author$project$VegaLite$NoStr);
 	}
 };
-var $author$project$GalleryInteraction$interaction10 = function () {
+var $author$project$GalleryInteraction$interaction11 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11412,13 +11547,6 @@ var $author$project$VegaLite$seClear = function (s) {
 	return $author$project$VegaLite$Clear(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$size = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'size',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
-};
 var $author$project$VegaLite$TTEncoding = 0;
 var $author$project$VegaLite$ttEncoding = 0;
 var $author$project$VegaLite$VLWidth = 4;
@@ -11427,7 +11555,7 @@ var $author$project$VegaLite$width = function (w) {
 		4,
 		$elm$json$Json$Encode$float(w));
 };
-var $author$project$GalleryInteraction$interaction11 = function () {
+var $author$project$GalleryInteraction$interaction12 = function () {
 	var specLines = $author$project$VegaLite$asSpec(
 		_List_fromArray(
 			[
@@ -11551,8 +11679,6 @@ var $author$project$GalleryInteraction$interaction11 = function () {
 					[specLines, specPoint]))
 			]));
 }();
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
 var $author$project$VegaLite$FSelectionEmpty = function (a) {
 	return {$: 8, a: a};
 };
@@ -11576,12 +11702,6 @@ var $elm$core$Basics$negate = function (n) {
 };
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
-var $author$project$VegaLite$Rule = 12;
-var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
-var $author$project$VegaLite$Encodings = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$seEncodings = $author$project$VegaLite$Encodings;
 var $author$project$VegaLite$Nearest = function (a) {
 	return {$: 8, a: a};
 };
@@ -11593,7 +11713,7 @@ var $author$project$VegaLite$TmType = function (a) {
 	return {$: 2, a: a};
 };
 var $author$project$VegaLite$tQuant = $author$project$VegaLite$TmType(2);
-var $author$project$GalleryInteraction$interaction12 = function () {
+var $author$project$GalleryInteraction$interaction13 = function () {
 	var trans2 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -11847,7 +11967,7 @@ var $author$project$VegaLite$tooltips = function (tDefss) {
 				},
 				tDefss)));
 };
-var $author$project$GalleryInteraction$interaction13 = function () {
+var $author$project$GalleryInteraction$interaction14 = function () {
 	var transSelFilter = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -12105,10 +12225,6 @@ var $author$project$VegaLite$dtYear = function (n) {
 	return $author$project$VegaLite$DTYear(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$FSelection = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$fiSelection = $author$project$VegaLite$FSelection;
 var $author$project$VegaLite$W100 = {$: 4};
 var $author$project$VegaLite$W200 = {$: 5};
 var $author$project$VegaLite$W300 = {$: 6};
@@ -12182,7 +12298,7 @@ var $author$project$VegaLite$TpFalse = {$: 0};
 var $author$project$VegaLite$tpFalse = $author$project$VegaLite$TpFalse;
 var $author$project$VegaLite$YearMonth = {$: 3};
 var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
-var $author$project$GalleryInteraction$interaction14 = function () {
+var $author$project$GalleryInteraction$interaction15 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12448,13 +12564,9 @@ var $author$project$VegaLite$coAxisYFilter = function (cp) {
 			return cp;
 	}
 };
-var $author$project$VegaLite$PTimeUnit = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
 var $author$project$VegaLite$YearMonthDate = {$: 4};
 var $author$project$VegaLite$yearMonthDate = $author$project$VegaLite$YearMonthDate;
-var $author$project$GalleryInteraction$interaction15 = function () {
+var $author$project$GalleryInteraction$interaction16 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -12688,8 +12800,6 @@ var $author$project$VegaLite$resolve = function (res) {
 		26,
 		$elm$json$Json$Encode$object(res));
 };
-var $author$project$VegaLite$SeInterval = 1;
-var $author$project$VegaLite$seInterval = 1;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$title = F2(
 	function (txt, tps) {
@@ -12872,7 +12982,7 @@ var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
 var $author$project$VegaLite$RowNumber = 0;
 var $author$project$VegaLite$woRowNumber = 0;
-var $author$project$GalleryInteraction$interaction16 = function () {
+var $author$project$GalleryInteraction$interaction17 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -13330,7 +13440,7 @@ var $author$project$VegaLite$vicoStep = function (n) {
 	return $author$project$VegaLite$VStep(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$GalleryInteraction$interaction17 = function () {
+var $author$project$GalleryInteraction$interaction18 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -13557,7 +13667,7 @@ var $author$project$VegaLite$ByChannel = function (a) {
 var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
 var $author$project$VegaLite$Descending = {$: 1};
 var $author$project$VegaLite$soDescending = $author$project$VegaLite$Descending;
-var $author$project$GalleryInteraction$interaction18 = function () {
+var $author$project$GalleryInteraction$interaction19 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -13678,6 +13788,160 @@ var $author$project$GalleryInteraction$interaction18 = function () {
 					[specMain, specMini]))
 			]));
 }();
+var $author$project$VegaLite$DAggregate = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$dAggregate = $author$project$VegaLite$DAggregate;
+var $author$project$VegaLite$detailChannelProperty = function (field) {
+	switch (field.$) {
+		case 0:
+			var s = field.a;
+			return A2($author$project$VegaLite$strExpr, 'field', s);
+		case 1:
+			var t = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'type',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$measurementLabel(t)))
+				]);
+		case 2:
+			var bps = field.a;
+			return _List_fromArray(
+				[
+					$author$project$VegaLite$bin(bps)
+				]);
+		case 3:
+			var tu = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'timeUnit',
+					$author$project$VegaLite$timeUnitSpec(tu))
+				]);
+		default:
+			var op = field.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'aggregate',
+					$author$project$VegaLite$operationSpec(op))
+				]);
+	}
+};
+var $author$project$VegaLite$detail = function (detailProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'detail',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$detailChannelProperty, detailProps))));
+};
+var $author$project$VegaLite$PBin = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
+var $author$project$GalleryInteraction$interaction2 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'hover',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seClear('mouseout')
+						]))
+				])));
+	var highlightEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('IMDB Rating'),
+							$author$project$VegaLite$pBin(_List_Nil)
+						]))),
+			$author$project$VegaLite$detail(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$dAggregate($author$project$VegaLite$opCount)
+					]))),
+		$author$project$VegaLite$opacity(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('hover'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(0.5)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(0)
+						]))
+				])));
+	var highlightSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				highlightEnc(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maColor('#ccc'),
+						$author$project$VegaLite$maTooltip($author$project$VegaLite$ttEncoding)
+					]))
+			]));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('IMDB Rating'),
+						$author$project$VegaLite$pBin(_List_Nil)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opCount)
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'movies.json', _List_Nil);
+	var barSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[highlightSpec, barSpec]))
+			]));
+}();
 var $author$project$VegaLite$Area = 1;
 var $author$project$VegaLite$area = $author$project$VegaLite$mark(1);
 var $author$project$VegaLite$AxDomain = function (a) {
@@ -13717,7 +13981,7 @@ var $author$project$VegaLite$scScheme = function (s) {
 };
 var $author$project$VegaLite$OfCenter = 2;
 var $author$project$VegaLite$stCenter = 2;
-var $author$project$GalleryInteraction$interaction2 = function () {
+var $author$project$GalleryInteraction$interaction3 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -13907,7 +14171,7 @@ var $author$project$VegaLite$tooltip = function (tDefs) {
 			$elm$json$Json$Encode$object(
 				A2($elm$core$List$concatMap, $author$project$VegaLite$textChannelProperties, tDefs))));
 };
-var $author$project$GalleryInteraction$interaction3 = function () {
+var $author$project$GalleryInteraction$interaction4 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -13966,7 +14230,7 @@ var $author$project$GalleryInteraction$interaction3 = function () {
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
-var $author$project$GalleryInteraction$interaction4 = function () {
+var $author$project$GalleryInteraction$interaction5 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -14028,7 +14292,7 @@ var $author$project$GalleryInteraction$interaction4 = function () {
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
-var $author$project$GalleryInteraction$interaction5 = function () {
+var $author$project$GalleryInteraction$interaction6 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -14102,7 +14366,7 @@ var $author$project$GalleryInteraction$interaction5 = function () {
 					[specBackground, specHighlight]))
 			]));
 }();
-var $author$project$GalleryInteraction$interaction6 = function () {
+var $author$project$GalleryInteraction$interaction7 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -14172,7 +14436,7 @@ var $author$project$GalleryInteraction$interaction6 = function () {
 }();
 var $author$project$VegaLite$PBindScales = {$: 2};
 var $author$project$VegaLite$paBindScales = $author$project$VegaLite$PBindScales;
-var $author$project$GalleryInteraction$interaction7 = function () {
+var $author$project$GalleryInteraction$interaction8 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$params,
@@ -14277,7 +14541,7 @@ var $author$project$VegaLite$PBindings = function (a) {
 	return {$: 1, a: a};
 };
 var $author$project$VegaLite$paBindings = $author$project$VegaLite$PBindings;
-var $author$project$GalleryInteraction$interaction8 = function () {
+var $author$project$GalleryInteraction$interaction9 = function () {
 	var trans2 = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -14426,116 +14690,6 @@ var $author$project$GalleryInteraction$interaction8 = function () {
 					[spec1, spec2]))
 			]));
 }();
-var $author$project$VegaLite$Month = {$: 16};
-var $author$project$VegaLite$month = $author$project$VegaLite$Month;
-var $author$project$VegaLite$Mean = {$: 7};
-var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
-var $author$project$GalleryInteraction$interaction9 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiSelection('myBrush')));
-	var ps = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$params,
-		A2(
-			$author$project$VegaLite$param,
-			'myBrush',
-			_List_fromArray(
-				[
-					A2(
-					$author$project$VegaLite$paSelect,
-					$author$project$VegaLite$seInterval,
-					_List_fromArray(
-						[
-							$author$project$VegaLite$seEncodings(
-							_List_fromArray(
-								[$author$project$VegaLite$chX]))
-						]))
-				])));
-	var encPos = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$encoding,
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('precipitation'),
-					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
-				])));
-	var enc2 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			$author$project$VegaLite$color(
-				_List_fromArray(
-					[
-						$author$project$VegaLite$mStr('firebrick')
-					]))),
-		$author$project$VegaLite$size(
-			_List_fromArray(
-				[
-					$author$project$VegaLite$mNum(3)
-				])));
-	var spec2 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				trans(_List_Nil),
-				enc2(_List_Nil),
-				$author$project$VegaLite$rule(_List_Nil)
-			]));
-	var enc1 = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('date'),
-						$author$project$VegaLite$pOrdinal,
-						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month)
-					]))),
-		$author$project$VegaLite$opacity(
-			_List_fromArray(
-				[
-					A3(
-					$author$project$VegaLite$mCondition,
-					$author$project$VegaLite$prParam('myBrush'),
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mNum(1)
-						]),
-					_List_fromArray(
-						[
-							$author$project$VegaLite$mNum(0.7)
-						]))
-				])));
-	var spec1 = $author$project$VegaLite$asSpec(
-		_List_fromArray(
-			[
-				ps(_List_Nil),
-				enc1(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
-			]));
-	var desc = $author$project$VegaLite$description('Drag over bars to update selection average');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryInteraction$path + 'seattle-weather.csv', _List_Nil);
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				desc,
-				data,
-				encPos(_List_Nil),
-				$author$project$VegaLite$layer(
-				_List_fromArray(
-					[spec1, spec2]))
-			]));
-}();
 var $author$project$GalleryInteraction$mySpecs = $author$project$VegaLite$combineSpecs(
 	_List_fromArray(
 		[
@@ -14556,7 +14710,8 @@ var $author$project$GalleryInteraction$mySpecs = $author$project$VegaLite$combin
 			_Utils_Tuple2('interaction15', $author$project$GalleryInteraction$interaction15),
 			_Utils_Tuple2('interaction16', $author$project$GalleryInteraction$interaction16),
 			_Utils_Tuple2('interaction17', $author$project$GalleryInteraction$interaction17),
-			_Utils_Tuple2('interaction18', $author$project$GalleryInteraction$interaction18)
+			_Utils_Tuple2('interaction18', $author$project$GalleryInteraction$interaction18),
+			_Utils_Tuple2('interaction19', $author$project$GalleryInteraction$interaction19)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
