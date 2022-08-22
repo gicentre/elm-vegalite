@@ -1152,6 +1152,117 @@ paramCfg6 =
         ]
 
 
+numberCfg : (List LabelledSpec -> ( VLProperty, Spec )) -> Spec
+numberCfg cfg =
+    let
+        data =
+            dataFromUrl (path ++ "penguins.json") []
+
+        trans =
+            transform
+                << calculateAs "datum['Flipper Length (mm)']/1000" "flipperLen"
+                << calculateAs "datum['Beak Length (mm)']/1000" "beakLen"
+                << calculateAs "datum['Beak Depth (mm)']/1000" "beak depth (m)"
+                << calculateAs "datum['Body Mass (g)']/1000" "mass"
+
+        enc =
+            encoding
+                << position X
+                    [ pName "flipperLen"
+                    , pQuant
+                    , pTitle "Flipper length (m)"
+                    , pScale [ scDomain (doNums [ 0.16, 0.24 ]) ]
+                    ]
+                << position Y
+                    [ pName "beakLen"
+                    , pQuant
+                    , pTitle "Beak length (m)"
+                    , pScale [ scDomain (doNums [ 0.03, 0.06 ]) ]
+                    ]
+                << size
+                    [ mName "mass"
+                    , mQuant
+                    , mTitle "Body mass (kg)"
+                    , mScale [ scDomain (doNums [ 2.5, 6.5 ]) ]
+                    ]
+                << color [ mName "Species" ]
+                << tooltips [ [ tName "beak depth (m)", tQuant ] ]
+    in
+    toVegaLite
+        [ cfg []
+        , width 500
+        , height 400
+        , data
+        , trans []
+        , enc []
+        , circle [ maStroke "white", maStrokeWidth 0.5, maClip True ]
+        ]
+
+
+numberCfg1 : Spec
+numberCfg1 =
+    let
+        cfg =
+            configure
+                -- Default to 4 decimal places of precision.
+                << configuration (coNumberFormat ".4f")
+    in
+    numberCfg cfg
+
+
+numberCfg2 : Spec
+numberCfg2 =
+    let
+        cfg =
+            configure
+                -- Use custom formatter to display
+                << configuration (coCustomFormatTypes True)
+                << configuration (coNumberFormatType "unitFormat")
+
+        data =
+            dataFromUrl (path ++ "penguins.json") []
+
+        trans =
+            transform
+                << calculateAs "datum['Flipper Length (mm)']/1000" "flipperLen"
+                << calculateAs "datum['Beak Length (mm)']/1000" "beakLen"
+                << calculateAs "datum['Beak Depth (mm)']/1000" "beak depth"
+                << calculateAs "datum['Body Mass (g)']/1000" "mass"
+
+        enc =
+            encoding
+                << position X
+                    [ pName "flipperLen"
+                    , pQuant
+                    , pAxis [ axTitle "Flipper length", axFormatAsCustom "unitFormat", axFormat "2m" ]
+                    , pScale [ scDomain (doNums [ 0.16, 0.24 ]) ]
+                    ]
+                << position Y
+                    [ pName "beakLen"
+                    , pQuant
+                    , pAxis [ axTitle "Beak length", axFormatAsCustom "unitFormat", axFormat "3m" ]
+                    , pScale [ scDomain (doNums [ 0.03, 0.06 ]) ]
+                    ]
+                << size
+                    [ mName "mass"
+                    , mQuant
+                    , mLegend [ leTitle "Body mass", leFormatAsCustom "unitFormat", leFormat "0kg" ]
+                    , mScale [ scDomain (doNums [ 2.5, 6.5 ]) ]
+                    ]
+                << color [ mName "Species" ]
+                << tooltips [ [ tName "beak depth", tQuant, tFormatAsCustom "unitFormat", tFormat "3m" ] ]
+    in
+    toVegaLite
+        [ cfg []
+        , width 500
+        , height 400
+        , data
+        , trans []
+        , enc []
+        , circle [ maStroke "white", maStrokeWidth 0.5, maClip True ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -1189,6 +1300,8 @@ specs =
     , ( "paramCfg4", paramCfg4 )
     , ( "paramCfg5", paramCfg5 )
     , ( "paramCfg6", paramCfg6 )
+    , ( "numberCfg1", numberCfg1 )
+    , ( "numberCfg2", numberCfg2 )
     ]
 
 
