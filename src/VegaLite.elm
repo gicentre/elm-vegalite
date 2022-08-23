@@ -19396,7 +19396,16 @@ scConstant n =
     ScConstant (Num n)
 
 
-{-| Custom scaling domain.
+{-| Provide a custom scaling domain (data extent). This can be useful for fixing
+the data extent when interactively filtering or faceting so providing a 'global'
+scaling consistent across views. For example:
+
+    color
+        [ mName "popularity"
+        , mQuant
+        , mScale [ scDomain (doNums [ 0, 100 ]) ]
+        ]
+
 -}
 scDomain : ScaleDomain -> ScaleProperty
 scDomain =
@@ -19558,7 +19567,20 @@ scQuantize =
     ScQuantize
 
 
-{-| Range of a scaling. The type of range depends on the encoding channel.
+{-| Provide a custom range of an encoding scaling. In contrast to the _domain_ (data),
+the _range_ describes the values after they have been encoded. For example, when
+encoding some data as [size](#size), the range will be in squared pixel units;
+when eoncoding with [color](#color), the range will be some colour values.
+
+For example, to set the size range of proportional symbols to be between 0 and
+1000 squared pixels:
+
+    size
+        [ mName "magnitude"
+        , mQuant
+        , mScale [ scRange (raNums [ 0, 1000 ]) ]
+        ]
+
 -}
 scRange : ScaleRange -> ScaleProperty
 scRange =
