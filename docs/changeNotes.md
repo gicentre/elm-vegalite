@@ -1,8 +1,14 @@
 # elm-vegaLite changes
 
-## Pending
+## V5.0.0 ➡ V5.1.0
+
+_Minor changes to accommodate a few additions that appeared in Vega-Lite 5.5 and to update the API docs with richer examples._
+
+### V5.1 Additions
 
 - `coNumberFormatType` and `coNormalizedNumberFormatType` for configuring custom numeric formatting of axis, legend and tooltip numbers (Vega-Lite 5.4) and `coTimeFormatType` for custom temporal formatting (Vega-Lite 5.5).
+
+### Other Changes
 
 - Add number format configuration tests for new Vega-Lite 5.4 and 5.5 number and time formatting configuration options.
 
