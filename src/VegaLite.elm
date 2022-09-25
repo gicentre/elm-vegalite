@@ -17638,7 +17638,13 @@ paEdgesExpr l t r b =
 
 
 {-| Initial value of a parameter specified as a
-[Vega expression](https://vega.github.io/vega/docs/expressions).
+[Vega expression](https://vega.github.io/vega/docs/expressions). For example:
+
+    ps =
+        params
+            << param "cx" [ paExpr "width/2" ]
+            << param "cy" [ paExpr "height/2" ]
+
 -}
 paExpr : String -> ParamProperty
 paExpr =
@@ -17778,7 +17784,38 @@ paSize x =
     PSize (Num x)
 
 
-{-| Initial value of a parameter.
+{-| Provide an initial value of a parameter. This can be useful, for example, when
+setting the initial value of an interaction parameter:
+
+    ps =
+        params
+            << param "quarterSelection"
+                [ paValue (num 3)
+                , paSelect sePoint [ seFields [ "quarter" ] ]
+                , paBind (ipRange [ inMin 1, inMax 4, inStep 1 ])
+                ]
+
+If the value of a selection parameter needs to be explicitly referenced, such as
+in a data filtering operation, the parameter value can be initialsed with a named
+tuple. For example to filter data between two interactive slider values:
+
+    ps =
+        params
+            << param "minSlider"
+                [ paSelect sePoint []
+                , paValue (dataObject [ ( "minVal", num 0 ) ])
+                , paBind (ipRange [ inMin 0, inMax 50 ])
+                ]
+            << param "maxSlider"
+                [ paSelect sePoint []
+                , paValue (dataObject [ ( "maxVal", num 100 ) ])
+                , paBind (ipRange [ inMin 50, inMax 100 ])
+                ]
+
+    trans =
+        transform
+            << filter (fiExpr "datum.x >= minSlider_minVal && maxSlider_maxVal >= datum.x")
+
 -}
 paValue : DataValue -> ParamProperty
 paValue =
@@ -17786,7 +17823,19 @@ paValue =
 
 
 {-| Initial set of values of a parameter. Useful for passing to functions that require a
-list of values.
+list of values. For example, to allow filtering by two separate data values:
+
+    ps =
+        params
+            << param "CylYr"
+                [ paSelect sePoint [ seFields [ "Cylinders", "Year" ] ]
+                , paValues (dataObjects [ [ ( "Cylinders", num 4 ), ( "Year", num 1977 ) ] ])
+                , paBindings
+                    [ ( "Cylinders", ipRange [ inMin 3, inMax 8, inStep 1 ] )
+                    , ( "Year", ipRange [ inMin 1969, inMax 1981, inStep 1 ] )
+                    ]
+                ]
+
 -}
 paValues : DataValues -> ParamProperty
 paValues =
