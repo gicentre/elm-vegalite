@@ -1,5 +1,11 @@
 # elm-vegaLite changes
 
+## V5.1.0 ➡ V5.1.1
+
+_Minor changes that add some richer examples to the API documentation._
+
+---
+
 ## V5.0.0 ➡ V5.1.0
 
 _Minor changes to accommodate a few additions that appeared in Vega-Lite 5.5 and to update the API docs with richer examples._
