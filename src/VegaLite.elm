@@ -8683,8 +8683,8 @@ direct binning within an encoding is preferred over this form of bin transformat
             << binAs [ biMaxBins 3 ] "IMDB_Rating" "ratingGroup"
 
 The name given to store the binned values (third parameter) will reference the start
-of each bin balue. To extract the end of each bin, use the same name but with `_end`
-appeded.
+of each bin value. To extract the end of each bin, use the same name but with `_end`
+appended.
 
 -}
 binAs : List BinProperty -> String -> String -> List LabelledSpec -> List LabelledSpec
@@ -17796,7 +17796,7 @@ setting the initial value of an interaction parameter:
                 ]
 
 If the value of a selection parameter needs to be explicitly referenced, such as
-in a data filtering operation, the parameter value can be initialsed with a named
+in a data filtering operation, the parameter value can be initialised with a named
 tuple. For example to filter data between two interactive slider values:
 
     ps =
@@ -19619,7 +19619,7 @@ scQuantize =
 {-| Provide a custom range of an encoding scaling. In contrast to the _domain_ (data),
 the _range_ describes the values after they have been encoded. For example, when
 encoding some data as [size](#size), the range will be in squared pixel units;
-when eoncoding with [color](#color), the range will be some colour values.
+when encoding with [color](#color), the range will be some colour values.
 
 For example, to set the size range of proportional symbols to be between 0 and
 1000 squared pixels:
