@@ -1123,6 +1123,7 @@ module VegaLite exposing
     , asResize
     , background
     , backgroundExpr
+    , userMeta
     , tiNumExpr
     , ticoNumExpr
     , tiStrExpr
@@ -3374,6 +3375,7 @@ These are in addition to the data and transform options described above. See the
 @docs asResize
 @docs background
 @docs backgroundExpr
+@docs userMeta
 
 
 ## 8.1 Title
@@ -6488,6 +6490,7 @@ type VLProperty
     | VLPadding
     | VLBackground
     | VLBackgroundExpr
+    | VLUserMeta
     | VLData
     | VLDatasets
     | VLMark
@@ -21474,6 +21477,27 @@ url hyperProps =
     (::) ( "url", List.concatMap hyperlinkChannelProperties hyperProps |> JE.object )
 
 
+{-| Add custom metadata to a specification. While these are ignored by Vega-Lite,
+this can be useful for cusstom implementations that require addtional metadata.
+The parameter should be a series of named key-value pairs that will be stored in
+the specification as a JavaScript object. For example,
+
+    userMeta
+        [ ( "Custom1", num 13 )
+        , ( "Custom2", str "hello" )
+        , ( "Custom3", datumArray ([ 1, 2, 3, 4 ] |> List.map num) )
+        , ( "Custom4", dataObject [ ( "nested1", num 14 ), ( "nested2", boo True ) ] )
+        , ( "Custom5", nullValue )
+        ]
+
+-}
+userMeta : List ( String, DataValue ) -> ( VLProperty, Spec )
+userMeta object =
+    ( VLUserMeta
+    , object |> List.map (\( k, v ) -> ( k, dataValueSpec v )) |> JE.object
+    )
+
+
 {-| UTC version of a given a time (coordinated universal time, independent of local
 time zones or daylight saving). To encode a time as UTC (coordinated universal time,
 independent of local time zones or daylight saving), just use this function to convert
@@ -27917,6 +27941,9 @@ vlPropertyLabel spec =
 
         VLBackground ->
             "background"
+
+        VLUserMeta ->
+            "usermeta"
 
         VLBackgroundExpr ->
             "background"
