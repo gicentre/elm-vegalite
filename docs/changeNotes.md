@@ -1,5 +1,15 @@
 # elm-vegaLite changes
 
+## V5.1.1 ➡ V5.2.0
+
+_Minor changes to allow custom metadata to be added to a specification._
+
+### V5.2 Additions
+
+- Add `userMeta` function for attaching custom metadata objects to a JSON specification. This was part of the VL 5 spec but had been missed in the elm-vegalite implementation.
+
+---
+
 ## V5.1.0 ➡ V5.1.1
 
 _Minor changes that add some richer examples to the API documentation._
