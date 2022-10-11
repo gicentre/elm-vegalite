@@ -365,6 +365,34 @@ axis15 =
 axis16 : Spec
 axis16 =
     let
+        temporalSeq =
+            dataSequenceAs -11000000 10000000 100000 "time"
+
+        ps =
+            params
+                << param "zoomer" [ paSelect seInterval [], paBindScales ]
+
+        enc =
+            encoding
+                << position X
+                    [ pName "time"
+                    , pTemporal
+                    , pScale [ scType scUtc ]
+                    , pAxis
+                        [ axTemporalFormats
+                            [ ( year, "`%Y" )
+                            , ( hours, "kl %-H" )
+                            , ( minutes, "%H:%M" )
+                            ]
+                        ]
+                    ]
+    in
+    toVegaLite [ width 700, temporalSeq, ps [], enc [], tick [] ]
+
+
+axis17 : Spec
+axis17 =
+    let
         solid =
             nums []
 
@@ -571,6 +599,7 @@ specs =
     , ( "axis14", axis14 )
     , ( "axis15", axis15 )
     , ( "axis16", axis16 )
+    , ( "axis17", axis17 )
     ]
 
 

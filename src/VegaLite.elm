@@ -538,6 +538,7 @@ module VegaLite exposing
     , axDomainOpacity
     , axDomainWidth
     , axFormat
+    , axTemporalFormats
     , axFormatAsNum
     , axFormatAsTemporal
     , axFormatAsCustom
@@ -2517,6 +2518,7 @@ See the
 #### Axis Labels
 
 @docs axFormat
+@docs axTemporalFormats
 @docs axFormatAsNum
 @docs axFormatAsTemporal
 @docs axFormatAsCustom
@@ -4196,14 +4198,14 @@ type AxisConfig
 [axDataCondition](#axDataCondition), [axDomain](#axDomain), [axDomainCap](#axDomainCap),
 [axDomainColor](#axDomainColor), [axDomainDash](#axDomainDash),
 [axDomainDashOffset](#axDomainDashOffset), [axDomainOpacity](#axDomainOpacity),
-[axDomainWidth](#axDomainWidth), [axFormat](#axFormat), [axFormatAsNum](#axFormatAsNum),
-[axFormatAsTemporal](#axFormatAsTemporal), [axFormatAsCustom](#axFormatAsCustom),
-[axLabels](#axLabels), [axLabelAlign](#axLabelAlign), [axLabelAngle](#axLabelAngle),
-[axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound), [axLabelColor](#axLabelColor),
-[axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush), [axLabelFlushOffset](#axLabelFlushOffset),
-[axLabelFont](#axLabelFont), [axLabelFontSize](#axLabelFontSize), [axLabelFontStyle](#axLabelFontStyle),
-[axLabelFontWeight](#axLabelFontWeight), [axLabelLimit](#axLabelLimit),
-[axLabelLineHeight](#axLabelLineHeight), [axLabelOffset](#axLabelOffset),
+[axDomainWidth](#axDomainWidth), [axFormat](#axFormat), [axTemporalFormats](#axTemporalFormats),
+[axFormatAsNum](#axFormatAsNum), [axFormatAsTemporal](#axFormatAsTemporal),
+[axFormatAsCustom](#axFormatAsCustom), [axLabels](#axLabels), [axLabelAlign](#axLabelAlign),
+[axLabelAngle](#axLabelAngle), [axLabelBaseline](#axLabelBaseline), [axLabelBound](#axLabelBound),
+[axLabelColor](#axLabelColor), [axLabelExpr](#axLabelExpr), [axLabelFlush](#axLabelFlush),
+[axLabelFlushOffset](#axLabelFlushOffset), [axLabelFont](#axLabelFont), [axLabelFontSize](#axLabelFontSize),
+[axLabelFontStyle](#axLabelFontStyle), [axLabelFontWeight](#axLabelFontWeight),
+[axLabelLimit](#axLabelLimit), [axLabelLineHeight](#axLabelLineHeight), [axLabelOffset](#axLabelOffset),
 [axLabelOpacity](#axLabelOpacity), [axLabelOverlap](#axLabelOverlap), [axLabelPadding](#axLabelPadding),
 [axLabelSeparation](#axLabelSeparation), [axStyle](#axStyle), [axTranslate](#axTranslate),
 [axTicks](#axTicks), [axTickCap](#axTickCap), [axTickColor](#axTickColor), [axTickCount](#axTickCount),
@@ -4237,6 +4239,7 @@ type AxisProperty
     | AxDomainOpacity Num
     | AxDomainWidth Num
     | AxFormat Str
+    | AxTemporalFormats (List ( TimeUnit, String ))
     | AxFormatAsNum
     | AxFormatAsTemporal
     | AxFormatAsCustom Str
@@ -7764,6 +7767,27 @@ axFormat s =
     AxFormat (Str s)
 
 
+{-| Specify multiple time formats for axis labels that might vary according to
+the temporal resolution. This is especially useful when used with [paBindScales](#paBindScales)
+that will adjust the granularity of time labels dynamically. The parameter is a list of
+time units to customise and their respective
+[formatting pattern](https://vega.github.io/vega-lite/docs/format.html).
+For example,
+
+    pAxis
+        [ axTemporalFormats
+            [ ( year, "`%Y" )
+            , ( hours, "kl %-H" )
+            , ( minutes, "%H:%M" )
+            ]
+        ]
+
+-}
+axTemporalFormats : List ( TimeUnit, String ) -> AxisProperty
+axTemporalFormats fmts =
+    AxTemporalFormats (List.map (\( tu, s ) -> ( tu, s )) fmts)
+
+
 {-| Indicate that axis labels should be formatted as numbers. To control the precise
 numeric format, additionally use [axFormat](#axFormat) providing a
 [d3 numeric format string](https://github.com/d3/d3-format#locale_format).
@@ -7774,8 +7798,8 @@ axFormatAsNum =
 
 
 {-| Indicate that axis labels should be formatted as dates/times. To control the
-precise temporal format, additionally use [axFormat](#axFormat) providing a
-[d3 date/time format string](https://github.com/d3/d3-time-format#locale_format).
+precise temporal format, use [axFormat](#axFormat) or [axTemporalFormats](#axTemporalFormats)
+providing [d3 date/time format strings](https://github.com/d3/d3-time-format#locale_format).
 -}
 axFormatAsTemporal : AxisProperty
 axFormatAsTemporal =
@@ -22908,6 +22932,9 @@ axisProperty axisProp =
 
         AxFormat s ->
             strExpr "format" s
+
+        AxTemporalFormats fmts ->
+            [ ( "format", JE.object (List.map (\( tu, s ) -> ( timeUnitLabel tu, JE.string s )) fmts) ) ]
 
         AxFormatAsNum ->
             [ ( "formatType", JE.string "number" ) ]

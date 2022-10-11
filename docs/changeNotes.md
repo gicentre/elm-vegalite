@@ -1,5 +1,13 @@
 # elm-vegaLite changes
 
+## V5.5.2 ➡ V5.3.0
+
+_Minor addition to allow multiple time formats to be specified for an axis._
+
+- Add `axTemporalFormats` to allow multiple time formats for temporal axis labels depending on temporal granularity. Thanks @RalfNorthman for the suggestion.
+
+---
+
 ## V5.1.1 ➡ V5.2.0
 
 _Minor changes to allow custom metadata to be added to a specification._
