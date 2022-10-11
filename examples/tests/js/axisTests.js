@@ -6006,69 +6006,69 @@ var $author$project$VegaLite$axisLabel = function (axChoice) {
 	}
 };
 var $author$project$VegaLite$AxGridColor = function (a) {
-	return {$: 73, a: a};
-};
-var $author$project$VegaLite$AxGridDash = function (a) {
 	return {$: 74, a: a};
 };
-var $author$project$VegaLite$AxGridDashOffset = function (a) {
+var $author$project$VegaLite$AxGridDash = function (a) {
 	return {$: 75, a: a};
 };
-var $author$project$VegaLite$AxGridOpacity = function (a) {
+var $author$project$VegaLite$AxGridDashOffset = function (a) {
 	return {$: 76, a: a};
 };
-var $author$project$VegaLite$AxGridWidth = function (a) {
+var $author$project$VegaLite$AxGridOpacity = function (a) {
 	return {$: 77, a: a};
 };
+var $author$project$VegaLite$AxGridWidth = function (a) {
+	return {$: 78, a: a};
+};
 var $author$project$VegaLite$AxLabelAlign = function (a) {
-	return {$: 20, a: a};
+	return {$: 21, a: a};
 };
 var $author$project$VegaLite$AxLabelColor = function (a) {
-	return {$: 24, a: a};
+	return {$: 25, a: a};
 };
 var $author$project$VegaLite$AxLabelFont = function (a) {
-	return {$: 28, a: a};
-};
-var $author$project$VegaLite$AxLabelFontSize = function (a) {
 	return {$: 29, a: a};
 };
-var $author$project$VegaLite$AxLabelFontStyle = function (a) {
+var $author$project$VegaLite$AxLabelFontSize = function (a) {
 	return {$: 30, a: a};
 };
-var $author$project$VegaLite$AxLabelOffset = function (a) {
-	return {$: 34, a: a};
+var $author$project$VegaLite$AxLabelFontStyle = function (a) {
+	return {$: 31, a: a};
 };
-var $author$project$VegaLite$AxLabelOpacity = function (a) {
+var $author$project$VegaLite$AxLabelOffset = function (a) {
 	return {$: 35, a: a};
 };
+var $author$project$VegaLite$AxLabelOpacity = function (a) {
+	return {$: 36, a: a};
+};
 var $author$project$VegaLite$AxLabelPadding = function (a) {
-	return {$: 37, a: a};
+	return {$: 38, a: a};
 };
 var $author$project$VegaLite$AxTickColor = function (a) {
-	return {$: 43, a: a};
+	return {$: 44, a: a};
 };
 var $author$project$VegaLite$AxTickDash = function (a) {
-	return {$: 45, a: a};
-};
-var $author$project$VegaLite$AxTickDashOffset = function (a) {
 	return {$: 46, a: a};
 };
+var $author$project$VegaLite$AxTickDashOffset = function (a) {
+	return {$: 47, a: a};
+};
 var $author$project$VegaLite$AxTickOpacity = function (a) {
-	return {$: 49, a: a};
+	return {$: 50, a: a};
 };
 var $author$project$VegaLite$AxTickSize = function (a) {
-	return {$: 52, a: a};
+	return {$: 53, a: a};
 };
 var $author$project$VegaLite$AxTickWidth = function (a) {
-	return {$: 53, a: a};
+	return {$: 54, a: a};
 };
 var $author$project$VegaLite$axLabelAlign = $author$project$VegaLite$AxLabelAlign;
 var $author$project$VegaLite$AxLabelBaseline = function (a) {
-	return {$: 22, a: a};
+	return {$: 23, a: a};
 };
 var $author$project$VegaLite$axLabelBaseline = $author$project$VegaLite$AxLabelBaseline;
 var $author$project$VegaLite$AxLabelFontWeight = function (a) {
-	return {$: 31, a: a};
+	return {$: 32, a: a};
 };
 var $author$project$VegaLite$axLabelFontWeight = $author$project$VegaLite$AxLabelFontWeight;
 var $author$project$VegaLite$arrangementLabel = function (arrng) {
@@ -8217,7 +8217,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 1:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'bandPosition', n);
-		case 79:
+		case 80:
 			var predicate = axisProp.a;
 			var cap = axisProp.b;
 			var firstProp = A2(
@@ -8465,23 +8465,41 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'format', s);
 		case 16:
+			var fmts = axisProp.a;
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
-					'formatType',
-					$elm$json$Json$Encode$string('number'))
+					'format',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v4) {
+								var tu = _v4.a;
+								var s = _v4.b;
+								return _Utils_Tuple2(
+									$author$project$VegaLite$timeUnitLabel(tu),
+									$elm$json$Json$Encode$string(s));
+							},
+							fmts)))
 				]);
 		case 17:
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
 					'formatType',
-					$elm$json$Json$Encode$string('time'))
+					$elm$json$Json$Encode$string('number'))
 				]);
 		case 18:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'formatType',
+					$elm$json$Json$Encode$string('time'))
+				]);
+		case 19:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'formatType', s);
-		case 72:
+		case 73:
 			var c = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8489,25 +8507,25 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'gridCap',
 					$author$project$VegaLite$strokeCapSpec(c))
 				]);
-		case 73:
+		case 74:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'gridColor', s);
-		case 74:
+		case 75:
 			var ns = axisProp.a;
 			return A2($author$project$VegaLite$numsExpr, 'gridDash', ns);
-		case 75:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'gridDashOffset', n);
 		case 76:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'gridOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'gridDashOffset', n);
 		case 77:
 			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'gridOpacity', n);
+		case 78:
+			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'gridWidth', n);
-		case 19:
+		case 20:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'labels', b);
-		case 20:
+		case 21:
 			var ha = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8515,7 +8533,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'labelAlign',
 					$author$project$VegaLite$hAlignSpec(ha))
 				]);
-		case 22:
+		case 23:
 			var va = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8523,19 +8541,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'labelBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 23:
+		case 24:
 			var mn = axisProp.a;
 			return A2($author$project$VegaLite$maybeNumExpr, 'labelBound', mn);
-		case 21:
+		case 22:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'labelAngle', n);
-		case 24:
-			var s = axisProp.a;
-			return A2($author$project$VegaLite$strExpr, 'labelColor', s);
 		case 25:
 			var s = axisProp.a;
-			return A2($author$project$VegaLite$strExpr, 'labelExpr', s);
+			return A2($author$project$VegaLite$strExpr, 'labelColor', s);
 		case 26:
+			var s = axisProp.a;
+			return A2($author$project$VegaLite$strExpr, 'labelExpr', s);
+		case 27:
 			var n = axisProp.a;
 			switch (n.$) {
 				case 0:
@@ -8556,19 +8574,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 				default:
 					return A2($author$project$VegaLite$numExpr, 'labelFlush', n);
 			}
-		case 27:
+		case 28:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'labelFlushOffset', n);
-		case 28:
+		case 29:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'labelFont', s);
-		case 29:
+		case 30:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'labelFontSize', n);
-		case 30:
+		case 31:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'labelFontStyle', s);
-		case 31:
+		case 32:
 			var fw = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8576,19 +8594,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'labelFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 33:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelLimit', n);
-		case 32:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelLineHeight', n);
 		case 34:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelOffset', n);
+			return A2($author$project$VegaLite$numExpr, 'labelLimit', n);
+		case 33:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'labelLineHeight', n);
 		case 35:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'labelOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'labelOffset', n);
 		case 36:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'labelOpacity', n);
+		case 37:
 			var strat = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8596,10 +8614,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'labelOverlap',
 					$author$project$VegaLite$overlapStrategySpec(strat))
 				]);
-		case 37:
+		case 38:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'labelPadding', n);
-		case 38:
+		case 39:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'labelSeparation', n);
 		case 8:
@@ -8628,7 +8646,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 14:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'domainWidth', n);
-		case 71:
+		case 72:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'grid', b);
 		case 2:
@@ -8651,10 +8669,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 6:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'position', n);
-		case 40:
+		case 41:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'translate', n);
-		case 39:
+		case 40:
 			var ss = axisProp.a;
 			if (!ss.$) {
 				var xs = ss.a;
@@ -8675,10 +8693,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 		case 7:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'zindex', n);
-		case 51:
+		case 52:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'ticks', b);
-		case 41:
+		case 42:
 			var tb = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8686,7 +8704,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickBand',
 					$author$project$VegaLite$tickBandSpec(tb))
 				]);
-		case 42:
+		case 43:
 			var c = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8694,10 +8712,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickCap',
 					$author$project$VegaLite$strokeCapSpec(c))
 				]);
-		case 43:
+		case 44:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'tickColor', s);
-		case 44:
+		case 45:
 			var tc = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8705,34 +8723,34 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'tickCount',
 					$author$project$VegaLite$scaleNiceSpec(tc))
 				]);
-		case 45:
+		case 46:
 			var ns = axisProp.a;
 			return A2($author$project$VegaLite$numsExpr, 'tickDash', ns);
-		case 46:
+		case 47:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickDashOffset', n);
-		case 47:
+		case 48:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'tickExtra', b);
-		case 48:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickOffset', n);
 		case 49:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'tickOffset', n);
 		case 50:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'tickOpacity', n);
+		case 51:
 			var b = axisProp.a;
 			return A2($author$project$VegaLite$booExpr, 'tickRound', b);
-		case 78:
+		case 79:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'tickMinStep', n);
-		case 52:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickSize', n);
 		case 53:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'tickWidth', n);
+			return A2($author$project$VegaLite$numExpr, 'tickSize', n);
 		case 54:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'tickWidth', n);
+		case 55:
 			var vals = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8740,7 +8758,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'values',
 					$author$project$VegaLite$dataValuesSpecs(vals))
 				]);
-		case 55:
+		case 56:
 			var s = axisProp.a;
 			if (!s.$) {
 				var ttl = s.a;
@@ -8753,7 +8771,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 			} else {
 				return A2($author$project$VegaLite$strExpr, 'title', s);
 			}
-		case 56:
+		case 57:
 			var al = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8761,10 +8779,10 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleAlign',
 					$author$project$VegaLite$hAlignSpec(al))
 				]);
-		case 58:
+		case 59:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleAngle', n);
-		case 57:
+		case 58:
 			var an = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8772,7 +8790,7 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleAnchor',
 					$author$project$VegaLite$anchorSpec(an))
 				]);
-		case 59:
+		case 60:
 			var va = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8780,19 +8798,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleBaseline',
 					$author$project$VegaLite$vAlignSpec(va))
 				]);
-		case 60:
-			var s = axisProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 61:
 			var s = axisProp.a;
-			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+			return A2($author$project$VegaLite$strExpr, 'titleColor', s);
 		case 62:
+			var s = axisProp.a;
+			return A2($author$project$VegaLite$strExpr, 'titleFont', s);
+		case 63:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleFontSize', n);
-		case 63:
+		case 64:
 			var s = axisProp.a;
 			return A2($author$project$VegaLite$strExpr, 'titleFontStyle', s);
-		case 64:
+		case 65:
 			var fw = axisProp.a;
 			return _List_fromArray(
 				[
@@ -8800,19 +8818,19 @@ var $author$project$VegaLite$axisProperty = function (axisProp) {
 					'titleFontWeight',
 					$author$project$VegaLite$fontWeightSpec(fw))
 				]);
-		case 65:
-			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
 		case 66:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titleLineHeight', n);
+			return A2($author$project$VegaLite$numExpr, 'titleLimit', n);
 		case 67:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titleOpacity', n);
+			return A2($author$project$VegaLite$numExpr, 'titleLineHeight', n);
 		case 68:
 			var n = axisProp.a;
-			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
+			return A2($author$project$VegaLite$numExpr, 'titleOpacity', n);
 		case 69:
+			var n = axisProp.a;
+			return A2($author$project$VegaLite$numExpr, 'titlePadding', n);
+		case 70:
 			var n = axisProp.a;
 			return A2($author$project$VegaLite$numExpr, 'titleX', n);
 		default:
@@ -12874,7 +12892,7 @@ var $author$project$VegaLite$axLabelColor = function (s) {
 		$author$project$VegaLite$Str(s));
 };
 var $author$project$VegaLite$AxStyle = function (a) {
-	return {$: 39, a: a};
+	return {$: 40, a: a};
 };
 var $author$project$VegaLite$Strs = function (a) {
 	return {$: 0, a: a};
@@ -12884,11 +12902,11 @@ var $author$project$VegaLite$axStyle = function (ss) {
 		$author$project$VegaLite$Strs(ss));
 };
 var $author$project$VegaLite$AxTickCount = function (a) {
-	return {$: 44, a: a};
+	return {$: 45, a: a};
 };
 var $author$project$VegaLite$axTickCount = $author$project$VegaLite$AxTickCount;
 var $author$project$VegaLite$AxTitleColor = function (a) {
-	return {$: 60, a: a};
+	return {$: 61, a: a};
 };
 var $author$project$VegaLite$axTitleColor = function (s) {
 	return $author$project$VegaLite$AxTitleColor(
@@ -13091,11 +13109,11 @@ var $author$project$AxisTests$axis13 = function () {
 }();
 var $author$project$VegaLite$AxDataCondition = F2(
 	function (a, b) {
-		return {$: 79, a: a, b: b};
+		return {$: 80, a: a, b: b};
 	});
 var $author$project$VegaLite$axDataCondition = $author$project$VegaLite$AxDataCondition;
 var $author$project$VegaLite$AxLabelAngle = function (a) {
-	return {$: 21, a: a};
+	return {$: 22, a: a};
 };
 var $author$project$VegaLite$Num = function (a) {
 	return {$: 0, a: a};
@@ -13182,7 +13200,7 @@ var $author$project$VegaLite$axDomainWidth = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$AxGridCap = function (a) {
-	return {$: 72, a: a};
+	return {$: 73, a: a};
 };
 var $author$project$VegaLite$axGridCap = $author$project$VegaLite$AxGridCap;
 var $author$project$VegaLite$axGridWidth = function (n) {
@@ -13313,716 +13331,64 @@ var $author$project$AxisTests$axis15 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$AnchorExpr = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$anExpr = $author$project$VegaLite$AnchorExpr;
-var $author$project$VegaLite$ArExpr = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$arExpr = $author$project$VegaLite$ArExpr;
-var $author$project$VegaLite$AxBandPosition = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$axBandPosition = function (n) {
-	return $author$project$VegaLite$AxBandPosition(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxDomain = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$AxGrid = function (a) {
-	return {$: 71, a: a};
-};
-var $author$project$VegaLite$AxLabels = function (a) {
-	return {$: 19, a: a};
-};
-var $author$project$VegaLite$AxTickExtra = function (a) {
-	return {$: 47, a: a};
-};
-var $author$project$VegaLite$AxTickRound = function (a) {
-	return {$: 50, a: a};
-};
-var $author$project$VegaLite$AxTicks = function (a) {
-	return {$: 51, a: a};
-};
-var $author$project$VegaLite$BooExpr = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$axBooExpr = F2(
-	function (ex, fn) {
-		var _v0 = fn(false);
-		switch (_v0.$) {
-			case 8:
-				return $author$project$VegaLite$AxDomain(
-					$author$project$VegaLite$BooExpr(ex));
-			case 19:
-				return $author$project$VegaLite$AxLabels(
-					$author$project$VegaLite$BooExpr(ex));
-			case 47:
-				return $author$project$VegaLite$AxTickExtra(
-					$author$project$VegaLite$BooExpr(ex));
-			case 50:
-				return $author$project$VegaLite$AxTickRound(
-					$author$project$VegaLite$BooExpr(ex));
-			case 51:
-				return $author$project$VegaLite$AxTicks(
-					$author$project$VegaLite$BooExpr(ex));
-			case 71:
-				return $author$project$VegaLite$AxGrid(
-					$author$project$VegaLite$BooExpr(ex));
-			default:
-				return fn(false);
-		}
-	});
-var $author$project$VegaLite$axDomain = function (b) {
-	return $author$project$VegaLite$AxDomain(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$AxDomainDashOffset = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$axDomainDashOffset = function (n) {
-	return $author$project$VegaLite$AxDomainDashOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxDomainOpacity = function (a) {
-	return {$: 13, a: a};
-};
-var $author$project$VegaLite$axDomainOpacity = function (n) {
-	return $author$project$VegaLite$AxDomainOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axGrid = function (b) {
-	return $author$project$VegaLite$AxGrid(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$axGridColor = function (s) {
-	return $author$project$VegaLite$AxGridColor(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$axGridDash = function (ns) {
-	return $author$project$VegaLite$AxGridDash(
-		$author$project$VegaLite$Nums(ns));
-};
-var $author$project$VegaLite$axGridDashOffset = function (n) {
-	return $author$project$VegaLite$AxGridDashOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axGridOpacity = function (n) {
-	return $author$project$VegaLite$AxGridOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelBound = function (a) {
-	return {$: 23, a: a};
-};
-var $author$project$VegaLite$MaybeNumExpr = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$axLabelBoundExpr = function (ex) {
-	return $author$project$VegaLite$AxLabelBound(
-		$author$project$VegaLite$MaybeNumExpr(ex));
-};
-var $author$project$VegaLite$AxLabelFlushOffset = function (a) {
-	return {$: 27, a: a};
-};
-var $author$project$VegaLite$axLabelFlushOffset = function (n) {
-	return $author$project$VegaLite$AxLabelFlushOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axLabelFont = function (s) {
-	return $author$project$VegaLite$AxLabelFont(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$axLabelFontSize = function (n) {
-	return $author$project$VegaLite$AxLabelFontSize(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axLabelFontStyle = function (s) {
-	return $author$project$VegaLite$AxLabelFontStyle(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$AxLabelLimit = function (a) {
-	return {$: 33, a: a};
-};
-var $author$project$VegaLite$axLabelLimit = function (n) {
-	return $author$project$VegaLite$AxLabelLimit(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axLabelOffset = function (n) {
-	return $author$project$VegaLite$AxLabelOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axLabelOpacity = function (n) {
-	return $author$project$VegaLite$AxLabelOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelOverlap = function (a) {
-	return {$: 36, a: a};
-};
-var $author$project$VegaLite$axLabelOverlap = $author$project$VegaLite$AxLabelOverlap;
-var $author$project$VegaLite$axLabelPadding = function (n) {
-	return $author$project$VegaLite$AxLabelPadding(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelSeparation = function (a) {
-	return {$: 38, a: a};
-};
-var $author$project$VegaLite$axLabelSeparation = function (n) {
-	return $author$project$VegaLite$AxLabelSeparation(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axLabels = function (b) {
-	return $author$project$VegaLite$AxLabels(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$AxMinExtent = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$axMinExtent = function (n) {
-	return $author$project$VegaLite$AxMinExtent(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxLabelFlush = function (a) {
-	return {$: 26, a: a};
-};
-var $author$project$VegaLite$AxLabelLineHeight = function (a) {
-	return {$: 32, a: a};
-};
-var $author$project$VegaLite$AxMaxExtent = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$AxOffset = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$AxPosition = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$AxTickMinStep = function (a) {
-	return {$: 78, a: a};
-};
-var $author$project$VegaLite$AxTickOffset = function (a) {
-	return {$: 48, a: a};
-};
-var $author$project$VegaLite$AxTitleAngle = function (a) {
-	return {$: 58, a: a};
-};
-var $author$project$VegaLite$AxTitleFontSize = function (a) {
-	return {$: 62, a: a};
-};
-var $author$project$VegaLite$AxTitleLimit = function (a) {
-	return {$: 65, a: a};
-};
-var $author$project$VegaLite$AxTitleLineHeight = function (a) {
-	return {$: 66, a: a};
-};
-var $author$project$VegaLite$AxTitleOpacity = function (a) {
-	return {$: 67, a: a};
-};
-var $author$project$VegaLite$AxTitlePadding = function (a) {
-	return {$: 68, a: a};
-};
-var $author$project$VegaLite$AxTitleX = function (a) {
-	return {$: 69, a: a};
-};
-var $author$project$VegaLite$AxTitleY = function (a) {
-	return {$: 70, a: a};
-};
-var $author$project$VegaLite$AxTranslate = function (a) {
-	return {$: 40, a: a};
-};
-var $author$project$VegaLite$AxZIndex = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$NumExpr = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$axNumExpr = F2(
-	function (ex, fn) {
-		var _v0 = fn(0);
-		switch (_v0.$) {
-			case 1:
-				return $author$project$VegaLite$AxBandPosition(
-					$author$project$VegaLite$NumExpr(ex));
-			case 2:
-				return $author$project$VegaLite$AxMaxExtent(
-					$author$project$VegaLite$NumExpr(ex));
-			case 3:
-				return $author$project$VegaLite$AxMinExtent(
-					$author$project$VegaLite$NumExpr(ex));
-			case 5:
-				return $author$project$VegaLite$AxOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 6:
-				return $author$project$VegaLite$AxPosition(
-					$author$project$VegaLite$NumExpr(ex));
-			case 40:
-				return $author$project$VegaLite$AxTranslate(
-					$author$project$VegaLite$NumExpr(ex));
-			case 7:
-				return $author$project$VegaLite$AxZIndex(
-					$author$project$VegaLite$NumExpr(ex));
-			case 12:
-				return $author$project$VegaLite$AxDomainDashOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 13:
-				return $author$project$VegaLite$AxDomainOpacity(
-					$author$project$VegaLite$NumExpr(ex));
-			case 14:
-				return $author$project$VegaLite$AxDomainWidth(
-					$author$project$VegaLite$NumExpr(ex));
-			case 21:
-				return $author$project$VegaLite$AxLabelAngle(
-					$author$project$VegaLite$NumExpr(ex));
-			case 26:
-				return $author$project$VegaLite$AxLabelFlush(
-					$author$project$VegaLite$NumExpr(ex));
-			case 27:
-				return $author$project$VegaLite$AxLabelFlushOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 29:
-				return $author$project$VegaLite$AxLabelFontSize(
-					$author$project$VegaLite$NumExpr(ex));
-			case 32:
-				return $author$project$VegaLite$AxLabelLineHeight(
-					$author$project$VegaLite$NumExpr(ex));
-			case 33:
-				return $author$project$VegaLite$AxLabelLimit(
-					$author$project$VegaLite$NumExpr(ex));
-			case 34:
-				return $author$project$VegaLite$AxLabelOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 35:
-				return $author$project$VegaLite$AxLabelOpacity(
-					$author$project$VegaLite$NumExpr(ex));
-			case 37:
-				return $author$project$VegaLite$AxLabelPadding(
-					$author$project$VegaLite$NumExpr(ex));
-			case 38:
-				return $author$project$VegaLite$AxLabelSeparation(
-					$author$project$VegaLite$NumExpr(ex));
-			case 46:
-				return $author$project$VegaLite$AxTickDashOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 48:
-				return $author$project$VegaLite$AxTickOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 49:
-				return $author$project$VegaLite$AxTickOpacity(
-					$author$project$VegaLite$NumExpr(ex));
-			case 52:
-				return $author$project$VegaLite$AxTickSize(
-					$author$project$VegaLite$NumExpr(ex));
-			case 53:
-				return $author$project$VegaLite$AxTickWidth(
-					$author$project$VegaLite$NumExpr(ex));
-			case 58:
-				return $author$project$VegaLite$AxTitleAngle(
-					$author$project$VegaLite$NumExpr(ex));
-			case 62:
-				return $author$project$VegaLite$AxTitleFontSize(
-					$author$project$VegaLite$NumExpr(ex));
-			case 65:
-				return $author$project$VegaLite$AxTitleLimit(
-					$author$project$VegaLite$NumExpr(ex));
-			case 66:
-				return $author$project$VegaLite$AxTitleLineHeight(
-					$author$project$VegaLite$NumExpr(ex));
-			case 67:
-				return $author$project$VegaLite$AxTitleOpacity(
-					$author$project$VegaLite$NumExpr(ex));
-			case 68:
-				return $author$project$VegaLite$AxTitlePadding(
-					$author$project$VegaLite$NumExpr(ex));
-			case 69:
-				return $author$project$VegaLite$AxTitleX(
-					$author$project$VegaLite$NumExpr(ex));
-			case 70:
-				return $author$project$VegaLite$AxTitleY(
-					$author$project$VegaLite$NumExpr(ex));
-			case 75:
-				return $author$project$VegaLite$AxGridDashOffset(
-					$author$project$VegaLite$NumExpr(ex));
-			case 76:
-				return $author$project$VegaLite$AxGridOpacity(
-					$author$project$VegaLite$NumExpr(ex));
-			case 77:
-				return $author$project$VegaLite$AxGridWidth(
-					$author$project$VegaLite$NumExpr(ex));
-			case 78:
-				return $author$project$VegaLite$AxTickMinStep(
-					$author$project$VegaLite$NumExpr(ex));
-			default:
-				return fn(0);
-		}
-	});
-var $author$project$VegaLite$NumsExpr = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$axNumsExpr = F2(
-	function (ex, fn) {
-		var _v0 = fn(_List_Nil);
-		switch (_v0.$) {
-			case 11:
-				return $author$project$VegaLite$AxDomainDash(
-					$author$project$VegaLite$NumsExpr(ex));
-			case 74:
-				return $author$project$VegaLite$AxGridDash(
-					$author$project$VegaLite$NumsExpr(ex));
-			case 45:
-				return $author$project$VegaLite$AxTickDash(
-					$author$project$VegaLite$NumsExpr(ex));
-			default:
-				return fn(_List_Nil);
-		}
-	});
-var $author$project$VegaLite$axOffset = function (n) {
-	return $author$project$VegaLite$AxOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxOrient = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$axOrient = $author$project$VegaLite$AxOrient;
-var $author$project$VegaLite$axPosition = function (n) {
-	return $author$project$VegaLite$AxPosition(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxFormat = function (a) {
-	return {$: 15, a: a};
-};
-var $author$project$VegaLite$AxFormatAsCustom = function (a) {
-	return {$: 18, a: a};
-};
-var $author$project$VegaLite$AxLabelExpr = function (a) {
-	return {$: 25, a: a};
-};
-var $author$project$VegaLite$AxTitle = function (a) {
-	return {$: 55, a: a};
-};
-var $author$project$VegaLite$AxTitleFont = function (a) {
-	return {$: 61, a: a};
-};
-var $author$project$VegaLite$AxTitleFontStyle = function (a) {
-	return {$: 63, a: a};
-};
-var $author$project$VegaLite$StrExpr = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$axStrExpr = F2(
-	function (ex, fn) {
-		var _v0 = fn('');
-		switch (_v0.$) {
-			case 10:
-				return $author$project$VegaLite$AxDomainColor(
-					$author$project$VegaLite$StrExpr(ex));
-			case 15:
-				return $author$project$VegaLite$AxFormat(
-					$author$project$VegaLite$StrExpr(ex));
-			case 18:
-				return $author$project$VegaLite$AxFormatAsCustom(
-					$author$project$VegaLite$StrExpr(ex));
-			case 24:
-				return $author$project$VegaLite$AxLabelColor(
-					$author$project$VegaLite$StrExpr(ex));
-			case 25:
-				return $author$project$VegaLite$AxLabelExpr(
-					$author$project$VegaLite$StrExpr(ex));
-			case 28:
-				return $author$project$VegaLite$AxLabelFont(
-					$author$project$VegaLite$StrExpr(ex));
-			case 30:
-				return $author$project$VegaLite$AxLabelFontStyle(
-					$author$project$VegaLite$StrExpr(ex));
-			case 43:
-				return $author$project$VegaLite$AxTickColor(
-					$author$project$VegaLite$StrExpr(ex));
-			case 55:
-				return $author$project$VegaLite$AxTitle(
-					$author$project$VegaLite$StrExpr(ex));
-			case 60:
-				return $author$project$VegaLite$AxTitleColor(
-					$author$project$VegaLite$StrExpr(ex));
-			case 61:
-				return $author$project$VegaLite$AxTitleFont(
-					$author$project$VegaLite$StrExpr(ex));
-			case 63:
-				return $author$project$VegaLite$AxTitleFontStyle(
-					$author$project$VegaLite$StrExpr(ex));
-			case 73:
-				return $author$project$VegaLite$AxGridColor(
-					$author$project$VegaLite$StrExpr(ex));
-			default:
-				return fn('');
-		}
-	});
-var $author$project$VegaLite$AxTickBand = function (a) {
-	return {$: 41, a: a};
-};
-var $author$project$VegaLite$axTickBand = $author$project$VegaLite$AxTickBand;
-var $author$project$VegaLite$AxTickCap = function (a) {
-	return {$: 42, a: a};
-};
-var $author$project$VegaLite$axTickCap = $author$project$VegaLite$AxTickCap;
-var $author$project$VegaLite$axTickColor = function (s) {
-	return $author$project$VegaLite$AxTickColor(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$axTickDash = function (ns) {
-	return $author$project$VegaLite$AxTickDash(
-		$author$project$VegaLite$Nums(ns));
-};
-var $author$project$VegaLite$axTickDashOffset = function (n) {
-	return $author$project$VegaLite$AxTickDashOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTickExtra = function (b) {
-	return $author$project$VegaLite$AxTickExtra(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$axTickOffset = function (n) {
-	return $author$project$VegaLite$AxTickOffset(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTickOpacity = function (n) {
-	return $author$project$VegaLite$AxTickOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTickRound = function (b) {
-	return $author$project$VegaLite$AxTickRound(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$axTickSize = function (n) {
-	return $author$project$VegaLite$AxTickSize(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTickWidth = function (n) {
-	return $author$project$VegaLite$AxTickWidth(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTicks = function (b) {
-	return $author$project$VegaLite$AxTicks(
-		$author$project$VegaLite$Boo(b));
-};
-var $author$project$VegaLite$AxTitleAlign = function (a) {
-	return {$: 56, a: a};
-};
-var $author$project$VegaLite$axTitleAlign = $author$project$VegaLite$AxTitleAlign;
-var $author$project$VegaLite$AxTitleAnchor = function (a) {
-	return {$: 57, a: a};
-};
-var $author$project$VegaLite$axTitleAnchor = $author$project$VegaLite$AxTitleAnchor;
-var $author$project$VegaLite$axTitleAngle = function (n) {
-	return $author$project$VegaLite$AxTitleAngle(
-		$author$project$VegaLite$Num(
-			$author$project$VegaLite$positiveAngle(n)));
-};
-var $author$project$VegaLite$AxTitleBaseline = function (a) {
-	return {$: 59, a: a};
-};
-var $author$project$VegaLite$axTitleBaseline = $author$project$VegaLite$AxTitleBaseline;
-var $author$project$VegaLite$axTitleFont = function (s) {
-	return $author$project$VegaLite$AxTitleFont(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$axTitleFontStyle = function (s) {
-	return $author$project$VegaLite$AxTitleFontStyle(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$AxTitleFontWeight = function (a) {
-	return {$: 64, a: a};
-};
-var $author$project$VegaLite$axTitleFontWeight = $author$project$VegaLite$AxTitleFontWeight;
-var $author$project$VegaLite$axTitleLimit = function (n) {
-	return $author$project$VegaLite$AxTitleLimit(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTitleLineHeight = function (n) {
-	return $author$project$VegaLite$AxTitleLineHeight(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTitleOpacity = function (n) {
-	return $author$project$VegaLite$AxTitleOpacity(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTitlePadding = function (n) {
-	return $author$project$VegaLite$AxTitlePadding(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$axTranslate = function (n) {
-	return $author$project$VegaLite$AxTranslate(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$AxValues = function (a) {
-	return {$: 54, a: a};
-};
-var $author$project$VegaLite$axValues = $author$project$VegaLite$AxValues;
-var $author$project$VegaLite$Bar = 2;
-var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
-var $author$project$VegaLite$Boolean = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
-var $author$project$VegaLite$CExpr = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$caExpr = $author$project$VegaLite$CExpr;
-var $author$project$VegaLite$DExprs = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$dataExpr = $author$project$VegaLite$DExprs;
-var $author$project$VegaLite$dataFromUrl = F2(
-	function (u, fmts) {
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+var $author$project$VegaLite$AxTemporalFormats = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$axTemporalFormats = function (fmts) {
+	return $author$project$VegaLite$AxTemporalFormats(
+		A2(
+			$elm$core$List$map,
+			function (_v0) {
+				var tu = _v0.a;
+				var s = _v0.b;
+				return _Utils_Tuple2(tu, s);
+			},
+			fmts));
+};
+var $author$project$VegaLite$dataSequenceAs = F4(
+	function (start, stop, step, outName) {
+		return _Utils_Tuple2(
 			13,
 			$elm$json$Json$Encode$object(
 				_List_fromArray(
 					[
 						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u))
-					]))) : _Utils_Tuple2(
-			13,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u)),
-						_Utils_Tuple2(
-						'format',
+						'sequence',
 						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'start',
+									$elm$json$Json$Encode$float(start)),
+									_Utils_Tuple2(
+									'stop',
+									$elm$json$Json$Encode$float(stop)),
+									_Utils_Tuple2(
+									'step',
+									$elm$json$Json$Encode$float(step)),
+									_Utils_Tuple2(
+									'as',
+									$elm$json$Json$Encode$string(outName))
+								])))
 					])));
 	});
-var $author$project$VegaLite$DObject = function (a) {
-	return {$: 7, a: a};
-};
-var $author$project$VegaLite$dataObject = $author$project$VegaLite$DObject;
-var $author$project$VegaLite$FWExpr = function (a) {
+var $author$project$VegaLite$Hours = {$: 32};
+var $author$project$VegaLite$hours = $author$project$VegaLite$Hours;
+var $author$project$VegaLite$Minutes = {$: 35};
+var $author$project$VegaLite$minutes = $author$project$VegaLite$Minutes;
+var $author$project$VegaLite$PScale = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$fwExpr = $author$project$VegaLite$FWExpr;
-var $author$project$VegaLite$HAlignExpr = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$haExpr = $author$project$VegaLite$HAlignExpr;
-var $author$project$VegaLite$VLHeight = 5;
-var $author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		5,
-		$elm$json$Json$Encode$float(h));
-};
-var $author$project$VegaLite$InDataOptions = function (a) {
-	return {$: 4, a: a};
-};
-var $author$project$VegaLite$inDataOptions = $author$project$VegaLite$InDataOptions;
-var $author$project$VegaLite$InDatumOptions = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$inDatumOptions = $author$project$VegaLite$InDatumOptions;
-var $author$project$VegaLite$InMax = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$inMax = function (n) {
-	return $author$project$VegaLite$InMax(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$InMin = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$inMin = function (n) {
-	return $author$project$VegaLite$InMin(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$InOptions = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$inOptions = function (ss) {
-	return $author$project$VegaLite$InOptions(
-		$author$project$VegaLite$Strs(ss));
-};
-var $author$project$VegaLite$InStep = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$inStep = function (n) {
-	return $author$project$VegaLite$InStep(
-		$author$project$VegaLite$Num(n));
-};
-var $author$project$VegaLite$IPCheckbox = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$VegaLite$ipCheckbox = $author$project$VegaLite$IPCheckbox;
-var $author$project$VegaLite$IPColor = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$ipColor = $author$project$VegaLite$IPColor;
-var $author$project$VegaLite$IPRange = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
-var $author$project$VegaLite$IPSelect = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
-var $author$project$VegaLite$MAria = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$maAria = $author$project$VegaLite$MAria;
-var $author$project$VegaLite$NExpr = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$niExpr = $author$project$VegaLite$NExpr;
-var $author$project$VegaLite$Number = function (a) {
-	return {$: 2, a: a};
-};
-var $author$project$VegaLite$num = $author$project$VegaLite$Number;
-var $author$project$VegaLite$Count = {$: 4};
-var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
-var $author$project$VegaLite$OverlapExpr = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$VegaLite$osExpr = $author$project$VegaLite$OverlapExpr;
-var $author$project$VegaLite$PAggregate = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
-var $author$project$VegaLite$PBin = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
-var $author$project$VegaLite$PTitle = function (a) {
-	return {$: 11, a: a};
-};
-var $author$project$VegaLite$pTitle = function (s) {
-	return $author$project$VegaLite$PTitle(
-		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$PBind = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
-var $author$project$VegaLite$PSize = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$VegaLite$paSize = function (x) {
-	return $author$project$VegaLite$PSize(
-		$author$project$VegaLite$Num(x));
-};
-var $author$project$VegaLite$PValue = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
-var $author$project$VegaLite$PValues = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
-var $author$project$VegaLite$VLPadding = 9;
-var $author$project$VegaLite$padding = function (pad) {
-	return _Utils_Tuple2(
-		9,
-		$author$project$VegaLite$paddingSpec(pad));
-};
+var $author$project$VegaLite$pScale = $author$project$VegaLite$PScale;
+var $author$project$VegaLite$Temporal = 3;
+var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
+var $author$project$VegaLite$PBindScales = {$: 2};
+var $author$project$VegaLite$paBindScales = $author$project$VegaLite$PBindScales;
+var $author$project$VegaLite$PSelect = F2(
+	function (a, b) {
+		return {$: 7, a: a, b: b};
+	});
+var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
 var $author$project$VegaLite$inputProperty = function (prop) {
 	switch (prop.$) {
 		case 5:
@@ -14300,6 +13666,784 @@ var $author$project$VegaLite$params = function (prms) {
 		1,
 		A2($elm$json$Json$Encode$list, extract, prms));
 };
+var $author$project$VegaLite$ScType = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$scType = $author$project$VegaLite$ScType;
+var $author$project$VegaLite$ScUtc = 6;
+var $author$project$VegaLite$scUtc = 6;
+var $author$project$VegaLite$SeInterval = 1;
+var $author$project$VegaLite$seInterval = 1;
+var $author$project$VegaLite$Tick = 15;
+var $author$project$VegaLite$tick = $author$project$VegaLite$mark(15);
+var $author$project$VegaLite$VLWidth = 4;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$VegaLite$Year = {$: 0};
+var $author$project$VegaLite$year = $author$project$VegaLite$Year;
+var $author$project$AxisTests$axis16 = function () {
+	var temporalSeq = A4($author$project$VegaLite$dataSequenceAs, -11000000, 10000000, 100000, 'time');
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'zoomer',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil),
+					$author$project$VegaLite$paBindScales
+				])));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('time'),
+					$author$project$VegaLite$pTemporal,
+					$author$project$VegaLite$pScale(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$scType($author$project$VegaLite$scUtc)
+						])),
+					$author$project$VegaLite$pAxis(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$axTemporalFormats(
+							_List_fromArray(
+								[
+									_Utils_Tuple2($author$project$VegaLite$year, '`%Y'),
+									_Utils_Tuple2($author$project$VegaLite$hours, 'kl %-H'),
+									_Utils_Tuple2($author$project$VegaLite$minutes, '%H:%M')
+								]))
+						]))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(700),
+				temporalSeq,
+				ps(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$tick(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$AnchorExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$anExpr = $author$project$VegaLite$AnchorExpr;
+var $author$project$VegaLite$ArExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$arExpr = $author$project$VegaLite$ArExpr;
+var $author$project$VegaLite$AxBandPosition = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$axBandPosition = function (n) {
+	return $author$project$VegaLite$AxBandPosition(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxDomain = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$AxGrid = function (a) {
+	return {$: 72, a: a};
+};
+var $author$project$VegaLite$AxLabels = function (a) {
+	return {$: 20, a: a};
+};
+var $author$project$VegaLite$AxTickExtra = function (a) {
+	return {$: 48, a: a};
+};
+var $author$project$VegaLite$AxTickRound = function (a) {
+	return {$: 51, a: a};
+};
+var $author$project$VegaLite$AxTicks = function (a) {
+	return {$: 52, a: a};
+};
+var $author$project$VegaLite$BooExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$axBooExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(false);
+		switch (_v0.$) {
+			case 8:
+				return $author$project$VegaLite$AxDomain(
+					$author$project$VegaLite$BooExpr(ex));
+			case 20:
+				return $author$project$VegaLite$AxLabels(
+					$author$project$VegaLite$BooExpr(ex));
+			case 48:
+				return $author$project$VegaLite$AxTickExtra(
+					$author$project$VegaLite$BooExpr(ex));
+			case 51:
+				return $author$project$VegaLite$AxTickRound(
+					$author$project$VegaLite$BooExpr(ex));
+			case 52:
+				return $author$project$VegaLite$AxTicks(
+					$author$project$VegaLite$BooExpr(ex));
+			case 72:
+				return $author$project$VegaLite$AxGrid(
+					$author$project$VegaLite$BooExpr(ex));
+			default:
+				return fn(false);
+		}
+	});
+var $author$project$VegaLite$axDomain = function (b) {
+	return $author$project$VegaLite$AxDomain(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$AxDomainDashOffset = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$axDomainDashOffset = function (n) {
+	return $author$project$VegaLite$AxDomainDashOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxDomainOpacity = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$axDomainOpacity = function (n) {
+	return $author$project$VegaLite$AxDomainOpacity(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axGrid = function (b) {
+	return $author$project$VegaLite$AxGrid(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axGridColor = function (s) {
+	return $author$project$VegaLite$AxGridColor(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$axGridDash = function (ns) {
+	return $author$project$VegaLite$AxGridDash(
+		$author$project$VegaLite$Nums(ns));
+};
+var $author$project$VegaLite$axGridDashOffset = function (n) {
+	return $author$project$VegaLite$AxGridDashOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axGridOpacity = function (n) {
+	return $author$project$VegaLite$AxGridOpacity(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxLabelBound = function (a) {
+	return {$: 24, a: a};
+};
+var $author$project$VegaLite$MaybeNumExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$axLabelBoundExpr = function (ex) {
+	return $author$project$VegaLite$AxLabelBound(
+		$author$project$VegaLite$MaybeNumExpr(ex));
+};
+var $author$project$VegaLite$AxLabelFlushOffset = function (a) {
+	return {$: 28, a: a};
+};
+var $author$project$VegaLite$axLabelFlushOffset = function (n) {
+	return $author$project$VegaLite$AxLabelFlushOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axLabelFont = function (s) {
+	return $author$project$VegaLite$AxLabelFont(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$axLabelFontSize = function (n) {
+	return $author$project$VegaLite$AxLabelFontSize(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axLabelFontStyle = function (s) {
+	return $author$project$VegaLite$AxLabelFontStyle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$AxLabelLimit = function (a) {
+	return {$: 34, a: a};
+};
+var $author$project$VegaLite$axLabelLimit = function (n) {
+	return $author$project$VegaLite$AxLabelLimit(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axLabelOffset = function (n) {
+	return $author$project$VegaLite$AxLabelOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axLabelOpacity = function (n) {
+	return $author$project$VegaLite$AxLabelOpacity(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxLabelOverlap = function (a) {
+	return {$: 37, a: a};
+};
+var $author$project$VegaLite$axLabelOverlap = $author$project$VegaLite$AxLabelOverlap;
+var $author$project$VegaLite$axLabelPadding = function (n) {
+	return $author$project$VegaLite$AxLabelPadding(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxLabelSeparation = function (a) {
+	return {$: 39, a: a};
+};
+var $author$project$VegaLite$axLabelSeparation = function (n) {
+	return $author$project$VegaLite$AxLabelSeparation(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axLabels = function (b) {
+	return $author$project$VegaLite$AxLabels(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$AxMinExtent = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$axMinExtent = function (n) {
+	return $author$project$VegaLite$AxMinExtent(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxLabelFlush = function (a) {
+	return {$: 27, a: a};
+};
+var $author$project$VegaLite$AxLabelLineHeight = function (a) {
+	return {$: 33, a: a};
+};
+var $author$project$VegaLite$AxMaxExtent = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$AxOffset = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$AxPosition = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$AxTickMinStep = function (a) {
+	return {$: 79, a: a};
+};
+var $author$project$VegaLite$AxTickOffset = function (a) {
+	return {$: 49, a: a};
+};
+var $author$project$VegaLite$AxTitleAngle = function (a) {
+	return {$: 59, a: a};
+};
+var $author$project$VegaLite$AxTitleFontSize = function (a) {
+	return {$: 63, a: a};
+};
+var $author$project$VegaLite$AxTitleLimit = function (a) {
+	return {$: 66, a: a};
+};
+var $author$project$VegaLite$AxTitleLineHeight = function (a) {
+	return {$: 67, a: a};
+};
+var $author$project$VegaLite$AxTitleOpacity = function (a) {
+	return {$: 68, a: a};
+};
+var $author$project$VegaLite$AxTitlePadding = function (a) {
+	return {$: 69, a: a};
+};
+var $author$project$VegaLite$AxTitleX = function (a) {
+	return {$: 70, a: a};
+};
+var $author$project$VegaLite$AxTitleY = function (a) {
+	return {$: 71, a: a};
+};
+var $author$project$VegaLite$AxTranslate = function (a) {
+	return {$: 41, a: a};
+};
+var $author$project$VegaLite$AxZIndex = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$NumExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$axNumExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(0);
+		switch (_v0.$) {
+			case 1:
+				return $author$project$VegaLite$AxBandPosition(
+					$author$project$VegaLite$NumExpr(ex));
+			case 2:
+				return $author$project$VegaLite$AxMaxExtent(
+					$author$project$VegaLite$NumExpr(ex));
+			case 3:
+				return $author$project$VegaLite$AxMinExtent(
+					$author$project$VegaLite$NumExpr(ex));
+			case 5:
+				return $author$project$VegaLite$AxOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 6:
+				return $author$project$VegaLite$AxPosition(
+					$author$project$VegaLite$NumExpr(ex));
+			case 41:
+				return $author$project$VegaLite$AxTranslate(
+					$author$project$VegaLite$NumExpr(ex));
+			case 7:
+				return $author$project$VegaLite$AxZIndex(
+					$author$project$VegaLite$NumExpr(ex));
+			case 12:
+				return $author$project$VegaLite$AxDomainDashOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 13:
+				return $author$project$VegaLite$AxDomainOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 14:
+				return $author$project$VegaLite$AxDomainWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 22:
+				return $author$project$VegaLite$AxLabelAngle(
+					$author$project$VegaLite$NumExpr(ex));
+			case 27:
+				return $author$project$VegaLite$AxLabelFlush(
+					$author$project$VegaLite$NumExpr(ex));
+			case 28:
+				return $author$project$VegaLite$AxLabelFlushOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 30:
+				return $author$project$VegaLite$AxLabelFontSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 33:
+				return $author$project$VegaLite$AxLabelLineHeight(
+					$author$project$VegaLite$NumExpr(ex));
+			case 34:
+				return $author$project$VegaLite$AxLabelLimit(
+					$author$project$VegaLite$NumExpr(ex));
+			case 35:
+				return $author$project$VegaLite$AxLabelOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 36:
+				return $author$project$VegaLite$AxLabelOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 38:
+				return $author$project$VegaLite$AxLabelPadding(
+					$author$project$VegaLite$NumExpr(ex));
+			case 39:
+				return $author$project$VegaLite$AxLabelSeparation(
+					$author$project$VegaLite$NumExpr(ex));
+			case 47:
+				return $author$project$VegaLite$AxTickDashOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 49:
+				return $author$project$VegaLite$AxTickOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 50:
+				return $author$project$VegaLite$AxTickOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 53:
+				return $author$project$VegaLite$AxTickSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 54:
+				return $author$project$VegaLite$AxTickWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 59:
+				return $author$project$VegaLite$AxTitleAngle(
+					$author$project$VegaLite$NumExpr(ex));
+			case 63:
+				return $author$project$VegaLite$AxTitleFontSize(
+					$author$project$VegaLite$NumExpr(ex));
+			case 66:
+				return $author$project$VegaLite$AxTitleLimit(
+					$author$project$VegaLite$NumExpr(ex));
+			case 67:
+				return $author$project$VegaLite$AxTitleLineHeight(
+					$author$project$VegaLite$NumExpr(ex));
+			case 68:
+				return $author$project$VegaLite$AxTitleOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 69:
+				return $author$project$VegaLite$AxTitlePadding(
+					$author$project$VegaLite$NumExpr(ex));
+			case 70:
+				return $author$project$VegaLite$AxTitleX(
+					$author$project$VegaLite$NumExpr(ex));
+			case 71:
+				return $author$project$VegaLite$AxTitleY(
+					$author$project$VegaLite$NumExpr(ex));
+			case 76:
+				return $author$project$VegaLite$AxGridDashOffset(
+					$author$project$VegaLite$NumExpr(ex));
+			case 77:
+				return $author$project$VegaLite$AxGridOpacity(
+					$author$project$VegaLite$NumExpr(ex));
+			case 78:
+				return $author$project$VegaLite$AxGridWidth(
+					$author$project$VegaLite$NumExpr(ex));
+			case 79:
+				return $author$project$VegaLite$AxTickMinStep(
+					$author$project$VegaLite$NumExpr(ex));
+			default:
+				return fn(0);
+		}
+	});
+var $author$project$VegaLite$NumsExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$axNumsExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(_List_Nil);
+		switch (_v0.$) {
+			case 11:
+				return $author$project$VegaLite$AxDomainDash(
+					$author$project$VegaLite$NumsExpr(ex));
+			case 75:
+				return $author$project$VegaLite$AxGridDash(
+					$author$project$VegaLite$NumsExpr(ex));
+			case 46:
+				return $author$project$VegaLite$AxTickDash(
+					$author$project$VegaLite$NumsExpr(ex));
+			default:
+				return fn(_List_Nil);
+		}
+	});
+var $author$project$VegaLite$axOffset = function (n) {
+	return $author$project$VegaLite$AxOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxOrient = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$axOrient = $author$project$VegaLite$AxOrient;
+var $author$project$VegaLite$axPosition = function (n) {
+	return $author$project$VegaLite$AxPosition(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxFormat = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$AxFormatAsCustom = function (a) {
+	return {$: 19, a: a};
+};
+var $author$project$VegaLite$AxLabelExpr = function (a) {
+	return {$: 26, a: a};
+};
+var $author$project$VegaLite$AxTitle = function (a) {
+	return {$: 56, a: a};
+};
+var $author$project$VegaLite$AxTitleFont = function (a) {
+	return {$: 62, a: a};
+};
+var $author$project$VegaLite$AxTitleFontStyle = function (a) {
+	return {$: 64, a: a};
+};
+var $author$project$VegaLite$StrExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$axStrExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn('');
+		switch (_v0.$) {
+			case 10:
+				return $author$project$VegaLite$AxDomainColor(
+					$author$project$VegaLite$StrExpr(ex));
+			case 15:
+				return $author$project$VegaLite$AxFormat(
+					$author$project$VegaLite$StrExpr(ex));
+			case 19:
+				return $author$project$VegaLite$AxFormatAsCustom(
+					$author$project$VegaLite$StrExpr(ex));
+			case 25:
+				return $author$project$VegaLite$AxLabelColor(
+					$author$project$VegaLite$StrExpr(ex));
+			case 26:
+				return $author$project$VegaLite$AxLabelExpr(
+					$author$project$VegaLite$StrExpr(ex));
+			case 29:
+				return $author$project$VegaLite$AxLabelFont(
+					$author$project$VegaLite$StrExpr(ex));
+			case 31:
+				return $author$project$VegaLite$AxLabelFontStyle(
+					$author$project$VegaLite$StrExpr(ex));
+			case 44:
+				return $author$project$VegaLite$AxTickColor(
+					$author$project$VegaLite$StrExpr(ex));
+			case 56:
+				return $author$project$VegaLite$AxTitle(
+					$author$project$VegaLite$StrExpr(ex));
+			case 61:
+				return $author$project$VegaLite$AxTitleColor(
+					$author$project$VegaLite$StrExpr(ex));
+			case 62:
+				return $author$project$VegaLite$AxTitleFont(
+					$author$project$VegaLite$StrExpr(ex));
+			case 64:
+				return $author$project$VegaLite$AxTitleFontStyle(
+					$author$project$VegaLite$StrExpr(ex));
+			case 74:
+				return $author$project$VegaLite$AxGridColor(
+					$author$project$VegaLite$StrExpr(ex));
+			default:
+				return fn('');
+		}
+	});
+var $author$project$VegaLite$AxTickBand = function (a) {
+	return {$: 42, a: a};
+};
+var $author$project$VegaLite$axTickBand = $author$project$VegaLite$AxTickBand;
+var $author$project$VegaLite$AxTickCap = function (a) {
+	return {$: 43, a: a};
+};
+var $author$project$VegaLite$axTickCap = $author$project$VegaLite$AxTickCap;
+var $author$project$VegaLite$axTickColor = function (s) {
+	return $author$project$VegaLite$AxTickColor(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$axTickDash = function (ns) {
+	return $author$project$VegaLite$AxTickDash(
+		$author$project$VegaLite$Nums(ns));
+};
+var $author$project$VegaLite$axTickDashOffset = function (n) {
+	return $author$project$VegaLite$AxTickDashOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTickExtra = function (b) {
+	return $author$project$VegaLite$AxTickExtra(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axTickOffset = function (n) {
+	return $author$project$VegaLite$AxTickOffset(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTickOpacity = function (n) {
+	return $author$project$VegaLite$AxTickOpacity(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTickRound = function (b) {
+	return $author$project$VegaLite$AxTickRound(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$axTickSize = function (n) {
+	return $author$project$VegaLite$AxTickSize(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTickWidth = function (n) {
+	return $author$project$VegaLite$AxTickWidth(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTicks = function (b) {
+	return $author$project$VegaLite$AxTicks(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$AxTitleAlign = function (a) {
+	return {$: 57, a: a};
+};
+var $author$project$VegaLite$axTitleAlign = $author$project$VegaLite$AxTitleAlign;
+var $author$project$VegaLite$AxTitleAnchor = function (a) {
+	return {$: 58, a: a};
+};
+var $author$project$VegaLite$axTitleAnchor = $author$project$VegaLite$AxTitleAnchor;
+var $author$project$VegaLite$axTitleAngle = function (n) {
+	return $author$project$VegaLite$AxTitleAngle(
+		$author$project$VegaLite$Num(
+			$author$project$VegaLite$positiveAngle(n)));
+};
+var $author$project$VegaLite$AxTitleBaseline = function (a) {
+	return {$: 60, a: a};
+};
+var $author$project$VegaLite$axTitleBaseline = $author$project$VegaLite$AxTitleBaseline;
+var $author$project$VegaLite$axTitleFont = function (s) {
+	return $author$project$VegaLite$AxTitleFont(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$axTitleFontStyle = function (s) {
+	return $author$project$VegaLite$AxTitleFontStyle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$AxTitleFontWeight = function (a) {
+	return {$: 65, a: a};
+};
+var $author$project$VegaLite$axTitleFontWeight = $author$project$VegaLite$AxTitleFontWeight;
+var $author$project$VegaLite$axTitleLimit = function (n) {
+	return $author$project$VegaLite$AxTitleLimit(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTitleLineHeight = function (n) {
+	return $author$project$VegaLite$AxTitleLineHeight(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTitleOpacity = function (n) {
+	return $author$project$VegaLite$AxTitleOpacity(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTitlePadding = function (n) {
+	return $author$project$VegaLite$AxTitlePadding(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$axTranslate = function (n) {
+	return $author$project$VegaLite$AxTranslate(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$AxValues = function (a) {
+	return {$: 55, a: a};
+};
+var $author$project$VegaLite$axValues = $author$project$VegaLite$AxValues;
+var $author$project$VegaLite$Bar = 2;
+var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
+var $author$project$VegaLite$Boolean = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
+var $author$project$VegaLite$CExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$caExpr = $author$project$VegaLite$CExpr;
+var $author$project$VegaLite$DExprs = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$dataExpr = $author$project$VegaLite$DExprs;
+var $author$project$VegaLite$dataFromUrl = F2(
+	function (u, fmts) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u))
+					]))) : _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u)),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$DObject = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$dataObject = $author$project$VegaLite$DObject;
+var $author$project$VegaLite$FWExpr = function (a) {
+	return {$: 13, a: a};
+};
+var $author$project$VegaLite$fwExpr = $author$project$VegaLite$FWExpr;
+var $author$project$VegaLite$HAlignExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$haExpr = $author$project$VegaLite$HAlignExpr;
+var $author$project$VegaLite$VLHeight = 5;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		5,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$InDataOptions = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$inDataOptions = $author$project$VegaLite$InDataOptions;
+var $author$project$VegaLite$InDatumOptions = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$inDatumOptions = $author$project$VegaLite$InDatumOptions;
+var $author$project$VegaLite$InMax = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$inMax = function (n) {
+	return $author$project$VegaLite$InMax(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$InMin = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$inMin = function (n) {
+	return $author$project$VegaLite$InMin(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$InOptions = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$inOptions = function (ss) {
+	return $author$project$VegaLite$InOptions(
+		$author$project$VegaLite$Strs(ss));
+};
+var $author$project$VegaLite$InStep = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$inStep = function (n) {
+	return $author$project$VegaLite$InStep(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$IPCheckbox = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$ipCheckbox = $author$project$VegaLite$IPCheckbox;
+var $author$project$VegaLite$IPColor = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$ipColor = $author$project$VegaLite$IPColor;
+var $author$project$VegaLite$IPRange = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$ipRange = $author$project$VegaLite$IPRange;
+var $author$project$VegaLite$IPSelect = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$MAria = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$maAria = $author$project$VegaLite$MAria;
+var $author$project$VegaLite$NExpr = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$niExpr = $author$project$VegaLite$NExpr;
+var $author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$Count = {$: 4};
+var $author$project$VegaLite$opCount = $author$project$VegaLite$Count;
+var $author$project$VegaLite$OverlapExpr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$osExpr = $author$project$VegaLite$OverlapExpr;
+var $author$project$VegaLite$PAggregate = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PBin = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$pBin = $author$project$VegaLite$PBin;
+var $author$project$VegaLite$PTitle = function (a) {
+	return {$: 11, a: a};
+};
+var $author$project$VegaLite$pTitle = function (s) {
+	return $author$project$VegaLite$PTitle(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$PBind = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$paBind = $author$project$VegaLite$PBind;
+var $author$project$VegaLite$PSize = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$paSize = function (x) {
+	return $author$project$VegaLite$PSize(
+		$author$project$VegaLite$Num(x));
+};
+var $author$project$VegaLite$PValue = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$paValue = $author$project$VegaLite$PValue;
+var $author$project$VegaLite$PValues = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
+var $author$project$VegaLite$VLPadding = 9;
+var $author$project$VegaLite$padding = function (pad) {
+	return _Utils_Tuple2(
+		9,
+		$author$project$VegaLite$paddingSpec(pad));
+};
 var $author$project$AxisTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$SExpr = function (a) {
 	return {$: 4, a: a};
@@ -14317,13 +14461,7 @@ var $author$project$VegaLite$VAlignExpr = function (a) {
 	return {$: 6, a: a};
 };
 var $author$project$VegaLite$vaExpr = $author$project$VegaLite$VAlignExpr;
-var $author$project$VegaLite$VLWidth = 4;
-var $author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		4,
-		$elm$json$Json$Encode$float(w));
-};
-var $author$project$AxisTests$axis16 = function () {
+var $author$project$AxisTests$axis17 = function () {
 	var solid = $author$project$VegaLite$nums(_List_Nil);
 	var shortDash = $author$project$VegaLite$nums(
 		_List_fromArray(
@@ -15624,8 +15762,6 @@ var $author$project$AxisTests$axis3 = function () {
 					]))
 			]));
 }();
-var $author$project$VegaLite$Temporal = 3;
-var $author$project$VegaLite$pTemporal = $author$project$VegaLite$PmType(3);
 var $author$project$VegaLite$FoDate = function (a) {
 	return {$: 2, a: a};
 };
@@ -16053,7 +16189,8 @@ var $author$project$AxisTests$specs = _List_fromArray(
 		_Utils_Tuple2('axis13', $author$project$AxisTests$axis13),
 		_Utils_Tuple2('axis14', $author$project$AxisTests$axis14),
 		_Utils_Tuple2('axis15', $author$project$AxisTests$axis15),
-		_Utils_Tuple2('axis16', $author$project$AxisTests$axis16)
+		_Utils_Tuple2('axis16', $author$project$AxisTests$axis16),
+		_Utils_Tuple2('axis17', $author$project$AxisTests$axis17)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
