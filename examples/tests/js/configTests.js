@@ -9381,7 +9381,7 @@ var $author$project$VegaLite$localeProperty = function (lp) {
 			return A2($author$project$VegaLite$strExpr, 'thousands', s);
 		case 2:
 			var grp = lp.a;
-			return A2($author$project$VegaLite$numExpr, 'grouping', grp);
+			return A2($author$project$VegaLite$numsExpr, 'grouping', grp);
 		case 3:
 			var ss = lp.a;
 			return A2($author$project$VegaLite$strsExpr, 'currency', ss);
@@ -14937,6 +14937,128 @@ var $author$project$ConfigTests$numberCfg2 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$Locale = function (a) {
+	return {$: 24, a: a};
+};
+var $author$project$VegaLite$coLocale = $author$project$VegaLite$Locale;
+var $author$project$VegaLite$LoCurrency = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$Strs = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$loCurrency = F2(
+	function (s1, s2) {
+		return $author$project$VegaLite$LoCurrency(
+			$author$project$VegaLite$Strs(
+				_List_fromArray(
+					[s1, s2])));
+	});
+var $author$project$VegaLite$LoDecimal = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$loDecimal = function (s) {
+	return $author$project$VegaLite$LoDecimal(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$LoGrouping = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$loGrouping = function (n) {
+	return $author$project$VegaLite$LoGrouping(
+		$author$project$VegaLite$Nums(
+			_List_fromArray(
+				[n])));
+};
+var $author$project$VegaLite$LoThousands = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$loThousands = function (s) {
+	return $author$project$VegaLite$LoThousands(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$ConfigTests$numberCfg3 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('x'),
+							$author$project$VegaLite$pQuant
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('price'),
+						$author$project$VegaLite$pQuant,
+						$author$project$VegaLite$pAxis(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$axFormat('$.2f')
+							]))
+					]))),
+		$author$project$VegaLite$text(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$tName('value'),
+					$author$project$VegaLite$tQuant
+				])));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$dataFromColumns(_List_Nil),
+				A2(
+					$author$project$VegaLite$dataColumn,
+					'x',
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[1000000, 2000000, 3000000, 4000000])))),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'value',
+				$author$project$VegaLite$nums(
+					_List_fromArray(
+						[1.2345, 2.3456, 3.4567, 4.5678])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'price',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[10.5, 12.0, 14.56, 15, 99]))));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coLocale(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$loDecimal(','),
+						$author$project$VegaLite$loThousands('.'),
+						$author$project$VegaLite$loGrouping(3),
+						A2($author$project$VegaLite$loCurrency, '', '\u00A0€')
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(500),
+				cfg(_List_Nil),
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$textMark(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$AFit = 1;
 var $author$project$VegaLite$asFit = 1;
 var $author$project$VegaLite$Autosize = function (a) {
@@ -15040,9 +15162,6 @@ var $author$project$VegaLite$inMin = function (n) {
 };
 var $author$project$VegaLite$InOptions = function (a) {
 	return {$: 2, a: a};
-};
-var $author$project$VegaLite$Strs = function (a) {
-	return {$: 0, a: a};
 };
 var $author$project$VegaLite$inOptions = function (ss) {
 	return $author$project$VegaLite$InOptions(
@@ -20410,6 +20529,7 @@ var $author$project$ConfigTests$specs = _List_fromArray(
 		_Utils_Tuple2('paramCfg6', $author$project$ConfigTests$paramCfg6),
 		_Utils_Tuple2('numberCfg1', $author$project$ConfigTests$numberCfg1),
 		_Utils_Tuple2('numberCfg2', $author$project$ConfigTests$numberCfg2),
+		_Utils_Tuple2('numberCfg3', $author$project$ConfigTests$numberCfg3),
 		_Utils_Tuple2('dateCfg1', $author$project$ConfigTests$dateCfg1),
 		_Utils_Tuple2('metaCfg', $author$project$ConfigTests$metaCfg)
 	]);

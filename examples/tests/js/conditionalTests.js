@@ -11925,7 +11925,7 @@ var $author$project$VegaLite$localeProperty = function (lp) {
 			return A2($author$project$VegaLite$strExpr, 'thousands', s);
 		case 2:
 			var grp = lp.a;
-			return A2($author$project$VegaLite$numExpr, 'grouping', grp);
+			return A2($author$project$VegaLite$numsExpr, 'grouping', grp);
 		case 3:
 			var ss = lp.a;
 			return A2($author$project$VegaLite$strsExpr, 'currency', ss);
