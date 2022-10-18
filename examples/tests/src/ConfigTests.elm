@@ -1263,6 +1263,36 @@ numberCfg2 =
         ]
 
 
+numberCfg3 : Spec
+numberCfg3 =
+    let
+        cfg =
+            configure
+                -- German number locale
+                << configuration
+                    (coLocale
+                        [ loDecimal ","
+                        , loThousands "."
+                        , loGrouping 3
+                        , loCurrency "" "\u{00A0}€"
+                        ]
+                    )
+
+        data =
+            dataFromColumns []
+                << dataColumn "x" (nums [ 1000000, 2000000, 3000000, 4000000 ])
+                << dataColumn "value" (nums [ 1.2345, 2.3456, 3.4567, 4.5678 ])
+                << dataColumn "price" (nums [ 10.5, 12.0, 14.56, 15, 99 ])
+
+        enc =
+            encoding
+                << position X [ pName "x", pQuant ]
+                << position Y [ pName "price", pQuant, pAxis [ axFormat "$.2f" ] ]
+                << text [ tName "value", tQuant ]
+    in
+    toVegaLite [ width 500, cfg [], data [], enc [], textMark [] ]
+
+
 dateCfg1 : Spec
 dateCfg1 =
     let
@@ -1353,6 +1383,7 @@ specs =
     , ( "paramCfg6", paramCfg6 )
     , ( "numberCfg1", numberCfg1 )
     , ( "numberCfg2", numberCfg2 )
+    , ( "numberCfg3", numberCfg3 )
     , ( "dateCfg1", dateCfg1 )
     , ( "metaCfg", metaCfg )
     ]

@@ -5253,7 +5253,7 @@ and [loShortMonths](#loShortMonths).
 type LocaleProperty
     = LoDecimal Str
     | LoThousands Str
-    | LoGrouping Num
+    | LoGrouping Nums
     | LoCurrency Strs
     | LoNumerals Strs
     | LoPercent Str
@@ -9771,13 +9771,14 @@ color markProps =
 
 {-| Specify the default locale settings. Allows, for example, local currency, time
 and thousands separators to be defined as the default. For example a German locale
-might be defined as
+might be defined asthe following which uses a comma for decimal symbol, a point as
+a thousands separator and a default Euro symbol with non-breaking space for currency:
 
     coLocale
         [ loDecimal ","
         , loThousands "."
         , loGrouping 3
-        , loCurrency "" "\\u00a0€"
+        , loCurrency "" "\u{00A0}€"
         ]
 
 -}
@@ -15182,7 +15183,7 @@ of a locale specification.
 -}
 loGrouping : Int -> LocaleProperty
 loGrouping n =
-    LoGrouping (Num (toFloat n))
+    LoGrouping (Nums [ toFloat n ])
 
 
 {-| Symbol used to indicate minus/negative as part of a locale specification.
@@ -25143,7 +25144,7 @@ localeProperty lp =
             strExpr "thousands" s
 
         LoGrouping grp ->
-            numExpr "grouping" grp
+            numsExpr "grouping" grp
 
         LoCurrency ss ->
             strsExpr "currency" ss
