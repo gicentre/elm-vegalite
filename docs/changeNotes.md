@@ -2,6 +2,8 @@
 
 ## Pending
 
+- Add `fromPosixTime` to allow Elm time functions to be used to generate elm-vegalite `DateTime` values. Thanks to @RalfNorthman for the suggestion.
+
 - Correct `loGrouping` bug that generated a single locale grouping rather than array. Thanks @hingew for spotting this.
 
 - Corrected API doc for coLocale example to use correct Elm unicode escape text.

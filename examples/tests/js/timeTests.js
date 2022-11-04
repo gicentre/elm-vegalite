@@ -10581,6 +10581,335 @@ var $author$project$TimeTests$timeByUnit = function (tu) {
 					]))
 			]));
 };
+var $author$project$VegaLite$DMinDateTime = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$Timestamp = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$doMinDt = function (ts) {
+	return $author$project$VegaLite$DMinDateTime(
+		$author$project$VegaLite$Timestamp(ts));
+};
+var $author$project$VegaLite$Apr = 3;
+var $author$project$VegaLite$Aug = 7;
+var $author$project$VegaLite$Dec = 11;
+var $author$project$VegaLite$Feb = 1;
+var $author$project$VegaLite$Jan = 0;
+var $author$project$VegaLite$Jul = 6;
+var $author$project$VegaLite$Jun = 5;
+var $author$project$VegaLite$Mar = 2;
+var $author$project$VegaLite$May = 4;
+var $author$project$VegaLite$Nov = 10;
+var $author$project$VegaLite$Oct = 9;
+var $author$project$VegaLite$Sep = 8;
+var $author$project$VegaLite$DTDate = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$dtDate = function (n) {
+	return $author$project$VegaLite$DTDate(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$DTHours = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$dtHour = function (n) {
+	return $author$project$VegaLite$DTHours(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$DTMilliseconds = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$dtMillisecond = function (n) {
+	return $author$project$VegaLite$DTMilliseconds(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$DTMinutes = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$dtMinute = function (n) {
+	return $author$project$VegaLite$DTMinutes(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$DTMonth = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$dtMonth = $author$project$VegaLite$DTMonth;
+var $author$project$VegaLite$DTSeconds = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$dtSecond = function (n) {
+	return $author$project$VegaLite$DTSeconds(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$DTYear = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$dtYear = function (n) {
+	return $author$project$VegaLite$DTYear(
+		$author$project$VegaLite$Num(n));
+};
+var $elm$time$Time$flooredDiv = F2(
+	function (numerator, denominator) {
+		return $elm$core$Basics$floor(numerator / denominator);
+	});
+var $elm$time$Time$posixToMillis = function (_v0) {
+	var millis = _v0;
+	return millis;
+};
+var $elm$time$Time$toAdjustedMinutesHelp = F3(
+	function (defaultOffset, posixMinutes, eras) {
+		toAdjustedMinutesHelp:
+		while (true) {
+			if (!eras.b) {
+				return posixMinutes + defaultOffset;
+			} else {
+				var era = eras.a;
+				var olderEras = eras.b;
+				if (_Utils_cmp(era.L, posixMinutes) < 0) {
+					return posixMinutes + era.W;
+				} else {
+					var $temp$defaultOffset = defaultOffset,
+						$temp$posixMinutes = posixMinutes,
+						$temp$eras = olderEras;
+					defaultOffset = $temp$defaultOffset;
+					posixMinutes = $temp$posixMinutes;
+					eras = $temp$eras;
+					continue toAdjustedMinutesHelp;
+				}
+			}
+		}
+	});
+var $elm$time$Time$toAdjustedMinutes = F2(
+	function (_v0, time) {
+		var defaultOffset = _v0.a;
+		var eras = _v0.b;
+		return A3(
+			$elm$time$Time$toAdjustedMinutesHelp,
+			defaultOffset,
+			A2(
+				$elm$time$Time$flooredDiv,
+				$elm$time$Time$posixToMillis(time),
+				60000),
+			eras);
+	});
+var $elm$core$Basics$ge = _Utils_ge;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $elm$time$Time$toCivil = function (minutes) {
+	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
+	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
+	var dayOfEra = rawDay - (era * 146097);
+	var yearOfEra = ((((dayOfEra - ((dayOfEra / 1460) | 0)) + ((dayOfEra / 36524) | 0)) - ((dayOfEra / 146096) | 0)) / 365) | 0;
+	var dayOfYear = dayOfEra - (((365 * yearOfEra) + ((yearOfEra / 4) | 0)) - ((yearOfEra / 100) | 0));
+	var mp = (((5 * dayOfYear) + 2) / 153) | 0;
+	var month = mp + ((mp < 10) ? 3 : (-9));
+	var year = yearOfEra + (era * 400);
+	return {
+		P: (dayOfYear - ((((153 * mp) + 2) / 5) | 0)) + 1,
+		V: month,
+		aj: year + ((month <= 2) ? 1 : 0)
+	};
+};
+var $elm$time$Time$toDay = F2(
+	function (zone, time) {
+		return $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).P;
+	});
+var $elm$core$Basics$modBy = _Basics_modBy;
+var $elm$time$Time$toHour = F2(
+	function (zone, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			24,
+			A2(
+				$elm$time$Time$flooredDiv,
+				A2($elm$time$Time$toAdjustedMinutes, zone, time),
+				60));
+	});
+var $elm$time$Time$toMillis = F2(
+	function (_v0, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			1000,
+			$elm$time$Time$posixToMillis(time));
+	});
+var $elm$time$Time$toMinute = F2(
+	function (zone, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			60,
+			A2($elm$time$Time$toAdjustedMinutes, zone, time));
+	});
+var $elm$time$Time$Apr = 3;
+var $elm$time$Time$Aug = 7;
+var $elm$time$Time$Dec = 11;
+var $elm$time$Time$Feb = 1;
+var $elm$time$Time$Jan = 0;
+var $elm$time$Time$Jul = 6;
+var $elm$time$Time$Jun = 5;
+var $elm$time$Time$Mar = 2;
+var $elm$time$Time$May = 4;
+var $elm$time$Time$Nov = 10;
+var $elm$time$Time$Oct = 9;
+var $elm$time$Time$Sep = 8;
+var $elm$time$Time$toMonth = F2(
+	function (zone, time) {
+		var _v0 = $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).V;
+		switch (_v0) {
+			case 1:
+				return 0;
+			case 2:
+				return 1;
+			case 3:
+				return 2;
+			case 4:
+				return 3;
+			case 5:
+				return 4;
+			case 6:
+				return 5;
+			case 7:
+				return 6;
+			case 8:
+				return 7;
+			case 9:
+				return 8;
+			case 10:
+				return 9;
+			case 11:
+				return 10;
+			default:
+				return 11;
+		}
+	});
+var $elm$time$Time$toSecond = F2(
+	function (_v0, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			60,
+			A2(
+				$elm$time$Time$flooredDiv,
+				$elm$time$Time$posixToMillis(time),
+				1000));
+	});
+var $elm$time$Time$toYear = F2(
+	function (zone, time) {
+		return $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).aj;
+	});
+var $elm$time$Time$Zone = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var $elm$time$Time$utc = A2($elm$time$Time$Zone, 0, _List_Nil);
+var $author$project$VegaLite$fromPosixTime = function (t) {
+	var fromMonth = function (m) {
+		switch (m) {
+			case 0:
+				return 0;
+			case 1:
+				return 1;
+			case 2:
+				return 2;
+			case 3:
+				return 3;
+			case 4:
+				return 4;
+			case 5:
+				return 5;
+			case 6:
+				return 6;
+			case 7:
+				return 7;
+			case 8:
+				return 8;
+			case 9:
+				return 9;
+			case 10:
+				return 10;
+			default:
+				return 11;
+		}
+	};
+	return _List_fromArray(
+		[
+			$author$project$VegaLite$dtYear(
+			A2($elm$time$Time$toYear, $elm$time$Time$utc, t)),
+			$author$project$VegaLite$dtMonth(
+			fromMonth(
+				A2($elm$time$Time$toMonth, $elm$time$Time$utc, t))),
+			$author$project$VegaLite$dtDate(
+			A2($elm$time$Time$toDay, $elm$time$Time$utc, t)),
+			$author$project$VegaLite$dtHour(
+			A2($elm$time$Time$toHour, $elm$time$Time$utc, t)),
+			$author$project$VegaLite$dtMinute(
+			A2($elm$time$Time$toMinute, $elm$time$Time$utc, t)),
+			$author$project$VegaLite$dtSecond(
+			A2($elm$time$Time$toSecond, $elm$time$Time$utc, t)),
+			$author$project$VegaLite$dtMillisecond(
+			A2($elm$time$Time$toMillis, $elm$time$Time$utc, t))
+		]);
+};
+var $author$project$VegaLite$MClip = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$maClip = function (b) {
+	return $author$project$VegaLite$MClip(
+		$author$project$VegaLite$Boo(b));
+};
+var $elm$time$Time$Posix = $elm$core$Basics$identity;
+var $elm$time$Time$millisToPosix = $elm$core$Basics$identity;
+var $author$project$VegaLite$ScDomain = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$scDomain = $author$project$VegaLite$ScDomain;
+var $author$project$TimeTests$timePosix = function () {
+	var myTime = $elm$time$Time$millisToPosix(1404172800000);
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pScale(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$scDomain(
+								$author$project$VegaLite$doMinDt(
+									$author$project$VegaLite$fromPosixTime(myTime)))
+							]))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('temp_max'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TimeTests$path + 'seattle-weather.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(800),
+				data,
+				enc(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maClip(true)
+					]))
+			]));
+}();
 var $author$project$TimeTests$UTC = 1;
 var $author$project$TimeTests$utcTime = $author$project$TimeTests$parseTime(1);
 var $author$project$VegaLite$Year = {$: 0};
@@ -10685,7 +11014,8 @@ var $author$project$TimeTests$specs = _List_fromArray(
 		$author$project$TimeTests$timeByUnit($author$project$VegaLite$milliseconds)),
 		_Utils_Tuple2('localTime', $author$project$TimeTests$localTime),
 		_Utils_Tuple2('utcTime', $author$project$TimeTests$utcTime),
-		_Utils_Tuple2('timeBand', $author$project$TimeTests$timeBand)
+		_Utils_Tuple2('timeBand', $author$project$TimeTests$timeBand),
+		_Utils_Tuple2('timePosix', $author$project$TimeTests$timePosix)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

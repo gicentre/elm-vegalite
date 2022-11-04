@@ -6,6 +6,7 @@ import Html exposing (Html)
 import Html.Attributes
 import Html.Events
 import Json.Encode
+import Time
 import VegaLite exposing (..)
 
 
@@ -103,6 +104,33 @@ timeBand =
         ]
 
 
+timePosix : Spec
+timePosix =
+    let
+        data =
+            dataFromUrl (path ++ "seattle-weather.csv") []
+
+        myTime =
+            -- July 1st 2014 in milliseconds
+            Time.millisToPosix 1404172800000
+
+        enc =
+            encoding
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pScale [ scDomain <| doMinDt <| fromPosixTime <| myTime ]
+                    ]
+                << position Y [ pName "temp_max", pAggregate opMean ]
+    in
+    toVegaLite
+        [ width 800
+        , data
+        , enc []
+        , line [ maClip True ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -140,6 +168,7 @@ specs =
     , ( "localTime", localTime )
     , ( "utcTime", utcTime )
     , ( "timeBand", timeBand )
+    , ( "timePosix", timePosix )
     ]
 
 
