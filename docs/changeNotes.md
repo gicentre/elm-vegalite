@@ -6,6 +6,10 @@
 
 - Corrected API doc for coLocale example to use correct Elm unicode escape text.
 
+### Deprecations
+
+- Deprecated `dtMonthNum` as it was redundant (use `dtMonth` instead). There should be no reason to allow specification of months with numbers as this carries the risk of undefined behaviour for integers outside the range [1,12]. Thanks to @RalfNorthman for spotting this.
+
 ## V5.5.2 ➡ V5.3.0
 
 _Minor addition to allow multiple time formats to be specified for an axis._

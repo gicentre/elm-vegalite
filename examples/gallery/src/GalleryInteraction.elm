@@ -563,7 +563,7 @@ interaction15 =
             params
                 << param "index"
                     [ paSelect sePoint [ seToggle tpFalse, seOn "mouseover", seEncodings [ chX ], seNearest True ]
-                    , paValues (dataObjects [ [ ( "x", dt [ dtYear 2005, dtMonthNum Jan, dtDate 1 ] ) ] ])
+                    , paValues (dataObjects [ [ ( "x", dt [ dtYear 2005, dtMonth Jan, dtDate 1 ] ) ] ])
                     ]
 
         trans =
