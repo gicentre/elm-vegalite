@@ -12198,49 +12198,10 @@ var $author$project$VegaLite$dtDate = function (n) {
 	return $author$project$VegaLite$DTDate(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$DTMonthNum = function (a) {
-	return {$: 3, a: a};
+var $author$project$VegaLite$DTMonth = function (a) {
+	return {$: 2, a: a};
 };
-var $author$project$VegaLite$dtMonthNum = function (mon) {
-	switch (mon) {
-		case 0:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(1));
-		case 1:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(2));
-		case 2:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(3));
-		case 3:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(4));
-		case 4:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(5));
-		case 5:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(6));
-		case 6:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(7));
-		case 7:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(8));
-		case 8:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(9));
-		case 9:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(10));
-		case 10:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(11));
-		default:
-			return $author$project$VegaLite$DTMonthNum(
-				$author$project$VegaLite$Num(12));
-	}
-};
+var $author$project$VegaLite$dtMonth = $author$project$VegaLite$DTMonth;
 var $author$project$VegaLite$DTYear = function (a) {
 	return {$: 0, a: a};
 };
@@ -12403,7 +12364,7 @@ var $author$project$GalleryInteraction$interaction15 = function () {
 										_List_fromArray(
 											[
 												$author$project$VegaLite$dtYear(2005),
-												$author$project$VegaLite$dtMonthNum(0),
+												$author$project$VegaLite$dtMonth(0),
 												$author$project$VegaLite$dtDate(1)
 											])))
 								])
