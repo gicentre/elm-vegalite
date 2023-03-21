@@ -12,6 +12,8 @@
 
 - Deprecated `dtMonthNum` as it was redundant (use `dtMonth` instead). There should be no reason to allow specification of months with numbers as this carries the risk of undefined behaviour for integers outside the range [1,12]. Thanks to @RalfNorthman for spotting this.
 
+- `AxisChoice`, `axX` and `axY` deprecated as specific axis choice is specified via `coAxisXFilter` and `coAxisYFilter`. These have been redundant since elm-vegalite V2.3.0 but were inadvertently left exposed in the API.
+
 ## V5.5.2 ➡ V5.3.0
 
 _Minor addition to allow multiple time formats to be specified for an axis._
