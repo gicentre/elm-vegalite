@@ -12699,7 +12699,7 @@ geoFeatureCollection geoms =
         ]
 
 
-{-| Line geometry for programmatically creating GeoShapes. Equivalent to the
+{-| Line [geometry](#geometry) for programmatically creating GeoShapes. Equivalent to the
 [GeoJson geometry `line` type](https://tools.ietf.org/html/rfc7946#section-3.1).
 
     myGeo : Data
@@ -12715,7 +12715,7 @@ geoLine =
     GeoLine
 
 
-{-| Multi-line geometry for programmatically creating GeoShapes. Equivalent
+{-| Multi-line [geometry](#geometry) for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `multi-line` type](https://tools.ietf.org/html/rfc7946#section-3.1).
 
     myGeo : Data
@@ -12737,7 +12737,7 @@ geoLines =
     GeoLines
 
 
-{-| Collection of geometry objects that make up a single feature. Can be used in
+{-| Collection of [geometry](#geometry) objects that make up a single feature. Can be used in
 a [geoshape](#geoshape) specification. Each geometry object can be created with
 [geometry](#geometry).
 
@@ -12787,7 +12787,7 @@ geometry gType properties =
             ]
 
 
-{-| Point geometry for programmatically creating GeoShapes. Equivalent to
+{-| Point [geometry](#geometry) for programmatically creating GeoShapes. Equivalent to
 the [GeoJson geometry `point` type](https://tools.ietf.org/html/rfc7946#section-3.1).
 
     myGeo : Data
@@ -12803,7 +12803,7 @@ geoPoint =
     GeoPoint
 
 
-{-| Multi-point geometry for programmatically creating GeoShapes. Equivalent
+{-| Multi-point [geometry](#geometry) for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `multi-point` type](https://tools.ietf.org/html/rfc7946#section-3.1).
 
     myGeo : Data
@@ -12819,7 +12819,7 @@ geoPoints =
     GeoPoints
 
 
-{-| Polygon geometry for programmatically creating GeoShapes. Equivalent
+{-| Polygon [geometry](#geometry) for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `polygon` type](https://tools.ietf.org/html/rfc7946#section-3.1).
 
     myGeo : Data
@@ -12835,7 +12835,7 @@ geoPolygon =
     GeoPolygon
 
 
-{-| Multi-polygon geometry for programmatically creating GeoShapes. Equivalent
+{-| Multi-polygon [geometry](#geometry) for programmatically creating GeoShapes. Equivalent
 to the [GeoJson geometry `multi-polygon` type](https://tools.ietf.org/html/rfc7946#section-3.1).
 
     myGeo : Data
@@ -12966,7 +12966,8 @@ grLinear =
 
 
 {-| The radius, normalised to [0, 1], of the inner circle for a radial color gradient.
-Default is 0.
+Default is 0. Used by [maColorGradient](#maColorGradient), [maFillGradient](#maFillGradient)
+and [maStrokeGradient](#maStrokeGradient).
 -}
 grR1 : Float -> GradientProperty
 grR1 n =
@@ -12974,7 +12975,8 @@ grR1 n =
 
 
 {-| The radius, normalised to [0, 1], of the outer circle for a radial color gradient.
-Default is 0.5.
+Default is 0.5. Used by [maColorGradient](#maColorGradient), [maFillGradient](#maFillGradient)
+and [maStrokeGradient](#maStrokeGradient).
 -}
 grR2 : Float -> GradientProperty
 grR2 n =
@@ -13020,7 +13022,8 @@ grStepMinor =
 
 
 {-| Color interpolation points. Each tuple in the list is a position normalised
-[0, 1] and its associated color.
+[0, 1] and its associated color. Used by [maColorGradient](#maColorGradient),
+[maFillGradient](#maFillGradient) and [maStrokeGradient](#maStrokeGradient).
 -}
 grStops : List ( Float, String ) -> GradientProperty
 grStops =
@@ -13038,7 +13041,8 @@ grPrecision n =
 
 {-| The x-coordinate, normalised to [0, 1], for the start of a color gradient. If
 the gradient is linear the default is 0; if radial, it is the x-position of the
-centre of the inner circle with a default of 0.5.
+centre of the inner circle with a default of 0.5. Used by [maColorGradient](#maColorGradient),
+[maFillGradient](#maFillGradient) and [maStrokeGradient](#maStrokeGradient).
 -}
 grX1 : Float -> GradientProperty
 grX1 n =
@@ -13047,7 +13051,8 @@ grX1 n =
 
 {-| The x-coordinate, normalised to [0, 1], for the end of a color gradient. If
 the gradient is linear the default is 1; if radial, it is the x-position of the
-centre of the outer circle with a default of 0.5.
+centre of the outer circle with a default of 0.5. Used by [maColorGradient](#maColorGradient),
+[maFillGradient](#maFillGradient) and [maStrokeGradient](#maStrokeGradient).
 -}
 grX2 : Float -> GradientProperty
 grX2 n =
@@ -13056,7 +13061,8 @@ grX2 n =
 
 {-| The y-coordinate, normalised to [0, 1], for the start of a color gradient. If
 the gradient is linear the default is 0; if radial, it is the y-position of the
-centre of the inner circle with a default of 0.5.
+centre of the inner circle with a default of 0.5. Used by [maColorGradient](#maColorGradient),
+[maFillGradient](#maFillGradient) and [maStrokeGradient](#maStrokeGradient).
 -}
 grY1 : Float -> GradientProperty
 grY1 n =
@@ -13065,7 +13071,8 @@ grY1 n =
 
 {-| The y-coordinate, normalised to [0, 1], for the end of a color gradient. If
 the gradient is linear the default is 1; if radial, it is the y-position of the
-centre of the outer circle with a default of 0.5.
+centre of the outer circle with a default of 0.5. Used by [maColorGradient](#maColorGradient),
+[maFillGradient](#maFillGradient) and [maStrokeGradient](#maStrokeGradient).
 -}
 grY2 : Float -> GradientProperty
 grY2 n =
