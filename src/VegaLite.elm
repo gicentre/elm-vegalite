@@ -13079,7 +13079,11 @@ grY2 n =
     GrY2 (Num n)
 
 
-{-| Center horizontal text alignment.
+{-| Center horizontal text alignment. Used by [maAlign](#maAlign),
+[axLabelAlign](#axLabelAlign), [cAxLabelAlign](#cAxLabelAlign), [axTitleAlign](#axTitleAlign),
+[leLabelAlign](#leLabelAlign), [leTitleAlign](#leTitleAlign), [hdLabelAlign](#hdLabelAlign),
+[hdTitleAlign](#hdTitleAlign), [axcoLabelAlign](#axcoLabelAlign), [axcoTitleAlign](#axcoTitleAlign),
+[lecoLabelAlign](#lecoLabelAlign) and [lecoTitleAlign](#lecoTitleAlign).
 -}
 haCenter : HAlign
 haCenter =
@@ -13096,7 +13100,11 @@ hAggregate =
 
 
 {-| Expression that evaluates to some text alignment such as "left", "right" or
-"center". Can be used, for example, to align text to the left or right depending
+"center". Used by [maAlign](#maAlign), [axLabelAlign](#axLabelAlign), [cAxLabelAlign](#cAxLabelAlign),
+[axTitleAlign](#axTitleAlign), [leLabelAlign](#leLabelAlign), [leTitleAlign](#leTitleAlign),
+[hdLabelAlign](#hdLabelAlign), [hdTitleAlign](#hdTitleAlign), [axcoLabelAlign](#axcoLabelAlign),
+[axcoTitleAlign](#axcoTitleAlign), [lecoLabelAlign](#lecoLabelAlign) and [lecoTitleAlign](#lecoTitleAlign).
+Can be used, for example, to align text to the left or right depending
 on whether data values are positive or negative:
 
     maAlign (haExpr "datum.x < 0 ? 'right' : 'left'")
@@ -13107,14 +13115,22 @@ haExpr =
     HAlignExpr
 
 
-{-| Left horizontal text alignment.
+{-| Left horizontal text alignment. Used by [maAlign](#maAlign), [axLabelAlign](#axLabelAlign),
+[cAxLabelAlign](#cAxLabelAlign), [axTitleAlign](#axTitleAlign), [leLabelAlign](#leLabelAlign),
+[leTitleAlign](#leTitleAlign), [hdLabelAlign](#hdLabelAlign), [hdTitleAlign](#hdTitleAlign),
+[axcoLabelAlign](#axcoLabelAlign), [axcoTitleAlign](#axcoTitleAlign), [lecoLabelAlign](#lecoLabelAlign)
+and [lecoTitleAlign](#lecoTitleAlign).
 -}
 haLeft : HAlign
 haLeft =
     HAlignLeft
 
 
-{-| Right horizontal text alignment.
+{-| Right horizontal text alignment. Used by [maAlign](#maAlign), [axLabelAlign](#axLabelAlign),
+[cAxLabelAlign](#cAxLabelAlign), [axTitleAlign](#axTitleAlign), [leLabelAlign](#leLabelAlign),
+[leTitleAlign](#leTitleAlign), [hdLabelAlign](#hdLabelAlign), [hdTitleAlign](#hdTitleAlign),
+[axcoLabelAlign](#axcoLabelAlign), [axcoTitleAlign](#axcoTitleAlign), [lecoLabelAlign](#lecoLabelAlign)
+and [lecoTitleAlign](#lecoTitleAlign).
 -}
 haRight : HAlign
 haRight =
@@ -13170,6 +13186,7 @@ hCondition =
 facet header (title) values. To distinguish between formatting as numeric values
 and data/time values, additionally use [hdFormatAsNum](#hdFormatAsNum),
 [hdFormatAsTemporal](#hdFormatAsTemporal) or [hdFormatAsCustom](#hdFormatAsCustom).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdFormat : String -> HeaderProperty
 hdFormat s =
@@ -13178,6 +13195,7 @@ hdFormat s =
 
 {-| Indicate that facet headers should be formatted with a registered custom formatter
 with the given name. See [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdFormatAsCustom : String -> HeaderProperty
 hdFormatAsCustom s =
@@ -13187,6 +13205,7 @@ hdFormatAsCustom s =
 {-| Indicate that facet headers should be formatted as numbers. To control the
 precise numeric format, additionally use [hdFormat](#hdFormat) providing a
 [d3 numeric format string](https://github.com/d3/d3-format#locale_format).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdFormatAsNum : HeaderProperty
 hdFormatAsNum =
@@ -13196,14 +13215,15 @@ hdFormatAsNum =
 {-| Indicate that facet headers should be formatted as dates/times. To control the
 precise temporal format, additionally use [hdFormat](#hdFormat) providing a
 [d3 date/time format string](https://github.com/d3/d3-time-format#locale_format).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdFormatAsTemporal : HeaderProperty
 hdFormatAsTemporal =
     HFormatAsTemporal
 
 
-{-| Horizontal alignment of header labels. A 'label' is the
-title for each sub-plot in a faceted view.
+{-| Horizontal alignment of header labels. A 'label' is the title for each sub-plot
+in a faceted view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelAlign : HAlign -> HeaderProperty
 hdLabelAlign =
@@ -13211,14 +13231,14 @@ hdLabelAlign =
 
 
 {-| Anchor position of header labels. A 'label' is the title for each sub-plot
-in a faceted view.
+in a faceted view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelAnchor : Anchor -> HeaderProperty
 hdLabelAnchor =
     HLabelAnchor
 
 
-{-| Vertical alignment of header labels.
+{-| Vertical alignment of header labels. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelBaseline : VAlign -> HeaderProperty
 hdLabelBaseline =
@@ -13226,14 +13246,16 @@ hdLabelBaseline =
 
 
 {-| Header label rotation angle (in degrees from horizontal) for a faceted view.
-A 'label' is the title for each sub-plot in a faceted view.
+A 'label' is the title for each sub-plot in a faceted view. Used by
+[fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelAngle : Float -> HeaderProperty
 hdLabelAngle x =
     HLabelAngle (Num (positiveAngle x))
 
 
-{-| Header label text color for a faceted view.
+{-| Header label text color for a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdLabelColor : String -> HeaderProperty
 hdLabelColor s =
@@ -13242,42 +13264,48 @@ hdLabelColor s =
 
 {-| [Expression](https://vega.github.io/vega/docs/expressions/) for customising
 header labels. Can reference `datum.value` and `datum.label` for access to the
-underlying data values and label text respectively.
+underlying data values and label text respectively. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdLabelExpr : String -> HeaderProperty
 hdLabelExpr s =
     HLabelExpr (Str s)
 
 
-{-| Header label font in a faceted view.
+{-| Header label font in a faceted view. Used by [fHeader](#fHeader) and
+[coHeader](#coHeader).
 -}
 hdLabelFont : String -> HeaderProperty
 hdLabelFont s =
     HLabelFont (Str s)
 
 
-{-| Header label font size in a faceted view.
+{-| Header label font size in a faceted view. Used by [fHeader](#fHeader) and
+[coHeader](#coHeader).
 -}
 hdLabelFontSize : Float -> HeaderProperty
 hdLabelFontSize n =
     HLabelFontSize (Num n)
 
 
-{-| Header label font style (e.g. `italic`) in a faceted view.
+{-| Header label font style (e.g. `italic`) in a faceted view. Used by
+[fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelFontStyle : String -> HeaderProperty
 hdLabelFontStyle s =
     HLabelFontStyle (Str s)
 
 
-{-| Header label font weight in a faceted view.
+{-| Header label font weight in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdLabelFontWeight : FontWeight -> HeaderProperty
 hdLabelFontWeight =
     HLabelFontWeight
 
 
-{-| Maximum length of a header label in a faceted view.
+{-| Maximum length of a header label in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdLabelLimit : Float -> HeaderProperty
 hdLabelLimit n =
@@ -13285,6 +13313,7 @@ hdLabelLimit n =
 
 
 {-| Header label line height in a faceted view (useful for multi-line labels).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelLineHeight : Float -> HeaderProperty
 hdLabelLineHeight n =
@@ -13292,21 +13321,23 @@ hdLabelLineHeight n =
 
 
 {-| The position of a header label relative to a sub-plot. A 'label' is the title
-for each sub-plot in a faceted view.
+for each sub-plot in a faceted view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdLabelOrient : Side -> HeaderProperty
 hdLabelOrient =
     HLabelOrient
 
 
-{-| Spacing in pixels between facet labels and the main plot area.
+{-| Spacing in pixels between facet labels and the main plot area. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdLabelPadding : Float -> HeaderProperty
 hdLabelPadding x =
     HLabelPadding (Num x)
 
 
-{-| Whether or not labels in a faceted view are displayed.
+{-| Whether or not labels in a faceted view are displayed. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdLabels : Bool -> HeaderProperty
 hdLabels b =
@@ -13315,7 +13346,10 @@ hdLabels b =
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
 facet header property function requiring a numeric value. This can be used for interactive
-parameterisation when an expression is bound to an input element. For example,
+parameterisation when an expression is bound to an input element. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
+
+For example,
 
     ps =
         params
@@ -13371,7 +13405,7 @@ hdNumExpr ex fn =
 
 {-| The relative position of both a header label and title relative to a sub-plot
 (shortcut instead of specifying [hdLabelOrient](#hdLabelOrient) and [hdTitleOrient](#hdTitleOrient)
-separately).
+separately). Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdOrient : Side -> HeaderProperty
 hdOrient =
@@ -13381,7 +13415,7 @@ hdOrient =
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a facet header property function requiring a string value. This can be used to provide an
 interactive parameterisation of a header property when an expression is bound to an
-input element. For example,
+input element. Used by [fHeader](#fHeader) and [coHeader](#coHeader). For example,
 
     ps =
         params
@@ -13437,21 +13471,23 @@ hdStrExpr ex fn =
 
 {-| Header title in a faceted view. A 'title' is the overall title describing the
 collection of faceted plots. For multi-line titles, insert `\n` at each line break
-or use a `"""` multi-line string.
+or use a `"""` multi-line string. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitle : String -> HeaderProperty
 hdTitle s =
     HTitle (Str s)
 
 
-{-| Horizontal alignment of header title in a faceted view.
+{-| Horizontal alignment of header title in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitleAlign : HAlign -> HeaderProperty
 hdTitleAlign =
     HTitleAlign
 
 
-{-| Anchor position of a header title in a faceted view.
+{-| Anchor position of a header title in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitleAnchor : Anchor -> HeaderProperty
 hdTitleAnchor =
@@ -13459,55 +13495,60 @@ hdTitleAnchor =
 
 
 {-| Text angle of a header title in a faceted view (degrees from horizontal).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitleAngle : Float -> HeaderProperty
 hdTitleAngle x =
     HTitleAngle (Num (positiveAngle x))
 
 
-{-| Vertical alignment of a header title in a faceted view.
+{-| Vertical alignment of a header title in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitleBaseline : VAlign -> HeaderProperty
 hdTitleBaseline =
     HTitleBaseline
 
 
-{-| Text color of a header title in a faceted view.
+{-| Text color of a header title in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitleColor : String -> HeaderProperty
 hdTitleColor s =
     HTitleColor (Str s)
 
 
-{-| Title font in a faceted view.
+{-| Title font in a faceted view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitleFont : String -> HeaderProperty
 hdTitleFont s =
     HTitleFont (Str s)
 
 
-{-| Title font size in a faceted view.
+{-| Title font size in a faceted view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitleFontSize : Float -> HeaderProperty
 hdTitleFontSize x =
     HTitleFontSize (Num x)
 
 
-{-| Header title font style (e.g. `italic`) in a faceted view.
+{-| Header title font style (e.g. `italic`) in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitleFontStyle : String -> HeaderProperty
 hdTitleFontStyle s =
     HTitleFontStyle (Str s)
 
 
-{-| Title font weight in a faceted view.
+{-| Title font weight in a faceted view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitleFontWeight : FontWeight -> HeaderProperty
 hdTitleFontWeight =
     HTitleFontWeight
 
 
-{-| Maximum length of a header title in a faceted view.
+{-| Maximum length of a header title in a faceted view. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitleLimit : Float -> HeaderProperty
 hdTitleLimit x =
@@ -13515,6 +13556,7 @@ hdTitleLimit x =
 
 
 {-| Header title line height in a faceted view (useful for multi-line titles).
+Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitleLineHeight : Float -> HeaderProperty
 hdTitleLineHeight x =
@@ -13522,14 +13564,15 @@ hdTitleLineHeight x =
 
 
 {-| The position of a header title relative to a group of sub-plots in a faceted
-view.
+view. Used by [fHeader](#fHeader) and [coHeader](#coHeader).
 -}
 hdTitleOrient : Side -> HeaderProperty
 hdTitleOrient =
     HTitleOrient
 
 
-{-| Spacing in pixels between the main facet title and labels.
+{-| Spacing in pixels between the main facet title and labels. Used by [fHeader](#fHeader)
+and [coHeader](#coHeader).
 -}
 hdTitlePadding : Float -> HeaderProperty
 hdTitlePadding x =
