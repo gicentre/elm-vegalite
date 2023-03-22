@@ -6783,7 +6783,7 @@ arLayer =
 
 
 {-| Specify an [Apache arrow](https://observablehq.com/@theneuralbit/introduction-to-apache-arrow)
-data file format when reading a data file. For example,
+data file format when reading a data file. Used by [dataFromUrl](#dataFromUrl). For example,
 
     myData : Data
     myData =
@@ -10165,7 +10165,7 @@ columns cols =
 
 {-| The mapping between a column and its field definitions in a set of faceted
 small multiples. This is used when specifying a more flexible [facet](#facet)
-rather than the compact, but simplified, [column](#column).
+rather than the compact, but simplified, [column](#column). Used by [facet](#facet).
 -}
 columnBy : List FacetChannel -> FacetMapping
 columnBy =
@@ -10523,7 +10523,8 @@ coView =
 
 
 {-| Specify a CSV (comma-separated values) file format when reading a data file.
-Only necessary if the file extension does not indicate the type. For example,
+Only necessary if the file extension does not indicate the type.
+Used by [dataFromUrl](#dataFromUrl). For example,
 
     myData : Data
     myData =
@@ -11752,7 +11753,7 @@ dQuant =
 
 
 {-| Specify a custom delimited file format (DSV) with a given separator when
-reading a data file.
+reading a data file. Used by [dataFromUrl](#dataFromUrl). For example,
 
     myData : Data
     myData =
@@ -11886,8 +11887,8 @@ dtQuarter n =
     DTQuarter (Num (toFloat n))
 
 
-{-| Min max date-time range to be used in data filtering. If either
-parameter is an empty list, it is assumed to be unbounded.
+{-| Min max date-time range to be used in data filtering. If either parameter is an
+empty list, it is assumed to be unbounded. Used by [fiRange](#fiRange).
 -}
 dtRange : List DateTime -> List DateTime -> FilterRange
 dtRange ts1 ts2 =
@@ -12069,7 +12070,7 @@ facetFlow fFields =
 
 
 {-| Configuration option for the maximum number of columns to use in a faceted
-flow layout.
+flow layout. Used by [coFacet](#coFacet).
 -}
 facoColumns : Int -> FacetConfig
 facoColumns n =
@@ -12077,7 +12078,7 @@ facoColumns n =
 
 
 {-| Configuration option for the spacing in pixels between sub-views in a faceted
-view.
+view. Used by [coFacet](#coFacet).
 -}
 facoSpacing : Float -> FacetConfig
 facoSpacing n =
@@ -12086,14 +12087,16 @@ facoSpacing n =
 
 {-| Compute some aggregate summary statistics for a field to be encoded with a
 facet channel. The type of aggregation is determined by the given operation
-parameter.
+parameter. Used by [row](#row), [column](#column), [rowBy](#rowBy), [columnBy](#columnBy)
+and [facetFlow](#facetFlow).
 -}
 fAggregate : Operation -> FacetChannel
 fAggregate =
     FAggregate
 
 
-{-| Alignment to apply to a rows or columns in a facet's sub-plot.
+{-| Alignment to apply to a rows or columns in a facet's sub-plot. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fAlign : CompositionAlignment -> FacetChannel
 fAlign =
@@ -12112,7 +12115,8 @@ false =
     Boolean False
 
 
-{-| Discretize numeric values into bins when encoding with a facet channel.
+{-| Discretize numeric values into bins when encoding with a facet channel. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fBin : List BinProperty -> FacetChannel
 fBin =
@@ -12120,7 +12124,8 @@ fBin =
 
 
 {-| Whether or not a facet's sub-plots should be centred relative to their respective
-rows or columns.
+rows or columns. Used by [row](#row), [column](#column), [rowBy](#rowBy), [columnBy](#columnBy)
+and [facetFlow](#facetFlow).
 -}
 fCenter : Bool -> FacetChannel
 fCenter b =
@@ -12128,6 +12133,8 @@ fCenter b =
 
 
 {-| Indicate a data field encoded as a facet property is a geo feature.
+Used by [row](#row), [column](#column), [rowBy](#rowBy), [columnBy](#columnBy)
+and [facetFlow](#facetFlow).
 -}
 fGeo : FacetChannel
 fGeo =
@@ -12135,6 +12142,8 @@ fGeo =
 
 
 {-| Guide that spans a collection of faceted plots, each of which may have their own axes.
+Used by [row](#row), [column](#column), [rowBy](#rowBy), [columnBy](#columnBy)
+and [facetFlow](#facetFlow).
 -}
 fHeader : List HeaderProperty -> FacetChannel
 fHeader =
@@ -12142,8 +12151,8 @@ fHeader =
 
 
 {-| Build up a filtering predicate through logical composition (`and`, `or` etc.).
-For example, to filter only items selected interactively and that represent ages
-over 65:
+Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans). For example,
+to filter only items selected interactively and that represent ages over 65:
 
     trans =
         transform
@@ -12159,7 +12168,7 @@ fiCompose =
 
 
 {-| Filter a data stream so that only data in a given field equal to the given
-value are used.
+value are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiEqual : String -> DataValue -> Filter
 fiEqual =
@@ -12167,7 +12176,7 @@ fiEqual =
 
 
 {-| Filter a data stream so that only data that satisfy the given predicate
-expression are used.
+expression are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiExpr : String -> Filter
 fiExpr =
@@ -12175,7 +12184,7 @@ fiExpr =
 
 
 {-| Filter a data stream so that only data in a given field greater than the given
-value are used.
+value are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiGreaterThan : String -> DataValue -> Filter
 fiGreaterThan =
@@ -12183,7 +12192,7 @@ fiGreaterThan =
 
 
 {-| Filter a data stream so that only data in a given field greater than or equal
-to the given value are used.
+to the given value are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiGreaterThanEq : String -> DataValue -> Filter
 fiGreaterThanEq =
@@ -12191,7 +12200,7 @@ fiGreaterThanEq =
 
 
 {-| Filter a data stream so that only data in a given field less than the given
-value are used.
+value are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiLessThan : String -> DataValue -> Filter
 fiLessThan =
@@ -12199,7 +12208,7 @@ fiLessThan =
 
 
 {-| Filter a data stream so that only data in a given field less than or equal to
-the given value are used.
+the given value are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiLessThanEq : String -> DataValue -> Filter
 fiLessThanEq =
@@ -12245,7 +12254,7 @@ filter f =
 
 
 {-| Filter a data stream so that only data in a given field contained in the given
-list of values are used.
+list of values are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiOneOf : String -> DataValues -> Filter
 fiOneOf =
@@ -12294,7 +12303,9 @@ fiOpTrans =
 
 
 {-| Filter a data stream so that only data in a given field that are within the
-given range are used.
+given range are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
+
+For example,
 
     filter (fiRange "date" (dtRange [ dtYear 2006 ] [ dtYear 2016 ]))
 
@@ -12305,7 +12316,8 @@ fiRange =
 
 
 {-| Filter a data stream in response to the value of a selection parameter. Useful
-for creating interactive filtering from a selection.
+for creating interactive filtering from a selection. Used by [filter](#filter),
+[fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiSelection : String -> Filter
 fiSelection =
@@ -12313,7 +12325,7 @@ fiSelection =
 
 
 {-| Similar to [fiSelection](#fiSelection) except that an empty selection filters
-out all values.
+out all values. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiSelectionEmpty : String -> Filter
 fiSelectionEmpty =
@@ -12321,7 +12333,7 @@ fiSelectionEmpty =
 
 
 {-| Filter a data stream so that only valid data (i.e. not null or NaN) in a given
-field are used.
+field are used. Used by [filter](#filter), [fiOp](#fiOp) and [fiOpTrans](#fiOpTrans).
 -}
 fiValid : String -> Filter
 fiValid =
@@ -12349,7 +12361,8 @@ flattenAs fields names =
         )
 
 
-{-| Name of field used for encoding with a facet channel.
+{-| Name of field used for encoding with a facet channel. Used by [row](#row), [column](#column),
+[rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fName : String -> FacetChannel
 fName s =
@@ -12357,7 +12370,8 @@ fName s =
 
 
 {-| Indicate a data field encoded as a facet property is nominal. This is the
-default data type.
+default data type. Used by [row](#row), [column](#column), [rowBy](#rowBy),
+[columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fNominal : FacetChannel
 fNominal =
@@ -12439,7 +12453,8 @@ foNum =
     FoNum
 
 
-{-| Indicate a data field encoded as a facet property is ordinal.
+{-| Indicate a data field encoded as a facet property is ordinal. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fOrdinal : FacetChannel
 fOrdinal =
@@ -12454,7 +12469,8 @@ foUtc =
     FoUtc
 
 
-{-| Indicate a data field encoded as a facet property is quantitative.
+{-| Indicate a data field encoded as a facet property is quantitative. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fQuant : FacetChannel
 fQuant =
@@ -12528,7 +12544,10 @@ fromPosixTime t =
     ]
 
 
-{-| Sort order for a field when encoding with a faceted channel.
+{-| Sort order for a field when encoding with a faceted channel. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
+
+For example,
 
     row
         [ fName "site"
@@ -12542,21 +12561,23 @@ fSort =
     FSort
 
 
-{-| Spacing in pixels between sub-views in a faceted view.
+{-| Spacing in pixels between sub-views in a faceted view. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fSpacing : Float -> FacetChannel
 fSpacing n =
     FSpacing (Num n)
 
 
-{-| Indicate a data field encoded as a facet property is temporal.
+{-| Indicate a data field encoded as a facet property is temporal. Used by [row](#row),
+[column](#column), [rowBy](#rowBy), [columnBy](#columnBy) and [facetFlow](#facetFlow).
 -}
 fTemporal : FacetChannel
 fTemporal =
     FmType Temporal
 
 
-{-| Field titles to be displayed as 'SUM(field)', 'YEAR(date)' etc.
+{-| Field titles to be displayed as 'SUM(field)', 'YEAR(date)' etc. Used by [coFieldTitle](#coFieldTitle).
 -}
 ftFunction : FieldTitleProperty
 ftFunction =
@@ -12564,20 +12585,23 @@ ftFunction =
 
 
 {-| Form of time unit aggregation of field values when encoding with a facet channel.
+Used by [row](#row), [column](#column), [rowBy](#rowBy), [columnBy](#columnBy)
+and [facetFlow](#facetFlow).
 -}
 fTimeUnit : TimeUnit -> FacetChannel
 fTimeUnit =
     FTimeUnit
 
 
-{-| Field titles to be displayed simply by their name without additional text.
+{-| Field titles to be displayed simply by their name without additional text. Used by [coFieldTitle](#coFieldTitle).
 -}
 ftPlain : FieldTitleProperty
 ftPlain =
     FTPlain
 
 
-{-| Field titles to be displayed fully as 'Sum of field', 'Year of date' etc.
+{-| Field titles to be displayed fully, such as 'Sum of field', 'Year of date' etc.
+Used by [coFieldTitle](#coFieldTitle).
 -}
 ftVerbal : FieldTitleProperty
 ftVerbal =
@@ -14125,7 +14149,7 @@ joRound =
 
 {-| Property to be extracted from some JSON when it has some surrounding structure.
 e.g., specifying the property `values.features` is equivalent to retrieving
-`json.values.features` from a JSON object with a custom delimiter.
+`json.values.features` from a JSON object with a custom delimiter. Used by [dataFromJson](#dataFromJson).
 -}
 jsonProperty : String -> Format
 jsonProperty s =
@@ -17653,7 +17677,7 @@ maStrExpr ex fn =
             fn ""
 
 
-{-| Minimum-maximum number range to be used in data filtering.
+{-| Minimum-maximum number range to be used in data filtering. Used by [fiRange](#fiRange).
 -}
 numRange : Float -> Float -> FilterRange
 numRange n1 n2 =
@@ -18008,8 +18032,8 @@ orthographic =
 
 {-| Specify an overlap strategy with an expression that should evaluate to one
 of True, False, "parity" or "greedy". If using an input element such as [ipSelect](#ipSelect)
-to allow all options, the mixed option types should be defined with [inDatumOptions](#inDatumOptions),
-for example:
+to allow all options, the mixed option types should be defined with [inDatumOptions](#inDatumOptions).
+For example,
 
     ipSelect
         [ inName "Label overlap"
@@ -18168,7 +18192,7 @@ paEdgesExpr l t r b =
 
 
 {-| Initial value of a parameter specified as a
-[Vega expression](https://vega.github.io/vega/docs/expressions). For example:
+[Vega expression](https://vega.github.io/vega/docs/expressions). For example,
 
     ps =
         params
@@ -19280,7 +19304,7 @@ raName =
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
 a range scale property function requiring a numeric value. This can be used for
 interactive parameterisation when an expression is bound to an input element.
-Used by [scRange](#scRange). For example:
+Used by [scRange](#scRange). For example,
 
     ps =
         params
@@ -19626,7 +19650,7 @@ row fFields =
 
 {-| The mapping between a row and its field definitions in a set of faceted
 small multiples. This is used when specifying a more flexible [facet](#facet)
-rather than the compact, but simplified, [row](#row).
+rather than the compact, but simplified, [row](#row). Used by [facet](#facet).
 -}
 rowBy : List FacetChannel -> FacetMapping
 rowBy =
@@ -19988,7 +20012,7 @@ scConstant n =
 {-| Provide a custom scaling domain (data extent). This can be useful for fixing
 the data extent when interactively filtering or faceting so providing a 'global'
 scaling consistent across views. Used by [pScale](#pScale) and [mScale](#mScale).
-For example:
+For example,
 
     color
         [ mName "popularity"
@@ -21628,7 +21652,7 @@ title txt tps =
 
 
 {-| Expression that evaluates to a title. Similar to [title](#title) except the
-content of the title is the evaluated expression (first parameter). For example:
+content of the title is the evaluated expression (first parameter). For example,
 
     let
         ps =
@@ -21712,7 +21736,8 @@ tooltips tDefss =
 
 {-| A topoJSON feature format containing an object with the given name. The name
 of the object can be found by inspecting the topoJSON file and searching for the
-value associated with the `objects` key.
+value associated with the `objects` key. Used by [dataFromUrl](#dataFromUrl).
+For example,
 
     myData : Data
     myData =
@@ -21728,7 +21753,8 @@ topojsonFeature s =
 {-| A topoJSON mesh format containing an object with the given name. Unlike
 `topojsonFeature`, the corresponding geo data are returned as a single unified mesh,
 not as individual GeoJSON features. Generally meshes can be faster to render but
-only suitable for showing boundary features, not filled areas. For example:
+only suitable for showing boundary features, not filled areas. Used by [dataFromUrl](#dataFromUrl).
+For example,
 
     myLondon : Spec
     myLondon =
@@ -21903,7 +21929,8 @@ tStr s =
 
 
 {-| Specify a TSV (tab-separated values) file format when reading a data file.
-Only necessary if the file extension does not indicate the type. For example,
+Only necessary if the file extension does not indicate the type.
+Used by [dataFromUrl](#dataFromUrl). For example,
 
     myData : Data
     myData =
