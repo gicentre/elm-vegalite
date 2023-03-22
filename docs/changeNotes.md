@@ -1,20 +1,30 @@
 # elm-vegaLite changes
 
-## Pending
+## V5.3.0 ➡ V5.4.0
 
-- Add `fromPosixTime` to allow Elm time functions to be used to generate elm-vegalite `DateTime` values. Thanks to @RalfNorthman for the suggestion.
+### V5.4 Additions
+
+- `fromPosixTime` to allow Elm time functions to be used to generate elm-vegalite `DateTime` values. Thanks to @RalfNorthman for the suggestion.
+
+- `secoZero` to set the default for whether zero is included in the domain of a scale (VL5.6).
+
+### Corrections
 
 - Correct `loGrouping` bug that generated a single locale grouping rather than array. Thanks @hingew for spotting this.
 
+### API Documentation
+
 - Corrected API doc for coLocale example to use correct Elm unicode escape text.
 
-- Added reference to parent functions in the API docs. This makes it easier to see how a function is used in the context of a larger specification by navigating up the function dependency tree. Thanks to @RalfNorthman for the suggested improvement.
+- Added reference to parent functions to some functions in the API docs. This makes it easier to see how a function is used in the context of a larger specification by navigating up the function dependency tree. Thanks to @RalfNorthman for the suggested improvement. _Note: this is a work in progress and will be extended to other functions in future releases._
 
 ### Deprecations
 
 - Deprecated `dtMonthNum` as it was redundant (use `dtMonth` instead). There should be no reason to allow specification of months with numbers as this carries the risk of undefined behaviour for integers outside the range [1,12]. Thanks to @RalfNorthman for spotting this.
 
 - `AxisChoice`, `axX` and `axY` deprecated as specific axis choice is specified via `coAxisXFilter` and `coAxisYFilter`. These have been redundant since elm-vegalite V2.3.0 but were inadvertently left exposed in the API.
+
+---
 
 ## V5.5.2 ➡ V5.3.0
 
