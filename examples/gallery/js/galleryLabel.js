@@ -8675,9 +8675,12 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 		case 18:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
-		default:
+		case 19:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'xReverse', b);
+		default:
+			var b = scaleCfg.a;
+			return A2($author$project$VegaLite$booExpr, 'zero', b);
 	}
 };
 var $author$project$VegaLite$selectionLabel = function (seType) {
