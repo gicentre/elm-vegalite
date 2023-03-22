@@ -1,5 +1,11 @@
 # elm-vegaLite changes
 
+## V5.4.0 ➡ V5.4.1
+
+- Minor API doc improvements.
+
+---
+
 ## V5.3.0 ➡ V5.4.0
 
 ### V5.4 Additions

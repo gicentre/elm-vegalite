@@ -9193,7 +9193,10 @@ boFull =
     Full
 
 
-{-| A Boolean data value.
+{-| A Boolean data value. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum), [mDatum](#mDatum),
+[tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions),
+[imNewValue](#imNewValue), [fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq),
+[fiGreaterThan](#fiGreaterThan), [fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 boo : Bool -> DataValue
 boo =
@@ -10819,7 +10822,13 @@ cuZoomOut =
     CZoomOut
 
 
-{-| Concatenate a list of data values as a single data value. For example,
+{-| Concatenate a list of data values as a single data value. Used by [dataRow](#dataRow),
+[paValue](#paValue), [pDatum](#pDatum), [mDatum](#mDatum), [tDatum](#tDatum), [datumArray](#datumArray),
+[inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue), [fiEqual](#fiEqual),
+[fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
+
+For example,
 
     param "location" [ paValue (daConcat (nums [ 4000, 8000 ])) ]
 
@@ -10830,7 +10839,7 @@ daConcat =
 
 
 {-| Compute some aggregate summary statistics for a field to be encoded with a
-level of detail (grouping) channel. The type of aggregation is determined by the
+level of [detail](#detail) (grouping) channel. The type of aggregation is determined by the
 given operation parameter.
 -}
 dAggregate : Operation -> DetailChannel
@@ -10908,7 +10917,10 @@ dataColumn colName data =
             (::) (List.map (\ds -> ( colName, dataValuesSpecs ds )) col)
 
 
-{-| A list of data values created by the given expression.
+{-| A list of data values created by the given expression. Used by [dataColumn](#dataColumn),
+[fiOneOf](#fiOneOf), [imKeyVals](#imKeyVals), [soCustom](#soCustom), [axValues](#axValues),
+[leValues](#leValues), [paValues](#paValues), [inDataOptions](#inDataOptions),
+[dataArrays](#dataArrays) and [daConcat](#daConcat).
 -}
 dataExpr : String -> DataValues
 dataExpr =
@@ -11147,9 +11159,15 @@ dataName s data =
     ( VLData, JE.object [ ( "name", JE.string s ), spec ] )
 
 
-{-| Key-value pairs representing a named data value. For example,
+{-| Key-value pairs representing a named data value. Used by [dataRow](#dataRow), [paValue](#paValue),
+[pDatum](#pDatum), [mDatum](#mDatum), [tDatum](#tDatum), [datumArray](#datumArray),
+[inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue), [fiEqual](#fiEqual),
+[fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 
-    dataObject [ ( "x", num 3500 ), ( "firstName", str "Ada" ) ]
+For example,
+
+    paValue (dataObject [ ( "x", num 3500 ), ( "firstName", str "Ada" ) ])
 
 -}
 dataObject : List ( String, DataValue ) -> DataValue
@@ -11158,7 +11176,9 @@ dataObject =
 
 
 {-| Generate a collection of lists of Key-value pairs representing named data
-values.
+values. Used by [dataColumn](#dataColumn), [fiOneOf](#fiOneOf), [imKeyVals](#imKeyVals),
+[soCustom](#soCustom), [axValues](#axValues), [leValues](#leValues), [paValues](#paValues),
+[inDataOptions](#inDataOptions), [dataArrays](#dataArrays) and [daConcat](#daConcat).
 -}
 dataObjects : List (List ( String, DataValue )) -> DataValues
 dataObjects =
@@ -11308,8 +11328,13 @@ date =
     Date
 
 
-{-| List of data values. Unlike [nums](#nums), [strs](#strs) etc., this allows a
-single array to store mixed types and nested values. For example,
+{-| List of data values. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum),
+[mDatum](#mDatum), [tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions),
+[imNewValue](#imNewValue), [fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq),
+[fiGreaterThan](#fiGreaterThan), [fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
+
+Unlike [nums](#nums), [strs](#strs) etc., this allows a single array to store mixed types and nested values.
+For example,
 
     datumArray [ num 10, str "a", datumArray [ num 99, boo False ] ]
 
@@ -11319,7 +11344,11 @@ datumArray =
     DArray
 
 
-{-| A data value created by the given expression.
+{-| A data value created by the given expression. Used by [dataRow](#dataRow), [paValue](#paValue),
+[pDatum](#pDatum), [mDatum](#mDatum), [tDatum](#tDatum), [datumArray](#datumArray),
+[inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue), [fiEqual](#fiEqual),
+[fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 datumExpr : String -> DataValue
 datumExpr =
@@ -11366,7 +11395,7 @@ dayOfYear =
     DayOfYear
 
 
-{-| Discretize numeric values into bins when encoding with a level of detail
+{-| Discretize numeric values into bins when encoding with a level of [detail](#detail)
 (grouping) channel.
 -}
 dBin : List BinProperty -> DetailChannel
@@ -11410,21 +11439,21 @@ detail detailProps =
     (::) ( "detail", List.concatMap detailChannelProperty detailProps |> JE.object )
 
 
-{-| Indicate a data field encoded with a detail channel is a geo feature.
+{-| Indicate a data field encoded with a [detail](#detail) channel is a geo feature.
 -}
 dGeo : DetailChannel
 dGeo =
     DmType GeoFeature
 
 
-{-| Name of field used for encoding with a level of detail (grouping) channel.
+{-| Name of field used for encoding with a level of [detail](#detail) (grouping) channel.
 -}
 dName : String -> DetailChannel
 dName s =
     DName (Str s)
 
 
-{-| Name the outputs of a density transform. The first parameter is the name to
+{-| Name the outputs of the [density](#density) transform. The first parameter is the name to
 give the field containing samples, the second the name to give the field containing
 density estimates. If not specified, the default names `value` and `density` will
 be used.
@@ -11437,13 +11466,14 @@ dnAs =
 {-| The bandwidth (standard deviation) of the Gaussian kernel used in KDE estimation.
 If 0 or unspecified, the bandwidth will be calculated using
 [Scott's method](https://stats.stackexchange.com/questions/90656/kernel-bandwidth-scotts-vs-silvermans-rules).
+Used by [density](#density).
 -}
 dnBandwidth : Float -> DensityProperty
 dnBandwidth n =
     DnBandwidth (Num n)
 
 
-{-| Whether density estimates should generate counts (true) or probabilities (false).
+{-| Whether [density](#density) estimates should generate counts (true) or probabilities (false).
 If unspecified, probabilities will be generated.
 -}
 dnCounts : Bool -> DensityProperty
@@ -11451,7 +11481,7 @@ dnCounts b =
     DnCounts (Boo b)
 
 
-{-| Whether or not density estimates will be cumulative. If unspecified, non-cumulative
+{-| Whether or not [density](#density) estimates will be cumulative. If unspecified, non-cumulative
 estimates will be generated.
 -}
 dnCumulative : Bool -> DensityProperty
@@ -11460,7 +11490,7 @@ dnCumulative b =
 
 
 {-| The min (first parameter) - max (second parameter) domain from which to sample
-a distribution for density estimation. If unspecified, the full extent of input
+a distribution for [density](#density) estimation. If unspecified, the full extent of input
 values will be sampled.
 -}
 dnExtent : Float -> Float -> DensityProperty
@@ -11468,7 +11498,7 @@ dnExtent n1 n2 =
     DnExtent (Nums [ n1, n2 ])
 
 
-{-| The data fields to group by when estimating density. If not specified, a single
+{-| The data fields to group by when estimating [density](#density). If not specified, a single
 group containing all data objects will be used.
 -}
 dnGroupBy : List String -> DensityProperty
@@ -11476,7 +11506,7 @@ dnGroupBy ss =
     DnGroupBy (Strs ss)
 
 
-{-| The maximum number of samples to take when estimating density. Default is 200.
+{-| The maximum number of samples to take when estimating [density](#density). Default is 200.
 -}
 dnMaxSteps : Int -> DensityProperty
 dnMaxSteps n =
@@ -11484,14 +11514,14 @@ dnMaxSteps n =
 
 
 {-| The minimum number of samples to take from the extent domain when estimating
-density. Default is 25.
+[density](#density). Default is 25.
 -}
 dnMinSteps : Int -> DensityProperty
 dnMinSteps n =
     DnMinSteps (Num (toFloat n))
 
 
-{-| Indicate a data field encoded with a detail channel is nominal. This is the
+{-| Indicate a data field encoded with a [detail](#detail) channel is nominal. This is the
 default data type.
 -}
 dNominal : DetailChannel
@@ -11500,7 +11530,7 @@ dNominal =
 
 
 {-| The exact number of samples to take from the extent domain when estimating
-density. Will override [dnMinSteps](#dnMinSteps) and [dnMaxSteps](#dnMaxSteps)
+[density](#density). Will override [dnMinSteps](#dnMinSteps) and [dnMaxSteps](#dnMaxSteps)
 and is useful in conjunction with a fixed extent to ensure consistent sample points
 for stacked densities.
 -}
@@ -11650,7 +11680,7 @@ doNums ns =
     DNumbers (Nums ns)
 
 
-{-| Indicate a data field encoded with a detail channel is ordinal.
+{-| Indicate a data field encoded with a [detail](#detail) channel is ordinal.
 -}
 dOrdinal : DetailChannel
 dOrdinal =
@@ -11714,7 +11744,7 @@ doUnionWith =
     DUnionWith
 
 
-{-| Indicate a data field encoded with a detail channel is quantitative.
+{-| Indicate a data field encoded with a [detail](#detail) channel is quantitative.
 -}
 dQuant : DetailChannel
 dQuant =
@@ -11734,35 +11764,39 @@ dsv =
     DSV
 
 
-{-| Date-time data value.
+{-| Date-time data value. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum), [mDatum](#mDatum),
+[tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue),
+[fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 dt : List DateTime -> DataValue
 dt =
     DateTime
 
 
-{-| Day of the month (1 to 31).
+{-| Day of the month (1 to 31). Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt) and [doMaxDt](#doMaxDt).
 -}
 dtDate : Int -> DateTime
 dtDate n =
     DTDate (Num (toFloat n))
 
 
-{-| Day of the week.
+{-| Day of the week. Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt) and [doMaxDt](#doMaxDt).
 -}
 dtDay : DayName -> DateTime
 dtDay =
     DTDay
 
 
-{-| Indicate a data field encoded with a detail channel is temporal.
+{-| Indicate a data field encoded with a [detail](#detail) channel is temporal.
 -}
 dTemporal : DetailChannel
 dTemporal =
     DmType Temporal
 
 
-{-| Hour of the day (0=midnight, 1=1am, 23=11pm etc.).
+{-| Hour of the day (0=midnight, 1=1am, 23=11pm etc.). Used by [dt](#dt), [dtRange](#dtRange),
+[doMinDt](#doMinDt) and [doMaxDt](#doMaxDt).
 -}
 dtHour : Int -> DateTime
 dtHour n =
@@ -11770,28 +11804,31 @@ dtHour n =
 
 
 {-| Form of time unit aggregation of field values when encoding with a level of
-detail (grouping) channel.
+[detail](#detail) (grouping) channel.
 -}
 dTimeUnit : TimeUnit -> DetailChannel
 dTimeUnit =
     DTimeUnit
 
 
-{-| Millisecond of a second (0-999).
+{-| Millisecond of a second (0-999). Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt)
+and [doMaxDt](#doMaxDt).
 -}
 dtMillisecond : Int -> DateTime
 dtMillisecond n =
     DTMilliseconds (Num (toFloat n))
 
 
-{-| Minute of an hour (0-59).
+{-| Minute of an hour (0-59). Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt)
+and [doMaxDt](#doMaxDt).
 -}
 dtMinute : Int -> DateTime
 dtMinute n =
     DTMinutes (Num (toFloat n))
 
 
-{-| Month of a year.
+{-| Month of a year. Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt)
+and [doMaxDt](#doMaxDt).
 -}
 dtMonth : MonthName -> DateTime
 dtMonth =
@@ -11841,7 +11878,8 @@ dtMonthNum mon =
             DTMonthNum (Num 12)
 
 
-{-| Year quarter (1 to 4).
+{-| Year quarter (1 to 4). Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt)
+and [doMaxDt](#doMaxDt).
 -}
 dtQuarter : Int -> DateTime
 dtQuarter n =
@@ -11865,14 +11903,16 @@ dts =
     DateTimes
 
 
-{-| Second of a minute (0-59).
+{-| Second of a minute (0-59). Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt)
+and [doMaxDt](#doMaxDt).
 -}
 dtSecond : Int -> DateTime
 dtSecond n =
     DTSeconds (Num (toFloat n))
 
 
-{-| A year.
+{-| A year. Used by [dt](#dt), [dtRange](#dtRange), [doMinDt](#doMinDt)
+and [doMaxDt](#doMaxDt).
 -}
 dtYear : Int -> DateTime
 dtYear n =
@@ -12062,7 +12102,10 @@ fAlign =
 
 {-| A false value used for functions that can accept a Boolean literal or a
 reference to something that generates a Boolean value. Convenience function
-equivalent to `boo False`
+equivalent to `boo False`. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum),
+[mDatum](#mDatum), [tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions),
+[imNewValue](#imNewValue), [fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq),
+[fiGreaterThan](#fiGreaterThan), [fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 false : DataValue
 false =
@@ -12321,7 +12364,7 @@ fNominal =
     FmType Nominal
 
 
-{-| Indicate Boolean data type to be parsed when reading input data.
+{-| Indicate Boolean data type to be parsed when reading input data. Used by [parse](#parse).
 -}
 foBoo : DataType
 foBoo =
@@ -12330,8 +12373,8 @@ foBoo =
 
 {-| Specify a date/time format when [parsing](#parse) input data. Should use
 [D3's formatting specifiers](https://github.com/d3/d3-time-format#locale_format)
-to describe the data-time format or an empty string for default formatting. For
-example,
+to describe the data-time format or an empty string for default formatting. Used by [parse](#parse).
+For example,
 
     myData : Data
     myData =
@@ -12389,6 +12432,7 @@ foldAs fields keyName valName =
 
 
 {-| Indicate numeric data type to be [parsed](#parse) when reading input data.
+Used by [parse](#parse).
 -}
 foNum : DataType
 foNum =
@@ -12403,7 +12447,7 @@ fOrdinal =
 
 
 {-| Similar to [foDate](#foDate) but for [UTC](https://www.utctime.net) format
-dates.
+dates. Used by [parse](#parse).
 -}
 foUtc : String -> DataType
 foUtc =
@@ -17314,8 +17358,12 @@ not =
     Not
 
 
-{-| An unspecified data value. Can be useful when explicitly recoding a value as
-undefined.
+{-| An unspecified data value. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum),
+[mDatum](#mDatum), [tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions),
+[imNewValue](#imNewValue), [fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq),
+[fiGreaterThan](#fiGreaterThan), [fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
+
+Can be useful when explicitly recoding a value as undefined.
 
     data =
         dataFromRows []
@@ -17332,7 +17380,10 @@ nullValue =
     NullValue
 
 
-{-| A numeric data value.
+{-| A numeric data value. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum), [mDatum](#mDatum),
+[tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue),
+[fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 num : Float -> DataValue
 num =
@@ -20707,7 +20758,10 @@ stSort =
     StSort
 
 
-{-| A string data value.
+{-| A string data value. Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum), [mDatum](#mDatum),
+[tDatum](#tDatum), [datumArray](#datumArray), [inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue),
+[fiEqual](#fiEqual), [fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 str : String -> DataValue
 str =
@@ -21822,7 +21876,11 @@ transverseMercator =
 
 
 {-| A true value used for functions that can accept a Boolean literal or a reference
-to something that generates a Boolean value. Convenience function equivalent to `boo True`
+to something that generates a Boolean value. Convenience function equivalent to `boo True`.
+Used by [dataRow](#dataRow), [paValue](#paValue), [pDatum](#pDatum), [mDatum](#mDatum), [tDatum](#tDatum),
+[datumArray](#datumArray), [inDatumOptions](#inDatumOptions), [imNewValue](#imNewValue), [fiEqual](#fiEqual),
+[fiLessThan](#fiLessThan), [fiLessThanEq](#fiLessThanEq), [fiGreaterThan](#fiGreaterThan),
+[fiGreaterThanEq](#fiGreaterThanEq) and [fiOneOf](#fiOneOf).
 -}
 true : DataValue
 true =
