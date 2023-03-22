@@ -8,6 +8,8 @@
 
 - Corrected API doc for coLocale example to use correct Elm unicode escape text.
 
+- Added reference to parent functions in the API docs. This makes it easier to see how a function is used in the context of a larger specification by navigating up the function dependency tree. Thanks to @RalfNorthman for the suggested improvement.
+
 ### Deprecations
 
 - Deprecated `dtMonthNum` as it was redundant (use `dtMonth` instead). There should be no reason to allow specification of months with numbers as this carries the risk of undefined behaviour for integers outside the range [1,12]. Thanks to @RalfNorthman for spotting this.
