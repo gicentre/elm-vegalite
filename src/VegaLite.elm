@@ -15015,7 +15015,7 @@ leFormatAsCustom s =
     LFormatAsCustom (Str s)
 
 
-{-| Indicate that [mlegend](#mLegend) labels should be formatted as numbers. To control the precise
+{-| Indicate that [mLegend](#mLegend) labels should be formatted as numbers. To control the precise
 numeric format, additionally use [leFormat](#leFormat) providing a
 [d3 numeric format string](https://github.com/d3/d3-format#locale_format).
 -}
@@ -15024,7 +15024,7 @@ leFormatAsNum =
     LFormatAsNum
 
 
-{-| Indicate that [mlegend](#mLegend) labels should be formatted as dates/times. To control the
+{-| Indicate that [mLegend](#mLegend) labels should be formatted as dates/times. To control the
 precise temporal format, additionally use [leFormat](#leFormat) providing a
 [d3 date/time format string](https://github.com/d3/d3-time-format#locale_format).
 -}
@@ -16110,7 +16110,7 @@ luAs =
 
 
 {-| The same as [luAs](#luAs) except with a second parameter providing the default
-value if the lookup fails.
+value if the [lookup](#lookup) fails.
 -}
 luAsWithDefault : String -> String -> LookupFields
 luAsWithDefault =
@@ -16136,7 +16136,7 @@ luFieldsAs =
 
 
 {-| The same as [luFieldsAs](#luFieldsAs) except with a second parameter providing
-the default value if the lookup fails.
+the default value if the [lookup](#lookup) fails.
 -}
 luFieldsAsWithDefault : List ( String, String ) -> String -> LookupFields
 luFieldsAsWithDefault =
@@ -16144,21 +16144,21 @@ luFieldsAsWithDefault =
 
 
 {-| The same as [luFields](#luFields) except with a second parameter providing
-the default value if the lookup fails.
+the default value if the [lookup](#lookup) fails.
 -}
 luFieldsWithDefault : List String -> String -> LookupFields
 luFieldsWithDefault =
     LUFieldsWithDefault
 
 
-{-| Horizontal alignment of a text mark.
+{-| Horizontal alignment of a [textMark](#textMark).
 -}
 maAlign : HAlign -> MarkProperty
 maAlign =
     MAlign
 
 
-{-| Rotation angle of a text mark (degrees from horizontal).
+{-| Rotation angle of a [textMark](#textMark) (degrees from horizontal).
 -}
 maAngle : Float -> MarkProperty
 maAngle n =
@@ -16166,43 +16166,44 @@ maAngle n =
 
 
 {-| [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) properties
-for providing accessible SVG output associated with a mark. If an empty list is
-provided, ARIA tagging will be switched off.
+for providing accessible SVG output associated with a mark such as [bar](#bar) or [line](#line).
+If an empty list is provided, ARIA tagging will be switched off.
 -}
 maAria : List Aria -> MarkProperty
 maAria =
     MAria
 
 
-{-| Whether or not the aspect ratio of an image mark should be preserved.
+{-| Whether or not the aspect ratio of an [image](#image) mark should be preserved.
 -}
 maAspect : Bool -> MarkProperty
 maAspect b =
     MAspect (Boo b)
 
 
-{-| Band size of a bar mark.
+{-| Band size of a [bar](#bar) mark.
 -}
 maBandSize : Float -> MarkProperty
 maBandSize n =
     MBandSize (Num n)
 
 
-{-| Vertical alignment of a text mark.
+{-| Vertical alignment of a [textMark](#textMark).
 -}
 maBaseline : VAlign -> MarkProperty
 maBaseline =
     MBaseline
 
 
-{-| Offset between bars for a binned field using a bar mark.
+{-| Offset between bars for a binned field using a [bar](#bar) mark.
 -}
 maBinSpacing : Float -> MarkProperty
 maBinSpacing n =
     MBinSpacing (Num n)
 
 
-{-| Color blend mode for drawing an item over its current background. Standard
+{-| Color blend mode for drawing a mark such as [bar](#bar) or [circle](#circle) over
+its current background. Standard
 [CSS blend modes](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode)
 can be specified such as [bmHue](#bmHue), [bmDarken](#bmDarken) etc.
 -}
@@ -16211,22 +16212,23 @@ maBlend =
     MBlend
 
 
-{-| Border properties for an errorband mark.
+{-| Border properties for an [errorband](#errorband) mark.
 -}
 maBorders : List MarkProperty -> MarkProperty
 maBorders =
     MBorders
 
 
-{-| Box symbol properties for the boxplot mark. If an empty list is provided, no
-box will be shown.
+{-| Box symbol properties for the [boxplot](#boxplot) mark. If an empty list is
+provided, no box will be shown.
 -}
 maBox : List MarkProperty -> MarkProperty
 maBox =
     MBox
 
 
-{-| Whether or not a mark should be clipped to the enclosing group's dimensions.
+{-| Whether or not a mark such as [bar](#bar) or [line](#line) should be clipped
+to the enclosing group's dimensions.
 -}
 maClip : Bool -> MarkProperty
 maClip b =
@@ -16234,8 +16236,10 @@ maClip b =
 
 
 {-| Default color of a mark. Note that `maFill` and `maStroke` have higher
-precedence and will override this if specified. Color strings can use any valid
-HTML color specification.
+precedence and will override this if specified. Used by mark functions such
+as [bar](#bar) and [line](#line).
+
+Color strings can use any valid HTML color specification.
 
     maColor "#eee"
 
@@ -16253,11 +16257,10 @@ maColor s =
     MColor (Str s)
 
 
-{-| A color gradient to apply to a mark. The first parameter indicates whether the
-gradient should be linear or radial. The second is a set of customisation options
-for the colors, positioning and rate of change of the gradient. Used by
-[maColorGradient](#maColorGradient), [maFillGradient](#maFillGradient) and
-[maStrokeGradient](#maStrokeGradient). For example, to set a radial red-blue color
+{-| A color gradient to apply to a mark such as [bar](#bar) or [circle](#circle).
+The first parameter indicates whether the gradient should be linear or radial.
+The second is a set of customisation options for the colors, positioning and rate
+of change of the gradient. For example, to set a radial red-blue color
 gradient for a mark:
 
     maColorGradient grRadial [ grStops [ ( 0, "red" ), ( 1, "blue" ) ] ]
@@ -16268,8 +16271,8 @@ maColorGradient =
     MColorGradient
 
 
-{-| The radius in pixels of selected marks' corners. For rectangular marks, it
-shapes all four corners; for [arc](#arc) marks it shapes the vertices of segment.
+{-| The radius in pixels of selected marks' corners. For rectangular marks such as [bar](#bar),
+it shapes all four corners; for [arc](#arc) marks it shapes the vertices of segment.
 Default is 0 indicating no rounding.
 -}
 maCornerRadius : Float -> MarkProperty
@@ -16277,23 +16280,23 @@ maCornerRadius n =
     MCornerRadius (Num n)
 
 
-{-| The radius in pixels of the bottom-left corner of a rectangle mark. Will override
-any value specified in [maCornerRadius](#maCornerRadius).
+{-| The radius in pixels of the bottom-left corner of a rectangular mark such as [bar](#bar).
+Will override any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusBottomLeft : Float -> MarkProperty
 maCornerRadiusBottomLeft n =
     MCornerRadiusBL (Num n)
 
 
-{-| The radius in pixels of the bottom-right corner of a rectangle mark. Will override
-any value specified in [maCornerRadius](#maCornerRadius).
+{-| The radius in pixels of the bottom-right corner of a rectangular mark such as [bar](#bar).
+Will override any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusBottomRight : Float -> MarkProperty
 maCornerRadiusBottomRight n =
     MCornerRadiusBR (Num n)
 
 
-{-| The radius in pixels of the 'end' corners of a bar mark. For vertical bars
+{-| The radius in pixels of the 'end' corners of a [bar](#bar) mark. For vertical bars
 this would be the top corners and for horizontal bars, the right corners.
 -}
 maCornerRadiusEnd : Float -> MarkProperty
@@ -16301,81 +16304,81 @@ maCornerRadiusEnd n =
     MCornerRadiusEnd (Num n)
 
 
-{-| The radius in pixels of the top-left corner of a rectangle mark. Will override
-any value specified in [maCornerRadius](#maCornerRadius).
+{-| The radius in pixels of the top-left corner of a rectangular mark such as [bar](#bar).
+Will override any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusTopLeft : Float -> MarkProperty
 maCornerRadiusTopLeft n =
     MCornerRadiusTL (Num n)
 
 
-{-| The radius in pixels of the top-right corner of a rectangle mark. Will override
-any value specified in [maCornerRadius](#maCornerRadius).
+{-| The radius in pixels of the top-right corner of a rectangular mark such as [bar](#bar).
+Will override any value specified in [maCornerRadius](#maCornerRadius).
 -}
 maCornerRadiusTopRight : Float -> MarkProperty
 maCornerRadiusTopRight n =
     MCornerRadiusTR (Num n)
 
 
-{-| Cursor to be associated with a hyperlink mark.
+{-| Cursor to be associated with a [hyperlink](#hyperlink) mark.
 -}
 maCursor : Cursor -> MarkProperty
 maCursor =
     MCursor
 
 
-{-| Continuous band size of a bar mark.
+{-| Continuous band size of a [bar](#bar) mark.
 -}
 maContinuousBandSize : Float -> MarkProperty
 maContinuousBandSize n =
     MContinuousBandSize (Num n)
 
 
-{-| Direction of text, which determines which end is truncated in cases where text
-is larger than available space.
+{-| Direction of text in a [textMark](#textMark), which determines which end is
+truncated in cases where text is larger than available space.
 -}
 maDir : TextDirection -> MarkProperty
 maDir =
     MDir
 
 
-{-| Discrete band size of a bar mark.
+{-| Discrete band size of a [bar](#bar) mark.
 -}
 maDiscreteBandSize : Float -> MarkProperty
 maDiscreteBandSize n =
     MDiscreteBandSize (Num n)
 
 
-{-| Horizontal offset between a text mark and its anchor.
+{-| Horizontal offset between a [textMark](#textMark) and its anchor.
 -}
 maDx : Float -> MarkProperty
 maDx n =
     MdX (Num n)
 
 
-{-| Vertical offset between a text mark and its anchor.
+{-| Vertical offset between a [textMark](#textMark) mark and its anchor.
 -}
 maDy : Float -> MarkProperty
 maDy n =
     MdY (Num n)
 
 
-{-| Text to indicate a truncated piece of text (default is the ellipsis ...)
+{-| Text to indicate a truncated piece of a [textMark](#textMark). Default is the ellipsis ...
 -}
 maEllipsis : String -> MarkProperty
 maEllipsis s =
     MEllipsis (Str s)
 
 
-{-| Extent of whiskers used in a boxplot, error bars or error bands.
+{-| Extent of whiskers used in a [boxplot](#boxplot), [errorbar](#errorbar) or [errorband](#errorband).
 -}
 maExtent : SummaryExtent -> MarkProperty
 maExtent =
     MExtent
 
 
-{-| Default fill color of a mark. Color strings can use any valid HTML color
-specification.
+{-| Default fill color of a mark such as [bar](#bar) or [circle](#circle).
+Color strings can use any valid HTML color specification.
 
     maFill "#eee"
 
@@ -16400,7 +16403,7 @@ maFill s =
 
 
 {-| Whether or not a mark's color should be used as the fill color instead of
-stroke color.
+stroke color. Used by mark functions such as [bar](#bar) and [circle](#circle).
 -}
 maFilled : Bool -> MarkProperty
 maFilled b =
@@ -16415,6 +16418,7 @@ to set a radial red-blue color gradient as a fill for a mark:
     maStrokeGradient grRadial [ grStops [ ( 0, "red" ), ( 1, "blue" ) ] ]
 
 Fill gradients have a higher priority than [maColorGradient](#maColorGradient).
+Used by mark functions such as [bar](#bar) and [circle](#circle).
 
 -}
 maFillGradient : ColorGradient -> List GradientProperty -> MarkProperty
@@ -16422,14 +16426,14 @@ maFillGradient =
     MFillGradient
 
 
-{-| Fill opacity of a mark.
+{-| Fill opacity of a mark such as [bar](#bar) or [circle](#circle).
 -}
 maFillOpacity : Float -> MarkProperty
 maFillOpacity n =
     MFillOpacity (Num n)
 
 
-{-| Font of a text mark. Can be any font name made accessible via a css file (or
+{-| Font of a [textMark](#textMark). Can be any font name made accessible via a css file (or
 a generic font like `serif`, `monospace` etc.).
 -}
 maFont : String -> MarkProperty
@@ -16437,21 +16441,21 @@ maFont s =
     MFont (Str s)
 
 
-{-| Font size in pixels used by a text mark.
+{-| Font size in pixels used by a [textMark](#textMark).
 -}
 maFontSize : Float -> MarkProperty
 maFontSize n =
     MFontSize (Num n)
 
 
-{-| Font style (e.g. `italic`) used by a text mark.
+{-| Font style (e.g. `italic`) used by a [textMark](#textMark).
 -}
 maFontStyle : String -> MarkProperty
 maFontStyle s =
     MFontStyle (Str s)
 
 
-{-| Font weight used by a text mark.
+{-| Font weight used by a [textMark](#textMark).
 -}
 maFontWeight : FontWeight -> MarkProperty
 maFontWeight =
@@ -16460,35 +16464,35 @@ maFontWeight =
 
 {-| Compute some aggregate summary statistics for a field to be encoded with a
 mark property channel. The type of aggregation is determined by the given operation
-parameter.
+parameter. Used by functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mAggregate : Operation -> MarkChannel
 mAggregate =
     MAggregate
 
 
-{-| Explicitly set the height of a mark.
+{-| Explicitly set the height of a mark such as [rect](#rect).
 -}
 maHeight : Float -> MarkProperty
 maHeight n =
     MHeight (Num n)
 
 
-{-| Set the height of a mark as a proportion of its band size.
+{-| Set the height of a [bar](#bar) mark as a proportion of its band size.
 -}
 maHeightBand : Float -> MarkProperty
 maHeightBand n =
     MHeightBand (Num n)
 
 
-{-| Hyperlink to be associated with a mark making it a clickable hyperlink.
+{-| Hyperlink to be associated with a mark such as a [circle](#circle) making it a clickable hyperlink.
 -}
 maHRef : String -> MarkProperty
 maHRef s =
     MHRef (Str s)
 
 
-{-| Fix the inner radius (R2) of a radial plot. Can be used for creating 'holes'
+{-| Fix the inner radius (R2) of a radial plot using an [arc](#arc) mark. Can be used for creating 'holes'
 in pie chart.
 -}
 maInnerRadius : Float -> MarkProperty
@@ -16496,8 +16500,8 @@ maInnerRadius n =
     MInnerRadius (Num n)
 
 
-{-| Interpolation method used by line and area marks. For example, to create a
-curved line joining data points:
+{-| Interpolation method used by [line](#line) and [area](#area) marks.
+For example, to create a curved line joining data points:
 
     line [ maInterpolate miMonotone ]
 
@@ -16507,23 +16511,23 @@ maInterpolate =
     MInterpolate
 
 
-{-| Width in pixels indicating maximum permitted space for a text mark. Any mark
-that exceeds this limit will be truncated with an ellipsis.
+{-| Width in pixels indicating maximum permitted space for a [textMark](#textMark
+Any mark that exceeds this limit will be truncated with an ellipsis.
 -}
 maLimit : Float -> MarkProperty
 maLimit n =
     MLimit (Num n)
 
 
-{-| Line height for multi-line text marks.
+{-| Line height for a multi-line [textMark](#textMark).
 -}
 maLineHeight : Float -> MarkProperty
 maLineHeight n =
     MLineHeight (Num n)
 
 
-{-| Appearance of a line marker joining the vertices of an area mark. Used
-when specifying an [maLine](#maLine). For example,
+{-| Appearance of a line marker joining the vertices of an [area](#area) mark.
+For example,
 
     area
         [ maLine (lmMarker [ maStroke "black" ])
@@ -16536,61 +16540,61 @@ maLine =
     MLine
 
 
-{-| Median line properties for the boxplot mark. If an empty list is provided,
-no median line will be shown.
+{-| Median line properties for the [boxplot](#boxplot) mark. If an empty list
+is provided, no median line will be shown.
 -}
 maMedian : List MarkProperty -> MarkProperty
 maMedian =
     MMedian
 
 
-{-| Overall opacity of a mark in the range 0 (completely transparent) to 1
-(completely opaque).
+{-| Overall opacity of a mark such as [bar](#bar) or [line](#line) in the range
+0 (completely transparent) to 1 (completely opaque).
 -}
 maOpacity : Float -> MarkProperty
 maOpacity n =
     MOpacity (Num n)
 
 
-{-| Ordering of vertices in a line or area mark. If true (default), order is
-determined by measurement type or order channel. If false, the original data order
-is used.
+{-| Ordering of vertices in a [line](#line) or [area](#area) mark. If true (default),
+order is determined by measurement type or order channel. If false, the original
+data order is used.
 -}
 maOrder : Bool -> MarkProperty
 maOrder b =
     MOrder (Boo b)
 
 
-{-| Orientation of a non-stacked bar, tick, area or line mark.
+{-| Orientation of a non-stacked [bar](#bar), [tick](#tick), [area](#area) or [line](#line) mark.
 -}
 maOrient : MarkOrientation -> MarkProperty
 maOrient =
     MOrient
 
 
-{-| Fix the outer radius (R) of a radial plot.
+{-| Fix the outer radius (R) of a radial plot using an [arc](#arc) mark.
 -}
 maOuterRadius : Float -> MarkProperty
 maOuterRadius n =
     MOuterRadius (Num n)
 
 
-{-| Outlier symbol properties for the boxplot mark. If an empty list is provided,
-no outliers will be shown.
+{-| Outlier symbol properties for the [boxplot](#boxplot) mark. If an empty
+list is provided, no outliers will be shown.
 -}
 maOutliers : List MarkProperty -> MarkProperty
 maOutliers =
     MOutliers
 
 
-{-| Angular padding applied to sides of an arc (radians)s.
+{-| Angular padding applied to sides of an [arc](#arc) mark (in radians).
 -}
 maPadAngle : Float -> MarkProperty
 maPadAngle n =
     MPadAngle (Num n)
 
 
-{-| Appearance of a point marker joining the vertices of a line or area mark.
+{-| Appearance of a point marker joining the vertices of a [line](#line) or [area](#area) mark.
 
     line [ maPoint (pmMarker [ maFill "black" ]) ]
 
@@ -16600,23 +16604,23 @@ maPoint =
     MPoint
 
 
-{-| Radial offset of a text mark from an origin specified in Cartesian `X` and `Y`
-coordinates.
+{-| Radial offset of a [textMark](#textMark) from an origin specified in Cartesian
+`X` and `Y` coordinates.
 -}
 maRadius : Float -> MarkProperty
 maRadius n =
     MRadius (Num n)
 
 
-{-| Polar coordinate radial offset of a text or arc mark from a polar origin
-specified with `Theta` and `R`.
+{-| Polar coordinate radial offset of a [textMark](#textMark) or [arc](#arc) mark
+from a polar origin specified with `Theta` and `R`.
 -}
 maRadiusOffset : Float -> MarkProperty
 maRadiusOffset n =
     MRadiusOffset (Num n)
 
 
-{-| Polar coordinate inner radial offset of an arc mark from a polar origin
+{-| Polar coordinate inner radial offset of an [arc](#arc) mark from a polar origin
 specified with `Theta`, `R` and `R2`.
 -}
 maRadius2Offset : Float -> MarkProperty
@@ -16625,38 +16629,38 @@ maRadius2Offset n =
 
 
 {-| Determine whether or not invalid (`null` and `NaN`) values are considered for
-encoding as marks. If `true` (default), invalid values are ignored, otherwise
-they are treated as if 0.
+encoding as marks such as [bar](#bar) or [point](#point). If `true` (default),
+invalid values are ignored, otherwise they are treated as if 0.
 -}
 maRemoveInvalid : Bool -> MarkProperty
 maRemoveInvalid b =
     MRemoveInvalid (Boo b)
 
 
-{-| Rule (main line) properties for the errorbar and boxplot marks. If an empty
-list is provided, no rule will be shown.
+{-| Rule (main line) properties for the [errorbar](#errorbar) and boxplot marks.
+If an empty list is provided, no rule will be shown.
 -}
 maRule : List MarkProperty -> MarkProperty
 maRule =
     MRule
 
 
-{-| Shape of a point mark.
+{-| Shape of a [point](#point) mark.
 -}
 maShape : Symbol -> MarkProperty
 maShape =
     MShape
 
 
-{-| Whether or not month and weekday names are abbreviated in a text mark.
+{-| Whether or not month and weekday names are abbreviated in a [textMark](#textMark).
 -}
 maShortTimeLabels : Bool -> MarkProperty
 maShortTimeLabels b =
     MShortTimeLabels (Boo b)
 
 
-{-| Size of a mark in square units. For example, to create a circle of diameter
-50 pixels:
+{-| Size of a mark such as a [circle](#circle) or [square](#square) in square units.
+For example, to create a circle of diameter 50 pixels:
 
     circle [ maSize 2500 ]
 
@@ -16666,8 +16670,8 @@ maSize n =
     MSize (Num n)
 
 
-{-| Default stroke color of a mark. Color strings can use any valid HTML color
-specification.
+{-| Default stroke color of a mark such as [circle](#circle) or [bar](#bar).
+Color strings can use any valid HTML color specification.
 
     maStroke "#eee"
 
@@ -16687,22 +16691,22 @@ maStroke s =
     MStroke (Str s)
 
 
-{-| Cap style of a mark's stroke.
+{-| Cap style of a mark's stroke. Used by mark functions such as [point](#point) and [line](#line).
 -}
 maStrokeCap : StrokeCap -> MarkProperty
 maStrokeCap =
     MStrokeCap
 
 
-{-| Stroke dash style used by a mark. Determined by an alternating 'on-off'
-sequence of line lengths.
+{-| Stroke dash style used by a mark such as [circle](#circle) or [line](#line).
+Determined by an alternating 'on-off' sequence of line lengths.
 -}
 maStrokeDash : List Float -> MarkProperty
 maStrokeDash xs =
     MStrokeDash (Nums xs)
 
 
-{-| Number of pixels before the first line dash is drawn.
+{-| Number of pixels before the first line dash is drawn in a mark such as [line](#line).
 -}
 maStrokeDashOffset : Float -> MarkProperty
 maStrokeDashOffset n =
@@ -16718,13 +16722,15 @@ to set a radial red-blue color gradient for a mark's stroke:
 
 Stroke gradients have a higher priority than [maColorGradient](#maColorGradient).
 
+Used by mark functions such as [bar](#bar) and [line](#line).
+
 -}
 maStrokeGradient : ColorGradient -> List GradientProperty -> MarkProperty
 maStrokeGradient =
     MStrokeGradient
 
 
-{-| Line segment join style of a mark's stroke.
+{-| Line segment join style of a mark's stroke. Used by mark functions such as [point](#point) and [line](#line).
 -}
 maStrokeJoin : StrokeJoin -> MarkProperty
 maStrokeJoin =
@@ -16732,45 +16738,46 @@ maStrokeJoin =
 
 
 {-| Mitre limit at which to bevel a join between line segments of a mark's stroke.
+Used by mark functions such as [point](#point) and [line](#line).
 -}
 maStrokeMiterLimit : Float -> MarkProperty
 maStrokeMiterLimit n =
     MStrokeMiterLimit (Num n)
 
 
-{-| Stroke opacity of a mark in the range 0 to 1.
+{-| Stroke opacity of a mark in the range 0 to 1. Used by mark functions such as [circle](#circle) or [bar](#bar).
 -}
 maStrokeOpacity : Float -> MarkProperty
 maStrokeOpacity n =
     MStrokeOpacity (Num n)
 
 
-{-| Stroke width of a mark in pixel units.
+{-| Stroke width of a mark in pixel units. Used by mark functions such as [circle](#circle) or [bar](#bar).
 -}
 maStrokeWidth : Float -> MarkProperty
 maStrokeWidth n =
     MStrokeWidth (Num n)
 
 
-{-| Names of custom styles to apply to a mark. Each should refer to a named style
-defined in a separate style configuration with [coMarkStyles](#coMarkStyles).
-While this is provided for compatibility with Vega-Lite style specification, for
-greater type safety in elm-vegalite, instead create functions that generate
-[MarkProperties](#MarkProperty).
+{-| Names of custom styles to apply to a mark such as [bar](#bar) or [area](#area).
+Each should refer to a named style defined in a separate style configuration with
+[coMarkStyles](#coMarkStyles). While this is provided for compatibility with Vega-Lite
+style specification, for greater type safety in elm-vegalite, instead create
+functions that generate [MarkProperties](#MarkProperty).
 -}
 maStyle : List String -> MarkProperty
 maStyle =
     MStyle
 
 
-{-| Interpolation tension used when interpolating line and area marks.
+{-| Interpolation tension used when interpolating [line](#line) and [area](#area) marks.
 -}
 maTension : Float -> MarkProperty
 maTension n =
     MTension (Num n)
 
 
-{-| Placeholder text for a text mark for when a text channel is not specified.
+{-| Placeholder text for a [textMark](#textMark) for when a text channel is not specified.
 Multi-line text can be specified by adding a `\n` at each line break or by using
 a `"""` multi-line string.
 -}
@@ -16779,11 +16786,10 @@ maText s =
     MText (Str s)
 
 
-{-| Polar coordinate angle (clockwise from north in radians) of an arc or text mark.
-If a [text mark](#textMark) it represents polar coordinate angle relative to an
-origin determined by its x and y properties. For an [arc mark](#arc) it is its
-length in radians or, when combined with [maTheta2](#maTheta2), the arc's start
-angle.
+{-| Polar coordinate angle (clockwise from north in radians) of an [arc](#arc) or
+[textMark](#textMark). If a text mark it represents polar coordinate angle relative
+to an origin determined by its x and y properties. For an arc mark it is its length
+in radians or, when combined with [maTheta2](#maTheta2), the arc's start angle.
 -}
 maTheta : Float -> MarkProperty
 maTheta n =
@@ -16791,14 +16797,14 @@ maTheta n =
 
 
 {-| Polar coordinate angle (clockwise from north in radians) of the end of an
-[arc mark](#arc).
+[arc](#arc) mark.
 -}
 maTheta2 : Float -> MarkProperty
 maTheta2 n =
     MTheta2 (Num n)
 
 
-{-| Clockwise angular offset (in radians) of a radially positioned mark.
+{-| Clockwise angular offset (in radians) of a radially positioned mark such as an [arc](#arc).
 -}
 maThetaOffset : Float -> MarkProperty
 maThetaOffset n =
@@ -16806,22 +16812,22 @@ maThetaOffset n =
 
 
 {-| Clockwise angular offset (in radians) of the second theta value of a radially
-positioned mark. Useful when the offsets to apply to the start and end angle of
-an arc need to be set independently.
+positioned mark such as an [arc](#arc). Useful when the offsets to apply to the
+start and end angle of an arc need to be set independently.
 -}
 maTheta2Offset : Float -> MarkProperty
 maTheta2Offset n =
     MTheta2Offset (Num n)
 
 
-{-| Thickness of a tick mark.
+{-| Thickness of a [tick](#tick) mark.
 -}
 maThickness : Float -> MarkProperty
 maThickness n =
     MThickness (Num n)
 
 
-{-| Tick properties for the errorbar or boxplot mark.
+{-| Tick properties for the [errorbar](#errorbar) or [boxplot](#boxplot) mark.
 -}
 maTicks : List MarkProperty -> MarkProperty
 maTicks =
@@ -16829,7 +16835,7 @@ maTicks =
 
 
 {-| Provide source of a mark's tooltip content. For example to show all encoded
-data values in the tooltip of a circle mark:
+data values in the tooltip of a [circle](#circle) mark:
 
     circle [ maTooltip ttEncoding ]
 
@@ -16839,14 +16845,14 @@ maTooltip =
     MTooltip
 
 
-{-| An image mark's URL.
+{-| An [image](#image) mark's URL.
 -}
 maUrl : String -> MarkProperty
 maUrl s =
     MUrl (Str s)
 
 
-{-| Explicitly set the width of a mark (e.g. bar width)
+{-| Explicitly set the width of a mark such as a [bar](#bar).
 -}
 maWidth : Float -> MarkProperty
 maWidth n =
@@ -16854,7 +16860,7 @@ maWidth n =
 
 
 {-| Set the width of a mark as a proportion of its band size. For example, to set
-a bar width to be three quarters of its normal width,
+a [bar](#bar) width to be three quarters of its normal width,
 
     bar [ maWidthBand 0.75 ]
 
@@ -16864,49 +16870,49 @@ maWidthBand n =
     MWidthBand (Num n)
 
 
-{-| X position of a mark.
+{-| X position of a mark such as a [point](#point) or [square](#square).
 -}
 maX : Float -> MarkProperty
 maX n =
     MX (Num n)
 
 
-{-| X2 position (secondary x value for lines and areal marks).
+{-| X2 position (secondary x value for linear marks such as [rule](#rule) and areal marks such as [rect](#rect)).
 -}
 maX2 : Float -> MarkProperty
 maX2 n =
     MX2 (Num n)
 
 
-{-| X position offset for a mark.
+{-| X position offset for a mark such as [textMark](#textMark).
 -}
 maXOffset : Float -> MarkProperty
 maXOffset n =
     MXOffset (Num n)
 
 
-{-| X2 position offset for a mark.
+{-| X2 position offset for a mark such as [rect](#rect) or [rule][#rule].
 -}
 maX2Offset : Float -> MarkProperty
 maX2Offset n =
     MX2Offset (Num n)
 
 
-{-| Y position of a mark.
+{-| Y position of a mark such as [rect](#rect) or [rule][#rule].
 -}
 maY : Float -> MarkProperty
 maY n =
     MY (Num n)
 
 
-{-| Y2 position (secondary y value for lines and areal marks).
+{-| Y2 position (secondary y value for linear marks such as [rule](#rule) and areal marks such as [rect](#rect)).
 -}
 maY2 : Float -> MarkProperty
 maY2 n =
     MY2 (Num n)
 
 
-{-| Y position offset for a mark.
+{-| Y position offset for a mark such as [textMark](#textMark).
 -}
 maYOffset : Float -> MarkProperty
 maYOffset n =
@@ -16921,7 +16927,8 @@ maY2Offset n =
 
 
 {-| Apply offset relative to band width for a mark property. Value should be in
-the range [0, 1] as a proportion of the band width.
+the range [0, 1] as a proportion of the band width. Used by functions that influence
+mark channels such as [size](#size) and [color](#color).
 -}
 mBand : Float -> MarkChannel
 mBand n =
@@ -16929,6 +16936,7 @@ mBand n =
 
 
 {-| Discretize numeric values into bins when encoding with a mark property channel.
+Used by functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mBin : List BinProperty -> MarkChannel
 mBin =
@@ -16942,7 +16950,8 @@ mBinned =
     MBinned
 
 
-{-| Boolean value when encoding with a mark property channel.
+{-| Boolean value when encoding with a mark property channel. Used by functions
+that influence mark channels such as [size](#size) and [color](#color).
 -}
 mBoo : Bool -> MarkChannel
 mBoo b =
@@ -16952,7 +16961,9 @@ mBoo b =
 {-| Make a mark channel encoding conditional on a predicate expression. A predicate
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
 ([prTest](#prTest)). The first parameter is the predicate that evaluates to true
-or false; the second the encoding if true, the third the encoding if false.
+or false; the second the encoding if true, the third the encoding if false. Used by
+functions that influence mark channels such as [size](#size) and [color](#color).
+
 For example, to encode in one of two colours depending on a selection:
 
     encoding
@@ -16970,7 +16981,10 @@ mCondition =
 
 {-| Make a mark channel conditional on a sequence of predicate values. This can
 be used when several predicates need to be tested in sequence each with their own
-encoding outcome ('if-else'). For example a four-way conditional color encoding
+encoding outcome ('if-else'). Used by functions that influence mark channels
+such as [size](#size) and [color](#color).
+
+For example, a four-way conditional color encoding
 can be specified as:
 
     encoding
@@ -16991,7 +17005,8 @@ mConditions =
 
 {-| Name of a literal data item used for encoding with a mark property channel.
 Unlike [mNum](#mNum), [mStr](#mStr) and [mBoo](#mBoo), datum literals represent
-values in data space.
+values in data space. Used by functions that influence mark channels such as
+[size](#size) and [color](#color).
 -}
 mDatum : DataValue -> MarkChannel
 mDatum =
@@ -17016,6 +17031,7 @@ mGeo =
 
 
 {-| Cubic basis spline interpolation between points anchored at first and last points.
+Used by [maInterpolate](#maInterpolate).
 -}
 miBasis : MarkInterpolation
 miBasis =
@@ -17023,6 +17039,7 @@ miBasis =
 
 
 {-| Closed cubic basis spline interpolation between points forming a polygon.
+Used by [maInterpolate](#maInterpolate).
 -}
 miBasisClosed : MarkInterpolation
 miBasisClosed =
@@ -17030,7 +17047,7 @@ miBasisClosed =
 
 
 {-| Open cubic basis spline interpolation between points, which may not intersect
-first and last points.
+first and last points. Used by [maInterpolate](#maInterpolate).
 -}
 miBasisOpen : MarkInterpolation
 miBasisOpen =
@@ -17045,7 +17062,7 @@ miBundle =
 
 
 {-| Cubic cardinal spline interpolation between points anchored at first and last
-points.
+points. Used by [maInterpolate](#maInterpolate).
 -}
 miCardinal : MarkInterpolation
 miCardinal =
@@ -17053,6 +17070,7 @@ miCardinal =
 
 
 {-| Closed cubic cardinal spline interpolation between points forming a polygon.
+Used by [maInterpolate](#maInterpolate).
 -}
 miCardinalClosed : MarkInterpolation
 miCardinalClosed =
@@ -17060,7 +17078,7 @@ miCardinalClosed =
 
 
 {-| Open cubic cardinal spline interpolation between points, which may not intersect
-first and last points
+first and last points. Used by [maInterpolate](#maInterpolate).
 -}
 miCardinalOpen : MarkInterpolation
 miCardinalOpen =
@@ -17068,14 +17086,14 @@ miCardinalOpen =
 
 
 {-| Expression that evaluates to some interpolation method such as "linear", "basis"
-or "monotone".
+or "monotone". Used by [maInterpolate](#maInterpolate).
 -}
 miExpr : String -> MarkInterpolation
 miExpr =
     InterpolateExpr
 
 
-{-| Linear (straight) interpolation between points.
+{-| Linear (straight) interpolation between points. Used by [maInterpolate](#maInterpolate).
 -}
 miLinear : MarkInterpolation
 miLinear =
@@ -17083,7 +17101,7 @@ miLinear =
 
 
 {-| Linear (straight) interpolation between points that joins the first and last
-points in a sequence to form a closed polygon.
+points in a sequence to form a closed polygon. Used by [maInterpolate](#maInterpolate).
 -}
 miLinearClosed : MarkInterpolation
 miLinearClosed =
@@ -17098,6 +17116,7 @@ milliseconds =
 
 
 {-| Cubic spline interpolation that preserves monotonicity between points.
+Used by [maInterpolate](#maInterpolate).
 -}
 miMonotone : MarkInterpolation
 miMonotone =
@@ -17119,7 +17138,7 @@ minutesSeconds =
 
 
 {-| Piecewise (stepped) constant interpolation function centred on each point in
-a sequence.
+a sequence. Used by [maInterpolate](#maInterpolate).
 -}
 miStepwise : MarkInterpolation
 miStepwise =
@@ -17127,6 +17146,7 @@ miStepwise =
 
 
 {-| Piecewise (stepped) constant interpolation function after each point in a sequence.
+Used by [maInterpolate](#maInterpolate).
 -}
 miStepAfter : MarkInterpolation
 miStepAfter =
@@ -17134,6 +17154,7 @@ miStepAfter =
 
 
 {-| Piecewise (stepped) constant interpolation function before each point in a sequence.
+Used by [maInterpolate](#maInterpolate).
 -}
 miStepBefore : MarkInterpolation
 miStepBefore =
@@ -17141,14 +17162,16 @@ miStepBefore =
 
 
 {-| Properties of a legend that describes a mark's encoding. For no legend, provide
-an empty list as the parameter.
+an empty list as the parameter. Used by functions that influence mark channels such
+as [size](#size) and [color](#color).
 -}
 mLegend : List LegendProperty -> MarkChannel
 mLegend =
     MLegend
 
 
-{-| Name of field used for encoding with a mark property channel.
+{-| Name of field used for encoding with a mark property channel. Used by
+functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mName : String -> MarkChannel
 mName s =
@@ -17163,14 +17186,17 @@ mNominal =
     MmType Nominal
 
 
-{-| Literal numeric value when encoding with a mark property channel.
+{-| Literal numeric value when encoding with a mark property channel. Used by
+functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mNum : Float -> MarkChannel
 mNum n =
     MNumber (Num n)
 
 
-{-| Indicate horizontal mark orientation.
+{-| Indicate horizontal mark orientation. Used by [maOrient](#maOrient),
+[leDirection](#leDirection), [lecoDirection](#lecoDirection),
+[lecoGradientDirection](#lecoGradientDirection) and [lecoSymbolDirection](#lecoSymbolDirection).
 -}
 moHorizontal : MarkOrientation
 moHorizontal =
@@ -17224,7 +17250,9 @@ mOrdinal =
     MmType Ordinal
 
 
-{-| Indicate vertical mark orientation.
+{-| Indicate vertical mark orientation. Used by [maOrient](#maOrient),
+[leDirection](#leDirection), [lecoDirection](#lecoDirection),
+[lecoGradientDirection](#lecoGradientDirection) and [lecoSymbolDirection](#lecoSymbolDirection).
 -}
 moVertical : MarkOrientation
 moVertical =
@@ -17232,7 +17260,7 @@ moVertical =
 
 
 {-| SVG path string used when encoding with a mark property channel. Useful
-for providing custom shapes.
+for providing custom [shapes](#shape).
 -}
 mPath : String -> MarkChannel
 mPath s =
@@ -17249,6 +17277,7 @@ mQuant =
 {-| Reference in a mark channel to a field name generated by [repeatFlow](#repeatFlow)
 or [repeat](#repeat). The parameter identifies whether reference is being made to
 fields that are to be encoded in layers, or in columns / rows with a flow layout.
+Used by functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mRepeat : Arrangement -> MarkChannel
 mRepeat =
@@ -17258,6 +17287,7 @@ mRepeat =
 {-| Reference in a mark channel to a datum value generated by [repeatFlow](#repeatFlow)
 or [repeat](#repeat). The parameter identifies whether reference is being made to
 a datum that is to be encoded in layers, or in columns / rows with a flow layout.
+Used by functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mRepeatDatum : Arrangement -> MarkChannel
 mRepeatDatum =
@@ -17266,20 +17296,23 @@ mRepeatDatum =
 
 {-| Scaling applied to a field when encoding with a mark property channel.
 The scale will transform a field's value into a color, shape, size etc.
+Used by functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mScale : List ScaleProperty -> MarkChannel
 mScale =
     MScale
 
 
-{-| Sort order when encoding sortable mark properties such as colour.
+{-| Sort order when encoding sortable mark properties such as colour. Used by functions
+that influence mark channels such as [size](#size) and [color](#color).
 -}
 mSort : List SortProperty -> MarkChannel
 mSort =
     MSort
 
 
-{-| Literal string value when encoding with a mark property channel.
+{-| Literal string value when encoding with a mark property channel. Used by functions
+that influence mark channels such as [size](#size) and [color](#color).
 -}
 mStr : String -> MarkChannel
 mStr s =
@@ -17287,7 +17320,8 @@ mStr s =
 
 
 {-| A symbol literal when encoding with a mark property channel. Can be useful when
-making a symbol dependent on some data or selection condition.
+making a symbol dependent on some data or selection condition. Used by functions that
+influence mark channels such as [size](#size) and [color](#color).
 -}
 mSymbol : Symbol -> MarkChannel
 mSymbol sym =
@@ -17302,6 +17336,7 @@ mTemporal =
 
 
 {-| Time unit aggregation of field values when encoding with a mark property channel.
+Used by functions that influence mark channels such as [size](#size) and [color](#color).
 -}
 mTimeUnit : TimeUnit -> MarkChannel
 mTimeUnit =
@@ -17309,7 +17344,8 @@ mTimeUnit =
 
 
 {-| Title of a field when encoding with a mark property channel. For multi-line titles,
-insert `\n` at each line break or use a `"""` multi-line string.
+insert `\n` at each line break or use a `"""` multi-line string. Used by functions that
+influence mark channels such as [size](#size) and [color](#color).
 -}
 mTitle : String -> MarkChannel
 mTitle s =
@@ -17770,7 +17806,7 @@ nums =
 
 {-| Compute some aggregate summary statistics for a field to be encoded with an
 order channel. The type of aggregation is determined by the given operation
-parameter.
+parameter. Used by [order](#order) and [oCondition](#oCondition).
 -}
 oAggregate : Operation -> OrderChannel
 oAggregate =
@@ -17778,6 +17814,7 @@ oAggregate =
 
 
 {-| Discretize numeric values into bins when encoding with an order channel.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oBin : List BinProperty -> OrderChannel
 oBin =
@@ -17788,6 +17825,7 @@ oBin =
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
 ([prTest](#prTest)). The first parameter is the predicate that evaluates to true
 or false; the second the encoding if true, the third the encoding if false.
+Used by [order](#order) and [oCondition](#oCondition).
 
 For example, to bring marks of an interactively selected colour to the front:
 
@@ -17807,8 +17845,9 @@ oCondition =
 
 {-| Make an order channel conditional on a sequence of predicate values. This can
 be used when several predicates need to be tested in sequence each with their
-own encoding outcomes ('if-else'). For example to control mark z-order for three
-category values:
+own encoding outcomes ('if-else'). Used by [order](#order) and [oCondition](#oCondition).
+
+For example to control mark z-order for three category values:
 
     order
         [ oConditions
@@ -17825,6 +17864,7 @@ oConditions =
 
 
 {-| Indicate a data field encoded with an order channel is a geo feature.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oGeo : OrderChannel
 oGeo =
@@ -17839,6 +17879,7 @@ oName s =
 
 
 {-| Indicate a data field encoded with an order channel is nominal.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oNominal : OrderChannel
 oNominal =
@@ -17854,6 +17895,7 @@ oNum n =
 
 
 {-| Indicate a data field encoded with an order channel is ordinal.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oOrdinal : OrderChannel
 oOrdinal =
@@ -17869,8 +17911,14 @@ opacity markProps =
 
 {-| An input data object containing the minimum field value to be used in an
 aggregation operation. If supplied as part of an encoding aggregation, the parameter
-should be `Just` the name of the field to maximise. For example, the following would
-find the production budget for the maximum US grossing film in each genre:
+should be `Just` the name of the field to maximise. Used by [mAggregate](#mAggregate),
+[pAggregate](#pAggregate), [hAggregate](#hAggregate), [oAggregate](#oAggregate),
+[tAggregate](#tAggregate), [dAggregate](#dAggregate), [fAggregate](#fAggregate),
+[opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#), [soByField](#soByField) and
+[soByRepeat](#soByRepeat).
+
+For example, the following would find the production budget for the maximum US
+grossing film in each genre:
 
     encoding
         << position X
@@ -17896,7 +17944,11 @@ opArgMax =
 
 
 {-| An input data object containing the minimum field value to be used in an
-aggregation operation.
+aggregation operation. Used by [mAggregate](#mAggregate),
+[pAggregate](#pAggregate), [hAggregate](#hAggregate), [oAggregate](#oAggregate),
+[tAggregate](#tAggregate), [dAggregate](#dAggregate), [fAggregate](#fAggregate),
+[opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#), [soByField](#soByField) and
+[soByRepeat](#soByRepeat).
 -}
 opArgMin : Maybe String -> Operation
 opArgMin =
@@ -17928,112 +17980,176 @@ opAs op field label =
         ]
 
 
-{-| Lower 95% confidence interval to be used in an aggregation operation.
+{-| Lower 95% confidence interval to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opCI0 : Operation
 opCI0 =
     CI0
 
 
-{-| Upper 95% confidence interval to be used in an aggregation operation.
+{-| Upper 95% confidence interval to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opCI1 : Operation
 opCI1 =
     CI1
 
 
-{-| Total count of data objects to be used in an aggregation operation.
+{-| Total count of data objects to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opCount : Operation
 opCount =
     Count
 
 
-{-| Count of distinct data objects to be used in an aggregation operation.
+{-| Count of distinct data objects to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opDistinct : Operation
 opDistinct =
     Distinct
 
 
-{-| Maximum field value to be used in an aggregation operation.
+{-| Maximum field value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opMax : Operation
 opMax =
     Max
 
 
-{-| Mean value to be used in an aggregation operation.
+{-| Mean value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opMean : Operation
 opMean =
     Mean
 
 
-{-| Median field value to be used in an aggregation operation.
+{-| Median field value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opMedian : Operation
 opMedian =
     Median
 
 
-{-| Minimum field value to be used in an aggregation operation.
+{-| Minimum field value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opMin : Operation
 opMin =
     Min
 
 
-{-| Count of null or undefined field value to be used in an aggregation operation.
+{-| Count of null or undefined field value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opMissing : Operation
 opMissing =
     Missing
 
 
-{-| Product of field values to be used in an aggregation operation.
+{-| Product of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opProduct : Operation
 opProduct =
     Product
 
 
-{-| Lower quartile boundary of field values to be used in an aggregation operation.
+{-| Lower quartile boundary of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opQ1 : Operation
 opQ1 =
     Q1
 
 
-{-| Upper quartile boundary of field values to be used in an aggregation operation.
+{-| Upper quartile boundary of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opQ3 : Operation
 opQ3 =
     Q3
 
 
-{-| Standard error of field values to be used in an aggregation operation.
+{-| Standard error of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opStderr : Operation
 opStderr =
     Stderr
 
 
-{-| Sample standard deviation of field values to be used in an aggregation operation.
+{-| Sample standard deviation of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opStdev : Operation
 opStdev =
     Stdev
 
 
-{-| Population standard deviation of field values to be used in an aggregation operation.
+{-| Population standard deviation of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opStdevP : Operation
 opStdevP =
     StdevP
 
 
-{-| Sum of field values to be used in an aggregation operation.
+{-| Sum of field values to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opSum : Operation
 opSum =
@@ -18041,21 +18157,33 @@ opSum =
 
 
 {-| Count of values that are not `null`, `undefined` or `NaN` to be used in an
-aggregation operation.
+aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opValid : Operation
 opValid =
     Valid
 
 
-{-| Sample variance of field value to be used in an aggregation operation.
+{-| Sample variance of field value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opVariance : Operation
 opVariance =
     Variance
 
 
-{-| Population variance of field value to be used in an aggregation operation.
+{-| Population variance of field value to be used in an aggregation operation. Used by
+[mAggregate](#mAggregate), [pAggregate](#pAggregate), [hAggregate](#hAggregate),
+[oAggregate](#oAggregate), [tAggregate](#tAggregate), [dAggregate](#dAggregate),
+[fAggregate](#fAggregate), [opAs](#opAs), [piOp](#piOp), [wiAggregateOp](#),
+[soByField](#soByField) and [soByRepeat](#soByRepeat).
 -}
 opVarianceP : Operation
 opVarianceP =
@@ -18070,6 +18198,7 @@ or op1 op2 =
 
 
 {-| Indicate a data field encoded with an order channel is quantitative.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oQuant : OrderChannel
 oQuant =
@@ -18092,6 +18221,7 @@ order oDefs =
 {-| Reference in a order channel to a field name generated by [repeatFlow](#repeatFlow)
 or [repeat](#repeat). The parameter identifies whether reference is being made to
 fields that are to be arranged in columns, in rows or a with a flow layout.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oRepeat : Arrangement -> OrderChannel
 oRepeat =
@@ -18106,15 +18236,8 @@ orthographic =
 
 
 {-| Specify an overlap strategy with an expression that should evaluate to one
-of True, False, "parity" or "greedy". If using an input element such as [ipSelect](#ipSelect)
-to allow all options, the mixed option types should be defined with [inDatumOptions](#inDatumOptions).
-For example,
-
-    ipSelect
-        [ inName "Label overlap"
-        , inDatumOptions [ boo False, str "parity", str "greedy" ]
-        ]
-
+of True, False, "parity" or "greedy". Used by [axLabelOverlap](#axLabelOverlap),
+[leOverlap](#leOverlap), [axcoOverlap](#axcoOverlap) and [lecoOverlap](#lecoOverlap).
 -}
 osExpr : String -> OverlapStrategy
 osExpr =
@@ -18122,6 +18245,8 @@ osExpr =
 
 
 {-| Greedy overlap strategy to be applied when there is not space to show all items on an axis.
+Used by [axLabelOverlap](#axLabelOverlap), [leOverlap](#leOverlap), [axcoOverlap](#axcoOverlap)
+and [lecoOverlap](#lecoOverlap).
 -}
 osGreedy : OverlapStrategy
 osGreedy =
@@ -18129,6 +18254,8 @@ osGreedy =
 
 
 {-| No overlap strategy to be applied when there is not space to show all items on an axis.
+Used by [axLabelOverlap](#axLabelOverlap), [leOverlap](#leOverlap), [axcoOverlap](#axcoOverlap)
+and [lecoOverlap](#lecoOverlap).
 -}
 osNone : OverlapStrategy
 osNone =
@@ -18136,14 +18263,15 @@ osNone =
 
 
 {-| Give all items equal weight in overlap strategy to be applied when there is
-not space to show them all on an axis.
+not space to show them all on an axis. Used by [axLabelOverlap](#axLabelOverlap),
+[leOverlap](#leOverlap), [axcoOverlap](#axcoOverlap) and [lecoOverlap](#lecoOverlap).
 -}
 osParity : OverlapStrategy
 osParity =
     OParity
 
 
-{-| Sort order to be used by an order channel.
+{-| Sort order to be used by an order channel. Used by [order](#order) and [oCondition](#oCondition).
 -}
 oSort : List SortProperty -> OrderChannel
 oSort =
@@ -18151,6 +18279,7 @@ oSort =
 
 
 {-| Indicate a data field encoded with an order channel is temporal.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oTemporal : OrderChannel
 oTemporal =
@@ -18158,6 +18287,7 @@ oTemporal =
 
 
 {-| Time unit aggregation of field values when encoding with an order channel.
+Used by [order](#order) and [oCondition](#oCondition).
 -}
 oTimeUnit : TimeUnit -> OrderChannel
 oTimeUnit =
