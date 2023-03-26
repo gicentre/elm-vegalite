@@ -11336,6 +11336,10 @@ dataSequenceAs start stop step outName =
 
 
 {-| Day of the month (1-31) time unit used for discretizing temporal data.
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 date : TimeUnit
 date =
@@ -11370,7 +11374,10 @@ datumExpr =
 
 
 {-| Day of the week used for discretizing temporal data. This will therefore discretize
-any temporal sequence into a maximum of 7 bins.
+any temporal sequence into a maximum of 7 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 day : TimeUnit
 day =
@@ -11379,6 +11386,10 @@ day =
 
 {-| Hour of the day through the week used for discretizing temporal data. This will
 therefore discretize any temporal sequence into a maximum of 7\*24 bins.
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 dayHours : TimeUnit
 dayHours =
@@ -11387,6 +11398,10 @@ dayHours =
 
 {-| Minute through the week used for discretizing temporal data. This will
 therefore discretize any temporal sequence into a maximum of 7\*24\*60 bins.
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 dayHoursMinutes : TimeUnit
 dayHoursMinutes =
@@ -11395,6 +11410,10 @@ dayHoursMinutes =
 
 {-| Second through the week used for discretizing temporal data. This will
 therefore discretize any temporal sequence into a maximum of 7\*24\*60\*60 bins.
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 dayHoursMinutesSeconds : TimeUnit
 dayHoursMinutesSeconds =
@@ -11402,7 +11421,10 @@ dayHoursMinutesSeconds =
 
 
 {-| Indicate temporal binning by day of the year, so a 10 year sequence would
-have up to 366 bins.
+have up to 366 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 dayOfYear : TimeUnit
 dayOfYear =
@@ -21280,8 +21302,8 @@ symWedge =
 
 
 {-| Compute some aggregate summary statistics for a field to be encoded with a
-text channel. The type of aggregation is determined by the given operation
-parameter.
+text channel. The type of aggregation is determined by the given operation parameter.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tAggregate : Operation -> TextChannel
 tAggregate =
@@ -21311,6 +21333,7 @@ tbExtent =
 
 
 {-| Discretize numeric values into bins when encoding with a text channel.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tBin : List BinProperty -> TextChannel
 tBin =
@@ -21318,6 +21341,7 @@ tBin =
 
 
 {-| Indicate that data encoded with a text channel are already binned.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tBinned : TextChannel
 tBinned =
@@ -21328,6 +21352,7 @@ tBinned =
 might be the result of evaluating a parameter ([prParam](#prParam)) or an expression
 ([prTest](#prTest)). The first parameter is the predicate that evaluates to true
 or false; the second the encoding if true, the third the encoding if false.
+Used by [text](#text) and [tooltip](#tooltip).
 -}
 tCondition : Predicate -> List TextChannel -> List TextChannel -> TextChannel
 tCondition =
@@ -21336,7 +21361,7 @@ tCondition =
 
 {-| Make an text channel conditional on a sequence of predicate values. This can
 be used when several predicates need to be tested in sequence each with their own
-encoding outcomes ('if-else').
+encoding outcomes ('if-else'). Used by [text](#text), [tooltip](#tooltip).
 -}
 tConditions : List ( Predicate, List TextChannel ) -> List TextChannel -> TextChannel
 tConditions =
@@ -21344,7 +21369,8 @@ tConditions =
 
 
 {-| Name of a literal data item used for encoding with a text channel. Unlike
-[tStr](#tStr) datum literals represent values in data space.
+[tStr](#tStr) datum literals represent values in data space. Used by [text](#text),
+[tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tDatum : DataValue -> TextChannel
 tDatum =
@@ -21394,7 +21420,8 @@ textMark =
     mark Text
 
 
-{-| Specify a title anchor position relative to the full bounding box.
+{-| Specify a title anchor position relative to the full bounding box. Used by
+[tiFrame](#tiFrame) and [ticoFrame](#ticoFrame).
 -}
 tfBounds : TitleFrame
 tfBounds =
@@ -21402,14 +21429,15 @@ tfBounds =
 
 
 {-| Specify a title anchor position as an expression that should evaluate to one
-of "bounds" or "frame".
+of "bounds" or "frame". Used by [tiFrame](#tiFrame) and [ticoFrame](#ticoFrame).
 -}
 tfExpr : String -> TitleFrame
 tfExpr =
     FrExpr
 
 
-{-| Specify a title anchor position relative to the group width / height.
+{-| Specify a title anchor position relative to the group width / height. Used by
+[tiFrame](#tiFrame) and [ticoFrame](#ticoFrame).
 -}
 tfGroup : TitleFrame
 tfGroup =
@@ -21419,7 +21447,8 @@ tfGroup =
 {-| [Formatting pattern](https://vega.github.io/vega-lite/docs/format.html)
 for text marks. To distinguish between formatting as numeric values and data/time
 values, additionally use [tFormatAsNum](#tFormatAsNum), [tFormatAsTemporal](#tFormatAsTemporal)
-or [tFormatAsCustom](#tFormatAsCustom).
+or [tFormatAsCustom](#tFormatAsCustom). Used by [text](#text), [tooltip](#tooltip) and
+[tCondition](#tCondition).
 -}
 tFormat : String -> TextChannel
 tFormat s =
@@ -21427,7 +21456,8 @@ tFormat s =
 
 
 {-| Indicate that values encoded with a text channel should be formatted with a
-registered custom formatter with the given name. See
+registered custom formatter with the given name. Used by [text](#text), [tooltip](#tooltip)
+and [tCondition](#tCondition). See
 [how to register a Vega-Lite custom formatter](https://vega.github.io/vega-lite/usage/compile.html#format-type).
 -}
 tFormatAsCustom : String -> TextChannel
@@ -21438,6 +21468,7 @@ tFormatAsCustom s =
 {-| Indicate that values encoded with a text channel should be formatted as numbers.
 To control the precise numeric format, additionally use [tFormat](#tFormat) providing
 a [d3 numeric format string](https://github.com/d3/d3-format#locale_format).
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tFormatAsNum : TextChannel
 tFormatAsNum =
@@ -21447,6 +21478,7 @@ tFormatAsNum =
 {-| Indicate that values encoded with a text channel should be formatted as dates/times.
 To control the precise temporal format, additionally use [tFormat](#tFormat) providing
 a [d3 date/time format string](https://github.com/d3/d3-time-format#locale_format).
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tFormatAsTemporal : TextChannel
 tFormatAsTemporal =
@@ -21454,83 +21486,84 @@ tFormatAsTemporal =
 
 
 {-| Indicate a data field encoded as a text property is a geo feature.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tGeo : TextChannel
 tGeo =
     TmType GeoFeature
 
 
-{-| Anchor position when placing a title.
+{-| Anchor position when placing a [title](#title).
 -}
 tiAnchor : Anchor -> TitleProperty
 tiAnchor =
     TiAnchor
 
 
-{-| Angle of title text (degrees from horizontal).
+{-| Angle of [title](#title) text (degrees from horizontal).
 -}
 tiAngle : Float -> TitleProperty
 tiAngle n =
     TiAngle (Num (positiveAngle n))
 
 
-{-| Vertical alignment of a title.
+{-| Vertical alignment of a [title](#title).
 -}
 tiBaseline : VAlign -> TitleProperty
 tiBaseline =
     TiBaseline
 
 
-{-| Text colour of a title.
+{-| Text colour of a [title](#title).
 -}
 tiColor : String -> TitleProperty
 tiColor s =
     TiColor (Str s)
 
 
-{-| Delta offset of title and subtitle x-position.
+{-| Delta offset of [title](#title) and subtitle x-position.
 -}
 tiDx : Float -> TitleProperty
 tiDx n =
     TiDx (Num n)
 
 
-{-| Delta offset of title and subtitle y-position.
+{-| Delta offset of [title](#title) and subtitle y-position.
 -}
 tiDy : Float -> TitleProperty
 tiDy n =
     TiDy (Num n)
 
 
-{-| Title font.
+{-| [title](#title) font.
 -}
 tiFont : String -> TitleProperty
 tiFont s =
     TiFont (Str s)
 
 
-{-| Title font size.
+{-| [title](#title) font size.
 -}
 tiFontSize : Float -> TitleProperty
 tiFontSize n =
     TiFontSize (Num n)
 
 
-{-| Title font style (italic etc.).
+{-| [title](#title) font style (italic etc.).
 -}
 tiFontStyle : String -> TitleProperty
 tiFontStyle s =
     TiFontStyle (Str s)
 
 
-{-| Title font weight.
+{-| [title](#title) font weight.
 -}
 tiFontWeight : FontWeight -> TitleProperty
 tiFontWeight =
     TiFontWeight
 
 
-{-| Title position anchor. Can be relative to the full bounding box
+{-| [title](#title) position anchor. Can be relative to the full bounding box
 ([frBounds](#frBounds)) or the group in which the titled visualization belongs
 ([frGroup](#frGroup)).
 -}
@@ -21539,35 +21572,35 @@ tiFrame =
     TiFrame
 
 
-{-| Maximum length of the title display in pixel units.
+{-| Maximum length of the [title](#title) display in pixel units.
 -}
 tiLimit : Float -> TitleProperty
 tiLimit n =
     TiLimit (Num n)
 
 
-{-| Line height (vertical spacing) for title text.
+{-| Line height (vertical spacing) for [title](#title) text.
 -}
 tiLineHeight : Float -> TitleProperty
 tiLineHeight n =
     TiLineHeight (Num n)
 
 
-{-| Offset in pixel units of the title relative to the chart body.
+{-| Offset in pixel units of the [title](#title) relative to the chart body.
 -}
 tiOffset : Float -> TitleProperty
 tiOffset n =
     TiOffset (Num n)
 
 
-{-| Placement of title relative to the chart body.
+{-| Placement of [title](#title) relative to the chart body.
 -}
 tiOrient : Side -> TitleProperty
 tiOrient =
     TiOrient
 
 
-{-| A list of named styles to apply to title. A named style can be specified via
+{-| A list of named styles to apply to [title](#title). A named style can be specified via
 [coMarkStyles](#coMarkStyles) if more than one style is required. Later styles
 in the list will override earlier styles if there is a conflict in any of the mark
 properties specified.
@@ -21583,56 +21616,59 @@ tiStyle =
 
 
 {-| Subtitle text, placed beneath the primary title. For multi-line subtitles,
-insert `\n` at each line break or use a `"""` multi-line string.
+insert `\n` at each line break or use a `"""` multi-line string. Used by [title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitle : String -> TitleProperty
 tiSubtitle s =
     TiSubtitle (Str s)
 
 
-{-| Color of a subtitle.
+{-| Color of a subtitle. Used by [title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitleColor : String -> TitleProperty
 tiSubtitleColor s =
     TiSubtitleColor (Str s)
 
 
-{-| Font name of a subtitle.
+{-| Font name of a subtitle. Used by [title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitleFont : String -> TitleProperty
 tiSubtitleFont s =
     TiSubtitleFont (Str s)
 
 
-{-| Font size of a subtitle.
+{-| Font size of a subtitle. Used by [title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitleFontSize : Float -> TitleProperty
 tiSubtitleFontSize n =
     TiSubtitleFontSize (Num n)
 
 
-{-| Font style of a subtitle such as `"normal"` or `"italic"`.
+{-| Font style of a subtitle such as `"normal"` or `"italic"`. Used by
+[title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitleFontStyle : String -> TitleProperty
 tiSubtitleFontStyle s =
     TiSubtitleFontStyle (Str s)
 
 
-{-| Font weight of a subtitle.
+{-| Font weight of a subtitle. Used by [title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitleFontWeight : FontWeight -> TitleProperty
 tiSubtitleFontWeight =
     TiSubtitleFontWeight
 
 
-{-| Line height in pixels of each line of text in a multi-line subtitle.
+{-| Line height in pixels of each line of text in a multi-line subtitle. Used by
+[title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitleLineHeight : Float -> TitleProperty
 tiSubtitleLineHeight n =
     TiSubtitleLineHeight (Num n)
 
 
-{-| Padding in pixels between title and subtitle text.
+{-| Padding in pixels between title and subtitle text. Used by [title](#title)
+and [titleExpr](#titleExpr).
 -}
 tiSubtitlePadding : Float -> TitleProperty
 tiSubtitlePadding n =
@@ -21640,7 +21676,7 @@ tiSubtitlePadding n =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
-title property function requiring a numeric value. This can be used for interactive
+[title](#title) property function requiring a numeric value. This can be used for interactive
 parameterisation when an expression is bound to an input element. For example,
 
     ps =
@@ -21695,8 +21731,8 @@ tiNumExpr ex fn =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-a title property function requiring a string value. This can be used to provide an
-interactive parameterisation of a title property when an expression is bound to an
+a [title](#title) property function requiring a string value. This can be used to provide
+an interactive parameterisation of a title property when an expression is bound to an
 input element. For example,
 
     ps =
@@ -21738,7 +21774,7 @@ tiStrExpr ex fn =
             fn ""
 
 
-{-| Drawing order of a title relative to the other chart elements. 1 indicates
+{-| Drawing order of a [title](#title) relative to the other chart elements. 1 indicates
 title is drawn in front of chart marks, 0 indicates it is drawn behind them.
 -}
 tiZIndex : Int -> TitleProperty
@@ -21754,93 +21790,93 @@ tick =
     mark Tick
 
 
-{-| Default anchor position when placing titles.
+{-| Configure default title anchor position via [coTitle](#coTitle).
 -}
 ticoAnchor : Anchor -> TitleConfig
 ticoAnchor =
     TiAnchor
 
 
-{-| Default angle when orientating titles (degrees from horizontal).
+{-| Configure default title text orientation (degrees from horizontal) via [coTitle](#coTitle).
 -}
 ticoAngle : Float -> TitleConfig
 ticoAngle n =
     TiAngle (Num (positiveAngle n))
 
 
-{-| Default vertical alignment when placing titles.
+{-| Configure default vertical alignment of title text via [coTitle](#coTitle).
 -}
 ticoBaseline : VAlign -> TitleConfig
 ticoBaseline =
     TiBaseline
 
 
-{-| Default color when showing titles.
+{-| Configure default title color when via [coTitle](#coTitle).
 -}
 ticoColor : String -> TitleConfig
 ticoColor s =
     TiColor (Str s)
 
 
-{-| Default delta offset of title and subtitle x-position.
+{-| Configure default delta offset of title and subtitle x-position via [coTitle](#coTitle).
 -}
 ticoDx : Float -> TitleConfig
 ticoDx n =
     TiDx (Num n)
 
 
-{-| Default delta offset of title and subtitle y-position.
+{-| Configure default delta offset of title and subtitle y-position via [coTitle](#coTitle).
 -}
 ticoDy : Float -> TitleConfig
 ticoDy n =
     TiDy (Num n)
 
 
-{-| Default font when showing titles.
+{-| Configure default title font via [coTitle](#coTitle).
 -}
 ticoFont : String -> TitleConfig
 ticoFont s =
     TiFont (Str s)
 
 
-{-| Default font size when showing titles.
+{-| Configure default title font size via [coTitle](#coTitle).
 -}
 ticoFontSize : Float -> TitleConfig
 ticoFontSize n =
     TiFontSize (Num n)
 
 
-{-| Default font style (italic etc.) when showing titles.
+{-| Configure default title font style (italic etc.) via [coTitle](#coTitle).
 -}
 ticoFontStyle : String -> TitleConfig
 ticoFontStyle s =
     TiFontStyle (Str s)
 
 
-{-| Default font weight when showing titles.
+{-| Configure default title font weight via [coTitle](#coTitle).
 -}
 ticoFontWeight : FontWeight -> TitleConfig
 ticoFontWeight =
     TiFontWeight
 
 
-{-| Title position anchor. Can be relative to the full bounding box
-([frBounds](#frBounds)) or the group in which the titled visualization belongs
-([frGroup](#frGroup)).
+{-| Configure title position anchor via [coTitle](#coTitle). Can be relative to the full
+bounding box ([frBounds](#frBounds)) or the group in which the titled visualization
+belongs ([frGroup](#frGroup)).
 -}
 ticoFrame : TitleFrame -> TitleConfig
 ticoFrame =
     TiFrame
 
 
-{-| Default maximum length in pixel units when showing titles.
+{-| Configure default maximum title length in pixel units via [coTitle](#coTitle).
 -}
 ticoLimit : Float -> TitleConfig
 ticoLimit n =
     TiLimit (Num n)
 
 
-{-| Line height (vertical spacing) for title text.
+{-| Configure default title line height (vertical spacing) via [coTitle](#coTitle).
 -}
 ticoLineHeight : Float -> TitleConfig
 ticoLineHeight n =
@@ -21848,7 +21884,7 @@ ticoLineHeight n =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
-title configuration function requiring a numeric value.
+title configuration function requiring a numeric value. Used by [coTitle](#coTitle).
 -}
 ticoNumExpr : String -> (number -> TitleConfig) -> TitleConfig
 ticoNumExpr =
@@ -21856,21 +21892,22 @@ ticoNumExpr =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to
-a title configuration function requiring a string value.
+a title configuration function requiring a string value. Used by [coTitle](#coTitle).
 -}
 ticoStrExpr : String -> (String -> TitleConfig) -> TitleConfig
 ticoStrExpr =
     tiStrExpr
 
 
-{-| Default offset in pixel units of titles relative to the chart body.
+{-| Configure default title offset in pixel units relative to the chart body. Used by
+[coTitle](#coTitle).
 -}
 ticoOffset : Float -> TitleConfig
 ticoOffset n =
     TiOffset (Num n)
 
 
-{-| Default placement of titles relative to the chart body.
+{-| Configure default placement of titles relative to the chart body via [coTitle](#coTitle).
 -}
 ticoOrient : Side -> TitleConfig
 ticoOrient =
@@ -21880,64 +21917,67 @@ ticoOrient =
 {-| A list of named styles to apply to titles. A named style can be specified via
 [coMarkStyles](#coMarkStyles) if more than one style is required. Later styles
 in the list will override earlier styles if there is a conflict in any of the
-mark properties specified.
+mark properties specified. Used by [coTitle](#coTitle).
 -}
 ticoStyle : List String -> TitleConfig
 ticoStyle =
     TiStyle
 
 
-{-| Default color of a subtitle.
+{-| Configure default color of a subtitle via [coTitle](#coTitle).
 -}
 ticoSubtitleColor : String -> TitleProperty
 ticoSubtitleColor s =
+    -- TODO: Replace TitleProperty with its type alias TitleConfig in next major release
+    -- Although this has no practical effect on the API, semantic versioning will regard this as breaking change.
     TiSubtitleColor (Str s)
 
 
-{-| Default font name of a subtitle.
+{-| Configure default font name of a subtitle via [coTitle](#coTitle).
 -}
 ticoSubtitleFont : String -> TitleConfig
 ticoSubtitleFont s =
     TiSubtitleFont (Str s)
 
 
-{-| Default font size of a subtitle.
+{-| Configure default font size of a subtitle via [coTitle](#coTitle).
 -}
 ticoSubtitleFontSize : Float -> TitleConfig
 ticoSubtitleFontSize n =
     TiSubtitleFontSize (Num n)
 
 
-{-| Default ont style of a subtitle such as `"normal"` or `"italic"`.
+{-| Configure default font style of a subtitle such as `"normal"` or `"italic"`
+via [coTitle](#coTitle).
 -}
 ticoSubtitleFontStyle : String -> TitleConfig
 ticoSubtitleFontStyle s =
     TiSubtitleFontStyle (Str s)
 
 
-{-| Default font weight of a subtitle.
+{-| Configure default font weight of a subtitle via [coTitle](#coTitle).
 -}
 ticoSubtitleFontWeight : FontWeight -> TitleConfig
 ticoSubtitleFontWeight =
     TiSubtitleFontWeight
 
 
-{-| Default line height in pixels of each line of text in a subtitle.
+{-| Configure default line height in pixels of each line of text in a subtitle via [coTitle](#coTitle).
 -}
 ticoSubtitleLineHeight : Float -> TitleConfig
 ticoSubtitleLineHeight n =
     TiSubtitleLineHeight (Num n)
 
 
-{-| Default padding in pixels between title and subtitle text.
+{-| Configure default padding in pixels between title and subtitle text via [coTitle](#coTitle).
 -}
 ticoSubtitlePadding : Float -> TitleConfig
 ticoSubtitlePadding n =
     TiSubtitlePadding (Num n)
 
 
-{-| Default drawing order of titles relative to the other chart elements. 1 indicates
-titles are drawn in front of chart marks, 0 indicates they are drawn behind them.
+{-| Configure default drawing order of titles relative to the other chart elements. 1 indicates
+titles are drawn in front of chart marks, 0 indicates they are drawn behind them. Used by [coTitle](#coTitle).
 -}
 ticoZIndex : Int -> TitleConfig
 ticoZIndex n =
@@ -21999,7 +22039,8 @@ titleExpr s tps =
     )
 
 
-{-| Name of field used for encoding with a text channel.
+{-| Name of field used for encoding with a text channel. Used by [text](#text),
+[tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tName : String -> TextChannel
 tName s =
@@ -22007,14 +22048,15 @@ tName s =
 
 
 {-| Indicate a data field encoded as a text property is nominal. This is
-the default data type.
+the default data type. Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tNominal : TextChannel
 tNominal =
     TmType Nominal
 
 
-{-| Indicate a data field encoded as a text property is ordinal.
+{-| Indicate a data field encoded as a text property is ordinal. Used by [text](#text),
+[tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tOrdinal : TextChannel
 tOrdinal =
@@ -22024,6 +22066,7 @@ tOrdinal =
 {-| Reference in a text channel to a field name generated by [repeatFlow](#repeatFlow)
 or [repeat](#repeat). The parameter identifies whether reference is being made to
 fields that are to be arranged in columns, in rows or a with a flow layout.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tRepeat : Arrangement -> TextChannel
 tRepeat =
@@ -22136,7 +22179,7 @@ toVegaLite spec =
 
 
 {-| Specify that data values in a selection are toggled when interacted with on
-multiple occasions while the alt key is held down.
+multiple occasions while the alt key is held down. Used by [seToggle](#seToggle).
 -}
 tpAltKey : TogglePredicate
 tpAltKey =
@@ -22144,7 +22187,7 @@ tpAltKey =
 
 
 {-| Specify that data values in a selection are toggled when interacted with on
-multiple occasions while the control key is held down.
+multiple occasions while the control key is held down. Used by [seToggle](#seToggle).
 -}
 tpCtrlKey : TogglePredicate
 tpCtrlKey =
@@ -22153,7 +22196,8 @@ tpCtrlKey =
 
 {-| Specify that repeated selections are toggled when the given
 [expression](https://vega.github.io/vega/docs/expressions/) evaluates to true.
-This allows, for example, multiple key modifiers to generate toggling:
+Used by [seToggle](#seToggle). This allows, for example, multiple key modifiers
+to generate toggling:
 
     ps =
         params
@@ -22172,6 +22216,7 @@ tpExpr =
 
 {-| Specify that data values in a selection are never unselected when interacted
 with on multiple occasions. This allows a single selected item to be guaranteed.
+Used by [seToggle](#seToggle).
 -}
 tpFalse : TogglePredicate
 tpFalse =
@@ -22181,6 +22226,7 @@ tpFalse =
 {-| Specify that data values in a selection are toggled when interacted with on
 multiple occasions while the shift key is held down. This is the default behaviour
 so should only be needed if moving back from some other specified behavior.
+Used by [seToggle](#seToggle).
 -}
 tpShiftKey : TogglePredicate
 tpShiftKey =
@@ -22245,8 +22291,8 @@ true =
 
 
 {-| Literal string value when encoding with a text channel. Can be useful for
-quick text annotation. For multi-line text, insert `\n` at each line break or use
-a `"""` multi-line string.
+quick text annotation. Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
+For multi-line text, insert `\n` at each line break or use a `"""` multi-line string. For example,
 
     encoding
         << position X [ pNum 300 ]
@@ -22274,6 +22320,7 @@ tsv =
 
 
 {-| Indicate tooltips are generated by all fields in the underlying data.
+Used by [maTooltip](#maTooltip). For example,
 
     circle [ maTooltip ttData ]
 
@@ -22293,7 +22340,8 @@ ttData =
 --     TTExpr
 
 
-{-| Indicate a data field encoded as a text property is temporal.
+{-| Indicate a data field encoded as a text property is temporal. Used by [text](#text),
+[tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tTemporal : TextChannel
 tTemporal =
@@ -22301,6 +22349,7 @@ tTemporal =
 
 
 {-| Indicate tooltips should be enabled using the encoded data of the mark.
+Used by [maTooltip](#maTooltip). For example,
 
     circle [ maTooltip ttEncoding ]
 
@@ -22311,6 +22360,7 @@ ttEncoding =
 
 
 {-| Time unit aggregation of field values when encoding with a text channel.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tTimeUnit : TimeUnit -> TextChannel
 tTimeUnit =
@@ -22319,6 +22369,7 @@ tTimeUnit =
 
 {-| Title of a field when encoding with a text or tooltip channel. For multi-line
 titles, insert `\n` at each line break or use a `"""` multi-line string.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tTitle : String -> TextChannel
 tTitle s =
@@ -22326,6 +22377,7 @@ tTitle s =
 
 
 {-| Indicate that tooltips should be disabled for the mark (default).
+Used by [maTooltip](#maTooltip). For example,
 
     circle [ maTooltip ttNone ]
 
@@ -22336,6 +22388,7 @@ ttNone =
 
 
 {-| Indicate a data field encoded as a text property is quantitative.
+Used by [text](#text), [tooltip](#tooltip) and [tCondition](#tCondition).
 -}
 tQuant : TextChannel
 tQuant =
@@ -22350,6 +22403,10 @@ bin into days:
 
     tuMaxBins 366
 
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit),
+[hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit), [dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit),
+[timeUnitAs](#timeUnitAs), [niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
+
 -}
 tuMaxBins : Int -> TimeUnit
 tuMaxBins =
@@ -22361,6 +22418,10 @@ significant unit provided. For example, the following will bin temporal data int
 biweekly weekly groups:
 
     tuStep 14 yearMonthDate
+
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit),
+[hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit), [dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit),
+[timeUnitAs](#timeUnitAs), [niInterval](#niInterval), and [utc](#utc).
 
 -}
 tuStep : Float -> TimeUnit -> TimeUnit
@@ -22419,20 +22480,38 @@ another `TimeUnit` generating function.
             , pTimeUnit (utc yearMonthDateHours)
             ]
 
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit),
+[hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit), [dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit),
+[timeUnitAs](#timeUnitAs), [niInterval](#niInterval) and [tuStep](#tuStep).
+
 -}
 utc : TimeUnit -> TimeUnit
 utc tu =
     Utc tu
 
 
-{-| Vertically align text marks by their baseline (e.g. bottom of an 'x').
+{-| Vertically align text marks by their baseline (e.g. bottom of an 'x'). Used by
+[maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaAlphabetic : VAlign
 vaAlphabetic =
     VAlignAlphabetic
 
 
-{-| Vertically align text marks by the bottom of descenders (e.g. bottom of a 'g').
+{-| Vertically align text marks by the bottom of descenders (e.g. bottom of a 'g'). Used by
+[maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaBottom : VAlign
 vaBottom =
@@ -22440,7 +22519,13 @@ vaBottom =
 
 
 {-| Expression that evaluates to some vertical text alignment such as "top", "bottom"
-or "alphabetic".
+or "alphabetic". Used by [maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaExpr : String -> VAlign
 vaExpr =
@@ -22448,7 +22533,14 @@ vaExpr =
 
 
 {-| Vertically align text marks by the bottom of the space defined by line height
-([maLineHeight](#maLineHeight), [tiLineHeight](#tiLineHeight) etc.).
+([maLineHeight](#maLineHeight), [tiLineHeight](#tiLineHeight) etc.). Used by
+[maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaLineBottom : VAlign
 vaLineBottom =
@@ -22456,21 +22548,42 @@ vaLineBottom =
 
 
 {-| Vertically align text marks by the top of the space defined by line height
-([maLineHeight](#maLineHeight), [tiLineHeight](#tiLineHeight) etc.).
+([maLineHeight](#maLineHeight), [tiLineHeight](#tiLineHeight) etc.). Used by
+[maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaLineTop : VAlign
 vaLineTop =
     VAlignLineTop
 
 
-{-| Vertically align text marks by their middle (e.g. middle of an 'x').
+{-| Vertically align text marks by their middle (e.g. middle of an 'x'). Used by
+[maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaMiddle : VAlign
 vaMiddle =
     VAlignMiddle
 
 
-{-| Vertically align text marks by the top of ascenders (e.g. top of an 'A').
+{-| Vertically align text marks by the top of ascenders (e.g. top of an 'A'). Used by
+[maBaseline](#maBaseline), [axLabelBaseline](#axLabelBaseline),
+[cAxLabelBaseline](#cAxLabelBaseline), [axTitleBaseline](#axTitleBaseline),
+[leLabelBaseline](#leLabelBaseline), [leTitleBaseline](#leTitleBaseline),
+[hdLabelBaseline](#hdLabelBaseline), [hdTitleBaseline](#hdTitleBaseline),
+[tiBaseline](#tiBaseline), [axcoLabelBaseline](#axcoLabelBaseline),
+[axcoTitleBaseline](#axcoTitleBaseline), [lecoLabelBaseline](#lecoLabelBaseline),
+[lecoTitleBaseline](#lecoTitleBaseline) and [ticoBaseline](#ticoBaseline).
 -}
 vaTop : VAlign
 vaTop =
@@ -22535,6 +22648,8 @@ when an expression is bound to an input element. For example,
     bg =
         viewBackground [ vbNumsExpr "dashStyle" viewStrokeDash ]
 
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
+
 -}
 vbNumsExpr : String -> (List number -> ViewBackground) -> ViewBackground
 vbNumsExpr ex fn =
@@ -22561,6 +22676,8 @@ is bound to an input element. For example,
     bg =
         viewBackground [ vbStrExpr "clr" viewFill ]
 
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
+
 -}
 vbStrExpr : String -> (Maybe String -> ViewBackground) -> ViewBackground
 vbStrExpr ex fn =
@@ -22583,7 +22700,7 @@ vConcat specs =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
-view configuration function a Boolean value.
+view configuration function a Boolean value. Used by [coView](#coView).
 -}
 vicoBooExpr : String -> (Bool -> ViewConfig) -> ViewConfig
 vicoBooExpr ex fn =
@@ -22595,57 +22712,57 @@ vicoBooExpr ex fn =
             fn False
 
 
-{-| Whether or not by default single views should be clipped. Clipping will remove
-everything outside the data area including axes and legends.
+{-| Configure whether or not by default single views should be clipped. Clipping will remove
+everything outside the data area including axes and legends. Used by [coView](#coView).
 -}
 vicoClip : Bool -> ViewConfig
 vicoClip b =
     VClip (Boo b)
 
 
-{-| Default height of single views when the plot has continuous y-field.
+{-| Configure default height of single views when the plot has continuous y-field via [coView](#coView).
 -}
 vicoContinuousHeight : Float -> ViewConfig
 vicoContinuousHeight n =
     VContinuousHeight (Num n)
 
 
-{-| Default width of single views when the plot has continuous x-field.
+{-| Configure default width of single views when the plot has continuous x-field via [coView](#coView).
 -}
 vicoContinuousWidth : Float -> ViewConfig
 vicoContinuousWidth n =
     VContinuousWidth (Num n)
 
 
-{-| The radius in pixels of rounded rectangle corners.
+{-| Configure the default radius in pixels of rounded rectangle corners via [coView](#coView).
 -}
 vicoCornerRadius : Float -> ViewConfig
 vicoCornerRadius n =
     VCornerRadius (Num n)
 
 
-{-| Default cursor for single views.
+{-| Configure the default cursor for single views via [coView](#coView).
 -}
 vicoCursor : Cursor -> ViewConfig
 vicoCursor =
     VCursor
 
 
-{-| Default height of single views when the plot has discrete y-field.
+{-| Configure default height of single views when the plot has discrete y-field via [coView](#coView).
 -}
 vicoDiscreteHeight : Float -> ViewConfig
 vicoDiscreteHeight n =
     VDiscreteHeight (Num n)
 
 
-{-| Default width of single views when the plot has discrete x-field.
+{-| Configure default width of single views when the plot has discrete x-field via [coView](#coView).
 -}
 vicoDiscreteWidth : Float -> ViewConfig
 vicoDiscreteWidth n =
     VDiscreteWidth (Num n)
 
 
-{-| Default fill color for single views.
+{-| Configure default fill color for single views via [coView](#coView).
 -}
 vicoFill : Maybe String -> ViewConfig
 vicoFill ms =
@@ -22657,7 +22774,7 @@ vicoFill ms =
             VFill NoStr
 
 
-{-| Default fill opacity for single views.
+{-| Configure default fill opacity for single views via [coView](#coView).
 -}
 vicoFillOpacity : Float -> ViewConfig
 vicoFillOpacity n =
@@ -22665,7 +22782,7 @@ vicoFillOpacity n =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
-view background confguration function requiring a numeric value.
+view background confguration function requiring a numeric value. Used by [coView](#coView).
 -}
 vicoNumExpr : String -> (number -> ViewConfig) -> ViewConfig
 vicoNumExpr ex fn =
@@ -22712,6 +22829,7 @@ vicoNumExpr ex fn =
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
 view background configuration function requiring a list of numbers (for dash styles).
+Used by [coView](#coView).
 -}
 vicoNumsExpr : String -> (List number -> ViewConfig) -> ViewConfig
 vicoNumsExpr ex fn =
@@ -22723,14 +22841,14 @@ vicoNumsExpr ex fn =
             fn []
 
 
-{-| Default overall opacity for single views.
+{-| Configure default overall opacity for single views via [coView](#coView).
 -}
 vicoOpacity : Float -> ViewConfig
 vicoOpacity n =
     VOpacity (Num n)
 
 
-{-| Default step size for x/y discrete fields.
+{-| Configure default step size for x/y discrete fields via [coView](#coView).
 -}
 vicoStep : Float -> ViewConfig
 vicoStep n =
@@ -22738,7 +22856,8 @@ vicoStep n =
 
 
 {-| Provide an [expression](https://vega.github.io/vega/docs/expressions/) to a
-view background configuration function requiring a `Maybe String` value.
+view background configuration function requiring a `Maybe String` value. Used by
+[coView](#coView).
 -}
 vicoStrExpr : String -> (Maybe String -> ViewConfig) -> ViewConfig
 vicoStrExpr ex fn =
@@ -22753,8 +22872,8 @@ vicoStrExpr ex fn =
             fn Nothing
 
 
-{-| Default stroke color for single views. If `Nothing` is provided,
-no strokes are drawn around the view.
+{-| Configure the default stroke color for single views. If `Nothing` is provided,
+no strokes are drawn around the view. Used by [coView](#coView).
 -}
 vicoStroke : Maybe String -> ViewConfig
 vicoStroke ms =
@@ -22766,56 +22885,56 @@ vicoStroke ms =
             VStroke NoStr
 
 
-{-| Default stroke cap line-ending style for single views.
+{-| Configure the default stroke cap line-ending style for single views via [coView](#coView).
 -}
 vicoStrokeCap : StrokeCap -> ViewConfig
 vicoStrokeCap =
     VStrokeCap
 
 
-{-| Default stroke dash style for single views.
+{-| Configure the default stroke dash style for single views via [coView](#coView).
 -}
 vicoStrokeDash : List Float -> ViewConfig
 vicoStrokeDash ns =
     VStrokeDash (Nums ns)
 
 
-{-| Default stroke dash offset for single views.
+{-| Configure the default stroke dash offset for single views via [coView](#coView).
 -}
 vicoStrokeDashOffset : Float -> ViewConfig
 vicoStrokeDashOffset n =
     VStrokeDashOffset (Num n)
 
 
-{-| Default stroke line-joining style for single views.
+{-| Configure the default stroke line-joining style for single views via [coView](#coView).
 -}
 vicoStrokeJoin : StrokeJoin -> ViewConfig
 vicoStrokeJoin =
     VStrokeJoin
 
 
-{-| Default stroke mitre limit at which to bevel a line join in single views.
+{-| Configure the default stroke mitre limit at which to bevel a line join in single views via [coView](#coView).
 -}
 vicoStrokeMiterLimit : Float -> ViewConfig
 vicoStrokeMiterLimit n =
     VStrokeMiterLimit (Num n)
 
 
-{-| Default stroke opacity for single views.
+{-| Configure the default stroke opacity for single views via [coView](#coView).
 -}
 vicoStrokeOpacity : Float -> ViewConfig
 vicoStrokeOpacity n =
     VStrokeOpacity (Num n)
 
 
-{-| Default stroke width of single views.
+{-| Confgure the default stroke width of single views via [coView](#coView).
 -}
 vicoStrokeWidth : Float -> ViewConfig
 vicoStrokeWidth n =
     VStrokeWidth (Num n)
 
 
-{-| Configure the default single view style.
+{-| Configure the default single view style via [coView](#coView).
 -}
 vicoBackground : List ViewBackground -> ViewConfig
 vicoBackground =
@@ -22830,13 +22949,15 @@ viewBackground vbs =
 
 
 {-| The radius in pixels of rounded corners in single view or layer background.
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewCornerRadius : Float -> ViewBackground
 viewCornerRadius n =
     VBCornerRadius (Num n)
 
 
-{-| Fill color for a single view or layer background.
+{-| Fill color for a single view or layer background. Used by
+[viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewFill : Maybe String -> ViewBackground
 viewFill ms =
@@ -22848,14 +22969,16 @@ viewFill ms =
             VBFill NoStr
 
 
-{-| Fill opacity for a single view or layer background.
+{-| Fill opacity for a single view or layer background. Used by
+[viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewFillOpacity : Float -> ViewBackground
 viewFillOpacity n =
     VBFillOpacity (Num n)
 
 
-{-| Overall opacity for a single view or layer background.
+{-| Overall opacity for a single view or layer background. Used by
+[viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewOpacity : Float -> ViewBackground
 viewOpacity n =
@@ -22863,7 +22986,8 @@ viewOpacity n =
 
 
 {-| Stroke color for line around a single view or layer background. If `Nothing`
-is provided, no strokes are drawn around the view.
+is provided, no strokes are drawn around the view. Used by
+[viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStroke : Maybe String -> ViewBackground
 viewStroke ms =
@@ -22876,6 +23000,7 @@ viewStroke ms =
 
 
 {-| Stroke cap line-ending around a single view or layer background.
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeCap : StrokeCap -> ViewBackground
 viewStrokeCap =
@@ -22883,6 +23008,7 @@ viewStrokeCap =
 
 
 {-| Stroke dash style for a line around a single view or layer background.
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeDash : List Float -> ViewBackground
 viewStrokeDash ns =
@@ -22890,6 +23016,7 @@ viewStrokeDash ns =
 
 
 {-| Stroke dash offset for line around a single view or layer background.
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeDashOffset : Float -> ViewBackground
 viewStrokeDashOffset n =
@@ -22897,6 +23024,7 @@ viewStrokeDashOffset n =
 
 
 {-| Stroke line-joining style around a single view or layer background.
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeJoin : StrokeJoin -> ViewBackground
 viewStrokeJoin =
@@ -22904,7 +23032,7 @@ viewStrokeJoin =
 
 
 {-| Stroke mitre limit at which to bevel a line join around a single view or
-layer background.
+layer background. Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeMiterLimit : Float -> ViewBackground
 viewStrokeMiterLimit n =
@@ -22912,13 +23040,15 @@ viewStrokeMiterLimit n =
 
 
 {-| Stroke opacity around a single view or layer background.
+Used by [viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeOpacity : Float -> ViewBackground
 viewStrokeOpacity n =
     VBStrokeOpacity (Num n)
 
 
-{-| Stroke around a single view or layer background.
+{-| Stroke around a single view or layer background. Used by
+[viewBackground](#viewBackground) and [vicoBackground](#vicoBackground).
 -}
 viewStrokeWidth : Float -> ViewBackground
 viewStrokeWidth n =
@@ -22928,7 +23058,8 @@ viewStrokeWidth n =
 {-| A list of named styles to apply to a single view background. A named style
 can be specified via [coMarkStyles](#coMarkStyles) if more than one style is required.
 Later styles in the list will override earlier styles if there is a conflict in
-any of the mark properties specified.
+any of the mark properties specified. Used by [viewBackground](#viewBackground) and
+[vicoBackground](#vicoBackground).
 -}
 viewStyle : List String -> ViewBackground
 viewStyle ss =
@@ -22938,7 +23069,10 @@ viewStyle ss =
 {-| Indicate temporal binning by week of year, so a 10 year sequence would have
 up to 53 bins. Weeks are Sunday-based and days before the first Sunday of the year
 are considered to be in week 0, the first Sunday of the year is the start of week 1,
-the second Sunday week 2, _etc._
+the second Sunday week 2, _etc._ Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 week : TimeUnit
 week =
@@ -22946,7 +23080,10 @@ week =
 
 
 {-| Indicate temporal binning by day of week though the year, so a 10 year sequence
-would have up to 53\*7 bins.
+would have up to 53\*7 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 weekDay : TimeUnit
 weekDay =
@@ -22954,7 +23091,10 @@ weekDay =
 
 
 {-| Indicate temporal binning by hour of day though the year, so a 10 year sequence
-would have up to 52\*7\*24 bins.
+would have up to 52\*7\*24 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 weekDayHours : TimeUnit
 weekDayHours =
@@ -22962,7 +23102,10 @@ weekDayHours =
 
 
 {-| Indicate temporal binning by minute though the year, so a 10 year sequence
-would have up to 52\*7\*24\*60 bins.
+would have up to 52\*7\*24\*60 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 weekDayHoursMinutes : TimeUnit
 weekDayHoursMinutes =
@@ -22970,14 +23113,17 @@ weekDayHoursMinutes =
 
 
 {-| Indicate temporal binning by the second though the year, so a 10 year sequence
-would have up to 52\*7\*24\*60\*60 bins.
+would have up to 52\*7\*24\*60\*60 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 weekDayHoursMinutesSeconds : TimeUnit
 weekDayHoursMinutesSeconds =
     WeekDayHoursMinutesSeconds
 
 
-{-| An aggregate operation to be used in a window transformation.
+{-| An aggregate operation to be used in a [window](#window) transformation. For example,
 
     transform
         << window [ ( [ wiAggregateOp opSum, wiField "Time" ], "TotalTime" ) ]
@@ -23047,7 +23193,7 @@ wiDescending =
     WDescending
 
 
-{-| Field for which to compute a window operation. Not needed for
+{-| Field for which to compute a [window](#window) operation. Not needed for
 operations that do not apply to fields such as [opCount](#opCount), [woRank](#woRank)
 and [woDenseRank](#woDenseRank).
 -}
@@ -23056,7 +23202,7 @@ wiField s =
     WField (Str s)
 
 
-{-| Moving window for use by a window transform. The two parameters should either
+{-| Moving window for use by a [window](#window) transform. The two parameters should either
 be [Just](https://package.elm-lang.org/packages/elm/core/latest/Maybe#Maybe) a number
 indicating the offset from the current data object, or
 [Nothing](https://package.elm-lang.org/packages/elm/core/latest/Maybe#Maybe) to
@@ -23078,7 +23224,7 @@ wiFrame mn1 mn2 =
             WFrame (Num (toFloat n1)) (Num (toFloat n2))
 
 
-{-| Fields for partitioning data objects in a window transform into separate windows.
+{-| Fields for partitioning data objects in a [window](#window) transform into separate windows.
 If unspecified, all points will be in a single group.
 -}
 wiGroupBy : List String -> WindowProperty
@@ -23086,7 +23232,7 @@ wiGroupBy ss =
     WGroupBy (Strs ss)
 
 
-{-| Whether or not the sliding window frame in a window transform should ignore
+{-| Whether or not the sliding window frame in a [window](#window) transform should ignore
 peer values (those considered identical by the sort criteria).
 -}
 wiIgnorePeers : Bool -> WindowProperty
@@ -23121,14 +23267,14 @@ window wss wProps =
         )
 
 
-{-| Window-specific operation to be used in a window transformation.
+{-| Window-specific operation to be used in a [window](#window) transformation.
 -}
 wiOp : WOperation -> Window
 wiOp =
     WOp
 
 
-{-| Numeric parameter for window-only operations that can be parameterised
+{-| Numeric parameter for [window](#window)-only operations that can be parameterised
 ([woPercentile](#woPercentile), [woLag](#woLag), [woLead](#woLead) and
 [woNthValue](#woNthValue)).
 -}
@@ -23137,21 +23283,22 @@ wiParam n =
     WParam (Num (toFloat n))
 
 
-{-| Comparator for sorting data objects within a window transform.
+{-| Comparator for sorting data objects within a [window](#window) transform.
 -}
 wiSort : List SortField -> WindowProperty
 wiSort =
     WSort
 
 
-{-| Cumulative distribution function to be applied in a window transform.
+{-| Cumulative distribution operation to be applied in a window transformation.
+Used by [wiOp](#wiOp).
 -}
 woCumeDist : WOperation
 woCumeDist =
     CumeDist
 
 
-{-| Dense rank function to be applied in a window transform.
+{-| Dense rank operation to be applied in a window transform. Used by [wiOp](#wiOp).
 -}
 woDenseRank : WOperation
 woDenseRank =
@@ -23159,20 +23306,22 @@ woDenseRank =
 
 
 {-| First value in a sliding window to be applied in a window transform.
+Used by [wiOp](#wiOp).
 -}
 woFirstValue : WOperation
 woFirstValue =
     FirstValue
 
 
-{-| Value preceding the current object in a sliding window to be applied in a window transform.
+{-| Value preceding the current object in a sliding window to be applied
+in a window transform. Used by [wiOp](#wiOp).
 -}
 woLag : WOperation
 woLag =
     Lag
 
 
-{-| Last value in a sliding window to be applied in a window transform.
+{-| Last value in a sliding window to be applied in a window transform. Used by [wiOp](#wiOp).
 -}
 woLastValue : WOperation
 woLastValue =
@@ -23180,13 +23329,14 @@ woLastValue =
 
 
 {-| Value following the current object in a sliding window to be applied in a window transform.
+Used by [wiOp](#wiOp).
 -}
 woLead : WOperation
 woLead =
     Lead
 
 
-{-| Nth value in a sliding window to be applied in a window transform.
+{-| Nth value in a sliding window to be applied in a window transform. Used by [wiOp](#wiOp).
 -}
 woNthValue : WOperation
 woNthValue =
@@ -23194,20 +23344,21 @@ woNthValue =
 
 
 {-| Value preceding the current object in a sliding window to be applied in a window transform.
+Used by [wiOp](#wiOp).
 -}
 woPercentile : WOperation
 woPercentile =
     Ntile
 
 
-{-| Percentile of values in a sliding window to be applied in a window transform.
+{-| Percentile of values in a sliding window be applied in a window transform. Used by [wiOp](#wiOp).
 -}
 woPercentRank : WOperation
 woPercentRank =
     PercentRank
 
 
-{-| Rank function to be applied in a window transform.
+{-| Rank opertation to be applied in a window transform. Used by [wiOp](#wiOp).
 -}
 woRank : WOperation
 woRank =
@@ -23215,14 +23366,17 @@ woRank =
 
 
 {-| Assign consecutive row number to values in a data object to be applied in a
-window transform.
+window transform. Used by [wiOp](#wiOp).
 -}
 woRowNumber : WOperation
 woRowNumber =
     RowNumber
 
 
-{-| Indicate temporal binning into year categories.
+{-| Indicate temporal binning into year categories. Used by [pTimeUnit](#pTimeUnit),
+[mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit),
+[oTimeUnit](#oTimeUnit), [dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit),
+[timeUnitAs](#timeUnitAs), [niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 year : TimeUnit
 year =
@@ -23230,7 +23384,10 @@ year =
 
 
 {-| Indicate temporal binning with a resolution of days so a ten year sequence
-would have up to approximately 10\*365 bins.
+would have up to approximately 10\*365 bins. Used by [pTimeUnit](#pTimeUnit),
+[mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit),
+[oTimeUnit](#oTimeUnit), [dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit),
+[timeUnitAs](#timeUnitAs), [niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearDayOfYear : TimeUnit
 yearDayOfYear =
@@ -23238,7 +23395,10 @@ yearDayOfYear =
 
 
 {-| Indicate temporal binning with a resolution of months so a ten year sequence
-would have up to 10\*12 bins.
+would have up to 10\*12 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearMonth : TimeUnit
 yearMonth =
@@ -23246,7 +23406,10 @@ yearMonth =
 
 
 {-| Indicate temporal binning with a resolution of days so a ten year sequence
-would have up to approximately 10\*12\*31 bins.
+would have up to approximately 10\*12\*31 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearMonthDate : TimeUnit
 yearMonthDate =
@@ -23254,7 +23417,10 @@ yearMonthDate =
 
 
 {-| Indicate temporal binning with a resolution of hours so a ten year sequence
-would have up to approximately 10\*12\*31\*24 bins.
+would have up to approximately 10\*12\*31\*24 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearMonthDateHours : TimeUnit
 yearMonthDateHours =
@@ -23262,7 +23428,10 @@ yearMonthDateHours =
 
 
 {-| Indicate temporal binning with a resolution of minutes so a ten year sequence
-would have up to approximately 10\*12\*31\*24\*60 bins.
+would have up to approximately 10\*12\*31\*24\*60 bins. Used by [pTimeUnit](#pTimeUnit),
+[mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearMonthDateHoursMinutes : TimeUnit
 yearMonthDateHoursMinutes =
@@ -23270,7 +23439,10 @@ yearMonthDateHoursMinutes =
 
 
 {-| Indicate temporal binning with a resolution of seconds so a ten year sequence
-would have up to approximately 10\*12\*31\*24\*60\*60 bins.
+would have up to approximately 10\*12\*31\*24\*60\*60 bins. Used by [pTimeUnit](#pTimeUnit),
+[mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearMonthDateHoursMinutesSeconds : TimeUnit
 yearMonthDateHoursMinutesSeconds =
@@ -23278,7 +23450,10 @@ yearMonthDateHoursMinutesSeconds =
 
 
 {-| Indicate temporal binning with a resolution of quarters so a ten year sequence
-would have up to 10\*4 bins.
+would have up to 10\*4 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearQuarter : TimeUnit
 yearQuarter =
@@ -23287,7 +23462,10 @@ yearQuarter =
 
 {-| Indicate temporal binning with a resolution of months so a ten year sequence
 would have up to 10\*12 bins. Unlike [yearMonth](#yearMonth), this will also label
-bins with quarters.
+bins with quarters. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearQuarterMonth : TimeUnit
 yearQuarterMonth =
@@ -23295,7 +23473,10 @@ yearQuarterMonth =
 
 
 {-| Indicate temporal binning with a resolution of weeks so a ten year sequence
-would have up to 10\*52 bins.
+would have up to 10\*52 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearWeek : TimeUnit
 yearWeek =
@@ -23303,7 +23484,10 @@ yearWeek =
 
 
 {-| Indicate temporal binning with a resolution of day of week so a ten year
-sequence would have up to 10\*52\*7 bins.
+sequence would have up to 10\*52\*7 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearWeekDay : TimeUnit
 yearWeekDay =
@@ -23311,7 +23495,10 @@ yearWeekDay =
 
 
 {-| Indicate temporal binning with a resolution of hours so a ten year sequence
-would have up to 10\*52\*7\*24 bins.
+would have up to 10\*52\*7\*24 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearWeekDayHours : TimeUnit
 yearWeekDayHours =
@@ -23319,7 +23506,10 @@ yearWeekDayHours =
 
 
 {-| Indicate temporal binning with a resolution of minutes so a ten year sequence
-would have up to 10\*52\*7\*24\*60 bins.
+would have up to 10\*52\*7\*24\*60 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearWeekDayHoursMinutes : TimeUnit
 yearWeekDayHoursMinutes =
@@ -23327,7 +23517,10 @@ yearWeekDayHoursMinutes =
 
 
 {-| Indicate temporal binning with a resolution of seconds so a ten year sequence
-would have up to 10\*52\*7\*24\*60\*60 bins.
+would have up to 10\*52\*7\*24\*60\*60 bins. Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit),
+[tTimeUnit](#tTimeUnit), [hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit),
+[dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit), [timeUnitAs](#timeUnitAs),
+[niInterval](#niInterval), [utc](#utc) and [tuStep](#tuStep).
 -}
 yearWeekDayHoursMinutesSeconds : TimeUnit
 yearWeekDayHoursMinutesSeconds =
