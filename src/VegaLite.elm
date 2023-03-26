@@ -9267,7 +9267,10 @@ caAll =
     CAAll
 
 
-{-| Butt stroke cap.
+{-| Butt stroke cap. Used by [maStrokeCap](#maStrokeCap), [axDomainCap](#axDomainCap),
+[axcoDomainCap](#axcoDomainCap), [axTickCap](#axTickCap), [axcoTickCap](#axcoTickCap),
+[axGridCap](#axGridCap), [axcoGridCap](#axcoGridCap), [viewStrokeCap](#viewStrokeCap)
+and [vicoStrokeCap](#vicoStrokeCap).
 -}
 caButt : StrokeCap
 caButt =
@@ -9284,6 +9287,9 @@ caEach =
 
 
 {-| Expression that evaluates to some stroke cap style such as "square", "butt" or "round".
+Used by [maStrokeCap](#maStrokeCap), [axDomainCap](#axDomainCap), [axcoDomainCap](#axcoDomainCap),
+[axTickCap](#axTickCap), [axcoTickCap](#axcoTickCap), [axGridCap](#axGridCap),
+[axcoGridCap](#axcoGridCap), [viewStrokeCap](#viewStrokeCap) and [vicoStrokeCap](#vicoStrokeCap).
 -}
 caExpr : String -> StrokeCap
 caExpr =
@@ -9319,14 +9325,20 @@ caNone =
     CANone
 
 
-{-| Rounded stroke cap.
+{-| Rounded stroke cap. Used by [maStrokeCap](#maStrokeCap), [axDomainCap](#axDomainCap),
+[axcoDomainCap](#axcoDomainCap), [axTickCap](#axTickCap), [axcoTickCap](#axcoTickCap),
+[axGridCap](#axGridCap), [axcoGridCap](#axcoGridCap), [viewStrokeCap](#viewStrokeCap)
+and [vicoStrokeCap](#vicoStrokeCap).
 -}
 caRound : StrokeCap
 caRound =
     CRound
 
 
-{-| Square stroke cap.
+{-| Square stroke cap. Used by [maStrokeCap](#maStrokeCap), [axDomainCap](#axDomainCap),
+[axcoDomainCap](#axcoDomainCap), [axTickCap](#axTickCap), [axcoTickCap](#axcoTickCap),
+[axGridCap](#axGridCap), [axcoGridCap](#axcoGridCap), [viewStrokeCap](#viewStrokeCap)
+and [vicoStrokeCap](#vicoStrokeCap).
 -}
 caSquare : StrokeCap
 caSquare =
@@ -11981,14 +11993,16 @@ errorbar =
     mark Errorbar
 
 
-{-| Band extent between the 95% confidence intervals of a distribution.
+{-| Band extent between the 95% confidence intervals of a distribution. Used by
+[maExtent](#maExtent).
 -}
 exCi : SummaryExtent
 exCi =
     ExCI
 
 
-{-| Band extent between the lower and upper quartiles of a distribution.
+{-| Band extent between the lower and upper quartiles of a distribution. Used by
+[maExtent](#maExtent).
 -}
 exIqr : SummaryExtent
 exIqr =
@@ -11997,6 +12011,7 @@ exIqr =
 
 {-| A scaling of the interquartile range to be used as whiskers in a boxplot.
 For example, a value of 1.5 would extend whiskers to ±1.5x the IQR from the mean.
+Used by [maExtent](#maExtent).
 -}
 exIqrScale : Float -> SummaryExtent
 exIqrScale n =
@@ -12012,21 +12027,22 @@ expr =
     Expr
 
 
-{-| Band extent between the minimum and maximum values in a distribution.
+{-| Band extent between the minimum and maximum values in a distribution. Used by
+[maExtent](#maExtent).
 -}
 exRange : SummaryExtent
 exRange =
     ExRange
 
 
-{-| Band extent as the standard error about the mean of a distribution.
+{-| Band extent as the standard error about the mean of a distribution. Used by [maExtent](#maExtent).
 -}
 exStderr : SummaryExtent
 exStderr =
     ExStderr
 
 
-{-| Band extent as the standard deviation of a distribution.
+{-| Band extent as the standard deviation of a distribution. Used by [maExtent](#maExtent).
 -}
 exStdev : SummaryExtent
 exStdev =
@@ -14159,7 +14175,8 @@ jsonToSpec =
     JD.decodeString (jsDecoder ()) >> Result.withDefault JE.null
 
 
-{-| Bevelled stroke join.
+{-| Bevelled stroke join. Used by [maStrokeJoin](#maStrokeJoin),
+[viewStrokeJoin](#viewStrokeJoin) and [vicoStrokeJoin](#vicoStrokeJoin).
 -}
 joBevel : StrokeJoin
 joBevel =
@@ -14167,7 +14184,8 @@ joBevel =
 
 
 {-| Expression that evaluates to some stroke join style such as "bevel", "miter"
-or "round".
+or "round". Used by [maStrokeJoin](#maStrokeJoin), [viewStrokeJoin](#viewStrokeJoin)
+and [vicoStrokeJoin](#vicoStrokeJoin).
 -}
 joExpr : String -> StrokeJoin
 joExpr =
@@ -14199,14 +14217,16 @@ joinAggregate ops wProps =
         )
 
 
-{-| Mitred stroke join.
+{-| Mitred stroke join. Used by [maStrokeJoin](#maStrokeJoin),
+[viewStrokeJoin](#viewStrokeJoin) and [vicoStrokeJoin](#vicoStrokeJoin).
 -}
 joMiter : StrokeJoin
 joMiter =
     JMiter
 
 
-{-| Rounded stroke join.
+{-| Rounded stroke join. Used by [maStrokeJoin](#maStrokeJoin),
+[viewStrokeJoin](#viewStrokeJoin) and [vicoStrokeJoin](#vicoStrokeJoin).
 -}
 joRound : StrokeJoin
 joRound =
@@ -20751,7 +20771,7 @@ shape markProps =
 
 {-| Bottom side, used, for example, to specify an axis position.
 Used by [axOrient](#axOrient), [hdLabelOrient](#hdLabelOrient),
-[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient), 
+[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient),
 [tiOrient](#tiOrient) and [ticoOrient](#ticoOrient).
 -}
 siBottom : Side
@@ -20759,9 +20779,9 @@ siBottom =
     SBottom
 
 
-{-| Specify a side position with an interactive expression. Used by 
+{-| Specify a side position with an interactive expression. Used by
 [axOrient](#axOrient), [hdLabelOrient](#hdLabelOrient),
-[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient), 
+[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient),
 [tiOrient](#tiOrient) and [ticoOrient](#ticoOrient).
 -}
 siExpr : String -> Side
@@ -20769,9 +20789,9 @@ siExpr =
     SExpr
 
 
-{-| Left side, used, for example, to specify an axis position. 
+{-| Left side, used, for example, to specify an axis position.
 Used by [axOrient](#axOrient), [hdLabelOrient](#hdLabelOrient),
-[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient), 
+[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient),
 [tiOrient](#tiOrient) and [ticoOrient](#ticoOrient).
 -}
 siLeft : Side
@@ -20781,7 +20801,7 @@ siLeft =
 
 {-| Right side, used, for example, to specify an axis position.
 Used by [axOrient](#axOrient), [hdLabelOrient](#hdLabelOrient),
-[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient), 
+[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient),
 [tiOrient](#tiOrient) and [ticoOrient](#ticoOrient).
 -}
 siRight : Side
@@ -20791,7 +20811,7 @@ siRight =
 
 {-| Top side, used, for example, to specify an axis position.
 Used by [axOrient](#axOrient), [hdLabelOrient](#hdLabelOrient),
-[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient), 
+[htTitleOrient](#hdTitleOrient), [hdOrient](#hdOrient),
 [tiOrient](#tiOrient) and [ticoOrient](#ticoOrient).
 -}
 siTop : Side
@@ -20879,7 +20899,8 @@ soAscending =
     Ascending
 
 
-{-| Sort by another channel.
+{-| Sort by another channel. Used by [pSort](#pSort), [mSort](#mSort),
+[oSort](#oSort) and [fSort](#fSort). For example,
 
     position Y [ pName "age", pOrdinal, pSort [ soByChannel chX ] ]
 
@@ -20890,8 +20911,9 @@ soByChannel =
 
 
 {-| Sort by the aggregated summary of a given field using a given aggregation
-operation. e.g., sort the categorical data field `variety` by the mean age of
-the data in each variety category:
+operation. Used by [pSort](#pSort), [mSort](#mSort), [oSort](#oSort) and
+[fSort](#fSort). For example, to sort the categorical data field `variety` by
+the mean age of the data in each variety category:
 
     position Y
         [ pName "variety"
@@ -20906,14 +20928,16 @@ soByField =
 
 
 {-| Sort by the aggregated summaries of the given fields (referenced by a repeat
-iterator) using a given aggregation operation.
+iterator) using a given aggregation operation. Used by [pSort](#pSort), [mSort](#mSort),
+[oSort](#oSort) and [fSort](#fSort).
 -}
 soByRepeat : Arrangement -> Operation -> SortProperty
 soByRepeat =
     ByRepeatOp
 
 
-{-| Custom sort order listing data values explicitly.
+{-| Custom sort order listing data values explicitly. Used by [pSort](#pSort),
+[mSort](#mSort), [oSort](#oSort) and [fSort](#fSort).
 -}
 soCustom : DataValues -> SortProperty
 soCustom =
@@ -21000,21 +21024,24 @@ stack f grp start end sProps =
         )
 
 
-{-| Indicate that the given field should be sorted in ascending order.
+{-| Indicate that the given field should be sorted in ascending order. Used by
+[stSort](#stSort).
 -}
 stAscending : String -> SortField
 stAscending =
     WAscending
 
 
-{-| Offset a stacked layout using a central stack baseline.
+{-| Offset a stacked layout using a central stack baseline. Used by
+[pStack](#pStack) and [stOffset](#stOffset).
 -}
 stCenter : StackOffset
 stCenter =
     OfCenter
 
 
-{-| Indicate that the given field should be sorted in descending order.
+{-| Indicate that the given field should be sorted in descending order. Used by
+[stSort](#stSort).
 -}
 stDescending : String -> SortField
 stDescending =
@@ -21028,7 +21055,8 @@ stereographic =
     Stereographic
 
 
-{-| Do not stack marks (produces a layered plot).
+{-| Do not stack marks (produces a layered plot). Used by [pStack](#pStack)
+and [stOffset](#stOffset).
 -}
 stNone : StackOffset
 stNone =
@@ -21036,21 +21064,21 @@ stNone =
 
 
 {-| Rescale a stacked layout to use a common height while preserving relative size
-of stacked quantities.
+of stacked quantities. Used by [pStack](#pStack) and [stOffset](#stOffset).
 -}
 stNormalize : StackOffset
 stNormalize =
     OfNormalize
 
 
-{-| Stack offset when applying a stack transformation.
+{-| Stack offset when applying a [stack](#stack) transformation.
 -}
 stOffset : StackOffset -> StackProperty
 stOffset =
     StOffset
 
 
-{-| Ordering within a stack when applying a stack transformation.
+{-| Ordering within a stack when applying a [stack](#stack) transformation.
 -}
 stSort : List SortField -> StackProperty
 stSort =
@@ -21114,7 +21142,8 @@ strs =
     Strings
 
 
-{-| Offset a stacked layout using a baseline at the foot of a stack.
+{-| Offset a stacked layout using a baseline at the foot of a stack. Used by
+[pStack](#pStack) and [stOffset](#stOffset).
 -}
 stZero : StackOffset
 stZero =
@@ -21122,27 +21151,35 @@ stZero =
 
 
 {-| Specify a centred arrow symbol for a shape mark. Useful for vector plots.
+Used by [maShape](#maShape), [mSymbol](#mSymbol), [leSymbolType](#leSymbolType),
+[lecoSymbolType](#lecoSymbolType) and [racoSymbols](#racoSymbols).
 -}
 symArrow : Symbol
 symArrow =
     SymArrow
 
 
-{-| Specify a circular symbol for a shape mark.
+{-| Specify a circular symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symCircle : Symbol
 symCircle =
     SymCircle
 
 
-{-| Specify a cross symbol for a shape mark.
+{-| Specify a cross symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symCross : Symbol
 symCross =
     SymCross
 
 
-{-| Specify a diamond symbol for a shape mark.
+{-| Specify a diamond symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symDiamond : Symbol
 symDiamond =
@@ -21150,6 +21187,9 @@ symDiamond =
 
 
 {-| Expression that evaluates to some symbol such as "diamond", "cross" or "circle".
+Used by [maShape](#maShape), [mSymbol](#mSymbol), [leSymbolType](#leSymbolType),
+[lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symExpr : String -> Symbol
 symExpr =
@@ -21158,13 +21198,17 @@ symExpr =
 
 {-| A custom symbol shape as an
 [SVG path description](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
+Used by [maShape](#maShape), [mSymbol](#mSymbol), [leSymbolType](#leSymbolType),
+[lecoSymbolType](#lecoSymbolType) and [racoSymbols](#racoSymbols).
 -}
 symPath : String -> Symbol
 symPath =
     SymPath
 
 
-{-| Specify a square symbol for a shape mark.
+{-| Specify a square symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symSquare : Symbol
 symSquare =
@@ -21172,27 +21216,35 @@ symSquare =
 
 
 {-| Specify a centred triangle symbol for a shape mark. Useful for vector plots.
+Used by [maShape](#maShape), [mSymbol](#mSymbol), [leSymbolType](#leSymbolType),
+[lecoSymbolType](#lecoSymbolType) and [racoSymbols](#racoSymbols).
 -}
 symTriangle : Symbol
 symTriangle =
     SymTriangle
 
 
-{-| Specify a downward triangular symbol for a shape mark.
+{-| Specify a downward triangular symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symTriangleDown : Symbol
 symTriangleDown =
     SymTriangleDown
 
 
-{-| Specify a leftward facing triangular symbol for a shape mark.
+{-| Specify a leftward facing triangular symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symTriangleLeft : Symbol
 symTriangleLeft =
     SymTriangleLeft
 
 
-{-| Specify a rightward facing triangular symbol for a shape mark.
+{-| Specify a rightward facing triangular symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symTriangleRight : Symbol
 symTriangleRight =
@@ -21201,14 +21253,17 @@ symTriangleRight =
 
 {-| Specify a linear symbol for a shape mark. Note that this will only be visible
 if the symbol has a stroke setting (unlike all the other areal symbols filling it
-has no effect).
+has no effect). Used by [maShape](#maShape), [mSymbol](#mSymbol), [leSymbolType](#leSymbolType),
+[lecoSymbolType](#lecoSymbolType) and [racoSymbols](#racoSymbols).
 -}
 symStroke : Symbol
 symStroke =
     SymStroke
 
 
-{-| Specify an upward triangular symbol for a shape mark.
+{-| Specify an upward triangular symbol for a shape mark. Used by [maShape](#maShape),
+[mSymbol](#mSymbol), [leSymbolType](#leSymbolType), [lecoSymbolType](#lecoSymbolType)
+and [racoSymbols](#racoSymbols).
 -}
 symTriangleUp : Symbol
 symTriangleUp =
@@ -21216,7 +21271,8 @@ symTriangleUp =
 
 
 {-| Specify a centred wedge (thin triangle) symbol for a shape mark. Useful for
-vector plots.
+vector plots. Used by [maShape](#maShape), [mSymbol](#mSymbol), [leSymbolType](#leSymbolType),
+[lecoSymbolType](#lecoSymbolType) and [racoSymbols](#racoSymbols).
 -}
 symWedge : Symbol
 symWedge =
@@ -22976,7 +23032,7 @@ widthStepOffset ws =
 
 
 {-| Indicate that the given field should be sorted in ascending order when performing
-a window transform.
+a window transform. Used by [wiSort](#wiSort).
 -}
 wiAscending : String -> SortField
 wiAscending =
@@ -22984,7 +23040,7 @@ wiAscending =
 
 
 {-| Indicate that the given field should be sorted in descending order when performing
-a window transform.
+a window transform. Used by [wiSort](#wiSort).
 -}
 wiDescending : String -> SortField
 wiDescending =
