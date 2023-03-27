@@ -1,8 +1,8 @@
 # elm-vegaLite changes
 
-## V5.4.0 ➡ V5.4.1
+## V5.4.0 ➡ V5.4.3
 
-- Minor API doc improvements.
+- Minor API doc improvements (v5.4.1 and v5.4.2 similar doc improvements). Thanks to @RalfNorthman for some improvement suggestions and valuable error checking.
 
 ---
 
@@ -22,7 +22,7 @@
 
 - Corrected API doc for coLocale example to use correct Elm unicode escape text.
 
-- Added reference to parent functions to some functions in the API docs. This makes it easier to see how a function is used in the context of a larger specification by navigating up the function dependency tree. Thanks to @RalfNorthman for the suggested improvement. _Note: this is a work in progress and will be extended to other functions in future releases._
+- Added reference to parent functions to some functions in the API docs. This makes it easier to see how a function is used in the context of a larger specification by navigating up the function dependency tree. Thanks to @RalfNorthman for the suggested improvement.
 
 ### Deprecations
 
