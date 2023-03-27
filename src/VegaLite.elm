@@ -12425,10 +12425,10 @@ foBoo =
     FoBoo
 
 
-{-| Specify a date/time format when [parsing](#parse) input data. Should use
+{-| Specify a date/time format when parsing input data. Should use
 [D3's formatting specifiers](https://github.com/d3/d3-time-format#locale_format)
-to describe the data-time format or an empty string for default formatting. Used by [parse](#parse).
-For example,
+to describe the data-time format or an empty string for default formatting.
+Used by [parse](#parse). For example,
 
     myData : Data
     myData =
@@ -12485,7 +12485,7 @@ foldAs fields keyName valName =
         )
 
 
-{-| Indicate numeric data type to be [parsed](#parse) when reading input data.
+{-| Indicate numeric data type to be parsed when reading input data.
 Used by [parse](#parse).
 -}
 foNum : DataType
@@ -21616,7 +21616,8 @@ tiStyle =
 
 
 {-| Subtitle text, placed beneath the primary title. For multi-line subtitles,
-insert `\n` at each line break or use a `"""` multi-line string. Used by [title](#title) and [titleExpr](#titleExpr).
+insert `\n` at each line break or use a `"""` multi-line string. Used by
+[title](#title) and [titleExpr](#titleExpr).
 -}
 tiSubtitle : String -> TitleProperty
 tiSubtitle s =
