@@ -14144,21 +14144,12 @@ var $author$project$InteractionTests$interaction18 = function () {
 					[overviewSpec, detailSpec]))
 			]));
 }();
+var $author$project$VegaLite$Latitude = 11;
+var $author$project$VegaLite$Longitude = 10;
 var $author$project$VegaLite$AlbersUsa = {$: 1};
 var $author$project$VegaLite$albersUsa = $author$project$VegaLite$AlbersUsa;
-var $author$project$VegaLite$fill = function (markProps) {
-	return $elm$core$List$cons(
-		_Utils_Tuple2(
-			'fill',
-			$elm$json$Json$Encode$object(
-				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
-};
 var $author$project$VegaLite$Geoshape = 7;
 var $author$project$VegaLite$geoshape = $author$project$VegaLite$mark(7);
-var $author$project$VegaLite$MLegend = function (a) {
-	return {$: 15, a: a};
-};
-var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
 var $author$project$VegaLite$MStroke = function (a) {
 	return {$: 54, a: a};
 };
@@ -14166,10 +14157,10 @@ var $author$project$VegaLite$maStroke = function (s) {
 	return $author$project$VegaLite$MStroke(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$MTooltip = function (a) {
-	return {$: 70, a: a};
+var $author$project$VegaLite$ParamEmpty = function (a) {
+	return {$: 1, a: a};
 };
-var $author$project$VegaLite$maTooltip = $author$project$VegaLite$MTooltip;
+var $author$project$VegaLite$prParamEmpty = $author$project$VegaLite$ParamEmpty;
 var $author$project$VegaLite$PrType = function (a) {
 	return {$: 0, a: a};
 };
@@ -14181,6 +14172,13 @@ var $author$project$VegaLite$projection = function (pProps) {
 		$elm$json$Json$Encode$object(
 			A2($elm$core$List$concatMap, $author$project$VegaLite$projectionProperty, pProps)));
 };
+var $author$project$VegaLite$size = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'size',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
 var $author$project$VegaLite$TopojsonFeature = function (a) {
 	return {$: 5, a: a};
 };
@@ -14188,9 +14186,153 @@ var $author$project$VegaLite$topojsonFeature = function (s) {
 	return $author$project$VegaLite$TopojsonFeature(
 		$author$project$VegaLite$Str(s));
 };
+var $author$project$InteractionTests$interaction19 = function () {
+	var stateData = A2(
+		$author$project$VegaLite$dataFromUrl,
+		$author$project$InteractionTests$path + 'us-10m.json',
+		_List_fromArray(
+			[
+				$author$project$VegaLite$topojsonFeature('states')
+			]));
+	var stateSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				stateData,
+				$author$project$VegaLite$geoshape(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maFill('lightGrey'),
+						$author$project$VegaLite$maStroke('grey'),
+						$author$project$VegaLite$maStrokeWidth(0.5)
+					]))
+			]));
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'brush',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$seInterval, _List_Nil)
+				])));
+	var proj = $author$project$VegaLite$projection(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$prType($author$project$VegaLite$albersUsa)
+			]));
+	var airportEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					$author$project$VegaLite$encoding,
+					A2(
+						$author$project$VegaLite$position,
+						10,
+						_List_fromArray(
+							[
+								$author$project$VegaLite$pName('longitude')
+							]))),
+				A2(
+					$author$project$VegaLite$position,
+					11,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('latitude')
+						]))),
+			$author$project$VegaLite$color(
+				_List_fromArray(
+					[
+						A3(
+						$author$project$VegaLite$mCondition,
+						$author$project$VegaLite$prParamEmpty('brush'),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mStr('brown')
+							]),
+						_List_fromArray(
+							[
+								$author$project$VegaLite$mStr('grey')
+							]))
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					A3(
+					$author$project$VegaLite$mCondition,
+					$author$project$VegaLite$prParamEmpty('brush'),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(20)
+						]),
+					_List_fromArray(
+						[
+							$author$project$VegaLite$mNum(10)
+						]))
+				])));
+	var airportData = A2($author$project$VegaLite$dataFromUrl, $author$project$InteractionTests$path + 'airports.csv', _List_Nil);
+	var airportSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				ps(_List_Nil),
+				airportData,
+				airportEnc(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(600),
+				$author$project$VegaLite$height(400),
+				proj,
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[stateSpec, airportSpec]))
+			]));
+}();
+var $author$project$InteractionTests$interaction2 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'mySelection',
+			_List_fromArray(
+				[
+					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$sePoint, _List_Nil)
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$fill = function (markProps) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'fill',
+			$elm$json$Json$Encode$object(
+				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
+};
+var $author$project$VegaLite$MLegend = function (a) {
+	return {$: 15, a: a};
+};
+var $author$project$VegaLite$mLegend = $author$project$VegaLite$MLegend;
+var $author$project$VegaLite$MTooltip = function (a) {
+	return {$: 70, a: a};
+};
+var $author$project$VegaLite$maTooltip = $author$project$VegaLite$MTooltip;
 var $author$project$VegaLite$TTEncoding = 0;
 var $author$project$VegaLite$ttEncoding = 0;
-var $author$project$InteractionTests$interaction19 = function () {
+var $author$project$InteractionTests$interaction20 = function () {
 	var stateData = A2(
 		$author$project$VegaLite$dataFromUrl,
 		$author$project$InteractionTests$path + 'us-10m.json',
@@ -14251,27 +14393,6 @@ var $author$project$InteractionTests$interaction19 = function () {
 				$author$project$VegaLite$layer(
 				_List_fromArray(
 					[countySpec, stateSpec]))
-			]));
-}();
-var $author$project$InteractionTests$interaction2 = function () {
-	var ps = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$params,
-		A2(
-			$author$project$VegaLite$param,
-			'mySelection',
-			_List_fromArray(
-				[
-					A2($author$project$VegaLite$paSelect, $author$project$VegaLite$sePoint, _List_Nil)
-				])));
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				$author$project$VegaLite$width(540),
-				$author$project$InteractionTests$data,
-				ps(_List_Nil),
-				$author$project$InteractionTests$encHighlight(_List_Nil),
-				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
 var $author$project$InteractionTests$interaction3 = function () {
@@ -14565,7 +14686,8 @@ var $author$project$InteractionTests$specs = _List_fromArray(
 		_Utils_Tuple2('interaction16', $author$project$InteractionTests$interaction16),
 		_Utils_Tuple2('interaction17', $author$project$InteractionTests$interaction17),
 		_Utils_Tuple2('interaction18', $author$project$InteractionTests$interaction18),
-		_Utils_Tuple2('interaction19', $author$project$InteractionTests$interaction19)
+		_Utils_Tuple2('interaction19', $author$project$InteractionTests$interaction19),
+		_Utils_Tuple2('interaction20', $author$project$InteractionTests$interaction20)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

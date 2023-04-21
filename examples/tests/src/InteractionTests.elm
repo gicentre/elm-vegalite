@@ -410,6 +410,46 @@ interaction19 =
         stateData =
             dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
 
+        airportData =
+            dataFromUrl (path ++ "airports.csv") []
+
+        ps =
+            params
+                << param "brush" [ paSelect seInterval [] ]
+
+        proj =
+            projection [ prType albersUsa ]
+
+        stateSpec =
+            asSpec
+                [ stateData
+                , geoshape [ maFill "lightGrey", maStroke "grey", maStrokeWidth 0.5 ]
+                ]
+
+        airportEnc =
+            encoding
+                << position Longitude [ pName "longitude" ]
+                << position Latitude [ pName "latitude" ]
+                << color [ mCondition (prParamEmpty "brush") [ mStr "brown" ] [ mStr "grey" ] ]
+                << size [ mCondition (prParamEmpty "brush") [ mNum 20 ] [ mNum 10 ] ]
+
+        airportSpec =
+            asSpec [ ps [], airportData, airportEnc [], circle [] ]
+    in
+    toVegaLite
+        [ width 600
+        , height 400
+        , proj
+        , layer [ stateSpec, airportSpec ]
+        ]
+
+
+interaction20 : Spec
+interaction20 =
+    let
+        stateData =
+            dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "states" ]
+
         countyData =
             dataFromUrl (path ++ "us-10m.json") [ topojsonFeature "counties" ]
 
@@ -466,6 +506,7 @@ specs =
     , ( "interaction17", interaction17 )
     , ( "interaction18", interaction18 )
     , ( "interaction19", interaction19 )
+    , ( "interaction20", interaction20 )
     ]
 
 
