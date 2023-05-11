@@ -226,7 +226,7 @@ vbTest =
                 << configuration
                     (coMarkStyles
                         [ ( "myStyle", [ maFill "red", maFillOpacity 0.1, maStrokeOpacity 1 ] )
-                        , ( "mySecondStyle", [ maFill "black", maStroke "blue" ] )
+                        , ( "mySecondStyle", [ maFill "#000000", maStroke "blue" ] )
                         ]
                     )
                 << configuration (coView [ vicoBackground [ viewFill (Just "#feb") ] ])
@@ -263,7 +263,7 @@ defaultCfg =
 darkCfg : Spec
 darkCfg =
     configure
-        << configuration (coBackground "black")
+        << configuration (coBackground "#000000")
         << configuration (coFont "serif")
         << configuration (coTitle [ ticoFont "Roboto", ticoColor "#fff" ])
         << configuration (coAxis [ axcoDomainColor "yellow", axcoGridColor "rgb(255,255,200)", axcoGridOpacity 0.2, axcoLabelColor "#fcf", axcoTickColor "white", axcoTitleColor "rgb(200,255,200)" ])
@@ -281,7 +281,7 @@ markCfg1 =
 markCfg2 : Spec
 markCfg2 =
     configure
-        << configuration (coMark [ maFilled True, maFill "black", maOpacity 1 ])
+        << configuration (coMark [ maFilled True, maFill "#000000", maOpacity 1 ])
         << configuration (coBar [ maFilled True ])
         << configuration (coArea [ maFilled False ])
         << configuration (coPoint [ maFilled True, maStroke "white", maStrokeOpacity 0.2 ])
@@ -522,7 +522,7 @@ interactionCfg1 =
             encoding
                 << position X [ pName "Horsepower", pQuant ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mCondition (prParam "sel") [ mName "Origin" ] [ mStr "#ccc" ] ]
+                << color [ mCondition (prParam "sel") [ mName "Origin" ] [ mStr "#cccccc" ] ]
     in
     toVegaLite
         [ cfg []
@@ -582,7 +582,7 @@ paramCfg1 =
                 << param "cursor" [ paValue (str "default"), paBind (ipSelect [ inOptions [ "default", "crosshair", "help" ] ]) ]
                 << param "fill" [ paValue (str "#ff0"), paBind (ipColor []) ]
                 << param "fillOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
-                << param "stroke" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "stroke" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "strokeCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
                 << param "strokeJoin" [ paValue (str "miter"), paBind (ipSelect [ inOptions [ "miter", "round", "bevel" ] ]) ]
                 << param "strokeDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
@@ -650,7 +650,7 @@ paramCfg2 =
             params
                 << param "title" [ paValues ttl1, paBind (ipSelect [ inDataOptions [ ttl1, ttl2, ttl3, ttl4 ] ]) ]
                 << param "angle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90 ]) ]
-                << param "color" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "color" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "dx" [ paValue (num 0), paBind (ipRange [ inMin -50, inMax 50 ]) ]
                 << param "dy" [ paValue (num 0), paBind (ipRange [ inMin -50, inMax 50 ]) ]
                 << param "font" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
@@ -759,16 +759,16 @@ paramCfg3 =
                 << shape [ mName "x" ]
 
         spec1 =
-            asSpec [ width 300, enc1 [], bar [ maStroke "black" ] ]
+            asSpec [ width 300, enc1 [], bar [ maStroke "#000000" ] ]
 
         spec2 =
-            asSpec [ width 300, enc2 [], rect [ maStroke "black" ] ]
+            asSpec [ width 300, enc2 [], rect [ maStroke "#000000" ] ]
 
         spec3 =
-            asSpec [ width 300, enc3 [], bar [ maStroke "black" ] ]
+            asSpec [ width 300, enc3 [], bar [ maStroke "#000000" ] ]
 
         spec4 =
-            asSpec [ width 300, enc4 [], point [ maSize 300, maFilled True, maStroke "black" ] ]
+            asSpec [ width 300, enc4 [], point [ maSize 300, maFilled True, maStroke "#000000" ] ]
     in
     toVegaLite [ cfg [], data [], ps [], vConcat [ spec1, spec2, spec3, spec4 ] ]
 
@@ -870,7 +870,7 @@ paramCfg4 =
                 << param "bandPosition" [ paValue (num 0.5), paBind (ipRange [ inMin 0, inMax 1 ]) ]
                 << param "minExtent" [ paValue (num 30), paBind (ipRange [ inMin 0, inMax 100 ]) ]
                 << param "domainCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
-                << param "domainColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "domainColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "domainDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "domainDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
                 << param "domainWidth" [ paValue (num 2), paBind (ipRange [ inMin 0.1, inMax 12 ]) ]
@@ -881,7 +881,7 @@ paramCfg4 =
                 << param "labelBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
                 << param "labelBound" [ paValue (boo False), paBind (ipSelect [ inDatumOptions [ boo False, boo True, num 15 ] ]) ]
                 << param "labelAngle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ]
-                << param "labelColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "labelColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "labelFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
                 << param "labelFlushOffset" [ paValue (num 0), paBind (ipRange [ inMin -20, inMax 20 ]) ]
                 << param "labelFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
@@ -895,7 +895,7 @@ paramCfg4 =
                 << param "labelSeparation" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 20 ]) ]
                 << param "tickBand" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "extent" ] ]) ]
                 << param "tickCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
-                << param "tickColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "tickColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "tickCount" [ paValue (num 20), paBind (ipRange [ inMin 1, inMax 100 ]) ]
                 << param "tickDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "tickDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
@@ -907,7 +907,7 @@ paramCfg4 =
                 << param "titleAnchor" [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "start", "middle", "end" ] ]) ]
                 << param "titleAngle" [ paValue (num 0), paBind (ipRange [ inMin -90, inMax 90, inStep 1 ]) ]
                 << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
-                << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "titleColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
                 << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
                 << param "titleFontWeight" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "bold", "lighter" ] ]) ]
@@ -916,7 +916,7 @@ paramCfg4 =
                 << param "titleOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
                 << param "titlePadding" [ paValue (num 12), paBind (ipRange [ inMin -20, inMax 20 ]) ]
                 << param "gridCap" [ paValue (str "butt"), paBind (ipSelect [ inOptions [ "butt", "round", "square" ] ]) ]
-                << param "gridColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "gridColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "gridDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "gridDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
                 << param "gridOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
@@ -999,10 +999,10 @@ paramCfg5 =
         ps =
             params
                 << param "cornerRadius" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 60 ]) ]
-                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor []) ]
+                << param "fillColor" [ paValue (str "#cccccc"), paBind (ipColor []) ]
                 << param "gradientLength" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 400 ]) ]
                 << param "gradientOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
-                << param "gradientStrokeColor" [ paValue (str "#006"), paBind (ipColor []) ]
+                << param "gradientStrokeColor" [ paValue (str "#000066"), paBind (ipColor []) ]
                 << param "gradientStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 4 ]) ]
                 << param "gradientThickness" [ paValue (num 16), paBind (ipRange [ inMin 0, inMax 40 ]) ]
                 << param "labelAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
@@ -1016,7 +1016,7 @@ paramCfg5 =
                 << param "labelOverlap" [ paValue (boo False), paBind (ipSelect [ inDatumOptions [ boo False, str "parity", str "greedy" ] ]) ]
                 << param "offset" [ paValue (num 0), paBind (ipRange [ inMin -60, inMax 60 ]) ]
                 << param "padding" [ paValue (num 20), paBind (ipRange [ inMin -60, inMax 60 ]) ]
-                << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "strokeColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "xPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
                 << param "yPos" [ paValue (num 10), paBind (ipRange [ inMin -300, inMax 300 ]) ]
 
@@ -1103,21 +1103,21 @@ paramCfg6 =
                 << param "columnPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
                 << param "columns" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
                 << param "rowPadding" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 100 ]) ]
-                << param "fillColor" [ paValue (str "#ccc"), paBind (ipColor []) ]
-                << param "strokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "fillColor" [ paValue (str "#cccccc"), paBind (ipColor []) ]
+                << param "strokeColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "symbolDash" [ paValues solid, paBind (ipSelect [ inDataOptions [ solid, shortDash, longDash ] ]) ]
                 << param "symbolDashOffset" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 12 ]) ]
-                << param "symbolFillColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolFillColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "symbolLimit" [ paValue (num 0), paBind (ipRange [ inMin 0, inMax 3, inStep 1 ]) ]
                 << param "symbolOffset" [ paValue (num 0), paBind (ipRange [ inMin -40, inMax 40 ]) ]
                 << param "symbolOpacity" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 1 ]) ]
                 << param "symbolSize" [ paValue (num 200), paBind (ipRange [ inMin 0, inMax 1000 ]) ]
-                << param "symbolStrokeColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "symbolStrokeColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "symbolStrokeWidth" [ paValue (num 1), paBind (ipRange [ inMin 0, inMax 8 ]) ]
                 << param "titleAlign" [ paValue (str "center"), paBind (ipSelect [ inOptions [ "center", "left", "right" ] ]) ]
                 << param "titleAnchor" [ paValue (str "middle"), paBind (ipSelect [ inOptions [ "start", "middle", "end" ] ]) ]
                 << param "titleBaseline" [ paValue (str "top"), paBind (ipSelect [ inOptions [ "alphabetic", "top", "middle", "bottom", "line-top", "line-bottom" ] ]) ]
-                << param "titleColor" [ paValue (str "black"), paBind (ipColor []) ]
+                << param "titleColor" [ paValue (str "#000000"), paBind (ipColor []) ]
                 << param "titleFont" [ paValue (str "sans-serif"), paBind (ipSelect [ inOptions [ "sans-serif", "serif", "monospace" ] ]) ]
                 << param "titleFontSize" [ paValue (num 10), paBind (ipRange [ inMin 0, inMax 32, inStep 1 ]) ]
                 << param "titleFontStyle" [ paValue (str "normal"), paBind (ipSelect [ inOptions [ "normal", "italic" ] ]) ]
@@ -1293,6 +1293,25 @@ numberCfg3 =
     toVegaLite [ width 500, cfg [], data [], enc [], textMark [] ]
 
 
+numberCfg4 : Spec
+numberCfg4 =
+    let
+        cfg =
+            configure
+                << configuration (coNumberFormat "d")
+                << configuration (coTooltipFormat [ coNumberFormat ".3f", coTimeFormat "%b %y" ])
+
+        data =
+            dataFromUrl (path ++ "cars.json")
+
+        enc =
+            encoding
+                << position X [ pName "Year", pTemporal ]
+                << position Y [ pName "Miles_per_Gallon", pQuant, pAggregate opMean ]
+    in
+    toVegaLite [ cfg [], data [], enc [], bar [ maTooltip ttEncoding ] ]
+
+
 dateCfg1 : Spec
 dateCfg1 =
     let
@@ -1384,6 +1403,7 @@ specs =
     , ( "numberCfg1", numberCfg1 )
     , ( "numberCfg2", numberCfg2 )
     , ( "numberCfg3", numberCfg3 )
+    , ( "numberCfg4", numberCfg4 )
     , ( "dateCfg1", dateCfg1 )
     , ( "metaCfg", metaCfg )
     ]

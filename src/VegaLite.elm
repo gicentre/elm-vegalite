@@ -1221,6 +1221,7 @@ module VegaLite exposing
     , coNumberFormatType
     , coNormalizedNumberFormat
     , coNormalizedNumberFormatType
+    , coTooltipFormat
     , coPadding
     , coPoint
     , coProjection
@@ -3502,6 +3503,7 @@ Allows default properties for most marks and guides to be set. See the
 @docs coNumberFormatType
 @docs coNormalizedNumberFormat
 @docs coNormalizedNumberFormatType
+@docs coTooltipFormat
 @docs coPadding
 @docs coPoint
 @docs coProjection
@@ -4497,12 +4499,12 @@ type ConditionalAxisProperty
 [coLegend](#coLegend), [coLocale](#coLocale), [coLine](#coLine), [coMark](#coMark),
 [coMarkStyles](#coMarkStyles), [coNormalizedNumberFormat](#coNormalizedNumberFormat),
 [coNumberFormat](#coNumberFormat), [coNumberFormatType](#coNumberFormatType),
-[coNormalizedNumberFormatType](#coNormalizedNumberFormatType), [coPadding](#coPadding),
-[coPoint](#coPoint), [coProjection](#coProjection), [coRange](#coRange), [coRect](#coRect),
-[coRule](#coRule), [coScale](#coScale), [coSelection](#coSelection), [coSquare](#coSquare),
-[coText](#coText), [coFont](#coFont), [coTick](#coTick), [coTitle](#coTitle),
-[coTimeFormat](#coTimeFormat), [coTimeFormatType](#coTimeFormatType), [coTrail](#coTrail)
-and [coView](#coView).
+[coNormalizedNumberFormatType](#coNormalizedNumberFormatType), [coTooltipFormat](#coTooltipFormat),
+[coPadding](#coPadding), [coPoint](#coPoint), [coProjection](#coProjection),
+[coRange](#coRange), [coRect](#coRect), [coRule](#coRule), [coScale](#coScale),
+[coSelection](#coSelection), [coSquare](#coSquare), [coText](#coText), [coFont](#coFont),
+[coTick](#coTick), [coTitle](#coTitle), [coTimeFormat](#coTimeFormat), [coTimeFormatType](#coTimeFormatType),
+[coTrail](#coTrail) and [coView](#coView).
 -}
 type ConfigurationProperty
     = AreaStyle (List MarkProperty)
@@ -4553,6 +4555,7 @@ type ConfigurationProperty
     | TitleStyle (List TitleConfig)
     | TimeFormat Str
     | TimeFormatType Str
+    | TooltipProperty (List ConfigurationProperty)
       -- Note: Trails appear unusual in having their own top-level config
       -- (see https://vega.github.io/vega-lite/docs/trail.html#config)
     | TrailStyle (List MarkProperty)
@@ -10518,6 +10521,23 @@ for an example of how to register custom formatter. Used by [configuration](#con
 coTimeFormatType : String -> ConfigurationProperty
 coTimeFormatType s =
     TimeFormatType (Str s)
+
+
+{-| Configure the default formatting of values shown in a tooltip. This allows tooltip-specific
+formatting that may be different to defaults or more global configuration of formatting.
+Used by [configuration](#configuration). For example, to set toolip numeric values to be
+3 decimal places when non-tooltip values have been configured to whole numbers and to provide
+a custom time format for tooltips only:
+
+    cfg =
+        configure
+            << configuration (coNumberFormat "d")
+            << configuration (coTooltipFormat [ coNumberFormat ".3f", coTimeFormat "%b %y" ])
+
+-}
+coTooltipFormat : List ConfigurationProperty -> ConfigurationProperty
+coTooltipFormat =
+    TooltipProperty
 
 
 {-| Configure the default style of trail marks.
@@ -24569,6 +24589,9 @@ configProperty configProp =
 
         NumberFormatType s ->
             strExpr "numberFormatType" s
+
+        TooltipProperty cps ->
+            [ ( "tooltipFormat", JE.object (List.concatMap configProperty cps) ) ]
 
         Padding pad ->
             [ ( "padding", paddingSpec pad ) ]

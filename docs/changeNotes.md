@@ -1,5 +1,15 @@
 # elm-vegaLite changes
 
+## Pending
+
+- Align with Vega-Lite release 5.9.0.
+
+### V5.5 Additions
+
+- `coTooltipFormat` to allow tooltip-specific formatting of displayed values (VL 5.9)
+
+---
+
 ## V5.4.0 ➡ V5.4.3
 
 - Minor API doc improvements (v5.4.1 and v5.4.2 similar doc improvements). Thanks to @RalfNorthman for some improvement suggestions and valuable error checking.
