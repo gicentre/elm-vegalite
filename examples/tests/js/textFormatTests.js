@@ -12379,6 +12379,15 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 		case 33:
 			var s = configProp.a;
 			return A2($author$project$VegaLite$strExpr, 'numberFormatType', s);
+		case 48:
+			var cps = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tooltipFormat',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$configProperty, cps)))
+				]);
 		case 34:
 			var pad = configProp.a;
 			return _List_fromArray(
@@ -12730,7 +12739,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, selProp, selConfig)))
 				]);
-		case 49:
+		case 50:
 			var vcs = configProp.a;
 			return _List_fromArray(
 				[

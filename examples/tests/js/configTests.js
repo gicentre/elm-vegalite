@@ -11370,6 +11370,15 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 		case 33:
 			var s = configProp.a;
 			return A2($author$project$VegaLite$strExpr, 'numberFormatType', s);
+		case 48:
+			var cps = configProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'tooltipFormat',
+					$elm$json$Json$Encode$object(
+						A2($elm$core$List$concatMap, $author$project$VegaLite$configProperty, cps)))
+				]);
 		case 34:
 			var pad = configProp.a;
 			return _List_fromArray(
@@ -11721,7 +11730,7 @@ var $author$project$VegaLite$configProperty = function (configProp) {
 					$elm$json$Json$Encode$object(
 						A2($elm$core$List$map, selProp, selConfig)))
 				]);
-		case 49:
+		case 50:
 			var vcs = configProp.a;
 			return _List_fromArray(
 				[
@@ -13639,7 +13648,7 @@ var $author$project$ConfigTests$darkCfg = $author$project$ConfigTests$compositeV
 						$elm$core$Basics$composeL,
 						$author$project$VegaLite$configure,
 						$author$project$VegaLite$configuration(
-							$author$project$VegaLite$coBackground('black'))),
+							$author$project$VegaLite$coBackground('#000000'))),
 					$author$project$VegaLite$configuration(
 						$author$project$VegaLite$coFont('serif'))),
 				$author$project$VegaLite$configuration(
@@ -14280,7 +14289,7 @@ var $author$project$ConfigTests$interactionCfg1 = function () {
 						]),
 					_List_fromArray(
 						[
-							$author$project$VegaLite$mStr('#ccc')
+							$author$project$VegaLite$mStr('#cccccc')
 						]))
 				])));
 	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$ConfigTests$path + 'cars.json', _List_Nil);
@@ -14370,7 +14379,7 @@ var $author$project$ConfigTests$markCfg2 = $author$project$ConfigTests$composite
 							_List_fromArray(
 								[
 									$author$project$VegaLite$maFilled(true),
-									$author$project$VegaLite$maFill('black'),
+									$author$project$VegaLite$maFill('#000000'),
 									$author$project$VegaLite$maOpacity(1)
 								])))),
 				$author$project$VegaLite$configuration(
@@ -15062,6 +15071,76 @@ var $author$project$ConfigTests$numberCfg3 = function () {
 				$author$project$VegaLite$textMark(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$TimeFormat = function (a) {
+	return {$: 46, a: a};
+};
+var $author$project$VegaLite$coTimeFormat = function (s) {
+	return $author$project$VegaLite$TimeFormat(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$TooltipProperty = function (a) {
+	return {$: 48, a: a};
+};
+var $author$project$VegaLite$coTooltipFormat = $author$project$VegaLite$TooltipProperty;
+var $author$project$VegaLite$MTooltip = function (a) {
+	return {$: 70, a: a};
+};
+var $author$project$VegaLite$maTooltip = $author$project$VegaLite$MTooltip;
+var $author$project$VegaLite$Mean = {$: 7};
+var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$TTEncoding = 0;
+var $author$project$VegaLite$ttEncoding = 0;
+var $author$project$ConfigTests$numberCfg4 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Year'),
+						$author$project$VegaLite$pTemporal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('Miles_per_Gallon'),
+					$author$project$VegaLite$pQuant,
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+				])));
+	var data = $author$project$VegaLite$dataFromUrl($author$project$ConfigTests$path + 'cars.json');
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$configure,
+			$author$project$VegaLite$configuration(
+				$author$project$VegaLite$coNumberFormat('d'))),
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coTooltipFormat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$coNumberFormat('.3f'),
+						$author$project$VegaLite$coTimeFormat('%b %y')
+					]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maTooltip($author$project$VegaLite$ttEncoding)
+					]))
+			]));
+}();
 var $author$project$VegaLite$AFit = 1;
 var $author$project$VegaLite$asFit = 1;
 var $author$project$VegaLite$Autosize = function (a) {
@@ -15108,9 +15187,6 @@ var $author$project$VegaLite$NormalizedNumberFormat = function (a) {
 var $author$project$VegaLite$StrExpr = function (a) {
 	return {$: 2, a: a};
 };
-var $author$project$VegaLite$TimeFormat = function (a) {
-	return {$: 46, a: a};
-};
 var $author$project$VegaLite$coStrExpr = F2(
 	function (ex, fn) {
 		var _v0 = fn('');
@@ -15138,7 +15214,7 @@ var $author$project$VegaLite$coStrExpr = F2(
 		}
 	});
 var $author$project$VegaLite$View = function (a) {
-	return {$: 49, a: a};
+	return {$: 50, a: a};
 };
 var $author$project$VegaLite$coView = $author$project$VegaLite$View;
 var $author$project$VegaLite$CursorExpr = function (a) {
@@ -15535,7 +15611,7 @@ var $author$project$ConfigTests$paramCfg1 = function () {
 											_List_fromArray(
 												[
 													$author$project$VegaLite$paValue(
-													$author$project$VegaLite$str('black')),
+													$author$project$VegaLite$str('#000000')),
 													$author$project$VegaLite$paBind(
 													$author$project$VegaLite$ipColor(_List_Nil))
 												]))),
@@ -16079,7 +16155,7 @@ var $author$project$ConfigTests$paramCfg2 = function () {
 																				_List_fromArray(
 																					[
 																						$author$project$VegaLite$paValue(
-																						$author$project$VegaLite$str('black')),
+																						$author$project$VegaLite$str('#000000')),
 																						$author$project$VegaLite$paBind(
 																						$author$project$VegaLite$ipColor(_List_Nil))
 																					]))),
@@ -16799,7 +16875,7 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 					[
 						$author$project$VegaLite$maSize(300),
 						$author$project$VegaLite$maFilled(true),
-						$author$project$VegaLite$maStroke('black')
+						$author$project$VegaLite$maStroke('#000000')
 					]))
 			]));
 	var enc3 = A2(
@@ -16846,7 +16922,7 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 				$author$project$VegaLite$bar(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maStroke('black')
+						$author$project$VegaLite$maStroke('#000000')
 					]))
 			]));
 	var enc2 = A2(
@@ -16894,7 +16970,7 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 				$author$project$VegaLite$rect(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maStroke('black')
+						$author$project$VegaLite$maStroke('#000000')
 					]))
 			]));
 	var enc1 = A2(
@@ -16932,7 +17008,7 @@ var $author$project$ConfigTests$paramCfg3 = function () {
 				$author$project$VegaLite$bar(
 				_List_fromArray(
 					[
-						$author$project$VegaLite$maStroke('black')
+						$author$project$VegaLite$maStroke('#000000')
 					]))
 			]));
 	var data = A2(
@@ -17661,7 +17737,7 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 																																																					_List_fromArray(
 																																																						[
 																																																							$author$project$VegaLite$paValue(
-																																																							$author$project$VegaLite$str('black')),
+																																																							$author$project$VegaLite$str('#000000')),
 																																																							$author$project$VegaLite$paBind(
 																																																							$author$project$VegaLite$ipColor(_List_Nil))
 																																																						]))),
@@ -17830,7 +17906,7 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 																																										_List_fromArray(
 																																											[
 																																												$author$project$VegaLite$paValue(
-																																												$author$project$VegaLite$str('black')),
+																																												$author$project$VegaLite$str('#000000')),
 																																												$author$project$VegaLite$paBind(
 																																												$author$project$VegaLite$ipColor(_List_Nil))
 																																											]))),
@@ -18046,7 +18122,7 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 																												_List_fromArray(
 																													[
 																														$author$project$VegaLite$paValue(
-																														$author$project$VegaLite$str('black')),
+																														$author$project$VegaLite$str('#000000')),
 																														$author$project$VegaLite$paBind(
 																														$author$project$VegaLite$ipColor(_List_Nil))
 																													]))),
@@ -18225,7 +18301,7 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 																_List_fromArray(
 																	[
 																		$author$project$VegaLite$paValue(
-																		$author$project$VegaLite$str('black')),
+																		$author$project$VegaLite$str('#000000')),
 																		$author$project$VegaLite$paBind(
 																		$author$project$VegaLite$ipColor(_List_Nil))
 																	]))),
@@ -18359,7 +18435,7 @@ var $author$project$ConfigTests$paramCfg4 = function () {
 							_List_fromArray(
 								[
 									$author$project$VegaLite$paValue(
-									$author$project$VegaLite$str('black')),
+									$author$project$VegaLite$str('#000000')),
 									$author$project$VegaLite$paBind(
 									$author$project$VegaLite$ipColor(_List_Nil))
 								]))),
@@ -18943,7 +19019,7 @@ var $author$project$ConfigTests$paramCfg5 = function () {
 																						_List_fromArray(
 																							[
 																								$author$project$VegaLite$paValue(
-																								$author$project$VegaLite$str('#ccc')),
+																								$author$project$VegaLite$str('#cccccc')),
 																								$author$project$VegaLite$paBind(
 																								$author$project$VegaLite$ipColor(_List_Nil))
 																							]))),
@@ -18983,7 +19059,7 @@ var $author$project$ConfigTests$paramCfg5 = function () {
 																			_List_fromArray(
 																				[
 																					$author$project$VegaLite$paValue(
-																					$author$project$VegaLite$str('#006')),
+																					$author$project$VegaLite$str('#000066')),
 																					$author$project$VegaLite$paBind(
 																					$author$project$VegaLite$ipColor(_List_Nil))
 																				]))),
@@ -19199,7 +19275,7 @@ var $author$project$ConfigTests$paramCfg5 = function () {
 					_List_fromArray(
 						[
 							$author$project$VegaLite$paValue(
-							$author$project$VegaLite$str('black')),
+							$author$project$VegaLite$str('#000000')),
 							$author$project$VegaLite$paBind(
 							$author$project$VegaLite$ipColor(_List_Nil))
 						]))),
@@ -19576,7 +19652,7 @@ var $author$project$ConfigTests$paramCfg6 = function () {
 																									_List_fromArray(
 																										[
 																											$author$project$VegaLite$paValue(
-																											$author$project$VegaLite$str('#ccc')),
+																											$author$project$VegaLite$str('#cccccc')),
 																											$author$project$VegaLite$paBind(
 																											$author$project$VegaLite$ipColor(_List_Nil))
 																										]))),
@@ -19586,7 +19662,7 @@ var $author$project$ConfigTests$paramCfg6 = function () {
 																								_List_fromArray(
 																									[
 																										$author$project$VegaLite$paValue(
-																										$author$project$VegaLite$str('black')),
+																										$author$project$VegaLite$str('#000000')),
 																										$author$project$VegaLite$paBind(
 																										$author$project$VegaLite$ipColor(_List_Nil))
 																									]))),
@@ -19626,7 +19702,7 @@ var $author$project$ConfigTests$paramCfg6 = function () {
 																					_List_fromArray(
 																						[
 																							$author$project$VegaLite$paValue(
-																							$author$project$VegaLite$str('black')),
+																							$author$project$VegaLite$str('#000000')),
 																							$author$project$VegaLite$paBind(
 																							$author$project$VegaLite$ipColor(_List_Nil))
 																						]))),
@@ -19697,7 +19773,7 @@ var $author$project$ConfigTests$paramCfg6 = function () {
 																_List_fromArray(
 																	[
 																		$author$project$VegaLite$paValue(
-																		$author$project$VegaLite$str('black')),
+																		$author$project$VegaLite$str('#000000')),
 																		$author$project$VegaLite$paBind(
 																		$author$project$VegaLite$ipColor(_List_Nil))
 																	]))),
@@ -19770,7 +19846,7 @@ var $author$project$ConfigTests$paramCfg6 = function () {
 											_List_fromArray(
 												[
 													$author$project$VegaLite$paValue(
-													$author$project$VegaLite$str('black')),
+													$author$project$VegaLite$str('#000000')),
 													$author$project$VegaLite$paBind(
 													$author$project$VegaLite$ipColor(_List_Nil))
 												]))),
@@ -20419,7 +20495,7 @@ var $author$project$ConfigTests$vbTest = function () {
 							'mySecondStyle',
 							_List_fromArray(
 								[
-									$author$project$VegaLite$maFill('black'),
+									$author$project$VegaLite$maFill('#000000'),
 									$author$project$VegaLite$maStroke('blue')
 								]))
 						])))),
@@ -20533,6 +20609,7 @@ var $author$project$ConfigTests$specs = _List_fromArray(
 		_Utils_Tuple2('numberCfg1', $author$project$ConfigTests$numberCfg1),
 		_Utils_Tuple2('numberCfg2', $author$project$ConfigTests$numberCfg2),
 		_Utils_Tuple2('numberCfg3', $author$project$ConfigTests$numberCfg3),
+		_Utils_Tuple2('numberCfg4', $author$project$ConfigTests$numberCfg4),
 		_Utils_Tuple2('dateCfg1', $author$project$ConfigTests$dateCfg1),
 		_Utils_Tuple2('metaCfg', $author$project$ConfigTests$metaCfg)
 	]);
