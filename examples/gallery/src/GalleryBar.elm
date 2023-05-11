@@ -681,6 +681,47 @@ bar24 : Spec
 bar24 =
     let
         desc =
+            description "A simple categorical grouped bar chart using the x-offset channel."
+
+        data =
+            dataFromColumns []
+                << dataColumn "category" (strs [ "A", "A", "A", "B", "B", "B", "C", "C", "C" ])
+                << dataColumn "group" (strs [ "x", "y", "z", "x", "y", "z", "x", "y", "z" ])
+                << dataColumn "value" (nums [ 0.1, 0.6, 0.9, 0.7, 0.2, 1.1, 0.6, 0.1, 0.2 ])
+
+        enc =
+            encoding
+                << position X [ pName "category", pAxis [ axLabelAngle 0, axTitle "" ] ]
+                << position Y [ pName "value", pQuant ]
+                << position XOffset [ pName "group" ]
+                << color [ mName "group" ]
+    in
+    toVegaLite [ desc, data [], enc [], bar [] ]
+
+
+bar25 : Spec
+bar25 =
+    let
+        desc =
+            description "A simple temporal grouped bar chart using the x-offset channel."
+
+        data =
+            dataFromUrl (path ++ "cars.json") []
+
+        enc =
+            encoding
+                << position X [ pName "Year", pTimeUnit year, pTemporal, pTitle "" ]
+                << position Y [ pAggregate opCount, pTitle "Number of cars" ]
+                << position XOffset [ pName "Origin" ]
+                << color [ mName "Origin" ]
+    in
+    toVegaLite [ desc, width 500, data, enc [], bar [] ]
+
+
+bar26 : Spec
+bar26 =
+    let
+        desc =
             description "Grouped bar chart from two data fields"
 
         data =
@@ -707,8 +748,8 @@ bar24 =
         ]
 
 
-bar25 : Spec
-bar25 =
+bar27 : Spec
+bar27 =
     let
         desc =
             description "A bar chart with negative values. We can hide the axis domain line, and instead use a conditional grid color to draw a zero baseline."
@@ -747,8 +788,8 @@ bar25 =
     toVegaLite [ desc, data [], enc [], layer [ specBar, specText ] ]
 
 
-bar26 : Spec
-bar26 =
+bar28 : Spec
+bar28 =
     let
         desc =
             description "Bar Chart with a spacing-saving y-axis"
@@ -788,8 +829,8 @@ bar26 =
         ]
 
 
-bar27 : Spec
-bar27 =
+bar29 : Spec
+bar29 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -840,8 +881,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar28 : Spec
-bar28 =
+bar30 : Spec
+bar30 =
     let
         isotypes =
             let
@@ -909,8 +950,8 @@ bar28 =
         ]
 
 
-bar29 : Spec
-bar29 =
+bar31 : Spec
+bar31 =
     let
         desc =
             description "Isotype bar chart using emojis for symbols"
@@ -949,8 +990,8 @@ bar29 =
         ]
 
 
-bar30 : Spec
-bar30 =
+bar32 : Spec
+bar32 =
     let
         desc =
             description "Heat lane chart based on https://www.smashingmagazine.com/2022/07/accessibility-first-approach-chart-visual-design"
@@ -1050,6 +1091,8 @@ mySpecs =
         , ( "bar28", bar28 )
         , ( "bar29", bar29 )
         , ( "bar30", bar30 )
+        , ( "bar31", bar31 )
+        , ( "bar32", bar32 )
         ]
 
 
