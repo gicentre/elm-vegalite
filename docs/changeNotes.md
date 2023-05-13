@@ -2,11 +2,12 @@
 
 ## Pending
 
-- Align with Vega-Lite release 5.9.0.
+- Align with Vega-Lite release 5.9.0. Most changes are bugfixes and enhancements in the Vega-Lite runtime that do not affect the elm-vegalite API.
 
 ### V5.5 Additions
 
 - `coTooltipFormat` to allow tooltip-specific formatting of displayed values (VL 5.9)
+
 
 ---
 
