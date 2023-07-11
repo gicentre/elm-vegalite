@@ -481,6 +481,75 @@ interaction20 =
         ]
 
 
+interaction21 : Spec
+interaction21 =
+    let
+        ps =
+            params
+                << param "mySelection"
+                    [ paSelect sePoint [ seFields [ "crimeType" ] ]
+                    , paBind
+                        (ipRadio
+                            [ inName " "
+                            , inLabelledOptions
+                                [ ( "Anti-social behaviour", "ASB" )
+                                , ( "Criminal damage and arson", "Damage" )
+                                , ( "Drugs", "Drugs" )
+                                , ( "Robbery", "Robbery" )
+                                , ( "Vehicle crime", "Vehicle" )
+                                ]
+                            ]
+                        )
+                    ]
+    in
+    toVegaLite [ width 540, data, ps [], encHighlight [], circle [] ]
+
+
+interaction22 : Spec
+interaction22 =
+    let
+        ps =
+            params
+                << param "Style"
+                    [ paValues (nums [ 0 ])
+                    , paBind
+                        (ipSelect
+                            [ inLabelledDataOptions
+                                [ ( nums [ 0 ], "Solid" )
+                                , ( nums [ 2, 2 ], "Dotted" )
+                                , ( nums [ 8, 8 ], "Dashed" )
+                                ]
+                            ]
+                        )
+                    ]
+
+        mk =
+            line [ maNumsExpr "Style" maStrokeDash ]
+    in
+    toVegaLite [ width 540, data, ps [], enc [], mk ]
+
+
+interaction23 : Spec
+interaction23 =
+    let
+        ps =
+            params
+                << param "Background"
+                    [ paValue (str "white")
+                    , paBind
+                        (ipRadio
+                            [ inLabelledDatumOptions
+                                [ ( str "white", "Light" )
+                                , ( str "rgb(255,250,245)", "Muted" )
+                                , ( str "rgb(40,0,0)", "Dark" )
+                                ]
+                            ]
+                        )
+                    ]
+    in
+    toVegaLite [ backgroundExpr "Background", width 540, data, ps [], enc [], line [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -507,6 +576,9 @@ specs =
     , ( "interaction18", interaction18 )
     , ( "interaction19", interaction19 )
     , ( "interaction20", interaction20 )
+    , ( "interaction21", interaction21 )
+    , ( "interaction22", interaction22 )
+    , ( "interaction23", interaction23 )
     ]
 
 

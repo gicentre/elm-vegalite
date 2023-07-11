@@ -1,5 +1,11 @@
 # elm-vegaLite changes
 
+## Pending Changes
+
+- New option labelling functions `inLabelledOptions`, `inLabelledDatumOptions` and `inLabelledDataOptions` for attaching labels to each option in a radio or drop-down selection. Thanks to @hingew for identifying the need for this.
+
+---
+
 ## V5.4.3 ➡ V5.5
 
 - Align with Vega-Lite release 5.9.0. Most changes are bugfixes and enhancements in the Vega-Lite runtime that do not affect the elm-vegalite API.
