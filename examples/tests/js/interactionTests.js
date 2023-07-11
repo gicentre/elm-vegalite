@@ -10144,27 +10144,75 @@ var $author$project$VegaLite$PSelect = F2(
 		return {$: 7, a: a, b: b};
 	});
 var $author$project$VegaLite$paSelect = $author$project$VegaLite$PSelect;
+var $author$project$VegaLite$InDataOptions = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$InDatumOptions = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$InLabels = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$InOptions = function (a) {
+	return {$: 2, a: a};
+};
 var $author$project$VegaLite$inputProperty = function (prop) {
 	switch (prop.$) {
-		case 5:
+		case 9:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'min', x);
-		case 6:
+		case 10:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'max', x);
-		case 8:
+		case 12:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'step', x);
 		case 0:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'debounce', x);
-		case 7:
+		case 11:
 			var s = prop.a;
 			return A2($author$project$VegaLite$strExpr, 'name', s);
 		case 2:
 			var ss = prop.a;
 			return A2($author$project$VegaLite$strsExpr, 'options', ss);
 		case 3:
+			var ss = prop.a;
+			return A2($author$project$VegaLite$strsExpr, 'labels', ss);
+		case 4:
+			var opts = prop.a;
+			var labels = prop.b;
+			return $elm$core$List$concat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InOptions(opts)),
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InLabels(labels))
+					]));
+		case 8:
+			var opts = prop.a;
+			var labels = prop.b;
+			return $elm$core$List$concat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InDataOptions(opts)),
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InLabels(labels))
+					]));
+		case 6:
+			var opts = prop.a;
+			var labels = prop.b;
+			return $elm$core$List$concat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InDatumOptions(opts)),
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InLabels(labels))
+					]));
+		case 5:
 			var opts = prop.a;
 			return _List_fromArray(
 				[
@@ -10172,7 +10220,7 @@ var $author$project$VegaLite$inputProperty = function (prop) {
 					'options',
 					A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValueSpec, opts))
 				]);
-		case 4:
+		case 7:
 			var opts = prop.a;
 			return _List_fromArray(
 				[
@@ -10180,7 +10228,7 @@ var $author$project$VegaLite$inputProperty = function (prop) {
 					'options',
 					A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValuesSpecs, opts))
 				]);
-		case 9:
+		case 13:
 			var s = prop.a;
 			return A2($author$project$VegaLite$strExpr, 'placeholder', s);
 		default:
@@ -13099,14 +13147,11 @@ var $author$project$InteractionTests$interaction13 = function () {
 			]));
 }();
 var $author$project$VegaLite$InName = function (a) {
-	return {$: 7, a: a};
+	return {$: 11, a: a};
 };
 var $author$project$VegaLite$inName = function (s) {
 	return $author$project$VegaLite$InName(
 		$author$project$VegaLite$Str(s));
-};
-var $author$project$VegaLite$InOptions = function (a) {
-	return {$: 2, a: a};
 };
 var $author$project$VegaLite$inOptions = function (ss) {
 	return $author$project$VegaLite$InOptions(
@@ -13204,14 +13249,14 @@ var $author$project$VegaLite$filter = function (f) {
 			$author$project$VegaLite$filterSpec(f)));
 };
 var $author$project$VegaLite$InMax = function (a) {
-	return {$: 6, a: a};
+	return {$: 10, a: a};
 };
 var $author$project$VegaLite$inMax = function (n) {
 	return $author$project$VegaLite$InMax(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$InMin = function (a) {
-	return {$: 5, a: a};
+	return {$: 9, a: a};
 };
 var $author$project$VegaLite$inMin = function (n) {
 	return $author$project$VegaLite$InMin(
@@ -14404,6 +14449,230 @@ var $author$project$InteractionTests$interaction20 = function () {
 					[countySpec, stateSpec]))
 			]));
 }();
+var $author$project$VegaLite$InLabelledOptions = F2(
+	function (a, b) {
+		return {$: 4, a: a, b: b};
+	});
+var $author$project$VegaLite$inLabelledOptions = function (sPairs) {
+	var _v0 = $elm$core$List$unzip(sPairs);
+	var opts = _v0.a;
+	var labels = _v0.b;
+	return A2(
+		$author$project$VegaLite$InLabelledOptions,
+		$author$project$VegaLite$Strs(opts),
+		$author$project$VegaLite$Strs(labels));
+};
+var $author$project$InteractionTests$interaction21 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'mySelection',
+			_List_fromArray(
+				[
+					A2(
+					$author$project$VegaLite$paSelect,
+					$author$project$VegaLite$sePoint,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$seFields(
+							_List_fromArray(
+								['crimeType']))
+						])),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRadio(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inName(' '),
+								$author$project$VegaLite$inLabelledOptions(
+								_List_fromArray(
+									[
+										_Utils_Tuple2('Anti-social behaviour', 'ASB'),
+										_Utils_Tuple2('Criminal damage and arson', 'Damage'),
+										_Utils_Tuple2('Drugs', 'Drugs'),
+										_Utils_Tuple2('Robbery', 'Robbery'),
+										_Utils_Tuple2('Vehicle crime', 'Vehicle')
+									]))
+							])))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$encHighlight(_List_Nil),
+				$author$project$VegaLite$circle(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$InLabelledDataOptions = F2(
+	function (a, b) {
+		return {$: 8, a: a, b: b};
+	});
+var $author$project$VegaLite$inLabelledDataOptions = function (dPairs) {
+	var _v0 = $elm$core$List$unzip(dPairs);
+	var opts = _v0.a;
+	var labels = _v0.b;
+	return A2(
+		$author$project$VegaLite$InLabelledDataOptions,
+		opts,
+		$author$project$VegaLite$Strs(labels));
+};
+var $author$project$VegaLite$IPSelect = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$ipSelect = $author$project$VegaLite$IPSelect;
+var $author$project$VegaLite$MStrokeDash = function (a) {
+	return {$: 57, a: a};
+};
+var $author$project$VegaLite$NumsExpr = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$maNumsExpr = F2(
+	function (ex, fn) {
+		var _v0 = fn(_List_Nil);
+		if (_v0.$ === 57) {
+			return $author$project$VegaLite$MStrokeDash(
+				$author$project$VegaLite$NumsExpr(ex));
+		} else {
+			return fn(_List_Nil);
+		}
+	});
+var $author$project$VegaLite$Nums = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$maStrokeDash = function (xs) {
+	return $author$project$VegaLite$MStrokeDash(
+		$author$project$VegaLite$Nums(xs));
+};
+var $author$project$VegaLite$PValues = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$paValues = $author$project$VegaLite$PValues;
+var $author$project$InteractionTests$interaction22 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'Style',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValues(
+					$author$project$VegaLite$nums(
+						_List_fromArray(
+							[0]))),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipSelect(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inLabelledDataOptions(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										$author$project$VegaLite$nums(
+											_List_fromArray(
+												[0])),
+										'Solid'),
+										_Utils_Tuple2(
+										$author$project$VegaLite$nums(
+											_List_fromArray(
+												[2, 2])),
+										'Dotted'),
+										_Utils_Tuple2(
+										$author$project$VegaLite$nums(
+											_List_fromArray(
+												[8, 8])),
+										'Dashed')
+									]))
+							])))
+				])));
+	var mk = $author$project$VegaLite$line(
+		_List_fromArray(
+			[
+				A2($author$project$VegaLite$maNumsExpr, 'Style', $author$project$VegaLite$maStrokeDash)
+			]));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$enc(_List_Nil),
+				mk
+			]));
+}();
+var $author$project$VegaLite$VLBackgroundExpr = 11;
+var $author$project$VegaLite$backgroundExpr = function (s) {
+	return _Utils_Tuple2(
+		11,
+		$elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'expr',
+					$elm$json$Json$Encode$string(s))
+				])));
+};
+var $author$project$VegaLite$InLabelledDatumOptions = F2(
+	function (a, b) {
+		return {$: 6, a: a, b: b};
+	});
+var $author$project$VegaLite$inLabelledDatumOptions = function (dPairs) {
+	var _v0 = $elm$core$List$unzip(dPairs);
+	var opts = _v0.a;
+	var labels = _v0.b;
+	return A2(
+		$author$project$VegaLite$InLabelledDatumOptions,
+		opts,
+		$author$project$VegaLite$Strs(labels));
+};
+var $author$project$VegaLite$DStr = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$VegaLite$str = $author$project$VegaLite$DStr;
+var $author$project$InteractionTests$interaction23 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$params,
+		A2(
+			$author$project$VegaLite$param,
+			'Background',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$str('white')),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipRadio(
+						_List_fromArray(
+							[
+								$author$project$VegaLite$inLabelledDatumOptions(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										$author$project$VegaLite$str('white'),
+										'Light'),
+										_Utils_Tuple2(
+										$author$project$VegaLite$str('rgb(255,250,245)'),
+										'Muted'),
+										_Utils_Tuple2(
+										$author$project$VegaLite$str('rgb(40,0,0)'),
+										'Dark')
+									]))
+							])))
+				])));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$backgroundExpr('Background'),
+				$author$project$VegaLite$width(540),
+				$author$project$InteractionTests$data,
+				ps(_List_Nil),
+				$author$project$InteractionTests$enc(_List_Nil),
+				$author$project$VegaLite$line(_List_Nil)
+			]));
+}();
 var $author$project$InteractionTests$interaction3 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
@@ -14696,7 +14965,10 @@ var $author$project$InteractionTests$specs = _List_fromArray(
 		_Utils_Tuple2('interaction17', $author$project$InteractionTests$interaction17),
 		_Utils_Tuple2('interaction18', $author$project$InteractionTests$interaction18),
 		_Utils_Tuple2('interaction19', $author$project$InteractionTests$interaction19),
-		_Utils_Tuple2('interaction20', $author$project$InteractionTests$interaction20)
+		_Utils_Tuple2('interaction20', $author$project$InteractionTests$interaction20),
+		_Utils_Tuple2('interaction21', $author$project$InteractionTests$interaction21),
+		_Utils_Tuple2('interaction22', $author$project$InteractionTests$interaction22),
+		_Utils_Tuple2('interaction23', $author$project$InteractionTests$interaction23)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

@@ -5409,7 +5409,7 @@ var $author$project$VegaLite$height = function (h) {
 		$elm$json$Json$Encode$float(h));
 };
 var $author$project$VegaLite$InMax = function (a) {
-	return {$: 6, a: a};
+	return {$: 10, a: a};
 };
 var $author$project$VegaLite$Num = function (a) {
 	return {$: 0, a: a};
@@ -5419,14 +5419,14 @@ var $author$project$VegaLite$inMax = function (n) {
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$InMin = function (a) {
-	return {$: 5, a: a};
+	return {$: 9, a: a};
 };
 var $author$project$VegaLite$inMin = function (n) {
 	return $author$project$VegaLite$InMin(
 		$author$project$VegaLite$Num(n));
 };
 var $author$project$VegaLite$InName = function (a) {
-	return {$: 7, a: a};
+	return {$: 11, a: a};
 };
 var $author$project$VegaLite$Str = function (a) {
 	return {$: 0, a: a};
@@ -5446,7 +5446,7 @@ var $author$project$VegaLite$inOptions = function (ss) {
 		$author$project$VegaLite$Strs(ss));
 };
 var $author$project$VegaLite$InStep = function (a) {
-	return {$: 8, a: a};
+	return {$: 12, a: a};
 };
 var $author$project$VegaLite$inStep = function (n) {
 	return $author$project$VegaLite$InStep(
@@ -7235,6 +7235,15 @@ var $author$project$VegaLite$dataValuesSpecs = function (dvs) {
 				A2($elm$core$List$map, $author$project$VegaLite$dataValuesSpecs, ds));
 	}
 };
+var $author$project$VegaLite$InDataOptions = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$InDatumOptions = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$InLabels = function (a) {
+	return {$: 3, a: a};
+};
 var $author$project$VegaLite$strsExpr = F2(
 	function (objName, ss) {
 		if (!ss.$) {
@@ -7263,25 +7272,61 @@ var $author$project$VegaLite$strsExpr = F2(
 	});
 var $author$project$VegaLite$inputProperty = function (prop) {
 	switch (prop.$) {
-		case 5:
+		case 9:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'min', x);
-		case 6:
+		case 10:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'max', x);
-		case 8:
+		case 12:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'step', x);
 		case 0:
 			var x = prop.a;
 			return A2($author$project$VegaLite$numExpr, 'debounce', x);
-		case 7:
+		case 11:
 			var s = prop.a;
 			return A2($author$project$VegaLite$strExpr, 'name', s);
 		case 2:
 			var ss = prop.a;
 			return A2($author$project$VegaLite$strsExpr, 'options', ss);
 		case 3:
+			var ss = prop.a;
+			return A2($author$project$VegaLite$strsExpr, 'labels', ss);
+		case 4:
+			var opts = prop.a;
+			var labels = prop.b;
+			return $elm$core$List$concat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InOptions(opts)),
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InLabels(labels))
+					]));
+		case 8:
+			var opts = prop.a;
+			var labels = prop.b;
+			return $elm$core$List$concat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InDataOptions(opts)),
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InLabels(labels))
+					]));
+		case 6:
+			var opts = prop.a;
+			var labels = prop.b;
+			return $elm$core$List$concat(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InDatumOptions(opts)),
+						$author$project$VegaLite$inputProperty(
+						$author$project$VegaLite$InLabels(labels))
+					]));
+		case 5:
 			var opts = prop.a;
 			return _List_fromArray(
 				[
@@ -7289,7 +7334,7 @@ var $author$project$VegaLite$inputProperty = function (prop) {
 					'options',
 					A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValueSpec, opts))
 				]);
-		case 4:
+		case 7:
 			var opts = prop.a;
 			return _List_fromArray(
 				[
@@ -7297,7 +7342,7 @@ var $author$project$VegaLite$inputProperty = function (prop) {
 					'options',
 					A2($elm$json$Json$Encode$list, $author$project$VegaLite$dataValuesSpecs, opts))
 				]);
-		case 9:
+		case 13:
 			var s = prop.a;
 			return A2($author$project$VegaLite$strExpr, 'placeholder', s);
 		default:
