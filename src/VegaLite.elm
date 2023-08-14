@@ -192,6 +192,7 @@ module VegaLite exposing
     , imMax
     , imMin
     , sample
+    , extent
     , density
     , dnGroupBy
     , dnCumulative
@@ -1799,11 +1800,12 @@ statistical analysis.
   - [3.9 Relational Joining](#3-9-relational-joining)
   - [3.10 Data Imputation](#3-10-data-imputation)
   - [3.11 Data Sampling](#3-11-data-sampling)
-  - [3.12 Density Estimation](#3-12-density-estimation)
-  - [3.13 Loess Trend Calculation](#3-13-loess-trend-calculation)
-  - [3.14 Regression Calculation](#3-14-regression-calculation)
-  - [3.15] Quantile Calculation](#3-15-quantile-calculation)
-  - [3.16 Window Transformations](#3-16-window-transformations)
+  - [3.12 Extent Calculation](#3-12-extent-calculation)
+  - [3.13 Density Estimation](#3-13-density-estimation)
+  - [3.14 Loess Trend Calculation](#3-14-loess-trend-calculation)
+  - [3.15 Regression Calculation](#3-15-regression-calculation)
+  - [3.16] Quantile Calculation](#3-16-quantile-calculation)
+  - [3.17 Window Transformations](#3-17-window-transformations)
 
 @docs transform
 
@@ -2030,7 +2032,12 @@ See the [Vega-Lite sample documentation](https://vega.github.io/vega-lite/docs/s
 @docs sample
 
 
-## 3.12 Density Estimation
+## 3.12 Extent Calculation
+
+@docs extent
+
+
+## 3.13 Density Estimation
 
 See the [Vega-Lite density documentation](https://vega.github.io/vega-lite/docs/density.html)
 
@@ -2046,7 +2053,7 @@ See the [Vega-Lite density documentation](https://vega.github.io/vega-lite/docs/
 @docs dnAs
 
 
-## 3.13 Loess Trend Calculation
+## 3.14 Loess Trend Calculation
 
 See the [Vega-Lite loess documentation](https://vega.github.io/vega-lite/docs/loess.html)
 
@@ -2056,7 +2063,7 @@ See the [Vega-Lite loess documentation](https://vega.github.io/vega-lite/docs/lo
 @docs lsAs
 
 
-## 3.14 Regression Calculation
+## 3.15 Regression Calculation
 
 See the [Vega-Lite regression documentation](https://vega.github.io/vega-lite/docs/regression.html)
 
@@ -2076,7 +2083,7 @@ See the [Vega-Lite regression documentation](https://vega.github.io/vega-lite/do
 @docs rgPoly
 
 
-## 3.15 Quantile Calculation
+## 3.16 Quantile Calculation
 
 @docs quantile
 @docs qtGroupBy
@@ -2085,7 +2092,7 @@ See the [Vega-Lite regression documentation](https://vega.github.io/vega-lite/do
 @docs qtAs
 
 
-## 3.16 Window Transformations
+## 3.17 Window Transformations
 
 See the Vega-Lite
 [window transform field](https://vega.github.io/vega-lite/docs/window.html#field-def)
@@ -12117,6 +12124,33 @@ exStderr =
 exStdev : SummaryExtent
 exStdev =
     ExStdev
+
+
+{-| Find the extent (minimum and maximum) of a given field (first parameter) and store it
+as a named parameter (second parameter). The stored value will be a two-element array with
+values that may be extracted in an expression. For example,
+
+    trans =
+        transform << extent "age" "ageExtent"
+
+    encMin =
+        encoding
+            << position X [ pDatum (datumExpr "ageExtent[0]"), pQuant ]
+
+    encMax =
+        encoding
+            << position X [ pDatum (datumExpr "ageExtent[1]"), pQuant ]
+
+-}
+extent : String -> String -> List LabelledSpec -> List LabelledSpec
+extent field paramName =
+    (::)
+        ( "multiSpecs"
+        , JE.object
+            [ ( "extent", JE.string field )
+            , ( "param", JE.string paramName )
+            ]
+        )
 
 
 {-| Facet a view to create a grid of small multiples. Similar to [facetFlow](#facetFlow)
@@ -28250,11 +28284,11 @@ scaleProperty scaleProp =
                 RField s ->
                     [ ( "range", JE.object [ ( "field", JE.string s ) ] ) ]
 
-        ScScheme schName extent ->
-            [ schemeProperty schName extent ]
+        ScScheme schName ext ->
+            [ schemeProperty schName ext ]
 
-        ScSchemeExpr schExpr extent ->
-            [ schemeProperty schExpr extent ]
+        ScSchemeExpr schExpr ext ->
+            [ schemeProperty schExpr ext ]
 
         ScAlign x ->
             numExpr "align" x
@@ -28297,7 +28331,7 @@ scaleProperty scaleProp =
 
 
 schemeProperty : Strs -> List Float -> LabelledSpec
-schemeProperty clrs extent =
+schemeProperty clrs ext =
     let
         nameSpec =
             case clrs of
@@ -28315,7 +28349,7 @@ schemeProperty clrs extent =
                 StrsExpr ex ->
                     JE.object [ ( "expr", JE.string ex ) ]
     in
-    case extent of
+    case ext of
         [] ->
             ( "scheme", nameSpec )
 

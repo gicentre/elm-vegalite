@@ -792,6 +792,46 @@ bar28 : Spec
 bar28 =
     let
         desc =
+            description "A bar chart with min and max extent shown with vertical lines."
+
+        data =
+            dataFromColumns []
+                << dataColumn "a" (strs [ "A", "B", "C", "D", "E", "F", "G", "H", "I" ])
+                << dataColumn "b" (nums [ 28, 55, 43, 91, 81, 53, 19, 87, 52 ])
+
+        trans =
+            transform
+                << extent "b" "bExtent"
+
+        encBar =
+            encoding
+                << position Y [ pName "a" ]
+                << position X [ pName "b", pQuant ]
+
+        specBar =
+            asSpec [ encBar [], bar [] ]
+
+        encMin =
+            encoding
+                << position X [ pDatum (datumExpr "bExtent[0]"), pQuant ]
+
+        specMin =
+            asSpec [ encMin [], rule [ maStroke "fireBrick" ] ]
+
+        encMax =
+            encoding
+                << position X [ pDatum (datumExpr "bExtent[1]"), pQuant ]
+
+        specMax =
+            asSpec [ encMax [], rule [ maStroke "fireBrick" ] ]
+    in
+    toVegaLite [ desc, data [], trans [], layer [ specBar, specMin, specMax ] ]
+
+
+bar29 : Spec
+bar29 =
+    let
+        desc =
             description "Bar Chart with a spacing-saving y-axis"
 
         cfg =
@@ -829,8 +869,8 @@ bar28 =
         ]
 
 
-bar29 : Spec
-bar29 =
+bar30 : Spec
+bar30 =
     let
         desc =
             description "A Wilkinson dot plot"
@@ -881,8 +921,8 @@ toRows country animalFreqs =
     (++) (List.concatMap fToCol animalFreqs)
 
 
-bar30 : Spec
-bar30 =
+bar31 : Spec
+bar31 =
     let
         isotypes =
             let
@@ -950,8 +990,8 @@ bar30 =
         ]
 
 
-bar31 : Spec
-bar31 =
+bar32 : Spec
+bar32 =
     let
         desc =
             description "Isotype bar chart using emojis for symbols"
@@ -990,8 +1030,8 @@ bar31 =
         ]
 
 
-bar32 : Spec
-bar32 =
+bar33 : Spec
+bar33 =
     let
         desc =
             description "Heat lane chart based on https://www.smashingmagazine.com/2022/07/accessibility-first-approach-chart-visual-design"
@@ -1093,6 +1133,7 @@ mySpecs =
         , ( "bar30", bar30 )
         , ( "bar31", bar31 )
         , ( "bar32", bar32 )
+        , ( "bar33", bar33 )
         ]
 
 

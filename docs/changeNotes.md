@@ -2,6 +2,10 @@
 
 ## Pending Changes
 
+### Additions
+
+- New `extent` transform (VL 5.10) for storing minimum and maximum values in a data field.
+
 - New option labelling functions `inLabelledOptions`, `inLabelledDatumOptions` and `inLabelledDataOptions` for attaching labels to each option in a radio or drop-down selection. Thanks to @hingew for identifying the need for this.
 
 ---
