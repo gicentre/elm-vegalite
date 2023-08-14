@@ -8256,6 +8256,8 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 			return '';
 		case 41:
 			return '';
+		case 42:
+			return '';
 		default:
 			return '';
 	}
@@ -8706,7 +8708,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'utc',
 					$elm$json$Json$Encode$bool(true)),
 				$author$project$VegaLite$timeUnitProperties(tu));
-		case 41:
+		case 42:
 			var n = tUnit.a;
 			return _List_fromArray(
 				[
@@ -8714,7 +8716,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'maxbins',
 					$elm$json$Json$Encode$int(n))
 				]);
-		case 42:
+		case 43:
 			var x = tUnit.a;
 			var tu = tUnit.b;
 			return A2(
@@ -8734,8 +8736,14 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 	}
 };
 var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
-	return $elm$json$Json$Encode$object(
-		$author$project$VegaLite$timeUnitProperties(tUnit));
+	if (tUnit.$ === 41) {
+		var tu = tUnit.a;
+		return $elm$json$Json$Encode$string(
+			'binned' + $author$project$VegaLite$timeUnitLabel(tu));
+	} else {
+		return $elm$json$Json$Encode$object(
+			$author$project$VegaLite$timeUnitProperties(tUnit));
+	}
 };
 var $author$project$VegaLite$booleanOpSpec = function (bo) {
 	switch (bo.$) {
@@ -10424,14 +10432,14 @@ var $author$project$VegaLite$MonthDateHoursMinutes = {$: 19};
 var $author$project$VegaLite$monthDateHoursMinutes = $author$project$VegaLite$MonthDateHoursMinutes;
 var $author$project$VegaLite$MonthDateHoursMinutesSeconds = {$: 20};
 var $author$project$VegaLite$monthDateHoursMinutesSeconds = $author$project$VegaLite$MonthDateHoursMinutesSeconds;
-var $author$project$VegaLite$Quarter = {$: 14};
-var $author$project$VegaLite$quarter = $author$project$VegaLite$Quarter;
-var $author$project$VegaLite$QuarterMonth = {$: 15};
-var $author$project$VegaLite$quarterMonth = $author$project$VegaLite$QuarterMonth;
-var $author$project$VegaLite$Seconds = {$: 37};
-var $author$project$VegaLite$seconds = $author$project$VegaLite$Seconds;
-var $author$project$VegaLite$SecondsMilliseconds = {$: 38};
-var $author$project$VegaLite$secondsMilliseconds = $author$project$VegaLite$SecondsMilliseconds;
+var $author$project$VegaLite$Bar = 2;
+var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
+var $author$project$VegaLite$BinnedTU = function (a) {
+	return {$: 41, a: a};
+};
+var $author$project$VegaLite$binnedTimeUnit = function (tu) {
+	return $author$project$VegaLite$BinnedTU(tu);
+};
 var $author$project$VegaLite$dataFromUrl = F2(
 	function (u, fmts) {
 		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
@@ -10456,6 +10464,92 @@ var $author$project$VegaLite$dataFromUrl = F2(
 							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
 					])));
 	});
+var $author$project$VegaLite$FExpr = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$fiExpr = $author$project$VegaLite$FExpr;
+var $author$project$VegaLite$filter = function (f) {
+	return $elm$core$List$cons(
+		_Utils_Tuple2(
+			'filter',
+			$author$project$VegaLite$filterSpec(f)));
+};
+var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
+var $author$project$VegaLite$VLTransform = 16;
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$VegaLite$transform = function (transforms) {
+	var assemble = function (_v1) {
+		var trName = _v1.a;
+		var val = _v1.b;
+		if (trName === 'multiSpecs') {
+			return val;
+		} else {
+			return $elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(trName, val)
+					]));
+		}
+	};
+	return $elm$core$List$isEmpty(transforms) ? _Utils_Tuple2(16, $elm$json$Json$Encode$null) : _Utils_Tuple2(
+		16,
+		A2($elm$json$Json$Encode$list, assemble, transforms));
+};
+var $author$project$VegaLite$YearMonth = {$: 3};
+var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
+var $author$project$TimeTests$preBinned = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum.symbol === \'GOOG\'')));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTemporal,
+						$author$project$VegaLite$pTimeUnit(
+						$author$project$VegaLite$binnedTimeUnit($author$project$VegaLite$yearMonth))
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('price'),
+					$author$project$VegaLite$pQuant
+				])));
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$TimeTests$path + 'stocks.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var $author$project$VegaLite$Quarter = {$: 14};
+var $author$project$VegaLite$quarter = $author$project$VegaLite$Quarter;
+var $author$project$VegaLite$QuarterMonth = {$: 15};
+var $author$project$VegaLite$quarterMonth = $author$project$VegaLite$QuarterMonth;
+var $author$project$VegaLite$Seconds = {$: 37};
+var $author$project$VegaLite$seconds = $author$project$VegaLite$Seconds;
+var $author$project$VegaLite$SecondsMilliseconds = {$: 38};
+var $author$project$VegaLite$secondsMilliseconds = $author$project$VegaLite$SecondsMilliseconds;
 var $author$project$VegaLite$Line = 9;
 var $author$project$VegaLite$line = $author$project$VegaLite$mark(9);
 var $author$project$VegaLite$MFill = function (a) {
@@ -10482,7 +10576,6 @@ var $author$project$VegaLite$pBandPosition = function (n) {
 	return $author$project$VegaLite$PBandPosition(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$TimeTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$PMMarker = function (a) {
 	return {$: 2, a: a};
 };
@@ -10917,8 +11010,6 @@ var $author$project$TimeTests$UTC = 1;
 var $author$project$TimeTests$utcTime = $author$project$TimeTests$parseTime(1);
 var $author$project$VegaLite$Year = {$: 0};
 var $author$project$VegaLite$year = $author$project$VegaLite$Year;
-var $author$project$VegaLite$YearMonth = {$: 3};
-var $author$project$VegaLite$yearMonth = $author$project$VegaLite$YearMonth;
 var $author$project$VegaLite$YearMonthDate = {$: 4};
 var $author$project$VegaLite$yearMonthDate = $author$project$VegaLite$YearMonthDate;
 var $author$project$VegaLite$YearMonthDateHoursMinutes = {$: 6};
@@ -11018,7 +11109,8 @@ var $author$project$TimeTests$specs = _List_fromArray(
 		_Utils_Tuple2('localTime', $author$project$TimeTests$localTime),
 		_Utils_Tuple2('utcTime', $author$project$TimeTests$utcTime),
 		_Utils_Tuple2('timeBand', $author$project$TimeTests$timeBand),
-		_Utils_Tuple2('timePosix', $author$project$TimeTests$timePosix)
+		_Utils_Tuple2('timePosix', $author$project$TimeTests$timePosix),
+		_Utils_Tuple2('preBinned', $author$project$TimeTests$preBinned)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

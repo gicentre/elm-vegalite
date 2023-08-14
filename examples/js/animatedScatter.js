@@ -5655,6 +5655,8 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 			return '';
 		case 41:
 			return '';
+		case 42:
+			return '';
 		default:
 			return '';
 	}
@@ -7910,7 +7912,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'utc',
 					$elm$json$Json$Encode$bool(true)),
 				$author$project$VegaLite$timeUnitProperties(tu));
-		case 41:
+		case 42:
 			var n = tUnit.a;
 			return _List_fromArray(
 				[
@@ -7918,7 +7920,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'maxbins',
 					$elm$json$Json$Encode$int(n))
 				]);
-		case 42:
+		case 43:
 			var x = tUnit.a;
 			var tu = tUnit.b;
 			return A2(
@@ -7938,8 +7940,14 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 	}
 };
 var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
-	return $elm$json$Json$Encode$object(
-		$author$project$VegaLite$timeUnitProperties(tUnit));
+	if (tUnit.$ === 41) {
+		var tu = tUnit.a;
+		return $elm$json$Json$Encode$string(
+			'binned' + $author$project$VegaLite$timeUnitLabel(tu));
+	} else {
+		return $elm$json$Json$Encode$object(
+			$author$project$VegaLite$timeUnitProperties(tUnit));
+	}
 };
 var $author$project$VegaLite$booleanOpSpec = function (bo) {
 	switch (bo.$) {

@@ -8076,6 +8076,8 @@ var $author$project$VegaLite$timeUnitLabel = function (tu) {
 			return '';
 		case 41:
 			return '';
+		case 42:
+			return '';
 		default:
 			return '';
 	}
@@ -8526,7 +8528,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'utc',
 					$elm$json$Json$Encode$bool(true)),
 				$author$project$VegaLite$timeUnitProperties(tu));
-		case 41:
+		case 42:
 			var n = tUnit.a;
 			return _List_fromArray(
 				[
@@ -8534,7 +8536,7 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 					'maxbins',
 					$elm$json$Json$Encode$int(n))
 				]);
-		case 42:
+		case 43:
 			var x = tUnit.a;
 			var tu = tUnit.b;
 			return A2(
@@ -8554,8 +8556,14 @@ var $author$project$VegaLite$timeUnitProperties = function (tUnit) {
 	}
 };
 var $author$project$VegaLite$timeUnitSpec = function (tUnit) {
-	return $elm$json$Json$Encode$object(
-		$author$project$VegaLite$timeUnitProperties(tUnit));
+	if (tUnit.$ === 41) {
+		var tu = tUnit.a;
+		return $elm$json$Json$Encode$string(
+			'binned' + $author$project$VegaLite$timeUnitLabel(tu));
+	} else {
+		return $elm$json$Json$Encode$object(
+			$author$project$VegaLite$timeUnitProperties(tUnit));
+	}
 };
 var $author$project$VegaLite$booleanOpSpec = function (bo) {
 	switch (bo.$) {
@@ -12068,7 +12076,7 @@ var $author$project$TransformTests$transform15 = function () {
 }();
 var $author$project$VegaLite$TUStep = F2(
 	function (a, b) {
-		return {$: 42, a: a, b: b};
+		return {$: 43, a: a, b: b};
 	});
 var $author$project$VegaLite$tuStep = $author$project$VegaLite$TUStep;
 var $author$project$TransformTests$transform16 = function () {
@@ -12145,7 +12153,7 @@ var $author$project$TransformTests$transform16 = function () {
 			]));
 }();
 var $author$project$VegaLite$TUMaxBins = function (a) {
-	return {$: 41, a: a};
+	return {$: 42, a: a};
 };
 var $author$project$VegaLite$tuMaxBins = $author$project$VegaLite$TUMaxBins;
 var $author$project$TransformTests$transform17 = function () {
