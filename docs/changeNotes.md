@@ -13,7 +13,7 @@
 
 ### Changes
 
-- When providing a domain expression with `scDomainExpr`, a VL `domainRaw` rather than `domain` is generated, taking advantge of VL 5.13's new `domainRaw` specification. \_Note: This may be removed and replaced with a separate `scDomainRaw` function if it offers a meaningful difference to the old behaviour.
+- When providing a domain expression with `scDomainExpr`, a VL `domainRaw` rather than `domain` is generated, taking advantge of VL 5.13's new `domainRaw` specification. _Note: This may be removed and replaced with a separate `scDomainRaw` function if it offers a meaningful difference to the old behaviour._
 
 ---
 
