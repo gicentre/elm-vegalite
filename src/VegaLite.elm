@@ -28254,7 +28254,7 @@ scaleProperty scaleProp =
             [ ( "type", JE.string (scaleLabel sType) ) ]
 
         ScDomainExpr s ->
-            [ ( "domain", JE.object [ ( "expr", JE.string s ) ] ) ]
+            [ ( "domainRaw", JE.object [ ( "expr", JE.string s ) ] ) ]
 
         ScDomain sdType ->
             case sdType of

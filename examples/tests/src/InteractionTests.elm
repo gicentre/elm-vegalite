@@ -550,6 +550,69 @@ interaction23 =
     toVegaLite [ backgroundExpr "Background", width 540, data, ps [], enc [], line [] ]
 
 
+interaction24 : Spec
+interaction24 =
+    --    "data": {"url": "data/cars.json"},
+    --    "params": [{
+    --      "name": "min_x",
+    --      "value": 50,
+    --      "bind": {
+    --        "input": "range",
+    --        "min": 0,
+    --        "max": 300
+    --      }
+    --    }, {
+    --      "name": "max_x",
+    --      "value": 250,
+    --      "bind": {
+    --        "input": "range",
+    --        "min": 0,
+    --        "max": 300
+    --      }
+    --    },{
+    --      "name": "use_custom_x",
+    --      "value": true,
+    --      "bind": {
+    --        "input": "checkbox"
+    --      }
+    --    }],
+    --    "mark": {"type": "circle", "clip": true},
+    --    "encoding": {
+    --      "x": {
+    --        "field": "Horsepower", "type": "quantitative",
+    --        "scale": {
+    --          "domainRaw": {"expr": "use_custom_x ? [min_x, max_x] : null"}
+    --        }
+    --      },
+    --      "y": {
+    --        "field": "Miles_per_Gallon", "type": "quantitative"
+    --      },
+    --      "size": {"field": "Cylinders", "type": "quantitative"}
+    --    }
+    --  }
+    let
+        cData =
+            dataFromUrl (path ++ "cars.json") []
+
+        ps =
+            params
+                << param "minX" [ paValue (num 50), paBind (ipRange [ inMin 0, inMax 300 ]) ]
+                << param "maxX" [ paValue (num 250), paBind (ipRange [ inMin 0, inMax 300 ]) ]
+                << param "useCustomX" [ paValue (boo True), paBind (ipCheckbox []) ]
+
+        cEnc =
+            encoding
+                << position X
+                    [ pName "Horsepower"
+                    , pQuant
+                    , pScale [ scDomainExpr "useCustomX ? [minX, maxX] : null" ]
+                    ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << size [ mName "Cylinders", mQuant ]
+    in
+    toVegaLite [ cData, ps [], cEnc [], circle [ maClip True ] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -579,6 +642,7 @@ specs =
     , ( "interaction21", interaction21 )
     , ( "interaction22", interaction22 )
     , ( "interaction23", interaction23 )
+    , ( "interaction24", interaction24 )
     ]
 
 
