@@ -292,6 +292,7 @@ module VegaLite exposing
     , maHRef
     , maContinuousBandSize
     , maDiscreteBandSize
+    , maMinBandSize
     , maLimit
     , maDir
     , maEllipsis
@@ -2204,6 +2205,7 @@ property documentation.
 @docs maHRef
 @docs maContinuousBandSize
 @docs maDiscreteBandSize
+@docs maMinBandSize
 @docs maLimit
 @docs maDir
 @docs maEllipsis
@@ -5424,8 +5426,8 @@ type MarkOrientation
 [maFillOpacity](#maFillOpacity), [maFont](#maFont), [maFontSize](#maFontSize),
 [maFontStyle](#maFontStyle), [maFontWeight](#maFontWeight), [maInnerRadius](#maInnerRadius),
 [maOuterRadius](#maOuterRadius), [maInterpolate](#maInterpolate), [maLimit](#maLimit),
-[maLine](#maLine), [maLineHeight](#maLineHeight), [maMedian](#maMedian), [maOpacity](#maOpacity),
-[maOutliers](#maOutliers), [maOrient](#maOrient), [maPadAngle](#maPadAngle),
+[maLine](#maLine), [maLineHeight](#maLineHeight), [maMedian](#maMedian), [maMinBandSize](#maMinBandSize),
+[maOpacity](#maOpacity), [maOutliers](#maOutliers), [maOrient](#maOrient), [maPadAngle](#maPadAngle),
 [maPoint](#maPoint), [maRadius](#maRadius), [maRadiusOffset](#maRadiusOffset),
 [maRadius2Offset](#maRadius2Offset), [maRemoveInvalid](#maRemoveInvalid),
 [maRule](#maRule), [maShape](#maShape), [maShortTimeLabels](#maShortTimeLabels), [maSize](#maSize),
@@ -5466,6 +5468,7 @@ type
     | MCursor Cursor
     | MHRef Str
     | MContinuousBandSize Num
+    | MMinBandSize Num
     | MLimit Num
     | MEllipsis Str
     | MDir TextDirection
@@ -16762,6 +16765,14 @@ maMedian =
     MMedian
 
 
+{-| Mimimum band size of a [bar](#bar) or [rect](#rect) mark. Can be useful in
+a limited screen space where bars need a visible width but can overlap.
+-}
+maMinBandSize : Float -> MarkProperty
+maMinBandSize n =
+    MMinBandSize (Num n)
+
+
 {-| Overall opacity of a mark such as [bar](#bar) or [line](#line) in the range
 0 (completely transparent) to 1 (completely opaque).
 -}
@@ -26956,6 +26967,9 @@ markProperty mProp =
 
         MContinuousBandSize n ->
             numExpr "continuousBandSize" n
+
+        MMinBandSize n ->
+            numExpr "minBandSize" n
 
         MDiscreteBandSize n ->
             numExpr "discreteBandSize" n

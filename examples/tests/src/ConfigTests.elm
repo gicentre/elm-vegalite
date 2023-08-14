@@ -1363,6 +1363,34 @@ metaCfg =
         ]
 
 
+barCfg1 : Spec
+barCfg1 =
+    let
+        cfg =
+            configure
+                << configuration (coBar [ maMinBandSize 6 ])
+
+        data =
+            dataFromUrl (path ++ "movies.json") []
+
+        enc =
+            encoding
+                << position X
+                    [ pName "Director"
+                    , pSort [ soByChannel chY ]
+                    , pAxis [ axLabels False, axTicks False ]
+                    ]
+                << position Y [ pAggregate opMean, pName "Rotten Tomatoes Rating" ]
+    in
+    toVegaLite
+        [ cfg []
+        , data
+        , width 500
+        , enc []
+        , bar [ maStroke "white", maStrokeWidth 0.5, maTooltip ttEncoding ]
+        ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -1406,6 +1434,7 @@ specs =
     , ( "numberCfg4", numberCfg4 )
     , ( "dateCfg1", dateCfg1 )
     , ( "metaCfg", metaCfg )
+    , ( "barCfg1", barCfg1 )
     ]
 
 
