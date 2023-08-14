@@ -4733,7 +4733,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
-					'domain',
+					'domainRaw',
 					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[

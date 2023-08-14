@@ -7181,7 +7181,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
-					'domain',
+					'domainRaw',
 					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -14684,6 +14684,125 @@ var $author$project$InteractionTests$interaction23 = function () {
 				$author$project$VegaLite$line(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Boolean = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
+var $author$project$VegaLite$IPCheckbox = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$ipCheckbox = $author$project$VegaLite$IPCheckbox;
+var $author$project$VegaLite$MmType = function (a) {
+	return {$: 6, a: a};
+};
+var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
+var $author$project$VegaLite$MClip = function (a) {
+	return {$: 9, a: a};
+};
+var $author$project$VegaLite$maClip = function (b) {
+	return $author$project$VegaLite$MClip(
+		$author$project$VegaLite$Boo(b));
+};
+var $author$project$VegaLite$ScDomainExpr = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$scDomainExpr = $author$project$VegaLite$ScDomainExpr;
+var $author$project$InteractionTests$interaction24 = function () {
+	var ps = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$params,
+				A2(
+					$author$project$VegaLite$param,
+					'minX',
+					_List_fromArray(
+						[
+							$author$project$VegaLite$paValue(
+							$author$project$VegaLite$num(50)),
+							$author$project$VegaLite$paBind(
+							$author$project$VegaLite$ipRange(
+								_List_fromArray(
+									[
+										$author$project$VegaLite$inMin(0),
+										$author$project$VegaLite$inMax(300)
+									])))
+						]))),
+			A2(
+				$author$project$VegaLite$param,
+				'maxX',
+				_List_fromArray(
+					[
+						$author$project$VegaLite$paValue(
+						$author$project$VegaLite$num(250)),
+						$author$project$VegaLite$paBind(
+						$author$project$VegaLite$ipRange(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$inMin(0),
+									$author$project$VegaLite$inMax(300)
+								])))
+					]))),
+		A2(
+			$author$project$VegaLite$param,
+			'useCustomX',
+			_List_fromArray(
+				[
+					$author$project$VegaLite$paValue(
+					$author$project$VegaLite$boo(true)),
+					$author$project$VegaLite$paBind(
+					$author$project$VegaLite$ipCheckbox(_List_Nil))
+				])));
+	var cEnc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				$author$project$VegaLite$encoding,
+				A2(
+					$author$project$VegaLite$position,
+					0,
+					_List_fromArray(
+						[
+							$author$project$VegaLite$pName('Horsepower'),
+							$author$project$VegaLite$pQuant,
+							$author$project$VegaLite$pScale(
+							_List_fromArray(
+								[
+									$author$project$VegaLite$scDomainExpr('useCustomX ? [minX, maxX] : null')
+								]))
+						]))),
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('Miles_per_Gallon'),
+						$author$project$VegaLite$pQuant
+					]))),
+		$author$project$VegaLite$size(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$mName('Cylinders'),
+					$author$project$VegaLite$mQuant
+				])));
+	var cData = A2($author$project$VegaLite$dataFromUrl, $author$project$InteractionTests$path + 'cars.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cData,
+				ps(_List_Nil),
+				cEnc(_List_Nil),
+				$author$project$VegaLite$circle(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maClip(true)
+					]))
+			]));
+}();
 var $author$project$InteractionTests$interaction3 = function () {
 	var ps = A2(
 		$elm$core$Basics$composeL,
@@ -14979,7 +15098,8 @@ var $author$project$InteractionTests$specs = _List_fromArray(
 		_Utils_Tuple2('interaction20', $author$project$InteractionTests$interaction20),
 		_Utils_Tuple2('interaction21', $author$project$InteractionTests$interaction21),
 		_Utils_Tuple2('interaction22', $author$project$InteractionTests$interaction22),
-		_Utils_Tuple2('interaction23', $author$project$InteractionTests$interaction23)
+		_Utils_Tuple2('interaction23', $author$project$InteractionTests$interaction23),
+		_Utils_Tuple2('interaction24', $author$project$InteractionTests$interaction24)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
