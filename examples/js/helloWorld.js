@@ -6017,7 +6017,7 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 	}
 };
 var $author$project$VegaLite$schemeProperty = F2(
-	function (clrs, extent) {
+	function (clrs, ext) {
 		var nameSpec = function () {
 			if (!clrs.$) {
 				var ss = clrs.a;
@@ -6046,11 +6046,11 @@ var $author$project$VegaLite$schemeProperty = F2(
 						]));
 			}
 		}();
-		if (!extent.b) {
+		if (!ext.b) {
 			return _Utils_Tuple2('scheme', nameSpec);
 		} else {
-			if (!extent.b.b) {
-				var n = extent.a;
+			if (!ext.b.b) {
+				var n = ext.a;
 				return _Utils_Tuple2(
 					'scheme',
 					$elm$json$Json$Encode$object(
@@ -6062,9 +6062,9 @@ var $author$project$VegaLite$schemeProperty = F2(
 								$elm$json$Json$Encode$float(n))
 							])));
 			} else {
-				if (!extent.b.b.b) {
-					var mn = extent.a;
-					var _v1 = extent.b;
+				if (!ext.b.b.b) {
+					var mn = ext.a;
+					var _v1 = ext.b;
 					var mx = _v1.a;
 					return _Utils_Tuple2(
 						'scheme',
@@ -6279,17 +6279,17 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			}
 		case 4:
 			var schName = scaleProp.a;
-			var extent = scaleProp.b;
+			var ext = scaleProp.b;
 			return _List_fromArray(
 				[
-					A2($author$project$VegaLite$schemeProperty, schName, extent)
+					A2($author$project$VegaLite$schemeProperty, schName, ext)
 				]);
 		case 5:
 			var schExpr = scaleProp.a;
-			var extent = scaleProp.b;
+			var ext = scaleProp.b;
 			return _List_fromArray(
 				[
-					A2($author$project$VegaLite$schemeProperty, schExpr, extent)
+					A2($author$project$VegaLite$schemeProperty, schExpr, ext)
 				]);
 		case 6:
 			var x = scaleProp.a;

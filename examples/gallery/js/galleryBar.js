@@ -6024,7 +6024,7 @@ var $author$project$VegaLite$scaleNiceSpec = function (ni) {
 	}
 };
 var $author$project$VegaLite$schemeProperty = F2(
-	function (clrs, extent) {
+	function (clrs, ext) {
 		var nameSpec = function () {
 			if (!clrs.$) {
 				var ss = clrs.a;
@@ -6053,11 +6053,11 @@ var $author$project$VegaLite$schemeProperty = F2(
 						]));
 			}
 		}();
-		if (!extent.b) {
+		if (!ext.b) {
 			return _Utils_Tuple2('scheme', nameSpec);
 		} else {
-			if (!extent.b.b) {
-				var n = extent.a;
+			if (!ext.b.b) {
+				var n = ext.a;
 				return _Utils_Tuple2(
 					'scheme',
 					$elm$json$Json$Encode$object(
@@ -6069,9 +6069,9 @@ var $author$project$VegaLite$schemeProperty = F2(
 								$elm$json$Json$Encode$float(n))
 							])));
 			} else {
-				if (!extent.b.b.b) {
-					var mn = extent.a;
-					var _v1 = extent.b;
+				if (!ext.b.b.b) {
+					var mn = ext.a;
+					var _v1 = ext.b;
 					var mx = _v1.a;
 					return _Utils_Tuple2(
 						'scheme',
@@ -6286,17 +6286,17 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			}
 		case 4:
 			var schName = scaleProp.a;
-			var extent = scaleProp.b;
+			var ext = scaleProp.b;
 			return _List_fromArray(
 				[
-					A2($author$project$VegaLite$schemeProperty, schName, extent)
+					A2($author$project$VegaLite$schemeProperty, schName, ext)
 				]);
 		case 5:
 			var schExpr = scaleProp.a;
-			var extent = scaleProp.b;
+			var ext = scaleProp.b;
 			return _List_fromArray(
 				[
-					A2($author$project$VegaLite$schemeProperty, schExpr, extent)
+					A2($author$project$VegaLite$schemeProperty, schExpr, ext)
 				]);
 		case 6:
 			var x = scaleProp.a;
@@ -12892,6 +12892,143 @@ var $author$project$GalleryBar$bar27 = function () {
 					[specBar, specText]))
 			]));
 }();
+var $author$project$VegaLite$DExpr = function (a) {
+	return {$: 4, a: a};
+};
+var $author$project$VegaLite$datumExpr = $author$project$VegaLite$DExpr;
+var $author$project$VegaLite$extent = F2(
+	function (field, paramName) {
+		return $elm$core$List$cons(
+			_Utils_Tuple2(
+				'multiSpecs',
+				$elm$json$Json$Encode$object(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'extent',
+							$elm$json$Json$Encode$string(field)),
+							_Utils_Tuple2(
+							'param',
+							$elm$json$Json$Encode$string(paramName))
+						]))));
+	});
+var $author$project$VegaLite$MStroke = function (a) {
+	return {$: 54, a: a};
+};
+var $author$project$VegaLite$maStroke = function (s) {
+	return $author$project$VegaLite$MStroke(
+		$author$project$VegaLite$Str(s));
+};
+var $author$project$VegaLite$PDatum = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$VegaLite$pDatum = $author$project$VegaLite$PDatum;
+var $author$project$VegaLite$Rule = 12;
+var $author$project$VegaLite$rule = $author$project$VegaLite$mark(12);
+var $author$project$GalleryBar$bar28 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		A2($author$project$VegaLite$extent, 'b', 'bExtent'));
+	var encMin = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pDatum(
+					$author$project$VegaLite$datumExpr('bExtent[0]')),
+					$author$project$VegaLite$pQuant
+				])));
+	var specMin = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encMin(_List_Nil),
+				$author$project$VegaLite$rule(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('fireBrick')
+					]))
+			]));
+	var encMax = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$encoding,
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pDatum(
+					$author$project$VegaLite$datumExpr('bExtent[1]')),
+					$author$project$VegaLite$pQuant
+				])));
+	var specMax = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encMax(_List_Nil),
+				$author$project$VegaLite$rule(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maStroke('fireBrick')
+					]))
+			]));
+	var encBar = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				1,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('a')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			0,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('b'),
+					$author$project$VegaLite$pQuant
+				])));
+	var specBar = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				encBar(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var desc = $author$project$VegaLite$description('A bar chart with min and max extent shown with vertical lines.');
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$dataFromColumns(_List_Nil),
+			A2(
+				$author$project$VegaLite$dataColumn,
+				'a',
+				$author$project$VegaLite$strs(
+					_List_fromArray(
+						['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'])))),
+		A2(
+			$author$project$VegaLite$dataColumn,
+			'b',
+			$author$project$VegaLite$nums(
+				_List_fromArray(
+					[28, 55, 43, 91, 81, 53, 19, 87, 52]))));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				data(_List_Nil),
+				trans(_List_Nil),
+				$author$project$VegaLite$layer(
+				_List_fromArray(
+					[specBar, specMin, specMax]))
+			]));
+}();
 var $author$project$VegaLite$axLabelColor = function (s) {
 	return $author$project$VegaLite$AxLabelColor(
 		$author$project$VegaLite$Str(s));
@@ -12920,7 +13057,7 @@ var $author$project$VegaLite$scPaddingInner = function (n) {
 };
 var $author$project$VegaLite$VAlignTop = {$: 0};
 var $author$project$VegaLite$vaTop = $author$project$VegaLite$VAlignTop;
-var $author$project$GalleryBar$bar28 = function () {
+var $author$project$GalleryBar$bar29 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -12987,6 +13124,58 @@ var $author$project$GalleryBar$bar28 = function () {
 						$author$project$VegaLite$maYOffset(5),
 						$author$project$VegaLite$maCornerRadiusEnd(2)
 					]))
+			]));
+}();
+var $author$project$VegaLite$ChX = 0;
+var $author$project$VegaLite$chX = 0;
+var $author$project$VegaLite$ByChannel = function (a) {
+	return {$: 5, a: a};
+};
+var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
+var $author$project$GalleryBar$bar3 = function () {
+	var trans = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$transform,
+		$author$project$VegaLite$filter(
+			$author$project$VegaLite$fiExpr('datum.year == 2000')));
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('people'),
+						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
+						$author$project$VegaLite$pTitle('population')
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('age'),
+					$author$project$VegaLite$pSort(
+					_List_fromArray(
+						[
+							$author$project$VegaLite$soByChannel($author$project$VegaLite$chX),
+							$author$project$VegaLite$soDescending
+						]))
+				])));
+	var desc = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000, sorted by population');
+	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				desc,
+				$author$project$VegaLite$heightStep(17),
+				data,
+				trans(_List_Nil),
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$Circle = 6;
@@ -13172,7 +13361,7 @@ var $author$project$VegaLite$window = F2(
 	});
 var $author$project$VegaLite$Rank = 1;
 var $author$project$VegaLite$woRank = 1;
-var $author$project$GalleryBar$bar29 = function () {
+var $author$project$GalleryBar$bar30 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -13252,58 +13441,6 @@ var $author$project$GalleryBar$bar29 = function () {
 					[
 						$author$project$VegaLite$maOpacity(1)
 					]))
-			]));
-}();
-var $author$project$VegaLite$ChX = 0;
-var $author$project$VegaLite$chX = 0;
-var $author$project$VegaLite$ByChannel = function (a) {
-	return {$: 5, a: a};
-};
-var $author$project$VegaLite$soByChannel = $author$project$VegaLite$ByChannel;
-var $author$project$GalleryBar$bar3 = function () {
-	var trans = A2(
-		$elm$core$Basics$composeL,
-		$author$project$VegaLite$transform,
-		$author$project$VegaLite$filter(
-			$author$project$VegaLite$fiExpr('datum.year == 2000')));
-	var enc = A2(
-		$elm$core$Basics$composeL,
-		A2(
-			$elm$core$Basics$composeL,
-			$author$project$VegaLite$encoding,
-			A2(
-				$author$project$VegaLite$position,
-				0,
-				_List_fromArray(
-					[
-						$author$project$VegaLite$pName('people'),
-						$author$project$VegaLite$pAggregate($author$project$VegaLite$opSum),
-						$author$project$VegaLite$pTitle('population')
-					]))),
-		A2(
-			$author$project$VegaLite$position,
-			1,
-			_List_fromArray(
-				[
-					$author$project$VegaLite$pName('age'),
-					$author$project$VegaLite$pSort(
-					_List_fromArray(
-						[
-							$author$project$VegaLite$soByChannel($author$project$VegaLite$chX),
-							$author$project$VegaLite$soDescending
-						]))
-				])));
-	var desc = $author$project$VegaLite$description('A bar chart showing the US population distribution of age groups in 2000, sorted by population');
-	var data = A2($author$project$VegaLite$dataFromUrl, $author$project$GalleryBar$path + 'population.json', _List_Nil);
-	return $author$project$VegaLite$toVegaLite(
-		_List_fromArray(
-			[
-				desc,
-				$author$project$VegaLite$heightStep(17),
-				data,
-				trans(_List_Nil),
-				enc(_List_Nil),
-				$author$project$VegaLite$bar(_List_Nil)
 			]));
 }();
 var $author$project$VegaLite$dataFromRows = F2(
@@ -13711,7 +13848,7 @@ var $author$project$GalleryBar$toRows = F2(
 		return $elm$core$Basics$append(
 			A2($elm$core$List$concatMap, fToCol, animalFreqs));
 	});
-var $author$project$GalleryBar$bar30 = function () {
+var $author$project$GalleryBar$bar31 = function () {
 	var isotypes = function () {
 		var sheep = 'M-4.1 -0.5c0.2 0 0.2 0.2 0.5 0.2c0.3 0 0.3 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.5 -0.2c0.2 0 0.2 0.2 0.4 0.2c0.2 0 0.2 -0.2 0.4 -0.2c0.1 0 0.2 0.2 0.4 0.1c0.2 0 0.2 -0.2 0.4 -0.3c0.1 0 0.1 -0.1 0.4 0c0.3 0 0.3 -0.4 0.6 -0.4c0.3 0 0.6 -0.3 0.7 -0.2c0.1 0.1 1.4 1 1.3 1.4c-0.1 0.4 -0.3 0.3 -0.4 0.3c-0.1 0 -0.5 -0.4 -0.7 -0.2c-0.3 0.2 -0.1 0.4 -0.2 0.6c-0.1 0.1 -0.2 0.2 -0.3 0.4c0 0.2 0.1 0.3 0 0.5c-0.1 0.2 -0.3 0.2 -0.3 0.5c0 0.3 -0.2 0.3 -0.3 0.6c-0.1 0.2 0 0.3 -0.1 0.5c-0.1 0.2 -0.1 0.2 -0.2 0.3c-0.1 0.1 0.3 1.1 0.3 1.1l-0.3 0c0 0 -0.3 -0.9 -0.3 -1c0 -0.1 -0.1 -0.2 -0.3 -0.2c-0.2 0 -0.3 0.1 -0.4 0.4c0 0.3 -0.2 0.8 -0.2 0.8l-0.3 0l0.3 -1c0 0 0.1 -0.6 -0.2 -0.5c-0.3 0.1 -0.2 -0.1 -0.4 -0.1c-0.2 -0.1 -0.3 0.1 -0.4 0c-0.2 -0.1 -0.3 0.1 -0.5 0c-0.2 -0.1 -0.1 0 -0.3 0.3c-0.2 0.3 -0.4 0.3 -0.4 0.3l0.2 1.1l-0.3 0l-0.2 -1.1c0 0 -0.4 -0.6 -0.5 -0.4c-0.1 0.3 -0.1 0.4 -0.3 0.4c-0.1 -0.1 -0.2 1.1 -0.2 1.1l-0.3 0l0.2 -1.1c0 0 -0.3 -0.1 -0.3 -0.5c0 -0.3 0.1 -0.5 0.1 -0.7c0.1 -0.2 -0.1 -1 -0.2 -1.1c-0.1 -0.2 -0.2 -0.8 -0.2 -0.8c0 0 -0.1 -0.5 0.4 -0.8z';
 		var pig = 'M1.2 -2c0 0 0.7 0 1.2 0.5c0.5 0.5 0.4 0.6 0.5 0.6c0.1 0 0.7 0 0.8 0.1c0.1 0 0.2 0.2 0.2 0.2c0 0 -0.6 0.2 -0.6 0.3c0 0.1 0.4 0.9 0.6 0.9c0.1 0 0.6 0 0.6 0.1c0 0.1 0 0.7 -0.1 0.7c-0.1 0 -1.2 0.4 -1.5 0.5c-0.3 0.1 -1.1 0.5 -1.1 0.7c-0.1 0.2 0.4 1.2 0.4 1.2l-0.4 0c0 0 -0.4 -0.8 -0.4 -0.9c0 -0.1 -0.1 -0.3 -0.1 -0.3l-0.2 0l-0.5 1.3l-0.4 0c0 0 -0.1 -0.4 0 -0.6c0.1 -0.1 0.3 -0.6 0.3 -0.7c0 0 -0.8 0 -1.5 -0.1c-0.7 -0.1 -1.2 -0.3 -1.2 -0.2c0 0.1 -0.4 0.6 -0.5 0.6c0 0 0.3 0.9 0.3 0.9l-0.4 0c0 0 -0.4 -0.5 -0.4 -0.6c0 -0.1 -0.2 -0.6 -0.2 -0.5c0 0 -0.4 0.4 -0.6 0.4c-0.2 0.1 -0.4 0.1 -0.4 0.1c0 0 -0.1 0.6 -0.1 0.6l-0.5 0l0 -1c0 0 0.5 -0.4 0.5 -0.5c0 -0.1 -0.7 -1.2 -0.6 -1.4c0.1 -0.1 0.1 -1.1 0.1 -1.1c0 0 -0.2 0.1 -0.2 0.1c0 0 0 0.9 0 1c0 0.1 -0.2 0.3 -0.3 0.3c-0.1 0 0 -0.5 0 -0.9c0 -0.4 0 -0.4 0.2 -0.6c0.2 -0.2 0.6 -0.3 0.8 -0.8c0.3 -0.5 1 -0.6 1 -0.6z';
@@ -13876,7 +14013,7 @@ var $author$project$GalleryBar$bar30 = function () {
 					]))
 			]));
 }();
-var $author$project$GalleryBar$bar31 = function () {
+var $author$project$GalleryBar$bar32 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14129,7 +14266,7 @@ var $author$project$VegaLite$title = F2(
 						$author$project$VegaLite$multilineTextSpec(txt)),
 					A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tps))));
 	});
-var $author$project$GalleryBar$bar32 = function () {
+var $author$project$GalleryBar$bar33 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -14506,13 +14643,6 @@ var $elm$core$List$drop = F2(
 			}
 		}
 	});
-var $author$project$VegaLite$MStroke = function (a) {
-	return {$: 54, a: a};
-};
-var $author$project$VegaLite$maStroke = function (s) {
-	return $author$project$VegaLite$MStroke(
-		$author$project$VegaLite$Str(s));
-};
 var $author$project$VegaLite$ScPoint = 9;
 var $author$project$VegaLite$scPoint = 9;
 var $elm$core$List$takeReverse = F3(
@@ -14866,7 +14996,8 @@ var $author$project$GalleryBar$mySpecs = $author$project$VegaLite$combineSpecs(
 			_Utils_Tuple2('bar29', $author$project$GalleryBar$bar29),
 			_Utils_Tuple2('bar30', $author$project$GalleryBar$bar30),
 			_Utils_Tuple2('bar31', $author$project$GalleryBar$bar31),
-			_Utils_Tuple2('bar32', $author$project$GalleryBar$bar32)
+			_Utils_Tuple2('bar32', $author$project$GalleryBar$bar32),
+			_Utils_Tuple2('bar33', $author$project$GalleryBar$bar33)
 		]));
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
