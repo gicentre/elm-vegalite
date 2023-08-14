@@ -4,9 +4,10 @@
 
 ### Additions
 
-- New `maMinBandSize` for configuring the minimum width/height of a bar mark (VL 5.11).
+- `binnedTimeUnit` for indicating time units have already been aggregated (VL 5.12).
+- `maMinBandSize` for configuring the minimum width/height of a bar mark (VL 5.11).
 
-- New `extent` transform (VL 5.10) for storing minimum and maximum values in a data field.
+- `extent` transform (VL 5.10) for storing minimum and maximum values in a data field.
 
 - New option labelling functions `inLabelledOptions`, `inLabelledDatumOptions` and `inLabelledDataOptions` for attaching labels to each option in a radio or drop-down selection. Thanks to @hingew for identifying the need for this.
 

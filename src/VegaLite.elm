@@ -1549,6 +1549,7 @@ module VegaLite exposing
     , yearWeekDayHoursMinutesSeconds
     , yearDayOfYear
     , utc
+    , binnedTimeUnit
     , tuMaxBins
     , tuStep
     , Anchor
@@ -3927,6 +3928,7 @@ and the [Vega-Lite time unit documentation](https://vega.github.io/vega-lite/doc
 @docs yearWeekDayHoursMinutesSeconds
 @docs yearDayOfYear
 @docs utc
+@docs binnedTimeUnit
 @docs tuMaxBins
 @docs tuStep
 
@@ -6275,9 +6277,8 @@ type TickBand
 [yearMonthDateHoursMinutesSeconds](#yearMonthDateHoursMinutesSeconds), [yearWeek](#yearWeek),
 [yearWeekDay](#yearWeekDay), [yearWeekDayHours](#yearWeekDayHours),
 [yearWeekDayHoursMinutes](#yearWeekDayHoursMinutes),
-[yearWeekDayHoursMinutesSeconds](#yearWeekDayHoursMinutesSeconds),
-[yearDayOfYear](#yearDayOfYear), [utc](#utc), [tuMaxBins](#tuMaxBins) and
-[tuStep](#tuStep).
+[yearWeekDayHoursMinutesSeconds](#yearWeekDayHoursMinutesSeconds), [yearDayOfYear](#yearDayOfYear),
+[utc](#utc), [binnedTimeUnit](#binnedTimeUnit], [tuMaxBins](#tuMaxBins) and [tuStep](#tuStep).
 -}
 type TimeUnit
     = Year
@@ -6321,6 +6322,7 @@ type TimeUnit
     | SecondsMilliseconds
     | Milliseconds
     | Utc TimeUnit
+    | BinnedTU TimeUnit
     | TUMaxBins Int
     | TUStep Float TimeUnit
 
@@ -9037,6 +9039,26 @@ binAs bProps field label =
                     , ( "as", JE.string label )
                     ]
                 )
+
+
+{-| Indicate time units are already binned at the given time unit. Will adjust axis
+title bins accordingly.
+
+    encoding
+        << position X
+            [ pName "date"
+            , pTemporal
+            , pTimeUnit (binned yearMonth)
+            ]
+
+Used by [pTimeUnit](#pTimeUnit), [mTimeUnit](#mTimeUnit), [tTimeUnit](#tTimeUnit),
+[hTimeUnit](#hTimeUnit), [oTimeUnit](#oTimeUnit), [dTimeUnit](#dTimeUnit), [fTimeUnit](#fTimeUnit),
+[timeUnitAs](#timeUnitAs).
+
+-}
+binnedTimeUnit : TimeUnit -> TimeUnit
+binnedTimeUnit tu =
+    BinnedTU tu
 
 
 {-| Set the desired range of bin values based on an interactive selection. The
@@ -28939,6 +28961,9 @@ timeUnitLabel tu =
         Utc _ ->
             ""
 
+        BinnedTU _ ->
+            ""
+
         TUMaxBins _ ->
             ""
 
@@ -28965,7 +28990,12 @@ timeUnitProperties tUnit =
 
 timeUnitSpec : TimeUnit -> Spec
 timeUnitSpec tUnit =
-    JE.object (timeUnitProperties tUnit)
+    case tUnit of
+        BinnedTU tu ->
+            JE.string ("binned" ++ timeUnitLabel tu)
+
+        _ ->
+            JE.object (timeUnitProperties tUnit)
 
 
 titleConfigProperty : TitleConfig -> List LabelledSpec

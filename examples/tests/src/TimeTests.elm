@@ -131,6 +131,39 @@ timePosix =
         ]
 
 
+preBinned : Spec
+preBinned =
+    let
+        --     {
+        --   "data": {"url": "data/stocks.csv"},
+        --   "transform": [
+        --     {"filter": "datum.symbol==='GOOG'"}
+        --   ],
+        --   "mark": "bar",
+        --   "encoding": {
+        --     "x": {"timeUnit": "binnedyearmonth", "field": "date", "type": "temporal"},
+        --     "y": {"field": "price", "type": "quantitative"}
+        --   }
+        -- }
+        data =
+            dataFromUrl (path ++ "stocks.csv") []
+
+        trans =
+            transform
+                << filter (fiExpr "datum.symbol === 'GOOG'")
+
+        enc =
+            encoding
+                << position X
+                    [ pName "date"
+                    , pTemporal
+                    , pTimeUnit (binnedTimeUnit yearMonth)
+                    ]
+                << position Y [ pName "price", pQuant ]
+    in
+    toVegaLite [ data, trans [], enc [], bar [] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -169,6 +202,7 @@ specs =
     , ( "utcTime", utcTime )
     , ( "timeBand", timeBand )
     , ( "timePosix", timePosix )
+    , ( "preBinned", preBinned )
     ]
 
 
