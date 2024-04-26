@@ -1,5 +1,13 @@
 # elm-vegaLite changes
 
+## Pending release
+
+### Minor changes
+
+- Updated interactive examples to use pointerOver rather than mouseOver (aligns with updated examples on VegaLite pages)
+
+- Add examples that use `pBandPosition` in tests. No new API here, but now works with bars and lines since VL 5.16.
+
 ## V5.5 ➡ V5.6
 
 _Aligning with Vega-Lite Version 5.14._

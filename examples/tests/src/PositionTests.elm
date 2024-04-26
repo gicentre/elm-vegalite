@@ -118,6 +118,48 @@ position13 : Spec
 position13 =
     let
         data2 =
+            dataFromUrl (path ++ "seattle-weather.csv") []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTimeUnit month, pBandPosition 0 ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
+    in
+    toVegaLite [ data2, enc [], bar [] ]
+
+
+position14 : Spec
+position14 =
+    let
+        data2 =
+            dataFromUrl (path ++ "seattle-weather.csv") []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTimeUnit month, pBandPosition 0.5 ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
+    in
+    toVegaLite [ data2, enc [], bar [] ]
+
+
+position15 : Spec
+position15 =
+    let
+        data2 =
+            dataFromUrl (path ++ "seattle-weather.csv") []
+
+        enc =
+            encoding
+                << position X [ pName "date", pTimeUnit month, pBandPosition 1 ]
+                << position Y [ pName "precipitation", pAggregate opMean ]
+    in
+    toVegaLite [ data2, enc [], bar [] ]
+
+
+position16 : Spec
+position16 =
+    let
+        data2 =
             dataFromColumns []
                 << dataColumn "category" (strs [ "A", "A", "A", "B", "B", "B", "C", "C", "C" ])
                 << dataColumn "group" (strs [ "x", "y", "z", "x", "y", "z", "x", "y", "z" ])
@@ -133,8 +175,8 @@ position13 =
     toVegaLite [ data2 [], enc [], bar [] ]
 
 
-position14 : Spec
-position14 =
+position17 : Spec
+position17 =
     let
         data2 =
             dataFromUrl (path ++ "cars.json") []
@@ -172,6 +214,9 @@ specs =
     , ( "position12", position12 )
     , ( "position13", position13 )
     , ( "position14", position14 )
+    , ( "position15", position15 )
+    , ( "position16", position16 )
+    , ( "position17", position17 )
     ]
 
 

@@ -10360,6 +10360,146 @@ var $author$project$PositionTests$barAlign = function (x) {
 var $author$project$PositionTests$position10 = $author$project$PositionTests$barAlign(0.5);
 var $author$project$PositionTests$position11 = $author$project$PositionTests$barAlign(0.7);
 var $author$project$PositionTests$position12 = $author$project$PositionTests$barAlign(1);
+var $author$project$VegaLite$dataFromUrl = F2(
+	function (u, fmts) {
+		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u))
+					]))) : _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'url',
+						$elm$json$Json$Encode$string(u)),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					])));
+	});
+var $author$project$VegaLite$Month = {$: 16};
+var $author$project$VegaLite$month = $author$project$VegaLite$Month;
+var $author$project$VegaLite$Mean = {$: 7};
+var $author$project$VegaLite$opMean = $author$project$VegaLite$Mean;
+var $author$project$VegaLite$PAggregate = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$pAggregate = $author$project$VegaLite$PAggregate;
+var $author$project$VegaLite$PBandPosition = function (a) {
+	return {$: 16, a: a};
+};
+var $author$project$VegaLite$pBandPosition = function (n) {
+	return $author$project$VegaLite$PBandPosition(
+		$author$project$VegaLite$Num(n));
+};
+var $author$project$VegaLite$PTimeUnit = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$pTimeUnit = $author$project$VegaLite$PTimeUnit;
+var $author$project$PositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
+var $author$project$PositionTests$position13 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
+						$author$project$VegaLite$pBandPosition(0)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('precipitation'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+				])));
+	var data2 = A2($author$project$VegaLite$dataFromUrl, $author$project$PositionTests$path + 'seattle-weather.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data2,
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var $author$project$PositionTests$position14 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
+						$author$project$VegaLite$pBandPosition(0.5)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('precipitation'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+				])));
+	var data2 = A2($author$project$VegaLite$dataFromUrl, $author$project$PositionTests$path + 'seattle-weather.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data2,
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
+var $author$project$PositionTests$position15 = function () {
+	var enc = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('date'),
+						$author$project$VegaLite$pTimeUnit($author$project$VegaLite$month),
+						$author$project$VegaLite$pBandPosition(1)
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('precipitation'),
+					$author$project$VegaLite$pAggregate($author$project$VegaLite$opMean)
+				])));
+	var data2 = A2($author$project$VegaLite$dataFromUrl, $author$project$PositionTests$path + 'seattle-weather.csv', _List_Nil);
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				data2,
+				enc(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+}();
 var $author$project$VegaLite$XOffset = 4;
 var $author$project$VegaLite$color = function (markProps) {
 	return $elm$core$List$cons(
@@ -10379,7 +10519,7 @@ var $author$project$VegaLite$Strings = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
-var $author$project$PositionTests$position13 = function () {
+var $author$project$PositionTests$position16 = function () {
 	var enc = A2(
 		$elm$core$Basics$composeL,
 		A2(
@@ -10466,30 +10606,6 @@ var $author$project$VegaLite$calculateAs = F2(
 							$elm$json$Json$Encode$string(label))
 						]))));
 	});
-var $author$project$VegaLite$dataFromUrl = F2(
-	function (u, fmts) {
-		return _Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
-			13,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u))
-					]))) : _Utils_Tuple2(
-			13,
-			$elm$json$Json$Encode$object(
-				_List_fromArray(
-					[
-						_Utils_Tuple2(
-						'url',
-						$elm$json$Json$Encode$string(u)),
-						_Utils_Tuple2(
-						'format',
-						$elm$json$Json$Encode$object(
-							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
-					])));
-	});
 var $author$project$VegaLite$VLHeightStep = 7;
 var $author$project$VegaLite$heightStep = function (hs) {
 	return _Utils_Tuple2(
@@ -10502,7 +10618,6 @@ var $author$project$VegaLite$heightStep = function (hs) {
 					$elm$json$Json$Encode$float(hs))
 				])));
 };
-var $author$project$PositionTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$Point = 10;
 var $author$project$VegaLite$point = $author$project$VegaLite$mark(10);
 var $author$project$VegaLite$VLTransform = 16;
@@ -10531,7 +10646,7 @@ var $author$project$VegaLite$transform = function (transforms) {
 		16,
 		A2($elm$json$Json$Encode$list, assemble, transforms));
 };
-var $author$project$PositionTests$position14 = function () {
+var $author$project$PositionTests$position17 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
 		$author$project$VegaLite$transform,
@@ -10746,7 +10861,10 @@ var $author$project$PositionTests$specs = _List_fromArray(
 		_Utils_Tuple2('position11', $author$project$PositionTests$position11),
 		_Utils_Tuple2('position12', $author$project$PositionTests$position12),
 		_Utils_Tuple2('position13', $author$project$PositionTests$position13),
-		_Utils_Tuple2('position14', $author$project$PositionTests$position14)
+		_Utils_Tuple2('position14', $author$project$PositionTests$position14),
+		_Utils_Tuple2('position15', $author$project$PositionTests$position15),
+		_Utils_Tuple2('position16', $author$project$PositionTests$position16),
+		_Utils_Tuple2('position17', $author$project$PositionTests$position17)
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

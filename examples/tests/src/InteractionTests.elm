@@ -273,7 +273,7 @@ interaction16 =
         ps =
             params
                 << param "index"
-                    [ paSelect sePoint [ seEncodings [ chX ], seOn "mouseover", seNearest True ]
+                    [ paSelect sePoint [ seEncodings [ chX ], seOn "pointerover", seNearest True ]
                     , paValue (dataObject [ ( "x", dt [ dtYear 2005, dtMonth Jan, dtDate 1 ] ) ])
                     ]
 

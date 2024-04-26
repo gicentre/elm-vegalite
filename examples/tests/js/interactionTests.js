@@ -13777,7 +13777,7 @@ var $author$project$InteractionTests$interaction16 = function () {
 							$author$project$VegaLite$seEncodings(
 							_List_fromArray(
 								[$author$project$VegaLite$chX])),
-							$author$project$VegaLite$seOn('mouseover'),
+							$author$project$VegaLite$seOn('pointerover'),
 							$author$project$VegaLite$seNearest(true)
 						])),
 					$author$project$VegaLite$paValue(
