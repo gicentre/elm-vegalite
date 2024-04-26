@@ -8909,6 +8909,13 @@ var $author$project$GalleryDist$dist3 = function () {
 				$author$project$VegaLite$area(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$resolutionLabel = function (res) {
+	if (!res) {
+		return 'shared';
+	} else {
+		return 'independent';
+	}
+};
 var $author$project$VegaLite$densityProperty = function (denProp) {
 	switch (denProp.$) {
 		case 0:
@@ -8933,6 +8940,15 @@ var $author$project$VegaLite$densityProperty = function (denProp) {
 			var x = denProp.a;
 			return A2($author$project$VegaLite$numExpr, 'maxsteps', x);
 		case 7:
+			var r = denProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'resolve',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$resolutionLabel(r)))
+				]);
+		case 8:
 			var x = denProp.a;
 			return A2($author$project$VegaLite$numExpr, 'steps', x);
 		default:
@@ -9045,7 +9061,7 @@ var $author$project$VegaLite$dnGroupBy = function (ss) {
 		$author$project$VegaLite$Strs(ss));
 };
 var $author$project$VegaLite$DnSteps = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var $author$project$VegaLite$dnSteps = function (n) {
 	return $author$project$VegaLite$DnSteps(
@@ -9065,12 +9081,6 @@ var $author$project$VegaLite$maStrokeWidth = function (n) {
 	return $author$project$VegaLite$MStrokeWidth(
 		$author$project$VegaLite$Num(n));
 };
-var $author$project$VegaLite$PStack = function (a) {
-	return {$: 17, a: a};
-};
-var $author$project$VegaLite$pStack = $author$project$VegaLite$PStack;
-var $author$project$VegaLite$OfZero = 0;
-var $author$project$VegaLite$stZero = 0;
 var $author$project$VegaLite$VLTitle = 3;
 var $author$project$VegaLite$tfSpec = function (tf) {
 	switch (tf.$) {
@@ -9262,8 +9272,7 @@ var $author$project$GalleryDist$dist5 = function () {
 				_List_fromArray(
 					[
 						$author$project$VegaLite$pName('density'),
-						$author$project$VegaLite$pQuant,
-						$author$project$VegaLite$pStack($author$project$VegaLite$stZero)
+						$author$project$VegaLite$pQuant
 					]))),
 		$author$project$VegaLite$color(
 			_List_fromArray(

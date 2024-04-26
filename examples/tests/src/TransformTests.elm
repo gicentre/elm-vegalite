@@ -103,7 +103,7 @@ transform5 =
                 -- calculateAs transform first to test that order of transforms is preserved.
                 << calculateAs "datum['IMDB Rating']" "rating"
                 << filter (fiExpr "datum.rating != null")
-                << density "rating" [ dnBandwidth 0.3 ]
+                << density "rating" [ dnBandwidth 0.3, dnResolve reIndependent]
 
         enc =
             encoding

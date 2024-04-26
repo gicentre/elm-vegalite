@@ -120,7 +120,7 @@ dist5 =
         enc =
             encoding
                 << position X [ pName "value", pQuant, pTitle "Body mass (g)" ]
-                << position Y [ pName "density", pQuant, pStack stZero ]
+                << position Y [ pName "density", pQuant]
                 << color [ mName "Species" ]
     in
     toVegaLite

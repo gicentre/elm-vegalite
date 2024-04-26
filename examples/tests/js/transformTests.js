@@ -12698,6 +12698,13 @@ var $author$project$TransformTests$transform4 = function () {
 }();
 var $author$project$VegaLite$Area = 1;
 var $author$project$VegaLite$area = $author$project$VegaLite$mark(1);
+var $author$project$VegaLite$resolutionLabel = function (res) {
+	if (!res) {
+		return 'shared';
+	} else {
+		return 'independent';
+	}
+};
 var $author$project$VegaLite$densityProperty = function (denProp) {
 	switch (denProp.$) {
 		case 0:
@@ -12722,6 +12729,15 @@ var $author$project$VegaLite$densityProperty = function (denProp) {
 			var x = denProp.a;
 			return A2($author$project$VegaLite$numExpr, 'maxsteps', x);
 		case 7:
+			var r = denProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'resolve',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$resolutionLabel(r)))
+				]);
+		case 8:
 			var x = denProp.a;
 			return A2($author$project$VegaLite$numExpr, 'steps', x);
 		default:
@@ -12759,6 +12775,12 @@ var $author$project$VegaLite$dnBandwidth = function (n) {
 	return $author$project$VegaLite$DnBandwidth(
 		$author$project$VegaLite$Num(n));
 };
+var $author$project$VegaLite$DnResolve = function (a) {
+	return {$: 7, a: a};
+};
+var $author$project$VegaLite$dnResolve = $author$project$VegaLite$DnResolve;
+var $author$project$VegaLite$RIndependent = 1;
+var $author$project$VegaLite$reIndependent = 1;
 var $author$project$TransformTests$transform5 = function () {
 	var trans = A2(
 		$elm$core$Basics$composeL,
@@ -12775,7 +12797,8 @@ var $author$project$TransformTests$transform5 = function () {
 			'rating',
 			_List_fromArray(
 				[
-					$author$project$VegaLite$dnBandwidth(0.3)
+					$author$project$VegaLite$dnBandwidth(0.3),
+					$author$project$VegaLite$dnResolve($author$project$VegaLite$reIndependent)
 				])));
 	var enc = A2(
 		$elm$core$Basics$composeL,

@@ -8720,6 +8720,13 @@ var $author$project$GalleryAdvanced$advanced11 = function () {
 					]))
 			]));
 }();
+var $author$project$VegaLite$resolutionLabel = function (res) {
+	if (!res) {
+		return 'shared';
+	} else {
+		return 'independent';
+	}
+};
 var $author$project$VegaLite$densityProperty = function (denProp) {
 	switch (denProp.$) {
 		case 0:
@@ -8744,6 +8751,15 @@ var $author$project$VegaLite$densityProperty = function (denProp) {
 			var x = denProp.a;
 			return A2($author$project$VegaLite$numExpr, 'maxsteps', x);
 		case 7:
+			var r = denProp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'resolve',
+					$elm$json$Json$Encode$string(
+						$author$project$VegaLite$resolutionLabel(r)))
+				]);
+		case 8:
 			var x = denProp.a;
 			return A2($author$project$VegaLite$numExpr, 'steps', x);
 		default:
@@ -9237,7 +9253,7 @@ var $author$project$VegaLite$color = function (markProps) {
 				A2($elm$core$List$concatMap, $author$project$VegaLite$markChannelProperties, markProps))));
 };
 var $author$project$VegaLite$DnSteps = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var $author$project$VegaLite$dnSteps = function (n) {
 	return $author$project$VegaLite$DnSteps(
