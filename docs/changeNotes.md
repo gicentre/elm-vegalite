@@ -1,6 +1,12 @@
 # elm-vegaLite changes
 
-## Pending release
+## V5.6 ➡ V5.7
+
+_Aligning with Vega-Lite Version 5.18._
+
+### Additions
+
+- `dnResolve` for specifying whether density transform parameters are shared between groups (VL 5.18)
 
 ### Minor changes
 
