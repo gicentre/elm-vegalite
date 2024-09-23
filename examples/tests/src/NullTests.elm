@@ -174,7 +174,66 @@ filter2 =
     in
     toVegaLite [ cfg [], data, trans [], enc [], point [] ]
 
+invalidModes :List MarkProperty-> Spec
+invalidModes markProps =
+    let
+        cfg =
+            configure
+                << configuration (coMark markProps )
 
+        data =
+            dataFromRows []
+                << dataRow [ ( "a", nullValue ), ( "b", num 100 ) ]
+                << dataRow [ ( "a", num -10 ), ( "b", nullValue) ]
+                << dataRow [ ( "a", num -5 ), ( "b", num -25 ) ]
+                << dataRow [ ( "a", num -1 ), ( "b", num -20 ) ]
+                << dataRow [ ( "a", num 0 ), ( "b", nullValue ) ]
+                << dataRow [ ( "a", num 1), ( "b", num 30 ) ]
+                << dataRow [ ( "a", num 5), ( "b", num 40 ) ]
+                << dataRow [ ( "a", num 10), ( "b", nullValue ) ]
+        
+        encQuant =
+            encoding
+                << position X [ pName "a", pQuant]
+                << position Y [ pName "b", pQuant]
+        spec1 =
+            asSpec [width 100, height 100, encQuant[], point []]
+        
+        spec2 =
+            asSpec [width 100, height 100, encQuant[], bar []]
+
+        spec3 =
+            asSpec [width 100, height 100, encQuant[], line [ maPoint (pmMarker []) ]]
+
+        spec4 =
+            asSpec [width 100, height 100, encQuant[], area []]
+
+        quantSpec = 
+            asSpec [title "Quantitative X" [], hConcat [spec1, spec2, spec3, spec4]]
+
+
+        encOrd =
+            encoding
+                << position X [ pName "a", pOrdinal]
+                << position Y [ pName "b", pQuant]
+
+        spec5 =
+            asSpec [width 100, height 100, encOrd[], point []]
+        
+        spec6 =
+            asSpec [width 100, height 100, encOrd[], bar []]
+
+        spec7 =
+            asSpec [width 100, height 100, encOrd[], line [ maPoint (pmMarker []) ]]
+
+        spec8 =
+            asSpec [width 100, height 100, encOrd[], area []]
+
+        ordSpec = 
+            asSpec [title "Ordinal X" [], hConcat [spec5, spec6, spec7, spec8]]
+                
+    in
+    toVegaLite [ cfg[], data [], vConcat [quantSpec, ordSpec] ]
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -190,6 +249,11 @@ specs =
     , ( "scale5", scale5 )
     , ( "filter1", filter1 )
     , ( "filter2", filter2 )
+    , ( "modes1", invalidModes [ maInvalid [] ] )
+    , ( "modes2", invalidModes [ maInvalid [ivImputeMark] ] )
+    , ( "modes3", invalidModes [ maInvalid [ivBreakPaths] ] )
+    , ( "modes4", invalidModes [ maInvalid [ivImputeDomain, ivImputePathDomain, ivBreakPaths] ] )
+    , ( "modes5", invalidModes [ maInvalid [ivImputePathDomain, ivBreakPaths] ] )
     ]
 
 

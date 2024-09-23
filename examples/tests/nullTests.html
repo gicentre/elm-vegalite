@@ -83,6 +83,44 @@
   </figure>
   <div style="clear:left"></div>
 
+  <h2>Null handling configuration</h2>
+  <p>See <a href="https://vega.github.io/vega-lite/docs/invalid-data.html">Modes for handling invalid data</a></p>
+
+  <figure class="cell">
+    <div id="modes1"></div>
+    <figcaption>filter: Ignore all invalid data when encoding marks and domains</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="modes2"></div>
+    <figcaption>show: impute all invalid data when encoding marks and domains</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="modes3"></div>
+    <figcaption>break-paths-filter-domains: like filter but break path marks around invalid data</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="modes4"></div>
+    <figcaption>break-paths-show-domains: like break-paths-filter-domains but use imputed values when calculating
+      domains
+    </figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+  <figure class="cell">
+    <div id="modes5"></div>
+    <figcaption>break-paths-show-path-domains: like break-paths-show-domains but only use imputed values when
+      calculating
+      domains of path marks</figcaption>
+  </figure>
+  <div style="clear:left"></div>
+
+
   <h2>Source</h2>
   <div id="elmContainer"></div>
 

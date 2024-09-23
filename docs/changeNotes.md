@@ -1,10 +1,20 @@
 # elm-vegaLite changes
 
+## V5.7 ➡ V5.8
+
+### V5.8 Additions
+
+- `maInvalid` and associated parameter functions `ivImputeMark`, `ivImputeDomain`, `ivImputePathDomain` and `ivBreakPaths` for precise control over the filtering / imputing of invalid data when encoding marks and generating domains. This replaces the old `maRemoveInvalid` reflecting changes to `invalid` introduced in VL 5.19
+
+### V5.8 Deprecations
+
+- `maRemoveInvalid` now deprecated in favour of `maInvalid`. This reflects changes in VL5.19 allowing more precise handling of invalid data items for path marks and domains. `maRemoveInvalid True` should be replaced with `maInvalid []` and `maRemoveInvalid False` replaced with `maInvalid [ ivImputeMark ]`
+
 ## V5.6 ➡ V5.7
 
 _Aligning with Vega-Lite Version 5.18._
 
-### Additions
+### V5.7 Additions
 
 - `dnResolve` for specifying whether density transform parameters are shared between groups (VL 5.18)
 
@@ -18,7 +28,7 @@ _Aligning with Vega-Lite Version 5.18._
 
 _Aligning with Vega-Lite Version 5.14._
 
-### Additions
+### V5.6 Additions
 
 - `binnedTimeUnit` for indicating time units have already been aggregated (VL 5.12).
 - `maMinBandSize` for configuring the minimum width/height of a bar mark (VL 5.11).
@@ -65,13 +75,13 @@ _Aligning with Vega-Lite Version 5.14._
 
 - Correct `loGrouping` bug that generated a single locale grouping rather than array. Thanks @hingew for spotting this.
 
-### API Documentation
+### V5.4 API Documentation
 
 - Corrected API doc for coLocale example to use correct Elm unicode escape text.
 
 - Added reference to parent functions to some functions in the API docs. This makes it easier to see how a function is used in the context of a larger specification by navigating up the function dependency tree. Thanks to @RalfNorthman for the suggested improvement.
 
-### Deprecations
+### V5.4 Deprecations
 
 - Deprecated `dtMonthNum` as it was redundant (use `dtMonth` instead). There should be no reason to allow specification of months with numbers as this carries the risk of undefined behaviour for integers outside the range [1,12]. Thanks to @RalfNorthman for spotting this.
 
