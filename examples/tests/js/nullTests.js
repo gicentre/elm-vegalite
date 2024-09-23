@@ -5773,6 +5773,10 @@ var $author$project$VegaLite$ArAria = function (a) {
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
+var $author$project$VegaLite$IvBreakPaths = 3;
+var $author$project$VegaLite$IvImputeDomain = 1;
+var $author$project$VegaLite$IvImputeMark = 0;
+var $author$project$VegaLite$IvImputePathDomain = 2;
 var $author$project$VegaLite$TTNone = 2;
 var $author$project$VegaLite$booExpr = F2(
 	function (objName, n) {
@@ -6141,6 +6145,36 @@ var $author$project$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $author$project$VegaLite$numsExpr = F2(
 	function (objName, ns) {
 		if (!ns.$) {
@@ -6441,21 +6475,36 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var s = mProp.a;
 			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 50:
-			var bl = mProp.a;
-			if (!bl.$) {
-				var b = bl.a;
-				return b ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'invalid',
-						$elm$json$Json$Encode$string('filter'))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
-					]);
-			} else {
-				return A2($author$project$VegaLite$booExpr, 'invalid', bl);
-			}
+			var ivs = mProp.a;
+			return A2($elm$core$List$member, 0, ivs) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('show'))
+				]) : (_Utils_eq(
+				ivs,
+				_List_fromArray(
+					[3])) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-filter-domains'))
+				]) : (_Utils_eq(ivs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('filter'))
+				]) : ((A2($elm$core$List$member, 1, ivs) && (A2($elm$core$List$member, 2, ivs) && A2($elm$core$List$member, 3, ivs))) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-domains'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-path-domains'))
+				]))));
 		case 29:
 			var s = mProp.a;
 			switch (s.$) {
@@ -12879,12 +12928,14 @@ var $author$project$VegaLite$mStr = function (s) {
 	return $author$project$VegaLite$MString(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$MRemoveInvalid = function (a) {
+var $author$project$VegaLite$MInvalid = function (a) {
 	return {$: 50, a: a};
 };
+var $author$project$VegaLite$ivImputeMark = 0;
 var $author$project$VegaLite$maRemoveInvalid = function (b) {
-	return $author$project$VegaLite$MRemoveInvalid(
-		$author$project$VegaLite$Boo(b));
+	return b ? $author$project$VegaLite$MInvalid(_List_Nil) : $author$project$VegaLite$MInvalid(
+		_List_fromArray(
+			[$author$project$VegaLite$ivImputeMark]));
 };
 var $author$project$NullTests$path = 'https://cdn.jsdelivr.net/npm/vega-datasets@2.3/data/';
 var $author$project$VegaLite$Point = 10;
@@ -13057,6 +13108,370 @@ var $author$project$NullTests$filter2 = function () {
 				$author$project$VegaLite$point(_List_Nil)
 			]));
 }();
+var $author$project$VegaLite$Area = 1;
+var $author$project$VegaLite$area = $author$project$VegaLite$mark(1);
+var $author$project$VegaLite$asSpec = function (specs) {
+	return $elm$json$Json$Encode$object(
+		A2(
+			$elm$core$List$map,
+			function (_v0) {
+				var s = _v0.a;
+				var v = _v0.b;
+				return _Utils_Tuple2(
+					$author$project$VegaLite$vlPropertyLabel(s),
+					v);
+			},
+			specs));
+};
+var $author$project$VegaLite$Bar = 2;
+var $author$project$VegaLite$bar = $author$project$VegaLite$mark(2);
+var $author$project$VegaLite$dataFromRows = F2(
+	function (fmts, rows) {
+		return _Utils_eq(rows, _List_Nil) ? _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						$author$project$VegaLite$toList(
+							_List_fromArray(
+								[
+									$elm$json$Json$Encode$object(_List_Nil)
+								])))
+					]))) : (_Utils_eq(fmts, _List_Nil) ? _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						$author$project$VegaLite$toList(rows))
+					]))) : _Utils_Tuple2(
+			13,
+			$elm$json$Json$Encode$object(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'values',
+						$author$project$VegaLite$toList(rows)),
+						_Utils_Tuple2(
+						'format',
+						$elm$json$Json$Encode$object(
+							A2($elm$core$List$concatMap, $author$project$VegaLite$formatProperties, fmts)))
+					]))));
+	});
+var $author$project$VegaLite$dataRow = function (r) {
+	return $elm$core$List$cons(
+		$elm$json$Json$Encode$object(
+			A2(
+				$elm$core$List$map,
+				function (_v0) {
+					var colName = _v0.a;
+					var val = _v0.b;
+					return _Utils_Tuple2(
+						colName,
+						$author$project$VegaLite$dataValueSpec(val));
+				},
+				r)));
+};
+var $author$project$VegaLite$VLHConcat = 21;
+var $author$project$VegaLite$hConcat = function (specs) {
+	return _Utils_Tuple2(
+		21,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$VLHeight = 5;
+var $author$project$VegaLite$height = function (h) {
+	return _Utils_Tuple2(
+		5,
+		$elm$json$Json$Encode$float(h));
+};
+var $author$project$VegaLite$MPoint = function (a) {
+	return {$: 48, a: a};
+};
+var $author$project$VegaLite$maPoint = $author$project$VegaLite$MPoint;
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $author$project$VegaLite$NullValue = {$: 5};
+var $author$project$VegaLite$nullValue = $author$project$VegaLite$NullValue;
+var $author$project$VegaLite$Number = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$num = $author$project$VegaLite$Number;
+var $author$project$VegaLite$Ordinal = 1;
+var $author$project$VegaLite$pOrdinal = $author$project$VegaLite$PmType(1);
+var $author$project$VegaLite$PMMarker = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$VegaLite$pmMarker = $author$project$VegaLite$PMMarker;
+var $author$project$VegaLite$VLTitle = 3;
+var $author$project$VegaLite$title = F2(
+	function (txt, tps) {
+		return _Utils_Tuple2(
+			3,
+			$elm$json$Json$Encode$object(
+				A2(
+					$elm$core$List$cons,
+					_Utils_Tuple2(
+						'text',
+						$author$project$VegaLite$multilineTextSpec(txt)),
+					A2($elm$core$List$concatMap, $author$project$VegaLite$titleConfigProperty, tps))));
+	});
+var $author$project$VegaLite$VLVConcat = 22;
+var $author$project$VegaLite$vConcat = function (specs) {
+	return _Utils_Tuple2(
+		22,
+		$author$project$VegaLite$toList(specs));
+};
+var $author$project$VegaLite$VLWidth = 4;
+var $author$project$VegaLite$width = function (w) {
+	return _Utils_Tuple2(
+		4,
+		$elm$json$Json$Encode$float(w));
+};
+var $author$project$NullTests$invalidModes = function (markProps) {
+	var encQuant = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('a'),
+						$author$project$VegaLite$pQuant
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('b'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec1 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encQuant(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+	var spec2 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encQuant(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var spec3 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encQuant(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(_List_Nil))
+					]))
+			]));
+	var spec4 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encQuant(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
+			]));
+	var quantSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2($author$project$VegaLite$title, 'Quantitative X', _List_Nil),
+				$author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[spec1, spec2, spec3, spec4]))
+			]));
+	var encOrd = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			$author$project$VegaLite$encoding,
+			A2(
+				$author$project$VegaLite$position,
+				0,
+				_List_fromArray(
+					[
+						$author$project$VegaLite$pName('a'),
+						$author$project$VegaLite$pOrdinal
+					]))),
+		A2(
+			$author$project$VegaLite$position,
+			1,
+			_List_fromArray(
+				[
+					$author$project$VegaLite$pName('b'),
+					$author$project$VegaLite$pQuant
+				])));
+	var spec5 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encOrd(_List_Nil),
+				$author$project$VegaLite$point(_List_Nil)
+			]));
+	var spec6 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encOrd(_List_Nil),
+				$author$project$VegaLite$bar(_List_Nil)
+			]));
+	var spec7 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encOrd(_List_Nil),
+				$author$project$VegaLite$line(
+				_List_fromArray(
+					[
+						$author$project$VegaLite$maPoint(
+						$author$project$VegaLite$pmMarker(_List_Nil))
+					]))
+			]));
+	var spec8 = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				$author$project$VegaLite$width(100),
+				$author$project$VegaLite$height(100),
+				encOrd(_List_Nil),
+				$author$project$VegaLite$area(_List_Nil)
+			]));
+	var ordSpec = $author$project$VegaLite$asSpec(
+		_List_fromArray(
+			[
+				A2($author$project$VegaLite$title, 'Ordinal X', _List_Nil),
+				$author$project$VegaLite$hConcat(
+				_List_fromArray(
+					[spec5, spec6, spec7, spec8]))
+			]));
+	var data = A2(
+		$elm$core$Basics$composeL,
+		A2(
+			$elm$core$Basics$composeL,
+			A2(
+				$elm$core$Basics$composeL,
+				A2(
+					$elm$core$Basics$composeL,
+					A2(
+						$elm$core$Basics$composeL,
+						A2(
+							$elm$core$Basics$composeL,
+							A2(
+								$elm$core$Basics$composeL,
+								A2(
+									$elm$core$Basics$composeL,
+									$author$project$VegaLite$dataFromRows(_List_Nil),
+									$author$project$VegaLite$dataRow(
+										_List_fromArray(
+											[
+												_Utils_Tuple2('a', $author$project$VegaLite$nullValue),
+												_Utils_Tuple2(
+												'b',
+												$author$project$VegaLite$num(100))
+											]))),
+								$author$project$VegaLite$dataRow(
+									_List_fromArray(
+										[
+											_Utils_Tuple2(
+											'a',
+											$author$project$VegaLite$num(-10)),
+											_Utils_Tuple2('b', $author$project$VegaLite$nullValue)
+										]))),
+							$author$project$VegaLite$dataRow(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'a',
+										$author$project$VegaLite$num(-5)),
+										_Utils_Tuple2(
+										'b',
+										$author$project$VegaLite$num(-25))
+									]))),
+						$author$project$VegaLite$dataRow(
+							_List_fromArray(
+								[
+									_Utils_Tuple2(
+									'a',
+									$author$project$VegaLite$num(-1)),
+									_Utils_Tuple2(
+									'b',
+									$author$project$VegaLite$num(-20))
+								]))),
+					$author$project$VegaLite$dataRow(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'a',
+								$author$project$VegaLite$num(0)),
+								_Utils_Tuple2('b', $author$project$VegaLite$nullValue)
+							]))),
+				$author$project$VegaLite$dataRow(
+					_List_fromArray(
+						[
+							_Utils_Tuple2(
+							'a',
+							$author$project$VegaLite$num(1)),
+							_Utils_Tuple2(
+							'b',
+							$author$project$VegaLite$num(30))
+						]))),
+			$author$project$VegaLite$dataRow(
+				_List_fromArray(
+					[
+						_Utils_Tuple2(
+						'a',
+						$author$project$VegaLite$num(5)),
+						_Utils_Tuple2(
+						'b',
+						$author$project$VegaLite$num(40))
+					]))),
+		$author$project$VegaLite$dataRow(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'a',
+					$author$project$VegaLite$num(10)),
+					_Utils_Tuple2('b', $author$project$VegaLite$nullValue)
+				])));
+	var cfg = A2(
+		$elm$core$Basics$composeL,
+		$author$project$VegaLite$configure,
+		$author$project$VegaLite$configuration(
+			$author$project$VegaLite$coMark(markProps)));
+	return $author$project$VegaLite$toVegaLite(
+		_List_fromArray(
+			[
+				cfg(_List_Nil),
+				data(_List_Nil),
+				$author$project$VegaLite$vConcat(
+				_List_fromArray(
+					[quantSpec, ordSpec]))
+			]));
+};
+var $author$project$VegaLite$ivBreakPaths = 3;
+var $author$project$VegaLite$ivImputeDomain = 1;
+var $author$project$VegaLite$ivImputePathDomain = 2;
+var $author$project$VegaLite$maInvalid = $author$project$VegaLite$MInvalid;
 var $author$project$VegaLite$MName = function (a) {
 	return {$: 0, a: a};
 };
@@ -13067,25 +13482,12 @@ var $author$project$VegaLite$mName = function (s) {
 var $author$project$VegaLite$MmType = function (a) {
 	return {$: 6, a: a};
 };
-var $author$project$VegaLite$Ordinal = 1;
 var $author$project$VegaLite$mOrdinal = $author$project$VegaLite$MmType(1);
 var $author$project$VegaLite$mQuant = $author$project$VegaLite$MmType(2);
-var $author$project$VegaLite$VLHeight = 5;
-var $author$project$VegaLite$height = function (h) {
-	return _Utils_Tuple2(
-		5,
-		$elm$json$Json$Encode$float(h));
-};
 var $author$project$VegaLite$Strings = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$strs = $author$project$VegaLite$Strings;
-var $author$project$VegaLite$VLWidth = 4;
-var $author$project$VegaLite$width = function (w) {
-	return _Utils_Tuple2(
-		4,
-		$elm$json$Json$Encode$float(w));
-};
 var $author$project$NullTests$scaleEncode = function (enc) {
 	var data = A2(
 		$elm$core$Basics$composeL,
@@ -13437,7 +13839,50 @@ var $author$project$NullTests$specs = _List_fromArray(
 		_Utils_Tuple2('scale4', $author$project$NullTests$scale4),
 		_Utils_Tuple2('scale5', $author$project$NullTests$scale5),
 		_Utils_Tuple2('filter1', $author$project$NullTests$filter1),
-		_Utils_Tuple2('filter2', $author$project$NullTests$filter2)
+		_Utils_Tuple2('filter2', $author$project$NullTests$filter2),
+		_Utils_Tuple2(
+		'modes1',
+		$author$project$NullTests$invalidModes(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$maInvalid(_List_Nil)
+				]))),
+		_Utils_Tuple2(
+		'modes2',
+		$author$project$NullTests$invalidModes(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$maInvalid(
+					_List_fromArray(
+						[$author$project$VegaLite$ivImputeMark]))
+				]))),
+		_Utils_Tuple2(
+		'modes3',
+		$author$project$NullTests$invalidModes(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$maInvalid(
+					_List_fromArray(
+						[$author$project$VegaLite$ivBreakPaths]))
+				]))),
+		_Utils_Tuple2(
+		'modes4',
+		$author$project$NullTests$invalidModes(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$maInvalid(
+					_List_fromArray(
+						[$author$project$VegaLite$ivImputeDomain, $author$project$VegaLite$ivImputePathDomain, $author$project$VegaLite$ivBreakPaths]))
+				]))),
+		_Utils_Tuple2(
+		'modes5',
+		$author$project$NullTests$invalidModes(
+			_List_fromArray(
+				[
+					$author$project$VegaLite$maInvalid(
+					_List_fromArray(
+						[$author$project$VegaLite$ivImputePathDomain, $author$project$VegaLite$ivBreakPaths]))
+				])))
 	]);
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;

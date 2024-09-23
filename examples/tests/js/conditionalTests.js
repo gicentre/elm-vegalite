@@ -5421,6 +5421,10 @@ var $author$project$VegaLite$ArAria = function (a) {
 var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
+var $author$project$VegaLite$IvBreakPaths = 3;
+var $author$project$VegaLite$IvImputeDomain = 1;
+var $author$project$VegaLite$IvImputeMark = 0;
+var $author$project$VegaLite$IvImputePathDomain = 2;
 var $author$project$VegaLite$TTNone = 2;
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $author$project$VegaLite$booExpr = F2(
@@ -5832,6 +5836,36 @@ var $author$project$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $author$project$VegaLite$numsExpr = F2(
 	function (objName, ns) {
 		if (!ns.$) {
@@ -6132,21 +6166,36 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var s = mProp.a;
 			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 50:
-			var bl = mProp.a;
-			if (!bl.$) {
-				var b = bl.a;
-				return b ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'invalid',
-						$elm$json$Json$Encode$string('filter'))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
-					]);
-			} else {
-				return A2($author$project$VegaLite$booExpr, 'invalid', bl);
-			}
+			var ivs = mProp.a;
+			return A2($elm$core$List$member, 0, ivs) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('show'))
+				]) : (_Utils_eq(
+				ivs,
+				_List_fromArray(
+					[3])) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-filter-domains'))
+				]) : (_Utils_eq(ivs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('filter'))
+				]) : ((A2($elm$core$List$member, 1, ivs) && (A2($elm$core$List$member, 2, ivs) && A2($elm$core$List$member, 3, ivs))) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-domains'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-path-domains'))
+				]))));
 		case 29:
 			var s = mProp.a;
 			switch (s.$) {
@@ -13309,12 +13358,14 @@ var $author$project$VegaLite$mStr = function (s) {
 	return $author$project$VegaLite$MString(
 		$author$project$VegaLite$Str(s));
 };
-var $author$project$VegaLite$MRemoveInvalid = function (a) {
+var $author$project$VegaLite$MInvalid = function (a) {
 	return {$: 50, a: a};
 };
+var $author$project$VegaLite$ivImputeMark = 0;
 var $author$project$VegaLite$maRemoveInvalid = function (b) {
-	return $author$project$VegaLite$MRemoveInvalid(
-		$author$project$VegaLite$Boo(b));
+	return b ? $author$project$VegaLite$MInvalid(_List_Nil) : $author$project$VegaLite$MInvalid(
+		_List_fromArray(
+			[$author$project$VegaLite$ivImputeMark]));
 };
 var $author$project$VegaLite$Or = F2(
 	function (a, b) {

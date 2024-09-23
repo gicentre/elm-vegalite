@@ -7870,6 +7870,10 @@ var $author$project$VegaLite$markLabel = function (m) {
 			return 'trail';
 	}
 };
+var $author$project$VegaLite$IvBreakPaths = 3;
+var $author$project$VegaLite$IvImputeDomain = 1;
+var $author$project$VegaLite$IvImputeMark = 0;
+var $author$project$VegaLite$IvImputePathDomain = 2;
 var $author$project$VegaLite$TTNone = 2;
 var $author$project$VegaLite$blendModeSpec = function (bm) {
 	switch (bm.$) {
@@ -8123,6 +8127,36 @@ var $author$project$VegaLite$markInterpolationSpec = function (interp) {
 					]));
 	}
 };
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $author$project$VegaLite$strokeCapSpec = function (cap) {
 	switch (cap.$) {
 		case 0:
@@ -8277,21 +8311,36 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var s = mProp.a;
 			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 50:
-			var bl = mProp.a;
-			if (!bl.$) {
-				var b = bl.a;
-				return b ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'invalid',
-						$elm$json$Json$Encode$string('filter'))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
-					]);
-			} else {
-				return A2($author$project$VegaLite$booExpr, 'invalid', bl);
-			}
+			var ivs = mProp.a;
+			return A2($elm$core$List$member, 0, ivs) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('show'))
+				]) : (_Utils_eq(
+				ivs,
+				_List_fromArray(
+					[3])) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-filter-domains'))
+				]) : (_Utils_eq(ivs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('filter'))
+				]) : ((A2($elm$core$List$member, 1, ivs) && (A2($elm$core$List$member, 2, ivs) && A2($elm$core$List$member, 3, ivs))) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-domains'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-path-domains'))
+				]))));
 		case 29:
 			var s = mProp.a;
 			switch (s.$) {

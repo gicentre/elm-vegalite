@@ -2546,8 +2546,13 @@ var $author$project$VegaLite$Boo = function (a) {
 	return {$: 0, a: a};
 };
 var $elm$core$Basics$False = 1;
+var $author$project$VegaLite$IvBreakPaths = 3;
+var $author$project$VegaLite$IvImputeDomain = 1;
+var $author$project$VegaLite$IvImputeMark = 0;
+var $author$project$VegaLite$IvImputePathDomain = 2;
 var $author$project$VegaLite$TTNone = 2;
 var $elm$core$Basics$True = 0;
+var $elm$core$Basics$and = _Basics_and;
 var $elm$core$Result$Err = function (a) {
 	return {$: 1, a: a};
 };
@@ -2574,7 +2579,6 @@ var $elm$core$Maybe$Just = function (a) {
 };
 var $elm$core$Maybe$Nothing = {$: 1};
 var $elm$core$String$all = _String_all;
-var $elm$core$Basics$and = _Basics_and;
 var $elm$json$Json$Encode$encode = _Json_encode;
 var $elm$core$String$fromInt = _String_fromNumber;
 var $elm$core$String$join = F2(
@@ -3369,6 +3373,36 @@ var $author$project$VegaLite$markOrientationLabel = function (orient) {
 		return 'vertical';
 	}
 };
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $author$project$VegaLite$numsExpr = F2(
 	function (objName, ns) {
 		if (!ns.$) {
@@ -3670,21 +3704,36 @@ var $author$project$VegaLite$markProperty = function (mProp) {
 			var s = mProp.a;
 			return A2($author$project$VegaLite$strExpr, 'href', s);
 		case 50:
-			var bl = mProp.a;
-			if (!bl.$) {
-				var b = bl.a;
-				return b ? _List_fromArray(
-					[
-						_Utils_Tuple2(
-						'invalid',
-						$elm$json$Json$Encode$string('filter'))
-					]) : _List_fromArray(
-					[
-						_Utils_Tuple2('invalid', $elm$json$Json$Encode$null)
-					]);
-			} else {
-				return A2($author$project$VegaLite$booExpr, 'invalid', bl);
-			}
+			var ivs = mProp.a;
+			return A2($elm$core$List$member, 0, ivs) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('show'))
+				]) : (_Utils_eq(
+				ivs,
+				_List_fromArray(
+					[3])) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-filter-domains'))
+				]) : (_Utils_eq(ivs, _List_Nil) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('filter'))
+				]) : ((A2($elm$core$List$member, 1, ivs) && (A2($elm$core$List$member, 2, ivs) && A2($elm$core$List$member, 3, ivs))) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-domains'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$string('break-paths-show-path-domains'))
+				]))));
 		case 29:
 			var s = mProp.a;
 			switch (s.$) {
