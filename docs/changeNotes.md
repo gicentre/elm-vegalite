@@ -6,7 +6,7 @@
 
 - `maInvalid` and associated parameter functions `ivImputeMark`, `ivImputeDomain`, `ivImputePathDomain` and `ivBreakPaths` for precise control over the filtering / imputing of invalid data when encoding marks and generating domains. This replaces the old `maRemoveInvalid` reflecting changes to `invalid` introduced in VL 5.19
 
-- `sacoInvalid` for providing custom values for imputed invalid data on a channel-by-channel basis.
+- `sacoInvalid` for providing custom values for imputed invalid data on a channel-by-channel basis, reflecting addition in VL 5.19
 
 ### V5.8 Deprecations
 
