@@ -14379,19 +14379,27 @@ ivBreakPaths =
 
 {-| Specify that invalid data items should be imputed when displaying as marks. By default,
 imputation will generate the same visual values as zero (if the scale includes zero) or the
-minimum value (if the scale does not include zero). If set, all types of mark will show the
-imputed invalid data and domains will reflect both valid and imputed invalid data. This is
-equivalent to the Vega-Lite option [`invalid: "show"`](https://vega.github.io/vega-lite/docs/invalid-data.html#mark-invalid-mode).
+minimum value (if the scale does not include zero). This default behaviour can be overridden
+by setting the [sacoInvalid](#sacoInvalid) configuration option.
+
+If `ivImputeMark` is set, all types of mark will show the imputed invalid data and domains will
+reflect both valid and imputed invalid data. This is equivalent to the Vega-Lite option
+[`invalid: "show"`](https://vega.github.io/vega-lite/docs/invalid-data.html#mark-invalid-mode).
 Used by [maInvalid](#maInvalid).
+
 -}
 ivImputeMark : InvalidProperty
 ivImputeMark =
     IvImputeMark
 
 
-{-| Specify that domains should be include both valid data and imputed invalid data. This may
-be set independently of whether invalid data themselves are displayed as marks. Used by
-[maInvalid](#maInvalid).
+{-| Specify that domains should be include both valid data and imputed invalid data. Imputed values
+are by default zero if scale includes zero or the data minimum if not. This default behaviour can be
+overridden by setting the [sacoInvalid](#sacoInvalid) configuration option.
+
+`ivImputeMark` may be set independently of whether invalid data themselves are displayed as marks.
+Used by [maInvalid](#maInvalid).
+
 -}
 ivImputeDomain : InvalidProperty
 ivImputeDomain =
