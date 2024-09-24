@@ -230,10 +230,83 @@ invalidModes markProps =
             asSpec [width 100, height 100, encOrd[], area []]
 
         ordSpec = 
-            asSpec [title "Ordinal X" [], hConcat [spec5, spec6, spec7, spec8]]
+            asSpec [ title "Ordinal X" [], hConcat [spec5, spec6, spec7, spec8] ]
                 
     in
     toVegaLite [ cfg[], data [], vConcat [quantSpec, ordSpec] ]
+
+imputeScatter : List (Channel, DataValue) -> Spec
+imputeScatter ivs =
+    let
+        cfg =
+            configure
+                << configuration (coMark [maInvalid [], maTooltip ttEncoding] )
+                << configuration (coScale [ sacoInvalid ivs])
+
+        data =
+            dataFromRows []
+                << dataRow [ ( "a", num 1 ), ( "b", num 15 ), ("c", num 1) ]
+                << dataRow [ ( "a", num 2 ), ( "b", num 25), ("c", num 1) ]
+                << dataRow [ ( "a", num 3 ), ( "b", num 20 ), ("c", num 1) ]
+                << dataRow [ ( "a", num 1 ), ( "b", num 12 ), ("c", num 2) ]
+                << dataRow [ ( "a", num 2 ), ( "b", num 21), ("c", num 2) ]
+                << dataRow [ ( "a", num 3 ), ( "b", num 29 ), ("c", num 2) ]
+                << dataRow [ ( "a", num 1 ), ( "b", num 8 ), ("c", nullValue) ]
+                << dataRow [ ( "a", num 2 ), ( "b", num 31), ("c", nullValue) ]
+                << dataRow [ ( "a", num 3 ), ( "b", num 49 ), ("c", nullValue) ]
+
+        encClr = 
+            encoding
+                << position X [ pName "a", pQuant ]
+                << position Y [ pName "b", pQuant ]
+                << color [mName "c", mQuant ]
+
+        encSze = 
+            encoding
+                << position X [ pName "a", pQuant ]
+                << position Y [ pName "b", pQuant ]
+                << size [mName "c", mQuant ]
+
+        clrSpec =
+            asSpec [title "Colour" [], width 100, height 100, encClr[], point[] ]
+
+        szeSpec =
+            asSpec [title "Size" [], width 100, height 100, encSze[], point[] ]
+                
+    in
+        toVegaLite [cfg[], data[], concat [clrSpec, szeSpec] ]
+
+
+imputeBar : List (Channel, DataValue) -> Spec
+imputeBar ivs =
+    let
+        cfg =
+            configure
+                << configuration (coMark [maInvalid [ ivImputeMark ], maTooltip ttEncoding] )
+                << configuration (coScale [ sacoInvalid ivs])
+
+        data =
+            dataFromRows []
+                << dataRow [ ( "a", num 1 ), ( "b", num 15 ), ("c", num 1) ]
+                << dataRow [ ( "a", num 2 ), ( "b", num 25), ("c", num 1) ]
+                << dataRow [ ( "a", num 3 ), ( "b", num 20 ), ("c", num 1) ]
+                << dataRow [ ( "a", num 1 ), ( "b", num 12 ), ("c", num 2) ]
+                << dataRow [ ( "a", num 2 ), ( "b", num 21), ("c", num 2) ]
+                << dataRow [ ( "a", num 3 ), ( "b", num 29 ), ("c", num 2) ]
+                << dataRow [ ( "a", num 1 ), ( "b", num 8 ), ("c", nullValue) ]
+                << dataRow [ ( "a", num 2 ), ( "b", num 31), ("c", nullValue) ]
+                << dataRow [ ( "a", num 3 ), ( "b", num 49 ), ("c", nullValue) ]
+
+        enc = 
+            encoding
+                << position X [ pName "a", pQuant ]
+                << position Y [ pName "b", pQuant ]
+                << color [mName "c", mQuant ]
+
+    in
+        toVegaLite [ cfg[], data[], enc[], bar[] ]
+
+
 
 {- Ids and specifications to be provided to the Vega-Lite runtime. -}
 
@@ -254,6 +327,10 @@ specs =
     , ( "modes3", invalidModes [ maInvalid [ivBreakPaths] ] )
     , ( "modes4", invalidModes [ maInvalid [ivImputeDomain, ivImputePathDomain, ivBreakPaths] ] )
     , ( "modes5", invalidModes [ maInvalid [ivImputePathDomain, ivBreakPaths] ] )
+    , ( "impute1", imputeScatter [ ] )
+    , ( "impute2", imputeScatter[ (chColor, str "#aaa"), (chSize, num 4) ] )
+    , ( "impute3", imputeBar[ ] )
+    , ( "impute4", imputeBar[ (chColor, str "red") ] )
     ]
 
 
