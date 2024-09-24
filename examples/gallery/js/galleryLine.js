@@ -9599,45 +9599,69 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 6:
-			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxBandSize', x);
+			var imps = scaleCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v1) {
+								var ch = _v1.a;
+								var dv = _v1.b;
+								return _Utils_Tuple2(
+									$author$project$VegaLite$channelLabel(ch),
+									$elm$json$Json$Encode$object(
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												'value',
+												$author$project$VegaLite$dataValueSpec(dv))
+											])));
+							},
+							imps)))
+				]);
 		case 7:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minBandSize', x);
+			return A2($author$project$VegaLite$numExpr, 'maxBandSize', x);
 		case 8:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxFontSize', x);
+			return A2($author$project$VegaLite$numExpr, 'minBandSize', x);
 		case 9:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minFontSize', x);
+			return A2($author$project$VegaLite$numExpr, 'maxFontSize', x);
 		case 10:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxOpacity', x);
+			return A2($author$project$VegaLite$numExpr, 'minFontSize', x);
 		case 11:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minOpacity', x);
+			return A2($author$project$VegaLite$numExpr, 'maxOpacity', x);
 		case 12:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxSize', x);
+			return A2($author$project$VegaLite$numExpr, 'minOpacity', x);
 		case 13:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minSize', x);
+			return A2($author$project$VegaLite$numExpr, 'maxSize', x);
 		case 14:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxStrokeWidth', x);
+			return A2($author$project$VegaLite$numExpr, 'minSize', x);
 		case 15:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minStrokeWidth', x);
+			return A2($author$project$VegaLite$numExpr, 'maxStrokeWidth', x);
 		case 16:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'pointPadding', x);
+			return A2($author$project$VegaLite$numExpr, 'minStrokeWidth', x);
 		case 17:
-			var b = scaleCfg.a;
-			return A2($author$project$VegaLite$booExpr, 'round', b);
+			var x = scaleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'pointPadding', x);
 		case 18:
 			var b = scaleCfg.a;
-			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 19:
+			var b = scaleCfg.a;
+			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
+		case 20:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'xReverse', b);
 		default:

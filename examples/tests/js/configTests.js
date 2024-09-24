@@ -10810,45 +10810,69 @@ var $author$project$VegaLite$scaleConfigProperty = function (scaleCfg) {
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'clamp', b);
 		case 6:
-			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxBandSize', x);
+			var imps = scaleCfg.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'invalid',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v1) {
+								var ch = _v1.a;
+								var dv = _v1.b;
+								return _Utils_Tuple2(
+									$author$project$VegaLite$channelLabel(ch),
+									$elm$json$Json$Encode$object(
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												'value',
+												$author$project$VegaLite$dataValueSpec(dv))
+											])));
+							},
+							imps)))
+				]);
 		case 7:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minBandSize', x);
+			return A2($author$project$VegaLite$numExpr, 'maxBandSize', x);
 		case 8:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxFontSize', x);
+			return A2($author$project$VegaLite$numExpr, 'minBandSize', x);
 		case 9:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minFontSize', x);
+			return A2($author$project$VegaLite$numExpr, 'maxFontSize', x);
 		case 10:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxOpacity', x);
+			return A2($author$project$VegaLite$numExpr, 'minFontSize', x);
 		case 11:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minOpacity', x);
+			return A2($author$project$VegaLite$numExpr, 'maxOpacity', x);
 		case 12:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxSize', x);
+			return A2($author$project$VegaLite$numExpr, 'minOpacity', x);
 		case 13:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minSize', x);
+			return A2($author$project$VegaLite$numExpr, 'maxSize', x);
 		case 14:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'maxStrokeWidth', x);
+			return A2($author$project$VegaLite$numExpr, 'minSize', x);
 		case 15:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'minStrokeWidth', x);
+			return A2($author$project$VegaLite$numExpr, 'maxStrokeWidth', x);
 		case 16:
 			var x = scaleCfg.a;
-			return A2($author$project$VegaLite$numExpr, 'pointPadding', x);
+			return A2($author$project$VegaLite$numExpr, 'minStrokeWidth', x);
 		case 17:
-			var b = scaleCfg.a;
-			return A2($author$project$VegaLite$booExpr, 'round', b);
+			var x = scaleCfg.a;
+			return A2($author$project$VegaLite$numExpr, 'pointPadding', x);
 		case 18:
 			var b = scaleCfg.a;
-			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
+			return A2($author$project$VegaLite$booExpr, 'round', b);
 		case 19:
+			var b = scaleCfg.a;
+			return A2($author$project$VegaLite$booExpr, 'useUnaggregatedDomain', b);
+		case 20:
 			var b = scaleCfg.a;
 			return A2($author$project$VegaLite$booExpr, 'xReverse', b);
 		default:
@@ -16717,13 +16741,13 @@ var $author$project$VegaLite$SacoClamp = function (a) {
 	return {$: 4, a: a};
 };
 var $author$project$VegaLite$SacoRound = function (a) {
-	return {$: 17, a: a};
-};
-var $author$project$VegaLite$SacoUseUnaggregatedDomain = function (a) {
 	return {$: 18, a: a};
 };
-var $author$project$VegaLite$SacoXReverse = function (a) {
+var $author$project$VegaLite$SacoUseUnaggregatedDomain = function (a) {
 	return {$: 19, a: a};
+};
+var $author$project$VegaLite$SacoXReverse = function (a) {
+	return {$: 20, a: a};
 };
 var $author$project$VegaLite$sacoBooExpr = F2(
 	function (ex, fn) {
@@ -16732,13 +16756,13 @@ var $author$project$VegaLite$sacoBooExpr = F2(
 			case 4:
 				return $author$project$VegaLite$SacoClamp(
 					$author$project$VegaLite$BooExpr(ex));
-			case 19:
+			case 20:
 				return $author$project$VegaLite$SacoXReverse(
 					$author$project$VegaLite$BooExpr(ex));
-			case 17:
+			case 18:
 				return $author$project$VegaLite$SacoRound(
 					$author$project$VegaLite$BooExpr(ex));
-			case 18:
+			case 19:
 				return $author$project$VegaLite$SacoUseUnaggregatedDomain(
 					$author$project$VegaLite$BooExpr(ex));
 			default:
@@ -16760,37 +16784,37 @@ var $author$project$VegaLite$SacoBandPaddingInner = function (a) {
 	return {$: 0, a: a};
 };
 var $author$project$VegaLite$SacoMaxBandSize = function (a) {
-	return {$: 6, a: a};
-};
-var $author$project$VegaLite$SacoMaxFontSize = function (a) {
-	return {$: 8, a: a};
-};
-var $author$project$VegaLite$SacoMaxOpacity = function (a) {
-	return {$: 10, a: a};
-};
-var $author$project$VegaLite$SacoMaxSize = function (a) {
-	return {$: 12, a: a};
-};
-var $author$project$VegaLite$SacoMaxStrokeWidth = function (a) {
-	return {$: 14, a: a};
-};
-var $author$project$VegaLite$SacoMinBandSize = function (a) {
 	return {$: 7, a: a};
 };
-var $author$project$VegaLite$SacoMinFontSize = function (a) {
+var $author$project$VegaLite$SacoMaxFontSize = function (a) {
 	return {$: 9, a: a};
 };
-var $author$project$VegaLite$SacoMinOpacity = function (a) {
+var $author$project$VegaLite$SacoMaxOpacity = function (a) {
 	return {$: 11, a: a};
 };
-var $author$project$VegaLite$SacoMinSize = function (a) {
+var $author$project$VegaLite$SacoMaxSize = function (a) {
 	return {$: 13, a: a};
 };
-var $author$project$VegaLite$SacoMinStrokeWidth = function (a) {
+var $author$project$VegaLite$SacoMaxStrokeWidth = function (a) {
 	return {$: 15, a: a};
 };
-var $author$project$VegaLite$SacoPointPadding = function (a) {
+var $author$project$VegaLite$SacoMinBandSize = function (a) {
+	return {$: 8, a: a};
+};
+var $author$project$VegaLite$SacoMinFontSize = function (a) {
+	return {$: 10, a: a};
+};
+var $author$project$VegaLite$SacoMinOpacity = function (a) {
+	return {$: 12, a: a};
+};
+var $author$project$VegaLite$SacoMinSize = function (a) {
+	return {$: 14, a: a};
+};
+var $author$project$VegaLite$SacoMinStrokeWidth = function (a) {
 	return {$: 16, a: a};
+};
+var $author$project$VegaLite$SacoPointPadding = function (a) {
+	return {$: 17, a: a};
 };
 var $author$project$VegaLite$SacoRectBandPaddingInner = function (a) {
 	return {$: 2, a: a};
@@ -16814,37 +16838,37 @@ var $author$project$VegaLite$sacoNumExpr = F2(
 			case 5:
 				return $author$project$VegaLite$SacoContinuousPadding(
 					$author$project$VegaLite$NumExpr(ex));
-			case 6:
+			case 7:
 				return $author$project$VegaLite$SacoMaxBandSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 7:
+			case 8:
 				return $author$project$VegaLite$SacoMinBandSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 8:
+			case 9:
 				return $author$project$VegaLite$SacoMaxFontSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 9:
+			case 10:
 				return $author$project$VegaLite$SacoMinFontSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 10:
+			case 11:
 				return $author$project$VegaLite$SacoMaxOpacity(
 					$author$project$VegaLite$NumExpr(ex));
-			case 11:
+			case 12:
 				return $author$project$VegaLite$SacoMinOpacity(
 					$author$project$VegaLite$NumExpr(ex));
-			case 12:
+			case 13:
 				return $author$project$VegaLite$SacoMaxSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 13:
+			case 14:
 				return $author$project$VegaLite$SacoMinSize(
 					$author$project$VegaLite$NumExpr(ex));
-			case 14:
+			case 15:
 				return $author$project$VegaLite$SacoMaxStrokeWidth(
 					$author$project$VegaLite$NumExpr(ex));
-			case 15:
+			case 16:
 				return $author$project$VegaLite$SacoMinStrokeWidth(
 					$author$project$VegaLite$NumExpr(ex));
-			case 16:
+			case 17:
 				return $author$project$VegaLite$SacoPointPadding(
 					$author$project$VegaLite$NumExpr(ex));
 			default:
