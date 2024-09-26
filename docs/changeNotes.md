@@ -4,9 +4,15 @@
 
 ### V5.8 Additions
 
+- `doRawExpr` for explicitly setting a `domainRaw` expression. Used for modifying an existing domain via some expression. Typically used to set domain values based on some interaction input.
+
 - `maInvalid` and associated parameter functions `ivImputeMark`, `ivImputeDomain`, `ivImputePathDomain` and `ivBreakPaths` for precise control over the filtering / imputing of invalid data when encoding marks and generating domains. This replaces the old `maRemoveInvalid` reflecting changes to `invalid` introduced in VL 5.19
 
 - `sacoInvalid` for providing custom values for imputed invalid data on a channel-by-channel basis, reflecting addition in VL 5.19
+
+### V5.8 Changes
+
+- `scDomainExpr` now creates a Vega-Lite `domain` expression rather than `domainRaw` expression. This isn't a change to the API, but rather the Vega-Lite output it generates and is consistent with expected behaviour for VL 5.20. For cases where `domainRaw` is needed, use the new `doRawExpr` function.
 
 ### V5.8 Deprecations
 
