@@ -605,7 +605,7 @@ interaction24 =
                 << position X
                     [ pName "Horsepower"
                     , pQuant
-                    , pScale [ scDomainExpr "useCustomX ? [minX, maxX] : null" ]
+                    , pScale [ scDomain (doRawExpr "useCustomX ? [minX, maxX] : null" ) ]
                     ]
                 << position Y [ pName "Miles_per_Gallon", pQuant ]
                 << size [ mName "Cylinders", mQuant ]

@@ -267,6 +267,31 @@ param9 : Spec
 param9 =
     let
         data =
+            dataFromUrl (path ++ "cars.json")
+
+        ps =
+            params
+               << param "legSel" [ paSelect sePoint [ seEncodings [ chColor ] ], paBindLegend ""]
+               << param "clr" [ paExpr "domain('color')" ]
+               << param "clrDomain" [ paNonReact "clr" ]
+
+        enc =
+            encoding
+                << position X [ pName "Horsepower", pQuant ]
+                << position Y [ pName "Miles_per_Gallon", pQuant ]
+                << color [ mName "Origin", mScale [scDomainExpr "clrDomain"] ]
+
+        trans =
+            transform
+                << filter (fiSelection "legSel")
+    in         
+    toVegaLite [ ps [], data[], trans[], enc [], point [] ]
+
+
+param10 : Spec
+param10 =
+    let
+        data =
             dataFromUrl (path ++ "flights-5k.json") [ parse [ ( "date", foDate "" ) ] ]
 
         trans =
@@ -296,8 +321,8 @@ param9 =
     toVegaLite [ data, trans [], vConcat [ spec1, spec2 ] ]
 
 
-param10 : Spec
-param10 =
+param11 : Spec
+param11 =
     let
         data =
             dataFromUrl (path ++ "sp500.csv") []
@@ -341,6 +366,7 @@ specs =
     , ( "param8", param8 )
     , ( "param9", param9 )
     , ( "param10", param10 )
+    , ( "param11", param11 )
     ]
 
 
