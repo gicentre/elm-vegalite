@@ -4,6 +4,8 @@
 
 ### V5.8 Additions
 
+- `paNonReact` for creating a new non-reactive parameter from an existing named parameter. This provides a more concise way of using `react: false` introduced in VL 5.20.
+
 - `doRawExpr` for explicitly setting a `domainRaw` expression. Used for modifying an existing domain via some expression. Typically used to set domain values based on some interaction input.
 
 - `maInvalid` and associated parameter functions `ivImputeMark`, `ivImputeDomain`, `ivImputePathDomain` and `ivBreakPaths` for precise control over the filtering / imputing of invalid data when encoding marks and generating domains. This replaces the old `maRemoveInvalid` reflecting changes to `invalid` introduced in VL 5.19
