@@ -2,6 +2,8 @@
 
 ## V5.7 ➡ V5.8
 
+_Aligning with Vega-Lite Version 5.21._
+
 ### V5.8 Additions
 
 - `paNonReact` for creating a new non-reactive parameter from an existing named parameter. This provides a more concise way of using `react: false` introduced in VL 5.20.
