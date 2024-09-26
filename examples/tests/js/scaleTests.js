@@ -6559,7 +6559,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 		case 3:
 			var x = sdType.a;
 			return numSpec(x);
-		case 7:
+		case 8:
 			var ds = sdType.a;
 			return A2(
 				$elm$json$Json$Encode$list,
@@ -6568,7 +6568,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
-		case 8:
+		case 9:
 			var s = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -6610,6 +6610,9 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						]));
 			}
 		case 6:
+			var s = sdType.a;
+			return $elm$json$Json$Encode$string(s);
+		case 7:
 			var cats = sdType.a;
 			if (!cats.$) {
 				var ss = cats.a;
@@ -6624,7 +6627,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 							$elm$json$Json$Encode$string(s))
 						]));
 			}
-		case 9:
+		case 10:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -6633,7 +6636,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'param',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		case 11:
+		case 12:
 			var selName = sdType.a;
 			var ch = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -6647,7 +6650,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(
 							$author$project$VegaLite$channelLabel(ch)))
 					]));
-		case 10:
+		case 11:
 			var selName = sdType.a;
 			var f = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -6660,7 +6663,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'field',
 						$elm$json$Json$Encode$string(f))
 					]));
-		case 13:
+		case 14:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -6960,7 +6963,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
-					'domainRaw',
+					'domain',
 					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -7033,6 +7036,20 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 										])))
 							]);
 					}
+				case 6:
+					var s = sdType.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'domainRaw',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'expr',
+										$elm$json$Json$Encode$string(s))
+									])))
+						]);
 				default:
 					return _List_fromArray(
 						[
@@ -10654,7 +10671,7 @@ var $author$project$ScaleTests$lineChart = F2(
 	});
 var $author$project$ScaleTests$scale12 = A2($author$project$ScaleTests$lineChart, _List_Nil, _List_Nil);
 var $author$project$VegaLite$DDateTimes = function (a) {
-	return {$: 7, a: a};
+	return {$: 8, a: a};
 };
 var $author$project$VegaLite$doDts = $author$project$VegaLite$DDateTimes;
 var $author$project$VegaLite$DNumbers = function (a) {
@@ -13857,7 +13874,7 @@ var $author$project$VegaLite$Boolean = function (a) {
 };
 var $author$project$VegaLite$boo = $author$project$VegaLite$Boolean;
 var $author$project$VegaLite$DDateTimesExpr = function (a) {
-	return {$: 8, a: a};
+	return {$: 9, a: a};
 };
 var $author$project$VegaLite$doDtsExpr = $author$project$VegaLite$DDateTimesExpr;
 var $author$project$VegaLite$NumExpr = function (a) {
@@ -14149,79 +14166,120 @@ var $author$project$VegaLite$paramProperty = function (pp) {
 	switch (pp.$) {
 		case 0:
 			var bps = pp.a;
-			return _Utils_Tuple2(
-				'bind',
-				$elm$json$Json$Encode$object(
-					$author$project$VegaLite$pBindingProperties(bps)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bind',
+					$elm$json$Json$Encode$object(
+						$author$project$VegaLite$pBindingProperties(bps)))
+				]);
 		case 1:
 			var binds = pp.a;
-			return _Utils_Tuple2(
-				'bind',
-				$elm$json$Json$Encode$object(
-					A2(
-						$elm$core$List$map,
-						function (_v1) {
-							var bName = _v1.a;
-							var bps = _v1.b;
-							return _Utils_Tuple2(
-								bName,
-								$elm$json$Json$Encode$object(
-									$author$project$VegaLite$pBindingProperties(bps)));
-						},
-						binds)));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bind',
+					$elm$json$Json$Encode$object(
+						A2(
+							$elm$core$List$map,
+							function (_v1) {
+								var bName = _v1.a;
+								var bps = _v1.b;
+								return _Utils_Tuple2(
+									bName,
+									$elm$json$Json$Encode$object(
+										$author$project$VegaLite$pBindingProperties(bps)));
+							},
+							binds)))
+				]);
 		case 2:
-			return _Utils_Tuple2(
-				'bind',
-				$elm$json$Json$Encode$string('scales'));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bind',
+					$elm$json$Json$Encode$string('scales'))
+				]);
 		case 3:
 			var s = pp.a;
 			return (!$elm$core$String$length(
-				$elm$core$String$trim(s))) ? _Utils_Tuple2(
-				'bind',
-				$elm$json$Json$Encode$string('legend')) : _Utils_Tuple2(
-				'bind',
-				$elm$json$Json$Encode$object(
-					_List_fromArray(
-						[
-							_Utils_Tuple2(
-							'legend',
-							$elm$json$Json$Encode$string(s))
-						])));
+				$elm$core$String$trim(s))) ? _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bind',
+					$elm$json$Json$Encode$string('legend'))
+				]) : _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'bind',
+					$elm$json$Json$Encode$object(
+						_List_fromArray(
+							[
+								_Utils_Tuple2(
+								'legend',
+								$elm$json$Json$Encode$string(s))
+							])))
+				]);
 		case 4:
 			var s = pp.a;
-			return _Utils_Tuple2(
-				'expr',
-				$elm$json$Json$Encode$string(s));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'expr',
+					$elm$json$Json$Encode$string(s))
+				]);
 		case 5:
 			var d = pp.a;
-			return _Utils_Tuple2(
-				'value',
-				$author$project$VegaLite$dataValueSpec(d));
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$author$project$VegaLite$dataValueSpec(d))
+				]);
 		case 6:
 			var ds = pp.a;
-			return _Utils_Tuple2(
-				'value',
-				$author$project$VegaLite$dataValuesSpecs(ds));
-		default:
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'value',
+					$author$project$VegaLite$dataValuesSpecs(ds))
+				]);
+		case 7:
 			var s = pp.a;
 			var sps = pp.b;
 			if (!sps.b) {
-				return _Utils_Tuple2(
-					'select',
-					$elm$json$Json$Encode$string(
-						$author$project$VegaLite$selectionLabel(s)));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'select',
+						$elm$json$Json$Encode$string(
+							$author$project$VegaLite$selectionLabel(s)))
+					]);
 			} else {
-				return _Utils_Tuple2(
-					'select',
-					$elm$json$Json$Encode$object(
-						A2(
-							$elm$core$List$cons,
-							_Utils_Tuple2(
-								'type',
-								$elm$json$Json$Encode$string(
-									$author$project$VegaLite$selectionLabel(s))),
-							A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, sps))));
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						'select',
+						$elm$json$Json$Encode$object(
+							A2(
+								$elm$core$List$cons,
+								_Utils_Tuple2(
+									'type',
+									$elm$json$Json$Encode$string(
+										$author$project$VegaLite$selectionLabel(s))),
+								A2($elm$core$List$concatMap, $author$project$VegaLite$selectionProperties, sps))))
+					]);
 			}
+		default:
+			var s = pp.a;
+			return _List_fromArray(
+				[
+					_Utils_Tuple2(
+					'expr',
+					$elm$json$Json$Encode$string(s)),
+					_Utils_Tuple2(
+					'react',
+					$elm$json$Json$Encode$bool(false))
+				]);
 	}
 };
 var $author$project$VegaLite$param = F2(
@@ -14230,7 +14288,7 @@ var $author$project$VegaLite$param = F2(
 			_Utils_Tuple2(
 				nme,
 				$elm$json$Json$Encode$object(
-					A2($elm$core$List$map, $author$project$VegaLite$paramProperty, pps))));
+					A2($elm$core$List$concatMap, $author$project$VegaLite$paramProperty, pps))));
 	});
 var $author$project$VegaLite$VLParams = 1;
 var $elm$json$Json$Decode$decodeValue = _Json_run;

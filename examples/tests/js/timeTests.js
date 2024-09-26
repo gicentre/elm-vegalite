@@ -8072,7 +8072,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 		case 3:
 			var x = sdType.a;
 			return numSpec(x);
-		case 7:
+		case 8:
 			var ds = sdType.a;
 			return A2(
 				$elm$json$Json$Encode$list,
@@ -8081,7 +8081,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						A2($elm$core$List$concatMap, $author$project$VegaLite$dateTimeProperty, d));
 				},
 				ds);
-		case 8:
+		case 9:
 			var s = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -8123,6 +8123,9 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						]));
 			}
 		case 6:
+			var s = sdType.a;
+			return $elm$json$Json$Encode$string(s);
+		case 7:
 			var cats = sdType.a;
 			if (!cats.$) {
 				var ss = cats.a;
@@ -8137,7 +8140,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 							$elm$json$Json$Encode$string(s))
 						]));
 			}
-		case 9:
+		case 10:
 			var selName = sdType.a;
 			return $elm$json$Json$Encode$object(
 				_List_fromArray(
@@ -8146,7 +8149,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'param',
 						$elm$json$Json$Encode$string(selName))
 					]));
-		case 11:
+		case 12:
 			var selName = sdType.a;
 			var ch = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -8160,7 +8163,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						$elm$json$Json$Encode$string(
 							$author$project$VegaLite$channelLabel(ch)))
 					]));
-		case 10:
+		case 11:
 			var selName = sdType.a;
 			var f = sdType.b;
 			return $elm$json$Json$Encode$object(
@@ -8173,7 +8176,7 @@ var $author$project$VegaLite$scaleDomainSpec = function (sdType) {
 						'field',
 						$elm$json$Json$Encode$string(f))
 					]));
-		case 13:
+		case 14:
 			return $elm$json$Json$Encode$string('unaggregated');
 		default:
 			var scDo = sdType.a;
@@ -8473,7 +8476,7 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 			return _List_fromArray(
 				[
 					_Utils_Tuple2(
-					'domainRaw',
+					'domain',
 					$elm$json$Json$Encode$object(
 						_List_fromArray(
 							[
@@ -8546,6 +8549,20 @@ var $author$project$VegaLite$scaleProperty = function (scaleProp) {
 										])))
 							]);
 					}
+				case 6:
+					var s = sdType.a;
+					return _List_fromArray(
+						[
+							_Utils_Tuple2(
+							'domainRaw',
+							$elm$json$Json$Encode$object(
+								_List_fromArray(
+									[
+										_Utils_Tuple2(
+										'expr',
+										$elm$json$Json$Encode$string(s))
+									])))
+						]);
 				default:
 					return _List_fromArray(
 						[
