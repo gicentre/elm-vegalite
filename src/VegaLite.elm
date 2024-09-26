@@ -18905,11 +18905,11 @@ therefore be used to set a fixed color scale domain:
             << param "clr" [ paExpr "domain('color')" ]
             << param "clrDomain" [ paNonReact "clr" ]
 
-        enc =
-            encoding
-                << position X [ pName "Horsepower", pQuant ]
-                << position Y [ pName "Miles_per_Gallon", pQuant ]
-                << color [ mName "Origin", mScale [scDomainExpr "clrDomain"] ]
+    enc =
+        encoding
+            << position X [ pName "Horsepower", pQuant ]
+            << position Y [ pName "Miles_per_Gallon", pQuant ]
+            << color [ mName "Origin", mScale [ scDomainExpr "clrDomain" ] ]
 
 -}
 paNonReact : String -> ParamProperty
